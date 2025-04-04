@@ -293,6 +293,114 @@ Generation quality metrics are used to assess the overall quality of the content
 
 :::image type="content" source="../media/evaluations/quality-evaluation-diagram.png" alt-text="Diagram of generation quality metric workflow." lightbox="../media/evaluations/quality-evaluation-diagram.png":::
 
+### AI-assisted: Intent Resolution
+
+| Score characteristics | Score details  |
+| ----- | --- |
+| Score range | 1 to 5 where 1 is the lowest quality and 5 is the highest quality. |
+| What is this metric? | Intent Resolution measures how well an agent identifies a user’s request, including how well it scopes the user’s intent, asks clarifying questions, and reminds end users of its scope of capabilities.|
+| How does it work? | The metric is calculated by instructing a language model to follow the definition (in the description) and a set of grading rubrics, evaluate the user inputs, and output a score on a 5-point scale (higher means better quality). See the  following definition and grading rubric. |
+| When to use it? | The recommended scenario is evaluating agent’s ability to identify user intents from agent interactions. |
+| What does it need as input? | Query, Response, Tool Definitions (optional) |
+
+Our definition and grading rubrics to be used by the Large Language Model judge to score this metric:
+
+**Definition:**
+
+Your goal is to assess the quality of the response given in relation to a query from a user, specifically focusing on the agent’s ability to understand and resolve the user intent expressed in the query. There's also a field for tool definitions describing the functions, if any, that are accessible to the agent and that the agent might invoke in the response if necessary.
+
+**Ratings:**
+
+| Intent Resolution | Definition |
+| ---|---|
+| Intent Resolution 1: Response completely unrelated to user intent. | The agent's response doesn't address the query at all. |
+| Intent Resolution 2: Response minimally relates to user intent. | The response shows a token attempt to address the query by mentioning a relevant keyword or concept, but it provides almost no useful or actionable information.|
+| Intent Resolution 3: Response partially addresses the user intent but lacks complete details. | The response provides a basic idea related to the query by mentioning a few relevant elements, but it omits several key details and specifics needed for fully resolving the user's query. |
+| Intent Resolution 4: Response addresses the user intent with moderate accuracy but has minor inaccuracies or omissions. | The response offers a moderately detailed answer that includes several specific elements relevant to the query, yet it still lacks some finer details or complete information. |
+| Intent Resolution 5: Response directly addresses the user intent and fully resolves it. | The response provides a complete, detailed, and accurate answer that fully resolves the user's query with all necessary information and precision. |
+
+### AI-assisted: Tool Call Accuracy
+
+| Score characteristics | Score details  |
+| ----- | --- |
+| Score range | 1 to 5 where 1 is the lowest quality and 5 is the highest quality. |
+| What is this metric? | Tool Call Accuracy measures an agent’s ability to select appropriate tools, extract, and process correct parameters from previous steps of the agentic workflow. It detects whether each tool call made is accurate (binary) and reports back the average scores, which can be interpreted as a passing rate across tool calls made. |
+| How does it work? | The metric is calculated by instructing a language model to follow the definition (in the description) and a set of grading rubrics, evaluate the user inputs, and output a score on a 5-point scale (higher means better quality). See the following definition and grading rubric. |
+| When to use it? | The recommended scenario is evaluating agent’s ability to select the right tools and parameters from agentic interactions. |
+| What does it need as input? |  Query, Response, or Tool Calls, Tool Definitions |
+
+Our definition and grading rubrics to be used by the Large Language Model judge to score this metric:
+
+**Definition:**
+
+An average accuracy score, or a passing rate, of a single or multiple tool calls. A correct tool call considers relevance and potential usefulness, including syntactic and semantic correctness of a proposed tool call from an intelligent system. The judgment for each tool call is based on the following provided criteria, user query, and the tool definitions available to the agent.  
+
+**Ratings:**
+
+Criteria for an inaccurate tool call:  
+
+- The tool call isn't relevant and won't help resolve the user's need.
+- The tool call includes parameters values that aren't present or inferred from previous interaction.
+- The tool call has parameters not present in tool definitions.
+
+Criteria for an accurate tool call:  
+
+- The tool call is directly relevant and very likely to help resolve the user's need.
+- The tool call includes parameters values that are present or inferred from previous interaction.
+- The tool call has parameters present in tool definitions.
+
+## AI-assisted: Task Adherence
+
+| Score characteristics | Score details  |
+| ----- | --- |
+| Score range | 1 to 5 where 1 is the lowest quality and 5 is the highest quality. |
+| What is this metric? | Task Adherence measures how well an agent’s response adheres to their assigned tasks, according to their task instruction (extracted from system message and user query), and available tools. |
+| How does it work? | The metric is calculated by instructing a language model to follow the definition (in the description) and a set of grading rubrics, evaluate the user inputs, and output a score on a 5-point scale (higher means better quality). See the following definition and grading rubric. |
+| When to use it? | The recommended scenario is evaluating agent’s ability to adhere to assigned tasks. |
+| What does it need as input? | Query, Response, Tool Definitions (optional) |
+
+Our definition and grading rubrics to be used by the Large Language Model judge to score this metric:
+
+**Definition:**
+
+Your goal is to assess the quality of the response given in relation to a query from a user, specifically focusing on the agent’s ability to understand and resolve the user intent expressed in the query. There's also a field for tool definitions describing the functions, if any, that are accessible to the agent and that the agent might invoke in the response if necessary.
+
+**Ratings:**
+
+| Task Adherence | Definition |
+| ---| ---|
+| Task Adherence 1: Fully inadherent | The response completely ignores instructions or deviates significantly. |
+| Task Adherence 2: Barely adherent | The response partially aligns with instructions but has critical gaps.|
+| Task Adherence 3: Moderately adherent | The response meets the core requirements but lacks precision or clarity. |
+| Task Adherence 4: Mostly adherent | The response is clear, accurate, and aligns with instructions with minor issues. |
+| Task Adherence 5: Fully Adherent | The response is flawless, accurate, and follows instructions to the letter.|
+
+## AI-assisted: Response Completeness
+
+| Score characteristics | Score details  |
+| ----- | --- |
+| Score range | 1 to 5 where 1 is the lowest quality and 5 is the highest quality. |
+| What is this metric? | Response Completeness measures how comprehensive an agent’s response is when compared with the ground truth provided. |
+| How does it work? | The metric is calculated by instructing a language model to follow the definition (in the description) and a set of grading rubrics, evaluate the user inputs, and output a score on a 5-point scale (higher means better quality). See the following definition and grading rubric. |
+| When to use it? | The recommended scenario is evaluating agent’s final response to be comprehensive with respect to the ground truth provided. |
+| What does it need as input? | Response, Ground Truth |
+
+Our definition and grading rubrics to be used by the Large Language Model judge to score this metric:
+
+**Definition:**
+
+Response Completeness refers to how accurately and thoroughly a response represents the information provided in the ground truth. It considers both the inclusion of all relevant statements and the correctness of those statements. Each statement in the ground truth should be evaluated individually to determine if it is accurately reflected in the response.
+
+**Ratings:**
+
+| Response Completeness | Definition |
+| ---| ---|
+| Response Completeness 1: Fully incomplete |The response is considered fully incomplete if it doesn't contain any the necessary and relevant information with respect to the ground truth. In other words, it completely misses all the information, especially claims and statements, established in the ground truth. |
+| Response Completeness 2: Barely complete | The response is considered barely complete if it only contains a small percentage of all the necessary and relevant information with respect to the ground truth. In other words, it misses almost all the information, especially claims and statements, established in the ground truth. |
+| Response Completeness 3: Moderately complete | The response is considered moderately complete if it contains half of the necessary and relevant information with respect to the ground truth. In other words, it misses half of the information, especially claims and statements, established in the ground truth. |
+| Response Completeness 4: Mostly complete | The response is considered mostly complete if it contains most of the necessary and relevant information with respect to the ground truth. In other words, it misses some minor information, especially claims and statements, established in the ground truth. |
+| Response Completeness 5: Fully complete |  The response is considered complete if it perfectly contains all the necessary and relevant information with respect to the ground truth. In other words, it doesn't miss any information from statements and claims in the ground truth. |
+
 ### AI-assisted: Groundedness
 
 For groundedness, we provide two versions:  
