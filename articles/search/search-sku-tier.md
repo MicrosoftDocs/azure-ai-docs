@@ -21,6 +21,7 @@ The tier determines the:
 + Maximum number of indexes and other objects allowed on the service.
 + Size and speed of partitions (physical storage).
 + Billable rate as a fixed monthly cost, but also an incremental cost if you add capacity.
++ Workload characteristics. Some tiers are optimized for specific workloads.
 
 In a few instances, the tier you choose determines the availability of [premium features](#feature-availability-by-tier).
 
