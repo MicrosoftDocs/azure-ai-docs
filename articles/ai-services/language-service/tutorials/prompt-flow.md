@@ -21,7 +21,7 @@ This tutorial teaches you how to use Language in prompt flow utilizing [Azure AI
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 
-- You need an Azure AI Foundry hub or permissions to create one. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../../../ai-foundry/concepts/ai-resources.md) and [Azure AI roles](../../../ai-foundry/concepts/rbac-ai-foundry.md).
+- You need an Azure AI Foundry hub or permissions to create one. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../../../ai-foundry/concepts/ai-resources.md) and [Azure AI roles](../../../ai-foundry/concepts/rbac-azure-ai-foundry.md).
      - If your role is **Contributor** or **Owner**, you can [create a hub in this tutorial](#create-a-project-in-azure-ai-foundry-portal). 
      - If your role is **Azure AI Developer**, the hub must already be created. 
 

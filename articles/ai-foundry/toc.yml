@@ -2,9 +2,9 @@ items:
 - name: Azure AI Foundry documentation
   href: index.yml
 - name: What is Azure AI Foundry?
-  href: what-is-ai-foundry.md
+  href: what-is-azure-ai-foundry.md
 - name: What's new in Azure AI Foundry?
-  href: whats-new-ai-foundry.md
+  href: whats-new-azure-ai-foundry.md
 - name: Get started
   expanded: true
   items:
@@ -85,7 +85,7 @@ items:
     - name: Azure OpenAI Service
       items:
       - name: Azure OpenAI in Azure AI Foundry
-        href: azure-openai-in-ai-foundry.md
+        href: azure-openai-in-azure-ai-foundry.md
       - name: Use Azure OpenAI Service in Azure AI Foundry portal
         href: ai-services/how-to/connect-azure-openai.md
       - name: Deploy Azure OpenAI models
@@ -144,7 +144,7 @@ items:
     - name: Deploy Azure OpenAI models
       items: 
       - name: Azure OpenAI in Azure AI Foundry
-        href: azure-openai-in-ai-foundry.md
+        href: azure-openai-in-azure-ai-foundry.md
       - name: Model region availability
         href:  ../ai-services/openai/concepts/models.md?context=/azure/ai-foundry/context/context
         displayName: OpenAI, gpt-4o, gpt-4o-mini, whisper
@@ -501,7 +501,7 @@ items:
   - name: Identity & access management
     items:
     - name: Role-based access control in Azure AI Foundry portal
-      href: concepts/rbac-ai-foundry.md
+      href: concepts/rbac-azure-ai-foundry.md
   - name: Network security
     items:
     - name: Configure managed network

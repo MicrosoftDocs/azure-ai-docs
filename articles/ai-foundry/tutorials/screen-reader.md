@@ -42,7 +42,7 @@ Once you have created or selected a project, you can access more capabilities su
 
 Once you have created or selected a project, you can also use the **Recent projects picker** button within the navigation to change project at any time.
 
-For more information about the navigation, see [What is Azure AI Foundry](../what-is-ai-foundry.md).
+For more information about the navigation, see [What is Azure AI Foundry](../what-is-azure-ai-foundry.md).
 
 ## Projects 
 
@@ -124,6 +124,6 @@ If you're a government, commercial, or enterprise customer, contact the enterpri
 
 ## Related content
 
-* Learn how you can build generative AI applications in the [Azure AI Foundry](../what-is-ai-foundry.md).
+* Learn how you can build generative AI applications in the [Azure AI Foundry](../what-is-azure-ai-foundry.md).
 * [Build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK](copilot-sdk-create-resources.md)
 * Get answers to frequently asked questions in the [Azure AI FAQ article](../faq.yml).

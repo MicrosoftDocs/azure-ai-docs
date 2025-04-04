@@ -18,7 +18,7 @@ The key phrase extraction feature can evaluate unstructured text, and for each d
 This feature is useful if you need to quickly identify the main points in a collection of documents. For example, given input text "*The food was delicious and the staff was wonderful*", the service returns the main topics: "*food*" and "*wonderful staff*".
 
 > [!TIP]
-> If you want to start using this feature, you can follow the [quickstart article](../quickstart.md) to get started. You can also make requests using [Azure AI Foundry](../../../../ai-foundry//what-is-ai-foundry.md) without needing to write code.
+> If you want to start using this feature, you can follow the [quickstart article](../quickstart.md) to get started. You can also make requests using [Azure AI Foundry](../../../../ai-foundry//what-is-azure-ai-foundry.md) without needing to write code.
 
 ## Development options
 

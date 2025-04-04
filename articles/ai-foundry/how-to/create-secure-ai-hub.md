@@ -72,5 +72,5 @@ The managed virtual network doesn't directly provide access to your clients. Ins
 ## Next steps
 
 - [Create a project](create-projects.md)
-- [Learn more about Azure AI Foundry](../what-is-ai-foundry.md)
+- [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
 - [Learn more about Azure AI Foundry hubs](../concepts/ai-resources.md)

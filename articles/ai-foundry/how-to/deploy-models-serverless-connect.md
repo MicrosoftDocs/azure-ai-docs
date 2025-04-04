@@ -239,5 +239,5 @@ Follow these steps to create a connection:
 
 ## Related content
 
-- [What is Azure AI Foundry?](../what-is-ai-foundry.md)
+- [What is Azure AI Foundry?](../what-is-azure-ai-foundry.md)
 - [Azure AI FAQ article](../faq.yml)
