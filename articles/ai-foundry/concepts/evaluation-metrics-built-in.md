@@ -363,7 +363,7 @@ Our definition and grading rubrics to be used by the Large Language Model judge 
 
 **Definition:**
 
-Your goal is to assess the quality of the response given in relation to a query from a user, specifically focusing on the agent’s ability to understand and resolve the user intent expressed in the query. There's also a field for tool definitions describing the functions, if any, that are accessible to the agent and that the agent might invoke in the response if necessary.
+Task Adherence assesses the quality of the response given in relation to a query from a user, specifically focusing on the agent’s ability to understand and resolve the user intent expressed in the query. There's also a field for tool definitions describing the functions, if any, that are accessible to the agent and that the agent might invoke in the response if necessary.
 
 **Ratings:**
 
