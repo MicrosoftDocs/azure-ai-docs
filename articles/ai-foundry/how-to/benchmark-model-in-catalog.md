@@ -20,9 +20,9 @@ author: msakande
 
 In this article, you learn to streamline your model selection process in the Azure AI Foundry [model catalog](../how-to/model-catalog-overview.md) by comparing models in the model leaderboards available in Azure AI Foundry portal. This comparison can help you make informed decisions about which models meet the requirements for your particular use case or application. You can compare models by viewing the following leaderboards:
 
-- [Quality, cost, and performance leaderboards](#quality-cost-and-performance-leaderboards) to quickly identify the model leaders along a single metric (quality, cost, or throughput);
-- [Trade-off charts](#trade-off-charts) to see how models perform on one metric versus another, such as quality versus cost;
-- [Leaderboards by scenario](#leaderboards-by-scenario) to find the best leaderboards that suite your scenario.
+- [Quality, cost, and performance leaderboards](#access-model-leaderboards) to quickly identify the model leaders along a single metric (quality, cost, or throughput);
+- [Trade-off charts](#compare-models-in-the-trade-off-charts) to see how models perform on one metric versus another, such as quality versus cost;
+- [Leaderboards by scenario](#view-leaderboards-by-scenario) to find the best leaderboards that suite your scenario.
 
 
 ## Prerequisites
@@ -35,7 +35,7 @@ In this article, you learn to streamline your model selection process in the Azu
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
-4. Go to the **Model leaderboards** section of the model catalog. This section displays the top three model leaders ranked along [quality](#quality), [cost](#cost), and [performance](#cost). You can select any of these models to check out more details.
+4. Go to the **Model leaderboards** section of the model catalog. This section displays the top three model leaders ranked along [quality](../concepts/model-benchmarks.md#quality), [cost](../concepts/model-benchmarks.md#cost), and [performance](../concepts/model-benchmarks.md#performance). You can select any of these models to check out more details.
 
     :::image type="content" source="../media/how-to/model-benchmarks/leaderboard-entry-select-model.png" alt-text="Screenshot showing the selected model from entry point of leaderboards on the model catalog homepage." lightbox="../media/how-to/model-benchmarks/leaderboard-entry-select-model.png":::
 
