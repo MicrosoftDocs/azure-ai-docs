@@ -27,7 +27,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Set up
 
-1. Create a new folder `realtime-audio-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
+1. Create a new folder `realtime-audio-quickstart` and go to the quickstart folder with the following command:
 
     ```shell
     mkdir realtime-audio-quickstart && cd realtime-audio-quickstart
@@ -74,7 +74,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
     ```typescript
     import { OpenAIRealtimeWS } from "openai/beta/realtime/ws";
-    import { AzureOpenAI } from "openai/index.mjs";
+    import { AzureOpenAI } from "openai";
     import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
     
     async function main(): Promise<void> {
@@ -187,7 +187,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
     ```typescript
     import { OpenAIRealtimeWS } from "openai/beta/realtime/ws";
-    import { AzureOpenAI } from "openai/index.mjs";
+    import { AzureOpenAI } from "openai";
     
     async function main(): Promise<void> {
     

@@ -2,7 +2,6 @@
 title: 'Quickstart: Use Azure OpenAI Service with the JavaScript SDK to generate images'
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first image generation call with the JavaScript SDK. 
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
@@ -30,7 +29,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Set up
  
-1. Create a new folder `image-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
+1. Create a new folder `image-quickstart` and go to the quickstart folder with the following command:
 
     ```shell
     mkdir image-quickstart && cd image-quickstart

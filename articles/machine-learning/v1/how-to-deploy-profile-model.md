@@ -18,6 +18,8 @@ ms.custom: UpdateFrequency5, deploy, cliv1, sdkv1
 
 [!INCLUDE [dev v1](../includes/machine-learning-dev-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 This article shows how to profile a machine learning to model to determine how much CPU and memory you need to allocate for the model when deploying it as a web service.
 
 > [!IMPORTANT]

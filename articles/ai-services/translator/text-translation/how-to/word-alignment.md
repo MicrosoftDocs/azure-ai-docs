@@ -2,7 +2,6 @@
 title: Word alignment - Azure AI Translator
 titleSuffix: Azure AI services
 description: To receive alignment information, use the Azure AI Translator translate method and include the optional includeAlignment parameter.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
