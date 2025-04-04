@@ -10,8 +10,8 @@ ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
-> [!IMPORTANT]
-> On 30 March 2025, Azure AI Vision Spatial Analysis was retired. The Spatial Analysis container is longer supported and will not process new video streams. Please transition to [Azure AI Video Indexer](https://azurearcjumpstart.com/azure_arc_jumpstart/azure_edge_iot_ops/aks_edge_essentials_single_vi) or another open-source solution before the specified date. In addition to the familiar features you are using, here's a quick comparison between Azure AI Vision Spatial Analysis and Azure AI Video Indexer.
+> [!CAUTION]
+> On 30 March 2025, Azure AI Vision Spatial Analysis was retired. The Spatial Analysis container is longer supported and will not process new video streams. Please transition to [Azure AI Video Indexer](https://azurearcjumpstart.com/azure_arc_jumpstart/azure_edge_iot_ops/aks_edge_essentials_single_vi) or another open-source solution. In addition to the familiar features you are using, here's a quick comparison between Azure AI Vision Spatial Analysis and Azure AI Video Indexer.
 >
 >|Feature |	Azure AI Vision Spatial Analysis |	Azure AI Video Indexer |
 >|---|---|---|
