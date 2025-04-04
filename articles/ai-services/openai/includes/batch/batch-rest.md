@@ -74,7 +74,7 @@ Once your input file is prepared, you first need to upload the file to then be a
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 ```http
-curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files?api-version=2024-10-21 \
+curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files?api-version=2025-03-01-preview \
   -H "Content-Type: multipart/form-data" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -F "purpose=batch" \
@@ -104,7 +104,7 @@ The above code assumes a particular file path for your test.jsonl file. Adjust t
 Depending on the size of your upload file it might take some time before it's fully uploaded and processed. To check on your file upload status run:
 
 ```http
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files/{file-id}?api-version=2024-10-21 \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files/{file-id}?api-version=2025-03-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY"
 ```
 
@@ -128,7 +128,7 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files/{file-id}?api-vers
 Once your file has uploaded successfully you can submit the file for batch processing.
 
 ```http
-curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches?api-version=2024-10-21 \
+curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches?api-version=2025-03-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -177,7 +177,7 @@ curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches?api-vers
 Once you have created batch job successfully you can monitor its progress either in the Studio or programatically. When checking batch job progress we recommend waiting at least 60 seconds in between each status call.
 
 ```http
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches/{batch_id}?api-version=2024-10-21 \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches/{batch_id}?api-version=2025-03-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
 ```
 
@@ -229,7 +229,7 @@ The following status values are possible:
 ## Retrieve batch job output file
 
 ```http
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files/{output_file_id}/content?api-version=2024-10-21 \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files/{output_file_id}/content?api-version=2025-03-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" > batch_output.jsonl
 ```
 
@@ -240,7 +240,7 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files/{output_file_id}/c
 Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
 
 ```http
-curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches/{batch_id}/cancel?api-version=2024-10-21 \
+curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches/{batch_id}/cancel?api-version=2025-03-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
 ```
 
@@ -249,7 +249,7 @@ curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches/{batch_i
 List existing batch jobs for a given Azure OpenAI resource.
 
 ```http
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches?api-version=2024-10-21 \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches?api-version=2025-03-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
 ```
 
@@ -262,7 +262,7 @@ The list API call is paginated. The response contains a boolean `has_more` to in
 Use the REST API to list all batch jobs with additional sorting/filtering options.
 
 ```http
-curl "YOUR_RESOURCE_NAME.openai.azure.com/batches?api-version=2024-10-01-preview&$filter=created_at%20gt%201728773533%20and%20created_at%20lt%201729032733%20and%20status%20eq%20'Completed'&$orderby=created_at%20asc" \
+curl "YOUR_RESOURCE_NAME.openai.azure.com/batches?api-version=2025-03-01-preview&$filter=created_at%20gt%201728773533%20and%20created_at%20lt%201729032733%20and%20status%20eq%20'Completed'&$orderby=created_at%20asc" \
   -H "api-key: $AZURE_OPENAI_API_KEY"
 ```
 

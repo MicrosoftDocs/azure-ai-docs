@@ -34,9 +34,9 @@ Query rewriting is an optional feature. Without query rewriting, the search serv
 
 ## Prerequisites
 
-- A search service, Basic tier or higher, in a [supported region](search-region-support.md).
+- A search service, Basic tier or higher, in **North Europe** or **Southeast Asia**.
 
-- Your search service must have [semantic ranker enabled](semantic-how-to-enable-disable.md). Review [semantic ranking](semantic-search-overview.md) if you need an introduction to the feature. 
+- [Semantic ranker must be enabled](semantic-how-to-enable-disable.md). It's enabled by default on newer search services. Review [semantic ranking](semantic-search-overview.md) if you need an introduction to the feature. 
 
 - An existing search index with a [semantic configuration](semantic-how-to-configure.md) and rich text content. The examples in this guide use the [hotels-sample-index](search-get-started-portal.md) sample data to demonstrate query rewriting. You can use your own data and index to test query rewriting.
 
