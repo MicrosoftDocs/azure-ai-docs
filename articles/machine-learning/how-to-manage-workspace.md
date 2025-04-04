@@ -378,7 +378,7 @@ To obtain specific workspace details:
 
 1. Look through the list of the workspaces. You can filter based on subscription, resource groups, and locations.
 
-1. To to display properties, select a workspace.
+1. To display properties, select a workspace.
 
 # [Studio](#tab/studio)
 
