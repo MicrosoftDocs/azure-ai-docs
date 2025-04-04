@@ -9,7 +9,7 @@ ms.date: 01/21/2025
 
 ## Prerequisites
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-- Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-foundry/concepts/rbac-ai-foundry.md) assigned.
+- Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-foundry/concepts/rbac-azure-ai-foundry.md) assigned.
 
 ## Basic agent setup support
 
