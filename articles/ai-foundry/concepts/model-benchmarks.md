@@ -156,5 +156,5 @@ Prompt construction follows best practices for each dataset, as specified by the
 
 ## Related content
 
-- [How to benchmark models in Azure AI Foundry portal](../how-to/benchmark-model-in-catalog.md)
+- [Compare and select models using the model leaderboard in Azure AI Foundry portal](../how-to/benchmark-model-in-catalog.md)
 - [Model catalog and collections in Azure AI Foundry portal](../how-to/model-catalog-overview.md)

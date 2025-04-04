@@ -14,7 +14,7 @@ ms.author: mopeakande
 author: msakande
 ---
 
-# Select models using the model leaderboard in Azure AI Foundry portal
+# Compare and select models using the model leaderboard in Azure AI Foundry portal
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
