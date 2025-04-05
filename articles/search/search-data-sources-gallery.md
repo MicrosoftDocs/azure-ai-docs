@@ -911,9 +911,6 @@ BA Insight's Elite Connector provides a single point of access for lawyers to ac
 
 [More details](https://www.bainsight.com/connectors/elite-connector-sharepoint-azure-elasticsearch/)
 
-:::row:::
-:::column span="":::
-
 :::column-end:::
 :::row-end:::
 :::row:::
@@ -924,6 +921,9 @@ BA Insight's Elite Connector provides a single point of access for lawyers to ac
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
@@ -961,9 +961,6 @@ Secure enterprise search connector for reliably indexing content from Facebook W
 
 [More details](https://www.raytion.com/connectors/raytion-facebook-workplace-connector)
 
-:::row:::
-:::column span="":::
-
 :::column-end:::
 :::row-end:::
 :::row:::
@@ -974,6 +971,9 @@ Secure enterprise search connector for reliably indexing content from Facebook W
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
