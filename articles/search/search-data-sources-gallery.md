@@ -744,7 +744,7 @@ Secure enterprise search connector for reliably indexing content from Atlassian 
 
 [More details](https://www.raytion.com/connectors/raytion-confluence-connector)
 
-:::row:::
+:::column-end:::
 :::column span="":::
 
 
