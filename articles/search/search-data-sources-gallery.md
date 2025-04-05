@@ -1061,9 +1061,6 @@ Azure AI Search connector for indexing Git repositories. Reliably indexes branch
 
 [More details](https://www.rheininsights.com/en/connectors/git.php)
 
-:::row:::
-:::column span="":::
-
 :::column-end:::
 :::row-end:::
 :::row:::
@@ -1074,6 +1071,9 @@ Azure AI Search connector for indexing Git repositories. Reliably indexes branch
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
@@ -1109,9 +1109,6 @@ Secure enterprise search connector for reliably indexing content from GitLab and
 
 [More details](https://www.raytion.com/connectors/raytion-gitlab-connector)
 
-:::row:::
-:::column span="":::
-
 :::column-end:::
 :::row-end:::
 :::row:::
@@ -1122,6 +1119,9 @@ Secure enterprise search connector for reliably indexing content from GitLab and
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
@@ -1159,9 +1159,6 @@ Secure enterprise search connector for reliably indexing content from Google Dri
 
 [More details](https://www.raytion.com/connectors/raytion-google-drive-connector)
 
-:::row:::
-:::column span="":::
-
 :::column-end:::
 :::row-end:::
 :::row:::
@@ -1172,6 +1169,9 @@ Secure enterprise search connector for reliably indexing content from Google Dri
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
