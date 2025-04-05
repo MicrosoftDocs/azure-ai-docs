@@ -109,7 +109,7 @@ At this point, a request is sent to Azure to run your experiment on the selected
 
 When the dialog requesting to open an external website appears, select **Open**.
 
-:::image type="content" source="media/tutorial-train-deploy-image-classification-model-vscode/track-experiment-progress.png" alt-text="Screenshot that shows the job's progress." lightbox=media/tutorial-train-deploy-image-classification-model-vscode/track-experiment-progress.png":::
+:::image type="content" source="media/tutorial-train-deploy-image-classification-model-vscode/track-experiment-progress.png" alt-text="Screenshot that shows the job's progress." lightbox="media/tutorial-train-deploy-image-classification-model-vscode/track-experiment-progress.png":::
 
 When the model is done training, the status label next to the run node updates to *Completed*.
 

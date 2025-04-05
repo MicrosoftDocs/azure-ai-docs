@@ -1,5 +1,5 @@
 ---
-title: Use automated machine learning in pipelines
+title: Use Automated Machine Learning in Pipelines
 titleSuffix: Azure Machine Learning
 description: Learn how to use AutoMLStep to set up automated machine learning in your pipelines.
 services: machine-learning
