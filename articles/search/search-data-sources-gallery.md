@@ -720,6 +720,9 @@ The Confluence Connector is an enterprise grade indexing connector that enables 
 
 :::row-end:::
 
+:::row:::
+:::column span="":::
+
 ---
 
 ### Confluence
@@ -766,6 +769,9 @@ The CuadraSTAR Connector crawls content in CuadraSTAR and creates a single index
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
