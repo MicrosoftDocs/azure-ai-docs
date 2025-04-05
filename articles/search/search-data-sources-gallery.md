@@ -1011,9 +1011,6 @@ The File System connector crawls content from a file system location, allowing i
 
 [More details](https://contentanalytics.digital.accenture.com/display/aspire40/File+System+Connector)
 
-:::row:::
-:::column span="":::
-
 :::column-end:::
 :::row-end:::
 :::row:::
@@ -1024,6 +1021,9 @@ The File System connector crawls content from a file system location, allowing i
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
