@@ -1411,9 +1411,6 @@ The iManage Work Connector provides full security and operates at high throughpu
 
 [More details](https://www.bainsight.com/connectors/imanage-work-connector-sharepoint-azure-elasticsearch/)
 
-:::row:::
-:::column span="":::
-
 :::column-end:::
 :::row-end:::
 :::row:::
@@ -1424,6 +1421,9 @@ The iManage Work Connector provides full security and operates at high throughpu
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
@@ -1461,9 +1461,6 @@ Azure AI Search and secure vector search connector for indexing Atlassian Jira S
 
 [More details](https://www.rheininsights.com/en/connectors/jira.php)
 
-:::row:::
-:::column span="":::
-
 :::column-end:::
 :::row-end:::
 :::row:::
@@ -1474,6 +1471,9 @@ Azure AI Search and secure vector search connector for indexing Atlassian Jira S
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
@@ -1521,6 +1521,9 @@ Azure AI Search and secure vector search connector for indexing Atlassian Jira C
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
@@ -1618,6 +1621,9 @@ Azure AI Search and secure vector search connector for indexing LDAP-based direc
 
 :::row-end:::
 
+:::row:::
+:::column span="":::
+
 ---
 ### LegalKEY
 
@@ -1663,6 +1669,9 @@ With the IBM Notes Database Connector, users have the ability to find content st
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
@@ -1711,6 +1720,9 @@ Secure enterprise search connector for reliably indexing content from MediaWiki 
 
 :::row-end:::
 
+:::row:::
+:::column span="":::
+
 ---
 
 ### Micro Focus Content Manager (HPE Records Manager/HP TRIM)
@@ -1757,6 +1769,8 @@ Azure AI Search and secure vector search connector for indexing Microsoft Dynami
 
 :::row-end:::
 
+:::row:::
+:::column span="":::
 
 ---
 
@@ -1805,6 +1819,9 @@ Using the BAI Microsoft Exchange Public Folders Connector, users can retrieve co
 
 :::row-end:::
 
+:::row:::
+:::column span="":::
+
 ---
 
 ### Microsoft Exchange Server
@@ -1851,6 +1868,9 @@ Azure AI Search and secure vector search connector for indexing Microsoft SQL da
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
@@ -1998,6 +2018,9 @@ The Objective Connector was developed for Objective, establishing a secure conne
 
 :::row-end:::
 
+:::row:::
+:::column span="":::
+
 ---
 
 ### Odata via REST
@@ -2044,6 +2067,9 @@ Azure AI Search and secure vector search connector for indexing Microsoft OneDri
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
@@ -2193,6 +2219,9 @@ The WebCenter Connector integrates WebCenter with Azure AI Search, making it eas
 
 :::row-end:::
 
+:::row:::
+:::column span="":::
+
 ---
 
 ### Oracle KA Cloud
@@ -2239,6 +2268,9 @@ Secure enterprise search connector for reliably indexing content from pirobase C
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
@@ -2288,6 +2320,9 @@ The BA Insight Practical Law Connector enables users to perform searches against
 
 :::row-end:::
 
+:::row:::
+:::column span="":::
+
 ---
 
 ### ProLaw
@@ -2332,6 +2367,9 @@ The RDB via Tables connector crawls content from any relational database that ca
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
@@ -2380,6 +2418,9 @@ The Salesforce Connector integrates Salesforce's Service, Sales, and Marketing C
 
 :::row-end:::
 
+:::row:::
+:::column span="":::
+
 ---
 
 ### Salesforce
@@ -2426,6 +2467,9 @@ BA Insight's SAP ERP (Cloud Version) Connector is designed to bring items from S
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
@@ -2475,6 +2519,9 @@ Secure enterprise search connector for reliably indexing content from the SAP Ne
 
 :::row-end:::
 
+:::row:::
+:::column span="":::
+
 ---
 
 ### SAP PLM DMS
@@ -2521,6 +2568,9 @@ The ServiceNow connector retrieves several types of documents from a ServiceNow 
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
@@ -2569,6 +2619,9 @@ Secure enterprise search connector for reliably indexing content from Microsoft 
 
 :::row-end:::
 
+:::row:::
+:::column span="":::
+
 ---
 
 ### SharePoint 2010
@@ -2616,6 +2669,8 @@ BA Insight's SharePoint 2013 Connector allows you to connect to SharePoint 2013,
 
 :::row-end:::
 
+:::row:::
+:::column span="":::
 
 ---
 
@@ -2710,6 +2765,9 @@ Azure AI Search and secure vector search connector for indexing SharePoint 2019.
 
 :::row-end:::
 
+:::row:::
+:::column span="":::
+
 ---
 ### SharePoint in Microsoft 365
 
@@ -2755,6 +2813,9 @@ Azure AI Search and secure vector search connector for indexing SharePoint in Mi
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
@@ -2802,6 +2863,9 @@ Secure enterprise search connector for reliably indexing content from Sitecore a
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
@@ -2851,6 +2915,9 @@ The SMB connector retrieves files and directories across shared drives. It has D
 
 :::row-end:::
 
+:::row:::
+:::column span="":::
+
 ---
 
 ### SMB File Share
@@ -2897,6 +2964,9 @@ The SQL Server Connector is built upon industry standard database access methods
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
@@ -3035,6 +3105,17 @@ The BA Insight West km Connector supports search across transaction and litigati
 [More details](https://www.bainsight.com/connectors/westkm-connector-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
+:::row-end:::
+:::row:::
+:::column span="":::
+
+   :::column-end:::
+   :::column span="":::
+   :::column-end:::
+
+:::row-end:::
+
+:::row:::
 :::column span="":::
 
 ---
@@ -3048,17 +3129,6 @@ Secure enterprise search connector for reliably indexing content from windream E
 [More details](https://www.raytion.com/connectors/raytion-windream-ecm-system-connector)
 
 :::column-end:::
-:::row-end:::
-:::row:::
-:::column span="":::
-
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
-
-:::row-end:::
-
-:::row:::
 :::column span="":::
 
 ---
@@ -3085,6 +3155,17 @@ Secure enterprise search connector for reliably indexing content from Xerox Docu
 [More details](https://www.raytion.com/connectors/raytion-xerox-docushare-connector)
 
 :::column-end:::
+:::row-end:::
+:::row:::
+:::column span="":::
+
+   :::column-end:::
+   :::column span="":::
+   :::column-end:::
+
+:::row-end:::
+
+:::row:::
 :::column span="":::
 
 ---
@@ -3098,17 +3179,6 @@ The Yammer connector crawls content from Yammer messages. It retrieves messages 
 [More details](https://contentanalytics.digital.accenture.com/display/aspire40/Yammer+Connector)
 
 :::column-end:::
-:::row-end:::
-:::row:::
-:::column span="":::
-
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
-
-:::row-end:::
-
-:::row:::
 :::column span="":::
 
 ---
