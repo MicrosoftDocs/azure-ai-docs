@@ -747,7 +747,6 @@ Secure enterprise search connector for reliably indexing content from Atlassian 
 :::column-end:::
 :::column span="":::
 
-
 ---
 
 ### Confluence Cloud
