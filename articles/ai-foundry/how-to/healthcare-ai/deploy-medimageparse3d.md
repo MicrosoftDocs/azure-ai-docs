@@ -26,7 +26,7 @@ In this article, you learn how to deploy MedImageParse 3D as an online endpoint 
 
 
 ## MedImageParse 3D - prompt-based segmentation of medical images
-Similar to our [MedImageParse model](deploy-medimageparse.md) model, MedImageParse 3D uses a combination of a text prompt and medical image to create a segmentation mask. However, unlike MedImageParse, the MedImageParse 3D model takes in an entire 3D volume - which is a common way of representing the imaged area for cross-sectional imaging modalities like CT or MRI - and generates the 3-dimensional segmenatation mask. 
+Similar to our [MedImageParse model](deploy-medimageparse.md) model, MedImageParse 3D uses a combination of a text prompt and a medical image to create a segmentation mask. However, unlike MedImageParse, the MedImageParse 3D model takes in an entire 3D volume - which is a common way of representing the imaged area for cross-sectional imaging modalities like CT or MRI - and generates the 3-dimensional segmentation mask. 
 
 ## Prerequisites
 
@@ -152,7 +152,7 @@ The `input_data` object contains the following fields:
 | Key           | Type           | Required/Default | Allowed values    | Description |
 | ------------- | -------------- | :-----------------:| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `columns`       | `list[string]`       | Yes    |  `"image"`, `"text"` | An object containing the strings mapping data to inputs passed to the model.|
-| `index`   | `integer` | Yes | 0 - 256 | Count of inputs passed to the model. You're limited by how much data can be passed in a single POST request, which depends on the size of your images. Therefore, it's reasonable to keep this number in the dozens. |
+| `index`   | `integer` | Yes | 0 | This parameter is used when multiple inputs are passed to the endpoint in one call. This model's endpoint wrapper does not use this parameter, so it should be set to 0. |
 | `data`   | `list[list[string]]` | Yes | Base64 image + text prompt | The list contains the items passed to the model which is defined by the index parameter. Each item is a list of two strings. The order is defined by the `columns` parameter. The `text` string contains the prompt text. The `image` string is the input volume in NIfTI format encoded using base64 and decoded as utf-8 string. The input text is a string containing the target (e.g., organ) to be segmented. |
 
 ### Request example
