@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 04/04/2025
+ms.date: 04/05/2025
 ---
 
 # Data sources gallery
@@ -1209,9 +1209,6 @@ Raytion's Happeo Connector indexes content from Happeo into Azure AI Search and 
 
 [More details](https://www.raytion.com/connectors/raytion-happeo-connector)
 
-:::row:::
-:::column span="":::
-
 :::column-end:::
 :::row-end:::
 :::row:::
@@ -1222,6 +1219,9 @@ Raytion's Happeo Connector indexes content from Happeo into Azure AI Search and 
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
@@ -1260,9 +1260,6 @@ The IBM Connections Connector was developed for IBM Connections, establishing a 
 
 [More details](https://www.bainsight.com/connectors/ibm-connections-connector-sharepoint-azure-elasticsearch/)
 
-:::row:::
-:::column span="":::
-
 :::column-end:::
 :::row-end:::
 :::row:::
@@ -1273,6 +1270,9 @@ The IBM Connections Connector was developed for IBM Connections, establishing a 
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
@@ -1310,9 +1310,6 @@ The IBM Content Manager Connector honors the security of source applications and
 
 [More details](https://www.bainsight.com/connectors/ibm-content-manager-connector-sharepoint-azure-elasticsearch/)
 
-:::row:::
-:::column span="":::
-
 :::column-end:::
 :::row-end:::
 :::row:::
@@ -1323,6 +1320,9 @@ The IBM Content Manager Connector honors the security of source applications and
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 
 ---
@@ -1361,9 +1361,6 @@ With BA Insight's IBM Notes Email Connector, users have the ability to search Lo
 
 [More details](https://www.bainsight.com/connectors/lotus-notes-connector-sharepoint-azure-elasticsearch/)
 
-:::row:::
-:::column span="":::
-
 :::column-end:::
 :::row-end:::
 :::row:::
@@ -1374,6 +1371,9 @@ With BA Insight's IBM Notes Email Connector, users have the ability to search Lo
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
 
 ---
 
