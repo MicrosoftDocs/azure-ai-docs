@@ -720,20 +720,6 @@ The Confluence Connector is an enterprise grade indexing connector that enables 
 
 :::row-end:::
 
-:::row:::
-:::column span="":::
-
-:::column-end:::
-:::row-end:::
-:::row:::
-:::column span="":::
-
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
-
-:::row-end:::
-
 ---
 
 ### Confluence
