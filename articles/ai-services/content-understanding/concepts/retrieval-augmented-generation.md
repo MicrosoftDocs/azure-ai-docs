@@ -41,14 +41,13 @@ These challenges significantly impact retrieval precision and response quality i
  
 ## Addressing Multimodal Data Processing for RAG with Content Understanding
 
-Content Understanding transforms diverse content into structured formats specifically optimized for RAG systems by preserving semantic relationships that traditional extraction methods often lose. The service delivers unified outputs in Markdown and JSON—formats designed to integrate seamlessly with vector stores and generative AI models—while maintaining crucial contextual integrity across all modalities.
+Content Understanding's dual extraction approach offers strategic advantages for RAG implementation that addresses ingestion, representation, query optimization and accuracy challenges:
 
-Content Understanding's dual extraction approach offers strategic advantages for RAG implementation:
+1. **Content extraction** transforms unstructured information into coherent, context-aware representations that preserve hierarchical relationships and structural elements critical for accurate retrieval. The output of content extraction delivers unified outputs in Markdown and JSON—formats designed to integrate seamlessly with vector stores and generative AI models—while maintaining crucial contextual integrity across all modalities.
 
-1. **Content extraction** transforms unstructured information into coherent, context-aware representations that preserve hierarchical relationships and structural elements critical for accurate retrieval
-2. **Field extraction** enables targeted metadata generation through custom schema definitions, allowing organizations to augment their knowledge bases with domain-specific contextual elements
+2. **Field extraction** enables targeted metadata generation through custom schema definitions, allowing organizations to augment their knowledge bases with generation and classification capabilities for domain-specific contextual elements.
 
-This approach directly addresses the fundamental RAG challenges of context fragmentation, semantic drift, and retrieval precision across modalities. In each modality:
+These modality-specific approaches directly address the fundamental challenges of multimodal RAG, transforming each content type's unique characteristics into structured, contextually rich representations:
 
 - **Document:** Content Understanding's sophisticated layout analysis preserves document structure by intelligently converting complex layouts into clean markdown with hierarchical headings, properly formatted tables, and explicit element relationships. This structural preservation is crucial for effective RAG implementation because it maintains semantic relationships between content sections, improving both indexing precision and retrieval accuracy. The resulting structured markdown output enhances RAG performance in three key ways: it enables more targeted retrieval of relevant document segments rather than entire documents, preserves critical context between related elements that might otherwise be fragmented, and provides consistent formatting that simplifies integration with vector stores and search engines. These advantages ultimately lead to more precise, contextually appropriate responses when the system is queried.
 
