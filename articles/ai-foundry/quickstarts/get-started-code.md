@@ -24,13 +24,13 @@ In this quickstart, we walk you through setting up your local development enviro
 
 ::: zone pivot="fdp-project"
 
-- An **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**.  Select [!INCLUDE [hub](../includes/hub-project-name.md)] at the top of this article if you want to complete this quickstart with a [!INCLUDE [hub](../includes/hub-project-name.md)] instead.
+- An **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**.  Select [!INCLUDE [hub](../includes/hub-project-name.md)] at the top of this article if you want to complete this quickstart using a [!INCLUDE [hub](../includes/hub-project-name.md)] instead. For more about project types, see [Project types](../what-is-azure-ai-foundry.md#project-types).
 
 ::: zone-end
 
 ::: zone pivot="hub-project"
 
-- A **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select [!INCLUDE [fdp](../includes/fdp-project-name.md)] at the top of this article if want to complete this quickstart with an [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
+- A **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select [!INCLUDE [fdp](../includes/fdp-project-name.md)] at the top of this article if want to complete this quickstart using an [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
 - 
 ::: zone-end
 
