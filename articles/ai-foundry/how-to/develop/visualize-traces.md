@@ -13,7 +13,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Visualize your traces
+# Visualize your traces (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 

@@ -32,14 +32,6 @@ The Azure AI Inference package allows you to consume all models deployed to the 
 | JavaScript | [Reference](/javascript/api/@azure-rest/ai-inference) | [@azure/ai-inference (npm)](https://www.npmjs.com/package/@azure/ai-inference) | [JavaScript examples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples) |
 | Python     | [Reference](https://aka.ms/azsdk/azure-ai-inference/python/reference) | [azure-ai-inference (PyPi)](https://pypi.org/project/azure-ai-inference/) | [Python examples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-inference/samples) |
 
-### Azure AI Projects package
-
-The Azure AI Projects package allows customer to access a comprehensive set of functionalities from an Azure AI project. Those capabilities include Azure AI model inference, but also advanced capabilities like tracing, evaluation, and data storage. Azure AI Projects package is part of the Azure AI Foundry SDK and leverages the Azure AI Inference package and Azure OpenAI package to perform inference depending on users needs.
-
-| Language   | Documentation | Package | Examples |
-|------------|---------|-----|-------|
-| C#         | [Reference](https://aka.ms/azsdk/azure-ai-projects/csharp/reference) | [Azure.AI.Projects (NuGet)](https://www.nuget.org/packages/Azure.AI.Projects/) | [C# examples](https://aka.ms/azsdk/azure-ai-projects/csharp/samples)       |
-| Python     | [Reference](https://aka.ms/azsdk/azure-ai-projects/python/reference) | [azure-ai-projects (PyPi)](https://pypi.org/project/azure-ai-projects/) | [Python examples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples) |
 
 ### Integrations
 

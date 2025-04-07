@@ -28,7 +28,7 @@ At the top level, Azure AI Foundry provides access to the following resources:
 
     When you use Azure AI Foundry portal, you can directly work with Azure OpenAI without an Azure Studio project. Or you can use Azure OpenAI through a project.
 
-    For more information, visit [Azure OpenAI in Azure AI Foundry portal](../azure-openai-in-ai-foundry.md).
+    For more information, visit [Azure OpenAI in Azure AI Foundry portal](../azure-openai-in-azure-ai-foundry.md).
 
 - **Management center**: The management center streamlines governance and management of Azure AI Foundry resources such as hubs, projects, connected resources, and deployments.
 
@@ -108,7 +108,7 @@ Azure AI services including Azure OpenAI provide control plane endpoints for ope
 
 To reduce the complexity of Azure RBAC management, Azure AI Foundry provides a *control plane proxy* that allows you to perform operations on connected Azure AI services and Azure OpenAI resources. Performing operations on these resources through the control plane proxy only requires Azure RBAC permissions on the hub. The Azure AI Foundry service then performs the call to the Azure AI services or Azure OpenAI control plane endpoint on your behalf.
 
-For more information, see [Role-based access control in Azure AI Foundry portal](rbac-ai-foundry.md).
+For more information, see [Role-based access control in Azure AI Foundry portal](rbac-azure-ai-foundry.md).
 
 ## Attribute-based access control
 

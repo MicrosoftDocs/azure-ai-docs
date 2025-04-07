@@ -14,7 +14,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# How to trace your application with Azure AI Foundry project library
+# How to trace your application with Azure AI Foundry project library (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
