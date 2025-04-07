@@ -453,16 +453,14 @@ This approach grounds responses with your actual content, enabling the model to 
 
 The combination of Content Understanding's extraction capabilities, Azure AI Search's retrieval functions, and Azure OpenAI's generation abilities creates a powerful end-to-end RAG solution that can seamlessly work with all your content types.
 
-> [!div class="nextstepaction"]
-> [View code samples on GitHub.](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)
-
-
 ## Get started
 Content Understanding supports the following development options:
 * [REST API](../quickstart/use-rest-api.md) Quickstart.
 * [Azure Foundry](../quickstart//use-ai-foundry.md) Portal Quickstart. 
 
 ## Next steps
+* Try our RAG [code samples.]((https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples))
+* Follow our RAG How to guide
 * Learn more about [document](../document/overview.md), [image](../image/overview.md), [audio](../audio/overview.md), [video](../video/overview.md) capabilities.
 * Learn more about Content Understanding [**best practices**](../concepts/best-practices.md) and [**capabilities**](../concepts/capabilities.md).
 * Review Content Understanding [**code samples**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main)
