@@ -13,7 +13,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Trace your application with Azure AI Foundry project library overview
+# Trace your application with Azure AI Foundry project library overview (preview)
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
