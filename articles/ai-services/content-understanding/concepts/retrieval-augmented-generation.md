@@ -33,7 +33,7 @@ Each content modality presents unique extraction obstacles that can significantl
 
 - **Documents:** Complex layouts with multi-column formats, merged table cells, and floating elements disrupt linear content flow. Handwritten annotations and embedded visual elements further complicate processing, as systems struggle to establish meaningful connections between text and visual components, resulting in fragmented understanding and loss of critical context.
 
-- **Images:** Standard OCR approaches falter with stylized fonts, low-contrast backgrounds, or text embedded within complex visual elements. More challenging still is extracting implicit information—cultural references, symbolic meanings, and domain-specific visual conventions that human viewers intuitively grasp but machines struggle to identify without specialized training.
+**Images:** Beyond basic OCR, Content Understanding employs advanced vision models to extract both textual and contextual information from images. Standard approaches often miss stylized text, low-contrast elements, and embedded visual information, resulting in incomplete representation for RAG systems. Content Understanding addresses these limitations by generating comprehensive visual descriptions, identifying key objects and relationships, and converting implicit visual information into explicit textual content that significantly enhances retrieval relevance.
 
 - **Audio:** Speaker diarization issues lead to attribution errors, particularly during overlapping speech or with similar voices. Multilingual content presents additional complexity with accented speech, dialectal variations, or mid-conversation language switching. Maintaining temporal flow is essential for preserving narrative progression in discussions where meaning builds sequentially.
 
@@ -67,7 +67,7 @@ Content Understanding's dual extraction approach offers strategic advantages for
 
 1. **Content extraction** transforms unstructured information into coherent, context-aware representations that preserve hierarchical relationships and structural elements critical for accurate retrieval. The output of content extraction delivers unified outputs in Markdown and JSON—formats designed to integrate seamlessly with vector stores and generative AI models—while maintaining crucial contextual integrity across all modalities.
 
-2. **Field extraction** enhances knowledge bases through customizable schema definitions, enabling organizations to generate targeted metadata that captures domain-specific contextual elements with precision. This capability transforms unstructured content into rich, structured information tailored to specific business contexts and search requirements.
+2. **Field extraction** enhances knowledge bases through customizable schema definitions, enabling organizations to generate targeted metadata that captures domain-specific contextual elements with precision. This capability transforms unstructured content into rich, structured information in JSON formats tailored to specific business contexts and search requirements.
 
 These modality-specific approaches directly address the fundamental challenges of multimodal RAG, transforming each content type's unique characteristics into structured, contextually rich representations:
 
