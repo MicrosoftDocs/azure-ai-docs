@@ -381,33 +381,41 @@ This comprehensive extraction creates a rich knowledge base where each content t
 
 ### 2. Create a Unified Search Index
 
-The diverse outputs from Content Understanding's extraction process can be integrated into a unified [Azure AI Search index](https://docs.azure.cn/en-us/search/tutorial-rag-build-solution-index-schema), creating a comprehensive knowledge repository that spans all modalities. This consolidated index enables cross-modal search capabilities, allowing users to discover relevant information regardless of the original content format:
+After processing multimodal content with Azure AI Content Understanding, the next step is to create a comprehensive search infrastructure that leverages this richly structured data. By embedding the markdown and JSON outputs using Azure OpenAI's embedding models and indexing them with [Azure AI Search](https://docs.azure.cn/en-us/search/tutorial-rag-build-solution-index-schema), you can create a unified knowledge repository that seamlessly spans all content modalities.
 
-```json
+This approach transforms traditionally siloed content types into an integrated information ecosystem, enabling sophisticated cross-modal search capabilities that allow users to discover relevant information regardless of its original format. Whether users need information from documents, insights from images, key points from audio recordings, or explanations from video content, a unified search index delivers consistent, contextually relevant results.
 
-index_name = "unified_training_index"
-fields = [
-    # Document content fields
-    {"name": "document_content", "type": "Edm.String", "searchable": true, "retrievable": true},
-    {"name": "document_headers", "type": "Edm.String", "searchable": true, "retrievable": true},
-    
-    # Image-derived content
-    {"name": "visual_descriptions", "type": "Edm.String", "searchable": true, "retrievable": true},    
+The following sample demonstrates how to embed and index the unified output from Content Understanding:
 
-    # Video content components
-    {"name": "video_transcript", "type": "Edm.String", "searchable": true, "retrievable": true},
-    {"name": "scene_descriptions", "type": "Edm.String", "searchable": true, "retrievable": true},
-    {"name": "video_topics", "type": "Edm.String", "searchable": true, "retrievable": true},
-    
-    # Audio processing results
-    {"name": "audio_transcript", "type": "Edm.String", "searchable": true, "retrievable": true},
-    {"name": "speaker_attribution", "type": "Edm.String", "searchable": true, "retrievable": true},
-    {"name": "conversation_topics", "type": "Edm.String", "searchable": true, "retrievable": true}
-]
+
+```python
+def embed_and_index_chunks(output):
+    aoai_embeddings = AzureOpenAIEmbeddings(
+        azure_deployment=AZURE_OPENAI_EMBEDDING_DEPLOYMENT_NAME,
+        openai_api_version=AZURE_OPENAI_EMBEDDING_API_VERSION,  # e.g., "2023-12-01-preview"
+        azure_endpoint=AZURE_OPENAI_ENDPOINT,
+        azure_ad_token_provider=token_provider
+    )
+
+    vector_store: AzureSearch = AzureSearch(
+        azure_search_endpoint=AZURE_SEARCH_ENDPOINT,
+        azure_search_key=None,
+        index_name=AZURE_SEARCH_INDEX_NAME,
+        embedding_function=aoai_embeddings.embed_query
+    )
+    vector_store.add_documents(documents=output)
+    return vector_store
+
+
+# embed and index the output:
+vector_store = embed_and_index_chunks(output)
 
 ```
 
-This unified index becomes the foundation for intelligent retrieval operations, enabling semantically rich search experiences that leverage the full context and relationships within your enterprise content ecosystem
+This unified index becomes the foundation for intelligent retrieval operations, enabling semantically rich search experiences that leverage the full context and relationships within your enterprise content ecosystem.
+
+> [!div class="nextstepaction"]
+> [View full code sample for RAG on GitHub.](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)
 
 ### 3. Utilize Azure OpenAI Models
 
