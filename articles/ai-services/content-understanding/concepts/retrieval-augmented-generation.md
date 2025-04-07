@@ -27,7 +27,7 @@ In traditional content processing, simple text extraction was sufficient for man
 
 ### 1. Data Ingestion Challenges
 
-Each content modality presents unique extraction obstacles that can significantly impact downstream RAG performance:
+Each content modality presents unique ingestion obstacles that can significantly impact downstream RAG performance:
 
 - **Documents:** Complex layouts with multi-column formats, merged table cells, and floating elements disrupt linear content flow. Handwritten annotations and embedded visual elements further complicate processing, as systems struggle to establish meaningful connections between text and visual components, resulting in fragmented understanding and loss of critical context.
 
@@ -41,11 +41,11 @@ Each content modality presents unique extraction obstacles that can significantl
 
 Traditional RAG systems face significant limitations when representing multimodal content:
 
+- **Vector representation limitations:** Standard embedding approaches often struggle to capture the full semantic richness of multimodal content, particularly when implicit relationships exist across different content types.
+
 - **Semantic fragmentation:** Converting rich multimodal content into flat text or embedding vectors often strips away critical contextual relationships, hierarchical structures, and cross-modal connections.
 
 - **Cross-modal alignment:** Establishing meaningful connections between information across different modalities (e.g., text describing an image or spoken commentary on visual content) requires sophisticated alignment techniques.
-
-- **Vector representation limitations:** Standard embedding approaches often struggle to capture the full semantic richness of multimodal content, particularly when implicit relationships exist across different content types.
 
 ### 3. Query Optimization Challenges
 
@@ -411,7 +411,44 @@ def embed_and_index_chunks(output):
 vector_store = embed_and_index_chunks(output)
 
 ```
+---
 
+Below is a minimal consolidated index that support vector and hybrid search and enables cross-modal search capabilities, allowing users to discover relevant information regardless of the original content format:
+
+```json
+{
+"name": "unified_training_index"
+"fields": [
+    # Document content fields
+    {"name": "document_content", "type": "Edm.String", "searchable": true, "retrievable": true},
+    {"name": "document_headers", "type": "Edm.String", "searchable": true, "retrievable": true},
+    
+    # Image-derived content
+    {"name": "visual_descriptions", "type": "Edm.String", "searchable": true, "retrievable": true}, 
+    { "name": "chunked_content_vectorized", "type": "Edm.Single", "dimensions": 1536, "vectorSearchProfile": "my-vector-profile", "searchable": true, "retrievable": false, "stored": false },   
+
+    # Video content components
+    {"name": "video_transcript", "type": "Edm.String", "searchable": true, "retrievable": true},
+    {"name": "scene_descriptions", "type": "Edm.String", "searchable": true, "retrievable": true},
+    {"name": "video_topics", "type": "Edm.String", "searchable": true, "retrievable": true},
+    { "name": "chunked_content_vectorized", "type": "Edm.Single", "dimensions": 1536, "vectorSearchProfile": "my-vector-profile", "searchable": true, "retrievable": false, "stored": false },
+    
+    # Audio processing results
+    {"name": "audio_transcript", "type": "Edm.String", "searchable": true, "retrievable": true},
+    {"name": "speaker_attribution", "type": "Edm.String", "searchable": true, "retrievable": true},
+    {"name": "conversation_topics", "type": "Edm.String", "searchable": true, "retrievable": true}
+],
+
+  "vectorSearch": {
+      "algorithms": [
+          { "name": "my-algo-config", "kind": "hnsw", "hnswParameters": { }  }
+      ],
+      "profiles": [ 
+        { "name": "my-vector-profile", "algorithm": "my-algo-config" }
+      ]
+  }
+}
+```
 ---
 ### 3. Optimize Retrieval with Advanced Search Techniques
 
