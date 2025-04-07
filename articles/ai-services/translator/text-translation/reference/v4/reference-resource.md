@@ -55,8 +55,28 @@ curl -X POST "https://my-swiss-n.cognitiveservices.azure.com/translator/text/202
 -d "[{`Text`:`Hello`}]" -v
 ```
 
-Custom Translator isn't currently available in Switzerland.
+> [!NOTE]
+> Custom Translator currently unavailable in Switzerland.
 
+## Metrics
+
+Metrics allow you to view the translator usage and availability information in Azure portal, under metrics section as shown in the following screenshot. For more information, see [Data and platform metrics](/azure/azure-monitor/essentials/data-platform-metrics).
+
+![Translator Metrics](../../../media/translatormetrics.png)
+
+This table lists available metrics with description of how they're used to monitor translation API calls.
+
+| Metrics | Description |
+|:----|:-----|
+| TotalCalls| Total number of API calls.|
+| TotalTokenCalls| Total number of API calls via token service using authentication token.|
+| SuccessfulCalls| Number of successful calls.|
+| TotalErrors| Number of calls with error response.|
+| BlockedCalls| Number of calls that exceeded rate or quota limit.|
+| ServerErrors| Number of calls with server internal error(5XX).|
+| ClientErrors| Number of calls with client-side error(4XX).|
+| Latency| Duration to complete request in milliseconds.|
+| CharactersTranslated| Total number of characters in incoming text request.|
 
 
 
