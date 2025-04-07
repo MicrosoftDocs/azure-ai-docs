@@ -413,13 +413,35 @@ vector_store = embed_and_index_chunks(output)
 ```
 
 ---
+### 3. Optimize Retrieval with Advanced Search Techniques
 
-This unified index becomes the foundation for intelligent retrieval operations, enabling semantically rich search experiences that leverage the full context and relationships within your enterprise content ecosystem.
+The effectiveness of a RAG system depends significantly on its ability to retrieve the most relevant content for each query. Azure AI Search offers multiple sophisticated search strategies to maximize the value of your multimodal content:
 
+**Hybrid search** combines the strengths of semantic understanding and keyword matching, enabling the system to retrieve information based on both conceptual similarity and explicit terminology. This approach is particularly valuable for multimodal content where concepts may be expressed differently across various content types.
+
+**Vector search** leverages the dimensional relationships between embeddings to find content with similar meaning, even when terminology differs. This technique excels at uncovering subtle semantic connections across different modalities.
+
+**Semantic ranking** enhances result relevance by prioritizing content based on deeper understanding rather than keyword frequency, helping surface the most contextually appropriate information regardless of its original format.
+
+By carefully selecting and configuring these search techniques based on your specific use case requirements, you can ensure that your RAG system retrieves the most relevant content across all modalities, significantly enhancing the quality and accuracy of generated responses.
+
+> [!NOTE]
+> For comprehensive guidance on implementing different search techniques, visit the [Azure AI Search documentation](https://docs.microsoft.com/azure/search/semantic-search-overview).
+
+In this sample, we use hybrid search to combine full text and vector queries against the unified search index containing both searchable plain text content and generated embeddings.
+
+``` python
+
+# Perform a hybrid search using the search_type parameter
+output = vector_store.hybrid_search(query=query, k=3)
+for item in items:
+    print(item.page_content)
+```
+---
 > [!div class="nextstepaction"]
 > [View full code sample for RAG on GitHub.](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)
 
-### 3. Utilize Azure OpenAI Models
+### 4. Utilize Azure OpenAI Models
 
 Once your content is extracted and indexed, integrate [Azure OpenAI's embedding and chat models](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions) to create an interactive question-answering system:
 
