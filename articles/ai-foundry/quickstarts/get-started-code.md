@@ -10,6 +10,8 @@ ms.date: 02/12/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
+zone_pivot_groups: project-type
+# customer intent: As a developer, I want to build a custom chat app using the Azure AI SDK.
 ---
 
 # Build a basic chat app in Python using Azure AI Foundry SDK
@@ -20,7 +22,19 @@ In this quickstart, we walk you through setting up your local development enviro
 
 ## Prerequisites
 
-* Before you can follow this quickstart, complete the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md) to deploy a **gpt-4o-mini** model into a project.
+::: zone pivot="fdp-project"
+
+- An **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**.  Select [!INCLUDE [hub](../includes/hub-project-name.md)] at the top of this article if you want to complete this quickstart with a [!INCLUDE [hub](../includes/hub-project-name.md)] instead.
+
+::: zone-end
+
+::: zone pivot="hub-project"
+
+- A **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select [!INCLUDE [fdp](../includes/fdp-project-name.md)] at the top of this article if want to complete this quickstart with an [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
+- 
+::: zone-end
+
+* Before you can follow this quickstart, complete the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md) to deploy a **gpt-4o-mini** model into your project.
 
 ## Create a new Python environment
 
