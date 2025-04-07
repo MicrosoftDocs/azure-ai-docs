@@ -31,7 +31,7 @@ Each content modality presents unique ingestion obstacles that can significantly
 
 - **Documents:** Complex layouts with multi-column formats, merged table cells, and floating elements disrupt linear content flow. Handwritten annotations and embedded visual elements further complicate processing, as systems struggle to establish meaningful connections between text and visual components, resulting in fragmented understanding and loss of critical context.
 
-**Images:** Beyond basic OCR, standard approaches often miss implicit visual information such as visual description, identifying key objects and relationships that can aid retrieval relevance. 
+- **Images:** Beyond basic OCR, standard approaches often miss implicit visual information such as visual description, identifying key objects and relationships that can aid retrieval relevance. 
 
 - **Audio:** Speaker diarization issues lead to attribution errors, particularly during overlapping speech or with similar voices. Multilingual content presents additional complexity with accented speech, dialectal variations, or mid-conversation language switching. Maintaining temporal flow is essential for preserving narrative progression in discussions where meaning builds sequentially.
 
