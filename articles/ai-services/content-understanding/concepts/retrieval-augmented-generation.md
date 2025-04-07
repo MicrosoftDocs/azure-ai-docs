@@ -45,7 +45,7 @@ Content Understanding's dual extraction approach offers strategic advantages for
 
 1. **Content extraction** transforms unstructured information into coherent, context-aware representations that preserve hierarchical relationships and structural elements critical for accurate retrieval. The output of content extraction delivers unified outputs in Markdown and JSON—formats designed to integrate seamlessly with vector stores and generative AI models—while maintaining crucial contextual integrity across all modalities.
 
-2. **Field extraction** enables targeted metadata generation through custom schema definitions, allowing organizations to augment their knowledge bases with generation and classification capabilities for domain-specific contextual elements.
+2. **Field extraction** enhances knowledge bases through customizable schema definitions, enabling organizations to generate targeted metadata that captures domain-specific contextual elements with precision. This capability transforms unstructured content into rich, structured information tailored to specific business contexts and search requirements.
 
 These modality-specific approaches directly address the fundamental challenges of multimodal RAG, transforming each content type's unique characteristics into structured, contextually rich representations:
 
