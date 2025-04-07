@@ -19,7 +19,7 @@ Azure AI Content Understanding addresses these challenges by providing sophistic
 
 :::image type="content" source="../media/concepts/RAGarchitecture.png" alt-text="Screenshot of Content Understanding RAG architecture overview, process, and workflow with Azure AI Search and Azure Open AI.":::
 
-# Multimodal Data Ingestion with Content Understanding
+# Multimodal Data Processing with Content Understanding
 
 ## Why Does Multimodal Data Matter for RAG?
 
@@ -27,17 +27,39 @@ In traditional content processing, simple text extraction was sufficient for man
 
 ## Challenges with Multimodal Data Processing for RAG Systems
 
-RAG systems face significant obstacles when processing diverse content types, each with unique extraction and contextual preservation requirements:
+### 1. Data Ingestion Challenges
 
-- **Document:** Complex layouts with multi-column formats, merged table cells, and floating elements disrupt linear content flow and impede accurate information extraction. Handwritten annotations and embedded visual elements further complicate processing, as systems struggle to establish meaningful connections between text and visual components. This often results in fragmented understanding and loss of critical context.
+Each content modality presents unique extraction obstacles that can significantly impact downstream RAG performance:
 
-- **Image:** Standard OCR approaches falter when confronted with stylized fonts, low-contrast backgrounds, or text embedded within complex visual elements. More challenging still is extracting implicit information - cultural references, symbolic meanings, and domain-specific visual conventions that human viewers intuitively grasp but machines struggle to identify without specialized training.
+- **Documents:** Complex layouts with multi-column formats, merged table cells, and floating elements disrupt linear content flow. Handwritten annotations and embedded visual elements further complicate processing, as systems struggle to establish meaningful connections between text and visual components, resulting in fragmented understanding and loss of critical context.
 
-- **Audio:** Speaker diarization issues lead to attribution errors, particularly during overlapping speech or with similar voices. Multilingual content presents additional complexity, especially with accented speech, dialectal variations, or mid-conversation language switching. Maintaining temporal context flow is essential for preserving the narrative progression in discussions or debates where meaning builds sequentially.
+- **Images:** Standard OCR approaches falter with stylized fonts, low-contrast backgrounds, or text embedded within complex visual elements. More challenging still is extracting implicit information—cultural references, symbolic meanings, and domain-specific visual conventions that human viewers intuitively grasp but machines struggle to identify without specialized training.
 
-- **Video:** The dense informational content in video creates context window limitations, forcing difficult tradeoffs when selecting relevant content. Temporal relationships between scenes must be preserved to maintain coherent meaning. Creating unified vector representations that appropriately balance visual elements, spoken content, and on-screen text requires sophisticated approaches to preserve cross-modal relationships.
+- **Audio:** Speaker diarization issues lead to attribution errors, particularly during overlapping speech or with similar voices. Multilingual content presents additional complexity with accented speech, dialectal variations, or mid-conversation language switching. Maintaining temporal flow is essential for preserving narrative progression in discussions where meaning builds sequentially.
 
-These challenges significantly impact retrieval precision and response quality in RAG systems, necessitating advanced extraction techniques that maintain contextual integrity across diverse content types.
+- **Video:** The dense informational content in video creates context window limitations, forcing difficult tradeoffs when selecting relevant content. Temporal relationships between scenes must be preserved while creating unified representations that appropriately balance visual elements, spoken content, and on-screen text.
+
+### 2. Data Representation Challenges
+
+Traditional RAG systems face significant limitations when representing multimodal content:
+
+- **Semantic fragmentation:** Converting rich multimodal content into flat text or embedding vectors often strips away critical contextual relationships, hierarchical structures, and cross-modal connections.
+
+- **Cross-modal alignment:** Establishing meaningful connections between information across different modalities (e.g., text describing an image or spoken commentary on visual content) requires sophisticated alignment techniques.
+
+- **Vector representation limitations:** Standard embedding approaches often struggle to capture the full semantic richness of multimodal content, particularly when implicit relationships exist across different content types.
+
+### 3. Query Optimization Challenges
+
+Multimodal RAG presents unique retrieval and response generation challenges:
+
+- **Modality bias:** Retrieval systems often favor text-based content over visual or audio information, potentially missing relevant non-textual context.
+
+- **Context fragmentation:** When retrieving information across modalities, maintaining coherent context for the generation phase becomes increasingly difficult.
+
+- **Relevance ranking across modalities:** Determining which pieces of multimodal information are most relevant to a user query requires sophisticated ranking mechanisms that understand cross-modal relationships.
+
+These challenges significantly impact retrieval precision and response quality in RAG systems, necessitating advanced extraction techniques that maintain contextual integrity across diverse content types while optimizing for effective retrieval and generation.
  
 ## Addressing Multimodal Data Processing for RAG with Content Understanding
 
@@ -58,7 +80,7 @@ These modality-specific approaches directly address the fundamental challenges o
 - **Video:** Content Understanding addresses video's inherent complexity through intelligent scene segmentation and temporal synchronization of visual and audio elements. The service outputs both markdown and JSON formats, both optimized for generative AI models and structured to fit within typical context window limitations. This is achieved by segmenting detected shots into instances that prevent token limit issues during retrieval. Beyond basic content extraction, customers can generate additional metadata—such as topics, summaries and sentiment analysis—which can be used alongside vector representations to significantly enrich knowledge bases and improve semantic search relevance, ultimately enhancing RAG performance for video content.
 
 
-## Building a Unified Knowledge Base from Multimodal Content using Content Understanding
+# Building a Multimodal Data RAG using Content Understanding
 
 ### Scenario
 
