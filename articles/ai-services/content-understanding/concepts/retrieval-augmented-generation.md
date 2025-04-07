@@ -417,7 +417,7 @@ Below is a minimal consolidated index that support vector and hybrid search and 
 
 ```json
 {
-"name": "unified_training_index"
+"name": "unified_training_index",
 "fields": [
     # Document content fields
     {"name": "document_content", "type": "Edm.String", "searchable": true, "retrievable": true},
