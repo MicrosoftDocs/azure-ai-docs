@@ -18,11 +18,11 @@ Converts text in one language from source script to target script.
 
 Send a `POST` request:
 
-```http
+```bash
   https://api.cognitive.microsofttranslator.com/transliterate?api-version=3.0
 ```
 
-_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+_See_ [**Virtual Network Support**](../authentication.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
 
 ## Request parameters
 

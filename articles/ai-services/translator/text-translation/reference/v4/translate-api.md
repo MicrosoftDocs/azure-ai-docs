@@ -649,7 +649,7 @@ The markup to supply uses the following syntax.
 
 For example, consider the English sentence "The word wordomatic is a dictionary entry." To preserve the word _wordomatic_ in the translation, send the request:
 
-```http
+```bash
 curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview&from=en&to=de" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'The word <mstrans:dictionary translation=\"wordomatic\">wordomatic</mstrans:dictionary> is a dictionary entry.'}]"
 ```
 

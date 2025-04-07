@@ -19,12 +19,12 @@ Convert characters or letters of a source language to the corresponding characte
 
 `POST` request:
 
-```HTTP
+```bash
  POST http://localhost:{port}/transliterate?api-version=3.0&language={language}&fromScript={fromScript}&toScript={toScript}
 
 ```
 
-*See* [**Virtual Network Support**](../text-translation/reference/v3/reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+*See* [**Virtual Network Support**](../text-translation/reference/authentication.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
 
 ## Request parameters
 

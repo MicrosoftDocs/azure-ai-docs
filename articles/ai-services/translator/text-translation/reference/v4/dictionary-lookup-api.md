@@ -19,11 +19,11 @@ Provides alternative translations for a word and a few idiomatic phrases. Each t
 
 Send a `POST` request to:
 
-```HTTP
+```bash
 https://api.cognitive.microsofttranslator.com/dictionary/lookup?api-version=2025-05-01-preview
 ```
 
-_See_ [**Virtual Network Support**](../v3/../v3/reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+_See_ [**Virtual Network Support**](../v3/../v3/../authentication.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
 
 ## Request parameters
 

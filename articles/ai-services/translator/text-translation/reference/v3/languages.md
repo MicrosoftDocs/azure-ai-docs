@@ -20,18 +20,18 @@ Gets the set of languages currently supported Azure AI Translator v3.0.
 
 Send a `GET` request to:
 
-```HTTP
+```bash
 https://api.cognitive.microsofttranslator.com/languages?api-version=3.0
 
 ```
 
 For virtual networks, use your custom domain endpoint:
 
-```HTTP
+```bash
 https://<your-custom-domain>.cognitiveservices.azure.com/languages?api-version=3.0
 ```
 
-For more information, _see_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+For more information, _see_ [**Virtual Network Support**](../authentication.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
 
 ## Request parameters
 
