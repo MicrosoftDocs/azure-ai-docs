@@ -87,7 +87,7 @@ A high level summary of RAG pattern looks like this:
 3. Store embedded vectors in database or search index.  
 4. Use Generative AI to prompt and generate responses from retrieval system.
 
-:::image type="content" source="../media/concepts/RAGarchitecture.png" alt-text="Screenshot of Content Understanding RAG architecture overview, process, and workflow with Azure AI Search and Azure Open AI.":::
+:::image type="content" source="../media/concepts/ragarchitecture2.png" alt-text="Screenshot of Content Understanding RAG architecture overview, process, and workflow with Azure AI Search and Azure Open AI.":::
 
 ### Scenario
 
