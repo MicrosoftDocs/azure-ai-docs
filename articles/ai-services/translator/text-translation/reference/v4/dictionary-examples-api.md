@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 03/28/2025
+ms.date: 04/07/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD033 -->
@@ -20,7 +20,7 @@ Provides examples that show how terms in the dictionary are used in context. Thi
 Send a `POST` request to:
 
 ```HTTP
-https://api.cognitive.microsofttranslator.com/dictionary/examples?api-version=v4
+https://api.cognitive.microsofttranslator.com/dictionary/examples?api-version=2025-05-01-preview
 ```
 
 _See_ [**Virtual Network Support**](../v3/../v3/reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
@@ -31,7 +31,7 @@ Request parameters passed on the query string are:
 
 | Query Parameter | Description |
 | --------- | ----------- |
-| api-version <img width=200/> | **Required parameter**.<br>Version of the API requested by the client. Value must be `v4`. |
+| api-version <img width=200/> | **Required parameter**.<br>Version of the API requested by the client. Value must be `2025-05-01-preview`. |
 | from | **Required parameter**.<br>Specifies the language of the input text. The source language must be one of the [supported languages](get-languages.md) included in the `dictionary` scope. |
 | to | **Required parameter**.<br>Specifies the language of the output text. The target language must be one of the [supported languages](get-languages.md) included in the `dictionary` scope.  |
 
@@ -95,7 +95,7 @@ A successful response is a JSON array with one result for each string in the inp
 This example shows how to look up examples for the pair made up of the English term `fly` and its Spanish translation `volar`.
 
  ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/dictionary/examples?api-version=v4&from=en&to=es" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d "[{'Text':'fly', 'Translation':'volar'}]"
+curl -X POST "https://api.cognitive.microsofttranslator.com/dictionary/examples?api-version=2025-05-01-preview&from=en&to=es" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d "[{'Text':'fly', 'Translation':'volar'}]"
 ```
 
 The response body (abbreviated for clarity) is:

@@ -21,14 +21,14 @@ Gets the set of languages currently supported by other operations of the Transla
 Send a `GET` request to:
 
 ```HTTP
-https://api.cognitive.microsofttranslator.com/languages?api-version=v4
+https://api.cognitive.microsofttranslator.com/languages?api-version=2025-05-01-preview
 
 ```
 
 For virtual networks, use your custom domain endpoint:
 
 ```HTTP
-https://<your-custom-domain>.cognitiveservices.azure.com/languages?api-version=v4
+https://<your-custom-domain>.cognitiveservices.azure.com/languages?api-version=2025-05-01-preview
 ```
 
 For more information, _see_ [**Virtual Network Support**](../v3/reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
@@ -39,7 +39,7 @@ Request parameters passed on the query string are:
 
 |Query parameters|Description|
 |---|---|
-|api-version|**Required parameter**<br><br>The version of the API requested by the client. Value must be `v4`.|
+|api-version|**Required parameter**<br><br>The version of the API requested by the client. Value must be `2025-05-01-preview`.|
 |scope|**Optional parameter**.<br><br>A comma-separated list of names defining the group of languages to return. Allowed group names are: `translation`, `transliteration`, and `dictionary`. If no scope is given, then all groups are returned, which is equivalent to passing `scope=translation,transliteration,dictionary`.|
 
 *See* [response body](#response-body).
@@ -232,7 +232,7 @@ If an error occurs, the request also returns a JSON error response. The error co
 The following example shows how to retrieve languages supported for text translation.
 
  ```bash
-curl "https://api.cognitive.microsofttranslator.com/languages?api-version=v4&scope=translation"
+curl "https://api.cognitive.microsofttranslator.com/languages?api-version=2025-05-01-preview&scope=translation"
 ```
 
 ## Related content

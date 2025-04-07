@@ -6,11 +6,11 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 03/28/2025
+ms.date: 04/07/2025
 ms.author: lajanuar
 ---
 
-# Azure AI Translator v 4.0: translate (preview)
+# Azure AI Translator v4.0: translate (preview)
 
 Translates text.
 
@@ -19,7 +19,7 @@ Translates text.
 Send a `POST` request to:
 
 ```HTTP
-https://api.cognitive.microsofttranslator.com/translate?api-version=v4
+https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview
 ```
 
 _See_ [**Virtual Network Support**](../v3/reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
@@ -373,7 +373,7 @@ If an error occurs, the request returns a JSON error response. The error code is
 This example shows how to translate a single sentence from English to Simplified Chinese.
 
  ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=v4&from=en&to=zh-Hans" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'Hello, what is your name?'}]"
+curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview&from=en&to=zh-Hans" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'Hello, what is your name?'}]"
 ```
 
 The response body is:
@@ -395,7 +395,7 @@ The `translations` array includes one element, which provides the translation of
 This example shows how to translate a single sentence from English to Simplified Chinese. The request doesn't specify the input language. Autodetection of the source language is used instead.
 
  ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=v4&to=zh-Hans" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'Hello, what is your name?'}]"
+curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview&to=zh-Hans" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'Hello, what is your name?'}]"
 ```
 
 The response body is:
@@ -417,7 +417,7 @@ The response is similar to the response from the previous example. Since languag
 Let's extend the previous example by adding transliteration. The following request asks for a Chinese translation written in Latin script.
 
  ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=v4&to=zh-Hans&toScript=Latn" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'Hello, what is your name?'}]"
+curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview&to=zh-Hans&toScript=Latn" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'Hello, what is your name?'}]"
 ```
 
 The response body is:
@@ -444,7 +444,7 @@ The translation result now includes a `transliteration` property, which gives th
 Translating multiple strings at once is simply a matter of specifying an array of strings in the request body.
 
  ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=v4&from=en&to=zh-Hans" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'Hello, what is your name?'}, {'Text':'I am fine, thank you.'}]"
+curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview&from=en&to=zh-Hans" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'Hello, what is your name?'}, {'Text':'I am fine, thank you.'}]"
 ```
 
 The response contains the translation of all pieces of text in the exact same order as in the request.
@@ -470,7 +470,7 @@ The response body is:
 This example shows how to translate the same input to several languages in one request.
 
  ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=v4&from=en&to=zh-Hans&to=de" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'Hello, what is your name?'}]"
+curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview&from=en&to=zh-Hans&to=de" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'Hello, what is your name?'}]"
 ```
 
 The response body is:
@@ -505,7 +505,7 @@ In the above examples, **\<insert-profane-word>** is a placeholder for profane w
 For example:
 
  ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=v4&from=en&to=de&profanityAction=Marked" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'This is an <expletive> good idea.'}]"
+curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview&from=en&to=de&profanityAction=Marked" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'This is an <expletive> good idea.'}]"
 ```
 
 This request returns:
@@ -523,7 +523,7 @@ This request returns:
 Compare with:
 
  ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=v4&from=en&to=de&profanityAction=Marked&profanityMarker=Tag" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'This is an <expletive> good idea.'}]"
+curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview&from=en&to=de&profanityAction=Marked&profanityMarker=Tag" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'This is an <expletive> good idea.'}]"
 ```
 
 That last request returns:
@@ -550,7 +550,7 @@ It's common to translate content that includes markup such as content from an HT
 Here's a sample request to illustrate.
 
  ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=v4&from=en&to=zh-Hans&textType=html" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'<div class=\"notranslate\">This will not be translated.</div><div>This will be translated.</div>'}]"
+curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview&from=en&to=zh-Hans&textType=html" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'<div class=\"notranslate\">This will not be translated.</div><div>This will be translated.</div>'}]"
 ```
 
 The response is:
@@ -578,7 +578,7 @@ In other words, the colon separates start and end index, the dash separates the 
 To receive alignment information, specify `includeAlignment=true` on the query string.
 
  ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=v4&from=en&to=fr&includeAlignment=true" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'The answer lies in machine translation.'}]"
+curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview&from=en&to=fr&includeAlignment=true" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'The answer lies in machine translation.'}]"
 ```
 
 The response is:
@@ -617,7 +617,7 @@ Obtaining alignment information is an experimental feature that we enabled for p
 To receive information about sentence length in the source text and translated text, specify `includeSentenceLength=true` on the query string.
 
  ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=v4&from=en&to=fr&includeSentenceLength=true" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'The answer lies in machine translation. The best machine translation technology cannot always provide translations tailored to a site or users like a human. Simply copy and paste a code snippet anywhere.'}]"
+curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview&from=en&to=fr&includeSentenceLength=true" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'The answer lies in machine translation. The best machine translation technology cannot always provide translations tailored to a site or users like a human. Simply copy and paste a code snippet anywhere.'}]"
 ```
 
 The response is:
@@ -649,7 +649,7 @@ The markup to supply uses the following syntax.
 For example, consider the English sentence "The word wordomatic is a dictionary entry." To preserve the word _wordomatic_ in the translation, send the request:
 
 ```http
-curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=v4&from=en&to=de" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'The word <mstrans:dictionary translation=\"wordomatic\">wordomatic</mstrans:dictionary> is a dictionary entry.'}]"
+curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview&from=en&to=de" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'The word <mstrans:dictionary translation=\"wordomatic\">wordomatic</mstrans:dictionary> is a dictionary entry.'}]"
 ```
 
 The result is:

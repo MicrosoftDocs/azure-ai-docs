@@ -88,7 +88,7 @@ items:
     - name: Authentication and authorization
       displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
       href: text-translation/reference/authentication.md
-    - name: 🆕 Azure AI Translator v4
+    - name: 🆕 Azure AI Translator 2025-05-01-preview (v4.0)
       items:
       - name: v4 Translator reference
         displayName: gpt, adaptive, tone, gender

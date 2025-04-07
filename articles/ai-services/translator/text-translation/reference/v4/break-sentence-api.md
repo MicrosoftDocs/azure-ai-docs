@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 03/31/2025
+ms.date: 04/07/2025
 ms.author: lajanuar
 ---
 
@@ -19,7 +19,7 @@ Identifies the positioning of sentence boundaries in a piece of text.
 Send a `POST` request to:
 
 ```HTTP
-https://api.cognitive.microsofttranslator.com/breaksentence?api-version=v4
+https://api.cognitive.microsofttranslator.com/breaksentence?api-version=2025-05-01-preview
 
 ```
 
@@ -31,7 +31,7 @@ Request parameters passed on the query string are:
 
 | Query Parameter | Description |
 | -------| ----------- |
-| api-version <img width=200/>   | **Required query parameter**.<br/>Version of the API requested by the client. Value must be `v4`. |
+| api-version <img width=200/>   | **Required query parameter**.<br/>Version of the API requested by the client. Value must be `2025-05-01-preview`. |
 | language | **Optional query parameter**.<br/>Language tag identifying the language of the input text. If a code isn't specified, automatic language detection is applied. |
 | script    | **Optional query parameter**.<br/>Script tag identifying the script used by the input text. If a script isn't specified, the default script of the language is assumed. |
 
@@ -108,5 +108,5 @@ If an error occurs, the request returns a JSON error response. The error code is
 The following example shows how to obtain sentence boundaries for a single sentence. The service automatically detects the sentence language.
 
 ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/breaksentence?api-version=v4" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d "[{'Text':'How are you? I am fine. What did you do today?'}]"
+curl -X POST "https://api.cognitive.microsofttranslator.com/breaksentence?api-version=2025-05-01-preview" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d "[{'Text':'How are you? I am fine. What did you do today?'}]"
 ```
