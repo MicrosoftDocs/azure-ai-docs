@@ -17,8 +17,6 @@ Retrieval Augmented Generation (RAG) enhances Generative AI models by grounding 
 
 Azure AI Content Understanding addresses these challenges by providing sophisticated extraction capabilities across all content modalities, preserving semantic integrity and contextual relationships that traditional extraction methods often lose. This unified approach eliminates the need to manage separate workflows and models for different content types, streamlining implementation while ensuring optimal representation for retrieval and generation.
 
-:::image type="content" source="../media/concepts/RAGarchitecture.png" alt-text="Screenshot of Content Understanding RAG architecture overview, process, and workflow with Azure AI Search and Azure Open AI.":::
-
 ## Multimodal Data Processing with Content Understanding
 
 ## Why Does Multimodal Data Matter for RAG?
@@ -88,6 +86,8 @@ A high level summary of RAG pattern looks like this:
 2. Embed structured output using embedding models.
 3. Store embedded vectors in database or search index.  
 4. Use Generative AI to prompt and generate responses from retrieval system.
+
+:::image type="content" source="../media/concepts/RAGarchitecture.png" alt-text="Screenshot of Content Understanding RAG architecture overview, process, and workflow with Azure AI Search and Azure Open AI.":::
 
 ### Scenario
 
