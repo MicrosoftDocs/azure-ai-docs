@@ -19,11 +19,11 @@ Azure AI Content Understanding addresses these challenges by providing sophistic
 
 :::image type="content" source="../media/concepts/RAGarchitecture.png" alt-text="Screenshot of Content Understanding RAG architecture overview, process, and workflow with Azure AI Search and Azure Open AI.":::
 
-# Multimodal Data Processing with Content Understanding
+## Multimodal Data Processing with Content Understanding
 
 ## Why Does Multimodal Data Matter for RAG?
 
-In traditional content processing, simple text extraction was sufficient for many use cases. However, modern enterprise environments contain rich, diverse information spread across multiple formats—documents with complex layouts, images conveying visual insights, audio recordings of crucial conversations, and videos that combine all these elements. For truly comprehensive Retrieval Augmented Generation (RAG) systems, all of this content must be accurately processed and made available to generative AI models.This ensures that when users pose questions, the underlying RAG system can retrieve relevant information regardless of its original format—whether it's a complex table in a financial report, a technical diagram in a manual, insights from a recorded conference call, or explanations from a training video.
+In traditional content processing, simple text extraction was sufficient for many use cases. However, modern enterprise environments contain rich, diverse information spread across multiple formats—documents with complex layouts, images conveying visual insights, audio recordings of crucial conversations, and videos that combine all these elements. For truly comprehensive Retrieval Augmented Generation (RAG) systems, all of this content must be accurately processed and made available to generative AI models. This ensures that when users pose questions, the underlying RAG system can retrieve relevant information regardless of its original format—whether it's a complex table in a financial report, a technical diagram in a manual, insights from a recorded conference call, or explanations from a training video.
 
 ## Challenges with Multimodal Data Processing for RAG Systems
 
@@ -80,11 +80,18 @@ These modality-specific approaches directly address the fundamental challenges o
 - **Video:** Content Understanding addresses video's inherent complexity through intelligent scene segmentation and temporal synchronization of visual and audio elements. The service outputs both markdown and JSON formats, both optimized for generative AI models and structured to fit within typical context window limitations. This is achieved by segmenting detected shots into instances that prevent token limit issues during retrieval. Beyond basic content extraction, customers can generate additional metadata—such as topics, summaries and sentiment analysis—which can be used alongside vector representations to significantly enrich knowledge bases and improve semantic search relevance, ultimately enhancing RAG performance for video content.
 
 
-# Building a Multimodal Data RAG using Content Understanding
+## Building a Multimodal Data RAG using Content Understanding
+
+A high level summary of RAG pattern looks like this:
+
+1. Transform unstructured multimodal data into structured representation using Content Understanding.
+2. Embed structured output using embedding models.
+3. Store embedded vectors in database or search index.  
+4. Use Generative AI to prompt and generate responses from retrieval system.
 
 ### Scenario
 
-Let's consider a scenario where we have a collection of documents, images, videos, and audio files related to a specific topic (e.g., a corporate training program). We want to create a system that can retrieve relevant information from these multimodal sources based on user queries. 
+Let's consider a scenario where we have a collection of documents, images, videos, and audio files related to a corporate training program. We want to create a system that can retrieve relevant information from these multimodal sources based on user queries. 
 
 ### Implementation
 
@@ -98,20 +105,279 @@ To implement this scenario, you can use Azure AI Content Understanding to automa
 
 - **Image Processing**: Transforms visual information into searchable text by verbalizing diagrams and charts, extracting embedded text elements, and converting graphical data into structured formats. Technical illustrations are analyzed to identify components and their relationships.
 
-- **Video Processing**: Segments video content into meaningful units through scene detection and key frame extraction, while generating descriptive summaries, transcribing spoken content, and identifying key topics and sentiment indicators throughout the footage.
-
 - **Audio Processing**: Creates rich textual representations of spoken content with speaker diarization technology, topic segmentation, and automated summaries that capture the essence of discussions, presentations, and Q&A sessions.
+
+- **Video Processing**: Segments video content into meaningful units through scene detection and key frame extraction, while generating descriptive summaries, transcribing spoken content, and identifying key topics and sentiment indicators throughout the footage.
 
 This comprehensive extraction creates a rich knowledge base where each content type maintains its unique contextual elements while enabling cross-modal relationships.
 
 
-The image below illustrates Content Understanding's ability to extract structural elements from a document using layout analysis, showcasing its capability to provide extracted data with regions of interest and their inter-relationships.
+#### Sample Extraction Response
 
-:::image type="content" source="../media/concepts/layoutpageelements.png" alt-text="Screenshot of Content Understanding Document Data Extraction with Layout Analysis for RAG design.":::
+# [Document](#tab/document)
 
-The image below exemplifies how data can be meticulously extracted from audio files. In this scenario, content extraction captures audio transcription with speaker role detection, while field extraction generates topics discussed. This output facilitates efficient organization, indexing, and searching of content.
+```json
+{
+  "id": "bcf8c7c7-03ab-4204-b22c-2b34203ef5db",
+  "status": "Succeeded",
+  "result": {
+    "analyzerId": "training_document_analyzer",
+    "apiVersion": "2024-12-01-preview",
+    "createdAt": "2024-11-13T07:15:46Z",
+    "warnings": [],
+    "contents": [
+      {
+        "markdown": "CONTOSO LTD.\n\n\n# Contoso Training Topics\n\nContoso Headquarters...",
+        "fields": {
+          "Business department": {
+            "type": "string",
+            "valueString": "Human resources",
+            "spans": [ { "offset": 0, "length": 12 } ],
+            "confidence": 0.941,
+            "source": "D(1,0.5729,0.6582,2.3353,0.6582,2.3353,0.8957,0.5729,0.8957)"
+          },
+          "Items": {
+            "type": "array",
+            "valueArray": [
+              {
+                "type": "object",
+                "valueObject": {
+                  "Topics": {
+                    "type": "string",
+                    "valueString": "Compliance and Safety",
+                    "spans": [ { "offset": 909, "length": 19 } ],
+                    "confidence": 0.971,
+                    "source": "D(1,2.3264,5.673,3.6413,5.673,3.6413,5.8402,2.3264,5.8402)"
+                  },
+                  "Reading material": {
+                    "type": "number",
+                    "valueString": "Compliance in the workplace by John Smith",
+                    "spans": [ { "offset": 995, "length": 6 } ],
+                    "confidence": 0.989,
+                    "source": "D(1,7.4507,5.6684,7.9245,5.6684,7.9245,5.8323,7.4507,5.8323)"
+                  }
+                }
+              }, ...
+            ]
+          }
+        },
+        "kind": "document",
+        "startPageNumber": 1,
+        "endPageNumber": 1,
+        "unit": "inch",
+        "pages": [
+          {
+            "pageNumber": 1,
+            "angle": -0.0039,
+            "width": 8.5,
+            "height": 11,
+            "spans": [ { "offset": 0, "length": 1650 } ],
+            "words": [
+              {
+                "content": "CONTOSO",
+                "span": { "offset": 0, "length": 7 },
+                "confidence": 0.997,
+                "source": "D(1,0.5739,0.6582,1.7446,0.6595,1.7434,0.8952,0.5729,0.8915)"
+              }, ...
+            ],
+            "lines": [
+              {
+                "content": "CONTOSO LTD.",
+                "source": "D(1,0.5734,0.6563,2.335,0.6601,2.3345,0.8933,0.5729,0.8895)",
+                "span": { "offset": 0, "length": 12 }
+              }, ...
+            ]
+          }
+        ],
+        "paragraphs": [
+          {
+            "content": "CONTOSO LTD.",
+            "source": "D(1,0.5734,0.6563,2.335,0.6601,2.3345,0.8933,0.5729,0.8895)",
+            "span": { "offset": 0, "length": 12 }
+          }, ...
+        ],
+        "sections": [
+          {
+            "span": { "offset": 0, "length": 1649 },
+            "elements": [ "/sections/1", "/sections/2" ]
+          },
+          {
+            "span": { "offset": 0, "length": 12 },
+            "elements": [ "/paragraphs/0" ]
+          }, ...
+        ],
+        "tables": [
+          {
+            "rowCount": 2,
+            "columnCount": 6,
+            "cells": [
+              {
+                "kind": "columnHeader",
+                "rowIndex": 0,
+                "columnIndex": 0,
+                "rowSpan": 1,
+                "columnSpan": 1,
+                "content": "SALESPERSON",
+                "source": "D(1,0.5389,4.5514,1.7505,4.5514,1.7505,4.8364,0.5389,4.8364)",
+                "span": { "offset": 512, "length": 11 },
+                "elements": [ "/paragraphs/19" ]
+              }, ...
+            ],
+            "source": "D(1,0.4885,4.5543,8.0163,4.5539,8.015,5.1207,0.4879,5.1209)",
+            "span": { "offset": 495, "length": 228 }
+          }, ...
+        ]
+      }
+    ]
+  }
+}
+```
 
-:::image type="content" source="../media/concepts/audiorag.png" alt-text="Screenshot of Content Understanding Audio Data Extraction for RAG design":::
+# [Image](#tab/image)
+
+```json
+{
+  "id": "12fd421b-b545-4d63-93a5-01284081bbe1",
+  "status": "Succeeded",
+  "result": {
+    "analyzerId": "training_image_analyzer",
+    "apiVersion": "2024-12-01-preview",
+    "createdAt": "2024-11-09T08:41:00Z",
+    "warnings": [],
+    "contents": [
+      {
+        "markdown": "![image](image)\n",
+        "fields": {
+          "Title": {
+            "type": "string",
+            "valueString": "Weekly Work Hours Distribution"
+          },
+          "ChartType": {
+            "type": "string",
+            "valueString": "pie"
+          }
+        },
+        "kind": "document",
+        "startPageNumber": 1,
+        "endPageNumber": 1,
+        "unit": "pixel",
+        "pages": [
+          {
+            "pageNumber": 1,
+            "width": 1283,
+            "height": 617
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+# [Audio](#tab/audio)
+
+```json
+{
+  "id": "247c369c-1aa5-4f92-b033-a8e4318e1c02",
+  "status": "Succeeded",
+  "result": {
+    "analyzerId": "sample_audio_analyzer",
+    "apiVersion": "2024-12-01-preview",
+    "createdAt": "2024-11-09T08:42:58Z",
+    "warnings": [],
+    "contents": [
+      {
+        "kind": "audioVisual",
+        "startTimeMs": 0,
+        "endTimeMs": 32182,
+        "markdown": "```WEBVTT\n\n00:00.080 --> 00:00.640\n<v Agent>Good day...",
+        "fields": {
+          "Sentiment": {
+            "type": "string",
+            "valueString": "Positive"
+          },
+          "Summary": {
+            "type": "string",
+            "valueString": "Maria Smith contacted Contoso to inquire about her current point balance. Agent John Doe confirmed her identity and informed her that she has 599 points. Maria did not require any further information and the call ended on a positive note."
+          },
+          "People": {
+            "type": "array",
+            "valueArray": [
+              {
+                "type": "object",
+                "valueObject": {
+                  "Name": {
+                    "type": "string",
+                    "valueString": "Maria Smith"
+                  },
+                  "Role": {
+                    "type": "string",
+                    "valueString": "Customer"
+                  }
+                }
+              }, ...
+            ]
+          }
+        },
+        "transcriptPhrases": [
+          {
+            "speaker": "Agent 1",
+            "startTimeMs": 80,
+            "endTimeMs": 640,
+            "text": "Good day.",
+            "confidence": 0.932,
+            "words": [
+              {
+                "startTimeMs": 80,
+                "endTimeMs": 280,
+                "text": "Good"
+              }, ...
+            ],
+            "locale": "en-US"
+          }, ...
+        ]
+      }
+    ]
+  }
+}
+```
+
+# [Video](#tab/video)
+
+```json
+{
+  "id": "204fb777-e961-4d6d-a6b1-6e02c773d72c",
+  "status": "Succeeded",
+  "result": {
+    "analyzerId": "sample_video_analyzer",
+    "apiVersion": "2024-12-01-preview",
+    "createdAt": "2024-11-09T08:57:21Z",
+    "warnings": [],
+    "contents": [
+      {
+        "kind": "audioVisual",
+        "startTimeMs": 0,
+        "endTimeMs": 2800,
+        "width": 540,
+        "height": 960,
+        "markdown": "# Shot 0:0.0 => 0:1.800\n\n## Transcript\n\n```\n\nWEBVTT\n\n0:0.80 --> 0:10.560\n<v Speaker>When I was planning my trip...",
+        "fields": {
+          "sentiment": {
+            "type": "string",
+            "valueString": "Neutral"
+          },
+          "description": {
+            "type": "string",
+            "valueString": "The video begins with a view from a glass floor, showing a person's feet in white sneakers standing on it. The scene captures a downward view of a structure, possibly a tower, with a grid pattern on the floor and a clear view of the ground below. The lighting is bright, suggesting a sunny day, and the colors are dominated by the orange of the structure and the gray of the floor."
+          }
+        }
+      },
+      ...
+    ]
+  }
+}
+```
+
 
 ### 2. Create a Unified Search Index
 
