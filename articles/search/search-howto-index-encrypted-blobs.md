@@ -69,9 +69,9 @@ You should have an Azure Function app that contains the decryption logic and an 
 
 1. Navigate to your Azure Key Vault service in the Azure portal. [Create an access policy](/azure/key-vault/general/assign-access-policy-portal) in the Azure Key Vault that grants key access to the custom skill.
 
-1. On the left navigation pane, select **Access policies**, and then select **+ Create** to start the **Create an access policy** wizard.
+1. On the left pane, select **Access policies**, and then select **+ Create** to start the **Create an access policy** wizard.
 
-    :::image type="content" source="media/indexing-encrypted-blob-files/keyvault-access-policies.png" alt-text="Screenshot of the Access Policy command in the left navigation pane." border="true":::
+    :::image type="content" source="media/indexing-encrypted-blob-files/keyvault-access-policies.png" alt-text="Screenshot of the Access Policy command in the left pane." border="true":::
 
 1. On the **Permissions** page under **Configure from template**, select **Azure Data Lake Storage or Azure Storage**.
 

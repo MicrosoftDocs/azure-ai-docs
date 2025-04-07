@@ -46,7 +46,7 @@ When you trigger an autolabeling job based on a model you've trained, there's a 
 >
 > `ceil(8921/1000) = ceil(8.921)`, which is 9 text records.
 
-1.  From the left navigation menu, select **Data labeling**.
+1.  From the left pane, select **Data labeling**.
 2.  Select the **Autolabel** button under the Activity pane to the right of the page.
 
 
@@ -81,7 +81,7 @@ You should see the model used, number of documents included in the autolabeling 
 
 When you trigger an autolabeling job with GPT, you're charged to your Azure OpenAI resource as per your consumption. You're charged an estimate of the number of tokens in each document being autolabeled. Refer to the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for a detailed breakdown of pricing per token of different models.
 
-1.  From the left navigation menu, select **Data labeling**.
+1.  From the left pane, select **Data labeling**.
 2.  Select the **Autolabel** button under the Activity pane to the right of the page.
 
     :::image type="content" source="../media/trigger-autotag.png" alt-text="A screenshot showing how to trigger an autotag job from the activity pane." lightbox="../media/trigger-autotag.png":::
