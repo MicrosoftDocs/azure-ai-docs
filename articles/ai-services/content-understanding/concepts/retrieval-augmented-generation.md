@@ -377,7 +377,7 @@ This comprehensive extraction creates a rich knowledge base where each content t
   }
 }
 ```
-
+---
 
 ### 2. Create a Unified Search Index
 
@@ -411,6 +411,8 @@ def embed_and_index_chunks(output):
 vector_store = embed_and_index_chunks(output)
 
 ```
+
+---
 
 This unified index becomes the foundation for intelligent retrieval operations, enabling semantically rich search experiences that leverage the full context and relationships within your enterprise content ecosystem.
 
