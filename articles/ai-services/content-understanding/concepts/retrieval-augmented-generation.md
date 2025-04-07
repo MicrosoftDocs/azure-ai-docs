@@ -63,7 +63,7 @@ These challenges significantly impact retrieval precision and response quality i
  
 ## Addressing Multimodal Data Processing for RAG with Content Understanding
 
-Content Understanding's dual extraction approach offers strategic advantages for RAG implementation that addresses ingestion, representation, query optimization and accuracy challenges:
+Content Understanding's dual extraction approach offers strategic advantages for RAG implementation that addresses ingestion, representation and query optimization challenges:
 
 1. **Content extraction** transforms unstructured information into coherent, context-aware representations that preserve hierarchical relationships and structural elements critical for accurate retrieval. The output of content extraction delivers unified outputs in Markdown and JSON—formats designed to integrate seamlessly with vector stores and generative AI models—while maintaining crucial contextual integrity across all modalities.
 
