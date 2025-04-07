@@ -32,7 +32,7 @@ If you've been using Azure OpenAI Studio, all your work, such as your deployment
 
 :::image type="content" source="media/azure-openai-in-ai-studio/studio-home.png" alt-text="Screenshot shows the new Azure OpenAI in Azure AI Foundry portal." lightbox="media/azure-openai-in-ai-studio/studio-home.png":::
 
-Use the left navigation area to perform your tasks with Azure OpenAI models:
+Use the left pane to perform your tasks with Azure OpenAI models:
 
 * **Select models**: The **Model catalog** houses all the available Azure OpenAI models.
 

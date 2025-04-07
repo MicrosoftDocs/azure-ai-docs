@@ -75,7 +75,7 @@ Navigate to the [Document Intelligence Studio](https://formrecognizer.appliedai.
 * **Local authentication: access by API endpoint and key**.
 
   * Retrieve your endpoint and key from the Azure portal.
-  * Go to the overview page for your resource and select **Keys and Endpoint** from the left navigation bar.
+  * Go to the overview page for your resource and select **Keys and Endpoint** from the left pane.
   * Enter the values in the appropriate fields.
 
       :::image type="content" source="../media/studio/keys-and-endpoint.png" lightbox="../media/studio/keys-and-endpoint.png" alt-text="Screenshot of the keys and endpoint page in the Azure portal.":::

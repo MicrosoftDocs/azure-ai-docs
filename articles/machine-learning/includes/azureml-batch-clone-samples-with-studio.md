@@ -26,7 +26,7 @@ To follow along with this example in a Jupyter Notebook, in the cloned repositor
 
 # [Studio](#tab/azure-studio)
 
-1. On the left navigation bar, select the option __Notebooks__.
+1. On the left pane, select the option __Notebooks__.
 1. Select __Samples__.
 1. Navigate to the folder _SDK v2/sdk/python/endpoints/batch/deploy-models/mnist-classifier_.
 1. Select the notebook __mnist-batch.ipynb__.

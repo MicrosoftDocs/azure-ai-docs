@@ -432,7 +432,7 @@ root_run(current_child_run).log("MyMetric", f"Data from child run {current_child
 
 ## Monitor the run status by email notification
 
-1. In the [Azure portal](https://portal.azure.com/), in the left navigation bar, select the **Monitor** tab. 
+1. In the [Azure portal](https://portal.azure.com/), in the left pane, select the **Monitor** tab. 
 
 1. Select **Diagnostic settings** and then select **+ Add diagnostic setting**.
 
