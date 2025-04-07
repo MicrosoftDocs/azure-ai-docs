@@ -27,9 +27,9 @@ landingContent:
       - linkListType: overview
         links:
           - text: What is Azure AI Foundry?
-            url: what-is-ai-foundry.md
+            url: what-is-azure-ai-foundry.md
           - text: Azure OpenAI Service in Azure AI Foundry
-            url: azure-openai-in-ai-foundry.md
+            url: azure-openai-in-azure-ai-foundry.md
       - linkListType: concept
         links:
           - text: Azure AI Agent service
@@ -85,7 +85,18 @@ landingContent:
             url: how-to\develop\sdk-overview.md
           - text: Azure OpenAI Service Reference
             url: ../ai-services/openai/reference.md
-  
+  # Card
+  - title: Build apps with a template
+    linkLists:
+      - linkListType: quickstart
+        links:
+          - text: Get started with AI chat
+            url: https://github.com/Azure-Samples/get-started-with-ai-chat
+          - text: Get started with AI agents
+            url: https://github.com/Azure-Samples/get-started-with-ai-agents
+          - text: Unlock insights from conversational data
+            url: https://github.com/microsoft/Conversation-Knowledge-Mining-Solution-Accelerator
+
   # Card
   - title: Explore more AI resources
     linkLists:

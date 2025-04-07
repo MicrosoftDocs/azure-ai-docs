@@ -18,6 +18,12 @@ author: sdgilley
 
 Streamline your code-first development with prebuilt, task-specific Azure AI templates. Benefit from using the latest features and best practices from Microsoft Azure AI, with popular frameworks like LangChain, prompt flow, and Semantic Kernel in multiple languages.
 
+Available templates include:
+
+* [Get started with AI chat](https://github.com/Azure-Samples/get-started-with-ai-chat)
+* [Get started with AI agents](https://github.com/Azure-Samples/get-started-with-ai-agents)
+* [Unlock insights from conversational data](https://github.com/microsoft/Conversation-Knowledge-Mining-Solution-Accelerator)
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 ## Prerequisites
@@ -52,6 +58,9 @@ The README also includes information about the application, such as the use case
 
 > [!TIP]
 > Discover more templates in our curated [AZD templates collection](https://azure.github.io/ai-app-templates). Deploy them with a single command ```azd up``` using the [Azure Developer CLI](/azure/developer/azure-developer-cli/).
+
+
+
 
 ## Related content
 

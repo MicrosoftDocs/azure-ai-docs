@@ -129,5 +129,5 @@ In the Azure portal, you can find resources that correspond to your project in A
 ## Next steps
 
 - [Quickstart: Analyze images and video in the chat playground](/azure/ai-services/openai/gpt-v-quickstart)
-- [Learn more about Azure AI Foundry](../what-is-ai-foundry.md)
+- [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
 - [Learn more about projects](../how-to/create-projects.md)

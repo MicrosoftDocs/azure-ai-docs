@@ -340,7 +340,7 @@ items:
   items:
   - name: Translator in sovereign clouds
     displayName: fairfax,compliant,secret,compliance,government,government cloud,dod,china,batch,region
-    href: sovereign-clouds.md
+    href: reference/sovereign-clouds.md
   - name: Modifications to Translator Service
     displayName: deprecation, deprecate, changes, modify, modifications
     href: modifications-deprecations.md
@@ -352,4 +352,4 @@ items:
   - name: Code samples on GitHub
     href: https://aka.ms/TranslatorGitHub
   - name: Azure AI Translator release history
-    href: release-history.md
+    href: reference/release-history.md
