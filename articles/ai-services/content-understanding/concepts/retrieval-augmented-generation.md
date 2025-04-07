@@ -426,7 +426,7 @@ The effectiveness of a RAG system depends significantly on its ability to retrie
 By carefully selecting and configuring these search techniques based on your specific use case requirements, you can ensure that your RAG system retrieves the most relevant content across all modalities, significantly enhancing the quality and accuracy of generated responses.
 
 > [!NOTE]
-> For comprehensive guidance on implementing different search techniques, visit the [Azure AI Search documentation](https://docs.microsoft.com/azure/search/semantic-search-overview).
+> For comprehensive guidance on implementing different search techniques, visit the [Azure AI Search documentation](https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview).
 
 In this sample, we use hybrid search to combine full text and vector queries against the unified search index containing both searchable plain text content and generated embeddings.
 
