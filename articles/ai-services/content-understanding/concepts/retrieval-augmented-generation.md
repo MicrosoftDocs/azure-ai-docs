@@ -112,7 +112,7 @@ To implement this scenario, you can use Azure AI Content Understanding to automa
 This comprehensive extraction creates a rich knowledge base where each content type maintains its unique contextual elements while enabling cross-modal relationships.
 
 
-#### Sample Extraction Response
+## Sample Extraction Response
 
 # [Document](#tab/document)
 
