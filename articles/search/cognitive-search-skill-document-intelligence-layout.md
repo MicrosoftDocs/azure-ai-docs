@@ -26,7 +26,7 @@ The **Document Layout** skill calls the [Document Intelligence Public preview ve
 
 Supported regions varies by modality:
 
-+ In code, your skillset can call Document Intelligence through an Azure AI multi-service resource in any region that provides by both Azure AI Search and Document Intelligence. See [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table)
++ In code, your skillset can call Document Intelligence through an Azure AI multi-service resource in any region that provides both Azure AI Search and Document Intelligence. See [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) for supported regions.
 
 + In the [Import and vectorize data](search-import-data-portal.md) wizard in the Azure portal, you can enable document layout detection in the data source connection step. Document layout detection in the portal is available in the following Azure regions: East US, West US2, West Europe, North Central US.
 
@@ -60,7 +60,7 @@ Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill
 
 ## Supported languages
 
-Refer to [Azure AI Document Intelligence layout model supported languages](/azure/ai-services/document-intelligence/language-support/ocr?view=doc-intel-3.1.0&tabs=read-print%2Clayout-print%2Cgeneral#layout) for printed text.
+Refer to [Azure AI Document Intelligence layout model supported languages](/azure/ai-services/document-intelligence/language-support/ocr?view=doc-intel-3.1.0&tabs=read-print%2Clayout-print%2Cgeneral#layout&preserve-view=true) for printed text.
 
 ## Limitations
 
