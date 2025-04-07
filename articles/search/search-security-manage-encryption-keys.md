@@ -1,5 +1,5 @@
 ---
-title:  Encrypt data using customer-managed keys
+title: Encrypt data using customer-managed keys
 titleSuffix: Azure AI Search
 description: Supplement server-side encryption in Azure AI Search using customer managed keys (CMK) or bring your own keys (BYOK) that you create and manage in Azure Key Vault.
 
@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/03/2025
+ms.date: 04/07/2025
 ms.custom:
   - references_regions
   - ignite-2023
@@ -213,9 +213,9 @@ In the Azure portal, skillsets are defined in JSON view. Use the JSON shown in t
 
 1. Add a new object. In the object definition, select **Microsoft-managed encryption**.
 
-1. Select **Customer-managed keys** and use the pickers to select the vault, key, and version.
+1. Select **Customer-managed keys** and choose your subscription, vault, key, and version.
 
-:::image type="content" source="media/search-security-manage-encryption-keys/assign-key-vault-portal.png" alt-text="Screenshot of the encryption key page in the Azure portal.":::
+:::image type="content" source="media/search-security-manage-encryption-keys/assign-key-vault.png" alt-text="Screenshot of the encryption key page in the Azure portal.":::
 
 ### [**REST APIs**](#tab/rest)
 
