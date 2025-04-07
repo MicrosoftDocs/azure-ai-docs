@@ -55,7 +55,7 @@ Before you connect to Azure Machine Learning, you need an Azure Machine Learning
 
 1.	Use the [Azure portal](https://portal.azure.com) to navigate to the Azure Blob Storage account connected to your language resource.
 2.	Ensure that the *Storage Blob Data Contributor* role is assigned to your AML workspace within the role assignments for your Azure Blob Storage account. 
-3.	Navigate to your project in [Language Studio](https://language.azure.com/). From the left navigation menu of your project, select **Data labeling**.
+3.	Navigate to your project in [Language Studio](https://language.azure.com/). From the left pane of your project, select **Data labeling**.
 4.	Select **use Azure Machine Learning to label** in either the **Data labeling** description, or under the **Activity pane**. 
 
     :::image type="content" source="./media/azure-machine-learning-selection.png" alt-text="A screenshot showing the location of the Azure Machine Learning link." lightbox="./media/azure-machine-learning-selection.png":::
@@ -110,7 +110,7 @@ After you've switched to labeling with Azure Machine Learning, You can switch ba
 
 To switch back to labeling with Language Studio:
 
-1. Navigate to your project in Azure Machine Learning and select **Data labeling** from the left navigation menu. 
+1. Navigate to your project in Azure Machine Learning and select **Data labeling** from the left pane. 
 1. Select the **Language Studio** tab and select **Switch to Language Studio**. 
 
     :::image type="content" source="./media/azure-machine-learning-studio.png" alt-text="A screenshot showing the selector for using labels from Language Studio." lightbox="./media/azure-machine-learning-studio.png":::
