@@ -79,7 +79,9 @@ Most features are available in both project types, but there are a few exception
 
 ## Navigating in the Azure AI Foundry portal
 
-In the Azure AI Foundry portal, you can navigate among all your projects and AI Services resources using the 
+In the Azure AI Foundry portal, you can navigate among all your resources using the breadcrumbs at the top of the page. The breadcrumbs show recent resources, along with a link to all resources.  
+
+### Left pane
 
 
 
