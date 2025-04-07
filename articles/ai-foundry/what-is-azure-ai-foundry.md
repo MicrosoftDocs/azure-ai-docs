@@ -6,7 +6,7 @@ manager: scottpolly
 keywords: Azure AI services, cognitive
 ms.service: azure-ai-foundry
 ms.topic: overview
-ms.date: 02/20/2025
+ms.date: 04/07/2025
 ms.reviewer: sgilley
 ms.author: sgilley
 author: sdgilley
@@ -62,8 +62,6 @@ Azure AI Foundry supports two types of projects: a [!INCLUDE [hub](includes/hub-
 
 * An [!INCLUDE [fdp](includes/fdp-project-name.md)] is built on an Azure AI Foundry resource. This project type does not use a hub. Essential connections to storage and Azure AI Search are built into the resource for more seamless development. 
 
-
-
 ### Which project type do I need?
 
 In general, you should use an [!INCLUDE [fdp](includes/fdp-project-name.md)].  You only need to use a [!INCLUDE[hub](includes/hub-project-name.md)] for features that are not available in an [!INCLUDE [fdp](includes/fdp-project-name.md)]. 
@@ -78,6 +76,11 @@ Most features are available in both project types, but there are a few exception
   * Use industry models from AOAI/Mistral/Meta/etc. in a serverless deployment model
   * Use Agents
 * For all other scenarios, you can use either project type. We recommend using a [!INCLUDE[fdp](includes/fdp-project-name.md)] in that case.
+
+## Navigating in the Azure AI Foundry portal
+
+In the Azure AI Foundry portal, you can navigate among all your projects and AI Services resources using the 
+
 
 
 ## Management center
