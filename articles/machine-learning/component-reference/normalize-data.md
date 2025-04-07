@@ -99,7 +99,7 @@ The **Normalize Data** component generates two outputs:
 
 - To save the transformation so that you can apply the same normalization method to another dataset, select the component, and select **Register dataset** under the **Outputs** tab in the right panel.
 
-    You can then load the saved transformations from the **Transforms** group of the left navigation pane and apply it to a dataset with the same schema by using [Apply Transformation](apply-transformation.md).  
+    You can then load the saved transformations from the **Transforms** group of the left pane and apply it to a dataset with the same schema by using [Apply Transformation](apply-transformation.md).  
 
 
 ## Next steps

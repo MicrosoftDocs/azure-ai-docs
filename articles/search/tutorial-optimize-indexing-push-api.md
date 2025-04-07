@@ -384,7 +384,7 @@ var indexStats = await indexClient.GetIndexStatisticsAsync(indexName);
 
 ### Azure portal
 
-In the Azure portal, from the left navigation pane, and find the **optimize-indexing** index in the **Indexes** list.
+In the Azure portal, from the left pane, and find the **optimize-indexing** index in the **Indexes** list.
 
 :::image type="content" source="media/tutorial-optimize-data-indexing/portal-output.png" alt-text="Screenshow that shows a list of Azure AI Search indexes.":::
 

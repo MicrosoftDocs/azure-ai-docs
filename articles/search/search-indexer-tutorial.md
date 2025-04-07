@@ -236,7 +236,7 @@ Your code runs locally in Visual Studio, connecting to your search service on Az
 
 Use Azure portal to verify object creation, and then use **Search explorer** to query the index.
 
-1. Sign in to the [Azure portal](https://portal.azure.com), and in your search service left navigation pane, open each page in turn to verify the object is created. **Indexes**, **Indexers**, and **Data Sources** will have "hotels-sql-idx", "hotels-sql-indexer", and "hotels-sql-ds", respectively.
+1. Sign in to the [Azure portal](https://portal.azure.com), and in your search service left pane, open each page in turn to verify the object is created. **Indexes**, **Indexers**, and **Data Sources** will have "hotels-sql-idx", "hotels-sql-indexer", and "hotels-sql-ds", respectively.
 
 1. On the Indexes tab, select the hotels-sql-idx index. On the hotels page, **Search explorer** is the first tab.
 
