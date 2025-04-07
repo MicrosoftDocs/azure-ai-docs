@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.author: larryfr
 author: Blackmist
-ms.reviewer: kritifaujdar
+ms.reviewer: soumyapatro
 ms.date: 04/07/2025
 ms.topic: how-to
 ms.custom: devx-track-azurecli, sdkv2, build-2023
