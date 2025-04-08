@@ -150,6 +150,8 @@ Usage:
   Completion tokens: 886
 ```
 
+---
+
 ### Reasoning content
 
 Some reasoning models, like DeepSeek-R1, generate completions and include the reasoning behind it.
