@@ -27,7 +27,7 @@ Azure AI Foundry supports two types of projects: [!INCLUDE [hub](../includes/hub
 
 The rest of this article describes an **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**.  Select [!INCLUDE [hub](../includes/hub-project-name.md)] at the top of this article if you want to create a [!INCLUDE [hub](../includes/hub-project-name.md)] instead.
 
-An [!INCLUDE [fdp](../includes/fdp-project-name.md)] is built on an Azure AI Foundry resource. This project type does not use a hub. Essential connections to storage and Azure AI Search are built into the resource for more seamless development. 
+A [!INCLUDE [fdp](../includes/fdp-project-name.md)] is built on an Azure AI Foundry resource. This project type does not use a hub. Essential connections to storage and Azure AI Search are built into the resource for more seamless development. 
 
 ::: zone-end
 
@@ -35,7 +35,7 @@ An [!INCLUDE [fdp](../includes/fdp-project-name.md)] is built on an Azure AI Fou
 ::: zone pivot="hub-project"
 
 
-The rest of this article describes a **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select [!INCLUDE [fdp](../includes/fdp-project-name.md)] at the top of this article if you want to create an [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
+The rest of this article describes a **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select [!INCLUDE [fdp](../includes/fdp-project-name.md)] at the top of this article if you want to create a [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
 
 A [!INCLUDE [hub](../includes/hub-project-name.md)] is hosted by an Azure AI Foundry hub. If your company has an administrative team that has created a hub for you, you can create a project from that hub. If you are working on your own, you can create a project and a default hub will automatically be created for you.
 
