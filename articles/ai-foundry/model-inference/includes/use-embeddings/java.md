@@ -26,22 +26,6 @@ To use embedding models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites-java](../how-to-prerequisites-java.md)]
 
-* Import the following namespace:
-  
-  ```java
-  package com.azure.ai.inference.usage;
-  
-  import com.azure.ai.inference.EmbeddingsClient;
-  import com.azure.ai.inference.EmbeddingsClientBuilder;
-  import com.azure.ai.inference.models.EmbeddingsResult;
-  import com.azure.ai.inference.models.EmbeddingItem;
-  import com.azure.core.credential.AzureKeyCredential;
-  import com.azure.core.util.Configuration;
-  
-  import java.util.ArrayList;
-  import java.util.List;
-  ```
-
 * An embeddings model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add an embeddings model to your resource.
 
 ## Use embeddings

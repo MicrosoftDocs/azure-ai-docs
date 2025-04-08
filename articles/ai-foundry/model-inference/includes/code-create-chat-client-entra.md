@@ -126,7 +126,7 @@ Use the reference section to explore the API design and which parameters are ava
 __Request__
 
 ```HTTP/1.1
-POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
+POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2025-04-01
 Authorization: Bearer <bearer-token>
 Content-Type: application/json
 ```

@@ -34,7 +34,7 @@ To use chat completion models in your application, you need:
 To use chat completions API, use the route `/chat/completions` appended to the base URL along with your credential indicated in `api-key`. `Authorization` header is also supported with the format `Bearer <key>`.
 
 ```http
-POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
+POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2025-04-01
 Content-Type: application/json
 api-key: <key>
 ```
@@ -42,7 +42,7 @@ api-key: <key>
 If you've configured the resource with **Microsoft Entra ID** support, pass your token in the `Authorization` header with the format `Bearer <token>`. Use scope `https://cognitiveservices.azure.com/.default`. 
 
 ```http
-POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
+POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2025-04-01
 Content-Type: application/json
 Authorization: Bearer <token>
 ```

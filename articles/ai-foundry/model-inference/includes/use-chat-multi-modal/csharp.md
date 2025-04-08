@@ -48,7 +48,7 @@ If you've configured the resource with **Microsoft Entra ID** support, you can u
 ```csharp
 TokenCredential credential = new DefaultAzureCredential(includeInteractiveCredentials: true);
 AzureAIInferenceClientOptions clientOptions = new AzureAIInferenceClientOptions();
-BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(credential, new string[] { "https://cognitiveservices.azure.com/.default" });
+BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(credential);
 
 clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
 

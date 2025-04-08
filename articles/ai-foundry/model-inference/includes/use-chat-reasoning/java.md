@@ -34,6 +34,7 @@ First, create the client to consume the model. The following code uses an endpoi
 ChatCompletionsClient client = new ChatCompletionsClient(
         new URI("https://<resource>.services.ai.azure.com/models"),
         new AzureKeyCredential(System.getProperty("AZURE_INFERENCE_CREDENTIAL")),
+    );
 ```
 
 > [!TIP]
@@ -42,10 +43,10 @@ ChatCompletionsClient client = new ChatCompletionsClient(
 If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
 ```java
-client = new ChatCompletionsClient(
+ChatCompletionsClient client = new ChatCompletionsClient(
         new URI("https://<resource>.services.ai.azure.com/models"),
         new DefaultAzureCredentialBuilder().build()
-);
+    );
 ```
 
 ### Create a chat completion request
