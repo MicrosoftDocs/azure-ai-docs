@@ -19,12 +19,12 @@ Identifies the language of a piece of text.
 
 Send a `POST` request to:
 
-```HTTP
-https://api.cognitive.microsofttranslator.com/detect?api-version=v4
+```bash
+https://api.cognitive.microsofttranslator.com/detect?api-version=2025-05-01-preview
 
 ```
 
-_See_ [**Virtual Network Support**](../v3/reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+_See_ [**Virtual Network Support**](../v3/../authentication.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
 
 ## Request parameters
 
@@ -32,7 +32,7 @@ Request parameters passed on the query string are:
 
 | Query parameter | Description |
 | --- | --- |
-| api-version | *Required parameter*.<br>Version of the API requested by the client. Value must be `v4`. |
+| api-version | *Required parameter*.<br>Version of the API requested by the client. Value must be `2025-05-01-preview`. |
 
 Request headers include:
 
@@ -107,5 +107,5 @@ If an error occurs, the request returns a JSON error response. The error code is
 The following example shows how to retrieve languages supported for text translation.
 
  ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/detect?api-version=v4" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d "[{'Text':'What language is this text written in?'}]"
+curl -X POST "https://api.cognitive.microsofttranslator.com/detect?api-version=2025-05-01-preview" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d "[{'Text':'What language is this text written in?'}]"
 ```

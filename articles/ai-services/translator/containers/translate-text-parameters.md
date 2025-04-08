@@ -19,7 +19,7 @@ ms.author: lajanuar
 
 Send a `POST` request to:
 
-```HTTP
+```bash
 POST http://localhost:{port}/translate?api-version=3.0&&from={from}&to={to}
 ```
 

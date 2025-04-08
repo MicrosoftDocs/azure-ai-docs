@@ -26,7 +26,7 @@ Text translation documentation contains the following article types:
 
 * [**Languages**](reference/v3/languages.md). Returns a list of languages supported by **Translate**, **Transliterate**, and **Dictionary Lookup** operations. This request doesn't require authentication; just copy and paste the following GET request into your favorite REST API tool or browser:
 
-    ```http
+    ```bash
     https://api.cognitive.microsofttranslator.com/languages?api-version=3.0
     ```
 

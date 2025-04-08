@@ -12,11 +12,11 @@ ms.author: lajanuar
 
 # Azure AI Translator v4.0 (preview)
 
-Azure AI Translator v4.0 is our latest cloud-based, multilingual neural machine translation service and provides robust and scalable translation capabilities suitable for diverse applications. Translator service supports over 100 languages and dialects, making it ideal for businesses, developers, and organizations seeking to seamlessly integrate multilingual communication. Translator is an optimal solution for managing extensive multilingual content and easily integrates with your applications and workflows through a single REST API call and supports multiple programming languages. Azure AI Translator prioritizes data security and privacy, complying with regulations like GDPR, HIPAA, and ISO/SOC, thus ensuring that it's a reliable solution for handling sensitive and confidential information.
+Azure AI Translator `2025-05-01-preview` (v4.0) is our latest cloud-based, multilingual neural machine translation service and provides robust and scalable translation capabilities suitable for diverse applications. Translator service supports over 100 languages and dialects, making it ideal for businesses, developers, and organizations seeking to seamlessly integrate multilingual communication. Translator is an optimal solution for managing extensive multilingual content and easily integrates with your applications and workflows through a single REST API call and supports multiple programming languages. Azure AI Translator prioritizes data security and privacy, complying with regulations like GDPR, HIPAA, and ISO/SOC, thus ensuring that it's a reliable solution for handling sensitive and confidential information.
 
 ## What's new?
 
-Azure AI Translator v4.0 is designed toe be **backwards compatible** with Translator v3.0, requiring minimal updates for existing customers. In addition, Translator v4.0 offers several new feature updates and expanded capabilities:
+Azure AI Translator `2025-05-01-preview` (v4.0) is designed toe be **backwards compatible** with Translator v3.0, requiring minimal updates for existing customers. In addition, Translator `2025-05-01-preview` (v4.0) offers several new feature updates and expanded capabilities:
 
 * **LLM choice**. You can choose a large language model based for translation based on quality, cost, and other factors, while avoiding costs associated with prompt engineering and quality evaluations.
 
@@ -48,15 +48,35 @@ For example: If you create a Translator resource in Azure portal with `Resource 
 
  ```bash
 // Pass secret key and region using headers to a custom endpoint
-curl -X POST "https://my-swiss-n.cognitiveservices.azure.com/translator/text/v4/translate?to=fr" \
+curl -X POST "https://my-swiss-n.cognitiveservices.azure.com/translator/text/2025-05-01-preview/translate?to=fr" \
 -H "Ocp-Apim-Subscription-Key: xxx" \
 -H "Ocp-Apim-Subscription-Region: switzerlandnorth" \
 -H "Content-Type: application/json" \
 -d "[{`Text`:`Hello`}]" -v
 ```
 
-Custom Translator isn't currently available in Switzerland.
+> [!NOTE]
+> Custom Translator currently unavailable in Switzerland.
 
+## Metrics
+
+Metrics allow you to view the translator usage and availability information in Azure portal, under metrics section as shown in the following screenshot. For more information, see [Data and platform metrics](/azure/azure-monitor/essentials/data-platform-metrics).
+
+![Screenshot of translator metrics.](../../../media/translatormetrics.png)
+
+This table lists available metrics with description of how they're used to monitor translation API calls.
+
+| Metrics | Description |
+|:----|:-----|
+| TotalCalls| Total number of API calls.|
+| TotalTokenCalls| Total number of API calls via token service using authentication token.|
+| SuccessfulCalls| Number of successful calls.|
+| TotalErrors| Number of calls with error response.|
+| BlockedCalls| Number of calls that exceeded rate or quota limit.|
+| ServerErrors| Number of calls with server internal error(5XX).|
+| ClientErrors| Number of calls with client-side error(4XX).|
+| Latency| Duration to complete request in milliseconds.|
+| CharactersTranslated| Total number of characters in incoming text request.|
 
 
 
