@@ -290,7 +290,22 @@ ThreadMessage message = agentClient.CreateMessage(
     "How does wikipedia explain Euler's Identity?");
 ```
 
+# [JavaScript](#javascript)
+
+```javascript
+// create a thread
+const thread = await client.agents.createThread();
+
+// add a message to thread
+await client.agents.createMessage(
+    thread.id, {
+    role: "user",
+    content: "What is the weather in Seattle?",
+});
+```
+
 # [REST API](#tab/rest)
+
 ### Create a thread
 
 ```console
