@@ -72,7 +72,7 @@ Most features are available in both project types, but there are a few exception
   * Use Prompt flow
   * Access your models and prompt flow also in Azure Machine Learning Studio
   * Use Models-as-a-Platform (open source models)
-* A [!INCLUDE [fdp](includes/fdp-project-name.md)] is a better choice if you want to::
+* A [!INCLUDE [fdp](includes/fdp-project-name.md)] is a better choice if you want to:
   * Use industry models from AOAI/Mistral/Meta/etc. in a serverless deployment model
   * Use Agents
 * For all other scenarios, you can use either project type. We recommend using a [!INCLUDE[fdp](includes/fdp-project-name.md)] in that case.
