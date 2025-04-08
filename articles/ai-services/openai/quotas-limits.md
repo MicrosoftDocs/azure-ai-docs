@@ -252,12 +252,12 @@ az rest --method GET --uri "https://management.azure.com/subscriptions/{sub-id}?
 | Quota allocation | Subscription quota ID |
 |:---|:----|
 | Enterprise | `EnterpriseAgreement_2014-09-01` |
-| Default | Any quota ID not listed in this table  |
 | Pay-as-you-go | `PayAsYouGo_2014-09-01`|
 | MSDN | `MSDN_2014-09-01` |
 | CSP Dev/Test | `CSPDEVTEST_2018-05-01` |
 | Azure for Students | `AzureForStudents_2018-01-01` |
 | Free Trial | `FreeTrial_2014-09-01` |
+| Default | Any quota ID not listed in this table  |
 
 ### General best practices to remain within rate limits
 
