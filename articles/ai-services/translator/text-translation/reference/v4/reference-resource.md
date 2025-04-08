@@ -62,7 +62,7 @@ curl -X POST "https://my-swiss-n.cognitiveservices.azure.com/translator/text/202
 
 Metrics allow you to view the translator usage and availability information in Azure portal, under metrics section as shown in the following screenshot. For more information, see [Data and platform metrics](/azure/azure-monitor/essentials/data-platform-metrics).
 
-![Translator Metrics](../../../media/translatormetrics.png)
+![Screenshot of translator metrics.](../../../media/translatormetrics.png)
 
 This table lists available metrics with description of how they're used to monitor translation API calls.
 
