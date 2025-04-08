@@ -233,7 +233,7 @@ Alternatively, if you aren't ready to commit changes, you can save the debug ses
 
 1. Select **OK** to confirm that you wish to update your skillset.
 
-1. Close Debug session and open **Indexers** from the left navigation pane.
+1. Close Debug session and open **Indexers** from the left pane.
 
 1. Select 'clinical-trials-idxr'.
 
@@ -245,7 +245,7 @@ Alternatively, if you aren't ready to commit changes, you can save the debug ses
 
 When the indexer finishes running, there should be a green checkmark and the word Success next to the time stamp for the latest run in the **Execution history** tab. To ensure that the changes are applied:
 
-1. In the left navigation pane, open **Indexes**.
+1. In the left pane, open **Indexes**.
 
 1. Select 'clinical-trials' index and in the Search explorer tab, enter this query string: `$select=metadata_storage_path, organizations, locations&$count=true` to return fields for specific documents (identified by the unique `metadata_storage_path` field).
 

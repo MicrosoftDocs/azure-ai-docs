@@ -45,7 +45,7 @@ The following steps work for all role assignments.
 
 1. [Enable role-based access](search-security-enable-roles.md).
 
-1. Select **Access Control (IAM)** in the left navigation pane.
+1. Select **Access Control (IAM)** in the left pane.
 
 1. Select **+ Add** > **Add role assignment** to start the **Add role assignment** wizard.
 

@@ -142,7 +142,7 @@ When you complete the steps in this section, you have a shared private link that
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-1. Under **Settings** on the left navigation pane, select **Networking**.
+1. Under **Settings** on the left pane, select **Networking**.
 
 1. On the **Shared Private Access** page, select **+ Add Shared Private Access**.
 

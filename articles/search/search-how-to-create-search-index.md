@@ -155,7 +155,7 @@ The following screenshot highlights where **Add index**, **Import data**, and **
 
 :::image type="content" source="media/search-what-is-an-index/add-index.png" alt-text="Screenshot of the options to add an index." border="true":::
 
-After an index is created, you can find it again on the **Indexes** page from the left navigation pane.
+After an index is created, you can find it again on the **Indexes** page from the left pane.
 
 > [!TIP]
 > After creating an index in the Azure portal, you can copy the JSON representation and add it to your application code.

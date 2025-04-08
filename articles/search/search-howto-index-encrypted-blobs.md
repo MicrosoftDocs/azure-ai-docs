@@ -71,7 +71,7 @@ You should have an Azure Function app that contains the decryption logic and an 
 
 1. From the left pane, select **Access policies**, and then select **+ Create** to start the **Create an access policy** wizard.
 
-    :::image type="content" source="media/indexing-encrypted-blob-files/keyvault-access-policies.png" alt-text="Screenshot of the Access Policy command in the left navigation pane." border="true":::
+    :::image type="content" source="media/indexing-encrypted-blob-files/keyvault-access-policies.png" alt-text="Screenshot of the Access Policy command in the left pane." border="true":::
 
 1. On the **Permissions** page, under **Configure from template**, select **Azure Data Lake Storage or Azure Storage**.
 
