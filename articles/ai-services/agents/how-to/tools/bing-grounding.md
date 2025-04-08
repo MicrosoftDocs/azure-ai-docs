@@ -290,7 +290,7 @@ ThreadMessage message = agentClient.CreateMessage(
     "How does wikipedia explain Euler's Identity?");
 ```
 
-# [JavaScript](#javascript)
+# [JavaScript](#tab/javascript)
 
 ```javascript
 // create a thread
