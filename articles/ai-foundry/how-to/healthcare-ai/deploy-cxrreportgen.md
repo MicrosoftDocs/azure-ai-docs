@@ -204,5 +204,5 @@ CXRReportGen is a versatile model that can be applied to a wide range of tasks a
 
 ## Related content
 
-* [MedImageParse for medical image segmentation](deploy-medimageparse.md)
+* [MedImageParse models for medical image segmentation](deploy-medimageparse.md)
 * [MedImageInsight for grounded report generation](deploy-medimageinsight.md)

@@ -237,5 +237,5 @@ MedImageInsight is a versatile model that can be applied to a wide range of task
 
 ## Related content
 
-* [MedImageParse for medical image segmentation](./deploy-medimageparse.md)
+* [MedImageParse models for medical image segmentation](deploy-medimageparse.md)
 * [CXRReportGen for grounded report generation](./deploy-cxrreportgen.md)
