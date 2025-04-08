@@ -7,10 +7,12 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: tutorial
-ms.date: 02/12/2025
+ms.date: 04/07/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
+zone_pivot_groups: project-type
+
 #customer intent: As a developer, I want to create a project and set up my development environment to build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK.
 ---
 
@@ -37,6 +39,8 @@ This tutorial is part one of a three-part tutorial.
 ## Prerequisites
 
 * An Azure account with an active subscription. If you don't have one, [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+
+
 
 ## Create a project
 
@@ -160,5 +164,16 @@ But don't delete them yet, if you want to build a chat app in [the next part of 
 
 In this tutorial, you set up everything you need to build a custom chat app with the Azure AI SDK. In the next part of this tutorial series, you build the custom app.
 
+::: zone pivot="fdp-project"
+
 > [!div class="nextstepaction"]
-> [Part 2: Build a custom chat app with the Azure AI SDK](copilot-sdk-build-rag.md)
+> [Part 2: Build a custom chat app with the Azure AI SDK](copilot-sdk-build-rag.md?pivots=fdp-project)
+
+::: zone-end
+
+::: zone pivot="hub-project"
+
+> [!div class="nextstepaction"]
+> [Part 2: Build a custom chat app with the Azure AI SDK](copilot-sdk-build-rag.md?pivots=hub-project)
+
+::: zone-end
