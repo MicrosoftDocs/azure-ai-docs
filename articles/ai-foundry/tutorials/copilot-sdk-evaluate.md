@@ -33,7 +33,7 @@ This tutorial is part three of a three-part tutorial.
 - Complete [part 2 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
 
 
-- ::: zone pivot="fdp-project"
+::: zone pivot="fdp-project"
 
 - Use the same **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** you created in part 1. 
 
