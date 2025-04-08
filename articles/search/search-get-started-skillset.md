@@ -129,7 +129,7 @@ The indexer drives the indexing process. It specifies the data source name, a ta
 
 ## Monitor status
 
-Select **Indexers** from the left navigation pane to monitor status, and then select the indexer. Skills-based indexing takes longer than text-based indexing, especially OCR and image analysis.
+Select **Indexers** from the left pane to monitor status, and then select the indexer. Skills-based indexing takes longer than text-based indexing, especially OCR and image analysis.
 
   :::image type="content" source="media/search-get-started-skillset/indexer-notification.png" alt-text="Screenshot of the indexer status page." border="true":::
 

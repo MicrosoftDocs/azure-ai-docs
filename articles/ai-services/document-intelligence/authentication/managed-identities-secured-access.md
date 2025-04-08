@@ -106,7 +106,7 @@ Start configuring secure communications by navigating to the **Networking** tab 
 
 To ensure that the Document Intelligence resource can access the training dataset, you need to add a role assignment for your [managed identity](#setup-managed-identity-for-document-intelligence).
 
-1. Staying on the storage account window in the Azure portal, navigate to the **Access Control (IAM)** tab in the left navigation bar.
+1. Staying on the storage account window in the Azure portal, navigate to the **Access Control (IAM)** tab in the left pane.
 
 1. Select the **Add role assignment** button.
 
@@ -157,7 +157,7 @@ Next, configure the virtual network to ensure only resources within the virtual 
 
 1. In the Azure portal, navigate to your Document Intelligence resource.
 
-1. Select the **Networking** tab from the left navigation bar.
+1. Select the **Networking** tab from the left pane.
 
 1. Enable the **Selected Networking and Private Endpoints** option from the **Firewalls and virtual networks** tab and select save.
 
@@ -209,7 +209,7 @@ Well done! Your Document Intelligence resource now is only accessible from the v
 
 Navigate to your **storage account** on the Azure portal.
 
-1. Select the **Networking** tab from the left navigation menu.
+1. Select the **Networking** tab from the left pane.
 
 1. Select the **Private endpoint connections** tab.
 
