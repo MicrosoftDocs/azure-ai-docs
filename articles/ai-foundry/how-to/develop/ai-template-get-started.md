@@ -33,9 +33,11 @@ Available templates include:
 
 ## Start with a sample application
 
+[!INCLUDE [tip-left-nav](../../includes/tip-left-nav.md)]
+
 1. Go to [Azure AI Foundry portal](https://ai.azure.com).
 1. Open your project in Azure AI Foundry portal.
-1. On the left menu, select **Samples** (preview).
+1. On the left pane, select **Samples** (preview).
 1. Find the solution template you want to use.
 1. Select **Open in Github** to view the entire sample application.
 1. Or, clone the repository to your local machine with the provided command.

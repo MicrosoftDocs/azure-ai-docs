@@ -28,6 +28,8 @@ author: sdgilley
 
 ## Launch VS Code from Azure AI Foundry
 
+[!INCLUDE [tip-left-nav](../../includes/tip-left-nav.md)]
+
 1. Go to [Azure AI Foundry](https://ai.azure.com).
 1. Open your project in Azure AI Foundry portal.
 1. On the left menu, select **Templates**.

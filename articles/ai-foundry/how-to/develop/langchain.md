@@ -381,6 +381,8 @@ You can use the tracing capabilities in Azure AI Foundry by creating a tracer. L
 
 ### Get your instrumentation connection string
 
+[!INCLUDE [tip-left-nav](../../includes/tip-left-nav.md)]
+
 You can configure your application to send telemetry to Azure Application Insights either by:
 
 1. Using the connection string to Azure Application Insights directly:

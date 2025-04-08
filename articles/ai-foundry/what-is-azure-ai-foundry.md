@@ -77,18 +77,20 @@ Most features are available in both project types, but there are a few exception
   * Use Agents
 * For all other scenarios, you can use either project type. We recommend using a [!INCLUDE[fdp](includes/fdp-project-name.md)] in that case.
 
-## Navigating in the Azure AI Foundry portal
+## Navigate in the Azure AI Foundry portal
 
 In the Azure AI Foundry portal, you can navigate among all your resources using the breadcrumbs at the top of the page. The breadcrumbs show recent resources, along with a link to all resources.  
 
-### Left pane
+### <a name="left-pane"></a> Customize the left pane
 
-The left pane of the Azure AI Foundry portal is your main navigation tool. You can customize this area to show the parts of the portal you want to use.  This customization is remembered separately for each user of each project.
+The left pane of the Azure AI Foundry portal is your main navigation tool. Customize this area to show the parts of the portal you want to use.  All customization is kept separately for each user of each project. Customize each project to suit your needs in that project.
 
-You can pin or unpin items in the left pane. When you pin an item, it appears in the left pane. When you unpin an item, it disappears from the left pane. 
+Pin or unpin items into the left pane. When you pin an item, it appears in the left pane. When you unpin an item, it disappears from the left pane. 
 
-* Hover over an item to unpin it from the left pane. 
-* Select **More...** at the bottom of the pane to see items to pin. **More** also allows you to quickly pin all or unpin all.
+* Select **... More** at the bottom of the pane to see items to pin. 
+* Hover over an item in the left pane to unpin it. 
+* Or unpin items from the **... More** menu.
+* **More** also allows you to quickly pin all or unpin all.
 
 
 ## Management center

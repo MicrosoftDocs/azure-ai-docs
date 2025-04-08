@@ -38,6 +38,8 @@ In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overvie
 
 ## Configure the environment
 
+[!INCLUDE [tip-left-nav](../../includes/tip-left-nav.md)]
+
 To use LLMs deployed in Azure AI Foundry portal, you need the endpoint and credentials to connect to it. Follow these steps to get the information you need from the model you want to use:
 
 1. Go to the [Azure AI Foundry portal](https://ai.azure.com/).
