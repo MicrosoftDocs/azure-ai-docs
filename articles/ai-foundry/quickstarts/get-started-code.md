@@ -30,7 +30,7 @@ In this quickstart, we walk you through setting up your local development enviro
 
 ::: zone pivot="hub-project"
 
-- A **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select [!INCLUDE [fdp](../includes/fdp-project-name.md)] at the top of this article if want to complete this quickstart using an [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
+- A **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select [!INCLUDE [fdp](../includes/fdp-project-name.md)] at the top of this article if want to complete this quickstart using a [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
 
 ::: zone-end
 
