@@ -7,10 +7,12 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: tutorial
-ms.date: 11/06/2024
+ms.date: 04/07/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
+zone_pivot_groups: project-type
+
 #customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can evaluate and deploy a chat app.
 ---
 
@@ -29,8 +31,21 @@ This tutorial is part three of a three-part tutorial.
 ## Prerequisites
 
 - Complete [part 2 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
-- Make sure you've completed the steps to [add telemetry logging](copilot-sdk-build-rag.md#logging) from part 2.
 
+
+::: zone pivot="fdp-project"
+
+- Use the same **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** you created in part 1. 
+
+::: zone-end
+
+::: zone pivot="hub-project"
+
+- Use the same **[!INCLUDE [hub](../includes/hub-project-name.md)]** you created in part 1. 
+
+::: zone-end
+
+- Make sure you've completed the steps to [add telemetry logging](copilot-sdk-build-rag.md#logging) from part 2.
 
 ## <a name="evaluate"></a> Evaluate the quality of the chat app responses
 

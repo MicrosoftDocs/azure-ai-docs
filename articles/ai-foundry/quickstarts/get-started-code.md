@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: build-2024, devx-track-azurecli, devx-track-python, ignite-2024
 ms.topic: how-to
-ms.date: 02/12/2025
+ms.date: 04/07/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
@@ -110,5 +110,15 @@ python chat.py
 
 ## Next step
 
+::: zone pivot="fdp-project"
+
 > [!div class="nextstepaction"]
-> [Add data and use retrieval augmented generation (RAG) to build a custom chat app](../tutorials/copilot-sdk-create-resources.md)
+> [Add data and use retrieval augmented generation (RAG) to build a custom chat app](../tutorials/copilot-sdk-create-resources.md?pivots=fdp-project)
+
+::: zone-end
+::: zone pivot="hub-project"
+
+> [!div class="nextstepaction"]
+> [Add data and use retrieval augmented generation (RAG) to build a custom chat app](../tutorials/copilot-sdk-create-resources.md?pivots=hub-project)
+
+:::zone-end
