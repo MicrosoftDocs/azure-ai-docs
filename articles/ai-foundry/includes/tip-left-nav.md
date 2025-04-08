@@ -1,0 +1,14 @@
+---
+title: Include file
+description: Include file
+author: sdgilley
+ms.reviewer: sgilley
+ms.author: sgilley
+ms.service: azure-ai-foundry
+ms.topic: include
+ms.date: 04/08/2025
+ms.custom: include
+---
+
+> [!TIP]
+> Now that you can [customize the left pane](../what-is-azure-ai-foundry.md#left-pane), you might see different items than shown in this article. If you don't see what you're looking for, select **... More** to find and pin it to your left pane.
