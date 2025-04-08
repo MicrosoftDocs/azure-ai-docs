@@ -110,4 +110,4 @@ Disabling key-based authentication is advisable when you implemented Microsoft E
 
 __modules/ai-services-template.bicep__
 
-:::code language="bicep" source="~/azureai-model-inference-bicep/infra/modules/ai-services-template.bicep" highlight="10-11,42":::
+:::code language="bicep" source="~/azureai-model-inference-bicep/infra/modules/ai-services-template.bicep" highlight="10-11,43":::
