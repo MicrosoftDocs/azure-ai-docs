@@ -6,7 +6,7 @@ author: laujan
 ms.author: admaheshwari
 manager: nitinme
 ms.service: azure-ai-content-understanding
-ms.topic: overview
+ms.topic: reference
 ms.date: 04/09/2025
 ---
 
