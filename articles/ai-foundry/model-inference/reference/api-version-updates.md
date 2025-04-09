@@ -5,7 +5,7 @@ description: Learn more about API versions in Azure AI Model Inference in Azure 
 manager: scottpolly
 ms.service: azure-ai-model-inference
 ms.topic: conceptual
-ms.date: 03/01/2025
+ms.date: 04/09/2025
 ms.reviewer: fasantia
 ms.author: mopeakande
 author: msakande
@@ -13,7 +13,7 @@ author: msakande
 
 # Azure AI Model Inference API releases and lifecycle
 
-This article explains Azure AI Model Inference API versions and how you think about them. Whenever possible we recommend using either the latest GA, or preview API releases.
+This article explains Azure AI Model Inference API versions and how you think about them. We recommend that you use either the latest GA, or preview API releases, when possible.
 
 ## Latest API releases
 
@@ -24,7 +24,7 @@ The following list contains the latest releases of APIs for Azure AI Model Infer
 This version expands the previous API version and introduces the following features:
 
 * General availability.
-* Reasoning models return reasoning content in the field `reasoning_content` on messages of with role `assistant`. When streaming content, both `content` and `reasoning_content` are included in deltas.
+* Reasoning models return reasoning content in the field `reasoning_content` on messages with role `assistant`. When streaming content, both `content` and `reasoning_content` are included in deltas.
 * Route `/info` adds an optional parameter `model` to indicate the model deployment name to get information from when the endpoint is running multiple model deployments.
 
 ### 2024-05-01-preview
@@ -37,7 +37,7 @@ This version introduces the following features:
 
 ## Deprecation
 
-The following API version has been deprecated and marked for retirement:
+The following API version is deprecated and marked for retirement:
 
 | API Version        | Status     | Replace with API     | Deprecation date | Retirement date | 
 |--------------------|------------|----------------------|------------------|-----------------|
