@@ -1,7 +1,7 @@
 ---
 title: Azure AI Model Inference API version lifecycle
 titleSuffix: Azure AI Foundry
-description: Learn more about API version retirement in Azure OpenAI Services.
+description: Learn more about API versions in Azure AI Model Inference in Azure AI Services.
 manager: scottpolly
 ms.service: azure-ai-model-inference
 ms.topic: conceptual
