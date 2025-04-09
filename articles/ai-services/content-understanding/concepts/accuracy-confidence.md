@@ -22,8 +22,6 @@ Confidence scores quantify the probability that a result is accurately detected,
 
 Confidence scores are essential as they indicate the model's level of certainty in its predictions. These scores enable users to assess the reliability of extracted data, guiding whether a human review is necessary. Additionally, confidence scores are instrumental in streamlining workflows and enhancing efficiency by minimizing the need for manual validation.
 
-Confidence scores are supported for extractive fields, including text, tables for documents and speech transcription. The specific fields supported may vary depending on the model and the use case.
-
 ## Supported fields 
 
 Confidence scores are supported for extractive various fields, including text, tables, and images. The specific fields supported may vary depending on the model and the use case. 
