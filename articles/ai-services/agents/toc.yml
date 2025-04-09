@@ -29,6 +29,11 @@ items:
         - name: Knowledge tools
           items:
           - name: Grounding with Bing Search
+            items:
+            - name: Grounding with Bing Search overview
+              href: how-to/tools/bing-grounding.md
+            - name: Grounding with Bing Search code samples
+              href: how-to/tools/bing-code-samples.md
             href: how-to/tools/bing-grounding.md
           - name: File search
             href: how-to/tools/file-search.md
