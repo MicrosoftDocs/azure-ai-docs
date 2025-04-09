@@ -53,7 +53,7 @@ Before following the steps in this article, make sure you have the following pre
 
 * An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
 
-* An Azure Machine Learning workspace and a compute instance. If you don't have these resources and want to create them, see [Create resources you need to get started](quickstart-create-resources.md).
+* An Azure Machine Learning workspace and a compute instance. If you don't have these resources, see [Create resources you need to get started](quickstart-create-resources.md).
 
 * Azure role-based access control (Azure RBAC) is used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the _owner_ or _contributor_ role for the Azure Machine Learning workspace, or a custom role allowing `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`. For more information, see [Manage access to an Azure Machine Learning workspace](how-to-assign-roles.md).
 
@@ -68,7 +68,7 @@ Before following the steps in this article, make sure you have the following pre
 
 ---
 
-* Ensure that you have enough virtual machine (VM) quota allocated for deployment. Azure Machine Learning reserves 20% of your compute resources for performing upgrades on some VM SKUs. For example, if you request 10 instances in a deployment, you must have a quota for 12 for each number of cores for the VM SKU. Failure to account for the extra compute resources results in an error. There are some VM SKUs that are exempt from the extra quota reservation. For more information on quota allocation, see [virtual machine quota allocation for deployment](how-to-manage-quotas.md#virtual-machine-quota-allocation-for-deployment).
+* Ensure that you have enough virtual machine (VM) quota allocated for deployment. Azure Machine Learning reserves 20% of your compute resources for performing upgrades on some VM SKUs. For example, if you request 10 instances in a deployment, you must have a quota of 12 for each number of cores for the VM SKU. Failure to account for the extra compute resources results in an error. There are some VM SKUs that are exempt from the extra quota reservation. For more information on quota allocation, see [virtual machine quota allocation for deployment](how-to-manage-quotas.md#virtual-machine-quota-allocation-for-deployment).
 
 * Alternatively, you could use quota from Azure Machine Learning's shared quota pool for a limited time. [!INCLUDE [machine-learning-shared-quota](includes/machine-learning-shared-quota.md)]
 
@@ -87,7 +87,7 @@ If you haven't already set the defaults for the Azure CLI, save your default set
 
 ### Clone the examples repository
 
-To follow along with this article, first clone the [azureml-examples repository](https://github.com/azure/azureml-examples), then change into the repository's *azureml-examples/cli*` directory:
+To follow along with this article, first clone the [azureml-examples repository](https://github.com/azure/azureml-examples), then change into the repository's *azureml-examples/cli* directory:
 
 ```azurecli
 git clone --depth 1 https://github.com/Azure/azureml-examples
@@ -179,7 +179,9 @@ cd azureml-examples/cli/endpoints/online/model-1
 If you cloned the examples repo, your local machine already has copies of the files for this example, and you can skip to the next section. If you didn't clone the repo, you can download it to your local machine.
 
 1. Go to [https://github.com/Azure/azureml-examples/](https://github.com/Azure/azureml-examples/).
+
 1. Go to the **<> Code** button on the page, and then select **Download ZIP** from the **Local** tab.
+
 1. Locate the folder */cli/endpoints/online/model-1/model* and the file */cli/endpoints/online/model-1/onlinescoring/score.py*.
 
 # [ARM template](#tab/arm)
@@ -258,15 +260,15 @@ First define the name of the online endpoint, then configure the endpoint.
 Replace `<YOUR_ENDPOINT_NAME>` with a name that's unique in the Azure region, or use the example method to define a random name. Be sure to delete the method that you don't use. For more information on the naming rules, see [endpoint limits](how-to-manage-quotas.md#azure-machine-learning-online-endpoints-and-batch-endpoints).
 
 ```python
-# Method 1: Define an endpoint name
+# method 1: define an endpoint name
 endpoint_name = "<YOUR_ENDPOINT_NAME>"
 
-# Method 2: Example way to define a random name
+# method 2: example way to define a random name
 import datetime
 
 endpoint_name = "endpt-" + datetime.datetime.now().strftime("%m%d%H%M%f")
 
-# Create an online endpoint
+# create an online endpoint
 endpoint = ManagedOnlineEndpoint(
     name = endpoint_name, 
     description="this is a sample endpoint",
@@ -692,16 +694,23 @@ A model registration is a logical entity in the workspace that can contain a sin
 To register the example model, follow these steps:
 
 1. Go to the [Azure Machine Learning studio](https://ml.azure.com).
-1. In the left pane, select the **Models** page.
+
+1. In the side pane, select the **Models** page.
+
 1. Select **Register**, and then choose **From local files**.
+
 1. Select __Unspecified type__ for the __Model type__.
+
 1. Select __Browse__, and choose __Browse folder__.
 
     :::image type="content" source="media/how-to-deploy-online-endpoints/register-model-folder.png" alt-text="A screenshot of the browse folder option." lightbox="media/how-to-deploy-online-endpoints/register-model-folder.png":::
 
 1. Select the `\azureml-examples\cli\endpoints\online\model-1\model` folder from the local copy of the repo you cloned or downloaded earlier. When prompted, select __Upload__ and wait for the upload to complete.
+
 1. Select __Next__ after the folder upload is completed.
+
 1. Enter a friendly __Name__ for the model. The steps in this article assume the model is named `model-1`.
+
 1. Select __Next__, and then __Register__ to complete registration.
 
 For more information on working with registered models, see [Work with registered models](how-to-manage-models.md).
@@ -709,14 +718,19 @@ For more information on working with registered models, see [Work with registere
 ### Create and register the environment
 
 1. In the side navigation bar, select the **Environments** page.
+
 1. Select the **Custom environments** tab, then choose **Create**.
+
 1. On the **Settings** page, provide a name, such as *my-env* for the environment.
+
 1. For **Select environment source**, choose **Use existing docker image with optional conda source**.
 
     :::image type="content" source="media/how-to-deploy-online-endpoints/create-environment.png" alt-text="A screenshot showing how to create a custom environment." lightbox="media/how-to-deploy-online-endpoints/create-environment.png":::
 
 1. Select **Next** to go to the **Customize** page.
+
 1. Copy the contents of the *\azureml-examples\cli\endpoints\online\model-1\environment\conda.yaml* file from the repo you cloned or downloaded earlier.
+
 1. Paste the contents into the text box.
 
     :::image type="content" source="media/how-to-deploy-online-endpoints/customize-environment-with-conda-file.png" alt-text="A screenshot showing how to customize the environment, using a conda file." lightbox="media/how-to-deploy-online-endpoints/customize-environment-with-conda-file.png":::
@@ -754,7 +768,7 @@ Your deployment configuration uses the registered model that you wish to deploy 
 
 # [Azure CLI](#tab/cli)
 
-Use the registered assets (model and environment) in your deployment definition. The following snippet shows the `endpoints/online/managed/sample/blue-deployment-with-registered-assets.yml` file, with all the required inputs to configure a deployment:
+Use the registered assets (model and environment) in your deployment definition. The following snippet shows the *endpoints/online/managed/sample/blue-deployment-with-registered-assets.yml* file, with all the required inputs to configure a deployment:
 
 __blue-deployment-with-registered-assets.yml__
 
@@ -889,20 +903,27 @@ Use the studio to create a managed online endpoint directly in your browser. Whe
 One way to create a managed online endpoint in the studio is from the **Models** page. This method also provides an easy way to add a model to an existing managed online deployment. To deploy the model named `model-1` that you registered previously in the [Register your model and environment](#register-your-model-and-environment) section:
 
 1. Go to the [Azure Machine Learning studio](https://ml.azure.com).
+
 1. In the side navigation bar, select the **Models** page.
+
 1. Select the model named `model-1` by checking the circle next to its name.
+
 1. Select **Deploy** > **Real-time endpoint**.
 
     :::image type="content" source="media/how-to-deploy-online-endpoints/deploy-from-models-page.png" lightbox="media/how-to-deploy-online-endpoints/deploy-from-models-page.png" alt-text="A screenshot of creating a managed online endpoint from the Models UI.":::
-    
+
     This action opens up a window where you can specify details about your endpoint.
 
     :::image type="content" source="media/how-to-deploy-online-endpoints/online-endpoint-wizard.png" lightbox="media/how-to-deploy-online-endpoints/online-endpoint-wizard.png" alt-text="A screenshot of a managed online endpoint create wizard.":::
 
 1. Enter an __Endpoint name__ that's unique in the Azure region. For more information on the naming rules, see [endpoint limits](how-to-manage-quotas.md#azure-machine-learning-online-endpoints-and-batch-endpoints).
+
 1. Keep the default selection: __Managed__ for the compute type.
+
 1. Keep the default selection: __key-based authentication__ for the authentication type. For more information on authenticating, see [Authenticate clients for online endpoints](how-to-authenticate-online-endpoint.md).
+
 1. Select __Next__, until you get to the **Deployment** page. Here, toggle __Application Insights diagnostics__ to *Enabled* to allow you to view graphs of your endpoint's activities in the studio later and analyze metrics and logs using Application Insights.
+
 1. Select __Next__ to go to the **Code + environment** page. Here, select the following options:
 
     * __Select a scoring script for inferencing__: Browse and select the *\azureml-examples\cli\endpoints\online\model-1\onlinescoring\score.py* file from the repo you cloned or downloaded earlier.
@@ -911,12 +932,15 @@ One way to create a managed online endpoint in the studio is from the **Models**
     :::image type="content" source="media/how-to-deploy-online-endpoints/deploy-with-custom-environment.png" lightbox="media/how-to-deploy-online-endpoints/deploy-with-custom-environment.png" alt-text="A screenshot showing selection of a custom environment for deployment.":::
 
 1. Select __Next__, accepting defaults, until you're prompted to create the deployment.
+
 1. Review your deployment settings and select the __Create__ button.
 
 Alternatively, you can create a managed online endpoint from the **Endpoints** page in the studio.
 
 1. Go to the [Azure Machine Learning studio](https://ml.azure.com).
-1. In the left pane, select the **Endpoints** page.
+
+1. In the side pane, select the **Endpoints** page.
+
 1. Select **+ Create**.
 
     :::image type="content" source="media/how-to-deploy-online-endpoints/endpoint-create-managed-online-endpoint.png" lightbox="media/how-to-deploy-online-endpoints/endpoint-create-managed-online-endpoint.png" alt-text="A screenshot for creating managed online endpoint from the Endpoints tab.":::
@@ -937,7 +961,7 @@ This action opens up a window for you to select your model and specify details a
 
 To debug errors in your deployment, see [Troubleshooting online endpoint deployments](./how-to-troubleshoot-online-endpoints.md).
 
-### Check the status of the endpoint
+### Check the status of the online endpoint
 
 # [Azure CLI](#tab/cli)
 
@@ -982,7 +1006,9 @@ To debug errors in your deployment, see [Troubleshooting online endpoint deploym
 You can view all your managed online endpoints in the **Endpoints** page. Go to the endpoint's **Details** page to find critical information including the endpoint URI, status, testing tools, activity monitors, deployment logs, and sample consumption code:
 
 1. In the side navigation bar, select **Endpoints**. Here, you can see a list of all the endpoints in the workspace.
+
 1. (Optional) Create a **Filter** on **Compute type** to show only **Managed** compute types.
+
 1. Select an endpoint name to view the endpoint's __Details__ page.
 
     :::image type="content" source="media/how-to-deploy-online-endpoints/managed-endpoint-details-page.png" lightbox="media/how-to-deploy-online-endpoints/managed-endpoint-details-page.png" alt-text="Screenshot of managed endpoint details view.":::
@@ -1102,8 +1128,11 @@ Using the `MLClient` created earlier, get a handle to the endpoint. The endpoint
 Use the **Test** tab in the endpoint's details page to test your managed online deployment. Enter sample input and view the results.
 
 1. Select the **Test** tab in the endpoint's detail page.
+
 1. Use the dropdown to select the deployment you want to test.
+
 1. Enter the [sample input](https://github.com/Azure/azureml-examples/blob/main/sdk/python/endpoints/online/model-1/sample-request.json).
+
 1. Select **Test**.
 
     :::image type="content" source="media/how-to-deploy-online-endpoints/test-deployment.png" lightbox="media/how-to-deploy-online-endpoints/test-deployment.png" alt-text="A screenshot of testing a deployment by providing sample data, directly in your browser.":::
@@ -1133,8 +1162,11 @@ If you want to update the code, model, or environment, update the YAML file, and
 To understand how `update` works:
 
 1. Open the file *online/model-1/onlinescoring/score.py*.
+
 1. Change the last line of the `init()` function: After `logging.info("Init complete")`, add `logging.info("Updated successfully")`. 
+
 1. Save the file.
+
 1. Run this command:
 
     ```azurecli
@@ -1164,15 +1196,18 @@ If you want to update the code, model, or environment, update the configuration,
 To understand how `begin_create_or_update` works:
 
 1. Open the file *online/model-1/onlinescoring/score.py*.
-2. Change the last line of the `init()` function: After `logging.info("Init complete")`, add `logging.info("Updated successfully")`. 
-3. Save the file.
-4. Run the method:
+
+1. Change the last line of the `init()` function: After `logging.info("Init complete")`, add `logging.info("Updated successfully")`. 
+
+1. Save the file.
+
+1. Run the method:
 
     ```python
     ml_client.online_deployments.begin_create_or_update(blue_deployment_with_registered_assets)
     ```
 
-5. Because you modified the `init()` function, which runs when the endpoint is created or updated, the message `Updated successfully` will be in the logs. Retrieve the logs by running:
+1. Because you modified the `init()` function, which runs when the endpoint is created or updated, the message `Updated successfully` will be in the logs. Retrieve the logs by running:
 
     ```python
     ml_client.online_deployments.get_logs(
@@ -1187,10 +1222,13 @@ The `begin_create_or_update` method also works with local deployments. Use the s
 Currently, the studio allows you to make updates only to the instance count of a deployment. Use the following instructions to scale an individual deployment up or down by adjusting the number of instances:
 
 1. Open the endpoint's **Details** page and find the card for the deployment you want to update.
+
 1. Select the edit icon (pencil icon) next to the deployment's name.
+
 1. Update the instance count associated with the deployment. You can choose between **Default** or **Target Utilization** for **Deployment scale type**.
-    - If you select **Default**, you cal also specify a numerical value for the **Instance count**.
+    - If you select **Default**, you can also specify a numerical value for the **Instance count**.
     - If you select **Target Utilization**, you can specify values to use for parameters when autoscaling the deployment.
+
 1. Select **Update** to finish updating the instance counts for your deployment.
 
 # [ARM template](#tab/arm)
@@ -1240,8 +1278,11 @@ ml_client.online_endpoints.begin_delete(name=endpoint_name)
 If you aren't going use the endpoint and deployment, you should delete them. By deleting the endpoint, you also delete all its underlying deployments.
 
 1. Go to the [Azure Machine Learning studio](https://ml.azure.com).
-1. In the left pane, select the **Endpoints** page.
+
+1. In the side pane, select the **Endpoints** page.
+
 1. Select an endpoint by checking the circle next to the model name.
+
 1. Select **Delete**.
 
 Alternatively, you can delete a managed online endpoint directly by selecting the **Delete** icon in the [endpoint details page](#check-the-status-of-the-endpoint).
