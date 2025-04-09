@@ -49,8 +49,6 @@ Use this article to find step-by-step instructions and code samples for Groundin
 
 Create a client object, which will contain the connection string for connecting to your AI project and other resources.
 
-# [C#](#tab/csharp)
-
 ```csharp
 using System;
 using System.Collections.Generic;
