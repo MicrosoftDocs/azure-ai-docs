@@ -428,25 +428,6 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-1
 
 ::: zone-end
 
-
-## Step 4: Create a run and check the output
-
-Create a run and observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
-
-# [Python](#tab/python)
-
-
-# [C#](#tab/csharp)
-
-# [JavaScript](#tab/javascript)
-
-
-# [REST API](#tab/rest)
-
----
-
-::: zone-end
-
 ## Next steps
 
 [See the full sample for Grounding with Bing Search.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/sample_agents_bing_grounding.py)
