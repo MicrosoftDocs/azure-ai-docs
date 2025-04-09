@@ -13,9 +13,7 @@ ms.custom: references_regions
 #customer intent: As a user who implements text to speech, I want to understand the options and differences between available neural text to speech HD voices in Azure AI Speech.
 ---
 
-# What are high definition voices? (Preview)
-
-[!INCLUDE [Feature preview](../includes/preview-feature.md)]
+# What are high definition voices?
 
 Azure AI Speech continues to advance in the field of text to speech technology with the introduction of neural text to speech high definition (HD) voices. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. HD voices maintain a consistent voice persona from their neural (and non HD) counterparts, and deliver even more value through enhanced features.
 

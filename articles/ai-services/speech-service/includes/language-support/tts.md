@@ -176,4 +176,4 @@ ms.custom: references_regions
 
 <sup>6</sup> The `zh-CN-XiaoxiaoDialectsNeural` voice also supports the following secondary locales: `zh-CN-shaanxi`, `zh-CN-sichuan`, `zh-CN-shanxi`, `zh-CN-anhui`, `zh-CN-hunan`, `zh-CN-gansu`, `zh-CN-shandong`, `zh-CN-henan`, `zh-CN-liaoning`, `zh-TW`, `nan-CN`, `yue-CN`, and `wuu-CN`. To get the latest supported list of secondary locales, see [the voice list API reference](../../rest-text-to-speech.md#get-a-list-of-voices).
 
-<sup>7</sup> The voice is a multi-talker voice. 
+<sup>7</sup> The multi-talker voice is available in public preview in these service [regions](../../regions.md): East US, West Europe, and Southeast Asia. Only `en-US` content is supported for this voice. 
