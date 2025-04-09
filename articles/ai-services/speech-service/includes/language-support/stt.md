@@ -134,7 +134,7 @@ ms.author: eur
 | `so-SO` | Somali (Somalia) | No | Plain text |
 | `sq-AL` | Albanian (Albania) | No | Plain text |
 | `sr-RS` | Serbian (Cyrillic, Serbia) | No | Plain text |
-| `sv-SE` | Swedish (Sweden) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `sv-SE` | Swedish (Sweden) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `sw-KE` | Kiswahili (Kenya) | No | Plain text |
 | `sw-TZ` | Kiswahili (Tanzania) | No | Plain text |
 | `ta-IN` | Tamil (India) | No | Plain text |
