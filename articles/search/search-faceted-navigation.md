@@ -1,27 +1,35 @@
 ---
-title: Add a faceted navigation category hierarchy
+title: Add facets to a query
 titleSuffix: Azure AI Search
-description: Add faceted navigation for self-directed filtering in applications that integrate with Azure AI Search.
+description: Add faceted navigation for self-directed navigation in applications that integrate with Azure AI Search.
 
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.topic: concept-article
-ms.date: 02/26/2025
+ms.topic: how-to
+ms.date: 04/04/2025
 ---
 
-# Add faceted navigation to a search app
+# Add faceted navigation to search results
 
-Faceted navigation is used for self-directed drill-down filtering on query results in a search app, where your application offers form controls for scoping search to groups of documents (for example, categories or brands), and Azure AI Search provides the data structures and filters to back the experience.
+Faceted navigation is used for self-directed filtering on query results in a search app, where your application offers form controls for scoping search to groups of documents (for example, categories or brands), and Azure AI Search provides the data structures and filters to back the experience.
 
-In this article, learn how to return a faceted navigation structure in Azure AI Search.
+In this article, learn the steps for returning a faceted navigation structure in Azure AI Search. Once you're familiar with basic concepts and clients, continue to [Facet examples](search-faceted-navigation-examples.md) for syntax about various use cases, including basic faceting and distinct counts. 
+
+More facet capabilities are available through preview APIs:
+
++ hierarchical facet structures
++ facet filtering
++ facet aggregations
+
+[Facet navigation examples](search-faceted-navigation-examples.md) provide the syntax and usage for the preview features.
 
 ## Faceted navigation in a search page
 
-Facets are dynamic and returned on a query. A search response brings with it all of the facet categories used to navigate the documents in the result. The query executes first, and then facets are pulled from the current results and assembled into a faceted navigation structure.
+Facets are dynamic because they're based on each specific query result set. A search response brings with it all of the facet buckets used to navigate the documents in the result. The query executes first, and then facets are pulled from the current results and assembled into a faceted navigation structure.
 
-In Azure AI Search, facets are one layer deep and can't be hierarchical. If you aren't familiar with faceted navigation structures, the following example shows one on the left. Counts indicate the number of matches for each facet. The same document can be represented in multiple facets.
+In Azure AI Search, facets are one layer deep and can't be hierarchical unless you use the preview API. If you aren't familiar with faceted navigation structures, the following example shows one on the left. Counts indicate the number of matches for each facet. The same document can be represented in multiple facets.
 
 :::image source="media/search-faceted-navigation/azure-search-facet-nav.png" alt-text="Screenshot of faceted search results.":::
 
@@ -29,9 +37,9 @@ Facets can help you find what you're looking for, while ensuring that you don't 
 
 ## Faceted navigation in code
 
-Facets are enabled on supported fields in an index, and then specified on a query. At query time, a faceted navigation structure is returned at the top of the response.
+Facets are enabled on supported fields in an index, and then specified on a query. The faceted navigation structure is returned at the beginning of the response, followed by the results.
 
-The following REST example is an unqualified query (`"search": "*"`) that is scoped to the entire index (see the [built-in hotels sample](search-get-started-portal.md)). It returns a faceted navigation structure for the "Category" field.
+The following REST example is an empty query (`"search": "*"`) that is scoped to the entire index (see the [built-in hotels sample](search-get-started-portal.md)). The `facets` parameter specifies the "Category" field.
 
 ```http
 POST https://{{service_name}}.search.windows.net/indexes/hotels/docs/search?api-version={{api_version}}
@@ -47,7 +55,7 @@ POST https://{{service_name}}.search.windows.net/indexes/hotels/docs/search?api-
 }
 ```
 
-The response for the example includes the faceted navigation structure at the top. The structure consists of "Category" values and a count of the hotels for each one. It's followed by the rest of the search results, trimmed here to just one document for brevity. This example works well for several reasons. The number of facets for this field fall under the limit (default is 10) so all of them appear, and every hotel in the index of 50 hotels is represented in exactly one of these categories.
+The response for the example starts with the faceted navigation structure. The structure consists of "Category" values and a count of the hotels for each one. It's followed by the rest of the search results, trimmed here to just one document for brevity. This example works well for several reasons. The number of facets for this field fall under the limit (default is 10) so all of them appear, and every hotel in the index of 50 hotels is represented in exactly one of these categories.
 
 ```json
 {
@@ -94,70 +102,114 @@ The response for the example includes the faceted navigation structure at the to
                 "concierge"
             ],
             "ParkingIncluded": false,
-        }
+        },
+        . . . 
     ]
 }
 ```
 
 ## Enable facets on fields
 
-During [index creation or update](search-how-to-create-search-index.md), facets are enabled when you set `"facetable": true` on new fields that you add to an index. Although it's not strictly required, it's a best practice to also set the "filterable" attribute so that you can build the necessary filters that back the faceted navigation experience in your search application.
+You can add facets to new fields that contain plain text or numeric content. Supported data types include strings, dates, boolean fields, and numeric fields (but not vectors).
 
-Here's a JSON example of the hotels sample index, showing "facetable" and "filterable" on low cardinality fields that contain single values or short phrases: "Category", "Tags", "Rating".
+You can use the Azure portal, REST APIs, Azure SDKs or any method that supports the creation or update of index schemas in Azure AI Search. As a first step, identify which fields to use for faceting.
 
-```json
-{
-  "name": "hotels",  
-  "fields": [
-    { "name": "hotelId", "type": "Edm.String", "key": true, "searchable": false, "sortable": false, "facetable": false },
-    { "name": "Description", "type": "Edm.String", "filterable": false, "sortable": false, "facetable": false },
-    { "name": "HotelName", "type": "Edm.String", "facetable": false },
-    { "name": "Category", "type": "Edm.String", "filterable": true, "facetable": true },
-    { "name": "Tags", "type": "Collection(Edm.String)", "filterable": true, "facetable": true },
-    { "name": "Rating", "type": "Edm.Int32", "filterable": true, "facetable": true },
-    { "name": "Location", "type": "Edm.GeographyPoint" }
-  ]
-}
-```
-
-### Prerequisites
-
-Add faceting to new fields that contain plain text or numeric content. Supported data types include strings, dates, boolean fields, and numeric fields (but not vectors).
-
-You can't set facets on existing fields, on vector fields, or fields of type `Edm.GeographyPoint` or `Collection(Edm.GeographyPoint)`.
-
-On complex fields, "facetable" must be null.
-
-### Start with new field definitions
-
-Because attribution determines how a field is indexed, many attributes can only be set when fields are created. This restriction applies to facets and filters. If your index already exists and you add a new field definition, existing documents in the index get a null value for the new field. This null value is replaced the next time you [refresh the index](search-howto-reindex.md).
-
-### Choosing which fields to attribute
+### Choose which fields to attribute
 
 Facets can be calculated over single-value fields and collections. Fields that work best in faceted navigation have these characteristics:
 
 * Human readable (nonvector) content.
-
 * Low cardinality (a few distinct values that repeat throughout documents in your search corpus).
-
 * Short descriptive values (one or two words) that render nicely in a navigation tree.
 
-The values within a field, and not the field name itself, produce the facets in a faceted navigation structure. If the facet is a string field named *Color*, facets are blue, green, and any other value for that field.
+The values within a field, and not the field name itself, produce the facets in a faceted navigation structure. If the facet is a string field named *Color*, facets are blue, green, and any other value for that field. Review field values to ensure there are no typos, nulls, or casing differences. Consider [assigning a normalizer](search-normalizers.md) to a filterable and facetable field to smooth out minor variations in the text. For example, "Canada", "CANADA", and "canada" would all be normalized to one bucket.
 
-### Defaults in REST and Azure SDKs
+### Avoid unsupported fields
 
-If you're using one of the Azure SDKs, your code must explicitly set the "facetable" attribute on a field.
+You can't set facets on existing fields, on vector fields, or fields of type `Edm.GeographyPoint` or `Collection(Edm.GeographyPoint)`.
 
-The REST API has defaults for field attributes based on the [data type](/rest/api/searchservice/supported-data-types). The following data types are "filterable" and "facetable" by default:
+On complex field collections, "facetable" must be null. 
+
+### Start with new field definitions
+
+Attributes that affect how a field is indexed can only be set when fields are created. This restriction applies to facets and filters. 
+
+If your index already exists, you can add a new field definition that provides facets. Existing documents in the index get a null value for the new field. This null value is replaced the next time you [refresh the index](search-howto-reindex.md).
+
+#### [**Azure portal**](#tab/portal-facet)
+
+1. In the search services page of the [Azure portal](https://portal.azure.com), go to the **Fields** tab of the index and select **Add field**.
+
+1. Provide a name, data type, and attributes. We recommend adding filterable because it's common to set filters based on a facet bucket in the response. We recommend sortable because filters produce unordered results, and you might want to sort them in your application.
+
+   You can also set searchable if you also want to support full text search on the field, and retrievable if you want to include the field in the search response.
+
+   :::image type="content" source="media/search-faceted-navigation/portal-add-facetable-field.png" alt-text="Screenshot of the Add fields page in the Azure portal." border="true" lightbox="media/search-faceted-navigation/portal-add-facetable-field.png":::
+
+1. Save the field definition.
+
+#### [**REST**](#tab/rest-facet)
+
+When you define an index schema, facets are enabled when you set `"facetable": true` on new fields that you add to an index. Although it's not strictly required, it's a best practice to also set the "filterable" attribute so that you can build the necessary filters that back the faceted navigation experience in your search application.
+
+Start with [Create or Update Index](search-how-to-create-search-index.md) request and specify the fields collection.
+
+  Here's a JSON example of the hotels sample index, showing "facetable" and "filterable" on low cardinality fields that contain single values or short phrases: "Category", "Tags", "Rating".
+
+  ```json
+  {
+    "name": "hotels",  
+    "fields": [
+      { "name": "hotelId", "type": "Edm.String", "key": true, "searchable": false, "sortable": false, "facetable": false },
+      { "name": "Description", "type": "Edm.String", "filterable": false, "sortable": false, "facetable": false },
+      { "name": "HotelName", "type": "Edm.String", "facetable": false },
+      { "name": "Category", "type": "Edm.String", "filterable": true, "facetable": true },
+      { "name": "Tags", "type": "Collection(Edm.String)", "filterable": true, "facetable": true },
+      { "name": "Rating", "type": "Edm.Int32", "filterable": true, "facetable": true },
+      { "name": "Location", "type": "Edm.GeographyPoint" }
+    ]
+  }
+  ```
+
+#### Defaults in REST
+
+Both the Azure portal and the REST API have defaults for field attributes based on the [data type](/rest/api/searchservice/supported-data-types). The following data types are "filterable" and "facetable" by default:
 
 * `Edm.String` and `Collection(Edm.String)`
 * `Edm.DateTimeOffset` and `Collection(Edm.DateTimeOffset)`
 * `Edm.Boolean` and`Collection(Edm.Boolean)`
 * `Edm.Int32`, `Edm.Int64`, `Edm.Double`, and their collection equivalents
 
+#### [**Azure SDKs**](#tab/sdk-facet)
+
+If you're using one of the Azure SDKs, your code must explicitly set facetable on a field.
+
+Assign the facet property to fields using APIs that create or update an index.
+
+* [Azure SDK for .NET: SearchIndex.Fields Property](/dotnet/api/azure.search.documents.indexes.models.searchindex.fields)
+* [Azure SDK for Python: SearchField Class](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchfield)
+* [Azure SDK for Java: SearchField Class](/java/api/com.azure.search.documents.indexes.models.searchfield)
+* [Azure SDK for JavaScript: Simple Field interface](/javascript/api/@azure/search-documents/simplefield)
+
+---
+
 ## Return facets in a query
 
-Recall that facets are calculated from results in a query response. You only get facets for documents found by the current query. 
+Recall that facets are dynamically calculated from results in a query response. You only get facets for documents found by the current query.
+
+#### [**Azure portal**](#tab/portal-facet-response)
+
+Use JSON view in Search Explorer to set facet parameters in the [Azure portal](https://portal.azure.com).
+
+1. Select an index and open Search Explorer in JSON View.
+1. Provide a query in JSON. You can type it out, copy the JSON from a REST example, or use intellisense to help with syntax. Refer to the REST example in the next tab for reference on facet expressions.
+1. Select **Search** to return faceted results, articulated in JSON.
+
+Here's a screenshot of the [basic facet query example](search-faceted-navigation-examples.md#basic-facet-example) on the [hotels sample index](search-get-started-portal.md). You can paste in other examples in this article to return the results in Search Explorer.
+
+:::image type="content" source="media/search-faceted-navigation/portal-facet-query.png" alt-text="Screenshot of the Search Explorer page in the Azure portal." border="true" lightbox="media/search-faceted-navigation/portal-facet-query.png":::
+
+#### [**REST**](#tab/rest-facet-response)
 
 1. Facets are configured at query-time. Use the [Search POST](/rest/api/searchservice/documents/search-post) or [Search GET](/rest/api/searchservice/documents/search-get) request, or an equivalent Azure SDK API, to specify facets. 
 
@@ -165,143 +217,27 @@ Recall that facets are calculated from results in a query response. You only get
 
     | Facet parameter | Description and usage |
     |-----------------|-----------------------|
-    | `count` | Maximum number of facet terms; default is 10. An example is `Tags,count:5`. There's no upper limit on the number of terms, but higher values degrade performance, especially if the faceted field contains a large number of unique terms. This is due to the way faceting queries are distributed across shards. You can set count to zero or to a value that's greater than or equal to the number of unique values in the "facetable" field to get an accurate count across all shards. The tradeoff is increased latency.
-    | `sort` | Set to "count", "-count", "value", "-value". Use `count` to sort descending by count. Use `-count` to sort ascending by count. Use `value` to sort ascending by value. Use `-value` to sort descending by value (for example, `"facet=category,count:3,sort:count"` gets the top three categories in facet results in descending order by the number of documents with each city name). If the top three categories are Budget, Motel, and Luxury, and Budget has five hits, Motel has 6, and Luxury has 4, then the buckets are in the order Motel, Budget, Luxury. For `-value`, `"facet=rating,sort:-value"` produces buckets for all possible ratings, in descending order by value (for example, if the ratings are from 1 to 5, the buckets are ordered 5, 4, 3, 2, 1, irrespective of how many documents match each rating). |
+    | `count` | Maximum number of facet terms per structure; default is 10. An example is `Tags,count:5`. There's no upper limit on the number of terms, but higher values degrade performance, especially if the faceted field contains a large number of unique terms. This is due to the way faceting queries are distributed across shards. You can set count to zero or to a value that's greater than or equal to the number of unique values in the "facetable" field to get an accurate count across all shards. The tradeoff is increased latency.
+    | `sort` | Set to `count`, `-count`, `value`, `-value`. Use `count` to sort descending by count. Use `-count` to sort ascending by count. Use `value` to sort ascending by value. Use `-value` to sort descending by value (for example, `"facet=category,count:3,sort:count"` gets the top three categories in facet results in descending order by the number of documents with each Category name). If the top three categories are Budget, Motel, and Luxury, and Budget has five hits, Motel has 6, and Luxury has 4, then the buckets are in the order Motel, Budget, Luxury. For `-value`, `"facet=rating,sort:-value"` produces buckets for all possible ratings, in descending order by value (for example, if the ratings are from 1 to 5, the buckets are ordered 5, 4, 3, 2, 1, irrespective of how many documents match each rating). |
     | `values` | Set to pipe-delimited numeric or `Edm.DateTimeOffset` values specifying a dynamic set of facet entry values. For example, `"facet=baseRate,values:10 | 20"` produces three buckets: one for base rate 0 up to but not including 10, one for 10 up to but not including 20, and one for 20 and higher. A string `"facet=lastRenovationDate,values:2010-02-01T00:00:00Z"` produces two buckets: one for hotels renovated before February 2010, and one for hotels renovated February 1, 2010 or later. The values must be listed in sequential, ascending order to get the expected results. |
     | `interval` | An integer interval greater than zero for numbers, or minute, hour, day, week, month, quarter, year for date time values. For example, `"facet=baseRate,interval:100"` produces buckets based on base rate ranges of size 100. If base rates are all between $60 and $600, there are buckets for 0-100, 100-200, 200-300, 300-400, 400-500, and 500-600. The string `"facet=lastRenovationDate,interval:year"` produces one bucket for each year when hotels were renovated. |
-    | `timeoffset` | Can be set to (`[+-]hh:mm, [+-]hhmm, or [+-]hh`). If used, the timeoffset parameter must be combined with the interval option, and only when applied to a field of type `Edm.DateTimeOffset`. The value specifies the UTC time offset to account for in setting time boundaries. For example: `"facet=lastRenovationDate,interval:day,timeoffset:-01:00"` uses the day boundary that starts at 01:00:00 UTC (midnight in the target time zone). |
+    | `timeoffset` | Can be set to (`[+-]hh:mm, [+-]hhmm, or [+-]hh`). If used, the `timeoffset` parameter must be combined with the interval option, and only when applied to a field of type `Edm.DateTimeOffset`. The value specifies the UTC time offset to account for in setting time boundaries. For example: `"facet=lastRenovationDate,interval:day,timeoffset:-01:00"` uses the day boundary that starts at 01:00:00 UTC (midnight in the target time zone). |
 
-`count` and `sort` can be combined in the same facet specification, but they can't be combined with interval or values, and interval and values can't be combined together.
+`count` and `sort` can be combined in the same facet specification, but they can't be combined with `interval` or `values`, and `interval` and `values` can't be combined together.
 
 Interval facets on date time are computed based on the UTC time if `timeoffset` isn't specified. For example, for `"facet=lastRenovationDate,interval:day"`, the day boundary starts at 00:00:00 UTC.
 
-### Basic facet example
-
-The following example works against the [hotels sample index](search-get-started-portal.md). You can use **JSON view** in Search Explorer to paste in the JSON query. This example shows three facets for "Category", "Tags", and "Rating", with a count override on "Tags" and a range override for "Rating", which is otherwise stored as a double in the index.
-
-```http
-POST https://{{service_name}}.search.windows.net/indexes/hotels/docs/search?api-version={{api_version}}
-{
-    "search": "*",
-    "facets": [ 
-        "Category", 
-        "Tags,count:5", 
-        "Rating,values:1|2|3|4|5"
-    ],
-    "count": true
-}
-```
-
-For each faceted navigation tree, there's a default limit of the top 10 facet instances found by the query. This default makes sense for navigation structures because it keeps the values list to a manageable size. You can override the default by assigning a value to "count". For example, `"Tags,count:5"` reduces the number of tags under the Tags section to the top five.
-
-For Numeric and DateTime values only, you can explicitly set values on the facet field (for example, `facet=Rating,values:1|2|3|4|5`) to separate results into contiguous ranges (either ranges based on numeric values or time periods). Alternatively, you can add "interval", as in `facet=Rating,interval:1`. 
-
-Each range is built using 0 as a starting point, a value from the list as an endpoint, and then trimmed of the previous range to create discrete intervals.
-
-### Distinct values example
-
-You can formulate a query that returns a distinct value count for each "facetable" field. This example formulates an empty or unqualified query (`"search": "*"`) that matches on all documents, but by setting `top` to zero, you get just the counts, with no results.
-
-For brevity, this query includes just two fields marked as "facetable" in the hotels sample index.
-
-```http
-POST https://{{service_name}}.search.windows.net/indexes/hotels/docs/search?api-version={{api_version}}
-{
-    "search": "*",
-    "count": true,
-    "top": 0,
-    "facets": [ 
-        "Category", "Address/StateProvince""
-    ]
-}
-```
-
-Results from this query are as follows:
-
-```json
-{
-  "@odata.count": 50,
-  "@search.facets": {
-    "Address/StateProvince": [
-      {
-        "count": 9,
-        "value": "WA"
-      },
-      {
-        "count": 6,
-        "value": "CA "
-      },
-      {
-        "count": 4,
-        "value": "FL"
-      },
-      {
-        "count": 3,
-        "value": "NY"
-      },
-      {
-        "count": 3,
-        "value": "OR"
-      },
-      {
-        "count": 3,
-        "value": "TX"
-      },
-      {
-        "count": 2,
-        "value": "GA"
-      },
-      {
-        "count": 2,
-        "value": "MA"
-      },
-      {
-        "count": 2,
-        "value": "TN"
-      },
-      {
-        "count": 1,
-        "value": "AZ"
-      }
-    ],
-    "Category": [
-      {
-        "count": 13,
-        "value": "Budget"
-      },
-      {
-        "count": 12,
-        "value": "Suite"
-      },
-      {
-        "count": 7,
-        "value": "Boutique"
-      },
-      {
-        "count": 7,
-        "value": "Resort and Spa"
-      },
-      {
-        "count": 6,
-        "value": "Extended-Stay"
-      },
-      {
-        "count": 5,
-        "value": "Luxury"
-      }
-    ]
-  },
-  "value": []
-}
-```
+---
 
 ## Best practices for working with facets
 
 This section is a collection of tips and workarounds that are helpful for application development.
 
-### Initialize a faceted navigation structure
+We recommend the [C#: Add search to web apps](tutorial-csharp-overview.md) for an example of faceted navigation that includes code for the presentation layer. The sample also includes filters, suggestions, and autocomplete. It uses JavaScript and React for the presentation layer.
 
-It's useful to initialize a search page with an open query (`"search": "*"`) to completely fill in the faceted navigation structure. As soon as you pass query terms in the request, the faceted navigation structure is scoped to just the matches in the results, rather than the entire index.
+### Initialize a faceted navigation structure with an unqualified or empty search string
+
+It's useful to initialize a search page with an open query (`"search": "*"`) to completely fill in the faceted navigation structure. As soon as you pass query terms in the request, the faceted navigation structure is scoped to just the matches in the results, rather than the entire index. This practice is helpful for verifying facet and filter behaviors during testing. If you include match criteria in the query, the response excludes documents that don't match, which has the potential downstream effect of excluding facets.
 
 ### Clear facets
 
@@ -315,7 +251,15 @@ Remember that you can't use `Edm.GeographyPoint` or `Collection(Edm.GeographyPoi
 
 ### Check for bad data
 
-As you prepare data for indexing, check fields for null values, misspellings or case discrepancies, and single and plural versions of the same word. By default, filters and facets don't undergo lexical analysis or [spell check](speller-how-to-add.md), which means that all values of a "facetable" field are potential facets, even if the words differ by one character. Optionally, you can [assign a normalizer](search-normalizers.md) to a "filterable" and "facetable" field to smooth out variations in casing and characters.
+As you prepare data for indexing, check fields for null values, misspellings or case discrepancies, and single and plural versions of the same word. By default, filters and facets don't undergo lexical analysis or [spell check](speller-how-to-add.md), which means that all values of a "facetable" field are potential facets, even if the words differ by one character. 
+
+[Normalizers](search-normalizers.md) can mitigate data discrepancies, correcting for casing and character differences. Otherwise, to inspect your data, you can check fields at their source, or run queries that return values from the index.
+
+An index isn't the best place to fix nulls or invalid values. You should fix data problems in your source, assuming it's a database or persistent storage, or in a data cleansing step that you perform prior to indexing. 
+
+### Ordering facet buckets
+
+Although you can sort within a bucket, there's no parameters for controlling the order of facet buckets in the navigation structure as a whole. If you want facet buckets in a specific order, you must provide it in application code.
 
 ### Discrepancies in facet counts
 
@@ -346,4 +290,5 @@ Content type
 
 ## Next steps
 
-We recommend the [C#: Add search to web apps](tutorial-csharp-overview.md) for an example of faceted navigation that includes code for the presentation layer. The sample also includes filters, suggestions, and autocomplete. It uses JavaScript and React for the presentation layer.
+> [!div class="nextstepaction"]
+> [Facet navigation examples](search-faceted-navigation-examples.md)

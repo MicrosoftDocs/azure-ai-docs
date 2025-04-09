@@ -136,14 +136,13 @@ using Azure.Core;
 using Azure.Core.TestFramework;
 using NUnit.Framework;
 
-var connectionString = TestEnvironment.AzureAICONNECTIONSTRING;
+var connectionString = System.Environment.GetEnvironmentVariable("PROJECT_CONNECTION_STRING");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+var bingConnectionName = System.Environment.GetEnvironmentVariable("BING_CONNECTION_NAME");
 
-var clientOptions = new AIProjectClientOptions();
+var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential());
 
-// Adding the custom headers policy
-clientOptions.AddPolicy(new CustomHeadersPolicy(), HttpPipelinePosition.PerCall);
-var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential(), clientOptions);
-
+AgentsClient agentClient = projectClient.GetAgentsClient();
 ```
 
 # [JavaScript](#tab/javascript)
@@ -202,23 +201,20 @@ with project_client:
 # [C#](#tab/csharp)
 
 ```csharp
-GetConnectionResponse bingConnection = await projectClient.GetConnectionsClient().GetConnectionAsync(TestEnvironment.BINGCONNECTIONNAME);
+ConnectionResponse bingConnection = projectClient.GetConnectionsClient().GetConnection(bingConnectionName);
 var connectionId = bingConnection.Id;
 
-AgentsClient agentClient = projectClient.GetAgentsClient();
-
-ToolConnectionList connectionList = new ToolConnectionList
+ToolConnectionList connectionList = new()
 {
     ConnectionList = { new ToolConnection(connectionId) }
 };
-BingGroundingToolDefinition bingGroundingTool = new BingGroundingToolDefinition(connectionList);
+BingGroundingToolDefinition bingGroundingTool = new(connectionList);
 
-Response<Agent> agentResponse = await agentClient.CreateAgentAsync(
-    model: "gpt-4o",
-    name: "my-assistant",
-    instructions: "You are a helpful assistant.",
-    tools: new List<ToolDefinition> { bingGroundingTool });
-Agent agent = agentResponse.Value;
+Agent agent = agentClient.CreateAgent(
+   model: modelDeploymentName,
+   name: "my-assistant",
+   instructions: "You are a helpful assistant.",
+   tools: [bingGroundingTool]);
 ```
 
 # [JavaScript](#tab/javascript)
@@ -285,16 +281,13 @@ print(f"Created message, ID: {message.id}")
 # [C#](#tab/csharp)
 
 ```csharp
-// Create thread for communication
-Response<AgentThread> threadResponse = await agentClient.CreateThreadAsync();
-AgentThread thread = threadResponse.Value;
+AgentThread thread = agentClient.CreateThread();
 
 // Create message to thread
-Response<ThreadMessage> messageResponse = await agentClient.CreateMessageAsync(
+ThreadMessage message = agentClient.CreateMessage(
     thread.Id,
     MessageRole.User,
     "How does wikipedia explain Euler's Identity?");
-ThreadMessage message = messageResponse.Value;
 ```
 
 # [JavaScript](#tab/javascript)
@@ -312,6 +305,7 @@ await client.agents.createMessage(
 ```
 
 # [REST API](#tab/rest)
+
 ### Create a thread
 
 ```console
@@ -367,22 +361,27 @@ print(f"Messages: {messages}")
 # [C#](#tab/csharp)
 
 ```csharp
-// Run the agent
-Response<ThreadRun> runResponse = await agentClient.CreateRunAsync(thread, agent);
 
+// Run the agent
+ThreadRun run = agentClient.CreateRun(thread, agent);
 do
 {
-    await Task.Delay(TimeSpan.FromMilliseconds(500));
-    runResponse = await agentClient.GetRunAsync(thread.Id, runResponse.Value.Id);
+    Thread.Sleep(TimeSpan.FromMilliseconds(500));
+    run = agentClient.GetRun(thread.Id, run.Id);
 }
-while (runResponse.Value.Status == RunStatus.Queued
-    || runResponse.Value.Status == RunStatus.InProgress);
+while (run.Status == RunStatus.Queued
+    || run.Status == RunStatus.InProgress);
 
-Response<PageableList<ThreadMessage>> afterRunMessagesResponse
-    = await agentClient.GetMessagesAsync(thread.Id);
-IReadOnlyList<ThreadMessage> messages = afterRunMessagesResponse.Value.Data;
+Assert.AreEqual(
+    RunStatus.Completed,
+    run.Status,
+    run.LastError?.Message);
 
-// Note: messages iterate from newest to oldest, with the messages[0] being the most recent
+PageableList<ThreadMessage> messages = agentClient.GetMessages(
+    threadId: thread.Id,
+    order: ListSortOrder.Ascending
+);
+
 foreach (ThreadMessage threadMessage in messages)
 {
     Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
@@ -390,7 +389,18 @@ foreach (ThreadMessage threadMessage in messages)
     {
         if (contentItem is MessageTextContent textItem)
         {
-            Console.Write(textItem.Text);
+            string response = textItem.Text;
+            if (textItem.Annotations != null)
+            {
+                foreach (MessageTextAnnotation annotation in textItem.Annotations)
+                {
+                    if (annotation is MessageTextUrlCitationAnnotation urlAnnotation)
+                    {
+                        response = response.Replace(urlAnnotation.Text, $" [{urlAnnotation.UrlCitation.Title}]({urlAnnotation.UrlCitation.Url})");
+                    }
+                }
+            }
+            Console.Write($"Agent response: {response}");
         }
         else if (contentItem is MessageImageFileContent imageFileItem)
         {
@@ -399,6 +409,9 @@ foreach (ThreadMessage threadMessage in messages)
         Console.WriteLine();
     }
 }
+
+agentClient.DeleteThread(threadId: thread.Id);
+agentClient.DeleteAgent(agentId: agent.Id);
 ```
 
 # [JavaScript](#tab/javascript)
