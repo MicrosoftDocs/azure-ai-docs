@@ -294,7 +294,7 @@ The following table lists the services that you need to skip validation for:
 | Azure Data Lake Store Gen1 | No |
 | Azure Data Lake Store Gen2 | No |
 | Azure SQL Database | Yes |
-| PostgreSql | Yes |
+| PostgreSQL | Yes |
 
 > [!NOTE]
 > Azure Data Lake Store Gen1 and Azure Data Lake Store Gen2 skip validation by default, so you don't have to do anything.
