@@ -1,5 +1,5 @@
 ---
-title: Azure AI Model Inference API version lifecycle
+title: Azure AI Model Inference API releases and lifecycle
 titleSuffix: Azure AI Foundry
 description: Learn more about API versions in Azure AI Model Inference in Azure AI Services.
 manager: scottpolly
@@ -11,7 +11,7 @@ ms.author: mopeakande
 author: msakande
 ---
 
-# Azure AI Model Inference API lifecycle
+# Azure AI Model Inference API releases and lifecycle
 
 This article explains Azure AI Model Inference API versions and how you think about them. Whenever possible we recommend using either the latest GA, or preview API releases.
 
