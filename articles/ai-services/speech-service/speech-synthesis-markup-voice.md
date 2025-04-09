@@ -113,7 +113,7 @@ For `en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural`, within the `<mstts:dial
 </speak>
 ```
 
-For supported voices, see the [Language support](language-support.md?tabs=tts#multi-talker-voice) documentation.
+For supported voices, see the [Language support](language-support.md?tabs=tts#multi-talker-voices) documentation.
 
 ## Use speaking styles and roles
 
