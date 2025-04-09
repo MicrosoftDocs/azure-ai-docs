@@ -67,9 +67,9 @@ For on-premises deployment, the [Read Docker container](./computer-vision-how-to
 
 The **Read** API takes images and documents as its input. The images and documents must meet the following requirements:
 
-* Supported file formats are JPEG, PNG, BMP, PDF, and TIFF.
-* For PDF and TIFF files, up to 2,000 pages (only the first two pages for the free tier) are processed.
-* The file size of images must be less than 500 MB (4 MB for the free tier) with dimensions at least 50 x 50 pixels and at most 10,000 x 10,000 pixels. PDF files don't have a size limit.
+* Supported file formats are JPEG, PNG, BMP, and TIFF.
+* For TIFF files, only the first page is processed.
+* The file size of images must be less than 500 MB (4 MB for the free tier) with dimensions at least 50 x 50 pixels and at most 10,000 x 10,000 pixels.
 * The minimum height of the text to be extracted is 12 pixels for a 1024 x 768 image, which corresponds to about 8-point font text at 150 DPI.
 
 >[!NOTE]
