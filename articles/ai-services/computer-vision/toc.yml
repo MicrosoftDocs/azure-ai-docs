@@ -22,10 +22,6 @@ items:
     href: use-case-alt-text.md
   - name: Verify a user
     href: use-case-identity-verification.md
-  - name: Monitor customer dwell time
-    href: use-case-dwell-time.md
-  - name: Measure queue wait time
-    href: use-case-queue-time.md
 - name: Optical character recognition (OCR)
   items:
   - name: OCR overview
@@ -295,6 +291,8 @@ items:
       href: concept-face-recognition.md
     - name: Face recognition data structures
       href: concept-face-recognition-data-structures.md
+    - name: Face liveness detection
+      href: concept-face-liveness-detection.md
     - name: Face liveness abuse monitoring
       href: concept-liveness-abuse-monitoring.md
   
@@ -406,26 +404,6 @@ items:
     items:
     - name: Call the Video Retrieval APIs
       href: how-to/video-retrieval.md
-    - name: Use the Spatial Analysis container
-      items:
-      - name: Set up the host machine and run the container
-        href: spatial-analysis-container.md
-      - name: Configure operations
-        href: spatial-analysis-operations.md
-      - name: Configure vehicle analysis
-        href: vehicle-analysis.md
-      - name: Use a local video file
-        href: spatial-analysis-local.md
-      #- name: Deploy a people counting web app
-      #  href: Spatial-analysis-web-app.md
-      - name: Logging and troubleshooting
-        href: spatial-analysis-logging.md
-      - name: Zone and line placement
-        href: spatial-analysis-zone-line-placement.md
-      - name: Camera placement
-        href: spatial-analysis-camera-placement.md
-      - name: All Azure AI containers
-        href: ../cognitive-services-container-support.md?context=%2fazure%2fai-services%2fcomputer-vision%2fcontext%2fcontext
   - name: Reference
     items:
     - name: Video Retrieval REST API

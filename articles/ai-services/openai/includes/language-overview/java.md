@@ -5,7 +5,7 @@ description: Azure OpenAI Java support
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 11/18/2024
+ms.date: 03/27/2025
 ---
 
 
@@ -19,7 +19,7 @@ Version selection is controlled by the [`OpenAIServiceVersion`](/java/api/com.az
 
 The latest Azure OpenAI preview API supported is:
 
--`2024-08-01-preview`
+-`2025-01-01-preview`
 
 The latest stable (GA) release supported is:
 
@@ -33,7 +33,7 @@ The latest stable (GA) release supported is:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-openai</artifactId>
-    <version>1.0.0-beta.12</version>
+    <version>1.0.0-beta.16</version>
 </dependency>
 ```
 

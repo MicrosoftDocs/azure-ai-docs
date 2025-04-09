@@ -2,7 +2,6 @@
 title: how to call the Key Phrase Extraction API
 titleSuffix: Azure AI services
 description: How to extract key phrases by using the Key Phrase Extraction API.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
@@ -19,7 +18,7 @@ The key phrase extraction feature can evaluate unstructured text, and for each d
 This feature is useful if you need to quickly identify the main points in a collection of documents. For example, given input text "*The food was delicious and the staff was wonderful*", the service returns the main topics: "*food*" and "*wonderful staff*".
 
 > [!TIP]
-> If you want to start using this feature, you can follow the [quickstart article](../quickstart.md) to get started. You can also make requests using [Azure AI Foundry](../../../../ai-studio//what-is-ai-studio.md) without needing to write code.
+> If you want to start using this feature, you can follow the [quickstart article](../quickstart.md) to get started. You can also make requests using [Azure AI Foundry](../../../../ai-foundry//what-is-azure-ai-foundry.md) without needing to write code.
 
 ## Development options
 

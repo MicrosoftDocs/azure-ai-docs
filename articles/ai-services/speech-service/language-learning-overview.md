@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 9/20/2024
+ms.date: 3/10/2025
 ms.author: eur
 #Customer intent: As a language learner, I want to learn how to use Azure AI Speech to improve my language skills.
 ---

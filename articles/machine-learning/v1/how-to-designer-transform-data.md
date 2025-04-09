@@ -8,31 +8,33 @@ ms.subservice: mldata
 ms.reviewer: franksolomon
 ms.author: keli19
 author: likebupt
-ms.date: 03/27/2024
+ms.date: 03/07/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, designer
 ---
 
 # Transform data in Azure Machine Learning designer
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, you learn how to transform and save datasets in the Azure Machine Learning designer, to prepare your own data for machine learning.
 
-You'll use the sample [Adult Census Income Binary Classification](samples-designer.md) dataset to prepare two datasets: one dataset that includes adult census information from only the United States, and another dataset that includes census information from non-US adults.
+You'll use the sample [Adult Census Income Binary Classification](samples-designer.md) dataset to prepare two datasets. One dataset includes adult census information from only the United States, and another dataset includes census information from non-US adults.
 
-In this article, you'll learn how to:
+In this article, you learn how to:
 
 1. Transform a dataset to prepare it for training.
 1. Export the resulting datasets to a datastore.
 1. View the results.
 
-This how-to is a prerequisite for the [how to retrain designer models](how-to-retrain-designer.md) article. In that article, you'll learn how to use the transformed datasets to train multiple models, with pipeline parameters.
+This how-to is a prerequisite for the [how to retrain designer models](how-to-retrain-designer.md) article. In that article, you learn how to use the transformed datasets to train multiple models with pipeline parameters.
 
 > [!IMPORTANT]
-> If you do not observe graphical elements mentioned in this document, such as buttons in studio or designer, you may not have the correct level of permissions to the workspace. Please contact your Azure subscription administrator to verify that you have been granted the correct level of access. For more information, visit [Manage users and roles](../how-to-assign-roles.md).
+> If you don't observe the graphical elements mentioned in this document - for example, buttons in studio or designer, you might not have the correct level of permissions to the workspace. Contact your Azure subscription administrator to verify that you have the correct level of access. For more information, visit [Manage users and roles](../how-to-assign-roles.md).
 
 ## Transform a dataset
 
-In this section, you'll learn how to import the sample dataset, and split the data into US and non-US datasets. Visit [how to import data](how-to-designer-import-data.md) for more information about how to import your own data into the designer.
+In this section, you learn how to import the sample dataset, and split the data into US and non-US datasets. Visit [how to import data](how-to-designer-import-data.md) for more information about how to import your own data into the designer.
 
 ### Import data
 
@@ -52,7 +54,7 @@ Use these steps to import the sample dataset:
 
 ### Split the data
 
-In this section, you'll use the [Split Data component](../algorithm-module-reference/split-data.md) to identify and split rows that contain "United-States" in the "native-country" column
+In this section, you use the [Split Data component](../algorithm-module-reference/split-data.md) to identify and split rows that contain "United-States" in the "native-country" column
 
 1. To the left of the canvas, in the component tab, expand the **Data Transformation** section, and find the **Split Data** component
 
@@ -91,7 +93,7 @@ Now that you set up your pipeline to split the data, you must specify where to p
     For the **Split Data** component, the output port order is important. The first output port contains the rows where the regular expression is true. In this case, the first port contains rows for US-based income, and the second port contains rows for non-US based income
 
 1. In the component details pane to the right of the canvas, set the following options:
-    
+
     **Datastore type**: Azure Blob Storage
 
     **Datastore**: Select an existing datastore, or select "New datastore" to create a new one
@@ -101,9 +103,9 @@ Now that you set up your pipeline to split the data, you must specify where to p
     **File format**: csv
 
     > [!NOTE]
-    > This article assumes that you have access to a datastore registered to the current Azure Machine Learning workspace. Visit [Connect to Azure storage services](how-to-connect-data-ui.md#create-datastores) for datastore setup instructions
+    > This article assumes that you have access to a datastore registered to the current Azure Machine Learning workspace. Visit [Connect to Azure storage services](how-to-connect-data-ui.md#create-datastores) for datastore setup instructions.
 
-    You can create a datastore if you don't have one now. For example purposes, this article saves the datasets to the default blob storage account associated with the workspace. It saves the datasets into the `azureml` container, in a new folder named `data`
+    You can create a datastore if you don't have one. For example purposes, this article saves the datasets to the default blob storage account associated with the workspace. It saves the datasets into the `azureml` container, in a new folder named `data`.
 
 1.  Select the **Export Data** component connected to the *right*-most port of the **Split Data** component, to open the Export Data configuration pane
 

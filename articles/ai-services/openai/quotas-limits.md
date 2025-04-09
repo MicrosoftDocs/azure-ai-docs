@@ -2,7 +2,6 @@
 title: Azure OpenAI Service quotas and limits
 titleSuffix: Azure AI services
 description: Quick reference, detailed description, and best practices on the quotas and limits for the OpenAI service in Azure AI services.
-#services: cognitive-services
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-openai
@@ -10,7 +9,7 @@ ms.custom:
   - ignite-2023
   - references_regions
 ms.topic: conceptual
-ms.date: 2/27/2025
+ms.date: 4/08/2025
 ms.author: mbullwin
 ---
 
@@ -44,8 +43,8 @@ The following sections provide you with a quick guide to the default quotas and 
 | Max number of `/chat/completions` functions | 128 |
 | Max number of `/chat completions` tools | 128 |
 | Maximum number of Provisioned throughput units per deployment | 100,000 |
-| Max files per Assistant/thread | 10,000 when using the API or Azure AI Foundry portal. In Azure OpenAI Studio the limit was 20.|
-| Max file size for Assistants & fine-tuning | 512 MB<br/><br/>200 MB via Azure AI Foundry portal |
+| Max files per Assistant/thread | 10,000 when using the API or [Azure AI Foundry portal](https://ai.azure.com/). In Azure OpenAI Studio the limit was 20.|
+| Max file size for Assistants & fine-tuning | 512 MB<br/><br/>200 MB via [Azure AI Foundry portal](https://ai.azure.com/) |
 | Max size for all uploaded files for Assistants |100 GB |
 | Assistants token limit | 2,000,000 token limit |
 | GPT-4o max images per request (# of images in the messages array/conversation history) | 50 |
@@ -56,18 +55,24 @@ The following sections provide you with a quick guide to the default quotas and 
 
 <sup>1</sup> Our current APIs allow up to 10 custom headers, which are passed through the pipeline, and returned. Some customers now exceed this header count resulting in HTTP 431 errors. There's no solution for this error, other than to reduce header volume. **In future API versions we will no longer pass through custom headers**. We recommend customers not depend on custom headers in future system architectures.
 
-## Regional quota limits
-
-[!INCLUDE [Quota](./includes/model-matrix/quota.md)]
+> [!NOTE]
+> Quota limits are subject to change. 
 
 [!INCLUDE [Quota](./includes/global-batch-limits.md)]
 
-### GPT-4.5 Preview global standard
+## computer-use-preview global standard
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
-| `gpt-4.5` | Enterprise Tier | 50 K | 50 |
-| `gpt-4.5` | Default | 50 K | 50 |
+| `computer-use-preview`| Enterprise Tier | 30 M | 300 K |
+| `computer-use-preview`| Default         | 450 K | 4.5 K |
+
+## GPT-4.5 Preview global standard
+
+| Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
+|---|---|:---:|:---:|
+| `gpt-4.5` | Enterprise Tier | 200 K | 200 |
+| `gpt-4.5` | Default | 150 K | 150 |
 
 ## `o-series` rate limits
 
@@ -93,6 +98,15 @@ The following sections provide you with a quick guide to the default quotas and 
 | `o3-mini` | Default | 5 M | 500 |
 | `o1` & `o1-preview` | Default | 3 M | 500 |
 | `o1-mini`| Default | 5 M | 500 |
+
+### `o-series` data zone standard
+
+| Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
+|---|---|:---:|:---:|
+| `o3-mini` | Enterprise agreement | 20 M | 2 K  |
+| `o3-mini` | Default | 2 M | 200 |
+| `o1` | Enterprise agreement | 6 M | 1 K |
+| `o1` | Default | 600 K | 100 |
 
 ### o1-preview & o1-mini standard
 
@@ -145,7 +159,7 @@ M = million | K = thousand
 
 ## gpt-4o audio
 
-The rate limits for each `gpt-4o` audio model deployment are 100K TPM and 1K RPM. During the preview, Azure AI Foundry portal and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit will be 100K TPM and 1K RPM.
+The rate limits for each `gpt-4o` audio model deployment are 100K TPM and 1K RPM. During the preview, [Azure AI Foundry portal](https://ai.azure.com/) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit will be 100K TPM and 1K RPM.
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
@@ -183,16 +197,65 @@ The Usage Limit determines the level of usage above which customers might see la
 
 If your Azure subscription is linked to certain [offer types](https://azure.microsoft.com/support/legal/offer-details/) your max quota values are lower than the values indicated in the above tables.
 
-
 |Tier| Quota Limit in tokens per minute (TPM) |
 |---|:---|
 |Azure for Students, Free Trials | 1 K (all models) <br>Exception o-series & GPT 4.5 Preview: 0|
-| MSDN subscriptions | GPT 3.5 Turbo Series: 30 K <br> GPT-4 series: 8 K <br> o-series: 0 <br> GPT 4.5 Preview: 0  |
-| Monthly credit card based subscriptions <sup>1</sup> | GPT 3.5 Turbo Series: 30 K <br> GPT-4 series: 8 K <br> o-series: 0 <br> GPT 4.5 Preview: 0   |
+| MSDN | GPT 3.5 Turbo Series: 30 K <br> GPT-4 series: 8 K <br>computer-use-preview: 30 K <br> gpt-4o-realtime-preview: 1 K <br> o-series: 0 <br> GPT 4.5 Preview: 0  |
+|Pay-as-you-go | GPT 3.5 Turbo Series: 30 K <br> GPT-4 series: 8 K <br>computer-use-preview: 30 K <br> o-series: 0 <br> GPT 4.5 Preview: 0   |
+| CSP Dev Test<sup>*</sup> | All models: 0 |
 
-<sup>1</sup> This currently applies to [offer type 0003P](https://azure.microsoft.com/support/legal/offer-details/)
+<sup>*</sup>This only applies to a small number of dev/test CSP subscriptions. Use the query below to determine what `quotaId` is associated with your subscription.
 
-In the Azure portal you can view what offer type is associated with your subscription by navigating to your subscription and checking the subscriptions overview pane. Offer type corresponds to the plan field in the subscription overview.
+To determine the offer type that is associated with your subscription you can check your `quotaId`. If your `quotaId` is not listed in this table your subscription qualifies for default quota.
+
+# [REST](#tab/REST)
+
+[API reference](/rest/api/subscription/subscriptions/get)
+
+```bash
+az login
+access_token=$(az account get-access-token --query accessToken -o tsv)
+```
+
+```bash
+curl -X GET "https://management.azure.com/subscriptions/{subscriptionId}?api-version=2020-01-01" \
+  -H "Authorization: Bearer $access_token" \
+  -H "Content-Type: application/json"
+```
+
+# [CLI](#tab/CLI)
+
+```azurecli
+az rest --method GET --uri "https://management.azure.com/subscriptions/{sub-id}?api-version=2020-01-01"
+```
+---
+
+### Output
+
+```json
+{
+  "authorizationSource": "Legacy",
+  "displayName": "Pay-As-You-Go",
+  "id": "/subscriptions/aaaaaa-bbbbb-cccc-ddddd-eeeeee",
+  "state": "Enabled",
+  "subscriptionId": "aaaaaa-bbbbb-cccc-ddddd-eeeeee",
+  "subscriptionPolicies": {
+    "locationPlacementId": "Public_2014-09-01",
+    "quotaId": "PayAsYouGo_2014-09-01",
+    "spendingLimit": "Off"
+  }
+}
+```
+
+| Quota allocation | Subscription quota ID |
+|:---|:----|
+| Enterprise | `EnterpriseAgreement_2014-09-01` |
+| Pay-as-you-go | `PayAsYouGo_2014-09-01`|
+| MSDN | `MSDN_2014-09-01` |
+| CSP Dev/Test | `CSPDEVTEST_2018-05-01` |
+| Azure for Students | `AzureForStudents_2018-01-01` |
+| Free Trial | `FreeTrial_2014-09-01` |
+| Default | Any quota ID not listed in this table  |
 
 ### General best practices to remain within rate limits
 
@@ -208,6 +271,45 @@ To minimize issues related to rate limits, it's a good idea to use the following
 Quota increase requests can be submitted via the [quota increase request form](https://aka.ms/oai/stuquotarequest). Due to high demand, quota increase requests are being accepted and will be filled in the order they're received. Priority is given to customers who generate traffic that consumes the existing quota allocation, and your request might be denied if this condition isn't met.
 
 For other rate limits, [submit a service request](../cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context).
+
+## Regional quota capacity limits
+
+You can view quota availability by region for your subscription in the [Azure AI Foundry portal](https://ai.azure.com/resource/quota).
+
+Alternatively to view quota capacity by region for a specific model/version you can query the [capacity API](/rest/api/aiservices/accountmanagement/model-capacities/list) for your subscription. Provide a `subscriptionId`, `model_name`, and `model_version` and the API will return the available capacity for that model across all regions, and deployment types for your subscription.
+
+> [!NOTE]
+> Currently both the Azure AI Foundry portal and the capacity API will return quota/capacity information for models that are [retired](./concepts/model-retirements.md) and no longer available.
+
+[API Reference](/rest/api/aiservices/accountmanagement/model-capacities/list)
+
+```python
+import requests
+import json
+from azure.identity import DefaultAzureCredential
+
+subscriptionId = "Replace with your subscription ID" #replace with your subscription ID
+model_name = "gpt-4o"     # Example value, replace with model name
+model_version = "2024-08-06"   # Example value, replace with model version
+
+token_credential = DefaultAzureCredential()
+token = token_credential.get_token('https://management.azure.com/.default')
+headers = {'Authorization': 'Bearer ' + token.token}
+
+url = f"https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/modelCapacities"
+params = {
+    "api-version": "2024-06-01-preview",
+    "modelFormat": "OpenAI",
+    "modelName": model_name,
+    "modelVersion": model_version
+}
+
+response = requests.get(url, params=params, headers=headers)
+model_capacity = response.json()
+
+print(json.dumps(model_capacity, indent=2))
+
+```
 
 ## Next steps
 

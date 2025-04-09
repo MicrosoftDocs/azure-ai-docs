@@ -21,83 +21,83 @@ This page presents the latest feature, improvement, bug fix, and known issue rel
 
 |Source Language|Target Language|
 |:----|:----|
-|Afrikaans (af)|English (en)|
-|Bosnian (bs)|English (en)|
-|Bulgarian (bg)|English (en)|
-|Catalan (ca)|English (en)|
-|Croatian (hr)|English (en)|
-|Czech (cs)|English (en)|
-|Danish (da)|English (en)|
-|Dutch (nl)|English (en)|
-|English (en)|Afrikaans (af)|
-|English (en)|Arabic (ar)|
-|English (en)|Bosnian (bs)|
-|English (en)|Bulgarian (bg)|
-|English (en)|Catalan (ca)|
-|English (en)|Croatian (hr)|
-|English (en)|Czech (cs)|
-|English (en)|Danish (da)|
-|English (en)|Dutch (nl)|
-|English (en)|Estonian (et)|
-|English (en)|Finnish (fi)|
-|English (en)|French (fr)|
-|English (en)|French-Canadian (fr-ca)|
-|English (en)|German (de)|
-|English (en)|Hindi (hi)|
-|English (en)|Hungarian (hu)|
-|English (en)|Icelandic (is)|
-|English (en)|Indonesian (id)|
-|English (en)|Italian (it)|
-|English (en)|Japanese (ja)|
-|English (en)|Korean (ko)|
-|English (en)|Malay (ms)|
-|English (en)|Norwegian-Bokmål (nb)|
-|English (en)|Persian (fa)|
-|English (en)|Polish (pl)|
-|English (en)|Portuguese (pt)|
-|English (en)|Romanian (ro)|
-|English (en)|Russian (ru)|
-|English (en)|Serbian-Latin (sr-latn)|
-|English (en)|Slovak (sk)|
-|English (en)|Slovenian (sl)|
-|English (en)|Spanish (es)|
-|English (en)|Swedish (sv)|
-|English (en)|Thai (th)|
-|English (en)|Turkish (tr)|
-|English (en)|Ukrainian (uk)|
-|English (en)|Vietnamese (vi)|
-|English (en)|zh-hans|
-|Estonian (et)|English (en)|
-|Finnish (fi)|English (en)|
-|French (fr)|English (en)|
-|German (de)|English (en)|
-|Hebrew (he)|English (en)|
-|Hindi (hi)|English (en)|
-|Hungarian (hu)|English (en)|
-|Icelandic (is)|English (en)|
-|Indonesian (id)|English (en)|
-|Italian (it)|English (en)|
-|Malay (ms)|English (en)|
-|Norwegian-Bokmål (nb)|English (en)|
-|Persian (fa)|English (en)|
-|Polish (pl)|English (en)|
-|Portuguese (pt)|English (en)|
-|Romanian (ro)|English (en)|
-|Russian (ru)|English (en)|
-|Serbian-Latin (sr-latn)|English (en)|
-|Slovak (sk)|English (en)|
-|Slovenian (sl)|English (en)|
-|Spanish (es)|English (en)|
-|Swedish (sv)|English (en)|
-|Thai (th)|English (en)|
-|Ukrainian (uk)|English (en)|
-|Vietnamese (vi)|English (en)|
+|Afrikaans (`af`)|English (`en`)|
+|Bosnian (`bs`)|English (`en`)|
+|Bulgarian (`bg`)|English (`en`)|
+|Catalan (`ca`)|English (`en`)|
+|Croatian (`hr`)|English (`en`)|
+|Czech (`cs`)|English (`en`)|
+|Danish (`da`)|English (`en`)|
+|Dutch (`nl`)|English (`en`)|
+|English (`en`)|Afrikaans (`af`)|
+|English (`en`)|Arabic (`ar`)|
+|English (`en`)|Bosnian (`bs`)|
+|English (`en`)|Bulgarian (`bg`)|
+|English (`en`)|Catalan (`ca`)|
+|English (`en`)|Croatian (`hr`)|
+|English (`en`)|Czech (`cs`)|
+|English (`en`)|Danish (`da`)|
+|English (`en`)|Dutch (`nl`)|
+|English (`en`)|Estonian (`et`)|
+|English (`en`)|Finnish (`fi`)|
+|English (`en`)|French (`fr`)|
+|English (`en`)|French-Canadian (fr-ca)|
+|English (`en`)|German (`de`)|
+|English (`en`)|Hindi (`hi`)|
+|English (`en`)|Hungarian (`hu`)|
+|English (`en`)|Icelandic (`is`)|
+|English (`en`)|Indonesian (`id`)|
+|English (`en`)|Italian (`it`)|
+|English (`en`)|Japanese (`ja`)|
+|English (`en`)|Korean (`ko`)|
+|English (`en`)|Malay (`ms`)|
+|English (`en`)|Norwegian-Bokmål (`nb`)|
+|English (`en`)|Persian (`fa`)|
+|English (`en`)|Polish (`pl`)|
+|English (`en`)|Portuguese (`pt`)|
+|English (`en`)|Romanian (`ro`)|
+|English (`en`)|Russian (`ru`)|
+|English (`en`)|Serbian-Latin (sr-latn)|
+|English (`en`)|Slovak (`sk`)|
+|English (`en`)|Slovenian (`sl`)|
+|English (`en`)|Spanish (`es`)|
+|English (`en`)|Swedish (`sv`)|
+|English (`en`)|Thai (`th`)|
+|English (`en`)|Turkish (`tr`)|
+|English (`en`)|Ukrainian (`uk`)|
+|English (`en`)|Vietnamese (`vi`)|
+|English (`en`)|zh-hans|
+|Estonian (`et`)|English (`en`)|
+|Finnish (`fi`)|English (`en`)|
+|French (`fr`)|English (`en`)|
+|German (`de`)|English (`en`)|
+|Hebrew (`he`)|English (`en`)|
+|Hindi (`hi`)|English (`en`)|
+|Hungarian (`hu`)|English (`en`)|
+|Icelandic (`is`)|English (`en`)|
+|Indonesian (`id`)|English (`en`)|
+|Italian (`it`)|English (`en`)|
+|Malay (`ms`)|English (`en`)|
+|Norwegian-Bokmål (`nb`)|English (`en`)|
+|Persian (`fa`)|English (`en`)|
+|Polish (`pl`)|English (`en`)|
+|Portuguese (`pt`)|English (`en`)|
+|Romanian (`ro`)|English (`en`)|
+|Russian (`ru`)|English (`en`)|
+|Serbian-Latin (sr-latn)|English (`en`)|
+|Slovak (`sk`)|English (`en`)|
+|Slovenian (`sl`)|English (`en`)|
+|Spanish (`es`)|English (`en`)|
+|Swedish (`sv`)|English (`en`)|
+|Thai (`th`)|English (`en`)|
+|Ukrainian (`uk`)|English (`en`)|
+|Vietnamese (`vi`)|English (`en`)|
 
 ## 2024-November release
 
 ### Language model updates
 
-* Language pairs are listed in the table below.
+* Language pairs are listed in the following table.
 
 * We encourage you to retrain your models accordingly for higher quality.
 
@@ -379,24 +379,24 @@ This page presents the latest feature, improvement, bug fix, and known issue rel
 |:----|:----|
 |Chinese Simplified (`zh-hans`)|English (`en-us`)|
 |Chinese Traditional (zh-Hant)|English (`en-us`)|
-|Czech (cs)|English (`en-us`)|
-|Dutch (nl)|English (`en-us`)|
+|Czech (`cs`)|English (`en-us`)|
+|Dutch (`nl`)|English (`en-us`)|
 |English (`en-us`)|Chinese Simplified (`zh-hans`)|
 |English (`en-us`)|Chinese Traditional (zh-Hant)|
-|English (`en-us`)|Czech (cs)|
-|English (`en-us`)|Dutch (nl)|
-|English (`en-us`)|French (fr)|
-|English (`en-us`)|German (de)|
-|English (`en-us`)|Italian (it)|
-|English (`en-us`)|Polish (pl)|
-|English (`en-us`)|Romanian (ro)|
-|English (`en-us`)|Russian (ru)|
-|English (`en-us`)|Spanish (es)|
-|English (`en-us`)|Swedish (sv)|
-|German (de)|English (`en-us`)|
-|Italian (it)|English (`en-us`)|
-|Russian (ru)|English (`en-us`)|
-|Spanish (es)|English (`en-us`)|
+|English (`en-us`)|Czech (`cs`)|
+|English (`en-us`)|Dutch (`nl`)|
+|English (`en-us`)|French (`fr`)|
+|English (`en-us`)|German (`de`)|
+|English (`en-us`)|Italian (`it`)|
+|English (`en-us`)|Polish (`pl`)|
+|English (`en-us`)|Romanian (`ro`)|
+|English (`en-us`)|Russian (`ru`)|
+|English (`en-us`)|Spanish (`es`)|
+|English (`en-us`)|Swedish (`sv`)|
+|German (`de`)|English (`en-us`)|
+|Italian (`it`)|English (`en-us`)|
+|Russian (`ru`)|English (`en-us`)|
+|Spanish (`es`)|English (`en-us`)|
 
 #### Security update
 
@@ -414,7 +414,7 @@ This page presents the latest feature, improvement, bug fix, and known issue rel
 
 ### **May** 2021 improvements and fixes
 
-* We added new training pipeline to improve the custom model generalization and capacity to retain more customer terminology (words and phrases).
+* Added new training pipeline to improve the custom model generalization and capacity to retain more customer terminology (words and phrases).
 
 * Refreshed Custom Translator baselines to fix word alignment bug. See list of impacted language pair*.
 
@@ -422,78 +422,78 @@ This page presents the latest feature, improvement, bug fix, and known issue rel
 
 | Source Language   | Target Language |
 |-------------------|-----------------|
-| Arabic (`ar`) | English (``en-us``)|
-| Brazilian Portuguese (`pt`)    | English (``en-us``)|
-| Bulgarian (`bg`)    | English (``en-us``)|
-| Chinese Simplified (``zh-hans``)    | English (``en-us``)|
-| Chinese Traditional (`zh-Hant`)    | English (``en-us``)|
-| Croatian (`hr`)    | English (``en-us``)|
-| Czech (`cs`)    | English (``en-us``)|
-| Danish (`da`)    | English (``en-us``)|
-| Dutch (nl)    | English (``en-us``)|
-| English (``en-us``)    | Arabic (`ar`)|
-| English (``en-us``)    | Bulgarian (`bg`)|
-| English (``en-us``)    | Chinese Simplified (``zh-hans``|
-| English (``en-us``)    | Chinese Traditional (`zh-Hant`|
-| English (``en-us``)    | Czech (`cs)`|
-| English (``en-us``)    | Danish (`da`)|
-| English (``en-us``)    | Dutch (`nl`)|
-| English (``en-us``)    | Estonian (`et`)|
-| English (``en-us``)    | Fijian (`fj`)|
-| English (``en-us``)    | Finnish (`fi`)|
-| English (``en-us``)    | French (`fr`)|
-| English (``en-us``)    | Greek (`el`)|
-| English (``en-us``)    | Hindi (`hi`) |
-| English (``en-us``)    | Hungarian (`hu`)|
-| English (``en-us``)    | Icelandic (`is`)|
-| English (``en-us``)    | Indonesian (`id`)|
-| English (``en-us``)    | Inuktitut (`iu`)|
-| English (``en-us``)    | Irish (`ga`)|
-| English (``en-us``)    | Italian (`it`)|
-| English (``en-us``)    | Japanese (`ja`)|
-| English (``en-us``)    | Korean (`ko`)|
-| English (``en-us``)    | Lithuanian (`lt`)|
-| English (``en-us``)    | Norwegian (`nb`)|
-| English (``en-us``)    | Polish (`pl`)|
-| English (``en-us``)    | Romanian (`ro`)|
-| English (``en-us``)    | Samoan (`sm`)|
-| English (``en-us``)    | Slovak (`sk`)|
-| English (``en-us``)    | Spanish (`es`)|
-| English (``en-us``)    | Swedish (`sv`)|
-| English (``en-us``)    | Tahitian (`ty`)|
-| English (``en-us``)    | Thai (`th`)|
-| English (``en-us``)    | Tongan (`to`)|
-| English (``en-us``)    | Turkish (`tr`)|
-| English (``en-us``)    | Ukrainian (`uk`) |
-| English (``en-us``)    | Welsh (`cy`)|
-| Estonian (`et`)    | English (``en-us``)|
-| Fijian (`fj`)   | English (``en-us``)|
-| Finnish (`fi`)    | English (``en-us``)|
-| German (`de`)    | English (``en-us``)|
-| Greek (`el`)    | English (``en-us``)|
-| Hungarian (`hu`)    | English (``en-us``)|
-| Icelandic (`is`)    | English (``en-us``)|
-| Indonesian (`id`)    | English (``en-us``)
-| Inuktitut (`iu`)    | English (``en-us``)|
-| Irish (`ga`)    | English (``en-us``)|
-| Italian (`it`)    | English (``en-us``)|
-| Japanese (`ja`)    | English (``en-us``)|
-| Kazakh (`kk`)    | English (``en-us``)|
-| Korean (`ko`)    | English (``en-us``)|
-| Lithuanian (`lt`)    | English (``en-us``)|
-| Malagasy (`mg`)    | English (``en-us``)|
-| Maori (`mi`)    | English (``en-us``)|
-| Norwegian (`nb`)    | English (``en-us``)|
-| Persian (`fa`)    | English (``en-us``)|
-|  Polish (`pl`)    | English (``en-us``)|
-| Romanian (`ro`)    | English (``en-us``)|
-| Russian (`ru`)    | English (``en-us``)|
-| Slovak (`sk`)    | English (``en-us``)|
-| Spanish (`es`)    | English (``en-us``)|
-| Swedish (`sv`)    | English (``en-us``)|
-| Tahitian (`ty`)    | English (``en-us``)|
-| Thai (`th`)    | English (``en-us``)|
-| Tongan (`to`)    | English (``en-us``)|
-| Turkish (`tr`)    | English (``en-us``)|
-| Vietnamese (`vi`)    | English (``en-us``)|
-| Welsh (`cy`)    | English (``en-us``)|
+| Arabic (`ar`) | English (`en-us`)|
+| Brazilian Portuguese (`pt`)    | English (`en-us`)|
+| Bulgarian (`bg`)    | English (`en-us`)|
+| Chinese Simplified (`zh-hans`)    | English (`en-us`)|
+| Chinese Traditional (`zh-Hant`)    | English (`en-us`)|
+| Croatian (`hr`)    | English (`en-us`)|
+| Czech (`cs`)    | English (`en-us`)|
+| Danish (`da`)    | English (`en-us`)|
+| Dutch (`nl`)    | English (`en-us`)|
+| English (`en-us`)    | Arabic (`ar`)|
+| English (`en-us`)    | Bulgarian (`bg`)|
+| English (`en-us`)    | Chinese Simplified (`zh-hans`)|
+| English (`en-us`)    | Chinese Traditional (`zh-Hant`)|
+| English (`en-us`)    | Czech (`cs`)|
+| English (`en-us`)    | Danish (`da`)|
+| English (`en-us`)    | Dutch (`nl`)|
+| English (`en-us`)    | Estonian (`et`)|
+| English (`en-us`)    | Fijian (`fj`)|
+| English (`en-us`)    | Finnish (`fi`)|
+| English (`en-us`)    | French (`fr`)|
+| English (`en-us`)    | Greek (`el`)|
+| English (`en-us`)    | Hindi (`hi`) |
+| English (`en-us`)    | Hungarian (`hu`)|
+| English (`en-us`)    | Icelandic (`is`)|
+| English (`en-us`)    | Indonesian (`id`)|
+| English (`en-us`)    | Inuktitut (`iu`)|
+| English (`en-us`)    | Irish (`ga`)|
+| English (`en-us`)    | Italian (`it`)|
+| English (`en-us`)    | Japanese (`ja`)|
+| English (`en-us`)    | Korean (`ko`)|
+| English (`en-us`)    | Lithuanian (`lt`)|
+| English (`en-us`)    | Norwegian (`nb`)|
+| English (`en-us`)    | Polish (`pl`)|
+| English (`en-us`)    | Romanian (`ro`)|
+| English (`en-us`)    | Samoan (`sm`)|
+| English (`en-us`)    | Slovak (`sk`)|
+| English (`en-us`)    | Spanish (`es`)|
+| English (`en-us`)    | Swedish (`sv`)|
+| English (`en-us`)    | Tahitian (`ty`)|
+| English (`en-us`)    | Thai (`th`)|
+| English (`en-us`)    | Tongan (`to`)|
+| English (`en-us`)    | Turkish (`tr`)|
+| English (`en-us`)    | Ukrainian (`uk`) |
+| English (`en-us`)    | Welsh (`cy`)|
+| Estonian (`et`)    | English (`en-us`)|
+| Fijian (`fj`)   | English (`en-us`)|
+| Finnish (`fi`)    | English (`en-us`)|
+| German (`de`)    | English (`en-us`)|
+| Greek (`el`)    | English (`en-us`)|
+| Hungarian (`hu`)    | English (`en-us`)|
+| Icelandic (`is`)    | English (`en-us`)|
+| Indonesian (`id`)    | English (`en-us`)
+| Inuktitut (`iu`)    | English (`en-us`)|
+| Irish (`ga`)    | English (`en-us`)|
+| Italian (`it`)    | English (`en-us`)|
+| Japanese (`ja`)    | English (`en-us`)|
+| Kazakh (`kk`)    | English (`en-us`)|
+| Korean (`ko`)    | English (`en-us`)|
+| Lithuanian (`lt`)    | English (`en-us`)|
+| Malagasy (`mg`)    | English (`en-us`)|
+| Maori (`mi`)    | English (`en-us`)|
+| Norwegian (`nb`)    | English (`en-us`)|
+| Persian (`fa`)    | English (`en-us`)|
+|  Polish (`pl`)    | English (`en-us`)|
+| Romanian (`ro`)    | English (`en-us`)|
+| Russian (`ru`)    | English (`en-us`)|
+| Slovak (`sk`)    | English (`en-us`)|
+| Spanish (`es`)    | English (`en-us`)|
+| Swedish (`sv`)    | English (`en-us`)|
+| Tahitian (`ty`)    | English (`en-us`)|
+| Thai (`th`)    | English (`en-us`)|
+| Tongan (`to`)    | English (`en-us`)|
+| Turkish (`tr`)    | English (`en-us`)|
+| Vietnamese (`vi`)    | English (`en-us`)|
+| Welsh (`cy`)    | English (`en-us`)|

@@ -1,5 +1,4 @@
 ---
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
@@ -13,5 +12,5 @@ To use named entity recognition, you submit raw unstructured text for analysis a
 
 |Development option  |Description  |
 |---------|---------|
-|Azure AI Foundry     | Azure AI Foundry is a web-based platform that lets you use named entity recognition with text examples with your own data when you sign up. For more information, see the [Azure AI Foundry website](https://ai.azure.com) or [Azure AI Foundry documentation](../../../../ai-studio/what-is-ai-studio.md).         |
+|Azure AI Foundry     | Azure AI Foundry is a web-based platform that lets you use named entity recognition with text examples with your own data when you sign up. For more information, see the [Azure AI Foundry website](https://ai.azure.com) or [Azure AI Foundry documentation](../../../../ai-foundry/what-is-azure-ai-foundry.md).         |
 |REST API or Client library (Azure SDK)      | Integrate named entity recognition into your applications using the REST API, or the client library available in a variety of languages. For more information, see the [named entity recognition quickstart](../quickstart.md).        |

@@ -174,13 +174,13 @@ The users you grant access to need to set up a [Microsoft account](https://accou
 
 To add users to a Speech resource so that they can use Audio Content Creation, do the following:
 
-1. In the [Azure portal](https://portal.azure.com/), select **All services** from the left navigation pane, and then search for **Azure AI services** or **Speech**.
+1. In the [Azure portal](https://portal.azure.com/), select **All services** from the left pane, and then search for **Azure AI services** or **Speech**.
 1. Select your Speech resource.
 
    > [!NOTE]
    > You can also set up Azure RBAC for whole resource groups, subscriptions, or management groups. Do this by selecting the desired scope level and then navigating to the desired item (for example, selecting **Resource groups** and then selecting your resource group).
 
-1. Select **Access control (IAM)** on the left navigation pane.
+1. Select **Access control (IAM)** on the left pane.
 1. Select **Add** > **Add role assignment**.
 1. On the **Role** tab on the next screen, select a role (such as **Owner**) that you want to add.
 1. On the **Members** tab, enter a user's email address and select the user's name in the directory. The email address must be linked to a Microsoft account that's trusted by Microsoft Entra ID. Users can easily sign up for a [Microsoft account](https://account.microsoft.com/account) by using their personal email address. 

@@ -7,7 +7,7 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/24/2024
+ms.date: 3/10/2025
 ms.reviewer: alexeyo
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 #Customer intent: As a developer, I want to learn how to use Speech service with private endpoints provided by Azure Private Link.
@@ -232,7 +232,6 @@ All possible values for the region (first element of the DNS name) are listed in
 | DNS name value | Speech service offering                                    |
 |----------------|-------------------------------------------------------------|
 | `commands`     | [Custom Commands](custom-commands.md)                       |
-| `convai`       | [Meeting Transcription](meeting-transcription.md) |
 | `s2s`          | [Speech Translation](speech-translation.md)                 |
 | `stt`          | [Speech to text](speech-to-text.md)                         |
 | `tts`          | [Text to speech](text-to-speech.md)                         |

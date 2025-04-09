@@ -141,7 +141,7 @@ You can also view resource group costs directly from the Azure portal. To do so:
 1. Sign in to [Azure portal](https://portal.azure.com).
 1. Select **Resource groups**. 
 1. Find and select the resource group that contains your Azure AI Foundry resources.
-1. From the left navigation menu, select **Cost analysis**.
+1. From the left pane, select **Cost analysis**.
 
     :::image type="content" source="../media/cost-management/project-costs/costs-per-resource-group.png" alt-text="Screenshot of the Azure portal cost analysis at the resource group level." lightbox="../media/cost-management/project-costs/costs-per-resource-group.png":::
 
@@ -153,9 +153,9 @@ Models deployed as a service using pay-as-you-go are offered through the Azure M
 
 1. Sign in to [Azure portal](https://portal.azure.com).
 
-1. On the left navigation area, select **Cost Management + Billing** and then, on the same menu, select **Cost Management**.
+1. On the left pane, select **Cost Management + Billing** and then, on the same menu, select **Cost Management**.
 
-1. On the left navigation area, under the section **Cost Management**, select now **Cost Analysis**.
+1. On the left pane, under the section **Cost Management**, select now **Cost Analysis**.
 
 1. Select a view such as **Resources**. The cost associated with each resource is displayed.
 

@@ -7,13 +7,13 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 02/28/2025
 ms.reviewer: amipatel
 ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Visualize your traces
+# Visualize your traces (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 

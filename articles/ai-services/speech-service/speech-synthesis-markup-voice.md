@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/24/2024
+ms.date: 3/10/2025
 ms.author: eur
 ms.custom: references_regions
 #Customer intent: As a developer, I want to learn how to use Speech Synthesis Markup Language (SSML) elements to customize what my Speech service voice sounds like.
@@ -89,6 +89,31 @@ You use the `effect` attribute to optimize the auditory experience for scenarios
     </voice>
 </speak>
 ```
+
+#### Multi-talker voice example
+
+Multi-talker voices enable natural, dynamic conversations with multiple distinct speakers. This innovation enhances the realism of synthesized dialogues by preserving contextual flow, emotional consistency, and natural speech patterns.
+
+Use this capability to generate engaging, podcast-style speech or conversational exchanges with seamless transitions between speakers. Unlike single-talker models, which synthesize each turn in isolation, multi-talker voices maintain coherence across dialogue, ensuring a more authentic and immersive listening experience.
+
+For `en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural`, within the `<mstts:dialog>` element, you can specify each turn for the text to speech output, with the format below to alternates between the speaker `ava` and `andrew` for each turn.
+
+```xml
+<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='https://www.w3.org/2001/mstts' xml:lang='en-US'>
+    <voice name='en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural'>
+        <mstts:dialog>
+            <mstts:turn speaker="ava">Hello, Andrew! How's your day going?</mstts:turn>
+            <mstts:turn speaker="andrew">Hey Ava! It's been great, just exploring some AI advancements in communication.</mstts:turn>
+            <mstts:turn speaker="ava">That sounds interesting! What kind of projects are you working on?</mstts:turn>
+            <mstts:turn speaker="andrew">Well, we've been experimenting with text-to-speech applications, including turning emails into podcasts.</mstts:turn>
+            <mstts:turn speaker="ava">Wow, that could really improve content accessibility! Are you looking for collaborators?</mstts:turn>
+            <mstts:turn speaker="andrew">Absolutely! We're open to testing new ideas and seeing how AI can enhance communication.</mstts:turn>
+        </mstts:dialog>
+    </voice>
+</speak>
+```
+
+For supported voices, see the [Language support](language-support.md?tabs=tts#multi-talker-voices) documentation.
 
 ## Use speaking styles and roles
 

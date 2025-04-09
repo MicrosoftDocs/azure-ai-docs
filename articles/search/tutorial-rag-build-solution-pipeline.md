@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: tutorial
-ms.date: 01/09/2025
+ms.date: 03/24/2025
 ---
 
 # Tutorial: Build an indexing pipeline for RAG on Azure AI Search
@@ -29,7 +29,7 @@ In this tutorial, you:
 If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
 > [!TIP]
-> You can use the [Import and vectorize data wizard](search-import-data-portal.md) to create your pipeline. Try some quickstarts: [Image search](search-get-started-portal-image-search.md) and [Vector search](search-get-started-portal-import-vectors.md).
+> You can use the [Import and vectorize data wizard](search-import-data-portal.md) to create your pipeline. Try some quickstarts [Image search](search-get-started-portal-image-search.md) or [Vector search](search-get-started-portal-import-vectors.md), to learn more about the pipeline and its moving parts.
 
 ## Prerequisites
 
@@ -41,7 +41,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 - [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), with a deployment of text-embedding-3-large, in the same region as Azure AI Search. For more information about embedding models used in RAG solutions, see [Choose embedding models for RAG in Azure AI Search](tutorial-rag-build-solution-models.md).
 
-- [Azure AI Service multiservice account](/azure/ai-services/multi-service-resource), in the same region as Azure AI Search. This resource is used for the Entity Recognition skill that detects locations in your content.
+- [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills), in the same region as Azure AI Search. This resource is used for the Entity Recognition skill that detects locations in your content.
 
 ## Download the sample
 
@@ -115,7 +115,7 @@ print(f"{result.name} created")
 
 ## Create a data source connection
 
-In this step, set up the sample data and a connection to Azure Blob Storage. The indexer retrieves PDFs from a container. You create the container and upload files in this step.
+In this step, set up the sample data and a connection from Azure AI Search to Azure Blob Storage. The indexer retrieves PDFs from a container. You create the container and upload files in this step.
 
 The original ebook is large, over 100 pages and 35 MB in size. We broke it up into smaller PDFs, one per page of text, to stay under the [document limit for indexers](search-limits-quotas-capacity.md#indexer-limits) of 16 MB per API call and also the [AI enrichment data limits](search-limits-quotas-capacity.md#data-limits-ai-enrichment). For simplicity, we omit image vectorization for this exercise.
 
@@ -123,7 +123,7 @@ The original ebook is large, over 100 pages and 35 MB in size. We broke it up in
 
 1. Create a container and upload the PDFs from [earth_book_2019_text_pages](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth_book_2019_text_pages).
 
-1. Make sure Azure AI Search has [**Storage Blob Data Reader** permissions](/azure/role-based-access-control/role-assignments-portal) on the resource.
+1. Make sure your [Azure AI Search managed identity](search-howto-managed-identities-data-sources.md) has a [**Storage Blob Data Reader**](/azure/role-based-access-control/role-assignments-portal) role assignment on Azure Storage.
 
 1. Next, in Visual Studio Code, define an indexer data source that provides connection information during indexing.
 
@@ -148,7 +148,7 @@ The original ebook is large, over 100 pages and 35 MB in size. We broke it up in
     print(f"Data source '{data_source.name}' created or updated")
     ```
 
-If you set up a managed identity for Azure AI Search for the connection, the connection string includes a `ResourceId=` suffix. It should look similar to the following example: `"ResourceId=/subscriptions/FAKE-SUBCRIPTION=ID/resourceGroups/FAKE-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/FAKE-ACCOUNT;"`
+If you set up a [managed identity for an Azure AI Search connection to Azure Storage](search-howto-managed-identities-storage.md), the data source connection string includes a `ResourceId=` suffix. It should look similar to the following example: `"ResourceId=/subscriptions/FAKE-SUBSCRIPTION-ID/resourceGroups/FAKE-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/FAKE-ACCOUNT;"`
 
 ## Create a skillset
 
@@ -156,7 +156,7 @@ Skills are the basis for integrated data chunking and vectorization. At a minimu
 
 In this skillset, an extra skill is used to create structured data in the index. The [Entity Recognition skill](cognitive-search-skill-entity-recognition-v3.md) is used to identify locations, which can range from proper names to generic references, such as "ocean" or "mountain". Having structured data gives you more options for creating interesting queries and boosting relevance.
 
-The AZURE_AI_MULTISERVICE_KEY is needed even if you're using role-based access control. Azure AI Search uses the key for billing purposes and it's required unless your workloads stay under the free limit. You can also a keyless connection if you're using the most recent preview API or beta packages. For more information, see [Attach an Azure AI multi-service resource to a skillset](cognitive-search-attach-cognitive-services.md).
+The AZURE_AI_MULTISERVICE_KEY is needed even if you're using role-based access control. Azure AI Search uses the key for billing purposes and it's required unless your workloads stay under the free limit. You can also set up a keyless connection if you're using the most recent preview API or beta packages. For more information, see [Attach an Azure AI services multi-service resource to a skillset](cognitive-search-attach-cognitive-services.md).
 
 ```python
 from azure.search.documents.indexes.models import (

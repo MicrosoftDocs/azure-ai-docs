@@ -6,11 +6,12 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
-ms.topic: how-to
+ms.topic: reference
 ms.date: 01/29/2025
-ms.reviewer: keli19
+ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
+ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ---
 
 # Azure OpenAI GPT-4 Turbo with Vision tool in Azure AI Foundry portal

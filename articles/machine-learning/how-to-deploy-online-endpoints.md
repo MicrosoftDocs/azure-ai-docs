@@ -706,7 +706,7 @@ A model registration is a logical entity in the workspace that can contain a sin
 To register the example model, follow these steps:
 
 1. Go to the [Azure Machine Learning studio](https://ml.azure.com).
-1. In the left navigation bar, select the **Models** page.
+1. In the left pane, select the **Models** page.
 1. Select **Register**, and then choose **From local files**.
 1. Select __Unspecified type__ for the __Model type__.
 1. Select __Browse__, and choose __Browse folder__.
@@ -722,7 +722,7 @@ For more information on working with registered models, see [Register and work w
 
 ### Create and register the environment
 
-1. In the left navigation bar, select the **Environments** page.
+1. In the left pane, select the **Environments** page.
 1. Select **Create**.
 1. On the "Settings" page, provide a name, such as `my-env` for the environment.
 1. For "Select environment source" choose **Use existing docker image with optional conda source**.
@@ -759,6 +759,9 @@ For more information on creating an environment in the studio, see [Create an en
     :::code language="azurecli" source="~/azureml-examples-main/deploy-arm-templates-az-cli.sh" id="create_environment":::
 
 ---
+
+> [!IMPORTANT]
+> When defining a custom environment for your deployment, ensure the `azureml-inference-server-http` package is included in the conda file. This package is essential for the inference server to function properly. If you are unfamiliar with creating your own custom environment, it is advisable to instead use one of our curated environments such as `minimal-py-inference` (for custom models that don't use mlflow) or `mlflow-py-inference` (for models that use mlflow). These curated environments can be found in the "Environments" tab of your Machine Learning Studio.
 
 ### Configure a deployment that uses registered assets
 
@@ -901,7 +904,7 @@ Use the studio to create a managed online endpoint directly in your browser. Whe
 One way to create a managed online endpoint in the studio is from the **Models** page. This method also provides an easy way to add a model to an existing managed online deployment. To deploy the model named `model-1` that you registered previously in the [Register your model and environment](#register-your-model-and-environment) section:
 
 1. Go to the [Azure Machine Learning studio](https://ml.azure.com).
-1. In the left navigation bar, select the **Models** page.
+1. In the left pane, select the **Models** page.
 1. Select the model named `model-1` by checking the circle next to its name.
 1. Select **Deploy** > **Real-time endpoint**.
 
@@ -928,7 +931,7 @@ One way to create a managed online endpoint in the studio is from the **Models**
 Alternatively, you can create a managed online endpoint from the **Endpoints** page in the studio.
 
 1. Go to the [Azure Machine Learning studio](https://ml.azure.com).
-1. In the left navigation bar, select the **Endpoints** page.
+1. In the left pane, select the **Endpoints** page.
 1. Select **+ Create**.
 
     :::image type="content" source="media/how-to-deploy-online-endpoints/endpoint-create-managed-online-endpoint.png" lightbox="media/how-to-deploy-online-endpoints/endpoint-create-managed-online-endpoint.png" alt-text="A screenshot for creating managed online endpoint from the Endpoints tab.":::
@@ -995,7 +998,7 @@ To debug errors in your deployment, see [Troubleshooting online endpoint deploym
 
 You can view all your managed online endpoints in the **Endpoints** page. Go to the endpoint's **Details** page to find critical information including the endpoint URI, status, testing tools, activity monitors, deployment logs, and sample consumption code:
 
-1. In the left navigation bar, select **Endpoints**. Here, you can see a list of all the endpoints in the workspace.
+1. In the left pane, select **Endpoints**. Here, you can see a list of all the endpoints in the workspace.
 1. (Optional) Create a **Filter** on **Compute type** to show only **Managed** compute types.
 1. Select an endpoint name to view the endpoint's __Details__ page.
 
@@ -1255,7 +1258,7 @@ ml_client.online_endpoints.begin_delete(name=endpoint_name)
 If you aren't going use the endpoint and deployment, you should delete them. By deleting the endpoint, you also delete all its underlying deployments.
 
 1. Go to the [Azure Machine Learning studio](https://ml.azure.com).
-1. In the left navigation bar, select the **Endpoints** page.
+1. In the left pane, select the **Endpoints** page.
 1. Select an endpoint by checking the circle next to the model name.
 1. Select **Delete**.
 

@@ -18,6 +18,8 @@ monikerRange: 'azureml-api-1'
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 This article explains how to customize the data featurization settings in Azure Machine Learning for your [automated machine learning (AutoML) experiments](../concept-automated-ml.md).
 
 ## Feature engineering and featurization

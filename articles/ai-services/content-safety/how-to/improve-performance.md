@@ -2,21 +2,20 @@
 title: "Mitigate false results in Azure AI Content Safety"
 titleSuffix: Azure AI services
 description: Learn techniques to improve the performance of Azure AI Content Safety models by handling false positives and false negatives.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: how-to
-ms.date: 09/18/2024
+ms.date: 03/26/2025
 ms.author: pafarley
 #customer intent: As a user, I want to improve the performance of Azure AI Content Safety so that I can ensure accurate content moderation.
 ---
 
 # Mitigate false results in Azure AI Content Safety
 
-This guide provides a step-by-step process for handling false positives and false negatives from Azure AI Content Safety models. 
+This guide shows you how to handle false positives and false negatives from Azure AI Content Safety models. 
 
-False positives are when the system incorrectly flags non-harmful content as harmful; false negatives are when harmful content is not flagged as harmful. Address these instances to ensure the integrity and reliability of your content moderation process, including responsible generative AI deployment.
+False positives occur when the system incorrectly flags non-harmful content as harmful; false negatives occur when harmful content is not flagged as harmful. Address these instances to ensure the integrity and reliability of your content moderation process, including responsible generative AI deployment.
 
 ## Prerequisites
 
@@ -25,7 +24,7 @@ False positives are when the system incorrectly flags non-harmful content as har
 
 ## Review and verification
 
-Conduct an initial assessment to confirm that the flagged content is really a false positive or false negative. This can involve: 
+Conduct an initial assessment to confirm that you really have a false positive or false negative. This can involve: 
 - Checking the context of the flagged content.  
 - Comparing the flagged content against the content safety risk categories and severity definitions:
     - If you're using content safety in Azure OpenAI, see the [Azure OpenAI content filtering doc](/azure/ai-services/openai/concepts/content-filter).
@@ -37,7 +36,7 @@ If your assessment confirms that you found a false positive or false negative, y
 
 #### [Content Safety standalone API](#tab/standalone-api)
 
-If you're using the Azure AI Content Safety standalone API directly, try experimenting by setting the severity threshold at different levels for [harm categories](/azure/ai-services/content-safety/concepts/harm-categories?tabs=definitions) based on API output. Alternatively, if you prefer the no-code approach, you can try out those settings in [Content Safety Studio](https://contentsafety.cognitive.azure.com/) or Azure AI Foundry’s [Content Safety page](https://ai.azure.com/explore/contentsafety). Instructions can be found [here](/azure/ai-studio/quickstarts/content-safety?tabs=moderate-text-content). 
+If you're using the Azure AI Content Safety standalone API directly, try experimenting by setting the severity threshold at different levels for [harm categories](/azure/ai-services/content-safety/concepts/harm-categories?tabs=definitions) based on API output. Alternatively, if you prefer the no-code approach, you can try out those settings in [Content Safety Studio](https://contentsafety.cognitive.azure.com/) or Azure AI Foundry’s [Content Safety page](https://ai.azure.com/explore/contentsafety). Instructions can be found [here](/azure/ai-foundry/concepts/content-filtering). 
 
 In addition to adjusting the severity levels for false negatives, you can also use blocklists. More information on using blocklists for text moderation can be found in [Use blocklists for text moderation](/azure/ai-services/content-safety/how-to/use-blocklist?tabs=windows%2Crest).
 
@@ -52,11 +51,11 @@ In addition to adjusting the severity levels for false negatives, you can also u
 
 #### [Azure AI Foundry](#tab/azure-ai-studio)
 
-Read the [Configurability](/azure/ai-studio/concepts/content-filtering#configurability-preview) documentation, as some content filtering configurations may require approval through the process mentioned there.
+Read the [Configurability](/azure/ai-foundry/concepts/content-filtering#configurability-preview) documentation, as some content filtering configurations may require approval through the process mentioned there.
 
-Follow the steps in the documentation to update configurations to handle false positives or negatives: [Azure AI Foundry content filtering](/azure/ai-studio/concepts/content-filtering#create-a-content-filter).
+Follow the steps in the documentation to update configurations to handle false positives or negatives: [Azure AI Foundry content filtering](/azure/ai-foundry/concepts/content-filtering#create-a-content-filter).
 
-In addition to adjusting the severity levels for false negatives, you can also use blocklists. Detailed instruction can be found in [Azure AI Foundry content filtering](/azure/ai-studio/concepts/content-filtering#use-a-blocklist-as-a-filter).
+In addition to adjusting the severity levels for false negatives, you can also use blocklists. Detailed instruction can be found in [Azure AI Foundry content filtering](/azure/ai-foundry/concepts/content-filtering#use-a-blocklist-as-a-filter).
 
 ---
 

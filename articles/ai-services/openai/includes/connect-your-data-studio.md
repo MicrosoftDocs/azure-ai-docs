@@ -1,6 +1,5 @@
 ---
 titleSuffix: Azure OpenAI
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom:
@@ -19,11 +18,11 @@ recommendations: false
 
 Navigate to [Azure AI Foundry portal](https://ai.azure.com/) and sign-in with credentials that have access to your Azure OpenAI resource. 
 
-1. You can either [create an Azure AI Foundry project](../../../ai-studio/how-to/create-projects.md) by clicking **Create project**, or continue directly by clicking the button on the **Focused on Azure OpenAI Service** tile.  
+1. You can either [create an Azure AI Foundry project](../../../ai-foundry/how-to/create-projects.md) by clicking **Create project**, or continue directly by clicking the button on the **Focused on Azure OpenAI Service** tile.  
 
-    :::image type="content" source="../media/use-your-data/ai-studio-homepage.png" alt-text="A screenshot of the Azure AI Foundry portal landing page." lightbox="../media/use-your-data/ai-studio-homepage.png":::
+    :::image type="content" source="../media/use-your-data/ai-foundry-homepage.png" alt-text="A screenshot of the Azure AI Foundry portal landing page." lightbox="../media/use-your-data/ai-foundry-homepage.png":::
 
-1. Select **Chat** under **Playgrounds** in the left navigation menu, and select your model deployment.
+1. Select **Chat** under **Playgrounds** in the left pane, and select your model deployment.
 
 1. In the **Chat playground**, Select **Add your data** and then **Add a data source**
 

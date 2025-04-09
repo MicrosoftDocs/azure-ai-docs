@@ -7,14 +7,14 @@ ms.author: admaheshwari
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 02/28/2025
+ms.date: 04/09/2025
 ---
 
 # Interpret and improve confidence and accuracy scores
 
 > [!NOTE]
 >
-> * Azure AI Content Understanding is currently available in preview. 
+> * Azure AI Content Understanding is currently available in preview.
 >
 > * While the service is in active development, confidence scores are only available for the document modality.
 

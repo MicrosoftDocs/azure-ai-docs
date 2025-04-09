@@ -8,10 +8,11 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-ms.date: 5/21/2024
-ms.reviewer: yijunzhang
+ms.date: 3/31/2025
+ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
+ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ---
 
 # Tune prompts using variants in Azure AI Foundry portal
@@ -52,7 +53,7 @@ Benefits of using variants include:
 In this article, we use **Web Classification** sample flow as example.
 
 1. Open the sample flow and remove the **prepare_examples** node as a start.
-	  1. Under *Tools* select **Prompt flow**.
+	  1. Under *Build and customize* select **Prompt flow**.
 	  2. Select **Create** to open the flow creation wizard.
 	  3. In the flow gallery under *Explore gallery* in the "Web Classification" box select **Clone**.
 	  4. In the flow tab, delete the **prepare_examples** node.
@@ -66,7 +67,7 @@ The classification will be based on the url, the webpage text content summary, o
 For a given URL : {{url}}, and text content: {{text_content}}.
 Classify above url to complete the category and indicate evidence.
 
-The output shoule be in this format: {"category": "App", "evidence": "Both"} 
+The output should be in this format: {"category": "App", "evidence": "Both"} 
 OUTPUT:
 ```
 
@@ -146,7 +147,7 @@ When you run the variants with a few single pieces of data and check the results
 You can submit a batch run, which allows you test the variants with a large amount of data and evaluate them with metrics, to help you find the best fit.
 
 1. First you need to prepare a dataset, which is representative enough of the real-world problem you want to solve with Prompt flow. In this example, it's a list of URLs and their classification ground truth. We use accuracy to evaluate the performance of variants.
-2. Select **Evaluate** on the top right of the page.
+2. Select **Evaluate** on the top right of the page then select **Custom Evaluation**.
 3. A wizard for **Batch run & Evaluate** occurs. The first step is to select a node to run all its variants.
   
     To test how different variants work for each node in a flow, you need to run a batch run for each node with variants one by one. This helps you avoid the influence of other nodes' variants and focus on the results of this node's variants. This follows the rule of the controlled experiment, which means that you only change one thing at a time and keep everything else the same.

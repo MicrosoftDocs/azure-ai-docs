@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 09/12/2024
+ms.date: 3/10/2025
 ms.author: eur
 ---
 
@@ -14,22 +14,22 @@ ms.author: eur
 
 This article provides instructions on how to recover or purge an Azure AI services resource that is already deleted. 
 
-Once you delete a resource, you won't be able to create another one with the same name for 48 hours. To create a resource with the same name, you need to purge the deleted resource.
+Once you delete a resource, you can't create another one with the same name for 48 hours. To create a resource with the same name, you need to purge the deleted resource.
 
 > [!NOTE]
 > * The instructions in this article are applicable to both a multi-service resource and a single-service resource. A multi-service resource enables access to multiple Azure AI services using a single key and endpoint. On the other hand, a single-service resource enables access to just that specific Azure AI service for which the resource was created.
 >
-> * Charges for provisioned deployments on a deleted resource will continue until the resource is purged.  To prevent this, delete a resource's deployment before deleting the resource.
+> * Charges for provisioned deployments on a deleted resource continue until the resource is purged. To prevent unnecessary charges, delete a resource's deployment before deleting the resource.
 
 ## Recover a deleted resource
 
 The following prerequisites must be met before you can recover a deleted resource:
 
-* The resource to be recovered must have been deleted within the past 48 hours.
-* The resource to be recovered must not have been purged already. A purged resource can't be recovered.
+* The resource to be recovered must be deleted within the past 48 hours.
+* The resource to be recovered must not be purged already. A purged resource can't be recovered.
 * Before you attempt to recover a deleted resource, make sure that the resource group for that account exists. If the resource group was deleted, you must recreate it. Recovering a resource group isn't possible. For more information, see [Manage resource groups](/azure/azure-resource-manager/management/manage-resource-groups-portal).
-* If the deleted resource used customer-managed keys with Azure Key Vault and the key vault have also been deleted, then you must restore the key vault before you restore the Azure AI services resource. For more information, see [Azure Key Vault recovery management](/azure/key-vault/general/key-vault-recovery).
-* If the deleted resource used a customer-managed storage and storage account has also been deleted, you must restore the storage account before you restore the Azure AI services resource. For instructions, see [Recover a deleted storage account](/azure/storage/common/storage-account-recover).
+* If the deleted resource used customer-managed keys with Azure Key Vault and the key vault is also deleted, then you must restore the key vault before you restore the Azure AI services resource. For more information, see [Azure Key Vault recovery management](/azure/key-vault/general/key-vault-recovery).
+* If the deleted resource used a customer-managed storage and storage account is also deleted, you must restore the storage account before you restore the Azure AI services resource. For instructions, see [Recover a deleted storage account](/azure/storage/common/storage-account-recover).
 
 To recover a deleted Azure AI services resource, use the following commands. Where applicable, replace:
 
@@ -43,12 +43,12 @@ To recover a deleted Azure AI services resource, use the following commands. Whe
 
 If you need to recover a deleted resource, navigate to the hub of the Azure AI services API type and select "Manage deleted resources" from the menu. For example, if you would like to recover an "Anomaly detector" resource, search for "Anomaly detector" in the search bar and select the service. Then select **Manage deleted resources**.
 
-Select the subscription in the dropdown list to locate the deleted resource you would like to recover. Select one or more of the deleted resources and select **Recover**. 
+To locate the deleted resource you would like to recover, select the subscription in the dropdown list. Select one or more of the deleted resources and select **Recover**.
 
 :::image type="content" source="media/managing-deleted-resource.png" alt-text="A screenshot showing deleted resources you can recover." lightbox="media/managing-deleted-resource.png":::
 
 > [!NOTE] 
-> It can take a couple of minutes for your deleted resource(s) to recover and show up in the list of the resources. Select the **Refresh** button in the menu to update the list of resources.
+> It can take a couple of minutes for your deleted resource to recover and show up in the list of the resources. Select the **Refresh** button in the menu to update the list of resources.
 
 # [Rest API](#tab/rest-api)
 
@@ -105,7 +105,7 @@ To purge a deleted Azure AI services resource, use the following commands. Where
 * `{location}` with the location of your resource
 
 > [!NOTE]
-> Once a resource is purged, it is permanently deleted and cannot be restored. You will lose all data and keys associated with the resource.
+> Once a resource is purged, it's permanently deleted and can't be restored. You lose all data and keys associated with the resource.
 
 
 # [Azure portal](#tab/azure-portal)
@@ -114,7 +114,7 @@ If you need to purge a deleted resource, the steps are similar to recovering a d
 
 1. Navigate to the hub of the Azure AI services API type of your deleted resource. For example, if you would like to purge an "Anomaly detector" resource, search for "Anomaly detector" in the search bar and select the service. Then select **Manage deleted resources** from the menu.
 
-1. Select the subscription in the dropdown list to locate the deleted resource you would like to purge.
+1. To locate the deleted resource you would like to purge, select the subscription in the dropdown list. 
 
 1. Select one or more deleted resources and select **Purge**. Purging permanently deletes an Azure AI services resource. 
 

@@ -164,7 +164,7 @@ ml_client.online_deployments.get_logs(
 <a name="see-log-output-in-azure-machine-learning-studio"></a>
 To view log output from a container in Azure Machine Learning studio:
 
-1. Select **Endpoints** in the left navigation bar.
+1. Select **Endpoints** in the left pane.
 1. Select an endpoint name to view the endpoint details page.
 1. Select the **Logs** tab in the endpoint details page.
 1. Select the deployment log you want to see from the dropdown menu.
@@ -474,7 +474,7 @@ To run the *score.py* file you provide as part of the deployment, Azure creates 
 
 - There's an error in the container environment setup, such as a missing dependency.
 
-  If you get the `TypeError: register() takes 3 positional arguments but 4 were given` error, check the dependency between flask v2 and `azureml-inference-server-http`. For more information, see [Troubleshoot HTTP server issues](how-to-inference-server-http.md#typeerror-during-server-startup).
+  If you get the `TypeError: register() takes 3 positional arguments but 4 were given` error, check the dependency between flask v2 and `azureml-inference-server-http`. For more information, see [Troubleshoot HTTP server issues](how-to-inference-server-http.md#typeerror-during-inference-server-startup).
 
 ### ERROR: ResourceNotFound
 

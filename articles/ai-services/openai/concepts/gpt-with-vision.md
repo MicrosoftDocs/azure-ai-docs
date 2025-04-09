@@ -78,14 +78,14 @@ This section describes the limitations of vision-enabled chat models.
 
 - **Maximum input image size**: The maximum size for input images is restricted to 20 MB.
 - **Low resolution accuracy**: When images are analyzed using the "low resolution" setting, it allows for faster responses and uses fewer input tokens for certain use cases. However, this could impact the accuracy of object and text recognition within the image.
-- **Image chat restriction**: When you upload images in Azure AI Foundry portal or the API, there is a limit of 10 images per chat call.
+- **Image chat restriction**: When you upload images in [Azure AI Foundry portal](https://ai.azure.com/) or the API, there is a limit of 10 images per chat call.
 
 <!--
 ### Video support
 
 - **Low resolution**: Video frames are analyzed using GPT-4 Turbo with Vision's "low resolution" setting, which may affect the accuracy of small object and text recognition in the video.
-- **Video file limits**: Both MP4 and MOV file types are supported. In Azure AI Foundry portal, videos must be less than 3 minutes long. When you use the API there is no such limitation.
-- **Prompt limits**: Video prompts only contain one video and no images. In Azure AI Foundry portal, you can clear the session to try another video or images.
+- **Video file limits**: Both MP4 and MOV file types are supported. In [Azure AI Foundry portal](https://ai.azure.com/), videos must be less than 3 minutes long. When you use the API there is no such limitation.
+- **Prompt limits**: Video prompts only contain one video and no images. In [Azure AI Foundry portal](https://ai.azure.com/), you can clear the session to try another video or images.
 - **Limited frame selection**: The service selects 20 frames from the entire video, which might not capture all the critical moments or details. Frame selection can be approximately evenly spread through the video or focused by a specific video retrieval query, depending on the prompt.
 - **Language support**: The service primarily supports English for grounding with transcripts. Transcripts don't provide accurate information on lyrics in songs.
 -->

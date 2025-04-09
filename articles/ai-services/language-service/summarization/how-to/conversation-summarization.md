@@ -2,17 +2,14 @@
 title: Summarize text with the conversation summarization API
 titleSuffix: Azure AI services
 description: This article shows you how to summarize chat logs with the conversation summarization API.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/21/2024
+ms.date: 03/05/2025
 ms.author: jboback
 ms.custom:
-  - language-service-summarization
-  - ignite-2023
-  - build-2024
+  - language-service-pii
 ---
 
 # How to use conversation summarization
@@ -21,9 +18,9 @@ ms.custom:
 
 ## Conversation summarization aspects
 
-- Chapter title and narrative (general conversation) are designed to summarize a conversation into chapter titles, and a summarization of the conversation's contents. This summarization aspect works on conversations with any number of parties. 
+- **Chapter title and narrative (general conversation)** are designed to summarize a conversation into chapter titles, and a summarization of the conversation's contents. This summarization aspect works on conversations with any number of parties. 
 
-- Issue and resolution (call center focused) is designed to summarize text chat logs between customers and customer-service agents. This feature is capable of providing both issues and resolutions present in these logs, which occur between two parties.
+- **Issues and resolutions (call center focused)** are designed to summarize text chat logs between customers and customer-service agents. This feature is capable of providing both issues and resolutions present in these logs, which occur between two parties.
 
 - **Narrative** is designed to summarize the narrative of a conversation.
 
@@ -33,7 +30,7 @@ ms.custom:
 
 :::image type="content" source="../media/conversation-summary-diagram.svg" alt-text="A diagram for sending data to the conversation summarization issues and resolution feature.":::
 
-The AI models used by the API are provided by the service, you just have to send content for analysis.
+The AI models used by the API are provided by the service. You just have to send content for analysis.
 
 For easier navigation, here are links to the corresponding sections for each service:
 
@@ -50,11 +47,11 @@ The conversation summarization API uses natural language processing techniques t
 
 There's another feature in Azure AI Language named [text summarization](../overview.md?tabs=text-summarization) that is more suitable to summarize documents into concise summaries. When you're deciding between text summarization and conversation summarization, consider the following points:
 * Input format: Conversation summarization can operate on both chat text and speech transcripts, which have speakers and their utterances. Text summarization operates using simple text, or Word, PDF, or PowerPoint formats.
-* Purpose of summarization: for example, conversation issue and resolution summarization returns a reason and the resolution for a chat between a customer and a customer service agent.
+* Purpose of summarization: for example, `conversation issue and resolution summarization` returns a reason and the resolution for a chat between a customer and a customer service agent.
 
 ## Submitting data
 
-You submit documents to the API as strings of text. Analysis is performed upon receipt of the request. Because the API is [asynchronous](../../concepts/use-asynchronously.md), there might be a delay between sending an API request and receiving the results.  For information on the size and number of requests you can send per minute and second, see the data limits below.
+You submit documents to the API as strings of text. Analysis is performed upon receipt of the request. Because the API is [asynchronous](../../concepts/use-asynchronously.md), there might be a delay between sending an API request and receiving the results. For information on the size and number of requests you can send per minute and second, see the following data limits.
 
 When you use this feature, the API results are available for 24 hours from the time the request was ingested, and is indicated in the response. After this time period, the results are purged and are no longer available for retrieval.
 
@@ -66,7 +63,7 @@ You can use conversation issue and resolution summarization to get summaries as 
 
 ### Get summaries from speech transcriptions 
 
-Conversation issue and resolution summarization also enables you to get summaries from speech transcripts by using the [Speech service's speech to text feature](../../../Speech-Service/call-center-overview.md). The following example shows a short conversation that you might include in your API requests.
+The `conversation issue and resolution summarization` also enables you to get summaries from speech transcripts by using the [Speech service's speech to text feature](../../../Speech-Service/call-center-overview.md). The following example shows a short conversation that you might include in your API requests.
 
 ```json
 "conversations":[
@@ -100,9 +97,9 @@ Conversation issue and resolution summarization also enables you to get summarie
 
 ### Get chapter titles
 
-Conversation chapter title summarization lets you get chapter titles from input conversations. A guided example scenario is provided below:
+Conversation chapter title summarization lets you get chapter titles from input conversations. A guided example scenario follows:
 
-1. Copy the command below into a text editor. The BASH example uses the `\` line continuation character. If your console or terminal uses a different line continuation character, use that character.
+1. Copy the following command into a text editor. The BASH example uses the `\` line continuation character. If your console or terminal uses a different line continuation character, use that character.
 
 ```bash
 curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-conversations/jobs?api-version=2023-11-15-preview \
@@ -117,19 +114,19 @@ curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-conve
       {
         "conversationItems": [
           {
-            "text": "Hello, you’re chatting with Rene. How may I help you?",
+            "text": "Hello, you're chatting with Rene. How may I help you?",
             "id": "1",
             "role": "Agent",
             "participantId": "Agent_1"
           },
           {
-            "text": "Hi, I tried to set up wifi connection for Smart Brew 300 espresso machine, but it didn’t work.",
+            "text": "Hi, I tried to set up wifi connection for Smart Brew 300 espresso machine, but it didn't work.",
             "id": "2",
             "role": "Customer",
             "participantId": "Customer_1"
           },
           {
-            "text": "I’m sorry to hear that. Let’s see what we can do to fix this issue. Could you please try the following steps for me? First, could you push the wifi connection button, hold for 3 seconds, then let me know if the power light is slowly blinking on and off every second?",
+            "text": "I'm sorry to hear that. Let's see what we can do to fix this issue. Could you please try the following steps for me? First, could you push the wifi connection button, hold for 3 seconds, then let me know if the power light is slowly blinking on and off every second?",
             "id": "3",
             "role": "Agent",
             "participantId": "Agent_1"
@@ -153,7 +150,7 @@ curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-conve
             "participantId": "Customer_1"
           },
           {
-            "text": "I’m very sorry to hear that. Let me see if there’s another way to fix the issue. Please hold on for a minute.",
+            "text": "I'm very sorry to hear that. Let me see if there's another way to fix the issue. Please hold on for a minute.",
             "id": "7",
             "role": "Agent",
             "participantId": "Agent_1"
@@ -286,9 +283,9 @@ For long conversation, the model might segment it into multiple cohesive parts, 
 
  ### Get narrative summarization
 
-Conversation summarization also lets you get narrative summaries from input conversations. A guided example scenario is provided below:
+Conversation summarization also lets you get narrative summaries from input conversations. A guided example scenario is provided:
 
-1. Copy the command below into a text editor. The BASH example uses the `\` line continuation character. If your console or terminal uses a different line continuation character, use that character.
+1. Copy the following command into a text editor. The BASH example uses the `\` line continuation character. If your console or terminal uses a different line continuation character, use that character.
 
 ```bash
 curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-conversations/jobs?api-version=2023-11-15-preview \
@@ -303,19 +300,19 @@ curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-conve
       {
         "conversationItems": [
           {
-            "text": "Hello, you’re chatting with Rene. How may I help you?",
+            "text": "Hello, you're chatting with Rene. How may I help you?",
             "id": "1",
             "role": "Agent",
             "participantId": "Agent_1"
           },
           {
-            "text": "Hi, I tried to set up wifi connection for Smart Brew 300 espresso machine, but it didn’t work.",
+            "text": "Hi, I tried to set up wifi connection for Smart Brew 300 espresso machine, but it didn't work.",
             "id": "2",
             "role": "Customer",
             "participantId": "Customer_1"
           },
           {
-            "text": "I’m sorry to hear that. Let’s see what we can do to fix this issue. Could you please try the following steps for me? First, could you push the wifi connection button, hold for 3 seconds, then let me know if the power light is slowly blinking on and off every second?",
+            "text": "I'm sorry to hear that. Let's see what we can do to fix this issue. Could you please try the following steps for me? First, could you push the wifi connection button, hold for 3 seconds, then let me know if the power light is slowly blinking on and off every second?",
             "id": "3",
             "role": "Agent",
             "participantId": "Agent_1"
@@ -339,7 +336,7 @@ curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-conve
             "participantId": "Customer_1"
           },
           {
-            "text": "I’m very sorry to hear that. Let me see if there’s another way to fix the issue. Please hold on for a minute.",
+            "text": "I'm very sorry to hear that. Let me see if there's another way to fix the issue. Please hold on for a minute.",
             "id": "7",
             "role": "Agent",
             "participantId": "Agent_1"
@@ -445,9 +442,9 @@ For long conversation, the model might segment it into multiple cohesive parts, 
 
  ### Get recap and follow-up task summarization
 
-Conversation summarization also lets you get recaps and follow-up tasks from input conversations. A guided example scenario is provided below:
+Conversation summarization also lets you get recaps and follow-up tasks from input conversations. A guided example scenario is provided:
 
-1. Copy the command below into a text editor. The BASH example uses the `\` line continuation character. If your console or terminal uses a different line continuation character, use that character.
+1. Copy the following command into a text editor. The BASH example uses the `\` line continuation character. If your console or terminal uses a different line continuation character, use that character.
 
 ```bash
 curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-conversations/jobs?api-version=2023-11-15-preview \
@@ -462,19 +459,19 @@ curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-conve
       {
         "conversationItems": [
           {
-            "text": "Hello, you’re chatting with Rene. How may I help you?",
+            "text": "Hello, you're chatting with Rene. How may I help you?",
             "id": "1",
             "role": "Agent",
             "participantId": "Agent_1"
           },
           {
-            "text": "Hi, I tried to set up wifi connection for Smart Brew 300 espresso machine, but it didn’t work.",
+            "text": "Hi, I tried to set up wifi connection for Smart Brew 300 espresso machine, but it didn't work.",
             "id": "2",
             "role": "Customer",
             "participantId": "Customer_1"
           },
           {
-            "text": "I’m sorry to hear that. Let’s see what we can do to fix this issue. Could you please try the following steps for me? First, could you push the wifi connection button, hold for 3 seconds, then let me know if the power light is slowly blinking on and off every second?",
+            "text": "I'm sorry to hear that. Let's see what we can do to fix this issue. Could you please try the following steps for me? First, could you push the wifi connection button, hold for 3 seconds, then let me know if the power light is slowly blinking on and off every second?",
             "id": "3",
             "role": "Agent",
             "participantId": "Agent_1"
@@ -498,7 +495,7 @@ curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-conve
             "participantId": "Customer_1"
           },
           {
-            "text": "I’m very sorry to hear that. Let me see if there’s another way to fix the issue. Please hold on for a minute.",
+            "text": "I'm very sorry to hear that. Let me see if there's another way to fix the issue. Please hold on for a minute.",
             "id": "7",
             "role": "Agent",
             "participantId": "Agent_1"
@@ -645,7 +642,7 @@ For long conversation, the model might segment it into multiple cohesive parts, 
 
 ## Getting conversation issue and resolution summarization results
 
-The following text is an example of content you might submit for conversation issue and resolution summarization. This is only an example, the API can accept longer input text. See [data limits](../../concepts/data-limits.md) for more information.
+The following text is an example of content you might submit for conversation issue and resolution summarization. It's only an example. The API can accept longer input text. For more information, *see* [data limits](../../concepts/data-limits.md).
  
 **Agent**: "*Hello, how can I help you*?"
 
@@ -653,9 +650,9 @@ The following text is an example of content you might submit for conversation is
 
 **Agent**: "*Press the upgrade button then sign in and follow the instructions.*"
 
-Summarization is performed upon receipt of the request by creating a job for the API backend. If the job succeeded, the output of the API will be returned. The output is available for retrieval for 24 hours. After this time, the output is purged. Due to multilingual and emoji support, the response might contain text offsets. See [how to process offsets](../../concepts/multilingual-emoji-support.md) for more information.
+Summarization is performed upon receipt of the request by creating a job for the API backend. If the job succeeded, the output of the API is returned. The output is available for retrieval for 24 hours. After this time, the output is purged. Due to multilingual and emoji support, the response might contain text offsets. For more information, *see* [how to process offsets](../../concepts/multilingual-emoji-support.md).
 
-In the above example, the API might return the following summarized sentences:
+In the previous example, the API might return this summarized sentences output:
 
 | Summarized text                                                           | Aspect     |
 |---------------------------------------------------------------------------|------------|

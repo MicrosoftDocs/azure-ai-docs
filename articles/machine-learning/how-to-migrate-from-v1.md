@@ -22,6 +22,8 @@ Azure Machine Learning's v2 REST APIs, Azure CLI extension, and Python SDK intro
 > [!IMPORTANT]
 > The designations "v1" and "v2" refer to the API, SDK, and CLI extension used by clients to interact with the service, and not the Azure Machine Learning service itself. There is no upgrade process for the service or your existing workspaces, only for your client code. Your Azure Machine Learning workspaces can be used with both the v1 and v2 APIs. However, new features will only be available through the v2 APIs.
 >
+> Support for the CLI v1 will end on September 30, 2025 and support for the Python SDK v1 will end on June 30, 2026.
+>
 > For more information on v2, see [what is v2](concept-v2.md?view=azureml-api-2&preserve-view=true). For a mapping of differences between v1 and v2 SDKs, with links to articles with example code, see [Mapping of Python SDK v1 to v2](#mapping-of-python-sdk-v1-to-v2).
 
 ## Prerequisites
@@ -39,15 +41,6 @@ You should use v2 if you're starting a new machine learning project or workflow.
 * Registry of assets
 
 A new v2 project can reuse existing v1 resources like workspaces and compute and existing assets like models and environments created using v1. 
-
-Some feature gaps in v2 include:
-
-- Spark support in jobs -  currently in preview in v2.
-- Publishing jobs (pipelines in v1) as endpoints. You can however, schedule pipelines without publishing.
-- Support for SQL/database datastores.
-- Ability to use classic prebuilt components in the designer with v2.
-
-You should then ensure the features you need in v2 meet your organization's requirements, such as being generally available. 
 
 > [!IMPORTANT]
 > New features in Azure Machine Learning will only be launched in v2.

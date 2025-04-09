@@ -2,7 +2,6 @@
 title: Azure OpenAI Service dynamic quota
 titleSuffix: Azure AI services
 description: Learn how to use Azure OpenAI dynamic quota
-#services: cognitive-services
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-openai

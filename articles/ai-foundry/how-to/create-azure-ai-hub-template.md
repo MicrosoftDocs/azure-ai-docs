@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: devx-track-arm-template, devx-track-bicep, build-2024
 ms.topic: how-to
-ms.date: 02/11/2025
+ms.date: 03/20/2025
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist
@@ -19,7 +19,7 @@ author: Blackmist
 
 Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) template to create a hub for [Azure AI Foundry](https://ai.azure.com). A template makes it easy to create resources as a single, coordinated operation. A Bicep template is a text document that defines the resources that are needed for a deployment. It might also specify deployment parameters. Parameters are used to provide input values when using the template.
 
-The template used in this article can be found at [https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-basics](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-basics). Both the source `main.bicep` file and the compiled Azure Resource Manager template (`main.json`) file are available. This template creates the following resources:
+The template used in this article can be found at [https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aifoundry-basics](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aifoundry-basics). Both the source `main.bicep` file and the compiled Azure Resource Manager template (`main.json`) file are available. This template creates the following resources:
 
 - An Azure resource group (if one doesn't already exist)
 - An Azure AI Foundry hub
@@ -33,20 +33,20 @@ The template used in this article can be found at [https://github.com/Azure/azur
 
 - An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
 
-- A copy of the template files from the GitHub repo. To clone the GitHub repo to your local machine, you can use [Git](https://git-scm.com/). Use the following command to clone the quickstart repository to your local machine and navigate to the `aistudio-basics` directory.
+- A copy of the template files from the GitHub repo. To clone the GitHub repo to your local machine, you can use [Git](https://git-scm.com/). Use the following command to clone the quickstart repository to your local machine and navigate to the `aifoundry-basics` directory.
 
     # [Azure CLI](#tab/cli)
 
     ```azurecli
     git clone https://github.com/Azure/azure-quickstart-templates
-    cd azure-quickstart-templates/quickstarts/microsoft.machinelearningservices/aistudio-basics
+    cd azure-quickstart-templates/quickstarts/microsoft.machinelearningservices/aifoundry-basics
     ```
 
     # [Azure PowerShell](#tab/powershell)
 
     ```azurepowershell
     git clone https://github.com/Azure/azure-quickstart-templates
-    cd azure-quickstart-templates\quickstarts\microsoft.machinelearningservices\aistudio-basics
+    cd azure-quickstart-templates\quickstarts\microsoft.machinelearningservices\aifoundry-basics
     ```
 
     ---
@@ -59,9 +59,9 @@ The Bicep template is made up of the following files:
 
 | File | Description |
 | ---- | ----------- |
-| [main.bicep](https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.machinelearningservices/aistudio-basics/main.bicep) | The main Bicep file that defines the parameters and variables. Passing parameters & variables to other modules in the `modules` subdirectory. |
-| [ai-hub.bicep](https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.machinelearningservices/aistudio-basics/modules/ai-hub.bicep)  | Defines the hub. |
-| [dependent-resources.bicep](https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.machinelearningservices/aistudio-basics/modules/dependent-resources.bicep) | Defines the dependent resources for the hub such as Azure Storage Account, Container Registry, Key Vault, and Application Insights. |
+| [main.bicep](https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.machinelearningservices/aifoundry-basics/main.bicep) | The main Bicep file that defines the parameters and variables. Passing parameters & variables to other modules in the `modules` subdirectory. |
+| [ai-hub.bicep](https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.machinelearningservices/aifoundry-basics/modules/ai-hub.bicep)  | Defines the hub. |
+| [dependent-resources.bicep](https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.machinelearningservices/aifoundry-basics/modules/dependent-resources.bicep) | Defines the dependent resources for the hub such as Azure Storage Account, Container Registry, Key Vault, and Application Insights. |
 
 > [!IMPORTANT]
 > The example templates might not always use the latest API version for the Azure resources it creates. Before using the template, we recommend modifying it to use the latest API versions. Each Azure service has its own set of API versions. For information on the API for a specific service, check the service information in the [Azure REST API reference](/rest/api/azure/).
@@ -85,7 +85,7 @@ For more information, see the [Bicep CLI](/azure/azure-resource-manager/bicep/bi
 
 ## Configure the template
 
-To run the Bicep template, use the following commands from the `aistudio-basics` directory:
+To run the Bicep template, use the following commands from the `aifoundry-basics` directory:
 
 1. To create a new Azure Resource Group, use the following command. Replace `exampleRG` with the name of your resource group, and `eastus` with the Azure region to use:
 
@@ -126,5 +126,5 @@ To run the Bicep template, use the following commands from the `aistudio-basics`
 ## Next steps
 
 - [Create an Azure AI Foundry project](create-projects.md)
-- [Learn more about Azure AI Foundry](../what-is-ai-foundry.md)
+- [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
 - [Learn more about hubs](../concepts/ai-resources.md)

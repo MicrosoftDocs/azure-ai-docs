@@ -52,8 +52,9 @@ Like [fine-tuning](../../how-to/fine-tuning.md), global batch uses files in JSON
 ### Input with image url
 
 ```json
-{"custom_id": "request-1", "method": "POST", "url": "/chat/completions", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "messages": [{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": [{"type": "text", "text": "What’s in this image?"},{"type": "image_url","image_url": {"url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-docs/main/articles/ai-services/openai/media/how-to/generated-seattle.png"}}]}],"max_tokens": 1000}}
+{"custom_id": "request-1", "method": "POST", "url": "/chat/completions", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "messages": [{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": [{"type": "text", "text": "What’s in this image?"},{"type": "image_url","image_url": {"url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-docs/main/articles/ai-services/openai/media/how-to/generated-seattle.png", "detail": "high"}}]}],"max_tokens": 1000}}
 ```
+The `detail` parameter tells the model what level of detail to use when processing and understanding the image (`low`, `high`, or `auto` to let the model decide). If you skip the parameter, the model will use `auto`.
 
 # [Structured outputs](#tab/structured-outputs)
 
@@ -94,7 +95,7 @@ token_provider = get_bearer_token_provider(
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   azure_ad_token_provider=token_provider,
-  api_version="2024-10-21"
+  api_version="2025-03-01-preview"
 )
 
 # Upload a file with a purpose of "batch"
@@ -117,7 +118,7 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-10-21",
+    api_version="2025-03-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -167,7 +168,7 @@ print(batch_response.model_dump_json(indent=2))
 ```
 
 > [!NOTE]
-> Currently the completion window must be set to 24h. If you set any other value than 24h your job will fail. Jobs taking longer than 24 hours will continue to execute until cancelled.
+> Currently the completion window must be set to 24h. If you set any other value than 24h your job will fail. Jobs taking longer than 24 hours will continue to execute until canceled.
 
 **Output:**
 
@@ -440,7 +441,7 @@ token_credential = DefaultAzureCredential()
 token = token_credential.get_token('https://cognitiveservices.azure.com/.default')
 
 endpoint = "https://{YOUR_RESOURCE_NAME}.openai.azure.com/"
-api_version = "2024-10-01-preview"
+api_version = "2025-03-01-preview"
 url = f"{endpoint}openai/batches"
 order = "created_at asc"
 time_filter =  lambda: generate_time_filter("past 8 hours")
@@ -501,7 +502,7 @@ from datetime import datetime, timedelta
 
 api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
 endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-api_version = "2024-10-01-preview"
+api_version = "2025-03-01-preview"
 url = f"{endpoint}openai/batches"
 order = "created_at asc"
 

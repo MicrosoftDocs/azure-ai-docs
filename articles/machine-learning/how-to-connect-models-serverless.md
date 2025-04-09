@@ -145,7 +145,7 @@ Follow these steps to create a connection:
 
     1. Go to the workspace where the connection needs to be created to.
 
-    1. Go to the **Manage** section in the left navigation bar and select **Connections**.
+    1. Go to the **Manage** section in the left pane and select **Connections**.
 
     1. Select **Create**.
 
@@ -190,7 +190,7 @@ Follow these steps to create a connection:
 
 1. To validate that the connection is working:
 
-    1. From the left navigation bar of Azure Machine Learning studio, go to **Authoring** > **Prompt flow**.
+    1. From the left pane of Azure Machine Learning studio, go to **Authoring** > **Prompt flow**.
 
     1. Select **Create** to create a new flow.
 

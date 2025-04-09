@@ -7,7 +7,7 @@ manager: nitinme
 
 ms.service: azure-ai-document-intelligence
 ms.topic: tutorial
-ms.date: 11/19/2024
+ms.date: 03/19/2025
 ms.author: lajanuar
 ms.custom: VS Code-azure-extension-update-completed, devx-track-python
 ---

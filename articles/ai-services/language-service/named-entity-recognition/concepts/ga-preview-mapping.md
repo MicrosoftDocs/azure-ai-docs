@@ -2,7 +2,6 @@
 title: Version-based API mapping for entity types and tags
 titleSuffix: Azure AI services
 description: Learn about the differences between NER API versions.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language

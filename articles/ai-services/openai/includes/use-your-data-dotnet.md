@@ -1,16 +1,13 @@
 ---
-#services: cognitive-services
 manager: nitinme
 author: travisw
 ms.author: travisw
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 01/09/2025
+ms.date: 3/11/2025
 ---
 
 [!INCLUDE [Set up required variables](./use-your-data-common-variables.md)]
-
-[!INCLUDE [Create a new .NET application](./dotnet-new-application.md)]
 
 From the project directory, open the *Program.cs* file and replace its contents with the following code:
 
@@ -29,10 +26,10 @@ string searchEndpoint = GetEnvironmentVariable("AZURE_AI_SEARCH_ENDPOINT");
 string searchKey = GetEnvironmentVariable("AZURE_AI_SEARCH_API_KEY");
 string searchIndex = GetEnvironmentVariable("AZURE_AI_SEARCH_INDEX");
 
-AzureOpenAIClient azureClient = new(
+AzureOpenAIClient openAIClient = new(
 			new Uri(azureOpenAIEndpoint),
 			new ApiKeyCredential(azureOpenAIKey));
-ChatClient chatClient = azureClient.GetChatClient(deploymentName);
+ChatClient chatClient = openAIClient.GetChatClient(deploymentName);
 
 // Extension methods to use data sources with options are subject to SDK surface changes. Suppress the
 // warning to acknowledge and this and use the subject-to-change AddDataSource method.
@@ -68,7 +65,7 @@ foreach (ChatCitation citation in onYourDataContext?.Citations ?? [])
 > For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
 
 ```cmd
-dotnet run program.cs
+dotnet run Program.cs
 ```
 
 ## Output

@@ -384,16 +384,9 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
     # [Python SDK](#tab/python)
 
     ```python
-    endpoint_name="meta-llama3-8b-qwerty"
-    
-    serverless_endpoint = ServerlessEndpoint(
-        name=endpoint_name,
-        model_id=model_id
-    )
-
-    created_endpoint = client.serverless_endpoints.begin_create_or_update(
-        serverless_endpoint
-    ).result()
+    endpoints = ml_client.online_endpoints.list()
+    for endpoint in endpoints:
+        print(endpoint.name)
     ```
 
     # [ARM](#tab/arm)
