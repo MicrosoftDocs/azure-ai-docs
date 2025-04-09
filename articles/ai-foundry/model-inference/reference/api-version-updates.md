@@ -41,4 +41,4 @@ The following API version has been deprecated and marked for retirement:
 
 | API Version        | Status     | Replace with API     | Deprecation date | Retirement date | 
 |--------------------|------------|----------------------|------------------|-----------------|
-| 2024-05-01-preview | Deprecated | [2025-04-01](/rest/api/aifoundry/model-inference/operation-groups?view=rest-aifoundry-model-inference-2024-04-01)       | 04/10/2025       | 04/10/2026      | 
+| 2024-05-01-preview | Deprecated | [2025-04-01](/rest/api/aifoundry/model-inference/operation-groups?view=rest-aifoundry-model-inference-2024-04-01&preserve-view=true)       | 04/10/2025       | 04/10/2026      | 
