@@ -42,6 +42,7 @@ Use this article to find step-by-step instructions and code samples for Groundin
 
    :::image type="content" source="../../media/tools/bing/create-bing-connection.png" alt-text="A screenshot showing available Grounding with Bing Search connections." lightbox="../../media/tools/bing/create-bing-connection.png":::
 
+::: zone-end
  
 ::: zone pivot="csharp"
 ## Step 1: Create a project client
