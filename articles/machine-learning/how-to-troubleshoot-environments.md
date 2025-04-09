@@ -737,6 +737,7 @@ The following base images are deprecated:
 * `azureml/openmpi3.1.2-ubuntu18.04`
 * `azureml/openmpi4.1.0-cuda11.0.3-cudnn8-ubuntu18.04`
 * `azureml/openmpi4.1.0-cuda11.1-cudnn8-ubuntu18.04`
+* `azureml/openmpi4.1.0-ubuntu20.04`
 
 **Affected areas (symptoms):**
 * Failure in registering your environment
