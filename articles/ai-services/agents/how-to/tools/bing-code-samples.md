@@ -13,11 +13,36 @@ zone_pivot_groups: selection-bing-grounding-code
 ms.custom: azure-ai-agents-code
 ---
 
-# Grounding with Bing Search code samples
+# How to use Grounding with Bing Search
 
-Use this article to find code samples for Grounding with Bing search.
+Use this article to find step-by-step instructions and code samples for Grounding with Bing search.
 
+## Prerequisites
 
+* A [connected Grounding with Bing Search resource](./bing-grounding.md#setup).
+
+> [!IMPORTANT]
+> There are requirements for displaying Grounding with Bing Saerch results. See the [overview article](./bing-grounding.md#how-to-display-grounding-with-bing-search-results) for details. 
+
+::: zone pivot="portal"
+
+1. In the [Azure AI Foundry portal](https://ai.azure.com/) navigate to the **Create and debug** screen for your agent, scroll down the **Setup** pane on the right to **knowledge**. Then select **Add**.
+
+    :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
+
+1. Select **Grounding with Bing Search** and follow the prompts to add the tool. Note you can add only one per agent.
+
+    :::image type="content" source="../../media/tools/knowledge-tools-list.png" alt-text="A screenshot showing the available knowledge tools in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools-list.png":::
+
+1. Click to add new connections. Once you have added a connection, you can directly select from existing list.
+   
+   :::image type="content" source="../../media/tools/bing/choose-bing-connection.png" alt-text="A screenshot showing the button for creating a new connection." lightbox="../../media/tools/bing/choose-bing-connection.png":::
+
+1. Select the Grounding with Bing Search resource you want to use and click to add connection. 
+
+   :::image type="content" source="../../media/tools/bing/create-bing-connection.png" alt-text="A screenshot showing available Grounding with Bing Search connections." lightbox="../../media/tools/bing/create-bing-connection.png":::
+
+ 
 ::: zone pivot="csharp"
 ## Step 1: Create a project client
 
