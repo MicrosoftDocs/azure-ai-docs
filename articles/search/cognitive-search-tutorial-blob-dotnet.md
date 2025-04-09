@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Skillsets using C#'
+title: 'Tutorial: Skillsets Using C#'
 titleSuffix: Azure AI Search
 description: Use C# and the Azure SDK for .NET to create skillsets. This skillset applies AI transformations and analyses to create searchable content from images and unstructured text.
 
@@ -9,7 +9,7 @@ manager: nitinme
 
 ms.service: azure-ai-search
 ms.topic: tutorial
-ms.date: 01/17/2025
+ms.date: 03/31/2025
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
@@ -18,19 +18,17 @@ ms.custom:
 
 # C# Tutorial: Use skillsets to generate searchable content in Azure AI Search
 
-In this tutorial, learn how to use the [Azure SDK for .NET](https://www.nuget.org/packages/Azure.Search.Documents/) to create an [AI enrichment pipeline](cognitive-search-concept-intro.md) for content extraction and transformations during indexing.
+Learn how to use the [Azure SDK for .NET](https://www.nuget.org/packages/Azure.Search.Documents/) to create an [AI enrichment pipeline](cognitive-search-concept-intro.md) for content extraction and transformations during indexing.
 
-Skillsets add AI processing to raw content, making that content more uniform and searchable. Once you know how skillsets work, you can support a broad range of transformations: from image analysis, to natural language processing, to customized processing that you provide externally.
+Skillsets add AI processing to raw content, making it more uniform and searchable. Once you know how skillsets work, you can support a broad range of transformations, from image analysis to natural language processing to customized processing that you provide externally.
 
-This tutorial helps you learn how to:
+In this tutorial, you:
 
 > [!div class="checklist"]
 > + Define objects in an enrichment pipeline.
 > + Build a skillset. Invoke OCR, language detection, entity recognition, and key phrase extraction.
 > + Execute the pipeline. Create and load a search index.
-> + Check the results using full text search.
-
-If you don't have an Azure subscription, open a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+> + Check the results using full-text search.
 
 ## Overview
 
@@ -42,16 +40,18 @@ Once content is extracted, the [skillset](cognitive-search-working-with-skillset
 
 ## Prerequisites
 
-+ [Visual Studio](https://visualstudio.microsoft.com/downloads/)
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-+ [Azure.Search.Documents 11.x NuGet package](https://www.nuget.org/packages/Azure.Search.Documents) 
++ [Azure Storage](/azure/storage/common/storage-account-create).
 
-+ [Azure Storage](/azure/storage/common/storage-account-create)
++ [Azure AI Search](search-create-app-portal.md).
 
-+ [Azure AI Search](search-create-app-portal.md)
++ [Azure.Search.Documents 11.x NuGet package](https://www.nuget.org/packages/Azure.Search.Documents).
+
++ [Visual Studio](https://visualstudio.microsoft.com/downloads/).
 
 > [!NOTE]
-> You can use a free search service for this tutorial. The free tier limits you to three indexes, three indexers, and three data sources. This tutorial creates one of each. Before starting, make sure you have room on your service to accept the new resources.
+> You can use a free search service for this tutorial. The Free tier limits you to three indexes, three indexers, and three data sources. This tutorial creates one of each. Before you start, make sure you have room on your service to accept the new resources.
 
 ### Download files
 
