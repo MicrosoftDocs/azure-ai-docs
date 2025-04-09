@@ -646,7 +646,7 @@ For registration, you can extract the YAML definitions of `model` and `environme
     az ml environment create -n my-env -v 1 -f endpoints/online/managed/sample/environment.yml
     ```
 
-For more information on registering your model as an asset, see [Register a model by using the Azure CLI or Python SDK](how-to-manage-models.md#register-a-model-by-using-the-azure-cli-or-python-sdk). For more information on creating an environment, see [Create a custom environment](how-to-manage-environments-v2.md#create-a-custom-environment).
+For more information on registering your model as an asset, see [Register a model by using the Azure CLI or Python SDK](how-to-manage-models.md#register-your-model-as-an-asset-in-machine-learning-by-using-the-cli). For more information on creating an environment, see [Create a custom environment](how-to-manage-environments-v2.md#create-a-custom-environment).
 
 # [Python SDK](#tab/python)
 
@@ -679,7 +679,7 @@ For more information on registering your model as an asset, see [Register a mode
     ml_client.environments.create_or_update(env_docker_conda)
     ```
 
-To learn how to register your model as an asset so that you can specify its registered name and version during deployment, see [Register a model by using the Azure CLI or Python SDK](how-to-manage-models.mdregister-a-model-by-using-the-azure-cli-or-python-sdk).
+To learn how to register your model as an asset so that you can specify its registered name and version during deployment, see [Register a model by using the Azure CLI or Python SDK](how-to-manage-models.md#register-your-model-as-an-asset-in-machine-learning-by-using-the-cli).
 
 For more information on creating an environment, see [Create a custom environment](how-to-manage-environments-v2.md#create-a-custom-environment).
 
@@ -1244,7 +1244,7 @@ If you aren't going use the endpoint and deployment, you should delete them. By 
 1. Select an endpoint by checking the circle next to the model name.
 1. Select **Delete**.
 
-Alternatively, you can delete a managed online endpoint directly by selecting the **Delete** icon in the [endpoint details page](#view-managed-online-endpoints).
+Alternatively, you can delete a managed online endpoint directly by selecting the **Delete** icon in the [endpoint details page](#check-the-status-of-the-endpoint).
 
 # [ARM template](#tab/arm)
 
