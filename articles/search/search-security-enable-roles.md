@@ -44,7 +44,7 @@ The default failure mode for unauthorized requests is `http401WithBearerChalleng
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and navigate to your search service.
 
-1. Select **Settings** and then select **Keys** in the left navigation pane.
+1. Select **Settings** and then select **Keys** in the left pane.
 
    :::image type="content" source="media/search-security-rbac/search-security-enable-roles.png" lightbox="media/search-security-rbac/search-security-enable-roles.png" alt-text="Screenshot of the keys page with authentication options." border="true":::
 
@@ -149,7 +149,7 @@ To disable role-based access control in the Azure portal:
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and open the search service page.
 
-1. Select **Settings** and then select **Keys** in the left navigation pane.
+1. Select **Settings** and then select **Keys** in the left pane.
 
 1. Select **API Keys**.
 

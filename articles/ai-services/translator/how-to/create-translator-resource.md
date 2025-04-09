@@ -71,7 +71,7 @@ All Azure AI services API requests require an endpoint URL and a read-only key f
 To authenticate your connection to your Translator resource, you need the key and endpoint for your resource.
 
 1. After your new resource deploys, select **Go to resource** or go to your resource page.
-1. In the left navigation pane, under **Resource Management**, select **Keys and Endpoint**.
+1. In the left pane, under **Resource Management**, select **Keys and Endpoint**.
 1. Copy and paste your keys and endpoint URL in a convenient location, such as Notepad.
 
 :::image type="content" source="../media/keys-and-endpoint-resource.png" alt-text="Screenshot of the Azure portal showing the Keys and Endpoint page of a Translator resource. The keys and endpoints are highlighted.":::

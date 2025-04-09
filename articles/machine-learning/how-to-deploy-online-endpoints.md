@@ -692,7 +692,7 @@ A model registration is a logical entity in the workspace that can contain a sin
 To register the example model, follow these steps:
 
 1. Go to the [Azure Machine Learning studio](https://ml.azure.com).
-1. In the left navigation bar, select the **Models** page.
+1. In the left pane, select the **Models** page.
 1. Select **Register**, and then choose **From local files**.
 1. Select __Unspecified type__ for the __Model type__.
 1. Select __Browse__, and choose __Browse folder__.
@@ -708,14 +708,14 @@ For more information on working with registered models, see [Work with registere
 
 ### Create and register the environment
 
-1. In the left navigation bar, select the **Environments** page.
+1. In the side navigation bar, select the **Environments** page.
 1. Select the **Custom environments** tab, then choose **Create**.
-1. On the **Settings** page, provide a name, such as `my-env` for the environment.
+1. On the **Settings** page, provide a name, such as *my-env* for the environment.
 1. For **Select environment source**, choose **Use existing docker image with optional conda source**.
 
     :::image type="content" source="media/how-to-deploy-online-endpoints/create-environment.png" alt-text="A screenshot showing how to create a custom environment." lightbox="media/how-to-deploy-online-endpoints/create-environment.png":::
 
-1. Select **Next** to go to the "Customize" page.
+1. Select **Next** to go to the **Customize** page.
 1. Copy the contents of the *\azureml-examples\cli\endpoints\online\model-1\environment\conda.yaml* file from the repo you cloned or downloaded earlier.
 1. Paste the contents into the text box.
 
@@ -916,7 +916,7 @@ One way to create a managed online endpoint in the studio is from the **Models**
 Alternatively, you can create a managed online endpoint from the **Endpoints** page in the studio.
 
 1. Go to the [Azure Machine Learning studio](https://ml.azure.com).
-1. In the left navigation bar, select the **Endpoints** page.
+1. In the left pane, select the **Endpoints** page.
 1. Select **+ Create**.
 
     :::image type="content" source="media/how-to-deploy-online-endpoints/endpoint-create-managed-online-endpoint.png" lightbox="media/how-to-deploy-online-endpoints/endpoint-create-managed-online-endpoint.png" alt-text="A screenshot for creating managed online endpoint from the Endpoints tab.":::
@@ -1240,7 +1240,7 @@ ml_client.online_endpoints.begin_delete(name=endpoint_name)
 If you aren't going use the endpoint and deployment, you should delete them. By deleting the endpoint, you also delete all its underlying deployments.
 
 1. Go to the [Azure Machine Learning studio](https://ml.azure.com).
-1. In the left navigation bar, select the **Endpoints** page.
+1. In the left pane, select the **Endpoints** page.
 1. Select an endpoint by checking the circle next to the model name.
 1. Select **Delete**.
 

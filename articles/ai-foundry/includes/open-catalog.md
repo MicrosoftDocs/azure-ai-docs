@@ -11,4 +11,4 @@ ms.custom: include, ignite-2024
 ---
 1. Sign in to [Azure AI Foundry](https://ai.azure.com).
 1. If you’re not already in your project, select it. 
-1. Select **Model catalog** from the left navigation pane.
+1. Select **Model catalog** from the left pane.

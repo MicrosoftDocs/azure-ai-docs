@@ -397,7 +397,7 @@ Provisioned Managed fine-tuned deployments currently support structured outputs 
 
 To create a new deployment, make an HTTP PUT call via the [Deployments - Create or Update REST API](/rest/api/aiservices/accountmanagement/deployments/create-or-update?view=rest-aiservices-accountmanagement-2024-10-01&tabs=HTTP&preserve-view=true). The approach is similar to performing [cross region deployment](#cross-region-deployment) with the following exceptions:
 
-- You must provide a `sku` name of `ProvisionedStandard`.
+- You must provide a `sku` name of `ProvisionedManaged`.
 - The capacity must be declared in PTUs.
 - The `api-version` must be `2024-10-01` or newer.
 - The HTTP method should be `PUT`.
@@ -409,7 +409,7 @@ curl -X PUT "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceG
   -H "Authorization: Bearer <TOKEN>" \
   -H "Content-Type: application/json" \
   -d '{
-    "sku": {"name": "ProvisionedStandard", "capacity": 25},
+    "sku": {"name": "ProvisionedManaged", "capacity": 25},
     "properties": {
         "model": {
             "format": "OpenAI",
@@ -432,7 +432,7 @@ curl -X PUT "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceG
   -H "Authorization: Bearer <TOKEN>" \
   -H "Content-Type: application/json" \
   -d '{
-    "sku": {"name": "ProvisionedStandard", "capacity": 40},
+    "sku": {"name": "ProvisionedManaged", "capacity": 40},
     "properties": {
         "model": {
             "format": "OpenAI",

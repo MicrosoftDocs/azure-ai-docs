@@ -414,7 +414,7 @@ items:
   - name: Build apps with prompt flow
     items:
     - name: Prompt flow overview
-      href: how-to/prompt-flow.md
+      href: concepts/prompt-flow.md
     - name: Develop flows
       items:
       - name: Create and manage compute session

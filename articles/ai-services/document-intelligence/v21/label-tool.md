@@ -118,7 +118,7 @@ Enable CORS on your storage account. Select your storage account in the Azure po
 
 Connections can be set up and shared across projects. They use an extensible provider model, so you can easily add new source/target providers.
 
-To create a new connection, select the **New Connections** (plug) icon, in the left navigation bar.
+To create a new connection, select the **New Connections** (plug) icon, in the left pane.
 
 Fill in the fields with the following values:
 
@@ -135,7 +135,7 @@ Fill in the fields with the following values:
 In the Sample Labeling tool, projects store your configurations and settings. Create a new project and fill in the fields with the following values:
 
 * **Display Name** - the project display name
-* **Security Token** - Some project settings can include sensitive values, such as keys or other shared secrets. Each project generates a security token that can be used to encrypt/decrypt sensitive project settings. You can find security tokens in the Application Settings by selecting the gear icon at the bottom of the left navigation bar.
+* **Security Token** - Some project settings can include sensitive values, such as keys or other shared secrets. Each project generates a security token that can be used to encrypt/decrypt sensitive project settings. You can find security tokens in the Application Settings by selecting the gear icon at the bottom of the left pane.
 * **Source Connection** - The Azure Blob Storage connection you created in the previous step that you would like to use for this project.
 * **Folder Path** - Optional - If your source forms are located in a folder on the blob container, specify the folder name here
 * **Document Intelligence Service Uri** - Your Document Intelligence endpoint URL.
