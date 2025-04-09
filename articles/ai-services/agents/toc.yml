@@ -30,11 +30,10 @@ items:
           items:
           - name: Grounding with Bing Search
             items:
-            - name: Grounding with Bing Search overview
+            - name: Overview
               href: how-to/tools/bing-grounding.md
-            - name: Grounding with Bing Search code samples
+            - name: How to use Grounding with Bing Search
               href: how-to/tools/bing-code-samples.md
-            href: how-to/tools/bing-grounding.md
           - name: File search
             href: how-to/tools/file-search.md
           - name: Azure AI Search
