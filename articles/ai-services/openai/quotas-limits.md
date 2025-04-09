@@ -276,7 +276,10 @@ For other rate limits, [submit a service request](../cognitive-services-support-
 
 You can view quota availability by region for your subscription in the [Azure AI Foundry portal](https://ai.azure.com/resource/quota).
 
-Alternatively to view quota capacity by region you can query the [capacity API](/rest/api/aiservices/accountmanagement/model-capacities/list) for your subscription. Provide a `subscriptionId`, `model_name`, and `model_version` and the API will return the available capacity for that model across all regions, and deployment types for your subscription.
+Alternatively to view quota capacity by region for a specific model/version you can query the [capacity API](/rest/api/aiservices/accountmanagement/model-capacities/list) for your subscription. Provide a `subscriptionId`, `model_name`, and `model_version` and the API will return the available capacity for that model across all regions, and deployment types for your subscription.
+
+> [!NOTE]
+> Currently both the Azure AI Foundry portal and the capacity API will return quota/capacity information for models that are [retired](./concepts/model-retirements.md) and no longer available.
 
 [API Reference](/rest/api/aiservices/accountmanagement/model-capacities/list)
 
@@ -302,8 +305,9 @@ params = {
 }
 
 response = requests.get(url, params=params, headers=headers)
+model_capacity = response.json()
 
-print(json.dumps(model_capacities, indent=2))
+print(json.dumps(model_capacity, indent=2))
 
 ```
 
