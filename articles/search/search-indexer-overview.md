@@ -83,7 +83,7 @@ For each document it receives, an indexer implements or coordinates multiple ste
 
 Document cracking is the process of opening files and extracting content. Text-based content can be extracted from files on a service, rows in a table, or items in container or collection. 
 
-You can also enable image extraction during document cracking for an [extra fee](https://azure.microsoft.com/en-us/pricing/details/search/). This is disabled by default and can be enabled via the `imageAction` property in the [indexer parameters configuration](/rest/api/searchservice/indexers/create-or-update).
+You can also enable image extraction during document cracking for an [extra fee](https://azure.microsoft.com/pricing/details/search/). This is disabled by default and can be enabled via the `imageAction` property in the [indexer parameters configuration](/rest/api/searchservice/indexers/create-or-update). Review some [image scenarios](cognitive-search-concept-image-scenarios.md) for indexer image handling.
 
 Depending on the data source, the indexer will try different operations to extract potentially indexable content:
 
