@@ -9,7 +9,7 @@ ms.custom: references_regions
 
 ### March 2025 release
 
-#### General availablility of some HD voices
+#### General availability of some HD voices
 
 The following HD voices are now generally available:
 
@@ -101,7 +101,7 @@ Added 14 more HD voices
 | `ja-JP`   | `ja-JP-Nanami:DragonHDLatestNeural` (Female) |
 | `zh-CN`   | `zh-CN-Yunfan:DragonHDLatestNeural` (Male) |
 
-#### Introducting new Multilingual voices (Preview)
+#### Introducing new Multilingual voices (Preview)
 
 Added 4 more multilingual voices in `en-US` with emotions support.
 
