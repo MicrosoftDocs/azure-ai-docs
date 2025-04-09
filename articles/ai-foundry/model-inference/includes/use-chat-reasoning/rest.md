@@ -197,7 +197,7 @@ The output looks as follows:
             "delta": {
                 "role": "assistant",
                 "content": "",
-                "reasoning_content": "",
+                "reasoning_content": "Okay, the",
             },
             "finish_reason": null,
             "logprobs": null
@@ -219,7 +219,7 @@ The output looks as follows:
             "index": 0,
             "delta": {
                 "role": "assistant",
-                "content": ""
+                "content": "<think>"
             },
             "finish_reason": null,
             "logprobs": null
