@@ -1036,11 +1036,11 @@ Check the logs to see whether the model was deployed without error.
 
 # [Azure CLI](#tab/cli)
 
-1. To see log output from a container, use the following CLI command:
+To see log output from a container, use the following CLI command:
 
-    :::code language="azurecli" source="~/azureml-examples-main/cli/deploy-managed-online-endpoint.sh" ID="get_logs" :::
+:::code language="azurecli" source="~/azureml-examples-main/cli/deploy-managed-online-endpoint.sh" ID="get_logs" :::
 
-    By default, logs are pulled from the inference server container. To see logs from the storage initializer container, add the `--container storage-initializer` flag. For more information on deployment logs, see [Get container logs](how-to-troubleshoot-online-endpoints.md#get-container-logs).
+By default, logs are pulled from the inference server container. To see logs from the storage initializer container, add the `--container storage-initializer` flag. For more information on deployment logs, see [Get container logs](how-to-troubleshoot-online-endpoints.md#get-container-logs).
 
 # [Python SDK](#tab/python)
 
@@ -1073,11 +1073,11 @@ By default, logs are pulled from the inference server. To see logs from the stor
 > [!TIP]
 > While templates are useful for deploying resources, they can't be used to list, show, or invoke resources. Use the Azure CLI, Python SDK, or the studio to perform these operations. The following code uses the Azure CLI.
 
-1. To see log output from a container, use the following CLI command:
+To see log output from a container, use the following CLI command:
 
-    :::code language="azurecli" source="~/azureml-examples-main/cli/deploy-managed-online-endpoint.sh" ID="get_logs" :::
+:::code language="azurecli" source="~/azureml-examples-main/cli/deploy-managed-online-endpoint.sh" ID="get_logs" :::
 
-    By default, logs are pulled from the inference server container. To see logs from the storage initializer container, add the `--container storage-initializer` flag. For more information on deployment logs, see [Get container logs](how-to-troubleshoot-online-endpoints.md#get-container-logs).
+By default, logs are pulled from the inference server container. To see logs from the storage initializer container, add the `--container storage-initializer` flag. For more information on deployment logs, see [Get container logs](how-to-troubleshoot-online-endpoints.md#get-container-logs).
 
 ---
 
@@ -1112,16 +1112,16 @@ Using the `MLClient` created earlier, get a handle to the endpoint. The endpoint
 - `request_file` - File with request data
 - `deployment_name` - Name of the specific deployment to test in an endpoint
 
-1. Send a sample request using a [json](https://github.com/Azure/azureml-examples/blob/main/sdk/python/endpoints/online/model-1/sample-request.json) file.
+Send a sample request using a [json](https://github.com/Azure/azureml-examples/blob/main/sdk/python/endpoints/online/model-1/sample-request.json) file.
 
-    ```python
-    # test the blue deployment with some sample data
-    ml_client.online_endpoints.invoke(
-        endpoint_name=endpoint_name,
-        deployment_name="blue",
-        request_file="../model-1/sample-request.json",
-    )
-    ```
+```python
+# test the blue deployment with some sample data
+ml_client.online_endpoints.invoke(
+    endpoint_name=endpoint_name,
+    deployment_name="blue",
+    request_file="../model-1/sample-request.json",
+)
+```
 
 # [Studio](#tab/azure-studio)
 
@@ -1142,11 +1142,11 @@ Use the **Test** tab in the endpoint's details page to test your managed online 
 > [!TIP]
 > While templates are useful for deploying resources, they can't be used to list, show, or invoke resources. Use the Azure CLI, Python SDK, or the studio to perform these operations. The following code uses the Azure CLI.
 
-1. Use either the `invoke` command or a REST client of your choice to invoke the endpoint and score some data:
+Use either the `invoke` command or a REST client of your choice to invoke the endpoint and score some data:
 
-    ```azurecli
-    az ml online-endpoint invoke --name $ENDPOINT_NAME --request-file cli/endpoints/online/model-1/sample-request.json
-    ```
+```azurecli
+az ml online-endpoint invoke --name $ENDPOINT_NAME --request-file cli/endpoints/online/model-1/sample-request.json
+```
 
 ---
 
@@ -1285,7 +1285,7 @@ If you aren't going use the endpoint and deployment, you should delete them. By 
 
 1. Select **Delete**.
 
-Alternatively, you can delete a managed online endpoint directly by selecting the **Delete** icon in the [endpoint details page](#check-the-status-of-the-endpoint).
+Alternatively, you can delete a managed online endpoint directly by selecting the **Delete** icon in the [endpoint details page](#check-the-status-of-the-online-endpoint).
 
 # [ARM template](#tab/arm)
 
