@@ -104,6 +104,8 @@ items:
       items:
       - name: What's the Azure AI Model Inference API?
         href: /rest/api/aifoundry/modelinference
+      - name: API versioning
+        href: ./reference/api-version-updates.md
       - name: Reference
         items:
         - name: Get Model Info

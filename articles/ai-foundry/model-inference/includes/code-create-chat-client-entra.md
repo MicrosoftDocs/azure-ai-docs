@@ -25,6 +25,19 @@ from azure.identity import DefaultAzureCredential
 client = ChatCompletionsClient(
     endpoint="https://<resource>.services.ai.azure.com/models",
     credential=DefaultAzureCredential(),
+)
+```
+
+If you need to configure a custom audience, do as follows:
+
+```python
+import os
+from azure.ai.inference import ChatCompletionsClient
+from azure.identity import DefaultAzureCredential
+
+client = ChatCompletionsClient(
+    endpoint="https://<resource>.services.ai.azure.com/models",
+    credential=DefaultAzureCredential(),
     credential_scopes=["https://cognitiveservices.azure.com/.default"],
 )
 ```
@@ -38,6 +51,19 @@ npm install @azure-rest/ai-inference
 ```
 
 Then, you can use the package to consume the model. The following example shows how to create a client to consume chat completions with Entra ID:
+
+```javascript
+import ModelClient from "@azure-rest/ai-inference";
+import { isUnexpected } from "@azure-rest/ai-inference";
+import { DefaultAzureCredential } from "@azure/identity";
+
+const client = new ModelClient(
+    "https://<resource>.services.ai.azure.com/models", 
+    new DefaultAzureCredential()
+);
+```
+
+If you need to configure a custom audience, do as follows:
 
 ```javascript
 import ModelClient from "@azure-rest/ai-inference";
@@ -78,6 +104,15 @@ using Azure.AI.Inference;
 Then, you can use the package to consume the model. The following example shows how to create a client to consume chat completions with Entra ID:
 
 ```csharp
+ChatCompletionsClient client = new ChatCompletionsClient(
+    new Uri("https://<resource>.services.ai.azure.com/models"),
+    new DefaultAzureCredential()
+);
+```
+
+If you need to configure a custom audience, do as follows:
+
+```csharp
 TokenCredential credential = new DefaultAzureCredential();
 AzureAIInferenceClientOptions clientOptions = new AzureAIInferenceClientOptions();
 BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(credential, new string[] { "https://cognitiveservices.azure.com/.default" });
@@ -86,7 +121,7 @@ clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
 ChatCompletionsClient client = new ChatCompletionsClient(
     new Uri("https://<resource>.services.ai.azure.com/models"),
     credential,
-    clientOptions.
+    clientOptions
 );
 ```
 
