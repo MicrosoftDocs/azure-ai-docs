@@ -21,8 +21,8 @@ To complete this tutorial, you need:
 
 [!INCLUDE [how-to-prerequisites-python](../how-to-prerequisites-python.md)]
 
-    > [!IMPORTANT]
-    > API version 2025-05-01 is supported from `azure-ai-inference>=1.0.0b10`.
+> [!IMPORTANT]
+> API version 2025-05-01 is supported from `azure-ai-inference>=1.0.0b10`.
 
 * A model with reasoning capabilities model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a reasoning model. 
 
