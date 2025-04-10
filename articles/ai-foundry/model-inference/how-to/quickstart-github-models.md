@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry for GitHub
 description: Learn how to upgrade your endpoint from GitHub Models to Azure AI model inference
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 04/09/2025
+ms.date: 1/21/2025
 ms.custom: ignite-2024, github-universe-2024
 manager: nitinme
 author: santiagxf

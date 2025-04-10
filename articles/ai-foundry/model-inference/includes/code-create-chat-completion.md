@@ -2,7 +2,7 @@
 manager: nitinme
 ms.service: azure-ai-model-inference
 ms.topic: include
-ms.date: 04/09/2025
+ms.date: 1/21/2025
 ms.author: fasantia
 author: santiagxf
 ---
@@ -17,7 +17,7 @@ response = client.complete(
         SystemMessage(content="You are a helpful assistant."),
         UserMessage(content="Explain Riemann's conjecture in 1 paragraph"),
     ],
-    model="mistral-large-2405"
+    model="mistral-large"
 )
 
 print(response.choices[0].message.content)
@@ -34,7 +34,7 @@ var messages = [
 var response = await client.path("/chat/completions").post({
     body: {
         messages: messages,
-        model: "mistral-large-2405"
+        model: "mistral-large"
     }
 });
 
@@ -50,7 +50,7 @@ requestOptions = new ChatCompletionsOptions()
         new ChatRequestSystemMessage("You are a helpful assistant."),
         new ChatRequestUserMessage("Explain Riemann's conjecture in 1 paragraph")
     },
-    Model = "mistral-large-2405"
+    Model = "mistral-large"
 };
 
 response = client.Complete(requestOptions);
@@ -77,7 +77,7 @@ for (ChatChoice choice : chatCompletions.getChoices()) {
 __Request__
 
 ```HTTP/1.1
-POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2025-04-01
+POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
 api-key: <api-key>
 Content-Type: application/json
 ```
@@ -94,7 +94,7 @@ Content-Type: application/json
             "content": "Explain Riemann's conjecture in 1 paragraph"
         }
     ],
-    "model": "mistral-large-2405"
+    "model": "mistral-large"
 }
 ```
 
