@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2023
   - references_regions
 ms.topic: conceptual
-ms.date: 4/08/2025
+ms.date: 4/09/2025
 ms.author: mbullwin
 ---
 
@@ -202,9 +202,9 @@ If your Azure subscription is linked to certain [offer types](https://azure.micr
 |Azure for Students, Free Trials | 1 K (all models) <br>Exception o-series & GPT 4.5 Preview: 0|
 | MSDN | GPT 3.5 Turbo Series: 30 K <br> GPT-4 series: 8 K <br>computer-use-preview: 30 K <br> gpt-4o-realtime-preview: 1 K <br> o-series: 0 <br> GPT 4.5 Preview: 0  |
 |Pay-as-you-go | GPT 3.5 Turbo Series: 30 K <br> GPT-4 series: 8 K <br>computer-use-preview: 30 K <br> o-series: 0 <br> GPT 4.5 Preview: 0   |
-| CSP Dev Test<sup>*</sup> | All models: 0 |
+| CSP Integration Sandbox <sup>*</sup> | All models: 0 |
 
-<sup>*</sup>This only applies to a small number of dev/test CSP subscriptions. Use the query below to determine what `quotaId` is associated with your subscription.
+<sup>*</sup>This only applies to a small number of legacy CSP sandbox subscriptions. Use the query below to determine what `quotaId` is associated with your subscription.
 
 To determine the offer type that is associated with your subscription you can check your `quotaId`. If your `quotaId` is not listed in this table your subscription qualifies for default quota.
 
@@ -252,7 +252,7 @@ az rest --method GET --uri "https://management.azure.com/subscriptions/{sub-id}?
 | Enterprise | `EnterpriseAgreement_2014-09-01` |
 | Pay-as-you-go | `PayAsYouGo_2014-09-01`|
 | MSDN | `MSDN_2014-09-01` |
-| CSP Dev/Test | `CSPDEVTEST_2018-05-01` |
+| CSP Integration Sandbox | `CSPDEVTEST_2018-05-01` |
 | Azure for Students | `AzureForStudents_2018-01-01` |
 | Free Trial | `FreeTrial_2014-09-01` |
 | Default | Any quota ID not listed in this table  |
