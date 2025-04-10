@@ -42,7 +42,7 @@ items:
       href: use-your-data-quickstart.md
     - name: Realtime API for speech and audio (preview)
       href: realtime-audio-quickstart.md
-    - name: Whisper model
+    - name: Speech to text with Whisper
       href: whisper-quickstart.md
     - name: Text to speech (preview)
       href: text-to-speech-quickstart.md
