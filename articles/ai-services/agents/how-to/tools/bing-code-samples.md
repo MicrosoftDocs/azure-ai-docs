@@ -1,0 +1,457 @@
+---
+title: 'Grounding with Bing Search code samples'
+titleSuffix: Azure OpenAI
+description: Find code samples to ground Azure AI Agents using Bing Search results.
+services: cognitive-services
+manager: nitinme
+ms.service: azure-ai-agent-service
+ms.topic: how-to
+ms.date: 04/09/2025
+author: aahill
+ms.author: aahi
+zone_pivot_groups: selection-bing-grounding-code
+ms.custom: azure-ai-agents-code
+---
+
+# How to use Grounding with Bing Search
+
+Use this article to find step-by-step instructions and code samples for Grounding with Bing search.
+
+## Prerequisites
+
+* A [connected Grounding with Bing Search resource](./bing-grounding.md#setup).
+
+> [!IMPORTANT]
+> There are requirements for displaying Grounding with Bing Search results. See the [overview article](./bing-grounding.md#how-to-display-grounding-with-bing-search-results) for details. 
+
+::: zone pivot="portal"
+
+1. In the [Azure AI Foundry portal](https://ai.azure.com/) navigate to the **Create and debug** screen for your agent, scroll down the **Setup** pane on the right to **knowledge**. Then select **Add**.
+
+    :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
+
+1. Select **Grounding with Bing Search** and follow the prompts to add the tool. Note you can add only one per agent.
+
+    :::image type="content" source="../../media/tools/knowledge-tools-list.png" alt-text="A screenshot showing the available knowledge tools in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools-list.png":::
+
+1. Click to add new connections. Once you have added a connection, you can directly select from existing list.
+   
+   :::image type="content" source="../../media/tools/bing/choose-bing-connection.png" alt-text="A screenshot showing the button for creating a new connection." lightbox="../../media/tools/bing/choose-bing-connection.png":::
+
+1. Select the Grounding with Bing Search resource you want to use and click to add connection. 
+
+   :::image type="content" source="../../media/tools/bing/create-bing-connection.png" alt-text="A screenshot showing available Grounding with Bing Search connections." lightbox="../../media/tools/bing/create-bing-connection.png":::
+
+::: zone-end
+ 
+::: zone pivot="csharp"
+## Step 1: Create a project client
+
+Create a client object, which will contain the connection string for connecting to your AI project and other resources.
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Azure.Core;
+using Azure.Core.TestFramework;
+using NUnit.Framework;
+
+var connectionString = System.Environment.GetEnvironmentVariable("PROJECT_CONNECTION_STRING");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+var bingConnectionName = System.Environment.GetEnvironmentVariable("BING_CONNECTION_NAME");
+
+var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential());
+
+AgentsClient agentClient = projectClient.GetAgentsClient();
+```
+
+## Step 2: Create an Agent with the Grounding with Bing search tool enabled
+
+To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/).
+
+```csharp
+ConnectionResponse bingConnection = projectClient.GetConnectionsClient().GetConnection(bingConnectionName);
+var connectionId = bingConnection.Id;
+
+ToolConnectionList connectionList = new()
+{
+    ConnectionList = { new ToolConnection(connectionId) }
+};
+BingGroundingToolDefinition bingGroundingTool = new(connectionList);
+
+Agent agent = agentClient.CreateAgent(
+   model: modelDeploymentName,
+   name: "my-assistant",
+   instructions: "You are a helpful assistant.",
+   tools: [bingGroundingTool]);
+```
+
+## Step 3: Create a thread
+
+```csharp
+AgentThread thread = agentClient.CreateThread();
+
+// Create message to thread
+ThreadMessage message = agentClient.CreateMessage(
+    thread.Id,
+    MessageRole.User,
+    "How does wikipedia explain Euler's Identity?");
+```
+
+## Step 4: Create a run and check the output
+
+Create a run and observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
+
+
+```csharp
+
+// Run the agent
+ThreadRun run = agentClient.CreateRun(thread, agent);
+do
+{
+    Thread.Sleep(TimeSpan.FromMilliseconds(500));
+    run = agentClient.GetRun(thread.Id, run.Id);
+}
+while (run.Status == RunStatus.Queued
+    || run.Status == RunStatus.InProgress);
+
+Assert.AreEqual(
+    RunStatus.Completed,
+    run.Status,
+    run.LastError?.Message);
+
+PageableList<ThreadMessage> messages = agentClient.GetMessages(
+    threadId: thread.Id,
+    order: ListSortOrder.Ascending
+);
+
+foreach (ThreadMessage threadMessage in messages)
+{
+    Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+    foreach (MessageContent contentItem in threadMessage.ContentItems)
+    {
+        if (contentItem is MessageTextContent textItem)
+        {
+            string response = textItem.Text;
+            if (textItem.Annotations != null)
+            {
+                foreach (MessageTextAnnotation annotation in textItem.Annotations)
+                {
+                    if (annotation is MessageTextUrlCitationAnnotation urlAnnotation)
+                    {
+                        response = response.Replace(urlAnnotation.Text, $" [{urlAnnotation.UrlCitation.Title}]({urlAnnotation.UrlCitation.Url})");
+                    }
+                }
+            }
+            Console.Write($"Agent response: {response}");
+        }
+        else if (contentItem is MessageImageFileContent imageFileItem)
+        {
+            Console.Write($"<image from ID: {imageFileItem.FileId}");
+        }
+        Console.WriteLine();
+    }
+}
+
+agentClient.DeleteThread(threadId: thread.Id);
+agentClient.DeleteAgent(agentId: agent.Id);
+```
+
+::: zone-end
+
+::: zone pivot="javascript"
+
+## Step 1: Create a project client
+
+Create a client object, which will contain the connection string for connecting to your AI project and other resources.
+
+```javascript
+const connectionString =
+  process.env["AZURE_AI_PROJECTS_CONNECTION_STRING"] || "<project connection string>";
+
+if (!connectionString) {
+  throw new Error("AZURE_AI_PROJECTS_CONNECTION_STRING must be set.");
+}
+const client = AIProjectsClient.fromConnectionString(
+    connectionString || "",
+    new DefaultAzureCredential(),
+);
+```
+
+
+## Step 2: Create an Agent with the Grounding with Bing search tool enabled
+
+To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/).
+
+```javascript
+const bingGroundingConnectionId = "<bingGroundingConnectionId>";
+const bingTool = ToolUtility.createConnectionTool(connectionToolType.BingGrounding, [
+  bingGroundingConnectionId,
+]);
+
+const agent = await client.agents.createAgent("gpt-4o", {
+  name: "my-agent",
+  instructions: "You are a helpful agent",
+  tools: [bingTool.definition],
+});
+console.log(`Created agent, agent ID : ${agent.id}`);
+```
+
+## Step 3: Create a thread
+
+```javascript
+// create a thread
+const thread = await client.agents.createThread();
+
+// add a message to thread
+await client.agents.createMessage(
+    thread.id, {
+    role: "user",
+    content: "What is the weather in Seattle?",
+});
+```
+
+## Step 4: Create a run and check the output
+
+Create a run and observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
+
+
+```javascript
+
+  // create a run
+  const streamEventMessages = await client.agents.createRun(thread.id, agent.id).stream();
+
+  for await (const eventMessage of streamEventMessages) {
+    switch (eventMessage.event) {
+      case RunStreamEvent.ThreadRunCreated:
+        break;
+      case MessageStreamEvent.ThreadMessageDelta:
+        {
+          const messageDelta = eventMessage.data;
+          messageDelta.delta.content.forEach((contentPart) => {
+            if (contentPart.type === "text") {
+              const textContent = contentPart;
+              const textValue = textContent.text?.value || "No text";
+            }
+          });
+        }
+        break;
+
+      case RunStreamEvent.ThreadRunCompleted:
+        break;
+      case ErrorEvent.Error:
+        console.log(`An error occurred. Data ${eventMessage.data}`);
+        break;
+      case DoneEvent.Done:
+        break;
+    }
+  }
+
+  // Print the messages from the agent
+  const messages = await client.agents.listMessages(thread.id);
+
+  // Messages iterate from oldest to newest
+  // messages[0] is the most recent
+  for (let i = messages.data.length - 1; i >= 0; i--) {
+    const m = messages.data[i];
+    if (isOutputOfType<MessageTextContentOutput>(m.content[0], "text")) {
+      const textContent = m.content[0];
+      console.log(`${textContent.text.value}`);
+      console.log(`---------------------------------`);
+    }
+  }
+```
+
+::: zone-end
+
+::: zone pivot="python"
+
+## Step 1: Create a project client
+
+Create a client object, which will contain the connection string for connecting to your AI project and other resources.
+
+```python
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects.models import BingGroundingTool
+
+
+# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
+# At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
+# Customer needs to login to Azure subscription via Azure CLI and set the environment variables
+
+project_client = AIProjectClient.from_connection_string(
+    credential=DefaultAzureCredential(),
+    conn_str=os.environ["PROJECT_CONNECTION_STRING"],
+)
+```
+
+
+## Step 2: Create an Agent with the Grounding with Bing search tool enabled
+
+To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/).
+
+```python
+bing_connection = project_client.connections.get(
+    connection_name=os.environ["BING_CONNECTION_NAME"]
+)
+conn_id = bing_connection.id
+
+print(conn_id)
+
+# Initialize agent bing tool and add the connection id
+bing = BingGroundingTool(connection_id=conn_id)
+
+# Create agent with the bing tool and process assistant run
+with project_client:
+    agent = project_client.agents.create_agent(
+        model="gpt-4o",
+        name="my-assistant",
+        instructions="You are a helpful assistant",
+        tools=bing.definitions,
+        headers={"x-ms-enable-preview": "true"}
+    )
+    print(f"Created agent, ID: {agent.id}")
+```
+
+## Step 3: Create a thread
+
+```python
+# Create thread for communication
+thread = project_client.agents.create_thread()
+print(f"Created thread, ID: {thread.id}")
+
+# Create message to thread
+message = project_client.agents.create_message(
+    thread_id=thread.id,
+    role="user",
+    content="What is the top news today",
+)
+print(f"Created message, ID: {message.id}")
+```
+
+## Step 4: Create a run and check the output
+
+Create a run and observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
+
+
+```python
+# Create and process agent run in thread with tools
+run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+print(f"Run finished with status: {run.status}")
+
+# Retrieve run step details to get Bing Search query link
+# To render the webpage, we recommend you replace the endpoint of Bing search query URLs with `www.bing.com` and your Bing search query URL would look like "https://www.bing.com/search?q={search query}"
+run_steps = project_client.agents.list_run_steps(run_id=run.id, thread_id=thread.id)
+run_steps_data = run_steps['data']
+print(f"Last run step detail: {run_steps_data}")
+
+if run.status == "failed":
+    print(f"Run failed: {run.last_error}")
+
+# Delete the assistant when done
+project_client.agents.delete_agent(agent.id)
+print("Deleted agent")
+
+# Fetch and log all messages
+messages = project_client.agents.list_messages(thread_id=thread.id)
+print(f"Messages: {messages}")
+```
+
+
+::: zone-end
+
+::: zone pivot="rest"
+
+## Step 1: Create a project client
+
+Create a client object, which will contain the connection string for connecting to your AI project and other resources.
+
+>[!IMPORTANT]
+> 1. This REST API allows developers to invoke the Grounding with Bing Search tool through the Azure AI Agent service. It does not send calls to the Grounding with Bing Search API directly. 
+
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`. The client creation is demonstrated in the next section.
+
+
+## Step 2: Create an Agent with the Grounding with Bing search tool enabled
+
+To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/).
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "instructions": "You are a helpful agent.",
+        "name": "my-agent",
+        "model": "gpt-4o",
+        "tools": [
+          {
+            "type": "bing_grounding",
+            "bing_grounding": {
+                "connections": [
+                    {
+                        "connection_id": "/subscriptions/<your-subscription-id>/resourceGroups/<your-resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<your-project-name>/connections/<your-bing-connection-name>"
+                    }
+                ]
+            }
+          }
+        ]
+      }'
+```
+
+## Step 3: Create a thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d ''
+```
+
+## Step 4: Add a user question to the thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+      "role": "user",
+      "content": "What is the weather in Seattle?"
+    }'
+```
+
+## Step 5: Create a run and check the output
+
+Create a run and observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "assistant_id": "asst_abc123",
+  }'
+```
+
+### Retrieve the status of the run
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+```
+
+### Retrieve the agent response
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+```
+
+::: zone-end
+
+## Next steps
+
+[See the full sample for Grounding with Bing Search.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/sample_agents_bing_grounding.py)

@@ -26,28 +26,34 @@ items:
   items:
     - name: Tools
       items:
-        - name: Knowledge tools
+        - name: Grounding with Bing Search
           items:
-          - name: Grounding with Bing Search
+          - name: Overview
             href: how-to/tools/bing-grounding.md
-          - name: File search
-            href: how-to/tools/file-search.md
-          - name: Azure AI Search
-            href: how-to/tools/azure-ai-search.md 
-          - name: Microsoft Fabric
-            href: how-to/tools/fabric.md
-          - name: Use licensed data
-            href: how-to/tools/licensed-data.md
-        - name: Action tools
+            displayName: bing, grounding with bing  
+          - name: How to use Grounding with Bing Search
+            href: how-to/tools/bing-code-samples.md
+        - name: File search
+          href: how-to/tools/file-search.md
+        - name: Azure AI Search
+          href: how-to/tools/azure-ai-search.md 
+        - name: Microsoft Fabric
+          href: how-to/tools/fabric.md
+        - name: Use licensed data
+          href: how-to/tools/licensed-data.md
+        - name: Function calling
+          href: how-to/tools/function-calling.md
+        - name: Code interpreter
+          href: how-to/tools/code-interpreter.md
+        - name: Use OpenAPI defined tools
+          href: how-to/tools/openapi-spec.md
+        - name: Azure Functions
           items:
-          - name: Function calling
-            href: how-to/tools/function-calling.md
-          - name: Code interpreter
-            href: how-to/tools/code-interpreter.md
-          - name: Use OpenAPI defined tools
-            href: how-to/tools/openapi-spec.md
-          - name: Azure Functions
-            href: how-to/tools/azure-functions.md
+            - name: Overview
+              href: how-to/tools/azure-functions.md
+              displayName: azure functions, functions
+            - name: How to use Azure Functions
+              href: how-to/tools/azure-functions-samples.md
     - name: Enterprise features
       items: 
         - name: Use your own resources
