@@ -7,7 +7,7 @@ author: msakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 04/09/2025
+ms.date: 02/14/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: generated
@@ -47,7 +47,7 @@ If you configured the resource with **Microsoft Entra ID** support, you can use 
 ```csharp
 TokenCredential credential = new DefaultAzureCredential(includeInteractiveCredentials: true);
 AzureAIInferenceClientOptions clientOptions = new AzureAIInferenceClientOptions();
-BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(credential);
+BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(credential, new string[] { "https://cognitiveservices.azure.com/.default" });
 
 clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
 

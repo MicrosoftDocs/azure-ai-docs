@@ -3,7 +3,7 @@ manager: nitinme
 author: santiagxf
 ms.author: fasantia 
 ms.service: azure-ai-model-inference
-ms.date: 04/09/2025
+ms.date: 1/21/2025
 ms.topic: include
 ---
 
