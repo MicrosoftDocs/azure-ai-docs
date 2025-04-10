@@ -22,7 +22,7 @@ Use this article to find step-by-step instructions and code samples for Groundin
 * A [connected Grounding with Bing Search resource](./bing-grounding.md#setup).
 
 > [!IMPORTANT]
-> There are requirements for displaying Grounding with Bing Saerch results. See the [overview article](./bing-grounding.md#how-to-display-grounding-with-bing-search-results) for details. 
+> There are requirements for displaying Grounding with Bing Search results. See the [overview article](./bing-grounding.md#how-to-display-grounding-with-bing-search-results) for details. 
 
 ::: zone pivot="portal"
 

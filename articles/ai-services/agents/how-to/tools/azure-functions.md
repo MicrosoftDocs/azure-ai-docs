@@ -1,5 +1,5 @@
 ---
-title: 'Grounding with Azure Funcions code samples'
+title: 'Grounding with Azure Functions code samples'
 titleSuffix: Azure OpenAI
 description: Find code samples to enable Azure AI Agents to use Azure Functions.
 services: azure-ai-agent-service
