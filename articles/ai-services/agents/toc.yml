@@ -30,6 +30,7 @@ items:
           items:
           - name: Overview
             href: how-to/tools/bing-grounding.md
+            displayName: bing, grounding with bing  
           - name: How to use Grounding with Bing Search
             href: how-to/tools/bing-code-samples.md
         - name: File search
@@ -50,6 +51,7 @@ items:
           items:
             - name: Overview
               href: how-to/tools/azure-functions.md
+              displayName: azure functions, functions
             - name: How to use Azure Functions
               href: how-to/tools/azure-functions-samples.md
     - name: Enterprise features
