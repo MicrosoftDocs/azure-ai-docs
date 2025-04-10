@@ -327,4 +327,4 @@ Here's an example of the JSON response:
 [{"detectedLanguage":{"language":"es","score":1.0},"translations":[{"text":"Hello","to":"en"}]}]
 ```
 
-Congratulations! You now know how to use Microsoft Entra ID to authenticate requests to your Azure  API.
+Congratulations! You now know how to use Microsoft Entra ID to authenticate requests to your Azure AI resource.
