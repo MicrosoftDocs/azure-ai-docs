@@ -9,7 +9,6 @@ ms.topic: how-to
 ms.date: 02/18/2025
 author: aahill
 ms.author: aahi
-zone_pivot_groups: selection-bing-grounding
 ms.custom: azure-ai-agents
 ---
 
