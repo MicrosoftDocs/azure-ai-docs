@@ -6,7 +6,7 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: whats-new
-ms.date: 03/05/2025
+ms.date: 04/10/2025
 ms.author: jboback
 ---
 
