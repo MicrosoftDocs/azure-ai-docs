@@ -51,7 +51,7 @@ items:
             - name: Overview
               href: how-to/tools/azure-functions.md
             - name: How to use Azure Functions
-              href: how-to/tools/azure-functions-code-samples.md
+              href: how-to/tools/azure-functions-samples.md
     - name: Enterprise features
       items: 
         - name: Use your own resources

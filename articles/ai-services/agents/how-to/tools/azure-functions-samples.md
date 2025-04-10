@@ -10,15 +10,13 @@ ms.date: 01/30/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
-zone_pivot_groups: selection-function-calling
+zone_pivot_groups: selection-function-calling-samples
 ---
 
+# How to use Azure Functions with Azure AI Agents 
 
-Azure AI Agents supports function calling, which allows you to describe the structure of functions to an Assistant and then return the functions that need to be called along with their arguments. This example shows how to use Azure Functions to process the function calls through queue messages in Azure Storage. You can see a complete working sample on [GitHub](https://github.com/Azure-Samples/azure-functions-ai-services-agent-python)
+Azure AI Agents supports function calling, which allows you to describe the structure of functions to an Assistant and then return the functions that need to be called along with their arguments. These examples show how to use Azure Functions to process the function calls through queue messages in Azure Storage. You can see a complete working sample on [GitHub](https://github.com/Azure-Samples/azure-functions-ai-services-agent-python)
 
-### Supported models
-
-To use all features of function calling including parallel functions, you need to use a model that was released after November 6, 2023.
 
 ## Prerequisites
 

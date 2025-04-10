@@ -1078,7 +1078,7 @@ groups:
     title: Python
   - id: rest
     title: REST API
-- id: selection-function-calling
+- id: selection-function-calling-samples
   title: Selections
   prompt: What would you like to see?
   pivots:
@@ -1086,7 +1086,14 @@ groups:
     title: Python
   - id: rest
     title: REST API
-
+- id: selection-function-calling
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: overview
+    title: Overview
+  - id: code-example
+    title: Code examples
 # owner: sgilley
 - id: programming-languages-sdk-overview
   title: Programming languages

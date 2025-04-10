@@ -20,6 +20,10 @@ Azure Functions provide support for triggers and bindings, which simplify how yo
  
 Meanwhile, bindings facilitate streamlined connections to input or output data sources, such as databases or APIs, without requiring extensive boilerplate code. For instance, you can configure a trigger to execute an Azure Function whenever a customer message is received in a chatbot and use output bindings to send a response via the Azure AI Agent.
 
+### Supported models
+
+To use all features of function calling including parallel functions, you need to use a model that was released after November 6, 2023.
+
 ## Prerequisites
 
 * [Azure Functions Core Tools v4.x](/azure/azure-functions/functions-run-local)
