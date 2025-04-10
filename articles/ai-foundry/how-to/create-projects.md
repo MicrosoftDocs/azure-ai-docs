@@ -251,6 +251,8 @@ az ml workspace show --name {my_project_name} --resource-group {my_resource_grou
 ::: zone-end
 ---
 
+::: zone pivot="hub-project"
+
 ## Access project resources
 
 Common configurations on the hub are shared with your project, including connections, compute instances, and network access, so you can start developing right away.
@@ -270,6 +272,7 @@ In addition, a number of resources are only accessible by users in your project 
 > [!NOTE]
 > Storage connections are not created directly with the project when your storage account has public network access set to disabled. These are created instead when a first user accesses Azure AI Foundry over a private network connection. [Troubleshoot storage connections](troubleshoot-secure-connection-project.md#troubleshoot-configurations-on-connecting-to-storage)
 
+::: zone-end
 
 ## Related content
 
