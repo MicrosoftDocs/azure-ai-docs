@@ -7,8 +7,6 @@ ms.date: 01/23/2025
 ms.topic: include
 ---
 
-[!INCLUDE [Feature preview](../../../includes/feature-preview.md)]
-
 Models deployed to Azure AI model inference in Azure AI Services support key-less authorization using Microsoft Entra ID. Key-less authorization enhances security, simplifies the user experience, reduces operational complexity, and provides robust compliance support for modern development. It makes it a strong choice for organizations adopting secure and scalable identity management solutions.
 
 This article explains how to configure Microsoft Entra ID for inference in Azure AI model inference.

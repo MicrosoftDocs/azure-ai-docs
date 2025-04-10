@@ -7,14 +7,12 @@ author: msakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 01/22/2025
+ms.date: 04/09/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: generated
 zone_pivot_groups: azure-ai-inference-samples
 ---
-
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
 This article explains how to use image embeddings API with models deployed to Azure AI model inference in Azure AI Foundry.
 
@@ -33,7 +31,7 @@ To use embedding models in your application, you need:
 To use the text embeddings, use the route `/images/embeddings` appended to your base URL along with your credential indicated in `api-key`. `Authorization` header is also supported with the format `Bearer <key>`.
 
 ```http
-POST https://<resource>.services.ai.azure.com/models/images/embeddings?api-version=2024-05-01-preview
+POST https://<resource>.services.ai.azure.com/models/images/embeddings?api-version=2025-04-01
 Content-Type: application/json
 api-key: <key>
 ```
@@ -41,7 +39,7 @@ api-key: <key>
 If you have configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header with the format `Bearer <token>`. Use scope `https://cognitiveservices.azure.com/.default`. 
 
 ```http
-POST https://<resource>.services.ai.azure.com/models/images/embeddings?api-version=2024-05-01-preview
+POST https://<resource>.services.ai.azure.com/models/images/embeddings?api-version=2025-04-01
 Content-Type: application/json
 Authorization: Bearer <token>
 ```
