@@ -31,7 +31,6 @@ A [!INCLUDE [fdp](../includes/fdp-project-name.md)] is built on an Azure AI Foun
 
 ::: zone-end
 
-
 ::: zone pivot="hub-project"
 
 The rest of this article describes a **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select [!INCLUDE [fdp](../includes/fdp-project-name.md)] at the top of this article if you want to create a [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
@@ -40,11 +39,9 @@ A [!INCLUDE [hub](../includes/hub-project-name.md)] is hosted by an Azure AI Fou
 
 For more information about the projects and hubs model, see [Azure AI Foundry hubs](../concepts/ai-resources.md).
 
+::: zone-end
 
 ## Prerequisites
-
-
-
 
 ::: zone pivot="fdp-project"
 
@@ -271,7 +268,6 @@ In addition, a number of resources are only accessible by users in your project 
 > [!NOTE]
 > Storage connections are not created directly with the project when your storage account has public network access set to disabled. These are created instead when a first user accesses Azure AI Foundry over a private network connection. [Troubleshoot storage connections](troubleshoot-secure-connection-project.md#troubleshoot-configurations-on-connecting-to-storage)
 
-::: zone-end
 
 ## Related content
 
