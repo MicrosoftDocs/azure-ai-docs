@@ -28,6 +28,7 @@ Tripadvisor is the first licensed data provider and you can ground with your lic
 ## Prerequisites
 
 * Obtain an API key for your [Tripadvisor developer account](https://www.tripadvisor.com/developers?screen=credentials).
+* Make sure when you put 0.0.0.0/0 for the IP address restriction to allow traffic from Azure AI Agent Service.
 
 ## Setup
 1. Go to [Azure AI Foundry portal](https://ai.azure.com/) and select your AI Project. Select **Management Center**.
