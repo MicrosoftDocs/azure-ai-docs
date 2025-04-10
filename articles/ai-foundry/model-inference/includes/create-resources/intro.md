@@ -7,8 +7,6 @@ ms.date: 1/21/2025
 ms.topic: include
 ---
 
-[!INCLUDE [Feature preview](../../../includes/feature-preview.md)]
-
 In this article, you learn how to create the resources required to use Azure AI model inference and consume flagship models from Azure AI model catalog.
 
 ## Understand the resources
