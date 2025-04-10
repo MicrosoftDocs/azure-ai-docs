@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 12/19/2024
+ms.date: 04/09/2025
 ---
 
 # Indexers in Azure AI Search
@@ -81,7 +81,9 @@ For each document it receives, an indexer implements or coordinates multiple ste
 
 ### Stage 1: Document cracking
 
-Document cracking is the process of opening files and extracting content. Text-based content can be extracted from files on a service, rows in a table, or items in container or collection. If you add a skillset and [image skills](cognitive-search-concept-image-scenarios.md), document cracking can also extract images and queue them for image processing.
+Document cracking is the process of opening files and extracting content. Text-based content can be extracted from files on a service, rows in a table, or items in container or collection. 
+
+You can also enable image extraction during document cracking for an [extra fee](https://azure.microsoft.com/pricing/details/search/). This is disabled by default and can be enabled via the `imageAction` property in the [indexer parameters configuration](/rest/api/searchservice/indexers/create-or-update). Review some [image scenarios](cognitive-search-concept-image-scenarios.md) for indexer image handling.
 
 Depending on the data source, the indexer will try different operations to extract potentially indexable content:
 
@@ -90,6 +92,9 @@ Depending on the data source, the indexer will try different operations to extra
 + When the document is a record in [Azure SQL](search-how-to-index-sql-database.md), the indexer will extract non-binary content from each field in each record.
 
 + When the document is a record in [Azure Cosmos DB](search-howto-index-cosmosdb.md), the indexer will extract non-binary content from fields and subfields from the Azure Cosmos DB document.
+
+Note that the document cracking process can also be triggered later during the optional [skillset execution](cognitive-search-concept-intro.md) stage, using skillsets, for data transformation. Adding a skillset with [image skills](cognitive-search-concept-image-scenarios.md) allows document cracking to extract images and queue them for processing.
+
 
 ### Stage 2: Field mappings 
 
