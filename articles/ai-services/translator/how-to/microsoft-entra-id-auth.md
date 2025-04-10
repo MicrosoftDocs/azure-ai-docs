@@ -128,7 +128,11 @@ To use Microsoft Entra authentication, key-based (local) authentication must be 
 
 Client applications utilize credentials to gain access to a web API. These credentials enable the application to authenticate independently, eliminating the need for user interaction, such as key entry, during runtime. Your application's client secret (application password) is a string that the application uses to prove its identity when requesting a token.
 
-* From the main page window, select **`Add a certificate or secret`** then select **`New client secret`**.
+1. Select the Overview page from the left navigation menu.
+
+     :::image type="content" source="../media/entra-id/application-overview.png" alt-text="Screenshot of the app registration overview page in the Azure portal.":::
+
+* Select **`Add a certificate or secret`** then select **`New client secret`**.
 
      :::row:::
          :::column:::
@@ -145,9 +149,11 @@ Client applications utilize credentials to gain access to a web API. These crede
 
 * Copy and paste the client secret **`Value`** in the same secure location as the `Application (client) ID` and `Directory (tenant) ID`, such as Windows Notepad. Client secret values can only be viewed immediately after creation. Be sure to save the secret before leaving the page.
 
+    :::image type="content" source="../media/entra-id/client-secret-value.png" alt-text="Screenshot of the client secret value location for a registered app in the Azure portal.":::
+
 ## Add API permissions
 
-Next, let's add a permission that allows the application to access the Cognitive Services API as a user.
+Next, let's add a permission that allows the application to access the Cognitive Services APIs, including Azure AI Translator, as a user.
 
 * In the left navigation menu, navigate to **`API permissions`** then select **`Add a permission`** from the main window.
 
@@ -163,15 +169,15 @@ Next, let's add a permission that allows the application to access the Cognitive
   * Mark the **`Access Cognitive Services API as organization users`** checkbox.
   * Select **`Add permissions`**.
 
-   :::image type="content" source="../media/entra-id/add-permissions.png" alt-text="Screenshot of the Azure Cognitive Services application permissions window.":::
+     :::image type="content" source="../media/entra-id/add-permissions.png" alt-text="Screenshot of the Azure Cognitive Services application permissions window.":::
 
-Congratulations! The setup for your Microsoft Entra ID application is complete. Next, your Translator resource needs to grant your app access by adding a role assignment to your app specifically for the Translator resource. For more information, *see* [Azure role-based access control](/azure/role-based-access-control/overview)
+That's it! The setup for your Microsoft Entra ID application is complete. Next, your Translator resource needs to grant your app access by adding a role assignment to your app specifically for the Translator resource. For more information, *see* [Azure role-based access control](/azure/role-based-access-control/overview)
 
-## Assign the Cognitive Services Data Reader role to Translator resource
+## Assign the Cognitive Services User role to Azure AI Translator resource
 
-Role-based access control (Azure `RBAC`) is a security principal that enables you to control access to Azure resources. You can use `RBAC` to grant access to any resource that supports Microsoft Entra authentication, in our case, your Translator instance. To grant your Microsoft Entra ID application access to your Translator resource, assign an Azure role using [Azure role-based access control (`Azure RBAC`)](/azure/role-based-access-control/overview).
+Role-based access control (Azure `RBAC`) is a security principal that enables you to control access to Azure resources. You can use `RBAC` to grant access to any resource that supports Microsoft Entra authentication, in our case, your Azure AI Translator instance. To grant your Microsoft Entra ID application access to your Translator resource, assign an Azure role using [Azure role-based access control (`Azure RBAC`)](/azure/role-based-access-control/overview).
 
-* In the Azure portal, navigate to your Translator resource.
+* Staying in the Azure portal, navigate to your Azure AI Translator global resource.
 
 * In the left menu, select **`Access control (IAM)`**.
 
@@ -179,13 +185,13 @@ Role-based access control (Azure `RBAC`) is a security principal that enables yo
 
   :::image type="content" source="../media/entra-id/add-role-assignment.png" alt-text="Screenshot of the Access control window.":::
 
-* In the role dropdown menu, select **`Cognitive Services Data Reader`** and select the **`Next`** button.
+* In the left navigation name menu, select **`Cognitive Services User`** and select the **`Next`** button.
 
 * On the `Add role assignment page`, assign access to **`User, group, or service principal`** .
 
 * Choose **`Select members`**.
 
-* In the window that opens, type the name of your registered app in the search box (for example, azure-ai-auth-app). Select the application and choose the `Select` button.
+* In the window that opens, type the name of your registered app in the search box (for example, text-translation-app). Select your application and choose the `Select` button.
 
 * Complete the assignment process by selecting the `Review + assign` button.
 
@@ -315,4 +321,4 @@ curl -X POST "https://{your-custom-domain}.cognitiveservices.azure.com/translato
 
 Replace {your-custom-domain} with the value form the Azure portal and {access-token} with the token obtained from the previous step, [obtain an access token](#obtain-an-access-token-with-oauth-client-credentials-flow).
 
-That's it! You now know how to use Microsoft Entra ID to authenticate requests to your Azure  API.
+Congratulations! You now know how to use Microsoft Entra ID to authenticate requests to your Azure  API.
