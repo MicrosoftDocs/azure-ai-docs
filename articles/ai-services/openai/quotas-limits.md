@@ -199,10 +199,14 @@ If your Azure subscription is linked to certain [offer types](https://azure.micr
 
 |Tier| Quota Limit in tokens per minute (TPM) |
 |---|:---|
-|Azure for Students, Free Trials | 1 K (all models) <br>Exception o-series & GPT 4.5 Preview: 0|
-| MSDN | GPT 3.5 Turbo Series: 30 K <br> GPT-4 series: 8 K <br>computer-use-preview: 30 K <br> gpt-4o-realtime-preview: 1 K <br> o-series: 0 <br> GPT 4.5 Preview: 0  |
-|Pay-as-you-go | GPT 3.5 Turbo Series: 30 K <br> GPT-4 series: 8 K <br>computer-use-preview: 30 K <br> o-series: 0 <br> GPT 4.5 Preview: 0   |
+|Azure for Students | 1 K (all models) <br>Exception o-series & GPT 4.5 Preview: 0|
+| MSDN | GPT-4o-mini: 200 K <br> GPT 3.5 Turbo Series: 200 K <br> GPT-4 series: 50 K <br>computer-use-preview: 8 K <br> gpt-4o-realtime-preview: 1 K <br> o-series: 0 <br> GPT 4.5 Preview: 0  |
+|Pay-as-you-go | GPT-4o-mini: 200 K <br> GPT 3.5 Turbo Series: 200 K <br> GPT-4 series: 50 K <br>computer-use-preview: 30 K <br> o-series: 0 <br> GPT 4.5 Preview: 0   |
+| Azure_MS-AZR-0111P  <br> Azure_MS-AZR-0035P <br> Azure_MS-AZR-0025P <br> Azure_MS-AZR-0052P <br>| GPT-4o-mini: 200 K <br> GPT 3.5 Turbo Series: 200 K <br> GPT-4 series: 50 K   |
 | CSP Integration Sandbox <sup>*</sup> | All models: 0 |
+| Light weight trial<br>Free Trials<br>Azure Pass  | All models: 0 |
+| 
+
 
 <sup>*</sup>This only applies to a small number of legacy CSP sandbox subscriptions. Use the query below to determine what `quotaId` is associated with your subscription.
 
@@ -247,14 +251,19 @@ az rest --method GET --uri "https://management.azure.com/subscriptions/{sub-id}?
 }
 ```
 
-| Quota allocation | Subscription quota ID |
+| Quota allocation/Offer type | Subscription quota ID |
 |:---|:----|
 | Enterprise | `EnterpriseAgreement_2014-09-01` |
 | Pay-as-you-go | `PayAsYouGo_2014-09-01`|
 | MSDN | `MSDN_2014-09-01` |
 | CSP Integration Sandbox | `CSPDEVTEST_2018-05-01` |
 | Azure for Students | `AzureForStudents_2018-01-01` |
-| Free Trial | `FreeTrial_2014-09-01` |
+| Free Trial    | `FreeTrial_2014-09-01` |
+| Azure Pass             | `AzurePass_2014-09-01` |
+| Azure_MS-AZR-0111P            | `AzureInOpen_2014-09-01` |
+| Azure_MS-AZR-0150P  | `LightweightTrial_2016-09-01` |
+| Azure_MS-AZR-0035P <br> Azure_MS-AZR-0025P <br> Azure_MS-AZR-0052P <br>| `MPN_2014-09-01` |
+| Azure_MS-AZR-0023P <br> Azure_MS-AZR-0060P <br> Azure_MS-AZR-0148P <br> Azure_MS-AZR-0148G | `MSDNDevTest_2014-09-01`|
 | Default | Any quota ID not listed in this table  |
 
 ### General best practices to remain within rate limits
