@@ -9,13 +9,13 @@ ms.custom: references_regions
 ms.date: 10/25/2024
 ---
 
-| **Region**   | **tts**, **001**   | **tts-hd**, **001**   | **whisper**, **001**   |
-|:-----------------|:----------------:|:-------------------:|:--------------------:|
-| eastus2          | -            | -               | ✅                 |
-| northcentralus   | ✅             | ✅                | ✅                 |
-| norwayeast       | -            | -               | ✅                 |
-| southindia       | -            | -               | ✅                 |
-| swedencentral    | ✅             | ✅                | ✅                 |
-| switzerlandnorth | -            | -               | ✅                 |
-| uaenorth         | -            | -               | ✅                 |
-| westeurope       | -            | -               | ✅                 |
+| **Region**   | **tts**, **001**   | **tts-hd**, **001**   | **whisper**, **001**  |  **gpt-4o-mini-tts**, **001** | **gpt-4o-transcribe**, **001**   | **gpt-4o-mini-transcribe **, **001**   |
+|:-----------------|:----------------:|:-------------------:|:--------------------:|:--------------------:|:--------------------:|:--------------------:|
+| eastus2          | - | - | ✅ | - | ✅ | ✅ |
+| northcentralus   | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| norwayeast       | - | - | ✅ | - | ✅ | ✅ |
+| southindia       | - | - | ✅ | - | ✅ | ✅ |
+| swedencentral    | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| switzerlandnorth | - | - | ✅ | - | ✅ | ✅ |
+| uaenorth         | - | - | ✅ | - | ✅ | ✅ |
+| westeurope       | - | - | ✅ | - | ✅ | ✅ |

@@ -27,8 +27,7 @@ Azure OpenAI Service is powered by a diverse set of models with different capabi
 | [GPT-3.5](#gpt-35) | A set of models that improve on GPT-3 and can understand and generate natural language and code. |
 | [Embeddings](#embeddings-models) | A set of models that can convert text into numerical vector form to facilitate text similarity. |
 | [DALL-E](#dall-e-models) | A series of models that can generate original images from natural language. |
-| [Whisper](#whisper-models) | A series of models in preview that can transcribe and translate speech to text. |
-| [Text to speech](#text-to-speech-models-preview) (Preview) | A series of models in preview that can synthesize text to speech. |
+| [Audio](#audio-models) | A series of models for speech to text, translation, and text to speech. |
 
 ## computer-use-preview
 
@@ -236,17 +235,11 @@ OpenAI's MTEB benchmark testing found that even when the third generation model'
 
 The DALL-E models generate images from text prompts that the user provides. DALL-E 3 is generally available for use with the REST APIs. DALL-E 2 and DALL-E 3 with client SDKs are in preview.
 
-## Whisper
+## Audio API models
 
-The Whisper models can be used for speech to text.
+The audio models via the `/audio` API can be used for speech to text, translation, and text to speech. 
 
-You can also use the Whisper model via Azure AI Speech [batch transcription](../../speech-service/batch-transcription-create.md) API. Check out [What is the Whisper model?](../../speech-service/whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI Service.
-
-## Text to speech (Preview)
-
-The OpenAI text to speech models, currently in preview, can be used to synthesize text to speech.
-
-You can also use the OpenAI text to speech voices via Azure AI Speech. To learn more, see [OpenAI text to speech voices via Azure OpenAI Service or via Azure AI Speech](../../speech-service/openai-voices.md#openai-text-to-speech-voices-via-azure-openai-service-or-via-azure-ai-speech) guide. 
+For more information see [Audio models](#audio-models) in this article.
 
 ## Model summary table and region availability
 
@@ -399,19 +392,31 @@ These models can only be used with Embedding API requests.
 
 [!INCLUDE [Audio](../includes/model-matrix/standard-audio.md)]
 
-### Whisper models
+### Speech to text models
 
-|  Model ID  | Max Request (audio file size) |
-|  --- | :---: |
-| `whisper` | 25 MB |
+|  Model ID  | Description | Max Request (audio file size) |
+| ----- | ----- | ----- |
+| `whisper` | General-purpose speech recognition model. | 25 MB |
+| `gpt-4o-transcribe` | Speech to text powered by GPT-4o. | 25 MB|
+| `gpt-4o-mini-transcribe` | Speech to text powered by GPT-4o mini. | 25 MB|
+
+You can also use the Whisper model via Azure AI Speech [batch transcription](../../speech-service/batch-transcription-create.md) API. Check out [What is the Whisper model?](../../speech-service/whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI Service. 
+
+### Speech translation models
+
+|  Model ID  | Description | Max Request (audio file size) |
+| ----- | ----- | ----- |
+| `whisper` | General-purpose speech recognition model. | 25 MB |
 
 ### Text to speech models (Preview)
 
 |  Model ID  | Description |
 |  --- | :--- |
-| `tts` | The latest Azure OpenAI text to speech model, optimized for speed. |
-| `tts-hd` | The latest Azure OpenAI text to speech model, optimized for quality.|
- |
+| `tts` | Text to speech optimized for speed. |
+| `tts-hd` | Text to speech optimized for quality.|
+| `gpt-4o-mini-tts` | Text to speech model powered by GPT-4o mini. |
+
+You can also use the OpenAI text to speech voices via Azure AI Speech. To learn more, see [OpenAI text to speech voices via Azure OpenAI Service or via Azure AI Speech](../../speech-service/openai-voices.md#openai-text-to-speech-voices-via-azure-openai-service-or-via-azure-ai-speech) guide. 
 
 # [Completions (Legacy)](#tab/standard-completions)
 
