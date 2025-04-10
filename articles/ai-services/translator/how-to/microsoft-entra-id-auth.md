@@ -34,7 +34,7 @@ Before you get started, you need an Azure account and an Azure AI services subsc
 * An Azure AI Translator resource. Once you have your Azure subscription, create a [Translator single-service global resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in the Azure portal. 
 
 > [!IMPORTANT]
-> [Regional endpoints](../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints) don't support Microsoft Entra authentication.
+> [Regional endpoints](../../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints) don't support Microsoft Entra authentication.
 
 * curl command line tool installed.
 
@@ -89,22 +89,22 @@ To use Microsoft Entra authentication, key-based (local) authentication must be 
 
 * Enter `Microsoft Entra ID` in the search box at the top of the page.
 
-  :::image type="content" source="media/entra-id/azure-portal-search.png" alt-text="Screenshot of the Azure portal search box.":::
+  :::image type="content" source="../media/entra-id/azure-portal-search.png" alt-text="Screenshot of the Azure portal search box.":::
 
 * Select the `Microsoft Entra ID` service from the drop-down menu.
 
-  :::image type="content" source="media/entra-id/portal-search-results.png" alt-text="Screenshot of Microsoft Entra ID search results in the Azure portal.":::
+  :::image type="content" source="../media/entra-id/portal-search-results.png" alt-text="Screenshot of Microsoft Entra ID search results in the Azure portal.":::
 
 * Selecting `Microsoft Entra ID` opens your organization's overview page in the Azure portal.
 
 
 * From the left rail menu `Manage` node, select `App registrations`.
 
-  :::image type="content" source="media/entra-id/manage-app-registrations.png" alt-text="Screenshot of App registrations selection from the Manage menu.":::
+  :::image type="content" source="../media/entra-id/manage-app-registrations.png" alt-text="Screenshot of App registrations selection from the Manage menu.":::
 
 * Select `New registration` from the menu at the top of the main window.
 
-  :::image type="content" source="media/entra-id/new-registration-selection.png" alt-text="Screenshot of the New registration selection in the main window of the page.":::
+  :::image type="content" source="../media/entra-id/new-registration-selection.png" alt-text="Screenshot of the New registration selection in the main window of the page.":::
 
 * Complete the application registration fields:<br><br>
 
@@ -117,7 +117,7 @@ To use Microsoft Entra authentication, key-based (local) authentication must be 
 
 * Once registration completes, The app's registration **Overview** pane is displayed. The **Application (client) ID**, also called the `client ID`, value uniquely identifies your application in the Microsoft identity platform.
 
-   :::image type="content" source="media/entra-id/app-registration-overview.png" alt-text="Screenshot of the app registration overview page.":::
+   :::image type="content" source="../media/entra-id/app-registration-overview.png" alt-text="Screenshot of the app registration overview page.":::
 
 * Before you leave the App registration overview page, copy and paste the following values in a secure and convenient location, such as Windows Notepad:
 
@@ -132,16 +132,16 @@ Client applications utilize credentials to gain access to a web API. These crede
 
      :::row:::
          :::column:::
-             :::image type="content" source="media/entra-id/add-secret.png" alt-text="Screenshot of add secret link in the Azure portal.":::
+             :::image type="content" source="../media/entra-id/add-secret.png" alt-text="Screenshot of add secret link in the Azure portal.":::
          :::column-end:::
          :::column:::
-             :::image type="content" source="media/entra-id/new-client-secret.png" alt-text="Screenshot of new client secret button in the Azure portal.":::
+             :::image type="content" source="../media/entra-id/new-client-secret.png" alt-text="Screenshot of new client secret button in the Azure portal.":::
          :::column-end:::
      :::row-end:::
 
 * In the **`Add a client secret`** window, add a description, set an expiry period, and then select the **`Add`** button.
 
-  :::image type="content" source="media/entra-id/add-new-client-secret.png" alt-text="Screenshot of the Add a client secret setup window.":::
+  :::image type="content" source="../media/entra-id/add-new-client-secret.png" alt-text="Screenshot of the Add a client secret setup window.":::
 
 * Copy and paste the client secret **`Value`** in the same secure location as the `Application (client) ID` and `Directory (tenant) ID`, such as Windows Notepad. Client secret values can only be viewed immediately after creation. Be sure to save the secret before leaving the page.
 
@@ -151,11 +151,11 @@ Next, let's add a permission that allows the application to access the Cognitive
 
 * In the left navigation menu, navigate to **`API permissions`** then select **`Add a permission`** from the main window.
 
-   :::image type="content" source="media/entra-id/add-api-permissions.png" alt-text="Screenshot of API permissions view in the Azure portal.":::
+   :::image type="content" source="../media/entra-id/add-api-permissions.png" alt-text="Screenshot of API permissions view in the Azure portal.":::
 
 * From the new window that appears select **`APIs my organization uses`** and then type **`Microsoft Cognitive Services`** in the search bar.
 
-   :::image type="content" source="media/entra-id/request-api-permissions.png" alt-text="Screenshot of the Request API permissions search window":::
+   :::image type="content" source="../media/entra-id/request-api-permissions.png" alt-text="Screenshot of the Request API permissions search window":::
 
 * Select **`Microsoft Cognitive Services`** from the search results. 
 
@@ -163,7 +163,7 @@ Next, let's add a permission that allows the application to access the Cognitive
   * Mark the **`Access Cognitive Services API as organization users`** checkbox.
   * Select **`Add permissions`**.
 
-   :::image type="content" source="media/entra-id/add-permissions.png" alt-text="Screenshot of the Azure Cognitive Services application permissions window.":::
+   :::image type="content" source="../media/entra-id/add-permissions.png" alt-text="Screenshot of the Azure Cognitive Services application permissions window.":::
 
 Congratulations! The setup for your Microsoft Entra ID application is complete. Next, your Translator resource needs to grant your app access by adding a role assignment to your app specifically for the Translator resource. For more information, *see* [Azure role-based access control](/azure/role-based-access-control/overview)
 
@@ -177,7 +177,7 @@ Role-based access control (Azure `RBAC`) is a security principal that enables yo
 
 * Select **`Add role assignment`** from the main window.
 
-  :::image type="content" source="media/entra-id/add-role-assignment.png" alt-text="Screenshot of the Access control window.":::
+  :::image type="content" source="../media/entra-id/add-role-assignment.png" alt-text="Screenshot of the Access control window.":::
 
 * In the role dropdown menu, select **`Cognitive Services Data Reader`** and select the **`Next`** button.
 
@@ -191,10 +191,10 @@ Role-based access control (Azure `RBAC`) is a security principal that enables yo
 
 :::row:::
       :::column:::
-          :::image type="content" source="media/entra-id/add-members.png" alt-text="Screenshot of add role assignment members window.":::
+          :::image type="content" source="../media/entra-id/add-members.png" alt-text="Screenshot of add role assignment members window.":::
       :::column-end:::
       :::column:::
-          :::image type="content" source="media/entra-id/select-members.png" alt-text="Screenshot of select members window in the Azure portal.":::
+          :::image type="content" source="../media/entra-id/select-members.png" alt-text="Screenshot of select members window in the Azure portal.":::
       :::column-end:::
 :::row-end:::
 
@@ -267,7 +267,7 @@ To make a valid REST API request, the following values are required:
   * Resource ID format:
     `/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.CognitiveServices/accounts/<resourceName>/`
 
-    :::image type="content" source="media/managed-identities/resource-id-property.png" alt-text="Screenshot of Resource ID value location in the Azure portal.":::
+    :::image type="content" source="../media/managed-identities/resource-id-property.png" alt-text="Screenshot of Resource ID value location in the Azure portal.":::
 
 * Replace {your-resource-ID} with the value from the Azure portal and {access-token} with the value obtained from the previous step: [obtain an access token](#obtain-an-access-token-with-oauth-client-credentials-flow).
 
