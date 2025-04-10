@@ -207,3 +207,278 @@ agent = project_client.agents.create_agent(
 print(f"Created agent, agent ID: {agent.id}")
 ```
 :::zone-end
+
+:::zone pivot="csharp"
+
+
+```csharp
+FileSearchToolResource fileSearchToolResource = new FileSearchToolResource();
+fileSearchToolResource.VectorStoreIds.Add(vectorStore.Id);
+
+// Create an agent with toolResources and process assistant run
+Response<Agent> agentResponse = await client.CreateAgentAsync(
+        model: "gpt-4o-mini",
+        name: "SDK Test Agent - Retrieval",
+        instructions: "You are a helpful agent that can help fetch data from files you know about.",
+        tools: new List<ToolDefinition> { new FileSearchToolDefinition() },
+        toolResources: new ToolResources() { FileSearch = fileSearchToolResource });
+Agent agent = agentResponse.Value;
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const fileSearchTool = ToolUtility.createFileSearchTool([vectorStore.id]);
+
+const agent = await client.agents.createAgent("gpt-4o-mini", {
+  name: "SDK Test Agent - Retrieval",
+  instructions: "You are helpful agent that can help fetch data from files you know about.",
+  tools: [fileSearchTool.definition],
+  toolResources: fileSearchTool.resources,
+});
+console.log(`Created agent, agent ID : ${agent.id}`);
+```
+
+:::zone-end
+
+:::zone pivot="rest"
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "name": "Financial Analyst Assistant",
+    "instructions": "You are an expert financial analyst. Use your knowledge base to answer questions about audited financial statements.",
+    "tools": [{"type": "file_search"}],
+    "model": "gpt-4o-mini",
+    "tool_resources": {"file_search": {"vector_store_ids": ["vs_1234abcd"]}}
+  }'
+```
+
+:::zone-end
+
+## Step 4: Create a thread
+You can also attach files as Message attachments on your thread. Doing so creates another ```vector_store``` associated with the thread, or, if there's already a vector store attached to this thread, attaches the new files to the existing thread vector store.  When you create a Run on this thread, the file search tool queries both the ```vector_store``` from your agent and the ```vector_store``` on the thread.
+
+
+:::zone pivot="python"
+
+```python
+# Create a thread
+thread = project_client.agents.create_thread()
+print(f"Created thread, thread ID: {thread.id}")
+
+# Upload the user provided file as a messsage attachment
+message_file = project_client.agents.upload_file_and_poll(file_path='product_info_1.md', purpose=FilePurpose.AGENTS)
+print(f"Uploaded file, file ID: {message_file.id}")
+
+# Create a message with the file search attachment
+# Notice that vector store is created temporarily when using attachments with a default expiration policy of seven days.
+attachment = MessageAttachment(file_id=message_file.id, tools=FileSearchTool().definitions)
+message = project_client.agents.create_message(
+    thread_id=thread.id, role="user", content="What feature does Smart Eyewear offer?", attachments=[attachment]
+)
+print(f"Created message, message ID: {message.id}")
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+// Create thread for communication
+Response<AgentThread> threadResponse = await client.CreateThreadAsync();
+AgentThread thread = threadResponse.Value;
+
+// Create message to thread
+Response<ThreadMessage> messageResponse = await client.CreateMessageAsync(
+    thread.Id,
+    MessageRole.User,
+    "Can you give me the documented codes for 'banana' and 'orange'?");
+ThreadMessage message = messageResponse.Value;
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+// Create thread with file resources.
+// If the agent has multiple threads, only this thread can search this file.
+const thread = await client.agents.createThread({ toolResources: fileSearchTool.resources });
+
+// add a message to thread
+await client.agents.createMessage(
+    thread.id, {
+    role: "user",
+    content: "Can you give me the documented codes for 'banana' and 'orange'?",
+});
+```
+
+:::zone-end
+
+:::zone pivot="rest"
+
+### Create a thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d ''
+```
+
+### Add a user question to the thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+      "role": "user",
+      "content": "Which months do we have covered in the financial statements?"
+    }'
+```
+
+:::zone-end
+
+## Step 5: Create a run and check the output
+
+Create a run and observe that the model uses the file search tool to provide a response to the user's question.
+
+:::zone pivot="python"
+
+```python
+run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+print(f"Created run, run ID: {run.id}")
+
+project_client.agents.delete_vector_store(vector_store.id)
+print("Deleted vector store")
+
+project_client.agents.delete_agent(agent.id)
+print("Deleted agent")
+
+messages = project_client.agents.list_messages(thread_id=thread.id)
+print(f"Messages: {messages}")
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+// Run the agent
+Response<ThreadRun> runResponse = await client.CreateRunAsync(thread, agent);
+
+do
+{
+    await Task.Delay(TimeSpan.FromMilliseconds(500));
+    runResponse = await client.GetRunAsync(thread.Id, runResponse.Value.Id);
+}
+while (runResponse.Value.Status == RunStatus.Queued
+    || runResponse.Value.Status == RunStatus.InProgress);
+
+Response<PageableList<ThreadMessage>> afterRunMessagesResponse
+    = await client.GetMessagesAsync(thread.Id);
+IReadOnlyList<ThreadMessage> messages = afterRunMessagesResponse.Value.Data;
+
+// Note: messages iterate from newest to oldest, with the messages[0] being the most recent
+foreach (ThreadMessage threadMessage in messages)
+{
+    Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+    foreach (MessageContent contentItem in threadMessage.ContentItems)
+    {
+        if (contentItem is MessageTextContent textItem)
+        {
+            Console.Write(textItem.Text);
+        }
+        else if (contentItem is MessageImageFileContent imageFileItem)
+        {
+            Console.Write($"<image from ID: {imageFileItem.FileId}");
+        }
+        Console.WriteLine();
+    }
+}
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+
+  // create a run
+  const streamEventMessages = await client.agents.createRun(thread.id, agent.id).stream();
+
+  for await (const eventMessage of streamEventMessages) {
+    switch (eventMessage.event) {
+      case RunStreamEvent.ThreadRunCreated:
+        break;
+      case MessageStreamEvent.ThreadMessageDelta:
+        {
+          const messageDelta = eventMessage.data;
+          messageDelta.delta.content.forEach((contentPart) => {
+            if (contentPart.type === "text") {
+              const textContent = contentPart;
+              const textValue = textContent.text?.value || "No text";
+            }
+          });
+        }
+        break;
+
+      case RunStreamEvent.ThreadRunCompleted:
+        break;
+      case ErrorEvent.Error:
+        console.log(`An error occurred. Data ${eventMessage.data}`);
+        break;
+      case DoneEvent.Done:
+        break;
+    }
+  }
+
+  // Print the messages from the agent
+  const messages = await client.agents.listMessages(thread.id);
+
+  // Messages iterate from oldest to newest
+  // messages[0] is the most recent
+  for (let i = messages.data.length - 1; i >= 0; i--) {
+    const m = messages.data[i];
+    if (isOutputOfType<MessageTextContentOutput>(m.content[0], "text")) {
+      const textContent = m.content[0];
+      console.log(`${textContent.text.value}`);
+      console.log(`---------------------------------`);
+    }
+  }
+```
+
+:::zone-end
+
+:::zone pivot="rest"
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "assistant_id": "asst_abc123",
+  }'
+```
+
+### Retrieve the status of the run
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+```
+
+### Retrieve the agent response
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+```
+
+:::zone-end
