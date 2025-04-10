@@ -7,7 +7,7 @@ author: mopeakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 03/20/2025
+ms.date: 04/09/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: references_regions, tool_generated
@@ -33,7 +33,7 @@ To use chat completion models in your application, you need:
 To use chat completions API, use the route `/chat/completions` appended to the base URL along with your credential indicated in `api-key`. 
 
 ```http
-POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
+POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2025-04-01
 Content-Type: application/json
 api-key: <key>
 ```
@@ -41,7 +41,7 @@ api-key: <key>
 If you've configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header with the format `Bearer <token>`. Use scope `https://cognitiveservices.azure.com/.default`. 
 
 ```http
-POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
+POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2025-04-01
 Content-Type: application/json
 Authorization: Bearer <token>
 ```
@@ -291,7 +291,7 @@ Some models can create JSON outputs. Set `response_format` to `json_object` to e
 The Azure AI Model Inference API allows you to pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
 
 ```http
-POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
+POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2025-04-01
 Authorization: Bearer <TOKEN>
 Content-Type: application/json
 extra-parameters: pass-through

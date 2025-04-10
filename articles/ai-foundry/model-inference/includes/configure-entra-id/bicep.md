@@ -3,7 +3,7 @@ manager: nitinme
 author: santiagxf
 ms.author: fasantia 
 ms.service: azure-ai-model-inference
-ms.date: 12/15/2024
+ms.date: 04/09/2025
 ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
 ---
@@ -110,4 +110,4 @@ Disabling key-based authentication is advisable when you implemented Microsoft E
 
 __modules/ai-services-template.bicep__
 
-:::code language="bicep" source="~/azureai-model-inference-bicep/infra/modules/ai-services-template.bicep" highlight="10-11,42":::
+:::code language="bicep" source="~/azureai-model-inference-bicep/infra/modules/ai-services-template.bicep" highlight="10-11,43":::
