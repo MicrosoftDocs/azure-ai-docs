@@ -2,7 +2,7 @@
 manager: nitinme
 ms.service: azure-ai-model-inference
 ms.topic: include
-ms.date: 1/21/2025
+ms.date: 04/09/2025
 ms.author: fasantia
 author: santiagxf
 ---
