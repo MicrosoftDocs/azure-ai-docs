@@ -321,4 +321,10 @@ curl -X POST "https://{your-custom-domain}.cognitiveservices.azure.com/translato
 
 Replace {your-custom-domain} with the value form the Azure portal and {access-token} with the token obtained from the previous step, [obtain an access token](#obtain-an-access-token-with-oauth-client-credentials-flow).
 
+Here's an example of the JSON response:
+
+```json
+[{"detectedLanguage":{"language":"es","score":1.0},"translations":[{"text":"Hello","to":"en"}]}]
+```
+
 Congratulations! You now know how to use Microsoft Entra ID to authenticate requests to your Azure  API.
