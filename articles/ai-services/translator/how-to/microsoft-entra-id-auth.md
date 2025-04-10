@@ -6,14 +6,14 @@ ms.topic: install-set-up-deploy
 manager: nitinme
 ms.author: lajanuar
 author: laujan
-ms.date: 04/01/2025
+ms.date: 04/10/2025
 ---
 
 # Enable Microsoft Entra ID authentication
 
 Microsoft Entra ID is a cloud-based identity solution designed to manage user access and permissions for Microsoft services, resources, and applications. Organizations that subscribe to Microsoft's online business services, such as Microsoft Azure, have access to Microsoft Entra ID. 
 
-Microsoft Entra ID, enables you to authenticate requests to your Azure AI resources without the need for passwords or keys. Instead, an robust layer of security is created by registering an identity application with the Microsoft Entra ID platform. This registration enables your identity application to make secure requests to your Azure AI resource API, thus establishing a trust relationship with the Microsoft identity platform.
+Microsoft Entra ID enables you to authenticate requests to your Azure AI resources without the need for passwords or keys. Instead, a robust layer of security is created by registering an identity application with the Microsoft Entra ID platform. This registration enables your identity application to make secure requests to your Azure AI resource API, thus establishing a trust relationship with the Microsoft identity platform.
 
 This article guides you on how to create and utilize a Microsoft Entra ID identity application to authenticate requests to your Azure AI resources. Here are the steps:
 
@@ -31,7 +31,7 @@ Before you get started, you need an Azure account and an Azure AI services subsc
 
 * An active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
 
-* A Azure AI Translator resource. Once you have your Azure subscription, create a [Translator single-service global resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in the Azure portal. 
+* An Azure AI Translator resource. Once you have your Azure subscription, create a [Translator single-service global resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in the Azure portal. 
 
 > [!IMPORTANT]
 > [Regional endpoints](../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints) don't support Microsoft Entra authentication.
@@ -143,7 +143,7 @@ Client applications utilize credentials to gain access to a web API. These crede
 
   :::image type="content" source="media/entra-id/add-new-client-secret.png" alt-text="Screenshot of the Add a client secret setup window.":::
 
-* Copy and paste the client secret **`Value`** in a the same secure location as the `Application (client) ID` and `Directory (tenant) ID`, such as Windows Notepad. Client secret values can only be viewed immediately after creation. Be sure to save the secret before leaving the page.
+* Copy and paste the client secret **`Value`** in the same secure location as the `Application (client) ID` and `Directory (tenant) ID`, such as Windows Notepad. Client secret values can only be viewed immediately after creation. Be sure to save the secret before leaving the page.
 
 ## Add API permissions
 
@@ -196,7 +196,7 @@ Role-based access control (Azure `RBAC`) is a security principal that enables yo
       :::column:::
           :::image type="content" source="media/entra-id/select-members.png" alt-text="Screenshot of select members window in the Azure portal.":::
       :::column-end:::
-  :::row-end:::
+:::row-end:::
 
 ## Obtain an access token with OAuth client credentials flow
 
@@ -204,14 +204,14 @@ Access tokens are a type of security token designed for authorization, granting 
 
 > [!NOTE]
 >
-> * The default lifespan of an access token is not fixed.
+> * The default lifespan of an access token isn't fixed.
 > * Upon issuance, the Microsoft identity platform assigns it a random duration ranging from 60 to 90 minutes, with an average of 75 minutes.
 > * When the token expires, repeat the request to the /token endpoint to acquire a fresh access token.
-> * Refresh tokens are not issued with the client credentials flow. Since the `client_id` and `client_secret` (which are required to obtain a refresh token) are already used to obtain an access token eliminating the need for a refresh token in this context. for more information , *see* [OAuth 2.0 client credentials flow](/entra/identity-platform/v2-oauth2-client-creds-grant-flow#use-a-token)
+> * Refresh tokens aren't issued with the client credentials flow. Since the `client_id` and `client_secret` (which are required to obtain a refresh token) are already used to obtain an access token eliminating the need for a refresh token in this context. For more information, *see* [OAuth 2.0 client credentials flow](/entra/identity-platform/v2-oauth2-client-creds-grant-flow#use-a-token)
 
 * Prepare for the token request. You need the following values from your registered application:
 
-  * **Application (client) ID**. Located on your registered application's overview page. Copied and stored during the earlier [register an identity application](#register-an-identity-application-with-microsoft-entra-id) step.(#register-an-identity-application-with-microsoft-entra-id) .
+  * **Application (client) ID**. Located on your registered application's overview page. Copied and stored during the earlier [register an identity application](#register-an-identity-application-with-microsoft-entra-id) step.(#register-an-identity-application-with-microsoft-entra-id).
   * **Tenant ID**. Located on your registered application's overview page. Copied and stored during the earlier [register an identity application](#register-an-identity-application-with-microsoft-entra-id) step.
   * **Client secret value**. Copied and stored during the earlier [Add a client secret credential](#add-a-client-secret-credential) step.
 
