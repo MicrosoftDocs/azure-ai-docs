@@ -7,7 +7,7 @@ author: msakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 03/07/2025
+ms.date: 04/09/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: generated
