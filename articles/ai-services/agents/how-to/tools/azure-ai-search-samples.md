@@ -30,6 +30,8 @@ Complete the [Azure AI Search tool setup](../../how-to/tools/azure-ai-search.md?
 
     :::image type="content" source="../../media/tools/knowledge-tools-list.png" alt-text="A screenshot showing the available knowledge tools in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools-list.png":::
 
+:::zone-end
+
 :::zone pivot="python"
 
 ## Step 1: Create an Azure AI Client
