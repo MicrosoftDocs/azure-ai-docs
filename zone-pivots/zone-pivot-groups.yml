@@ -1059,10 +1059,16 @@ groups:
   title: Selections
   prompt: What would you like to see?
   pivots:
-  - id: overview-azure-ai-search
-    title: Overview
-  - id: code-examples
-    title: Code examples
+  - id: portal
+    title: Azure AI Foundry portal
+  - id: csharp
+    title: C#
+  - id: javascript
+    title: JavaScript
+  - id: python
+    title: Python
+  - id: rest
+    title: REST API
 # owner: zhuoqunli
 - id: selection-bing-grounding-code
   title: Selections
