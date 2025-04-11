@@ -283,7 +283,7 @@ You can delete a fine-tuned model from the fine-tuning model list in [Azure AI F
 
 ### Create AzureML Workspace connection
 
-The following sections walk you through how to fine-tune a model in python. To see a notebook example of this code, please see [FineTuning LLM with Model-As-Service](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/finetuning/standalone/model-as-a-service/chat-completion/chat_completion_with_model_as_service.ipynb)
+The following sections walk you through how to fine-tune a model in python. To find a notebook example of this code, please see [FineTuning LLM with Model-As-Service](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/finetuning/standalone/model-as-a-service/chat-completion/chat_completion_with_model_as_service.ipynb)
 
 First, ensure to install dependencies to start fine-tuning your model. 
 
