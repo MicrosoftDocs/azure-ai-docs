@@ -35,9 +35,9 @@ To use chat completion models in your application, you need:
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
 
 ```javascript
-const client = new ModelClient(
+const client = ModelClient(
     "https://<resource>.services.ai.azure.com/models", 
-    new AzureKeyCredential(process.env.AZUREAI_ENDPOINT_KEY)
+    new AzureKeyCredential(process.env.AZURE_INFERENCE_CREDENTIAL)
 );
 ```
 
@@ -46,9 +46,9 @@ If you've configured the resource with **Microsoft Entra ID** support, you can u
 ```javascript
 const clientOptions = { credentials: { "https://cognitiveservices.azure.com" } };
 
-const client = new ModelClient(
+const client = ModelClient(
     "https://<resource>.services.ai.azure.com/models", 
-    new DefaultAzureCredential(),
+    new DefaultAzureCredential()
     clientOptions,
 );
 ```
