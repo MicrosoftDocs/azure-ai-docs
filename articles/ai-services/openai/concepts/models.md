@@ -235,7 +235,7 @@ OpenAI's MTEB benchmark testing found that even when the third generation model'
 
 The DALL-E models generate images from text prompts that the user provides. DALL-E 3 is generally available for use with the REST APIs. DALL-E 2 and DALL-E 3 with client SDKs are in preview.
 
-## Audio API models
+## Audio
 
 The audio models via the `/audio` API can be used for speech to text, translation, and text to speech. 
 

@@ -29,7 +29,7 @@ New audio models powered by GPT-4o are now available.
 
 - The `gpt-4o-mini-tts` text to speech model is released. Use the `gpt-4o-mini-tts` model for text to speech generation via the `/audio` API.
 
-For more information about available models, see the [models and versions documentation](./concepts/models.md#audio-api-models).
+For more information about available models, see the [models and versions documentation](./concepts/models.md#audio).
 
 ## March 2025
 
