@@ -9,7 +9,7 @@ ms.custom: devx-track-python, devx-track-dotnet
 ms.topic: quickstart
 ms.date: 02/22/2025
 ms.author: pafarley
-zone_pivot_groups: programming-languages-content-safety-abridged
+zone_pivot_groups: programming-languages-content-safety-foundry-rest
 ---
 
 # QuickStart: Use a text blocklist
@@ -19,6 +19,12 @@ Get started using Azure AI Content Safety to create a custom text blocklist and 
 > [!CAUTION]
 > 
 > The sample data and code may contain offensive content. User discretion is advised.
+
+::: zone pivot="programming-language-foundry-portal"
+
+[!INCLUDE [Foundry portal quickstart](./includes/quickstarts/foundry-quickstart-blocklist.md)]
+
+::: zone-end
 
 ::: zone pivot="programming-language-rest"
 
