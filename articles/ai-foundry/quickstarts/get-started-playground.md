@@ -8,10 +8,11 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: quickstart
-ms.date: 02/12/2025
+ms.date: 04/10/2025
 ms.reviewer: zuramir
 ms.author: sgilley
 author: sdgilley
+zone_pivot_groups: project-type
 # customer intent: As a developer, I want use the chat playground in Azure AI Foundry portal so I can work with generative AI.
 ---
 
@@ -25,9 +26,13 @@ If you don't have an Azure subscription, <a href="https://azure.microsoft.com/fr
 
 ## Prerequisites
 
-- You need permissions to create an Azure AI Foundry hub or have one created for you.
+::: zone pivot="hub-project"
+
+- To create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)], you need permissions to create an Azure AI Foundry hub or have one created for you.
     - If your role is **Contributor** or **Owner**, you can follow the steps in this tutorial.
     - If your role is **Azure AI Developer**, the hub must already be created before you can complete this tutorial. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../concepts/ai-resources.md) and [Azure AI roles](../concepts/rbac-azure-ai-foundry.md).
+
+::: zone-end
 
 - Your subscription needs to be below your [quota limit](../how-to/quota.md) to [deploy a new model in this tutorial](#deploy-a-chat-model). Otherwise you already need to have a [deployed chat model](../how-to/deploy-models-openai.md).
 
