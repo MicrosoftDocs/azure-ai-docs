@@ -232,7 +232,7 @@ We encourage customers to use text to speech features in their innovative soluti
 - **Review the code of conduct**: Microsoft has established a code of conduct that prohibits certain uses of all text to speech features. Ensure compliance with the code of conduct when selecting a use case for text to speech services. 
 - **Exercise editorial control**: Carefully consider using synthetic voices with content that lacks proper editorial control, as synthetic voices can sound human-like and amplify the effect of incorrect or misleading content. 
 - **Disclosure**: Disclose the synthetic nature of voices, images, and/or videos to users such that users are not likely to be deceived or duped—or able to prank others—into believing they are interacting with a real person. 
-- [!INCLUDE [regulatory-considerations](..\../includes/regulatory-considerations.md)]
+- [!INCLUDE [regulatory-considerations](../../includes/regulatory-considerations.md)]
 
 By adhering to these considerations, users can leverage both prebuilt and custom neural voice responsibly.  
 

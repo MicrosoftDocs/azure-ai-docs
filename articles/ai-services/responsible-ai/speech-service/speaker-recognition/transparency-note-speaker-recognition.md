@@ -66,7 +66,7 @@ The following use cases are approved for customers:
 * **Avoid using as a sole factor in authentication where security is important:** Speaker Recognition is not designed to differentiate a synthesized voice or recordings of a voice from a live human speaker. Carefully consider scenarios with a risk of spoofing. Speaker Recognition shouldn't be used as the sole factor in authenticating a user in applications where security is the goal, such as access to financial information or physical security.
 * **Actively enroll users:** Voice signatures contain speakers' biometric voiceprint characteristics. To help prevent misuse of Speaker Recognition, Microsoft provides an active enrollment feature for users of text-independent APIs through an activation step. The activation step indicates the speakers' active participation in creating their voice signatures and is intended to help avoid the scenario in which speakers are enrolled without their awareness. Be advised that this activation step does not alleviate customer’s legal obligations to ensure it has received all necessary permissions and consents from its users for the purposes of its processing, retention, and intended uses of speaker signatures created.
 * **Limit the number of candidates for speaker identification:** Speaker Identification API can only take up to 50 candidates to compare the speech input against in an API call.
-* [!INCLUDE [regulatory-considerations](..\../includes/regulatory-considerations.md)]
+* [!INCLUDE [regulatory-considerations](../../includes/regulatory-considerations.md)]
 
 ## Next steps
 
