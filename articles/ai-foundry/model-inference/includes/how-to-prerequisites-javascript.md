@@ -15,7 +15,7 @@ author: santiagxf
   npm install @azure/identity
   ```
 
-  If you are using Node.js, you can configure the dependencies in a **package.json** file:
+  If you are using Node.js, you can configure the dependencies in **package.json**:
 
   __package.json__
 
