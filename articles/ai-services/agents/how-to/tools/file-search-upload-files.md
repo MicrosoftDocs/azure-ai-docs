@@ -53,6 +53,10 @@ from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import FileSearchTool, MessageAttachment, FilePurpose
 from azure.identity import DefaultAzureCredential
 
+# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
+# At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>"
+# Customer needs to login to Azure subscription via Azure CLI and set the environment variables
+
 credential = DefaultAzureCredential()
 project_client = AIProjectClient.from_connection_string(
     credential=credential, conn_str=os.environ["PROJECT_CONNECTION_STRING"] 
@@ -61,23 +65,29 @@ project_client = AIProjectClient.from_connection_string(
 
 ## Step 2: Upload files and add them to a Vector Store
 
-To access your files, the file search tool uses the vector store object. Upload your files and create a vector store.
+To access your files, the file search tool uses the vector store object. Upload your files and create a vector store. After creating the vector store, poll its status until all files are out of the `in_progress` state to ensure that all content is fully processed. The SDK provides helpers for uploading and polling.
 
 ```python
+# We will upload the local file and will use it for vector store creation.
+
+#upload a file
 file = project_client.agents.upload_file_and_poll(file_path='./data/product_catelog.md', purpose=FilePurpose.AGENTS)
 print(f"Uploaded file, file ID: {file.id}")
 
+# create a vector store with the file you uploaded
 vector_store = project_client.agents.create_vector_store_and_poll(file_ids=[file.id], name="my_vectorstore")
 print(f"Created vector store, vector store ID: {vector_store.id}")
 ```
 
 ## Step 3: Create an agent and enable file search
 
-Create a `FileSearchTool` object with the `vector_store` ID, and attach `tools` and `tool_resources` to the agent.
+To make the files accessible to your agent, create a `FileSearchTool` object with the `vector_store` ID, and attach tools and `tool_resources` to the agent.
 
 ```python
+# create a file search tool
 file_search_tool = FileSearchTool(vector_store_ids=[vector_store.id])
 
+# notice that the file search tool and tool_resources must be added or the agent will be unable to search the file
 agent = project_client.agents.create_agent(
     model="gpt-4o-mini",
     name="my-agent",
@@ -90,14 +100,19 @@ print(f"Created agent, agent ID: {agent.id}")
 
 ## Step 4: Create a thread
 
-Attach files as message attachments on your thread.
+You can also attach files as Message attachments on your thread. Doing so creates another `vector_store` associated with the thread, or, if there's already a vector store attached to this thread, attaches the new files to the existing thread vector store. When you create a Run on this thread, the file search tool queries both the `vector_store` from your agent and the `vector_store` on the thread.
 
 ```python
+# Create a thread
 thread = project_client.agents.create_thread()
 print(f"Created thread, thread ID: {thread.id}")
 
+# Upload the user provided file as a messsage attachment
 message_file = project_client.agents.upload_file_and_poll(file_path='product_info_1.md', purpose=FilePurpose.AGENTS)
 print(f"Uploaded file, file ID: {message_file.id}")
+
+# Create a message with the file search attachment
+# Notice that a vector store is created temporarily when using attachments with a default expiration policy of seven days.
 
 attachment = MessageAttachment(file_id=message_file.id, tools=FileSearchTool().definitions)
 message = project_client.agents.create_message(
@@ -139,15 +154,19 @@ using System.IO;
 using System.Threading.Tasks;
 using Azure.Core.TestFramework;
 
+// Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
+// At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>"
+// You need to login to your Azure subscription via the Azure CLI and set the environment variables
 var connectionString = TestEnvironment.AzureAICONNECTIONSTRING;
 AgentsClient client = new AgentsClient(connectionString, new DefaultAzureCredential());
 ```
 
 ## Step 2: Upload files and add them to a Vector Store
 
-Upload your files and create a vector store.
+To access your files, the file search tool uses the vector store object. Upload your files and create a vector store. After creating the vector store, poll its status until all files are uploaded to ensure that all content is fully processed. The SDK provides helpers for uploading and polling.
 
 ```csharp
+// Upload a file and wait for it to be processed
 File.WriteAllText(
     path: "sample_file_for_upload.txt",
     contents: "The word 'apple' uses the code 442345, while the word 'banana' uses the code 673457.");
@@ -157,6 +176,8 @@ Response<AgentFile> uploadAgentFileResponse = await client.UploadFileAsync(
 
 AgentFile uploadedAgentFile = uploadAgentFileResponse.Value;
 
+// Create a vector store with the file and wait for it to be processed.
+// If you do not specify a vector store, create_message will create a vector store with a default expiration policy of seven days after they were last active
 VectorStore vectorStore = await client.CreateVectorStoreAsync(
     fileIds: new List<string> { uploadedAgentFile.Id },
     name: "my_vector_store");
@@ -164,12 +185,13 @@ VectorStore vectorStore = await client.CreateVectorStoreAsync(
 
 ## Step 3: Create an agent and enable file search
 
-Create a `FileSearchTool` object with the `vector_store` ID, and attach `tools` and `tool_resources` to the agent.
+Create a file search tool object with the vector store ID, and attach tool and tool resources to the agent.
 
 ```csharp
 FileSearchToolResource fileSearchToolResource = new FileSearchToolResource();
 fileSearchToolResource.VectorStoreIds.Add(vectorStore.Id);
 
+// Create an agent with toolResources and process assistant run
 Response<Agent> agentResponse = await client.CreateAgentAsync(
     model: "gpt-4o-mini",
     name: "SDK Test Agent - Retrieval",
@@ -181,7 +203,7 @@ Agent agent = agentResponse.Value;
 
 ## Step 4: Create a thread
 
-Attach files as message attachments on your thread.
+You can also attach files as Message attachments on your thread. Doing so creates another vector store associated with the thread, or, if there's already a vector store attached to this thread, attaches the new files to the existing thread vector store. When you create a Run on this thread, the file search tool queries both the vector store from your agent and the vector store on the thread.
 
 ```csharp
 Response<AgentThread> threadResponse = await client.CreateThreadAsync();
@@ -265,7 +287,7 @@ console.log(`Created vector store, ID: ${vectorStore.id}`);
 
 ## Step 3: Create an agent and enable file search
 
-Create a `FileSearchTool` object with the `vector_store` ID, and attach `tools` and `tool_resources` to the agent.
+Create a `FileSearchTool` object with the vector store ID, and attach `tools` and `toolResources` to the agent.
 
 ```javascript
 const fileSearchTool = ToolUtility.createFileSearchTool([vectorStore.id]);
@@ -281,7 +303,7 @@ console.log(`Created agent, agent ID : ${agent.id}`);
 
 ## Step 4: Create a thread
 
-Attach files as message attachments on your thread.
+You can also attach files as Message attachments on your thread. Doing so creates another vector store associated with the thread, or, if there's already a vector store attached to this thread, attaches the new files to the existing thread vector store. When you create a Run on this thread, the file search tool queries both the vector store from your agent and the vector store on the thread.
 
 ```javascript
 const thread = await client.agents.createThread({ toolResources: fileSearchTool.resources });
@@ -333,18 +355,22 @@ for (let i = messages.data.length - 1; i >= 0; i--) {
 
 :::zone pivot="rest"
 
-## Step 2: Upload files and add them to a Vector Store
+## Step 1: Upload files and add them to a Vector Store
 
-Upload your files and create a vector store.
+To access your files, the file search tool uses the vector store object. Upload your files and create a vector store. After creating the vector store, poll its status until all files are out of the in_progress state to ensure that all content is fully processed. The SDK provides helpers for uploading and polling.
 
-```console
+### Upload a file
+
+```bash
 curl $AZURE_AI_AGENTS_ENDPOINT/files?api-version=2024-12-01-preview \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -F purpose="assistants" \
   -F file="@c:\\path_to_file\\sample_file_for_upload.txt"
 ```
 
-```console
+### Create a vector store
+
+```bash
 curl $AZURE_AI_AGENTS_ENDPOINT/vector_stores?api-version=2024-12-01-preview \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
@@ -353,18 +379,47 @@ curl $AZURE_AI_AGENTS_ENDPOINT/vector_stores?api-version=2024-12-01-preview \
   }'
 ```
 
-## Step 4: Create a thread
+### Attach the uploaded file to the vector store
 
-Attach files as message attachments on your thread.
+```bash
+curl $AZURE_AI_AGENTS_ENDPOINT/vector_stores/vs_abc123/files?api-version=2024-12-01-preview \
+    -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "file_id": "assistant-abc123"
+    }'
+```
 
-```console
+## Step 2: Create an agent and enable file search
+
+```bash
+curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "name": "Financial Analyst Assistant",
+    "instructions": "You are an expert financial analyst. Use your knowledge base to answer questions about audited financial statements.",
+    "tools": [{"type": "file_search"}],
+    "model": "gpt-4o-mini",
+    "tool_resources": {"file_search": {"vector_store_ids": ["vs_1234abcd"]}}
+  }'
+```
+
+
+## Step 3: Create a thread
+
+You can also attach files as Message attachments on your thread. Doing so creates another vector store associated with the thread, or, if there's already a vector store attached to this thread, attaches the new files to the existing thread vector store. When you create a Run on this thread, the file search tool queries both the vector store from your agent and the vector store on the thread.
+
+```bash
 curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d ''
 ```
 
-```console
+### Add a user question to the thread
+ 
+```bash
 curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
@@ -374,11 +429,13 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-1
     }'
 ```
 
-## Step 5: Create a run and check the output
+## Step 4: Create a run and check the output
 
 Create a run and observe that the model uses the file search tool to provide a response.
 
-```console
+### Run the thread
+
+```bash
 curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01-preview \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
@@ -387,12 +444,16 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01
   }'
 ```
 
-```console
+### Retrieve the status of the run
+
+```bash
 curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2024-12-01-preview \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 
-```console
+### Retrieve the agent response
+
+```bash
 curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
