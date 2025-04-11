@@ -89,7 +89,7 @@ Pin or unpin items into the left pane. When you pin an item, it appears in the l
 
 * Select **... More** at the bottom of the pane to see items to pin and unpin.
 * Customize each project separately. The left pane is not shared across projects.
-* The left pane is not shared across users. Each user customizes their own left pane. 
+* The left pane is not shared across users. Each user customizes their own left pane for each project. 
 
 ## Management center
 
