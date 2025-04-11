@@ -34,7 +34,13 @@ If you don't have an Azure subscription, <a href="https://azure.microsoft.com/fr
 
 ::: zone-end
 
-- Your subscription needs to be below your [quota limit](../how-to/quota.md) to [deploy a new model in this tutorial](#deploy-a-chat-model). Otherwise you already need to have a [deployed chat model](../how-to/deploy-models-openai.md).
+::: zone pivot="fdp-project"
+
+To create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)], you need: 
+
+::: zone-end
+
+- A subscription below the [quota limit](../how-to/quota.md) to [deploy a new model in this tutorial](#deploy-a-chat-model). Otherwise you already need to have a [deployed chat model](../how-to/deploy-models-openai.md).
 
 
 ## Deploy a chat model
