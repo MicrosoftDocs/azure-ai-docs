@@ -2,8 +2,8 @@
 title: Data and privacy for Image Analysis
 titleSuffix: Azure AI services
 description: This document details issues for data, privacy, and security for Image Analysis.
-author: Varsha-Parthasarathy
-ms.author: vaparth
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: article

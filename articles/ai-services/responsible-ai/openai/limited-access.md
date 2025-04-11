@@ -32,7 +32,7 @@ Customers who wish to modify content filters and/or modify abuse monitoring are 
 Frequently asked questions about Limited Access can be found on the [Azure AI Services Limited Access](/azure/ai-services/cognitive-services-limited-access?context=/azure/ai-services/openai/context/context) page. If you need help with Azure OpenAI, see the [AI Services support options](/azure/ai-services/cognitive-services-support-options) page. Report abuse of Azure OpenAI [here](https://aka.ms/reportabuse).
 
 ## See also
-- [Code of conduct for Azure OpenAI Service integrations](./code-of-conduct.md?context=/azure/ai-services/openai/context/context)
+
+- [Code of conduct for Azure OpenAI Service integrations](/legal/cognitive-services/openai/code-of-conduct?context=/azure/ai-services/openai/context/context)
 - [Transparency note for Azure OpenAI Service](./transparency-note.md?context=/azure/ai-services/openai/context/context)
-- [Characteristics and limitations for Azure OpenAI Service](./characteristics-and-limitations.md?context=/azure/ai-services/openai/context/context)
 - [Data, privacy, and security for Azure OpenAI Service](./data-privacy.md?context=/azure/ai-services/openai/context/context)

@@ -2,8 +2,8 @@
 title: Guidance for integration and responsible use with Image Analysis
 titleSuffix: Azure AI services
 description: Guidance for how to deploy the Image Analysis service responsibly, based on the knowledge and understanding from the team that created this product.
-author: Varsha-Parthasarathy
-ms.author: vaparth
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: article
