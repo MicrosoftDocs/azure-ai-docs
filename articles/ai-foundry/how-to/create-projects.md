@@ -92,6 +92,7 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 ## Create a project
 
+[!INCLUDE [tip-left-nav](../includes/tip-left-nav.md)]
 
 # [Azure AI Foundry portal](#tab/ai-studio)
 

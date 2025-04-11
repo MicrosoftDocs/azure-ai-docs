@@ -42,6 +42,8 @@ Here's a table of some of the available connection types in Azure AI Foundry por
 
 ## Create a new connection
 
+[!INCLUDE [tip-left-nav](../includes/tip-left-nav.md)]
+
 Follow these steps to create a new connection that's only available for the current project.
 
 1. Go to your project in [Azure AI Foundry portal](https://ai.azure.com). If you don't have a project, [create a new project](./create-projects.md).

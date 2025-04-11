@@ -42,6 +42,8 @@ Compute instances can run jobs securely in a virtual network environment, withou
 
 ## Create a compute instance
 
+[!INCLUDE [tip-left-nav](../includes/tip-left-nav.md)]
+
 To create a compute instance in Azure AI Foundry portal:
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com) and select your project. If you don't have a project already, first create one.
