@@ -19,11 +19,11 @@ This article guides you on how to create and utilize a Microsoft Entra ID identi
 
 * [Set up prerequisites](#prerequisites).
 * [Disable key-based (local) authentication](#disable-key-authentication)
-* [Register an identity application with Microsoft Entra ID](#register-an-identity-application-with-microsoft-entra-id).
-* [Add a client secret](#add-a-client-secret-credential).
-* [Assign an `RBAC` (role-based access control) role to grant access permissions to your application.](#add-api-permissions).
+* [Register an identity application with Microsoft Entra ID](#register-an-identity-application-with-microsoft-entra-id)
+* [Add a client secret](#add-a-client-secret-credential)
+* [Assign an `RBAC` (role-based access control) role to grant access permissions to your application.](#add-api-permissions)
 * [Obtain an access token](#obtain-an-access-token-with-oauth-client-credentials-flow)
-* [Make a request to the Azure AI Translator API](#).
+* [Make a request to the Azure AI Translator API](#use-access-token-authentication-for-a-rest-api-request)
 
 ## Prerequisites
 
@@ -77,7 +77,7 @@ To use Microsoft Entra authentication, key-based (local) authentication must be 
 1. **Disable local authentication**
 
    ```powershell
-  Set-AzCognitiveServicesAccount -ResourceGroupName "my-resource-group" -Name "my-resource-name" -DisableLocalAuth $true
+   Set-AzCognitiveServicesAccount -ResourceGroupName "my-resource-group" -Name "my-resource-name" -DisableLocalAuth $true
 
    ```
 
@@ -254,7 +254,7 @@ Access tokens are a type of security token designed for authorization, granting 
 
 Great! Now let's make an REST API call to the Azure Translator AI API.
 
-## Use the obtained access token to authenticate your requests to the Translator Text API
+## Use access token authentication for a REST API request
 
 To make a valid REST API request, the following values are required:
 
@@ -327,8 +327,8 @@ Replace {your-custom-domain} with the value form the Azure portal and {access-to
 
 Here's an example of the JSON response:
 
-```json
-[{"detectedLanguage":{"language":"es","score":1.0},"translations":[{"text":"Hello","to":"en"}]}]
-```
+  ```json
+  [{"detectedLanguage":{"language":"es","score":1.0},"translations":[{"text":"Hello","to":"en"}]}]
+  ```
 
 Well done! You now know how to use Microsoft Entra ID to authenticate requests to your Azure AI resource.
