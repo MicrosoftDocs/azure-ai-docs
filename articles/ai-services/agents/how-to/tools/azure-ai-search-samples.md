@@ -20,7 +20,7 @@ This article shows how to use an existing Azure AI Search index with the Azure A
 ### Prerequisites
 Complete the [Azure AI Search tool setup](../../how-to/tools/azure-ai-search.md?pivot=overview-azure-ai-search).
 
-# [Python](#tab/python)
+:::zone pivot="python"
 
 ### Step 1: Create an Azure AI Client
 First, create an Azure AI Client using the connection string of your project.
@@ -129,7 +129,9 @@ for message in messages.data:
 print(f"Assistant response: {assistant_message}")
 ```
 
-# [C#](#tab/csharp)
+:::zone-end
+
+:::zone pivot="csharp"
 
 ### Step 1: Create an Azure AI Client
 First, create an Azure AI Client using the connection string of your project.
@@ -247,7 +249,9 @@ foreach (ThreadMessage threadMessage in messages)
 }
 ```
 
-# [JavaScript](#tab/javascript)
+:::zone-end
+
+:::zone pivot="javascript"
 
 ### Step 1: Create an Azure AI Client
 First, create an Azure AI Client using the connection string of your project.
@@ -356,7 +360,9 @@ for (let i = messages.data.length - 1; i >= 0; i--) {
 }
 ```
 
-# [REST API](#tab/rest)
+:::zone-end
+
+:::zone pivot="rest"
 
 ### Step 1: Create an Azure AI Client
 Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`.
@@ -364,7 +370,7 @@ Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the
 ### Step 2: Get the connection ID for the Azure AI Search resource
 Follow the next section on how to get the connection ID from the Azure AI Foundry.
 
-Navigate to the project in the Azure AI Foundry and click on the **Connected resources** tab and then select your Azure AI Search resource.
+The second way to get the connection ID is to navigate to the project in the Azure AI Foundry and click on the **Connected resources** tab and then select your Azure AI Search resource.
 
 :::image type="content" source="../../media/tools/ai-search/success-connection.png" alt-text="A screenshot of an AI Search resource connection page in Azure AI Foundry." lightbox="../../media/tools/ai-search/success-connection.png":::
 
@@ -372,8 +378,7 @@ In the URL, you see the wsid=/subscription/your-subscription-id..., this is the 
 
 :::image type="content" source="../../media/tools/ai-search/connection-id.png" alt-text="A screenshot of an AI Search resource connection and how to copy the connection ID." lightbox="../../media/tools/ai-search/connection-id.png":::
 
-### Step 3: Create an agent with the Azure AI Search tool enabled
-
+### Step 3: Configure the Azure AI Search tool
 Using the connection ID you got in the previous step, you can now configure the Azure AI Search tool to use your Azure AI Search index.
 
 ```console
@@ -401,7 +406,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
       }'
 ```
 
-### Step 4: Ask the agent questions about data in the index
+### Step 5: Ask the agent questions about data in the index
 Now that the agent is created, ask it questions about the data in your Azure AI Search index.
 
 #### Create a thread
@@ -450,4 +455,4 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-1
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 
----
+:::zone-end
