@@ -155,7 +155,7 @@ To learn more about Microsoft's privacy and security commitments see the [Micros
 
 
 ## See also
-- [Code of conduct for Azure OpenAI Service integrations](./code-of-conduct.md?context=/azure/ai-services/openai/context/context)
+- [Code of conduct for Azure OpenAI Service integrations](/legal/cognitive-services/openai/code-of-conduct?context=/azure/ai-services/openai/context/context)
 - [Overview of Responsible AI practices for Azure OpenAI models](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) 
 - [Transparency note and use cases for Azure OpenAI Service](./transparency-note.md?context=/azure/ai-services/openai/context/context)
 - [Data Residency in Azure](https://azure.microsoft.com/explore/global-infrastructure/data-residency/)

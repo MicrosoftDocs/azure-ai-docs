@@ -3,8 +3,8 @@ title: Characteristics and limitations for Image Analysis
 titleSuffix: Azure AI services
 description: Characteristics, accuracy, and limitations when using Image Analysis service.
 
-author: Varsha-Parthasarathy
-ms.author: vaparth
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: article
