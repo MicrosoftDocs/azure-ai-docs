@@ -173,7 +173,7 @@ Video translation can efficiently localize your video content to cater to divers
 
 ## Use cases
 
-Text to speech offers a variety of features catering to a wide range of intended uses across industries and domains. All text to speech features including video translation are subject to the terms and conditions applicable to customers’ Azure subscription, including the Azure Acceptable Use Policy and the [Code of conduct for Azure AI Speech text to speech](./code-of-conduct.md).  
+Text to speech offers a variety of features catering to a wide range of intended uses across industries and domains. All text to speech features including video translation are subject to the terms and conditions applicable to customers’ Azure subscription, including the Azure Acceptable Use Policy and the [Code of conduct for Azure AI Speech text to speech](/legal/ai-code-of-conduct?context=/azure/ai-services/speech-service/context/context).  
 
 
 In addition, custom text to speech features like custom neural voice, personal voice, and custom text to speech avatar are limited to the approved use cases as outlined in the specific scenarios described below:
@@ -204,7 +204,7 @@ The personal voice API (see [Personal voice](/azure/ai-services/speech-service/p
 
 All other uses of custom neural voice, including Custom Neural Voice Pro, Custom Neural Voice Lite, and personal voice, are prohibited. In addition, custom neural voice is a Limited Access service, and registration is required for access to this service. To learn more about Microsoft’s Limited Access policy, refer to [Limited Access features for Azure AI services](https://aka.ms/limitedaccesscogservices). Certain features are only available to Microsoft managed customers and partners, and only for certain use cases approved by Microsoft at the time of registration. 
 
-Prebuilt neural voice may also be used for the custom neural voice use cases above, as well as additional use cases selected by customers and consistent with the Azure Acceptable Use Policy and the [Code of conduct for Azure AI Speech text to speech](./code-of-conduct.md). No registration or pre-approval is required for additional use cases for prebuilt neural voice that meet all applicable terms and conditions. 
+Prebuilt neural voice may also be used for the custom neural voice use cases above, as well as additional use cases selected by customers and consistent with the Azure Acceptable Use Policy and the [Code of conduct for Azure AI Speech text to speech](/legal/ai-code-of-conduct?context=/azure/ai-services/speech-service/context/context). No registration or pre-approval is required for additional use cases for prebuilt neural voice that meet all applicable terms and conditions. 
 
 ### Intended uses for custom text to speech avatar and prebuilt text to speech avatar 
 
@@ -221,11 +221,11 @@ The following are the approved use cases for custom text to speech avatar:
 
 All other uses of custom text to speech avatar are prohibited. In addition, custom text to speech avatar is a Limited Access service, and registration is required for access to this feature. To learn more about Microsoft’s Limited Access policy visit [aka.ms/limitedaccesscogservices](https://aka.ms/limitedaccesscogservices). Certain features are only available to Microsoft managed customers and partners, and only for certain use cases approved by Microsoft at the time of registration. 
 
-Prebuilt text to speech avatar may also be used for the custom avatar use cases above, as well as additional use cases selected by customers and consistent with Azure Acceptable Use Policy and the [Code of conduct for Azure AI Speech text to speech](code-of-conduct.md). No registration or pre-approval is required for additional use cases for prebuilt text to speech avatar that meet all applicable terms and conditions.   
+Prebuilt text to speech avatar may also be used for the custom avatar use cases above, as well as additional use cases selected by customers and consistent with Azure Acceptable Use Policy and the [Code of conduct for Azure AI Speech text to speech](/legal/ai-code-of-conduct?context=/azure/ai-services/speech-service/context/context). No registration or pre-approval is required for additional use cases for prebuilt text to speech avatar that meet all applicable terms and conditions.   
 
 ### Considerations when choosing use cases 
 
-We encourage customers to use text to speech features in their innovative solutions or applications. All text to speech features must adhere to the Azure Acceptable Use Policy and the [Code of conduct for Azure AI Speech text to speech](./code-of-conduct.md). In addition, custom neural voice and custom text to speech avatars may only be used for the use cases approved through the [Limited Access registration form](https://aka.ms/customneural). Additionally, here are some considerations when choosing a use case for any text to speech feature: 
+We encourage customers to use text to speech features in their innovative solutions or applications. All text to speech features must adhere to the Azure Acceptable Use Policy and the [Code of conduct for Azure AI Speech text to speech](/legal/ai-code-of-conduct?context=/azure/ai-services/speech-service/context/context). In addition, custom neural voice and custom text to speech avatars may only be used for the use cases approved through the [Limited Access registration form](https://aka.ms/customneural). Additionally, here are some considerations when choosing a use case for any text to speech feature: 
 
 - **Ensure use case alignment**: Ensure that the intended use of any text to speech feature aligns with the capabilities and intended purpose of the text to speech feature. 
 - **Responsible AI considerations**: Prioritize responsible AI practices by avoiding the creation of misleading or harmful content. Adhere to privacy, data protection, and legal regulations when using text to speech features. 
@@ -234,7 +234,7 @@ We encourage customers to use text to speech features in their innovative soluti
 - **Disclosure**: Disclose the synthetic nature of voices, images, and/or videos to users such that users are not likely to be deceived or duped—or able to prank others—into believing they are interacting with a real person. 
 - [!INCLUDE [regulatory-considerations](../../includes/regulatory-considerations.md)]
 
-By adhering to these considerations, users can leverage both prebuilt and custom neural voice responsibly.  
+By adhering to these considerations, users can leverage both prebuilt and custom neural voice responsibly.
 
 ## Limitations
 
