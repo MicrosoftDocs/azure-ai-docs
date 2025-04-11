@@ -36,7 +36,7 @@ For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-projec
 > [!TIP]
 > The rest of this article uses a **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select [!INCLUDE [hub](../includes/fdp-project-name.md)] at the top of this article if you want to use a [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
 
-:: zone-end
+::: zone-end
 
 If you don't have an Azure subscription, <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">create one for free</a>.
 
