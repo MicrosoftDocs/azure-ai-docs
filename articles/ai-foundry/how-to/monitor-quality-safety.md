@@ -109,6 +109,8 @@ To set up monitoring for your prompt flow application, you first have to deploy 
 
 In this section, you learn how to deploy your prompt flow with inferencing data collection enabled. For more information on how to deploy your prompt flow, see [Deploy a flow for real-time inference](flow-deploy.md).
 
+[!INCLUDE [tip-left-nav](../includes/tip-left-nav.md)]
+
 1. Sign in to [Azure AI Foundry](https://ai.azure.com).
 1. If you're not already in your project, select it.
 1. On the left pane, select **Prompt flow**.
