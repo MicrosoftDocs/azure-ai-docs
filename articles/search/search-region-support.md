@@ -68,7 +68,7 @@ AI service integration refers to internal connections to an Azure AI services mu
 | Norway East​​ | ✅ | ✅ |  |  |
 | Poland Central​​ |  |  |  |  |
 | Spain Central <sup>2</sup> |  | ✅ |  |  |
-| Sweden Central​​ | ✅ | ✅ |  |  |
+| Sweden Central​​ | ✅ | ✅ | ✅ |  |
 | Switzerland North​ | ✅ | ✅ | ✅ |  |
 | Switzerland West​ | ✅ | ✅ | ✅ |  |
 | UK South​ | ✅ | ✅ | ✅ |  |
