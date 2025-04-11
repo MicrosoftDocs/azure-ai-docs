@@ -138,7 +138,7 @@ assistant = client.beta.assistants.create(
   instructions="You are an AI assistant that can write code to help answer math questions.",
   model="gpt-4-1106-preview",
   tools=[{"type": "code_interpreter"}],
-  tool_resources={"code interpreter":{"file_ids":[file.id]}}
+  tool_resources={"code_interpreter":{"file_ids":[file.id]}}
 )
 ```
 
