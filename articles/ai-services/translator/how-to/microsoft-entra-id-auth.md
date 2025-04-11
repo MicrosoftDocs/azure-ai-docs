@@ -163,7 +163,7 @@ Next, let's add a permission that allows the application to access the Azure AI 
 
 1. From the new window that appears select **`APIs my organization uses`** and then type **`Microsoft Cognitive Services`** in the search bar.
 
-   :::image type="content" source="../media/entra-id/request-api-permissions.png" alt-text="Screenshot of the Request API permissions search window":::
+   :::image type="content" source="../media/entra-id/request-api-permissions.png" alt-text="Screenshot of the Request API permissions search window.":::
 
 1. Select **`Microsoft Cognitive Services`** from the search results.
 
