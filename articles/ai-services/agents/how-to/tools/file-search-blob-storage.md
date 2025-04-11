@@ -1,13 +1,21 @@
 ---
+title: 'How to use Azure Blob Storage with the file search tool'
+titleSuffix: Azure OpenAI
+description: Find code samples and instructions for using your existing Azure Blob Storage with Azure AI Agent Service.
+services: cognitive-services
 manager: nitinme
-author: fosteramanda
-ms.author: fosteramanda
 ms.service: azure-ai-agent-service
-ms.topic: include
-ms.date: 01/31/2025
+ms.topic: how-to
+ms.date: 04/11/2025
+author: aahill
+ms.author: aahi
+zone_pivot_groups: selection-bing-grounding-code
+ms.custom: azure-ai-agents-code
 ---
 
-## Quickstart – Use existing files in Azure Blob Storage with file search
+
+## How to use existing files in Azure Blob Storage with file search
+
 In this example, we use Azure AI Agent Service to create an agent that can help answer questions on information from files in Azure Blob Storage.
 
 ###  Prerequisites 
