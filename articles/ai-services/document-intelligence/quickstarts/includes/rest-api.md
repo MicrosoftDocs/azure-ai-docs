@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 02/07/2025
+ms.date: 04/11/2025
 ms.author: lajanuar
 ---
 
@@ -140,7 +140,7 @@ You receive a `202 (Success)` response that includes a read-only **Operation-Loc
 
 :::moniker range="doc-intel-4.0.0"
 
-After you call the [`Analyze document`](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)&preserve-view=true&tabs=HTTP) API, call the [**Get analyze result**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)&preserve-view=true&tabs=HTTP) API to get the status of the operation and the extracted data. Before you run the command, make these changes:
+After you call the [`Analyze document`](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20\(2024-11-30\)&preserve-view=true)&preserve-view=true&tabs=HTTP) API, call the [**Get analyze result**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)&preserve-view=true&tabs=HTTP) API to get the status of the operation and the extracted data. Before you run the command, make these changes:
 :::moniker-end
 
 :::moniker range="doc-intel-3.1.0"
