@@ -11,4 +11,4 @@ ms.custom: include
 ---
 
 > [!TIP]
-> Now that you can [customize the left pane](../what-is-azure-ai-foundry.md#left-pane), you might see different items than shown in this article. If you don't see what you're looking for, select **... More** to find and pin it to your left pane.
+> Now that you can [customize the left pane](../what-is-azure-ai-foundry.md#left-pane), you might see different items than shown in this article. If you don't see what you're looking for, select **... More** at the bottom of the left pane.
