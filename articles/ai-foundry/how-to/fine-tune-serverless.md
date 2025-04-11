@@ -295,6 +295,8 @@ First, ensure to install dependencies to start fine-tuning your model.
 %pip install azureml-mlflow
 ```
 
+Then, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
+
 ```python
 from azure.ai.ml import MLClient
 from azure.identity import (
