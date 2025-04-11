@@ -1,6 +1,6 @@
 ---
-title: include file
-description: include file
+title: Include file
+description: Include file
 author: sdgilley
 ms.reviewer: deeikele
 ms.author: sgilley
@@ -19,7 +19,7 @@ To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] in [Azure AI Foun
 
 ### Advanced options
 
-A [!INCLUDE [fdp-project-name](fdp-project-name.md)] is created on an AIServices resource. This resource is created for you automatically when you create the project. 
+A [!INCLUDE [fdp-project-name](fdp-project-name.md)] is created on an `AIServices` resource. This resource is created for you automatically when you create the project. 
 
 To customize the settings for your project, follow these steps:
 
@@ -28,7 +28,7 @@ To customize the settings for your project, follow these steps:
 1. Select an existing **Resource group** you want to use, or leave the default to create a new resource group.
 
     > [!TIP]
-    > Especially for getting started it's recommended to create a new resource group for your project. This allows you to easily manage the project and all of its resources together. 
+    > Especially for getting started we recommend you create a new resource group for your project. The resource group allows you to easily manage the project and all of its resources together. 
 
 1. Select a **Location** or use the default. The location is the region where the hub is hosted. Azure AI services availability differs per region. For example, certain models might not be available in certain regions.
 
