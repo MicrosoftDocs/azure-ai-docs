@@ -54,19 +54,19 @@ Before you get started, you need an Azure account and an Azure AI services subsc
 
 To use Microsoft Entra authentication, key-based (local) authentication must be turned off. Once key access is disabled, Microsoft Entra ID becomes the sole authorization method. Your organization can choose to deactivate local authentication and mandate Microsoft Entra for Azure AI resources. If not, you can disable key authentication for specific resources following these steps in `PowerShell`:
 
-* **Connect to Azure**
+1. **Connect to Azure**
 
    ```powershell
     Connect-AzAccount
    ```
 
-* **Verify local authentication status**
+1. **Verify local authentication status**
 
-  ```powershell
-   Get-AzCognitiveServicesAccount
-  ```
+   ```powershell
+    Get-AzCognitiveServicesAccount
+   ```
 
-* **Check that the property `DisableLocalAuth` is set to `$true` (local authentication *is* disabled)**
+1. **Check that the property `DisableLocalAuth` is set to `$true` (local authentication *is* disabled)**
 
    ```powershell
    Get-AzCognitiveServicesAccount -ResourceGroupName "my-resource-group" -Name "my-resource-name"
@@ -74,14 +74,14 @@ To use Microsoft Entra authentication, key-based (local) authentication must be 
 
    If the `DisableLocalAuth` is blank or set to False, you must set it to $true.
 
-* **Disable local authentication**
+1. **Disable local authentication**
 
    ```powershell
   Set-AzCognitiveServicesAccount -ResourceGroupName "my-resource-group" -Name "my-resource-name" -DisableLocalAuth $true
 
    ```
 
-* You can check once more to ensure that local authentication is disabled using the [`Get-AzCognitiveServicesAccount`](/powershell/module/az.cognitiveservices/get-azcognitiveservicesaccount) cmdlet. A value of True means local authentication is disabled.
+You can check once more to ensure that local authentication is disabled using the [`Get-AzCognitiveServicesAccount`](/powershell/module/az.cognitiveservices/get-azcognitiveservicesaccount) cmdlet. A value of True means local authentication is disabled.
 
 ## Register an identity application with Microsoft Entra ID
 
@@ -193,7 +193,7 @@ Role-based access control (Azure `RBAC`) is a security principal that enables yo
 
 1. Choose **`Select members`**.
 
-  :::image type="content" source="../media/entra-id/add-members.png" alt-text="Screenshot of add role assignment members window.":::
+    :::image type="content" source="../media/entra-id/add-members.png" alt-text="Screenshot of add role assignment members window.":::
 
 1. In the window that opens, type the name of your registered application in the search box (for example, text-translation-app). Select your application and choose the `Select` button.
 
