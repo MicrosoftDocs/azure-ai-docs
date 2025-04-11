@@ -25,7 +25,7 @@ The following section walks through a sample request with cURL. Paste the comman
 1. Replace `<your_subscription_key>` with one of the keys that come with your resource.
 1. Optionally, replace the `"text"` field in the body with your own text you'd like to analyze.
     > [!TIP]
-    > See [Input requirements](./overview.md#input-requirements) for maximum text length limitations. Protected material detection is meant to be run on LLM completions, not user prompts.
+    > See [Input requirements](../overview.md#input-requirements) for maximum text length limitations. Protected material detection is meant to be run on LLM completions, not user prompts.
 
 ```shell
 curl --location --request POST '<endpoint>/contentsafety/text:detectProtectedMaterial?api-version=2024-09-01' \
@@ -79,5 +79,5 @@ The JSON fields in the output are defined here:
 
 If you want to clean up and remove an Azure AI services subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
 
-- [Azure portal](../multi-service-resource.md?pivots=azportal#clean-up-resources)
-- [Azure CLI](../multi-service-resource.md?pivots=azcli#clean-up-resources)
+- [Azure portal](../../multi-service-resource.md?pivots=azportal#clean-up-resources)
+- [Azure CLI](../../multi-service-resource.md?pivots=azcli#clean-up-resources)

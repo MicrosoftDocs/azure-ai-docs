@@ -79,7 +79,7 @@ groups:
     title: Python
   - id: programming-language-rest
     title: REST
-- id: programming-languages-content-safety-rest-portal
+- id: programming-languages-content-safety-foundry-rest
 # Owner: pafarley
   title: Programming languages
   prompt: Choose a platform
