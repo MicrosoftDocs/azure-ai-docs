@@ -67,7 +67,7 @@ items:
       displayName: detection,detect,translation,transliteration,identification,length,sentence length,alternate,usage,headers,set up,status,401
       href: text-translation/how-to/use-rest-api.md
     - name: Enable Microsoft Entra ID authentication
-    - href: how-to/microsoft-entra-id-auth.md
+      href: how-to/microsoft-entra-id-auth.md
     - name: Migrate to V3 Text API
       displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
       href: migrate-to-v3.md
