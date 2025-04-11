@@ -14,7 +14,7 @@ ms.custom: azure-ai-agents-code
 ---
 
 
-## How to use existing files in Azure Blob Storage with file search
+# How to use existing files in Azure Blob Storage with file search
 
 In this example, we use Azure AI Agent Service to create an agent that can help answer questions on information from files in Azure Blob Storage.
 
