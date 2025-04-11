@@ -9,7 +9,7 @@ ms.custom: devx-track-python, devx-track-dotnet
 ms.topic: quickstart
 ms.date: 02/22/2025
 ms.author: pafarley
-zone_pivot_groups: programming-languages-content-safety-foundry-rest
+zone_pivot_groups: programming-languages-content-safety-abridged
 ---
 
 # QuickStart: Use a text blocklist

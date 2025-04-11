@@ -73,6 +73,8 @@ groups:
   title: Programming languages
   prompt: Choose a platform
   pivots:
+  - id: programming-language-foundry-portal
+    title: Foundry portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-python
