@@ -7,6 +7,8 @@ ms.date: 1/21/2025
 ms.topic: include
 ---
 
+[!INCLUDE [Feature preview](../../../includes/feature-preview.md)]
+
 You can decide and configure which models are available for inference in the inference endpoint. When a given model is configured, you can then generate predictions from it by indicating its model name or deployment name on your requests. No further changes are required in your code to use it.
 
 In this article, you'll learn how to add a new model to Azure AI model inference in Azure AI Foundry.
