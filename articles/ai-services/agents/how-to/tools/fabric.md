@@ -34,6 +34,8 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
 * Developers and end users have at least `READ` access to the Fabric data agent and the underlying data sources it connects with.
 
+* Your Fabric Data Agent and Azure AI Agent need to be in the same tenant.
+
 ## Setup  
 > [!NOTE]
 > * The model you selected in Azure AI Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
