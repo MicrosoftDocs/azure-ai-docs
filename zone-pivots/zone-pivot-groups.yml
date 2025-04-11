@@ -657,6 +657,15 @@ groups:
       title: Python
     - id: programming-language-rest
       title: REST
+- id: azure-ai-model-fine-tune
+# Owner: ssalgadodev
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+    - id: foundry-portal
+      title: Foundry Portal
+    - id: programming-language-python
+      title: Python
 - id: aml-control-methods
   # Owner: gopalv
   title: Azure Machine Learning control plane
