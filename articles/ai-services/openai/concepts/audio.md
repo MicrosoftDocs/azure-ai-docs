@@ -14,7 +14,7 @@ manager: nitinme
 # Audio capabilities in Azure OpenAI Service
 
 > [!IMPORTANT]
-> The content filtering system isn't applied to prompts and completions processed by the audio models such as Whisper in Azure OpenAI Service. Learn more about the [Audio API in Azure OpenAI](models.md?tabs=standard-audio#standard-models-by-endpoint).
+> The content filtering system isn't applied to prompts and completions processed by the audio models such as Whisper in Azure OpenAI Service. 
 
 Audio models in Azure OpenAI are available via the `realtime`, `completions`, and `audio` APIs. The audio models are designed to handle a variety of tasks, including speech recognition, translation, and text to speech.
 
