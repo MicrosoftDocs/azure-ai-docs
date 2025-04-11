@@ -29,7 +29,7 @@ New audio models powered by GPT-4o are now available.
 
 - The `gpt-4o-mini-tts` text to speech model is released. Use the `gpt-4o-mini-tts` model for text to speech generation via the `/audio` API.
 
-For more information about available models, see the [models and versions documentation](./concepts/models.md#audio-api-models).
+For more information about available models, see the [models and versions documentation](./concepts/models.md#audio-models).
 
 ## March 2025
 
@@ -79,7 +79,7 @@ The `gpt-4o-mini-audio-preview` (2024-12-17) model is the latest audio completio
 
 The `gpt-4o-mini-realtime-preview` (2024-12-17) model is the latest real-time audio model. The real-time models use the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions. For more information, see the [real-time audio quickstart](./realtime-audio-quickstart.md).
 
-For more information about available models, see the [models and versions documentation](./concepts/models.md#gpt-4o-audio).
+For more information about available models, see the [models and versions documentation](./concepts/models.md#audio-models).
 
 ## January 2025
 

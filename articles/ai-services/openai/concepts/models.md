@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn about the different model capabilities that are available with Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 04/01/2025
+ms.date: 4/15/2025
 ms.custom: references_regions, build-2023, build-2023-dataai, refefences_regions
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
@@ -22,12 +22,11 @@ Azure OpenAI Service is powered by a diverse set of models with different capabi
 | [GPT-4.5 Preview](#gpt-45-preview) |The latest GPT model that excels at diverse text and image tasks.  |
 | [o-series models](#o-series-models) |[Reasoning models](../how-to/reasoning.md) with advanced problem-solving and increased focus and capability.  |
 | [GPT-4o & GPT-4o mini & GPT-4 Turbo](#gpt-4o-and-gpt-4-turbo) | The latest most capable Azure OpenAI models with multimodal versions, which can accept both text and images as input. |
-| [GPT-4o audio](#gpt-4o-audio) | GPT-4o audio models that support either low-latency, "speech in, speech out" conversational interactions or audio generation. |
 | [GPT-4](#gpt-4) | A set of models that improve on GPT-3.5 and can understand and generate natural language and code. |
 | [GPT-3.5](#gpt-35) | A set of models that improve on GPT-3 and can understand and generate natural language and code. |
 | [Embeddings](#embeddings-models) | A set of models that can convert text into numerical vector form to facilitate text similarity. |
 | [DALL-E](#dall-e-models) | A series of models that can generate original images from natural language. |
-| [Audio](#audio-models) | A series of models for speech to text, translation, and text to speech. |
+| [Audio](#audio-models) | A series of models for speech to text, translation, and text to speech. GPT-4o audio models support either low-latency, "speech in, speech out" conversational interactions or audio generation. |
 
 ## computer-use-preview
 
@@ -97,40 +96,6 @@ To learn more about the advanced `o-series` models see, [getting started with re
 |`o1` | See the [models table](#model-summary-table-and-region-availability). |
 | `o1-preview` | See the [models table](#model-summary-table-and-region-availability). This model is only available for customers who were granted access as part of the original limited access |
 | `o1-mini` | See the [models table](#model-summary-table-and-region-availability). |
-
-## GPT-4o audio
-
-The GPT 4o audio models are part of the GPT-4o model family and support either low-latency, "speech in, speech out" conversational interactions or audio generation. 
-- GPT-4o real-time audio is designed to handle real-time, low-latency conversational interactions, making it a great fit for support agents, assistants, translators, and other use cases that need highly responsive back-and-forth with a user. For more information on how to use GPT-4o real-time audio, see the [GPT-4o real-time audio quickstart](../realtime-audio-quickstart.md) and [how to use GPT-4o audio](../how-to/realtime-audio.md).
-- GPT-4o audio completion is designed to generate audio from audio or text prompts, making it a great fit for generating audio books, audio content, and other use cases that require audio generation. The GPT-4o audio completions model introduces the audio modality into the existing `/chat/completions` API. For more information on how to use GPT-4o audio completions, see the [audio generation quickstart](../audio-completions-quickstart.md).
-
-> [!CAUTION]
-> We don't recommend using preview models in production. We will upgrade all deployments of preview models to either future preview versions or to the latest stable GA version. Models that are designated preview don't follow the standard Azure OpenAI model lifecycle.
-
-To use GPT-4o audio, you need [an Azure OpenAI resource](../how-to/create-resource.md) in one of the [supported regions](#global-standard-model-availability).
-
-When your resource is created, you can [deploy](../how-to/create-resource.md#deploy-a-model) the GPT-4o audio model. 
-
-Details about maximum request tokens and training data are available in the following table.
-
-|  Model ID  | Description | Max Request (tokens) | Training Data (up to)  |
-|---|---|---|---|
-|`gpt-4o-mini-audio-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for audio and text generation. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
-|`gpt-4o-mini-realtime-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
-|`gpt-4o-audio-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for audio and text generation. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
-|`gpt-4o-realtime-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
-|`gpt-4o-realtime-preview` (2024-10-01) <br> **GPT-4o audio** | **Audio model** for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
-
-### Region availability
-
-| Model | Region |
-|---|---|
-|`gpt-4o-mini-audio-preview` | East US2 (Global Standard) |
-|`gpt-4o-mini-realtime-preview` | East US2 (Global Standard) <br> Sweden Central (Global Standard) |
-|`gpt-4o-audio-preview` | East US2 (Global Standard) <br> Sweden Central (Global Standard) |
-|`gpt-4o-realtime-preview` | East US2 (Global Standard) <br> Sweden Central (Global Standard) |
-
-To compare the availability of GPT-4o audio models across all regions, see the [models table](#global-standard-model-availability).
 
 ## GPT-4o and GPT-4 Turbo
 
@@ -235,11 +200,56 @@ OpenAI's MTEB benchmark testing found that even when the third generation model'
 
 The DALL-E models generate images from text prompts that the user provides. DALL-E 3 is generally available for use with the REST APIs. DALL-E 2 and DALL-E 3 with client SDKs are in preview.
 
-## Audio API models
+## Audio models
+
+Audio models in Azure OpenAI are available via the `realtime`, `completions`, and `audio` APIs.
+
+### GPT-4o audio models
+
+The GPT 4o audio models are part of the GPT-4o model family and support either low-latency, "speech in, speech out" conversational interactions or audio generation. 
+
+> [!CAUTION]
+> We don't recommend using preview models in production. We will upgrade all deployments of preview models to either future preview versions or to the latest stable GA version. Models that are designated preview don't follow the standard Azure OpenAI model lifecycle.
+
+Details about maximum request tokens and training data are available in the following table.
+
+|  Model ID  | Description | Max Request (tokens) | Training Data (up to)  |
+|---|---|---|---|
+|`gpt-4o-mini-audio-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for audio and text generation. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
+|`gpt-4o-mini-realtime-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
+|`gpt-4o-audio-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for audio and text generation. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
+|`gpt-4o-realtime-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
+|`gpt-4o-realtime-preview` (2024-10-01) <br> **GPT-4o audio** | **Audio model** for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
+
+To compare the availability of GPT-4o audio models across all regions, see the [models table](#global-standard-model-availability).
+
+### Audio API
 
 The audio models via the `/audio` API can be used for speech to text, translation, and text to speech. 
 
-For more information see [Audio models](#audio-models) in this article.
+#### Speech to text models
+
+|  Model ID  | Description | Max Request (audio file size) |
+| ----- | ----- | ----- |
+| `whisper` | General-purpose speech recognition model. | 25 MB |
+| `gpt-4o-transcribe` | Speech to text powered by GPT-4o. | 25 MB|
+| `gpt-4o-mini-transcribe` | Speech to text powered by GPT-4o mini. | 25 MB|
+
+#### Speech translation models
+
+|  Model ID  | Description | Max Request (audio file size) |
+| ----- | ----- | ----- |
+| `whisper` | General-purpose speech recognition model. | 25 MB |
+
+#### Text to speech models (Preview)
+
+|  Model ID  | Description |
+|  --- | :--- |
+| `tts` | Text to speech optimized for speed. |
+| `tts-hd` | Text to speech optimized for quality.|
+| `gpt-4o-mini-tts` | Text to speech model powered by GPT-4o mini.<br/><br/>You can guide the voice to speak in a style or tone. |
+
+For more information see [Audio models region availability](?tabs=standard-audio#standard-models-by-endpoint) in this article.
 
 ## Model summary table and region availability
 
@@ -391,32 +401,6 @@ These models can only be used with Embedding API requests.
 ### Audio models
 
 [!INCLUDE [Audio](../includes/model-matrix/standard-audio.md)]
-
-### Speech to text models
-
-|  Model ID  | Description | Max Request (audio file size) |
-| ----- | ----- | ----- |
-| `whisper` | General-purpose speech recognition model. | 25 MB |
-| `gpt-4o-transcribe` | Speech to text powered by GPT-4o. | 25 MB|
-| `gpt-4o-mini-transcribe` | Speech to text powered by GPT-4o mini. | 25 MB|
-
-You can also use the Whisper model via Azure AI Speech [batch transcription](../../speech-service/batch-transcription-create.md) API. Check out [What is the Whisper model?](../../speech-service/whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI Service. 
-
-### Speech translation models
-
-|  Model ID  | Description | Max Request (audio file size) |
-| ----- | ----- | ----- |
-| `whisper` | General-purpose speech recognition model. | 25 MB |
-
-### Text to speech models (Preview)
-
-|  Model ID  | Description |
-|  --- | :--- |
-| `tts` | Text to speech optimized for speed. |
-| `tts-hd` | Text to speech optimized for quality.|
-| `gpt-4o-mini-tts` | Text to speech model powered by GPT-4o mini. |
-
-You can also use the OpenAI text to speech voices via Azure AI Speech. To learn more, see [OpenAI text to speech voices via Azure OpenAI Service or via Azure AI Speech](../../speech-service/openai-voices.md#openai-text-to-speech-voices-via-azure-openai-service-or-via-azure-ai-speech) guide. 
 
 # [Completions (Legacy)](#tab/standard-completions)
 
