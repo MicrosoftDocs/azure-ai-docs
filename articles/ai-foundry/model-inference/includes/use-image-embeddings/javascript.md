@@ -34,28 +34,22 @@ To use embedding models in your application, you need:
 
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
 
-
 ```javascript
-import ModelClient from "@azure-rest/ai-inference";
-import { isUnexpected } from "@azure-rest/ai-inference";
-import { AzureKeyCredential } from "@azure/core-auth";
-
-const client = new ModelClient(
-    process.env.AZURE_INFERENCE_ENDPOINT,
+const client = ModelClient(
+    "https://<resource>.services.ai.azure.com/models", 
     new AzureKeyCredential(process.env.AZURE_INFERENCE_CREDENTIAL)
 );
 ```
 
-If you configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
+If you've configured the resource with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
 ```javascript
-import ModelClient from "@azure-rest/ai-inference";
-import { isUnexpected } from "@azure-rest/ai-inference";
-import { DefaultAzureCredential } from "@azure/identity";
+const clientOptions = { credentials: { "https://cognitiveservices.azure.com" } };
 
-const client = new ModelClient(
-    process.env.AZURE_INFERENCE_ENDPOINT,
+const client = ModelClient(
+    "https://<resource>.services.ai.azure.com/models", 
     new DefaultAzureCredential()
+    clientOptions,
 );
 ```
 

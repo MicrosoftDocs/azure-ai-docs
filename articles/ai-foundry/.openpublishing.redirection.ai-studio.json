@@ -111,6 +111,11 @@
             "redirect_document_id": true
           },
           {
+            "source_path_from_root": "/articles/ai-foundry/model-inference/reference/api-version-updates.md",
+            "redirect_url": "/rest/api/aifoundry/modelinference",
+            "redirect_document_id": false
+          },
+          {
             "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-cohere-command.md",
             "redirect_url": "/azure/ai-foundry/how-to/deploy-models-cohere-command",
             "redirect_document_id": true
