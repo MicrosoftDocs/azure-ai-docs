@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 01/03/2025
+ms.date: 04/11/2025
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -111,7 +111,11 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 ::: zone pivot="fdp-project"
 
-Python code to create a [!INCLUDE [fdp](../includes/fdp-project-name.md)] goes here.
+To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
+
+```python
+# Create a project
+```
 
 ::: zone-end
 
@@ -192,8 +196,13 @@ The code in this section assumes you have an existing hub.  If you don't have a 
 
 ::: zone pivot="fdp-project"
 
-What do we say here?  Is there a way to go to management center? Azure portal?
 
+On the project **Overview** page you can find information about the project.
+
+- Name: The name of the project appears in the top left corner. You can rename the project using the edit tool.
+- Subscription: The subscription that hosts the hub that hosts the project.
+- Resource group: The resource group that hosts the hub that hosts the project.
+- 
 ::: zone-end
 
 ::: zone pivot="hub-project"
@@ -215,7 +224,9 @@ Select **Manage in Azure portal** to navigate to the project resources in the Az
 
 ::: zone pivot="fdp-project"
 
-Some python code to view project settings goes here.
+```python
+# Get the project settings
+```
 
 ::: zone-end
 
