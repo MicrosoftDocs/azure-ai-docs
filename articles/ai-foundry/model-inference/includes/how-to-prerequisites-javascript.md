@@ -11,14 +11,22 @@ author: santiagxf
 
   ```bash
   npm install @azure-rest/ai-inference
+  npm install @azure/core-auth
   ```
 
-* Import the following modules:
+  Alternately, you can add your dependencies to **package.json** and install with `npm rebuild`:
 
-    ```javascript
-    import ModelClient, { isUnexpected } from "@azure-rest/ai-inference";
-    import { AzureKeyCredential } from "@azure/core-auth";
-    import { DefaultAzureCredential } from "@azure/identity";
-    import { createRestError } from "@azure-rest/core-client";
-    ```
-    
+  __package.json__
+
+  ```json
+  {
+    "name": "sample_app",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "dependencies": {
+      "@azure-rest/ai-inference": "1.0.0-beta.6",
+      "@azure/core-auth": "1.9.0"
+    }
+  }
+  ```    
