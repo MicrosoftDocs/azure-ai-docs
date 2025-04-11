@@ -31,7 +31,7 @@ For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-projec
 
 :: zone-end
 
-::: zone pivot="fdp-project"
+::: zone pivot="hub-project"
 
 > [!TIP]
 > The rest of this article uses a **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select [!INCLUDE [hub](../includes/fdp-project-name.md)] at the top of this article if you want to use a [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
