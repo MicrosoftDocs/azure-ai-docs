@@ -27,7 +27,7 @@ Azure OpenAI Service is powered by a diverse set of models with different capabi
 | [GPT-3.5](#gpt-35) | A set of models that improve on GPT-3 and can understand and generate natural language and code. |
 | [Embeddings](#embeddings-models) | A set of models that can convert text into numerical vector form to facilitate text similarity. |
 | [DALL-E](#dall-e-models) | A series of models that can generate original images from natural language. |
-| [Audio](?tabs=audio#audio-models) | A series of models for speech to text, translation, and text to speech. |
+| [Audio](?tabs=standard-audio#standard-models-by-endpoint) | A series of models for speech to text, translation, and text to speech. |
 
 ## computer-use-preview
 
@@ -239,7 +239,7 @@ The DALL-E models generate images from text prompts that the user provides. DALL
 
 The audio models via the `/audio` API can be used for speech to text, translation, and text to speech. 
 
-For more information see [Audio models](?tabs=audio#audio-models) in this article.
+For more information see [Audio models](?tabs=standard-audio#standard-models-by-endpoint) in this article.
 
 ## Model summary table and region availability
 
