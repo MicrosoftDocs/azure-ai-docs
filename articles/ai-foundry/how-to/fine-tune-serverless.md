@@ -11,6 +11,7 @@ reviewer: RSavage2
 ms.author: ssalgado
 author: ssalgadodev
 ms.custom: references_regions
+zone_pivot_groups: azure-ai-model-fine-tune
 ---
 
 # Fine-tune models using serverless APIs in Azure AI Foundry
@@ -46,7 +47,7 @@ Verify the subscription is registered to the Microsoft.Network resource provider
 1.	Select **Settings** > **Resource providers** from the left menu.
 1.	Add Microsoft.Network to the list of resource providers if it is not in the list.
 
-::: zone pivot="ai-foundry-interface"
+::: zone pivot="foundry-portal"
 
 ## Find models with fine-tuning support
 
