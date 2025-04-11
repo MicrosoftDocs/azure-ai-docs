@@ -200,10 +200,3 @@ When a vector store expires, the runs on that thread fail.  To fix this issue, y
 | `.sh` | `application/x-sh` |
 | `.ts` | `application/typescript` |
 
-
-::: zone pivot="deep-dive"
-
-[!INCLUDE [deep-dive](../../includes/file-search/deep-dive.md)]
-
-::: zone-end
-
