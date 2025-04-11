@@ -36,12 +36,19 @@ items:
         - name: File search
           items:
           - name: Overview
+            displayName: file search, upload
             href: how-to/tools/file-search.md
-            displayName: file search, file-search
-          - name: How to use File Search
-            href: how-to/tools/file-search-samples.md
+          - name: How to upload files
+            href: how-to/tools/file-search-upload-files.md
+          - name: How to use Azure Blob Storage
+            href: how-to/tools/file-search-blob-storage.md  
         - name: Azure AI Search
-          href: how-to/tools/azure-ai-search.md 
+          items:
+          - name: Overview
+            href: how-to/tools/azure-ai-search.md
+            displayName: azure ai search, search
+          - name: How to use Azure AI Search
+            href: how-to/tools/azure-ai-search-samples.md
         - name: Microsoft Fabric
           href: how-to/tools/fabric.md
         - name: Use licensed data
