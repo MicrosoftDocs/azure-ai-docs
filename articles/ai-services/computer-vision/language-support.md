@@ -89,7 +89,7 @@ The following table lists the OCR supported languages for print text by the most
 |French | `fr` |Sadri  (Devanagiri) | `sck` | 
 |Friulian  | `fur` | Samoan (Latin) | `sm`
 |Gagauz (Latin) | `gag`|Sanskrit (Devanagari) | `sa`|
-|Galician   | `gl` |Santali(Devanagiri) | `sat` | 
+|Galician   | `gl` |Santali(Ol Chiki) | `sat` | 
 |German | `de` | Scots  | `sco` | 
 |Gilbertese    | `gil` | Scottish Gaelic  | `gd` | 
 |Gondi (Devanagiri) | `gon`| Serbian (Latin) | `sr`, `sr-latn`|
