@@ -334,7 +334,7 @@ workspace.id
 
 The AI Foundry model catalog offers fine-tuning support for multiple types of models, including chat completions and text generation. For a list of models that support fine-tuning and the Azure regions of support for fine-tuning, see [region availability for models in serverless API endpoints.](deploy-models-serverless-availability.md) Fine-tuning tasks are available only to users whose Azure subscription belongs to a billing account in a country/region where the model provider has made the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable.
 
-For this example, we use a Phi-4-mini-instruct model. In this code snippet, the model id property of the model will be passed as input to the fine tuning job. This is also available as the Asset ID field in model details page in Azure AI Studio Model Catalog.
+For this example, we use a Phi-4-mini-instruct model. In this code snippet, the model id property of the model will be passed as input to the fine tuning job. This is also available as the Asset ID field in model details page in Azure AI Foundry Model Catalog.
 
 ```python
 model_name = "Phi-4-mini-instruct"
