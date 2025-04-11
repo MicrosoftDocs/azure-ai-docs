@@ -42,7 +42,7 @@ Customers may want to recognize various categories of PII for several reasons:
 * **Avoid scenarios that use personal information for a purpose that consent was not obtained for** - For example, a company has resumes from past job applicants. The applicants did not give their consent to be contacted for promotional events when they submitted their resumes. Based on this scenario, the PII service should not be used to identify contact information for the purpose of inviting the past applicants to a trade show.
 * **Avoid scenarios that use the service to harvest personal information from publicly available content**.
 * **Avoid scenarios that replace personal information in text with the intent to mislead people**.
-* [!INCLUDE [regulatory-considerations](..\includes\regulatory-considerations.md)]
+* [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 ## Characteristics and limitations
 

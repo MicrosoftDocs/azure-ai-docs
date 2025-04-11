@@ -91,7 +91,7 @@ The translation quality will be influenced by the suitability of the content bei
 - Legal documents: Mistranslated contracts lead to failure to comply with contracts.
 - Creative content, such as marketing materials, poetry, and fiction: Translation won’t convey creativity.
 
-[!INCLUDE [regulatory-considerations](..\includes\regulatory-considerations.md)]
+[!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 ## Limitations
 

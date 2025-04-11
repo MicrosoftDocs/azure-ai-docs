@@ -92,7 +92,7 @@ It's important to note that the Video Retrieval system is not designed to identi
 - Avoid use in protected spaces – Protect individuals’ privacy by evaluating camera locations and positions, adjusting angles and region of interests so they do not overlook protected areas, such as restrooms.
 - Carefully consider use in schools or elderly care facilities – Spatial analysis has not been rigorously tested with data containing minors under the age of 18 or adults over age 65. We would recommend that customers thoroughly evaluate error rates for their scenario in environments where these ages predominate.
 - Avoid identification or ID verification – The system is not designed for identification or ID verification of individuals. Its use should explicitly avoid scenarios where identification or verification of individuals is required. 
-- [!INCLUDE [regulatory-considerations](..\includes\regulatory-considerations.md)]
+- [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 ## Technical limitations, operational factors, and ranges
 

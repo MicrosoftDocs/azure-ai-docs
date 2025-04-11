@@ -49,7 +49,7 @@ Customers may want to recognize various categories of PII entities specifically 
 * NER and PII - Customers are prohibited from using of this service to harvest personal information from publicly available content without consent from person(s) whom are the subject of the personal information.
 * NER and PII - Do not use for scenarios that replace personal information in text with the intent to mislead people.
 
-[!INCLUDE [regulatory-considerations](..\includes\regulatory-considerations.md)]
+[!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 ## Characteristics and limitations
 
 Depending on your scenario, input data and the entities you wish to extract, you could experience different levels of performance. The following sections are designed to help you understand key concepts about performance as they apply to using the Azure AI Language NER and PII services.

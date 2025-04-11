@@ -81,7 +81,7 @@ The summarization models reflect certain societal views that are over-represente
 
 * **Avoid scenarios in which the use or misuse of the system could have a consequential impact on life opportunities or legal status.** For example, avoid scenarios in which the AI system could affect an individual's legal status or legal rights. Additionally, avoid scenarios in which the AI system could affect an individual's access to credit, education, employment, healthcare, housing, insurance, social welfare benefits, services, opportunities, or the terms on which they are provided.
 
-* [!INCLUDE [regulatory-considerations](..\includes\regulatory-considerations.md)]
+* [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 
 ## Next steps

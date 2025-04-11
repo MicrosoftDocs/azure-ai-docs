@@ -61,7 +61,7 @@ CLU can be used in multiple scenarios across a variety of industries. Some examp
 
 * **Avoid using CLU for decisions that might have serious adverse impacts.** For example, suggesting medications or diagnoses, as replacing a doctor's advice may have serious adverse impacts.
 * **Avoid creating custom entities that extract unnecessary or sensitive information.** It's your responsibility to ensure that the entities being created only extract the necessary information for your end-to-end scenario. Avoid extracting sensitive user information if it isn't required for your scenario. For example, if your scenario requires extracting your user's city and country, create entities that extract only the city and country from a user's address. Don't create one that extracts their full address. To ensure that your model is inclusive, make sure you represent a variety of cities, countries, and address formats within your training data (example utterances).
-* [!INCLUDE [regulatory-considerations](..\includes\regulatory-considerations.md)]
+* [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 ## Next steps
 

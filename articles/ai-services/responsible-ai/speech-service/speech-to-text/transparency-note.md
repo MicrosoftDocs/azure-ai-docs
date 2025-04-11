@@ -95,7 +95,7 @@ Many applications are designed and intended to be used by a specific individual 
 - **Azure AI Speech service and integration of the Whisper model**: The Whisper model enhances the Azure AI Speech service with advanced features like multilingual recognition and readability. The Speech service also enriches the performance of the Whisper model by enabling larger-scale batch transcriptions and speaker diarization. Whether to use the default Speech service speech to text model or Whisper model depends on the specific use case. We recommend that you take advantage of the batch try out and custom speech experiences in Speech Studio to evaluate both options to find the best fit for your business needs.
 - **Conversation transcription on prerecorded events**: The system will perform better if all speakers are in the same acoustic environment (for example, the conversation takes place in a room in which people speak into a common microphone).
 - **Conversation transcription**: Although there is no limitation on the numbers of speakers in the conversation, the system performs better when the number of speakers is under 30.
-- [!INCLUDE [regulatory-considerations](..\..\includes\regulatory-considerations.md)]
+- [!INCLUDE [regulatory-considerations](..\../includes/regulatory-considerations.md)]
 
 ### Unsupported uses
 

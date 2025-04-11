@@ -79,7 +79,7 @@ Microsoft Translator Pro can be used in multiple scenarios. The system's intende
 
 * **Avoid scenarios where use of translation without human review could have consequential impact on life opportunities or legal status**. Before making a decision based on translated material, check with a qualified human reviewer if translation errors might affect someone's legal status, rights, or access to credit, education, work, healthcare, housing, insurance, or social welfare benefits.
 
-* [!INCLUDE [regulatory-considerations](..\includes\regulatory-considerations.md)]
+* [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 #### Unsupported use
 

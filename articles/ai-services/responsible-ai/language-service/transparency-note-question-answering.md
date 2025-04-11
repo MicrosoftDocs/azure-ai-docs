@@ -76,7 +76,7 @@ Some typical scenarios where question answering is recommended are:
 
   * **Handling inappropriate conversations:** It's possible that users will initiate inappropriate conversations with the bot, including expletives or hate speech. The bot designer must be very careful about how to handle these conversations, and make sure that these intents are detected with high accuracy and the appropriate response given. It's difficult to build a comprehensive knowledge base in question answering containing every variation of inappropriate utterances possible. It is therefore better to handle such cases with a rule based system, for example the user utterances can be quickly checked for the presence of any words from a pre-processed blocklist of inappropriate keywords. This is not part of the question answering service and would need to be developed on top of the question answering service. 
 
-* [!INCLUDE [regulatory-considerations](..\includes\regulatory-considerations.md)]
+* [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 ## Next steps
 

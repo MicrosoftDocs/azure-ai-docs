@@ -109,7 +109,7 @@ Please consider the following factors when you choose a use case:
 - **Not suitable for scenarios where up-to-date, factually accurate information is crucial** unless you have human reviewers or are using the models to search your own documents and have verified suitability for your scenario. Content Understanding does not have information about events that occur after its training date, likely has missing knowledge about some topics, and might not always produce factually accurate information. 
 - **Conversation transcription with speaker recognition**: Content Understanding is not designed to provide diarization with speaker recognition, and it cannot be used to identify individuals. In other words, speakers will be presented as Guest1, Guest2, Guest3, and so on, in the transcription. These will be randomly assigned and may not be used to identify individual speakers in the conversation. For each conversation transcription, the assignment of Guest1, Guest2, Guest3, and so on, will be random. 
 - **Legal and regulatory considerations**. Organizations need to evaluate potential specific legal and regulatory obligations when using Content Understanding. Content Understanding is not appropriate for use in every industry or scenario. Always use Content Understanding in accordance with the applicable terms of service and the relevant codes of conduct, including the Generative AI Code of Conduct. 
-- [!INCLUDE [regulatory-considerations](..\includes\regulatory-considerations.md)]
+- [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 ## Limitations
 

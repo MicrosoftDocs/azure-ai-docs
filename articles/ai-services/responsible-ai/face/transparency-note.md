@@ -144,7 +144,7 @@ The following use cases are approved for the public sector:
 
 **Carefully consider use in public spaces**. Evaluate camera locations and positions, adjusting angles and regions of interest to minimize collection from public spaces. Lighting and weather in public spaces such as streets and parks will significantly impact the performance of the facial systems, and it is extremely difficult to provide effective disclosure that facial systems are being used in public spaces. 
 
-[!INCLUDE [regulatory-considerations](..\includes\regulatory-considerations.md)]
+[!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 
 ## Next steps

@@ -59,7 +59,7 @@ Be aware of the following guidance when you use custom NER:
 
 * **Avoid creating custom entities that extract unnecessary or sensitive information.** Avoid extracting sensitive user information if it's not required for your use case. For example, if your scenario requires extracting your user's city and country, create entities that extract only the city and country from a user's address instead of extracting the entire address
 
-* [!INCLUDE [regulatory-considerations](..\includes\regulatory-considerations.md)]
+* [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 ## Next steps
 

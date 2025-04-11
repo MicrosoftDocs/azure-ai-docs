@@ -65,5 +65,5 @@ The following recommendations pertain to use cases where Pronunciation Assessmen
 - **Consider using different thresholds per scenario**: Currently, the Pronunciation Assessment score only represents the similarity distance to the native speakers used to train the model. Such similarity distance can be mapped toward different scenarios with rule-based conditions or weighted counting to help provide pronunciation feedback. For example, the grading method for children's learning might not be as strict as that for adult learning. Consider setting a higher mispronunciation detection threshold for adult learning. 
 - **Consider the ability to account for miscues**:  When the scenario involves reading long paragraphs, users are likely to find it hard to follow the reference text without making mistakes. These mistakes, including omission, insertion, and repetition, are counted as miscues. With **EnableMiscue** enabled, the pronounced words will be compared to the reference text, and will be marked with Omission, Insertion, Repetition based on the comparison.
 
-[!INCLUDE [regulatory-considerations](..\..\includes\regulatory-considerations.md)]
+[!INCLUDE [regulatory-considerations](..\../includes/regulatory-considerations.md)]
 

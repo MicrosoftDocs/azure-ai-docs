@@ -39,7 +39,7 @@ Key Phrase Extraction is used in multiple scenarios across a variety of industri
 
 * Do not use for automatic actions without human intervention for high risk scenarios.  A person should always review source data when another person's economic situation, health or safety is affected.
 
-[!INCLUDE [regulatory-considerations](..\includes\regulatory-considerations.md)]
+[!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 ## Characteristics and limitations
 

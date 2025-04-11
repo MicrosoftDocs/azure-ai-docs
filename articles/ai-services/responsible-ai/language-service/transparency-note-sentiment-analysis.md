@@ -49,7 +49,7 @@ Sentiment Analysis can be used in multiple scenarios across a variety of industr
 * **Avoid automatic actions without human intervention for high impact scenarios**. For example, employee bonuses should not be automatically based on sentiment scores from their customer service interaction text. Source data should always be reviewed when a person's economic situation, health or safety is affected. 
 * **Carefully consider scenarios outside of the product and service review domain**. Since the model is trained on product and service reviews, the system may not accurately recognize sentiment focused language in other domains. Always make sure to test the system on operational test datasets to ensure you get the performance you need. Your operational test dataset should reflect the real data your system will see in production with all the characteristics and variation you will have when your product is deployed. Synthetic data and tests that don't reflect your end-to-end scenario likely won't be sufficient.
 * **Carefully consider scenarios that take automatic action to filter or remove content**. You can add a human review cycle and/or re-rank content (rather than filtering it completely) if your goal is to ensure content meets your community standards.
-* [!INCLUDE [regulatory-considerations](..\includes\regulatory-considerations.md)]
+* [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 ## Limitations
 

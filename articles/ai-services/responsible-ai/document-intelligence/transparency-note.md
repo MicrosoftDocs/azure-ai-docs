@@ -75,7 +75,7 @@ Consider the following factors when you choose a use case:
     - **Loan approvals**: These include applications for new loans or refinancing of existing ones. 
 
 - **Carefully consider the supported document types and locales**: Prebuilt models have a predefined list of supported fields and are built for specific locales. Be sure to carefully check the officially supported locales and document types to ensure the best results. For example, see [Document Intelligence prebuilt receipt locales](/azure/ai-services/document-intelligence/concept-receipt#supported-languages-and-locales).
-- [!INCLUDE [regulatory-considerations](..\includes\regulatory-considerations.md)]
+- [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 ## Limitations
 

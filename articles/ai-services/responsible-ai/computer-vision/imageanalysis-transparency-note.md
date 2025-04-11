@@ -95,7 +95,7 @@ Here are some examples of when you might use Image Analysis:
 - **Account for additional measures for domain-specific recognition**: Pre-built AI capabilities like celebrity recognition, landmark recognition, and brand logos recognition are trained on a finite set of celebrities, landmarks, and brands. The recognition service might not recognize all regionally specific celebrities, landmarks, or brands.
 - **Not suitable for biometric identification**: Image Analysis was not designed or tested to verify the identity of individuals based on biometric markers such as iris recognition, fingerprint identification, or passports or other forms of ID for the purpose of identification and verification of a person.
 - **Do not use Image Analysis for medical diagnosis**: including for use as a medical device, clinical support, diagnostic tool, or other technology intended to be used in the diagnosis, cure, mitigation, treatment, or prevention of disease or other conditions, and no license or right is granted by Microsoft to use this capability for such purposes. This capability is not designed or intended to be implemented or deployed as a substitute for professional medical advice or healthcare opinion, diagnosis, treatment, or the clinical judgment of a healthcare professional, and should not be used as such. The customer is solely responsible for any use of Image Analysis or Customization for medical diagnosis.
-- [!INCLUDE [regulatory-considerations](..\includes\regulatory-considerations.md)]
+- [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 ## System performance and Limitations for Image Analysis
 

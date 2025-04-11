@@ -57,7 +57,7 @@ Custom text classification can be used in multiple scenarios across a variety of
 
 * **Avoid creating classes that are ambiguous and not representative.** When you design your schema, avoid classes that are so similar to each other that there might be difficulty differentiating them from each other. For example, if you're classifying movie scripts, avoid creating a class for romance, comedy, and rom-com. Instead, consider using a multiple-label classification model with romance and comedy classes. Then, for rom-com movies, assign both classes.
 
-* [!INCLUDE [regulatory-considerations](..\includes\regulatory-considerations.md)]
+* [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 ## Next steps
 

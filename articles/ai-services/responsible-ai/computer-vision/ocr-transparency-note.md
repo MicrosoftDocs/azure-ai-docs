@@ -58,4 +58,4 @@ Consider the following factors when you choose a use case.
 
 - **Don’t use OCR for decisions that may have serious adverse impacts** - Examples of such use cases include processing medical prescriptions and dispensing medication. The machine learning models that extract text from prescriptions can result in undetected or incorrect text output. Decisions based on incorrect output could have serious adverse impacts. Additionally, it is advisable to include human review of decisions that have the potential for serious impacts on individuals.
 
-- [!INCLUDE [regulatory-considerations](..\includes\regulatory-considerations.md)]
+- [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]

@@ -91,7 +91,7 @@ Text Analytics for health is a valuable tool when you manage and extract knowled
 * **Carefully consider using detected entities in patient billing without human intervention.** Make sure that providers and patients always have a way to report, trace, and correct data that generates incorrect billing.
 * **Carefully consider scenarios that make use of the detected Social Determinants of Health and ethnicity entities.** Always make sure that there is a way to report, trace, and correct any errors to avoid erroneous substance use inference or offering an incorrect form of care based on social and demographic factors.
 * **Carefully consider scenarios that use an automated feedback loop in finetuning the custom Text Analytics for health model.** Always make sure to test and evaluate the model prior to deploying to a production environment to avoid model quality regression because custom model training is an iterative process that is very sensitive to the input training data.    
-* [!INCLUDE [regulatory-considerations](..\includes\regulatory-considerations.md)]
+* [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 ## Social Determinants of Health and Ethnicity 
 

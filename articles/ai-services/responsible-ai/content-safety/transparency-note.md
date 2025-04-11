@@ -85,7 +85,7 @@ We encourage customers to leverage Azure AI Content Safety in their innovative s
 
 - **Customization:** Different applications and solutions might have different requirements when it comes to content safety. It's important to experiment with severity levels for Azure AI Content Safety and set them to meet the needs of your specific use case. Custom categories are intended to enhance content moderation by allowing users to define what is important for their specific context. It is not intended to replace the existing content categories but to complement them, providing a more granular level of content safety.
 - **Transparency:** Some end users might want to understand how your application or solution moderates content. When you choose to use Azure AI Content Safety, it's important to ensure that the service provides transparency and clear communication with your users about how content is moderated and why certain content might be flagged or removed.
-- [!INCLUDE [regulatory-considerations](..\includes\regulatory-considerations.md)]
+- [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 ## Limitations
 

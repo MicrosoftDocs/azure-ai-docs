@@ -64,7 +64,7 @@ Anomaly Detector can be used in multiple scenarios across a variety of industrie
 - In use cases with potential to impact the physical safety of human beings, include human review of outputs prior to any decision regarding operations. Examples of such use cases include monitoring and detecting an anomalous state in the performance of machinery on factory floors or in production lines.
 - Don’t use Anomaly Detector for decisions that may have serious adverse impacts: Examples of such use cases include health care scenarios like monitoring heartbeat or blood glucose levels. Decisions based on incorrect output could have serious adverse impacts. Additionally, it is advisable to include human review of decisions that have the potential for serious impacts on individuals.
 - Don't use Anomaly Detector in workspace monitoring on individuals. Because Anomaly Detector has no qualitative assessment capabilities, it is not suitable for monitoring or evaluating human activity, such as in the workplace. We do not recommend that it be used in such a way. In addition, workplace monitoring may not be legal within your jurisdiction.
-- [!INCLUDE [regulatory-considerations](..\includes\regulatory-considerations.md)]
+- [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 ## Next steps
 
