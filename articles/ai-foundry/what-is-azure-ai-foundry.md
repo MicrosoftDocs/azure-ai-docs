@@ -83,15 +83,13 @@ In the Azure AI Foundry portal, you can navigate among all your resources using 
 
 ### <a name="left-pane"></a> Customize the left pane
 
-The left pane of the Azure AI Foundry portal is your main navigation tool. Customize this area to show the parts of the portal you want to use.  All customization is kept separately for each user of each project. Customize each project to suit your needs in that project.
+The left pane of the Azure AI Foundry portal is your main navigation tool. Customize this area to show the parts of the portal you want to use.
 
 Pin or unpin items into the left pane. When you pin an item, it appears in the left pane. When you unpin an item, it disappears from the left pane. 
 
-* Select **... More** at the bottom of the pane to see items to pin. 
-* Hover over an item in the left pane to unpin it. 
-* Or unpin items from the **... More** menu.
-* **More** also allows you to quickly pin all or unpin all.
-
+* Select **... More** at the bottom of the pane to see items to pin and unpin.
+* Customize each project separately. The left pane is not shared across projects.
+* The left pane is not shared across users. Each user customizes their own left pane for each project. 
 
 ## Management center
 
