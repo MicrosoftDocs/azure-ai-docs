@@ -171,7 +171,7 @@ Next, let's add a permission that allows the application to access the Azure AI 
    * Mark the **`Access Cognitive Services API as organization users`** checkbox.
    * Select **`Add permissions`**.
 
-         :::image type="content" source="../media/entra-id/add-permissions.png" alt-text="Screenshot of the Azure Cognitive Services application permissions window.":::
+      :::image type="content" source="../media/entra-id/add-permissions.png" alt-text="Screenshot of the Azure Cognitive Services application permissions window.":::
 
 That's it! The setup for your Microsoft Entra ID application is complete. Next, your Translator resource needs to grant your application access by adding a role assignment to your application specifically for the Translator resource. For more information, *see* [Azure role-based access control](/azure/role-based-access-control/overview)
 
