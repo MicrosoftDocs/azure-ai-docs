@@ -6,6 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.author: pafarley
 ms.service: azure-ai-vision
+ms.topic: article
 ms.date: 08/15/2022
 ---
 

@@ -6,6 +6,7 @@ author: ylxiong1125
 ms.author: ylxiong
 manager: yabinl
 ms.service: azure-ai-language
+ms.topic: article
 ms.date: 05/18/2022
 ---
 

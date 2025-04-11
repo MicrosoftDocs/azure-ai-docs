@@ -6,6 +6,7 @@ author: aahill
 ms.author: aahi
 manager: nitinme
 ms.service: azure-ai-agent-service
+ms.topic: article
 ms.date: 12/13/2024
 ms.topic: article
 ---

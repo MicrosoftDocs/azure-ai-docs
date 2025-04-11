@@ -6,6 +6,7 @@ author: jboback
 ms.author: jboback
 manager: nitinme
 ms.service: azure-ai-language
+ms.topic: article
 ms.date: 09/29/2021
 ---
 

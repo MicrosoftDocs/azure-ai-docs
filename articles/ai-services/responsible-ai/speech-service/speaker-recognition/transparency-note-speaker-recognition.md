@@ -6,6 +6,7 @@ ms.author: heidizh
 author: HeidiHanZhang 
 manager: nitinme
 ms.service: azure-ai-speech
+ms.topic: article
 ms.date: 06/21/2022
 ---
 

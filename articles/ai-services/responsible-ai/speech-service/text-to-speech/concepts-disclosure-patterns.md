@@ -6,6 +6,7 @@ services: ai-services
 author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
+ms.topic: article
 ms.date: 12/03/2019
 ms.author: eur
 ---

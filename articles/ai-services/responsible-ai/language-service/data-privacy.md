@@ -6,6 +6,7 @@ author: ashly1yeo
 ms.author: aliciaep
 manager: nitinme
 ms.service: azure-ai-language
+ms.topic: article
 ms.date: 08/15/2022
 ---
 

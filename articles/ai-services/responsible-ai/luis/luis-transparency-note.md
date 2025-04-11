@@ -6,6 +6,7 @@ author: skandil
 ms.author: sarakandil
 manager: nitinme
 ms.service: azure-ai-language
+ms.topic: article
 ms.subservice: azure-ai-luis
 ms.date: 02/08/2024
 ---

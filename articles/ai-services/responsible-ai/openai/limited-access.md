@@ -6,6 +6,7 @@ author: krlaird
 ms.author: krlaird
 manager: nitinme
 ms.service: azure-ai-openai
+ms.topic: article
 ms.date: 11/03/2023
 ---
 # Limited access for Azure OpenAI Service

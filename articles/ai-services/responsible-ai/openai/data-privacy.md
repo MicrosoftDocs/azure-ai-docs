@@ -6,6 +6,7 @@ author: ChrisHMSFT
 ms.author: chrhoder
 manager: nitinme
 ms.service: azure-ai-openai
+ms.topic: article
 ms.date: 02/23/2024
 ---
 

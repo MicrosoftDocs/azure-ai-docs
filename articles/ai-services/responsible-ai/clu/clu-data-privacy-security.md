@@ -6,6 +6,7 @@ author: skandil
 ms.author: sarakandil
 manager: nitinme
 ms.service: azure-ai-language
+ms.topic: article
 ms.date: 09/15/2021
 ---
 # Data and privacy for conversational language understanding

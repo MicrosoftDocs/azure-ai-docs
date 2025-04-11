@@ -6,6 +6,7 @@ author: sanjeev3
 ms.author: sajagtap
 manager: nitinme
 ms.service: azure-ai-vision
+ms.topic: article
 ms.date: 02/12/2021
 ---
 

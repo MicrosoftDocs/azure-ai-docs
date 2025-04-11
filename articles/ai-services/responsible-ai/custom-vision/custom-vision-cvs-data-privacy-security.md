@@ -6,6 +6,7 @@ author: adinatru
 ms.author: adinatru
 manager: nitinme
 ms.service: azure-ai-custom-vision
+ms.topic: article
 ms.date: 07/07/2021
 ---
 

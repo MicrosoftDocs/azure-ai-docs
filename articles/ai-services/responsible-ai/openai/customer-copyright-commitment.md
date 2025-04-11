@@ -5,6 +5,7 @@ keywords: Code of Conduct for Azure OpenAI Service
 author: mrbullwinkle
 ms.author: mbullwin
 ms.service: azure-ai-openai
+ms.topic: article
 ms.reviewer: nitinme
 ms.date: 05/21/2024
 ---

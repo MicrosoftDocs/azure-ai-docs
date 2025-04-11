@@ -6,6 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.author: pafarley
 ms.service: azure-ai-speech
+ms.topic: article
 ms.date: 11/14/2023
 ---
 

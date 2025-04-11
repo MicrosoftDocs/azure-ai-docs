@@ -6,6 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.author: eur
 ms.service: azure-ai-speech
+ms.topic: article
 ms.date: 06/30/2021
 ---
 

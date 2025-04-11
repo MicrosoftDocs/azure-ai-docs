@@ -6,6 +6,7 @@ author: jboback
 ms.author: jboback
 manager: nitinme
 ms.service: azure-ai-language
+ms.topic: article
 ms.subservice: azure-ai-qna-maker
 ms.date: 5/5/2021
 
