@@ -163,7 +163,12 @@
     {
       "source_path_from_root": "/articles/ai-services/content-safety/how-to/foundry.md",
       "redirect_url": "/azure/ai-foundry/ai-services/content-safety-overview",
-      "redirect_document_id": true
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/content-safety/studio-quickstart.md",
+      "redirect_url": "/azure/ai-foundry/ai-services/content-safety-overview?context=/azure/ai-services/content-safety/context/context",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-voice-create-voice.md",
