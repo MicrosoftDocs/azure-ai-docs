@@ -56,8 +56,9 @@ curl -X PUT "<your_endpoint>/contentsafety/text/categories/<your_category_name>?
             \"sampleBlobUrl\": \"https://<your-azure-storage-url>/example-container/survival-advice.jsonl\"
         }"
 ```
+
 > [!TIP]
-> Every time you change your category name, definition or samples,a new version will be created. You can use the version number to trace back to previous versions. Please remember this version number, as it will be required in the URL for the next step- training custom categories.
+> Every time you change your category name, definition or samples, a new version will be created. You can use the version number to trace back to previous versions. Please remember this version number, as it will be required in the URL for the next step- training custom categories.
 
 
 #### API Request

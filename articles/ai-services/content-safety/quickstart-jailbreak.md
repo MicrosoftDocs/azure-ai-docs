@@ -34,7 +34,7 @@ For more information on Prompt Shields, see the [Prompt Shields concept page](./
 
 ::: zone pivot="programming-language-rest"
 
-[!INCLUDE [REST API quickstart](./includes/quickstarts/rest-quickstart-prompt-shiels.md)]
+[!INCLUDE [REST API quickstart](./includes/quickstarts/rest-quickstart-prompt-shields.md)]
 
 ::: zone-end
 
