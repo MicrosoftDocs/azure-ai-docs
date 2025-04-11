@@ -201,6 +201,8 @@ print(batch_response.model_dump_json(indent=2))
 }
 ```
 
+If your batch jobs are so large that you are hitting the enqueued token limit even after maxing out the quota for your deployment, certain regions now support a new [fail fast](#queueing-batch-jobs) feature that allows you to queue multiple batch jobs with exponential backoff so once one large batch job completes the next can be kicked off automatically. To learn more about what regions support this feature and how to adapt your code to take advantage of it, see [queuing batch jobs](#queueing-batch-jobs).  
+
 ## Track batch job progress
 
 Once you have created batch job successfully you can monitor its progress either in the Studio or programatically. When checking batch job progress we recommend waiting at least 60 seconds in between each status call.
@@ -619,5 +621,125 @@ else:
   "first_id": "batch_4ddc7b60-19a9-419b-8b93-b9a3274b33b5",
   "has_more": false,
   "last_id": "batch_6287485f-50fc-4efa-bcc5-b86690037f43"
+}
+```
+
+## Queueing batch jobs
+
+If your batch jobs are so large that you are hitting the enqueued token limit even after maxing out the quota for your deployment, certain regions now support a new fail fast feature that allows you to queue multiple batch jobs with exponential backoff. Once one large batch job completes and your enqueued token quota is once again available, the next batch job can be created and kicked off automatically. 
+
+**Old behavior:**
+
+1. Large Batch job/s already running and using all available tokens for your deployment.
+2. New batch job submitted.
+3. New batch job goes into validation phase which can last up to a few minutes.
+4. Token count for new job is checked against currently available quota.
+5. New batch job fails with error reporting token limit exceeded.
+
+**New behavior:**
+
+1. Large Batch job/s already running and using all available tokens for your deployment
+2. New batch job submitted
+3. Approximate token count of new job immediately compared against currently available batch quota job fails fast allowing you to more easily handle retries programmatically.
+
+### Region support
+
+The following regions support the new fail fast behavior:
+
+- australiaeast
+- eastus
+- germanywestcentral
+- italynorth
+- northcentralus
+- polandcentral
+- swedencentral
+- eastus2
+- westus
+
+The code below demonstrates the basic mechanics of handling the fail fast behavior to allow automating retries and batch job queuing with exponential backoff.
+
+Depending on the size of your batch jobs you may need to greatly increase the `max_retries` or alter this example further.
+
+```python
+import time
+from openai import BadRequestError
+
+max_retries = 10
+retries = 0
+initial_delay = 5
+delay = initial_delay
+
+while True:
+    try:
+        batch_response = client.batches.create(
+            input_file_id=file_id,
+            endpoint="/chat/completions",
+            completion_window="24h",
+        )
+        
+        # Save batch ID for later use
+        batch_id = batch_response.id
+        
+        print(f"✅ Batch created successfully after {retries} retries")
+        print(batch_response.model_dump_json(indent=2))
+        break  
+        
+    except BadRequestError as e:
+        error_message = str(e)
+        
+        # Check if it's a token limit error
+        if 'token_limit_exceeded' in error_message:
+            retries += 1
+            if retries >= max_retries:
+                print(f"❌ Maximum retries ({max_retries}) reached. Giving up.")
+                raise
+            
+            print(f"⏳ Token limit exceeded. Waiting {delay} seconds before retry {retries}/{max_retries}...")
+            time.sleep(delay)
+            
+            # Exponential backoff - increase delay for next attempt
+            delay *= 2
+        else:
+            # If it's a different error, raise it immediately
+            print(f"❌ Encountered non-token limit error: {error_message}")
+            raise
+```
+
+**Output:**
+
+```console
+⏳ Token limit exceeded. Waiting 5 seconds before retry 1/10...
+⏳ Token limit exceeded. Waiting 10 seconds before retry 2/10...
+⏳ Token limit exceeded. Waiting 20 seconds before retry 3/10...
+⏳ Token limit exceeded. Waiting 40 seconds before retry 4/10...
+⏳ Token limit exceeded. Waiting 80 seconds before retry 5/10...
+⏳ Token limit exceeded. Waiting 160 seconds before retry 6/10...
+⏳ Token limit exceeded. Waiting 320 seconds before retry 7/10...
+✅ Batch created successfully after 7 retries
+{
+  "id": "batch_1e1e7b9f-d4b4-41fa-bd2e-8d2ec50fb8cc",
+  "completion_window": "24h",
+  "created_at": 1744402048,
+  "endpoint": "/chat/completions",
+  "input_file_id": "file-e2ba4ccaa4a348e0976c6fe3c018ea92",
+  "object": "batch",
+  "status": "validating",
+  "cancelled_at": null,
+  "cancelling_at": null,
+  "completed_at": null,
+  "error_file_id": "",
+  "errors": null,
+  "expired_at": null,
+  "expires_at": 1744488444,
+  "failed_at": null,
+  "finalizing_at": null,
+  "in_progress_at": null,
+  "metadata": null,
+  "output_file_id": "",
+  "request_counts": {
+    "completed": 0,
+    "failed": 0,
+    "total": 0
+  }
 }
 ```

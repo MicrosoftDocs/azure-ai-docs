@@ -557,8 +557,6 @@ items:
     href: ai-services/content-safety-overview.md
   - name: Content safety for models deployed with serverless APIs
     href: concepts/model-catalog-content-safety.md
-  - name: Use Azure AI Content Safety in AI Foundry portal
-    href: /azure/ai-services/content-safety/how-to/foundry?context=/azure/ai-foundry/context/context
   - name: Content filtering
     href: concepts/content-filtering.md
   - name: Use blocklists
