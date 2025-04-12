@@ -140,7 +140,7 @@ To use the Image Analysis APIs, you must create your Azure AI Vision resource in
 | Switzerland North |  ✅ |  |  | ✅ | 
 | Australia East |  ✅ |  |  | ✅ | 
 | Southeast Asia |  ✅ | ✅ |  | ✅ |
-| East Asia |  ✅ | ✅ |  |  | |
+| East Asia |  ✅ | ✅ |  |  | 
 | Korea Central |  ✅ | ✅ |  | ✅ |
 | Japan East |  ✅ |  |  | ✅ | 
 
