@@ -159,7 +159,6 @@ Connect to a OneLake lakehouse to extract supported files content from a hierarc
 
 ---
 
-
 ### Azure Cosmos DB for Apache Gremlin
 
 By [Azure AI Search](search-what-is-azure-search.md)
@@ -252,8 +251,8 @@ Connect to Azure Storage through Azure Files share to extract content serialized
 
 :::row-end:::
 
-:::row:::
-:::column span="":::
+<!-- :::row:::
+:::column span=""::: -->
 
 ---
 
