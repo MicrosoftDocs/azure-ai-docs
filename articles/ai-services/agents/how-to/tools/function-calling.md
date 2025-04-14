@@ -241,53 +241,6 @@ class FunctionToolExecutor {
 }
 ```
 
-## Create a run and check the output
-
-```javascript
-
-  // create a run
-  const streamEventMessages = await client.agents.createRun(thread.id, agent.id).stream();
-
-  for await (const eventMessage of streamEventMessages) {
-    switch (eventMessage.event) {
-      case RunStreamEvent.ThreadRunCreated:
-        break;
-      case MessageStreamEvent.ThreadMessageDelta:
-        {
-          const messageDelta = eventMessage.data;
-          messageDelta.delta.content.forEach((contentPart) => {
-            if (contentPart.type === "text") {
-              const textContent = contentPart;
-              const textValue = textContent.text?.value || "No text";
-            }
-          });
-        }
-        break;
-
-      case RunStreamEvent.ThreadRunCompleted:
-        break;
-      case ErrorEvent.Error:
-        console.log(`An error occurred. Data ${eventMessage.data}`);
-        break;
-      case DoneEvent.Done:
-        break;
-    }
-  }
-
-  // Print the messages from the agent
-  const messages = await client.agents.listMessages(thread.id);
-
-  // Messages iterate from oldest to newest
-  // messages[0] is the most recent
-  for (let i = messages.data.length - 1; i >= 0; i--) {
-    const m = messages.data[i];
-    if (isOutputOfType<MessageTextContentOutput>(m.content[0], "text")) {
-      const textContent = m.content[0];
-      console.log(`${textContent.text.value}`);
-      console.log(`---------------------------------`);
-    }
-  }
-```
 ## Create a client and agent
 
 
