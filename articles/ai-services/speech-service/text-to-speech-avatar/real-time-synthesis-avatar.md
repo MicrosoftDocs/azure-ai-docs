@@ -233,6 +233,22 @@ With this approach, you can get an animated canvas that plays like a video, whic
 
 After you have a transparent-background avatar, you can set the background to any dynamic content (like a video) by placing the dynamic content behind the canvas.
 
+## Crop video
+
+The avatar video is by default in a 16:9 aspect ratio. If you want to crop the video to a different aspect ratio, you can crop the video to a rectangle subarea of the original video. You need speficy the rectangle area by giving the coordinates of its top-left vertex and bottom-right vertex. The following code snippet shows how to crop the video:
+
+```JavaScript
+const videoFormat = new SpeechSDK.AvatarVideoFormat()
+const topLeftCoordinate = new SpeechSDK.Coordinate(640, 0) // coordinate of top-left vertex, with X=640, Y=0
+const bottomRightCoordinate = new SpeechSDK.Coordinate(1320, 1080) // coordinate of bottom-right vertex, with X=1320, Y=1080
+videoFormat.setCropRange(topLeftCoordinate, bottomRightCoordinate)
+const avatarConfig = new SpeechSDK.AvatarConfig(
+    "lisa", // Set avatar character here.
+    "casual-sitting", // Set avatar style here.
+    videoFormat, // Set video format here.
+)
+```
+
 ## Code samples
 
 You can find text to speech avatar code samples in the Speech SDK repository on GitHub. The samples demonstrate how to use real-time text to speech avatars in your web applications.
