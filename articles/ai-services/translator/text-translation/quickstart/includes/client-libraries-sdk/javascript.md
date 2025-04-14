@@ -47,7 +47,7 @@ For this quickstart, we use the Node.js JavaScript runtime environment to create
 
 ## Install the client library
 
-Open a terminal window and install the `Azure Text Translation` client library for JavaScript with `npm`:
+Open a terminal window and install the `Azure Text translation` client library for JavaScript with `npm`:
 
 ```console
 npm i @azure-rest/ai-translation-text@1.0.0-beta.1
@@ -77,7 +77,7 @@ To interact with the Translator service using the client library, you need to cr
 **Translate text**
 
   > [!NOTE]
-  > In this example we are using a regional endpoint. If you're using the global endpoint, see [Create a Text Translation client](../../../../create-translator-resource.md#create-a-text-translation-client).
+  > In this example we are using a regional endpoint. If you're using the global endpoint, see [Create a Text translation client](../../../../create-translator-resource.md#create-a-text-translation-client).
 
 ```javascript
 const TextTranslationClient = require("@azure-rest/ai-translation-text").default

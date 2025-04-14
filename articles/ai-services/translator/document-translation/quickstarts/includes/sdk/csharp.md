@@ -1,6 +1,6 @@
 ---
-title: "Quickstart: Document Translation C# SDK"
-description: 'Document Translation processing using the C# SDK'
+title: "Quickstart: Document translation C# SDK"
+description: 'Document translation processing using the C# SDK'
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -44,7 +44,7 @@ Build succeeded.
 
 ### Install the client library
 
-Within the application directory, install the Document Translation client library for .NET:
+Within the application directory, install the Document translation client library for .NET:
 
 ```console
 dotnet add package Azure.AI.Translation.Document --version 2.0.0-beta
@@ -115,7 +115,7 @@ class Program {
     Uri targetUri = new Uri("<targetUrl>");
     string targetLanguage = "<targetLanguageCode>"
 
-    // initialize a new instance  of the DocumentTranslationClient object to interact with the Document Translation feature
+    // initialize a new instance  of the DocumentTranslationClient object to interact with the Document translation feature
     DocumentTranslationClient client = new DocumentTranslationClient(new Uri(endpoint), new AzureKeyCredential(key));
 
     // initialize a new instance of the `DocumentTranslationInput` object to provide the location of input for the translation operation
@@ -315,7 +315,7 @@ class Program {
     Uri targetUri = new Uri("<targetUrl>");
     string targetLanguage = "<targetLanguageCode>";
 
-    // initialize a new instance  of the DocumentTranslationClient object to interact with the Document Translation feature
+    // initialize a new instance  of the DocumentTranslationClient object to interact with the Document translation feature
     DocumentTranslationClient client = new DocumentTranslationClient(new Uri(endpoint), new AzureKeyCredential(key));
 
     // initialize a new instance of the `DocumentTranslationInput` object to provide source and target locations and target language for the translation operation

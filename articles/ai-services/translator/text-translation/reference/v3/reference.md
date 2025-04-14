@@ -260,7 +260,7 @@ You can find the custom endpoint after you create a [translator resource](https:
 1. Select **Save** to apply your changes.
 1. Select **Keys and Endpoint** from the **Resource Management** section.
 1. Select the **Virtual Network** tab.
-1. Listed there are the endpoints for Text Translation and Document Translation.
+1. Listed there are the endpoints for Text translation and Document translation.
 
    :::image type="content" source="../../../media/virtual-network-endpoint.png" alt-text="Screenshot of the virtual network endpoint.":::
 

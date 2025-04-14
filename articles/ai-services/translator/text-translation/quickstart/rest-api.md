@@ -40,7 +40,7 @@ You need an active Azure subscription. If you don't have an Azure subscription, 
     > * For this quickstart it is recommended that you use a Translator text single-service global resource.
     > * With a single-service global resource you'll include one authorization header (**Ocp-Apim-Subscription-key**) with the REST API request. The value for Ocp-Apim-Subscription-key is your Azure secret key for your Translator Text subscription.
     > * If you choose to use an Azure AI multi-service or regional Translator resource, two authentication headers will be required: (**Ocp-Api-Subscription-Key** and **Ocp-Apim-Subscription-Region**). The value for Ocp-Apim-Subscription-Region is the region associated with your subscription.
-    > * For more information on how to use the **Ocp-Apim-Subscription-Region** header, _see_ [Text Translation REST API headers](../how-to/use-rest-api.md#headers).
+    > * For more information on how to use the **Ocp-Apim-Subscription-Region** header, _see_ [Text translation REST API headers](../how-to/use-rest-api.md#headers).
 
 ## Headers
 

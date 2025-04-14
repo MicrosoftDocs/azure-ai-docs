@@ -1,7 +1,7 @@
 ---
-title: Use Translator V3 connector to configure a Text Translation flow
+title: Use Translator V3 connector to configure a Text translation flow
 titleSuffix: Azure AI services
-description: Use Microsoft Translator V3 connector and Power Automate to configure a Text Translation flow.
+description: Use Microsoft Translator V3 connector and Power Automate to configure a Text translation flow.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -25,7 +25,7 @@ ms.author: lajanuar
 
 This article guides you through configuring a Microsoft Translator V3 connector cloud flow that supports text translation and transliteration. The Translator V3 connector creates a connection between your Translator Service instance and Microsoft Power Automate enabling you to use one or more prebuilt operations as steps in your apps and workflows.
 
-Text translation is a cloud-based REST API feature of the Azure AI Translator service. The Text Translation API enables quick and accurate source-to-target text translations in real time.
+Text translation is a cloud-based REST API feature of the Azure AI Translator service. The Text translation API enables quick and accurate source-to-target text translations in real time.
 
 ## Prerequisites
 

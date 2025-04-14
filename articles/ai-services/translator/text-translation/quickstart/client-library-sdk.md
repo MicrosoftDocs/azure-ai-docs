@@ -56,11 +56,11 @@ You need an active Azure subscription. If you don't have an Azure subscription, 
 [!INCLUDE [Python programming](includes/client-libraries-sdk/python.md)]
 ::: zone-end
 
-That's it, congratulations! In this quickstart, you used a Text Translation SDK to translate text.
+That's it, congratulations! In this quickstart, you used a Text translation SDK to translate text.
 
 ## Next steps
 
-Learn more about Text Translation development options:
+Learn more about Text translation development options:
 
 > [!div class="nextstepaction"]
->[Text Translation SDK overview](../../text-sdk-overview.md) </br></br>[Text Translation V3 reference](../reference/v3/reference.md)
+>[Text translation SDK overview](../../text-sdk-overview.md) </br></br>[Text translation V3 reference](../reference/v3/reference.md)

@@ -19,7 +19,7 @@ recommendations: false
     > [!TIP]
     > If you're new to Python, try the [Introduction to Python](/training/paths/beginner-python/) Learn module.
 
-1. Open a terminal window and install the `Azure Text Translation` client library for Python with `pip`:
+1. Open a terminal window and install the `Azure Text translation` client library for Python with `pip`:
 
     ```console
     pip install azure-ai-translation-text==1.0.0b1
@@ -41,7 +41,7 @@ To interact with the Translator service using the client library, you need to cr
 **Translate text**
 
   > [!NOTE]
-  > In this example we are using a regional endpoint. If you're using the global endpoint, see [Create a Text Translation client](../../../../create-translator-resource.md#create-a-text-translation-client).
+  > In this example we are using a regional endpoint. If you're using the global endpoint, see [Create a Text translation client](../../../../create-translator-resource.md#create-a-text-translation-client).
 
 ```python
 from azure.ai.translation.text import TextTranslationClient, TranslatorCredential
