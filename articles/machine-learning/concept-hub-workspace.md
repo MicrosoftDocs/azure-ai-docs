@@ -15,7 +15,7 @@ monikerRange: 'azureml-api-2 || azureml-api-1'
 ---
 
 
-# What is an Azure Machine Learning hub workspace? (Preview)
+# What is an Azure Machine Learning hub workspace?
 
 A hub is a kind of workspace that centrally manages security, connectivity, compute resources, and quota for a team. Once set up, a hub enables developers to create their own workspaces to organize their work while staying compliant with IT set up requirements. Sharing and reuse of configurations through a hub workspace yields better cost efficiency when deploying Azure Machine Learning at scale.
 
