@@ -8,13 +8,13 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: overview
-ms.date: 03/11/2024
+ms.date: 04/14/2024
 
 ---
 
 # How to build a RAG solution using Azure AI Search
 
-This tutorial series demonstrates a pattern for building RAG solutions on Azure AI Search. It covers the components built in Azure AI Search, dependencies, and optimizations for maximizing relevance and minimizing costs.
+This tutorial series demonstrates a pattern for building RAG solutions on Azure AI Search. It explains the components that you need to build, enumerates the dependencies, and provides optimizations for maximizing relevance and minimizing costs.
 
 Sample data is a [collection of PDFs](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth_book_2019_text_pages) uploaded to Azure Storage. The content is from [NASA's Earth free e-book](https://www.nasa.gov/ebooks/earth/).
 

@@ -11,7 +11,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 10/31/2024
+ms.date: 04/14/2025
 ---
 
 # Examples of *full* Lucene search syntax (advanced queries)

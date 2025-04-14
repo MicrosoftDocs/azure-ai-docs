@@ -11,7 +11,7 @@ ms.custom:
   - ignite-2023
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/21/2024
+ms.date: 04/14/2025
 ---
 
 # Model complex data types in Azure AI Search
