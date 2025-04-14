@@ -16,7 +16,7 @@ ms.custom: azure-ai-agents
 This article provides a summary of the latest releases and major documentation updates for Azure AI Agent Service.
 
 ## April 2025
-### BYO Thread Storage
+### BYO thread storage
 The Standard Agent Setup now supports **Bring Your Own (BYO) thread storage using an Azure Cosmos DB for NoSQL account**. This feature ensures all thread messages and conversation history are stored in your own resources. See the [Quickstart](./quickstart.md) for more information on how to deploy a Standard agent project.
 
 ## March 2025
