@@ -322,6 +322,11 @@ await client.agents.createMessage(
 
 ::: zone pivot="python"
 
+
+## Define a function for your agent to call
+
+Start by defining a function for your agent to call. When you create a function for an agent to call, you describe its structure of it with any required parameters in a docstring. 
+
 ```python
 import json
 import datetime
