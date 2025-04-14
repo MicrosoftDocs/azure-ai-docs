@@ -313,7 +313,7 @@ Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the
 
 ### Step 2: Create an agent with the Microsoft Fabric tool enabled
 
-```console
+```bash
 curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
@@ -340,7 +340,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
 
 #### Create a thread
 
-```console
+```bash
 curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
@@ -349,7 +349,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
 
 #### Add a user question to the thread
 
-```console
+```bash
 curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
@@ -363,7 +363,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-1
 
 #### Run the thread
 
-```console
+```bash
 curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01-preview \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
@@ -374,14 +374,14 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01
 
 #### Retrieve the status of the run
 
-```console
+```bash
 curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2024-12-01-preview \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 
 #### Retrieve the agent response
 
-```console
+```bash
 curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
