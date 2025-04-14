@@ -8,8 +8,8 @@ ms.subservice: core
 ms.topic: conceptual
 ms.author: larryfr
 author: Blackmist
-ms.reviewer: deeikele
-ms.date: 05/09/2024
+ms.reviewer: namanjoshi
+ms.date: 14/04/2025
 monikerRange: 'azureml-api-2 || azureml-api-1'
 #Customer intent: As an IT administrator, I want to understand the purpose of a hub workspace for Azure Machine Learning.
 ---
@@ -45,7 +45,7 @@ Hubs can be used as your team's collaboration environment for both ML studio and
 
 ## Set up and secure a hub for your team
 
-Create a hub workspace in [Azure portal](how-to-manage-hub-workspace-portal.md), or using [Azure Resource Manager templates](how-to-manage-hub-workspace-template.md). You might customize networking, identity, encryption, monitoring, or tags, to meet compliance with your organization's requirements. 
+Create a hub workspace in [Azure portal](how-to-manage-hub-workspace-portal.md), with [Azure Resource Manager templates](how-to-manage-hub-workspace-template.md) or via [Azure ML SDK/CLI](https://learn.microsoft.com/azure/ai-foundry/how-to/develop/create-hub-project-sdk?tabs=azurecli). You might customize networking, identity, encryption, monitoring, or tags, to meet compliance with your organization's requirements. 
 
 Project workspaces that are created using a hub obtain the hub's security settings and shared resource configuration. Including the following configurations:
 
@@ -72,6 +72,7 @@ Once a hub is created, there are multiple ways to create a project workspace usi
 1. [Using Azure AI Foundry](/azure/ai-studio/how-to/create-projects)
 2. [Using Azure SDK](how-to-manage-workspace.md?tabs=python)
 4. [Using automation templates](how-to-create-workspace-template.md)
+5. [Using Azure CLI](https://learn.microsoft.com/cli/azure/ml/workspace?view=azure-cli-latest)
 
 > [!NOTE]
 > When creating a workspace using a hub, there's no need to specify security settings or [associated resources](concept-workspace.md#associated-resources) because those are inherited from the hub. For example, if public network access is disabled on the hub, it is also disabled on new workspace that is created.
