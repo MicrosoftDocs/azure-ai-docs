@@ -192,16 +192,46 @@ To avoid unnecessary costs after you finish using the real-time avatar, it’s i
 
 ## Edit background
 
-The avatar real-time synthesis API currently doesn't support setting a background image/video and only supports setting a solid-color background, without transparent background support. However, there's an alternative way to implement background customization on the client side, following these guidelines:
+### Set background color
+
+You can set the background color of the avatar video through the `backgroundColor` property of `AvatarConfig` object. The following code snippet shows how to set the background color:
+
+```JavaScript
+const avatarConfig = new SpeechSDK.AvatarConfig(
+    "lisa", // Set avatar character here.
+    "casual-sitting", // Set avatar style here.
+)
+avatarConfig.backgroundColor = '#00FF00FF' // Set background color to green
+```
+
+> [!NOTE]
+>  The color string should be in format `#RRGGBBAA`. And the alpha channel (`AA` part) is always ignored as we don't support transparent background for real-time avatar.
+
+
+### Set background image
+
+You can set the background image of the avatar video through the `backgroundImage` property of `AvatarConfig` object. You need upload the image to a public accessible URL and then assign the URL to the `backgroundImage` property. The following code snippet shows how to set the background image:
+
+```JavaScript
+const avatarConfig = new SpeechSDK.AvatarConfig(
+    "lisa", // Set avatar character here.
+    "casual-sitting", // Set avatar style here.
+)
+avatarConfig.backgroundImage = "https://www.example.com/1920-1080-image.jpg" // A public accessiable URL of the image.
+```
+
+### Set background video
+
+The avatar real-time synthesis API currently doesn't support setting background video directly. However, there's an alternative way to implement background customization on the client side, following these guidelines:
 
 - Set the background color to green (for ease of matting), which the avatar real-time synthesis API supports.
 - Create a canvas element with the same size as the avatar video.
 - Capture each frame of the avatar video and apply a pixel-by-pixel calculation to set the green pixel to transparent, and draw the recalculated frame to the canvas.
 - Hide the original video.
 
-With this approach, you can get an animated canvas that plays like a video, which has a transparent background. Here's the [JavaScript sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/js/basic.js#L108) to demonstrate such an approach.
+With this approach, you can get an animated canvas that plays like a video, which has a transparent background. Here's the [JavaScript sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/js/basic.js#L142) to demonstrate such an approach.
 
-After you have a transparent-background avatar, you can set the background to any image or video by placing the image or video behind the canvas.
+After you have a transparent-background avatar, you can set the background to any dynamic content (like a video) by placing the dynamic content behind the canvas.
 
 ## Code samples
 
