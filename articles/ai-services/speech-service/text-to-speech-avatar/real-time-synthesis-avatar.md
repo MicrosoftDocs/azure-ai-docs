@@ -249,6 +249,8 @@ const avatarConfig = new SpeechSDK.AvatarConfig(
 )
 ```
 
+For a full sample with more context, you can go to our [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/js/basic.js) and search `crop`.
+
 ## Code samples
 
 You can find text to speech avatar code samples in the Speech SDK repository on GitHub. The samples demonstrate how to use real-time text to speech avatars in your web applications.
