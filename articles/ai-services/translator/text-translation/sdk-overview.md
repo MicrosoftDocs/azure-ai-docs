@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-translator
 ms.custom: devx-track-python
 ms.topic: conceptual
-ms.date: 09/26/2024
+ms.date: 04/14/2025
 ms.author: lajanuar
 recommendations: false
 ---
@@ -38,7 +38,7 @@ Text translation SDK supports the programming languages and platforms:
 
 This section provides a version-based description of Text translation feature and capability releases, changes, updates, and enhancements.
 
-#### Translator Text SDK May 2024 GA release
+#### Translator Text SDK May 2024 (GA) release
 
 This release includes the following updates:
 
