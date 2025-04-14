@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 01/31/2024
+ms.date: 04/14/2025
 ---
 
 # Cancel translation

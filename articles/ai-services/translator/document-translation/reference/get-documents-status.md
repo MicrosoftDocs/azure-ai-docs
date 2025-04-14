@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 08/23/2024
+ms.date: 04/14/2025
 ---
 
 # Get status for all documents
@@ -32,11 +32,11 @@ HTTP method: **GET**
   * Paginated responses indicate a partial result and include a continuation token in the response. The absence of a continuation token means that no other pages are available.
 
 > [!NOTE]
-> If the server can't honor `$top` and/or `$skip`, the server must return an error to the client informing about it instead of just ignoring the query options. This reduces the risk of the client making assumptions about the data returned.
+> If the server can't honor `$top` and/or `$skip`, the server must return an error to the client informing about it instead of just ignoring the query options. This action reduces the risk of the client making assumptions about the data returned.
 
 * `$orderBy` query parameter can be used to sort the returned list (ex: `$orderBy=createdDateTimeUtc asc` or `$orderBy=createdDateTimeUtc desc`).
 * The default sorting is descending by `createdDateTimeUtc`. Some query parameters can be used to filter the returned list (ex: `status=Succeeded,Cancelled`) only returns succeeded and canceled documents. 
-* The `createdDateTimeUtcStart` and `createdDateTimeUtcEnd` query parameters can be used combined or separately to specify a range of datetime to filter the returned list. 
+* The `createdDateTimeUtcStart` and `createdDateTimeUtcEnd` query parameters can be combined or used separately to specify a range of datetime to filter the returned list. 
 * The supported filtering query parameters are (`status`, `id`, `createdDateTimeUtcStart`, and `createdDateTimeUtcEnd`).
 * When both `$top` and `$skip` are included, the server should first apply `$skip` and then `$top` on the collection.
 

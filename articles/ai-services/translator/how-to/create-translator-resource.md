@@ -5,7 +5,7 @@ description: Learn how to create an Azure AI Translator resource and obtain your
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.date: 01/27/2025
+ms.date: 04/14/2025
 ms.service: azure-ai-translator
 ms.topic: how-to
 

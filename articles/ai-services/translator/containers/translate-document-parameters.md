@@ -7,7 +7,7 @@ manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/27/2024
+ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 
@@ -54,7 +54,7 @@ Use synchronous translation processing to send a document as part of the HTTP re
 >
 > * Each sample runs on the `localhost` that you specified with the `docker compose up` command.
 > * While your container is running, `localhost` points to the container itself.
-> * You don't have to use `localhost:5000`. You can use any port that is not already in use in your host environment.
+> * You don't have to use `localhost:5000`. You can use any port that isn't already in use in your host environment.
 
 ### Sample document
 

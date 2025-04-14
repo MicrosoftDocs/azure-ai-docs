@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 01/28/2025
+ms.date: 04/14/2025
 ms.author: lajanuar
 recommendations: false
 keywords: on-premises, Docker, container, identify

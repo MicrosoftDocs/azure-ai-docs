@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 03/10/2025
+ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 
@@ -177,7 +177,7 @@ To learn more, see our Custom Translator [documentation](../custom-translator/ov
   * **Dhivehi**. Also known as Maldivian, it's an Indo-Iranian language primarily spoken in the island nation of Maldives.
   * **Georgian**. A Kartvelian language that is the official language of Georgia. It has approximately 4 million speakers.
   * **Kyrgyz**. A Turkic language that is the official language of Kyrgyzstan.
-  * **Macedonian (cyrillic)**. An Eastern South Slavic language that is the official language of North Macedonia. It has approximately 2 million people.
+  * **Macedonian (Cyrillic)**. An Eastern South Slavic language that is the official language of North Macedonia. It has approximately 2 million people.
   * **Mongolian (traditional)**. Traditional Mongolian script is the first writing system created specifically for the Mongolian language. Mongolian is the official language of Mongolia.
   * **Tatar**. A Turkic language used by speakers in modern Tatarstan closely related to Crimean Tatar and Siberian Tatar but each belongs to different subgroups.
   * **Tibetan**. It has nearly 6 million speakers and can be found in many Tibetan Buddhist publications.

@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: tutorial
-ms.date: 01/27/2025
+ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 

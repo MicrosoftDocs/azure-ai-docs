@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 09/26/2024
+ms.date: 04/14/2025
 ---
 
 # Start batch translation
@@ -153,7 +153,7 @@ Definition for the input batch translation request.
 The following are examples of batch requests.
 
 > [!NOTE]
-> In the following examples, limited access has been granted to the contents of an Azure Storage container [using a shared access signature(SAS)](/azure/storage/common/storage-sas-overview) token.
+> In the following examples, limited access is granted to the contents of an Azure Storage container [using a shared access signature(SAS)](/azure/storage/common/storage-sas-overview) token.
 
 **Translating all documents in a container**
 

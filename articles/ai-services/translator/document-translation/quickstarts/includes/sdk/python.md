@@ -5,7 +5,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: include
-ms.date: 06/19/2024
+ms.date: 04/14/2025
 ms.author: lajanuar
 recommendations: false
 ---

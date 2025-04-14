@@ -5,7 +5,7 @@ description: Known and common issues with Azure AI Translator.
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/01/2025
+ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 
