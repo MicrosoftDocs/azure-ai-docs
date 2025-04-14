@@ -14,14 +14,10 @@ ms.date: 04/14/2025
 
 # Data sources gallery
 
-Find a data connector from Microsoft or a partner that works with [an indexer](search-indexer-overview.md) to simplify data ingestion into a search index. This article has the following sections:
-
-+ [Generally available data sources by Azure AI Search](#ga)
-+ [Preview data sources by Azure AI Search](#preview)
-+ [Data sources from our Partners](#partners)
+Find a data connector from Microsoft or a partner that works with [an indexer](search-indexer-overview.md) to simplify data ingestion into a search index. 
 
 > [!NOTE]
-> The connectors mentioned in this article don't represent the only methods for indexing data from data sources to AI Search, but low/no-code options to accomplish this task. You have the option to develop your own connector utilizing the [Push REST API/SDK](search-what-is-data-import.md#pushing-data-to-an-index). This implies that provided you can programmatically extract data from a source, you can also employ the corresponding programmatic Push method to index your data.
+> The connectors mentioned in this article represent one method for indexing data in Azure AI Search. You also have the option of developing your own connector using the [Push REST API or An Azure SDK](search-what-is-data-import.md#pushing-data-to-an-index).
 
 <a name="ga"></a>
 
