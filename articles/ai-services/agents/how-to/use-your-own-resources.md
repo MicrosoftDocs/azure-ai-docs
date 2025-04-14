@@ -24,7 +24,7 @@ Use this article if you want to use the Azure Agent Service with resources you a
 
 To use your own resources, you can edit the parameters in the provided deployment templates. To start, determine if you want to edit the [basic agent setup template](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/Agents/setup/basic-agent-identity), or the [standard agent setup template](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/Agents/setup/standard-agent).
    
-**Basic Setup**:  Agent created in a basic project use multitenant search and storage resources fully managed by Microsoft. You don't have visibility or control over these underlying Azure resources. You can only use your own AI services account with this option.
+**Basic Setup**:  Agents created in a basic project use multitenant search and storage resources fully managed by Microsoft. You don't have visibility or control over these underlying Azure resources. You can only use your own AI services account with this option.
 
 **Standard Setup**: Agents created in a standard project use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you incur costs based on your usage. You can use your own AI services account, Azure Storage account, Cosmos DB for NoSQL account and/or Azure AI Search resource with this option. 
 
