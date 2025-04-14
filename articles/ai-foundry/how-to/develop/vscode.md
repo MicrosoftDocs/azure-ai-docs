@@ -28,7 +28,7 @@ author: sdgilley
 
 ## Launch VS Code from Azure AI Foundry
 
-[!INCLUDE [tip-left-nav](../../includes/tip-left-nav.md)]
+[!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
 1. Go to [Azure AI Foundry](https://ai.azure.com).
 1. Open your project in Azure AI Foundry portal.

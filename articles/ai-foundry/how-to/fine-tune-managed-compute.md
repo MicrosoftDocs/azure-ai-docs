@@ -36,7 +36,7 @@ To improve model performance, you might consider fine-tuning a foundation model 
 
 ## Fine-tune a foundation model using managed compute
 
-[!INCLUDE [tip-left-nav](../includes/tip-left-nav.md)]
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com).
 
