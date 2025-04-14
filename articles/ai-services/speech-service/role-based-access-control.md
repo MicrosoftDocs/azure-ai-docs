@@ -48,6 +48,45 @@ The [roles](#roles-for-speech-resources) define what permissions you have. Authe
 
 To authenticate with Speech resource keys, all you need is the key and region. To authenticate with a Microsoft Entra token, the Speech resource must have a [custom subdomain](speech-services-private-link.md#create-a-custom-domain-name).
 
+Here's how to create a new Azure AI Services resource with a custom subdomain. You can also use an existing resource, but it must have a custom subdomain. For more information about creating a custom subdomain, see [Create a custom domain name](speech-services-private-link.md#create-a-custom-domain-name).
+
+```bash
+resourceGroupName=my-speech-rg
+location=eastus
+AIServicesResourceName=my-aiservices-$location
+
+# create an AIServices resource for Speech and other AI services
+az cognitiveservices account create --name $AIServicesResourceName --resource-group $resourceGroupName --kind AIServices --sku S0 --location $location --custom-domain $AIServicesResourceName
+
+# get the resource id
+speechResourceId=$(az cognitiveservices account show --name $AIServicesResourceName --resource-group $resourceGroupName --query id -o tsv)
+# assign Cognitive Services User role to the app id
+appId=$(az ad signed-in-user show --query id -o tsv)
+az role assignment create --role "Cognitive Services User" --assignee $appId --scope $speechResourceId
+# assign Cognitive Services Speech User role to the app id
+az role assignment create --role "Cognitive Services Speech User" --assignee $appId --scope $speechResourceId
+
+# get an acces token
+accessToken=$(az account get-access-token --scope "https://cognitiveservices.azure.com/.default" --query accessToken -o tsv)
+echo $accessToken
+```
+
+The returned `accessToken` is a Microsoft Entra token that you can use to authenticate without API keys.
+
+Now you can use the `accessToken` to authenticate with the AI Services resource. For example, you can use the token via the [Fast transcription REST API](./fast-transcription-create.md):
+
+```bash
+audio_file=@'Call1_separated_16k_health_insurance.wav'
+
+uri=https://$AIServicesResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2024-11-15
+
+curl -v "$uri" \
+    --header 'Content-Type: multipart/form-data' \
+    --form 'definition={"locales": ["en-US"]}' \
+    --form 'audio=@Call1_separated_16k_health_insurance.wav' \
+    --header "Authorization: Bearer $accessToken" 
+```
+
 ### Speech SDK authentication
 
 For the SDK, you configure whether to authenticate with an API key or Microsoft Entra token. For details, see [Microsoft Entra authentication with the Speech SDK](how-to-configure-azure-ad-auth.md).
