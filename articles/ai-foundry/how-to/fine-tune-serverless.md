@@ -5,7 +5,7 @@ description: Learn how to fine-tune models deployed via serverless APIs in Azure
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 03/11/2025
+ms.date: 04/14/2025
 ms.reviewer: rasavage
 reviewer: RSavage2
 ms.author: ssalgado
@@ -396,6 +396,8 @@ The supported file type is JSON Lines. Files are uploaded to the default datasto
 
 ### Create training data inputs
 
+This code snippet shows you how to define a training dataset.
+
 ```python
 from azure.ai.ml.constants import AssetTypes
 from azure.ai.ml.entities import Data
@@ -486,18 +488,18 @@ except Exception as ex:
 
 There are following set of parameters that are required to fine-tune your model. Each parameter is defined in the following:
 
-1. model: Base model to finetune.
-1. training_data: Training data for finetuning the base model.
-1. validation_data: Validation data for finetuning the base model.
-1. task: FineTuning task to perform. eg. CHAT_COMPLETION for chat-completion finetuning jobs.
+1. model: Base model to fine-tune.
+1. training_data: Training data for fine-tuning the base model.
+1. validation_data: Validation data for fine-tuning the base model.
+1. task: FineTuning task to perform. eg. CHAT_COMPLETION for chat-completion fine-tuning jobs.
 1. outputs: Output registered model name.
 
 The following parameters are optional:
 
-1. hyperparameters: Parameters that control the FineTuning behavior at runtime.
+1. hyperparameters: Parameters that control the fine-tuning behavior at run-time.
 1. name: FineTuning job name
-1. experiment_name: Experiment name for FineTuning job.
-1. display_name: FineTuning job display name.
+1. experiment_name: Experiment name for fin-tuning job.
+1. display_name: Fine-tuning job display name.
 
 ```python
 from azure.ai.ml.finetuning import FineTuningTaskType, create_finetuning_job
