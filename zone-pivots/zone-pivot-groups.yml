@@ -1108,13 +1108,13 @@ groups:
   title: Selections
   prompt: Choose a usage method
   pivots:
-  - id: programming-language-csharp
+  - id: csharp
     title: C#
-  - id: programming-language-javascript
+  - id: javascript
     title: JavaScript
-  - id: programming-language-python
+  - id: python
     title: Python
-  - id: rest-api
+  - id: rest
     title: REST API
 # owner: sgilley
 - id: programming-languages-sdk-overview
