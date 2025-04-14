@@ -86,7 +86,7 @@ To create an Azure AI services resource follow these instructions:
     |Project details| Description   |
     |--|--|
     | **Subscription** | Select one of your available Azure subscriptions. |
-    | **Resource group** | The Azure resource group that will contain your Azure AI services multi-service account resource. You can create a new group or add it to a pre-existing group. |
+    | **Resource group** | The Azure resource group that will contain your Azure AI services multi-service account resource. You can create a new group or add it to a preexisting group. |
     | **Region** | The location of your Azure AI services multi-service account instance. Different locations may introduce latency, but have no impact on the runtime availability of your resource. |
     | **Name** | A descriptive name for your Azure AI services multi-service account resource. For example, *MyCognitiveServicesResource*. |
     | **Pricing tier** | The cost of your Azure AI services multi-service account depends on the options you choose and your usage. For more information, see the API [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/). |
