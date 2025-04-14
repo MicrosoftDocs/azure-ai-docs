@@ -65,7 +65,7 @@ The following sections provide you with a quick guide to the default quotas and 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
 | `gpt-4.1` (2025-04-14) | Enterprise Tier | 5 M | 5 K |
-| `gpt-4.1` (2025-04-14) | Enterprise Tier | 1 M | 1 K |
+| `gpt-4.1` (2025-04-14) | Default | 1 M | 1 K |
 
 
 ## computer-use-preview global standard
