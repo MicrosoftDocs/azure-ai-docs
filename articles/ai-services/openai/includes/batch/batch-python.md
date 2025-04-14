@@ -75,7 +75,7 @@ The `custom_id` is required to allow you to identify which individual batch requ
 
 ### Create input file
 
-For this article we'll create a file named `test.jsonl` and will copy the contents from standard input code block above to the file. You will need to modify and add your global batch deployment name to each line of the file. Save this file in the same directory that you're executing your Jupyter Notebook.
+For this article we'll create a file named `test.jsonl` and will copy the contents from standard input code block above to the file. You'll need to modify and add your global batch deployment name to each line of the file. Save this file in the same directory that you're executing your Jupyter Notebook.
 
 ## Upload batch file
 
@@ -101,10 +101,15 @@ client = AzureOpenAI(
 # Upload a file with a purpose of "batch"
 file = client.files.create(
   file=open("test.jsonl", "rb"), 
-  purpose="batch"
+  purpose="batch",
+  #extra_body={"expires_after":{"seconds": 1209600, "anchor": "created_at"}} # Optional you can set to a number between 1209600-2592000. This is equivalent to 14-30 days
 )
 
+
 print(file.model_dump_json(indent=2))
+
+#print(f"File expiration: {datetime.fromtimestamp(file.expires_at) if file.expires_at is not None else 'Not set'}")
+
 file_id = file.id
 ```
 
@@ -125,29 +130,40 @@ client = AzureOpenAI(
 # Upload a file with a purpose of "batch"
 file = client.files.create(
   file=open("test.jsonl", "rb"), 
-  purpose="batch"
+  purpose="batch",
+  #extra_body={"expires_after":{"seconds": 1209600, "anchor": "created_at"}} # Optional you can set to a number between 1209600-2592000. This is equivalent to 14-30 days
 )
 
+
 print(file.model_dump_json(indent=2))
+
+#print(f"File expiration: {datetime.fromtimestamp(file.expires_at) if file.expires_at is not None else 'Not set'}")
+
 file_id = file.id
 ```
 
 ---
 
+By uncommenting and adding `extra_body={"expires_after":{"seconds": 1209600, "anchor": "created_at"}}` you're setting our upload file to expire in 14 days. There's a max limit of 500 batch files per resource when no expiration is set. By setting a value for expiration the number of batch files per resource is increased to 10,000 files per resource. This feature isn't currently available in all regions. Output when file upload expiration is set:
+
 **Output:**
 
 ```json
 {
-  "id": "file-9f3a81d899b4442f98b640e4bc3535dd",
-  "bytes": 815,
-  "created_at": 1722476551,
+  "id": "file-655111ec9cfc44489d9af078f08116ef",
+  "bytes": 176064,
+  "created_at": 1743391067,
   "filename": "test.jsonl",
   "object": "file",
   "purpose": "batch",
-  "status": null,
+  "status": "processed",
+  "expires_at": 1744600667,
   "status_details": null
 }
+File expiration: 2025-04-13 23:17:47
 ```
+
+
 
 ## Create batch job
 
@@ -159,16 +175,21 @@ batch_response = client.batches.create(
     input_file_id=file_id,
     endpoint="/chat/completions",
     completion_window="24h",
+    #extra_body={"output_expires_after":{"seconds": 1209600, "anchor": "created_at"}} # Optional you can set to a number between 1209600-2592000. This is equivalent to 14-30 days
 )
+
 
 # Save batch ID for later use
 batch_id = batch_response.id
 
 print(batch_response.model_dump_json(indent=2))
+
 ```
 
+The default 500 max file limit per resource also applies to output files. Here you can uncomment this line to add  `extra_body={"output_expires_after":{"seconds": 1209600, "anchor": "created_at"}}` so that your output files expire in 14 days. By setting a value for expiration the number of batch files per resource is increased to 10,000 files per resource. This feature isn't currently available in all regions.
+
 > [!NOTE]
-> Currently the completion window must be set to 24h. If you set any other value than 24h your job will fail. Jobs taking longer than 24 hours will continue to execute until canceled.
+> Currently the completion window must be set to `24h`. If you set any other value than `24h` your job will fail. Jobs taking longer than 24 hours will continue to execute until canceled.
 
 **Output:**
 
@@ -178,7 +199,7 @@ print(batch_response.model_dump_json(indent=2))
   "completion_window": "24h",
   "created_at": 1722476583,
   "endpoint": null,
-  "input_file_id": "file-9f3a81d899b4442f98b640e4bc3535dd",
+  "input_file_id": "file-655111ec9cfc44489d9af078f08116ef",
   "object": "batch",
   "status": "validating",
   "cancelled_at": null,
@@ -201,7 +222,7 @@ print(batch_response.model_dump_json(indent=2))
 }
 ```
 
-If your batch jobs are so large that you are hitting the enqueued token limit even after maxing out the quota for your deployment, certain regions now support a new [fail fast](#queueing-batch-jobs) feature that allows you to queue multiple batch jobs with exponential backoff so once one large batch job completes the next can be kicked off automatically. To learn more about what regions support this feature and how to adapt your code to take advantage of it, see [queuing batch jobs](#queueing-batch-jobs).  
+If your batch jobs are so large that you're hitting the enqueued token limit even after maxing out the quota for your deployment, certain regions now support a new [fail fast](#queueing-batch-jobs) feature that allows you to queue multiple batch jobs with exponential backoff so once one large batch job completes the next can be kicked off automatically. To learn more about what regions support this feature and how to adapt your code to take advantage of it, see [queuing batch jobs](#queueing-batch-jobs).  
 
 ## Track batch job progress
 
@@ -311,7 +332,7 @@ if output_file_id:
 
 **Output:**
 
-For brevity, we are only including a single chat completion response of output. If you follow the steps in this article you should have three responses similar to the one below:
+For brevity, we're only including a single chat completion response of output. If you follow the steps in this article you should have three responses similar to the one below:
 
 ```json
 {
@@ -429,7 +450,7 @@ print(all_jobs)
 
 Use the REST API to list all batch jobs with additional sorting/filtering options.
 
-In the examples below we are providing the `generate_time_filter` function to make constructing the filter easier. If you don't wish to use this function the format of the filter string would look like `created_at gt 1728860560 and status eq 'Completed'`.
+In the examples below we're providing the `generate_time_filter` function to make constructing the filter easier. If you don't wish to use this function the format of the filter string would look like `created_at gt 1728860560 and status eq 'Completed'`.
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
@@ -626,7 +647,7 @@ else:
 
 ## Queueing batch jobs
 
-If your batch jobs are so large that you are hitting the enqueued token limit even after maxing out the quota for your deployment, certain regions now support a new fail fast feature that allows you to queue multiple batch jobs with exponential backoff. Once one large batch job completes and your enqueued token quota is once again available, the next batch job can be created and kicked off automatically. 
+If your batch jobs are so large that you're hitting the enqueued token limit even after maxing out the quota for your deployment, certain regions now support a new fail fast feature that allows you to queue multiple batch jobs with exponential backoff. Once one large batch job completes and your enqueued token quota is once again available, the next batch job can be created and kicked off automatically. 
 
 **Old behavior:**
 
