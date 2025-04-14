@@ -141,6 +141,19 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 ### Microsoft
 
+Microsoft models include various model groups such as MAI models, Phi models, ... _Add description for Microsoft models_
+
+### MAI models
+
+_Add description for MAI models_
+
+| Model  | Type | Tier | Capabilities |
+| ------ | ---- | --- | ------------ |
+| [MAI-DS-R1](https://ai.azure.com/explore/models/) |  chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | Global standard | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
+
+
+### Phi models
+
 Phi is a family of lightweight, state-of-the-art open models. These models were trained with Phi-3 datasets. The datasets include both synthetic data and the filtered, publicly available websites data, with a focus on high quality and reasoning-dense properties. The models underwent a rigorous enhancement process, incorporating both supervised fine-tuning, proximal policy optimization, and direct preference optimization to ensure precise instruction adherence and robust safety measures.
 
 | Model  | Type | Tier | Capabilities |
@@ -159,18 +172,8 @@ Phi is a family of lightweight, state-of-the-art open models. These models were 
 | [Phi-3-small-128k-instruct](https://ai.azure.com/explore/models/Phi-3-small-128k-instruct/version/4/registry/azureml) | chat-completion | Global standard | - **Input:** text (131,072 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
 
 
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
+See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
 
-
-### Microsoft AI
-
-Microsoft AI models are ... 
-
-| Model  | Type | Capabilities | 
-| ------ | ---- | --- | 
-| [MAI-DeepSeek-R1](https://ai.azure.com/explore/models/) |  chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | Global standard | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
-
-See [the Microsoft AI model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=).
 
 ### Mistral AI
 

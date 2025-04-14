@@ -207,6 +207,19 @@ For more examples of how to use Meta Llama models, see the following examples:
 
 ## Microsoft
 
+Microsoft models include various model groups such as MAI models, Phi models, ... _Add description for Microsoft models_
+
+### MAI models
+
+_Add description for MAI models_
+
+| Model  | Type | Capabilities |
+| ------ | ---- | ------------ |
+| [MAI-DS-R1](https://ai.azure.com/explore/models/) | [chat-completion with reasoning content](../model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
+
+
+### Phi models
+
 Phi is a family of lightweight, state-of-the-art open models. These models were trained with Phi-3 datasets. The datasets include both synthetic data and the filtered, publicly available websites data, with a focus on high quality and reasoning-dense properties. The models underwent a rigorous enhancement process, incorporating both supervised fine-tuning, proximal policy optimization, and direct preference optimization to ensure precise instruction adherence and robust safety measures.
 
 | Model  | Type | Capabilities |
@@ -224,9 +237,6 @@ Phi is a family of lightweight, state-of-the-art open models. These models were 
 | [Phi-3-medium-128k-instruct](https://ai.azure.com/explore/models/Phi-3-medium-128k-instruct/version/6/registry/azureml) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
 | [Phi-3-medium-4k-instruct](https://ai.azure.com/explore/models/Phi-3-medium-4k-instruct/version/5/registry/azureml) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (4,096 tokens) <br /> - **Output:** text (4,096 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
 
-
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
-
 #### Inference examples: Microsoft Phi
 
 For more examples of how to use Phi-3 family models, see the following examples:    
@@ -239,16 +249,7 @@ For more examples of how to use Phi-3 family models, see the following examples:
 | LangChain                                 | Python            | [Link](https://aka.ms/azureai/langchain)           |    
 | Llama-Index                               | Python            | [Link](https://aka.ms/azureai/llamaindex)             |  
 
-
-## Microsoft AI
-
-Microsoft AI models are ... 
-
-| Model  | Type | Capabilities | 
-| ------ | ---- | --- | 
-| [MAI-DeepSeek-R1](https://ai.azure.com/explore/models/) | [chat-completion with reasoning content](../model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
-
-See [the Microsoft AI model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=).
+See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
 
 
 ## Mistral AI
