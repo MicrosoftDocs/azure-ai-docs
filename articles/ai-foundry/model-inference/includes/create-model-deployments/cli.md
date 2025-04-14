@@ -53,7 +53,7 @@ To add a model, you first need to identify the model that you want to deploy. Yo
 3. If you don't have an Azure AI Services account create yet, you can create one as follows:
 
     ```azurecli
-    az cognitiveservices account create -n $accountName -g $resourceGroupName --custom-domain $accountName
+    az cognitiveservices account create -n $accountName -g $resourceGroupName --custom-domain $accountName --kind AIServices
     ```
 
 4. Let's see first which models are available to you and under which SKU. The following command list all the model definitions available:
