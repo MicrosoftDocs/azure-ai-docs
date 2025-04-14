@@ -57,7 +57,7 @@ To add a model, you first need to identify the model that you want to deploy. Yo
     az cognitiveservices account create -n $accountName -g $resourceGroupName --custom-domain $accountName --location $location --kind AIServices --sku S0
     ```
 
-4. Let's see first which models are available to you and under which SKU. The following command list all the model definitions available:
+4. Let's see first which models are available to you and under which SKU. SKUs, also known as [deployment types](../../concepts/deployment-types.md), define how Azure infrastructure is used to process requests. Models may offer different deployment types. The following command list all the model definitions available:
     
     ```azurecli
     az cognitiveservices account list-models \
@@ -78,10 +78,7 @@ To add a model, you first need to identify the model that you want to deploy. Yo
     }
     ```
 
-6. Identify the model you want to deploy. You need the properties `name`, `format`, `version`, and `sku`. Capacity might also be needed depending on the type of deployment.
-   
-   > [!TIP]
-   > Notice that not all the models are available in all the SKUs.
+6. Identify the model you want to deploy. You need the properties `name`, `format`, `version`, and `sku`. The property `format` indicates the provider offering the model. Capacity might also be needed depending on the type of deployment.
 
 7. Add the model deployment to the resource. The following example adds `Phi-3.5-vision-instruct`:
 
