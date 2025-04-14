@@ -243,10 +243,6 @@ class FunctionToolExecutor {
 
 ## Create a run and check the output
 
-
-
-# [JavaScript](#tab/javascript)
-
 ```javascript
 
   // create a run
@@ -322,10 +318,6 @@ await client.agents.createMessage(
 ```
 
 ## Create a run and check the output
-
-
-
-# [JavaScript](#tab/javascript)
 
 ```javascript
 
