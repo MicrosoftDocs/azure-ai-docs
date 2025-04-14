@@ -25,7 +25,7 @@ For no-code-deployment, Azure Machine Learning:
 * Dynamically installs Python packages that you list in a conda.yaml file. As a result, dependencies are installed during container runtime.
 * Provides an MLflow base image, or curated environment, that contains the following items:
     * The [`azureml-inference-server-http`](how-to-inference-server-http.md) package
-    * The [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/README_SKINNY.md) package
+    * The [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/skinny/README_SKINNY.md) package
     * A scoring script for inferencing
 
 [!INCLUDE [mlflow-model-package-for-workspace-without-egress](includes/mlflow-model-package-for-workspace-without-egress.md)]
