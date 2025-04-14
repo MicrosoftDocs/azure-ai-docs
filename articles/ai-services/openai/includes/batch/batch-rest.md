@@ -65,7 +65,7 @@ The `custom_id` is required to allow you to identify which individual batch requ
 
 ### Create input file
 
-For this article we'll create a file named `test.jsonl` and will copy the contents from standard input code block above to the file. You will need to modify and add your global batch deployment name to each line of the file.
+For this article we'll create a file named `test.jsonl` and will copy the contents from standard input code block above to the file. You'll need to modify and add your global batch deployment name to each line of the file.
 
 ## Upload batch file
 
@@ -86,7 +86,7 @@ curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files?api-versio
 
 The above code assumes a particular file path for your test.jsonl file. Adjust this file path as necessary for your local system. 
 
-By adding the optional `"expires_after.seconds=1209600"` and `"expires_after.anchor=created_at"` parameters  you are setting your upload file to expire in 14 days. There is a max limit of 500 batch files per resource when no expiration is set. By setting a value for expiration the number of batch files per resource is increased to 10,000 files per resource. You can set to a number between 1209600-2592000. This is equivalent to 14-30 days. This feature is not currently available in all regions.
+By adding the optional `"expires_after.seconds=1209600"` and `"expires_after.anchor=created_at"` parameters  you're setting your upload file to expire in 14 days. There's a max limit of 500 batch files per resource when no expiration is set. By setting a value for expiration the number of batch files per resource is increased to 10,000 files per resource. You can set to a number between 1209600-2592000. This is equivalent to 14-30 days. This feature isn't currently available in all regions.
 
 
 
@@ -154,7 +154,7 @@ curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches?api-vers
 The default 500 max file limit per resource also applies to output files. Here you can optionally add  `"output_expires_after":{"seconds": 1209600},` and `"anchor": "created_at"` so that your output files expire in 14 days. By setting a value for expiration the number of batch files per resource is increased to 10,000 files per resource. The file expiration feature is currently not available in all regions.
 
 > [!NOTE]
-> Currently the completion window must be set to 24h. If you set any other value than 24h your job will fail. Jobs taking longer than 24 hours will continue to execute until canceled.
+> Currently the completion window must be set to `24h`. If you set any other value than `24h` your job will fail. Jobs taking longer than 24 hours will continue to execute until canceled.
 
 **Output:**
 
@@ -236,7 +236,7 @@ The following status values are possible:
 | `in_progress`|The input file was successfully validated and the batch is currently running. |
 | `finalizing`|The batch has completed and the results are being prepared. |
 | `completed`|The batch has been completed and the results are ready.  |
-| `expired`|The batch was not able to be completed within the 24-hour time window.|
+| `expired`|The batch wasn't able to be completed within the 24-hour time window.|
 | `cancelling`|The batch is being `cancelled` (This can take up to 10 minutes to go into effect.) |
 | `cancelled`|the batch was `cancelled`.|
 
