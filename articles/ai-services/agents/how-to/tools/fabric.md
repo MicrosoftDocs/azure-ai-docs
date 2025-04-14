@@ -34,19 +34,23 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 ## Setup  
 > [!NOTE]
 > * The model you selected in Azure AI Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
+
 1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
 
 1. Create and publish a [Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312910)
 
-
 :::zone pivot="portal"
 
-1. You can add the Microsoft Fabric tool to an agent programatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal, in the Create and debug screen for your agent, scroll down the Setup pane on the right to knowledge. Then select Add.
-   :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
+You can add the Microsoft Fabric tool to an agent programatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal: 
+
+1. Navigate to the **Create and debug** screen for your agent in [Azure AI Foundry](https://ai.azure.com/), scroll down the Setup pane on the right to **knowledge**. Then select **Add**.
+   
+    :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
 
 1. Select **Microsoft Fabric** and follow the prompts to add the tool. You can add only one per agent.
 
 1. Click to add new connections. Once you have added a connection, you can directly select from existing list.
+
    1. To create a new connection, you need to find `workspace-id` and `artifact-id` in your published Fabric data agent endpoint. Your Fabric data agent endpoint would look like `https://<environment>.fabric.microsoft.com/groups/<workspace_id>/aiskills/<artifact-id>`
 
    1. Then, you can add both to your connection. Make sure you have checked `is secret` for both of them
@@ -349,7 +353,7 @@ for (let i = messages.data.length - 1; i >= 0; i--) {
 
 Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`. The client creation is demonstrated in the next section.
 
-### Step 2: Create an agent with the Microsoft Fabric tool enabled
+### Step 1: Create an agent with the Microsoft Fabric tool enabled
 
 ```bash
 curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
@@ -374,7 +378,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
       }'
 ```
 
-### Step 3: Create a thread
+### Step 2: Create a thread
 
 #### Create a thread
 
@@ -397,7 +401,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-1
     }'
 ```
 
-### Step 4: Create a run and check the output
+### Step 3: Create a run and check the output
 
 #### Run the thread
 
