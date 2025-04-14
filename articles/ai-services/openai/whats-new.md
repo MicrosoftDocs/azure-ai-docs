@@ -11,13 +11,19 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: whats-new
-ms.date: 03/05/2025
+ms.date: 04/14/2025
 recommendations: false
 ---
 
 # What's new in Azure OpenAI Service
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI Service.
+
+## April 2025
+
+### GPT-4.1 released
+
+-Latest model from Azure OpenAI with 1 Million token context limit. For more information, see the [models page](./concepts/models.md#gpt-41-series).
 
 ## March 2025
 
