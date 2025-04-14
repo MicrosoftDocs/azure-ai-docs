@@ -86,7 +86,7 @@ curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files?api-versio
 
 The above code assumes a particular file path for your test.jsonl file. Adjust this file path as necessary for your local system. 
 
-By adding `"expires_after.seconds=1209600"` and `"expires_after.anchor=created_at"`  you are setting your upload file to expire in 14 days. There is a max limit of 500 batch files per resource when no expiration is set. By setting a value for expiration the number of batch files per resource is increased to 10,000 files per resource. You can set to a number between 1209600-2592000. This is equivalent to 14-30 days.
+By adding the optional `"expires_after.seconds=1209600"` and `"expires_after.anchor=created_at"` parameters  you are setting your upload file to expire in 14 days. There is a max limit of 500 batch files per resource when no expiration is set. By setting a value for expiration the number of batch files per resource is increased to 10,000 files per resource. You can set to a number between 1209600-2592000. This is equivalent to 14-30 days. This feature is not currently available in all regions.
 
 
 
@@ -151,7 +151,7 @@ curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches?api-vers
   }'
 ```
 
-The default 500 max file limit per resource also applies to output files. Here you add  `"output_expires_after":{"seconds": 1209600},` and `"anchor": "created_at"` so that your output files expire in 14 days. By setting a value for expiration the number of batch files per resource is increased to 10,000 files per resource.
+The default 500 max file limit per resource also applies to output files. Here you can optionally add  `"output_expires_after":{"seconds": 1209600},` and `"anchor": "created_at"` so that your output files expire in 14 days. By setting a value for expiration the number of batch files per resource is increased to 10,000 files per resource. The file expiration feature is currently not available in all regions.
 
 > [!NOTE]
 > Currently the completion window must be set to 24h. If you set any other value than 24h your job will fail. Jobs taking longer than 24 hours will continue to execute until canceled.
@@ -192,7 +192,7 @@ The default 500 max file limit per resource also applies to output files. Here y
 Once you have created batch job successfully you can monitor its progress either in the Studio or programatically. When checking batch job progress we recommend waiting at least 60 seconds in between each status call.
 
 ```http
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches/{batch_id}?api-version=2024-10-21 \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches/{batch_id}?api-version=2025-03-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
 ```
 
@@ -244,7 +244,7 @@ The following status values are possible:
 ## Retrieve batch job output file
 
 ```http
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files/{output_file_id}/content?api-version=2024-10-21 \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files/{output_file_id}/content?api-version=2025-03-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" > batch_output.jsonl
 ```
 
@@ -255,7 +255,7 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files/{output_file_id}/c
 Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
 
 ```http
-curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches/{batch_id}/cancel?api-version=2024-10-21 \
+curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches/{batch_id}/cancel?api-version=2025-03-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
 ```
 
@@ -264,7 +264,7 @@ curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches/{batch_i
 List existing batch jobs for a given Azure OpenAI resource.
 
 ```http
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches?api-version=2024-10-21 \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches?api-version=2025-03-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
 ```
 
@@ -277,7 +277,7 @@ The list API call is paginated. The response contains a boolean `has_more` to in
 Use the REST API to list all batch jobs with additional sorting/filtering options.
 
 ```http
-curl "YOUR_RESOURCE_NAME.openai.azure.com/batches?api-version=2024-10-01-preview&$filter=created_at%20gt%201728773533%20and%20created_at%20lt%201729032733%20and%20status%20eq%20'Completed'&$orderby=created_at%20asc" \
+curl "YOUR_RESOURCE_NAME.openai.azure.com/batches?api-version=2025-03-01-preview&$filter=created_at%20gt%201728773533%20and%20created_at%20lt%201729032733%20and%20status%20eq%20'Completed'&$orderby=created_at%20asc" \
   -H "api-key: $AZURE_OPENAI_API_KEY"
 ```
 

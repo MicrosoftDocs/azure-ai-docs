@@ -407,7 +407,7 @@ Use the following steps to create an Azure Virtual Machine to use as a jump box.
 1. From the top of the page, select __Connect__ and then __Connect via Bastion__.
 
     > [!TIP]
-    > Azure Bastion uses port 443 for inbound communication. If you have a firewall that restricts outbound traffic, ensure that it allows traffic on port 443 to the Azure Bastion service. For more information, see [Wroking with NSGs and Azure Bastion](/azure/bastion/bastion-nsg).
+    > Azure Bastion uses port 443 for inbound communication. If you have a firewall that restricts outbound traffic, ensure that it allows traffic on port 443 to the Azure Bastion service. For more information, see [Working with NSGs and Azure Bastion](/azure/bastion/bastion-nsg).
 
     :::image type="content" source="./media/tutorial-create-secure-workspace-vnet/virtual-machine-connect.png" alt-text="Screenshot of the 'connect' list, with 'Bastion' selected.":::
 

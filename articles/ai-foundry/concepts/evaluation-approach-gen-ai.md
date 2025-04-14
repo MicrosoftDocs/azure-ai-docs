@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: conceptual
-ms.date: 12/23/2024
+ms.date: 04/04/2025
 ms.reviewer: mithigpe
 ms.author: lagayhar
 author: lgayhardt
@@ -56,17 +56,18 @@ Pre-production evaluation involves:
 The pre-production stage acts as a final quality check, reducing the risk of deploying an AI application that doesn't meet the desired performance or safety standards.
 
 - Bring your own data: You can evaluate your AI applications in pre-production using your own evaluation data with Azure AI Foundry or [Azure AI Evaluation SDK’s](../how-to/develop/evaluate-sdk.md) supported evaluators, including [generation quality, safety,](./evaluation-metrics-built-in.md) or [custom evaluators](../how-to/develop/evaluate-sdk.md#custom-evaluators), and [view results via the Azure AI Foundry portal](../how-to/evaluate-results.md).
-- Simulators: If you don’t have evaluation data (test data), Azure AI [Evaluation SDK’s simulators](..//how-to/develop/simulator-interaction-data.md) can help by generating topic-related or adversarial queries. These simulators test the model’s response to situation-appropriate or attack-like queries (edge cases).
-    - The [adversarial simulator](../how-to/develop/simulator-interaction-data.md#generate-adversarial-simulations-for-safety-evaluation) injects queries that mimic potential security threats or attempt jailbreaks, helping identify limitations and preparing the model for unexpected conditions.  
-    - [Context-appropriate simulators](../how-to/develop/simulator-interaction-data.md#generate-synthetic-data-and-simulate-non-adversarial-tasks) generate typical, relevant conversations you’d expect from users to test quality of responses.
+- Simulators and AI red teaming agent (preview): If you don’t have evaluation data (test data), Azure AI [Evaluation SDK’s simulators](..//how-to/develop/simulator-interaction-data.md) can help by generating topic-related or adversarial queries. These simulators test the model’s response to situation-appropriate or attack-like queries (edge cases).
+    - [Adversarial simulators](../how-to/develop/simulator-interaction-data.md#generate-adversarial-simulations-for-safety-evaluation) injects static queries that mimic potential safety risks or security attacks such as or attempt jailbreaks, helping identify limitations and preparing the model for unexpected conditions.  
+    - [Context-appropriate simulators](../how-to/develop/simulator-interaction-data.md#generate-synthetic-data-and-simulate-non-adversarial-tasks) generate typical, relevant conversations you’d expect from users to test quality of responses. With context-appropriate simulators you can assess metrics such as groundedness, relevance, coherence, and fluency of generated responses.
+    - [AI red teaming agent](../how-to/develop/run-scans-ai-red-teaming-agent.md) (preview) simulates complex adversarial attacks against your AI system using a broad range of safety and security attacks using Microsoft’s open framework for Python Risk Identification Tool or [PyRIT](https://github.com/Azure/PyRIT). Automated scans using the AI red teaming agent enhances pre-production risk assessment by systematically testing AI applications for risks. This process involves simulated attack scenarios to identify weaknesses in model responses before real-world deployment. By running AI red teaming scans, you can detect and mitigate potential safety issues before deployment. This tool is recommended to be used in conjunction with human-in-the-loop processes such as conventional AI red teaming probing to help accelerate risk identification and aid in the assessment by a human expert.
 
-Alternatively, you can also use [Azure AI Foundry’s evaluation widget](../how-to/evaluate-generative-ai-app.md) for testing your generative AI applications.  
+Alternatively, you can also use [Azure AI Foundry portal's evaluation widget](../how-to/evaluate-generative-ai-app.md) for testing your generative AI applications.  
 
 Once satisfactory results are achieved, the AI application can be deployed to production.
 
 ## Post-production monitoring
 
-After deployment, the AI application enters the post-production evaluation phase, also known as online evaluation or monitoring. At this stage, the model is embedded within a real-world product and responds to actual user queries. Monitoring ensures that the model continues to behave as expected and adapts to any changes in user behavior or content.
+After deployment, the AI application enters the post-production evaluation phase, also known as online evaluation or monitoring. At this stage, the model is embedded within a real-world product and responds to actual user queries in production. Monitoring ensures that the model continues to behave as expected and adapts to any changes in user behavior or content.
 
 - **Ongoing performance tracking**: Regularly measuring AI application’s response using key metrics to ensure consistent output quality.
 - **Incident response**: Quickly responding to any harmful, unfair, or inappropriate outputs that might arise during real-world use.
@@ -82,7 +83,7 @@ Cheat sheet:
 | Purpose |  Process | Parameters |
 | -----| -----| ----|
 | What are you evaluating for? | Identify or build relevant evaluators | - [Quality and performance](./evaluation-metrics-built-in.md?tabs=warning#generation-quality-metrics) ( [Quality and performance sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluate.py))<br> </br> - [Safety and Security](./evaluation-metrics-built-in.md?#risk-and-safety-evaluators) ([Safety and Security sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluatesafetyrisks.py)) <br> </br> - [Custom](../how-to/develop/evaluate-sdk.md#custom-evaluators) ([Custom sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluate.py)) |
-| What data should you use?  | Upload or generate relevant dataset | [Generic simulator for measuring Quality and Performance](./concept-synthetic-data.md) ([Generic simulator sample notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/system/finetune/Llama-notebooks/datagen/synthetic-data-generation.ipynb)) <br></br> - [Adversarial simulator for measuring Safety and Security](../how-to/develop/simulator-interaction-data.md) ([Adversarial simulator sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/simulate_and_evaluate_online_endpoint.ipynb))|
+| What data should you use?  | Upload or generate relevant dataset | [Generic simulator for measuring Quality and Performance](./concept-synthetic-data.md) ([Generic simulator sample notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/system/finetune/Llama-notebooks/datagen/synthetic-data-generation.ipynb)) <br></br> - [Adversarial simulator for measuring Safety and Security](../how-to/develop/simulator-interaction-data.md) ([Adversarial simulator sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/simulate_and_evaluate_online_endpoint.ipynb)) <br></br> AI red teaming agent for running automated scans to assess safety and security vulnerabilities ([AI red teaming agent sample notebook](https://aka.ms/airedteamingagent-sample))|
 | What resources should conduct the evaluation? | Run evaluation | - Local run <br> </br>  - Remote cloud run |
 | How did my model/app perform? | Analyze results  | [View aggregate scores, view details, score details, compare evaluation runs](..//how-to/evaluate-results.md) |
 | How can I improve? | Make changes to model, app, or evaluators | - If evaluation results didn't align to human feedback, adjust your evaluator. <br></br> - If evaluation results aligned to human feedback but didn't meet quality/safety thresholds, apply targeted mitigations. |
@@ -90,6 +91,7 @@ Cheat sheet:
 ## Related content
 
 - [Evaluate your generative AI apps via the playground](../how-to/evaluate-prompts-playground.md)
+- [Run automated scans with the AI red teaming agent to assess safety and security risks](../how-to/develop/run-scans-ai-red-teaming-agent.md)
 - [Evaluate your generative AI apps with the Azure AI Foundry SDK or portal](../how-to/evaluate-generative-ai-app.md)
 - [Evaluation and monitoring metrics for generative AI](evaluation-metrics-built-in.md)
 - [Transparency Note for Azure AI Foundry safety evaluations](safety-evaluations-transparency-note.md)

@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2023
   - references_regions
 ms.topic: conceptual
-ms.date: 3/04/2025
+ms.date: 4/09/2025
 ms.author: mbullwin
 ---
 
@@ -55,8 +55,6 @@ The following sections provide you with a quick guide to the default quotas and 
 
 <sup>1</sup> Our current APIs allow up to 10 custom headers, which are passed through the pipeline, and returned. Some customers now exceed this header count resulting in HTTP 431 errors. There's no solution for this error, other than to reduce header volume. **In future API versions we will no longer pass through custom headers**. We recommend customers not depend on custom headers in future system architectures.
 
-## Regional quota limits
-
 > [!NOTE]
 > Quota limits are subject to change. 
 
@@ -73,8 +71,8 @@ The following sections provide you with a quick guide to the default quotas and 
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
-| `gpt-4.5` | Enterprise Tier | 50 K | 50 |
-| `gpt-4.5` | Default | 50 K | 50 |
+| `gpt-4.5` | Enterprise Tier | 200 K | 200 |
+| `gpt-4.5` | Default | 150 K | 150 |
 
 ## `o-series` rate limits
 
@@ -88,7 +86,7 @@ The following sections provide you with a quick guide to the default quotas and 
 >
 > This is particularly important for programmatic model deployment as this change in RPM/TPM ratio can result in accidental under allocation of quota if one is still assuming the 1:1000 ratio followed by older chat completion models.
 >
-> There is a known issue with the [quota/usages API](/rest/api/aiservices/accountmanagement/usages/list?view=rest-aiservices-accountmanagement-2024-06-01-preview&tabs=HTTP&preserve-view=true) where it assumes the old ratio applies to the new o1-series models. The API returns the correct base capacity number, but doesn't apply the correct ratio for the accurate calculation of TPM.
+> There's a known issue with the [quota/usages API](/rest/api/aiservices/accountmanagement/usages/list?view=rest-aiservices-accountmanagement-2024-06-01-preview&tabs=HTTP&preserve-view=true) where it assumes the old ratio applies to the new o1-series models. The API returns the correct base capacity number, but doesn't apply the correct ratio for the accurate calculation of TPM.
 
 ### `o-series` global standard
 
@@ -199,16 +197,74 @@ The Usage Limit determines the level of usage above which customers might see la
 
 If your Azure subscription is linked to certain [offer types](https://azure.microsoft.com/support/legal/offer-details/) your max quota values are lower than the values indicated in the above tables.
 
-
 |Tier| Quota Limit in tokens per minute (TPM) |
 |---|:---|
-|Azure for Students, Free Trials | 1 K (all models) <br>Exception o-series & GPT 4.5 Preview: 0|
-| MSDN & Cloud Solution Provider (CSP) subscriptions | GPT 3.5 Turbo Series: 30 K <br> GPT-4 series: 8 K <br>computer-use-preview: 30 K <br> gpt-4o-realtime-preview: 1 K <br> o-series: 0 <br> GPT 4.5 Preview: 0  |
-| Monthly credit card based subscriptions <sup>1</sup> | GPT 3.5 Turbo Series: 30 K <br> GPT-4 series: 8 K <br>computer-use-preview: 30 K <br> o-series: 0 <br> GPT 4.5 Preview: 0   |
+|`Azure for Students` | 1 K (all models) <br>Exception o-series & GPT 4.5 Preview: 0|
+| `MSDN` | GPT-4o-mini: 200 K <br> GPT 3.5 Turbo Series: 200 K <br> GPT-4 series: 50 K <br>computer-use-preview: 8 K <br> gpt-4o-realtime-preview: 1 K <br> o-series: 0 <br> GPT 4.5 Preview: 0  |
+|`Pay-as-you-go` | GPT-4o-mini: 200 K <br> GPT 3.5 Turbo Series: 200 K <br> GPT-4 series: 50 K <br>computer-use-preview: 30 K <br> o-series: 0 <br> GPT 4.5 Preview: 0   |
+| `Azure_MS-AZR-0111P`  <br> `Azure_MS-AZR-0035P` <br> `Azure_MS-AZR-0025P` <br> `Azure_MS-AZR-0052P` <br>| GPT-4o-mini: 200 K <br> GPT 3.5 Turbo Series: 200 K <br> GPT-4 series: 50 K   |
+| `CSP Integration Sandbox` <sup>*</sup> | All models: 0 |
+| `Lightweight trial`<br>`Free Trials`<br>`Azure Pass`  | All models: 0 |
 
-<sup>1</sup> This currently applies to [offer type 0003P](https://azure.microsoft.com/support/legal/offer-details/)
 
-In the Azure portal you can view what offer type is associated with your subscription by navigating to your subscription and checking the subscriptions overview pane. Offer type corresponds to the plan field in the subscription overview.
+
+<sup>*</sup>This only applies to a small number of legacy CSP sandbox subscriptions. Use the query below to determine what `quotaId` is associated with your subscription.
+
+To determine the offer type that is associated with your subscription you can check your `quotaId`. If your `quotaId` isn't listed in this table your subscription qualifies for default quota.
+
+# [REST](#tab/REST)
+
+[API reference](/rest/api/subscription/subscriptions/get)
+
+```bash
+az login
+access_token=$(az account get-access-token --query accessToken -o tsv)
+```
+
+```bash
+curl -X GET "https://management.azure.com/subscriptions/{subscriptionId}?api-version=2020-01-01" \
+  -H "Authorization: Bearer $access_token" \
+  -H "Content-Type: application/json"
+```
+
+# [CLI](#tab/CLI)
+
+```azurecli
+az rest --method GET --uri "https://management.azure.com/subscriptions/{sub-id}?api-version=2020-01-01"
+```
+---
+
+### Output
+
+```json
+{
+  "authorizationSource": "Legacy",
+  "displayName": "Pay-As-You-Go",
+  "id": "/subscriptions/aaaaaa-bbbbb-cccc-ddddd-eeeeee",
+  "state": "Enabled",
+  "subscriptionId": "aaaaaa-bbbbb-cccc-ddddd-eeeeee",
+  "subscriptionPolicies": {
+    "locationPlacementId": "Public_2014-09-01",
+    "quotaId": "PayAsYouGo_2014-09-01",
+    "spendingLimit": "Off"
+  }
+}
+```
+
+| Quota allocation/Offer type | Subscription quota ID |
+|:---|:----|
+| Enterprise | `EnterpriseAgreement_2014-09-01` |
+| Pay-as-you-go | `PayAsYouGo_2014-09-01`|
+| MSDN | `MSDN_2014-09-01` |
+| CSP Integration Sandbox | `CSPDEVTEST_2018-05-01` |
+| Azure for Students | `AzureForStudents_2018-01-01` |
+| Free Trial    | `FreeTrial_2014-09-01` |
+| Azure Pass             | `AzurePass_2014-09-01` |
+| Azure_MS-AZR-0111P            | `AzureInOpen_2014-09-01` |
+| Azure_MS-AZR-0150P  | `LightweightTrial_2016-09-01` |
+| Azure_MS-AZR-0035P <br> Azure_MS-AZR-0025P <br> Azure_MS-AZR-0052P <br>| `MPN_2014-09-01` |
+| Azure_MS-AZR-0023P <br> Azure_MS-AZR-0060P <br> Azure_MS-AZR-0148P <br> Azure_MS-AZR-0148G | `MSDNDevTest_2014-09-01`|
+| Default | Any quota ID not listed in this table  |
 
 ### General best practices to remain within rate limits
 
@@ -224,6 +280,45 @@ To minimize issues related to rate limits, it's a good idea to use the following
 Quota increase requests can be submitted via the [quota increase request form](https://aka.ms/oai/stuquotarequest). Due to high demand, quota increase requests are being accepted and will be filled in the order they're received. Priority is given to customers who generate traffic that consumes the existing quota allocation, and your request might be denied if this condition isn't met.
 
 For other rate limits, [submit a service request](../cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context).
+
+## Regional quota capacity limits
+
+You can view quota availability by region for your subscription in the [Azure AI Foundry portal](https://ai.azure.com/resource/quota).
+
+Alternatively to view quota capacity by region for a specific model/version you can query the [capacity API](/rest/api/aiservices/accountmanagement/model-capacities/list) for your subscription. Provide a `subscriptionId`, `model_name`, and `model_version` and the API will return the available capacity for that model across all regions, and deployment types for your subscription.
+
+> [!NOTE]
+> Currently both the Azure AI Foundry portal and the capacity API will return quota/capacity information for models that are [retired](./concepts/model-retirements.md) and no longer available.
+
+[API Reference](/rest/api/aiservices/accountmanagement/model-capacities/list)
+
+```python
+import requests
+import json
+from azure.identity import DefaultAzureCredential
+
+subscriptionId = "Replace with your subscription ID" #replace with your subscription ID
+model_name = "gpt-4o"     # Example value, replace with model name
+model_version = "2024-08-06"   # Example value, replace with model version
+
+token_credential = DefaultAzureCredential()
+token = token_credential.get_token('https://management.azure.com/.default')
+headers = {'Authorization': 'Bearer ' + token.token}
+
+url = f"https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/modelCapacities"
+params = {
+    "api-version": "2024-06-01-preview",
+    "modelFormat": "OpenAI",
+    "modelName": model_name,
+    "modelVersion": model_version
+}
+
+response = requests.get(url, params=params, headers=headers)
+model_capacity = response.json()
+
+print(json.dumps(model_capacity, indent=2))
+
+```
 
 ## Next steps
 

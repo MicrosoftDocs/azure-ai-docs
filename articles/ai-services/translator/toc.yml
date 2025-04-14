@@ -66,6 +66,8 @@ items:
     - name: Use the Text Translation APIs
       displayName: detection,detect,translation,transliteration,identification,length,sentence length,alternate,usage,headers,set up,status,401
       href: text-translation/how-to/use-rest-api.md
+    - name: Enable Microsoft Entra ID authentication
+      href: how-to/microsoft-entra-id-auth.md
     - name: Migrate to V3 Text API
       displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
       href: migrate-to-v3.md
@@ -311,16 +313,16 @@ items:
   items:
   - name: Translator in sovereign clouds
     displayName: fairfax,compliant,secret,compliance,government,government cloud,dod,china,batch,region
-    href: sovereign-clouds.md
+    href: reference/sovereign-clouds.md
   - name: Modifications to Translator Service
     displayName: deprecation, deprecate, changes, modify, modifications
     href: modifications-deprecations.md
   - name: Known issues
     displayName: error, bug, issue, problem, troubleshoot, troubleshooting
-    href: text-translation/reference/known-issues.md  
+    href: reference/known-issues.md  
   - name: Compliance and certification
     href: https://www.microsoft.com/translator/business/notrace/
   - name: Code samples on GitHub
     href: https://aka.ms/TranslatorGitHub
   - name: Azure AI Translator release history
-    href: release-history.md
+    href: reference/release-history.md

@@ -40,7 +40,7 @@ Assign roles, manage users, and ensure that all settings comply with organizatio
 
 :::image type="content" source="../media/management-center/user-management.png" alt-text="Screenshot of the user management section of the management center." lightbox="../media/management-center/user-management.png":::
 
-For more information, see [Role-based access control](rbac-ai-foundry.md#assigning-roles-in-azure-ai-foundry-portal).
+For more information, see [Role-based access control](rbac-azure-ai-foundry.md#assigning-roles-in-azure-ai-foundry-portal).
 
 ## Related content
 

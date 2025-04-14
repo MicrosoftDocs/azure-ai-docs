@@ -67,7 +67,7 @@ Azure AI Search supports [hybrid scenarios](hybrid-search-overview.md) that run 
 
 Vector search is available as part of all Azure AI Search tiers in all regions at no extra charge.
 
-Newer services created after April 3, 2024 support [higher quotas for vector indexes](vector-search-index-size.md).
+Newer services created after April 3, 2024 support [higher quotas for vector indexes](vector-search-index-size.md). If you have an older service, you might be able to [upgrade your service](search-how-to-upgrade.md) for higher vector quotas.
 
 Vector search is available in:
 

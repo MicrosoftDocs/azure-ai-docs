@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 02/25/2025
+ms.date: 04/07/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-fabric-data-agent
@@ -25,7 +25,7 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 * You have created and published a Fabric data agent endpoint
@@ -34,10 +34,11 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
 * Developers and end users have at least `READ` access to the Fabric data agent and the underlying data sources it connects with.
 
+* Your Fabric Data Agent and Azure AI Agent need to be in the same tenant.
+
 ## Setup  
 > [!NOTE]
 > * The model you selected in Azure AI Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
-> *  Supported regions: `westus`, `japaneast`.
 1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
 
 1. Create and publish a [Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312910)
@@ -48,7 +49,7 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 1. Select **Microsoft Fabric** and follow the prompts to add the tool. You can add only one per agent.
 
 1. Click to add new connections. Once you have added a connection, you can directly select from existing list.
-   1. To create a new connection, you need to find `workspace-id` and `artifact-id` in your published Fabric data agent endpoint. Your Fabric data agent endpoint would look like `https://fabric.microsoft.com/groups/<workspace_id>/aiskills/<artifact-id>`
+   1. To create a new connection, you need to find `workspace-id` and `artifact-id` in your published Fabric data agent endpoint. Your Fabric data agent endpoint would look like `https://<environment>.fabric.microsoft.com/groups/<workspace_id>/aiskills/<artifact-id>`
 
    1. Then, you can add both to your connection. Make sure you have checked `is secret` for both of them
    
@@ -61,6 +62,18 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
 Create a client object, which will contain the connection string for connecting to your AI project and other resources.
 
+# [C#](#tab/csharp)
+
+```java
+var connectionString = System.Environment.GetEnvironmentVariable("PROJECT_CONNECTION_STRING");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+var fabricConnectionName = System.Environment.GetEnvironmentVariable("FABRIC_CONNECTION_NAME");
+
+var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential());
+
+AgentsClient agentClient = projectClient.GetAgentsClient();
+```
+
 # [Python](#tab/python)
 
 ```python
@@ -68,7 +81,17 @@ import os
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects.models import FabricTool
+
+# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
+# At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>"
+# Customer needs to login to Azure subscription via Azure CLI and set the environment variables
+
+credential = DefaultAzureCredential()
+project_client = AIProjectClient.from_connection_string(
+    credential=credential, conn_str=os.environ["PROJECT_CONNECTION_STRING"] 
+)
 ```
+
 # [JavaScript](#tab/javascript)
 
 ```javascript
@@ -97,6 +120,25 @@ Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the
 
 To make the Microsoft Fabric tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the Azure AI Foundry portal.
 
+# [C#](#tab/csharp)
+
+```csharp
+ConnectionResponse fabricConnection = projectClient.GetConnectionsClient().GetConnection(fabricConnectionName);
+var connectionId = fabricConnection.Id;
+
+ToolConnectionList connectionList = new()
+{
+    ConnectionList = { new ToolConnection(connectionId) }
+};
+MicrosoftFabricToolDefinition fabricTool = new(connectionList);
+
+Agent agent = agentClient.CreateAgent(
+   model: modelDeploymentName,
+   name: "my-assistant",
+   instructions: "You are a helpful assistant.",
+   tools: [fabricTool]);
+
+```
 # [Python](#tab/python)
 
 ```python
@@ -167,6 +209,18 @@ curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
 
 ## Step 3: Create a thread
 
+# [C#](#tab/csharp)
+
+```csharp
+AgentThread thread = agentClient.CreateThread();
+
+// Create message to thread
+ThreadMessage message = agentClient.CreateMessage(
+    thread.Id,
+    MessageRole.User,
+    "What are the top 3 weather events with highest property damage?");
+```
+
 # [Python](#tab/python)
 
 ```python
@@ -224,6 +278,58 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-1
 ## Step 4: Create a run and check the output
 
 Create a run and observe that the model uses the Fabric data agent tool to provide a response to the user's question.
+
+# [C#](#tab/csharp)
+
+```csharp
+// Run the agent
+ThreadRun run = agentClient.CreateRun(thread, agent);
+do
+{
+    Thread.Sleep(TimeSpan.FromMilliseconds(500));
+    run = agentClient.GetRun(thread.Id, run.Id);
+}
+while (run.Status == RunStatus.Queued
+    || run.Status == RunStatus.InProgress);
+
+Assert.AreEqual(
+    RunStatus.Completed,
+    run.Status,
+    run.LastError?.Message);
+
+PageableList<ThreadMessage> messages = agentClient.GetMessages(
+    threadId: thread.Id,
+    order: ListSortOrder.Ascending
+);
+
+foreach (ThreadMessage threadMessage in messages)
+{
+    Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+    foreach (MessageContent contentItem in threadMessage.ContentItems)
+    {
+        if (contentItem is MessageTextContent textItem)
+        {
+            string response = textItem.Text;
+            if (textItem.Annotations != null)
+            {
+                foreach (MessageTextAnnotation annotation in textItem.Annotations)
+                {
+                    if (annotation is MessageTextUrlCitationAnnotation urlAnnotation)
+                    {
+                        response = response.Replace(urlAnnotation.Text, $" [{urlAnnotation.UrlCitation.Title}]({urlAnnotation.UrlCitation.Url})");
+                    }
+                }
+            }
+            Console.Write($"Agent response: {response}");
+        }
+        else if (contentItem is MessageImageFileContent imageFileItem)
+        {
+            Console.Write($"<image from ID: {imageFileItem.FileId}");
+        }
+        Console.WriteLine();
+    }
+}
+```
 
 # [Python](#tab/python)
 

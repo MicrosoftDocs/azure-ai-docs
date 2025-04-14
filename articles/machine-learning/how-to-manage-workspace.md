@@ -313,7 +313,7 @@ These features are on by default. To turn them off:
 * For an existing workspace, turn off features from the **Tags** section:
 
    1. Go to workspace resource in the [Azure portal](https://portal.azure.com)
-   1. Open **Tags** from left navigation panel
+   1. Open **Tags** from left panel
    1. Turn off feedback by adding the pair "ADMIN_HIDE_SURVEY: TRUE"
    1. Turn off previews by adding the pair "AZML_DISABLE_PREVIEW_FEATURE: TRUE"
    1. Select **Apply**.  
@@ -327,7 +327,7 @@ If the preview setting is disabled at the subscription level, setting it on indi
 To disable preview features at the subscription level:
 
 1. Go to subscription resource in the [Azure portal](https://portal.azure.com)
-1. Open **Tags** from left navigation panel
+1. Open **Tags** from left panel
 1. Turn off previews for all workspaces in the subscription by adding the pair "AZML_DISABLE_PREVIEW_FEATURE": "TRUE"
 1. Select **Apply**.  
 
@@ -378,7 +378,7 @@ To obtain specific workspace details:
 
 1. Look through the list of the workspaces. You can filter based on subscription, resource groups, and locations.
 
-1. To to display properties, select a workspace.
+1. To display properties, select a workspace.
 
 # [Studio](#tab/studio)
 

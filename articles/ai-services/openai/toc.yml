@@ -237,13 +237,13 @@ items:
         href: ./how-to/dynamic-quota.md
       - name: Monitor Azure OpenAI
         href: ./how-to/monitor-openai.md
-      - name: Onboarding to Provisioned Throughput Units (PTU)
-        href: ./how-to/provisioned-throughput-onboarding.md
-        displayName: PTU, provisioned, provisioned throughput units
       - name: Provisioned throughput units (PTU)
         items:
         - name: What is the Provisioned Managed offering (PTU)?
           href: ./concepts/provisioned-throughput.md
+          displayName: PTU, provisioned, provisioned throughput units
+        - name: Understanding and calculating PTU costs 
+          href: ./how-to/provisioned-throughput-onboarding.md
           displayName: PTU, provisioned, provisioned throughput units
         - name: Get started with Provisioned Deployments
           href: ./how-to/provisioned-get-started.md
@@ -306,16 +306,16 @@ items:
       href: reference-preview.md
     - name: Assistants API Reference
       items:
-        - name: Python/REST
+        - name: REST
           items:
           - name: Assistants
-            href: ./assistants-reference.md
+            href: reference-preview.md#list---assistants
           - name: Threads
-            href: ./assistants-reference-threads.md
+            href: reference-preview.md#create---thread
           - name: Messages
-            href: ./assistants-reference-messages.md
+            href: reference-preview.md#list---messages
           - name: Runs
-            href: ./assistants-reference-runs.md 
+            href: reference-preview.md#create---thread-and-run
         - name: SDK 
           items:
           - name: C#
@@ -326,6 +326,8 @@ items:
             href: /java/api/overview/azure/ai-openai-assistants-readme?context=/azure/ai-services/openai/context/context
           - name: JavaScript
             href: /javascript/api/overview/azure/openai-assistants-readme?context=/azure/ai-services/openai/context/context
+          - name: Python
+            href: https://platform.openai.com/docs/api-reference/assistants
           
     - name: Azure OpenAI On Your Data API Reference
       items:

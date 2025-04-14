@@ -76,7 +76,7 @@ You can add and remove users from the Azure AI Foundry portal management center.
 
 :::image type="content" source="../media/how-to/hubs/studio-user-management.png" alt-text="Screenshot of the users area of the management center for a hub." lightbox="../media/how-to/hubs/studio-user-management.png":::
 
-For custom role assignments, use **Access control (IAM)** within the Azure portal. Learn more about hub [role-based access control](../concepts/rbac-ai-foundry.md).
+For custom role assignments, use **Access control (IAM)** within the Azure portal. Learn more about hub [role-based access control](../concepts/rbac-azure-ai-foundry.md).
 
 To add grant users permissions from the Azure portal: 
 1. Select **+ Add** to add users to your hub.
@@ -176,5 +176,5 @@ Deleting a hub deletes all associated projects. When a project is deleted, all n
 ## Related content
 
 - [Create a project](create-projects.md)
-- [Learn more about Azure AI Foundry](../what-is-ai-foundry.md)
+- [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
 - [Learn more about hubs](../concepts/ai-resources.md)

@@ -15,6 +15,8 @@ ms.custom: UpdateFrequency5, designer
 
 # Transform data in Azure Machine Learning designer
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, you learn how to transform and save datasets in the Azure Machine Learning designer, to prepare your own data for machine learning.
 
 You'll use the sample [Adult Census Income Binary Classification](samples-designer.md) dataset to prepare two datasets. One dataset includes adult census information from only the United States, and another dataset includes census information from non-US adults.

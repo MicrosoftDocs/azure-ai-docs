@@ -24,15 +24,11 @@ Support first added in `2024-10-01-preview`, use `2025-02-01-preview` or later f
 
 ### Deployment type
 
-Currently only `Standard` model deployments support stored completions.
+Stored completions is supported for all Azure OpenAI Deployment types: standard, global, datazone, and provisioned.
 
 ### Model & region availability
 
-| **Region**     | **o1-preview**, **2024-09-12**   | **o1-mini**, **2024-09-12**   | **gpt-4o**, **2024-08-06**   | **gpt-4o**, **2024-05-13**  | **gpt-4o-mini**, **2024-07-18**   |
-|:---|:---:|:---:|:---:|:---:|:---:|
-| Sweden Central | ✅ | ✅  | ✅ | ✅ | ✅ |
-| North Central US | - | - | ✅ | - | - |
-| East US 2 | - | - | ✅ | - | - |
+As long as you're using the Chat Completions API for inferencing, you can leverage stored completions. It is supported for all Azure OpenAI models, and in all supported regions (including global-only regions).
 
 ## Configure stored completions
 
@@ -115,7 +111,7 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/gpt-4o/chat/completions?api-versi
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
     "model": "gpt-4o",
-    "store": True,
+    "store": true,
     "messages": [
       {
         "role": "system",
@@ -137,7 +133,7 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/gpt-4o/chat/completions?api-versi
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
     "model": "gpt-4o",
-    "store": True,
+    "store": true,
     "messages": [
       {
         "role": "system",
