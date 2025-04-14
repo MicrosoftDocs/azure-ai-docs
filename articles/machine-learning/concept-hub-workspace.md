@@ -9,7 +9,7 @@ ms.topic: conceptual
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: namanjoshi
-ms.date: 14/04/2025
+ms.date: 04/14/2025
 monikerRange: 'azureml-api-2 || azureml-api-1'
 #Customer intent: As an IT administrator, I want to understand the purpose of a hub workspace for Azure Machine Learning.
 ---
