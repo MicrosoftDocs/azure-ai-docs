@@ -161,6 +161,17 @@ Phi is a family of lightweight, state-of-the-art open models. These models were 
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
 
+
+## Microsoft AI
+
+Microsoft AI models are ... 
+
+| Model  | Type | Capabilities | 
+| ------ | ---- | --- | 
+| [MAI-DeepSeek-R1](https://ai.azure.com/explore/models/) |  chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | Global standard | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
+
+See [the Microsoft AI model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=).
+
 ### Mistral AI
 
 Mistral AI offers two categories of models: premium models including Mistral Large and Mistral Small and open models including Mistral Nemo.

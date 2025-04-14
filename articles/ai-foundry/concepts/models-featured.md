@@ -240,6 +240,17 @@ For more examples of how to use Phi-3 family models, see the following examples:
 | Llama-Index                               | Python            | [Link](https://aka.ms/azureai/llamaindex)             |  
 
 
+## Microsoft AI
+
+Microsoft AI models are ... 
+
+| Model  | Type | Capabilities | 
+| ------ | ---- | --- | 
+| [MAI-DeepSeek-R1](https://ai.azure.com/explore/models/) | [chat-completion with reasoning content](../model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
+
+See [the Microsoft AI model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=).
+
+
 ## Mistral AI
 
 Mistral AI offers two categories of models, namely: 
