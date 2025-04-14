@@ -86,18 +86,20 @@ Use an existing AI Services / Azure OpenAI, Azure Storage account, Azure Cosmos 
 
 1. To get your Azure Cosmos DB account resource ID, sign in to the Azure CLI and select the subscription with your account: 
     
-    ```az login``` 
+    ```console
+    az login
+    ``` 
+    
 2. Then run the command:
 
-    ```az cosmosdb show --resource-group  <your-resource-group> --name <your-comosdb-account>  --query "id" --output tsv```
+    ```console
+    az cosmosdb show --resource-group  <your-resource-group> --name <your-comosdb-account>  --query "id" --output tsv
+    ```
     
      The output is the `cosmosDBResourceId` you need to use in the template.
 3. In the standard agent template file, replace the following placeholders:
     
-    ```
-    cosmosDBResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{cosmosDbAccountName}
-    ```
-
+    `cosmosDBResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{cosmosDbAccountName}`
 ### Use an existing Azure AI Search resource
 
 1. To get your Azure AI Search resource ID, sign into Azure CLI and select the subscription with your search resource: 
