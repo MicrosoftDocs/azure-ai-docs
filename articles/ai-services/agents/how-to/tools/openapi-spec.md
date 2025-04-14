@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.date: 03/12/2025
 author: aahill
 ms.author: aahi
-zone_pivot_groups: selection-function-calling
+zone_pivot_groups: selection-openapi-function
 ms.custom: azure-ai-agents
 ---
 # How to use Azure AI Agent Service with OpenAPI Specified Tools
