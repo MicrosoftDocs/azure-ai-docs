@@ -141,11 +141,12 @@ For more examples of how to use Jais models, see the following examples:
 
 ## DeepSeek
 
-DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks using a step-by-step training process, such as language, scientific reasoning, and coding tasks, and DeepSeek-V3, a Mixture-of-Experts (MoE) language model. 
+DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks using a step-by-step training process, such as language, scientific reasoning, and coding tasks, DeepSeek-V3-0324, a Mixture-of-Experts (MoE) language model, and more. 
 
 | Model  | Type | Capabilities | 
 | ------ | ---- | --- | 
-| [DeepSeek-V3](https://ai.azure.com/explore/models/deepseek-v3/version/1/registry/azureml-deepseek) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
+| [DeekSeek-V3-0324](https://ai.azure.com/explore/models/deepseek-v3-0324/version/1/registry/azureml-deepseek) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** (131,072 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
+| [DeepSeek-V3](https://ai.azure.com/explore/models/deepseek-v3/version/1/registry/azureml-deepseek) <br />(Legacy) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
 | [DeepSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek) | [chat-completion with reasoning content](../model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
 
 For a tutorial on DeepSeek-R1, see [Tutorial: Get started with DeepSeek-R1 reasoning model in Azure AI model inference](../model-inference/tutorials/get-started-deepseek-r1.md?context=/azure/ai-foundry/context/context).
@@ -171,9 +172,12 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 - Small language models (SLMs) like 1B and 3B Base and Instruct models for on-device and edge inferencing
 - Mid-size large language models (LLMs) like 7B, 8B, and 70B Base and Instruct models
 - High-performant models like Meta Llama 3.1-405B Instruct for synthetic data generation and distillation use cases.
+- High-performant natively multimodal models, Llama 4 Scout and Llama 4 Maverick, leverage a mixture-of-experts architecture to offer industry-leading performance in text and image understanding.
 
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
+| [Llama-4-Scout-17B-16E-Instruct](https://aka.ms/aifoundry/landing/llama-4-scout-17b-16e-instruct) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text and image (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text |
+| [Llama 4-Maverick-17B-128E-Instruct-FP8](https://aka.ms/aifoundry/landing/llama-4-maverick-17b-128e-instruct-fp8) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text and image (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text |
 | [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text |
 | [Llama-3.2-90B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-90B-Vision-Instruct/version/1/registry/azureml-meta) | [chat-completion (with images)](../model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context) | - **Input:** text and image (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text |
 | [Llama-3.2-11B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-11B-Vision-Instruct/version/1/registry/azureml-meta) | [chat-completion (with images)](../model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context) | - **Input:** text and image (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text |

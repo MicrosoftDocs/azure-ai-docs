@@ -291,7 +291,7 @@ By [Accenture](https://www.accenture.com)
 
 Allows your company to crawl content from the Adobe Experience Manager server, providing connection throttling and expected values or patterns filtering.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/AEM+Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::column span="":::
@@ -428,7 +428,7 @@ By [Accenture](https://www.accenture.com)
 
 The Aspider connector allows crawling of content from web sites, using HTTP Authentication, incremental crawls, connection throttling, distributed and HTTPS crawling, among other features.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Aspider+Web+Crawler)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::column span="":::
@@ -557,7 +557,7 @@ By [Accenture](https://www.accenture.com)
 
 Provides the ability to crawl content from an Azure Blob container, allowing incremental crawling, document level security, and access to folders and subfolders.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Azure+Blob+Storage+Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::row-end:::
@@ -581,7 +581,7 @@ By [Accenture](https://www.accenture.com)
 
 The Azure Data Lake connector crawls content from the Azure Data Lake Store cloud at either root or specified paths, with incremental crawling, fetching objects ACLs, OAuth 2 authentication and more.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Azure+Data+Lake+Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::column span="":::
@@ -594,7 +594,7 @@ By [Accenture](https://www.accenture.com)
 
 Crawls content from an Azure event hub, allowing incremental crawling and retrieval of any type of event or attributes.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Azure+Events+Hub+Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::column span="":::
@@ -644,7 +644,7 @@ By [Accenture](https://www.accenture.com)
 
 The Box connector crawls content from a Box repository. The connector retrieves the supported elements via the REST API, providing full or incremental crawling, metadata extraction, fetching ACLs, and more.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Box++Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::column span="":::
@@ -694,7 +694,7 @@ By [Accenture](https://www.accenture.com)
 
 The Confluence connector crawls content from any Confluence content repository. The connector retrieves spaces, pages, blogs, attachments, and comments through a REST API, allowing incremental crawling, fetching ACLs, support for HTTP and HTTPS, and more.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Atlassian+Confluence+Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::column span="":::
@@ -781,7 +781,7 @@ By [Accenture](https://www.accenture.com)
 
 The Database Server connector crawls content from a Relational Database server, scanning all databases on the server and extracting rows and table information.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Database+Server+Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::column span="":::
@@ -807,7 +807,7 @@ By [Accenture](https://www.accenture.com)
 
 The Aspire Documentum DQL connector crawls content from Documentum, allowing crawls based on user-defined DQL SELECT statements, incremental crawling, fetching of ACLs, group expansion of nested permissions, and more.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Documentum+DQL+Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::row-end:::
@@ -896,7 +896,7 @@ By [Accenture](https://www.accenture.com)
 
 The Elasticsearch connector crawls content from an Elasticsearch index, allowing crawling of multiple indexes, Slice support, use of Get of MGet methods for fetching content, and connection throttling.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Elasticsearch+Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::column span="":::
@@ -1009,7 +1009,7 @@ By [Accenture](https://www.accenture.com)
 
 The File System connector crawls content from a file system location, allowing incremental crawling, metadata extraction, filtering of documents by path, supporting Windows/Linux/macOS file systems.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/File+System+Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::row-end:::
@@ -1245,7 +1245,7 @@ By [Accenture](https://www.accenture.com)
 
 The IBM Connections connector crawls content from IBM Connections server, featuring incremental crawling, metadata extraction, fetching of ACLs, filtering documents by regex patterns, and more.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/IBM+Connections+Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::column span="":::
@@ -2042,7 +2042,7 @@ By [Accenture](https://www.accenture.com)
 
 The OneDrive connector crawls content from Microsoft OneDrive, allowing incremental crawling, including and excluding items based on regex patterns, metadata extraction, retrieving several types of documents.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/OneDrive+Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::column span="":::
@@ -2342,7 +2342,7 @@ By [Accenture](https://www.accenture.com)
 
 The RDB via Snapshots connector crawls content from any relational database that can be accessed using JDBC and performs incremental crawls using a snapshot database. It extracts data directly based on SQL statements.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/RDB+via+Snapshots+Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::column span="":::
@@ -2355,7 +2355,7 @@ By [Accenture](https://www.accenture.com)
 
 The RDB via Tables connector crawls content from any relational database that can be accessed using JDBC and performs incremental crawls fetching updates using tables that hold identifiers of updated content. It extracts data directly based on SQL statements.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/RDB+via+Table+Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::row-end:::
@@ -2379,7 +2379,7 @@ By [Accenture](https://www.accenture.com)
 
 The Amazon S3 connector crawls content from any Amazon Simple Storage Service. It performs incremental crawls, fetch object ACLs for S3 document level security and includes documents stored in buckets, folders and subfolders.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Amazon+S3+Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::column span="":::
@@ -2392,7 +2392,7 @@ By [Accenture](https://www.accenture.com)
 
 The Salesforce connector crawls content from a Salesforce repository. The connector supports Salesforce Knowledge Base and Chatter, metadata and custom metadata retrieval, performs full or incremental crawls, fetches ACLs, selectable element types and group expansion.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Salesforce+Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::column span="":::
@@ -2543,7 +2543,7 @@ By [Accenture](https://www.accenture.com)
 
 The Selenium connector crawls content from websites using an internet browser to retrieve several types of documents like web pages, sitemaps, binary documents, and more. It avoids compatibility issues with frameworks like Angular and React.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Selenium+Crawler)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::column span="":::
@@ -2556,7 +2556,7 @@ By [Accenture](https://www.accenture.com)
 
 The ServiceNow connector retrieves several types of documents from a ServiceNow Repository, like Knowledge Articles, Catalog Items and Attachments. It also retrieves security ACLs and performs group expansion.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/ServiceNow+Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::row-end:::
@@ -2643,7 +2643,7 @@ By [Accenture](https://www.accenture.com)
 
 The SharePoint 2013 connector crawls content from any SharePoint 2013 site collection URL. It performs incremental crawls using SharePoint's change log timestamp or a snapshot database, fetches ACLs, supports NTLM and HTTPS, BCS external lists, and runs without installing anything on SharePoint.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/SharePoint+2013+Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::column span="":::
@@ -2692,7 +2692,7 @@ By [Accenture](https://www.accenture.com)
 
 The SharePoint 2016 connector crawls content from any SharePoint 2016 site collection URL. It performs incremental crawls using SharePoint's change log timestamp or a snapshot database, fetches ACLs, supports NTLM and HTTPS, BCS external lists, and runs without installing anything on SharePoint.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/SharePoint+2016+Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::column span="":::
@@ -2775,7 +2775,7 @@ By [Accenture](https://www.accenture.com)
 
 The SharePoint connector crawls content from any SharePoint site collection URL. The connector retrieves Sites, Lists, Folders, List Items and Attachments, and other pages (in .aspx format). Supports SharePoint running in the Microsoft 365 offering.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/SharePoint+Online+Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::column span="":::
@@ -2902,7 +2902,7 @@ By [Accenture](https://www.accenture.com)
 
 The SMB connector retrieves files and directories across shared drives. It has Distributed File System support, security information retrieval, and it can access documents for indexing without changing the last accessed date.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/SMB+Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::row-end:::
@@ -3003,7 +3003,7 @@ By [Accenture](https://www.accenture.com)
 
 The Twitter connector crawls content from any X account. It performs full and incremental crawls, supports authentication using X user, consumer key and consumer secret key.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Twitter+Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::row-end:::
@@ -3176,7 +3176,7 @@ By [Accenture](https://www.accenture.com)
 
 The Yammer connector crawls content from Yammer messages. It retrieves messages by Group, Thread or Topic and gets User, Group and Thread details.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Yammer+Connector)
+[More details](https://acn-jirasca.atlassian.net/wiki/spaces/ASPIRE50/overview)
 
 :::column-end:::
 :::column span="":::
