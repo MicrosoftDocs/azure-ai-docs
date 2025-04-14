@@ -162,7 +162,7 @@ Phi is a family of lightweight, state-of-the-art open models. These models were 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
 
 
-## Microsoft AI
+### Microsoft AI
 
 Microsoft AI models are ... 
 
