@@ -44,7 +44,7 @@ When you create a project for the first time, you can select an existing Azure A
 
 :::image type="content" source="./media/ai-foundry/projects-create-resource.png" alt-text="Screenshot of the create resource page within the create project dialog." lightbox="./media/ai-foundry/projects-create-resource.png":::
 
-For more details about creating a project, see the [create an Azure AI Foundry project](../ai-foundry/how-to/create-projects.md) how-to guide or the [create a project and use the chat playground](../../quickstarts/get-started-playground.md) quickstart.
+For more details about creating a project, see the [create an Azure AI Foundry project](../ai-foundry/how-to/create-projects.md) how-to guide or the [create a project and use the chat playground](../ai-foundry/quickstarts/get-started-playground.md) quickstart.
 
 ### Connect Azure AI services after you create a project
 
