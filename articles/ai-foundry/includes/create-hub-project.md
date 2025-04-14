@@ -12,8 +12,8 @@ ms.custom: include, build-2024, ignite-2024
 
 To create a [!INCLUDE [hub-project-name](hub-project-name.md)] in [Azure AI Foundry](https://ai.azure.com), follow these steps:
 
-1. Go to [Azure AI Foundry](https://ai.azure.com). If you are in a project, select **Azure AI Foundry** at the top left of the page to go to the **Home** page.
-1. Select any existing project.
+1. Go to [Azure AI Foundry](https://ai.azure.com). 
+1. Select any existing project if you aren't already in one.
 1. At the bottom of the left pane, select **Management center**.
 1. Select **+ New project**.
 1. Select **AI Hub Resource**.
