@@ -15,8 +15,6 @@ ms.custom: azure-ai-agents
 
 # Azure AI Agents function calling
 
-::: zone pivot="overview"
-
 Azure AI Agents supports function calling, which allows you to describe the structure of functions to an Assistant and then return the functions that need to be called along with their arguments.
 
 > [!NOTE]
@@ -28,48 +26,11 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 |---------|---------|---------|---------|---------|---------|---------|
 |      | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
-::: zone-end
-
-::: zone pivot="code-example"
+::: zone pivot="csharp"
 
 ## Define a function for your agent to call
 
-Start by defining a function for your agent to call. When you create a function for an agent to call, you describe its structure of it with any required parameters in a docstring. Include all your function definitions in a single file, `user_functions.py` which you can then import into your main script.
-
-# [Python](#tab/python)
-
-```python
-import json
-import datetime
-from typing import Any, Callable, Set, Dict, List, Optional
-
-def fetch_weather(location: str) -> str:
-    """
-    Fetches the weather information for the specified location.
-
-    :param location (str): The location to fetch weather for.
-    :return: Weather information as a JSON string.
-    :rtype: str
-    """
-    # In a real-world scenario, you'd integrate with a weather API.
-    # Here, we'll mock the response.
-    mock_weather_data = {"New York": "Sunny, 25°C", "London": "Cloudy, 18°C", "Tokyo": "Rainy, 22°C"}
-    weather = mock_weather_data.get(location, "Weather data not available for this location.")
-    weather_json = json.dumps({"weather": weather})
-    return weather_json
-    
-# Statically defined user functions for fast reference
-user_functions: Set[Callable[..., Any]] = {
-    fetch_weather,
-}
-```
-
-
-See the [python file on GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/user_functions.py) for an example of a full series of function definitions. This file is referred to as `user_functions.py` in the following example below. 
-
-
-
-# [C#](#tab/csharp)
+Start by defining a function for your agent to call. When you create a function for an agent to call, you describe its structure of it with any required parameters in a docstring. 
 
 ```csharp
 // Example of a function that defines no parameters
@@ -125,7 +86,90 @@ ToolOutput GetResolvedToolOutput(RequiredToolCall toolCall)
 }
 ```
 
-# [JavaScript](#tab/javascript)
+## Create a client and agent
+
+```csharp
+// note: parallel function calling is only supported with newer models like gpt-4-1106-preview
+Response<Agent> agentResponse = await client.CreateAgentAsync(
+    model: "gpt-4-1106-preview",
+    name: "SDK Test Agent - Functions",
+        instructions: "You are a weather bot. Use the provided functions to help answer questions. "
+            + "Customize your responses to the user's preferences as much as possible and use friendly "
+            + "nicknames for cities whenever possible.",
+    tools: new List<ToolDefinition> { getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool }
+    );
+Agent agent = agentResponse.Value;
+```
+
+## Create a thread
+
+```csharp
+Response<AgentThread> threadResponse = await client.CreateThreadAsync();
+AgentThread thread = threadResponse.Value;
+
+Response<ThreadMessage> messageResponse = await client.CreateMessageAsync(
+    thread.Id,
+    MessageRole.User,
+    "What's the weather like in my favorite city?");
+ThreadMessage message = messageResponse.Value;
+```
+
+## Create a run and check the output
+
+```csharp
+Response<ThreadRun> runResponse = await client.CreateRunAsync(thread, agent);
+
+#region Snippet:FunctionsHandlePollingWithRequiredAction
+do
+{
+    await Task.Delay(TimeSpan.FromMilliseconds(500));
+    runResponse = await client.GetRunAsync(thread.Id, runResponse.Value.Id);
+
+    if (runResponse.Value.Status == RunStatus.RequiresAction
+        && runResponse.Value.RequiredAction is SubmitToolOutputsAction submitToolOutputsAction)
+    {
+        List<ToolOutput> toolOutputs = new();
+        foreach (RequiredToolCall toolCall in submitToolOutputsAction.ToolCalls)
+        {
+            toolOutputs.Add(GetResolvedToolOutput(toolCall));
+        }
+        runResponse = await client.SubmitToolOutputsToRunAsync(runResponse.Value, toolOutputs);
+    }
+}
+while (runResponse.Value.Status == RunStatus.Queued
+    || runResponse.Value.Status == RunStatus.InProgress);
+#endregion
+
+Response<PageableList<ThreadMessage>> afterRunMessagesResponse
+    = await client.GetMessagesAsync(thread.Id);
+IReadOnlyList<ThreadMessage> messages = afterRunMessagesResponse.Value.Data;
+
+// Note: messages iterate from newest to oldest, with the messages[0] being the most recent
+foreach (ThreadMessage threadMessage in messages)
+{
+    Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+    foreach (MessageContent contentItem in threadMessage.ContentItems)
+    {
+        if (contentItem is MessageTextContent textItem)
+        {
+            Console.Write(textItem.Text);
+        }
+        else if (contentItem is MessageImageFileContent imageFileItem)
+        {
+            Console.Write($"<image from ID: {imageFileItem.FileId}");
+        }
+        Console.WriteLine();
+    }
+}
+```
+
+::: zone-end
+
+::: zone pivot="javascript"
+
+## Define a function for your agent to call
+
+Start by defining a function for your agent to call. When you create a function for an agent to call, you describe its structure of it with any required parameters in a docstring. 
 
 ```javascript
 class FunctionToolExecutor {
@@ -197,62 +241,59 @@ class FunctionToolExecutor {
 }
 ```
 
-# [REST API](#tab/rest)
-Function definition and agent creation are combined in the next section.
+## Create a run and check the output
 
----
 
-## Create a client and agent
-
-# [Python](#tab/python)
-
-In the sample below we create a client and define a `toolset` which will be used to process the functions defined in `user_functions`.
-
-`toolset`: When using the toolset parameter, you provide not only the function definitions and descriptions but also their implementations. The SDK will execute these functions within create_and_run_process or streaming. These functions will be invoked based on their definitions.
-
-```python
-import os
-from azure.ai.projects import AIProjectClient
-from azure.identity import DefaultAzureCredential
-from azure.ai.projects.models import FunctionTool, ToolSet
-from user_functions import user_functions # user functions which can be found in a user_functions.py file.
-
-# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
-# It should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
-# Customers need to login to Azure subscription via Azure CLI and set the environment variables
-
-project_client = AIProjectClient.from_connection_string(
-    credential=DefaultAzureCredential(),
-    conn_str=os.environ["PROJECT_CONNECTION_STRING"],
-)
-
-# Initialize agent toolset with user functions
-functions = FunctionTool(user_functions)
-toolset = ToolSet()
-toolset.add(functions)
-
-agent = project_client.agents.create_agent(
-    model="gpt-4o-mini", name="my-agent", instructions="You are a weather bot. Use the provided functions to help answer questions.", toolset=toolset
-)
-print(f"Created agent, ID: {agent.id}")
-```
-
-# [C#](#tab/csharp)
-
-```csharp
-// note: parallel function calling is only supported with newer models like gpt-4-1106-preview
-Response<Agent> agentResponse = await client.CreateAgentAsync(
-    model: "gpt-4-1106-preview",
-    name: "SDK Test Agent - Functions",
-        instructions: "You are a weather bot. Use the provided functions to help answer questions. "
-            + "Customize your responses to the user's preferences as much as possible and use friendly "
-            + "nicknames for cities whenever possible.",
-    tools: new List<ToolDefinition> { getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool }
-    );
-Agent agent = agentResponse.Value;
-```
 
 # [JavaScript](#tab/javascript)
+
+```javascript
+
+  // create a run
+  const streamEventMessages = await client.agents.createRun(thread.id, agent.id).stream();
+
+  for await (const eventMessage of streamEventMessages) {
+    switch (eventMessage.event) {
+      case RunStreamEvent.ThreadRunCreated:
+        break;
+      case MessageStreamEvent.ThreadMessageDelta:
+        {
+          const messageDelta = eventMessage.data;
+          messageDelta.delta.content.forEach((contentPart) => {
+            if (contentPart.type === "text") {
+              const textContent = contentPart;
+              const textValue = textContent.text?.value || "No text";
+            }
+          });
+        }
+        break;
+
+      case RunStreamEvent.ThreadRunCompleted:
+        break;
+      case ErrorEvent.Error:
+        console.log(`An error occurred. Data ${eventMessage.data}`);
+        break;
+      case DoneEvent.Done:
+        break;
+    }
+  }
+
+  // Print the messages from the agent
+  const messages = await client.agents.listMessages(thread.id);
+
+  // Messages iterate from oldest to newest
+  // messages[0] is the most recent
+  for (let i = messages.data.length - 1; i >= 0; i--) {
+    const m = messages.data[i];
+    if (isOutputOfType<MessageTextContentOutput>(m.content[0], "text")) {
+      const textContent = m.content[0];
+      console.log(`${textContent.text.value}`);
+      console.log(`---------------------------------`);
+    }
+  }
+```
+## Create a client and agent
+
 
 ```javascript
 const functionToolExecutor = new FunctionToolExecutor();
@@ -266,66 +307,7 @@ const agent = await client.agents.createAgent("gpt-4o",
 console.log(`Created agent, agent ID: ${agent.id}`);
 ```
 
-# [REST API](#tab/rest)
-Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`.
-```console
-curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "instructions": "You are a weather bot. Use the provided functions to answer questions.",
-    "model": "gpt-4o-mini",
-    tools=[{
-      "type": "function",
-      "function": {
-        "name": "get_weather",
-        "description": "Get the weather in location",
-        "parameters": {
-          "type": "object",
-          "properties": {
-            "location": {"type": "string", "description": "The city name, for example San Francisco"}
-          },
-          "required": ["location"]
-        }
-      }
-    }]
-  }'
-```
-
----
-
 ## Create a thread
-
-# [python](#tab/python)
-
-```python
-# Create thread for communication
-thread = project_client.agents.create_thread()
-print(f"Created thread, ID: {thread.id}")
-
-# Create message to thread
-message = project_client.agents.create_message(
-    thread_id=thread.id,
-    role="user",
-    content="Hello, send an email with the datetime and weather information in New York?",
-)
-print(f"Created message, ID: {message.id}")
-```
-
-# [C#](#tab/csharp)
-
-```csharp
-Response<AgentThread> threadResponse = await client.CreateThreadAsync();
-AgentThread thread = threadResponse.Value;
-
-Response<ThreadMessage> messageResponse = await client.CreateMessageAsync(
-    thread.Id,
-    MessageRole.User,
-    "What's the weather like in my favorite city?");
-ThreadMessage message = messageResponse.Value;
-```
-
-# [JavaScript](#tab/javascript)
 
 ```javascript
 // create a thread
@@ -339,99 +321,9 @@ await client.agents.createMessage(
 });
 ```
 
-# [REST API](#tab/rest)
-### Create a thread
-
-```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d ''
-```
-
-### Add a user question to the thread
-
-```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-      "role": "user",
-      "content": "What is the weather in Seattle?"
-    }'
-```
-
----
-
 ## Create a run and check the output
 
-# [python](#tab/python)
 
-```python
-# Create and process agent run in thread with tools
-run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
-print(f"Run finished with status: {run.status}")
-
-if run.status == "failed":
-    print(f"Run failed: {run.last_error}")
-
-# Delete the agent when done
-project_client.agents.delete_agent(agent.id)
-print("Deleted agent")
-
-# Fetch and log all messages
-messages = project_client.agents.list_messages(thread_id=thread.id)
-print(f"Messages: {messages}")
-```
-
-# [C#](#tab/csharp)
-
-```csharp
-Response<ThreadRun> runResponse = await client.CreateRunAsync(thread, agent);
-
-#region Snippet:FunctionsHandlePollingWithRequiredAction
-do
-{
-    await Task.Delay(TimeSpan.FromMilliseconds(500));
-    runResponse = await client.GetRunAsync(thread.Id, runResponse.Value.Id);
-
-    if (runResponse.Value.Status == RunStatus.RequiresAction
-        && runResponse.Value.RequiredAction is SubmitToolOutputsAction submitToolOutputsAction)
-    {
-        List<ToolOutput> toolOutputs = new();
-        foreach (RequiredToolCall toolCall in submitToolOutputsAction.ToolCalls)
-        {
-            toolOutputs.Add(GetResolvedToolOutput(toolCall));
-        }
-        runResponse = await client.SubmitToolOutputsToRunAsync(runResponse.Value, toolOutputs);
-    }
-}
-while (runResponse.Value.Status == RunStatus.Queued
-    || runResponse.Value.Status == RunStatus.InProgress);
-#endregion
-
-Response<PageableList<ThreadMessage>> afterRunMessagesResponse
-    = await client.GetMessagesAsync(thread.Id);
-IReadOnlyList<ThreadMessage> messages = afterRunMessagesResponse.Value.Data;
-
-// Note: messages iterate from newest to oldest, with the messages[0] being the most recent
-foreach (ThreadMessage threadMessage in messages)
-{
-    Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
-    foreach (MessageContent contentItem in threadMessage.ContentItems)
-    {
-        if (contentItem is MessageTextContent textItem)
-        {
-            Console.Write(textItem.Text);
-        }
-        else if (contentItem is MessageImageFileContent imageFileItem)
-        {
-            Console.Write($"<image from ID: {imageFileItem.FileId}");
-        }
-        Console.WriteLine();
-    }
-}
-```
 
 # [JavaScript](#tab/javascript)
 
@@ -481,8 +373,164 @@ foreach (ThreadMessage threadMessage in messages)
   }
 ```
 
-# [REST API](#tab/rest)
-### Run the thread
+::: zone-end
+
+::: zone pivot="python"
+
+```python
+import json
+import datetime
+from typing import Any, Callable, Set, Dict, List, Optional
+
+def fetch_weather(location: str) -> str:
+    """
+    Fetches the weather information for the specified location.
+
+    :param location (str): The location to fetch weather for.
+    :return: Weather information as a JSON string.
+    :rtype: str
+    """
+    # In a real-world scenario, you'd integrate with a weather API.
+    # Here, we'll mock the response.
+    mock_weather_data = {"New York": "Sunny, 25°C", "London": "Cloudy, 18°C", "Tokyo": "Rainy, 22°C"}
+    weather = mock_weather_data.get(location, "Weather data not available for this location.")
+    weather_json = json.dumps({"weather": weather})
+    return weather_json
+
+# Statically defined user functions for fast reference
+user_functions: Set[Callable[..., Any]] = {
+    fetch_weather,
+}
+```
+
+
+## Create a client and agent
+
+In the sample below we create a client and define a `toolset` which will be used to process the functions defined in `user_functions`.
+
+`toolset`: When using the toolset parameter, you provide not only the function definitions and descriptions but also their implementations. The SDK will execute these functions within create_and_run_process or streaming. These functions will be invoked based on their definitions.
+
+```python
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects.models import FunctionTool, ToolSet
+from user_functions import user_functions # user functions which can be found in a user_functions.py file.
+
+# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
+# It should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
+# Customers need to login to Azure subscription via Azure CLI and set the environment variables
+
+project_client = AIProjectClient.from_connection_string(
+    credential=DefaultAzureCredential(),
+    conn_str=os.environ["PROJECT_CONNECTION_STRING"],
+)
+
+# Initialize agent toolset with user functions
+functions = FunctionTool(user_functions)
+toolset = ToolSet()
+toolset.add(functions)
+
+agent = project_client.agents.create_agent(
+    model="gpt-4o-mini", name="my-agent", instructions="You are a weather bot. Use the provided functions to help answer questions.", toolset=toolset
+)
+print(f"Created agent, ID: {agent.id}")
+```
+
+## Create a thread
+
+```python
+# Create thread for communication
+thread = project_client.agents.create_thread()
+print(f"Created thread, ID: {thread.id}")
+
+# Create message to thread
+message = project_client.agents.create_message(
+    thread_id=thread.id,
+    role="user",
+    content="Hello, send an email with the datetime and weather information in New York?",
+)
+print(f"Created message, ID: {message.id}")
+```
+
+## Create a run and check the output
+
+```python
+# Create and process agent run in thread with tools
+run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+print(f"Run finished with status: {run.status}")
+
+if run.status == "failed":
+    print(f"Run failed: {run.last_error}")
+
+# Delete the agent when done
+project_client.agents.delete_agent(agent.id)
+print("Deleted agent")
+
+# Fetch and log all messages
+messages = project_client.agents.list_messages(thread_id=thread.id)
+print(f"Messages: {messages}")
+```
+
+::: zone-end
+
+::: zone pivot="rest"
+
+## Define a function for your agent to call
+
+Start by defining a function for your agent to call. When you create a function for an agent to call, you describe its structure of it with any required parameters in a docstring. See the other SDK languages for example functions.
+
+
+## Create a client and agent
+
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`.
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "instructions": "You are a weather bot. Use the provided functions to answer questions.",
+    "model": "gpt-4o-mini",
+    tools=[{
+      "type": "function",
+      "function": {
+        "name": "get_weather",
+        "description": "Get the weather in location",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "location": {"type": "string", "description": "The city name, for example San Francisco"}
+          },
+          "required": ["location"]
+        }
+      }
+    }]
+  }'
+```
+
+
+## Create a thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d ''
+```
+
+### Add a user question to the thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+      "role": "user",
+      "content": "What is the weather in Seattle?"
+    }'
+```
+
+## Run the thread
 
 ```console
 curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01-preview \
@@ -493,24 +541,18 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01
   }'
 ```
 
-### Retrieve the status of the run
+## Retrieve the status of the run
 
 ```console
 curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2024-12-01-preview \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 
-### Retrieve the agent response
+## Retrieve the agent response
 
 ```console
 curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 
----
-
 ::: zone-end
-
-## See also
-
-* [Lean how to ground agents by using Bing Web Search](./bing-grounding.md)

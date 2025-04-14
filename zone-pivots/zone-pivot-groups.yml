@@ -1106,12 +1106,16 @@ groups:
     title: REST API
 - id: selection-function-calling
   title: Selections
-  prompt: What would you like to see?
+  prompt: Choose a usage method
   pivots:
-  - id: overview
-    title: Overview
-  - id: code-example
-    title: Code examples
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
+  - id: rest-api
+    title: REST API
 # owner: sgilley
 - id: programming-languages-sdk-overview
   title: Programming languages
