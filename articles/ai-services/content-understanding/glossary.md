@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 
