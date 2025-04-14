@@ -107,7 +107,7 @@ This table shows the progression of vector quota increases in GB over time. The 
 The service enforces a vector index size quota *for every partition* in your search service. Each extra partition increases the available vector index size quota. This quota is a hard limit to ensure your service remains healthy, which means that further indexing attempts once the limit is exceeded results in failure. You can resume indexing once you free up available quota by either deleting some vector documents or by scaling up in partitions.
 
 > [!IMPORTANT]
-> Higher vector limits are tied to [larger partition sizes](/reusable-content/ce-skilling/azure/includes/azure-search-limits-per-subscription#partition-storage-gb). Currently, higher vector limits aren't available in the following regions, which are subject to the July–April limits.
+> Higher vector limits are tied to [larger partition sizes](#partition-storage-gb). Currently, higher vector limits aren't available in the following regions, which are subject to the July–April limits.
 > 
 > + Israel Central
 > + Qatar Central
