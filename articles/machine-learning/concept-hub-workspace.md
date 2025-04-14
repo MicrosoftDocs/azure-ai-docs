@@ -45,7 +45,7 @@ Hubs can be used as your team's collaboration environment for both ML studio and
 
 ## Set up and secure a hub for your team
 
-Create a hub workspace in [Azure portal](how-to-manage-hub-workspace-portal.md), with [Azure Resource Manager templates](how-to-manage-hub-workspace-template.md) or via [Azure ML SDK/CLI](https://learn.microsoft.com/azure/ai-foundry/how-to/develop/create-hub-project-sdk?tabs=azurecli). You might customize networking, identity, encryption, monitoring, or tags, to meet compliance with your organization's requirements. 
+Create a hub workspace in [Azure portal](how-to-manage-hub-workspace-portal.md), with [Azure Resource Manager templates](how-to-manage-hub-workspace-template.md), or via [Azure Machine Learning SDK/CLI](/azure/ai-foundry/how-to/develop/create-hub-project-sdk). You might customize networking, identity, encryption, monitoring, or tags, to meet compliance with your organization's requirements. 
 
 Project workspaces that are created using a hub obtain the hub's security settings and shared resource configuration. Including the following configurations:
 
