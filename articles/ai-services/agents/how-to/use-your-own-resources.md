@@ -28,7 +28,7 @@ To use your own resources, you can edit the parameters in the provided deploymen
 
 **Standard Setup**: Agents created in a standard project use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you incur costs based on your usage. You can use your own AI services account, Azure Storage account, Cosmos DB for NoSQL account and/or Azure AI Search resource with this option. 
 
-## Basic agent setup: use an existing AI Services/Azure OpenAI resource 
+## Basic agent setup: Use an existing AI Services/Azure OpenAI resource 
 
 Replace the parameter value for `aiServiceAccountResourceId` with the full arm resource ID of the AI Services or Azure OpenAI resource you want to use.
 
@@ -52,11 +52,12 @@ Replace the parameter value for `aiServiceAccountResourceId` with the full arm r
     If you want to use an existing Azure OpenAI resource, you will need to update the `aiServiceAccountResourceId` and the `aiServiceKind` parameters in the parameter file. The aiServiceKind parameter should be set to AzureOpenAI.
 
 
-## Standard agent setup: use an existing AI Services/Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL account, and/or Azure AI Search resource 
+## Standard agent setup: Use an existing AI Services/Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL account, and/or Azure AI Search resource 
 
 Use an existing AI Services / Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL account and/or Azure AI Search resource by providing the full ARM resource ID in the standard agent template file.
 
-### Use an existing AI Services or Azure OpenAI resource:
+### Use an existing AI Services or Azure OpenAI resource
+
 1. Follow the steps in basic agent setup to get the AI Services account resource ID.
 2. In the standard agent template file, replace the following placeholders:
     
@@ -100,6 +101,7 @@ Use an existing AI Services / Azure OpenAI, Azure Storage account, Azure Cosmos 
 3. In the standard agent template file, replace the following placeholders:
     
     `cosmosDBResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{cosmosDbAccountName}`
+    
 ### Use an existing Azure AI Search resource
 
 1. To get your Azure AI Search resource ID, sign into Azure CLI and select the subscription with your search resource: 
