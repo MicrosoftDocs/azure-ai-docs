@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2023
   - references_regions
 ms.topic: conceptual
-ms.date: 4/09/2025
+ms.date: 4/14/2025
 ms.author: mbullwin
 ---
 
@@ -59,6 +59,14 @@ The following sections provide you with a quick guide to the default quotas and 
 > Quota limits are subject to change. 
 
 [!INCLUDE [Quota](./includes/global-batch-limits.md)]
+
+## GPT 4.1 series
+
+| Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
+|---|---|:---:|:---:|
+| `gpt-4.1` (2025-04-14) | Enterprise Tier | 5 M | 5 K |
+| `gpt-4.1` (2025-04-14) | Enterprise Tier | 1 M | 1 K |
+
 
 ## computer-use-preview global standard
 
