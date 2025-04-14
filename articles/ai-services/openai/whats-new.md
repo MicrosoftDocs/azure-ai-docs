@@ -23,7 +23,7 @@ This article provides a summary of the latest releases and major documentation u
 
 ### GPT-4.1 released
 
-The latest model from Azure OpenAI with 1 Million token context limit. For more information, see the [models page](./concepts/models.md#gpt-41-series).
+The latest model from Azure OpenAI with a 1 million token context limit. For more information, see the [models page](./concepts/models.md#gpt-41-series).
 
 ## March 2025
 
