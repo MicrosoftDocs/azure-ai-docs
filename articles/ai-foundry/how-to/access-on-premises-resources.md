@@ -5,7 +5,7 @@ description: Learn how to configure an Azure AI Foundry managed network to secur
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 02/27/2025
+ms.date: 04/14/2025
 ms.reviewer: meerakurup 
 ms.author: larryfr
 author: Blackmist
@@ -23,6 +23,8 @@ To access on-premises or custom virtual network resources from the managed virtu
 :::image type="content" source="../media/how-to/network/ai-studio-app-gateway.png" alt-text="Diagram of a managed network using Application Gateway to communicate with on-premises resources." lightbox="../media/how-to/network/ai-studio-app-gateway.png":::
 
 ## Prerequisites
+
+[!INCLUDE [azure-ai-foundry-managed-network](../includes/uses-hub-only.md)]
 
 - Read the [How an application gateway works](/azure/application-gateway/how-application-gateway-works) article to understand how the Application Gateway can secure the connection to your non-Azure resources. 
 - Set up your Azure AI Foundry hub's managed virtual network and select your isolation mode, either Allow Internet Outbound or Allow Only Approved Outbound. For more information, see [Managed virtual network isolation](configure-managed-network.md).
