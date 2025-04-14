@@ -98,13 +98,13 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 ::: zone pivot="fdp-project"
 
-[!INCLUDE [Create Azure AI Foundry project](../includes/create-project-fdp.md)]
+[!INCLUDE [Create Azure AI Foundry project](../includes/create-fdp-project.md)]
 
 ::: zone-end
 
 ::: zone pivot="hub-project"
 
-[!INCLUDE [Create Azure AI Foundry project](../includes/create-projects.md)]
+[!INCLUDE [Create Azure AI Foundry project](../includes/create-hub-project.md)]
 
 ::: zone-end
 

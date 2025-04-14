@@ -31,7 +31,7 @@ This tutorial teaches you how to use Language in prompt flow utilizing [Azure AI
 
 Your project is used to organize your work and save state. 
 
-[!INCLUDE [Create project](../../../ai-foundry/includes/create-projects.md)]
+[!INCLUDE [Create project](../../../ai-foundry/includes/create-hub-project.md)]
 
 ## Using Azure AI Language via the prompt flow gallery
 
