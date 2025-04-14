@@ -95,8 +95,6 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 # [Azure AI Foundry portal](#tab/ai-studio)
 
-[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
-
 ::: zone pivot="fdp-project"
 
 [!INCLUDE [Create Azure AI Foundry project](../includes/create-fdp-project.md)]
