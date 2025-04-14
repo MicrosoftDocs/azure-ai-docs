@@ -42,7 +42,7 @@ Here's a table of some of the available connection types in Azure AI Foundry por
 
 ## Create a new connection
 
-[!INCLUDE [tip-left-nav](../includes/tip-left-nav.md)]
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
 Follow these steps to create a new connection that's only available for the current project.
 

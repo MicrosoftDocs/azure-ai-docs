@@ -294,7 +294,7 @@ The Azure resources that you created in this article are billed to your Azure su
 
 ### Delete your agents
 
-[!INCLUDE [tip-left-nav](../../includes/tip-left-nav.md)]
+[!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
 Delete the deployed agent in the [online AI Foundry portal](https://ai.azure.com). Select **Agents** from the navigation menu on the left, select your agent, then select the **Delete** button.
 

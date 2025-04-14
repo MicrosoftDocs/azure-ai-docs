@@ -61,7 +61,7 @@ You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`
 
 These steps deploy a model to a real-time endpoint from the Azure AI Foundry portal [model catalog](../how-to/model-catalog-overview.md):
 
-[!INCLUDE [tip-left-nav](../includes/tip-left-nav.md)]
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
 1. On the left pane, select **Model catalog**.
 1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 

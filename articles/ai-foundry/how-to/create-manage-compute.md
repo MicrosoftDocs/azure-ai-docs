@@ -42,7 +42,7 @@ Compute instances can run jobs securely in a virtual network environment, withou
 
 ## Create a compute instance
 
-[!INCLUDE [tip-left-nav](../includes/tip-left-nav.md)]
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
 To create a compute instance in Azure AI Foundry portal:
 

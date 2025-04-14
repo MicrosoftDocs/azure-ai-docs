@@ -32,7 +32,7 @@ You must have:
 
 ## Create an index from the Chat playground
 
-[!INCLUDE [tip-left-nav](../includes/tip-left-nav.md)]
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com).
 1. Go to your project or [create a new project](../how-to/create-projects.md) in Azure AI Foundry portal.
