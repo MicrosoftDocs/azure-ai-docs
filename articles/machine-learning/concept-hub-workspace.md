@@ -72,7 +72,7 @@ Once a hub is created, there are multiple ways to create a project workspace usi
 1. [Using Azure AI Foundry](/azure/ai-studio/how-to/create-projects)
 2. [Using Azure SDK](how-to-manage-workspace.md?tabs=python)
 4. [Using automation templates](how-to-create-workspace-template.md)
-5. [Using Azure CLI](https://learn.microsoft.com/cli/azure/ml/workspace?view=azure-cli-latest)
+5. [Using Azure CLI](/cli/azure/ml/workspace)
 
 > [!NOTE]
 > When creating a workspace using a hub, there's no need to specify security settings or [associated resources](concept-workspace.md#associated-resources) because those are inherited from the hub. For example, if public network access is disabled on the hub, it is also disabled on new workspace that is created.
