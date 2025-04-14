@@ -143,7 +143,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 Microsoft models include various model groups such as MAI models, Phi models, ... _Add description for Microsoft models_
 
-### MAI models
+#### MAI models
 
 _Add description for MAI models_
 
@@ -152,7 +152,7 @@ _Add description for MAI models_
 | [MAI-DS-R1](https://ai.azure.com/explore/models/) |  chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | Global standard | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
 
 
-### Phi models
+#### Phi models
 
 Phi is a family of lightweight, state-of-the-art open models. These models were trained with Phi-3 datasets. The datasets include both synthetic data and the filtered, publicly available websites data, with a focus on high quality and reasoning-dense properties. The models underwent a rigorous enhancement process, incorporating both supervised fine-tuning, proximal policy optimization, and direct preference optimization to ensure precise instruction adherence and robust safety measures.
 
