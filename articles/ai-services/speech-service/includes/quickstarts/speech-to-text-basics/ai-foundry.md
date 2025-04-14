@@ -24,7 +24,7 @@ In this quickstart, you try real-time speech to text in [Azure AI Foundry](https
 
 1. Optionally, you can select a different connection to use in the playground. In the Speech playground, you can connect to Azure AI Services multi-service resources or Speech service resources. 
 
-    :::image type="content" source=".../../../../../ai-services/media/ai-foundry/speech-playground.png" alt-text="Screenshot of the Speech playground in a project." lightbox="../../../../../ai-services/media/ai-foundry/speech-playground.png":::
+    :::image type="content" source="../../../../../ai-services/media/ai-foundry/speech-playground.png" alt-text="Screenshot of the Speech playground in a project." lightbox="../../../../../ai-services/media/ai-foundry/speech-playground.png":::
 
 1. Select **Real-time transcription**.
 1. Select **Show advanced options** to configure speech to text options such as: 
