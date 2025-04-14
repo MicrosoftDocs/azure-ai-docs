@@ -103,4 +103,4 @@ To create an Azure AI services resource follow these instructions:
 ## Related content
 
 - Go to the [Azure AI services hub page](../ai-services/index.yml).
-- Try AI services in the [Azure AI Foundry portal](../ai-foundry/ai-services/how-to/connect-ai-services.md).
+- Try AI services in the [Azure AI Foundry portal](../ai-services/connect-services-ai-foundry-portal.md).
