@@ -8,7 +8,7 @@ ms.date: 04/14/2025
 ms.custom: references_regions, build-2023, build-2023-dataai, refefences_regions
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
-ms.author: mbullwin #chrhoder
+ms.author: mbullwin #chrhoder#
 recommendations: false
 ---
 
