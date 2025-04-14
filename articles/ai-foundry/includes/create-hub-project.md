@@ -10,10 +10,15 @@ ms.date: 01/03/2025
 ms.custom: include, build-2024, ignite-2024
 ---
 
-To create a project in [Azure AI Foundry](https://ai.azure.com), follow these steps:
+To create a [!INCLUDE [hub-project-name](hub-project-name.md)] in [Azure AI Foundry](https://ai.azure.com), follow these steps:
 
-1. Go to [Azure AI Foundry](https://ai.azure.com). If you are in a project, select **Azure AI Foundry** at the top left of the page to go to the **Home** page.
-1. Select **+ Create project**.
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
+
+1. Go to [Azure AI Foundry](https://ai.azure.com). 
+1. Select any existing project if you aren't already in one.
+1. At the bottom of the left pane, select **Management center**.
+1. Select **+ New project**.
+1. Select **AI Hub Resource**.
 1. Enter a name for the project.
 1. If you have a hub, you'll see the one you most recently used selected.  
     * If you have access to more than one hub, you can select a different hub from the dropdown.
@@ -27,7 +32,7 @@ To create a project in [Azure AI Foundry](https://ai.azure.com), follow these st
 
 ### Customize the hub
 
-Projects live inside a hub. A hub allows you to share configurations like data connections with all projects, and to centrally manage security settings and spend. If you're part of a team, hubs are shared across other team members in your subscription. For more information about the relationship between hubs and projects, see the [hubs and projects overview](../concepts/ai-resources.md) documentation.
+A [!INCLUDE [hub-project-name](hub-project-name.md)] exists inside a hub. A hub allows you to share configurations like data connections with all projects, and to centrally manage security settings and spend. If you're part of a team, hubs are shared across other team members in your subscription. For more information about the relationship between hubs and projects, see the [hubs and projects overview](../concepts/ai-resources.md) documentation.
 
 When you create a new hub, you must have **Owner** or **Contributor** permissions on the selected resource group. If you're part of a team and don't have these permissions, your administrator should create a hub for you.
 

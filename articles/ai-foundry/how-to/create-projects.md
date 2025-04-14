@@ -21,7 +21,7 @@ zone_pivot_groups: project-type
 
 This article describes how to create an [Azure AI Foundry](https://ai.azure.com) project. A project is used to organize your work and save state while building customized AI apps.
 
-Azure AI Foundry supports two types of projects: [!INCLUDE [hub](../includes/hub-project-name.md)] and [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information about the differences between these two project types, see [Project types](../what-is-azure-ai-foundry.md#project-types).
+Azure AI Foundry supports two types of projects: a **[!INCLUDE [hub](../includes/hub-project-name.md)]** and a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. For more information about the differences between these two project types, see [Project types](../what-is-azure-ai-foundry.md#project-types).
 
 ::: zone pivot="fdp-project"
 
@@ -62,7 +62,7 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 # [Azure CLI](#tab/azurecli)
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
-- [Azure CLI](/azure/machine-learning/how-to-configure-cli).
+- [Azure CLI](/cli/azure/install-azure-cli) 
 
 ---
 
@@ -71,6 +71,7 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 ::: zone pivot="hub-project"
 
 Use the following tabs to select the method you plan to use to create a [!INCLUDE [hub](../includes/hub-project-name.md)]:
+
 # [Azure AI Foundry portal](#tab/ai-studio)
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
@@ -84,7 +85,7 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 # [Azure CLI](#tab/azurecli)
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
-- [Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli).
+- [Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you don't have the Azure CLI and machine learning extension installed, follow the steps in the [Install and set up the machine learning extension](/azure/machine-learning/how-to-configure-cli) article.
 - An Azure AI Foundry hub. If you don't have a hub, see [Create a hub using the Azure Machine Learning SDK and CLI](develop/create-hub-project-sdk.md).
 
 ---
@@ -92,19 +93,17 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 ## Create a project
 
-[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
-
 # [Azure AI Foundry portal](#tab/ai-studio)
 
 ::: zone pivot="fdp-project"
 
-[!INCLUDE [Create Azure AI Foundry project](../includes/create-project-fdp.md)]
+[!INCLUDE [Create Azure AI Foundry project](../includes/create-fdp-project.md)]
 
 ::: zone-end
 
 ::: zone pivot="hub-project"
 
-[!INCLUDE [Create Azure AI Foundry project](../includes/create-projects.md)]
+[!INCLUDE [Create Azure AI Foundry project](../includes/create-hub-project.md)]
 
 ::: zone-end
 
@@ -149,7 +148,9 @@ The code in this section assumes you have an existing hub.  If you don't have a 
 
 ::: zone pivot="fdp-project"
 
-1. To authenticate to your Azure subscription from the Azure CLI, use the following command:
+To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
+
+1. Authenticate to your Azure subscription from the Azure CLI with the following command:
 
     ```azurecli
     az login
@@ -168,8 +169,6 @@ The code in this section assumes you have an existing hub.  If you don't have a 
 ::: zone pivot="hub-project"
 
 The code in this section assumes you have an existing hub.  If you don't have a hub, see [How to create and manage an Azure AI Foundry hub](create-azure-ai-resource.md) to create one.
-
-1. If you don't have the Azure CLI and machine learning extension installed, follow the steps in the [Install and set up the machine learning extension](/azure/machine-learning/how-to-configure-cli) article.
 
 1. To authenticate to your Azure subscription from the Azure CLI, use the following command:
 
