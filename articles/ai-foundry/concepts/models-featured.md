@@ -226,7 +226,7 @@ Microsoft models include various model groups such as MAI models, Phi models, he
 | [Phi-3-medium-128k-instruct](https://ai.azure.com/explore/models/Phi-3-medium-128k-instruct/version/6/registry/azureml) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
 | [Phi-3-medium-4k-instruct](https://ai.azure.com/explore/models/Phi-3-medium-4k-instruct/version/5/registry/azureml) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (4,096 tokens) <br /> - **Output:** text (4,096 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
 
-#### Inference examples: Microsoft Phi
+#### Inference examples: Microsoft models
 
 For more examples of how to use Microsoft models, see the following examples:    
 
