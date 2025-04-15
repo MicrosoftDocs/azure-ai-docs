@@ -33,6 +33,8 @@ items:
             displayName: bing, grounding with bing  
           - name: How to use Grounding with Bing Search
             href: how-to/tools/bing-code-samples.md
+          - name: Use Grounding with Bing Custom Search
+            href: how-to/tools/bing-custom-search.md
         - name: File search
           items:
           - name: Overview
