@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/11/2025
+ms.date: 04/18/2025
 ---
 
 # Set up integrated vectorization in Azure AI Search using REST or Python
@@ -22,13 +22,13 @@ This article describes the end-to-end workflow for [integrated vectorization](ve
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-+ An [Azure AI Search service](search-create-service-portal.md). We recommend the Basic tier or higher.
-
-+ An [Azure AI services multi-service resource](/azure/ai-services/multi-service-resource) in the same region as your Azure AI Search service.
++ An [Azure AI Search service](search-create-service-portal.md) in the same region as your Azure AI services multi-service resource. We recommend the Basic tier or higher.
 
 + A [supported data source](#supported-data-sources).
 
 + A [supported embedding model](#supported-embedding-models).
+
++ Completion of [Quickstart: Connect without keys](search-get-started-rbac.md) and [Configure a system-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity). Although you can use key-based authentication for data plane operations, this article assumes [roles and managed identities](#role-based-access), which are more secure.
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python).
 
@@ -40,7 +40,7 @@ Azure AI Search [supports various data sources](search-indexer-overview.md#suppo
 |--|--|
 | [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md) | This data source works with blobs and tables. You must use a standard performance (general-purpose v2) account. Access tiers can be hot, cool, or cold. |
 | [Azure Data Lake Storage (ADLS) Gen2](/azure/storage/blobs/create-data-lake-storage-account) | This is an Azure Storage account with a hierarchical namespace enabled. To confirm that you have Data Lake Storage, check the **Properties** tab on the **Overview** page.<br><br> :::image type="content" source="media/search-how-to-integrated-vectorization/data-lake-storage-account.png" alt-text="Screenshot of an Azure Data Lake Storage account in the Azure portal." border="true" lightbox="media/search-how-to-integrated-vectorization/data-lake-storage-account.png"::: |
-| [OneLake lakehouse](search-how-to-index-onelake-files.md) | This data source is currently in preview. |
+| [OneLake](search-how-to-index-onelake-files.md) | This data source is currently in preview. For information about limitations and supported shortcuts, see [OneLake indexing](search-how-to-index-onelake-files.md). |
 
 ### Supported embedding models
 
@@ -48,21 +48,21 @@ Use an embedding model on an Azure AI platform in the [same region as Azure AI S
 
 | Provider | Supported models |
 |--|--|
-| [Azure OpenAI Service](https://aka.ms/oai/access) <sup>1, 2</sup> | <ul><li>text-embedding-ada-002</li><li>text-embedding-3-small</li><li>text-embedding-3-large |
-| [Azure AI Foundry model catalog](/azure/ai-foundry/what-is-azure-ai-foundry) | For text:<ul><li>Cohere-embed-v3-english</li><li>Cohere-embed-v3-multilingual</li></ul>For images:<ul><li>Facebook-DinoV2-Image-Embeddings-ViT-Base</li><li>Facebook-DinoV2-Image-Embeddings-ViT-Giant</li></ul> |
-| [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) | For text and images:<ul><li>[Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>3</sup> (available in [select regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability))</li> |
+| [Azure OpenAI Service](https://aka.ms/oai/access) <sup>1, 2</sup> | text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large |
+| [Azure AI Foundry model catalog](/azure/ai-foundry/what-is-azure-ai-foundry) | For text:<br>Cohere-embed-v3-english<br>Cohere-embed-v3-multilingual<br><br>For images:<br>Facebook-DinoV2-Image-Embeddings-ViT-Base<br>Facebook-DinoV2-Image-Embeddings-ViT-Giant |
+| [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) | For text and images:<br>[Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>3</sup> (available in [select regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability))</li> |
 
 <sup>1</sup> If you're using Azure OpenAI Service, the endpoint must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://my-unique-name.cognitiveservices.azure.com`. If you created your service in the [Azure portal](https://portal.azure.com/), this subdomain was automatically generated during service setup. Ensure that your service has a custom subdomain before you use it with the Azure AI Search integration.
 
-<sup>2</sup> Azure OpenAI Service resources (with access to embedding models) that were created in [Azure AI Foundry portal](https://ai.azure.com/) aren't supported. Only Azure OpenAI Service resources created in the Azure portal are compatible with the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) integration.
+<sup>2</sup> Azure OpenAI Service resources (with access to embedding models) that were created in the [Azure AI Foundry portal](https://ai.azure.com/) aren't supported. Only Azure OpenAI Service resources created in the Azure portal are compatible with the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) integration.
 
 <sup>3</sup> Depending on how you [attach the multi-service resource](cognitive-search-attach-cognitive-services.md), your multi-service account might need to be in the same region as your Azure AI Search service.
 
-### Permissions
+### Role-based access
 
 You can use Microsoft Entra ID with role assignments or key-based authentication with full-access connection strings. For Azure AI Search service connections to other resources, we recommend role assignments.
 
-To configure role-based access:
+To configure role-based access for integrated vectorization:
 
 1. On your search service, [enable roles](search-security-enable-roles.md) and [configure a managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
 
@@ -75,7 +75,7 @@ To configure role-based access:
 
 ## Prepare your data
 
-In this section, you prepare your data for integrated vectorization by uploading files to a [supported data source](#supported-data-sources) and assigning resource permissions.
+In this section, you prepare your data for integrated vectorization by uploading files to a [supported data source](#supported-data-sources) and assigning roles.
 
 ### [Azure Blob Storage](#tab/prepare-data-storage)
 
@@ -85,15 +85,27 @@ In this section, you prepare your data for integrated vectorization by uploading
 
 1. Create a container or select an existing container, and then upload your files to the container.
 
-1. To assign permissions:
+1. To assign roles:
 
-   1. If you're using roles, select **Access Control (IAM)** from the left pane, and then assign the [Storage Blob Data Reader](search-howto-managed-identities-data-sources.md#assign-a-role) role to your search service identity.
+   1. From the left pane, select **Access Control (IAM)**.
 
-   1. If you're using key-based authentication, select **Security + networking** > **Access keys** from the left pane, and then copy a connection string for your storage account.
+   1. Select **Add** > **Add role assignment**.
+
+   1. Under **Job function roles**, select **[Storage Blob Data Reader](search-howto-managed-identities-data-sources.md#assign-a-role)**, and then select **Next**.
+
+   1. Under **Members**, select **Managed identity**, and then select **Select members**.
+
+   1. Select your subscription and the managed identity of your search service.
+
+1. To obtain a connection string:
+
+   1. From the left pane, select **Security + networking** > **Access keys**.
+
+   1. Copy either connection string. You specify this string later in the [Set endpoints](#set-endpoints) step.
 
 1. (Optional) Synchronize deletions in your container with deletions in the search index. To configure your indexer for deletion detection:
 
-   1. [Enable soft delete](/azure/storage/blobs/soft-delete-blob-enable?tabs=azure-portal#enable-blob-soft-delete-hierarchical-namespace) on your storage account. If you're using [native soft delete](search-howto-index-changed-deleted-blobs.md#native-blob-soft-delete), the second step isn't required.
+   1. [Enable soft delete](/azure/storage/blobs/soft-delete-blob-enable?tabs=azure-portal#enable-blob-soft-delete-hierarchical-namespace) on your storage account. If you're using [native soft delete](search-howto-index-changed-deleted-blobs.md#native-blob-soft-delete), the next step isn't required.
 
    1. [Add custom metadata](search-howto-index-changed-deleted-blobs.md#soft-delete-strategy-using-custom-metadata) that an indexer can scan to determine which blobs are marked for deletion. Give your custom property a descriptive name. For example, you can name the property "IsDeleted" and set it to false. Repeat this step for every blob in the container. When you want to delete the blob, change the property to true. For more information, see [Change and delete detection when indexing from Azure Storage](search-howto-index-changed-deleted-blobs.md).
 
@@ -105,11 +117,23 @@ In this section, you prepare your data for integrated vectorization by uploading
 
 1. Create a container or select an existing container, and then upload your files to the container.
 
-1. To assign permissions:
+1. To assign roles:
 
-   1. If you're using roles, select **Access Control (IAM)** from the left pane, and then assign the [Storage Blob Data Reader](search-howto-managed-identities-data-sources.md#assign-a-role) role to your search service identity.
+   1. From the left pane, select **Access Control (IAM)**.
 
-   1. If you're using key-based authentication, select **Security + networking** > **Access keys** from the left pane, and then copy a connection string for your storage account.
+   1. Select **Add** > **Add role assignment**.
+
+   1. Under **Job function roles**, select **[Storage Blob Data Reader](search-howto-managed-identities-data-sources.md#assign-a-role)**, and then select **Next**.
+
+   1. Under **Members**, select **Managed identity**, and then select **Select members**.
+
+   1. Select your subscription and the managed identity of your search service.
+
+1. To obtain a connection string:
+
+   1. From the left pane, select **Security + networking** > **Access keys**.
+
+   1. Copy either connection string. You specify this string later in the [Set endpoints](#set-endpoints) step.
 
 1. (Optional) Synchronize deletions in your container with deletions in the search index. To configure your indexer for deletion detection:
 
@@ -121,9 +145,9 @@ In this section, you prepare your data for integrated vectorization by uploading
 
 1. Sign in to [Power BI](https://powerbi.com/) and [create a workspace](/fabric/data-engineering/tutorial-lakehouse-get-started).
 
-1. From the left pane, select **Workspaces** and open your new workspace.
+1. From the left pane, select your new workspace.
 
-1. To assign permissions:
+1. To assign roles:
 
    1. In the upper-right corner, select **Manage access**.
 
@@ -149,7 +173,7 @@ In this section, you prepare your data for integrated vectorization by uploading
 
 ## Prepare your embedding model
 
-In this section, you prepare your Azure AI resource for integrated vectorization by assigning resource permissions and deploying a [supported embedding model](#supported-embedding-models).
+In this section, you prepare your Azure AI resource for integrated vectorization by assigning roles, obtaining an endpoint, and deploying a [supported embedding model](#supported-embedding-models).
 
 ### [Azure OpenAI](#tab/prepare-model-aoai)
 
@@ -157,15 +181,37 @@ Azure AI Search supports text-embedding-ada-002, text-embedding-3-small, and tex
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure OpenAI resource.
 
-1. To assign permissions:
+1. To assign roles:
 
-   1. If you're using roles, select **Access control (IAM)** from the left pane, and then assign the [Cognitive Services OpenAI User](/azure/ai-services/openai/how-to/role-based-access-control#azure-openai-roles) role to your search service identity.
+   1. From the left pane, select **Access control (IAM)**.
 
-   1. If you're using key-based authentication, select **Resource Management** > **Keys and Endpoint** from the left pane, and then copy an endpoint or API key for your Azure OpenAI resource.
+   1. Select **Add** > **Add role assignment**.
 
-1. From the left pane, select **Resource Management** > **Model deployments**, and then select **Manage Deployments** to open Azure AI Foundry.
+   1. Under **Job function roles**, select **[Cognitive Services OpenAI User](/azure/ai-services/openai/how-to/role-based-access-control#azure-openai-roles)**, and then select **Next**.
 
-1. Copy the deployment name of **text-embedding-ada-002** or another [supported embedding model](#supported-embedding-models). If you don't have an embedding model, deploy one now.
+   1. Under **Members**, select **Managed identity**, and then select **Select members**.
+
+   1. Select your subscription and the managed identity of your search service.
+
+1. To obtain an endpoint:
+
+   1. From the left pane, select **Resource Management** > **Keys and Endpoint**.
+
+   1. Copy the endpoint for your Azure OpenAI resource. You specify this URL later in the [Set endpoints](#set-endpoints) step.
+
+1. To deploy an embedding model:
+
+   1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/) and select your Azure OpenAI resource.
+
+   1. From the left pane, select **Shared resources** > **Deployments**.
+
+   1. Select **Deploy model** > **Deploy base model**.
+
+   1. Set the **Inference tasks** filter to **Embeddings**.
+
+   1. Deploy a [supported embedding model](#supported-embedding-models).
+
+   Make a note of the model name and endpoint. Embedding skills and vectorizers assemble the full endpoint internally, so you only need the resource URI. For example, given `https://MY-ACCOUNT.openai.azure.com/openai/deployments/text-embedding-3-large/embeddings?api-version=2024-06-01`, the endpoint you should provide in skill and vectorizer definitions is `https://MY-ACCOUNT.openai.azure.com`.
 
 ### [Azure AI Vision](#tab/prepare-model-ai-vision)
 
@@ -173,29 +219,142 @@ Azure AI Search supports Azure AI Vision image retrieval through multimodal embe
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and [create an Azure AI Vision resource](/azure/ai-services/computer-vision/how-to/image-retrieval?tabs=csharp#prerequisites). Make sure your Azure AI Search service is in the same region.
 
-1. To assign permissions:
+1. To assign roles:
 
-   1. If you're using roles, select **Access control (IAM)** from the left pane, and then assign the **Cognitive Services User** role to your search service identity.
+   1. From the left pane, select **Access control (IAM)**.
 
-   1. If you're using key-based authentication, select **Resource Management** > **Keys and Endpoint** from the left pane, and then copy an endpoint or API key for your Azure AI Vision resource.
+   1. Select **Add** > **Add role assignment**.
 
-1. Add deployment steps.
+   1. Under **Job function roles**, select **Cognitive Services User**, and then select **Next**.
+
+   1. Under **Members**, select **Managed identity**, and then select **Select members**.
+
+   1. Select your subscription and the managed identity of your search service.
+
+> [!NOTE]
+> The multimodal embeddings are built into your Azure AI Vision resource, so there's no model deployment step.
 
 ### [Azure AI Foundry model catalog](#tab/prepare-model-catalog)
 
 Azure AI Search supports Azure, Cohere, and Facebook embedding models in the [Azure AI Foundry](https://ai.azure.com/) model catalog, but it doesn't currently support the OpenAI CLIP models. Internally, Azure AI Search calls the [AML skill](cognitive-search-aml-skill.md) to connect to the catalog.
 
-1. For the model catalog, you should have an [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource), a [hub in Azure AI Foundry portal](/azure/ai-foundry/how-to/create-projects), and a [project](/azure/ai-foundry/how-to/create-projects). Hubs and projects with the same name can share connection information and permissions.
+For the model catalog, you should have an [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource) and an [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects).
 
-1. To deploy an embedding model to the model catalog in your project:
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure OpenAI resource.
 
-   1. Select **Models + Endpoints**, and then select **Deploy a model**.
+1. To assign roles:
 
-   1. Select **Deploy base model**.
+   1. From the left pane, select **Access control (IAM)**.
 
-   1. Filter by inference task set to **Embeddings**.
+   1. Select **Add** > **Add role assignment**.
 
-   1. Deploy one of the [supported embedding models](#supported-embedding-models).
+   1. Under **Job function roles**, select **Cognitive Services User**, and then select **Next**.
+
+   1. Under **Members**, select **Managed identity**, and then select **Select members**.
+
+   1. Select your subscription and the managed identity of your search service.
+
+1. To obtain an endpoint:
+
+   1. From the left pane, select **Resource Management** > **Keys and Endpoint**.
+
+   1. Copy the endpoint for your Azure OpenAI resource. You specify this URL later in the [Set endpoints](#set-endpoints) step.
+
+1. To deploy an embedding model from the model catalog:
+
+   1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/) and select your project.
+
+   1. From the left pane, select **My assets** > **Models + endpoints**.
+
+   1. Select **Deploy model** > **Deploy base model**.
+
+   1. Set the **Inference tasks** filter to **Embeddings**.
+
+   1. Deploy a [supported embedding model](#supported-embedding-models).
+
+   Make a note of the model name and endpoint. Embedding skills and vectorizers assemble the full endpoint internally, so you only need the resource URI. For example, given `https://MY-ACCOUNT.openai.azure.com/openai/deployments/text-embedding-3-large/embeddings?api-version=2024-06-01`, the endpoint you should provide in skill and vectorizer definitions is `https://MY-ACCOUNT.openai.azure.com`.
+
+---
+
+## Retrieve connection information
+
+In this section, you gather connection information that's used in requests. The following steps assume that you're using roles.
+
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI Search service.
+
+1. On the **Overview** page, copy the URL. An example search endpoint is `https://my-service.search.windows.net`.
+
+1. To obtain your Microsoft Entra token, follow step three in [Quickstart: Connect without keys](search-get-started-rbac.md). You get the token by running the `az account get-access-token` command.
+
+   ```Azure CLI
+   az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
+   ```
+
+---
+
+## Set endpoints
+
+In this section, you specify the endpoint and token for your Azure AI Search service and the endpoint for your [supported data source](#supported-data-sources).
+
+### [REST](#tab/set-endpoints-rest)
+
+1. In Visual Studio Code, copy and paste the following example into your `.rest` or `.http` file.
+
+   ```HTTP
+   @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
+   @token = PUT-YOUR-MICROSOFT-ENTRA-TOKEN-HERE
+   @storageConnectionString = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
+   @blobContainer = PUT-YOUR-BLOB-CONTAINER-NAME-HERE
+   @XYZ = OneLake
+
+   ### List existing indexes by name
+   GET  {{baseUrl}}/indexes?api-version=2024-07-01&$select=name  HTTP/1.1
+   Content-Type: application/json
+   Authorization: Bearer {{token}}
+   ```
+
+1. Replace the following placeholders:
+
+   1. For `@baseUrl`, enter the search endpoint you obtained in [Retrieve connection information](#retrieve-connection-information).
+
+   1. For `@token`, enter the Microsoft Entra token you obtained in [Retrieve connection information](#retrieve-connection-information).
+
+   1. For `@storageConnectionString`, enter the connection string you obtained in [Prepare your data](#prepare-your-data). Delete this parameter if you're using OneLake.
+
+   1. For `@blobContainer`, enter the name of the container you created in [Prepare your data](#prepare-your-data). Delete this parameter if you're using OneLake.
+
+   1. For `@XYZ`, enter...
+
+1. To verify the parameters, select **Send request**.
+
+   A response should appear in an adjacent pane. If you have existing indexes, they're listed. Otherwise, the list is empty. If the HTTP code is `200 OK`, you're ready to proceed.
+
+### [Python](#tab/set-endpoints-python)
+
+1. In Visual Studio Code, copy and paste the following example into your Jupyter notebook.
+
+   ```Python
+   AZURE_SEARCH_SERVICE: str = "PUT YOUR SEARCH SERVICE URL HERE"
+   AZURE_OPENAI_ACCOUNT: str = "PUT YOUR AZURE OPENAI ACCOUNT URL HERE"
+   AZURE_AI_MULTISERVICE_ACCOUNT: str = "PUT YOUR AZURE AI MULTISERVICE ACCOUNT URL HERE"
+   AZURE_AI_MULTISERVICE_KEY: str = "PUT YOUR AZURE AI MULTISERVICE KEY HERE. ROLES ARE USED TO CONNECT. KEY IS USED FOR BILLING."
+   AZURE_STORAGE_CONNECTION: str = "PUT YOUR AZURE STORAGE CONNECTION STRING HERE (see example below for syntax)"
+   
+   # Example connection string for a search service managed-identity connection:
+   # "ResourceId=/subscriptions/FAKE-SUBCRIPTION=ID/resourceGroups/FAKE-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/FAKE-ACCOUNT;"
+   ```
+
+1. Replace the following placeholders:
+
+   1. For `AZURE_SEARCH_SERVICE`, enter the search endpoint you obtained in [Retrieve connection information](#retrieve-connection-information).
+
+   1. For `AZURE_OPENAI_ACCOUNT`, enter the endpoint you obtained in [Prepare your embedding model](#prepare-your-embedding-model). Delete this variable if you're using Azure AI Vision.
+
+   1. For `AZURE_AI_MULTISERVICE_ACCOUNT`, enter...
+
+   1. For `AZURE_STORAGE_CONNECTION`, enter the connection string you obtained in [Prepare your data](#prepare-your-data). Delete this parameter if you're using OneLake.
+
+   1. For `@XYZ`, enter...
 
 ---
 
@@ -205,9 +364,11 @@ For indexer-based indexing, you must connect to a [supported data source](#suppo
 
 ### [REST](#tab/connect-data-rest)
 
+1. In Visual Studio Code...
+
 1. Use [Create Data Source](/rest/api/searchservice/data-sources/create) to define the data source.  
 
-   ```http
+   ```HTTP
     POST https://my-search-service.search.windows.net/datasources?api-version=2024-07-01 
     {
         "name": "my-data-source",
@@ -231,6 +392,8 @@ For indexer-based indexing, you must connect to a [supported data source](#suppo
 1. Set `container` to...
 
 ### [Python](#tab/connect-data-python)
+
+Provide the endpoints you collected in a previous step. You can leave the API keys empty if you enabled role-based authentication. Otherwise, if you can't use roles, provide API keys for each resource.
 
 ---
 
