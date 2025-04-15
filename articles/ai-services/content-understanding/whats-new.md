@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: whats-new
-ms.date: 11/19/2024
+ms.date: 04/14/2025
 ms.author: lajanuar
 ms.custom:
   - references_regions, ignite-2024-understanding-release
