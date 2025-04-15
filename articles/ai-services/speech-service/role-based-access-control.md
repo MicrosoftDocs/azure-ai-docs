@@ -76,8 +76,6 @@ The returned `accessToken` is a Microsoft Entra token that you can use to authen
 Now you can use the `accessToken` to authenticate with the AI Services resource. For example, you can use the token via the [Fast transcription REST API](./fast-transcription-create.md):
 
 ```bash
-audio_file=@'Call1_separated_16k_health_insurance.wav'
-
 uri="https://$AIServicesResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2024-11-15"
 
 curl -v "$uri" \
