@@ -50,13 +50,9 @@ For more details about creating a project, see the [create an Azure AI Foundry p
 
 To use your existing Azure AI services resources (such as Azure AI Speech) in an Azure AI Foundry project, you need to create a connection to the resource.
 
-<<<<<<< HEAD:articles/ai-foundry/ai-services/how-to/connect-ai-services.md
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
 1. Create an Azure AI Foundry project. For detailed instructions, see [Create an Azure AI Foundry project](../../how-to/create-projects.md).
-=======
-1. Create an Azure AI Foundry project. For detailed instructions, see [Create an Azure AI Foundry project](../ai-foundry/how-to/create-projects.md).
->>>>>>> 3cac75b1404c43afe5af27f6370fe7037af0f9b6:articles/ai-services/connect-services-ai-foundry-portal.md
 1. Go to your Azure AI Foundry project.
 1. Select **Management center** from the left pane.
 1. Select **Connected resources** (under **Project**) from the left pane. 
