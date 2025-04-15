@@ -27,9 +27,9 @@ To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1]
 
 The Jamba family models are AI21's production-grade Mamba-based large language model (LLM) which uses AI21's hybrid Mamba-Transformer architecture. It's an instruction-tuned version of AI21's hybrid structured state space model (SSM) transformer Jamba model. The Jamba family models are built for reliable commercial use with respect to quality and performance.
 
-| Model  | Type | Capabilities | 
-| ------ | ---- | --- | 
-| [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (262,144 tokens) <br /> - **Output:**  text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs | | 
+| Model  | Type | Capabilities |
+| ------ | ---- | --- |
+| [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (262,144 tokens) <br /> - **Output:**  text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
 | [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (262,144 tokens) <br /> - **Output:**  text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
 
 
@@ -68,10 +68,12 @@ The following table lists the Cohere models that you can inference via the  Azur
 
 | Model  | Type | Capabilities | 
 | ------ | ---- | --- | 
+| [Cohere-command-A](https://aka.ms/aistudio/landing/cohere-command-a) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (256,000 tokens) <br /> - **Output:** text (8,000 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text |
 | [Cohere-command-r-plus-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-plus-08-2024/version/1/registry/azureml-cohere) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Cohere-command-r-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-08-2024/version/1/registry/azureml-cohere) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Cohere-command-r-plus](https://ai.azure.com/explore/models/Cohere-command-r-plus/version/1/registry/azureml-cohere) <br> (deprecated) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Cohere-command-r](https://ai.azure.com/explore/models/Cohere-command-r/version/1/registry/azureml-cohere) <br> (deprecated)| [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
+| [Cohere-embed-4](https://aka.ms/aistudio/landing/cohere-embed-4) | [embeddings](../model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context) <br /> [image-embeddings](../model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context) | - **Input:** image, text <br /> - **Output:** image, text (128,000 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** image, text  |
 | [Cohere-embed-v3-english](https://ai.azure.com/explore/models/Cohere-embed-v3-english/version/1/registry/azureml-cohere) | [embeddings](../model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context) <br /> [image-embeddings](../model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context) | - **Input:** text (512 tokens) <br /> - **Output:** Vector (1,024 dim.) |
 | [Cohere-embed-v3-multilingual](https://ai.azure.com/explore/models/Cohere-embed-v3-multilingual/version/1/registry/azureml-cohere) | [embeddings](../model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context) <br /> [image-embeddings](../model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context) | - **Input:** text (512 tokens) <br /> - **Output:** Vector (1,024 dim.) |
 

@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 03/20/2025
+ms.date: 04/14/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -31,6 +31,8 @@ Currently only the following models support prompt caching with Azure OpenAI:
 - `gpt-4o-mini-2024-07-18`
 - `gpt-4o-realtime-preview` (version 2024-12-17)
 - `gpt-4o-mini-realtime-preview` (version 2024-12-17)
+- `gpt-4.1-2025-04-14`
+- `gpt-4.1-nano-2025-04-14`
 
 > [!NOTE]
 > Prompt caching is now also available as part of model fine-tuning for `gpt-4o` and `gpt-4o-mini`. Refer to the fine-tuning section of the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for details.
