@@ -269,8 +269,8 @@ You can use IP network rules to allow access to your secured hub from specific p
 # [Portal](#tab/azure-portal)
 
 1. From the [Azure portal](https://portal.azure.com), select your Azure Machine AI Foundry hub.
-2. From the left side of the page, select __Networking__ and then select the __Public access__ tab.
-3. Select __Enabled from selected IP addresses__, input address ranges and then select __Save__.
+1. From the left side of the page, select __Networking__ and then select the __Public access__ tab.
+1. Select __Enabled from selected IP addresses__, input address ranges and then select __Save__.
 
 <!-- :::image type="content" source="./media/how-to-configure-private-link/workspace-public-access-ip-ranges.png" alt-text="Screenshot of the UI to enable access from internet IP ranges."::: -->
 
@@ -295,14 +295,14 @@ Use the `az ml workspace update` Azure CLI command to manage public access from 
  
 1. Disabled:
 `az ml workspace update -n test-ws -g test-rg --public-network-access Disabled`
-2. Enabled from selected IP addresses: 
+1. Enabled from selected IP addresses: 
 `az ml workspace update -n test-ws -g test-rg --public-network-access Enabled --network-acls "167.220.238.199/32,167.220.238.194/32" `
-3. Enabled from all networks: 
+1. Enabled from all networks: 
 `az ml workspace update -n test-ws -g test-rg --public-network-access Enabled --network-acls none`
 
 ---
 
-You can also use the [Workspace](/python/api/azure-ai-ml/azure.ai.ml.entities.workspace) class from the Azure Machine Learning [Python SDK](https://learn.microsoft.com/en-us/python/api/azure-ai-ml/azure.ai.ml.entities.networkacls?view=azure-python) to define which IP addresses are allowed inbound access:
+You can also use the [Workspace](/python/api/azure-ai-ml/azure.ai.ml.entities.workspace) class from the Azure Machine Learning [Python SDK](/python/api/azure-ai-ml/azure.ai.ml.entities.networkacls) to define which IP addresses are allowed inbound access:
 
 ```python
 class Workspace(Resource):
