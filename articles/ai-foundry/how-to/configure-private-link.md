@@ -264,44 +264,60 @@ You can use IP network rules to allow access to your secured hub from specific p
 > [!WARNING]
 > * Enable your endpoint's public network access flag if you want to allow access to your endpoint from specific public internet IP address ranges.
 > * You can only use IPv4 addresses.
+> * If the workspace goes from __Enable from selected IPs__ to __Disabled__ or __Enabled__, the IP ranges will be reset.
 
 # [Portal](#tab/azure-portal)
 
 1. From the [Azure portal](https://portal.azure.com), select your Azure Machine AI Foundry hub.
-1. From the left side of the page, select __Networking__ and then select the __Public access__ tab.
-1. Select __Enabled from selected IP addresses__, input address ranges and then select __Save__.
+2. From the left side of the page, select __Networking__ and then select the __Public access__ tab.
+3. Select __Enabled from selected IP addresses__, input address ranges and then select __Save__.
 
 <!-- :::image type="content" source="./media/how-to-configure-private-link/workspace-public-access-ip-ranges.png" alt-text="Screenshot of the UI to enable access from internet IP ranges."::: -->
 
 # [Azure CLI](#tab/cli)
 
-
-Use the `az ml workspace network-rule` Azure CLI command to manage public access from an IP address or address range:
+Use the `az ml workspace update` Azure CLI command to manage public access from an IP address or address range:
 
 > [!TIP]
 > The configurations for the selected IP addresses are stored in the hub's properties, under `network_acls`:
 > ```yml
-> properties:
->   # ...
->   network_acls:
->     description: "The network ACLS for this hub, enforced when public_network_access is set to Enabled."
->     $ref: "3/defintions/networkAcls"
+> name: sample_hub
+> location: centraluseuap
+> display_name: sample hub
+> description: desc
+> public_network_access: enabled
+> network_acls:
+>     ip_rules:
+>         value: "X.X.X.X/X"
+>         value: "X.X.X.X"
+>     default_action: Deny
 > ```
-
-- __List IP network rules__: `az ml workspace network-rule list --resource-group "myresourcegroup" --workspace-name "myWS" --query ipRules`
-- __Add a rule for a single IP address__: `az ml workspace network-rule add --resource-group "myresourcegroup" --workspace-name "myWS" --ip-address "16.17.18.19"`
-- __Add a rule for an IP address range__: `az ml workspace network-rule add --resource-group "myresourcegroup" --workspace-name "myWS" --ip-address "16.17.18.0/24"`
-- __Remove a rule for a single IP address__: `az ml workspace network-rule remove --resource-group "myresourcegroup" --workspace-name "myWS" --ip-address "16.17.18.19"`
-- __Remove a rule for an IP address range__: `az ml workspace network-rule remove --resource-group "myresourcegroup" --workspace-name "myWS" --ip-address "16.17.18.0/24"`
+ 
+1. Disabled:
+`az ml workspace update -n test-ws -g test-rg --public-network-access Disabled`
+2. Enabled from selected IP addresses: 
+`az ml workspace update -n test-ws -g test-rg --public-network-access Enabled --network-acls "167.220.238.199/32,167.220.238.194/32" `
+3. Enabled from all networks: 
+`az ml workspace update -n test-ws -g test-rg --public-network-access Enabled --network-acls none`
 
 ---
 
-You can also use the [Workspace](/python/api/azure-ai-ml/azure.ai.ml.entities.workspace) class from the Azure Machine Learning [Python SDK](/python/api/overview/azure/ai-ml-readme) to define which IP addresses are allowed inbound access:
+You can also use the [Workspace](/python/api/azure-ai-ml/azure.ai.ml.entities.workspace) class from the Azure Machine Learning [Python SDK](https://learn.microsoft.com/en-us/python/api/azure-ai-ml/azure.ai.ml.entities.networkacls?view=azure-python) to define which IP addresses are allowed inbound access:
 
 ```python
-Workspace( 
-  public_network_access = "Enabled", 
-  network_rule_set = NetworkRuleSet(default_action = "Allow", bypass = "AzureServices", resource_access_rules = None, ip_rules = yourIPAddress,)
+class Workspace(Resource):
+    """Azure ML workspace.
+    :param public_network_access: Whether to allow public endpoint connectivity
+        when a workspace is private link enabled.
+    :type public_network_access: str
+    :param network_acls: The network access control list (ACL) settings of the workspace.
+    :type network_acls: ~azure.ai.ml.entities.NetworkAcls
+ 
+    def __init__(
+        self,
+        *,
+        public_network_access: Optional[str] = None,
+        network_acls: Optional[NetworkAcls] = None,
 ```
 
 ### Restrictions for IP network rules
