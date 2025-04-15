@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: overview
-ms.date: 12/10/2024
+ms.date: 04/15/2025
 ---
 
 # What's Azure AI Search?
@@ -126,7 +126,7 @@ Or, try solution accelerators:
 > [!TIP]
 > For help with complex or custom solutions, [**contact a partner**](resource-partners-knowledge-mining.md) with deep expertise in Azure AI Search technology.
 
-## Compare search options
+<!-- ## Compare search options
 
 Customers often ask how Azure AI Search compares with other search-related solutions. The following table summarizes key differences.
 
@@ -145,4 +145,4 @@ Key strengths include:
 + Azure AI integration for transformations that make content text and vector searchable.
 + Microsoft Entra security for trusted connections, and Azure Private Link for private connections in no-internet scenarios.
 + [Full search experience](search-features-list.md): Linguistic and custom text analysis in 56 languages. Faceting, autocomplete queries and suggested results, and synonyms.
-+ Azure scale, reliability, and global reach.
++ Azure scale, reliability, and global reach. -->
