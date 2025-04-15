@@ -36,7 +36,7 @@ A role definition is a collection of permissions. When you create an AI Services
 |**Cognitive Services Data Reader (Preview)** |No |View only |Yes |
 
 > [!IMPORTANT]
-> Whether a role can list resource keys is important for [Speech Studio authentication](#speech-studio-authentication). To list resource keys, a role must have permission to run the `Microsoft.CognitiveServices/accounts/listKeys/action` operation. Please note that if key authentication is disabled in the Azure Portal, then none of the roles can list keys.
+> Whether a role can list resource keys is important for [Speech Studio authentication](#speech-studio-authentication). To list resource keys, a role must have permission to run the `Microsoft.CognitiveServices/accounts/listKeys/action` operation. Please note that if key authentication is disabled in the Azure portal, then none of the roles can list keys.
 
 Keep the built-in roles if your Speech resource can have full read and write access to the projects. 
 
