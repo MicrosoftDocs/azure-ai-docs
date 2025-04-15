@@ -63,7 +63,7 @@ The Azure CLI and CLI extension for machine learning are used in these steps, bu
 
 ---
 
-* Ensure that you have enough virtual machine (VM) quota allocated for deployment. Machine Learning reserves 20% of your compute resources for performing upgrades on some VM SKUs. For example, if you request 10 instances in a deployment, you must have a quota of 12 for each number of cores for the VM SKU. Failure to account for the extra compute resources results in an error. There are some VM SKUs that are exempt from the extra quota reservation. For more information on quota allocation, see [Virtual machine quota allocation for deployment](how-to-manage-quotas.md#virtual-machine-quota-allocation-for-deployment).
+* Ensure that you have enough virtual machine (VM) quota allocated for deployment. Machine Learning reserves 20% of your compute resources for performing upgrades on some VM versions. For example, if you request 10 instances in a deployment, you must have a quota of 12 for each number of cores for the VM version. Failure to account for the extra compute resources results in an error. There are some VM versions that are exempt from the extra quota reservation. For more information on quota allocation, see [Virtual machine quota allocation for deployment](how-to-manage-quotas.md#virtual-machine-quota-allocation-for-deployment).
 * Alternatively, you could use quota from the Machine Learning shared quota pool for a limited time. [!INCLUDE [machine-learning-shared-quota](includes/machine-learning-shared-quota.md)]
 
 ## Prepare your system
@@ -812,7 +812,7 @@ For supported general-purpose and GPU instance types, see [Managed online endpoi
 
 # [ARM template](#tab/arm)
 
-The preceding registration of the environment specifies a non-GPU Docker image `mcr.microsoft.com/azureml/openmpi3.1.2-ubuntu18.04` by passing the value to the *environment-version.json* template by using the `dockerImage` parameter. For a GPU compute, provide a value for a GPU Docker image to the template (use the `dockerImage` parameter) and provide a GPU compute type SKU to the `online-endpoint-deployment.json` template (use the `skuName` parameter).
+The preceding registration of the environment specifies a non-GPU Docker image `mcr.microsoft.com/azureml/openmpi3.1.2-ubuntu18.04` by passing the value to the *environment-version.json* template by using the `dockerImage` parameter. For a GPU compute, provide a value for a GPU Docker image to the template (use the `dockerImage` parameter) and provide a GPU compute type version to the `online-endpoint-deployment.json` template (use the `skuName` parameter).
 
 For supported general-purpose and GPU instance types, see [Managed online endpoints SKU list](reference-managed-online-endpoints-vm-sku-list.md). For a list of Machine Learning CPU and GPU base images, see [Azure Machine Learning base images](https://github.com/Azure/AzureML-Containers).
 
