@@ -71,7 +71,7 @@ accessToken=$(az account get-access-token --scope "https://cognitiveservices.azu
 echo $accessToken
 ```
 
-The returned `accessToken` is a Microsoft Entra token that you can use to authenticate without API keys.
+The returned `accessToken` is a Microsoft Entra token that you can use to authenticate without API keys. The token has a [limited lifetime](/entra/identity-platform/configurable-token-lifetimes#access-tokens).
 
 Now you can use the `accessToken` to authenticate with the AI Services resource. For example, you can use the token via the [Fast transcription REST API](./fast-transcription-create.md):
 
