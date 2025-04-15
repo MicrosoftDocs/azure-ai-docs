@@ -30,7 +30,7 @@ Azure AI offers commitment tier pricing, allowing discounted rates compared to t
 For more information, see [Azure AI services pricing](https://azure.microsoft.com/pricing/details/cognitive-services/).
 
 > [!NOTE]
-> You cannot use commitment tier pricing with an AI Services multi-service resource. You must use resources dedicated to single services, such as a Speech or Translator resource.
+> You cannot use commitment tier pricing with an Azure AI Services or an Azure AI Foundry multi-service resource. You must use resources dedicated to single services, such as a Speech or Translator resource.
 
 ## Create a new resource
 
