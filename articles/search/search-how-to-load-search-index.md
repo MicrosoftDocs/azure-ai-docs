@@ -9,7 +9,7 @@ ms.author: heidist
 
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/21/2025
+ms.date: 04/14/2025
 ---
 
 # Load data into a search index in Azure AI Search
