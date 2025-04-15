@@ -5108,7 +5108,7 @@ This component can be one of the following:
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | image_url | object |  | Yes |  |
-| └─ detail | enum | Specifies the detail level of the image. Learn more in the [Vision guide](../../../../ai-services/openai/how-to/gpt-with-vision.md?tabs=rest%2Csystem-assigned%2Cresource#detail-parameter-settings-in-image-processing-low-high-auto).<br>Possible values: `auto`, `low`, `high` | No |  |
+| └─ detail | enum | Specifies the detail level of the image. Learn more in the [Vision guide](../../../../ai-services/openai/how-to/gpt-with-vision.md?tabs=rest%2Csystem-assigned%2Cresource#detail-parameter-settings).<br>Possible values: `auto`, `low`, `high` | No |  |
 | └─ url | string | Either a URL of the image or the base64 encoded image data. | No |  |
 | type | enum | The type of the content part.<br>Possible values: `image_url` | Yes |  |
 
