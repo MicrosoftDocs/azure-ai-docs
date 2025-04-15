@@ -1,6 +1,6 @@
 ---
 title: Add an Azure OpenAI network security perimeter
-description: Start here to learn how to use Azure Monitor tools like Log Analytics to capture and analyze metrics and data logs for your Azure OpenAI Service.
+description: Use this article to learn about adding Azure OpenAI to your network security perimeter.
 ms.date: 03/26/2025
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: how-to
