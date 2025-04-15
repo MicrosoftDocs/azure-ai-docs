@@ -14,11 +14,11 @@ ms.custom: azure-ai-agents
 
 # Grounding with Bing Custom Search 
 
-Grounding with Bing Custom Search tool allows your Azure AI Agents to search within a configurable set of public web domains. It allows you to define the parts of the web you want to draw from so users only see relevant results from the domains and subdomains of your choosing. You need to first create a Grounding with Bing Custom Search resource in Azure Portal. 
+Grounding with Bing Custom Search tool allows your Azure AI Agents to search within a configurable set of public web domains. It allows you to define the parts of the web you want to draw from so users only see relevant results from the domains and subdomains of your choosing. You need to first create a Grounding with Bing Custom Search resource in Azure portal. 
 
 Once the resource is deployed, go to **Configurations** in the Azure AI Foundry portal, and create a configuration instance to include content only from websites that your users care about. Instructions about how to create your custom configuration can be found in the [setup section](#set-up).
 
-Once the tool is configured, you can connect it to your Azure AI Agent. When a user sends a query, the agentw will decide if Grounding with Bing Custom Search should be leveraged or not. If so, it will use Bing to search over the domains you specify and return relevant chunks. Lastly, Azure AI Agents will use the returned chunks to generate a response to return to the user 
+Once the tool is configured, you can connect it to your Azure AI Agent. When a user sends a query, the agent will decide if Grounding with Bing Custom Search should be leveraged or not. If so, it will use Bing to search over the domains you specify and return relevant chunks. Lastly, Azure AI Agents will use the returned chunks to generate a response to return to the user 
 
 > [!IMPORTANT]
 >  
@@ -76,19 +76,19 @@ When you create or update a configuration, enter the following information:
     1. Pinned domains to prioritize when searching on multiple domains, for specific search queries. 
 
 
-1. Determine if you want to include subpages. A subpage slice specifies a domain path. Bing searches all content found at and below the path. You may specify a maximum of two sub-folders in the path. For example, `www.microsoft.com/windows/`. 
+1. Determine if you want to include subpages. A subpage slice specifies a domain path. Bing searches all content found at and below the path. You can specify a maximum of two subfolders in the path. For example, `www.microsoft.com/windows/`. 
 
 1. Adjust ranking if needed 
 
 1. Go to the [Azure AI Foundry portal](https://ai.azure.com/) and use the Grounding with Bing Custom Search tool in your agent. 
 
-    1. Click the agent you created. 
+    1. Select the agent you created. 
 
-    1. Click to add a knowledge tool. 
+    1. Select to add a knowledge tool. 
 
-    1. Click the **Grounding with Bing Custom Search** tool  
+    1. Select the **Grounding with Bing Custom Search** tool  
 
-    1. Click to create a new connection or use an existing connection 
+    1. Select to create a new connection or use an existing connection 
 
     1. For new connection, select your Grounding with Bing Custom Search resource. 
 
