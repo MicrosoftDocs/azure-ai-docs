@@ -21,7 +21,7 @@ zone_pivot_groups: project-type
 
 This article describes how to create an [Azure AI Foundry](https://ai.azure.com) project. A project is used to organize your work and save state while building customized AI apps.
 
-Azure AI Foundry supports two types of projects: a **[!INCLUDE [hub](../includes/hub-project-name.md)]** and a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. For more information about the differences between these two project types, see [Project types](../what-is-azure-ai-foundry.md#project-types).
+Azure AI Foundry supports two types of projects: a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** and a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. For more information about the differences between these two project types, see [Project types](../what-is-azure-ai-foundry.md#project-types).
 
 ::: zone pivot="fdp-project"
 
