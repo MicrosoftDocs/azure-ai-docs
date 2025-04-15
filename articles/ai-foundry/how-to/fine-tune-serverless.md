@@ -22,11 +22,11 @@ Azure AI Foundry enables you to customize large language models to your specific
 
 **Cost Efficiency**: Azure AI Foundry's fine-tuning can be more cost-effective, especially for large-scale deployments, thanks to pay-as-you-go pricing.
 
-**Model Variety**: Azure AI Foundry's Serverless API finetuning  offers support for both proprietary and open-source models, providing users with the flexibility to select the models that best suit their needs without being restricted to a single type.
+**Model Variety**: Azure AI Foundry's Serverless API fine-tuning  offers support for both proprietary and open-source models, providing users with the flexibility to select the models that best suit their needs without being restricted to a single type.
 
 **Customization and Control**: Azure AI Foundry provides greater customization and control over the fine-tuning process, enabling users to tailor models more precisely to their specific requirements.
 
-In this article, you will discover how to fine-tune models that are deployed using serverless API's in [Azure AI Foundry](https://ai.azure.com).
+In this article, you will discover how to fine-tune models that are deployed using serverless APIs in [Azure AI Foundry](https://ai.azure.com).
 
 
 ## Prerequisites
@@ -61,7 +61,7 @@ You can also go to the Azure AI Foundry portal to view all models that contain f
 1. Navigate to the model catalog.
 1. Select the **Fine-tuning tasks** filter. 
     
-    :::image type="content" source="../media/how-to/fine-tune/fine-tune-serverless/fine-tune-filters.png" alt-text="Screenshot of model catalog finetuning filter options." lightbox="../media/how-to/fine-tune/fine-tune-serverless/fine-tune-filters.png":::
+    :::image type="content" source="../media/how-to/fine-tune/fine-tune-serverless/fine-tune-filters.png" alt-text="Screenshot of model catalog fine-tuning filter options." lightbox="../media/how-to/fine-tune/fine-tune-serverless/fine-tune-filters.png":::
 
 1. Select **All** or select a specific task.
 
@@ -209,9 +209,9 @@ Here are some of the tasks you can do on the **Models** tab:
 :::image type="content" source="../media/how-to/fine-tune/fine-tune-serverless/fine-tune-details.png" alt-text="Screenshot of the fine-tuning details dashboard." lightbox="../media/how-to/fine-tune/fine-tune-serverless/fine-tune-details.png":::
 
 
-### Supported enterprise scenarios for finetuning
+### Supported enterprise scenarios for fine-tuning
 
-Several enterprise scenarios are supported for MaaS finetuning. The table below outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
+Several enterprise scenarios are supported for MaaS fine-tuning. The table below outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
 
 >[!Note]  
 >- Data connections auth can be changed via AI Foundry by clicking on the datastore connection which your dataset is stored in, and navigating to the **Access details** > **Authentication Method** setting.  
@@ -222,8 +222,8 @@ Several enterprise scenarios are supported for MaaS finetuning. The table below 
 | ------------------------------------------------------------ | ------------------------------ | --------------------------------- | ----------------------- |
 | Public Network Access = Enabled                               | Account key enabled            | SAS/Account Key                  | Yes, UX and SDK         |
 | Public Network Access = Enabled                               | Account key disabled           | Entra-Based Auth (Credentialless) | Yes, UX and SDK <br><br> *Note:* for UX, you may need to add Storage Blob Data Reader or Storage Blob Data Contributor for your user ID on the storage account, or change the connection's authentication to use Account key/SAS token |                               |                                   |                         |
-| Enabled from selected virtual networks and IP addresses      | Account key enabled            | Account key                      | Yes, UX and SDK <br><br> *Note:*: for UX, the IP of the compute running the browser must be in the selected list        |
-| Enabled from selected virtual networks and IP addresses      | Account key enabled            | SAS                               | Yes, UX and SDK  <br><br> *Note:*: for UX, the IP of the compute running the browser must be in the selected list       |
+| Enabled from selected virtual networks and IP addresses      | Account key enabled            | Account key                      | Yes, UX and SDK <br><br> *Note:* for UX, the IP of the compute running the browser must be in the selected list        |
+| Enabled from selected virtual networks and IP addresses      | Account key enabled            | SAS                               | Yes, UX and SDK  <br><br> *Note:* for UX, the IP of the compute running the browser must be in the selected list       |
 | Enabled from selected virtual networks and IP addresses      | Account key disabled           | Entra-Based Auth (Credentialless) | Yes, UX and SDK. <br><br>*Note:* for UX, you may need to add Storage Blob Data Reader or Storage Blob Data Contributor for your user ID on the storage account, or change the connection's authentication to use Account key/SAS token. Also ensure the IP of the compute running the browser must be in the selected list |                               |                                   |                         |
 | Public Network Access = Disabled                              | Account key enabled            | SAS/Account Key                  | Yes, UX and SDK. <br><br> *Note:*  for UX data upload and submission to work, the workspace _needs to be accessed from within the Vnet_ that has appropriate access to the storage           |
 | Public Network Access = Disabled                              | Account key disabled           | Entra-Based Auth (Credentialless) | Yes, UX and SDK. <br><br> *Note:* for UX data upload and submission to work, the workspace _needs to be accessed from within the Vnet_ that has appropriate access to the storage                |
@@ -231,9 +231,9 @@ Several enterprise scenarios are supported for MaaS finetuning. The table below 
 
 The scenarios above should work in a Managed Vnet workspace as well. See setup of Managed Vnet AI Foundry hub here: [How to configure a managed network for Azure AI Foundry hubs](./configure-managed-network.md)
 
-Customer-Managed Keys (CMKs) is **not** a supported enterprise scenario with MaaS finetuning.
+Customer-Managed Keys (CMKs) is **not** a supported enterprise scenario with MaaS fine-tuning.
 
-Issues finetuning with unique network setups on the workspace and storage usually points to a networking setup issue.
+Issues fine-tuning with unique network setups on the workspace and storage usually points to a networking setup issue.
 
 ---
 
@@ -284,7 +284,7 @@ You can delete a fine-tuned model from the fine-tuning model list in [Azure AI F
 
 ### Create a client to consume the model
 
-The following sections walk you through how to fine-tune a model in python. To find a notebook example of this code, please see [FineTuning LLM with Model-As-Service](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/finetuning/standalone/model-as-a-service/chat-completion/chat_completion_with_model_as_service.ipynb)
+The following sections walk you through how to fine-tune a model in python. To find a notebook example of this code, please see [Fine-tuning LLM with Model-As-Service](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/finetuning/standalone/model-as-a-service/chat-completion/chat_completion_with_model_as_service.ipynb)
 
 1. Ensure to install dependencies to start fine-tuning your model. 
 
@@ -334,7 +334,7 @@ workspace.id
 
 The AI Foundry model catalog offers fine-tuning support for multiple types of models, including chat completions and text generation. For a list of models that support fine-tuning and the Azure regions of support for fine-tuning, see [region availability for models in serverless API endpoints.](deploy-models-serverless-availability.md) Fine-tuning tasks are available only to users whose Azure subscription belongs to a billing account in a country/region where the model provider has made the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable.
 
-For this example, we use a Phi-4-mini-instruct model. In this code snippet, the model id property of the model will be passed as input to the fine tuning job. This is also available as the Asset ID field in model details page in Azure AI Foundry Model Catalog.
+For this example, we use a Phi-4-mini-instruct model. In this code snippet, the model ID property of the model will be passed as input to the fine tuning job. This is also available as the Asset ID field in model details page in Azure AI Foundry Model Catalog.
 
 ```python
 model_name = "Phi-4-mini-instruct"
@@ -423,7 +423,7 @@ except:
 
 ### Create validation data
 
-The next step provides options to configure the model to use validation data in the training process. If you don't want to use validation data, you can choose to skip this step to continue to the the next section. Otherwise, if you have a validation dataset, you can either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
+The next step provides options to configure the model to use validation data in the training process. If you don't want to use validation data, you can choose to skip this step to continue to the next section. Otherwise, if you have a validation dataset, you can either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
 
 ```python
 from azure.ai.ml.entities import Data
@@ -491,13 +491,13 @@ There are following set of parameters that are required to fine-tune your model.
 1. model: Base model to fine-tune.
 1. training_data: Training data for fine-tuning the base model.
 1. validation_data: Validation data for fine-tuning the base model.
-1. task: FineTuning task to perform. eg. CHAT_COMPLETION for chat-completion fine-tuning jobs.
+1. task: Fine-tuning task to perform. eg. CHAT_COMPLETION for chat-completion fine-tuning jobs.
 1. outputs: Output registered model name.
 
 The following parameters are optional:
 
 1. hyperparameters: Parameters that control the fine-tuning behavior at run-time.
-1. name: FineTuning job name
+1. name: Fine-tuning job name
 1. experiment_name: Experiment name for fin-tuning job.
 1. display_name: Fine-tuning job display name.
 
@@ -576,9 +576,9 @@ model_id = f"azureml://locations/{workspace.location}/workspaces/{workspace._wor
 ```
 
 
-### Supported enterprise scenarios for finetuning
+### Supported enterprise scenarios for fine-tuning
 
-Several enterprise scenarios are supported for MaaS finetuning. The table below outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
+Several enterprise scenarios are supported for MaaS fine-tuning. The table below outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
 
 >[!Note]  
 >- Data connections auth can be changed via AI Foundry by clicking on the datastore connection which your dataset is stored in, and navigating to the **Access details** > **Authentication Method** setting.  
@@ -589,8 +589,8 @@ Several enterprise scenarios are supported for MaaS finetuning. The table below 
 | ------------------------------------------------------------ | ------------------------------ | --------------------------------- | ----------------------- |
 | Public Network Access = Enabled                               | Account key enabled            | SAS/Account Key                  | Yes, UX and SDK         |
 | Public Network Access = Enabled                               | Account key disabled           | Entra-Based Auth (Credentialless) | Yes, UX and SDK <br><br> *Note:* for UX, you may need to add Storage Blob Data Reader or Storage Blob Data Contributor for your user ID on the storage account, or change the connection's authentication to use Account key/SAS token |                               |                                   |                         |
-| Enabled from selected virtual networks and IP addresses      | Account key enabled            | Account key                      | Yes, UX and SDK <br><br> *Note:*: for UX, the IP of the compute running the browser must be in the selected list        |
-| Enabled from selected virtual networks and IP addresses      | Account key enabled            | SAS                               | Yes, UX and SDK  <br><br> *Note:*: for UX, the IP of the compute running the browser must be in the selected list       |
+| Enabled from selected virtual networks and IP addresses      | Account key enabled            | Account key                      | Yes, UX and SDK <br><br> *Note:* for UX, the IP of the compute running the browser must be in the selected list        |
+| Enabled from selected virtual networks and IP addresses      | Account key enabled            | SAS                               | Yes, UX and SDK  <br><br> *Note:* for UX, the IP of the compute running the browser must be in the selected list       |
 | Enabled from selected virtual networks and IP addresses      | Account key disabled           | Entra-Based Auth (Credentialless) | Yes, UX and SDK. <br><br>*Note:* for UX, you may need to add Storage Blob Data Reader or Storage Blob Data Contributor for your user ID on the storage account, or change the connection's authentication to use Account key/SAS token. Also ensure the IP of the compute running the browser must be in the selected list |                               |                                   |                         |
 | Public Network Access = Disabled                              | Account key enabled            | SAS/Account Key                  | Yes, UX and SDK. <br><br> *Note:*  for UX data upload and submission to work, the workspace _needs to be accessed from within the Vnet_ that has appropriate access to the storage           |
 | Public Network Access = Disabled                              | Account key disabled           | Entra-Based Auth (Credentialless) | Yes, UX and SDK. <br><br> *Note:* for UX data upload and submission to work, the workspace _needs to be accessed from within the Vnet_ that has appropriate access to the storage                |
@@ -598,9 +598,9 @@ Several enterprise scenarios are supported for MaaS finetuning. The table below 
 
 The scenarios above should work in a Managed Vnet workspace as well. See setup of Managed Vnet AI Foundry hub here: [How to configure a managed network for Azure AI Foundry hubs](./configure-managed-network.md)
 
-Customer-Managed Keys (CMKs) is **not** a supported enterprise scenario with MaaS finetuning.
+Customer-Managed Keys (CMKs) is **not** a supported enterprise scenario with MaaS fine-tuning.
 
-Issues finetuning with unique network setups on the workspace and storage usually points to a networking setup issue.
+Issues fine-tuning with unique network setups on the workspace and storage usually points to a networking setup issue.
 
 ---
 
