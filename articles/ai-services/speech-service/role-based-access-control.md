@@ -66,7 +66,7 @@ az role assignment create --role "Cognitive Services User" --assignee $appId --s
 # assign Cognitive Services Speech User role to the app id
 az role assignment create --role "Cognitive Services Speech User" --assignee $appId --scope $speechResourceId
 
-# get an acces token
+# get an access token
 accessToken=$(az account get-access-token --scope "https://cognitiveservices.azure.com/.default" --query accessToken -o tsv)
 echo $accessToken
 ```
