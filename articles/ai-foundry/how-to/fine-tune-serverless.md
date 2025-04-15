@@ -204,7 +204,6 @@ Here are some of the tasks you can do on the **Models** tab:
 -	In the Model name column, select the model’s name to view more information about the custom model. You can see the status of the fine-tuning job, training results, training events, and hyperparameters used in the job.
 -	Select **Refresh** to update the information on the page.
 
----
 
 :::image type="content" source="../media/how-to/fine-tune/fine-tune-serverless/fine-tune-details.png" alt-text="Screenshot of the fine-tuning details dashboard." lightbox="../media/how-to/fine-tune/fine-tune-serverless/fine-tune-details.png":::
 
@@ -488,18 +487,18 @@ except Exception as ex:
 
 There are following set of parameters that are required to fine-tune your model. Each parameter is defined in the following:
 
-1. model: Base model to fine-tune.
-1. training_data: Training data for fine-tuning the base model.
-1. validation_data: Validation data for fine-tuning the base model.
-1. task: Fine-tuning task to perform. eg. CHAT_COMPLETION for chat-completion fine-tuning jobs.
-1. outputs: Output registered model name.
+- model: Base model to fine-tune.
+- training_data: Training data for fine-tuning the base model.
+- validation_data: Validation data for fine-tuning the base model.
+- task: Fine-tuning task to perform. eg. CHAT_COMPLETION for chat-completion fine-tuning jobs.
+- outputs: Output registered model name.
 
 The following parameters are optional:
 
-1. hyperparameters: Parameters that control the fine-tuning behavior at run-time.
-1. name: Fine-tuning job name
-1. experiment_name: Experiment name for fin-tuning job.
-1. display_name: Fine-tuning job display name.
+- hyperparameters: Parameters that control the fine-tuning behavior at run-time.
+- name: Fine-tuning job name
+- experiment_name: Experiment name for fin-tuning job.
+- display_name: Fine-tuning job display name.
 
 ```python
 from azure.ai.ml.finetuning import FineTuningTaskType, create_finetuning_job
@@ -602,7 +601,6 @@ Customer-Managed Keys (CMKs) is **not** a supported enterprise scenario with Maa
 
 Issues fine-tuning with unique network setups on the workspace and storage usually points to a networking setup issue.
 
----
 
 ### Cross region deployment
 
