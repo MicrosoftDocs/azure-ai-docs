@@ -78,7 +78,7 @@ You can create a workspace [directly in Azure Machine Learning studio](./quickst
 
    [!notebook-python[](~/azureml-examples-main/sdk/python/resources/workspace/workspace.ipynb?name=basic_ex_workspace_name)]
 
-* **(Preview) Use existing hub workspace**. Instead of creating a default workspace with its own security settings and [associated resources](concept-workspace.md#associated-resources), you can reuse a [hub workspace](concept-hub-workspace.md)'s shared environment. Your new 'project' workspace obtains security settings and shared configurations from the hub including compute and connections. This example assumes that the hub workspace already exists.
+* **Use existing hub workspace**. Instead of creating a default workspace with its own security settings and [associated resources](concept-workspace.md#associated-resources), you can reuse a [hub workspace](concept-hub-workspace.md)'s shared environment. Your new 'project' workspace obtains security settings and shared configurations from the hub including compute and connections. This example assumes that the hub workspace already exists.
 
    ```python
    from azure.ai.ml.entities import Project
@@ -147,7 +147,7 @@ If you have problems in accessing your subscription, see [Set up authentication 
 
 1. Provide a friendly name for displaying your workspace in Studio.
 
-1. (Preview) Optionally, select a [hub workspace](concept-hub-workspace.md), to host your workspace in a shared environment for your team, with preconfigured security, access to company resources, and shared compute. 
+1. Optionally, select a [hub workspace](concept-hub-workspace.md), to host your workspace in a shared environment for your team, with preconfigured security, access to company resources, and shared compute. 
 
    :::image type="content" source="media/concept-hub-workspace/project-workspace-create.png" alt-text="Screenshot of creating a workspace using hub in Azure Machine Learning studio.":::
 
