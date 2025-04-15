@@ -155,7 +155,8 @@ In comparison and benchmark testing, hybrid queries with text and vector fields,
 
 The following Python code demonstrates the essential components of a RAG workflow in Azure AI Search. You need to set up the clients, define a system prompt, and provide a query. The prompt tells the LLM to use just the results from the query, and how to return the results. For more steps based on this example, see this [RAG quickstart](search-get-started-rag.md).
 
-For the Azure Government cloud, modify the API endpoint on the token provider to `"https://cognitiveservices.azure.us/.default"`.
+> [!NOTE]
+> For the Azure Government cloud, modify the API endpoint on the token provider to `"https://cognitiveservices.azure.us/.default"`.
 
 ```python
 # Set up the query for generating responses
