@@ -10,6 +10,7 @@ ms.date: 04/15/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
+zone_pivot_groups: selection-bing-custom-grounding
 ---
 
 # Grounding with Bing Custom Search 
