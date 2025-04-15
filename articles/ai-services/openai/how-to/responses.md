@@ -44,6 +44,7 @@ The responses API is currently available in the following regions:
 - `gpt-4o-mini` (Version: `2024-07-18`)
 - `computer-use-preview`
 - `gpt-4.1` (Version: `2025-04-14`)
+- `gpt-4.1-nano` (Version: `2025-04-14`)
 
 Not every model is available in the regions supported by the responses API. Check the [models page](../concepts/models.md) for model region availability.
 

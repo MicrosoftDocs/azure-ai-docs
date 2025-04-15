@@ -57,7 +57,7 @@ string oaiKey = "YOUR_API_KEY";
 
 AzureKeyCredential credentials = new (oaiKey);
 
-OpenAIClient openAIClient = new (oaiEndpoint, credentials);
+AzureOpenAIClient openAIClient = new (oaiEndpoint, credentials);
 
 EmbeddingsOptions embeddingOptions = new()
 {
