@@ -7,7 +7,7 @@ manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 03/07/2025
+ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 
@@ -398,10 +398,10 @@ The following table lists the required supporting containers for your text and d
 
 |Operation|Request query|Document type|Supporting containers|
 |-----|-----|-----|-----|
-|&bullet; Text translation<br>&bullet; Document Translation |`from` specified. |Office documents| None|
-|&bullet; Text translation<br>&bullet; Document Translation|`from` not specified. Requires automatic language detection to determine the source language. |Office documents |✔️ [**Text analytics:language**](../../language-service/language-detection/how-to/use-containers.md) container|
-|&bullet; Text translation<br>&bullet; Document Translation |`from` specified. |Scanned PDF documents| ✔️ [**Vision:read**](../../computer-vision/computer-vision-how-to-install-containers.md) container|
-|&bullet; Text translation<br>&bullet; Document Translation|`from` not specified requiring automatic language detection to determine source language.|Scanned PDF documents| ✔️ [**Text analytics:language**](../../language-service/language-detection/how-to/use-containers.md) container<br><br>✔️ [**Vision:read**](../../computer-vision/computer-vision-how-to-install-containers.md) container|
+|&bullet; Text translation<br>&bullet; Document translation |`from` specified. |Office documents| None|
+|&bullet; Text translation<br>&bullet; Document translation|`from` not specified. Requires automatic language detection to determine the source language. |Office documents |✔️ [**Text analytics:language**](../../language-service/language-detection/how-to/use-containers.md) container|
+|&bullet; Text translation<br>&bullet; Document translation |`from` specified. |Scanned PDF documents| ✔️ [**Vision:read**](../../computer-vision/computer-vision-how-to-install-containers.md) container|
+|&bullet; Text translation<br>&bullet; Document translation|`from` not specified requiring automatic language detection to determine source language.|Scanned PDF documents| ✔️ [**Text analytics:language**](../../language-service/language-detection/how-to/use-containers.md) container<br><br>✔️ [**Vision:read**](../../computer-vision/computer-vision-how-to-install-containers.md) container|
 
 ##### Container images and tags
 
@@ -409,7 +409,7 @@ The Azure AI services container images can be found in the [**Microsoft Artifact
 
 |Container|Image location|Notes|
 |--------|-------------|---------------|
-|Translator: Text translation| `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`| You can view the full list of [Azure AI services Text Translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.|
+|Translator: Text translation| `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`| You can view the full list of [Azure AI services Text translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.|
 |Translator: Document translation|**TODO**| **TODO**|
 |Text analytics: language|`mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest` |You can view the full list of [Azure AI services Text Analytics Language](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/language/tags) version tags on MCR.|
 |Vision: read|`mcr.microsoft.com/azure-cognitive-services/vision/read:latest`|You can view the full list of [Azure AI services Computer Vision Read `OCR`](https://mcr.microsoft.com/product/azure-cognitive-services/vision/read/tags) version tags on MCR.|
