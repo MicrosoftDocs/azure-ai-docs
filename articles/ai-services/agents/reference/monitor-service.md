@@ -35,7 +35,7 @@ This section lists all the automatically collected platform metrics for this ser
 
 |Metric  |Name in REST API  |Unit  | Aggregation | Dimension | Time grains | DS Export |
 |---------|---------|---------|---------|---------|---------|---------|
-|Runs <br>  The number of runs in a given timeframe.     | `RunCount`        | Count        | Total (sum), Average, Minimum, Maximum, Count        | `ResourceId`, `ProjectId`, `AgentId`, `StreamType`, `Region`, `StatusCode (successful, clienterrors, server errors)`, `RunStatus (started, completed, failed, cancelled, expired)` | PT1M | Yes |
+|Runs <br>  The number of runs in a given timeframe.     | `Runs`        | Count        | Total (sum), Average, Minimum, Maximum, Count        | `ResourceId`, `ProjectId`, `AgentId`, `StreamType`, `Region`, `StatusCode (successful, clienterrors, server errors)`, `RunStatus (started, completed, failed, cancelled, expired)` | PT1M | Yes |
 |Indexed files <br> Number of files indexed for file search    |  `IndexedFiles`       | Count        |  Count, Average, Minimum, Maxmimum       | `ResourceId`, `ProjectId`, `VectorStoreId`, `StreamType`, `Region`, `Status`, `ErrorCode` | PT1M | Yes |
 
 
