@@ -891,7 +891,7 @@ items:
         href: ./v1/how-to-create-machine-learning-pipelines.md
       - name: Moving data into and between ML pipeline steps (Python)
         href: ./v1/how-to-move-data-in-out-of-pipelines.md
-      - name: Use automated ML in ML pipelines (Python)
+      - name: Use AutoML in machine learning pipelines (Python)
         displayName: machine learning automl
         href: ./v1/how-to-use-automlstep-in-pipelines.md
       - name: Deploy ML pipelines (Python)
@@ -924,7 +924,7 @@ items:
           href: concept-endpoints-online.md
         - name: Model specification for online deployment
           href: concept-online-deployment-model-specification.md
-        - name: Deploy an ML model with an online endpoint
+        - name: Deploy a model to an online endpoint
           href: how-to-deploy-online-endpoints.md
         - name: Deploy models with safe rollout strategy
           href: how-to-safely-rollout-online-endpoints.md

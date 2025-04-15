@@ -191,7 +191,7 @@ Multi-class text classification|    `'eng'` <br>  `'deu'` <br> `'mul'`|  English
 Named entity recognition (NER)|    `'eng'` <br>  `'deu'` <br> `'mul'`|  English&nbsp;BERT&nbsp;[cased](https://huggingface.co/bert-base-cased) <br>  [German BERT](https://huggingface.co/bert-base-german-cased)<br>  [Multilingual BERT](https://huggingface.co/bert-base-multilingual-cased) <br><br>For all other languages, automated ML applies multilingual BERT
 
 
-You can specify your dataset language in your `FeaturizationConfig`. BERT is also used in the featurization process of automated ML experiment training, learn more about [BERT integration and featurization in automated ML](how-to-configure-auto-features.md#bert-integration-in-automated-ml).
+You can specify your dataset language in your `FeaturizationConfig`. BERT is also used in the featurization process of automated ML experiment training, learn more about [BERT integration and featurization in AutoML](how-to-configure-auto-features.md#bert-integration-in-automl).
 
 ```python
 from azureml.automl.core.featurization import FeaturizationConfig

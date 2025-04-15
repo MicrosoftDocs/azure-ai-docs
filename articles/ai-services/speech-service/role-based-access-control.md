@@ -36,7 +36,7 @@ A role definition is a collection of permissions. When you create an AI Services
 |**Cognitive Services Data Reader (Preview)** |No |View only |Yes |
 
 > [!IMPORTANT]
-> Whether a role can list resource keys is important for [Speech Studio authentication](#speech-studio-authentication). To list resource keys, a role must have permission to run the `Microsoft.CognitiveServices/accounts/listKeys/action` operation. Please note that if key authentication is disabled in the Azure Portal, then none of the roles can list keys.
+> Whether a role can list resource keys is important for [Speech Studio authentication](#speech-studio-authentication). To list resource keys, a role must have permission to run the `Microsoft.CognitiveServices/accounts/listKeys/action` operation. Please note that if key authentication is disabled in the Azure portal, then none of the roles can list keys.
 
 Keep the built-in roles if your Speech resource can have full read and write access to the projects. 
 
@@ -47,6 +47,43 @@ For finer-grained resource access control, you can [add or remove roles](/azure/
 The [roles](#roles-for-speech-resources) define what permissions you have. Authentication is required to use the Speech resource. 
 
 To authenticate with Speech resource keys, all you need is the key and region. To authenticate with a Microsoft Entra token, the Speech resource must have a [custom subdomain](speech-services-private-link.md#create-a-custom-domain-name).
+
+Here's how to create a new Azure AI Services resource with a custom subdomain. You can also use an existing resource, but it must have a custom subdomain. For more information about creating a custom subdomain, see [Create a custom domain name](speech-services-private-link.md#create-a-custom-domain-name).
+
+```bash
+resourceGroupName=my-speech-rg
+location=eastus
+AIServicesResourceName=my-aiservices-$location
+
+# create an AIServices resource for Speech and other AI services
+az cognitiveservices account create --name $AIServicesResourceName --resource-group $resourceGroupName --kind AIServices --sku S0 --location $location --custom-domain $AIServicesResourceName
+
+# get the resource id
+speechResourceId=$(az cognitiveservices account show --name $AIServicesResourceName --resource-group $resourceGroupName --query id -o tsv)
+# assign Cognitive Services User role to the app id
+appId=$(az ad signed-in-user show --query id -o tsv)
+az role assignment create --role "Cognitive Services User" --assignee $appId --scope $speechResourceId
+# assign Cognitive Services Speech User role to the app id
+az role assignment create --role "Cognitive Services Speech User" --assignee $appId --scope $speechResourceId
+
+# get an access token
+accessToken=$(az account get-access-token --scope "https://cognitiveservices.azure.com/.default" --query accessToken -o tsv)
+echo $accessToken
+```
+
+The returned `accessToken` is a Microsoft Entra token that you can use to authenticate without API keys. The token has a [limited lifetime](/entra/identity-platform/configurable-token-lifetimes#access-tokens).
+
+Now you can use the `accessToken` to authenticate with the AI Services resource. For example, you can use the token via the [Fast transcription REST API](./fast-transcription-create.md):
+
+```bash
+uri="https://$AIServicesResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2024-11-15"
+
+curl -v "$uri" \
+    --header 'Content-Type: multipart/form-data' \
+    --form 'definition={"locales": ["en-US"]}' \
+    --form 'audio=@Call1_separated_16k_health_insurance.wav' \
+    --header "Authorization: Bearer $accessToken" 
+```
 
 ### Speech SDK authentication
 
