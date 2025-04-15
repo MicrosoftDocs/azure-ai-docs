@@ -150,12 +150,7 @@ const agent = await client.agents.createAgent("gpt-4o", {
     name: "my-agent",
     instructions:
         "You are a customer support chatbot. Use the tools provided and your knowledge base to best respond to customer queries",
-    tools: [bingCustomSearchTool.definition],
-    requestOptions: {
-        headers: {
-        "x-ms-enable-preview": true,
-        },
-    },
+    tools: [bingCustomSearchTool.definition]
 });
 console.log(`Created agent, agent ID : ${agent.id}`);
 ```
@@ -272,8 +267,7 @@ with project_client:
         model=os.environ["MODEL_DEPLOYMENT_NAME"],
         name="my-agent",
         instructions="You are a helpful agent",
-        tools=bing_custom_tool.definitions,
-        headers={"x-ms-enable-preview": "true"},
+        tools=bing_custom_tool.definitions
     )
     print(f"Created agent, ID: {agent.id}")
 ```
