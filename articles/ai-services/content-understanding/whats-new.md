@@ -20,28 +20,27 @@ The Content Understanding service is continuously updated. Bookmark this page to
 
 The Content Understanding **2025-05-01-preview** REST API is now available. This preview API introduces the following updates and enhanced capabilities:
 
-* **General improvements**. The total number of fields supported across all modalities is now 50 by default. For the document modality specifically, this limit can be extended up to 100 fields. To request an increase from 50 to 100 fields for the document modality, please contact us at `cu_contact@microsoft.com`.
+* **General improvements**. The total number of fields supported across all modalities is now 50 by default. For the document modality specifically, this limit can be extended up to 100 fields. To request an increase from 50 to 100 fields for the document modality, contact us at `cu_contact@microsoft.com`.
 * **Normalization support**. Document normalization is expanded from the US region to [all supported regions](language-region-support.md#language-support).
 * **Prebuilt invoice template**. The invoice template is now customizable. Once you select the invoice template, you can access a predefined list of fields that can be tailored to your specific needs by adding or removing fields.
-* Support for generative and classification fields - Now, you can define generative and classification fields with zero-shot outputs for documents via REST endpoint which can generate summaries or infer results and classify a single documents into multiple files that it may contain. You can further call multiple analyzers to process individual files. In UX, we support generative-string and classify-string. Other field types to be added soon. 
+* **Enhanced generative and classification fields support**. Now, you can define generative and classification fields to produce zero-shot outputs for documents through the REST endpoint. This capability allows you to generate summaries, infer results, and classify a single document into multiple files it may contain. Also, you can utilize multiple analyzers to process individual files independently. 
 * **Generative and classification fields**
+  * Both generative and classify fields are now supported.
   * You can now utilize the REST endpoint to define generative and classification fields with zero-shot outputs for documents. This feature enables you to generate summaries, infer results, and classify individual documents across multiple files.
   * Multiple analyzers can be invoked to process individual files.
-  * Generative *string and classify* string fields are supported in the UX, with additional field types to be introduced soon.
 * **Field and language support**
   * Expanded support for Tier 1 and Tier 2 languages.
   * Increased maximum number of fields supported.
 * **Video modality**
   * Improvements include object field reordering and the option to disable face blurring via generative fields.
 * **Audio modality**
-  * API now supports the field type: Group. UX support will follow soon.
+  * API now supports the field type: `group`.
 * **Text modality**
-  * API support for the field type: Group has been added, with UX support to come.
-  * Example added for preprocessing pretranscribed audio using text modality. 
+  * API support for the field type: `group`.
 * **User experience improvements**
   * Added functionality to download and upload schema configurations during schema definition.
   * Enhanced file labeling and analyzer building processes.
-  * Capability to download code samples for quick setup added.
+  * Add download code samples for quick setup added.
 
 
 ## November 2024
