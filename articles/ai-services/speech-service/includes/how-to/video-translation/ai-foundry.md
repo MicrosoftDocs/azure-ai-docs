@@ -16,7 +16,7 @@ In this article, you learn how to use video translation with Azure AI Speech in 
 > [!TIP]
 > Try out video translation in the [Azure AI Foundry portal](https://ai.azure.com/) before using the API. Use the [video translation REST API](?pivots=rest-api) to integrate video translation into your applications. For more information about the API, see [Video translation REST API](/rest/api/aiservices/videotranslation/translation-operations/create-translation).
 
-## Pre-requisites
+## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a free account before you begin.
 - An Azure AI Services resource for Speech [in a supported region](../../../video-translation-overview.md#supported-regions-and-languages). If you don't have a Speech resource, create one in the [Azure portal](https://portal.azure.com/).
