@@ -60,6 +60,9 @@ The Azure CLI and CLI extension for machine learning are used in these steps, bu
 [!INCLUDE [basic prereqs cli](includes/machine-learning-cli-prereqs.md)]
 
 * Azure RBAC is used to grant access to operations in Machine Learning. To perform the steps in this article, your user account must be assigned the Owner or Contributor role for the Machine Learning workspace, or a custom role must allow `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`. For more information, see [Manage access to an Azure Machine Learning workspace](how-to-assign-roles.md).
+
+---
+
 * Ensure that you have enough virtual machine (VM) quota allocated for deployment. Machine Learning reserves 20% of your compute resources for performing upgrades on some VM SKUs. For example, if you request 10 instances in a deployment, you must have a quota of 12 for each number of cores for the VM SKU. Failure to account for the extra compute resources results in an error. There are some VM SKUs that are exempt from the extra quota reservation. For more information on quota allocation, see [Virtual machine quota allocation for deployment](how-to-manage-quotas.md#virtual-machine-quota-allocation-for-deployment).
 * Alternatively, you could use quota from the Machine Learning shared quota pool for a limited time. [!INCLUDE [machine-learning-shared-quota](includes/machine-learning-shared-quota.md)]
 
