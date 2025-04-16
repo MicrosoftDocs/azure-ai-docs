@@ -1,16 +1,16 @@
 ---
-title: Migrate to V3 - Azure AI Translator
+title: Migrate to v3 - Azure AI Translator
 titleSuffix: Azure AI services
 description: This article provides the steps to help you migrate from V2 to V3 of the Azure AI Translator.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 01/28/2025
+ms.date: 04/15/2025
 ms.author: lajanuar
 ---
 
-# Azure AI Translator V3 Migration
+# Azure AI Translator v3 migration
 
 > [!NOTE]
 > Microsoft Translator V2 was deprecated on April 30, 2018. Migrate your applications to V3 and experience new functionality available exclusively in V3. V2 was retired on May 24, 2021.

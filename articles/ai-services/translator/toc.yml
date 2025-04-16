@@ -66,11 +66,11 @@ items:
     - name: Use the Text Translation APIs
       displayName: detection,detect,translation,transliteration,identification,length,sentence length,alternate,usage,headers,set up,status,401
       href: text-translation/how-to/use-rest-api.md
+    - name: Migrate to v4 Text translation API
+      displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
+      href: text-translation/how-to/migrate-to-v4.md
     - name: Enable Microsoft Entra ID authentication
       href: how-to/microsoft-entra-id-auth.md
-    - name: Migrate to V3 Text API
-      displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
-      href: migrate-to-v3.md
     - name: Add profanity filtering
       displayName: profanityMarker,marker,profanityAction,action
       href: profanity-filtering.md
@@ -131,12 +131,15 @@ items:
         href: text-translation/reference/v3/dictionary-examples.md
       - name: Languages
         href: text-translation/reference/v3/languages.md
+      - name: Migrate to v3 Text translation API
+      displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
+      href: text-translation/how-to/migrate-to-v3.md
     - name: Authentication and authorization
       displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
-      href: text-translation/reference/authentication.md    
+      href: text-translation/reference/authentication.md
     - name: Status codes
       displayName: 401000,405000,400000
-      href: text-translation/reference/status-response-codes.md    
+      href: text-translation/reference/status-response-codes.md
 - name: Document translation
   items:
   - name: What is Document Translation?
