@@ -4336,6 +4336,11 @@
         "redirect_document_id": false
     },
     {
+        "source_path_from_root": "/articles/machine-learning/deploy-stability-models.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#stability-ai",
+        "redirect_document_id": false
+    },    
+    {
         "source_path_from_root": "/articles/machine-learning/reference-model-inference-api.md",
         "redirect_url": "/rest/api/aifoundry/modelinference",
         "redirect_document_id": false
