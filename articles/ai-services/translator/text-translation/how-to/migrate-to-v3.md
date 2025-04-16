@@ -6,11 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-<<<<<<< HEAD
 ms.date: 04/15/2025
-=======
-ms.date: 04/14/2025
->>>>>>> 2806692380aa8538029eef8354ffdc14dce993f0
 ms.author: lajanuar
 ---
 
