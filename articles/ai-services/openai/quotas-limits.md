@@ -93,6 +93,8 @@ The following sections provide you with a quick guide to the default quotas and 
 >
 > - **Older chat models:** 1 unit of capacity = 6 RPM and 1,000 TPM.
 > - **o1 & o1-preview:** 1 unit of capacity = 1 RPM and 6,000 TPM.
+> - **o3** 1 unit of capacity = 1 RPM per 10,000 TPM
+> - **o4-mini** 1 unit of capacity = 1 RPM per 1000 TPM
 > - **o3-mini:** 1 unit of capacity = 1 RPM per 10,000 TPM.
 > - **o1-mini:** 1 unit of capacity = 1 RPM per 10,000 TPM.
 >
@@ -104,9 +106,13 @@ The following sections provide you with a quick guide to the default quotas and 
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
+| `o4-mini` | Enterprise agreement | 2 M | 2 K |
+| `o3` | Enterprise agreement | 50 M | 5 K |
 | `o3-mini` | Enterprise agreement | 50 M | 5 K |
 | `o1` & `o1-preview` | Enterprise agreement | 30 M | 5 K |
 | `o1-mini`| Enterprise agreement | 50 M | 5 K |
+| `o4-mini` | Default | 160 K M | 160  |
+| `o3` | Default | 5 M | 500 |
 | `o3-mini` | Default | 5 M | 500 |
 | `o1` & `o1-preview` | Default | 3 M | 500 |
 | `o1-mini`| Default | 5 M | 500 |
