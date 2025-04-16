@@ -1,11 +1,11 @@
 ---
-title: "Quickstart: Document Translation C# SDK"
-description: 'Document Translation processing using the C# SDK'
+title: "Quickstart: Document translation C# SDK"
+description: 'Document translation processing using the C# SDK'
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: include
-ms.date: 06/19/2024
+ms.date: 04/14/2025
 ms.author: lajanuar
 recommendations: false
 ---
@@ -44,7 +44,7 @@ Build succeeded.
 
 ### Install the client library
 
-Within the application directory, install the Document Translation client library for .NET:
+Within the application directory, install the Document translation client library for .NET:
 
 ```console
 dotnet add package Azure.AI.Translation.Document --version 2.0.0-beta
@@ -54,7 +54,7 @@ dotnet add package Azure.AI.Translation.Document --version 2.0.0-beta
 
 1. For this project, you need a **source document** uploaded to your **source container**. You can download our [document translation sample document](https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/Translator/document-translation-sample.pdf) for this quickstart. The source language is English.
 
-1. From the project directory, open the **Program.cs** file in your preferred editor or IDE. Delete the pre-existing code, including the line `Console.WriteLine("Hello World!")`.
+1. From the project directory, open the **Program.cs** file in your preferred editor or IDE. Delete the existing code, including the line `Console.WriteLine("Hello World!")`.
 
 1. In the application's **Program.cs** , create variables for your key and custom endpoint. For more information, *see* [Retrieve your key and custom domain endpoint](../../../how-to-guides/use-rest-api-programmatically.md#retrieve-your-key-and-custom-domain-endpoint).
 
@@ -115,7 +115,7 @@ class Program {
     Uri targetUri = new Uri("<targetUrl>");
     string targetLanguage = "<targetLanguageCode>"
 
-    // initialize a new instance  of the DocumentTranslationClient object to interact with the Document Translation feature
+    // initialize a new instance  of the DocumentTranslationClient object to interact with the Document translation feature
     DocumentTranslationClient client = new DocumentTranslationClient(new Uri(endpoint), new AzureKeyCredential(key));
 
     // initialize a new instance of the `DocumentTranslationInput` object to provide the location of input for the translation operation
@@ -257,7 +257,7 @@ For this quickstart, we use the latest version of [Visual Studio](https://visual
 
 1. Open the **Program.cs** file.
 
-1. Delete the pre-existing code, including the line `Console.WriteLine("Hello World!")`.
+1. Delete the existing code, including the line `Console.WriteLine("Hello World!")`.
 
 1. In the application's **Program.cs** , create variables for your key and custom endpoint. For more information, *see* [Retrieve your key and custom domain endpoint](../../../how-to-guides/use-rest-api-programmatically.md#retrieve-your-key-and-custom-domain-endpoint).
 
@@ -315,7 +315,7 @@ class Program {
     Uri targetUri = new Uri("<targetUrl>");
     string targetLanguage = "<targetLanguageCode>";
 
-    // initialize a new instance  of the DocumentTranslationClient object to interact with the Document Translation feature
+    // initialize a new instance  of the DocumentTranslationClient object to interact with the Document translation feature
     DocumentTranslationClient client = new DocumentTranslationClient(new Uri(endpoint), new AzureKeyCredential(key));
 
     // initialize a new instance of the `DocumentTranslationInput` object to provide source and target locations and target language for the translation operation

@@ -1,12 +1,12 @@
 ---
-title: "Use Microsoft Azure V3 connector to build a Document Translation flow"
+title: "Use Microsoft Azure V3 connector to build a Document translation flow"
 titleSuffix: Azure AI services
-description: Use Microsoft Azure Translator V3 connector and Power Automate to create a Document Translation flow.
+description: Use Microsoft Azure Translator V3 connector and Power Automate to create a Document translation flow.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: tutorial
-ms.date: 01/27/2025
+ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 
@@ -16,7 +16,7 @@ ms.author: lajanuar
 <!-- markdownlint-disable MD036 -->
 <!-- markdownlint-disable MD001 -->
 
-# Create an Azure AI Translator Document Translation flow (preview)
+# Create an Azure AI Translator Document translation flow (preview)
 
 > [!IMPORTANT]
 >
@@ -24,7 +24,7 @@ ms.author: lajanuar
 
 This tutorial guides you through configuring a Microsoft Azure Translator V3 connector cloud flow that supports document translation. The Translator V3 connector creates a connection between your Translator Service instance and Microsoft Power Automate enabling you to use one or more prebuilt operations as steps in your apps and workflows.
 
-Document Translation is a cloud-based REST API feature of the Azure AI Translator service. The Document Translation API enables multiple and complex document translations while preserving original document structure and data format.
+Document translation is a cloud-based REST API feature of the Azure AI Translator service. The Document translation API enables multiple and complex document translations while preserving original document structure and data format.
 
 In this tutorial:
 
@@ -130,7 +130,7 @@ Next, assign a **`Storage Blob Data Contributor`** role to the managed identity 
 
     :::image type="content" source="../../media/managed-identities/assigned-roles-window.png" alt-text="Screenshot: Azure role assignments window.":::
 
-### Configure a Document Translation flow
+### Configure a Document translation flow
 
 Now that you completed the prerequisites and initial setup, let's get started using the Translator V3 connector to create your document translation flow:
 
@@ -465,4 +465,4 @@ That's it! You learned to automate document translation processes using the Micr
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Explore the Document Translation reference guide](../../document-translation/reference/rest-api-guide.md)
+> [Explore the Document translation reference guide](../../document-translation/reference/rest-api-guide.md)
