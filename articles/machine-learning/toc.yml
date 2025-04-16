@@ -617,20 +617,6 @@ items:
       href: deploy-stability-models.md
     - name: Use Model Catalog collections with virtual network
       href: how-to-network-isolation-model-catalog.md
-    - name: Azure AI Model Inference API
-      items:
-        - name: What's the Azure AI Model Inference API?
-          href: /rest/api/aifoundry/modelinference
-        - name: Reference
-          items:
-            - name: Get Info
-              href: /rest/api/aifoundry/model-inference/get-model-info/get-model-info
-            - name: Chat Completions
-              href: /rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions
-            - name: Embeddings
-              href: /rest/api/aifoundry/model-inference/get-embeddings/get-embeddings
-            - name: Image Embeddings
-              href: /rest/api/aifoundry/model-inference/get-image-embeddings/get-image-embeddings
 - name: Use Generative AI
   items:
     - name: Build AI solutions with prompt flow
@@ -1662,6 +1648,8 @@ items:
           items:
             - name: Registry
               href: reference-yaml-registry.md
+    - name: Azure AI Model Inference API
+      href: /rest/api/aifoundry/modelinference
     - name: Azure PowerShell
       href: /powershell/module/az.machinelearningservices/
     - name: Service limits
