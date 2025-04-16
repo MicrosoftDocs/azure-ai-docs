@@ -7,7 +7,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 ms.service: azure-ai-openai
 ms.topic: overview
-ms.date: 04/14/2025
+ms.date: 04/16/2025
 ms.custom: build-2023, build-2023-dataai
 recommendations: false
 ---
