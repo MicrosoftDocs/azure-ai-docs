@@ -40,7 +40,7 @@ To add a model, you first need to identify the model that you want to deploy. Yo
 2. If you have more than 1 subscription, select the subscription where your resource is located:
 
     ```azurecli
-    az account set --subscription $subscriptionId>
+    az account set --subscription $subscriptionId
     ```
 
 3. Set the following environment variables with the name of the Azure AI Services resource you plan to use and resource group.
@@ -98,6 +98,24 @@ To add a model, you first need to identify the model that you want to deploy. Yo
 
 You can deploy the same model multiple times if needed as long as it's under a different deployment name. This capability might be useful in case you want to test different configurations for a given model, including content safety.
 
+## Use the model
+
+Deployed models in Azure AI model inference can be consumed using the [Azure AI model's inference endpoint](../../concepts/endpoints.md) for the resource. When constructing your request, indicate the parameter `model` and insert the model deployment name you have created. You can programmatically get the URI for the inference endpoint using the following code:
+
+__Inference endpoint__
+
+```azurecli
+az cognitiveservices account show  -n $accountName -g $resourceGroupName | jq '.properties.endpoints["Azure AI Model Inference API"]'
+```
+
+To make requests to the Azure AI model inference endpoint, append the route `models`, for example `https://<resource>.services.ai.azure.com/models`. You can see the API reference for the endpoint at [Azure AI model inference API reference page](https://aka.ms/azureai/modelinference).
+
+__Inference keys__
+
+```azurecli
+az cognitiveservices account keys list  -n $accountName -g $resourceGroupName
+```
+
 ## Manage deployments
 
 You can see all the deployments available using the CLI:
@@ -120,30 +138,9 @@ You can see all the deployments available using the CLI:
 3. You can delete a given deployment as follows:
 
     ```azurecli
-        az cognitiveservices account deployment delete \
+    az cognitiveservices account deployment delete \
         --deployment-name "Phi-3.5-vision-instruct" \
         -n $accountName \
         -g $resourceGroupName
-    ```
-
-## Use the model
-
-Deployed models in Azure AI model inference can be consumed using the [Azure AI model's inference endpoint](../../concepts/endpoints.md) for the resource. When constructing your request, indicate the parameter `model` and insert the model deployment name you have created. You can programmatically get the URI for the inference endpoint using the following code:
-
-__Inference endpoint__
-
-```azurecli
-az cognitiveservices account show  -n $accountName -g $resourceGroupName | jq '.properties.endpoints["Azure AI Model Inference API"]'
-```
-
-To make requests to the Azure AI model inference endpoint, append the route `models`, for example `https://<resource>.services.ai.azure.com/models`. You can see the API reference for the endpoint at [Azure AI model inference API reference page](https://aka.ms/azureai/modelinference).
-
-__Inference keys__
-
-```azurecli
-az cognitiveservices account keys list  -n $accountName -g $resourceGroupName
-```
-
+    ```    
     
-    
-
