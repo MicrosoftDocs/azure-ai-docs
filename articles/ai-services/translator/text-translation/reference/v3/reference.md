@@ -60,13 +60,6 @@ curl -X POST "https://my-swiss-n.cognitiveservices.azure.com/translator/text/v3.
 > [!NOTE]
 > Custom Translator currently unavailable in Switzerland.
 
-
-<<<<<<< HEAD
-
-## Metrics
-
-Metrics allow you to view the translator usage and availability information in Azure portal, under metrics section as shown in the following screenshot. For more information, see [Data and platform metrics](/azure/azure-monitor/essentials/data-platform-metrics).
-=======
 Subscribe to Translator or [multi-service](https://azure.microsoft.com/pricing/details/cognitive-services/) in Azure AI services, and use your key (available in the Azure portal) to authenticate.
 
 There are three headers that you can use to authenticate your subscription. This table describes how each is used:
@@ -353,7 +346,6 @@ The error code is a 6-digit number combining the 3-digit HTTP status code follow
 
 ## Metrics
 Metrics allow you to view the translator usage and availability information in Azure portal. For more information, see [Data and platform metrics](/azure/azure-monitor/essentials/data-platform-metrics).
->>>>>>> origin
 
 ![Translator Metrics](../../../media/translatormetrics.png)
 
