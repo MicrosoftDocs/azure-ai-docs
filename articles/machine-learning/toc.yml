@@ -609,6 +609,20 @@ items:
           href: /azure/ai-studio/how-to/deploy-models-gretel-navigator?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
         - name: Mistral-7B and Mixtral models
           href: /azure/ai-studio/how-to/deploy-models-mistral-open?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
+      - name: Work with embedding models
+        items:
+          - name: Work with text embedding models
+            href: ../ai-foundry/model-inference/how-to/use-embeddings.md?context=/azure/machine-learning/context/context
+          - name: Work with image embedding models
+            href: ../ai-foundry/model-inference/how-to/use-image-embeddings.md?context=/azure/machine-learning/context/context
+      - name: Work with chat models
+        items:
+          - name: Work with chat completion models
+            href: ../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/machine-learning/context/context
+          - name: Work with reasoning models
+            href: ../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/machine-learning/context/context
+          - name: Work with multimodal models
+            href: ../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/machine-learning/context/context
     - name: Built-in policy to allow specific models
       href: how-to-built-in-policy-model-deployment.md
     - name: Custom policy to allow specific models
