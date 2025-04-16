@@ -14,8 +14,9 @@ The video translation REST API facilitates seamless video translation integratio
 ## Pre-requisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a free account before you begin.
-- A Speech resource [in a supported region](../../../video-translation-overview.md#supported-regions-and-languages). If you don't have a Speech resource, create one in the [Azure portal](https://portal.azure.com/).
-- You need a video file in .mp4 format, less than 500 MB, and shorter than 60 minutes. For testing purposes, you can use the sample video file provided by Microsoft at [https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4](https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4).
+- An Azure AI Services resource for Speech [in a supported region](../../../video-translation-overview.md#supported-regions-and-languages). If you don't have a Speech resource, create one in the [Azure portal](https://portal.azure.com/).
+- An [Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview) account. 
+- You need a video file in .mp4 format, less than 5 GB, and shorter than 4 hours. For testing purposes, you can use the sample video file provided by Microsoft at [https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4](https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4).
 - Make sure video translation supports your [source and target language](../../../language-support.md?tabs=speech-translation#video-translation).
 
 > [!TIP]
@@ -48,7 +49,7 @@ To create a video translation, you need to construct an HTTP PUT request path an
 - Specify `speakerCount`: The number of speakers in the video. This is an optional parameter, and you can set it to 1 if you're unsure.
 - Specify `subtitleMaxCharCountPerSegment`: The maximum number of characters allowed per subtitle segment. This is an optional parameter, and you can set it to 30 if you're unsure.
 - Specify `exportSubtitleInVideo`: A boolean value indicating whether to export subtitles in the video. This is an optional parameter, and you can set it to `true` if you want to include subtitles in the video.
-- Specify the `videoFileUrl`: The URL of the video file you want to translate. The video must be in .mp4 format, less than 500 MB, and shorter than 60 minutes. You can upload the video to Azure Blob Storage and use the Blob URL. For testing purposes, you can use the sample video file provided by Microsoft at [https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4](https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4).
+- Specify the `videoFileUrl`: The URL of the video file you want to translate. The video must be in .mp4 format, less than 5 GB, and shorter than 4 hours. You can upload the video to Azure Blob Storage and use the Blob URL. For testing purposes, you can use the sample video file provided by Microsoft at [https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4](https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4).
 
 For authentication and authorization, you need to include the following headers and path IDs in your request:
 - Set the `Operation-Id` header: The `Operation-Id` must be unique for each operation, such as creating each iteration. Replace `Your-Operation-Id` with a unique ID for this operation.

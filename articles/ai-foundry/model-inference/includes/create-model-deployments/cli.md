@@ -138,7 +138,7 @@ You can see all the deployments available using the CLI:
 3. You can delete a given deployment as follows:
 
     ```azurecli
-        az cognitiveservices account deployment delete \
+    az cognitiveservices account deployment delete \
         --deployment-name "Phi-3.5-vision-instruct" \
         -n $accountName \
         -g $resourceGroupName
