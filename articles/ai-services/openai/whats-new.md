@@ -23,7 +23,7 @@ This article provides a summary of the latest releases and major documentation u
 
 ### o4-mini and o3 models released
 
-`o4-mini` and `o3` models are now available. These are the latest reasoning models from Azure OpenAI offering  o3 significantly enhanced reasoning, quality, and performance. For more information, see the [getting started with reasoning models page](./how-to/reasoning.md).
+`o4-mini` and `o3` models are now available. These are the latest reasoning models from Azure OpenAI offering significantly enhanced reasoning, quality, and performance. For more information, see the [getting started with reasoning models page](./how-to/reasoning.md).
 
 ### GPT-4.1 released
 
