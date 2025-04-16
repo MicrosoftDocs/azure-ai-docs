@@ -48,7 +48,7 @@ You can use real-time speech to text with the [Speech SDK](speech-sdk.md) or the
 
 | Quota | Free (F0) | Standard (S0) |
 |-----|-----|-----|
-| Maximum audio input file size | N/A | 200 MB |
+| Maximum audio input file size | N/A | 300 MB |
 | Maximum audio length | N/A | 120 minutes per file  |
 | Maximum requests per minute | N/A | 600  |
 
