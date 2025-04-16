@@ -5,7 +5,7 @@ description: Learn more about Azure AI Translator, a cloud-based neural machine 
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 01/27/2025
+ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 
@@ -19,8 +19,8 @@ Translator service supports the following features. Use the links in this table 
 
 | Feature | Description | Development options |
 |----------|-------------|--------------------------|
-| [**Text Translation**](text-translation/overview.md) | Execute text translation between supported source and target languages in real time. Create a [dynamic dictionary](dynamic-dictionary.md) and learn how to [prevent translations](prevent-translation.md) using the Translator API. | &bull; [**REST API**](text-translation/reference/rest-api-guide.md)</br></br>&bull; [**Text Translation SDK**](text-sdk-overview.md) </br></br>&bull; [**Translator container**](containers/translator-how-to-install-container.md)|
-| [**Document Translation**](document-translation/overview.md)| &bullet; **Asynchronous batch translation**: Translate batch and complex files while preserving the structure and format of the original documents. The batch translation process requires an Azure Blob storage account with containers for your source and translated documents.</br>&bullet;**Synchronous single file translation**: Translate a single document file alone or with a glossary file while preserving the structure and format of the original document. The file translation process doesn't require an Azure Blob storage account. The final response contains the translated document and is returned directly to the calling client. | &bull; [**REST API**](document-translation/reference/rest-api-guide.md)</br></br>&bull; [**Translator container**](containers/translator-how-to-install-container.md)|
+| [**Text translation**](text-translation/overview.md) | Execute text translation between supported source and target languages in real time. Create a [dynamic dictionary](dynamic-dictionary.md) and learn how to [prevent translations](prevent-translation.md) using the Translator API. | &bull; [**REST API**](text-translation/reference/rest-api-guide.md)</br></br>&bull; [**Text translation SDK**](text-sdk-overview.md) </br></br>&bull; [**Translator container**](containers/translator-how-to-install-container.md)|
+| [**Document translation**](document-translation/overview.md)| &bullet; **Asynchronous batch translation**: Translate batch and complex files while preserving the structure and format of the original documents. The batch translation process requires an Azure Blob storage account with containers for your source and translated documents.</br>&bullet;**Synchronous single file translation**: Translate a single document file alone or with a glossary file while preserving the structure and format of the original document. The file translation process doesn't require an Azure Blob storage account. The final response contains the translated document and is returned directly to the calling client. | &bull; [**REST API**](document-translation/reference/rest-api-guide.md)</br></br>&bull; [**Translator container**](containers/translator-how-to-install-container.md)|
 | [**Custom Translator**](custom-translator/overview.md) | Build customized models to translate domain- and industry-specific language, terminology, and style. [Create a dictionary (phrase or sentence)](custom-translator/concepts/dictionaries.md) for custom translations. | &bull; [**Custom Translator portal**](https://portal.customtranslator.azure.ai/)|
 
 For detailed information regarding Azure AI Translator Service request limits, *see* [**Service and request limits**](service-limits.md#text-translation).
@@ -37,8 +37,8 @@ Now, you're ready to get started! [**Create a Translator service**](create-trans
 
 * Learn more about the following features:
 
-  * [**Text Translation**](text-translation/overview.md)
-  * [**Document Translation**](document-translation/overview.md)
+  * [**Text translation**](text-translation/overview.md)
+  * [**Document translation**](document-translation/overview.md)
   * [**Custom Translator**](custom-translator/overview.md)
 
 * Review [**Translator pricing**](https://azure.microsoft.com/pricing/details/cognitive-services/translator-text-api/)
