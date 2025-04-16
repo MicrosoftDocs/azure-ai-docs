@@ -577,9 +577,9 @@ items:
     href: how-to-interactive-jobs.md
   - name: Schedule jobs
     href: how-to-schedule-pipeline-job.md
-- name: Work with foundation models
+- name: Explore AI model capabilities
   items:
-    - name: Model Catalog Overview
+    - name: Model catalog overview
       href: concept-model-catalog.md
     - name: Data, privacy, and security for Model Catalog
       href: concept-data-privacy.md
@@ -589,44 +589,26 @@ items:
       href: how-to-use-foundation-models.md
     - name: Hugging Face Hub community partner models
       href: how-to-deploy-models-from-huggingface.md
-    - name: Healthcare AI models
+    - name: Work with models from the model catalog
       items:
-        - name: Foundational AI models for healthcare
-          href: /azure/ai-studio/how-to/healthcare-ai/healthcare-ai-models?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
-        - name: MedImageInsight - embedding model
-          href: /azure/ai-studio/how-to/healthcare-ai/deploy-medimageinsight?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
-        - name: CXRReportGen - text generation model
-          href: /azure/ai-studio/how-to/healthcare-ai/deploy-cxrreportgen?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
-        - name: MedImageParse - prompted segmentation model
-          href: /azure/ai-studio/how-to/healthcare-ai/deploy-medimageparse?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
-    - name: Phi-3 family models
-      items:
-        - name: Phi-3 family chat models
-          href: how-to-deploy-models-phi-3.md
-        - name: Phi-3 chat model with vision
-          href: how-to-deploy-models-phi-3-vision.md
-        - name: Phi-3.5 chat model with vision
-          href: how-to-deploy-models-phi-3-5-vision.md
-    - name: How to deploy TimeGEN-1 model
-      href: how-to-deploy-models-timegen-1.md
-    - name: How to deploy Mistral family models
-      href: how-to-deploy-models-mistral.md
-    - name: Cohere models
-      items:
-        - name: Cohere Command models
-          href: how-to-deploy-models-cohere-command.md
-        - name: Cohere Embed models
-          href: how-to-deploy-models-cohere-embed.md
-        - name: Cohere Rerank models
-          href: how-to-deploy-models-cohere-rerank.md
-    - name: Deploy Meta Llama models
-      items:
-        - name: How to deploy Meta Llama family models
-          href: how-to-deploy-models-llama.md
-    - name: How to deploy JAIS models
-      href: how-to-deploy-models-jais.md
-    - name: AI21 Jamba models
-      href: how-to-deploy-models-jamba.md
+      - name: Featured models in the model catalog
+        href: concept-models-featured.md
+      - name: Other featured models
+        items:
+        - name: Healthcare AI models
+          items:
+          - name: Foundational AI models for healthcare
+            href: /azure/ai-studio/how-to/healthcare-ai/healthcare-ai-models?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
+          - name: MedImageInsight - embedding model
+            href: /azure/ai-studio/how-to/healthcare-ai/deploy-medimageinsight?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
+          - name: CXRReportGen - text generation model
+            href: /azure/ai-studio/how-to/healthcare-ai/deploy-cxrreportgen?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
+          - name: MedImageParse - prompted segmentation model
+            href: /azure/ai-studio/how-to/healthcare-ai/deploy-medimageparse?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
+        - name: Gretel Navigator model
+          href: /azure/ai-studio/how-to/deploy-models-gretel-navigator?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
+        - name: Mistral-7B and Mixtral models
+          href: /azure/ai-studio/how-to/deploy-models-mistral-open?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
     - name: Built-in policy to allow specific models
       href: how-to-built-in-policy-model-deployment.md
     - name: Custom policy to allow specific models
@@ -638,17 +620,17 @@ items:
     - name: Azure AI Model Inference API
       items:
         - name: What's the Azure AI Model Inference API?
-          href: reference-model-inference-api.md
+          href: /rest/api/aifoundry/modelinference
         - name: Reference
           items:
             - name: Get Info
-              href: reference-model-inference-info.md
-            - name: Embeddings
-              href: reference-model-inference-embeddings.md
+              href: /rest/api/aifoundry/model-inference/get-model-info/get-model-info
             - name: Chat Completions
-              href: reference-model-inference-chat-completions.md
-            - name: Images Embeddings
-              href: reference-model-inference-images-embeddings.md
+              href: /rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions
+            - name: Embeddings
+              href: /rest/api/aifoundry/model-inference/get-embeddings/get-embeddings
+            - name: Image Embeddings
+              href: /rest/api/aifoundry/model-inference/get-image-embeddings/get-image-embeddings
 - name: Use Generative AI
   items:
     - name: Build AI solutions with prompt flow
