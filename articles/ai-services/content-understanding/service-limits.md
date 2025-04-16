@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 04/14/2025
 ms.custom: ignite-2024-understanding-release
 ms.author: lajanuar
 ---
@@ -29,26 +29,26 @@ This article offers a quick reference of the quotas and limits for the Azure AI 
 
 | Supported File Types | File Size | Length |
 | --- | --- | --- |
-| ✓ .pdf<br> ✓ .tiff<br> ✓ .jpg<br> ✓ .png<br> ✓ .bmp<br> ✓ .heif | ≤ 200 MB | ≤ 300 pages |
-| ✓ .txt  | ≤ 1 MB | ≤ 1M characters |
+| ✓ `.pdf`<br> ✓ `.tiff`<br> ✓ `.jpg`<br> ✓ `.png`<br> ✓ `.bmp`<br> ✓ `.heif` | ≤ 200 MB | ≤ 300 pages |
+| ✓ `.txt`  | ≤ 1 MB | ≤ 1M characters |
 
 ### Image
 
 | Supported File Types | File Size | Resolution |
 | --- | --- | --- |
-| ✓ .jpg<br> ✓ .png<br> ✓ .bmp<br> ✓ .heif| ≤ 200 MB | Min: 50 x 50 pixels <br> Max: 10k x 10k pixels |
+| ✓ `.jpg`<br> ✓ `.png`<br> ✓ `.bmp`<br> ✓ `.heif`| ≤ 200 MB | Min: 50 x 50 pixels <br> Max: 10k x 10k pixels |
 
 ### Audio
 
 | Supported File Types | File Size | Length |
 | --- | --- |  --- |
-| ✓ .wav (`PCM`, A-law, μ-law) <br> ✓ .mp3 <br> ✓ .opus, .ogg (Opus)<br> ✓ .flac <br> ✓ .wma <br> ✓ .aac <br> ✓ .amr (AMR-NB, AMR-WB) <br> ✓ .webm (Opus, Vorbis) <br> ✓ .m4a (`AAC`, `ALAC`)<br> ✓ .spx | ≤ 200 MB | ≤ 2 hours |
+| ✓ `.wav` (`PCM`, A-law, μ-law) <br> ✓ `.mp3` <br> ✓ `.opus`, `.ogg` (Opus)<br> ✓ `.flac` <br> ✓ `.wma` <br> ✓ `.aac` <br> ✓ `.amr` (AMR-NB, AMR-WB) <br> ✓ `.webm` (Opus, Vorbis) <br> ✓ `.m4a` (`AAC`, `ALAC`)<br> ✓ `.spx` | ≤ 200 MB | ≤ 2 hours |
 
 ### Video
 
 | Supported File Types | File Size | Resolution | Length |
 | ---| --- | --- | --- |
-| ✓  .mp4, .m4v <br> ✓ .flv (H.264 and `AAC`) <br> ✓ .wmv, .asf <br> ✓ .avi <br> ✓ .mkv <br> ✓ .mov | ≤20 GB † | Min: 320 x 240 pixels <br>Max: 1920 x 1,080 pixels | ≤4 hours †|
+| ✓  `.mp4`, `.m4v` <br> ✓ `.flv` (H.264 and `AAC`) <br> ✓ `.wmv`, `.asf` <br> ✓ `.avi` <br> ✓ `.mkv` <br> ✓ `.mov` | ≤20 GB † | Min: 320 x 240 pixels <br>Max: 1920 x 1,080 pixels | ≤4 hours †|
 
    > [!NOTE]
    > The file size limit is 200 MB and the duration limit is 30 minutes if the video file is included directly in the analysis request.

@@ -1,13 +1,13 @@
 ---
 title: Start translation
 titleSuffix: Azure AI services
-description: Start a document translation request with the Document Translation service.
+description: Start a document translation request with the Document translation service.
 manager: nitinme
 ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 09/26/2024
+ms.date: 04/14/2025
 ---
 
 # Start batch translation
@@ -15,7 +15,7 @@ ms.date: 09/26/2024
 <!-- markdownlint-disable MD036 -->
 
 Reference</br>
-Feature: **Azure AI Translator → Document Translation**</br>
+Feature: **Azure AI Translator → Document translation**</br>
 API Version: **2024-05-01**</br>
 HTTP method: **POST**
 
@@ -26,7 +26,7 @@ HTTP method: **POST**
 
 > [!IMPORTANT]
 >
-> **All API requests to the Document Translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
+> **All API requests to the Document translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
 
 ```bash
   curl -i -X POST "{document-translation-endpoint}/translator/document/batches?api-version={date}"
@@ -153,7 +153,7 @@ Definition for the input batch translation request.
 The following are examples of batch requests.
 
 > [!NOTE]
-> In the following examples, limited access has been granted to the contents of an Azure Storage container [using a shared access signature(SAS)](/azure/storage/common/storage-sas-overview) token.
+> In the following examples, limited access is granted to the contents of an Azure Storage container [using a shared access signature(SAS)](/azure/storage/common/storage-sas-overview) token.
 
 **Translating all documents in a container**
 
@@ -312,7 +312,7 @@ The following are the possible HTTP status codes that a request returns.
 
 ## Next steps
 
-Follow our quickstart to learn more about using Document Translation and the client library.
+Follow our quickstart to learn more about using Document translation and the client library.
 
 > [!div class="nextstepaction"]
-> [Get started with Document Translation](../how-to-guides/use-rest-api-programmatically.md)
+> [Get started with Document translation](../how-to-guides/use-rest-api-programmatically.md)

@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 10/31/2024
+ms.date: 04/14/2025
 ---
 
 # Tutorial: Query an Azure AI Search index from Power Apps
