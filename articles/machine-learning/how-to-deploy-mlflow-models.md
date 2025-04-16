@@ -29,7 +29,7 @@ For no-code deployment, Azure Machine Learning:
 
 - Ensures that all the package dependencies indicated in the MLflow model are satisfied.
 - Provides an MLflow base image or curated environment that contains the following items:
-  - Packages required for Azure Machine Learning to perform inference, including [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/README_SKINNY.md).
+  - Packages required for Azure Machine Learning to perform inference, including [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/skinny/README_SKINNY.md).
   - A scoring script to perform inference.
 
 [!INCLUDE [mlflow-model-package-for-workspace-without-egress](includes/mlflow-model-package-for-workspace-without-egress.md)]

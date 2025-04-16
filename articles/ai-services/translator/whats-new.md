@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 03/07/2025
+ms.date: 04/02/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD024 -->
@@ -21,11 +21,24 @@ Azure AI Translator is a language service that enables users to translate text a
 
 Azure AI Translator service supports language translation for more than 100 languages. If your language community is interested in partnering with Microsoft to add your language to Translator, contact us via the [Translator community partner onboarding form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR-riVR3Xj0tOnIRdZOALbM9UOU1aMlNaWFJOOE5YODhRR1FWVzY0QzU1OS4u).
 
+## March 2025
+
+### Microsoft Translator Pro new features and updates
+
+[**Microsoft Translator Pro**](translator-pro/overview.md) is a mobile application designed specifically for enterprises, providing precise real-time speech-to-speech translations. The latest updates include:
+
+  * A new text-to-speech experience in full-screen mode that lets you decide which translated sentences to skip and which to play.
+
+  * An audio noise cancellation feature that ensures seamless conversations by suppressing background noise. This feature can be enabled/disabled in settings.
+
+  * On-device translation that now supports non-English source languages.
+
+
 ## February 2025
 
-### Microsoft Translator Pro app updates
+### Microsoft Translator Pro features and updates
 
-[**Microsoft Translator Pro**](translator-pro/overview.md) is a mobile app, designed specifically for enterprises, that enables seamless real-time speech-to-speech translation. The following new and updated capabilities are now available:
+[**Microsoft Translator Pro**](translator-pro/overview.md) is a mobile application, designed specifically for enterprises, that enables seamless real-time speech-to-speech translation. The following new and updated capabilities are now available:
 
 * **Enhanced administrator experience**. The history section now includes options for recording transcript and audio, exporting sessions/audio, sharing sessions, and toggling transcript/audio history without exporting to cloud storage. Additionally, administrators can now enable or disable the use of a custom phrasebook and easily browse the current phrasebook.
 * **Added content filtering**. Administrators can now enable or disable content filtering and censoring, providing greater control over content visibility.

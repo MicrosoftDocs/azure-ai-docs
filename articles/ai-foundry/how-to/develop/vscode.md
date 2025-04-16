@@ -1,7 +1,7 @@
 ---
-title: Work with Azure AI Foundry projects in VS Code
+title: Work with Azure AI Foundry projects in VS Code containers
 titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to get started with Azure AI Foundry projects in VS Code.
+description: This article provides instructions on how to get started with Azure AI Foundry projects in VS Code containers.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
@@ -13,10 +13,10 @@ ms.date: 02/14/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
-# customer intent: As a Developer, I want to use Azure AI Foundry projects in VS Code.
+# customer intent: As a Developer, I want to use Azure AI Foundry projects in VS Code containers.
 ---
 
-# Get started with Azure AI Foundry projects in VS Code (Preview)
+# Get started with Azure AI Foundry projects in VS Code containers (Preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -76,7 +76,7 @@ For more information, see [prompt flow capabilities](https://microsoft.github.io
 
 ## Use AI app templates
  
-AI app templates are linked from the right side of the **Code** tab of your project. These samples walk you through how to use the Azure AI SDKs to:
+AI app templates are linked from the right side of the **Templates** tab of your project. These samples walk you through how to use the Azure AI SDKs to:
 
 * Set up your development environment and connect to existing resources
 * Bring in your custom application code
@@ -102,4 +102,4 @@ For app templates and SDK samples in your preferred programming language, see [D
 ## Related content
 
 - [Get started building a chat app using the prompt flow SDK](../../quickstarts/get-started-code.md)
-- [Get started with Azure AI SDKs](sdk-overview.md)
+- [Get started with Azure AI Foundry SDKs](sdk-overview.md)

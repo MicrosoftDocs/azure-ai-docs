@@ -10,7 +10,7 @@ ms.custom:
   - ai-learning-hub
   - ignite-2024
 ms.topic: how-to
-ms.date: 12/04/2024
+ms.date: 03/24/2025
 ms.reviewer: jcioffi
 ms.author: ssalgado
 author: ssalgadodev
@@ -73,23 +73,12 @@ Network isolation | [Configure managed networks for Azure AI Foundry hubs](confi
 
 ### Available models for supported deployment options
 
-The following list contains Serverless API models. For Azure OpenAI models, see [Azure OpenAI Service Models](../../ai-services/openai/concepts/models.md).
+For Azure OpenAI models, see [Azure OpenAI Service Models](../../ai-services/openai/concepts/models.md).
 
-Model | Managed compute | Serverless API (pay-per-token)
---|--|--
-AI21 family models | Not available | Jamba-1.5-Mini <br> Jamba-1.5-Large
-Bria | Not available | Bria-2.3-Fast
-Cohere family models | Not available | Cohere-command-r-plus-08-2024 <br> Cohere-command-r-08-2024 <br> Cohere-command-r-plus <br> Cohere-command-r <br> Cohere-embed-v3-english <br> Cohere-embed-v3-multilingual <br> Cohere-rerank-v3.5 <br> Cohere-rerank-v3-english <br> Cohere-rerank-v3-multilingual
-DeepSeek models from Microsoft | Not available | DeepSeek-V3 <br> DeepSeek-R1
-Gretel | Not available | Gretel-Navigator
-Healthcare AI family Models | MedImageParse<BR>  MedImageInsight<BR>  CxrReportGen<BR>  Virchow<BR>  Virchow2<BR>  Prism<BR>  BiomedCLIP-PubMedBERT<BR>  microsoft-llava-med-v1.5<BR>  m42-health-llama3-med4<BR>  biomistral-biomistral-7b<BR>  microsoft-biogpt-large-pub<BR>  microsoft-biomednlp-pub<BR>  stanford-crfm-biomedlm<BR>  medicalai-clinicalbert<BR>  microsoft-biogpt<BR>  microsoft-biogpt-large<BR>  microsoft-biomednlp-pub<BR> | Not Available
-JAIS | Not available | jais-30b-chat
-Meta Llama family models | Llama-3.3-70B-Instruct<BR> Llama-3.2-3B-Instruct<BR>  Llama-3.2-1B-Instruct<BR>  Llama-3.2-1B<BR>  Llama-3.2-90B-Vision-Instruct<BR>  Llama-3.2-11B-Vision-Instruct<BR>  Llama-3.1-8B-Instruct<BR>  Llama-3.1-8B<BR>  Llama-3.1-70B-Instruct<BR>  Llama-3.1-70B<BR>  Llama-3-8B-Instruct<BR>  Llama-3-70B<BR>  Llama-3-8B<BR>  Llama-Guard-3-1B<BR>  Llama-Guard-3-8B<BR>  Llama-Guard-3-11B-Vision<BR>  Llama-2-7b<BR>  Llama-2-70b<BR>  Llama-2-7b-chat<BR>  Llama-2-13b-chat<BR>  CodeLlama-7b-hf<BR>  CodeLlama-7b-Instruct-hf<BR>  CodeLlama-34b-hf<BR>  CodeLlama-34b-Python-hf<BR>  CodeLlama-34b-Instruct-hf<BR>  CodeLlama-13b-Instruct-hf<BR>  CodeLlama-13b-Python-hf<BR>  Prompt-Guard-86M<BR>  CodeLlama-70b-hf<BR> | Llama-3.3-70B-Instruct<BR> Llama-3.2-90B-Vision-Instruct<br>  Llama-3.2-11B-Vision-Instruct<br>  Llama-3.1-8B-Instruct<br>  Llama-3.1-70B-Instruct<br>  Llama-3.1-405B-Instruct<br>  Llama-3-8B-Instruct<br>  Llama-3-70B-Instruct<br>  Llama-2-7b<br>  Llama-2-7b-chat<br>  Llama-2-70b<br>  Llama-2-70b-chat<br>  Llama-2-13b<br>  Llama-2-13b-chat<br>
-Microsoft Phi family models | Phi-3-mini-4k-Instruct <br> Phi-3-mini-128k-Instruct <br> Phi-3-small-8k-Instruct <br> Phi-3-small-128k-Instruct <br> Phi-3-medium-4k-instruct <br> Phi-3-medium-128k-instruct <br> Phi-3-vision-128k-Instruct <br> Phi-3.5-mini-Instruct <br> Phi-3.5-vision-Instruct <br> Phi-3.5-MoE-Instruct <br> Phi-4 <br> Phi-4-mini-instruct <br> Phi-4-multimodal-instruct | Phi-3-mini-4k-Instruct <br> Phi-3-mini-128k-Instruct <br> Phi-3-small-8k-Instruct <br> Phi-3-small-128k-Instruct <br> Phi-3-medium-4k-instruct <br> Phi-3-medium-128k-instruct <br> <br> Phi-3.5-mini-Instruct <br> Phi-3.5-vision-Instruct <br> Phi-3.5-MoE-Instruct <br> Phi-4 <br> Phi-4-mini-instruct <br> Phi-4-multimodal-instruct
-Mistral family models | mistralai-Mixtral-8x22B-v0-1 <br> mistralai-Mixtral-8x22B-Instruct-v0-1 <br> mistral-community-Mixtral-8x22B-v0-1 <br> mistralai-Mixtral-8x7B-v01 <br> mistralai-Mistral-7B-Instruct-v0-2 <br> mistralai-Mistral-7B-v01 <br> mistralai-Mixtral-8x7B-Instruct-v01 <br> mistralai-Mistral-7B-Instruct-v01 | Mistral-large (2411) <br> Mistral-large (2407) <br> Mistral-large (2402) <br> Mistral-small <br> Ministral-3B <br> Mistral-NeMo <br> Codestral-2501
-Nixtla | Not available | TimeGEN-1
-NTT DATA | Not available | tsuzumi-7b
-Stability AI | Not available | Stable Diffusion 3.5 Large <br> Stable Image Core <br> Stable Image Ultra
+To view a list of supported models for Serverless API or Managed Compute, go to the home page of the model catalog in [Azure AI Foundry](https://ai.azure.com). Use the **Deployment options** filter to select either **Serverless API** or **Managed Compute**. 
+
+:::image type="content" source="../media/how-to/model-catalog-overview/catalog-filter.png" alt-text="A screenshot showing how to filter by managed compute models in the catalog." lightbox="../media/how-to/model-catalog-overview/catalog-filter.png":::  
+
 
 <!-- docutune:enable -->
 
@@ -201,5 +190,5 @@ To set the public network access flag for the Azure AI Foundry hub:
 
 ## Related content
 
-* [Explore foundation models in Azure AI Foundry portal](../ai-services/how-to/connect-ai-services.md)
+* [Explore foundation models in Azure AI Foundry portal](../../ai-services/connect-services-ai-foundry-portal.md)
 * [Model deprecation and retirement in Azure AI model catalog](../concepts/model-lifecycle-retirement.md)

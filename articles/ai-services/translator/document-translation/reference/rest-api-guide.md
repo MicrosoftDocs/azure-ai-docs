@@ -1,22 +1,21 @@
 ---
-title: "Document Translation REST API reference guide"
+title: "Document translation REST API reference guide"
 titleSuffix: Azure AI services
-description: View a list of with links to the Document Translation REST APIs.
-#services: cognitive-services
+description: View a list of with links to the Document translation REST APIs.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/27/2024
+ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 
-# Document Translation operations
+# Document translation operations
 
 Reference</br>
-Feature: **Azure AI Translator → Document Translation**</br>
+Feature: **Azure AI Translator → Document translation**</br>
 
-Document Translation is a cloud-based feature of the Azure AI Translator service and is part of the Azure AI service family of REST APIs. The Batch Document Translation API translates documents across all [supported languages and dialects](../../language-support.md) while preserving document structure and data format. The available methods are listed in the following tables:
+Document translation is a cloud-based feature of the Azure AI Translator service and is part of the Azure AI service family of REST APIs. The Batch Document translation API translates documents across all [supported languages and dialects](../../language-support.md) while preserving document structure and data format. The available methods are listed in the following tables:
 
 ## API Version: **2024-05-01**
 
@@ -24,7 +23,7 @@ Document Translation is a cloud-based feature of the Azure AI Translator service
 >
 > * The current version is backward compatible with the legacy version.
 >
-> * Starting with this current version, the `get supported storage sources` method is no longer supported. The Translator service only supports Azure Blob storage.
+> * With this current version and later versions, the `get supported storage sources` method is no longer supported. The Translator service only supports Azure Blob storage.
 
 | Request|Method| Description|API path|
 |---------|:-------:|-------|-----|

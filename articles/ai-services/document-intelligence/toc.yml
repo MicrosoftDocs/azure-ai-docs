@@ -167,7 +167,10 @@ items:
     - name: Document Intelligence Studio custom projects
       displayName: get started, cors, blob, storage, upload, labels, custom, dynamic, fixed, signatures
       href: quickstarts/studio-custom-project.md
-    - name: "Get started with Document Intelligence"
+    - name: Get started with Document Intelligence Studio
+      displayName: get started, studio, upload, labels, custom, dynamic, fixed, signatures
+      href: quickstarts/get-started-studio.md
+    - name: "Get started with Document Intelligence client libraries"
       displayName: formRecognizerClient, Document Intelligence client, boundingBox, box, begin_recognize
       href: quickstarts/get-started-sdks-rest-api.md
     - name: Sample Labeling tool

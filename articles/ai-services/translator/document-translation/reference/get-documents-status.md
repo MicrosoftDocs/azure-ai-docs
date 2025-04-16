@@ -2,25 +2,24 @@
 title: Get documents status
 titleSuffix: Azure AI services
 description: The get documents status method returns the status for all documents in an asynchronous batch translation request.
-#services: cognitive-services
 manager: nitinme
 ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 08/23/2024
+ms.date: 04/14/2025
 ---
 
 # Get status for all documents
 
 Reference</br>
-Feature: **Azure AI Translator → Document Translation**</br>
+Feature: **Azure AI Translator → Document translation**</br>
 API Version: **2024-05-01**</br>
 HTTP method: **GET**
 
 > [!IMPORTANT]
 >
-> **All API requests to the Document Translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
+> **All API requests to the Document translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
 
 * Use the `get documents status` method to request the status for all documents in a translation job.
 
@@ -33,11 +32,11 @@ HTTP method: **GET**
   * Paginated responses indicate a partial result and include a continuation token in the response. The absence of a continuation token means that no other pages are available.
 
 > [!NOTE]
-> If the server can't honor `$top` and/or `$skip`, the server must return an error to the client informing about it instead of just ignoring the query options. This reduces the risk of the client making assumptions about the data returned.
+> If the server can't honor `$top` and/or `$skip`, the server must return an error to the client informing about it instead of just ignoring the query options. This action reduces the risk of the client making assumptions about the data returned.
 
 * `$orderBy` query parameter can be used to sort the returned list (ex: `$orderBy=createdDateTimeUtc asc` or `$orderBy=createdDateTimeUtc desc`).
 * The default sorting is descending by `createdDateTimeUtc`. Some query parameters can be used to filter the returned list (ex: `status=Succeeded,Cancelled`) only returns succeeded and canceled documents. 
-* The `createdDateTimeUtcStart` and `createdDateTimeUtcEnd` query parameters can be used combined or separately to specify a range of datetime to filter the returned list. 
+* The `createdDateTimeUtcStart` and `createdDateTimeUtcEnd` query parameters can be combined or used separately to specify a range of datetime to filter the returned list. 
 * The supported filtering query parameters are (`status`, `id`, `createdDateTimeUtcStart`, and `createdDateTimeUtcEnd`).
 * When both `$top` and `$skip` are included, the server should first apply `$skip` and then `$top` on the collection.
 
@@ -180,7 +179,7 @@ Status code: 500
 
 ## Next steps
 
-Follow our quickstart to learn more about using Document Translation and the client library.
+Follow our quickstart to learn more about using Document translation and the client library.
 
 > [!div class="nextstepaction"]
-> [Get started with Document Translation](../how-to-guides/use-rest-api-programmatically.md)
+> [Get started with Document translation](../how-to-guides/use-rest-api-programmatically.md)

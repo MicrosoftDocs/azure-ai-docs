@@ -6,15 +6,13 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/8/2025
+ms.date: 4/15/2025
 ms.author: eur
 zone_pivot_groups: foundry-speech-studio-rest
 #Customer intent: As a developer, I want to learn how to use video translation.
 ---
 
 # How to use video translation
-
-[!INCLUDE [Feature preview](../includes/preview-feature.md)]
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [Foundry portal include](./includes/how-to/video-translation/ai-foundry.md)]

@@ -39,7 +39,7 @@ Multimodal RAG systems face unique challenges in retrieving and ranking relevant
 
 These challenges significantly impact retrieval precision and response quality in RAG systems, necessitating advanced extraction techniques that maintain contextual integrity across diverse content types while optimizing for effective retrieval and generation.
  
-## Addressing Multimodal Data Processing for RAG with Content Understanding
+## Multimodal Data Processing for RAG with Content Understanding
 
 Content Understanding's dual extraction approach offers strategic advantages for RAG implementation that addresses ingestion, representation and query optimization challenges:
 

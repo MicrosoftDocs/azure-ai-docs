@@ -30,7 +30,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Set up
  
-1. Create a new folder `assistants-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
+1. Create a new folder `assistants-quickstart` and go to the quickstart folder with the following command:
 
     ```shell
     mkdir assistants-quickstart && cd assistants-quickstart

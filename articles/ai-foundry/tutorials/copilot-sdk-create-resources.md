@@ -57,7 +57,7 @@ You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`
 
 These steps deploy a model to a real-time endpoint from the Azure AI Foundry portal [model catalog](../how-to/model-catalog-overview.md):
 
-1. On the left navigation pane, select **Model catalog**.
+1. On the left pane, select **Model catalog**.
 1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 
 
     :::image type="content" source="../media/tutorials/chat/select-model.png" alt-text="Screenshot of the model selection page." lightbox="../media/tutorials/chat/select-model.png":::
@@ -106,7 +106,7 @@ In the Azure AI Foundry portal, check for an Azure AI Search connected resource.
 1. Use **API key** for **Authentication**.
 
     > [!IMPORTANT]
-    > The **API key** option isn't recommended for production. To select and use the recommended **Microsoft Entra ID** authentication option, you must also configure access control for the Azure AI Search service. Assign the *Search Index Data Contributor* and *Search Service Contributor* roles to your user account. For more information, see [Connect to Azure AI Search using roles](../../search/search-security-rbac.md) and [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-foundry.md).
+    > The **API key** option isn't recommended for production. To select and use the recommended **Microsoft Entra ID** authentication option, you must also configure access control for the Azure AI Search service. Assign the *Search Index Data Contributor* and *Search Service Contributor* roles to your user account. For more information, see [Connect to Azure AI Search using roles](../../search/search-security-rbac.md) and [Role-based access control in Azure AI Foundry portal](../concepts/rbac-azure-ai-foundry.md).
 
 1. Select **Add connection**.  
 

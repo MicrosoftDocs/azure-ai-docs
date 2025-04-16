@@ -1,7 +1,6 @@
 ---
 title: "Face .NET client library quickstart"
 description: Use the Face client library for .NET to detect and identify faces (facial recognition search).
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision

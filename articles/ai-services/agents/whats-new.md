@@ -15,6 +15,16 @@ ms.custom: azure-ai-agents
 
 This article provides a summary of the latest releases and major documentation updates for Azure AI Agent Service.
 
+## April 2025
+### BYO thread storage
+The Standard Agent Setup now supports **Bring Your Own (BYO) thread storage using an Azure Cosmos DB for NoSQL account**. This feature ensures all thread messages and conversation history are stored in your own resources. See the [Quickstart](./quickstart.md) for more information on how to deploy a Standard agent project.
+
+## March 2025
+
+### Microsoft Fabric tool
+
+The Microsoft Fabric tool is now available for the Azure AI Agent Service, allowing users to interact with data you have in Microsoft Fabric through chat and uncover data-driven and actionable insights. See the [how-to article](./how-to/tools/fabric.md) for more information.
+
 ## February 2025
 
 ### Use Azure AI Agent Service in the Azure AI Foundry portal

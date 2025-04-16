@@ -239,17 +239,7 @@ items:
                   - name: Deploy and run MLflow models in Spark jobs
                     href: how-to-deploy-mlflow-model-spark-jobs.md
       - name: Use R with Azure Machine Learning
-        items:
-          - name: Bring R workloads
-            href: how-to-r-overview-r-capabilities.md
-          - name: Interactive R development
-            href: how-to-r-interactive-development.md
-          - name: Adapt R scripts for production
-            href: how-to-r-modify-script-for-production.md
-          - name: Train R model
-            href: how-to-r-train-model.md
-          - name: Deploy R model
-            href: how-to-r-deploy-r-model.md
+        href: how-to-r-interactive-development.md
       - name: Work with Microsoft Fabric
         items:
           - name: Access and use batch deployments from Fabric
@@ -794,14 +784,6 @@ items:
       - name: Fairness in Machine Learning
         displayName: fairness, bias, model performance, disparity metrics, unfairness
         href: concept-fairness-ml.md
-    # v1
-      - name: Interpret ML models
-        href: ./v1/how-to-machine-learning-interpretability-aml.md
-      - name: Explain automated ML models
-        href: ./v1/how-to-machine-learning-interpretability-automl.md
-      - name: Fairness in Machine Learning
-        href: ./v1/how-to-machine-learning-fairness-aml.md
-    # end v1
       - name: Causal analysis
         href: concept-causal-inference.md
       - name: Assess errors in ML models
@@ -909,7 +891,7 @@ items:
         href: ./v1/how-to-create-machine-learning-pipelines.md
       - name: Moving data into and between ML pipeline steps (Python)
         href: ./v1/how-to-move-data-in-out-of-pipelines.md
-      - name: Use automated ML in ML pipelines (Python)
+      - name: Use AutoML in machine learning pipelines (Python)
         displayName: machine learning automl
         href: ./v1/how-to-use-automlstep-in-pipelines.md
       - name: Deploy ML pipelines (Python)
@@ -942,7 +924,7 @@ items:
           href: concept-endpoints-online.md
         - name: Model specification for online deployment
           href: concept-online-deployment-model-specification.md
-        - name: Deploy an ML model with an online endpoint
+        - name: Deploy a model to an online endpoint
           href: how-to-deploy-online-endpoints.md
         - name: Deploy models with safe rollout strategy
           href: how-to-safely-rollout-online-endpoints.md

@@ -2,13 +2,12 @@
 title: "Container: Translate document"
 titleSuffix: Azure AI services
 description: Understand the parameters, headers, and body request/response messages for the Azure AI Translator container translate document operation.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/27/2024
+ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 
@@ -37,10 +36,10 @@ Use synchronous translation processing to send a document as part of the HTTP re
 |Query parameter&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|Description| Condition|
 |---------|---------|----|
 |`-X` or `--request` `POST`|The -X flag specifies the request method to access the API.|*Required* |
-|`{endpoint}`  |The URL for your Document Translation resource endpoint|*Required* |
+|`{endpoint}`  |The URL for your Document translation resource endpoint|*Required* |
 |`targetLanguage`|Specifies the language of the output document. The target language must be one of the supported languages included in the translation scope.|*Required* |
 |`sourceLanguage`|Specifies the language of the input document. If the `sourceLanguage` parameter isn't specified, automatic language detection is applied to determine the source language. |*Optional*|
-|`-H` or `--header` `"Ocp-Apim-Subscription-Key:{KEY}`    | Request header that specifies the Document Translation resource key authorizing access to the API.|*Required*|
+|`-H` or `--header` `"Ocp-Apim-Subscription-Key:{KEY}`    | Request header that specifies the Document translation resource key authorizing access to the API.|*Required*|
 |`-F` or `--form` |The filepath to the document that you want to include with your request. Only one source document is allowed.|*Required*|
 |&bull; `document=`<br> &bull; `type={contentType}/fileExtension` |&bull; Path to the file location for your source document.</br> &bull; Content type and file extension.</br></br> Ex: **"document=@C:\Test\test-file.md;type=text/markdown"**|*Required*|
 |`-o` or `--output`|The filepath to the response results.|*Required*|
@@ -55,7 +54,7 @@ Use synchronous translation processing to send a document as part of the HTTP re
 >
 > * Each sample runs on the `localhost` that you specified with the `docker compose up` command.
 > * While your container is running, `localhost` points to the container itself.
-> * You don't have to use `localhost:5000`. You can use any port that is not already in use in your host environment.
+> * You don't have to use `localhost:5000`. You can use any port that isn't already in use in your host environment.
 
 ### Sample document
 

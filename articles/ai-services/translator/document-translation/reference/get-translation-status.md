@@ -2,19 +2,18 @@
 title: Get translation status
 titleSuffix: Azure AI services
 description: The get translation status method returns the status for a document translation request.
-#services: cognitive-services
 manager: nitinme
 ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 08/23/2024
+ms.date: 04/14/2025
 ---
 
 # Get status for a specific translation job
 
 Reference</br>
-Feature: **Azure AI Translator → Document Translation**</br>
+Feature: **Azure AI Translator → Document translation**</br>
 API Version: **2024-05-01**</br>
 HTTP method: **GET**
 
@@ -24,7 +23,7 @@ HTTP method: **GET**
 
 > [!IMPORTANT]
 >
-> **All API requests to the Document Translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
+> **All API requests to the Document translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
 
 ```bash
 curl -i -X GET "{document-translation-endpoint}/translator/document/batches/{id}?api-version={date}"
@@ -149,7 +148,7 @@ Status code: 401
 
 ## Next steps
 
-Follow our quickstart to learn more about using Document Translation and the client library.
+Follow our quickstart to learn more about using Document translation and the client library.
 
 > [!div class="nextstepaction"]
-> [Get started with Document Translation](../how-to-guides/use-rest-api-programmatically.md)
+> [Get started with Document translation](../how-to-guides/use-rest-api-programmatically.md)

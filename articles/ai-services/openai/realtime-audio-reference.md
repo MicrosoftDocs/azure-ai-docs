@@ -5,7 +5,7 @@ description: Learn how to use the Realtime API to interact with the Azure OpenAI
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 2/7/2025
+ms.date: 3/20/2025
 author: eric-urban
 ms.author: eur
 recommendations: false
@@ -31,13 +31,13 @@ You can construct a full request URI by concatenating:
 - The secure WebSocket (`wss://`) protocol.
 - Your Azure OpenAI resource endpoint hostname, for example, `my-aoai-resource.openai.azure.com`
 - The `openai/realtime` API path.
-- An `api-version` query string parameter for a supported API version such as `2024-12-17`
+- An `api-version` query string parameter for a supported API version such as `2024-10-01-preview`.
 - A `deployment` query string parameter with the name of your `gpt-4o-realtime-preview` or `gpt-4o-mini-realtime-preview` model deployment.
 
 The following example is a well-constructed `/realtime` request URI:
 
 ```http
-wss://my-eastus2-openai-resource.openai.azure.com/openai/realtime?api-version=2024-12-17&deployment=gpt-4o-realtime-preview
+wss://my-eastus2-openai-resource.openai.azure.com/openai/realtime?api-version=2024-10-01-preview&deployment=gpt-4o-realtime-preview
 ```
 
 ## Authentication
@@ -390,7 +390,7 @@ The server `conversation.item.input_audio_transcription.completed` event is the 
 
 Transcription begins when the input audio buffer is committed by the client or server (in `server_vad` mode). Transcription runs asynchronously with response creation, so this event can come before or after the response events.
 
-Realtime API models accept audio natively, and thus input transcription is a separate process run on a separate speech recognition model, currently always `whisper-1`. Thus the transcript can diverge somewhat from the model's interpretation, and should be treated as a rough guide.
+Realtime API models accept audio natively, and thus input transcription is a separate process run on a separate speech recognition model such as `whisper-1`. Thus the transcript can diverge somewhat from the model's interpretation, and should be treated as a rough guide.
 
 #### Event structure
 
@@ -1067,12 +1067,14 @@ The server `session.updated` event is returned when a session is updated by the 
 **Allowed Values:**
 
 * `whisper-1` 
+* `gpt-4o-transcribe`
+* `gpt-4o-mini-transcribe`
 
 ### RealtimeAudioInputTranscriptionSettings
 
 | Field | Type | Description | 
 |-------|------|-------------|
-| model | [RealtimeAudioInputTranscriptionModel](#realtimeaudioinputtranscriptionmodel) | The default `whisper-1` model is currently the only model supported for audio input transcription. | 
+| model | [RealtimeAudioInputTranscriptionModel](#realtimeaudioinputtranscriptionmodel) | The `whisper-1` model is currently the default model supported for audio input transcription. | 
 
 
 ### RealtimeClientEvent

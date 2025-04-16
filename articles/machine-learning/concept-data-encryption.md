@@ -97,6 +97,10 @@ For examples of creating a workspace by using an existing container registry, se
 > [!IMPORTANT]
 > Deployments to Azure Container Instances rely on the Azure Machine Learning Python SDK and CLI v1.
 
+[!INCLUDE [v1 deprecation](includes/sdk-v1-deprecation.md)]
+
+[!INCLUDE [v1 cli deprecation](includes/machine-learning-cli-v1-deprecation.md)]
+
 You can encrypt a deployed Azure Container Instances resource by using customer-managed keys. The customer-managed keys that you use for Container Instances can be stored in the key vault for your workspace.
 
 [!INCLUDE [sdk v1](includes/machine-learning-sdk-v1.md)]

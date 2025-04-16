@@ -2,14 +2,13 @@
 title: What is Video Analysis?
 titleSuffix: Azure AI services
 description: Learn about the basic concepts and features of Azure AI Vision Spatial Analysis and Video Retrieval.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ms.service: azure-ai-vision
 ms.topic: overview
-ms.date: 09/25/2024
+ms.date: 04/04/2025
 ms.custom: contperf-fy22q2, ignite-2022
 ---
 
@@ -21,6 +20,7 @@ Video Analysis includes video-related features like Spatial Analysis and Video R
 
 [!INCLUDE [spatial-analysis-deprecation](includes/spatial-analysis-deprecation.md)]
 
+<!--
 You can use Azure AI Vision Spatial Analysis to detect the presence and movements of people in video. Ingest video streams from cameras, extract insights, and generate events to be used by other systems. The service can do things like count the number of people entering a space or measure compliance with face mask and social distancing guidelines. By processing video streams from physical spaces, you can learn how people use them and maximize the space's value to your organization.
 
 Try out the capabilities of Spatial Analysis quickly and easily in your browser by using Azure AI Vision Studio.
@@ -50,8 +50,11 @@ This feature analyzes how well people follow social distancing requirements in a
 Spatial Analysis can also be configured to detect if a person is wearing a protective face covering such as a mask. A mask classifier can be enabled for the PersonCount, PersonCrossingLine, and PersonCrossingPolygon operations by configuring the `ENABLE_FACE_MASK_CLASSIFIER` parameter.
 
 :::image type="content" source="https://user-images.githubusercontent.com/11428131/137015842-ce524f52-3ac4-4e42-9067-25d19b395803.png" alt-text="Photograph showing how Spatial Analysis classifies whether people have facemasks in an elevator.":::
+-->
 
 ## Video Retrieval
+
+[!INCLUDE [video-retrieval-deprecation](includes/video-retrieval-deprecation.md)]
 
 Video Retrieval is a service that lets you create a search index, add documents (videos and images) to it, and search with natural language. Developers can define metadata schemas for each index and ingest metadata to the service to help with retrieval. Developers can also specify what features to extract from the index (vision, speech) and filter their search based on features.
 
@@ -60,24 +63,26 @@ Video Retrieval is a service that lets you create a search index, add documents 
 
 ## Input requirements
 
-#### [Spatial Analysis](#tab/sa)
-
+<!--
 Spatial Analysis works on videos that meet the following requirements:
 * The video must be in RTSP, rawvideo, MP4, FLV, or MKV format.
 * The video codec must be H.264, HEVC(H.265), rawvideo, VP9, or MPEG-4.
 
 #### [Video Retrieval](#tab/vr)
-
+-->
 [!INCLUDE [video-retrieval-input](./includes/video-retrieval-input.md)]
 
----
 
 
+<!--
 ## Responsible use of Spatial Analysis technology
 
 To learn how to use Spatial Analysis technology responsibly, see the [Transparency note](/legal/cognitive-services/computer-vision/transparency-note-spatial-analysis?context=%2fazure%2fcognitive-services%2fComputer-vision%2fcontext%2fcontext). Microsoft's transparency notes help you understand how our AI technology works and the choices system owners can make that influence system performance and behavior. They focus on the importance of thinking about the whole system including the technology, people, and environment.
+-->
 
+<!--
 ## Next step
 
 > [!div class="nextstepaction"]
 > [Install and run the Spatial Analysis container](spatial-analysis-container.md)
+-->

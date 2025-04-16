@@ -20,8 +20,6 @@ Code Interpreter allows the Assistants API to write and run Python code in a san
 > [!IMPORTANT]
 > Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token based fees for Azure OpenAI usage. If your Assistant calls Code Interpreter simultaneously in two different threads, two code interpreter sessions are created. Each session is active by default for one hour.
 
-[!INCLUDE [Assistants v2 note](../includes/assistants-v2-note.md)]
-
 ## Code interpreter support
 
 ### Supported models
@@ -140,7 +138,7 @@ assistant = client.beta.assistants.create(
   instructions="You are an AI assistant that can write code to help answer math questions.",
   model="gpt-4-1106-preview",
   tools=[{"type": "code_interpreter"}],
-  tool_resources={"code interpreter":{"file_ids":[file.id]}}
+  tool_resources={"code_interpreter":{"file_ids":[file.id]}}
 )
 ```
 

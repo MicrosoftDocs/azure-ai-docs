@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 02/27/2025
+ms.date: 03/21/2025
 ms.custom: template-concept, devx-track-python
 manager: nitinme
 ---
@@ -14,7 +14,7 @@ manager: nitinme
 # Content filtering
 
 > [!IMPORTANT]
-> The content filtering system isn't applied to prompts and completions processed by the Whisper model in Azure OpenAI Service. Learn more about the [Whisper model in Azure OpenAI](models.md#whisper).
+> The content filtering system isn't applied to prompts and completions processed by the audio models such as Whisper in Azure OpenAI Service. Learn more about the [Audio models in Azure OpenAI](models.md?tabs=standard-audio#standard-models-by-endpoint).
 
 Azure OpenAI Service includes a content filtering system that works alongside core models, including DALL-E image generation models. This system works by running both the prompt and completion through an ensemble of classification models designed to detect and prevent the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Variations in API configurations and application design might affect completions and thus filtering behavior.
 
@@ -830,9 +830,9 @@ When you do so, the following options are available for detection on tagged docu
 Here's an example chat completion messages array: 
 
 ```json
-{"role": "system", "content": "Provide some context and/or instructions to the model, including document context. \"\"\" <documents>\n*insert your document content here*\n</documents> \"\"\""}, 
+{"role": "system", "content": "Provide some context and/or instructions to the model.}, 
 
-{"role": "user", "content": "First question/message for the model to actually respond to."} 
+{"role": "user", "content": "First question/message for the model to actually respond to, including document context.  \"\"\" <documents>\n*insert your document content here*\n</documents> \"\"\"""}
 ```
 
 #### JSON escaping 

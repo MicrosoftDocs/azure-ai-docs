@@ -51,7 +51,7 @@ Before following the steps in this article, make sure you have the following pre
 * A stored secret value in the key vault. This value can then be retrieved using a key. For more information, see [Quickstart: Set and retrieve a secret from Azure Key Vault](/azure/key-vault/secrets/quick-create-python).
 
     > [!TIP]
-    > The quickstart link is to the steps for using the Azure Key Vault Python SDK. In the table of contents in the left navigation area are links to other ways to set a key.
+    > The quickstart link is to the steps for using the Azure Key Vault Python SDK. In the table of contents in the left pane are links to other ways to set a key.
 
 ## Get secrets
 
