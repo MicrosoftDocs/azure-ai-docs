@@ -27,35 +27,15 @@ In traditional content processing, simple text extraction was sufficient for man
 
 ### 1. Data Ingestion Challenges
 
-Each content modality presents unique ingestion obstacles that can significantly impact downstream RAG performance:
-
-- **Documents:** Complex layouts with multi-column formats, merged table cells, and floating elements disrupt linear content flow. Handwritten annotations and embedded visual elements further complicate processing, as systems struggle to establish meaningful connections between text and visual components, resulting in fragmented understanding and loss of critical context.
-
-- **Images:** Beyond basic OCR, standard approaches often miss implicit visual information such as visual description, identifying key objects and relationships that can aid retrieval relevance. 
-
-- **Audio:** Speaker diarization issues lead to attribution errors, particularly during overlapping speech or with similar voices. Multilingual content presents additional complexity with accented speech, dialectal variations, or mid-conversation language switching. Maintaining temporal flow is essential for preserving narrative progression in discussions where meaning builds sequentially.
-
-- **Video:** The dense informational content in video creates context window limitations, forcing difficult tradeoffs when selecting relevant content. Temporal relationships between scenes must be preserved while creating unified representations that appropriately balance visual elements, spoken content, and on-screen text.
+Multimodal content presents unique ingestion challenges that can hinder RAG performance. Documents with complex layouts, such as multi-column formats, merged table cells, and embedded visuals, often disrupt linear content flow and fragment context. Images require more than basic OCR, as implicit visual information like object relationships and scene context is frequently overlooked. Audio data faces issues with speaker diarization, overlapping speech, and multilingual complexities, making it difficult to maintain narrative coherence. Videos, with their dense informational content, pose challenges in preserving temporal relationships and balancing visual, spoken, and textual elements. Addressing these challenges is critical to ensure accurate and context-rich data ingestion for effective RAG systems.
 
 ### 2. Data Representation Challenges
 
-Traditional RAG systems face significant limitations when representing multimodal content:
-
-- **Vector representation limitations:** Standard embedding approaches often struggle to capture the full semantic richness of multimodal content, particularly when implicit relationships exist across different content types.
-
-- **Semantic fragmentation:** Converting rich multimodal content into flat text or embedding vectors often strips away critical contextual relationships, hierarchical structures, and cross-modal connections.
-
-- **Cross-modal alignment:** Establishing meaningful connections between information across different modalities (e.g., text describing an image or spoken commentary on visual content) requires sophisticated alignment techniques.
+Traditional RAG systems struggle to effectively represent multimodal content due to inherent limitations. Standard embedding approaches often fail to capture the full semantic richness of multimodal data, particularly when implicit relationships exist across different content types. This leads to **semantic fragmentation**, where critical contextual relationships, hierarchical structures, and cross-modal connections are lost during conversion into flat text or embeddings. Additionally, establishing meaningful **cross-modal alignment**—such as linking text descriptions to images or synchronizing spoken commentary with visual content—requires sophisticated techniques that many systems lack. These challenges hinder the ability to create cohesive and contextually accurate representations essential for effective retrieval and generation.
 
 ### 3. Query Optimization Challenges
 
-Multimodal RAG presents unique retrieval and response generation challenges:
-
-- **Modality bias:** Retrieval systems often favor text-based content over visual or audio information, potentially missing relevant non-textual context.
-
-- **Context fragmentation:** When retrieving information across modalities, maintaining coherent context for the generation phase becomes increasingly difficult.
-
-- **Relevance ranking across modalities:** Determining which pieces of multimodal information are most relevant to a user query requires sophisticated ranking mechanisms that understand cross-modal relationships.
+Multimodal RAG systems face unique challenges in retrieving and ranking relevant content. **Modality bias** often skews retrieval toward text-based content, overlooking valuable visual or audio information. **Context fragmentation** makes it difficult to maintain coherence when combining information from multiple modalities during the generation phase. Additionally, **relevance ranking across modalities** requires sophisticated mechanisms to evaluate and prioritize content based on cross-modal relationships, ensuring the most contextually appropriate information is surfaced for user queries.
 
 These challenges significantly impact retrieval precision and response quality in RAG systems, necessitating advanced extraction techniques that maintain contextual integrity across diverse content types while optimizing for effective retrieval and generation.
  
