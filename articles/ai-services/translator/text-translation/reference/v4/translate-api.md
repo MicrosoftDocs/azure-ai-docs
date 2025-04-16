@@ -63,14 +63,15 @@ Request parameters passed on the query string are as follows:
 | --- | --- | --- | --- |
 | **textType** | string | False | Defines whether the text being translated is plain text or HTML text. Any HTML needs to be a well-formed, complete element. Possible values are: plain (default) or html. |
 | **language** | string | False | The language code for the `source` text. If not specified, the system autodetects the language of the source text. Possible values are list of language code supported by the specified model. |
-| **script** | string | False | Specify the script of the source text. |
+| **script** | string | False | Specify the script (writing system) of the source text. |
 
 #### Required targets array parameters
 
+The **targets** array contains user-specified values for the translated (`target`) text. The language code for the translated text is the only required value.
+
 | Parameter | Type | Required? | Description |
 | --- | --- | --- | --- |
-| **`targets`** | array | True | User-specified values for the translated (`target`) text. |
-| **`language`** | string | True | The language code for the translated (`target`) text. Possible values are list of language code supported by the specified model. |
+| **`language`** | string | True | The language code for the translated (`target`) text. Values are [supported language](../../../language-support.md) codes for the translation operation. |
 
 #### Optional targets array parameters
 
