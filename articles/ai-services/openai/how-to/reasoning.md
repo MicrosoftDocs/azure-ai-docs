@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's advanced o3-mini, o1, & o1-mini rea
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 03/07/2025
+ms.date: 04/16/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 ---
