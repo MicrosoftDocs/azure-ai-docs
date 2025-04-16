@@ -68,6 +68,8 @@ The following sections provide you with a quick guide to the default quotas and 
 | `gpt-4.1` (2025-04-14) | Default | 1 M | 1 K |
 | `gpt-4.1-nano` (2025-04-14) | Enterprise Tier | 5 M | 5 K |
 | `gpt-4.1-nano` (2025-04-14) | Default | 1 M | 1 K |
+| `gpt-4.1-mini` (2025-04-14) | Enterprise Tier | 5 M | 5 K |
+| `gpt-4.1-mini` (2025-04-14) | Default | 1 M | 1 K |
 
 
 ## computer-use-preview global standard
