@@ -5,7 +5,7 @@ description: Known and common issues with Azure AI Translator.
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/01/2025
+ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 
@@ -18,20 +18,20 @@ Azure AI Translator is updated regularly and we're continually improving and enh
 * For more information regarding service-level outages, *see* the [Azure status page](https://azure.status.microsoft/en-us/status). 
 * To set up outage notifications and alerts, *see* the [Azure Service Health Portal](/azure/service-health/service-health-portal-update).
 
-### Text Translation
+### Text translation
 
-This table lists the current known issues and workarounds for the `Text Translator` feature:
+This table lists the current known issues and workarounds for the `Text translation` feature:
 
 | **Issue ID** | **Category / Feature Area** | **Title**  |**Description** | **Workaround** | **Issues publish date** |
 | ---| --- | ---| --- | --- |
-| `1006` | Content| Translating sentences with mixed language text | The Text Translation API doesn't support translating sentences that contain mixed language input. As a result, translations can be incorrect or incomplete when a single sentence includes multiple languages.  | Specify the intended source language, remove the mixed-language sentence, or split the text into single-language segments. | February 5, 2025|
+| `1006` | Content| Translating sentences with mixed language text | The Text translation API doesn't support translating sentences that contain mixed language input. As a result, translations can be incorrect or incomplete when a single sentence includes multiple languages.  | Specify the intended source language, remove the mixed-language sentence, or split the text into single-language segments. | February 5, 2025|
 | `1004` | Model| Preserving context and pronouns| Some translation models don't handle pronouns well; especially third-person pronouns. This issue is due to an inherent problem with sentence-level training and inference where context isn't preserved. We're actively working to shift all our models to document-level training and inference to preserve the context.| Currently, there's no direct workaround. Users should manually review and adjust pronoun usage as needed.  | February 5, 2025|
 
 
 
-### Document Translation
+### Document translation
 
-This table lists the active known issues for the `Document Translator` feature. This table includes existing challenges and new items related to complex or mixed content inputs.
+This table lists the active known issues for the `Document translation` feature. This table includes existing challenges and new items related to complex or mixed content inputs.
 
 | **Issue ID** | **Category / Feature Area** | **Title**  | **Description**| **Workaround**| **Issues publish date** |
 | --- | --- | --- | --- | --- | --- |

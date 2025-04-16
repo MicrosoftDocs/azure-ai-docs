@@ -13,7 +13,7 @@ ms.author: fasantia
   ```
 
   > [!TIP]
-  > You can use the [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/README_SKINNY.md) package, which is a lightweight MLflow package without SQL storage, server, UI, or data science dependencies. This package is recommended for users who primarily need the MLflow tracking and logging capabilities without importing the full suite of features, including deployments.
+  > You can use the [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/skinny/README_SKINNY.md) package, which is a lightweight MLflow package without SQL storage, server, UI, or data science dependencies. This package is recommended for users who primarily need the MLflow tracking and logging capabilities without importing the full suite of features, including deployments.
 
 - Create an Azure Machine Learning workspace. To create a workspace, see [Create resources you need to get started](../quickstart-create-resources.md). Review the [access permissions](../how-to-assign-roles.md#mlflow-operations) you need to perform your MLflow operations in your workspace.
 

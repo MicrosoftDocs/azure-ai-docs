@@ -2,7 +2,7 @@
 manager: nitinme
 ms.service: azure-ai-model-inference
 ms.topic: include
-ms.date: 04/09/2025
+ms.date: 1/21/2025
 ms.author: fasantia
 author: santiagxf
 ---
@@ -53,7 +53,7 @@ Console.WriteLine($"Response: {response.Data.Embeddings}");
 __Request__
 
 ```HTTP/1.1
-POST https://<resource>.services.ai.azure.com/models/embeddings?api-version=2025-04-01
+POST https://<resource>.services.ai.azure.com/models/embeddings?api-version=2024-05-01-preview
 api-key: <api-key>
 Content-Type: application/json
 ```

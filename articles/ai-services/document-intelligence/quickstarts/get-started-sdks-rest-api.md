@@ -11,7 +11,7 @@ ms.custom:
   - devx-track-js
   - devx-track-python
 ms.topic: quickstart
-ms.date: 12/17/2024
+ms.date: 04/11/2025
 ms.author: lajanuar
 zone_pivot_groups: programming-languages-set-formre
 ---

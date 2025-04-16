@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 10/31/2024
+ms.date: 04/14/2025
 ---
 
 # Create a full text query in Azure AI Search
@@ -29,7 +29,7 @@ In Azure AI Search, a query is a read-only request against the docs collection o
 
 A full text query is specified in a `search` parameter and consists of terms, quote-enclosed phrases, and operators. Other parameters add more definition to the request.
 
-The following [Search POST REST API](/rest/api/searchservice/documents/search-post) call illustrates a query request using the mentioned parameters.
+The following [Search POST REST API](/rest/api/searchservice/documents/search-post) call illustrates a query request using `search` and other parameters.
 
 ```http
 POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-07-01
@@ -46,7 +46,7 @@ POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/
 
 ### Key points
 
-+ **`search`** provides the match criteria, usually whole terms or phrases, with or without operators. Any field that is attributed as *searchable* in the index schema is a candidate for this parameter.
++ **`search`** provides the match criteria, usually whole terms or phrases, with or without operators. Any field that is attributed as *searchable* in the index schema is within scope for a search operation.
 
 + **`queryType`** sets the parser: *simple*, *full*. The [default simple query parser](search-query-simple-examples.md) is optimal for full text search. The [full Lucene query parser](search-query-lucene-examples.md) is for advanced query constructs like regular expressions, proximity search, fuzzy and wildcard search. This parameter can also be set to *semantic* for [semantic ranking](semantic-search-overview.md) for advanced semantic modeling on the query response.
 
@@ -66,7 +66,7 @@ Parameters used to shape the response:
 
 ## Choose a client
 
-For early development and proof-of-concept testing, start with the Azure portal or a REST client. Both approaches are interactive, useful for targeted testing, and help you assess the effects of different properties without having to write any code.
+For early development and proof-of-concept testing, start with the Azure portal or a REST client or a Jupyter notebook. These approaches are interactive, useful for targeted testing, and help you assess the effects of different properties without having to write any code.
 
 To call search from within an app, use the `Azure.Document.Search` client libraries in the Azure SDKs for .NET, Java, JavaScript, and Python.
 
