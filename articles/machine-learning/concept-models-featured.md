@@ -20,7 +20,7 @@ ms.collection: ce-skilling-ai-copilot
 The Azure AI model catalog offers a large selection of models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists featured models in the model catalog that can be deployed and hosted on Microsoft's servers via serverless APIs. For some of these models, you can also host them on your infrastructure for deployment via managed compute. See [Available models for supported deployment options](concept-model-catalog.md#deployment-options) to find models in the catalog that are available for deployment via managed compute or serverless API.
 
 
-To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Azure AI model inference](../model-inference/overview.md). You can find more details about individual models by reviewing their model cards in the [Azure AI model catalog](https://ai.azure.com/explore/models).
+To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Azure AI model inference](../ai-foundry/model-inference/overview.md). You can find more details about individual models by reviewing their model cards in the [Azure AI model catalog](https://ai.azure.com/explore/models).
 
 :::image type="content" source="../ai-foundry/media/models-featured/models-catalog.gif" alt-text="An animation showing Azure AI studio model catalog section and the models available." lightbox="../ai-foundry/media/models-featured/models-catalog.gif":::
 
@@ -154,7 +154,7 @@ DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks 
 | [DeepSeek-V3](https://ai.azure.com/explore/models/deepseek-v3/version/1/registry/azureml-deepseek) <br />(Legacy) | [chat-completion](../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/machine-learning/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
 | [DeepSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek) | [chat-completion with reasoning content](../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/machine-learning/context/context) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
 
-For a tutorial on DeepSeek-R1, see [Tutorial: Get started with DeepSeek-R1 reasoning model in Azure AI model inference](../model-inference/tutorials/get-started-deepseek-r1.md?context=/azure/machine-learning/context/context).
+For a tutorial on DeepSeek-R1, see [Tutorial: Get started with DeepSeek-R1 reasoning model in Azure AI model inference](../ai-foundry/model-inference/tutorials/get-started-deepseek-r1.md).
 
 See [this model collection in the Azure AI model catalog](https://ai.azure.com/explore/models?&selectedCollection=deepseek).
 
@@ -250,7 +250,7 @@ For more examples of how to use Phi-3 family models, see the following examples:
 Mistral AI offers two categories of models, namely: 
 
 - _Premium models_: These include Mistral Large, Mistral Small, Mistral-OCR-2503, and Ministral 3B models, and are available as serverless APIs with pay-as-you-go token-based billing.  
-- _Open models_: These include Mistral-small-2503, Codestral, and Mistral Nemo (that are available as serverless APIs with pay-as-you-go token-based billing), and [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](../how-to/deploy-models-mistral-open.md)(that are available to download and run on self-hosted managed endpoints).
+- _Open models_: These include Mistral-small-2503, Codestral, and Mistral Nemo (that are available as serverless APIs with pay-as-you-go token-based billing), and [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](../ai-foundry/how-to/deploy-models-mistral-open.md?context=/azure/machine-learning/context/context)(that are available to download and run on self-hosted managed endpoints).
 
 
 | Model  | Type | Capabilities |
@@ -363,4 +363,4 @@ For examples of how to use Stability AI models, see the following examples:
 - [Deploy models as serverless API endpoints](how-to-deploy-models-serverless.md)
 - [Model catalog and collections](concept-model-catalog.md)
 - [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md)
-- [Content safety for models curated by Azure AI in the model catalog](model-catalog-content-safety.md)
+- [Content safety for models curated by Azure AI in the model catalog](../ai-foundry/concepts/model-catalog-content-safety.md)
