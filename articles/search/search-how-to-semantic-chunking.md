@@ -202,7 +202,7 @@ POST {endpoint}/skillsets?api-version=2024-11-01-preview
 
 {
   "name": "my_skillset",
-  "description": "A skillset for structure-aware chunking and vectorization with a index projection around markdown section",
+  "description": "A skillset for structure-aware chunking and vectorization with an index projection around markdown section",
   "skills": [
     {
       "@odata.type": "#Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill",
