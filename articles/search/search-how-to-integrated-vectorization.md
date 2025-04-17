@@ -115,7 +115,7 @@ In this section, you prepare your data for integrated vectorization by uploading
 
    1. From the left pane, select **Security + networking** > **Access keys**.
 
-   1. Copy either connection string. You specify this string later in the [Set variables](#set-variables) step.
+   1. Copy either connection string, which you specify later in [Set variables](#set-variables).
 
 1. (Optional) Synchronize deletions in your container with deletions in the search index. To configure your indexer for deletion detection:
 
@@ -147,7 +147,7 @@ In this section, you prepare your data for integrated vectorization by uploading
 
    1. From the left pane, select **Security + networking** > **Access keys**.
 
-   1. Copy either connection string. You specify this string later in the [Set variables](#set-variables) step.
+   1. Copy either connection string, which you specify later in [Set variables](#set-variables).
 
 1. (Optional) Synchronize deletions in your container with deletions in the search index. To configure your indexer for deletion detection:
 
@@ -185,9 +185,9 @@ In this section, you prepare your data for integrated vectorization by uploading
 
    1. At the top of your browser, locate the lakehouse URL, which has the following format: `https://msit.powerbi.com/groups/00000000-0000-0000-0000-000000000000/lakehouses/11111111-1111-1111-1111-111111111111?experience=power-bi`.
 
-   1. Copy the workspace ID, which is listed after "groups" in the URL. You specify this ID later in the [Set variables](#set-variables) step. In our example, the workspace ID is `00000000-0000-0000-0000-000000000000`.
+   1. Copy the workspace ID, which is listed after "groups" in the URL. You specify this ID later in [Set variables](#set-variables). In our example, the workspace ID is `00000000-0000-0000-0000-000000000000`.
 
-   1. Copy the lakehouse ID, which is listed after "lakehouses" in the URL. You specify this ID later in the [Set variables](#set-variables) step. In our example, the lakehouse ID is `11111111-1111-1111-1111-111111111111`.
+   1. Copy the lakehouse ID, which is listed after "lakehouses" in the URL. You specify this ID later in [Set variables](#set-variables). In our example, the lakehouse ID is `11111111-1111-1111-1111-111111111111`.
 
 ---
 
@@ -197,7 +197,7 @@ In this section, you prepare your Azure AI resource for integrated vectorization
 
 ### [Azure OpenAI](#tab/prepare-model-aoai)
 
-Azure AI Search supports text-embedding-ada-002, text-embedding-3-small, and text-embedding-3-large. Internally, Azure AI Search calls the [AzureOpenAIEmbedding skill](cognitive-search-skill-azure-openai-embedding.md) to connect to Azure OpenAI.
+Azure AI Search supports text-embedding-ada-002, text-embedding-3-small, and text-embedding-3-large. Internally, Azure AI Search calls the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) to connect to Azure OpenAI.
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure OpenAI resource.
 
@@ -217,19 +217,17 @@ Azure AI Search supports text-embedding-ada-002, text-embedding-3-small, and tex
 
    1. From the left pane, select **Resource Management** > **Keys and Endpoint**.
 
-   1. Copy the endpoint for your Azure OpenAI resource. You specify this URL later in the [Set variables](#set-variables) step.
+   1. Copy the endpoint for your Azure OpenAI resource. You specify this URL later in [Set variables](#set-variables).
 
 1. To deploy an embedding model:
 
    1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/) and select your Azure OpenAI resource.
 
-   1. From the left pane, select **Shared resources** > **Deployments**.
-
-   1. Select **Deploy model** > **Deploy base model**.
+   1. From the left pane, select **Model catalog**.
 
    1. Deploy a [supported embedding model](#supported-embedding-models).
 
-   Make a note of the deployment name, which you specify later in the [Set variables](#set-variables) step.
+   1. Copy the deployment and model names, which you specify later in [Set variables](#set-variables). The deployment name is the custom name you chose, while the model name is the model you deployed, such as `text-embedding-ada-002`.
 
 ### [Azure AI Vision](#tab/prepare-model-ai-vision)
 
@@ -254,9 +252,9 @@ Azure AI Search supports Azure AI Vision image retrieval through multimodal embe
 
 ### [Azure AI Foundry model catalog](#tab/prepare-model-catalog)
 
-Azure AI Search supports Azure, Cohere, and Facebook embedding models in the [Azure AI Foundry](https://ai.azure.com/) model catalog, but it doesn't currently support the OpenAI CLIP models. Internally, Azure AI Search calls the [AML skill](cognitive-search-aml-skill.md) to connect to the catalog.
+Azure AI Search supports Azure, Cohere, and Facebook embedding models in the [Azure AI Foundry](https://ai.azure.com/) model catalog, but it doesn't currently support the OpenAI CLIP models. Internally, Azure AI Search calls the [Azure Machine Learning (AML) skill](cognitive-search-aml-skill.md) to connect to the catalog.
 
-For the model catalog, you should have an [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource) and an [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects).
+For the model catalog, you should have an [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects) with a [hub that's connected to an Azure OpenAI resource and an Azure AI Search service](/azure/ai-foundry/how-to/create-projects#create-a-project).
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure OpenAI resource.
 
@@ -272,23 +270,23 @@ For the model catalog, you should have an [Azure OpenAI resource](/azure/ai-serv
 
    1. Select your subscription and the managed identity of your search service.
 
-1. To obtain an endpoint:
-
-   1. From the left pane, select **Resource Management** > **Keys and Endpoint**.
-
-   1. Copy the endpoint for your Azure OpenAI resource. You specify this URL later in the [Set variables](#set-variables) step.
-
-1. To deploy an embedding model from the model catalog:
+1. To deploy an embedding model:
 
    1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/) and select your project.
 
-   1. From the left pane, select **My assets** > **Models + endpoints**.
-
-   1. Select **Deploy model** > **Deploy base model**.
+   1. From the left pane, select **Model catalog**.
 
    1. Deploy a [supported embedding model](#supported-embedding-models).
 
-   Make a note of the deployment name, which you specify later in the [Set variables](#set-variables) step.
+   1. Copy the deployment and model names, which you specify later in [Set variables](#set-variables). The deployment name is the custom name you chose, while the model name is the model you deployed, such as `Cohere-embed-v3-english`.
+
+1. To obtain an endpoint:
+
+   1. From the left pane, select **My assets** > **Models + endpoints**.
+
+   1. Select the model you deployed.
+
+   1. On the **Details** tab, copy the endpoint. You specify this URL later in [Set variables](#set-variables).
 
 ---
 
@@ -313,21 +311,21 @@ In this section, you specify the connection information for your Azure AI Search
    |--|--|--|
    | Azure Blob Storage | `@storageConnectionString` and `@blobContainer` | The connection string and the name of the container you created in [Prepare your data](#prepare-your-data). |
    | ADLS Gen2 | `@storageConnectionString` and `@blobContainer` | The connection string and the name of the container you created in [Prepare your data](#prepare-your-data). |
-   | OneLake | `@workspaceId` and `@lakehouseId` | The workspace and lakehouse IDs you obtained in [Prepare your data](#prepare-your-data).  |
+   | OneLake | `@workspaceId` and `@lakehouseId` | The workspace and lakehouse IDs you obtained in [Prepare your data](#prepare-your-data). |
 
 1. Depending on your embedding model provider, add the following variables.
 
    | Embedding model provider | Variables | Enter this information |
    |--|--|--|
-   | Azure OpenAI | `@XYZ` | The endpoint you obtained in [Prepare your embedding model](#prepare-your-embedding-model). |
+   | Azure OpenAI | `@aoaiEndpoint`, `@aoaiDeploymentName`, and `@aoaiModelName` | The endpoint, deployment name, and model name you obtained in [Prepare your embedding model](#prepare-your-embedding-model). |
    | Azure AI Vision | `@XYZ` | ... |
    | Azure AI Foundry model catalog | `@XYZ` | ... |
 
-1. To verify the parameters, send the following request.
+1. To verify the variables, send the following request.
 
    ```HTTP
    ### List existing indexes by name
-   GET  {{baseUrl}}/indexes?api-version=2024-07-01&$select=name  HTTP/1.1
+   GET  {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
      Content-Type: application/json
      Authorization: Bearer {{token}}
    ```
@@ -336,7 +334,7 @@ In this section, you specify the connection information for your Azure AI Search
 
 <!--
 
-1. Update the placeholders with the following information. Depending on your data source and embedding model provider, delete any inapplicable parameters.
+1. Update the placeholders with the following information. Depending on your data source and embedding model provider, delete any inapplicable variables.
 
    1. For `@baseUrl`, enter the endpoint you obtained in [Get connection information for Azure AI Search](#get-connection-information-for-azure-ai-search).
 
@@ -374,7 +372,7 @@ In this section, you specify the connection information for your Azure AI Search
 
    | Embedding model provider | Variables | Enter this information |
    |--|--|--|
-   | Azure OpenAI | `AZURE_OPENAI_RESOURCE` and `AZURE_OPENAI_DEPLOYMENT_NAME` | The endpoint and the name of the model you deployed in [Prepare your embedding model](#prepare-your-embedding-model). |
+   | Azure OpenAI | `AZURE_OPENAI_ACCOUNT` and `AZURE_DEPLOYMENT_MODEL` | The endpoint, model name, and dep [Prepare your embedding model](#prepare-your-embedding-model). |
    | Azure AI Vision | `XYZ` | ... |
    | Azure AI Foundry model catalog | `XYZ` | ... |
 
@@ -386,17 +384,16 @@ In this section, you connect to a [supported data source](#supported-data-source
 
 ### [REST](#tab/connect-data-rest)
 
-1. To define a data source that provides connection information during indexing, call [Create Data Source](/rest/api/searchservice/data-sources/create).
+1. Use [Create Data Source](/rest/api/searchservice/data-sources/create) to define a data source that provides connection information during indexing.
 
    ```HTTP
    ### Create a data source
-   POST {{baseUrl}}/datasources?api-version=2023-11-01  HTTP/1.1
+   POST {{baseUrl}}/datasources?api-version=2024-07-01  HTTP/1.1
      Content-Type: application/json
      Authorization: Bearer {{token}}
 
      {
        "name": "my-data-source",
-       "description": null,
        "type": "azureblob",
        "subtype": null,
        "credentials": {
@@ -448,76 +445,84 @@ In this section, you connect to a [supported data source](#supported-data-source
 
 ## Create a skillset
 
-In this section, you create a skillset that calls a built-in skill to chunk your content and an embedding skill to create vector representations of the chunks.
-
-### Define the skillset
+In this section, you create a [skillset](cognitive-search-working-with-skillsets.md) that calls a built-in skill to chunk your content and an embedding skill to create vector representations of the chunks. The skillset is executed during indexing in a later section.
 
 ### Call a built-in skill to chunk your content
 
-Partitioning your content into chunks helps you meet the requirements of your embedding model and prevents data loss due to truncation. For more information about chunking, see [Chunk large documents for vector search solutions in Azure AI Search](vector-search-how-to-chunk-documents.md).
+Partitioning your content into chunks helps you meet the requirements of your embedding model and prevents data loss due to truncation. For more information about chunking, see [Chunk large documents for vector search solutions](vector-search-how-to-chunk-documents.md).
 
 For built-in data chunking, Azure AI Search offers the [Text Split skill](cognitive-search-skill-textsplit.md) and [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md). The Text Split skill breaks text into sentences or pages of a particular length, while the Document Layout skill breaks content based on paragraph boundaries.
 
 ### [REST](#tab/built-in-skill-rest)
 
-1. To specify a built-in skill, call [Create Skillset](/rest/api/searchservice/skillsets/create). The body of the following request specifies both the Text Split skill and the Document Layout skill.
+1. Use [Create Skillset](/rest/api/searchservice/skillsets/create) to define a skillset.
 
    ```HTTP
-   POST {{baseUrl}}/skillsets?api-version=2024-07-01
+   ### Create a skillset
+   POST {{baseUrl}}/skillsets?api-version=2024-07-01  HTTP/1.1
+     Content-Type: application/json
+     Authorization: Bearer {{token}}
 
-   {
-     "name": "my-skillset",
-     "description": "A skillset for integrated vectorization",
-     "skills": [
-      {
-        "@odata.type": "#Microsoft.Skills.Text.SplitSkill",
-        "name": "my_markdown_section_split_skill",
-        "description": "A skill that splits text into chunks",
-        "context": "/document/markdownDocument/*",
-        "inputs": [
-         {
-           "name": "text",
-           "source": "/document/markdownDocument/*/content",
-           "inputs": []
-         }
-        ],
-        "outputs": [
-         {
-           "name": "textItems",
-           "targetName": "pages"
-         }
-        ],
-        "defaultLanguageCode": "en",
-        "textSplitMode": "pages",
-        "maximumPageLength": 2000,
-        "pageOverlapLength": 500,
-        "unit": "characters"
-      },
-      {
-        "@odata.type": "#Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill",
-        "name": "my_document_intelligence_layout_skill",
-        "context": "/document",
-        "outputMode": "oneToMany",
-        "inputs": [
-         {
-           "name": "file_data",
-           "source": "/document/file_data"
-         }
-        ],
-        "outputs": [
-         {
-           "name": "markdown_document",
-           "targetName": "markdownDocument"
-         }
-        ],
-        "markdownHeaderDepth": "h3"
-      },
+     {
+       "name": "my-skillset",
+       "skills": [
+        {
+
+        }
+       ]
+     }
    ```
 
-1. Delete the skill you don't want to use.
+1. In the `skills` array, specify the Text Split skill or Document Layout skill. You can paste one of the following definitions.
+
+   ```HTTP
+        {
+          "@odata.type": "#Microsoft.Skills.Text.SplitSkill",
+          "name": "my-text-split-skill",
+          "textSplitMode": "pages",
+          "maximumPageLength": 1000,
+          "pageOverlapLength": 100,
+          "maximumPagesToTake": 1,
+          "defaultLanguageCode": "en",
+          "inputs": [
+           {
+             "name": "text",
+             "source": "/document/content",
+             "inputs": []
+           }
+          ],
+          "outputs": [
+           {
+             "name": "text_items",
+             "targetName": "my_pages"
+           }
+          ],
+        },
+        {
+          "@odata.type": "#Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill",
+          "name": "my-document-layout-skill",
+          "context": "/document",
+          "outputMode": "oneToMany",
+          "markdownHeaderDepth": "h3"
+          "inputs": [
+           {
+             "name": "file_data",
+             "source": "/document/file_data"
+           }
+          ],
+          "outputs": [
+           {
+             "name": "markdown_document",
+             "targetName": "markdown_document"
+           }
+          ]
+        }
+       ]
+     }
+   ```
 
 > [!NOTE]
-> The Document Layout skill is in preview. If you want to call this skill, use the [Create Skillset 2024-11-01-preview](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2024-11-01-preview&preserve-view=true) REST API. Otherwise, you can use...
+> The Document Layout skill is in public preview. If you want to call this skill, use a preview REST API.
 
 ### [Python](#tab/built-in-skill-python)
 
@@ -525,80 +530,77 @@ For built-in data chunking, Azure AI Search offers the [Text Split skill](cognit
 
 ### Call an embedding skill to vectorize the chunks
 
-For chunk vectorization, ... embedding skill that's attached to a [supported embedding model](#supported-embedding-models).
+To vectorize your chunked content, the skillset needs an embedding skill that points to a [supported embedding model](#supported-embedding-models). This article covers three embedding skills:
+
++ [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md)
++ [Azure AI Vision skill](cognitive-search-skill-vision-vectorize.md)
++ [AML skill](cognitive-search-aml-skill.md) for the Azure AI Foundry model catalog
 
 ### [REST](#tab/embedding-skill-rest)
 
-1. Expand the body of the previous request by specifying an embedding skill...
+1. After the built-in chunking skill in the `skills` array, paste the following embedding skill definitions.
 
    ```HTTP
-      {
-        "@odata.type": "#Microsoft.Skills.Text.AzureOpenAIEmbeddingSkill",
-        "name": "my_azure_openai_embedding_skill",
-        "context": "/document/markdownDocument/*/pages/*",
-        "inputs": [
-         {
-           "name": "text",
-           "source": "/document/markdownDocument/*/pages/*",
-           "inputs": []
-         }
-        ],
-        "outputs": [
-         {
-           "name": "embedding",
-           "targetName": "text_vector"
-         }
-        ],
-        "resourceUri": "https://<subdomain>.openai.azure.com",
-        "deploymentId": "text-embedding-3-small",
-        "apiKey": "<Azure OpenAI api key>",
-        "modelName": "text-embedding-3-small"
-      }
-     ],
-     "cognitiveServices": {
-      "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
-      "key": "<Cognitive Services api key>"
-     },
-     "indexProjections": {
-      "selectors": [
         {
-         "targetIndexName": "my_consolidated_index",
-         "parentKeyFieldName": "text_parent_id",
-         "sourceContext": "/document/markdownDocument/*/pages/*",
-         "mappings": [
-           {
-            "name": "text_vector",
-            "source": "/document/markdownDocument/*/pages/*/text_vector"
-           },
-           {
-            "name": "chunk",
-            "source": "/document/markdownDocument/*/pages/*"
-           },
-           {
-            "name": "title",
-            "source": "/document/title"
-           },
-           {
-            "name": "header_1",
-            "source": "/document/markdownDocument/*/sections/h1"
-           },
-           {
-            "name": "header_2",
-            "source": "/document/markdownDocument/*/sections/h2"
-           },
-           {
-            "name": "header_3",
-            "source": "/document/markdownDocument/*/sections/h3"
-           }
-         ]
+          "@odata.type": "#Microsoft.Skills.Text.AzureOpenAIEmbeddingSkill",
+          "resourceUri": "{{aoaiEndpoint}}",
+          "deploymentId": "{{aoaiDeploymentName}}",
+          "modelName": "{{aoaiModelName}}",
+          "dimensions": 1536,
+          "inputs": [
+            {
+              "name": "text",
+              "source": "/document/pages*"
+            }
+          ],
+          "outputs": [
+            {
+              "name": "embedding"
+            }
+          ]
+        },
+        {
+          "@odata.type": "#Microsoft.Skills.Vision.VectorizeSkill",
+          "context": "/document",
+          "modelVersion": "2023-04-15",
+          "inputs": [
+            {
+              "name": "url",
+              "source": "/document/metadata_storage_path"
+            },
+            {
+              "name": "queryString",
+              "source": "/document/metadata_storage_sas_token"
+            }
+          ],
+          "outputs": [
+            {
+              "name": "vector"
+            }
+          ]
+        },
+        {
+          "@odata.type": "#Microsoft.Skills.Custom.AmlSkill",
+          "resourceId": "{{modelEndpoint}}",
+          "context": "/document",
+          "inputs": [
+            {
+              "name": "text",
+              "source": "/document/content"
+            }
+          ],
+          "outputs": [
+            {
+              "name": "detected_language_code"
+            }
+          ]
         }
-      ],
-      "parameters": {
-        "projectionMode": "skipIndexingParentDocuments"
-      }
-     }
-   }
    ```
+
+1. If you're using the Azure OpenAI Embedding skill, set `dimensions` to the [number of embeddings generated by your embedding model](cognitive-search-skill-azure-openai-embedding.md#supported-dimensions-by-modelname).
+
+> [!NOTE]
+> The Azure AI Vision skill and AML skill (for indexer connections to the Azure AI Foundry model catalog) are in public preview. If you want to call these skills, use a preview REST API.
 
 ### [Python](#tab/embedding-skill-python)
 
@@ -606,9 +608,22 @@ For chunk vectorization, ... embedding skill that's attached to a [supported emb
 
 ## Create a vector index
 
-In this section, you...
+In this section, you set up physical data structures on your Azure AI Search service by creating a [vector index](vector-store.md). The schema for a vector index requires the following:
+
++ Name
++ Key field (string)
++ One or more vector fields
++ Vector configuration
+
+Vector fields must be searchable and retrievable, but they can't be filterable, facetable, or sortable. They also can't have analyzers, normalizers, or synonym map assignments.
+
+In addition to vector fields, the sample index in the following steps contains nonvector fields for human-readable content. It's common to have human-readable versions of the content you want to vectorize. For example, if you have a chunk of text from a PDF file, your index schema should include the plain-text equivalent of the vectorized text.
 
 ### [REST](#tab/vector-index-rest)
+
+1. Use [Create Index](/rest/api/searchservice/indexes/create) to define a minimum schema.
+
+1. so that you have a definition to work with before adding a vector configuration and vector fields.
 
 ### [Python](#tab/vector-index-python)
 
@@ -616,11 +631,13 @@ In this section, you...
 
 ## Add a vectorizer to the index
 
-In this section, you...
+In this section, you add a vectorizer and vector search profile to the index schema you created in the previous section. Vector fields are indexed using algorithms specified in a vector profile.
 
 See vector-search-how-to-configure-vectorizer#define-a-vectorizer-and-vector-profile.
 
 ### [REST](#tab/vectorizer-rest)
+
+1. Use [Create or Update Index](/rest/api/searchservice/indexes/create-or-update)...
 
 ### [Python](#tab/vectorizer-python)
 
