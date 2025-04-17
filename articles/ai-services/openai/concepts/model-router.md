@@ -37,6 +37,8 @@ If you select **Auto-update** at the deployment step (see [Manage models](/azure
 
 ## Limitations
 
+See quotas and limits
+
 Model router doesn't process input images or audio.
 
 Global Standard region support.
