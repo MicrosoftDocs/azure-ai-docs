@@ -280,7 +280,7 @@ Creates a completion for the chat message
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | audio | object | Parameters for audio output. Required when audio output is requested with<br>`modalities: ["audio"]`. <br> | No |  |
-| └─ format | enum | Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`,<br>`opus`, or `pcm16`. <br><br>Possible values: `wav`, `mp3`, `flac`, `opus`, `pcm16` | No |  |
+| └─ format | enum | Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`,<br>`opus`, or `pcm16`. <br><br>Possible values: `wav`, `mp3`, `flac`, `opus`, `pcm16`<br> When using `gpt-4o-audio-preview` and `stream` is set to true the only supported audio format is `pcm16`. | No |  |
 | └─ voice | enum | Specifies the voice type. Supported voices are `alloy`, `echo`, <br>`fable`, `onyx`, `nova`, and `shimmer`.<br><br>Possible values: `alloy`, `echo`, `fable`, `onyx`, `nova`, `shimmer` | No |  |
 | data_sources | array |   The configuration entries for Azure OpenAI chat extensions that use them.<br>  This additional specification is only compatible with Azure OpenAI. | No |  |
 | frequency_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.<br> | No | 0 |
