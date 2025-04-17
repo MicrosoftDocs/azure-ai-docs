@@ -202,6 +202,7 @@ sections:
           > Also, the first run of either container might take longer because models are being paged into memory.
 
           - Real-time performance varies depending on concurrency. With a concurrency of 1, an NTTS container instance can achieve 10x real-time performance. However, when concurrency increases to 5, real-time performance drops to 3x or lower. We recommended sending less than 5 concurrent requests in one container. Start more containers for increased concurrency.
+          - In our internal online clusters, all pods are periodically restarted to ensure the overall stability of the service. Therefore, if you plan to apply our TTS Image to your online service, please make sure to restart these pods weekly. The `restart` means `terminate the old pods and launch new pods as replacements.` here.
           
           # [Speech language identification](#tab/lid)
 
