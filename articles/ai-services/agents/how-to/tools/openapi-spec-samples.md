@@ -80,7 +80,7 @@ public partial class Sample_Agent_OpenAPI : SamplesBase<AIProjectsTestEnvironmen
 
 
 ## Step 2: Create the OpenAPI Spec tool definition
-You might want to store the OpenAPI specification in another file and import the content to initialize the tool. Note the sample code is using `anonymous` as authentication type.
+You might want to store the OpenAPI specification in another file and import the content to initialize the tool. The sample code is using `anonymous` as the authentication type.
 
 ```csharp
     OpenApiAnonymousAuthDetails oaiAuth = new();
@@ -183,7 +183,7 @@ project_client = AIProjectClient.from_connection_string(
 
 
 ## Step 2: Create the OpenAPI Spec tool definition
-You might want to store the OpenAPI specification in another file and import the content to initialize the tool. Note the sample code is using `anonymous` as authentication type.
+You might want to store the OpenAPI specification in another file and import the content to initialize the tool. The sample code is using `anonymous` as the authentication type.
 
 
 ```python
@@ -261,7 +261,7 @@ Create a run and observe that the model uses the OpenAPI Spec tool to provide a 
 
 ## Step 1: Create the OpenAPI Spec tool definition, agent and thread
  
-You might want to store the OpenAPI specification in another file and import the content to initialize the tool. Note the sample code is using `anonymous` as authentication type.
+You might want to store the OpenAPI specification in another file and import the content to initialize the tool. This example is using `anonymous` as the authentication type.
 
 ```console
 curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
