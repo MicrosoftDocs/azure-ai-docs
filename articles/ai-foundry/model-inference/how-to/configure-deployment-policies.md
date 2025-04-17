@@ -31,7 +31,7 @@ Follow these steps to create and assign an example custom policy to control mode
 
 2. From the left side of the Azure Policy Dashboard, select **Authoring**, **Definitions**, and then select **+ Policy definition** from the top of the page.
 
-    :::image type="content" source="../media/configure-deployment-policies/create-new-policy.png" alt-text="An screenshot showing how to create a new policy definition in Azure Policies." lightbox="../media/configure-deployment-policies/create-new-policy.png":::
+    :::image type="content" source="../media/configure-deployment-policies/create-new-policy.png" alt-text="A screenshot showing how to create a new policy definition in Azure Policies." lightbox="../media/configure-deployment-policies/create-new-policy.png":::
 
 3. In the **Policy Definition** form, use the following values:
 
@@ -157,7 +157,7 @@ To monitor compliance with the policy, follow these steps:
 
 1. From the left side of the Azure Policy Dashboard, select **Compliance**. Each policy assignment is listed with the compliance status. To view more details, select the policy assignment. The following example shows the compliance report for a policy that blocks deployments of type *Global standard*.
 
-    :::image type="content" source="../media/configure-deployment-policies/policy-compliance.png" alt-text="An screenshot showing an example of a policy compliance report for a policy that blocks Global standard deployment SKUs." lightbox="../media/configure-deployment-policies/policy-compliance.png":::
+    :::image type="content" source="../media/configure-deployment-policies/policy-compliance.png" alt-text="A screenshot showing an example of a policy compliance report for a policy that blocks Global standard deployment SKUs." lightbox="../media/configure-deployment-policies/policy-compliance.png":::
 
 ## Update the policy assignment
 

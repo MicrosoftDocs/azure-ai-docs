@@ -233,7 +233,7 @@ import os
 from azure.identity import DefaultAzureCredential
 credential = DefaultAzureCredential()
 
-# Initialize Azure AI project and Azure OpenAI conncetion with your environment variables
+# Initialize Azure AI project and Azure OpenAI connection with your environment variables
 azure_ai_project = {
     "subscription_id": os.environ.get("AZURE_SUBSCRIPTION_ID"),
     "resource_group_name": os.environ.get("AZURE_RESOURCE_GROUP"),
@@ -250,7 +250,7 @@ model_config = {
 
 from azure.ai.evaluation import GroundednessProEvaluator, GroundednessEvaluator
 
-# Initialzing Groundedness and Groundedness Pro evaluators
+# Initializing Groundedness and Groundedness Pro evaluators
 groundedness_eval = GroundednessEvaluator(model_config)
 groundedness_pro_eval = GroundednessProEvaluator(azure_ai_project=azure_ai_project, credential=credential)
 
