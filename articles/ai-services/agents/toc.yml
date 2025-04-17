@@ -64,7 +64,12 @@ items:
               href: how-to/tools/code-interpreter-samples.md
           href: how-to/tools/code-interpreter.md
         - name: Use OpenAPI defined tools
-          href: how-to/tools/openapi-spec.md
+          items:
+            - name: Overview
+              href: how-to/tools/openapi-spec.md
+              displayName: openapi spec, openapi defined tools
+            - name: How to use OpenAPI defined tools
+              href: how-to/tools/openapi-samples.md
         - name: Azure Functions
           items:
             - name: Overview
