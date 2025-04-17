@@ -273,7 +273,7 @@ The audio models via the `/audio` API can be used for speech to text, translatio
 | `tts-hd` | Text to speech optimized for quality.|
 | `gpt-4o-mini-tts` | Text to speech model powered by GPT-4o mini.<br/><br/>You can guide the voice to speak in a style or tone. |
 
-For more information see [Audio models region availability](?tabs=standard-audio#standard-models-by-endpoint) in this article.
+For more information see [Audio models region availability](?tabs=standard-audio#standard-deployment-regional-models-by-endpoint) in this article.
 
 ## Model summary table and region availability
 
