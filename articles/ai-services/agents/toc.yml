@@ -69,7 +69,7 @@ items:
               href: how-to/tools/openapi-spec.md
               displayName: openapi spec, openapi defined tools
             - name: How to use OpenAPI defined tools
-              href: how-to/tools/openapi-samples.md
+              href: how-to/tools/openapi-spec-samples.md
         - name: Azure Functions
           items:
             - name: Overview
