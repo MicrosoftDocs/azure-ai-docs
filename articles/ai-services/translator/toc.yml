@@ -87,25 +87,16 @@ items:
       href: firewalls.md
   - name: Reference
     items:
-    - name: 🆕 Azure AI Translator 2025-05-01-preview (v4.0)
+    - name: 🆕 Azure AI Translator 2025-05-01-preview
       items:
       - name: v4 Translator reference
         displayName: gpt, adaptive, tone, gender
-        href: text-translation/reference/v4/reference-resource.md
+        href: text-translation/reference/v4/reference-overview.md
       - name: Translate
         displayName: detection,detect
         href: text-translation/reference/v4/translate-api.md
       - name: Transliterate
         href: text-translation/reference/v4/transliterate-api.md
-      - name: Detect
-        href: text-translation/reference/v4/detect-api.md
-      - name: BreakSentence
-        displayName: detection,detect
-        href: text-translation/reference/v4/break-sentence-api.md
-      - name: Dictionary Lookup
-        href: text-translation/reference/v4/dictionary-lookup-api.md
-      - name: Dictionary Examples
-        href: text-translation/reference/v4/dictionary-examples-api.md
       - name: Languages
         href: text-translation/reference/v4/get-languages.md
     - name: Azure AI Translator v3

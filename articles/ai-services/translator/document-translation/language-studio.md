@@ -11,7 +11,7 @@ ms.custom: references_regions, build-2023
 recommendations: false
 ---
 
-# Document translation in Language Studio (Preview)
+# Document translation in Language Studio (preview)
 
 > [!IMPORTANT]
 >

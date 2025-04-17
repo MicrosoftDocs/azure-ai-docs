@@ -107,7 +107,7 @@ Azure AI Translator V3 uses neural machine translation by default. As such, it c
 
 Neural translation with the V3 text API doesn't support the use of standard categories (`SMT`, `speech`, `tech`, `generalnn`).
 
-| Version | Endpoint | GDPR Processor Compliance | Use Translator Hub | Use Custom Translator (Preview) |
+| Version | Endpoint | GDPR Processor Compliance | Use Translator Hub | Use Custom Translator (preview) |
 | :------ | :------- | :------------------------ | :----------------- | :------------------------------ |
 |Translator Version 2|    api.microsofttranslator.com|    No    |Yes    |No|
 |Translator Version 3|    api.cognitive.microsofttranslator.com|    Yes|    No|    Yes|
@@ -116,7 +116,7 @@ Neural translation with the V3 text API doesn't support the use of standard cate
 
 * It's generally available and fully supported.
 * It's GDPR-compliant as a processor and satisfies all ISO 20001 and 20018 as well as SOC 3 certification requirements.
-* It allows you to invoke the neural network translation systems you customized with Custom Translator (Preview), the new Translator neural machine translation (NMT) customization feature.
+* It allows you to invoke the neural network translation systems you customized with Custom Translator (preview), the new Translator neural machine translation (NMT) customization feature.
 * It doesn't provide access to custom translation systems created using the Microsoft Translator Hub.
 
 You're using Version 3 of the Translator if you're using the api.cognitive.microsofttranslator.com endpoint.

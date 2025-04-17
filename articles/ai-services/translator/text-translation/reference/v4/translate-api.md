@@ -1,7 +1,7 @@
 ---
-title: Azure AI Translator v4.0 translate method
+title: Azure AI Translator 2025-05-01-preview translate method
 titleSuffix: Azure AI services
-description: Understand the parameters, headers, and body messages for the Azure AI Translator v4.0 translate text method.
+description: Understand the parameters, headers, and body messages for the Azure AI Translator 2025-05-01-preview translate text method.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -10,7 +10,12 @@ ms.date: 04/07/2025
 ms.author: lajanuar
 ---
 
-# Azure AI Translator v4.0: translate (preview)
+# Azure AI Translator 2025-05-01-preview: translate
+
+>[!IMPORTANT]
+> Azure AI Translator REST API `2025-05-01-preview` is new version of the Azure AI Translator REST API **with breaking changes**.
+> It's essential to thoroughly test your code against the new release before migrating any production applications from Azure AI Translator v3.0.
+> Make sure to review your code and internal workflows for adherence to best practices and restrict your production code to versions that you fully test.
 
 Translates text.
 
@@ -36,41 +41,25 @@ Request headers include:
 | **Content-Length** | _Optional_.<br/>The length of the request body. |
 | **X-ClientTraceId** | _Optional_.<br/>A client-generated GUID to uniquely identify the request. You can omit this optional header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
 
-## Request body parameters
+#### Required parameters
 
-The body of the request is a JSON array. Each array element is a JSON object with a string property named `Text`, which represents the string to translate.
-
-```json
-[
-    {"Text":"I would really like to drive your car around the block a few times."}
-]
-```
-
-For information on character and array limits, _see_ [Request limits](../../../service-limits.md#character-and-array-limits-per-request).
-
-Request parameters passed on the query string are as follows:
-
-#### Required query parameters
+Request parameters passed with the request are as follows:
 
 | Parameter | Type | Required? | Description |
 | --- | --- | --- | --- |
 |**`api-version`**|string|True|Version of the API requested by the client.|
- **`text`** | string | True | Source text for translation. |
+|**`text`** | string | True | Source text for translation. |
+| **`targets`** | array | True | User-specified values for the translated (`target`) text. |
+| **`language`** | string | True |The language code for the translated (`target`) text *specified in the `targets` array*. Accepted values are [supported language](../../../language-support.md) codes for the translation operation.|
 
-#### Optional query parameters
+
+#### Optional parameters
 
 | Parameter | Type | Required? | Description |
 | --- | --- | --- | --- |
 | **textType** | string | False | Defines whether the text being translated is plain text or HTML text. Any HTML needs to be a well-formed, complete element. Possible values are: plain (default) or html. |
 | **language** | string | False | The language code for the `source` text. If not specified, the system autodetects the language of the source text. Possible values are list of language code supported by the specified model. |
 | **script** | string | False | Specify the script of the source text. |
-
-#### Required targets array parameters
-
-| Parameter | Type | Required? | Description |
-| --- | --- | --- | --- |
-| **`targets`** | array | True | User-specified values for the translated (`target`) text. |
-| **`language`** | string | True | The language code for the translated (`target`) text. Possible values are list of language code supported by the specified model. |
 
 #### Optional targets array parameters
 
@@ -81,7 +70,7 @@ Request parameters passed on the query string are as follows:
 | **allowFallback** | string | False | If the specified model isn't supported for a given source and target language pair, the service is permitted to revert to a general system. This action ensures that translations can still be provided even when the preferred model is unavailable. Default is `true`. If `false` system returns an error if language pair isn't supported. |
 | **grade** | string | False | Default is `basic`. For example, translation produced by simple prompt like `translate <source text> from <source language> to <target language>`|
 | **tone** | string | False | Desired tone of target translation. Enum: Formal, informal, neutral. |
-| **gender** **\*** | string | False | Desired gender of target translation.|
+| **[gender](#gender-specific-translations-with-optional-targets-array-gender-parameter)** | string | False | Desired gender of target translation.|
 | **adaptiveDatasetId** | string | False | Reference dataset ID having sentence pair to generate adaptive customized translation |
 | **referenceTextPairs** | string | False | Reference text pairs to generate adaptive customized translation |
 | **referenceTextPairs.source** | string | False | Source text in reference text pair. |
@@ -94,15 +83,11 @@ Request parameters passed on the query string are as follows:
 
 | Source text | Target gender | Expected gender in translation |
 | --- | --- | --- |
-| Neutral |  | Neutral /  **Random**: if target language doesn't have a gender-neutral term. |
-| Female |  | Female / **Neutral**: if target language is gender neutral. |
-| Male |  | Male / **Neutral**: if target language is gender neutral. |
-| Neutral | Female | Female / **Neutral**: if target language is gender neutral. |
-| Female | Female |
-| Male | Female |
-| Neutral | Male | Male / **Neutral**: if target language is gender neutral. |
-| Female | Male |
-| Male | Male |
+| Neutral | Not indicated | Neutral /  **Random**: if target language doesn't have a gender-neutral term. |
+| Female | Not indicated | Female / **Neutral**: if target language is gender neutral. |
+| Male |Not indicated | Male / **Neutral**: if target language is gender neutral. |
+| Neutral<br>Female<br>Male  | → Female<br>→ Female<br>→ Female | Female / **Neutral**: if target language is gender neutral. |
+| Neutral<br>Female<br>Male | → Male<br>→ Male<br>→ Male | Male / **Neutral**: if target language is gender neutral. |
 
 ## Response body
 
@@ -130,15 +115,6 @@ A successful response is a JSON array with one result for each string in the inp
 
     The `transliteration` object isn't included if transliteration doesn't take place.
 
-    * `alignment`: An object with a single string property named `proj`, which maps input text to translated text. The alignment information is only provided when the request parameter `includeAlignment` is `true`. Alignment is returned as a string value of the following format: `[[SourceTextStartIndex]:[SourceTextEndIndex]–[TgtTextStartIndex]:[TgtTextEndIndex]]`. The colon separates start and end index, the dash separates the languages, and space separates the words. One word can align with zero, one, or multiple words in the other language, and the aligned words can be noncontiguous. When no alignment information is available, the alignment element is empty. See [Obtain alignment information](#obtain-alignment-information) for an example and restrictions.
-
-  * `sentLen`: An object returning sentence boundaries in the input and output texts.
-
-    * `srcSentLen`: An integer array representing the lengths of the sentences in the input text. The length of the array is the number of sentences, and the values are the length of each sentence.
-
-    * `transSentLen`:  An integer array representing the lengths of the sentences in the translated text. The length of the array is the number of sentences, and the values are the length of each sentence.
-
-    Sentence boundaries are only included when the request parameter `includeSentenceLength` is `true`.
 
 * `sourceText`: An object with a single string property named `text`, which gives the input text in the default script of the source language. `sourceText` property is present only when the input is expressed in a script that's not the usual script for the language. For example, if the input were Arabic written in Latin script, then `sourceText.text` would be the same Arabic text converted into Arab script`.`
 
@@ -158,14 +134,37 @@ Examples of JSON responses are provided in the [examples](#examples) section.
 
 ***Request***
 
-```bash
- [ { "text": "Doctor is available next Monday. Do you want to schedule an appointment?", "targets": [ {     "language": "es"} ] } ] |
+```json
+ [
+  {
+    "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+    "targets": [
+      {
+        "language": "es"
+      }
+    ]
+  }
+]
 ```
 
 ***Response***
 
-```bash
-[ { "detectedLanguage": { "language": "en", "score": 1     }, "translations": [ { "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "sourceCharacters": 72} ]   } ]
+```JSON
+[
+  {
+    "detectedLanguage": {
+      "language": "en",
+      "score": 1
+    },
+    "translations": [
+      {
+        "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
+        "language": "es",
+        "sourceCharacters": 72
+      }
+    ]
+  }
+]
 ```
 
 ***Response Header***
@@ -178,14 +177,45 @@ Examples of JSON responses are provided in the [examples](#examples) section.
 
 ***Request***
 
-```bash
-[ { "text": "Doctor is available next Monday. Do you want to schedule an appointment?", "targets": [ {     "language": "es"} , {     "language": "de"} ] } ]
+```json
+[
+  {
+    "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+    "targets": [
+      {
+        "language": "es"
+      },
+      {
+        "language": "de"
+      }
+    ]
+  }
+]
 ```
 
 ***Response***
 
-```bash
-[ { "detectedLanguage": { "language": "en", "score": 1     }, "translations": [ { "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "sourceCharacters": 72} , { "text": "Der Arzt ist nächsten Montag verfügbar. Möchten Sie einen Termin vereinbaren?", "language": "de", "sourceCharacters": 72} ]   } ]
+```json
+[
+  {
+    "detectedLanguage": {
+      "language": "en",
+      "score": 1
+    },
+    "translations": [
+      {
+        "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
+        "language": "es",
+        "sourceCharacters": 72
+      },
+      {
+        "text": "Der Arzt ist nächsten Montag verfügbar. Möchten Sie einen Termin vereinbaren?",
+        "language": "de",
+        "sourceCharacters": 72
+      }
+    ]
+  }
+]
 ```
 
 ***Response Header***
@@ -200,14 +230,49 @@ Here, users request specific `GPT` models for deployment.
 
 ***Request***
 
-```bash
- [ { "text": "Doctor is available next Monday. Do you want to schedule an appointment?", "targets": [ {     "language": "es", " deploymentName": "gpt-4o-mini"} , {     "language": "de"} ] } ]
+```json
+ [
+  {
+    "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+    "targets": [
+      {
+        "language": "es",
+        " deploymentName": "gpt-4o-mini"
+      },
+      {
+        "language": "de"
+      }
+    ]
+  }
+]
 ```
 
 ***Response***
 
-```bash
-| [ { "detectedLanguage": { "language": "en", "score": 1     }, "translations": [ { "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "instructionTokens": 12,  "sourceTokens": 14,  "targetTokens": 16} , { "text": "Der Arzt ist nächsten Montag verfügbar. Möchten Sie einen Termin vereinbaren?", "language": "de", "sourceCharacters": 72} ]   } ]
+```json
+[
+  {
+    "detectedLanguage": {
+      "language": "en",
+      "score": 1
+    },
+    "translations": [
+      {
+        "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
+        "language": "es",
+        "instructionTokens": 12,
+        "sourceTokens": 14,
+        "targetTokens": 16
+      },
+      {
+        "text": "Der Arzt ist nächsten Montag verfügbar. Möchten Sie einen Termin vereinbaren?",
+        "language": "de",
+        "sourceCharacters": 72
+      }
+    ]
+  }
+]
+
 ```
 
 ***Response Header***
@@ -222,14 +287,55 @@ Here, users request specific `GPT` models for deployment.
 
 ***Request***
 
-```bash
-[ { "text": "Doctor is available next Monday. Do you want to schedule an appointment?", "targets": [ {     "language": "es", "model": "gpt-4o-mini", "tone": "formal", "gender": "female"},  {  "language": "es", "model": "gpt-4o-mini", "tone": "formal", "gender": "male"} ] } ]
+```json
+[
+  {
+    "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+    "targets": [
+      {
+        "language": "es",
+        "model": "gpt-4o-mini",
+        "tone": "formal",
+        "gender": "female"
+      },
+      {
+        "language": "es",
+        "model": "gpt-4o-mini",
+        "tone": "formal",
+        "gender": "male"
+      }
+    ]
+  }
+]
 ```
 
 ***Response***
 
-```bash
-[ { "detectedLanguage": { "language": "en", "score": 1     }, "translations": [ { "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "promptTokens": 12,  "sourceTokens": 14,  "targetTokens": 16}, { "text": "El médico estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "instructionTokens": 12,  "sourceTokens": 14,  "targetTokens": 16} ]   } ]
+```json
+[
+  {
+    "detectedLanguage": {
+      "language": "en",
+      "score": 1
+    },
+    "translations": [
+      {
+        "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
+        "language": "es",
+        "promptTokens": 12,
+        "sourceTokens": 14,
+        "targetTokens": 16
+      },
+      {
+        "text": "El médico estará disponible el próximo lunes. ¿Desea programar una cita?",
+        "language": "es",
+        "instructionTokens": 12,
+        "sourceTokens": 14,
+        "targetTokens": 16
+      }
+    ]
+  }
+]
 ```
 
 ***Response Header***
@@ -245,14 +351,40 @@ Adaptive custom translation deploys on Translator service infrastructure. Charge
 
 ***Request***
 
-```bash
-[ { "text": "Doctor is available next Monday. Do you want to schedule an appointment?", "targets": [ {     "language": "es", "adaptiveDatasetId": "TMS-en-es-hr-020"} ] } ]
+```json
+[
+  {
+    "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+    "targets": [
+      {
+        "language": "es",
+        "adaptiveDatasetId": "TMS-en-es-hr-020"
+      }
+    ]
+  }
+]
+
 ```
 
 ***Response***
 
-```bash
-[ { "detectedLanguage": { "language": "en", "score": 1     }, "translations": [ { "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "sourceCharacters": 72, "targetChaaracters": 72} ]   } ]
+```json
+[
+  {
+    "detectedLanguage": {
+      "language": "en",
+      "score": 1
+    },
+    "translations": [
+      {
+        "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
+        "language": "es",
+        "sourceCharacters": 72,
+        "targetChaaracters": 72
+      }
+    ]
+  }
+]
 ```
 
 ***Response Header***
@@ -265,14 +397,48 @@ Adaptive custom translation deploys on Translator service infrastructure. Charge
 
 ***Request***
 
-```bash
-[ { "text": "Doctor is available next Monday. Do you want to schedule an appointment?", "targets": [ {     "language": "es", "referenceTextPairs": [ {  "source": "text_in_en",  "target": " text_in_es"}, { "source": " text_in_en",  "target": " text_in_es" }] } ] } ]
+```json
+[
+  {
+    "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+    "targets": [
+      {
+        "language": "es",
+        "referenceTextPairs": [
+          {
+            "source": "text_in_en",
+            "target": " text_in_es"
+          },
+          {
+            "source": " text_in_en",
+            "target": " text_in_es"
+          }
+        ]
+      }
+    ]
+  }
+]
 ```
 
 ***Response***
 
-```bash
-[ { "detectedLanguage": { "language": "en", "score": 1     }, "translations": [ { "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "sourceCharacters": 72, "targetChaaracters": 72} ] } ]
+```json
+[
+  {
+    "detectedLanguage": {
+      "language": "en",
+      "score": 1
+    },
+    "translations": [
+      {
+        "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
+        "language": "es",
+        "sourceCharacters": 72,
+        "targetCharacters": 72
+      }
+    ]
+  }
+]
 ```
 
 ***Response Header***
@@ -286,14 +452,38 @@ Adaptive custom translation deploys on Translator service infrastructure. Charge
 
 ***Request***
 
-```bash
-[ { "text": "Doctor is available next Monday. Do you want to schedule an appointment?", "targets": [ {     "language": "es", "model": "CT-model-en-es-hr-020"} ] } ]
+```json
+[
+  {
+    "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+    "targets": [
+      {
+        "language": "es",
+        "model": "CT-model-en-es-hr-020"
+      }
+    ]
+  }
+]
 ```
 
 ***Response***
 
-```bash
-[ { "detectedLanguage": { "language": "en", "score": 1     }, "translations": [ { "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?", "language": "es", "sourceCharacters": 72} ]   } ]
+```json
+[
+  {
+    "detectedLanguage": {
+      "language": "en",
+      "score": 1
+    },
+    "translations": [
+      {
+        "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
+        "language": "es",
+        "sourceCharacters": 72
+      }
+    ]
+  }
+]
 ```
 
 ***Response Header***
@@ -305,14 +495,22 @@ Adaptive custom translation deploys on Translator service infrastructure. Charge
 
 ## Request body
 
-The body of the request is a JSON array. Each array element is a JSON object with a string property named `Text`, which represents the string to translate.
+## Request body parameters
+
+The request body is formatted as a JSON array, where each element is a JSON object. Each object contains a required property named `text`, representing the string to be translated, and a required `targets` array. The `targets` array includes the required `language` property that specifies the language code for the translation.
 
 ```json
 [
-    {"Text":"I would really like to drive your car around the block a few times."}
+  {
+    "text": "I would really like to drive your car around the block a few times.",
+    "targets": [
+      {
+        "language": "es"
+      }
+    ]
+  }
 ]
 ```
-
 For information on character and array limits, _see_ [Request limits](../../../service-limits.md#character-and-array-limits-per-request).
 
 ## Response
@@ -329,7 +527,7 @@ A successful response is a JSON array with one result for each string in the inp
 
 * `translations`: An array of translation results. The size of the array matches the number of target languages specified through the `to` query parameter. Each element in the array includes:
 
-  * `to`: A string representing the language code of the target language.
+  * `language`: A string representing the language code of the target language.
 
   * `text`: A string giving the translated text.
 
