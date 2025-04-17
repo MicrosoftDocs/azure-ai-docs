@@ -1156,7 +1156,7 @@ groups:
   title: Portal and CLI
   prompt: Choose a usage method
   pivots:
-  - id: ai-portal
+  - id: azure-portal
     title: Azure portal
   - id: cli
     title: Azure CLI
