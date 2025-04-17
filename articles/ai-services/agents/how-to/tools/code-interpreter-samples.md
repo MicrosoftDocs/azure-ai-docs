@@ -393,7 +393,7 @@ console.log(`Saved image file to: ${imageFileName}`);
 :::zone-end
 
 
-:::zone pivot="rest" 
+:::zone pivot="rest-api" 
 
 ## Upload a file 
 
@@ -469,3 +469,5 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version
 curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
+
+:::zone-end
