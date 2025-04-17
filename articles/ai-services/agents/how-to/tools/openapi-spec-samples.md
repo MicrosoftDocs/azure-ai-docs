@@ -30,7 +30,7 @@ zone_pivot_groups: selection-openapi-function
 
 1. Click Next and select your authentication method. Choose `connection` for `API key`.
    1. If you choose `connection`, you need to select the custom keys connection you have created before.
-   1. If you choose `managed identity`, you need to input the audience to get your token. An example of an audience would be `https://cognitiveservices.azure.com/` to connect to Azure AI Services. Make sure you have already set up authentication and role assignment (as described in the [section](#authenticating-with-managed-identity-microsoft-entra-id) above).
+   1. If you choose `managed identity`, you need to input the audience to get your token. An example of an audience would be `https://cognitiveservices.azure.com/` to connect to Azure AI Services. Make sure you have already set up authentication and role assignment (as described in the [section](./openapi-spec.md#authenticating-with-managed-identity-microsoft-entra-id) above).
       
 1. Copy and paste your OpenAPI specification in the text box.
 
@@ -253,7 +253,7 @@ Create a run and observe that the model uses the OpenAPI Spec tool to provide a 
 
 :::zone-end
 
-:::zone pivot="rest"
+:::zone pivot="rest-api"
 
 ## Step 1: Create the OpenAPI Spec tool definition, agent and thread
  
