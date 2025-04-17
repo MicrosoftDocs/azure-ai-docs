@@ -68,6 +68,8 @@ items:
         href: ./how-to/configure-deployment-policies.md
       - name: Use virtual networks
         href: ../../ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-foundry/model-inference/context/context
+  - name: Monitor model deployments
+    href: ./how-to/monitor-models.md
   - name: Manage cost
     href: ./how-to/manage-costs.md
   - name: Quotas and limits
