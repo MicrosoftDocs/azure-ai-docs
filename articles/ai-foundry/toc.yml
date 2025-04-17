@@ -135,8 +135,8 @@ items:
   - name: Use Azure OpenAI Service in Azure AI Foundry portal
     href: ai-services/how-to/connect-azure-openai.md
   - name: Use Azure AI services in Azure AI Foundry portal
-    href: ai-services/how-to/connect-ai-services.md
-    displayName: cognitive,task
+    href: ../ai-services/connect-services-ai-foundry-portal.md?context=/azure/ai-foundry/context/context
+    displayName: cognitive,task,speech,vision,language,translator,document,intelligence,content,understanding,safety
   - name: What are Azure AI services?
     href: /azure/ai-services/what-are-ai-services
   - name: Azure OpenAI
@@ -557,8 +557,6 @@ items:
     href: ai-services/content-safety-overview.md
   - name: Content safety for models deployed with serverless APIs
     href: concepts/model-catalog-content-safety.md
-  - name: Use Azure AI Content Safety in AI Foundry portal
-    href: /azure/ai-services/content-safety/how-to/foundry?context=/azure/ai-foundry/context/context
   - name: Content filtering
     href: concepts/content-filtering.md
   - name: Use blocklists

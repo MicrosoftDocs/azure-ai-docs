@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 01/31/2024
+ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 
@@ -41,7 +41,7 @@ The following table lists the base URLs for Azure sovereign cloud endpoints:
 |Azure portal | <ul><li>[Azure Government Portal](https://portal.azure.us/)</li></ul>|
 | Available regions</br></br>The region-identifier is a required header when using Translator for the government cloud. | <ul><li>`usgovarizona` </li><li> `usgovvirginia`</li></ul>|
 |Available pricing tiers|<ul><li>Free (F0) and Standard (S1). See [Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/)</li></ul>|
-|Supported Features | <ul><li>[Text Translation](../text-translation/reference/v3/reference.md)</li><li>[Document Translation](../document-translation/overview.md)</li><li>[Custom Translator](../custom-translator/overview.md)</li></ul>|
+|Supported Features | <ul><li>[Text translation](../text-translation/reference/v3/reference.md)</li><li>[Document translation](../document-translation/overview.md)</li><li>[Custom Translator](../custom-translator/overview.md)</li></ul>|
 |Supported Languages| <ul><li>[Translator language support](../language-support.md)</li></ul>|
 
 <!-- markdownlint-disable MD036 -->
@@ -75,7 +75,7 @@ https://<region-identifier>.api.cognitive.microsoft.us/sts/v1.0/issueToken
 https://api.cognitive.microsofttranslator.us/
 ```
 
-#### Document Translation custom endpoint
+#### Document translation custom endpoint
 
 ```http
 https://<NAME-OF-YOUR-RESOURCE>.cognitiveservices.azure.us/translator/text/batch/v1.0
@@ -120,7 +120,7 @@ The Azure operated by 21Vianet cloud is a physical and logical network-isolated 
 |---|---|
 |Azure portal |<ul><li>[Azure operated by 21Vianet Portal](https://portal.azure.cn/)</li></ul>|
 |Regions <br></br>The region-identifier is a required header when using a multi-service resource. | <ul><li>`chinanorth` </li><li> `chinaeast2`</li></ul>|
-|Supported Feature|<ul><li>[Text Translation](https://docs.azure.cn/cognitive-services/translator/reference/v3-0-reference)</li><li>[Document Translation](../document-translation/overview.md)</li></ul>|
+|Supported Feature|<ul><li>[Text translation](https://docs.azure.cn/cognitive-services/translator/reference/v3-0-reference)</li><li>[Document translation](../document-translation/overview.md)</li></ul>|
 |Supported Languages|<ul><li>[Translator language support.](https://docs.azure.cn/cognitive-services/translator/language-support)</li></ul>|
 
 <!-- markdownlint-disable MD036 -->
@@ -172,7 +172,7 @@ curl -X POST "https://api.translator.azure.cn/translate?api-version=3.0&from=en&
 ]
 ```
 
-#### Document Translation custom endpoint
+#### Document translation custom endpoint
 
 ```http
 https://<NAME-OF-YOUR-RESOURCE>.cognitiveservices.azure.cn/translator/text/batch/v1.0

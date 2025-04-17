@@ -5,7 +5,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: include
-ms.date: 07/18/2023
+ms.date: 04/14/2025
 ms.author: lajanuar
 recommendations: false
 ---
@@ -14,12 +14,12 @@ recommendations: false
 
 ## Set up your Python project
 
-1. If you haven't done so already, install the latest version of [Python 3.x](https://www.python.org/downloads/). The Python installer package (pip) is included with the Python installation.
+1. Make sure that you have the latest version of [Python 3.x](https://www.python.org/downloads/). The Python installer package (pip) is included with the Python installation.
 
     > [!TIP]
     > If you're new to Python, try the [Introduction to Python](/training/paths/beginner-python/) Learn module.
 
-1. Open a terminal window and install the `Azure Text Translation` client library for Python with `pip`:
+1. Open a terminal window and install the `Azure Text translation` client library for Python with `pip`:
 
     ```console
     pip install azure-ai-translation-text==1.0.0b1
@@ -31,7 +31,7 @@ To interact with the Translator service using the client library, you need to cr
 
 1. Create a new Python file called **text-translation-app.py** in your preferred editor or IDE.
 
-1. Copy and paste the following text translation code sample code-sample into the **text-translation-app.py** file.  Update **`<your-key>`**, **`<your-endpoint>`**, and **`<region>`** with values from your Azure portal Translator instance.
+1. Copy and paste the following text translation code sample code-sample into the **text-translation-app.py** file. Update **`<your-key>`**, **`<your-endpoint>`**, and **`<region>`** with values from your Azure portal Translator instance.
 
 ## Code sample
 
@@ -41,7 +41,7 @@ To interact with the Translator service using the client library, you need to cr
 **Translate text**
 
   > [!NOTE]
-  > In this example we are using a regional endpoint. If you're using the global endpoint, see [Create a Text Translation client](../../../../create-translator-resource.md#create-a-text-translation-client).
+  > In this example, we're using a regional endpoint. If you're using the global endpoint, see [Create a Text translation client](../../../../create-translator-resource.md#create-a-text-translation-client).
 
 ```python
 from azure.ai.translation.text import TextTranslationClient, TranslatorCredential
@@ -76,7 +76,7 @@ except HttpResponseError as exception:
 
 ## Run the application
 
-Once you've added the code sample to your application, build and run your program:
+Once you add the code sample to your application, build and run your program:
 
 Navigate to the folder where you have your **text-translation-app.py** file.
 

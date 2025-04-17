@@ -22,6 +22,12 @@ For more information on image moderation, see the [Harm categories concept page]
 > 
 > The sample data and code may contain offensive content. User discretion is advised.
 
+::: zone pivot="programming-language-foundry-portal"
+
+[!INCLUDE [Foundry portal quickstart](./includes/quickstarts/foundry-quickstart-image.md)]
+
+::: zone-end
+
 ::: zone pivot="programming-language-rest"
 
 [!INCLUDE [REST API quickstart](./includes/quickstarts/rest-quickstart-image.md)]

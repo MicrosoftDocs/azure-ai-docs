@@ -39,7 +39,6 @@ The batch transcription API (and [fast transcription API](./fast-transcription-c
 - MULAW in WAV container
 - AMR
 - WebM
-- M4A
 - SPEEX
 
 
