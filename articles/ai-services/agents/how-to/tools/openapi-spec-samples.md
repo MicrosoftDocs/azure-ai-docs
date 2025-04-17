@@ -13,6 +13,10 @@ ms.custom: azure-ai-agents-code
 zone_pivot_groups: selection-openapi-function
 ---
 
+# How to use the OpenAPI spec tool
+
+Use this article to find step-by-step instructions and code samples for using OpenAPI based tools.
+
 :::zone pivot="portal"
 
 1. Go to the [Azure AI Foundry portal](https://ai.azure.com/). in the **Create and debug** screen or **Agent playground**, select your agent.
