@@ -89,7 +89,7 @@ items:
     items:
     - name: 🆕 Azure AI Translator 2025-05-01-preview
       items:
-      - name: v4 Translator reference
+      - name: v4 Translator overview
         displayName: gpt, adaptive, tone, gender
         href: text-translation/reference/v4/reference-overview.md
       - name: Translate
@@ -101,7 +101,7 @@ items:
         href: text-translation/reference/v4/get-languages.md
     - name: Azure AI Translator v3
       items:
-      - name: v3 Translator reference
+      - name: v3 Translator overview
         displayName: 401000,405000,400000
         href: text-translation/reference/v3/reference.md
       - name: Text Translation v3 REST APIs

@@ -10,7 +10,7 @@ ms.date: 04/07/2025
 ms.author: lajanuar
 ---
 
-# Azure AI Translator 2025-05-01-preview: transliterate 
+# Transliterate text (2025-05-01-preview)
 
 Converts text in one language from one script to another script.
 
@@ -22,7 +22,7 @@ Send a `POST` request to:
 https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-05-01-preview
 ```
 
-_See_ [**Virtual Network Support**](../v3/../authentication.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+For more information on Translator service selected network and private endpoint configuration and support *see* [**Virtual Network Support**](../authentication.md#virtual-network-support).
 
 ## Request parameters
 

@@ -12,7 +12,7 @@ ms.author: lajanuar
 
 <!-- markdownlint-disable MD033 -->
 
-# Azure AI Translator 2025-05-01-preview: get languages 
+# Get languages (2025-05-01-preview)
 
 Gets the set of languages currently supported by other operations of the Translator.
 
@@ -31,7 +31,7 @@ For virtual networks, use your custom domain endpoint:
 https://<your-custom-domain>.cognitiveservices.azure.com/languages?api-version=2025-05-01-preview
 ```
 
-For more information, _see_ [**Virtual Network Support**](../v3/../authentication.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+For more information on Translator service selected network and private endpoint configuration and support *see* [**Virtual Network Support**](../authentication.md#virtual-network-support).
 
 ## Request parameters
 
