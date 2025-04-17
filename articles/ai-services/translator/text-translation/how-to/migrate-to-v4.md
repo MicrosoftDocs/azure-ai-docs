@@ -12,11 +12,14 @@ ms.author: lajanuar
 
 # Azure AI Translator v4.0 migration
 
+>[!IMPORTANT]
+> Azure AI Translator REST API `2025-05-01-preview` is new version of the Azure AI Translator REST API **with breaking changes**.
+> It's essential to thoroughly test your code against the new release before migrating any production applications from Azure AI Translator v3.0.
+> Make sure to review your code and internal workflows for adherence to best practices and restrict your production code to versions that you fully test.
+
 Azure AI Translator text translation 2025-05-01-preview (v4.0) is our latest cloud-based, multilingual neural machine translation service. As Azure AI Translator matures, we're focused on patterns and practices to best support and add value to our users.
 
 There are many benefits to using the latest Azure AI Translator version:
-
-*  **Backward compatibility**. Azure AI Translator 2025-05-01-preview (v4.0) is designed to seamlessly work with Azure AI Translator v3.0, requiring minimal updates for existing customers.
 
  * **Large language model (LLM) choice**. You can choose a large language model based for translation based on quality, cost, and other factors, while avoiding costs associated with prompt engineering and quality evaluations.
 
