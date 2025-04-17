@@ -10,6 +10,7 @@ ms.date: 01/15/2025
 ms.reviewer: meerakurup
 ms.author: larryfr
 author: Blackmist
+zone_pivot_groups: azure-ai-foundry-networking
 # Customer intent: As an admin, I want to configure a private link for hub so that I can secure my hubs.
 ---
 
