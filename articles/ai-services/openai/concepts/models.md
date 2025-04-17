@@ -359,7 +359,7 @@ For more information on Provisioned deployments, see our [Provisioned guidance](
 
 This table doesn't include fine-tuning regional availability information.  Consult the [fine-tuning section](#fine-tuning-models) for this information.
 
-### Standard models by endpoint
+### Standard deployment (regional) models by endpoint
 
 # [Chat Completions](#tab/standard-chat-completions)
 
