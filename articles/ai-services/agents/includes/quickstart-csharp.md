@@ -43,7 +43,8 @@ dotnet new console
 
 Install the .NET package to your project. For example if you're using the .NET CLI, run the following command.
 
-Note: Azure.AI.Projects is only available as a prelease version. Please use the "-prerelease" flag to add the package until a release version becomes available.
+>[!Note]
+> Azure.AI.Projects is only available as a prelease version. Please use the "-prerelease" flag to add the package until a release version becomes available.
 
 ```console
 dotnet add package Azure.AI.Projects --prerelease
