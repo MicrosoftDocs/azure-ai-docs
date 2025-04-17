@@ -20,9 +20,6 @@ Image Analysis 4.0 allows you to train a custom model using your own training im
 
 This guide shows you how to create and train a custom image classification model. The few differences between training an image classification model and object detection model are noted.
 
-> [!NOTE]
-> Model customization is available through the REST API and Vision Studio, but not through the client language SDKs.
-
 ## Prerequisites
 
 * An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/cognitive-services).
