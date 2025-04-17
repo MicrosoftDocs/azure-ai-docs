@@ -42,7 +42,7 @@ How you launch TensorBoard with Azure Machine Learning experiments depends on th
         * In the samples folder on the notebook server, find  two completed and expanded notebooks by navigating to these directories:
             * **SDK v1 > how-to-use-azureml > track-and-monitor-experiments > tensorboard > export-run-history-to-tensorboard > export-run-history-to-tensorboard.ipynb**
             * **SDK v1 > how-to-use-azureml > track-and-monitor-experiments > tensorboard > tensorboard > tensorboard.ipynb**
-    * Your own Juptyer notebook server
+    * Your own Jupyter notebook server
        * [Install the Azure Machine Learning SDK](/python/api/overview/azure/ml/install) with the `tensorboard` extra
         * [Create an Azure Machine Learning workspace](../quickstart-create-resources.md).  
         * [Create a workspace configuration file](how-to-configure-environment.md).
