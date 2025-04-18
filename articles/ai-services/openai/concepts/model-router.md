@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI model router concepts
+title: Azure OpenAI model router (preview) concepts
 titleSuffix: Azure OpenAI
 description: Learn about the model router feature in Azure OpenAI Service.
 author: PatrickFarley
@@ -11,16 +11,13 @@ ms.custom:
 manager: nitinme
 ---
 
-# Azure OpenAI model router
+# Azure OpenAI model router (preview)
 
-Azure OpenAI model router is a deployable AI chat model that automatically selects the best underlying chat model to respond to a given prompt. It uses a combination of preexisting models to provide high performance while saving on compute costs where possible.
+Azure OpenAI model router is a deployable AI chat model that is trained to select the best large language model (LLM) to respond to a given prompt in real time. By evaluating factors like query complexity, cost, and performance, it intelligently routes requests to the most suitable model. 
 
 ## Why use model router?
 
-Model router intelligently selects the best underlying model for a given prompt. This way, smaller and cheaper models are used when they're sufficient for the task, but larger and more expensive models are available for more complex tasks. Also, reasoning models are available for tasks that require complex reasoning, but non-reasoning models are used otherwise. Model router provides a single chat experience that combines the best features from all the underlying chat models.
-
-Model router is useful for a variety of applications. TBD
-
+Model router intelligently selects the best underlying model for a given prompt to optimize costs while maintaining quality. Smaller and cheaper models are used when they're sufficient for the task, but larger and more expensive models are available for more complex tasks. Also, reasoning models are available for tasks that require complex reasoning, and non-reasoning models are used otherwise. Model router provides a single chat experience that combines the best features from all of the underlying chat models.
 
 ## Versioning 
 
@@ -48,3 +45,8 @@ Global Standard region support.
 When you use Azure OpenAI model router, you are only billed for the use of the underlying models as they're recruited to respond to prompts. The model router itself doesn't incur any extra charges.
 
 You can monitor the overall costs of your model router deployment in the Azure portal. TBD
+
+## Next step
+
+> [!DIV class="nextstepaction"]
+> [How to use model router](../how-to/model-router.md)
