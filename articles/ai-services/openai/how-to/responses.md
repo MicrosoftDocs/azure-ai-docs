@@ -462,6 +462,35 @@ second_response = client.responses.create(
 print(second_response.model_dump_json(indent=2))  
 ```
 
+## Streaming
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(
+  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+  azure_ad_token_provider = token_provider,
+  api_version = "2025-04-01-preview" 
+)
+
+response = client.responses.create(
+    input = "This is a test",
+    model = "o4-mini", # replace with model deployment name
+    stream = True
+)
+
+for event in response:
+    if event.type == 'response.output_text.delta':
+        print(event.delta, end='')
+
+```
+
+
 ## Function calling
 
 The responses API supports function calling.
@@ -659,6 +688,10 @@ response = client.responses.create(
 
 print(response)
 ```
+
+## Reasoning models
+
+For examples of how to use reasoning models with the responses API see the [reasoning models guide](./reasoning.md#reasoning-summary).
 
 ## Computer use
 
