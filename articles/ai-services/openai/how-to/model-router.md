@@ -62,7 +62,7 @@ To view AzMon metrics for router:
 1. Filter by deployment name of model router.
 1. Optionally, split up the metrics by underlying models.
 
-The following metrics are available:
+The following metrics are available: TBD
 
 ### Monitor costs
 
