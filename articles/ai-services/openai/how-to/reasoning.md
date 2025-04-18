@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's advanced o3-mini, o1, & o1-mini rea
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 04/16/2025
+ms.date: 04/18/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 ---
@@ -91,7 +91,7 @@ token_provider = get_bearer_token_provider(
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   azure_ad_token_provider=token_provider,
-  api_version="2024-12-01-preview"
+  api_version="2025-03-01-preview"
 )
 
 response = client.chat.completions.create(
@@ -121,7 +121,7 @@ from openai import AzureOpenAI
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-12-01-preview"
+  api_version="2025-03-01-preview"
 )
 
 response = client.chat.completions.create(
@@ -298,7 +298,7 @@ token_provider = get_bearer_token_provider(
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   azure_ad_token_provider=token_provider,
-  api_version="2024-12-01-preview"
+  api_version="2025-03-01-preview"
 )
 
 response = client.chat.completions.create(
@@ -330,7 +330,7 @@ from openai import AzureOpenAI
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-12-01-preview"
+  api_version="2025-03-01-preview"
 )
 
 response = client.chat.completions.create(
@@ -407,7 +407,7 @@ token_provider = get_bearer_token_provider(
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   azure_ad_token_provider=token_provider,
-  api_version="2025-04-01-preview" 
+  api_version="2025-04-01-preview" # You must use this version or greater to access reasoning summary
 )
 
 response = client.responses.create(
