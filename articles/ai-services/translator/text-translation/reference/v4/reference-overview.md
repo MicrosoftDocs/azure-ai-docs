@@ -1,7 +1,7 @@
 ---
-title: Azure AI Translator v4.0 reference
+title: Azure AI Translator 2025-05-01-preview reference
 titleSuffix: Azure AI services
-description: Reference documentation for Azure AI Translator v4.0 operations and capabilities.
+description: Reference documentation for Azure AI Translator 2025-05-01-preview operations and capabilities.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -10,19 +10,27 @@ ms.date: 03/28/2025
 ms.author: lajanuar
 ---
 
-# Azure AI Translator v4.0 (preview)
+# Azure AI Translator 2025-05-01-preview 
 
-Azure AI Translator `2025-05-01-preview` (v4.0) is our latest cloud-based, multilingual neural machine translation service and provides robust and scalable translation capabilities suitable for diverse applications. Translator service supports over 100 languages and dialects, making it ideal for businesses, developers, and organizations seeking to seamlessly integrate multilingual communication. Translator is an optimal solution for managing extensive multilingual content and easily integrates with your applications and workflows through a single REST API call and supports multiple programming languages. Azure AI Translator prioritizes data security and privacy, complying with regulations like GDPR, HIPAA, and ISO/SOC, thus ensuring that it's a reliable solution for handling sensitive and confidential information.
+Azure AI Translator `2025-05-01-preview` is our latest cloud-based, multilingual, neural machine translation service. The Text translation API enables robust and scalable translation capabilities suitable for diverse applications. 
+
+The Translator service is an optimal solution for managing extensive multilingual content. It easily integrates with your applications and workflows through a single REST API call and supports multiple programming languages. Translator supports over 100 languages and dialects, making it ideal for businesses, developers, and organizations seeking to seamlessly integrate multilingual communication.  
+
+Azure AI Translator prioritizes data security and privacy, complying with regulations like GDPR, HIPAA, and ISO/SOC, thus ensuring that it's a reliable solution for handling sensitive and confidential information.
+
+>[!IMPORTANT]
+> * Azure AI Translator REST API `2025-05-01-preview` is new version of the Azure AI Translator REST API **with breaking changes**.
+> * It's essential to thoroughly test your code against the new release before migrating any production applications from Azure AI Translator v3.0.
+> * Make sure to review your code and internal workflows for adherence to best practices and restrict your production code to versions that you fully test.
+
 
 ## What's new?
 
-Azure AI Translator `2025-05-01-preview` (v4.0) is designed toe be **backwards compatible** with Translator v3.0, requiring minimal updates for existing customers. In addition, Translator `2025-05-01-preview` (v4.0) offers several new feature updates and expanded capabilities:
-
-* **LLM choice**. You can choose a large language model based for translation based on quality, cost, and other factors, while avoiding costs associated with prompt engineering and quality evaluations.
+* **LLM choice**. You can choose a large language model for translation based on quality, cost, and other factors, while avoiding costs associated with prompt engineering and quality evaluations.
 
 * **Adaptive custom translation**. New features enable adaptive custom translations using datasets or reference pairs to ensure more accurate and contextually relevant translations.
 
-* **Enhanced translation**. The API supports a range of parameters, including text type, language codes, and options for tone and gender, providing more nuanced translation outputs.
+* **Enhanced translation**. The Text translation API supports a range of parameters, including text type, language codes, and options for tone and gender, thus providing more nuanced translation outputs.
 
 ## Base URLs
 
@@ -56,7 +64,7 @@ curl -X POST "https://my-swiss-n.cognitiveservices.azure.com/translator/text/202
 ```
 
 > [!NOTE]
-> Custom Translator currently unavailable in Switzerland.
+> Custom Translator is currently unavailable in Switzerland.
 
 ## Metrics
 
