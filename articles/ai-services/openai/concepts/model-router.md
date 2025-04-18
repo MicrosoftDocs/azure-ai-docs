@@ -21,9 +21,9 @@ Model router intelligently selects the best underlying model for a given prompt 
 
 ## Versioning 
 
-Each version of model router is associated with a specific set of underlying models and their versions. This set won't change&mdash;only newer versions of model router can expose new underlying models.
+Each version of model router is associated with a specific set of underlying models and their versions. This set is fixed&mdash;only newer versions of model router can expose new underlying models.
 
-If you select **Auto-update** at the deployment step (see [Manage models](/azure/ai-services/openai/how-to/working-with-models?tabs=powershell#model-updates)), then your model router model will automatically update when new versions become available. When that happens, the set of underlying models will also change, and this could affect the overall performance of the model as well as costs.
+If you select **Auto-update** at the deployment step (see [Manage models](/azure/ai-services/openai/how-to/working-with-models?tabs=powershell#model-updates)), then your model router model automatically updates when new versions become available. When that happens, the set of underlying models also changes, which could affect the overall performance of the model and costs.
 
 ## Underlying models
 
@@ -42,7 +42,7 @@ Global Standard region support.
 
 ## Billing information
 
-When you use Azure OpenAI model router, you are only billed for the use of the underlying models as they're recruited to respond to prompts. The model router itself doesn't incur any extra charges.
+When you use Azure OpenAI model router, you're only billed for the use of the underlying models as they're recruited to respond to prompts. The model router itself doesn't incur any extra charges.
 
 You can monitor the overall costs of your model router deployment in the Azure portal. TBD
 

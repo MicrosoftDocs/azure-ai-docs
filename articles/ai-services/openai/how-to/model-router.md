@@ -31,19 +31,19 @@ Model router is packaged as a single OpenAI model that you deploy. Follow the st
 
 You can use model router through the [chat completions API](/azure/ai-services/openai/chatgpt-quickstart) in the same way you'd use other OpenAI chat models. Set the `model` parameter to the name of our model router deployment, and set the `messages` parameter to the messages you want to send to the model.
 
-In the [Azure AI Foundry portal](https://ai.azure.com/), you can navigate to your model router deployment on the **Models + endpoints** page and select it to enter the model playground. In the playground experience, you can enter messages and see the model's responses. Each response message will show which underlying model was selected to respond.
+In the [Azure AI Foundry portal](https://ai.azure.com/), you can navigate to your model router deployment on the **Models + endpoints** page and select it to enter the model playground. In the playground experience, you can enter messages and see the model's responses. Each response message shows which underlying model was selected to respond.
 
 
 > [!IMPORTANT]
-> You can set the `Temperature` and `Top_P` parameters to the values you prefer (see the [concepts guide](/azure/ai-services/openai/concepts/prompt-engineering?tabs=chat#temperature-and-top_p-parameters)), but note that reasoning models (o-series) don't support these parameters. If model router selects a reasoning model for your prompt, it will ignore the `Temperature` and `Top_P` input parameters.
+> You can set the `Temperature` and `Top_P` parameters to the values you prefer (see the [concepts guide](/azure/ai-services/openai/concepts/prompt-engineering?tabs=chat#temperature-and-top_p-parameters)), but note that reasoning models (o-series) don't support these parameters. If model router selects a reasoning model for your prompt, it ignores the `Temperature` and `Top_P` input parameters.
 
 > [!IMPORTANT]
-> The `reasoning_effort` parameter (see the [Reasoning models guide](/azure/ai-services/openai/how-to/reasoning?tabs=python-secure#reasoning-effort)) is not supported in model router. If the model router selects a reasoning model for your prompt, it will also select a `reasoning_effort` input value based on the complexity of the prompt.
+> The `reasoning_effort` parameter (see the [Reasoning models guide](/azure/ai-services/openai/how-to/reasoning?tabs=python-secure#reasoning-effort)) isn't supported in model router. If the model router selects a reasoning model for your prompt, it also selects a `reasoning_effort` input value based on the complexity of the prompt.
 
 
 ## Evaluate model router performance
 
-
+TBD
 you can create a custom metric, and submit a job to compare the router to other models. then in foundry portal you can compare the performances. 
 
 We provide custom metric test via notebooks.
