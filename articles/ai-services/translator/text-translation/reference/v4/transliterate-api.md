@@ -1,7 +1,7 @@
 ---
-title: Azure AI Translator v4.0 transliterate method
+title: Azure AI Translator 2025-05-01-preview transliterate method
 titleSuffix: Azure AI services
-description: Convert text from one script to another script with the Azure AI Translator v4.0 transliterate method.
+description: Convert text from one script to another script with the Azure AI Translator 2025-05-01-preview transliterate method.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -10,9 +10,9 @@ ms.date: 04/07/2025
 ms.author: lajanuar
 ---
 
-# Azure AI Translator v4.0: transliterate (preview)
+# Transliterate text (2025-05-01-preview)
 
-Converts text in one language from one script to another script.
+The Text transliteration API maps your source language script or alphabet to a target language script or alphabet.
 
 ## Request URL
 
@@ -22,7 +22,7 @@ Send a `POST` request to:
 https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-05-01-preview
 ```
 
-_See_ [**Virtual Network Support**](../v3/../authentication.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+For more information on Translator service selected network and private endpoint configuration and support *see* [**Virtual Network Support**](../authentication.md#virtual-network-support).
 
 ## Request parameters
 

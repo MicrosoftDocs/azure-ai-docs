@@ -58,9 +58,9 @@ items:
     - name: Go
       href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/GO-Code-Samples
     - name: PHP
-      href: https://github.com/MicrosoftTranslator/Text-Translation-API-V3-PHP
+      href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-PHP
     - name: Ruby
-      href: https://github.com/MicrosoftTranslator/Text-Translation-API-V3-Ruby
+      href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-Ruby
   - name: How-to guides
     items:
     - name: Use the Text translation APIs
@@ -87,30 +87,21 @@ items:
       href: firewalls.md
   - name: Reference
     items:
-    - name: 🆕 Azure AI Translator 2025-05-01-preview (v4.0)
+    - name: 🆕 Azure AI Translator 2025-05-01-preview
       items:
-      - name: v4.0 Translator reference
+      - name: 2025-05-01-preview overview
         displayName: gpt, adaptive, tone, gender
-        href: text-translation/reference/v4/reference-resource.md
+        href: text-translation/reference/v4/reference-overview.md
       - name: Translate
         displayName: detection,detect
         href: text-translation/reference/v4/translate-api.md
       - name: Transliterate
         href: text-translation/reference/v4/transliterate-api.md
-      - name: Detect
-        href: text-translation/reference/v4/detect-api.md
-      - name: BreakSentence
-        displayName: detection,detect
-        href: text-translation/reference/v4/break-sentence-api.md
-      - name: Dictionary Lookup
-        href: text-translation/reference/v4/dictionary-lookup-api.md
-      - name: Dictionary Examples
-        href: text-translation/reference/v4/dictionary-examples-api.md
       - name: Languages
         href: text-translation/reference/v4/get-languages.md
     - name: Azure AI Translator v3
       items:
-      - name: v3 Translator reference
+      - name: v3 overview
         displayName: 401000,405000,400000
         href: text-translation/reference/v3/reference.md
       - name: Text Translation v3 REST APIs
@@ -327,7 +318,7 @@ items:
       items:
       - name: Transparency note
         href: /legal/cognitive-services/translator/translator-pro-transparency-note?context=/azure/ai-services/translator/context/context
-  - name: Translator V3 connector
+  - name: Translator v3 connector
     items:
     - name: "Automate document translation (preview)"
       displayName: connect, power, automate, flow

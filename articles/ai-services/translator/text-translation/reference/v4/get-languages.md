@@ -1,7 +1,7 @@
 ---
-title: Translator v4.0 get languages method
+title: Translator 2025-05-01-preview get languages method
 titleSuffix: Azure AI services
-description: The get languages method displays the set of languages currently supported by Azure AI Translator v4.0.
+description: The get languages method displays the set of languages currently supported by Azure AI Translator 2025-05-01-preview.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -12,7 +12,7 @@ ms.author: lajanuar
 
 <!-- markdownlint-disable MD033 -->
 
-# Azure AI Translator v4.0: get languages (preview)
+# Get languages (2025-05-01-preview)
 
 Gets the set of languages currently supported by other operations of the Translator.
 
@@ -31,7 +31,7 @@ For virtual networks, use your custom domain endpoint:
 https://<your-custom-domain>.cognitiveservices.azure.com/languages?api-version=2025-05-01-preview
 ```
 
-For more information, _see_ [**Virtual Network Support**](../v3/../authentication.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+For more information on Translator service selected network and private endpoint configuration and support *see* [**Virtual Network Support**](../authentication.md#virtual-network-support).
 
 ## Request parameters
 
