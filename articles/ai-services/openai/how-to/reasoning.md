@@ -46,7 +46,7 @@ Azure OpenAI `o-series` models are designed to tackle reasoning and problem-solv
 | **[Reasoning effort](#reasoning-effort)** | ✅| ✅ |✅ | ✅ | - | - |
 | **[Vision Support](./gpt-with-vision.md)** | ✅ | ✅ | - | ✅ | - | - |
 | Chat Completions API | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Responses API | ✅ (**Feature coming soon!**) | ✅ (**Feature coming soon!**) | - | - | - | - |
+| Responses API | ✅ | ✅  | - | - | - | - |
 | Functions/Tools | ✅ | ✅ | ✅  | ✅  |  - | - |
 | Parallel Tool Calls | ✅ | ✅ | -  | -  |  - | - |
 | `max_completion_tokens`<sup>*</sup> | ✅ | ✅ |✅ |✅ |✅ | ✅ |
@@ -386,7 +386,7 @@ Console.WriteLine($"{completion.Role}: {completion.Content[0].Text}");
 When using the latest `o3` and `o4-mini` models with the [Responses API](./responses.md) you can use the reasoning summary parameter to receive summaries of the model's chain of thought reasoning. This parameter can be set to `auto`, `concise`, or `detailed`. Access to this feature requires you to [Request Access](https://aka.ms/oai/o3access).
 
 > [!NOTE]
-> Even when enabled, reasoning summaries are not generated for every step/request. Based on current testing, it is expected for reasoning summaries to not be generated for about 20% of requests.
+> Even when enabled, reasoning summaries are not generated for every step/request. This is expected behavior.
 
 # [Python](#tab/py)
 
