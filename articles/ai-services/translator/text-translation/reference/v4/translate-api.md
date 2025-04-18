@@ -513,3 +513,7 @@ Adaptive custom translation deploys on Translator service infrastructure. Charge
 "sourceCharactersCharged": 72
 ```
 
+## Next steps
+
+> [!div class="nextstepaction"]
+> [View 2025-05-01-preview migration guide](../../how-to/migrate-to-v4.md)

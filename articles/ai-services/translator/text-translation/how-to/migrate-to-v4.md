@@ -12,14 +12,15 @@ ms.author: lajanuar
 
 # Azure AI Translator v4.0 migration
 
+Azure AI Translator text translation 2025-05-01-preview (v4.0) is our latest cloud-based, multilingual neural machine translation service. As Azure AI Translator matures, we're focused on patterns and practices to best support and add value to our users.
+
 >[!IMPORTANT]
 > Azure AI Translator REST API `2025-05-01-preview` is new version of the Azure AI Translator REST API **with breaking changes**.
 > It's essential to thoroughly test your code against the new release before migrating any production applications from Azure AI Translator v3.0.
 > Make sure to review your code and internal workflows for adherence to best practices and restrict your production code to versions that you fully test.
 
-Azure AI Translator text translation 2025-05-01-preview (v4.0) is our latest cloud-based, multilingual neural machine translation service. As Azure AI Translator matures, we're focused on patterns and practices to best support and add value to our users.
 
-There are many benefits to using the latest Azure AI Translator version:
+The latest version of Azure AI Translator includes the following enhancements and capabilities:
 
  * **Large language model (LLM) choice**. You can choose a large language model based for translation based on quality, cost, and other factors, while avoiding costs associated with prompt engineering and quality evaluations.
 
@@ -31,19 +32,32 @@ There are many benefits to using the latest Azure AI Translator version:
 
 The following list outlines the v4.0 method that aligns with the v3.0 method.
 
-### Query string
+### Required parameters
 
-|v4.0 method|v3.0 method|
+|2025-05-01 method|v3 method|
+|:---|---|
+|&bullet; **`api-version`**<br>&bullet; Value must be **`2025-05-01-preview`** |&bullet; **`api-version`**<br>&bullet; Value must be **`3.0`**|
+|&bullet; **`text`**<br>&bullet; Specifies source text for translation. | &bullet; **`text`**<br>&bullet; Specifies source text for translation|
+|&bullet; **`targets`**<br>&bullet; Array containing user-specified values for the translated text|&bullet; The targets array isn't included with the Translator v3.0 schema|
+|&bullet; **`language`**<br>&bullet; The language code for the translated (target) text *specified in the `targets` array*. <br> &bullet; Values are [supported language](../../language-support.md) codes for the translation operation.|&bullet; **`to`**<br>&bullet; Specifies the language of the output text.<br>&bullet; The target language must be one of the [supported languages](../../language-support.md#translation) included in the translation scope.|
+
+For more information on **`targets array`** values, *see* [Translate text](../reference/v4/translate-api.md).
+
+## API compatibility
+
+The following table compares Translator `2025-05-01-preview` methods those available with the Translator v3 API.
+
+|Translator 2025-05-01-preview method|Translator v3 compatibility|
 |---|---|
-|&bullet; **`api-version`**<br>&bullet; *Required parameter*<br>&bullet; Version of the API requested by the client. Value must be **`2025-05-01-preview`** | &bullet; **`api-version`**<br>&bullet; *Required parameter*<br>&bullet; Version of the API requested by the client. Value must be **`3.0`**|
-|*See [targets array](#targets-array)*|&bullet; **`to`**<br>&bullet; *Required parameter*<br>&bullet; Specifies the language of the output text. The target language must be one of the [supported languages](../../language-support.md#translation) included in the translation scope.|
-|&bullet; **`text`**<br>&bullet; *Required parameter*<br>&bullet; **Specifies source text for translation**. | &bullet; **`text`**<br>&bullet; *Required parameter*<br>&bullet; **Specifies source text for translation**.|
+|[Translate text](../reference/v4/translate-api.md)|[Translate text](../reference/v3/translate.md)|
+|[Transliterate](../reference/v4/transliterate-api.md)|[Transliterate](../reference/v3/transliterate.md)|
+|[Get languages](../reference/v4/get-languages.md)|[Get languages](../reference/v3/languages.md)|
+|Feature no longer supported|[Detect language](../reference/v3/detect.md)|
+|Feature no longer supported|[BreakSentence](../reference/v3/break-sentence.md)|
+|Feature no longer supported|[Dictionary Lookup](../reference/v3/dictionary-lookup.md)|
+|Feature no longer supported|[Dictionary Examples](../reference/v3/dictionary-examples.md)|
 
-### Targets array
+## Next Steps
 
-|v4.0 method|v3.0 method|
-|---|---|
-|Translator v4.0 **`targets array`** contains user-specified values for the translated text|Translator v3.0 doesn't use the target array.|
-|&bullet; **`language`**<br>|The language code for the translated (`target`) text. Values are [supported language](../../language-support.md) codes for the translation operation.|
-
-For more information on **`targets array`** values, *see* [Translate v4.0 reference ](../reference/v4/translate-api.md)
+> [!div class="nextstepaction"]
+> [View 2025-05-01-preview Translate method](../reference/v4/translate-api.md)

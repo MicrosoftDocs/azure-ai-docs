@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/07/2025
+ms.date: 04/18/2025
 ms.author: lajanuar
 ---
 
@@ -22,7 +22,7 @@ Send a `POST` request to:
 https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-05-01-preview
 ```
 
-For more information on Translator service selected network and private endpoint configuration and support *see* [**Virtual Network Support**](../authentication.md#virtual-network-support).
+For more information on Translator service selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../authentication.md#virtual-network-support).
 
 ## Request parameters
 
