@@ -40,7 +40,7 @@ Only RSA and RSA-HSM keys of size 2048 are supported with Azure AI services encr
 ### Enable your Azure OpenAI resource's managed identity
 
 > [!NOTE]
-> Azure OpenAI only supports customer-managed keys (CMK) with system-assigned managed identities. User-assigned managed identities are not supported with Azure OpenAI and customer-manged keys (CMK).
+> Azure OpenAI only supports customer-managed keys (CMK) with system-assigned managed identities. User-assigned managed identities are not supported with Azure OpenAI and customer-managed keys (CMK).
 
 1. Go to your Azure AI services resource.
 1. On the left, under **Resource Management**, select **Identity**.
