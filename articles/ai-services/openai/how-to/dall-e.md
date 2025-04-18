@@ -1,33 +1,33 @@
 ---
-title: How to use DALL-E models 
+title: How to use image generation models 
 titleSuffix: Azure OpenAI Service
-description: Learn how to generate images with the DALL-E models, and learn about the configuration options that are available.
+description: Learn how to generate and edit images with image models, and learn about the configuration options that are available.
 author: PatrickFarley
 ms.author: pafarley 
 ms.service: azure-ai-openai
 ms.custom: 
 ms.topic: how-to
-ms.date: 02/20/2025
+ms.date: 04/18/2025
 manager: nitinme
 keywords: 
 zone_pivot_groups: 
 # Customer intent: as an engineer or hobbyist, I want to know how to use DALL-E image generation models to their full capability.
 ---
 
-# How to use the DALL-E models
+# How to use Azure OpenAI image generation models
 
-OpenAI's DALL-E models generate images based on user-provided text prompts. This guide demonstrates how to use the DALL-E models and configure their options through REST API calls.
+OpenAI's image generation models render images based on user-provided text prompts and optionally provided images. This guide demonstrates how to use the image generation models and configure their options through REST API calls.
 
 
 ## Prerequisites
 
 - An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=ai-services).
 - An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability).
-- - Deploy a *dall-e-3* model with your Azure OpenAI resource.
+- Deploy a `dall-e-`3 or `gpt-image-1` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-services/openai/how-to/create-resource).
 
 ## Call the Image Generation APIs
 
-The following command shows the most basic way to use DALL-E with code. If this is your first time using these models programmatically, we recommend starting with the [DALL-E quickstart](/azure/ai-services/openai/dall-e-quickstart).
+The following command shows the most basic way to use an image model with code. If this is your first time using these models programmatically, we recommend starting with the [quickstart](/azure/ai-services/openai/dall-e-quickstart).
 
 Send a POST request to:
 
@@ -35,9 +35,11 @@ Send a POST request to:
 https://<your_resource_name>.openai.azure.com/openai/deployments/<your_deployment_name>/images/generations?api-version=<api_version>
 ```
 
-**Replace the following placeholders**:
+**URL**:
+
+Replace the following values:
 - `<your_resource_name>` is the name of your Azure OpenAI resource.
-- `<your_deployment_name>` is the name of your DALL-E 3 model deployment.
+- `<your_deployment_name>` is the name of your DALL-E 3 or GPT-image-1 model deployment.
 - `<api_version>` is the version of the API you want to use. For example, `2024-02-01`.
 
 **Required headers**:
@@ -60,7 +62,7 @@ The following is a sample request body. You specify a number of options, defined
 
 ## Output
 
-The output from a successful image generation API call looks like the following example. The `url` field contains a URL where you can download the generated image. The URL stays active for 24 hours.
+The response from a successful image generation API call looks like the following example. The `url` field contains a URL where you can download the generated image. The URL stays active for 24 hours.
 
 ```json
 { 
@@ -104,9 +106,9 @@ It's also possible that the generated image itself is filtered. In this case, th
 }
 ```
 
-## Write image prompts
+## Write text-to-image prompts
 
-Your image prompts should describe the content you want to see in the image, and the visual style of image.
+Your prompts should describe the content you want to see in the image, and the visual style of image.
 
 When writing prompts, consider that the image generation APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../concepts/content-filter.md).
 
