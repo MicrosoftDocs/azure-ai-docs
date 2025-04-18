@@ -144,9 +144,9 @@ landingContent:
             url: document-translation/language-studio.md
           - text: Microsoft Translator Pro
             url: translator-pro/overview.md
-          - text: V3 connector (document translation)
+          - text: v3 connector (document translation)
             url: solutions/connector/document-translation-flow.md
-          - text: V3 connector (text translation)
+          - text: v3 connector (text translation)
             url: solutions/connector/text-translator-flow.md
   #          
   - title: Resources

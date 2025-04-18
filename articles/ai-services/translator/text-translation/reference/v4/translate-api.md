@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/07/2025
+ms.date: 04/18/2025
 ms.author: lajanuar
 ---
 
@@ -29,7 +29,7 @@ https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-p
 
 ```
 
-For more information on Translator service selected network and private endpoint configuration and support *see* [**Virtual Network Support**](../authentication.md#virtual-network-support).
+For more information on Translator service selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../authentication.md#virtual-network-support).
 
 ## Request headers
 
@@ -513,3 +513,7 @@ Adaptive custom translation deploys on Translator service infrastructure. Charge
 "sourceCharactersCharged": 72
 ```
 
+## Next steps
+
+> [!div class="nextstepaction"]
+> [View 2025-05-01-preview migration guide](../../how-to/migrate-to-v4.md)

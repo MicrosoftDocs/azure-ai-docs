@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 03/28/2025
+ms.date: 04/18/2025
 ms.author: lajanuar
 ---
 
@@ -30,7 +30,7 @@ Azure AI Translator prioritizes data security and privacy, complying with regula
 
 * **Adaptive custom translation**. New features enable adaptive custom translations using datasets or reference pairs to ensure more accurate and contextually relevant translations.
 
-* **Enhanced translation**. The Text translation API supports a range of parameters, including text type, language codes, and options for tone and gender, thus providing more nuanced translation outputs.
+* **Enhanced translation**. The Text translation API supports a range of parameters, including text type, language codes, and options for tone and gender. This added enhancement provides more nuanced translation outputs.
 
 ## Base URLs
 
@@ -86,7 +86,10 @@ This table lists available metrics with description of how they're used to monit
 | Latency| Duration to complete request in milliseconds.|
 | CharactersTranslated| Total number of characters in incoming text request.|
 
+## Next steps
 
+> [!div class="nextstepaction"]
+> [View 2025-05-01-preview migration guide](../../how-to/migrate-to-v4.md)
 
 
 
