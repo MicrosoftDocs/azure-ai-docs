@@ -51,7 +51,7 @@ The following section walks through a sample request with the Python SDK.
         # Create an Azure AI Content Safety client
         client = ContentSafetyClient(endpoint, AzureKeyCredential(key))
     
-        # Contruct request
+        # Construct request
         request = AnalyzeTextOptions(text="Your input text")
     
         # Analyze text

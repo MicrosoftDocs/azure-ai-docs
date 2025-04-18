@@ -22,7 +22,7 @@ In this article, you learn to streamline your model selection process in the Azu
 
 - [Quality, cost, and performance leaderboards](#access-model-leaderboards) to quickly identify the model leaders along a single metric (quality, cost, or throughput);
 - [Trade-off charts](#compare-models-in-the-trade-off-charts) to see how models perform on one metric versus another, such as quality versus cost;
-- [Leaderboards by scenario](#view-leaderboards-by-scenario) to find the best leaderboards that suite your scenario.
+- [Leaderboards by scenario](#view-leaderboards-by-scenario) to find the best leaderboards that suits your scenario.
 
 
 ## Prerequisites

@@ -239,7 +239,7 @@ You can also attach files as Message attachments on your thread. Doing so create
 thread = project_client.agents.create_thread()
 print(f"Created thread, thread ID: {thread.id}")
 
-# Upload the user provided file as a messsage attachment
+# Upload the user provided file as a message attachment
 message_file = project_client.agents.upload_file_and_poll(file_path='product_info_1.md', purpose=FilePurpose.AGENTS)
 print(f"Uploaded file, file ID: {message_file.id}")
 

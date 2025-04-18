@@ -199,7 +199,7 @@ You should receive a `202 Accepted` response.
 > [!TIP]
 > Specifying the Azure Storage Account type and SKU is only available from the Azure CLI.
 
-Azure storage offers several types of storage accounts with different features and pricing. For more information, see the [Types of storage accounts](/azure/storage/common/storage-account-overview#types-of-storage-accounts) article. Once you identify the optimal storage account SKU that best suites your needs, [find the value for the appropriate SKU type](/rest/api/storagerp/srp_sku_types). In the YAML file, use your selected SKU type as the value of the `storage_account_type` field. This field is under each `location` in the `replication_locations` list.
+Azure storage offers several types of storage accounts with different features and pricing. For more information, see the [Types of storage accounts](/azure/storage/common/storage-account-overview#types-of-storage-accounts) article. Once you identify the optimal storage account SKU that best suits your needs, [find the value for the appropriate SKU type](/rest/api/storagerp/srp_sku_types). In the YAML file, use your selected SKU type as the value of the `storage_account_type` field. This field is under each `location` in the `replication_locations` list.
 
 Next, decide if you want to use an [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction) account or [Azure Data Lake Storage Gen2](/azure/storage/blobs/data-lake-storage-introduction). To create Azure Data Lake Storage Gen2, set `storage_account_hns` to `true`. To create Azure Blob Storage, set `storage_account_hns` to `false`. The `storage_account_hns` field is under each `location` in the `replication_locations` list.
 

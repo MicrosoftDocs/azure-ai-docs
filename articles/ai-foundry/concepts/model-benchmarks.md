@@ -22,7 +22,7 @@ Model leaderboards (preview) in Azure AI Foundry portal allow you to streamline 
 
 - **Quality, cost, and performance leaderboards** to quickly identify the model leaders along a single metric (quality, cost, or throughput);
 - **Trade-off charts** to see how models perform on one metric versus another, such as quality versus cost;
-- **Leaderboards by scenario** to find the best leaderboards that suite your scenario.
+- **Leaderboards by scenario** to find the best leaderboards that suits your scenario.
 
 Whenever you find a model to your liking, you can select it and zoom into the **Detailed benchmarking results** of the model within the model catalog. If satisfied with the model, you can deploy it, try it in the playground, or evaluate it on your data. The leaderboards support benchmarking across text language models (large language models (LLMs) and small language models (SLMs)) and embedding models.
 

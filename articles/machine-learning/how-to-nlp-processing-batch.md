@@ -140,7 +140,7 @@ Let's create the deployment that hosts the model:
 1. We need to create a scoring script that can read the CSV files provided by the batch deployment and return the scores of the model with the summary. The following script performs these actions:
 
    > [!div class="checklist"]
-   > * Indicates an `init` function that detects the hardware configuration (CPU vs GPU) and loads the model accordingly. Both the model and the tokenizer are loaded in global variables. We are not using a `pipeline` object from HuggingFace to account for the limitation in the sequence lenghs of the model we are currently using.
+   > * Indicates an `init` function that detects the hardware configuration (CPU vs GPU) and loads the model accordingly. Both the model and the tokenizer are loaded in global variables. We are not using a `pipeline` object from HuggingFace to account for the limitation in the sequence lengths of the model we are currently using.
    > * Notice that we are doing performing **model optimizations** to improve the performance using `optimum` and `accelerate` libraries. If the model or hardware doesn't support it, we will run the deployment without such optimizations.
    > * Indicates a `run` function that is executed for each mini-batch the batch deployment provides.
    > * The `run` function read the entire batch using the `datasets` library. The text we need to summarize is on the column `text`.

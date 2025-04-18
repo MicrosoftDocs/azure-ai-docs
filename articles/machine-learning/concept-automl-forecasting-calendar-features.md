@@ -77,7 +77,7 @@ To make American holiday features for this data, we set the `country_or_region_f
 ```python
 from azure.ai.ml import automl
 
-# create a forcasting job
+# create a forecasting job
 forecasting_job = automl.forecasting(
     compute='test_cluster',   # Name of single or multinode AML compute infrastructure created by user
     experiment_name=exp_name, # name of experiment 

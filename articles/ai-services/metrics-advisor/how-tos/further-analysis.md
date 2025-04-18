@@ -29,7 +29,7 @@ The **Dimensions** setting is a list of dimensions for an incident, you can sele
 There are two types of drill down options: **Drill down** and **Horizontal comparison**.
 
 > [!Note]
-> - For drill down, you can explore the data from different dimension values, except the currenly selected dimensions. 
+> - For drill down, you can explore the data from different dimension values, except the currently selected dimensions. 
 > - For horizontal comparison, you can explore the data from different dimension values, except the all-up dimensions.
 
 :::image type="content" source="../media/diagnostics/drill-down-dimension.png" lightbox="../media/diagnostics/drill-down-dimension.png" alt-text="Drill down dimension":::

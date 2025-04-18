@@ -30,7 +30,7 @@ If you plan to use [Apprentice mode](concept-apprentice-mode.md), make sure to r
 
 ## Settings that include resetting the model
 
-The following actions trigger a retraining of the model using data available upto the last 2 days.
+The following actions trigger a retraining of the model using data available up to the last 2 days.
 
 * Reward
 * Exploration

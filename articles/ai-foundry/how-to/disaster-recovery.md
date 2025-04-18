@@ -47,7 +47,7 @@ Azure services include:
 
 * **Compute instance**: Resource you create after hub deployment. Microsoft-managed model development environments.
 
-* **Connections**: Azure AI Foundry can connect to various other services. You're responsible for cofiguring their high-availability settings.
+* **Connections**: Azure AI Foundry can connect to various other services. You're responsible for configuring their high-availability settings.
 
 The following table shows the Azure services that Microsoft manages and the ones you manage. It also indicates the services that are highly available by default.
 

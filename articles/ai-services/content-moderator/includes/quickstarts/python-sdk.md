@@ -93,7 +93,7 @@ Instantiate a client with your endpoint and key. Create a CognitiveServicesCrede
 The following code uses a Content Moderator client to analyze a body of text and print the results to the console. First, create a **text_files/** folder at the root of your project and add a *content_moderator_text_moderation.txt* file. Add your own text to this file, or use the following sample text:
 
 ```
-Is this a grabage email abcdef@abcd.com, phone: 4255550111, IP: 255.255.255.255, 1234 Main Boulevard, Panapolis WA 96555.
+Is this a garbage email abcdef@abcd.com, phone: 4255550111, IP: 255.255.255.255, 1234 Main Boulevard, Panapolis WA 96555.
 <offensive word> is the profanity here. Is this information PII? phone 2065550111
 ```
 

@@ -89,7 +89,7 @@ Following are some examples:
 | Configuration | Output result |
 | --- | --- |
 |With all options selected </br> Explanation: </br> For the cases like '3test' in the 'WC-3 3test 4test', the designer remove the whole word '3test', since in this context, the part-of-speech tagger specifies this token '3test' as numeral, and according to the part-of-speech, the component removes it.| :::image type="content" source="./media/module/preprocess-text-all-options-selected.png" alt-text="With all options selected" border="True"::: |
-|With only `Removing number` selected </br> Explanation: </br> For the cases like '3test', '4-EC', the designer tokenizer dose not split these cases, and treats them as the whole tokens. So it won't remove the numbers in these words.| :::image type="content" source="./media/module/preprocess-text-removing-numbers-selected.png" alt-text="With only `Removing number` selected" border="True"::: |
+|With only `Removing number` selected </br> Explanation: </br> For the cases like '3test', '4-EC', the designer tokenizer does not split these cases, and treats them as the whole tokens. So it won't remove the numbers in these words.| :::image type="content" source="./media/module/preprocess-text-removing-numbers-selected.png" alt-text="With only `Removing number` selected" border="True"::: |
 
 You can also use regular expression to output customized results:
 

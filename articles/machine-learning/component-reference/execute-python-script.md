@@ -53,7 +53,7 @@ if spec is None:
 > If your pipeline contains multiple Execute Python Script components that need packages that aren't in the preinstalled list, install the packages in each component.
 
 > [!WARNING]
-> Excute Python Script component does not support installing packages that depend on extra native libraries with command like "apt-get", such as Java, PyODBC and etc. This is because this component is executed in a simple environment with Python pre-installed only and with non-admin permission.  
+> Execute Python Script component does not support installing packages that depend on extra native libraries with command like "apt-get", such as Java, PyODBC and etc. This is because this component is executed in a simple environment with Python pre-installed only and with non-admin permission.  
 
 ## Access to current workspace and registered datasets
 

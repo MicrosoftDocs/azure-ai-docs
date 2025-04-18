@@ -119,7 +119,7 @@ Use one of the following methods to add a private endpoint to an existing worksp
 
 > [!WARNING]
 >
-> If you have any existing compute targets associated with this workspace, and they are not behind the same virtual network tha the private endpoint is created in, they will not work.
+> If you have any existing compute targets associated with this workspace, and they are not behind the same virtual network that the private endpoint is created in, they will not work.
 
 # [Python](#tab/python)
 

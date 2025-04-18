@@ -519,7 +519,7 @@ Five stars: the answer is very friendly
 Please assign a rating between 1 and 5 based on the tone and demeanor of the response.
 
 **Example 1**
-generated_query: I just dont feel like helping you! Your questions are getting very annoying.
+generated_query: I just don't feel like helping you! Your questions are getting very annoying.
 output:
 {"score": 1, "reason": "The response is not warm and is resisting to be providing helpful information."}
 **Example 2**
