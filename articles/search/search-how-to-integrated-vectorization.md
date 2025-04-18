@@ -1,7 +1,7 @@
 ---
 title: Integrated Vectorization Using REST APIs or Python
 titleSuffix: Azure AI Search
-description: Learn how to use supported data sources and embedding models for vectorization during indexing and queries in Azure AI Search.
+description: Learn how to use skills to automate data chunking and vectorization during indexing and query execution.
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
@@ -13,8 +13,6 @@ ms.date: 04/18/2025
 # Set up integrated vectorization in Azure AI Search using REST or Python
 
 In this article, you learn how to use an indexer and a skillset to chunk, vectorize, and index content from a [supported data source](#supported-data-sources). The skillset calls the [Text Split skill](cognitive-search-skill-textsplit.md) or [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) for chunking and an embedding skill that's attached to a [supported embedding model](#supported-embedding-models) for chunk vectorization.
-
-You also learn how to perform [vector search](vector-search-overview.md) by assigning a vectorizer, which you define in the index schema, to a vector field. The vectorizer should match the embedding model that encodes your content. At query time, the vectorizer is automatically used for text-to-vector conversion.
 
 This article describes the end-to-end workflow for [integrated vectorization](vector-search-integrated-vectorization.md) using REST and Python. For portal-based instructions, see [Quickstart: Vectorize text and images in the Azure portal](search-get-started-portal-import-vectors.md).
 
@@ -34,7 +32,7 @@ This article describes the end-to-end workflow for [integrated vectorization](ve
 
 ### Supported data sources
 
-Azure AI Search [supports various data sources](search-indexer-overview.md#supported-data-sources). However, this article only covers the data sources that work with whole files, which are described in the following table.
+Integrated vectorization works with [all supported data sources](search-indexer-overview.md#supported-data-sources). However, this article focuses on the most commonly used data sources, which are described in the following table.
 
 | Supported data source | Description |
 |--|--|
@@ -75,7 +73,10 @@ To configure role-based access for integrated vectorization:
 
 ## Get connection information for Azure AI Search
 
-In this section, you retrieve the endpoint and Microsoft Entra token for your Azure AI Search service. Both values are necessary to establish connections in REST and Python requests. The following steps assume that you're using [roles](#role-based-access).
+In this section, you retrieve the endpoint and Microsoft Entra token for your Azure AI Search service. Both values are necessary to establish connections in REST and Python requests.
+
+> [!TIP]
+> The following steps assume that you're using [role-based access](#role-based-access) for local proof-of-concept testing. However, if you want to use integrated vectorization for app development, see [Connect your app to Azure AI Search using identities](keyless-connections.md).
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI Search service.
 
@@ -233,7 +234,7 @@ Azure AI Search supports text-embedding-ada-002, text-embedding-3-small, and tex
 
 Azure AI Search supports Azure AI Vision image retrieval through multimodal embeddings (version 4.0). Internally, Azure AI Search calls the [multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to connect to Azure AI Vision.
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and [create an Azure AI Vision resource](/azure/ai-services/computer-vision/how-to/image-retrieval?tabs=csharp#prerequisites). Make sure your Azure AI Search service is in the same region.
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI services multi-service resource.
 
 1. To assign roles:
 
@@ -247,8 +248,14 @@ Azure AI Search supports Azure AI Vision image retrieval through multimodal embe
 
    1. Select your subscription and the managed identity of your search service.
 
-> [!NOTE]
-> The multimodal embeddings are built into your Azure AI Vision resource, so there's no model deployment step.
+1. To obtain an endpoint:
+
+   1. From the left pane, select **Resource Management** > **Keys and Endpoint**.
+
+   1. Copy the endpoint for your Azure AI services multi-services resource. You specify this URL later in [Set variables](#set-variables).
+
+   > [!NOTE]
+   > The multimodal embeddings are built into your Azure AI services multi-services resource, so there's no model deployment step.
 
 ### [Azure AI Foundry model catalog](#tab/prepare-model-catalog)
 
@@ -318,8 +325,8 @@ In this section, you specify the connection information for your Azure AI Search
    | Embedding model provider | Variables | Enter this information |
    |--|--|--|
    | Azure OpenAI | `@aoaiEndpoint`, `@aoaiDeploymentName`, and `@aoaiModelName` | The endpoint, deployment name, and model name you obtained in [Prepare your embedding model](#prepare-your-embedding-model). |
-   | Azure AI Vision | `@XYZ` | ... |
-   | Azure AI Foundry model catalog | `@XYZ` | ... |
+   | Azure AI Vision | `@aiMultiServiceEndpoint` | The endpoint you obtained in [Prepare your embedding model](#prepare-your-embedding-model). |
+   | Azure AI Foundry model catalog | `@aoaiEndpoint`, `@aiFoundryDeploymentName`, and `@aiFoundryModelName` | The endpoint, deployment name, and model name you obtained in [Prepare your embedding model](#prepare-your-embedding-model). |
 
 1. To verify the variables, send the following request.
 
@@ -331,24 +338,6 @@ In this section, you specify the connection information for your Azure AI Search
    ```
 
    A response should appear in an adjacent pane. If you have existing indexes, they're listed. Otherwise, the list is empty. If the HTTP code is `200 OK`, you're ready to proceed.
-
-<!--
-
-1. Update the placeholders with the following information. Depending on your data source and embedding model provider, delete any inapplicable variables.
-
-   1. For `@baseUrl`, enter the endpoint you obtained in [Get connection information for Azure AI Search](#get-connection-information-for-azure-ai-search).
-
-   1. For `@token`, enter the Microsoft Entra token you obtained in [Get connection information for Azure AI Search](#get-connection-information-for-azure-ai-search).
-
-   1. For `@token`, enter the Microsoft Entra token you obtained in [Get connection information for Azure AI Search](#get-connection-information-for-azure-ai-search).
-
-   1. For `@storageConnectionString`, enter the connection string you obtained in [Prepare your data](#prepare-your-data).
-
-   1. For `@blobContainer`, enter the name of the container you created in [Prepare your data](#prepare-your-data).
-
-   1. For `@XYZ`, enter...
-
--->
 
 ### [Python](#tab/set-endpoints-python)
 
@@ -372,7 +361,7 @@ In this section, you specify the connection information for your Azure AI Search
 
    | Embedding model provider | Variables | Enter this information |
    |--|--|--|
-   | Azure OpenAI | `AZURE_OPENAI_ACCOUNT` and `AZURE_DEPLOYMENT_MODEL` | The endpoint, model name, and dep [Prepare your embedding model](#prepare-your-embedding-model). |
+   | Azure OpenAI | `AZURE_OPENAI_ACCOUNT` and `AZURE_DEPLOYMENT_MODEL` | The endpoint, model name, and deployment name you obtained in [Prepare your embedding model](#prepare-your-embedding-model). |
    | Azure AI Vision | `XYZ` | ... |
    | Azure AI Foundry model catalog | `XYZ` | ... |
 
@@ -408,9 +397,9 @@ In this section, you connect to a [supported data source](#supported-data-source
      }
    ```
 
-1. Set `"type"` to your data source: `"azureblob"`, `"azureadlsgen2"`, or `"onelake"`.
+1. Set `type` to your data source: `azureblob`, `azureadlsgen2`, or `onelake`.
 
-1. If you're using OneLake, set `"credentials.connectionString"` to `"ResourceId={{workspaceId}}"` and `"container.name"` to `"{{lakehouseId}}"`.
+1. If you're using OneLake, set `credentials.connectionString` to `ResourceId={{workspaceId}}` and `container.name` to `{{lakehouseId}}`.
 
 ### [Python](#tab/connect-data-python)
 
@@ -445,7 +434,7 @@ In this section, you connect to a [supported data source](#supported-data-source
 
 ## Create a skillset
 
-In this section, you create a [skillset](cognitive-search-working-with-skillsets.md) that calls a built-in skill to chunk your content and an embedding skill to create vector representations of the chunks. The skillset is executed during indexing in a later section.
+In this section, you create a [skillset](cognitive-search-working-with-skillsets.md) that calls a built-in skill to chunk your content and an embedding skill to create vector representations of the chunks. The skillset is executed during indexing in a [later section](#create-an-indexer).
 
 ### Call a built-in skill to chunk your content
 
@@ -465,17 +454,14 @@ For built-in data chunking, Azure AI Search offers the [Text Split skill](cognit
 
      {
        "name": "my-skillset",
-       "skills": [
-        {
-
-        }
-       ]
+       "skills": []
      }
    ```
 
-1. In the `skills` array, specify the Text Split skill or Document Layout skill. You can paste one of the following definitions.
+1. In the `skills` array, call the Text Split skill or Document Layout skill. You can paste one of the following definitions.
 
    ```HTTP
+       "skills": [
         {
           "@odata.type": "#Microsoft.Skills.Text.SplitSkill",
           "name": "my-text-split-skill",
@@ -518,11 +504,20 @@ For built-in data chunking, Azure AI Search offers the [Text Split skill](cognit
           ]
         }
        ]
-     }
    ```
 
-> [!NOTE]
-> The Document Layout skill is in public preview. If you want to call this skill, use a preview REST API.
+   > [!NOTE]
+   > The Document Layout skill is in public preview. If you want to call this skill, use a preview REST API.
+
+1. If you're using Azure AI Vision, [attach your Azure AI services multi-service resource](cognitive-search-attach-cognitive-services) after the `skills` array.
+
+   ```HTTP
+       "skills": [],
+       "cognitiveServices": {
+         "@odata.type": "#Microsoft.Azure.Search.AIServicesByIdentity",
+         "subdomainUrl": "{{aiMultiServiceEndpoint}}",
+         "identity": null
+        }
 
 ### [Python](#tab/built-in-skill-python)
 
@@ -538,7 +533,7 @@ To vectorize your chunked content, the skillset needs an embedding skill that po
 
 ### [REST](#tab/embedding-skill-rest)
 
-1. After the built-in chunking skill in the `skills` array, paste the following embedding skill definitions.
+1. After the built-in chunking skill in the `skills` array, call the Azure OpenAI Embedding skill, Azure AI Vision skill, or AML skill. You can paste one of the following definitions.
 
    ```HTTP
         {
@@ -555,14 +550,13 @@ To vectorize your chunked content, the skillset needs an embedding skill that po
           ],
           "outputs": [
             {
-              "name": "embedding"
+              "name": "vector"
             }
           ]
         },
         {
           "@odata.type": "#Microsoft.Skills.Vision.VectorizeSkill",
           "context": "/document",
-          "modelVersion": "2023-04-15",
           "inputs": [
             {
               "name": "url",
@@ -597,12 +591,10 @@ To vectorize your chunked content, the skillset needs an embedding skill that po
         }
    ```
 
-1. Delete the skill definitions that don't apply to your embedding model.
+   > [!NOTE]
+   > The Azure AI Vision skill and AML skill (for indexer connections to the Azure AI Foundry model catalog) are in public preview. If you want to call these skills, use a preview REST API.
 
 1. If you're using the Azure OpenAI Embedding skill, set `dimensions` to the [number of embeddings generated by your embedding model](cognitive-search-skill-azure-openai-embedding.md#supported-dimensions-by-modelname).
-
-> [!NOTE]
-> The Azure AI Vision skill and AML skill (for indexer connections to the Azure AI Foundry model catalog) are in public preview. If you want to call these skills, use a preview REST API.
 
 ### [Python](#tab/embedding-skill-python)
 
@@ -617,15 +609,108 @@ In this section, you set up physical data structures on your Azure AI Search ser
 + One or more vector fields
 + Vector configuration
 
-Vector fields must be searchable and retrievable, but they can't be filterable, facetable, or sortable. They also can't have analyzers, normalizers, or synonym map assignments.
+Vector fields store numerical representations of your chunked data. They must be searchable and retrievable, but they can't be filterable, facetable, or sortable. They also can't have analyzers, normalizers, or synonym map assignments.
 
-In addition to vector fields, the sample index in the following steps contains nonvector fields for human-readable content. It's common to have human-readable versions of the content you want to vectorize. For example, if you have a chunk of text from a PDF file, your index schema should include the plain-text equivalent of the vectorized text.
+In addition to vector fields, the sample index in the following steps contains nonvector fields for human-readable content. It's common to include plain-text equivalents of the content you want to vectorize. For more information, see [Create a vector index](vector-search-how-to-create-index.md).
 
 ### [REST](#tab/vector-index-rest)
 
-1. Use [Create Index](/rest/api/searchservice/indexes/create) to define a minimum schema.
+1. Use [Create Index](/rest/api/searchservice/indexes/create) to define the schema for a vector index.
 
-1. So that you have a definition to work with before adding a vector configuration and vector fields...
+   ```HTTP
+   ### Create a vector index
+   POST  {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
+     Content-Type: application/json
+     Authorization: Bearer {{token}}
+
+     {
+       "name": "my-vector-index",
+       "fields": [],
+       "vectorSearch": []
+     }
+   ```
+
+1. Add a [vector search configuration](vector-search-how-to-create-index.md#add-a-vector-search-configuration) to the `vectorSearch` object.
+
+   ```HTTP
+       "vectorSearch": {
+         "algorithms": [
+           {
+             "name": "hnsw-algorithm",
+             "kind": "hnsw",
+             "parameters": {
+               "m": 4,
+               "efConstruction": 400,
+               "efSearch": 100,
+               "metric": "cosine"
+             }
+           }
+         ],
+         "profiles": [
+           {
+             "name": "vector-profile-hnsw",
+             "algorithm": "hnsw-algorithm"
+           }
+         ]
+       }
+   ```
+
+   `vectorSearch.algorithms` specifies the algorithm used for indexing and querying vector fields, while `vectorSearch.profiles` links the algorithm configuration to a profile that you can assign to vector fields.
+
+1. Depending on your embedding model, update `vectorSearch.algorithms.metric`. [Valid values for distance metrics](/rest/api/searchservice/indexes/create-or-update#vectorsearchalgorithmmetric) are `cosine`, `dotproduct`, `euclidean`, and `hamming`.
+
+1. Add fields to the `fields` arrays. Include a key field for document identification, nonvector fields for human-readable content, and vector fields for embeddings.
+
+   ```HTTP
+       "fields": [
+         {
+           "name": "id",
+           "type": "Edm.String",
+           "key": true,
+           "filterable": true
+         },
+         {
+           "name": "title",
+           "type": "Edm.String",
+            "searchable": true,
+            "filterable": true,
+            "sortable": true,
+            "retrievable": true
+         },
+         {
+           "name": "titleVector",
+           "type": "Collection(Edm.Single)",
+            "searchable": true,
+            "retrievable": true,
+            "stored": true,
+            "dimensions": 1536,
+            "vectorSearchProfile": "hnsw-algorithm"
+         },
+         {
+           "name": "content",
+           "type": "Edm.String",
+            "searchable": true,
+            "retrievable": true
+         },
+         {
+           "name": "contentVector",
+           "type": "Collection(Edm.Single)",
+            "searchable": true,
+            "retrievable": false,
+            "stored": false,
+            "dimensions": 1536,
+            "vectorSearchProfile": "hnsw-algorithm"
+         }
+       ]
+   ```
+
+1. Depending on your embedding skill, update the `dimensions` property for each vector field.
+
+   | Embedding skill | Set `dimensions` to |
+   |--|--|
+   | Azure OpenAI | The [number of embeddings generated by your embedding model](cognitive-search-skill-azure-openai-embedding.md#supported-dimensions-by-modelname). |
+   | Azure AI Vision | `1024` |
+   | AML | The [number of embeddings generated by your embedding model](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md#expected-field-dimensions). |
 
 ### [Python](#tab/vector-index-python)
 
@@ -633,13 +718,55 @@ In addition to vector fields, the sample index in the following steps contains n
 
 ## Add a vectorizer to the index
 
-In this section, you add a vectorizer and vector search profile to the index schema you created in the previous section. Vector fields are indexed using algorithms specified in a vector profile.
+In addition to indexing time, you can use integrated vectorization at query time, where the embedding model that indexes your data can also decode a search string or image into a vector for vector search.
 
-See vector-search-how-to-configure-vectorizer#define-a-vectorizer-and-vector-profile.
+In this section, you enable vectorization at query time by [adding a vectorizer definition](vector-search-how-to-configure-vectorizer.md) to your index and listing the vectorizer in a vector profile.
 
 ### [REST](#tab/vectorizer-rest)
 
-1. Use [Create or Update Index](/rest/api/searchservice/indexes/create-or-update)...
+1. Use [Create or Update Index](/rest/api/searchservice/indexes/create-or-update) to add the [Azure OpenAI vectorizer](vector-search-vectorizer-azure-open-ai.md), [Azure AI Vision vectorizer](vector-search-vectorizer-ai-services-vision.md), or [Azure AI Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog) to your index. You can paste one of the following definitions.
+
+   ```HTTP
+       "vectorizers": [
+        {
+          "name": "my-openai-vectorizer",
+          "kind": "azureOpenAI",
+          "parameters": {
+            "resourceUri": "{{aoaiEndpoint}}",
+            "deploymentId": "{{aoaiDeploymentName}}",
+            "modelName": "{{aoaiModelName}}"
+          }
+        }
+        {
+          "name": "my-ai-services-vision-vectorizer",
+          "kind": "aiServicesVision",
+          "parameters": {
+            "resourceUri": "{{aiMultiServiceEndpoint}}",
+            "modelVersion": "2023-04-15"
+          }
+        }
+        {
+          "name": "my-model-catalog-vectorizer",
+          "kind": "aml",
+          "parameters": {
+              "uri": "{{aoaiEndpoint}}",
+              "modelName": "{{aiFoundryModelName}}",
+          }
+        }
+      ]
+   ```
+
+1. In `vectorSearch.profiles`, which you created in the previous step, specify your vectorizer.
+
+   ```HTTP
+         "profiles": [
+           {
+             "name": "vector-profile-hnsw",
+             "algorithm": "hnsw-algorithm"
+             "vectorizer":"my-open-ai-vectorizer"
+           }
+         ]
+   ```
 
 ### [Python](#tab/vectorizer-python)
 
@@ -647,19 +774,41 @@ See vector-search-how-to-configure-vectorizer#define-a-vectorizer-and-vector-pro
 
 ## Create an indexer
 
-In this section, you...
+In this section, you create an [indexer](search-indexer-overview.md) to drive the entire vectorization pipeline, from data retrieval to skillset execution to indexing. We recommend that you [run the indexer on a schedule]((search-howto-schedule-indexers.md)) to process changes or documents that were missed due to throttling.
 
 ### [REST](#tab/indexer-rest)
+
+Use [Create Indexer](/rest/api/searchservice/indexers/create) to define an indexer that executes the vectorization pipeline.
+
+```HTTP
+### Create an indexer
+POST {{baseUrl}}/indexers?api-version=2024-07-01  HTTP/1.1
+  Content-Type: application/json
+  Authorization: Bearer {{token}}
+
+  {
+    "name": "my-indexer",
+    "dataSourceName": "my-data-source",
+    "targetIndexName": "my-vector-index",
+    "skillsetName": "my-skillset",
+    "schedule": {
+      "interval": "PT2H"
+    },
+    "parameters": {
+      "batchSize": null,
+      "maxFailedItems": null,
+      "maxFailedItemsPerBatch": null
+    }
+  }
+```
 
 ### [Python](#tab/indexer-python)
 
 ---
 
-## Create vector queries
+## Confirm indexing with a vector query
 
-In this section, you...
-
-See vector-search-how-to-query.
+In this section, you verify that your content was successfully indexed by [running vector queries](vector-search-how-to-query.md). If you have a raw vector, you can provide it in the query. If you added a vectorizer, the search engine will decode plain text or an image into a vector for query execution.
 
 ### [REST](#tab/vector-queries-rest)
 
