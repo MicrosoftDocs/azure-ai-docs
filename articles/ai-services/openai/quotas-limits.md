@@ -61,8 +61,16 @@ The following sections provide you with a quick guide to the default quotas and 
 [!INCLUDE [Quota](./includes/global-batch-limits.md)]
 
 
+## GPT-4 rate limits
 
-## GPT 4.1 series rate limits
+### GPT-4.5 preview global standard
+
+| Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
+|---|---|:---:|:---:|
+| `gpt-4.5` | Enterprise Tier | 200 K | 200 |
+| `gpt-4.5` | Default | 150 K | 150 |
+
+### GPT-4.1 series
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
@@ -73,27 +81,30 @@ The following sections provide you with a quick guide to the default quotas and 
 | `gpt-4.1-mini` (2025-04-14) | Enterprise Tier | 5 M | 5 K |
 | `gpt-4.1-mini` (2025-04-14) | Default | 1 M | 1 K |
 
+### GPT-4 Turbo
+
+`gpt-4` (`turbo-2024-04-09`) has rate limit tiers with higher limits for certain customer types.
+
+| Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
+|---|---|:---:|:---:|
+|`gpt-4` (turbo-2024-04-09) | Enterprise agreement | 2 M | 12 K |
+|`gpt-4` (turbo-2024-04-09) | Default | 450 K | 2.7 K |
+
 ## model router rate limits
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
 | `model-router` (2025-04-15) | Default | 128 K | TBD |
 
-## computer-use-preview global standard
+## computer-use-preview global standard rate limits
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
 | `computer-use-preview`| Enterprise Tier | 30 M | 300 K |
 | `computer-use-preview`| Default         | 450 K | 4.5 K |
 
-## GPT-4.5 Preview global standard
 
-| Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
-|---|---|:---:|:---:|
-| `gpt-4.5` | Enterprise Tier | 200 K | 200 |
-| `gpt-4.5` | Default | 150 K | 150 |
-
-## `o-series` rate limits
+## o-series rate limits
 
 > [!IMPORTANT]
 > The ratio of RPM/TPM for quota with o1-series models works differently than older chat completions models:
@@ -109,7 +120,7 @@ The following sections provide you with a quick guide to the default quotas and 
 >
 > There's a known issue with the [quota/usages API](/rest/api/aiservices/accountmanagement/usages/list?view=rest-aiservices-accountmanagement-2024-06-01-preview&tabs=HTTP&preserve-view=true) where it assumes the old ratio applies to the new o1-series models. The API returns the correct base capacity number, but doesn't apply the correct ratio for the accurate calculation of TPM.
 
-### `o-series` global standard
+### o-series global standard
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
@@ -124,7 +135,7 @@ The following sections provide you with a quick guide to the default quotas and 
 | `o1` & `o1-preview` | Default | 3 M | 500 |
 | `o1-mini`| Default | 5 M | 500 |
 
-### `o-series` data zone standard
+### o-series data zone standard
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
@@ -142,20 +153,18 @@ The following sections provide you with a quick guide to the default quotas and 
 | `o1-preview` | Default | 300 K | 50 |
 | `o1-mini`| Default | 500 K | 50 |
 
-## gpt-4o & GPT-4 Turbo rate limits
+## gpt-4o rate limits
 
-`gpt-4o` and `gpt-4o-mini`, and `gpt-4` (`turbo-2024-04-09`) have rate limit tiers with higher limits for certain customer types.
+`gpt-4o` and `gpt-4o-mini` have rate limit tiers with higher limits for certain customer types.
 
-### gpt-4o & GPT-4 Turbo global standard
+### gpt-4o global standard
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
 |`gpt-4o`|Enterprise agreement | 30 M | 180 K |
 |`gpt-4o-mini` | Enterprise agreement | 50 M | 300 K |
-|`gpt-4` (turbo-2024-04-09) | Enterprise agreement | 2 M | 12 K |
 |`gpt-4o` |Default | 450 K | 2.7 K |
 |`gpt-4o-mini` | Default | 2 M | 12 K  |
-|`gpt-4` (turbo-2024-04-09) | Default | 450 K | 2.7 K |
 
 M = million | K = thousand
 
@@ -182,7 +191,7 @@ M = million | K = thousand
 
 M = million | K = thousand
 
-## gpt-4o audio
+### gpt-4o audio
 
 The rate limits for each `gpt-4o` audio model deployment are 100K TPM and 1K RPM. During the preview, [Azure AI Foundry portal](https://ai.azure.com/) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit will be 100K TPM and 1K RPM.
 
@@ -195,7 +204,7 @@ The rate limits for each `gpt-4o` audio model deployment are 100K TPM and 1K RPM
 
 M = million | K = thousand
 
-#### Usage tiers
+## Usage tiers
 
 Global standard deployments use Azure's global infrastructure, dynamically routing customer traffic to the data center with best availability for the customer’s inference requests. Similarly, Data zone standard deployments allow you to leverage Azure global infrastructure to dynamically route traffic to the data center within the Microsoft defined data zone with the best availability for each request. This enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see greater variability in response latency.
 
@@ -204,14 +213,14 @@ The Usage Limit determines the level of usage above which customers might see la
 > [!NOTE]
 > Usage tiers only apply to standard, data zone standard, and global standard deployment types. Usage tiers don't apply to global batch and provisioned throughput deployments.
 
-#### GPT-4o global standard, data zone standard, & standard
+### GPT-4o global standard, data zone standard, & standard
 
 |Model| Usage Tiers per month |
 |----|----|
 |`gpt-4o` | 12 Billion tokens |
 |`gpt-4o-mini` | 85 Billion tokens |
 
-#### GPT-4 standard
+### GPT-4 standard
 
 |Model| Usage Tiers per month|
 |---|---|
