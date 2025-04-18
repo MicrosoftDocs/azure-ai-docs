@@ -52,7 +52,7 @@ Start with the [Create and deploy an Azure OpenAI Service resource](./how-to/cre
 
 ## Comparing Azure OpenAI and OpenAI
 
-Azure OpenAI Service gives customers advanced language AI with OpenAI GPT-4, GPT-3, Codex, GPT-image-1, DALL-E, speech to text, and text to speech models with the security and enterprise promise of Azure. Azure OpenAI co-develops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
+Azure OpenAI Service gives customers advanced language AI with OpenAI GPT-4, GPT-3, Codex, GPT-image-1 (preview), DALL-E, speech to text, and text to speech models with the security and enterprise promise of Azure. Azure OpenAI co-develops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
 
 With Azure OpenAI, customers get the security capabilities of Microsoft Azure while running the same models as OpenAI. Azure OpenAI offers private networking, regional availability, and responsible AI content filtering.  
 

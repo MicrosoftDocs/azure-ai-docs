@@ -12,7 +12,7 @@ manager: nitinme
 
 # What is prompt transformation?
 
-Prompt transformation is a process included in the DALL-E 3 and GPT-image-1 models that applies a safety and quality system message to your original prompt. It uses a large language model (LLM) call to add the message before sending your prompt to the model for image generation. This system message enriches your original prompt with the goal of generating more diverse and higher-quality images while maintaining intent. 
+Prompt transformation is a process included in the DALL-E 3 and GPT-image-1 (preview) models that applies a safety and quality system message to your original prompt. It uses a large language model (LLM) call to add the message before sending your prompt to the model for image generation. This system message enriches your original prompt with the goal of generating more diverse and higher-quality images while maintaining intent. 
 
 After prompt transformation is applied to the original prompt, content filtering is applied as a secondary step before image generation; for more information, see [Content filtering](./content-filter.md).
 
