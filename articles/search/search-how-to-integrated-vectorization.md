@@ -509,7 +509,7 @@ For built-in data chunking, Azure AI Search offers the [Text Split skill](cognit
    > [!NOTE]
    > The Document Layout skill is in public preview. If you want to call this skill, use a preview REST API.
 
-1. If you're using Azure AI Vision, [attach your Azure AI services multi-service resource](cognitive-search-attach-cognitive-services) after the `skills` array.
+1. If you're using Azure AI Vision, [attach your Azure AI services multi-service resource](cognitive-search-attach-cognitive-services.md) after the `skills` array.
 
    ```HTTP
        "skills": [],
@@ -724,7 +724,7 @@ In this section, you enable vectorization at query time by [adding a vectorizer 
 
 ### [REST](#tab/vectorizer-rest)
 
-1. Use [Create or Update Index](/rest/api/searchservice/indexes/create-or-update) to add the [Azure OpenAI vectorizer](vector-search-vectorizer-azure-open-ai.md), [Azure AI Vision vectorizer](vector-search-vectorizer-ai-services-vision.md), or [Azure AI Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog) to your index. You can paste one of the following definitions.
+1. Use [Create or Update Index](/rest/api/searchservice/indexes/create-or-update) to add the [Azure OpenAI vectorizer](vector-search-vectorizer-azure-open-ai.md), [Azure AI Vision vectorizer](vector-search-vectorizer-ai-services-vision.md), or [Azure AI Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) to your index. You can paste one of the following definitions.
 
    ```HTTP
        "vectorizers": [
@@ -774,7 +774,7 @@ In this section, you enable vectorization at query time by [adding a vectorizer 
 
 ## Create an indexer
 
-In this section, you create an [indexer](search-indexer-overview.md) to drive the entire vectorization pipeline, from data retrieval to skillset execution to indexing. We recommend that you [run the indexer on a schedule]((search-howto-schedule-indexers.md)) to process changes or documents that were missed due to throttling.
+In this section, you create an [indexer](search-indexer-overview.md) to drive the entire vectorization pipeline, from data retrieval to skillset execution to indexing. We recommend that you [run the indexer on a schedule](search-howto-schedule-indexers.md) to process changes or documents that were missed due to throttling.
 
 ### [REST](#tab/indexer-rest)
 
