@@ -18,7 +18,7 @@ This document explains how you can use metrics and logs to monitor model deploym
 
 To use monitoring capabilities for model deployments in Azure AI model inference, you need the following:
 
-* An Azure AI services resource. For more information, see [Create an Azure AI Services resource](../../how-to/quickstart-create-resources.md).
+* An Azure AI services resource. For more information, see [Create an Azure AI Services resource](quickstart-create-resources.md).
 
     > [!TIP]
     > If you are using Serverless API Endpoints and you want to take advantage of monitoring capabilities explained in this document, [migrate your Serverless API Endpoints to Azure AI model inference](quickstart-ai-project.md).
@@ -34,9 +34,6 @@ Azure Monitor collects metrics from Azure AI model inference automatically. **No
 * Stored in the Azure Monitor time-series metrics database.
 * Lightweight and capable of supporting near real-time alerting.
 * Used to track the performance of a resource over time.
-
-> [!IMPORTANT]
-> During Private Preview, Azure OpenAI model deployments are reported on metrics in category **Azure OpenAI**. At Public Preview, all models - including Azure OpenAI models - will report to the category **Models**.
 
 ### Viewing metrics
 
@@ -64,7 +61,7 @@ You can view metrics within Azure AI Foundry portal. To view them, follow these 
 
 #### Metrics explorer
 
-[Metrics explorer](/azure-monitor/essentials/metrics-getting-started.md) is a tool in the Azure portal that allows you to view and analyze metrics for Azure resources. For more information, see Analyze metrics with Azure Monitor metrics explorer.
+[Metrics explorer](/azure-monitor/essentials/metrics-getting-started) is a tool in the Azure portal that allows you to view and analyze metrics for Azure resources. For more information, see Analyze metrics with Azure Monitor metrics explorer.
 
 To use Azure Monitor, follow these steps:
 
@@ -79,6 +76,9 @@ To use Azure Monitor, follow these steps:
 1. The metric explorer shows. Select the [metrics](#metrics-reference) that you want to explore. The following example shows the number of requests made to the model deployments in the resource.
 
     :::image type="content" source="../media/monitor-models/azmon-add-metric.png" alt-text="Screenshot showing how to add a new metric to the chart." lightbox="../media/monitor-models/azmon-add-metric.png":::
+
+    > [!IMPORTANT]
+    > Metrics in category **Azure OpenAI** contains metrics for Azure OpenAI models in the resource. Category **Foundry Models** contains all the models available in the resource, including Azure OpenAI, DeepSeek, Phi, etc.
 
 1. You can add as many metrics as needed to either the same chart or to a new chart.
 
@@ -127,9 +127,9 @@ To query metrics, follow these steps:
 
 Tools that allow more complex visualization include:
 
-* [Workbooks](https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-overview), customizable reports that you can create in the Azure portal. Workbooks can include text, metrics, and log queries.
-* [Grafana](https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/grafana-plugin), an open platform tool that excels in operational dashboards. You can use Grafana to create dashboards that include data from multiple sources other than Azure Monitor.
-* [Power BI](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-powerbi), a business analytics service that provides interactive visualizations across various data sources. You can configure Power BI to automatically import log data from Azure Monitor to take advantage of these visualizations.
+* [Workbooks](/azure/azure-monitor/visualize/workbooks-overview), customizable reports that you can create in the Azure portal. Workbooks can include text, metrics, and log queries.
+* [Grafana](/azure/azure-monitor/visualize/grafana-plugin), an open platform tool that excels in operational dashboards. You can use Grafana to create dashboards that include data from multiple sources other than Azure Monitor.
+* [Power BI](/azure/azure-monitor/logs/log-powerbi), a business analytics service that provides interactive visualizations across various data sources. You can configure Power BI to automatically import log data from Azure Monitor to take advantage of these visualizations.
 
 ### Metrics reference
 
