@@ -58,41 +58,37 @@ For example, for the persona `en-US-Ava` you can specify the following HD voice 
 
 The following table lists the Azure AI Speech HD voices that are currently available.
 
-| Persona | Full Name | Status |
-|-----------|-----------|--------|
-| de-DE-Florian | de-DE-Florian:DragonHDLatestNeural | GA |
-| de-DE-Seraphina | de-DE-Seraphina:DragonHDLatestNeural | GA |
-| en-US-Adam | en-US-Adam:DragonHDLatestNeural | GA |
-| en-US-Andrew | en-US-Andrew:DragonHDLatestNeural | GA |
-| en-US-Andrew2 | en-US-Andrew2:DragonHDLatestNeural | GA |
-| en-US-Ava | en-US-Ava:DragonHDLatestNeural | GA |
-| en-US-Brian | en-US-Brian:DragonHDLatestNeural | GA |
-| en-US-Davis | en-US-Davis:DragonHDLatestNeural | GA |
-| en-US-Emma | en-US-Emma:DragonHDLatestNeural | GA |
-| en-US-Emma | en-US-Emma2:DragonHDLatestNeural | GA |
-| en-US-Steffan | en-US-Steffan:DragonHDLatestNeural | GA |
-| en-US-Alloy | en-US-Alloy:DragonHDLatestNeural | Preview |
-| en-US-Andrew | en-US-Andrew3:DragonHDLatestNeural | Preview |
-| en-US-Aria | en-US-Aria:DragonHDLatestNeural | Preview |
-| en-US-Ava | en-US-Ava3:DragonHDLatestNeural | Preview |
-| en-US-Jenny | en-US-Jenny:DragonHDLatestNeural | Preview |
-| en-US-MultiTalker-Ava-Andrew | en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural | Preview |
-| en-US-Nova | en-US-Nova:DragonHDLatestNeural | Preview |
-| en-US-Phoebe | en-US-Phoebe:DragonHDLatestNeural | Preview |
-| en-US-Serena | en-US-Serena:DragonHDLatestNeural | Preview |
-| es-ES-Tristan | es-ES-Tristan:DragonHDLatestNeural | GA |
-| es-ES-Ximena | es-ES-Ximena:DragonHDLatestNeural | GA |
-| fr-FR-Remy | fr-FR-Remy:DragonHDLatestNeural | GA |
-| fr-FR-Vivienne | fr-FR-Vivienne:DragonHDLatestNeural | GA |
-| ja-JP-Masaru | ja-JP-Masaru:DragonHDLatestNeural | GA |
-| ja-JP-Nanami | ja-JP-Nanami:DragonHDLatestNeural | GA |
-| zh-CN-Xiaochen | zh-CN-Xiaochen:DragonHDFlashLatestNeural | Preview |
-| zh-CN-Xiaoxiao | zh-CN-Xiaoxiao:DragonHDFlashLatestNeural | Preview |
-| zh-CN-Xiaoxiao2 | zh-CN-Xiaoxiao2:DragonHDFlashLatestNeural | Preview |
-| zh-CN-Yunxiao | zh-CN-Yunxiao:DragonHDFlashLatestNeural | Preview |
-| zh-CN-Yunyi | zh-CN-Yunyi:DragonHDFlashLatestNeural | Preview |
-| zh-CN-Xiaochen | zh-CN-Xiaochen:DragonHDLatestNeural | GA |
-| zh-CN-Yunfan | zh-CN-Yunfan:DragonHDLatestNeural | GA |
+| Voice Name                                 | Gender | Status  | Note                                  |
+|-------------------------------------------|--------|---------|---------------------------------------|
+| de-DE-Florian:DragonHDLatestNeural        | Male   | GA      |                                       |
+| de-DE-Seraphina:DragonHDLatestNeural      | Female | GA      |                                       |
+| en-US-Adam:DragonHDLatestNeural           | Male   | GA      |                                       |
+| en-US-Alloy:DragonHDLatestNeural          | Male   | Preview |                                       |
+| en-US-Andrew:DragonHDLatestNeural         | Male   | GA      |                                       |
+| en-US-Andrew2:DragonHDLatestNeural        | Male   | GA      | Optimized for conversational content  |
+| en-US-Andrew3:DragonHDLatestNeural        | Male   | Preview | Optimized for podcast content         |
+| en-US-Aria:DragonHDLatestNeural           | Female | Preview |                                       |
+| en-US-Ava:DragonHDLatestNeural            | Female | GA      |                                       |
+| en-US-Ava3:DragonHDLatestNeural           | Female | Preview | Optimized for podcast content         |
+| en-US-Brian:DragonHDLatestNeural          | Male   | GA      |                                       |
+| en-US-Davis:DragonHDLatestNeural          | Male   | GA      |                                       |
+| en-US-Emma:DragonHDLatestNeural           | Female | GA      |                                       |
+| en-US-Emma2:DragonHDLatestNeural          | Female | GA      | Optimized for conversational content  |
+| en-US-Jenny:DragonHDLatestNeural          | Female | Preview |                                       |
+| en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural | Male | Preview |                                       |
+| en-US-Nova:DragonHDLatestNeural           | Female | Preview |                                       |
+| en-US-Phoebe:DragonHDLatestNeural         | Female | Preview |                                       |
+| en-US-Serena:DragonHDLatestNeural         | Female | Preview |                                       |
+| en-US-Steffan:DragonHDLatestNeural        | Male   | GA      |                                       |
+| es-ES-Tristan:DragonHDLatestNeural        | Male   | GA      |                                       |
+| es-ES-Ximena:DragonHDLatestNeural         | Female | GA      |                                       |
+| fr-FR-Remy:DragonHDLatestNeural           | Male   | GA      |                                       |
+| fr-FR-Vivienne:DragonHDLatestNeural       | Female | GA      |                                       |
+| ja-JP-Masaru:DragonHDLatestNeural         | Male   | GA      |                                       |
+| ja-JP-Nanami:DragonHDLatestNeural         | Female | GA      |                                       |
+| zh-CN-Xiaochen:DragonHDLatestNeural       | Female | GA      |                                       |
+| zh-CN-Yunfan:DragonHDLatestNeural         | Male   | GA      |                                       |
+
 
 ## How to use Azure AI Speech HD voices
 

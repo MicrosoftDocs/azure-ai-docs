@@ -190,12 +190,12 @@ import (
 )
 
 func main() {
-	azureOpenAIKey := os.Getenv("AOAI_WHISPER_API_KEY")
+	azureOpenAIKey := os.Getenv("AOAI_AUDIO_API_KEY")
 
 	// Ex: "https://<your-azure-openai-host>.openai.azure.com"
-	azureOpenAIEndpoint := os.Getenv("AOAI_WHISPER_ENDPOINT")
+	azureOpenAIEndpoint := os.Getenv("AOAI_AUDIO_ENDPOINT")
 
-	modelDeploymentID := os.Getenv("AOAI_WHISPER_MODEL")
+	modelDeploymentID := os.Getenv("AOAI_AUDIO_MODEL")
 
 	if azureOpenAIKey == "" || azureOpenAIEndpoint == "" || modelDeploymentID == "" {
 		fmt.Fprintf(os.Stderr, "Skipping example, environment variables missing\n")
