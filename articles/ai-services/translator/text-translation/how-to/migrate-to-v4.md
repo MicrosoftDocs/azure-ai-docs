@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 04/15/2025
+ms.date: 04/18/2025
 ms.author: lajanuar
 ---
 
@@ -15,9 +15,9 @@ ms.author: lajanuar
 Azure AI Translator text translation 2025-05-01-preview (v4.0) is our latest cloud-based, multilingual neural machine translation service. As Azure AI Translator matures, we're focused on patterns and practices to best support and add value to our users.
 
 >[!IMPORTANT]
-> Azure AI Translator REST API `2025-05-01-preview` is new version of the Azure AI Translator REST API **with breaking changes**.
-> It's essential to thoroughly test your code against the new release before migrating any production applications from Azure AI Translator v3.0.
-> Make sure to review your code and internal workflows for adherence to best practices and restrict your production code to versions that you fully test.
+> * Azure AI Translator REST API `2025-05-01-preview` is new version of the Azure AI Translator REST API **with breaking changes**.
+> * It's essential to thoroughly test your code against the new release before migrating any production applications from Azure AI Translator v3.0.
+> * Make sure to review your code and internal workflows for adherence to best practices and restrict your production code to versions that you fully test.
 
 
 The latest version of Azure AI Translator includes the following enhancements and capabilities:
@@ -30,22 +30,22 @@ The latest version of Azure AI Translator includes the following enhancements an
 
 ## Method changes
 
-The following list outlines the v4.0 method that aligns with the v3.0 method.
+The following list compares available Azure AI Translator `2025-05-01-preview` methods with available v3.0 method.
 
 ### Required parameters
 
 |2025-05-01 method|v3 method|
 |:---|---|
-|&bullet; **`api-version`**<br>&bullet; Value must be **`2025-05-01-preview`** |&bullet; **`api-version`**<br>&bullet; Value must be **`3.0`**|
-|&bullet; **`text`**<br>&bullet; Specifies source text for translation. | &bullet; **`text`**<br>&bullet; Specifies source text for translation|
-|&bullet; **`targets`**<br>&bullet; Array containing user-specified values for the translated text|&bullet; The targets array isn't included with the Translator v3.0 schema|
-|&bullet; **`language`**<br>&bullet; The language code for the translated (target) text *specified in the `targets` array*. <br> &bullet; Values are [supported language](../../language-support.md) codes for the translation operation.|&bullet; **`to`**<br>&bullet; Specifies the language of the output text.<br>&bullet; The target language must be one of the [supported languages](../../language-support.md#translation) included in the translation scope.|
+|**`api-version`**<br>&bullet; Value must be **`2025-05-01-preview`** |**`api-version`**<br>&bullet; Value must be **`3.0`**|
+|**`text`**<br>&bullet; Specifies source text for translation. | **`text`**<br>&bullet; Specifies source text for translation|
+|**`targets`**<br>&bullet; Array containing user-specified values for the translated text|&bullet; *The targets array isn't included with the Translator v3.0 schema.*|
+|**`language`**<br>&bullet; The language code for the translated (target) text *specified in the `targets` array*. <br> &bullet; Values are [supported language](../../language-support.md) codes for the translation operation.|**`to`**<br>&bullet; Specifies the language of the output text.<br>&bullet; The target language must be one of the [supported languages](../../language-support.md#translation) included in the translation scope.|
 
 For more information on **`targets array`** values, *see* [Translate text](../reference/v4/translate-api.md).
 
 ## API compatibility
 
-The following table compares Translator `2025-05-01-preview` methods those available with the Translator v3 API.
+The following table compares Translator `2025-05-01-preview` and Translator v3 API methods.
 
 |Translator 2025-05-01-preview method|Translator v3 compatibility|
 |---|---|
