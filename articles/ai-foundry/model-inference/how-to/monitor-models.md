@@ -8,6 +8,8 @@ ms.topic: how-to
 ms.date: 1/21/2025
 ---
 
+# Monitor model deployments in Azure AI model inference
+
 When you have critical applications and business processes that rely on Azure resources, you need to monitor and get alerts for your system. The Azure Monitor service collects and aggregates metrics and logs from every component of your system, including Azure AI model inference model deployments. You can use this information to view availability, performance, and resilience, and get notifications of issues.
 
 This document explains how you can use metrics and logs to monitor model deployments in Azure AI model inference.
