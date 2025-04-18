@@ -12,16 +12,17 @@ ms.author: lajanuar
 
 # Translate text (2025-05-01-preview)
 
+The Text translation API enables you to translate your source language text into a specified target language text.
+
 >[!IMPORTANT]
 > * Azure AI Translator REST API `2025-05-01-preview` is new version of the Azure AI Translator REST API **with breaking changes**.
 > * It's essential to thoroughly test your code against the new release before migrating any production applications from Azure AI Translator v3.0.
 > * Make sure to review your code and internal workflows for adherence to best practices and restrict your production code to versions that you fully test.
 
-Translates text.
 
 ## Request URL
 
-Send a `POST` request to:
+**Send a `POST` request to**:
 
 ```bash
 https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview
@@ -53,7 +54,7 @@ Request parameters passed with the request are as follows:
 | **`language`** | string | True |The language code for the translated (`target`) text *specified in the `targets` array*. Accepted values are [supported language](../../../language-support.md) codes for the translation operation.|
 
 
-#### Optional parameters
+#### Optional parameters (not included in the targets array)
 
 | Parameter | Type | Required? | Description |
 | --- | --- | --- | --- |
@@ -61,7 +62,7 @@ Request parameters passed with the request are as follows:
 | **language** | string | False | Specifies the language code for the `source` text. If not specified, the system autodetects the language of the source text. Possible values are list of language code supported by the specified model. |
 | **script** | string | False | Specifies the script of the source text. |
 
-#### Optional targets array parameters
+#### Optional parameters (included in the targets array)
 
 | Parameter | Type | Required? | Description |
 | --- | --- | --- | --- |
@@ -70,7 +71,7 @@ Request parameters passed with the request are as follows:
 | **allowFallback** | string | False | If the specified model isn't supported for a given source and target language pair, the service is permitted to revert to a general system. This action ensures that translations can still be provided even when the preferred model is unavailable. Default is `true`. If `false` system returns an error if language pair isn't supported. |
 | **grade** | string | False | Default is `basic`. For example, translation produced by simple prompt like `translate <source text> from <source language> to <target language>`|
 | **tone** | string | False | Desired tone of target translation. Enum: Formal, informal, neutral. |
-| **gender**<br>For more information, *see* [Gender-specific translations](#gender-specific-translations)| string | False | Desired gender of target translation.|
+| **gender** (For more information, *see* [Gender-specific translations](#gender-specific-translations))| string | False | Desired gender of target translation.|
 | **adaptiveDatasetId** | string | False | Reference dataset ID having sentence pair to generate adaptive customized translation |
 | **referenceTextPairs** | string | False | Reference text pairs to generate adaptive customized translation |
 | **referenceTextPairs.source** | string | False | Source text in reference text pair. |

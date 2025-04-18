@@ -12,7 +12,7 @@ ms.author: lajanuar
 
 # Transliterate text (2025-05-01-preview)
 
-Converts text in one language from one script to another script.
+The Text transliteration API maps your source language script or alphabet to a target language script or alphabet.
 
 ## Request URL
 
