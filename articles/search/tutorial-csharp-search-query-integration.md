@@ -46,7 +46,7 @@ The search suggester, `sg`, is defined in the [schema file](https://github.com/A
 
 Call the Azure Function in the React client at `\client\src\pages\Search\Search.jsx` with the following code to search for books. 
 
-:::code language="javascript" source="~/azure-search-static-web-app/client/src/pages/Search/Search.jsx" :::
+:::code language="csharp" source="~/azure-search-static-web-app/client/src/pages/Search/Search.jsx" :::
 
 ## Client: Suggestions from the catalog
 
