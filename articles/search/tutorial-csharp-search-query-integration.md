@@ -46,13 +46,13 @@ The search suggester, `sg`, is defined in the [schema file](https://github.com/A
 
 Call the Azure Function in the React client with the following code. 
 
-:::code language="csharp" source="~/azure-search-static-web-app/client/src/pages/Search/Search.js" :::
+:::code language="javascript" source="~/azure-search-static-web-app/client/src/pages/Search/Search.jsx" :::
 
 ## Client: Suggestions from the catalog
 
 The Suggest function API is called in the React app at `\client\src\components\SearchBar\SearchBar.js` as part of the [Material UI's Autocomplete component](https://mui.com/material-ui/react-autocomplete/). This component uses the input text to search for authors and books that match the input text then displays those possible matches at selectable items in the drop-down list. 
 
-:::code language="csharp" source="~/azure-search-static-web-app/client/src/components/SearchBar/SearchBar.js" :::
+:::code language="javascript" source="~/azure-search-static-web-app/client/src/components/SearchBar/SearchBar.jsx" :::
 
 ## Azure Function: Get specific document 
 
@@ -64,7 +64,7 @@ The [Document Lookup API](https://github.com/Azure-Samples/azure-search-static-w
 
 This function API is called in the React app at `\client\src\pages\Details\Detail.js` as part of component initialization:
 
-:::code language="csharp" source="~/azure-search-static-web-app/client/src/pages/Details/Details.js"  :::
+:::code language="javascript" source="~/azure-search-static-web-app/client/src/pages/Details/Details.jsx"  :::
 
 ## C# models to support function app
 
