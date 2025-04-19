@@ -33,28 +33,7 @@ Azure AI Content Understanding addresses the core challenges of multimodal RAG�
 
 - **Optimized Query Performance:** Content Understanding mitigates modality bias and context fragmentation by providing structured, enriched data that supports sophisticated relevance ranking across modalities. This ensures that the most appropriate information is surfaced for user queries, improving the coherence and accuracy of generated responses.
 
-
-## Multimodal Data Processing for RAG with Content Understanding
-
-Content Understanding's dual extraction approach offers strategic advantages for RAG implementation that addresses common multimodal data ingestion, representation and query optimization challenges:
-
-1. **Content extraction** transforms unstructured information into coherent, context-aware representations that preserve hierarchical relationships and structural elements critical for accurate retrieval. The output of content extraction delivers unified outputs in Markdown and JSON—formats designed to integrate seamlessly with vector stores and generative AI models—while maintaining crucial contextual integrity across all modalities.
-
-2. **Field extraction** enhances knowledge bases through customizable schema definitions, enabling organizations to generate targeted metadata that captures domain-specific contextual elements with precision. This capability transforms unstructured content into rich, structured information in JSON formats tailored to specific business contexts and search requirements.
-
-These modality-specific approaches directly address the fundamental challenges of multimodal RAG, transforming each content type's unique characteristics into structured, contextually rich representations:
-
-- **Document:** Content Understanding's sophisticated layout analysis preserves document structure by intelligently converting complex layouts into clean markdown with hierarchical headings, properly formatted tables, and explicit element relationships. This structural preservation is crucial for effective RAG implementation because it maintains semantic relationships between content sections, improving both indexing precision and retrieval accuracy. The resulting structured markdown output enhances RAG performance in three key ways: it enables more targeted retrieval of relevant document segments rather than entire documents, preserves critical context between related elements that might otherwise be fragmented, and provides consistent formatting that simplifies integration with vector stores and search engines. These advantages ultimately lead to more precise, contextually appropriate responses when the system is queried.
-
-- **Image:** Content Understanding enhances image processing for RAG by generating descriptive text summaries and classifications that can be indexed alongside vector representations. This dual approach—combining vectors with rich textual descriptions—provides broader contextual understanding and enables more precise retrieval. Using advanced vision capabilities to extract both explicit content (text through OCR) and implicit meaning (object relationships, scene context), transforming previously unsearchable visual content into fully accessible semantic representations that enrich knowledge bases and yield more informative query responses.
-
-- **Audio:** Content Understanding enhances audio processing for RAG through advanced speaker-aware transcription that maintains attribution across conversations while preserving temporal flow. The system identifies multiple speakers, detects language switches, and captures paralinguistic features, transforming audio into structured markdown that retains both spoken content and conversational context. This intelligent processing ensures that complex audio data like earnings calls or multi-person interviews maintains speaker identity and semantic coherence. Beyond basic transcription, users can define custom fields to extract additional metadata—such as topics, summaries, and sentiment analysis—which can be used alongside the transcription to significantly enrich knowledge bases and improve semantic search relevance, ultimately enabling more precise and contextually appropriate responses to queries.
-
-- **Video:** Content Understanding addresses video's inherent complexity through intelligent scene segmentation and temporal synchronization of visual and audio elements. The service outputs both markdown and JSON formats, both optimized for generative AI models and structured to fit within typical context window limitations. This is achieved by segmenting detected shots into instances that prevent token limit issues during retrieval. Beyond basic content extraction, customers can generate additional metadata—such as topics, summaries and sentiment analysis—which can be used alongside vector representations to significantly enrich knowledge bases and improve semantic search relevance, ultimately enhancing RAG performance for video content.
-
-
-## Building a Multimodal Data RAG using Content Understanding
-
+## Building a Multimodal RAG Solution using Content Understanding
 A high level summary of RAG pattern looks like this:
 
 1. Transform unstructured multimodal data into structured representation using Content Understanding.
@@ -360,34 +339,6 @@ After processing multimodal content with Azure AI Content Understanding, the nex
 
 This approach transforms traditionally siloed content types into an integrated information ecosystem, enabling sophisticated cross-modal search capabilities that allow users to discover relevant information regardless of its original format. Whether users need information from documents, insights from images, key points from audio recordings, or explanations from video content, a unified search index delivers consistent, contextually relevant results.
 
-The following sample demonstrates how to embed and index the unified output from Content Understanding:
-
-
-```python
-def embed_and_index_chunks(output):
-    aoai_embeddings = AzureOpenAIEmbeddings(
-        azure_deployment=AZURE_OPENAI_EMBEDDING_DEPLOYMENT_NAME,
-        openai_api_version=AZURE_OPENAI_EMBEDDING_API_VERSION,  # e.g., "2023-12-01-preview"
-        azure_endpoint=AZURE_OPENAI_ENDPOINT,
-        azure_ad_token_provider=token_provider
-    )
-
-    vector_store: AzureSearch = AzureSearch(
-        azure_search_endpoint=AZURE_SEARCH_ENDPOINT,
-        azure_search_key=None,
-        index_name=AZURE_SEARCH_INDEX_NAME,
-        embedding_function=aoai_embeddings.embed_query
-    )
-    vector_store.add_documents(documents=output)
-    return vector_store
-
-
-# embed and index the output:
-vector_store = embed_and_index_chunks(output)
-
-```
----
-
 Below is a minimal consolidated index that support vector and hybrid search and enables cross-modal search capabilities, allowing users to discover relevant information regardless of the original content format:
 
 ```json
@@ -440,16 +391,6 @@ By carefully selecting and configuring these search techniques based on your spe
 > [!NOTE]
 > For comprehensive guidance on implementing different search techniques, visit the [Azure AI Search documentation](https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview).
 
-In this sample, we use hybrid search to combine full text and vector queries against the unified search index containing both searchable plain text content and generated embeddings.
-
-``` python
-
-# Perform a hybrid search using the search_type parameter
-output = vector_store.hybrid_search(query=query, k=3)
-for item in items:
-    print(item.page_content)
-```
----
 > [!div class="nextstepaction"]
 > [View full code sample for RAG on GitHub.](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)
 
