@@ -1,7 +1,7 @@
 ---
 title: Migrate to v4.0 - Azure AI Translator
 titleSuffix: Azure AI services
-description: This article provides the steps to help you migrate from v3 to Azure AI Translator v4.0 text translation.
+description: This article provides the steps to help you migrate from Azure AI Translator v3 to  2025-05-01-preview Text translation API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
