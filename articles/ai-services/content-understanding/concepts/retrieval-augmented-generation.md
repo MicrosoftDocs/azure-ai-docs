@@ -21,7 +21,7 @@ Azure AI Content Understanding addresses these challenges by providing sophistic
 
 In traditional content processing, simple text extraction was sufficient for many use cases. However, modern enterprise environments contain rich, diverse information spread across multiple formats—documents with complex layouts, images conveying visual insights, audio recordings of crucial conversations, and videos that combine all these elements. For truly comprehensive Retrieval Augmented Generation (RAG) systems, all of this content must be accurately processed and made available to generative AI models. This ensures that when users pose questions, the underlying RAG system can retrieve relevant information regardless of its original format—whether it's a complex table in a financial report, a technical diagram in a manual, insights from a recorded conference call, or explanations from a training video.
 
-### Capabilities of Content Understanding for Multimodal RAG
+## Capabilities of Content Understanding for Multimodal RAG
 
 Azure AI Content Understanding addresses the core challenges of multimodal RAG—data ingestion, representation, and query optimization—by providing a unified, intelligent solution that enhances the accuracy and relevance of retrieval and generation processes:
 
@@ -43,15 +43,15 @@ A high level summary of RAG pattern looks like this:
 
 :::image type="content" source="../media/concepts/ragarchitecture2.png" alt-text="Screenshot of Content Understanding RAG architecture overview, process, and workflow with Azure AI Search and Azure Open AI.":::
 
-### Scenario
+## Scenario
 
 Let's consider a scenario where we have a collection of documents, images, videos, and audio files related to a corporate training program. We want to create a system that can retrieve relevant information from these multimodal sources based on user queries. 
 
-### Implementation
+## Implementation
 
-To implement this scenario, you can use Azure AI Content Understanding to automate content extraction, Azure AI Search for indexing and retrieval, and Azure OpenAI chat models for chat completion. Here's a high-level overview of the implementation steps:
+To implement this scenario, you can use Azure AI Content Understanding for content extraction, Azure AI Search for indexing and retrieval, and Azure OpenAI chat models for chat completion. Here's a high-level overview of the implementation steps:
 
-### 1. Content Extraction: Transforming Multimodal Content
+## 1. Content Extraction: Transforming Multimodal Content
 
  In this scenario, the training content data can be processed with modality-specific approaches while maintaining contextual relationships:
 
@@ -333,7 +333,7 @@ This comprehensive extraction creates a rich knowledge base where each content t
 ```
 ---
 
-### 2. Create a Unified Search Index
+## 2. Create a Unified Search Index
 
 After processing multimodal content with Azure AI Content Understanding, the next step is to create a comprehensive search infrastructure that leverages this richly structured data. By embedding the markdown and JSON outputs using Azure OpenAI's embedding models and indexing them with [Azure AI Search](https://docs.azure.cn/en-us/search/tutorial-rag-build-solution-index-schema), you can create a unified knowledge repository that seamlessly spans all content modalities.
 
@@ -376,7 +376,7 @@ Below is a minimal consolidated index that support vector and hybrid search and 
 }
 ```
 ---
-### 3. Optimize Retrieval with Advanced Search Techniques
+## 3. Optimize Retrieval with Advanced Search Techniques
 
 The effectiveness of a RAG system depends significantly on its ability to retrieve the most relevant content for each query. Azure AI Search offers multiple sophisticated search strategies to maximize the value of your multimodal content:
 
@@ -394,7 +394,7 @@ By carefully selecting and configuring these search techniques based on your spe
 > [!div class="nextstepaction"]
 > [View full code sample for RAG on GitHub.](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)
 
-### 4. Utilize Azure OpenAI Models
+## 4. Utilize Azure OpenAI Models
 
 Once your content is extracted and indexed, integrate [Azure OpenAI's embedding and chat models](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions) to create an interactive question-answering system:
 
