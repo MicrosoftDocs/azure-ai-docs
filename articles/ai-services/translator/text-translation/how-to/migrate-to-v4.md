@@ -10,7 +10,7 @@ ms.date: 04/18/2025
 ms.author: lajanuar
 ---
 
-# Azure AI Translator v4.0 migration
+# Azure AI Translator 2025-05-01-preview migration
 
 Azure AI Translator text translation 2025-05-01-preview (v4.0) is our latest cloud-based, multilingual neural machine translation service. As Azure AI Translator matures, we're focused on patterns and practices to best support and add value to our users.
 
