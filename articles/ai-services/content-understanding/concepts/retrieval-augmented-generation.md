@@ -13,6 +13,7 @@ ms.custom: 2025-understanding-release
 # Creating a Multimodal Retrieval Augmented Generation Solution with Content Understanding
 
 # Introduction
+
 Retrieval Augmented Generation (RAG) enhances Generative AI models by grounding their responses in external knowledge sources, significantly improving accuracy, relevance, and reliability. A key challenge in RAG is effectively extracting and preparing multimodal content – documents, images, audio, and video – so that it can be accurately retrieved and used to inform the LLM's responses. 
 
 Azure AI Content Understanding addresses these challenges by providing sophisticated extraction capabilities across all content modalities, preserving semantic integrity and contextual relationships that traditional extraction methods often lose. This unified approach eliminates the need to manage separate workflows and models for different content types, streamlining implementation while ensuring optimal representation for retrieval and generation.
@@ -23,7 +24,7 @@ In traditional content processing, simple text extraction was sufficient for man
 
 ## Capabilities of Content Understanding for Multimodal RAG
 
-Azure AI Content Understanding addresses the core challenges of multimodal RAG—data ingestion, representation, and query optimization—by providing a unified, intelligent solution that enhances the accuracy and relevance of retrieval and generation processes:
+Azure AI Content Understanding addresses the core challenges of multimodal RAG— complex data ingestion, data representation, and query optimization—by providing a solution that enhances the accuracy and relevance of retrieval and generation processes:
 
 - **Simplified Multimodal Ingestion:** Content Understanding streamlines the processing of diverse content types—documents, images, audio, and video—into a unified workflow. By preserving structural integrity and contextual relationships, it eliminates the complexities of handling multimodal data, ensuring consistent representation across all modalities.
 
@@ -34,39 +35,45 @@ Azure AI Content Understanding addresses the core challenges of multimodal RAG�
 - **Optimized Query Performance:** Content Understanding mitigates modality bias and context fragmentation by providing structured, enriched data that supports sophisticated relevance ranking across modalities. This ensures that the most appropriate information is surfaced for user queries, improving the coherence and accuracy of generated responses.
 
 ## Building a Multimodal RAG Solution using Content Understanding
-A high level summary of RAG pattern looks like this:
+
+:::image type="content" source="../media/concepts/ragarchitecture2.png" alt-text="Screenshot of Content Understanding RAG architecture overview, process, and workflow with Azure AI Search and Azure Open AI.":::
+
+## RAG Scenario: Corporate Training Knowledge Base
+
+Imagine a corporate training program with a collection of documents, images, audio recordings, and videos covering topics such as compliance, safety, and technical skills. The goal is to create a system that retrieves relevant information from these multimodal sources based on user queries, enabling employees to access precise and contextually rich answers.
+
+## Implementation
+A high level summary of RAG implementation pattern looks like this:
 
 1. Transform unstructured multimodal data into structured representation using Content Understanding.
 2. Embed structured output using embedding models.
 3. Store embedded vectors in database or search index.  
-4. Use Generative AI to prompt and generate responses from retrieval system.
+4. Use Generative AI chat models to query and generate responses from retrieval systems.
 
-:::image type="content" source="../media/concepts/ragarchitecture2.png" alt-text="Screenshot of Content Understanding RAG architecture overview, process, and workflow with Azure AI Search and Azure Open AI.":::
+Here’s an overview of the implementation process, beginning with data extraction using Azure AI Content Understanding as the foundation for transforming raw multimodal data into structured, searchable formats optimized for RAG workflows:
 
-## Scenario
+### 1. Content Extraction Tasks
 
-Let's consider a scenario where we have a collection of documents, images, videos, and audio files related to a corporate training program. We want to create a system that can retrieve relevant information from these multimodal sources based on user queries. 
+Content extraction is ideal for transforming raw multimodal data into structured, searchable formats:
+- **Documents:** Extracts hierarchical structures, such as headers, paragraphs, tables, and page elements, preserving the logical organization of training materials.
+- **Audio:** Generates speaker-aware transcriptions, capturing spoken content and maintaining conversational flow.
+- **Video:** Segments video into meaningful units, transcribes spoken content, and provides key frame extractions.
 
-## Implementation
+While content extraction provides a strong foundation for indexing and retrieval, it may not fully address domain-specific needs or provide deeper contextual insights.
 
-To implement this scenario, you can use Azure AI Content Understanding for content extraction, Azure AI Search for indexing and retrieval, and Azure OpenAI chat models for chat completion. Here's a high-level overview of the implementation steps:
+### 2. Field Extraction for Enhanced Retrieval
 
-## 1. Content Extraction: Transforming Multimodal Content
+Field extraction complements content extraction by generating targeted metadata that enriches the knowledge base and improves retrieval precision:
+- **Documents:** Generate summaries or extract key topics to provide concise overviews of lengthy materials.
+- **Images:** Converts visual information into searchable text by verbalizing diagrams, extracting embedded text, and identifying graphical components.
+- **Audio:** Extract sentiment analysis or key topics from conversations to provide additional context for queries.
+- **Video:** Generate scene-level summaries, identify key topics, or extract sentiment indicators to address context window limitations in generative AI models.
 
- In this scenario, the training content data can be processed with modality-specific approaches while maintaining contextual relationships:
+By combining content extraction with field extraction, organizations can create a contextually rich knowledge base optimized for indexing, retrieval, and RAG scenarios, ensuring more accurate and meaningful responses to user queries. 
 
-- **Document Processing**: Extracts hierarchical structures, preserving the logical organization of training materials including headers, paragraphs, tables, page elements etc.
+Learn more about [content extraction](./capabilities.md#content-extraction) and [field extraction](./capabilities.md#field-extraction) capabilities.
 
-- **Image Processing**: Transforms visual information into searchable text by verbalizing diagrams and charts, extracting embedded text elements, and converting graphical data into structured formats. Technical illustrations are analyzed to identify components and their relationships.
-
-- **Audio Processing**: Creates rich textual representations of spoken content with speaker diarization technology, topic segmentation, and automated summaries that capture the essence of discussions, presentations, and Q&A sessions.
-
-- **Video Processing**: Segments video content into meaningful units through scene detection and key frame extraction, while generating descriptive summaries, transcribing spoken content, and identifying key topics and sentiment indicators throughout the footage.
-
-This comprehensive extraction creates a rich knowledge base where each content type maintains its unique contextual elements while enabling cross-modal relationships.
-
-
-## Sample Extraction Response
+## Sample Content and Field Extraction Response
 
 # [Document](#tab/document)
 
@@ -333,7 +340,9 @@ This comprehensive extraction creates a rich knowledge base where each content t
 ```
 ---
 
-## 2. Create a Unified Search Index
+After extracting data using Azure AI Content Understanding, the next steps involve integrating  This integration highlights the synergy between data extraction, retrieval, and generative AI, forming a comprehensive solution for RAG scenarios.
+
+## 3. Create a Unified Search Index
 
 After processing multimodal content with Azure AI Content Understanding, the next step is to create a comprehensive search infrastructure that leverages this richly structured data. By embedding the markdown and JSON outputs using Azure OpenAI's embedding models and indexing them with [Azure AI Search](https://docs.azure.cn/en-us/search/tutorial-rag-build-solution-index-schema), you can create a unified knowledge repository that seamlessly spans all content modalities.
 
@@ -376,7 +385,7 @@ Below is a minimal consolidated index that support vector and hybrid search and 
 }
 ```
 ---
-## 3. Optimize Retrieval with Advanced Search Techniques
+## 4. Optimize Retrieval with Advanced Search Techniques
 
 The effectiveness of a RAG system depends significantly on its ability to retrieve the most relevant content for each query. Azure AI Search offers multiple sophisticated search strategies to maximize the value of your multimodal content:
 
@@ -394,7 +403,7 @@ By carefully selecting and configuring these search techniques based on your spe
 > [!div class="nextstepaction"]
 > [View full code sample for RAG on GitHub.](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)
 
-## 4. Utilize Azure OpenAI Models
+## 5. Utilize Azure OpenAI Models
 
 Once your content is extracted and indexed, integrate [Azure OpenAI's embedding and chat models](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions) to create an interactive question-answering system:
 
