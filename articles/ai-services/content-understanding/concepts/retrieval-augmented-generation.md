@@ -55,7 +55,7 @@ Here’s an overview of the implementation process, beginning with data extracti
 ### 1. Content Extraction Tasks
 
 Content extraction is ideal for transforming raw multimodal data into structured, searchable formats:
-- **Documents:** Extracts hierarchical structures, such as headers, paragraphs, tables, and page elements, preserving the logical organization of training materials.
+- **Document:** Extracts hierarchical structures, such as headers, paragraphs, tables, and page elements, preserving the logical organization of training materials.
 - **Audio:** Generates speaker-aware transcriptions, capturing spoken content and maintaining conversational flow.
 - **Video:** Segments video into meaningful units, transcribes spoken content, and provides key frame extractions.
 
@@ -64,8 +64,8 @@ While content extraction provides a strong foundation for indexing and retrieval
 ### 2. Field Extraction for Enhanced Retrieval
 
 Field extraction complements content extraction by generating targeted metadata that enriches the knowledge base and improves retrieval precision:
-- **Documents:** Generate summaries or extract key topics to provide concise overviews of lengthy materials.
-- **Images:** Converts visual information into searchable text by verbalizing diagrams, extracting embedded text, and identifying graphical components.
+- **Document:** Generate summaries or extract key topics to provide concise overviews of lengthy materials.
+- **Image:** Converts visual information into searchable text by verbalizing diagrams, extracting embedded text, and identifying graphical components.
 - **Audio:** Extract sentiment analysis or key topics from conversations to provide additional context for queries.
 - **Video:** Generate scene-level summaries, identify key topics, or extract sentiment indicators to address context window limitations in generative AI models.
 
@@ -346,7 +346,16 @@ After extracting data using Azure AI Content Understanding, the next steps invol
 
 After processing multimodal content with Azure AI Content Understanding, the next step is to create a comprehensive search infrastructure that leverages this richly structured data. By embedding the markdown and JSON outputs using Azure OpenAI's embedding models and indexing them with [Azure AI Search](https://docs.azure.cn/en-us/search/tutorial-rag-build-solution-index-schema), you can create a unified knowledge repository that seamlessly spans all content modalities.
 
-This approach transforms traditionally siloed content types into an integrated information ecosystem, enabling sophisticated cross-modal search capabilities that allow users to discover relevant information regardless of its original format. Whether users need information from documents, insights from images, key points from audio recordings, or explanations from video content, a unified search index delivers consistent, contextually relevant results.
+Azure AI Search provides advanced search strategies to maximize the value of multimodal content:
+
+- **Hybrid Search:** Combines semantic understanding and keyword matching to retrieve information based on both conceptual similarity and explicit terminology, ideal for multimodal content with varied expressions.
+- **Vector Search:** Leverages embeddings to uncover subtle semantic connections across modalities, even when terminology differs.
+- **Semantic Ranking:** Prioritizes results based on deeper contextual understanding rather than keyword frequency, surfacing the most relevant information regardless of format.
+
+By carefully selecting and configuring these search techniques based on your specific use case requirements, you can ensure that your RAG system retrieves the most relevant content across all modalities, significantly enhancing the quality and accuracy of generated responses.
+
+> [!NOTE]
+> For comprehensive guidance on implementing different search techniques, visit the [Azure AI Search documentation](https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview).
 
 Below is a minimal consolidated index that support vector and hybrid search and enables cross-modal search capabilities, allowing users to discover relevant information regardless of the original content format:
 
@@ -385,25 +394,11 @@ Below is a minimal consolidated index that support vector and hybrid search and 
 }
 ```
 ---
-## 4. Optimize Retrieval with Advanced Search Techniques
-
-The effectiveness of a RAG system depends significantly on its ability to retrieve the most relevant content for each query. Azure AI Search offers multiple sophisticated search strategies to maximize the value of your multimodal content:
-
-**Hybrid search** combines the strengths of semantic understanding and keyword matching, enabling the system to retrieve information based on both conceptual similarity and explicit terminology. This approach is particularly valuable for multimodal content where concepts may be expressed differently across various content types.
-
-**Vector search** leverages the dimensional relationships between embeddings to find content with similar meaning, even when terminology differs. This technique excels at uncovering subtle semantic connections across different modalities.
-
-**Semantic ranking** enhances result relevance by prioritizing content based on deeper understanding rather than keyword frequency, helping surface the most contextually appropriate information regardless of its original format.
-
-By carefully selecting and configuring these search techniques based on your specific use case requirements, you can ensure that your RAG system retrieves the most relevant content across all modalities, significantly enhancing the quality and accuracy of generated responses.
-
-> [!NOTE]
-> For comprehensive guidance on implementing different search techniques, visit the [Azure AI Search documentation](https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview).
 
 > [!div class="nextstepaction"]
 > [View full code sample for RAG on GitHub.](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)
 
-## 5. Utilize Azure OpenAI Models
+## 4. Utilize Azure OpenAI Models
 
 Once your content is extracted and indexed, integrate [Azure OpenAI's embedding and chat models](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions) to create an interactive question-answering system:
 
