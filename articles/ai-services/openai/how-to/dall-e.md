@@ -226,7 +226,7 @@ Use the *user* parameter to specify a unique identifier for the user making the 
 
 #### Output format
 
-Use the *output_format* parameter to specify the format of the generated image. Supported formats are `PNG`, `WEBP`, and `JPEG`. The default is `PNG`.
+Use the *output_format* parameter to specify the format of the generated image. Supported formats are `PNG` and `JPEG`. The default is `PNG`.
 
 #### Compression
 
