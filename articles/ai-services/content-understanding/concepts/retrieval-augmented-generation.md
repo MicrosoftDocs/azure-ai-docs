@@ -52,7 +52,7 @@ A high level summary of RAG implementation pattern looks like this:
 
 Here’s an overview of the implementation process, beginning with data extraction using Azure AI Content Understanding as the foundation for transforming raw multimodal data into structured, searchable formats optimized for RAG workflows:
 
-### 1. Content Extraction Tasks
+### 1. Content Extraction: The Foundation for RAG with Content Understanding
 
 Content extraction is ideal for transforming raw multimodal data into structured, searchable formats:
 - **Document:** Extracts hierarchical structures, such as headers, paragraphs, tables, and page elements, preserving the logical organization of training materials.
@@ -61,7 +61,7 @@ Content extraction is ideal for transforming raw multimodal data into structured
 
 While content extraction provides a strong foundation for indexing and retrieval, it may not fully address domain-specific needs or provide deeper contextual insights.
 
-### 2. Field Extraction for Enhanced Retrieval
+### 2. Field Extraction: Enhancing Knowledge Bases for Better Retrieval
 
 Field extraction complements content extraction by generating targeted metadata that enriches the knowledge base and improves retrieval precision:
 - **Document:** Generate summaries or extract key topics to provide concise overviews of lengthy materials.
@@ -73,10 +73,8 @@ By combining content extraction with field extraction, organizations can create 
 
 Learn more about [content extraction](./capabilities.md#content-extraction) and [field extraction](./capabilities.md#field-extraction) capabilities.
 
-### Sample Content and Field Extraction Response
-
-#### Schema and Analyzer Creation
-Below is an example of schema and analyzer creation for various modalities in a multimodal RAG scenario. These schemas demonstrate how Azure AI Content Understanding can extract and structure data from documents, images, audio, and video to enrich knowledge bases and optimize retrieval.
+#### Code Sample: Analyzer and Schema Configuration 
+Below is an example of a analyzer and schema creation for various modalities in a multimodal RAG scenario. 
 
 ---
 
@@ -199,7 +197,7 @@ Below is an example of schema and analyzer creation for various modalities in a 
 
 ---
 
-#### Extraction Response
+#### Code Sample: Extraction Response
 Below is an example showcasing the results of content and field extraction using Azure AI Content Understanding. These results demonstrate how multimodal data is transformed into structured, enriched formats, ready for indexing and retrieval in RAG workflows.
 
 ---
