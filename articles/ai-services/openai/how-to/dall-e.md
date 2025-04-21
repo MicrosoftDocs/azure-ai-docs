@@ -228,6 +228,9 @@ Use the *user* parameter to specify a unique identifier for the user making the 
 
 Use the *output_format* parameter to specify the format of the generated image. Supported formats are `PNG` and `JPEG`. The default is `PNG`.
 
+> [!NOTE]
+> WEBP images are not supported in the Azure OpenAI Service.
+
 #### Compression
 
 Use the *output_compression* parameter to specify the compression level for the generated image. Input an integer between `0` and `100`, where `0` is no compression and `100` is maximum compression. The default is `100`.
