@@ -100,7 +100,7 @@ Below is a sample of how we would create a sample schema and analyzers for all m
         "description": "Training chapter author"
       },
       "ChapterPublishDate": {
-        "type": "string",
+        "type": "Date",
         "method": "extract",
         "description": "Training chapter publication date"
       }
@@ -211,37 +211,27 @@ Below is a sample of how we would create a sample schema and analyzers for all m
       {
         "markdown": "CONTOSO LTD.\n\n\n# Contoso Training Topics\n\nContoso Headquarters...",
         "fields": {
-          "Business department": {
+          "ChapterTitle": {
             "type": "string",
-            "valueString": "Human resources",
+            "valueString": "Risks and Compliance regulations",
             "spans": [ { "offset": 0, "length": 12 } ],
             "confidence": 0.941,
             "source": "D(1,0.5729,0.6582,2.3353,0.6582,2.3353,0.8957,0.5729,0.8957)"
           },
-          "Items": {
-            "type": "array",
-            "valueArray": [
-              {
-                "type": "object",
-                "valueObject": {
-                  "Topics": {
-                    "type": "string",
-                    "valueString": "Compliance and Safety",
-                    "spans": [ { "offset": 909, "length": 19 } ],
-                    "confidence": 0.971,
-                    "source": "D(1,2.3264,5.673,3.6413,5.673,3.6413,5.8402,2.3264,5.8402)"
-                  },
-                  "Reading material": {
-                    "type": "number",
-                    "valueString": "Compliance in the workplace by John Smith",
-                    "spans": [ { "offset": 995, "length": 6 } ],
-                    "confidence": 0.989,
-                    "source": "D(1,7.4507,5.6684,7.9245,5.6684,7.9245,5.8323,7.4507,5.8323)"
-                  }
-                }
-              }, ...
-            ]
-          }
+          "ChapterAuthor": {
+            "type": "string",
+            "valueString": "John Smith",
+            "spans": [ { "offset": 0, "length": 12 } ],
+            "confidence": 0.941,
+            "source": "D(1,0.5729,0.6582,2.3353,0.6582,2.3353,0.8957,0.5729,0.8957)"
+          },
+          "ChapterAuthor": {
+            "type": "Date",
+            "valueString": "04-11-2017",
+            "spans": [ { "offset": 0, "length": 12 } ],
+            "confidence": 0.941,
+            "source": "D(1,0.5729,0.6582,2.3353,0.6582,2.3353,0.8957,0.5729,0.8957)"
+          },
         },
         "kind": "document",
         "startPageNumber": 1,
@@ -256,59 +246,17 @@ Below is a sample of how we would create a sample schema and analyzers for all m
             "spans": [ { "offset": 0, "length": 1650 } ],
             "words": [
               {
-                "content": "CONTOSO",
-                "span": { "offset": 0, "length": 7 },
-                "confidence": 0.997,
-                "source": "D(1,0.5739,0.6582,1.7446,0.6595,1.7434,0.8952,0.5729,0.8915)"
-              }, ...
+               ....
+              }, 
             ],
             "lines": [
               {
-                "content": "CONTOSO LTD.",
-                "source": "D(1,0.5734,0.6563,2.335,0.6601,2.3345,0.8933,0.5729,0.8895)",
-                "span": { "offset": 0, "length": 12 }
-              }, ...
+                ...
+              }, 
             ]
           }
         ],
-        "paragraphs": [
-          {
-            "content": "CONTOSO LTD.",
-            "source": "D(1,0.5734,0.6563,2.335,0.6601,2.3345,0.8933,0.5729,0.8895)",
-            "span": { "offset": 0, "length": 12 }
-          }, ...
-        ],
-        "sections": [
-          {
-            "span": { "offset": 0, "length": 1649 },
-            "elements": [ "/sections/1", "/sections/2" ]
-          },
-          {
-            "span": { "offset": 0, "length": 12 },
-            "elements": [ "/paragraphs/0" ]
-          }, ...
-        ],
-        "tables": [
-          {
-            "rowCount": 2,
-            "columnCount": 6,
-            "cells": [
-              {
-                "kind": "columnHeader",
-                "rowIndex": 0,
-                "columnIndex": 0,
-                "rowSpan": 1,
-                "columnSpan": 1,
-                "content": "SALESPERSON",
-                "source": "D(1,0.5389,4.5514,1.7505,4.5514,1.7505,4.8364,0.5389,4.8364)",
-                "span": { "offset": 512, "length": 11 },
-                "elements": [ "/paragraphs/19" ]
-              }, ...
-            ],
-            "source": "D(1,0.4885,4.5543,8.0163,4.5539,8.015,5.1207,0.4879,5.1209)",
-            "span": { "offset": 495, "length": 228 }
-          }, ...
-        ]
+
       }
     ]
   }
@@ -330,13 +278,17 @@ Below is a sample of how we would create a sample schema and analyzers for all m
       {
         "markdown": "![image](image)\n",
         "fields": {
-          "Title": {
+          "TrainingChartTitle": {
             "type": "string",
             "valueString": "Weekly Work Hours Distribution"
           },
-          "ChartType": {
+          "TrainingChartType": {
             "type": "string",
             "valueString": "pie"
+          },
+          "TrainingChartDescription"{
+            "type": "string",
+            "valueString": "This chart shows the monthly sales data for the year 2025."
           }
         },
         "kind": "document",
@@ -363,7 +315,7 @@ Below is a sample of how we would create a sample schema and analyzers for all m
   "id": "247c369c-1aa5-4f92-b033-a8e4318e1c02",
   "status": "Succeeded",
   "result": {
-    "analyzerId": "sample_audio_analyzer",
+    "analyzerId": "training_audio_analyzer",
     "apiVersion": "2024-12-01-preview",
     "createdAt": "2024-11-09T08:42:58Z",
     "warnings": [],
@@ -374,13 +326,13 @@ Below is a sample of how we would create a sample schema and analyzers for all m
         "endTimeMs": 32182,
         "markdown": "```WEBVTT\n\n00:00.080 --> 00:00.640\n<v Agent>Good day...",
         "fields": {
-          "Sentiment": {
-            "type": "string",
-            "valueString": "Positive"
-          },
-          "Summary": {
+          "TrainingSummary": {
             "type": "string",
             "valueString": "Maria Smith contacted Contoso to inquire about her current point balance. Agent John Doe confirmed her identity and informed her that she has 599 points. Maria did not require any further information and the call ended on a positive note."
+          },
+          "TrainingTopics": {
+            "type": "string",
+            "valueString": "Customer inquiry, customer account information"
           },
           "People": {
             "type": "array",
@@ -444,13 +396,14 @@ Below is a sample of how we would create a sample schema and analyzers for all m
         "height": 960,
         "markdown": "# Shot 0:0.0 => 0:1.800\n\n## Transcript\n\n```\n\nWEBVTT\n\n0:0.80 --> 0:10.560\n<v Speaker>When I was planning my trip...",
         "fields": {
-          "sentiment": {
-            "type": "string",
-            "valueString": "Neutral"
-          },
+          
           "description": {
             "type": "string",
             "valueString": "The video begins with a view from a glass floor, showing a person's feet in white sneakers standing on it. The scene captures a downward view of a structure, possibly a tower, with a grid pattern on the floor and a clear view of the ground below. The lighting is bright, suggesting a sunny day, and the colors are dominated by the orange of the structure and the gray of the floor."
+          },
+          "KeyTopics":{
+            "type": "string",
+            "valueString": "Products, Weather, Lighting"
           }
         }
       },
