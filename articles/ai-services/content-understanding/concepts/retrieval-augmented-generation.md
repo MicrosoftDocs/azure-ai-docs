@@ -439,7 +439,7 @@ Below is an example showcasing the results of content and field extraction using
 
 ---
 
-After extracting data using Azure AI Content Understanding, the next steps involve integrating  This integration highlights the synergy between data extraction, retrieval, and generative AI, forming a comprehensive solution for RAG scenarios.
+After extracting data with Azure AI Content Understanding, the next steps focus on integration with Azure AI Search and Azure OpenAI. This integration demonstrates the seamless synergy between data extraction, retrieval, and generative AI, creating a comprehensive and efficient solution for RAG scenarios.
 
 ## 3. Create a Unified Search Index
 
