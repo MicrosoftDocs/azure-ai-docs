@@ -21,7 +21,7 @@ __RSS feed__: Get notified when this page is updated by copying and pasting the 
 
 ## 2025-04-15
 ### Azure Machine Learning SDK for Python v1.60.0
-
+Lightgbm,onnxmltools were upgraded to fix security vulnerabilities.
 
 
 ## 2024-11-12
