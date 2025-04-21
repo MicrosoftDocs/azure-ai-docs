@@ -195,7 +195,10 @@ Below is a sample of how we would create a sample schema and analyzers for all m
 }
 ```
 
+----
 #### Extraction Response
+
+-----
 # [Document](#tab/document)
 
 ```json
