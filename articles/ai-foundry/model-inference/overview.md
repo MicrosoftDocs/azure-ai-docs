@@ -28,15 +28,15 @@ You can get access to the key model providers in the industry including OpenAI, 
 
 Explore the following model families available:
 
-- [AI21 Labs](#ai21-labs)
-- [Azure OpenAI](#azure-openai)
-- [Cohere](#cohere)
-- [Core42](#core42)
-- [DeepSeek](#deepseek)
-- [Meta](#meta)
-- [Microsoft](#microsoft)
-- [Mistral AI](#mistral-ai)
-- [NTT Data](#ntt-data)
+- [AI21 Labs](concepts/models.md#ai21-labs)
+- [Azure OpenAI](concepts/models.md#azure-openai)
+- [Cohere](concepts/models.md#cohere)
+- [Core42](concepts/models.md#core42)
+- [DeepSeek](concepts/models.md#deepseek)
+- [Meta](concepts/models.md#meta)
+- [Microsoft](concepts/models.md#microsoft)
+- [Mistral AI](concepts/models.md#mistral-ai)
+- [NTT Data](concepts/models.md#ntt-data)
 
 To see details for each model including, language, types, and capabilities, see [Models](concepts/models.md) article.
 
