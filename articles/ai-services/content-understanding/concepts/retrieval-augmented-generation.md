@@ -75,6 +75,127 @@ Learn more about [content extraction](./capabilities.md#content-extraction) and 
 
 ## Sample Content and Field Extraction Response
 
+#### Schema and Analyzer Creation
+
+Below is a sample of how we would create a sample schema and analyzers for all modalities in this scenario.
+
+# [Document](#tab/document)
+```json
+{
+  "description": "Training document analyzer",
+  "scenario": "document",
+  "config": {
+    "returnDetails": true
+  },
+  "fieldSchema": {
+    "fields": {
+      "ChapterTitle": {
+        "type": "string",
+        "method": "extract",
+        "description": "Training chapter title"
+      },
+      "ChapterAuthor": {
+        "type": "string",
+        "method": "extract",
+        "description": "Training chapter author"
+      },
+      "ChapterPublishDate": {
+        "type": "string",
+        "method": "extract",
+        "description": "Training chapter publication date"
+      }
+    }
+  }
+}
+```
+
+# [Image](#tab/image)
+```json
+{
+  "description": "Training images analyzer",
+  "scenario": "image",
+  "fieldSchema": {
+    "fields": {
+      "TrainingChartTitle": {
+        "type": "string",
+        "method": "extract",
+        "description": "Training chart title or caption"
+      },
+      "TrainingChartType": {
+        "type": "string",
+        "method": "classify",
+        "enum": [ "bar", "line", "pie" ]
+      },
+      "TrainingChartDescription": {
+        "type": "string",
+        "method": "extract",
+        "description": "Training chart description"
+      }
+    }
+  }
+}
+```
+
+# [Audio](#tab/audio)
+```json
+{
+  "description": "Training audio analyzer",
+  "scenario": "audio",
+  "config": {
+    "returnDetails": true,
+    "locales": ["en-US"]
+  },
+  "fieldSchema": {
+    "fields": {
+      "TrainingSummary": {
+        "type": "string",
+        "method": "generate",
+        "description": "detailed summary of discussion in this segment "
+      },
+      "TrainingTopics": {
+        "type": "string",
+        "method": "generate",
+        "description": "2-3 topics of discussion in this segment "
+      },
+      "People": {
+        "type": "array",
+        "description": "List of people mentioned",
+        "items": {
+          "type": "object",
+          "properties": {
+            "Name": { "type": "string" },
+            "Role": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+# [Video](#tab/video)
+```json
+{
+  "description": "Training video analyzer",
+  "scenario": "video",
+  "fieldSchema": {
+    "fields": {
+      "Description": {
+        "type": "string",
+        "method": "generate",
+        "description": "Detailed summary of the video segment, focusing on product characteristics, and quality inspection requirements"
+      },
+      "KeyTopics": {
+        "type": "string",
+        "method": "generate",
+        "description": "The key points or topics covered in this segment"
+      }
+    }
+  }
+}
+```
+
+#### Extraction Response
 # [Document](#tab/document)
 
 ```json
