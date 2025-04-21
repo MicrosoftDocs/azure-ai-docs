@@ -56,18 +56,18 @@ Here’s an overview of the implementation process, beginning with data extracti
 
 Content extraction is ideal for transforming raw multimodal data into structured, searchable formats:
 - **Document:** Extracts hierarchical structures, such as headers, paragraphs, tables, and page elements, preserving the logical organization of training materials.
-- **Audio:** Generates speaker-aware transcriptions, capturing spoken content and maintaining conversational flow.
-- **Video:** Segments video into meaningful units, transcribes spoken content, and provides key frame extractions.
+- **Audio:** Generates speaker-aware transcriptions that accurately capture spoken content while automatically detecting and processing multiple languages. 
+- **Video:** Segments video into meaningful units, transcribes spoken content, and provides scene descriptions while addressing context window limitations in generative AI models.
 
 While content extraction provides a strong foundation for indexing and retrieval, it may not fully address domain-specific needs or provide deeper contextual insights.
 
 ### 2. Field Extraction: Enhancing Knowledge Bases for Better Retrieval
 
 Field extraction complements content extraction by generating targeted metadata that enriches the knowledge base and improves retrieval precision:
-- **Document:** Generate summaries or extract key topics to provide concise overviews of lengthy materials.
+- **Document:** Extract key topics/fields to provide concise overviews of lengthy materials.
 - **Image:** Converts visual information into searchable text by verbalizing diagrams, extracting embedded text, and identifying graphical components.
-- **Audio:** Extract sentiment analysis or key topics from conversations to provide additional context for queries.
-- **Video:** Generate scene-level summaries, identify key topics, or extract sentiment indicators to address context window limitations in generative AI models.
+- **Audio:** Extract key topics or sentiment analysis from conversations and to provide additional context for queries.
+- **Video:** Generate scene-level summaries, identify key topics, or analyze brand presence and product associations within video footage. 
 
 By combining content extraction with field extraction, organizations can create a contextually rich knowledge base optimized for indexing, retrieval, and RAG scenarios, ensuring more accurate and meaningful responses to user queries. 
 
@@ -231,7 +231,7 @@ Below is an example showcasing the results of content and field extraction using
             "confidence": 0.941,
             "source": "D(1,0.5729,0.6582,2.3353,0.6582,2.3353,0.8957,0.5729,0.8957)"
           },
-          "ChapterAuthor": {
+          "ChapterPublishDate": {
             "type": "Date",
             "valueString": "04-11-2017",
             "spans": [ { "offset": 0, "length": 12 } ],
