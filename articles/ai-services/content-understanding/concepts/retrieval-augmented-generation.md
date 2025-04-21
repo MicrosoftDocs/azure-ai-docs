@@ -153,7 +153,7 @@ Below is a sample of how we would create a sample schema and analyzers for all m
         "description": "detailed summary of discussion in this segment "
       },
       "TrainingTopics": {
-        "type": "string",
+        "type": "array",
         "method": "generate",
         "description": "2-3 topics of discussion in this segment "
       },
@@ -186,7 +186,7 @@ Below is a sample of how we would create a sample schema and analyzers for all m
         "description": "Detailed summary of the video segment, focusing on product characteristics, and quality inspection requirements"
       },
       "KeyTopics": {
-        "type": "string",
+        "type": "array",
         "method": "generate",
         "description": "The key points or topics covered in this segment"
       }
@@ -331,8 +331,16 @@ Below is a sample of how we would create a sample schema and analyzers for all m
             "valueString": "Maria Smith contacted Contoso to inquire about her current point balance. Agent John Doe confirmed her identity and informed her that she has 599 points. Maria did not require any further information and the call ended on a positive note."
           },
           "TrainingTopics": {
-            "type": "string",
-            "valueString": "Customer inquiry, customer account information"
+						"type": "array",
+						"valueArray": [
+							{
+								"type": "string",
+								"valueString": "Compliance"
+							},
+							{
+								"type": "string",
+								"valueString": "Risk mitigation"
+							},]
           },
           "People": {
             "type": "array",
@@ -401,12 +409,20 @@ Below is a sample of how we would create a sample schema and analyzers for all m
             "type": "string",
             "valueString": "The video begins with a view from a glass floor, showing a person's feet in white sneakers standing on it. The scene captures a downward view of a structure, possibly a tower, with a grid pattern on the floor and a clear view of the ground below. The lighting is bright, suggesting a sunny day, and the colors are dominated by the orange of the structure and the gray of the floor."
           },
-          "KeyTopics":{
-            "type": "string",
-            "valueString": "Products, Weather, Lighting"
+          "KeyTopics": {
+						"type": "array",
+						"valueArray": [
+							{
+								"type": "string",
+								"valueString": "Flight delay"
+							},
+							{
+								"type": "string",
+								"valueString": "Customer service"
+							},
+            ]
           }
-        }
-      },
+        },
       ...
     ]
   }
