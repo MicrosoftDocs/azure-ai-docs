@@ -73,11 +73,12 @@ By combining content extraction with field extraction, organizations can create 
 
 Learn more about [content extraction](./capabilities.md#content-extraction) and [field extraction](./capabilities.md#field-extraction) capabilities.
 
-## Sample Content and Field Extraction Response
+### Sample Content and Field Extraction Response
 
 #### Schema and Analyzer Creation
+Below is an example of schema and analyzer creation for various modalities in a multimodal RAG scenario. These schemas demonstrate how Azure AI Content Understanding can extract and structure data from documents, images, audio, and video to enrich knowledge bases and optimize retrieval.
 
-Below is a sample of how we would create a sample schema and analyzers for all modalities in this scenario.
+---
 
 # [Document](#tab/document)
 ```json
@@ -195,10 +196,14 @@ Below is a sample of how we would create a sample schema and analyzers for all m
 }
 ```
 
-----
-#### Extraction Response
 
------
+---
+
+#### Extraction Response
+Below is an example showcasing the results of content and field extraction using Azure AI Content Understanding. These results demonstrate how multimodal data is transformed into structured, enriched formats, ready for indexing and retrieval in RAG workflows.
+
+---
+
 # [Document](#tab/document)
 
 ```json
@@ -431,6 +436,7 @@ Below is a sample of how we would create a sample schema and analyzers for all m
   }
 }
 ```
+
 ---
 
 After extracting data using Azure AI Content Understanding, the next steps involve integrating  This integration highlights the synergy between data extraction, retrieval, and generative AI, forming a comprehensive solution for RAG scenarios.
