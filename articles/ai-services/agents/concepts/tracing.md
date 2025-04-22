@@ -33,7 +33,7 @@ The screen that appears will be let you view the: thread, run, run steps and any
 
 > [!TIP]
 > If you want to view the trace of a previous thread, select **Agent Playground**. Choose a thread in the **Create and debug your agents** screen, and then select **Try in playground**.
-> :::image type="content" source="../media/thread-highlight.png" alt-text="A screenshot of a trace." lightbox="../media/thread-highlight.png":::
+> :::image type="content" source="../media/thread-highlight.png" alt-text="A screenshot of the create and debug screen.." lightbox="../media/thread-highlight.png":::
 > You will be able to see the **Thread info** button at the top of the screen to view the trace. 
 
 ## Trace agents using OpenTelemetry and an Application Insights resource
