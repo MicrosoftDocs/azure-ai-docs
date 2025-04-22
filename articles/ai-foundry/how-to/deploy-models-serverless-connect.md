@@ -33,7 +33,7 @@ The need to consume a serverless API endpoint in a different project or hub than
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- An [Azure AI Foundry hub](create-azure-ai-resource.md).
+- An [Azure AI Foundry hub](create-azure-ai-resource.md), if you're using a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../../includes/fdp-project-name.md)]** does not use a hub. For more information, see [Project types](../../what-is-azure-ai-foundry.md#project-types).
 
 - An [Azure AI Foundry project](create-projects.md).
 
@@ -117,6 +117,8 @@ Follow these steps to create a connection:
 1. Get the endpoint's URL and credentials for the endpoint you want to connect to. In this example, you get the details for an endpoint name **meta-llama3-8b-qwerty**.
 
     # [Azure AI Foundry portal](#tab/azure-ai-studio)
+
+    [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
     1. From the left sidebar of your project in Azure AI Foundry portal, go to **My assets** > **Models + endpoints** to see the list of deployments in the project.
 
