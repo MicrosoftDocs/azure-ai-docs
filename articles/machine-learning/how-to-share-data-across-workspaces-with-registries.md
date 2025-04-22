@@ -219,7 +219,7 @@ ml_client_registry.data.create_or_update(my_data)
 ```
 
 > [!TIP]
-> If you get an error that an data with this name and version already exists in the registry, specify a different version for the `version` parameter.
+> If you get an error that data with this name and version already exists in the registry, specify a different version for the `version` parameter.
 
 Note down the `name` and `version` of the data from the output and pass them to the `ml_client_registry.data.get()` method to fetch the data from registry. 
 

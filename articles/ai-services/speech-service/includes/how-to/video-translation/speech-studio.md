@@ -14,8 +14,9 @@ In this article, you learn how to use video translation with Azure AI Speech in 
 ## Pre-requisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a free account before you begin.
-- A Speech resource [in a supported region](../../../video-translation-overview.md#supported-regions-and-languages). If you don't have a Speech resource, create one in the [Azure portal](https://portal.azure.com/).
-- You need a video file in .mp4 format, less than 500 MB, and shorter than 60 minutes. For testing purposes, you can use the sample video file provided by Microsoft at [https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4](https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4).
+- An Azure AI Services resource for Speech [in a supported region](../../../video-translation-overview.md#supported-regions-and-languages). If you don't have a Speech resource, create one in the [Azure portal](https://portal.azure.com/).
+- An [Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview) account. 
+- You need a video file in .mp4 format, less than 5 GB, and shorter than 4 hours. For testing purposes, you can use the sample video file provided by Microsoft at [https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4](https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4).
 - Make sure video translation supports your [source and target language](../../../language-support.md?tabs=speech-translation#video-translation).
 
 ## Create a video translation project
@@ -41,7 +42,7 @@ To create a video translation project, follow these steps:
    > [!NOTE]
    > To use personal voice, you need to apply for [access](https://aka.ms/customneural). 
     
-1. Upload your video file by dragging and dropping the video file or selecting the file manually. The video must be in .mp4 format, less than 500 MB, and shorter than 60 minutes.
+1. Upload your video file by dragging and dropping the video file or selecting the file manually. The video must be in .mp4 format, less than 5 GB, and shorter than 4 hours.
    
 1. Provide the **Project name**, **Number of speakers**, **Language of the video**, and **Translate to** language.
 

@@ -43,7 +43,7 @@ If the value of `bypass` isn't `AzureServices`, use the guidance in [Configure A
 > This issue applies when you use the [legacy network isolation method for managed online endpoints](../concept-secure-online-endpoint.md#secure-outbound-access-with-legacy-network-isolation-method). In this method, Azure Machine Learning creates a managed virtual network for each deployment under an endpoint.
 
 1. Check whether the `egress-public-network-access` flag has a value of `disabled` for the deployment. If this flag is enabled, and the visibility of the container registry is private, this failure is expected.
-1. Use the following command to check the status of the private endpoint connection. Replace `<registry-name>` with the name of the Azure container registry for your workspace:
+1. Use the following command to check the status of the private endpoint connection. Replace `<registry-name>` with the name of the Azure Container Registry for your workspace:
 
    ```azurecli
    az acr private-endpoint-connection list -r <registry-name> --query "[?privateLinkServiceConnectionState.description=='Egress for Microsoft.MachineLearningServices/workspaces/onlineEndpoints'].{ID:id, status:privateLinkServiceConnectionState.status}"
