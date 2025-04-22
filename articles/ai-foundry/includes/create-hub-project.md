@@ -17,8 +17,9 @@ To create a [!INCLUDE [hub-project-name](hub-project-name.md)] in [Azure AI Foun
 1. Go to [Azure AI Foundry](https://ai.azure.com). 
 1. Select any existing project if you aren't already in one.
 1. At the bottom of the left pane, select **Management center**.
-1. Select **+ New project**.
-1. Select **AI Hub Resource**.
+1. At the top of the page, select **All resources**.
+1. Select **Create**.
+1. Select **AI hub resource**.
 1. Enter a name for the project.
 1. If you have a hub, you'll see the one you most recently used selected.  
     * If you have access to more than one hub, you can select a different hub from the dropdown.
@@ -40,7 +41,7 @@ While you can create a hub as part of the project creation, you have more contro
 
 When you create a new hub as part of the project creation, default settings are provided. If you want to customize these settings, do so before you create the project:
 
-1. In the **Create a project** form, select **Customize**.
+1. In the **Create a project** form, select the arrow on the right side.
 
     :::image type="content" source="../media/how-to/projects/projects-customize-hub.png" alt-text="Screenshot of the customize button within the create project dialog." lightbox="../media/how-to/projects/projects-customize-hub.png":::
 
@@ -50,10 +51,5 @@ When you create a new hub as part of the project creation, default settings are 
     > Especially for getting started we recommend you create a new resource group for your project. The resource group allows you to easily manage the project and all of its resources together. When you create a project, several resources are created in the resource group, including a hub, a container registry, and a storage account.
 
 1. Select a **Location** or use the default. The location is the region where the hub is hosted. The location of the hub is also the location of the project. Azure AI services availability differs per region. For example, certain models might not be available in certain regions.
-1. Select an existing Azure AI services resource (including Azure OpenAI) from the dropdown if you have one, or use the default to create a new resource.
 
-    :::image type="content" source="../media/how-to/projects/projects-create-resource.png" alt-text="Screenshot of the create resource page within the create project dialog." lightbox="../media/how-to/projects/projects-create-resource.png":::
-
-1. Select **Create a project**. You see progress of resource creation and the project is created when the process is complete.
-
-    :::image type="content" source="../media/how-to/projects/projects-create-review-finish-progress.png" alt-text="Screenshot of the resource creation progress within the create project dialog." lightbox="../media/how-to/projects/projects-create-review-finish-progress.png":::
+1. Select **Create a project**. You see progress of the resource creation. The project is created when the process is complete.
