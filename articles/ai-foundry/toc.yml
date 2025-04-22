@@ -222,7 +222,7 @@ items:
         href: ../ai-services/openai/how-to/weights-and-biases-integration.md?context=/azure/ai-foundry/context/context
         displayName: finetuning, fine-tuning 
       - name: Troubleshooting guidance
-        href: ../ai-services/openai/how-to/fine-tuning-troubleshoot.md.md?context=/azure/ai-foundry/context/context
+        href: ../ai-services/openai/how-to/fine-tuning-troubleshoot.md?context=/azure/ai-foundry/context/context
         displayName: finetuning, fine-tuning 
 
   - name: Content Safety
@@ -413,7 +413,7 @@ items:
         href: ../ai-services/openai/how-to/weights-and-biases-integration.md?context=/azure/ai-foundry/context/context
         displayName: finetuning, fine-tuning 
       - name: Troubleshooting guidance
-        href: ../ai-services/openai/how-to/fine-tuning-troubleshoot.md.md?context=/azure/ai-foundry/context/context
+        href: ../ai-services/openai/how-to/fine-tuning-troubleshoot.md?context=/azure/ai-foundry/context/context
         displayName: finetuning, fine-tuning 
     - name: Distillation
       href: concepts/concept-model-distillation.md
