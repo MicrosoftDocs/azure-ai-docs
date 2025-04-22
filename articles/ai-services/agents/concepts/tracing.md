@@ -36,11 +36,11 @@ The screen that appears will be let you view the: thread, run, run steps and any
 > :::image type="content" source="../media/thread-highlight.png" alt-text="A screenshot of a trace." lightbox="../media/thread-highlight.png":::
 > You will be able to see the **Thread info** button at the top of the screen to view the trace. 
 
-## Evaluate agents using OpenTelemetry and an Application Insights resource
+## Trace agents using OpenTelemetry and an Application Insights resource
 
 Tracing lets you analyze your agent's performance and behavior by using OpenTelemetry and adding an Application Insights resource to your Azure AI Foundry project. 
 
-To add an Application Insights resource, navigate to the **Observability** tab in the [Azure AI Foundry portal](https://ai.azure.com/), and create a new resource if you don't already have one.
+To add an Application Insights resource, select **Observability** from the left pane in the [Azure AI Foundry portal](https://ai.azure.com/), select **Tracing**, and then and create a new resource if you don't already have one.
 
 :::image type="content" source="../media/ai-foundry-observability.png" alt-text="A screenshot of the tracing screen in the Azure AI Foundry portal." lightbox="../media/ai-foundry-observability.png":::
 
