@@ -110,8 +110,8 @@ The Azure AI Foundry Extension opens in its' own view, with the Azure AI Foundry
     - **Agent Playground**: The link to the agent playground for interacting with your deployed agents in your Azure AI Foundry project.
 
 - **Help and Feedback**: This section contains links to the Azure AI Foundry documentation, feedback, and support. It contains the following subsections:
-    - **Documentation**: This is the link to the Azure AI Foundry Extension documentation.
-    - **GitHub**: This is the link to the Azure AI Foundry extension GitHub repository.
+    - **Documentation**: The link to the Azure AI Foundry Extension documentation.
+    - **GitHub**: The link to the Azure AI Foundry extension GitHub repository.
 
 >[!NOTE]
 > To learn more about working with Agents and Threads in the Azure AI Foundry Extension, see the [Work with Azure AI Agent Service in Visual Studio Code](./vs-code-agents.md) article. 
@@ -140,7 +140,7 @@ The [model catalog](/azure/ai-foundry/how-to/model-catalog-overview) in Azure AI
  Access the model catalog from several different ways:
 - The **Azure AI Foundry: Open Model Catalog** command palette command.
 - Select the **plus** icon next to **Models** in the **Resources** section of the Azure AI Foundry Extension view.
-- Click on the **Model Catalog** link in the **Tools** section of the Azure AI Foundry Extension view.
+- Select the **Model Catalog** link in the **Tools** section of the Azure AI Foundry Extension view.
 
 #### Open the model catalog from the command palette
 
@@ -172,7 +172,7 @@ The **Model Catalog** is also available in the **Resources** section of the Azur
 
 #### Open the model catalog from the Tools section
 
-The **Model Catalog** is also available in the **Tools** section of the Azure AI Foundry Extension view. Double click on the **Model Catalog** link to open the Model Catalog.
+The **Model Catalog** is also available in the **Tools** section of the Azure AI Foundry Extension view. Double-click on the **Model Catalog** link to open the Model Catalog.
 
 #### Deploy a model from the model catalog
 
