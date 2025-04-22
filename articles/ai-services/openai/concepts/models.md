@@ -26,7 +26,7 @@ Azure OpenAI Service is powered by a diverse set of models with different capabi
 | [GPT-4](#gpt-4) | A set of models that improve on GPT-3.5 and can understand and generate natural language and code. |
 | [GPT-3.5](#gpt-35) | A set of models that improve on GPT-3 and can understand and generate natural language and code. |
 | [Embeddings](#embeddings-models) | A set of models that can convert text into numerical vector form to facilitate text similarity. |
-| [DALL-E](#dall-e-models) | A series of models that can generate original images from natural language. |
+| [Image generation](#image-generation-models) | A series of models that can generate original images from natural language. |
 | [Audio](#audio-models) | A series of models for speech to text, translation, and text to speech. GPT-4o audio models support either low-latency, "speech in, speech out" conversational interactions or audio generation. |
 
 ## GPT 4.1 series
@@ -216,9 +216,9 @@ The third generation embeddings models support reducing the size of the embeddin
 
 OpenAI's MTEB benchmark testing found that even when the third generation model's dimensions are reduced to less than `text-embeddings-ada-002` 1,536 dimensions performance remains slightly better.
 
-## DALL-E
+## Image generation models
 
-The DALL-E models generate images from text prompts that the user provides. DALL-E 3 is generally available for use with the REST APIs. DALL-E 2 and DALL-E 3 with client SDKs are in preview.
+The image generation models generate images from text prompts that the user provides. GPT-image-1 is in preview. DALL-E 3 is generally available for use with the REST APIs. DALL-E 2 and DALL-E 3 with client SDKs are in preview.
 
 ## Audio models
 
@@ -410,10 +410,11 @@ These models can only be used with Embedding API requests.
 
 [!INCLUDE [Image Generation](../includes/model-matrix/standard-image-generation.md)]
 
-### DALL-E models
+### Image generation models
 
 |  Model ID  | Max Request (characters) |
 |  --- | :---: |
+| gpt-image-1 | tbd |
 | dall-e-3  | 4,000 |
 
 # [Audio](#tab/standard-audio)
