@@ -153,7 +153,7 @@ The following considerations and limitations apply to dependent resources associ
 The Azure Machine Learning workspace uses Azure Container Registry for some operations, and automatically creates a Container Registry instance when it first needs one.
 [!INCLUDE [machine-learning-delete-acr](includes/machine-learning-delete-acr.md)]
 
-To use an existing Azure container registry with an Azure Machine Learning workspace, you must [enable the admin account](/azure/container-registry/container-registry-authentication#admin-account) on the container registry.
+To use an existing Azure Container Registry with an Azure Machine Learning workspace, you must [enable the admin account](/azure/container-registry/container-registry-authentication#admin-account) on the container registry.
 
 #### Storage Account
 
