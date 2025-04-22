@@ -235,6 +235,8 @@ Use the *output_format* parameter to specify the format of the generated image. 
 
 Use the *output_compression* parameter to specify the compression level for the generated image. Input an integer between `0` and `100`, where `0` is no compression and `100` is maximum compression. The default is `100`.
 
+---
+
 ## Call the Image Edit API
 
 The Image Edit API allows you to modify existing images based on text prompts you provide. The API call is similar to the image generation API call, but you also need to provide an image URL or base 64-encoded image data.
@@ -298,9 +300,9 @@ The response from a successful image editing API call looks like the following e
 
 The following API body parameters are available for image editing models, in addition to the ones available for image generation models.
 
-### Mask
+#### Mask
 
-The *mask* parameter is the same type as the main *image* input parameter. It defines the area of the image that you want the model to change, using white pixels to indicate the area and black pixels elsewhere. The mask can be a URL or base 64-encoded image data.
+The *mask* parameter is the same type as the main *image* input parameter. It defines the area of the image that you want the model to change, using fully transparent pixels (alpha of zero) in those areas. The mask can be a URL or base 64-encoded image data. It must be a PNG file and have the same dimensions as the image.
 
 
 #### [DALL-E 3](#tab/dalle-3)
