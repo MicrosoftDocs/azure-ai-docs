@@ -38,7 +38,7 @@ Explore the following model families available:
 - [Mistral AI](concepts/models.md#mistral-ai)
 - [NTT Data](concepts/models.md#ntt-data)
 
-To see details for each model including, language, types, and capabilities, see [Models](concepts/models.md) article.
+To see details for each model including language, types, and capabilities, see [Models](concepts/models.md) article.
 
 ## Pricing
 
