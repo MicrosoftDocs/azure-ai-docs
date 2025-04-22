@@ -17,8 +17,9 @@ To create a [!INCLUDE [hub-project-name](hub-project-name.md)] in [Azure AI Foun
 1. Go to [Azure AI Foundry](https://ai.azure.com). 
 1. Select any existing project if you aren't already in one.
 1. At the bottom of the left pane, select **Management center**.
-1. Select **+ New project**.
-1. Select **AI Hub Resource**.
+1. At the top of the page, select **All resources**.
+1. Select **Create**.
+1. Select **AI hub resource**.
 1. Enter a name for the project.
 1. If you have a hub, you'll see the one you most recently used selected.  
     * If you have access to more than one hub, you can select a different hub from the dropdown.
