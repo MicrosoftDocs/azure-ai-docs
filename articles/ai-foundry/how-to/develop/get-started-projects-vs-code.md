@@ -273,7 +273,9 @@ This Python sample code file that demonstrates a basic call to the chat completi
 
 Chat interactively with the model, change settings, and system instructions using the **Model Playground**.
 
-Open the model playground using the following steps:
+The **Model Playground** is available in the **Tools** section of the Azure AI Foundry Extension view. Double-click on the **Model Playground** link to open the Model Playground.
+
+You can also open the model playground using the following steps:
 
 1. Right-click on your deployed model and select the **Open in playground** option. 
 
