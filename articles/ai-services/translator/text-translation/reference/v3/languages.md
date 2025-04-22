@@ -12,7 +12,7 @@ ms.author: lajanuar
 
 <!-- markdownlint-disable MD033 -->
 
-# Azure AI Translator v3.0:  get languages
+# Azure AI Translator v3.0:  languages
 
 Gets the set of languages currently supported Azure AI Translator v3.0.
 

@@ -51,7 +51,7 @@ The following table compares Translator `2025-05-01-preview` and Translator v3 A
 |---|---|
 |[Translate text](../reference/v4/translate-api.md)|[Translate text](../reference/v3/translate.md)|
 |[Transliterate](../reference/v4/transliterate-api.md)|[Transliterate](../reference/v3/transliterate.md)|
-|[Get languages](../reference/v4/get-languages.md)|[Get languages](../reference/v3/languages.md)|
+|[Languages](../reference/v4/get-languages.md)|[Languages](../reference/v3/languages.md)|
 |Feature no longer supported|[Detect language](../reference/v3/detect.md)|
 |Feature no longer supported|[BreakSentence](../reference/v3/break-sentence.md)|
 |Feature no longer supported|[Dictionary Lookup](../reference/v3/dictionary-lookup.md)|

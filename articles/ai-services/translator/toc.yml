@@ -92,13 +92,13 @@ items:
       - name: 2025-05-01-preview overview
         displayName: gpt, adaptive, tone, gender
         href: text-translation/reference/v4/reference-overview.md
+      - name: Languages
+        href: text-translation/reference/v4/get-languages.md
       - name: Translate
         displayName: detection,detect
         href: text-translation/reference/v4/translate-api.md
       - name: Transliterate
         href: text-translation/reference/v4/transliterate-api.md
-      - name: Get languages
-        href: text-translation/reference/v4/get-languages.md
     - name: Azure AI Translator v3
       items:
       - name: v3 overview
@@ -106,6 +106,8 @@ items:
         href: text-translation/reference/v3/reference.md
       - name: Text Translation v3 REST APIs
         href:  text-translation/reference/rest-api-guide.md
+      - name: Languages
+        href: text-translation/reference/v3/languages.md
       - name: Translate
         displayName: detection,detect
         href: text-translation/reference/v3/translate.md
@@ -120,8 +122,6 @@ items:
         href: text-translation/reference/v3/dictionary-lookup.md
       - name: Dictionary Examples
         href: text-translation/reference/v3/dictionary-examples.md
-      - name: Get languages
-        href: text-translation/reference/v3/languages.md
       - name: Migrate to v3 Text translation API
       displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
       href: text-translation/how-to/migrate-to-v3.md

@@ -10,7 +10,7 @@ ms.date: 04/18/2025
 ms.author: lajanuar
 ---
 
-# Transliterate text (2025-05-01-preview)
+# Transliterate (2025-05-01-preview)
 
 The Text transliteration API maps your source language script or alphabet to a target language script or alphabet.
 

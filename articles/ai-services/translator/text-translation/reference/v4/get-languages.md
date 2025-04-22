@@ -1,7 +1,7 @@
 ---
-title: Translator 2025-05-01-preview get languages method
+title: Translator 2025-05-01-preview languages method
 titleSuffix: Azure AI services
-description: The get languages method displays the set of languages currently supported by Azure AI Translator 2025-05-01-preview.
+description: The languages method displays the set of languages currently supported by Azure AI Translator 2025-05-01-preview.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -12,7 +12,7 @@ ms.author: lajanuar
 
 <!-- markdownlint-disable MD033 -->
 
-# Get languages (2025-05-01-preview)
+# Languages (2025-05-01-preview)
 
 Get the set of languages currently supported by the latest Azure AI Translator version.
 ## Request URL
