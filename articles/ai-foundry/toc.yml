@@ -387,7 +387,34 @@ items:
       - name: Fine-tune models deployed via managed compute
         href: how-to/fine-tune-managed-compute.md
     - name: Fine-tune Azure OpenAI models
-      href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-foundry/context/context
+      items:
+      - name: Fine-tune Azure OpenAI models
+        href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning 
+      - name: When to use Azure OpenAI fine-tuning
+        href: ../ai-services/openai/concepts/fine-tuning-considerations.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning 
+      - name: Deploy your Azure OpenAI fine-tuned model
+        href: ../ai-services/openai/how-to/fine-tuning-deploy.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning         
+      - name: Vision fine-tuning
+        href: ../ai-services/openai/how-to/fine-tuning-vision.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning 
+      - name: Preference fine-tuning
+        href: ../ai-services/openai/how-to/fine-tuning-direct-preference-optimization.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning 
+      - name: Safety evaluation
+        href: ../ai-services/openai/how-to/fine-tuning-safety-evaluation.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning 
+      - name: Tool calling
+        href: ../ai-services/openai/how-to/fine-tuning-functions.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning         
+      - name: Weights & Biases integration (preview)
+        href: ../ai-services/openai/how-to/weights-and-biases-integration.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning 
+      - name: Troubleshooting guidance
+        href: ../ai-services/openai/how-to/fine-tuning-troubleshoot.md.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning 
     - name: Distillation
       href: concepts/concept-model-distillation.md
   - name: Tracing
