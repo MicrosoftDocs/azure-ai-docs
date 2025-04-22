@@ -202,7 +202,7 @@ On the project **Overview** page you can find information about the project.
 - Name: The name of the project appears in the top left corner. You can rename the project using the edit tool.
 - Subscription: The subscription that hosts the hub that hosts the project.
 - Resource group: The resource group that hosts the hub that hosts the project.
-- 
+
 ::: zone-end
 
 ::: zone pivot="hub-project"
