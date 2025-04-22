@@ -61,6 +61,9 @@ Support for parallel function was first added in API version [`2023-12-01-previe
 > [!NOTE]
 > The `tool_choice` parameter is now supported with `o3-mini` and `o1`. For more information on what parameters are supported with the o-series models see, the [reasoning models guide](./reasoning.md).
 
+> [!IMPORTANT]
+> Tool/function descriptions are currently limited to 1024 characters with Azure OpenAI. We will update this article if this limit is changed.
+
 ## Single tool/function calling example
 
 First we will demonstrate a simple toy function call that can check the time in three hardcoded locations with a single tool/function defined. We have added print statements to help make the code execution easier to follow:
