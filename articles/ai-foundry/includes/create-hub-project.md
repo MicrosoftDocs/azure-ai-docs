@@ -52,6 +52,4 @@ When you create a new hub as part of the project creation, default settings are 
 
 1. Select a **Location** or use the default. The location is the region where the hub is hosted. The location of the hub is also the location of the project. Azure AI services availability differs per region. For example, certain models might not be available in certain regions.
 
-1. Select **Create a project**. You see progress of resource creation and the project is created when the process is complete.
-
-    :::image type="content" source="../media/how-to/projects/projects-create-review-finish-progress.png" alt-text="Screenshot of the resource creation progress within the create project dialog." lightbox="../media/how-to/projects/projects-create-review-finish-progress.png":::
+1. Select **Create a project**. You see progress of the resource creation. The project is created when the process is complete.
