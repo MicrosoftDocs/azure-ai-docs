@@ -48,7 +48,7 @@ Azure OpenAI `o-series` models are designed to tackle reasoning and problem-solv
 | Chat Completions API | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Responses API | ✅ | ✅  | - | - | - | - |
 | Functions/Tools | ✅ | ✅ | ✅  | ✅  |  - | - |
-| Parallel Tool Calls | ✅ | ✅ | -  | -  |  - | - |
+| Parallel Tool Calls | - | - | -  | -  |  - | - |
 | `max_completion_tokens`<sup>*</sup> | ✅ | ✅ |✅ |✅ |✅ | ✅ |
 | System Messages<sup>**</sup> | ✅ | ✅ | ✅ | ✅ | - | - |
 | [Reasoning summary](#reasoning-summary) <sup>***</sup> | ✅ | ✅ | -  | -  |  - | - |
