@@ -51,9 +51,9 @@ Building a robust multimodal RAG solution begins with extracting and structuring
 
 To implement data extraction in Content Understanding, follow these steps:
 
-1. **Create an Analyzer:** Define an analyzer using REST APIs or our Python code samples. Optionally, include a field schema to specify the metadata to be extracted.
+1. **Create an Analyzer:** Define an analyzer using REST APIs or our Python code samples. 
 2. **Perform Content Extraction:** Use the analyzer to process files and extract structured content.
-3. **(Optional) Enhance with Field Extraction:** Add AI-generated fields to enrich the extracted content with additional metadata.
+3. **(Optional) Enhance with Field Extraction:** Optionally, specify AI-generated fields to enrich the extracted content with additional metadata.
 
 ## Creating an Analyzer
 Analyzers are reusable components in Content Understanding that streamline the data extraction process. Once an analyzer is created, it can be used repeatedly to process files and extract content or fields based on predefined schemas. An analyzer acts as a blueprint for how data should be processed, ensuring consistency and efficiency across multiple files and content types.
