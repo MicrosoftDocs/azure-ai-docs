@@ -173,11 +173,11 @@ for analyzer in analyzer_configs:
 
 **Note:** Field extraction schemas are optional and not required for performing content extraction. To execute content extraction and create analyzers without defining field schemas, simply provide the analyzer ID and the file to be analyzed.
 
-**Here is a sample schema definition:**
+Schemas were used in this tutorial. Here is an example of a schema definition
 
 # [Document](#tab/document)
 
-To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for extracting basic information from an invoice document.
+In the following example, we define a schema for extracting basic information from an invoice document.
 
 ```json
 {
@@ -219,7 +219,7 @@ To create a custom analyzer, you need to define a field schema that describes th
 
 # [Image](#tab/image)
 
-To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for identifying chart types in an image.
+In the following example, we define a schema for identifying chart types in an image.
 
 
 ```json
@@ -243,7 +243,7 @@ To create a custom analyzer, you need to define a field schema that describes th
 
 # [Audio](#tab/audio)
 
-To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for extracting basic information from call transcripts.
+In the following example, we define a schema for extracting basic information from call transcripts.
 
 ```json
 {
@@ -282,7 +282,7 @@ To create a custom analyzer, you need to define a field schema that describes th
 
 # [Video](#tab/video)
 
-To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for extracting basic information from marketing videos.
+In the following example, we define a schema for extracting basic information from marketing videos.
 
 ```json
 {
@@ -307,7 +307,7 @@ To create a custom analyzer, you need to define a field schema that describes th
 ---
 
 ## Perform Content and Field Analysis
-**Content extraction** is the first step in the RAG implementation process. It transforms raw multimodal data—such as documents, images, audio, and video—into structured, searchable formats. This foundational step ensures that the content is organized and ready for indexing and retrieval. Content extraction provides the baseline for indexing and retrieval but may not fully address domain-specific needs or provide deeper contextual insights. 
+**Content extraction** is the first step in the RAG implementation process. It transforms raw multimodal data into structured, searchable formats. This foundational step ensures that the content is organized and ready for indexing and retrieval. While content extraction provides the baseline for indexing and retrieval it may not fully address domain-specific needs or provide deeper contextual insights. 
 [Learn more]() about content extraction capabilities for each modality.
 
 **Field extraction** builds on content extraction by using AI to generate additional metadata that enriches the knowledge base. This step allows you to define custom fields tailored to your specific use case, enabling more precise retrieval and enhanced search relevance. Field extraction complements content extraction by adding depth and context, making the data more actionable for RAG scenarios. 
