@@ -24,6 +24,8 @@ items:
   items:
   - name: Chat application with Open Web UI
     href: tutorials/chat-application-with-open-web-ui.md
+  - name: LangChain with Foundry Local
+    href: tutorials/use-langchain-with-foundry-local.md
 - name: Reference
   expanded: false
   items:
