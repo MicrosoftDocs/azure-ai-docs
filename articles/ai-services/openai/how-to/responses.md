@@ -56,9 +56,9 @@ Not every model is available in the regions supported by the responses API. Chec
 > - Structured outputs
 > - tool_choice
 > - image_url pointing to an internet address
-> - The web search tool is also not supported, and is not part of the `2025-03-01-preview` API.  
+> - The web search tool is also not supported, and isn't part of the `2025-03-01-preview` API.  
 > 
-> There is also a known issue with vision performance when using the Responses API, particularly with OCR tasks. As a temporary workaround set image detail to `high`. This article will be updated once this issue is resolved and as any additional feature support is added.
+> There's also a known issue with vision performance when using the Responses API, particularly with OCR tasks. As a temporary workaround set image detail to `high`. This article will be updated once this issue is resolved and as any additional feature support is added.
 
 
 ### Reference documentation
@@ -239,7 +239,7 @@ Response Status: completed
 
 Unlike the chat completions API, the responses API is asynchronous. More complex requests may not be completed by the time that an initial response is returned by the API. This is similar to how the Assistants API handles [thread/run status](/azure/ai-services/openai/how-to/assistant#retrieve-thread-status). 
 
-Note in the response ouput that the response object contains a `status` which can be monitored to determine when the response is finally complete. `status` can contain a value of `completed`, `failed`, `in_progress`, or `incomplete`.
+Note in the response output that the response object contains a `status` which can be monitored to determine when the response is finally complete. `status` can contain a value of `completed`, `failed`, `in_progress`, or `incomplete`.
 
 ### Retrieve an individual response status
 
@@ -253,7 +253,7 @@ print(retrieve_response.status)
 
 ### Monitor response status
 
-Depending on the complexity of your request it is not uncommon to have an initial response with a status of `in_progress` with message output not yet generated. In that case you can create a loop to monitor the status of the response with code. The example below is for demonstration purposes only and is intended to be run in a Jupyter notebook. This code assumes you have already run the two previous Python examples and the client as well as `retrieve_response` have already been defined:
+Depending on the complexity of your request it isn't uncommon to have an initial response with a status of `in_progress` with message output not yet generated. In that case you can create a loop to monitor the status of the response with code. The example below is for demonstration purposes only and is intended to be run in a Jupyter notebook. This code assumes you have already run the two previous Python examples and the Azure OpenAI client as well as `retrieve_response` have already been defined:
 
 ```python
 import time
@@ -678,7 +678,7 @@ print(response.model_dump_json(indent=2))
 
 ## Image input
 
-There is a known issue with image url based image input. Currently only base64 encoded images are supported.
+There's a known issue with image url based image input. Currently only base64 encoded images are supported.
 
 ### Image url
 
@@ -958,7 +958,7 @@ async def take_screenshot(page):
             return last_successful_screenshot
 ```
 
-This function captures the current browser state as an image and returns it as a base64-encoded string, ready to be sent to the model. We'll constantly do this in a loop after each step allowing the model to see if the command it tried to execute was successful or not, which then allows it to adjust based on the contents of the screenshot. We could let the model decide if it needs to take a screenshot, but for simplicity we will force a screenshot to be taken for each iteration.
+This function captures the current browser state as an image and returns it as a base64-encoded string, ready to be sent to the model. We'll constantly do this in a loop after each step allowing the model to see if the command it tried to execute was successful or not, which then allows it to adjust based on the contents of the screenshot. We could let the model decide if it needs to take a screenshot, but for simplicity we'll force a screenshot to be taken for each iteration.
 
 ### Model response processing
 
