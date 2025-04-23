@@ -36,11 +36,11 @@ Azure AI Agent Service offers a standard agent configuration with private networ
 
 1. An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
 2. [Python 3.8 or later](https://www.python.org/)
-3. Ensure that the individual deploying the template has the [Azure AI Developer role](/azure/ai-foundry/concepts/rbac-ai-foundry) assigned at the resource group level where the template is being deployed.
+3. Ensure that the individual deploying the template has the [Azure AI Developer role](/azure/ai-foundry/concepts/rbac-azure-ai-foundry) assigned at the resource group level where the template is being deployed.
 4. Additionally, to deploy the template, you need to have the preset [Role Based Access Administrator](/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator) role at the subscription level.
     * The **Owner** role at the subscription level satisfies this requirement.
     * The specific admin role that is needed is `Microsoft.Authorization/roleAssignments/write`
-5. Ensure that each team member who wants to use the Agent Playground or SDK to create or edit agents has been assigned the built-in **Azure AI Developer** [RBAC role](../../../ai-foundry/concepts/rbac-ai-foundry.md) for the project.
+5. Ensure that each team member who wants to use the Agent Playground or SDK to create or edit agents has been assigned the built-in **Azure AI Developer** [RBAC role](../../../ai-foundry/concepts/rbac-azure-ai-foundry.md) for the project.
     * Note: assign these roles after the template has been deployed
     * The minimum set of permissions required is: **agents/*/read**, **agents/*/action**, **agents/*/delete**  
 5. Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.

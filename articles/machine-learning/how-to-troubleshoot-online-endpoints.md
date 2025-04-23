@@ -164,7 +164,7 @@ ml_client.online_deployments.get_logs(
 <a name="see-log-output-in-azure-machine-learning-studio"></a>
 To view log output from a container in Azure Machine Learning studio:
 
-1. Select **Endpoints** in the left navigation bar.
+1. Select **Endpoints** in the left pane.
 1. Select an endpoint name to view the endpoint details page.
 1. Select the **Logs** tab in the endpoint details page.
 1. Select the deployment log you want to see from the dropdown menu.
@@ -199,6 +199,7 @@ Deployment operation status can report the following common deployment errors:
   - [Subscription doesn't exist](#subscription-doesnt-exist)
   - [Startup task failed due to authorization error](#authorization-error)
   - [Startup task failed due to incorrect role assignments on resource](#authorization-error)
+  - [Startup task failed due to incorrect role assignments on storage account when mdc is enabled](#authorization-error)
   - [Invalid template function specification](#invalid-template-function-specification)
   - [Unable to download user container image](#unable-to-download-user-container-image)
   - [Unable to download user model](#unable-to-download-user-model)
@@ -370,6 +371,8 @@ The referenced Azure subscription must be existing and active. This error occurs
 After you provision the compute resource when you create a deployment, Azure pulls the user container image from the workspace container registry and mounts the user model and code artifacts into the user container from the workspace storage account. Azure uses [managed identities](/azure/active-directory/managed-identities-azure-resources/overview) to access the storage account and the container registry.
 
 If you create the associated endpoint with user-assigned identity, the user's managed identity must have **Storage blob data reader** permission on the workspace storage account and **AcrPull** permission on the workspace container registry. Make sure your user-assigned identity has the right permissions.
+
+When MDC is enabled, the user's managed identity must have **Storage Blob Data Contributor** permission on the workspace storage account. For more information, see [Storage Blob Authorization Error when MDC is enabled](how-to-collect-production-data.md#collect-data-to-a-custom-blob-storage-container).
 
 If you create the associated endpoint with system-assigned identity, Azure role-based access control (RBAC) permission is automatically granted and no further permissions are needed. For more information, see [Container registry authorization error](#container-registry-authorization-error).
 

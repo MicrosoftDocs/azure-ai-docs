@@ -6,7 +6,14 @@ ms.date: 03/17/2025
 ms.author: eur
 ---
 
+> [!IMPORTANT]
+> Content assessment (preview) via the Speech SDK will be retired in July 2025. Instead, you can use the Azure OpenAI Service to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
+
 ### Speech SDK 1.43: 2025-March release
+
+> [!NOTE]
+> [Ubuntu 20.04 "standard security maintenance" expires in April 2025](https://ubuntu.com/about/release-cycle) and will no longer be available as ADO Build agents.
+> Future Speech SDK releases will require Ubuntu 22.04 LTS (instead of Ubuntu 20.04) as the minimum supported version.
 
 #### New features:
   * Updated FromEndpoint API to be the recommended method for constructing a SpeechConfig for most scenarios.

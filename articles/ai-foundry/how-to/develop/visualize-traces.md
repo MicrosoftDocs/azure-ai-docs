@@ -13,7 +13,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Visualize your traces
+# Visualize your traces (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -101,7 +101,7 @@ For more information on how to send Azure AI Inference traces to Azure Monitor a
 
 From Azure AI Foundry project, you can also open your custom dashboard that provides you with insights specifically to help you monitor your generative AI application.
 
-In this Azure Workbook, you can view your Gen AI spans and jump into the Azure Monitor **End-to-end transaction details view** view to deep dive and investigate.
+In this Azure Workbook, you can view your Gen AI spans and jump into the Azure Monitor **End-to-end transaction details view** to deep dive and investigate.
 
 Learn more about using this workbook to monitor your application, see [Azure Workbook documentation](/azure/azure-monitor/visualize/workbooks-create-workbook).
 

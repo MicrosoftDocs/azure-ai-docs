@@ -27,9 +27,9 @@ To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1]
 
 The Jamba family models are AI21's production-grade Mamba-based large language model (LLM) which uses AI21's hybrid Mamba-Transformer architecture. It's an instruction-tuned version of AI21's hybrid structured state space model (SSM) transformer Jamba model. The Jamba family models are built for reliable commercial use with respect to quality and performance.
 
-| Model  | Type | Capabilities | 
-| ------ | ---- | --- | 
-| [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (262,144 tokens) <br /> - **Output:**  text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs | | 
+| Model  | Type | Capabilities |
+| ------ | ---- | --- |
+| [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (262,144 tokens) <br /> - **Output:**  text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
 | [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (262,144 tokens) <br /> - **Output:**  text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
 
 
@@ -68,10 +68,12 @@ The following table lists the Cohere models that you can inference via the  Azur
 
 | Model  | Type | Capabilities | 
 | ------ | ---- | --- | 
+| [Cohere-command-A](https://aka.ms/aistudio/landing/cohere-command-a) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (256,000 tokens) <br /> - **Output:** text (8,000 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text |
 | [Cohere-command-r-plus-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-plus-08-2024/version/1/registry/azureml-cohere) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Cohere-command-r-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-08-2024/version/1/registry/azureml-cohere) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Cohere-command-r-plus](https://ai.azure.com/explore/models/Cohere-command-r-plus/version/1/registry/azureml-cohere) <br> (deprecated) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Cohere-command-r](https://ai.azure.com/explore/models/Cohere-command-r/version/1/registry/azureml-cohere) <br> (deprecated)| [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
+| [Cohere-embed-4](https://aka.ms/aistudio/landing/cohere-embed-4) | [embeddings](../model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context) <br /> [image-embeddings](../model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context) | - **Input:** image, text <br /> - **Output:** image, text (128,000 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** image, text  |
 | [Cohere-embed-v3-english](https://ai.azure.com/explore/models/Cohere-embed-v3-english/version/1/registry/azureml-cohere) | [embeddings](../model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context) <br /> [image-embeddings](../model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context) | - **Input:** text (512 tokens) <br /> - **Output:** Vector (1,024 dim.) |
 | [Cohere-embed-v3-multilingual](https://ai.azure.com/explore/models/Cohere-embed-v3-multilingual/version/1/registry/azureml-cohere) | [embeddings](../model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context) <br /> [image-embeddings](../model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context) | - **Input:** text (512 tokens) <br /> - **Output:** Vector (1,024 dim.) |
 
@@ -141,12 +143,13 @@ For more examples of how to use Jais models, see the following examples:
 
 ## DeepSeek
 
-DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks using a step-by-step training process, such as language, scientific reasoning, and coding tasks, and DeepSeek-V3, a Mixture-of-Experts (MoE) language model. 
+DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks using a step-by-step training process, such as language, scientific reasoning, and coding tasks, DeepSeek-V3-0324, a Mixture-of-Experts (MoE) language model, and more. 
 
 | Model  | Type | Capabilities | 
 | ------ | ---- | --- | 
-| [DeepSeek-V3](https://ai.azure.com/explore/models/deepseek-v3/version/1/registry/azureml-deepseek) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
-| [DeepSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek) | [chat-completion with reasoning content](../model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context) | - **Input:** text (16,384 tokens) <br /> - **Output:** text (163,840 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
+| [DeekSeek-V3-0324](https://ai.azure.com/explore/models/deepseek-v3-0324/version/1/registry/azureml-deepseek) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** (131,072 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
+| [DeepSeek-V3](https://ai.azure.com/explore/models/deepseek-v3/version/1/registry/azureml-deepseek) <br />(Legacy) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
+| [DeepSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek) | [chat-completion with reasoning content](../model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
 
 For a tutorial on DeepSeek-R1, see [Tutorial: Get started with DeepSeek-R1 reasoning model in Azure AI model inference](../model-inference/tutorials/get-started-deepseek-r1.md?context=/azure/ai-foundry/context/context).
 
@@ -171,9 +174,12 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 - Small language models (SLMs) like 1B and 3B Base and Instruct models for on-device and edge inferencing
 - Mid-size large language models (LLMs) like 7B, 8B, and 70B Base and Instruct models
 - High-performant models like Meta Llama 3.1-405B Instruct for synthetic data generation and distillation use cases.
+- High-performant natively multimodal models, Llama 4 Scout and Llama 4 Maverick, leverage a mixture-of-experts architecture to offer industry-leading performance in text and image understanding.
 
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
+| [Llama-4-Scout-17B-16E-Instruct](https://aka.ms/aifoundry/landing/llama-4-scout-17b-16e-instruct) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text and image (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text |
+| [Llama 4-Maverick-17B-128E-Instruct-FP8](https://aka.ms/aifoundry/landing/llama-4-maverick-17b-128e-instruct-fp8) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text and image (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text |
 | [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text |
 | [Llama-3.2-90B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-90B-Vision-Instruct/version/1/registry/azureml-meta) | [chat-completion (with images)](../model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context) | - **Input:** text and image (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text |
 | [Llama-3.2-11B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-11B-Vision-Instruct/version/1/registry/azureml-meta) | [chat-completion (with images)](../model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context) | - **Input:** text and image (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text |
@@ -203,10 +209,12 @@ For more examples of how to use Meta Llama models, see the following examples:
 
 ## Microsoft
 
-Phi is a family of lightweight, state-of-the-art open models. These models were trained with Phi-3 datasets. The datasets include both synthetic data and the filtered, publicly available websites data, with a focus on high quality and reasoning-dense properties. The models underwent a rigorous enhancement process, incorporating both supervised fine-tuning, proximal policy optimization, and direct preference optimization to ensure precise instruction adherence and robust safety measures.
+Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more. To see all the available Microsoft models, view [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
+
 
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
+| [MAI-DS-R1](https://ai.azure.com/explore/models/MAI-DS-R1/version/1/registry/azureml) | [chat-completion with reasoning content](../model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
 | [Phi-4-multimodal-instruct](https://ai.azure.com/explore/models/Phi-4-multimodal-instruct/version/1/registry/azureml) | [chat-completion (with image and audio content)](../model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context) | - **Input:** text, images, and audio (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text |
 | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
 | [Phi-4](https://ai.azure.com/explore/models/Phi-4/version/2/registry/azureml) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (16,384 tokens) <br /> - **Output:** text (16,384 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text |
@@ -220,12 +228,9 @@ Phi is a family of lightweight, state-of-the-art open models. These models were 
 | [Phi-3-medium-128k-instruct](https://ai.azure.com/explore/models/Phi-3-medium-128k-instruct/version/6/registry/azureml) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
 | [Phi-3-medium-4k-instruct](https://ai.azure.com/explore/models/Phi-3-medium-4k-instruct/version/5/registry/azureml) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (4,096 tokens) <br /> - **Output:** text (4,096 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
 
+#### Inference examples: Microsoft models
 
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
-
-#### Inference examples: Microsoft Phi
-
-For more examples of how to use Phi-3 family models, see the following examples:    
+For more examples of how to use Microsoft models, see the following examples:    
 
 | Description                               | Language          | Sample                                                          |    
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|    
@@ -236,11 +241,14 @@ For more examples of how to use Phi-3 family models, see the following examples:
 | Llama-Index                               | Python            | [Link](https://aka.ms/azureai/llamaindex)             |  
 
 
+See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
+
+
 ## Mistral AI
 
 Mistral AI offers two categories of models, namely: 
 
-- _Premium models_: These include Mistral Large, Mistral Small, and Ministral 3B models, and are available as serverless APIs with pay-as-you-go token-based billing.  
+- _Premium models_: These include Mistral Large, Mistral Small, Mistral-OCR-2503, and Ministral 3B models, and are available as serverless APIs with pay-as-you-go token-based billing.  
 - _Open models_: These include Mistral-small-2503, Codestral, and Mistral Nemo (that are available as serverless APIs with pay-as-you-go token-based billing), and [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](../how-to/deploy-models-mistral-open.md)(that are available to download and run on self-hosted managed endpoints).
 
 
@@ -252,6 +260,7 @@ Mistral AI offers two categories of models, namely:
 | [Mistral-Large-2411](https://ai.azure.com/explore/models/Mistral-Large-2411/version/2/registry/azureml-mistral) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) |  - **Input:** text (128,000 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Mistral-large-2407](https://ai.azure.com/explore/models/Mistral-large-2407/version/1/registry/azureml-mistral) <br /> (deprecated) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) |  - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON  |
 | [Mistral-large](https://ai.azure.com/explore/models/Mistral-large/version/1/registry/azureml-mistral) <br /> (deprecated) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) |  - **Input:** text (32,768 tokens) <br /> - **Output:** text (4,096 tokens) <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
+| [Mistral-OCR-2503](https://aka.ms/aistudio/landing/mistral-ocr-2503) | image to text |  - **Input:** image or PDF pages (1,000 pages, max 50MB PDF file) <br> - **Output:** text <br /> - **Tool calling:** No <br /> - **Response formats:** Text, JSON, Markdown |
 | [Mistral-small-2503](https://aka.ms/aistudio/landing/mistral-small-2503) | [chat-completion (with images)](../model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context) |  - **Input:** text and images (131,072 tokens), <br> image-based tokens are 16px x 16px <br> blocks of the original images <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Mistral-small](https://ai.azure.com/explore/models/Mistral-small/version/1/registry/azureml-mistral) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) |  - **Input:** text (32,768 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 

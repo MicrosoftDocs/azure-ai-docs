@@ -21,12 +21,14 @@ items:
     href: concepts/jailbreak-detection.md
   - name: Groundedness detection (preview)
     href: concepts/groundedness.md
-  - name: Protected material detection (preview)
+  - name: Protected material detection
     href: concepts/protected-material.md
   - name: Custom categories (preview)
     href: concepts/custom-categories.md
   - name: Harm categories
     href: concepts/harm-categories.md
+  - name: Azure AI Foundry portal
+    href: /azure/ai-foundry/ai-services/content-safety-overview?context=/azure/ai-services/content-safety/context/context
 - name: Quickstarts
   items:
   - name: Prompt Shields
@@ -39,8 +41,6 @@ items:
     href: quickstart-protected-material-code.md
   - name: Custom categories (preview)
     href: quickstart-custom-categories.md
-  - name: Content Safety Studio
-    href: studio-quickstart.md
   - name: Text moderation
     href: quickstart-text.md
   - name: Blocklists

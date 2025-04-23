@@ -45,7 +45,7 @@ In Azure AI Search, indexers that access Azure blobs can use the [trusted servic
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and [find your storage account](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Storage%2storageAccounts/).
 
-1. In the left navigation pane under **Security + networking**, select **Networking**.
+1. In the left pane under **Security + networking**, select **Networking**.
 
 1. On the **Firewalls and virtual networks** tab, allow access from **Selected networks**.
 
@@ -61,7 +61,7 @@ In Azure AI Search, indexers that access Azure blobs can use the [trusted servic
 
 A system managed identity is a Microsoft Entra service principal. The assignment needs **Storage Blob Data Reader** at a minimum.
 
-1. In the left navigation pane under **Access Control**, view all role assignments and make sure that **Storage Blob Data Reader** is assigned to the search service system identity.
+1. In the left pane under **Access Control**, view all role assignments and make sure that **Storage Blob Data Reader** is assigned to the search service system identity.
 
 1. Add **Storage Blob Data Contributor** if write access is required.
 

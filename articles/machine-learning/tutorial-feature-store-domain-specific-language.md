@@ -60,7 +60,7 @@ Before you proceed with this tutorial, make sure that you cover these prerequisi
 
    1. Upload the feature store samples directory to project workspace
       1. Open Azure Machine Learning studio UI of your Azure Machine Learning workspace
-      1. Select **Notebooks** in left navigation panel
+      1. Select **Notebooks** in left panel
       1. Select your user name in the directory listing
       1. Select the ellipses (**...**), and then select **Upload folder**
       1. Select the feature store samples folder from the cloned directory path: `azureml-examples/sdk/python/featurestore-sample`
@@ -72,7 +72,7 @@ Before you proceed with this tutorial, make sure that you cover these prerequisi
 
    1. To configure the notebook environment, you must upload the `conda.yml` file
 
-      1. Select **Notebooks** on the left navigation panel, and then select the **Files** tab
+      1. Select **Notebooks** on the left panel, and then select the **Files** tab
       1. Navigate to the `env` directory (select **Users** > *your_user_name* > **featurestore_sample** > **project** > **env**), and then select the `conda.yml` file
       1. Select **Download**
       1. Select **Serverless Spark Compute** in the top navigation **Compute** dropdown. This operation might take one to two minutes. Wait for the status bar in the top to display the **Configure session** link

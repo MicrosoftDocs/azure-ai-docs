@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/01/2024
+ms.date: 04/14/2025
 ---
 
 # Create an index in Azure AI Search
@@ -155,7 +155,7 @@ The following screenshot highlights where **Add index**, **Import data**, and **
 
 :::image type="content" source="media/search-what-is-an-index/add-index.png" alt-text="Screenshot of the options to add an index." border="true":::
 
-After an index is created, you can find it again on the **Indexes** page from the left navigation pane.
+After an index is created, you can find it again on the **Indexes** page from the left pane.
 
 > [!TIP]
 > After creating an index in the Azure portal, you can copy the JSON representation and add it to your application code.

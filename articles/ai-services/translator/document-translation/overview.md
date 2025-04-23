@@ -1,11 +1,11 @@
 ---
-title: What is Document Translation?
+title: What is Document translation?
 description: An overview of the cloud-based asynchronous batch translation services and processes.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 01/27/2025
+ms.date: 04/14/2025
 ms.author: lajanuar
 ms.custom: references_regions
 recommendations: false
@@ -18,9 +18,9 @@ recommendations: false
 <!-- markdownlint-disable MD049 -->
 <!-- markdownlint-disable MD001 -->
 
-# What is Document Translation?
+# What is Document translation?
 
-Document Translation is a cloud-based machine translation feature of the [Azure AI Translator](../translator-overview.md) service. You can translate multiple and complex documents across all [supported languages and dialects](../../language-support.md) while preserving original document structure and data format. The Document translation API supports two translation processes:
+Document translation is a cloud-based machine translation feature of the [Azure AI Translator](../translator-overview.md) service. You can translate multiple and complex documents across all [supported languages and dialects](../../language-support.md) while preserving original document structure and data format. The Document translation API supports two translation processes:
 
 * [Asynchronous batch translation](#asynchronous-batch-translation) supports the processing of multiple documents and large files. The batch translation process requires an Azure Blob storage account with storage containers for your source and translated documents.
 
@@ -39,24 +39,24 @@ Use asynchronous document processing to translate multiple documents and large f
   |**Preserve source file presentation**| Translate files while preserving the original layout and format.|
   |**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-ai-custom-translator) models.|
   |**Apply custom glossaries**|Translate documents using custom glossaries.|
-  |**Automatically detect document language**|Let the Document Translation service determine the language of the document.|
+  |**Automatically detect document language**|Let the Document translation service determine the language of the document.|
   |**Translate documents with content in multiple languages**|Use the autodetect feature to translate documents with content in multiple languages into your target language.|
 
 ### Batch development options
 
-You can add Document Translation to your applications using the REST API or a client-library SDK:
+You can add Document translation to your applications using the REST API or a client-library SDK:
 
 * The [**REST API**](reference/rest-api-guide.md). is a language agnostic interface that enables you to create HTTP requests and authorization headers to translate documents.
 
-* The [**client-library SDKs**](./quickstarts/client-library-sdks.md) are language-specific classes, objects, methods, and code that you can quickly use by adding a reference in your project. Currently Document Translation has programming language support for [**C#/.NET**](/dotnet/api/azure.ai.translation.document) and [**Python**](https://pypi.org/project/azure-ai-translation-document/).
+* The [**client-library SDKs**](./quickstarts/client-library-sdks.md) are language-specific classes, objects, methods, and code that you can quickly use by adding a reference in your project. Currently Document translation has programming language support for [**C#/.NET**](/dotnet/api/azure.ai.translation.document) and [**Python**](https://pypi.org/project/azure-ai-translation-document/).
 
 ### Batch supported document formats
 
-The [Get supported document formats method](reference/get-supported-document-formats.md) returns a list of document formats supported by the Document Translation service. The list includes the common file extension, and the content-type if using the upload API.
+The [Get supported document formats method](reference/get-supported-document-formats.md) returns a list of document formats supported by the Document translation service. The list includes the common file extension, and the content-type if using the upload API.
 
 | File type| File extension|Description|
 |---|---|--|
-|Adobe PDF|`pdf`|Portable document file format. Document Translation uses optical character recognition (OCR) technology to extract and translate text in scanned PDF document while retaining the original layout.|
+|Adobe PDF|`pdf`|Portable document file format. Document translation uses optical character recognition (OCR) technology to extract and translate text in scanned PDF document while retaining the original layout.|
 |Comma-Separated Values |`csv`| A comma-delimited raw-data file used by spreadsheet programs.|
 |HTML|`html`, `htm`|Hyper Text Markup Language.|
 |`XML` Localization Interchange File Format|`xlff`| A parallel document format, export of Translation Memory systems. The languages used are defined inside the file.|
@@ -85,7 +85,7 @@ Source file types are preserved during the document translation with the followi
 
 ### Batch supported glossary formats
 
-Document Translation supports the following glossary file types:
+Document translation supports the following glossary file types:
 
 | File type| File extension|Description|
 |---|---|--|
@@ -106,7 +106,7 @@ Document Translation supports the following glossary file types:
 |**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-ai-custom-translator) models.|
 |**Apply custom glossaries**|Translate documents using custom glossaries.|
 |**Single language translation**|Translate to and from one [supported language](../language-support.md).|
-|**Automatically detect document language**|Let the Document Translation service determine the language of the document.|
+|**Automatically detect document language**|Let the Document translation service determine the language of the document.|
 |**Apply custom glossaries**|Translate a document using a custom glossary.|
 
 ### Synchronous supported document formats
@@ -126,7 +126,7 @@ Document Translation supports the following glossary file types:
 
 ### Synchronous supported glossary formats
 
-Document Translation supports the following glossary file types:
+Document translation supports the following glossary file types:
 
 | File type| File extension|Description|
 |---|---|--|
@@ -134,15 +134,15 @@ Document Translation supports the following glossary file types:
 |**XmlLocalizationInterchange**| `xlf` , `xliff`| An XML-based format designed to standardize how data is passed during the localization process. |
 |**TabSeparatedValues**|`tsv`, `tab`| A tab-delimited raw-data file used by spreadsheet programs.|
 
-## Document Translation Request limits
+## Document translation Request limits
 
-For detailed information regarding Azure AI Translator Service request limits, *see* [**Document Translation request limits**](../service-limits.md#document-translation).
+For detailed information regarding Azure AI Translator Service request limits, *see* [**Document translation request limits**](../service-limits.md#document-translation).
 
-## Document Translation data residency
+## Document translation data residency
 
-Document Translation data residency depends on the Azure region where your Translator resource was created:
+Document translation data residency depends on the Azure region where your Translator resource was created:
 
-✔️ Feature: **Document Translation**</br>
+✔️ Feature: **Document translation**</br>
 ✔️ Service endpoint:  **Custom: `<name-of-your-resource.cognitiveservices.azure.com/translator/text/batch/v1.1`**
 
 |Resource created region| Request processing data center |
@@ -155,7 +155,7 @@ Document Translation data residency depends on the Azure region where your Trans
 
 ## Next steps
 
-In our quickstart, you learn how to rapidly get started using Document Translation. To begin, you need an active [Azure account](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [create a free account](https://azure.microsoft.com/free).
+In our quickstart, you learn how to rapidly get started using Document translation. To begin, you need an active [Azure account](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [create a free account](https://azure.microsoft.com/free).
 
 > [!div class="nextstepaction"]
 > [Get Started with Asynchronous batch translation](./how-to-guides/use-rest-api-programmatically.md) [Get started with synchronous translation](how-to-guides/use-rest-api-programmatically.md)

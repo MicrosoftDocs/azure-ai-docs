@@ -111,7 +111,7 @@ Here's an example of how to monitor costs for a project. The costs are used as a
 1. Under the **Project** heading, select **Overview**. 
 1. Select **View cost for resources** from the **Total cost** section. The [Azure portal](https://portal.azure.com) opens to the resource group for your project.
 
-    :::image type="content" source="../media/cost-management/project-costs/project-settings-go-view-costs.png" alt-text="Screenshot of the Azure AI Foundry portal portal showing how to see project settings." lightbox="../media/cost-management/project-costs/project-settings-go-view-costs.png":::
+    :::image type="content" source="../media/cost-management/project-costs/project-settings-go-view-costs.png" alt-text="Screenshot of the Azure AI Foundry portal showing how to see project settings." lightbox="../media/cost-management/project-costs/project-settings-go-view-costs.png":::
 
 1. Expand the **Resource** column to see the costs for each service that's underlying your [project](../concepts/ai-resources.md#organize-work-in-projects-for-customization). But this view doesn't include costs for all resources that you use in a project.
 
@@ -141,7 +141,7 @@ You can also view resource group costs directly from the Azure portal. To do so:
 1. Sign in to [Azure portal](https://portal.azure.com).
 1. Select **Resource groups**. 
 1. Find and select the resource group that contains your Azure AI Foundry resources.
-1. From the left navigation menu, select **Cost analysis**.
+1. From the left pane, select **Cost analysis**.
 
     :::image type="content" source="../media/cost-management/project-costs/costs-per-resource-group.png" alt-text="Screenshot of the Azure portal cost analysis at the resource group level." lightbox="../media/cost-management/project-costs/costs-per-resource-group.png":::
 
@@ -153,9 +153,9 @@ Models deployed as a service using pay-as-you-go are offered through the Azure M
 
 1. Sign in to [Azure portal](https://portal.azure.com).
 
-1. On the left navigation area, select **Cost Management + Billing** and then, on the same menu, select **Cost Management**.
+1. On the left pane, select **Cost Management + Billing** and then, on the same menu, select **Cost Management**.
 
-1. On the left navigation area, under the section **Cost Management**, select now **Cost Analysis**.
+1. On the left pane, under the section **Cost Management**, select now **Cost Analysis**.
 
 1. Select a view such as **Resources**. The cost associated with each resource is displayed.
 

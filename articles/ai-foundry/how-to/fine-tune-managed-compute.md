@@ -32,14 +32,14 @@ To improve model performance, you might consider fine-tuning a foundation model 
 
 - An [Azure AI Foundry project](create-projects.md).
 
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-foundry.md).
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-azure-ai-foundry.md).
 
 ## Fine-tune a foundation model using managed compute
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com).
 
 1. If you're not already in your project, select it. 
-1. Select **Fine-tuning** from the left navigation pane.
+1. Select **Fine-tuning** from the left pane.
 
     1. Select **Fine-tune model** and add the model that you want to fine-tune. This article uses _Phi-3-mini-4k-instruct_ for illustration.
     1. Select **Next** to see the available fine-tune options. Some foundation models support only the __Managed compute__ option.

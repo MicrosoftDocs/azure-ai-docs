@@ -1,7 +1,7 @@
 ---
 title: "Apply Image Transformation"
 titleSuffix: Azure Machine Learning
-description: Learn how to use the Apply Image Transformation component to apply an image transformation to a image directory.
+description: Learn how to use the Apply Image Transformation component to apply an image transformation to an image directory.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core

@@ -34,7 +34,7 @@ Connections are a way to authenticate and consume both Microsoft and other resou
 
 ## Authenticating with Microsoft Entra ID
 
-There are various authentication methods for the different connection types. When you use Microsoft Entra ID, in addition to creating the connection you might also need to grant Azure role-based access control permissions before the connection can be used. For more information, visit [Role-based access control](../../concepts/rbac-ai-foundry.md#scenario-connections-using-microsoft-entra-id-authentication).
+There are various authentication methods for the different connection types. When you use Microsoft Entra ID, in addition to creating the connection you might also need to grant Azure role-based access control permissions before the connection can be used. For more information, visit [Role-based access control](../../concepts/rbac-azure-ai-foundry.md#scenario-connections-using-microsoft-entra-id-authentication).
 
 [!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
@@ -73,7 +73,7 @@ ml_client.connections.create_or_update(wps_connection)
 
 ## Azure AI services
 
-The following example creates an Azure AI services connection. This example creates one connection for the AI services documented in the [Connect to Azure AI services](../../ai-services/how-to/connect-ai-services.md) article. The same connection also supports the Azure OpenAI service.
+The following example creates an Azure AI services connection. This example creates one connection for the AI services documented in the [Connect to Azure AI services](../../../ai-services/connect-services-ai-foundry-portal.md) article. The same connection also supports the Azure OpenAI service.
 
 ```python
 from azure.ai.ml.entities import AzureAIServicesConnection, ApiKeyConfiguration
