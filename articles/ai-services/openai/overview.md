@@ -129,7 +129,7 @@ Prompt construction can be difficult. In practice, the prompt acts to configure 
 
 The service provides users access to several different models. Each model provides a different capability and price point.
 
-The image generation models (some in preview; see [models](./concepts/models.md#dall-e)) generate and edit images from text prompts that the user provides.
+The image generation models (some in preview; see [models](./concepts/models.md#image-generation-models)) generate and edit images from text prompts that the user provides.
 
 The audio API models can be used to transcribe and translate speech to text. The text to speech models, currently in preview, can be used to synthesize text to speech.
 
