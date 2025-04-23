@@ -68,6 +68,10 @@ items:
     - name: Retrieval Augmented Generation (RAG)
       displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
       href: concepts/retrieval-augmented-generation.md
+- name: Tutorials
+  items:
+    - name: Retrieval Augmented Generation Tutorial
+      href: /tutorial/rag-tutorial.md
 - name: Responsible AI
   items:
     - name: Transparency note
