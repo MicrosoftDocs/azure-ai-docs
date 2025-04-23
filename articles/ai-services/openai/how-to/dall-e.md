@@ -44,7 +44,7 @@ https://<your_resource_name>.openai.azure.com/openai/deployments/<your_deploymen
 Replace the following values:
 - `<your_resource_name>` is the name of your Azure OpenAI resource.
 - `<your_deployment_name>` is the name of your DALL-E 3 or GPT-image-1 model deployment.
-- `<api_version>` is the version of the API you want to use. For example, `2025-04-15`.
+- `<api_version>` is the version of the API you want to use. For example, `2025-04-01-preview`.
 
 **Required headers**:
 - `Content-Type`: `application/json`
@@ -258,7 +258,7 @@ https://<your_resource_name>.openai.azure.com/openai/deployments/<your_deploymen
 Replace the following values:
 - `<your_resource_name>` is the name of your Azure OpenAI resource.
 - `<your_deployment_name>` is the name of your DALL-E 3 or GPT-image-1 model deployment.
-- `<api_version>` is the version of the API you want to use. For example, `2025-04-15`.
+- `<api_version>` is the version of the API you want to use. For example, `2025-04-01-preview`.
 
 **Required headers**:
 - `Content-Type`: `application/json`

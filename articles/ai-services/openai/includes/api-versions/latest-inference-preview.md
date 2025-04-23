@@ -1326,7 +1326,7 @@ Status Code: 200
 ## Image generations - Edit
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/images/edits?api-version=2025-04-15
+POST https://{endpoint}/openai/deployments/{deployment-id}/images/edits?api-version=2025-04-01-preview
 ```
 
 Generates an image based on an input image and text prompt instructions. Requires a GPT-image-1 model deployment
