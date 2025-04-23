@@ -156,7 +156,7 @@ Developers using Content Understanding should review Microsoft's policies on cus
 
 ## Next steps
 
-* Try processing your document content using Content Understanding in [Azure ](https://ai.azure.com/).
+* Try processing your document content using Content Understanding in [**Azure AI Foundry**](https://ai.azure.com/).
 * Learn to analyze content [**analyzer templates**](../quickstart/use-ai-foundry.md).
 * Review code sample: [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
 * Take a look at our [**glossary**](../glossary.md)
