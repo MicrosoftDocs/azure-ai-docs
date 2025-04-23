@@ -28,11 +28,7 @@ To improve model performance, you might consider fine-tuning a foundation model 
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
-
-- An [Azure AI Foundry project](create-projects.md).
-
-  [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
+[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-azure-ai-foundry.md).
 
