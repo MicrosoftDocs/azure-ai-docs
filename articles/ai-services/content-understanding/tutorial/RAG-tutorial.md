@@ -1,0 +1,758 @@
+---
+title: Azure AI Content Understanding Retrieval Augmented Generation Concept How To Guide
+titleSuffix: Azure AI services
+description: Learn about Retrieval Augmented Generation
+author: laujan
+ms.author: tonyeiyalla
+manager: nitinme
+ms.service: azure-ai-content-understanding
+ms.topic: overview
+ms.date: 04/05/2025
+ms.custom: 2025-understanding-release
+---
+
+# Tutorial: Building a Multimodal Retrieval Augmented Generation (RAG) Solution with Content Understanding
+
+This tutorial provides a comprehensive guide to building a Retrieval Augmented Generation (RAG) solution using Azure AI Content Understanding. It explains the essential components required to design and implement a robust RAG system, highlights best practices for optimizing relevance and accuracy, and outlines the integration points with other Azure services. By the end of this tutorial, you will have a clear understanding of how to leverage Content Understanding to process multimodal data, enhance retrieval precision, and enable generative AI models to deliver contextually rich and accurate responses.
+
+Sample code can be found in this [Python notebook]((https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)), but we recommend using this walkthrough for context, insights, and for exploring alternative approaches.
+
+## Exercises Covered in This Tutorial
+
+1. **Creating Analyzers:** Learn how to create reusable analyzers to extract structured content from multimodal data using content extraction.  
+2. **Enhancing Content with Field Extraction:** Discover how to use AI to generate additional metadata, such as summaries or key topics, to enrich extracted content.  
+3. **Vectorizing Extracted Content:** Explore how to transform extracted content into vector embeddings for semantic search and retrieval.  
+4. **Designing a Unified Index:** Build a unified search index in Azure AI Search to integrate and organize multimodal data for efficient retrieval.  
+5. **Interacting with Data Using Chat Models:** Leverage Azure OpenAI chat models to query and interact with your indexed data, enabling conversational search and question answering.
+
+## Prerequisites
+
+To get started, you need **An active Azure subscription**. If you don't have an Azure account, you can [create a free subscription](https://azure.microsoft.com/free/).
+
+* Once you have your Azure subscription, create an [Azure AI Services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) in the Azure portal. This multi-service resource enables access to multiple Azure AI services with a single set of credentials.
+
+   * This resource is listed under Azure AI services → Azure AI services in the portal.
+
+    > [!IMPORTANT]
+    > Azure provides more than one resource type named Azure AI services. Make certain that you select the one listed under Azure AI services → Azure AI services as depicted in the following image. For more information, see [Create an Azure AI Services resource](../how-to/create-multi-service-resource.md).
+
+     :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the multi-service resource page in the Azure portal.":::
+
+* In this tutorial, we use the cURL command line tool. If it isn't installed, you can download a version for your dev environment:
+
+  * [Windows](https://curl.haxx.se/windows/)
+  * [Mac or Linux](https://learn2torials.com/thread/how-to-install-curl-on-mac-or-linux-(ubuntu)-or-windows)
+
+* The multimodal data used in this tutorial includes sample documents, including documents, images, audio and video designed to guide you through the process of building a robust RAG solution with Azure AI Content Understanding.
+
+## Extracting Data with Content Understanding: Key Concepts
+Building a robust multimodal RAG solution begins with extracting and structuring data from diverse content types. Azure AI Content Understanding provides three key components to facilitate this process: **content extraction**, **field extraction**, and **analyzers**. Together, these components form the foundation for creating a unified, reusable, and enhanced data pipeline for RAG workflows.
+
+### 1. Analyzers: Reusable Components for Data Analysis
+
+Analyzers are reusable components in Content Understanding that streamline the data extraction process. Once an analyzer is created, it can be used repeatedly to process files and extract content or fields based on predefined schemas. An analyzer acts as a blueprint for how data should be processed, ensuring consistency and efficiency across multiple files and content types.
+
+#### Key Benefits of Analyzers:
+- **Reusability:** Define once, use across multiple datasets.
+- **Customizability:** Tailor analyzers with field schemas to meet specific business needs.
+- **Scalability:** Process large volumes of multimodal data efficiently.
+
+### 2. Content Extraction: The Foundation for Data Processing
+
+Content extraction is the first step in the RAG implementation process. It transforms raw multimodal data—such as documents, images, audio, and video—into structured, searchable formats. This foundational step ensures that the content is organized and ready for indexing and retrieval. Content extraction provides the baseline for indexing and retrieval but may not fully address domain-specific needs or provide deeper contextual insights. 
+[Learn more]() about content extraction capabilities for each modality.
+
+### 3. Field Extraction: Enhancing Content with AI-Generated Metadata
+
+Field extraction builds on content extraction by using AI to generate additional metadata that enriches the knowledge base. This step allows you to define custom fields tailored to your specific use case, enabling more precise retrieval and enhanced search relevance. Field extraction complements content extraction by adding depth and context, making the data more actionable for RAG scenarios. 
+[Learn more]() about field extraction capabilities for each modality.
+
+
+## Implementation Steps
+
+To implement data extraction in Content Understanding, follow these steps:
+
+1. **Create an Analyzer:** Define an analyzer using REST APIs or our Python code samples. Optionally, include a field schema to specify the metadata to be extracted.
+2. **Perform Content Extraction:** Use the analyzer to process files and extract structured content.
+3. **Enhance with Field Extraction:** Add AI-generated fields to enrich the extracted content with additional metadata.
+
+## Code Samples
+
+## Creating an Analyzer
+
+The following code samples demonstrate how to create analyzers for each modality, specifying the structured data to be extracted, such as key fields, summaries, or classifications. These analyzers will serve as the foundation for extracting and enriching content in your RAG solution.
+Starting off with the schema details for each modality:
+
+# [Document](#tab/document)
+
+To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for extracting basic information from an invoice document.
+
+First, create a JSON file named `request_body.json` with the following content:
+```json
+{
+  "description": "Sample invoice analyzer",
+  "scenario": "document",
+  "config": {
+    "returnDetails": true
+  },
+  "fieldSchema": {
+    "fields": {
+      "VendorName": {
+        "type": "string",
+        "method": "extract",
+        "description": "Vendor issuing the invoice"
+      },
+      "Items": {
+        "type": "array",
+        "method": "extract",
+        "items": {
+          "type": "object",
+          "properties": {
+            "Description": {
+              "type": "string",
+              "method": "extract",
+              "description": "Description of the item"
+            },
+            "Amount": {
+              "type": "number",
+              "method": "extract",
+              "description": "Amount of the item"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+# [Image](#tab/image)
+
+To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for identifying detects in images of metal plates.
+
+First, create a JSON file named `request_body.json` with the following content:
+```json
+{
+  "description": "Sample chart analyzer",
+  "scenario": "image",
+  "fieldSchema": {
+    "fields": {
+      "Title": {
+        "type": "string"
+      },
+      "ChartType": {
+        "type": "string",
+        "method": "classify",
+        "enum": [ "bar", "line", "pie" ]
+      }
+    }
+  }
+}
+```
+
+# [Audio](#tab/audio)
+
+To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for extracting basic information from call transcripts.
+
+First, create a JSON file named `request_body.json` with the following content:
+```json
+{
+  "description": "Sample call transcript analyzer",
+  "scenario": "callCenter",
+  "config": {
+    "returnDetails": true,
+    "locales": ["en-US"]
+  },
+  "fieldSchema": {
+    "fields": {
+      "Summary": {
+        "type": "string",
+        "method": "generate"
+      },
+      "Sentiment": {
+        "type": "string",
+        "method": "classify",
+        "enum": [ "Positive", "Neutral", "Negative" ]
+      },
+      "People": {
+        "type": "array",
+        "description": "List of people mentioned",
+        "items": {
+          "type": "object",
+          "properties": {
+            "Name": { "type": "string" },
+            "Role": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+# [Video](#tab/video)
+
+To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for extracting basic information from marketing videos.
+
+First, create a JSON file named `request_body.json` with the following content:
+```json
+{
+  "description": "Sample marketing video analyzer",
+  "scenario": "videoShot",
+  "fieldSchema": {
+    "fields": {
+      "Description": {
+        "type": "string",
+        "description": "Detailed summary of the video segment, focusing on product characteristics, lighting, and color palette."
+      },
+      "Sentiment": {
+        "type": "string",
+        "method": "classify",
+        "enum": [ "Positive", "Neutral", "Negative" ]
+      }
+    }
+  }
+}
+```
+
+---
+
+
+Before running the following `cURL` commands, make the following changes to the HTTP request:
+
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
+1. Replace `{analyzerId}` with the name of the new analyzer and create, such as `myInvoice`.
+
+### PUT Request
+
+```bash
+curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2024-12-01-preview" \
+  -H "Ocp-Apim-Subscription-Key: {key}" \
+  -H "Content-Type: application/json" \
+  -d @request_body.json
+```
+
+### PUT Response
+
+The 201 (`Created`) response includes an `Operation-Location` header containing a URL that you can use to track the status of this asynchronous creation operation.
+
+```
+201 Created
+Operation-Location: {endpoint}/contentunderstanding/analyzers/{analyzerId}/operations/{operationId}?api-version=2024-12-01-preview
+```
+
+Upon completion, performing an HTTP GET on the URL returns `"status": "succeeded"`.
+
+```bash
+curl -i -X GET "{endpoint}/contentunderstanding/analyzers/{analyzerId}/operations/{operationId}?api-version=2024-12-01-preview" \
+  -H "Ocp-Apim-Subscription-Key: {key}"
+```
+
+---
+
+## Perform Content and Field Analysis
+With the analyzers created for each modality, we can now process files to extract structured content and AI-generated metadata based on the defined schemas. This section demonstrates how to use the analyzers to analyze multimodal data and provides a sample of the results returned by the APIs. These results showcase the transformation of raw data into actionable insights, forming the foundation for indexing, retrieval, and RAG workflows.
+
+---
+
+## Analyze a file
+
+You can analyze files using the custom analyzer you created to extract the fields defined in the schema.
+
+Before running the cURL command, make the following changes to the HTTP request:
+
+# [Document](#tab/document)
+
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
+1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
+1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/cognitive-services-REST-api-samples/raw/master/curl/form-recognizer/rest-api/invoice.pdf`.
+
+# [Image](#tab/image)
+
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
+1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
+1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS).
+
+# [Audio](#tab/audio)
+
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
+1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
+1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS).
+
+# [Video](#tab/video)
+
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
+1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
+1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS).
+
+---
+
+### POST request
+```bash
+curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2024-12-01-preview" \
+  -H "Ocp-Apim-Subscription-Key: {key}" \
+  -H "Content-Type: application/json" \
+  -d "{\"url\":\"{fileUrl}\"}"
+```
+
+### POST response
+
+The 202 (`Accepted`) response includes an `Operation-Location` header containing a URL that you can use to track the status of this asynchronous analyze operation.
+
+```
+202 Accepted
+Operation-Location: {endpoint}/contentunderstanding/analyzers/{analyzerId}/results/{resultId}?api-version=2024-12-01-preview
+```
+
+
+## Get analyze result
+
+Use the `resultId` from the `Operation-Location` header returned by the previous `POST` response and retrieve the result of the analysis.
+
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
+1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
+1. Replace `{resultId}` with the `resultId` returned from the `POST` request.
+
+### GET request
+```bash
+curl -i -X GET "{endpoint}/contentunderstanding/analyzers/{analyzerId}/results/{resultId}?api-version=2024-12-01-preview" \
+  -H "Ocp-Apim-Subscription-Key: {key}"
+```
+
+### GET response
+
+The 200 (`OK`) JSON response includes a `status` field indicating the status of the operation. If the operation isn't complete, the value of `status` is `running` or `notStarted`. In such cases, you should call the API again, either manually or through a script. Wait an interval of one second or more between calls.
+
+### Extraction Results
+The result below demonstrates the output of content and field extraction using Azure AI Content Understanding. The JSON response contains multiple fields, each serving a specific purpose in representing the extracted data.
+
+#### **Markdown Field**
+The `markdown` field provides a simplified, human-readable representation of the extracted content. It is particularly useful for quick previews or for integrating the extracted data into applications that require structured text, such as knowledge bases or search interfaces. For example, in the case of a document, the `markdown` field might include headers, paragraphs, and other structural elements formatted for easy readability.
+
+#### **JSON Output**
+The full JSON output provides a comprehensive representation of the extracted data, including both the content and the metadata generated during the extraction process. This includes:
+- **Fields:** AI-generated metadata such as summaries, key topics, or classifications, tailored to the specific schema defined in the analyzer.
+- **Confidence Scores:** Indicators of the reliability of the extracted data.
+- **Spans:** Information about the location of the extracted content within the source file.
+- **Additional Metadata:** Details such as page numbers, dimensions, and other contextual information.
+
+---
+
+# [Document](#tab/document)
+The result shows the extraction of headers, paragraphs, tables, and other structural elements while maintaining the logical organization of the content. Additionally, it showcases the ability to extract key fields, providing concise extractions of lengthy materials. 
+
+```json
+{
+  "id": "bcf8c7c7-03ab-4204-b22c-2b34203ef5db",
+  "status": "Succeeded",
+  "result": {
+    "analyzerId": "training_document_analyzer",
+    "apiVersion": "2024-12-01-preview",
+    "createdAt": "2024-11-13T07:15:46Z",
+    "warnings": [],
+    "contents": [
+      {
+        "markdown": "CONTOSO LTD.\n\n\n# Contoso Training Topics\n\nContoso Headquarters...",
+        "fields": {
+          "ChapterTitle": {
+            "type": "string",
+            "valueString": "Risks and Compliance regulations",
+            "spans": [ { "offset": 0, "length": 12 } ],
+            "confidence": 0.941,
+            "source": "D(1,0.5729,0.6582,2.3353,0.6582,2.3353,0.8957,0.5729,0.8957)"
+          },
+          "ChapterAuthor": {
+            "type": "string",
+            "valueString": "John Smith",
+            "spans": [ { "offset": 0, "length": 12 } ],
+            "confidence": 0.941,
+            "source": "D(1,0.5729,0.6582,2.3353,0.6582,2.3353,0.8957,0.5729,0.8957)"
+          },
+          "ChapterPublishDate": {
+            "type": "Date",
+            "valueString": "04-11-2017",
+            "spans": [ { "offset": 0, "length": 12 } ],
+            "confidence": 0.941,
+            "source": "D(1,0.5729,0.6582,2.3353,0.6582,2.3353,0.8957,0.5729,0.8957)"
+          },
+        },
+        "kind": "document",
+        "startPageNumber": 1,
+        "endPageNumber": 1,
+        "unit": "inch",
+        "pages": [
+          {
+            "pageNumber": 1,
+            "angle": -0.0039,
+            "width": 8.5,
+            "height": 11,
+            "spans": [ { "offset": 0, "length": 1650 } ],
+            "words": [
+              {
+               ....
+              }, 
+            ],
+            "lines": [
+              {
+                ...
+              }, 
+            ]
+          }
+        ],
+
+      }
+    ]
+  }
+}
+```
+
+# [Image](#tab/image)
+The result shows the conversion of visual information into searchable text by verbalizing diagrams, extracting embedded text, and identifying graphical components. 
+
+```json
+{
+  "id": "12fd421b-b545-4d63-93a5-01284081bbe1",
+  "status": "Succeeded",
+  "result": {
+    "analyzerId": "training_image_analyzer",
+    "apiVersion": "2024-12-01-preview",
+    "createdAt": "2024-11-09T08:41:00Z",
+    "warnings": [],
+    "contents": [
+      {
+        "markdown": "![image](image)\n",
+        "fields": {
+          "TrainingChartTitle": {
+            "type": "string",
+            "valueString": "Weekly Work Hours Distribution"
+          },
+          "TrainingChartType": {
+            "type": "string",
+            "valueString": "pie"
+          },
+          "TrainingChartDescription"{
+            "type": "string",
+            "valueString": "This chart shows the monthly sales data for the year 2025."
+          }
+        },
+        "kind": "document",
+        "startPageNumber": 1,
+        "endPageNumber": 1,
+        "unit": "pixel",
+        "pages": [
+          {
+            "pageNumber": 1,
+            "width": 1283,
+            "height": 617
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+# [Audio](#tab/audio)
+The result shows the extraction of speaker-aware transcriptions, capturing spoken content and detecting multiple languages. Additionally field extraction extracts sentiment analysis and key topics from conversations to provide additional context for queries.
+
+```json
+{
+  "id": "247c369c-1aa5-4f92-b033-a8e4318e1c02",
+  "status": "Succeeded",
+  "result": {
+    "analyzerId": "training_audio_analyzer",
+    "apiVersion": "2024-12-01-preview",
+    "createdAt": "2024-11-09T08:42:58Z",
+    "warnings": [],
+    "contents": [
+      {
+        "kind": "audioVisual",
+        "startTimeMs": 0,
+        "endTimeMs": 32182,
+        "markdown": "```WEBVTT\n\n00:00.080 --> 00:00.640\n<v Agent>Good day...",
+        "fields": {
+          "TrainingSummary": {
+            "type": "string",
+            "valueString": "Maria Smith contacted Contoso to inquire about her current point balance. Agent John Doe confirmed her identity and informed her that she has 599 points. Maria did not require any further information and the call ended on a positive note."
+          },
+          "TrainingTopics": {
+            "type": "array",
+            "valueArray": [
+              {
+                "type": "string",
+                "valueString": "Compliance"
+              },
+              {
+                "type": "string",
+                "valueString": "Risk mitigation"
+              },]
+          },
+          "People": {
+            "type": "array",
+            "valueArray": [
+              {
+                "type": "object",
+                "valueObject": {
+                  "Name": {
+                    "type": "string",
+                    "valueString": "Maria Smith"
+                  },
+                  "Role": {
+                    "type": "string",
+                    "valueString": "Customer"
+                  }
+                }
+              }, ...
+            ]
+          }
+        },
+        "transcriptPhrases": [
+          {
+            "speaker": "Agent 1",
+            "startTimeMs": 80,
+            "endTimeMs": 640,
+            "text": "Good day.",
+            "confidence": 0.932,
+            "words": [
+              {
+                "startTimeMs": 80,
+                "endTimeMs": 280,
+                "text": "Good"
+              }, ...
+            ],
+            "locale": "en-US"
+          }, ...
+        ]
+      }
+    ]
+  }
+}
+```
+
+# [Video](#tab/video)
+The result shows the extraction of video segments into meaningful units, spoken content transcription, and scene descriptions. Additionally generating scene-level summaries, key topics identification and brand presence analysis with field extraction.
+
+```json
+{
+  "id": "204fb777-e961-4d6d-a6b1-6e02c773d72c",
+  "status": "Succeeded",
+  "result": {
+    "analyzerId": "sample_video_analyzer",
+    "apiVersion": "2024-12-01-preview",
+    "createdAt": "2024-11-09T08:57:21Z",
+    "warnings": [],
+    "contents": [
+      {
+        "kind": "audioVisual",
+        "startTimeMs": 0,
+        "endTimeMs": 2800,
+        "width": 540,
+        "height": 960,
+        "markdown": "# Shot 0:0.0 => 0:1.800\n\n## Transcript\n\n```\n\nWEBVTT\n\n0:0.80 --> 0:10.560\n<v Speaker>When I was planning my trip...",
+        "fields": {
+          
+          "description": {
+            "type": "string",
+            "valueString": "The video begins with a view from a glass floor, showing a person's feet in white sneakers standing on it. The scene captures a downward view of a structure, possibly a tower, with a grid pattern on the floor and a clear view of the ground below. The lighting is bright, suggesting a sunny day, and the colors are dominated by the orange of the structure and the gray of the floor."
+          },
+          "KeyTopics": {
+            "type": "array",
+            "valueArray": [
+              {
+                "type": "string",
+                "valueString": "Flight delay"
+              },
+              {
+                "type": "string",
+                "valueString": "Customer service"
+              },
+            ]
+          }
+        },
+      ...
+    ]
+  }
+}
+```
+
+---
+## Pre-processing the Output from Content Understanding
+
+Once the data has been extracted using Azure AI Content Understanding, the next step is to prepare the analysis output for embedding within a search system. Pre-processing the output ensures that the extracted content is transformed into a format suitable for indexing and retrieval. This step involves converting the JSON output from the analyzers into structured strings, preserving both the content and metadata for seamless integration into downstream workflows.
+
+The following example demonstrates how to pre-process the output data from the analyzers, including documents, images, audio, and video. By converting each JSON output into a structured string, this process lays the groundwork for embedding the data into a vector-based search system, enabling efficient retrieval and enhanced RAG workflows.
+---
+
+``` python
+
+def convert_values_to_strings(json_obj):
+    return [str(value) for value in json_obj]
+
+#process all content and convert to string      
+def process_allJSON_content(all_content):
+
+    # Initialize empty list to store string of all content
+    output = []
+
+    document_splits = [
+        "This is a json string representing a document with text and metadata for the file located in "+str(analyzer_configs[0]["location"])+" "
+        + v 
+        + "```"
+        for v in convert_values_to_strings(all_content[0]["content"])
+    ]
+    docs = [Document(page_content=v) for v in document_splits]
+    output += docs
+
+    #convert image json object to string and append file metadata to the string
+    image_splits = [
+       "This is a json string representing an image verbalization and OCR extraction for the file located in "+str(analyzer_configs[1]["location"])+" "
+       + v
+       + "```"
+       for v in convert_values_to_strings(all_content[1]["content"])
+    ]
+    image = [Document(page_content=v) for v in image_splits]
+    output+=image
+
+    #convert audio json object to string and append file metadata to the string
+    audio_splits = [
+        "This is a json string representing an audio segment with transcription for the file located in "+str(analyzer_configs[2]["location"])+" " 
+       + v
+       + "```"
+       for v in convert_values_to_strings(all_content[2]["content"])
+    ]
+    audio = [Document(page_content=v) for v in audio_splits]
+    output += audio
+
+    #convert video json object to string and append file metadata to the string
+    video_splits = [
+        "The following is a json string representing a video segment with scene description and transcript for the file located in "+str(analyzer_configs[3]["location"])+" "
+        + v
+        + "```"
+        for v in convert_values_to_strings(all_content[3]["content"])
+    ]
+    video = [Document(page_content=v) for v in video_splits]
+    output+=video    
+    
+    return output
+
+all_splits = process_allJSON_content(analyzer_content)
+
+print("There are " + str(len(all_splits)) + " documents.") 
+# Print the content of all doc splits
+for doc in all_splits:
+    print(f"doc content", doc.page_content)
+```
+
+---
+## Embedding and Indexing Extracted Content
+
+After pre-processing the extracted data from Azure AI Content Understanding, the next step is to embed and index the content for efficient retrieval. This involves transforming the structured strings into vector embeddings using an embedding model and storing them within an Azure AI Search system. By embedding the content, you enable semantic search capabilities, allowing the system to retrieve the most relevant information based on meaning rather than exact keyword matches. This step is critical for building a robust RAG solution, as it ensures that the extracted content is optimized for advanced search and retrieval workflows.
+
+
+``` python
+# Embed the splitted documents and insert into Azure Search vector store
+def embed_and_index_chunks(docs):
+    aoai_embeddings = AzureOpenAIEmbeddings(
+        azure_deployment=AZURE_OPENAI_EMBEDDING_DEPLOYMENT_NAME,
+        openai_api_version=AZURE_OPENAI_EMBEDDING_API_VERSION,  # e.g., "2023-12-01-preview"
+        azure_endpoint=AZURE_OPENAI_ENDPOINT,
+        azure_ad_token_provider=token_provider
+    )
+
+    vector_store: AzureSearch = AzureSearch(
+        azure_search_endpoint=AZURE_SEARCH_ENDPOINT,
+        azure_search_key=None,
+        index_name=AZURE_SEARCH_INDEX_NAME,
+        embedding_function=aoai_embeddings.embed_query
+    )
+    vector_store.add_documents(documents=docs)
+    return vector_store
+
+
+# embed and index the docs:
+vector_store = embed_and_index_chunks(all_splits)
+```
+---
+
+## Relevant Chunk Retrieval
+
+With the extracted content embedded and indexed, the next step is to leverage the power of similarity and vector search to retrieve the most relevant chunks of information. This section demonstrates how to execute both similarity and hybrid searches, enabling the system to surface content based on semantic meaning rather than exact keyword matches. By retrieving contextually relevant chunks, you can enhance the precision of your RAG workflows and provide more accurate, meaningful responses to user queries.
+
+``` python
+# Set your query
+query = "japan"
+
+# Perform a similarity search
+docs = vector_store.similarity_search(
+    query=query,
+    k=3,
+    search_type="similarity",
+)
+for doc in docs:
+    print(doc.page_content)
+
+# Perform a hybrid search using the search_type parameter
+docs = vector_store.hybrid_search(query=query, k=3)
+for doc in docs:
+    print(doc.page_content)
+
+```
+---
+
+## Question & Answering with OpenAI Chat Models
+
+With the extracted content embedded and indexed, the final step in building a robust RAG solution is enabling conversational interactions using OpenAI chat models. This section demonstrates how to query your indexed data and leverage OpenAI chat models to provide concise, contextually rich answers. By integrating conversational AI, you can transform your RAG solution into an interactive system that delivers meaningful insights and enhances user engagement. The following examples will guide you through setting up a retrieval-augmented conversational flow, ensuring seamless integration between your data and OpenAI chat models.
+
+---
+
+```python
+# Setup rag chain
+prompt_str = """You are an assistant for question-answering tasks. Use the following pieces of retrieved context to answer the question. If you don't know the answer, just say that you don't know. Use three sentences maximum and keep the answer concise.
+Question: {question} 
+Context: {context} 
+Answer:"""
+
+
+def setup_rag_chain(vector_store):
+    retriever = vector_store.as_retriever(search_type="similarity", k=3)
+
+    prompt = ChatPromptTemplate.from_template(prompt_str)
+    llm = AzureChatOpenAI(
+        openai_api_version=AZURE_OPENAI_CHAT_API_VERSION,
+        azure_deployment=AZURE_OPENAI_CHAT_DEPLOYMENT_NAME,
+        azure_ad_token_provider=token_provider,
+        temperature=0.7,
+    )
+
+    def format_docs(docs):
+        return "\n\n".join(doc.page_content for doc in docs)
+
+    rag_chain = (
+        {"context": retriever | format_docs, "question": RunnablePassthrough()}
+        | prompt
+        | llm
+        | StrOutputParser()
+    )
+    return rag_chain
+
+
+# Setup conversational search
+def conversational_search(rag_chain, query):
+    print(rag_chain.invoke(query))
+
+
+rag_chain = setup_rag_chain(vector_store)
+while True:
+    query = input("Enter your query: ")
+    if query=="":
+        break
+    conversational_search(rag_chain, query)
+```
+
+---
+
+
+## Next steps
+- [Explore our RAG Python code samples](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)
+- [Try a multimodal content solution accelerator](https://github.com/microsoft/content-processing-solution-accelerator)
+- [Learn more about the capabilities of Content Understanding]()
