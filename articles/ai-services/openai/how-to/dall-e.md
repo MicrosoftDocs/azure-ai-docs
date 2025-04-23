@@ -161,43 +161,6 @@ When you write prompts, consider that the image generation APIs come with a cont
 
 The following API body parameters are available for image generation models.
 
-#### [DALL-E 3](#tab/dalle-3)
-
-<!--
-| Parameter Name   | Description       | Values         |
-|------------------|-------------|--------------------------|
-| Size             | Specifies the size of generated images. Square images generate faster.    | `1024x1024` (default), `1792x1024`, `1024x1792`           |
-| Style            | DALL-E 3 offers two style options. The natural style is more similar to the default style of older models, while the vivid style generates more hyper-real and cinematic images. </br></br>The natural style is useful in cases where DALL-E 3 over-exaggerates or confuses a subject that's meant to be more simple, subdued, or realistic.     | `natural`, `vivid` (default)           |
-| Quality          | Controls image quality. `hd` has finer details and better consistency; `standard` is faster.    | `hd`, `standard` (default) |
-| Number (`n`)     | Must be set to 1 for DALL-E 3. To get multiple images, make parallel requests.        | `1`              |
-| Response format  | Format for the returned images. Default is `url`.   | `url`, `b64_json`|
--->
-
-#### Size
-
-Specify the size of the generated images. Must be one of `1024x1024`, `1792x1024`, or `1024x1792` for DALL-E 3 models. Square images are faster to generate.
-
-#### Style
-
-DALL-E 3 offers two style options: `natural` and `vivid`. The natural style is more similar to the default style of older models, while the vivid style generates more hyper-real and cinematic images.
-
-The natural style is useful in cases where DALL-E 3 over-exaggerates or confuses a subject that's meant to be more simple, subdued, or realistic.
-
-The default value is `vivid`.
-
-#### Quality
-
-There are two options for image quality: `hd` and `standard`. The hd option creates images with finer details and greater consistency across the image. Standard images can be generated faster.
-
-The default value is `standard`.
-
-#### Number
-
-With DALL-E 3, you can't generate more than one image in a single API call: the `n` parameter must be set to *1*. If you need to generate multiple images at once, make parallel requests.
-
-#### Response format
-
-The format in which the generated images are returned. Must be one of `url` (a URL pointing to the image) or `b64_json` (the base 64-byte code in JSON format). The default is `url`.
 
 #### [GPT-image-1](#tab/gpt-image-1)
 
@@ -235,6 +198,45 @@ Use the *output_format* parameter to specify the format of the generated image. 
 #### Compression
 
 Use the *output_compression* parameter to specify the compression level for the generated image. Input an integer between `0` and `100`, where `0` is no compression and `100` is maximum compression. The default is `100`.
+
+
+#### [DALL-E 3](#tab/dalle-3)
+
+<!--
+| Parameter Name   | Description       | Values         |
+|------------------|-------------|--------------------------|
+| Size             | Specifies the size of generated images. Square images generate faster.    | `1024x1024` (default), `1792x1024`, `1024x1792`           |
+| Style            | DALL-E 3 offers two style options. The natural style is more similar to the default style of older models, while the vivid style generates more hyper-real and cinematic images. </br></br>The natural style is useful in cases where DALL-E 3 over-exaggerates or confuses a subject that's meant to be more simple, subdued, or realistic.     | `natural`, `vivid` (default)           |
+| Quality          | Controls image quality. `hd` has finer details and better consistency; `standard` is faster.    | `hd`, `standard` (default) |
+| Number (`n`)     | Must be set to 1 for DALL-E 3. To get multiple images, make parallel requests.        | `1`              |
+| Response format  | Format for the returned images. Default is `url`.   | `url`, `b64_json`|
+-->
+
+#### Size
+
+Specify the size of the generated images. Must be one of `1024x1024`, `1792x1024`, or `1024x1792` for DALL-E 3 models. Square images are faster to generate.
+
+#### Style
+
+DALL-E 3 offers two style options: `natural` and `vivid`. The natural style is more similar to the default style of older models, while the vivid style generates more hyper-real and cinematic images.
+
+The natural style is useful in cases where DALL-E 3 over-exaggerates or confuses a subject that's meant to be more simple, subdued, or realistic.
+
+The default value is `vivid`.
+
+#### Quality
+
+There are two options for image quality: `hd` and `standard`. The hd option creates images with finer details and greater consistency across the image. Standard images can be generated faster.
+
+The default value is `standard`.
+
+#### Number
+
+With DALL-E 3, you can't generate more than one image in a single API call: the `n` parameter must be set to *1*. If you need to generate multiple images at once, make parallel requests.
+
+#### Response format
+
+The format in which the generated images are returned. Must be one of `url` (a URL pointing to the image) or `b64_json` (the base 64-byte code in JSON format). The default is `url`.
 
 ---
 
@@ -279,8 +281,6 @@ The following is a sample request body. You specify a number of options, defined
 }
 ```
 
-The `"image"` string can be either a URL to an image file, or base 64-encoded image data.
-
 ### Output
 
 The response from a successful image editing API call looks like the following example. The `url` field contains a URL where you can download the generated image. The URL stays active for 24 hours.
@@ -301,6 +301,11 @@ The response from a successful image editing API call looks like the following e
 
 The following API body parameters are available for image editing models, in addition to the ones available for image generation models.
 
+### Image
+
+The *image* value indicates the image file you want to edit. It can be either a URL string to an image file, or base 64-encoded image data.
+
+
 #### Mask
 
 The *mask* parameter is the same type as the main *image* input parameter. It defines the area of the image that you want the model to change, using fully transparent pixels (alpha of zero) in those areas. The mask can be a URL or base 64-encoded image data. It must be a PNG file and have the same dimensions as the image.
@@ -308,7 +313,7 @@ The *mask* parameter is the same type as the main *image* input parameter. It de
 
 #### [DALL-E 3](#tab/dalle-3)
 
-The DALL-E models don't support the Image Edit API.
+DALL-E models don't support the Image Edit API.
 
 ---
 
