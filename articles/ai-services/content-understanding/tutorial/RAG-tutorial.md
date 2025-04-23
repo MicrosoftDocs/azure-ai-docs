@@ -60,6 +60,7 @@ To implement data extraction in Content Understanding, follow these steps:
 Analyzers are reusable components in Content Understanding that streamline the data extraction process. Once an analyzer is created, it can be used repeatedly to process files and extract content or fields based on predefined schemas. An analyzer acts as a blueprint for how data should be processed, ensuring consistency and efficiency across multiple files and content types.
 
 The following code samples demonstrate how to create analyzers for each modality, specifying the structured data to be extracted, such as key fields, summaries, or classifications. These analyzers will serve as the foundation for extracting and enriching content in your RAG solution.
+
 Starting off with the schema details for each modality:
 
 # [Document](#tab/document)
@@ -563,7 +564,6 @@ The result shows the extraction of video segments into meaningful units, spoken 
 ## Pre-processing the Output from Content Understanding
 
 Once the data has been extracted using Azure AI Content Understanding, the next step is to prepare the analysis output for embedding within a search system. Pre-processing the output ensures that the extracted content is transformed into a format suitable for indexing and retrieval. This step involves converting the JSON output from the analyzers into structured strings, preserving both the content and metadata for seamless integration into downstream workflows.
-
 The following example demonstrates how to pre-process the output data from the analyzers, including documents, images, audio, and video. By converting each JSON output into a structured string, this process lays the groundwork for embedding the data into a vector-based search system, enabling efficient retrieval and enhanced RAG workflows.
 
 ---
