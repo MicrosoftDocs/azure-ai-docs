@@ -56,8 +56,6 @@ To implement data extraction in Content Understanding, follow these steps:
 2. **Perform Content Extraction:** Use the analyzer to process files and extract structured content.
 3. **Enhance with Field Extraction:** Add AI-generated fields to enrich the extracted content with additional metadata.
 
-## Code Samples
-
 ## Creating an Analyzer
 Analyzers are reusable components in Content Understanding that streamline the data extraction process. Once an analyzer is created, it can be used repeatedly to process files and extract content or fields based on predefined schemas. An analyzer acts as a blueprint for how data should be processed, ensuring consistency and efficiency across multiple files and content types.
 
