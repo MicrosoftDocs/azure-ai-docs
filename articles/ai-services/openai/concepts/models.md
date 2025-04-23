@@ -220,6 +220,13 @@ OpenAI's MTEB benchmark testing found that even when the third generation model'
 
 The image generation models generate images from text prompts that the user provides. GPT-image-1 is in preview. DALL-E 3 is generally available for use with the REST APIs. DALL-E 2 and DALL-E 3 with client SDKs are in preview.
 
+### Region availability
+
+| Model | Region |
+|---|---|
+|`dall-e-3` | East US<br>Australia East<br>Sweden Central|
+|`gpt-image-1` | West US 2 (Global Standard) <br> UAE North (Global Standard) |
+
 ## Audio models
 
 Audio models in Azure OpenAI are available via the `realtime`, `completions`, and `audio` APIs.
