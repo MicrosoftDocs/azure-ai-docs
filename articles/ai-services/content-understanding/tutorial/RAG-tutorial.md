@@ -324,74 +324,40 @@ With the analyzers created for each modality, we can now process files to extrac
 
 ---
 
-## Analyze a file
+## Analyze files
 
-You can analyze files using the custom analyzer you created to extract the fields defined in the schema.
+``` python
 
-Before running the cURL command, make the following changes to the HTTP request:
+#Iterate through each analyzer created and analyze content for each modality
 
-# [Document](#tab/document)
+analyzer_results =[]
+extracted_markdown = []
+analyzer_content = []
+for analyzer in analyzer_configs:
+    analyzer_id = analyzer["id"]
+    template_path = analyzer["template_path"]
+    file_location = analyzer["location"]
+    try:
+           # Analyze content
+            response = content_understanding_client.begin_analyze(analyzer_id, file_location)
+            result = content_understanding_client.poll_result(response)
+            analyzer_results.append({"id":analyzer_id, "result": result["result"]})
+            analyzer_content.append({"id": analyzer_id, "content": result["result"]["contents"]})
+                       
+    except Exception as e:
+            print(e)
+            print("Error in creating analyzer. Please double-check your analysis settings.\nIf there is a conflict, you can delete the analyzer and then recreate it, or move to the next cell and use the existing analyzer.")
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
-1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
-1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/cognitive-services-REST-api-samples/raw/master/curl/form-recognizer/rest-api/invoice.pdf`.
+print("Analyzer Results:")
+for analyzer_result in analyzer_results:
+    print(f"Analyzer ID: {analyzer_result['id']}")
+    print(json.dumps(analyzer_result["result"], indent=2))            
 
-# [Image](#tab/image)
-
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
-1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
-1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS).
-
-# [Audio](#tab/audio)
-
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
-1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
-1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS).
-
-# [Video](#tab/video)
-
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
-1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
-1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS).
+# Delete the analyzer if it is no longer needed
+#content_understanding_client.delete_analyzer(ANALYZER_ID)
+```
 
 ---
-
-### POST request
-```bash
-curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2024-12-01-preview" \
-  -H "Ocp-Apim-Subscription-Key: {key}" \
-  -H "Content-Type: application/json" \
-  -d "{\"url\":\"{fileUrl}\"}"
-```
-
-### POST response
-
-The 202 (`Accepted`) response includes an `Operation-Location` header containing a URL that you can use to track the status of this asynchronous analyze operation.
-
-```
-202 Accepted
-Operation-Location: {endpoint}/contentunderstanding/analyzers/{analyzerId}/results/{resultId}?api-version=2024-12-01-preview
-```
-
-
-## Get analyze result
-
-Use the `resultId` from the `Operation-Location` header returned by the previous `POST` response and retrieve the result of the analysis.
-
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
-1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
-1. Replace `{resultId}` with the `resultId` returned from the `POST` request.
-
-### GET request
-```bash
-curl -i -X GET "{endpoint}/contentunderstanding/analyzers/{analyzerId}/results/{resultId}?api-version=2024-12-01-preview" \
-  -H "Ocp-Apim-Subscription-Key: {key}"
-```
-
-### GET response
-
-The 200 (`OK`) JSON response includes a `status` field indicating the status of the operation. If the operation isn't complete, the value of `status` is `running` or `notStarted`. In such cases, you should call the API again, either manually or through a script. Wait an interval of one second or more between calls.
-
 ### Extraction Results
 The result below demonstrates the output of content and field extraction using Azure AI Content Understanding. The JSON response contains multiple fields, each serving a specific purpose in representing the extracted data.
 
@@ -646,7 +612,8 @@ The result shows the extraction of video segments into meaningful units, spoken 
 
 ## Pre-processing the Output from Content Understanding
 
-Once the data has been extracted using Azure AI Content Understanding, the next step is to prepare the analysis output for embedding within a search system. Pre-processing the output ensures that the extracted content is transformed into a format suitable for indexing and retrieval. This step involves converting the JSON output from the analyzers into structured strings, preserving both the content and metadata for seamless integration into downstream workflows.
+Once the data has been extracted using Azure AI Content Understanding, the next step is to prepare the analysis output for embedding within a search system. Pre-processing the output ensures that the extracted content is transformed into a format suitable for indexing and retrieval. This step involves converting the JSON output from the analyzers into structured strings, preserving both the content and metadata for seamless integration into downstream workflows. 
+
 The following example demonstrates how to pre-process the output data from the analyzers, including documents, images, audio, and video. By converting each JSON output into a structured string, this process lays the groundwork for embedding the data into a vector-based search system, enabling efficient retrieval and enhanced RAG workflows.
 
 ---
