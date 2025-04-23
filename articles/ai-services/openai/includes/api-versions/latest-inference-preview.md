@@ -1192,7 +1192,7 @@ Status Code: 200
 POST https://{endpoint}/openai/deployments/{deployment-id}/images/generations?api-version=2025-03-01-preview
 ```
 
-Generates a batch of images from a text caption on a given DALL-E model deployment
+Generates a batch of images from a text caption on a given DALL-E or GPT-image-1 model deployment
 
 ### URI Parameters
 
@@ -1219,11 +1219,13 @@ Generates a batch of images from a text caption on a given DALL-E model deployme
 |------|------|-------------|----------|---------|
 | n | integer | The number of images to generate. | No | 1 |
 | prompt | string | A text description of the desired image(s). The maximum length is 4000 characters. | Yes |  |
-| quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | standard |
+| quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | standard (for DALL-E)</br>high (for GPT-image-1) |
 | response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. | No | url |
 | size | [imageSize](#imagesize) | The size of the generated images. | No | 1024x1024 |
 | style | [imageStyle](#imagestyle) | The style of the generated images. | No | vivid |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
+| output_format | string | The format in which the generated images are returned. GPT-image-1 models only. | No | PNG |
+| output_compression | integer | The compression level (on a scale of 0-100) of the generated images. GPT-image-1 | No | 0 |
 
 ### Responses
 
@@ -1243,7 +1245,145 @@ Generates a batch of images from a text caption on a given DALL-E model deployme
 |:---|:---|:---|
 |application/json | [dalleErrorResponse](#dalleerrorresponse) | |
 
-### Examples
+### Example
+
+Creates images given a prompt.
+
+```HTTP
+POST https://{endpoint}/openai/deployments/{deployment-id}/images/generations?api-version=2025-03-01-preview
+
+{
+ "prompt": "In the style of WordArt, Microsoft Clippy wearing a cowboy hat.",
+ "n": 1,
+ "style": "natural",
+ "quality": "standard"
+}
+
+```
+
+**Responses**:
+Status Code: 200
+
+```json
+{
+  "body": {
+    "created": 1698342300,
+    "data": [
+      {
+        "revised_prompt": "A vivid, natural representation of Microsoft Clippy wearing a cowboy hat.",
+        "prompt_filter_results": {
+          "sexual": {
+            "severity": "safe",
+            "filtered": false
+          },
+          "violence": {
+            "severity": "safe",
+            "filtered": false
+          },
+          "hate": {
+            "severity": "safe",
+            "filtered": false
+          },
+          "self_harm": {
+            "severity": "safe",
+            "filtered": false
+          },
+          "profanity": {
+            "detected": false,
+            "filtered": false
+          },
+          "custom_blocklists": {
+            "filtered": false,
+            "details": []
+          }
+        },
+        "url": "https://dalletipusw2.blob.core.windows.net/private/images/e5451cc6-b1ad-4747-bd46-b89a3a3b8bc3/generated_00.png?se=2023-10-27T17%3A45%3A09Z&...",
+        "content_filter_results": {
+          "sexual": {
+            "severity": "safe",
+            "filtered": false
+          },
+          "violence": {
+            "severity": "safe",
+            "filtered": false
+          },
+          "hate": {
+            "severity": "safe",
+            "filtered": false
+          },
+          "self_harm": {
+            "severity": "safe",
+            "filtered": false
+          }
+        }
+      }
+    ]
+  }
+}
+```
+
+
+## Image generations - Edit
+
+```HTTP
+POST https://{endpoint}/openai/deployments/{deployment-id}/images/edits?api-version=2025-04-15
+```
+
+Generates an image based on an input image and text prompt instructions. Requires a GPT-image-1 model deployment
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| deployment-id | path | Yes | string |  |
+| api-version | query | Yes | string |  |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Request Body
+
+**Content-Type**: application/json
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| image | file | The input image to edit. Must be a valid image URL or base64-encoded image. tbd | Yes |  |
+| n | integer | The number of images to generate. | No | 1 |
+| prompt | string | A text description of how the input image should be edited. The maximum length is 4000 characters. | Yes |  |
+| mask | file | A mask image to define the area of the input image that the model should edit, using fully transparent pixels (alpha of zero) in those areas. Must be a valid image URL or base64-encoded image. | No |  |
+| quality | string | The quality of the image that will be generated. Values are 'low', 'medium', 'high' | No | high |
+| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. | No | url |
+| size | [imageSize](#imagesize) | The size of the generated images. | No | 1024x1024 |
+| style | [imageStyle](#imagestyle) | The style of the generated images. | No | vivid |
+| user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
+| output_format | [imageOutputFormat](#imageOutputFormat) | The format in which the generated images are returned. | No | PNG |
+| output_compression | integer | The compression level (on a scale of 0-100) of the generated images. GPT-image-1 | No | 0 |
+
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: Ok 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [generateImagesResponse](#generateimagesresponse) | |
+
+**Status Code:** default
+
+**Description**: An error occurred. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [dalleErrorResponse](#dalleerrorresponse) | |
 
 ### Example
 
@@ -6012,6 +6152,17 @@ Speech request.
 | speed | number | The speed of the synthesized audio. Select a value from `0.25` to `4.0`. `1.0` is the default. | No | 1.0 |
 | voice | enum | The voice to use for speech synthesis.<br>Possible values: `alloy`, `echo`, `fable`, `onyx`, `nova`, `shimmer` | Yes |  |
 
+### imageOutputFormat
+
+The requested output format for the generated image.
+
+| Property | Value |
+|----------|-------|
+| **Description** | The requested output format for the generated image. |
+| **Type** | string |
+| **Default** | PNG |
+| **Values** | `PNG`<br>`JPEG` |
+
 ### imageQuality
 
 The quality of the image that will be generated.
@@ -6020,8 +6171,8 @@ The quality of the image that will be generated.
 |----------|-------|
 | **Description** | The quality of the image that will be generated. |
 | **Type** | string |
-| **Default** | standard |
-| **Values** | `standard`<br>`hd` |
+| **Default** | standard (for DALL-E)<br>high (for GPT-image-1) |
+| **Values** | `standard`, `hd` (for DALL-E)<br>`low`, `medium`, `high` (for GPT-image-1) |
 
 ### imagesResponseFormat
 
@@ -6062,11 +6213,32 @@ The style of the generated images.
 |------|------|-------------|----------|---------|
 | n | integer | The number of images to generate. | No | 1 |
 | prompt | string | A text description of the desired image(s). The maximum length is 4000 characters. | Yes |  |
-| quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | standard |
+| quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | standard (for DALL-E)</br>high (for GPT-image-1) |
 | response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. | No | url |
 | size | [imageSize](#imagesize) | The size of the generated images. | No | 1024x1024 |
 | style | [imageStyle](#imagestyle) | The style of the generated images. | No | vivid |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
+| output_format | string | The format in which the generated images are returned. GPT-image-1 models only. | No | PNG |
+| output_compression | integer | The compression level (on a scale of 0-100) of the generated images. GPT-image-1 | No | 0 |
+
+### imageEditsRequest
+
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| image | file | The input image to edit. Must be a valid image URL or base64-encoded image. tbd | Yes |  |
+| n | integer | The number of images to generate. | No | 1 |
+| prompt | string | A text description of how the input image should be edited. The maximum length is 4000 characters. | Yes |  |
+| mask | file | A mask image to define the area of the input image that the model should edit, using fully transparent pixels (alpha of zero) in those areas. Must be a valid image URL or base64-encoded image. | No |  |
+| quality | string | The quality of the image that will be generated. Values are 'low', 'medium', 'high' | No | high |
+| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. | No | url |
+| size | [imageSize](#imagesize) | The size of the generated images. | No | 1024x1024 |
+| style | [imageStyle](#imagestyle) | The style of the generated images. | No | vivid |
+| user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
+| output_format | [imageOutputFormat](#imageOutputFormat) | The format in which the generated images are returned. | No | PNG |
+| output_compression | integer | The compression level (on a scale of 0-100) of the generated images. GPT-image-1 | No | 0 |
+
+
 
 ### generateImagesResponse
 
