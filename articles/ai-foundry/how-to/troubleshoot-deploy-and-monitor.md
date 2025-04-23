@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 04/23/2025
 ms.reviewer: fasantia
 reviewer: santiagxf
 ms.author: mopeakande
@@ -76,6 +76,8 @@ You might have come across an `ImageBuildFailure` error: This error happens when
 This error message refers to a situation where the deployment build failed. You want to read the build log to troubleshoot further. There are two ways to access the build log.
 
 __Option 1: Find the build log for the Azure default blob storage.__
+
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
 1. Go to your project in [Azure AI Foundry](https://ai.azure.com) and select **Management center** from the left pane to open the settings page.
 1. Under the **Hub** heading, select **Overview**.
