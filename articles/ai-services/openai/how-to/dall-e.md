@@ -7,7 +7,7 @@ ms.author: pafarley
 ms.service: azure-ai-openai
 ms.custom: 
 ms.topic: how-to
-ms.date: 04/18/2025
+ms.date: 04/23/2025
 manager: nitinme
 keywords: 
 zone_pivot_groups: 
