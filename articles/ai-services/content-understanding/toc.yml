@@ -72,7 +72,7 @@ items:
   items:
     - name: Build a retrieval-augmented solution
       displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
-      href: tutorial/rag-tutorial.md
+      href: tutorial/build-rag-solution.md
 - name: Responsible AI
   items:
     - name: Transparency note
