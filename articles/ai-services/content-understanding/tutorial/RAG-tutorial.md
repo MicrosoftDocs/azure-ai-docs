@@ -42,11 +42,6 @@ To get started, you need **An active Azure subscription**. If you don't have an 
 - **API Version:** This tutorial uses the latest preview [API version](https://review.learn.microsoft.com/en-us/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true): `2024-12-01-preview`.
 - **Python Environment:** Install [Python 3.11](https://www.python.org/downloads/) to execute the provided code samples and scripts.
 - This tutorial follows this sample code can be found in this [Python notebook]((https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)). Follow this [README]() to create essential resources, grant resources the right Access control(IAM) roles and install all packages needed for this tutorial. 
-
-- Additionally, this tutorial utilizes the cURL command-line tool for API interactions. If it is not already installed, you can download it for your development environment:
-  - [Windows](https://curl.haxx.se/windows/)
-  - [Mac or Linux](https://learn2torials.com/thread/how-to-install-curl-on-mac-or-linux-(ubuntu)-or-windows)
-
 * The [multimodal data]() used in this tutorial includes sample documents, including documents, images, audio and video designed to guide you through the process of building a robust RAG solution with Azure AI Content Understanding.
 
 ## Extracting Data with Content Understanding: Key Concepts
