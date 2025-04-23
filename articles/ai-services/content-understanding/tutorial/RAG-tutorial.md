@@ -311,15 +311,13 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 ### Extraction Results
 The result below demonstrates the output of content and field extraction using Azure AI Content Understanding. The JSON response contains multiple fields, each serving a specific purpose in representing the extracted data.
 
-#### **Markdown Field**
-The `markdown` field provides a simplified, human-readable representation of the extracted content. It is particularly useful for quick previews or for integrating the extracted data into applications that require structured text, such as knowledge bases or search interfaces. For example, in the case of a document, the `markdown` field might include headers, paragraphs, and other structural elements formatted for easy readability.
+- **Markdown Field**: The `markdown` field provides a simplified, human-readable representation of the extracted content. It is particularly useful for quick previews or for integrating the extracted data into applications that require structured text, such as knowledge bases or search interfaces. For example, in the case of a document, the `markdown` field might include headers, paragraphs, and other structural elements formatted for easy readability.
 
-#### **JSON Output**
-The full JSON output provides a comprehensive representation of the extracted data, including both the content and the metadata generated during the extraction process. This includes:
-- **Fields:** AI-generated metadata such as summaries, key topics, or classifications, tailored to the specific schema defined in the analyzer.
-- **Confidence Scores:** Indicators of the reliability of the extracted data.
-- **Spans:** Information about the location of the extracted content within the source file.
-- **Additional Metadata:** Details such as page numbers, dimensions, and other contextual information.
+- **JSON Output**:The full JSON output provides a comprehensive representation of the extracted data, including both the content and the metadata generated during the extraction process. This includes:
+  - **Fields:** AI-generated metadata such as summaries, key topics, or classifications, tailored to the specific schema defined in the analyzer.
+  - **Confidence Scores:** Indicators of the reliability of the extracted data.
+  - **Spans:** Information about the location of the extracted content within the source file.
+  - **Additional Metadata:** Details such as page numbers, dimensions, and other contextual information.
 
 ---
 
