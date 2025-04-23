@@ -11,7 +11,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: whats-new
-ms.date: 04/14/2025
+ms.date: 04/16/2025
 recommendations: false
 ---
 
@@ -31,6 +31,10 @@ GPT-image-1 (2025-04-15) is the latest image generation model from Azure OpenAI.
 Request access: [limited access model application](https://aka.ms/oai/gptimage1access)
 
 Follow the [image generation quickstart](/azure/ai-services/openai/dall-e-quickstart?tabs=command-line%2Ckeyless%2Ctypescript-keyless&pivots=programming-language-powershell) to get started with the new model.
+
+### o4-mini and o3 models released
+
+`o4-mini` and `o3` models are now available. These are the latest reasoning models from Azure OpenAI offering significantly enhanced reasoning, quality, and performance. For more information, see the [getting started with reasoning models page](./how-to/reasoning.md).
 
 ### GPT-4.1 released
 
