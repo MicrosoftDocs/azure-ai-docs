@@ -514,7 +514,7 @@ Content Understanding supports the following development options:
 
 ## Next steps
 * Try our RAG [code samples.]((https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples))
-* Follow our RAG How to guide
+* Follow our [RAG Tutorial](../tutorial/RAG-tutorial.md)
 * Learn more about [document](../document/overview.md), [image](../image/overview.md), [audio](../audio/overview.md), [video](../video/overview.md) capabilities.
 * Learn more about Content Understanding [**best practices**](../concepts/best-practices.md) and [**capabilities**](../concepts/capabilities.md).
 * Review Content Understanding [**code samples**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main)
