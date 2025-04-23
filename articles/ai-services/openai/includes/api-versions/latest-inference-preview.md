@@ -1363,7 +1363,7 @@ Generates an image based on an input image and text prompt instructions. Require
 | size | [imageSize](#imagesize) | The size of the generated images. | No | 1024x1024 |
 | style | [imageStyle](#imagestyle) | The style of the generated images. | No | vivid |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
-| output_format | [imageOutputFormat](#imageOutputFormat) | The format in which the generated images are returned. | No | PNG |
+| output_format | [imageOutputFormat](#imageoutputformat) | The format in which the generated images are returned. | No | PNG |
 | output_compression | integer | The compression level (on a scale of 0-100) of the generated images. GPT-image-1 | No | 0 |
 
 
@@ -6235,7 +6235,7 @@ The style of the generated images.
 | size | [imageSize](#imagesize) | The size of the generated images. | No | 1024x1024 |
 | style | [imageStyle](#imagestyle) | The style of the generated images. | No | vivid |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
-| output_format | [imageOutputFormat](#imageOutputFormat) | The format in which the generated images are returned. | No | PNG |
+| output_format | [imageOutputFormat](#imageoutputformat) | The format in which the generated images are returned. | No | PNG |
 | output_compression | integer | The compression level (on a scale of 0-100) of the generated images. GPT-image-1 | No | 0 |
 
 
