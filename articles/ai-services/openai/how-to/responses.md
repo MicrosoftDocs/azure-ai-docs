@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's new stateful Responses API.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 03/21/2025
+ms.date: 04/23/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 ms.custom: references_regions
@@ -96,6 +96,16 @@ response = client.responses.create(
     input="This is a test."
     #truncation="auto" required when using computer-use-preview model.
 
+response_id = response.id
+response_status = response.status
+
+
+print(f"\n Response ID: {response_id}")
+print(f"\n Response Status: {response_status}\n")
+
+print(response.model_dump_json(indent=2))
+
+
 )
 ```
 
@@ -117,6 +127,15 @@ response = client.responses.create(
     model="gpt-4o", # replace with your model deployment name 
     input="This is a test."
     #truncation="auto" required when using computer-use-preview model.
+
+response_id = response.id
+response_status = response.status
+
+
+print(f"\n Response ID: {response_id}")
+print(f"\n Response Status: {response_status}\n")
+
+print(response.model_dump_json(indent=2))
 
 )
 ```
@@ -152,56 +171,110 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/responses?api-ve
 **Output:**
 
 ```json
+Response ID: resp_680915b58140819085f4c55454402f3600400b1e6ec996fc
+
+Response Status: completed
+
 {
-  "id": "resp_67cb32528d6881909eb2859a55e18a85",
-  "created_at": 1741369938.0,
+  "id": "resp_680915b58140819085f4c55454402f3600400b1e6ec996fc",
+  "created_at": 1745425845.0,
   "error": null,
   "incomplete_details": null,
   "instructions": null,
   "metadata": {},
-  "model": "gpt-4o-2024-08-06",
+  "model": "gpt-4o",
   "object": "response",
   "output": [
     {
-      "id": "msg_67cb3252cfac8190865744873aada798",
+      "id": "msg_680915b5c8dc8190b21a72a55830fea900400b1e6ec996fc",
       "content": [
         {
           "annotations": [],
-          "text": "Great! How can I help you today?",
+          "text": "It looks like you're testing out how this works! How can I assist you today?",
           "type": "output_text"
         }
       ],
       "role": "assistant",
-      "status": null,
+      "status": "completed",
       "type": "message"
     }
   ],
-  "output_text": "Great! How can I help you today?",
-  "parallel_tool_calls": null,
+  "parallel_tool_calls": true,
   "temperature": 1.0,
-  "tool_choice": null,
+  "tool_choice": "auto",
   "tools": [],
   "top_p": 1.0,
   "max_output_tokens": null,
   "previous_response_id": null,
-  "reasoning": null,
+  "reasoning": {
+    "effort": null,
+    "generate_summary": null,
+    "summary": null
+  },
+  "service_tier": null,
   "status": "completed",
-  "text": null,
-  "truncation": null,
+  "text": {
+    "format": {
+      "type": "text"
+    }
+  },
+  "truncation": "disabled",
   "usage": {
-    "input_tokens": 20,
-    "output_tokens": 11,
+    "input_tokens": 12,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 18,
     "output_tokens_details": {
       "reasoning_tokens": 0
     },
-    "total_tokens": 31
+    "total_tokens": 30
   },
   "user": null,
-  "reasoning_effort": null
+  "store": true
 }
 ```
 
 ---
+
+Unlike the chat completions API, the responses API is asynchronous. More complex requests may not be completed by the time that an initial response is returned by the API. This is similar to how the Assistants API handles [thread/run status](/azure/ai-services/openai/how-to/assistant#retrieve-thread-status). 
+
+Note in the response ouput that the response object contains a `status` which can be monitored to determine when the response is finally complete. `status` can contain a value of `completed`, `failed`, `in_progress`, or `incomplete`.
+
+### Retrieve an individual response status
+
+In the previous Python examples we created a variable `response_id` and set it equal to the `response.id` of our `client.response.create()` call. We can then pass client.response.retrieve() to pull the current status of our response.
+
+```python
+
+retrieve_response =  client.responses.retrieve(response_id)
+print(retrieve_response.status)
+```
+
+### Monitor response status
+
+Depending on the complexity of your request it is not uncommon to have an initial response with a status of `in_progress` with message output not yet generated. In that case you can create a loop to monitor the status of the response with code. The example below is for demonstration purposes only and is intended to be run in a Jupyter notebook:
+
+```python
+import time
+from IPython.display import clear_output
+
+start_time = time.time()
+
+status = retrieve_response.status
+
+while status not in ["completed", "failed", "incomplete"]:
+    time.sleep(5)
+    retrieve_response =  client.responses.retrieve(response_id)
+    print("Elapsed time: {} minutes {} seconds".format(int((time.time() - start_time) // 60), int((time.time() - start_time) % 60)))
+    status = retrieve_response.status
+    print(f'Status: {status}')
+    clear_output(wait=True)
+
+print(f'Status: {status}')
+print("Elapsed time: {} minutes {} seconds".format(int((time.time() - start_time) // 60), int((time.time() - start_time) % 60)))
+print(retrieve_response.model_dump_json(indent=2))
+```
 
 ## Retrieve a response
 
