@@ -11,7 +11,6 @@ ms.date: 04/07/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
-zone_pivot_groups: project-type
 
 #customer intent: As a developer, I want to create a project and set up my development environment to build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK.
 ---
@@ -38,22 +37,14 @@ This tutorial is part one of a three-part tutorial.
 
 ## Prerequisites
 
+[!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
+
 * An Azure account with an active subscription. If you don't have one, [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
 
+## Create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]
 
-## Create a project
-
-To create a project in [Azure AI Foundry](https://ai.azure.com), follow these steps:
-
-1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com).
-1. Select **+ Create project**.
-1. Enter a name for the project.  Keep all the other settings as default.
-1. Projects are created in hubs.  If you see **Create a new hub** select it and specify a name.  Then select **Next**. (If you don't see **Create new hub**, don't worry; it's because a new one is being created for you.) 
-1. Select **Customize** to specify properties of the hub.
-1. Use any values you want, except for **Region**.  We recommend you use either **East US2** or **Sweden Central** for the region for this tutorial series.
-1. Select **Next**.
-1. Select **Create project**.
+[!INCLUDE [create-hub-project-simple](../includes/create-hub-project-simple.md)]
 
 ## Deploy models
 
@@ -166,16 +157,5 @@ But don't delete them yet, if you want to build a chat app in [the next part of 
 
 In this tutorial, you set up everything you need to build a custom chat app with the Azure AI SDK. In the next part of this tutorial series, you build the custom app.
 
-::: zone pivot="fdp-project"
-
 > [!div class="nextstepaction"]
-> [Part 2: Build a custom chat app with the Azure AI SDK](copilot-sdk-build-rag.md?pivots=fdp-project)
-
-::: zone-end
-
-::: zone pivot="hub-project"
-
-> [!div class="nextstepaction"]
-> [Part 2: Build a custom chat app with the Azure AI SDK](copilot-sdk-build-rag.md?pivots=hub-project)
-
-::: zone-end
+> [Part 2: Build a custom chat app with the Azure AI SDK](copilot-sdk-build-rag.md)
