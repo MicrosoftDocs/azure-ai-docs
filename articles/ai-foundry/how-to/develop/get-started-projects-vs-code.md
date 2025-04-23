@@ -118,7 +118,9 @@ The Azure AI Foundry Extension opens in its' own view, with the Azure AI Foundry
 
 ### The default Azure AI Foundry Project
 
-When you open a project in the Azure AI Foundry Extension, that project is set as your default project. Switch your default project by following these steps:
+When you open a project in the Azure AI Foundry Extension, that project is set as your default project. 
+
+Switch your default project by following these steps:
 
     1. Right-click on your deployed model and select the **Switch Default Project in Azure Extension** option. 
     
