@@ -151,7 +151,7 @@ It's also possible that the generated image itself is filtered. In this case, th
 
 Your prompts should describe the content you want to see in the image, and the visual style of image.
 
-When you write prompts, consider that the image generation APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../concepts/content-filter.md).
+When you write prompts, consider that the Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../concepts/content-filter.md).
 
 > [!TIP]
 > For a thorough look at how you can tweak your text prompts to generate different kinds of images, see the [Image prompt engineering guide](/azure/ai-services/openai/concepts/gpt-4-v-prompt-engineering).
@@ -321,8 +321,8 @@ DALL-E models don't support the Image Edit API.
 
 * [What is Azure OpenAI Service?](../overview.md)
 * [Quickstart: Generate images with Azure OpenAI Service](../dall-e-quickstart.md)
-* [Image generation API reference](/azure/ai-services/openai/reference#image-generation)
-* [Image generation API (preview) reference](/azure/ai-services/openai/reference-preview)
+* [Image API reference](/azure/ai-services/openai/reference#image-generation)
+* [Image API (preview) reference](/azure/ai-services/openai/reference-preview)
 
 
 <!-- OAI HT guide https://platform.openai.com/docs/guides/images/usage
