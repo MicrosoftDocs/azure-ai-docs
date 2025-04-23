@@ -58,20 +58,19 @@ To implement data extraction in Content Understanding, follow these steps:
 
 1. **Create an Analyzer:** Define an analyzer using REST APIs or our Python code samples. Optionally, include a field schema to specify the metadata to be extracted.
 2. **Perform Content Extraction:** Use the analyzer to process files and extract structured content.
-3. **Enhance with Field Extraction:** Add AI-generated fields to enrich the extracted content with additional metadata.
+3. **(Optional) Enhance with Field Extraction:** Add AI-generated fields to enrich the extracted content with additional metadata.
 
 ## Creating an Analyzer
 Analyzers are reusable components in Content Understanding that streamline the data extraction process. Once an analyzer is created, it can be used repeatedly to process files and extract content or fields based on predefined schemas. An analyzer acts as a blueprint for how data should be processed, ensuring consistency and efficiency across multiple files and content types.
 
 The following code samples demonstrate how to create analyzers for each modality, specifying the structured data to be extracted, such as key fields, summaries, or classifications. These analyzers will serve as the foundation for extracting and enriching content in your RAG solution.
 
-Starting off with the schema details for each modality:
+**Starting off with the schema details for each modality:**
 
 # [Document](#tab/document)
 
 To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for extracting basic information from an invoice document.
 
-First, create a JSON file named `request_body.json` with the following content:
 ```json
 {
   "description": "Sample invoice analyzer",
@@ -112,9 +111,9 @@ First, create a JSON file named `request_body.json` with the following content:
 
 # [Image](#tab/image)
 
-To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for identifying detects in images of metal plates.
+To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for identifying chart types in an image.
 
-First, create a JSON file named `request_body.json` with the following content:
+
 ```json
 {
   "description": "Sample chart analyzer",
@@ -138,7 +137,6 @@ First, create a JSON file named `request_body.json` with the following content:
 
 To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for extracting basic information from call transcripts.
 
-First, create a JSON file named `request_body.json` with the following content:
 ```json
 {
   "description": "Sample call transcript analyzer",
@@ -178,7 +176,6 @@ First, create a JSON file named `request_body.json` with the following content:
 
 To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for extracting basic information from marketing videos.
 
-First, create a JSON file named `request_body.json` with the following content:
 ```json
 {
   "description": "Sample marketing video analyzer",
@@ -201,7 +198,7 @@ First, create a JSON file named `request_body.json` with the following content:
 
 ---
 
-Load all environment variables and libraries from Langchain
+#### Load all environment variables and necessary libraries from Langchain
 
 ``` python
 
@@ -250,7 +247,7 @@ sys.path.append(str(parent_dir))
 ```
 ---
 
-Create analyzers using the schema definition from above
+#### Create analyzers
 
 ``` python
 from pathlib import Path
@@ -312,7 +309,6 @@ for analyzer in analyzer_configs:
 ```
 ---
 
-
 ## Perform Content and Field Analysis
 **Content extraction** is the first step in the RAG implementation process. It transforms raw multimodal data—such as documents, images, audio, and video—into structured, searchable formats. This foundational step ensures that the content is organized and ready for indexing and retrieval. Content extraction provides the baseline for indexing and retrieval but may not fully address domain-specific needs or provide deeper contextual insights. 
 [Learn more]() about content extraction capabilities for each modality.
@@ -324,7 +320,7 @@ With the analyzers created for each modality, we can now process files to extrac
 
 ---
 
-## Analyze files
+#### Analyze files
 
 ``` python
 
