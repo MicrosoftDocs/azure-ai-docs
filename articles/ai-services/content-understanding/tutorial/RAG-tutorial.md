@@ -15,8 +15,6 @@ ms.custom: 2025-understanding-release
 
 This tutorial provides a comprehensive guide to building a Retrieval Augmented Generation (RAG) solution using Azure AI Content Understanding. It explains the essential components required to design and implement a robust RAG system, highlights best practices for optimizing relevance and accuracy, and outlines the integration points with other Azure services. By the end of this tutorial, you will have a clear understanding of how to leverage Content Understanding to process multimodal data, enhance retrieval precision, and enable generative AI models to deliver contextually rich and accurate responses.
 
-Sample code can be found in this [Python notebook]((https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)), but we recommend using this walkthrough for context, insights, and for exploring alternative approaches.
-
 ## Exercises Covered in This Tutorial
 
 1. **Creating Analyzers:** Learn how to create reusable analyzers to extract structured content from multimodal data using content extraction.  
@@ -38,12 +36,18 @@ To get started, you need **An active Azure subscription**. If you don't have an 
 
      :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the multi-service resource page in the Azure portal.":::
 
-* In this tutorial, we use the cURL command line tool. If it isn't installed, you can download a version for your dev environment:
+- **Azure AI Search Resource:** Set up an [Azure AI Search resource](https://github.com/tonyeiyalla/azure-ai-search-with-content-understanding-python/blob/tonye-cu-rag/docs/create_azure_ai_service.md) to enable indexing and retrieval of multimodal data.
+- **Azure OpenAI Resource:** Deploy an [Azure OpenAI resource](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/create-resource?pivots=web-portal) with a chat model to enable conversational interactions.
+- **Embedding Model Deployment:** Ensure you have an embedding model deployed to generate vector representations for semantic search.
+- **API Version:** This tutorial uses the latest preview [API version](https://review.learn.microsoft.com/en-us/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true): `2024-12-01-preview`.
+- **Python Environment:** Install [Python 3.11](https://www.python.org/downloads/) to execute the provided code samples and scripts.
+- This tutorial follows this sample code can be found in this [Python notebook]((https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)). Follow this [README]() to create essential resources, grant resources the right Access control(IAM) roles and install all packages needed for this tutorial. 
 
-  * [Windows](https://curl.haxx.se/windows/)
-  * [Mac or Linux](https://learn2torials.com/thread/how-to-install-curl-on-mac-or-linux-(ubuntu)-or-windows)
+- Additionally, this tutorial utilizes the cURL command-line tool for API interactions. If it is not already installed, you can download it for your development environment:
+  - [Windows](https://curl.haxx.se/windows/)
+  - [Mac or Linux](https://learn2torials.com/thread/how-to-install-curl-on-mac-or-linux-(ubuntu)-or-windows)
 
-* The multimodal data used in this tutorial includes sample documents, including documents, images, audio and video designed to guide you through the process of building a robust RAG solution with Azure AI Content Understanding.
+* The [multimodal data]() used in this tutorial includes sample documents, including documents, images, audio and video designed to guide you through the process of building a robust RAG solution with Azure AI Content Understanding.
 
 ## Extracting Data with Content Understanding: Key Concepts
 Building a robust multimodal RAG solution begins with extracting and structuring data from diverse content types. Azure AI Content Understanding provides three key components to facilitate this process: **content extraction**, **field extraction**, and **analyzers**. Together, these components form the foundation for creating a unified, reusable, and enhanced data pipeline for RAG workflows.
@@ -197,38 +201,117 @@ First, create a JSON file named `request_body.json` with the following content:
 
 ---
 
+Load all environment variables and libraries from Langchain
 
-Before running the following `cURL` commands, make the following changes to the HTTP request:
+``` python
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
-1. Replace `{analyzerId}` with the name of the new analyzer and create, such as `myInvoice`.
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
-### PUT Request
+# Load and validate Azure AI Services configs
+AZURE_AI_SERVICE_ENDPOINT = os.getenv("AZURE_AI_SERVICE_ENDPOINT")
+AZURE_AI_SERVICE_API_VERSION = os.getenv("AZURE_AI_SERVICE_API_VERSION") or "2024-12-01-preview"
+AZURE_DOCUMENT_INTELLIGENCE_API_VERSION = os.getenv("AZURE_DOCUMENT_INTELLIGENCE_API_VERSION") or "2024-11-30"
 
-```bash
-curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2024-12-01-preview" \
-  -H "Ocp-Apim-Subscription-Key: {key}" \
-  -H "Content-Type: application/json" \
-  -d @request_body.json
+# Load and validate Azure OpenAI configs
+AZURE_OPENAI_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT")
+AZURE_OPENAI_CHAT_DEPLOYMENT_NAME = os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT_NAME")
+AZURE_OPENAI_CHAT_API_VERSION = os.getenv("AZURE_OPENAI_CHAT_API_VERSION") or "2024-08-01-preview"
+AZURE_OPENAI_EMBEDDING_DEPLOYMENT_NAME = os.getenv("AZURE_OPENAI_EMBEDDING_DEPLOYMENT_NAME")
+AZURE_OPENAI_EMBEDDING_API_VERSION = os.getenv("AZURE_OPENAI_EMBEDDING_API_VERSION") or "2023-05-15"
+
+# Load and validate Azure Search Services configs
+AZURE_SEARCH_ENDPOINT = os.getenv("AZURE_SEARCH_ENDPOINT")
+AZURE_SEARCH_INDEX_NAME = os.getenv("AZURE_SEARCH_INDEX_NAME") or "sample-doc-index"
+
+# Import libraries from Langchain 
+from langchain import hub
+from langchain_openai import AzureChatOpenAI
+from langchain_openai import AzureOpenAIEmbeddings
+from langchain.schema import StrOutputParser
+from langchain.schema.runnable import RunnablePassthrough
+from langchain.text_splitter import MarkdownHeaderTextSplitter
+from langchain.vectorstores.azuresearch import AzureSearch
+from langchain_core.prompts import ChatPromptTemplate
+from langchain.schema import Document
+import requests
+import json
+import sys
+import uuid
+from pathlib import Path
+from dotenv import find_dotenv, load_dotenv
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+# Add the parent directory to the path to use shared modules
+parent_dir = Path(Path.cwd()).parent
+sys.path.append(str(parent_dir))
+
 ```
-
-### PUT Response
-
-The 201 (`Created`) response includes an `Operation-Location` header containing a URL that you can use to track the status of this asynchronous creation operation.
-
-```
-201 Created
-Operation-Location: {endpoint}/contentunderstanding/analyzers/{analyzerId}/operations/{operationId}?api-version=2024-12-01-preview
-```
-
-Upon completion, performing an HTTP GET on the URL returns `"status": "succeeded"`.
-
-```bash
-curl -i -X GET "{endpoint}/contentunderstanding/analyzers/{analyzerId}/operations/{operationId}?api-version=2024-12-01-preview" \
-  -H "Ocp-Apim-Subscription-Key: {key}"
-```
-
 ---
+
+Create analyzers using the schema definition from above
+
+``` python
+from pathlib import Path
+from python.content_understanding_client import AzureContentUnderstandingClient
+credential = DefaultAzureCredential()
+token_provider = get_bearer_token_provider(credential, "https://cognitiveservices.azure.com/.default")
+
+#set analyzer configs
+analyzer_configs = [
+    {
+        "id": "doc-analyzer" + str(uuid.uuid4()),
+        "template_path": "../analyzer_templates/content_document.json",
+        "location": Path("../data/sample_layout.pdf"),
+    },
+    {
+        "id": "image-analyzer" + str(uuid.uuid4()),
+        "template_path": "../analyzer_templates/image_chart_diagram_understanding.json",
+        "location": Path("../data/sample_report.pdf"),
+    },
+    {
+        "id": "audio-analyzer" + str(uuid.uuid4()),
+        "template_path": "../analyzer_templates/call_recording_analytics.json",
+        "location": Path("../data/callCenterRecording.mp3"),
+    },
+    {
+        "id": "video-analyzer" + str(uuid.uuid4()),
+        "template_path": "../analyzer_templates/video_content_understanding.json",
+        "location": Path("../data/FlightSimulator.mp4"),
+    },
+]
+
+# Create Content Understanding client
+content_understanding_client = AzureContentUnderstandingClient(
+    endpoint=AZURE_AI_SERVICE_ENDPOINT,
+    api_version=AZURE_AI_SERVICE_API_VERSION,
+    token_provider=token_provider,
+    x_ms_useragent="azure-ai-content-understanding-python/content_extraction", # This header is used for sample usage telemetry, please comment out this line if you want to opt out.
+)
+
+# Iterate through each config and create an analyzer
+for analyzer in analyzer_configs:
+    analyzer_id = analyzer["id"]
+    template_path = analyzer["template_path"]
+
+    try:
+        
+        # Create the analyzer using the content understanding client
+        response = content_understanding_client.begin_create_analyzer(
+            analyzer_id=analyzer_id,
+            analyzer_template_path=template_path
+        )
+        result = content_understanding_client.poll_result(response)
+        print(f"Successfully created analyzer: {analyzer_id}")
+        
+    except Exception as e:
+        print(f"Failed to create analyzer: {analyzer_id}")
+        print(f"Error: {e}")
+
+```
+---
+
 
 ## Perform Content and Field Analysis
 **Content extraction** is the first step in the RAG implementation process. It transforms raw multimodal data—such as documents, images, audio, and video—into structured, searchable formats. This foundational step ensures that the content is organized and ready for indexing and retrieval. Content extraction provides the baseline for indexing and retrieval but may not fully address domain-specific needs or provide deeper contextual insights. 
