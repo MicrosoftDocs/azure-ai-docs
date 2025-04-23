@@ -559,11 +559,13 @@ The result shows the extraction of video segments into meaningful units, spoken 
 ```
 
 ---
+
 ## Pre-processing the Output from Content Understanding
 
 Once the data has been extracted using Azure AI Content Understanding, the next step is to prepare the analysis output for embedding within a search system. Pre-processing the output ensures that the extracted content is transformed into a format suitable for indexing and retrieval. This step involves converting the JSON output from the analyzers into structured strings, preserving both the content and metadata for seamless integration into downstream workflows.
 
 The following example demonstrates how to pre-process the output data from the analyzers, including documents, images, audio, and video. By converting each JSON output into a structured string, this process lays the groundwork for embedding the data into a vector-based search system, enabling efficient retrieval and enhanced RAG workflows.
+
 ---
 
 ``` python
