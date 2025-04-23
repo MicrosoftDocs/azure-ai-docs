@@ -26,7 +26,7 @@ OpenAI's image generation models render images based on user-provided text promp
 - Deploy a `dall-e-3` or `gpt-image-1` model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-services/openai/how-to/create-resource).
     - GPT-image-1 is the newer model and features a number of improvements over DALL-E 3. It's available in limited access: apply for access with [this form](https://aka.ms/oai/gptimage1access).
 
-## Call the Image Generation APIs
+## Call the Image Generation API
 
 The following command shows the most basic way to use an image model with code. If this is your first time using these models programmatically, we recommend starting with the [quickstart](/azure/ai-services/openai/dall-e-quickstart).
 
@@ -322,6 +322,7 @@ DALL-E models don't support the Image Edit API.
 * [What is Azure OpenAI Service?](../overview.md)
 * [Quickstart: Generate images with Azure OpenAI Service](../dall-e-quickstart.md)
 * [Image generation API reference](/azure/ai-services/openai/reference#image-generation)
+* [Image generation API (preview) reference](/azure/ai-services/openai/reference-preview)
 
 
 <!-- OAI HT guide https://platform.openai.com/docs/guides/images/usage
