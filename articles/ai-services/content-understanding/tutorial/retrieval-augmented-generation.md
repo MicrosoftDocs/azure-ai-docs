@@ -1,7 +1,7 @@
 ---
-title: Azure AI Content Understanding Retrieval Augmented Generation Tutorial
+title: Azure AI Content Understanding retrieval-augmented generation Tutorial
 titleSuffix: Azure AI services
-description: Learn about Retrieval Augmented Generation
+description: Learn about retrieval-augmented generation
 author: laujan
 ms.author: tonyeiyalla
 manager: nitinme
@@ -11,9 +11,9 @@ ms.date: 04/05/2025
 ms.custom: 2025-understanding-release
 ---
 
-# Tutorial: Building a Multimodal Retrieval Augmented Generation (RAG) Solution with Content Understanding
+# Tutorial: Building a Multimodal retrieval-augmented generation (RAG) Solution with Content Understanding
 
-This tutorial provides a comprehensive guide to building a Retrieval Augmented Generation (RAG) solution using Azure AI Content Understanding. It explains the essential components required to design and implement a robust RAG system, highlights best practices for optimizing relevance and accuracy, and outlines the integration points with other Azure services. By the end of this tutorial, you will have a clear understanding of how to leverage Content Understanding to process multimodal data, enhance retrieval precision, and enable generative AI models to deliver contextually rich and accurate responses.
+This tutorial provides a comprehensive guide to building a retrieval-augmented generation (RAG) solution using Azure AI Content Understanding. It explains the essential components required to design and implement a robust RAG system, highlights best practices for optimizing relevance and accuracy, and outlines the integration points with other Azure services. By the end of this tutorial, you will have a clear understanding of how to leverage Content Understanding to process multimodal data, enhance retrieval precision, and enable generative AI models to deliver contextually rich and accurate responses.
 
 ## Exercises Covered in This Tutorial
 

@@ -1,26 +1,24 @@
 ---
-title: Azure AI Content Understanding Retrieval Augmented Generation Concept
+title: Azure AI Content Understanding retrieval-augmented generation Concept
 titleSuffix: Azure AI services
-description: Learn about Retrieval Augmented Generation
+description: Learn about retrieval-augmented generation
 author: laujan
 ms.author: tonyeiyalla
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 03/16/2025
-ms.custom: 2025-understanding-release
+ms.date: 04/23/2025
 ---
-# Creating a Multimodal Retrieval Augmented Generation Solution with Content Understanding
 
-# Introduction
+# Retrieval-augmented generation with Content Understanding
 
-Retrieval Augmented Generation (RAG) enhances Generative AI models by grounding their responses in external knowledge sources, significantly improving accuracy, relevance, and reliability. A key challenge in RAG is effectively extracting and preparing multimodal content – documents, images, audio, and video – so that it can be accurately retrieved and used to inform the LLM's responses. 
+retrieval-augmented generation (RAG) enhances Generative AI models by grounding their responses in external knowledge sources, significantly improving accuracy, relevance, and reliability. A key challenge in RAG is effectively extracting and preparing multimodal content – documents, images, audio, and video – so that it can be accurately retrieved and used to inform the LLM's responses. 
 
 Azure AI Content Understanding addresses these challenges by providing sophisticated extraction capabilities across all content modalities, preserving semantic integrity and contextual relationships that traditional extraction methods often lose. This unified approach eliminates the need to manage separate workflows and models for different content types, streamlining implementation while ensuring optimal representation for retrieval and generation.
 
 ## Why Does Multimodal Data Matter for RAG?
 
-In traditional content processing, simple text extraction was sufficient for many use cases. However, modern enterprise environments contain rich, diverse information spread across multiple formats—documents with complex layouts, images conveying visual insights, audio recordings of crucial conversations, and videos that combine all these elements. For truly comprehensive Retrieval Augmented Generation (RAG) systems, all of this content must be accurately processed and made available to generative AI models. This ensures that when users pose questions, the underlying RAG system can retrieve relevant information regardless of its original format—whether it's a complex table in a financial report, a technical diagram in a manual, insights from a recorded conference call, or explanations from a training video.
+In traditional content processing, simple text extraction was sufficient for many use cases. However, modern enterprise environments contain rich, diverse information spread across multiple formats—documents with complex layouts, images conveying visual insights, audio recordings of crucial conversations, and videos that combine all these elements. For truly comprehensive retrieval-augmented generation (RAG) systems, all of this content must be accurately processed and made available to generative AI models. This ensures that when users pose questions, the underlying RAG system can retrieve relevant information regardless of its original format—whether it's a complex table in a financial report, a technical diagram in a manual, insights from a recorded conference call, or explanations from a training video.
 
 ## Capabilities of Content Understanding for Multimodal RAG
 
@@ -50,7 +48,7 @@ A high level summary of RAG implementation pattern looks like this:
 3. Store embedded vectors in database or search index.  
 4. Use Generative AI chat models to query and generate responses from retrieval systems.
 
-Here’s an overview of the implementation process, beginning with data extraction using Azure AI Content Understanding as the foundation for transforming raw multimodal data into structured, searchable formats optimized for RAG workflows:
+Here's an overview of the implementation process, beginning with data extraction using Azure AI Content Understanding as the foundation for transforming raw multimodal data into structured, searchable formats optimized for RAG workflows:
 
 ### 1. Content Extraction: The Foundation for RAG with Content Understanding
 
@@ -337,16 +335,16 @@ Below is an example showcasing the results of content and field extraction using
             "valueString": "Maria Smith contacted Contoso to inquire about her current point balance. Agent John Doe confirmed her identity and informed her that she has 599 points. Maria did not require any further information and the call ended on a positive note."
           },
           "TrainingTopics": {
-						"type": "array",
-						"valueArray": [
-							{
-								"type": "string",
-								"valueString": "Compliance"
-							},
-							{
-								"type": "string",
-								"valueString": "Risk mitigation"
-							},]
+                        "type": "array",
+                        "valueArray": [
+                            {
+                                "type": "string",
+                                "valueString": "Compliance"
+                            },
+                            {
+                                "type": "string",
+                                "valueString": "Risk mitigation"
+                            },]
           },
           "People": {
             "type": "array",
@@ -416,16 +414,16 @@ Below is an example showcasing the results of content and field extraction using
             "valueString": "The video begins with a view from a glass floor, showing a person's feet in white sneakers standing on it. The scene captures a downward view of a structure, possibly a tower, with a grid pattern on the floor and a clear view of the ground below. The lighting is bright, suggesting a sunny day, and the colors are dominated by the orange of the structure and the gray of the floor."
           },
           "KeyTopics": {
-						"type": "array",
-						"valueArray": [
-							{
-								"type": "string",
-								"valueString": "Flight delay"
-							},
-							{
-								"type": "string",
-								"valueString": "Customer service"
-							},
+                        "type": "array",
+                        "valueArray": [
+                            {
+                                "type": "string",
+                                "valueString": "Flight delay"
+                            },
+                            {
+                                "type": "string",
+                                "valueString": "Customer service"
+                            },
             ]
           }
         },
