@@ -48,26 +48,6 @@ To get started, you need **An active Azure subscription**. If you don't have an 
 ## Extracting Data with Content Understanding: Key Concepts
 Building a robust multimodal RAG solution begins with extracting and structuring data from diverse content types. Azure AI Content Understanding provides three key components to facilitate this process: **content extraction**, **field extraction**, and **analyzers**. Together, these components form the foundation for creating a unified, reusable, and enhanced data pipeline for RAG workflows.
 
-### 1. Analyzers: Reusable Components for Data Analysis
-
-Analyzers are reusable components in Content Understanding that streamline the data extraction process. Once an analyzer is created, it can be used repeatedly to process files and extract content or fields based on predefined schemas. An analyzer acts as a blueprint for how data should be processed, ensuring consistency and efficiency across multiple files and content types.
-
-#### Key Benefits of Analyzers:
-- **Reusability:** Define once, use across multiple datasets.
-- **Customizability:** Tailor analyzers with field schemas to meet specific business needs.
-- **Scalability:** Process large volumes of multimodal data efficiently.
-
-### 2. Content Extraction: The Foundation for Data Processing
-
-Content extraction is the first step in the RAG implementation process. It transforms raw multimodal data—such as documents, images, audio, and video—into structured, searchable formats. This foundational step ensures that the content is organized and ready for indexing and retrieval. Content extraction provides the baseline for indexing and retrieval but may not fully address domain-specific needs or provide deeper contextual insights. 
-[Learn more]() about content extraction capabilities for each modality.
-
-### 3. Field Extraction: Enhancing Content with AI-Generated Metadata
-
-Field extraction builds on content extraction by using AI to generate additional metadata that enriches the knowledge base. This step allows you to define custom fields tailored to your specific use case, enabling more precise retrieval and enhanced search relevance. Field extraction complements content extraction by adding depth and context, making the data more actionable for RAG scenarios. 
-[Learn more]() about field extraction capabilities for each modality.
-
-
 ## Implementation Steps
 
 To implement data extraction in Content Understanding, follow these steps:
@@ -79,6 +59,7 @@ To implement data extraction in Content Understanding, follow these steps:
 ## Code Samples
 
 ## Creating an Analyzer
+Analyzers are reusable components in Content Understanding that streamline the data extraction process. Once an analyzer is created, it can be used repeatedly to process files and extract content or fields based on predefined schemas. An analyzer acts as a blueprint for how data should be processed, ensuring consistency and efficiency across multiple files and content types.
 
 The following code samples demonstrate how to create analyzers for each modality, specifying the structured data to be extracted, such as key fields, summaries, or classifications. These analyzers will serve as the foundation for extracting and enriching content in your RAG solution.
 Starting off with the schema details for each modality:
@@ -251,6 +232,12 @@ curl -i -X GET "{endpoint}/contentunderstanding/analyzers/{analyzerId}/operation
 ---
 
 ## Perform Content and Field Analysis
+**Content extraction** is the first step in the RAG implementation process. It transforms raw multimodal data—such as documents, images, audio, and video—into structured, searchable formats. This foundational step ensures that the content is organized and ready for indexing and retrieval. Content extraction provides the baseline for indexing and retrieval but may not fully address domain-specific needs or provide deeper contextual insights. 
+[Learn more]() about content extraction capabilities for each modality.
+
+**Field extraction** builds on content extraction by using AI to generate additional metadata that enriches the knowledge base. This step allows you to define custom fields tailored to your specific use case, enabling more precise retrieval and enhanced search relevance. Field extraction complements content extraction by adding depth and context, making the data more actionable for RAG scenarios. 
+[Learn more]() about field extraction capabilities for each modality.
+
 With the analyzers created for each modality, we can now process files to extract structured content and AI-generated metadata based on the defined schemas. This section demonstrates how to use the analyzers to analyze multimodal data and provides a sample of the results returned by the APIs. These results showcase the transformation of raw data into actionable insights, forming the foundation for indexing, retrieval, and RAG workflows.
 
 ---
