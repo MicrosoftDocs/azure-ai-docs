@@ -71,7 +71,7 @@ items:
 - name: Tutorials
   items:
     - name: Retrieval Augmented Generation Tutorial
-      href: /tutorial/RAG-tutorial.md
+      href: tutorial/RAG-tutorial.md
 - name: Responsible AI
   items:
     - name: Transparency note
