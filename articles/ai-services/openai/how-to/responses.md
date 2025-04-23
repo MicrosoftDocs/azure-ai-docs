@@ -253,7 +253,7 @@ print(retrieve_response.status)
 
 ### Monitor response status
 
-Depending on the complexity of your request it is not uncommon to have an initial response with a status of `in_progress` with message output not yet generated. In that case you can create a loop to monitor the status of the response with code. The example below is for demonstration purposes only and is intended to be run in a Jupyter notebook:
+Depending on the complexity of your request it is not uncommon to have an initial response with a status of `in_progress` with message output not yet generated. In that case you can create a loop to monitor the status of the response with code. The example below is for demonstration purposes only and is intended to be run in a Jupyter notebook. This code assumes you have already run the two previous Python examples and the client as well as `retrieve_response` have already been defined:
 
 ```python
 import time
