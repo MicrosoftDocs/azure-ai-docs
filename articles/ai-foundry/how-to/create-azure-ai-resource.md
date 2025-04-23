@@ -31,7 +31,7 @@ In this article, you learn how to create and manage a hub in Azure AI Foundry po
 
 To create a new hub, you need either the Owner or Contributor role on the resource group or on an existing hub. If you're unable to create a hub due to permissions, reach out to your administrator. If your organization is using [Azure Policy](/azure/governance/policy/overview), don't create the resource in Azure AI Foundry portal. Create the hub [in the Azure portal](#create-a-secure-hub-in-the-azure-portal) instead.
 
-[!INCLUDE [Create Azure AI Foundry hub](../includes/create-hub.md)] 
+When you [create a new [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](create-projects.md?pivots=hub-project), select **Create a new hub**.  
 
 ## Create a secure hub in the Azure portal
 
