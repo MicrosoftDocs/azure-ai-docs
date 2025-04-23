@@ -1250,7 +1250,7 @@ Generates a batch of images from a text caption on a given DALL-E or GPT-image-1
 Creates images given a prompt.
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/images/generations?api-version=2025-03-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/images/generations?api-version=2025-04-01-preview
 
 {
  "prompt": "In the style of WordArt, Microsoft Clippy wearing a cowboy hat.",
@@ -1263,6 +1263,9 @@ POST https://{endpoint}/openai/deployments/{deployment-id}/images/generations?ap
 
 **Responses**:
 Status Code: 200
+
+> [!NOTE]
+> The GPT-image-1 model doesn't return content filtering annotations.
 
 ```json
 {
@@ -1387,16 +1390,18 @@ Generates an image based on an input image and text prompt instructions. Require
 
 ### Example
 
-Creates images given a prompt.
+Creates images given an input image and text instructions.
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/images/generations?api-version=2025-03-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/images/edits?api-version=2025-04-01-preview
 
 {
- "prompt": "In the style of WordArt, Microsoft Clippy wearing a cowboy hat.",
- "n": 1,
- "style": "natural",
- "quality": "standard"
+  "image": "<base64_encoded_image>",
+  "prompt": "Add a beach ball in the center.",
+  "model": "gpt-image-1",
+  "size": "1024x1024", 
+  "n": 1,
+  "quality": "high"
 }
 
 ```
@@ -1404,60 +1409,24 @@ POST https://{endpoint}/openai/deployments/{deployment-id}/images/generations?ap
 **Responses**:
 Status Code: 200
 
+> [!NOTE]
+> The GPT-image-1 model doesn't return content filtering annotations.
+
 ```json
 {
   "body": {
     "created": 1698342300,
     "data": [
       {
+        "b64_json": "<base64_encoded_image>",
         "revised_prompt": "A vivid, natural representation of Microsoft Clippy wearing a cowboy hat.",
-        "prompt_filter_results": {
-          "sexual": {
-            "severity": "safe",
-            "filtered": false
-          },
-          "violence": {
-            "severity": "safe",
-            "filtered": false
-          },
-          "hate": {
-            "severity": "safe",
-            "filtered": false
-          },
-          "self_harm": {
-            "severity": "safe",
-            "filtered": false
-          },
-          "profanity": {
-            "detected": false,
-            "filtered": false
-          },
-          "custom_blocklists": {
-            "filtered": false,
-            "details": []
-          }
-        },
-        "url": "https://dalletipusw2.blob.core.windows.net/private/images/e5451cc6-b1ad-4747-bd46-b89a3a3b8bc3/generated_00.png?se=2023-10-27T17%3A45%3A09Z&...",
-        "content_filter_results": {
-          "sexual": {
-            "severity": "safe",
-            "filtered": false
-          },
-          "violence": {
-            "severity": "safe",
-            "filtered": false
-          },
-          "hate": {
-            "severity": "safe",
-            "filtered": false
-          },
-          "self_harm": {
-            "severity": "safe",
-            "filtered": false
-          }
-        }
+      }],
+    "usage": 
+      {
+        "input_tokens": 557,
+        "output_tokens": 1000,
       }
-    ]
+    
   }
 }
 ```
