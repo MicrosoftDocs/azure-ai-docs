@@ -37,7 +37,7 @@ This tutorial is part one of a three-part tutorial.
 
 ## Prerequisites
 
-[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
+[!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
 
 * An Azure account with an active subscription. If you don't have one, [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 

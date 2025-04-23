@@ -29,6 +29,8 @@ This tutorial is part three of a three-part tutorial.
 
 ## Prerequisites
 
+[!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
+
 - Complete [part 2 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
 
 - Use the same **[!INCLUDE [hub](../includes/hub-project-name.md)]** you created in part 1. 

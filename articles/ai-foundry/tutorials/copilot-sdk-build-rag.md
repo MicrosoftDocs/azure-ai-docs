@@ -28,6 +28,8 @@ This tutorial is part two of a three-part tutorial.
 
 ## Prerequisites
 
+[!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
+
 * Complete [Tutorial:  Part 1 - Create resources for building a custom chat application with the Azure AI SDK](copilot-sdk-create-resources.md) to:
 
     * Create a project with a connected Azure AI Search index
