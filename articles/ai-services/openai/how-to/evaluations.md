@@ -305,12 +305,14 @@ BLEU (BiLingual Evaluation Understudy) score is commonly used in natural languag
 
 ROUGE (Recall-Oriented Understudy for Gisting Evaluation) is a set of metrics used to evaluate automatic summarization and machine translation. It measures the overlap between generated text and reference summaries. ROUGE focuses on recall-oriented measures to assess how well the generated text covers the reference text.
 The ROUGE score provides various metrics, including:
-•	ROUGE-1: Overlap of unigrams (single words) between generated and reference text.
-•	ROUGE-2: Overlap of bigrams (two consecutive words) between generated and reference text.
-•	ROUGE-3: Overlap of trigrams (three consecutive words) between generated and reference text.
-•	ROUGE-4: Overlap of four-grams (four consecutive words) between generated and reference text.
-•	ROUGE-5: Overlap of five-grams (five consecutive words) between generated and reference text.
-•	ROUGE-L: Overlap of L-grams (L consecutive words) between generated and reference text.
+
+- ROUGE-1: Overlap of unigrams (single words) between generated and reference text.
+- ROUGE-2: Overlap of bigrams (two consecutive words) between generated and reference text.
+- ROUGE-3: Overlap of trigrams (three consecutive words) between generated and reference text.
+- ROUGE-4: Overlap of four-grams (four consecutive words) between generated and reference text.
+- ROUGE-5: Overlap of five-grams (five consecutive words) between generated and reference text.
+- ROUGE-L: Overlap of L-grams (L consecutive words) between generated and reference text.
+
 Text summarization and document comparison are among optimal use cases for ROUGE, particularly in scenarios where text coherence and relevance are critical.
 
 Cosine similarity measures how closely two text embeddings—such as model outputs and reference texts—align in meaning, helping assess the semantic similarity between them. Same as other model-based evaluators, you need to provide a model deployment using for evaluation. 
