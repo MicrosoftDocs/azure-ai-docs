@@ -68,6 +68,9 @@ To __deploy the model through the UI__:
 
 1. Select __Deploy__.
 
+To __deploy the model programmatically__, see [How to deploy and inference a managed compute deployment with code](../deploy-models-managed.md).
+
+
 ## Work with a segmentation model
 
 In this section, you consume the model and make basic calls to it.
