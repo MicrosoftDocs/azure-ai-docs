@@ -5,8 +5,8 @@ description: Learn about AI models that are applicable to the health and life sc
 ms.service: azure-ai-foundry
 manager: scottpolly
 ms.topic: concept-article
-ms.date: 02/13/2025
-ms.reviewer: franksolomon
+ms.date: 04/24/2025
+ms.reviewer: itarapov
 reviewer: ivantarapov
 ms.author: mopeakande
 author: msakande
@@ -36,8 +36,8 @@ This model is an embedding model that enables sophisticated image analysis, incl
 #### [CXRReportGen](./deploy-cxrreportgen.md)
 Chest X-rays are the most common radiology procedure globally. They help doctors diagnose a wide range of conditions - lung infections, heart problems, and more. For millions of people, these images often become the first step in detecting health issues. This multimodal AI model incorporates current and prior images, along with key patient information, to generate detailed, structured reports from chest X-rays. The reports highlight AI-generated findings based directly on the images, to align with human-in-the-loop workflows. Researchers can test this capability and the potential to accelerate turnaround times while enhancing the diagnostic precision of radiologists.
 
-#### [MedImageParse](./deploy-medimageparse.md)
-This model is designed for precise image segmentation, and it covers various imaging modalities, including X-Rays, CT scans, MRIs, ultrasounds, dermatology images, and pathology slides. The model can be fine-tuned for specific applications, such as tumor segmentation or organ delineation. It allows developers to test and validate the model and the ability to build tools that leverage AI for highly sophisticated medical image analysis.
+#### [MedImageParse and MedImageParse 3D](./deploy-medimageparse.md)
+These models are designed for precise image segmentation, and they cover various imaging modalities, including X-Rays, CT scans, MRIs, ultrasounds, dermatology images, and pathology slides. The models can be fine-tuned for specific applications, such as tumor segmentation or organ delineation, allowing developers to test and validate the model and the ability to build tools that leverage AI for highly sophisticated medical image analysis.
 
 ## Partner models
 
