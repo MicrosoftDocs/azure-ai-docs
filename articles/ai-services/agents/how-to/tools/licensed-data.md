@@ -14,7 +14,7 @@ recommendations: false
 
 # Bring your licensed data
 
-Azure AI Agent Service integrates your own licensed data from specialized data providers, [Tripadvisor](https://tripadvisor-content-api.readme.io/reference/overview) and [Morningstar](https://developer.morningstar.com/). This integration enhances the quality of your agent's responses with high-quality, fresh data.
+Azure AI Agent Service integrates your own licensed data from specialized data providers: [Tripadvisor](https://tripadvisor-content-api.readme.io/reference/overview) and [Morningstar](https://developer.morningstar.com/). This integration enhances the quality of your agent's responses with high-quality, fresh data.
 
 * **Tripadvisor**: Tripadvisor is a useful travel platform that can, for example, provide travel guidance and reviews. 
 * **Morningstar**: Morningstar is a prominent investment research company that provides comprehensive analysis, ratings, and data on mutual funds, ETFs, stocks, and bonds.
@@ -35,7 +35,7 @@ These insights empower your agents to deliver nuanced, informed solutions tailor
 
 # [Morningstar](#tab/morningstar)
 
-Create a developer account with Morningstar: To start, access the Morningstar tool with your Morningstar credentials. If you do not have a Morningstar account, contact `iep-dev@morningstar.com`. Provide an email address for your account username during onboarding. Morningstar will email instructions for creating a password and activating your account. Store and transmit your unique username and password securely. 
+Create a developer account with Morningstar: To start, access the Morningstar tool with your Morningstar credentials. If you don't have a Morningstar account, contact `iep-dev@morningstar.com`. Provide an email address for your account username during onboarding. Morningstar will email instructions for creating a password and activating your account. Store and transmit your unique username and password securely. 
 
 To get your token for your Morningstar developer account, use the following script: 
 
@@ -73,7 +73,7 @@ print(response.text)
 
 ## Use the Tripadvisor or Morningstar tool through Foundry portal
 
-1. To use the Tripadvisor tool in the Azure AI Foundry, in the **Create and debug** screen for your agent, scroll down the **Setup** pane on the right to **action**. Then select **Add**.
+1. To use the Tripadvisor tool in the Azure AI Foundry, in the **Create and debug** screen for your agent, scroll down the **Setup** pane to **action**. Then select **Add**.
 
     :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
 
