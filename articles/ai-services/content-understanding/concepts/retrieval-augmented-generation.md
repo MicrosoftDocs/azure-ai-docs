@@ -440,7 +440,7 @@ Below is an example showcasing the results of content and field extraction using
 After extracting data with Azure AI Content Understanding, the next steps focus on integration with Azure AI Search and Azure OpenAI. This integration demonstrates the seamless synergy between data extraction, retrieval, and generative AI, creating a comprehensive and efficient solution for RAG scenarios.
 
 > [!div class="nextstepaction"]
-> [View full code sample for RAG on GitHub.](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)
+> [View full code sample for Multimodal RAG on GitHub.](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/notebooks/search_with_multimodal_RAG.ipynb)
 
 ## 3. Create a Unified Search Index
 After processing multimodal content with Azure AI Content Understanding, create a comprehensive search infrastructure using your newly structured data. By embedding the markdown and JSON outputs with Azure OpenAI's embedding models and indexing them in Azure AI Search, you'll establish a unified knowledge repository spanning all content types.
