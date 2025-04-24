@@ -1,5 +1,5 @@
 ---
-title: Azure AI Content Understanding retrieval-augmented generation Concept
+title: Retrieval-augmented generation with Azure AI Content Understanding r
 titleSuffix: Azure AI services
 description: Learn about retrieval-augmented generation
 author: laujan
