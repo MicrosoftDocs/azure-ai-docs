@@ -70,8 +70,8 @@ Here is an example:
 
 #### This is heading 3
 ```
----
 
+---
 
 ### Table
 
@@ -94,9 +94,9 @@ Here is an example:
 <tr><td>Cell</td><td>Cell</td></tr>
 <tr><td>Footer</td><td>Footer</td></tr>
 </table>
-
 This is the footnote of the table.
 ```
+
 ---
 
 ### Figure
@@ -173,6 +173,7 @@ Here is an example:
 ![BarCode:001](./media/barcode/barcode.svg)
 
 ```
+---
 
 ### PageNumber/PageHeader/PageFooter
 
@@ -191,8 +192,7 @@ Here is an example:
 <!-- PageNumber="1" -->
 
 ```
-
---
+---
 
 ### PageNumber/PageHeader/PageFooter
 
