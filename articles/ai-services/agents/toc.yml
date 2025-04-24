@@ -85,8 +85,6 @@ items:
       items: 
         - name: Use your own resources
           href: how-to/use-your-own-resources.md
-        - name: Tracing with Application Insights
-          href: concepts/tracing.md
         - name: Content filtering
           href: ../openai/how-to/content-filters.md?context=/azure/ai-services/agents/context/context
         - name: Use virtual networks
