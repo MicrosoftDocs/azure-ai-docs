@@ -176,7 +176,7 @@ The **Model Catalog** is also available in the **Resources** section of the Azur
 
 The **Model Catalog** is also available in the **Tools** section of the Azure AI Foundry Extension view. Double-click on the **Model Catalog** link to open the Model Catalog.
 
-#### Deploy a model from the model catalog
+### Deploy a model from the model catalog
 
 Deploy a selected model in the model catalog using the following steps:
 
@@ -208,7 +208,7 @@ Deploy a selected model in the model catalog using the following steps:
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/deployed-model.png" alt-text="Screenshot of the newly deployed model under the Models section." lightbox="../../media/how-to/get-started-projects-vs-code/deployed-model.png":::
 
-#### View deployed models
+### View deployed models
 
 In the Azure Resources Extension view, select the **caret** icon in front of the **Models** section to view the list of deployed models.
 
