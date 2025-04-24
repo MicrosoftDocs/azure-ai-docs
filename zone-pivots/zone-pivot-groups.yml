@@ -1151,3 +1151,12 @@ groups:
     title: Python
   - id: programming-language-typescript
     title: TypeScript
+- id: azure-portal-and-cli
+# Owner: Larryfr
+  title: Portal and CLI
+  prompt: Choose a usage method
+  pivots:
+  - id: azure-portal
+    title: Azure portal
+  - id: cli
+    title: Azure CLI

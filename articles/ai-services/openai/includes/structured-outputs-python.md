@@ -20,6 +20,7 @@ pip install openai pydantic --upgrade
 If you are new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI Service with Microsoft Entra ID authentication](../how-to/managed-identity.md).
 
 ```python
+import os
 from pydantic import BaseModel
 from openai import AzureOpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
@@ -105,6 +106,7 @@ pip install openai pydantic --upgrade
 ```
 
 ```python
+import os
 from pydantic import BaseModel
 from openai import AzureOpenAI
 
