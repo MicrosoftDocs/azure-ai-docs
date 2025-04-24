@@ -15,40 +15,78 @@ ms.date: 04/30/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, *agentic retrieval* is a new parallel query processing architecture that generates multiple inputs from each query  and adds a chat completion model for query planning and execution. The *agentic* aspect is an evaluation and reasoning step in query processing: if the answers returned from the query engine aren't satisfactory, the system autonomously rewrites queries to improve the results.
+In Azure AI Search, *agentic retrieval* is a new parallel query processing architecture that generates multiple queries from each retriever request and uses a chat completion model for query planning and execution. The *agentic* aspect is an evaluation and reasoning step in query planning processing that's performed by a model. The model is tasked with creating multiple subqueries based on the inputs and parameters you provide. All queries execute in parallel and return a rich response that can be used wholistically. You can extract individual elements for your scenario.
 
-Programmatically, agentic retrieval is supported through a new Agents object class in the newest preview data plane REST API, 2025-05-01-preview. A query response that's based on the Agents class is optimized for downstream consumption by other agents.
+Programmatically, agentic retrieval is supported through a new Agents object class in the newest preview data plane REST API, 2025-05-01-preview. A retriever response that's based on the Agents class is optimized for downstream consumption by other agents.
 
 ## Why use agentic retrieval
 
 Agentic retrieval adds latency to query processing, but it's offset by these powerful capabilities:
 
-+ Convert chat history into a subquery.
-+ Rewrite original query into multiple subqueries using both synonym maps and LLM-powered paraphrasing.
++ Input existing chat history as a subquery.
++ Rewrite original query into multiple subqueries using both synonym maps *and* LLM-powered paraphrasing.
 + Correct spelling mistakes.
-+ Deconstruct a complex query, such as hybrid query with filters and semantic L2 ranking, into component parts.
-+ Outputs a unified result as a single string. Alternatively, you can extract parts of the response for your solution.
++ Deconstruct a complex query, such as hybrid query with filters or a regular expression query, into component parts.
++ The output is a unified result as a single string. Alternatively, you can extract parts of the response for your solution.
 
-Agentic retrieval invokes the entire query processing pipeline multiple times for each query request, but it does so in parallel, preserving the efficiency and performance necessary for knowledge-centric applications.
+Agentic retrieval invokes the entire query processing pipeline multiple times for each query request, but it does so in parallel, preserving the efficiency and performance necessary for a satisfactory user experience.
 
 ## Agentic retrieval architecture
 
-TBD
+Agentic retrieval is designed for conversational search that includes a chat completion model.
+
+An important part of agentic retrieval is that an entire chat conversation can be included as inputs in subsequent queries, providing context and nuance for more relevant responses.
+
+Agentic retrieval has these components:
+
++ An index containing plain text, vector content, and image references.
++ A chat completion model that you've deployed in Azure AI Foundry Model.
++ An agent that connects to an LLM or SLM, providing parameters and inputs to build a query plan. This agent is created using Azure AI Search APIs and exists on your search service.
++ A multithreaded query processing engine in Azure AI Search that executes on the agent payload and returns a rich response.
+
+Agentic retrieval has these processes:
+
++ Request for agentic retrieval is initiated when your app passes in a query and conversation history to an agent.
++ Agent connects to an LLM for a query planning step, converting chat history into multiple subqueries.
++ All subqueries execute simultaneously on Azure AI Search and generate structured results and extracted references.
++ Results are merged.
++ Response is formulated and returned as a 3-part response consisting of a unified result, a reference array, and an activities array that enumerates the steps.
+
+## Order of operations
+
+Development tasks on the Azure AI Search side include:
+
++ Create an agent on Azure AI Search that maps to a deployed model in Azure AI Foundry Model.
++ Call retrieve with a query, conversation, and override parameters.
++ Parse the response for parts you want to include in your chat application.
 
 ## Availability and pricing
 
-Billing is token-based.
+Agentic retrieval is available in all supported regions and tiers, including the free tier. 
 
-Agentic retrieval is available in all supported regions and tiers, including the free tier. The free tier is limited to 1,000 free queries for full text search and 50 million free tokens for agentic search.
+Billing is token-based. If you're familiar with the classic query-based billing model, this is a new approach bills by tokens to stabilize cost estimation, since the number of queries can vary dynamically based on inputs and parameters.
+
+| Aspect | Classic query pipeline | Agentic retrieval pipeline |
+|--------|------------------------|----------------------------|
+| Unit | Query-based (1,000 queries) per unit of currency| Token-based (one million tokens per unit of currency) |
+| Cost per unit | Uniform cost per query | Uniform cost per token |
+| Cost estimation | Estimate query count | Estimate token usage |
+| Free tier| 1,000 free queries | 50 million free tokens |
+
+The model you assign to the agent is the one charged for token usage. For example, if you use gpt-4o, the token charge appears in the bill for gpt-4o.
+
+Semantic ranker, which is a premium feature, is an integral part of agentic retrieval. You are charged on the Azure AI Search side for token inputs to the semantic ranking models, but 
 
 ## How to get started
+
+You must use the REST APIs or a prerelease Azure SDK page that provides the functionality. There's no Azure portal or Azure AI Foundry portal support at this time.
 
 Choose any of these options for you next step.
 
 <!-- + Watch this demo. -->
 + Quickstart. Learn the basic workflow using sample data and a prepared index and queries.
 
-+ How-to guide for a closer look at building an agentic retrieval pipeline.
++ How-to guides for a closer look at building an agentic retrieval pipeline: [Create an agent](search-agentic-retrieval-how-to-create.md) and [Use an agent to retrieve data](search-agentic-retrieval-how-to-retrieve.md).
 
 + REST API reference, Agents.
 

@@ -25,6 +25,8 @@ In Azure AI Search, an *agent* is a top-level object representing a connection t
 
 + Azure AI Search with a managed identity for role-based access to a chat model.
 
++ A search index containing plain text, vectors, or image references. The index must have a [semantic configuration](semantic-how-to-configure.md).
+
 + Region requirements. Azure AI Search and your model should be in the same region.
 
 + API requirements. Use 2025-05-01-preview data plane REST API or a prerelease package of an Azure SDK that provides Agent APIs.
@@ -161,7 +163,7 @@ Content-Type: application/json
 
 + `name` must be unique within the agents collection it must adhere to [naming rules](/rest/api/searchservice/naming-rules) for objects on Azure AI Search.
 
-+ `targetIndexes` is required for agent creation. It lists the search indexes that can use the agent. Currently in this preview release, the `targetIndexes` array can contain only one index. It can be any search index on the search service that has content you want to query. 
++ `targetIndexes` is required for agent creation. It lists the search indexes that can use the agent. Currently in this preview release, the `targetIndexes` array can contain only one index. It must have a semantic configuration, otherwise it can be any search index on the search service that has content you want to query. 
 
 + `models` specifies one or more connections to an existing gpt-4o or gpt-4o-mini model. Currently in this preview release, models can contain just one model, and the model provider should be Azure AI Foundry Model. Obtain model information from the Azure AI Foundry portal or from a command line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. For more information, see [How to deploy Azure OpenAI models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-openai).
 
@@ -171,7 +173,7 @@ Content-Type: application/json
 
 ## Confirm agent availability
 
-Call the **retrieve** action on the agent object to confirm the model connection and return a response. Use the [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview) data plane REST API or an Azure SDK prerelease package that provides equivalent functionality for this task.
+Call the **retrieve** action on the agent object to confirm the model connection and return a response. Use the [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) data plane REST API or an Azure SDK prerelease package that provides equivalent functionality for this task.
 
 Replace "hello world" with a query string that's valid for your search index.
 

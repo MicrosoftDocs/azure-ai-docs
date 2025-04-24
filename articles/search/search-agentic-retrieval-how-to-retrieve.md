@@ -17,7 +17,7 @@ ms.date: 04/30/2025
 
 In Azure AI Search, *agentic retrieval* is a new parallel query processing architecture that uses a chat completion model for query planning and execution. 
 
-This article explains how to use the **retrieve** method that invokes an agent and parallel query processing.
+This article explains how to use the **retrieve** method that invokes an agent and parallel query processing. This article also unpacks the response. Currently, there's no "answer" in the response, but you can evaluate the component parts to determine whether further processing is required to make it suitable for your app.
 
 ## Prerequisites
 
@@ -33,7 +33,7 @@ To follow the steps in this guide, we recommend [Visual Studio Code](https://cod
 
 ## Call retrieve
 
-Call the **retrieve** action on the agent object to return a response. Use the [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview) data plane REST API or an Azure SDK prerelease package that provides equivalent functionality for this task.
+Call the **retrieve** action on the agent object to return a response. Use the [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) data plane REST API or an Azure SDK prerelease package that provides equivalent functionality for this task.
 
 The input for the retrieval route is natural language, where the `messages` array captures the inputs needed for calling a chat completion model.
 
@@ -109,7 +109,14 @@ The body of the response is also structured in the chat message style format. Cu
 
 ## Review the activity array
 
-The activity array keeps track of the operations performed to execute the request, providing transparency of operations so that you can understand billing implications and the frequency of resource invocations.
+The activity array keeps track of the operations performed when executing the request, providing transparency of operations so that you can understand billing implications and the frequency of resource invocations.
+
+Output includes:
+
++ Token used for input
++ Token counts for output
++ Result count per subquery
++ Token counts used for ranking and extraction
 
 ## Review the references array
 
