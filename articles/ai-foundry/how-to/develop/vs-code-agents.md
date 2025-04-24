@@ -197,7 +197,7 @@ The **Threads** subsection displays the threads created a during a run with your
 
 Select a thread to view its details. The **Thread Details** page is displayed. 
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/thread-view.png" alt-text="Screenshot of the threads in the Threads subsection." lightbox="../../media/how-to/get-started-projects-vs-code/thread-view.png":::
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/thread-view.png" alt-text="Screenshot of the thread details view." lightbox="../../media/how-to/get-started-projects-vs-code/thread-view.png":::
 
 - A **Thread** is a conversation session between an agent and a user. Threads store **Messages** and automatically handle truncation to fit content into a model’s context.
 
