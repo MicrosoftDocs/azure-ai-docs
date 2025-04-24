@@ -26,6 +26,8 @@ In this article, you learn how to deploy prompt-based image segmentation models,
 
 # [MedImageParse](#tab/medimageparse)
 
+## MedImageParse
+
 Biomedical image analysis is crucial for discovery in fields like cell biology, pathology, and radiology. Traditionally, tasks such as segmentation, detection, and recognition of relevant objects are addressed separately, which can limit the overall effectiveness of image analysis. However, MedImageParse unifies these tasks through image parsing, by jointly conducting segmentation, detection, and recognition across numerous object types and imaging modalities. By applying the interdependencies among these subtasks—such as the semantic labels of segmented objects—the model enhances accuracy and enables novel applications. For example, it allows users to segment all relevant objects in an image, by using a simple text prompt. This approach eliminates the need to manually specify bounding boxes for each object.  
 
 The following image shows the conceptual architecture of the MedImageParse model where an image embedding model is augmented with a task adaptation layer to produce segmentation masks and textual descriptions.
@@ -199,9 +201,11 @@ MedImageParse and MedImageParse 3D models assume a simple single-turn interactio
 
 ### Request schema
 
-# [MedImageParse](#tab/medimageparse)
+
 
 Request payload is a JSON formatted string containing the following parameters:
+
+# [MedImageParse](#tab/medimageparse)
 
 | Key           | Type           | Required/Default | Description |
 | ------------- | -------------- | :-----------------:| ----------------- |
@@ -235,7 +239,7 @@ The `input_data` object contains the following fields:
 
 # [MedImageParse](#tab/medimageparse)
 
-**Requesting segmentation of all cells in a pathology image** 
+**Requesting segmentation of all cells in a pathology image**
 
 ```JSON
 {
@@ -311,7 +315,7 @@ The response is a list of objects. Each object contains the segmentation result 
 
 # [MedImageParse](#tab/medimageparse)
 
-**A simple inference requesting segmentation of two objects** 
+**Response to a simple inference requesting segmentation of two objects** 
 
 ```JSON
 [
