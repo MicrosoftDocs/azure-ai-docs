@@ -54,16 +54,16 @@ Here’s an overview of the implementation process, beginning with data extracti
 
 ### 1. Content Extraction: The Foundation for RAG with Content Understanding
 
-Content extraction is ideal for transforming raw multimodal data into structured, searchable formats:
+Content extraction forms the foundation of effective RAG systems by transforming raw multimodal data into structured, searchable formats optimized for retrieval. The implementation varies by content type:
 - **Document:** Extracts hierarchical structures, such as headers, paragraphs, tables, and page elements, preserving the logical organization of training materials.
 - **Audio:** Generates speaker-aware transcriptions that accurately capture spoken content while automatically detecting and processing multiple languages. 
 - **Video:** Segments video into meaningful units, transcribes spoken content, and provides scene descriptions while addressing context window limitations in generative AI models.
 
-While content extraction provides a strong foundation for indexing and retrieval, it may not fully address domain-specific needs or provide deeper contextual insights.
+While content extraction provides a strong foundation for indexing and retrieval, it may not fully address domain-specific needs or provide deeper contextual insights. Learn more about [content extraction](./capabilities.md#content-extraction) capabilities.
 
 ### 2. Field Extraction: Enhancing Knowledge Bases for Better Retrieval
 
-Field extraction complements content extraction by generating targeted metadata that enriches the knowledge base and improves retrieval precision:
+Field extraction complements content extraction by generating targeted metadata that enriches the knowledge base and improves retrieval precision. The implementation varies by content type:
 - **Document:** Extract key topics/fields to provide concise overviews of lengthy materials.
 - **Image:** Converts visual information into searchable text by verbalizing diagrams, extracting embedded text, and identifying graphical components.
 - **Audio:** Extract key topics or sentiment analysis from conversations and to provide additional context for queries.
@@ -71,7 +71,7 @@ Field extraction complements content extraction by generating targeted metadata 
 
 By combining content extraction with field extraction, organizations can create a contextually rich knowledge base optimized for indexing, retrieval, and RAG scenarios, ensuring more accurate and meaningful responses to user queries. 
 
-Learn more about [content extraction](./capabilities.md#content-extraction) and [field extraction](./capabilities.md#field-extraction) capabilities.
+Learn more about [field extraction](./capabilities.md#field-extraction) capabilities.
 
 #### Code Sample: Analyzer and Schema Configuration 
 Below is an example of a analyzer and schema creation for various modalities in a multimodal RAG scenario. 
@@ -443,15 +443,11 @@ After extracting data with Azure AI Content Understanding, the next steps focus 
 > [View full code sample for RAG on GitHub.](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)
 
 ## 3. Create a Unified Search Index
+After processing multimodal content with Azure AI Content Understanding, create a comprehensive search infrastructure using your newly structured data. By embedding the markdown and JSON outputs with Azure OpenAI's embedding models and indexing them in Azure AI Search, you'll establish a unified knowledge repository spanning all content types.
 
-After processing multimodal content with Azure AI Content Understanding, the next step is to create a comprehensive search infrastructure that leverages this richly structured data. By embedding the markdown and JSON outputs using Azure OpenAI's embedding models and indexing them with [Azure AI Search](https://docs.azure.cn/en-us/search/tutorial-rag-build-solution-index-schema), you can create a unified knowledge repository that seamlessly spans all content modalities.
+Azure AI Search offers advanced search strategies for multimodal content. In this implementation, [hybrid search](https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview) combines vector and full-text indexing to blend keyword precision with semantic understanding—ideal for complex queries requiring both exact matching and contextual relevance. This approach significantly enhances the quality of information fed to generation models, producing more accurate, contextually appropriate responses
 
-Azure AI Search provides advanced search strategies to maximize the value of multimodal content. In this scenario, we utilize [hybrid search](https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview) approach which combines both vector and full text indexing to blend keyword precision with semantic understanding - an approach particularly effective for complex queries requiring both exact matching and contextual relevance. By combining traditional keyword matching with vector embeddings, hybrid search significantly enhances the quality and relevance of information fed to the generation model, resulting in more accurate and contextually appropriate responses.
-
-> [!NOTE]
-> For comprehensive guidance on implementing different search techniques, visit the [Azure AI Search documentation](https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview).
-
-Below is a minimal consolidated index that support vector and hybrid search and enables cross-modal search capabilities, allowing users to discover relevant information regardless of the original content format:
+Below is a sample consolidated index that support vector and hybrid search and enables cross-modal search capabilities, allowing users to discover relevant information regardless of the original content format:
 
 ```json
 {
