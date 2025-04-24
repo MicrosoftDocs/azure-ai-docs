@@ -339,8 +339,12 @@ items:
           href: cognitive-search-custom-skill-scale.md
         - name: Example - Bing Entity Search
           href: cognitive-search-create-custom-skill-example.md
-  - name: Agentic search
-    href: search-agentic-retrieval-how-to.md
+  - name: Agentic retrieval
+    items:
+    - name: Create an agent
+      href: search-agentic-retrieval-how-to-create.md
+    - name: Use an agent to retrieve data
+      href: search-agentic-retrieval-how-to-retrieve.md
   - name: Vector search
     items:
     - name: Create a vector index
