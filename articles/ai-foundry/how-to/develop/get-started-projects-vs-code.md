@@ -94,7 +94,7 @@ Sign in to your Azure subscription to access your resources with the following s
 
 ### Explore the Azure AI Foundry Extension
 
-The Azure AI Foundry Extension opens in its' own view, with the Azure AI Foundry Icon now displayed on the VS Code Navbar. The extension has three main sections: **Resources**, **Tools**, and **Help and Feedback**.
+The Azure AI Foundry Extension opens in its own view, with the Azure AI Foundry Icon now displayed on the VS Code Navbar. The extension has three main sections: **Resources**, **Tools**, and **Help and Feedback**.
 
 
 :::image type="content" source="../../media/how-to/get-started-projects-vs-code/aif-ext-initial-view.png" alt-text="A screenshot of the Azure AI Foundry Extension with highlighted sections.":::
