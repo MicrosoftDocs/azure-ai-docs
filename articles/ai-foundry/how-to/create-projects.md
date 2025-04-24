@@ -113,9 +113,48 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
-```python
-# Create a project
-```
+[!INCLUDE [SDK setup](../includes/development-environment-config-fdp.md)]
+
+6. Use the following code to create an account:
+
+    ```python
+    # Create account
+    account = client.accounts.begin_create(
+        resource_group_name=rgp,
+        account_name=account_name,
+        account={
+            "location": location,
+            "kind": "AIServices",
+            "sku": {
+                "name": "S0",
+            },
+            "identity": {
+                "type": "SystemAssigned"
+            },
+            "properties": {
+                "allowProjectManagement": True
+            }
+        }
+    )
+    ```
+    
+7. Now use the account to create a project:
+
+    ```python
+    # Create project
+    account = client.projects.begin_create(
+        resource_group_name=rgp,
+        account_name=account_name,
+        project_name=project_name,
+        project={
+            "location": location,
+            "identity": {
+                "type": "SystemAssigned"
+            },
+            "properties": {}
+        }
+    )
+    ```
 
 ::: zone-end
 
@@ -125,7 +164,7 @@ The code in this section assumes you have an existing hub.  If you don't have a 
 
 [!INCLUDE [SDK setup](../includes/development-environment-config.md)]
 
-8. Use the following code to create a project from a hub you or your administrator created previously. Replace example string values with your own values:
+6. Use the following code to create a project from a hub you or your administrator created previously. Replace example string values with your own values:
 
     ```Python
     from azure.ai.ml.entities import Project
@@ -225,7 +264,13 @@ Select **Manage in Azure portal** to navigate to the project resources in the Az
 ::: zone pivot="fdp-project"
 
 ```python
-# Get the project settings
+    # Get project
+    project = client.projects.get(
+        resource_group_name=rgp,
+        account_name=account_name,
+        project_name=project_name
+    )
+    print(project)
 ```
 
 ::: zone-end
