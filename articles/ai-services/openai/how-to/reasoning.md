@@ -60,7 +60,7 @@ Azure OpenAI `o-series` models are designed to tackle reasoning and problem-solv
 
 <sup>3</sup> Access to the chain-of-thought reasoning summary is limited access only for `o4-mini`.
 
-<sup>4</sup> Streaming for `o3` is currently only supported for customers with Enterprise subscriptions.
+<sup>4</sup> Streaming for `o3` is currently only supported for Enterprise subscriptions.
 
 ### Not Supported
 
