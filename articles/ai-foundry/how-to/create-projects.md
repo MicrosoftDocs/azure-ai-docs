@@ -1,5 +1,5 @@
 ---
-title: Create an Azure AI Foundry project in Azure AI Foundry portal
+title: Create a project
 titleSuffix: Azure AI Foundry
 description: This article describes how to create an Azure AI Foundry project so you can work with generative AI in the cloud.
 manager: scottpolly
@@ -17,11 +17,11 @@ zone_pivot_groups: project-type
 # customer intent: As a developer, I want to create an Azure AI Foundry project so I can work with generative AI.
 ---
 
-# Create a project in Azure AI Foundry portal
+# Create a project for Azure AI Foundry
 
 This article describes how to create an [Azure AI Foundry](https://ai.azure.com) project. A project is used to organize your work and save state while building customized AI apps.
 
-Azure AI Foundry supports two types of projects: a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** and a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. For more information about the differences between these two project types, see [Project types](../what-is-azure-ai-foundry.md#project-types).
+Azure AI Foundry supports two types of projects: a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** and a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. For more information about the differences between these two project types, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
 
 ::: zone pivot="fdp-project"
 
@@ -57,6 +57,8 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 - [Azure AI Foundry SDK](develop/sdk-overview.md).
+- [Azure CLI](/cli/azure/install-azure-cli) 
+- Authenticate with `az login` or `az login --use-device-code` in your environment before running code.
 
 
 # [Azure CLI](#tab/azurecli)
@@ -81,6 +83,9 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 - [Azure Machine Learning SDK v2](https://aka.ms/sdk-v2-install).
 - An Azure AI Foundry hub. If you don't have a hub, see [Create a hub using the Azure Machine Learning SDK and CLI](develop/create-hub-project-sdk.md).
+- [Azure CLI](/cli/azure/install-azure-cli) 
+- Authenticate with `az login` or `az login --use-device-code` in your environment before running code.
+
 
 # [Azure CLI](#tab/azurecli)
 
