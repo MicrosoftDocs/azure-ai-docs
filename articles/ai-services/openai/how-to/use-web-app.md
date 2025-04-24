@@ -290,11 +290,11 @@ The JSON to paste in the Advanced edit JSON editor is:
 
 ## Connecting to Prompt Flow as a data source
 
-[Prompt flows](/azure/ai-foundry/how-to/flow-develop) allow you to define highly customizable RAG and processing logic on a user's queries. 
+[Prompt flows](../../../ai-foundry/how-to/flow-develop.md) allow you to define highly customizable RAG and processing logic on a user's queries.
 
 ### Creating and deploying your prompt flow in Azure AI Foundry portal
 
-Follow [this tutorial](/azure/ai-foundry/tutorials/deploy-copilot-ai-studio) to create, test, and deploy an inferencing endpoint for your prompt flow in [Azure AI Foundry portal](https://ai.azure.com/).
+Follow [this tutorial](../../../ai-foundry/how-to/flow-deploy.md) to create, test, and deploy an inferencing endpoint for your prompt flow in [Azure AI Foundry portal](https://ai.azure.com/).
 
 ### Enable underlying citations from your prompt flow
 
