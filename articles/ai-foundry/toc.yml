@@ -104,11 +104,11 @@ items:
         items:
         - name: Foundational AI models for healthcare
           href: how-to/healthcare-ai/healthcare-ai-models.md
-        - name: MedImageInsight - embedding model
+        - name: MedImageInsight model for embedding
           href: how-to/healthcare-ai/deploy-medimageinsight.md
-        - name: CXRReportGen - text generation model
+        - name: CXRReportGen model for text generation
           href: how-to/healthcare-ai/deploy-cxrreportgen.md
-        - name: MedImageParse - prompted segmentation model
+        - name: MedImageParse models for prompted segmentation 
           href: how-to/healthcare-ai/deploy-medimageparse.md
       - name: Nvidia Inference Microservices (NIM)
         href: how-to/deploy-nvidia-inference-microservice.md
