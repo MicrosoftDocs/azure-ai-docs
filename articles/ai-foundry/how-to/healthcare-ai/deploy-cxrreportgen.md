@@ -5,7 +5,7 @@ description: Learn how to use CXRReportGen Healthcare AI Model with Azure AI Fou
 ms.service: azure-ai-foundry
 manager: scottpolly
 ms.topic: how-to
-ms.date: 10/20/2024
+ms.date: 04/24/2025
 ms.reviewer: itarapov
 reviewer: ivantarapov
 ms.author: mopeakande

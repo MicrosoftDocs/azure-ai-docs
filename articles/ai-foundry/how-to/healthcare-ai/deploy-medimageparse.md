@@ -5,7 +5,7 @@ description: Learn how to use MedImageParse and MedImageParse 3D Healthcare AI m
 ms.service: azure-ai-foundry
 manager: scottpolly
 ms.topic: how-to
-ms.date: 04/08/2025
+ms.date: 04/24/2025
 ms.reviewer: itarapov
 reviewer: ivantarapov
 ms.author: mopeakande

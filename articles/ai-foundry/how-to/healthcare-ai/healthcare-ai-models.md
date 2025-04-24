@@ -5,8 +5,8 @@ description: Learn about AI models that are applicable to the health and life sc
 ms.service: azure-ai-foundry
 manager: scottpolly
 ms.topic: concept-article
-ms.date: 02/13/2025
-ms.reviewer: franksolomon
+ms.date: 04/24/2025
+ms.reviewer: itarapov
 reviewer: ivantarapov
 ms.author: mopeakande
 author: msakande
