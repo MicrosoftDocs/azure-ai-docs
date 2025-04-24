@@ -97,7 +97,7 @@ For more information, see [Microsoft Entra built-in roles](/azure/active-directo
             Write-Host "Immersive Reader resource created successfully"
         }
 
-        # Create an Microsoft Entra app if it doesn't already exist
+        # Create a Microsoft Entra app if it doesn't already exist
         $clientId = az ad app show --id $AADAppIdentifierUri --query "appId" -o tsv
         if (-not $clientId) {
             Write-Host "Creating new Microsoft Entra app"

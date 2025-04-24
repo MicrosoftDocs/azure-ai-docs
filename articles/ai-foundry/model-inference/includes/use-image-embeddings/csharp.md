@@ -36,7 +36,7 @@ First, create the client to consume the model. The following code uses an endpoi
 
 
 ```csharp
-EmbeddingsClient client = new EmbeddingsClient(
+ImageEmbeddingsClient client = new ImageEmbeddingsClient(
     new Uri("https://<resource>.services.ai.azure.com/models"),
     new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_INFERENCE_CREDENTIAL"))
 );
@@ -51,7 +51,7 @@ BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolic
 
 clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
 
-client = new EmbeddingsClient(
+ImageEmbeddingsClient client = new ImageEmbeddingsClient(
     new Uri("https://<resource>.services.ai.azure.com/models"),
     credential,
     clientOptions
