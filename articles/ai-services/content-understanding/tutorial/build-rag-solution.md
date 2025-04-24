@@ -12,15 +12,16 @@ ms.date: 04/23/2025
 
 # Tutorial: Build a retrieval-augmented generation solution with Content Understanding
 
-This tutorial explains how to create a retrieval-augmented generation (RAG) solution using Azure AI Content Understanding. It covers the key steps to build a strong RAG system, offers tips to improve relevance and accuracy, and shows how to connect with other Azure services. By the end, you know how to use Content Understanding to handle multimodal data, improve retrieval, and help AI models provide accurate and meaningful responses.
+Retrieval-augmented generation (`RAG`) is a method that enhances the functionality of Large Language Models (`LLM`) by integrating data from external knowledge sources. This tutorial explains how to create a retrieval-augmented generation (RAG) solution using Azure AI Content Understanding. It covers the key steps to build a strong RAG system, offers tips to improve relevance and accuracy, and shows how to connect with other Azure services. By the end, you know how to use Content Understanding to handle multimodal data, improve retrieval, and help AI models provide accurate and meaningful responses.
 
-## Exercises Covered in This Tutorial
+## Exercises included in this tutorial
 
-1. **Creating Analyzers:** Learn how to create reusable analyzers to extract structured content from multimodal data using content extraction.  
-2. **Enhancing Content with Field Extraction:** Discover how to use AI to generate further metadata, such as summaries or key topics, to enrich extracted content.  
-3. **Vectorizing Extracted Content:** Explore ways to transform extracted content into vector embeddings for semantic search and retrieval.  
-4. **Designing a Unified Index:** Develop a unified Azure AI Search index that integrates and organizes multimodal data for efficient retrieval. 
-5. **Interacting with Data Using Chat Models:** Use Azure OpenAI chat models to query and interact with your indexed data, enabling conversational search and question answering.
+1. **[Create an analyzer](#creating-an-analyzer)**. Learn how to create reusable analyzers to extract structured content from multimodal data using content extraction.
+1. **[Generate targeted metadata with field extraction](#content-and-field-extraction)**. Discover how to use AI to generate further metadata, such as summaries or key topics, to enrich extracted content.
+1. **[Preprocess extracted content](#preprocessing-output-from-content-understanding)**. Explore ways to transform extracted content into vector embeddings for semantic search and retrieval.
+1. **[Design a unified index](#embed-and-index-extracted-content)**. Develop a unified Azure AI Search index that integrates and organizes multimodal data for efficient retrieval.
+1. **[Semantic chunk retrieval](#semantic-chunk-retrieval)**. Extract contextually relevant information to deliver more precise and meaningful answers to user queries.
+1. **[Interact with data using chat models](#use-openai-to-interact-with-data)** Use Azure OpenAI chat models to engage with your indexed data, enabling conversational search, querying, and answering.
 
 ## Prerequisites
 
@@ -35,26 +36,28 @@ To get started, you need **An active Azure subscription**. If you don't have an 
 
      :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the multi-service resource page in the Azure portal.":::
 
-- **Azure AI Search Resource:** Set up an [Azure AI Search resource](../../../search/search-create-service-portal.md) to enable indexing and retrieval of multimodal data.
-- **Azure OpenAI Resource:** Deploy an [Azure OpenAI resource](../../openai/how-to/create-resource.md) with a chat model that enables conversational interactions.
-- **Embedding Model Deployment:** Ensure you have an embedding model deployed to generate vector representations for semantic search.
-- **API Version:** This tutorial uses the latest preview [API version](/rest/api/contentunderstanding/analyzers?view=rest-contentunderstanding-2024-12-01-preview&preview&preserve-view=true): `2024-12-01-preview`.
-- **Python Environment:** Install [Python 3.11](https://www.python.org/downloads/) to execute the provided code samples and scripts.
-- This tutorial follows this sample code can be found in our [Python notebook](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples). Follow the [README](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/README.md) to create essential resources, grant resources the right Access control(IAM) roles and install all packages needed for this tutorial. 
+* **Azure AI Search Resource:** Set up an [Azure AI Search resource](../../../search/search-create-service-portal.md) to enable indexing and retrieval of multimodal data.
+* **Azure OpenAI Resource:** Deploy an [Azure OpenAI resource](../../openai/how-to/create-resource.md) with a chat model that enables conversational interactions.
+* **Embedding Model Deployment:** Ensure you have an embedding model deployed to generate vector representations for semantic search.
+* **API Version:** This tutorial uses the latest preview [API version](/rest/api/contentunderstanding/analyzers?view=rest-contentunderstanding-2024-12-01-preview&preview&preserve-view=true): `2024-12-01-preview`.
+* **Python Environment:** Install [Python 3.11](https://www.python.org/downloads/) to execute the provided code samples and scripts.
+* This tutorial follows this sample code can be found in our [Python notebook](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples). Follow the [README](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/README.md) to create essential resources, grant resources the right Access control(IAM) roles and install all packages needed for this tutorial.
 * The [multimodal data](../concepts/capabilities.md) used in this tutorial consists of documents, images, audio, and video. They're designed to guide you through the process of building a robust RAG solution with Azure AI Content Understanding.
 
-## Extracting Data with Content Understanding: Key Concepts
+## Extract data
+
 Building a robust multimodal RAG solution begins with extracting and structuring data from diverse content types. Azure AI Content Understanding provides three key components to facilitate this process: **content extraction**, **field extraction**, and **analyzers**. Together, these components form the foundation for creating a unified, reusable, and enhanced data pipeline for RAG workflows.
 
-## Implementation Steps
+## Implementation steps
 
 To implement data extraction in Content Understanding, follow these steps:
 
-1. **Create an Analyzer:** Define an analyzer using REST APIs or our Python code samples. 
+1. **Create an Analyzer:** Define an analyzer using REST APIs or our Python code samples.
 2. **Perform Content Extraction:** Use the analyzer to process files and extract structured content.
 3. **(Optional) Enhance with Field Extraction:** Optionally, specify AI-generated fields to enrich the extracted content with added metadata.
 
-## Creating an Analyzer
+## Creating an analyzer
+
 Analyzers are reusable components in Content Understanding that streamline the data extraction process. Once an analyzer is created, it can be used repeatedly to process files and extract content or fields based on predefined schemas. An analyzer acts as a blueprint for how data should be processed, ensuring consistency and efficiency across multiple files and content types.
 
 The following code samples demonstrate how to create analyzers for each modality, specifying the structured data to be extracted, such as key fields, summaries, or classifications. These analyzers serve as the foundation for extracting and enriching content in your RAG solution.
@@ -83,7 +86,7 @@ AZURE_OPENAI_EMBEDDING_API_VERSION = os.getenv("AZURE_OPENAI_EMBEDDING_API_VERSI
 AZURE_SEARCH_ENDPOINT = os.getenv("AZURE_SEARCH_ENDPOINT")
 AZURE_SEARCH_INDEX_NAME = os.getenv("AZURE_SEARCH_INDEX_NAME") or "sample-doc-index"
 
-# Import libraries from Langchain 
+# Import libraries from Langchain
 from langchain import hub
 from langchain_openai import AzureChatOpenAI
 from langchain_openai import AzureOpenAIEmbeddings
@@ -154,7 +157,7 @@ for analyzer in analyzer_configs:
     template_path = analyzer["template_path"]
 
     try:
-        
+
         # Create the analyzer using the content understanding client
         response = content_understanding_client.begin_create_analyzer(
             analyzer_id=analyzer_id,
@@ -162,7 +165,7 @@ for analyzer in analyzer_configs:
         )
         result = content_understanding_client.poll_result(response)
         print(f"Successfully created analyzer: {analyzer_id}")
-        
+
     except Exception as e:
         print(f"Failed to create analyzer: {analyzer_id}")
         print(f"Error: {e}")
@@ -305,11 +308,12 @@ In the following example, we define a schema for extracting basic information fr
 
 ---
 
-## Perform Content and Field Analysis
-**Content extraction** is the first step in the RAG implementation process. It transforms raw multimodal data into structured, searchable formats. This foundational step ensures that the content is organized and ready for indexing and retrieval. While content extraction provides the baseline for indexing and retrieval, it may not fully address domain-specific needs or provide deeper contextual insights. 
+## Content and field extraction
+
+**Content extraction** is the first step in the RAG implementation process. It transforms raw multimodal data into structured, searchable formats. This foundational step ensures that the content is organized and ready for indexing and retrieval. While content extraction provides the baseline for indexing and retrieval, it may not fully address domain-specific needs or provide deeper contextual insights.
 [Learn more]() about content extraction capabilities for each modality.
 
-**Field extraction** builds on content extraction by using AI to generate further metadata that enriches the knowledge base. This step allows you to define custom fields tailored to your specific use case, enabling more precise retrieval and enhanced search relevance. Field extraction complements content extraction by adding depth and context, making the data more actionable for RAG scenarios. 
+**Field extraction** builds on content extraction by using AI to generate further metadata that enriches the knowledge base. This step allows you to define custom fields tailored to your specific use case, enabling more precise retrieval and enhanced search relevance. Field extraction complements content extraction by adding depth and context, making the data more actionable for RAG scenarios.
 [Learn more]() about field extraction capabilities for each modality.
 
 With the analyzers created for each modality, we can now process files to extract structured content and AI-generated metadata based on the defined schemas. This section demonstrates how to use the analyzers to analyze multimodal data and provides a sample of the results returned by the APIs. These results showcase the transformation of raw data into actionable insights, forming the foundation for indexing, retrieval, and RAG workflows.
@@ -335,7 +339,7 @@ for analyzer in analyzer_configs:
             result = content_understanding_client.poll_result(response)
             analyzer_results.append({"id":analyzer_id, "result": result["result"]})
             analyzer_content.append({"id": analyzer_id, "content": result["result"]["contents"]})
-                       
+
     except Exception as e:
             print(e)
             print("Error in creating analyzer. Please double-check your analysis settings.\nIf there is a conflict, you can delete the analyzer and then recreate it, or move to the next cell and use the existing analyzer.")
@@ -343,7 +347,7 @@ for analyzer in analyzer_configs:
 print("Analyzer Results:")
 for analyzer_result in analyzer_results:
     print(f"Analyzer ID: {analyzer_result['id']}")
-    print(json.dumps(analyzer_result["result"], indent=2))            
+    print(json.dumps(analyzer_result["result"], indent=2))
 
 # Delete the analyzer if it is no longer needed
 #content_understanding_client.delete_analyzer(ANALYZER_ID)
@@ -366,7 +370,7 @@ The following code samples demonstrate the output of content and field extractio
 ---
 
 # [Document](#tab/document)
-The result shows the extraction of headers, paragraphs, tables, and other structural elements while maintaining the logical organization of the content. Additionally, it showcases the ability to extract key fields, providing concise extractions of lengthy materials. 
+The result shows the extraction of headers, paragraphs, tables, and other structural elements while maintaining the logical organization of the content. Additionally, it showcases the ability to extract key fields, providing concise extractions of lengthy materials.
 
 ```json
 {
@@ -417,12 +421,12 @@ The result shows the extraction of headers, paragraphs, tables, and other struct
             "words": [
               {
                ....
-              }, 
+              },
             ],
             "lines": [
               {
                 ...
-              }, 
+              },
             ]
           }
         ],
@@ -434,7 +438,7 @@ The result shows the extraction of headers, paragraphs, tables, and other struct
 ```
 
 # [Image](#tab/image)
-The result shows the conversion of visual information into searchable text by verbalizing diagrams, extracting embedded text, and identifying graphical components. 
+The result shows the conversion of visual information into searchable text by verbalizing diagrams, extracting embedded text, and identifying graphical components.
 
 ```json
 {
@@ -577,7 +581,7 @@ The result shows the extraction of video segments into meaningful units, spoken 
         "height": 960,
         "markdown": "# Shot 0:0.0 => 0:1.800\n\n## Transcript\n\n```\n\nWEBVTT\n\n0:0.80 --> 0:10.560\n<v Speaker>When I was planning my trip...",
         "fields": {
-          
+
           "description": {
             "type": "string",
             "valueString": "The video begins with a view from a glass floor, showing a person's feet in white sneakers standing on it. The scene captures a downward view of a structure, possibly a tower, with a grid pattern on the floor and a clear view of the ground below. The lighting is bright, suggesting a sunny day, and the colors are dominated by the orange of the structure and the gray of the floor."
@@ -604,9 +608,9 @@ The result shows the extraction of video segments into meaningful units, spoken 
 
 ---
 
-## Preprocessing the output from Content Understanding
+## Preprocessing output from Content Understanding
 
-Once the data is extracted using Azure AI Content Understanding, the next step is to prepare the analysis output for embedding within a search system. Preprocessing the output ensures that the extracted content is transformed into a format suitable for indexing and retrieval. This step involves converting the JSON output from the analyzers into structured strings, preserving both the content and metadata for seamless integration into downstream workflows. 
+Once the data is extracted using Azure AI Content Understanding, the next step is to prepare the analysis output for embedding within a search system. Preprocessing the output ensures that the extracted content is transformed into a format suitable for indexing and retrieval. This step involves converting the JSON output from the analyzers into structured strings, preserving both the content and metadata for seamless integration into downstream workflows.
 
 The following example demonstrates how to preprocess the output data from the analyzers, including documents, images, audio, and video. The process of converting each JSON output into a structured string lays the groundwork for embedding the data into a vector-based search system, enabling efficient retrieval and enhanced RAG workflows.
 
@@ -617,7 +621,7 @@ The following example demonstrates how to preprocess the output data from the an
 def convert_values_to_strings(json_obj):
     return [str(value) for value in json_obj]
 
-#process all content and convert to string      
+#process all content and convert to string
 def process_allJSON_content(all_content):
 
     # Initialize empty list to store string of all content
@@ -625,7 +629,7 @@ def process_allJSON_content(all_content):
 
     document_splits = [
         "This is a json string representing a document with text and metadata for the file located in "+str(analyzer_configs[0]["location"])+" "
-        + v 
+        + v
         + "```"
         for v in convert_values_to_strings(all_content[0]["content"])
     ]
@@ -644,7 +648,7 @@ def process_allJSON_content(all_content):
 
     #convert audio json object to string and append file metadata to the string
     audio_splits = [
-        "This is a json string representing an audio segment with transcription for the file located in "+str(analyzer_configs[2]["location"])+" " 
+        "This is a json string representing an audio segment with transcription for the file located in "+str(analyzer_configs[2]["location"])+" "
        + v
        + "```"
        for v in convert_values_to_strings(all_content[2]["content"])
@@ -660,20 +664,20 @@ def process_allJSON_content(all_content):
         for v in convert_values_to_strings(all_content[3]["content"])
     ]
     video = [Document(page_content=v) for v in video_splits]
-    output+=video    
-    
+    output+=video
+
     return output
 
 all_splits = process_allJSON_content(analyzer_content)
 
-print("There are " + str(len(all_splits)) + " documents.") 
+print("There are " + str(len(all_splits)) + " documents.")
 # Print the content of all doc splits
 for doc in all_splits:
     print(f"doc content", doc.page_content)
 ```
 
 ---
-## Embedding and Indexing Extracted Content
+## Embed and index extracted content
 
 After preprocessing the extracted data from Azure AI Content Understanding is complete, the next step is to embed and index the content for efficient retrieval. This step involves transforming the structured strings into vector embeddings using an embedding model and storing them within an Azure AI Search system. By embedding the content, you enable semantic search capabilities, allowing the system to retrieve the most relevant information based on meaning rather than exact keyword matches. This step is critical for building a robust RAG solution, as it ensures that the extracted content is optimized for advanced search and retrieval workflows.
 
@@ -703,7 +707,7 @@ vector_store = embed_and_index_chunks(all_splits)
 ```
 ---
 
-## Relevant Chunk Retrieval
+## Semantic chunk retrieval
 
 With the extracted content embedded and indexed, the next step is to use the power of similarity and vector search to retrieve the most relevant chunks of information. This section demonstrates how to execute both similarity and hybrid searches, enabling the system to surface content based on semantic meaning rather than exact keyword matches. By retrieving contextually relevant chunks, you can enhance the precision of your RAG workflows and provide more accurate, meaningful responses to user queries.
 
@@ -728,7 +732,7 @@ for doc in docs:
 ```
 ---
 
-## Question & Answering with OpenAI Chat Models
+## Use OpenAI to interact with data
 
 With the extracted content embedded and indexed, the final step in building a robust RAG solution is enabling conversational interactions using OpenAI chat models. This section demonstrates how to query your indexed data and apply OpenAI chat models to provide concise, contextually rich answers. By integrating conversational AI, you can transform your RAG solution into an interactive system that delivers meaningful insights and enhances user engagement. The following examples guide you through setting up a retrieval-augmented conversational flow, ensuring seamless integration between your data and OpenAI chat models.
 
@@ -737,8 +741,8 @@ With the extracted content embedded and indexed, the final step in building a ro
 ```python
 # Setup rag chain
 prompt_str = """You are an assistant for question-answering tasks. Use the following pieces of retrieved context to answer the question. If you don't know the answer, just say that you don't know. Use three sentences maximum and keep the answer concise.
-Question: {question} 
-Context: {context} 
+Question: {question}
+Context: {context}
 Answer:"""
 
 
