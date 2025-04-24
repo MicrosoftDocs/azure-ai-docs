@@ -70,6 +70,8 @@ items:
               displayName: openapi spec, openapi defined tools
             - name: How to use OpenAPI defined tools
               href: how-to/tools/openapi-spec-samples.md
+            - name: Invoke an OpenAPI App Service web app
+              href: /azure/app-service/invoke-openapi-web-app-from-azure-ai-agent-service?context=/azure/ai-services/agents/context/context
         - name: Azure Functions
           items:
             - name: Overview
