@@ -35,7 +35,7 @@ These insights empower your agents to deliver nuanced, informed solutions tailor
 
 # [Morningstar](#tab/morningstar)
 
-Create a developer account with Morningstar: To start, access the Morningstar tool with your Morningstar credentials. If you do not have a Morningstar account, contact `steven.berger@morningstar.com`, `romir.agarwal@morningstar.com`, and `nikhil.suresh@morningstar.com`. Provide an email address for your account username during onboarding. Morningstar will email instructions for creating a password and activating your account. Store and transmit your unique username and password securely. 
+Create a developer account with Morningstar: To start, access the Morningstar tool with your Morningstar credentials. If you do not have a Morningstar account, contact `iep-dev@morningstar.com`. Provide an email address for your account username during onboarding. Morningstar will email instructions for creating a password and activating your account. Store and transmit your unique username and password securely. 
 
 To get your token for your Morningstar developer account, use the following script: 
 
