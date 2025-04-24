@@ -60,7 +60,7 @@ In Azure, you must have **Owner** or **User Access Administrator** permissions o
 
 1. On your model provider, such Foundry Model, create a role assignment that gives the search service managed identity **Cognitive Services User** permissions. If you're testing locally, assign yourself to the same role. 
 
-1. For local testing, follow the steps in [Quickstart: Connect without keys](search-get-started-rbac) to get a personal access token and to ensure you're logged in to a specific subscription and tenant. Paste your personal identity token into the `@accessToken` variable. A request that connects using your personal identity should look similar to the following example:
+1. For local testing, follow the steps in [Quickstart: Connect without keys](search-get-started-rbac.md) to get a personal access token and to ensure you're logged in to a specific subscription and tenant. Paste your personal identity token into the `@accessToken` variable. A request that connects using your personal identity should look similar to the following example:
 
     ```http
     @search-url=<YOUR SEARCH SERVICE URL>
@@ -203,7 +203,7 @@ Content-Type: application/json
 }
 ```
 
-For more information about the retrieve API, see [](search-agentic-retrieval-how-to-retreive.md).
+For more information about the retrieve API, see [Retrieve data using an agent in Azure AI Search](search-agentic-retrieval-how-to-retrieve.md).
 
 ## Delete an agent
 
