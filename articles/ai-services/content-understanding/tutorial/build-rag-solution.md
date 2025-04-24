@@ -10,9 +10,9 @@ ms.topic: tutorial
 ms.date: 04/23/2025
 ---
 
-# Tutorial: Build a retrieval-augmented generation solution with Content Understanding
+# Tutorial: Build a retrieval-augmented generation solution 
 
-Retrieval-augmented generation (`RAG`) is a method that enhances the functionality of Large Language Models (`LLM`) by integrating data from external knowledge sources. This tutorial explains how to create a retrieval-augmented generation (RAG) solution using Azure AI Content Understanding. It covers the key steps to build a strong RAG system, offers tips to improve relevance and accuracy, and shows how to connect with other Azure services. By the end, you know how to use Content Understanding to handle multimodal data, improve retrieval, and help AI models provide accurate and meaningful responses.
+This tutorial explains how to create a retrieval-augmented generation (RAG) solution using Azure AI Content Understanding. It covers the key steps to build a strong RAG system, offers tips to improve relevance and accuracy, and shows how to connect with other Azure services. By the end, you can use Content Understanding to handle multimodal data, improve retrieval, and help AI models provide accurate and meaningful responses.
 
 ## Exercises included in this tutorial
 
@@ -46,15 +46,17 @@ To get started, you need **An active Azure subscription**. If you don't have an 
 
 ## Extract data
 
-Building a robust multimodal RAG solution begins with extracting and structuring data from diverse content types. Azure AI Content Understanding provides three key components to facilitate this process: **content extraction**, **field extraction**, and **analyzers**. Together, these components form the foundation for creating a unified, reusable, and enhanced data pipeline for RAG workflows.
+Retrieval-augmented generation (*RAG**) is a method that enhances the functionality of Large Language Models (*LLM**) by integrating data from external knowledge sources. Building a robust multimodal RAG solution begins with extracting and structuring data from diverse content types. Azure AI Content Understanding provides three key components to facilitate this process: **content extraction**, **field extraction**, and **analyzers**. Together, these components form the foundation for creating a unified, reusable, and enhanced data pipeline for RAG workflows.
 
 ## Implementation steps
 
 To implement data extraction in Content Understanding, follow these steps:
 
 1. **Create an Analyzer:** Define an analyzer using REST APIs or our Python code samples.
-2. **Perform Content Extraction:** Use the analyzer to process files and extract structured content.
-3. **(Optional) Enhance with Field Extraction:** Optionally, specify AI-generated fields to enrich the extracted content with added metadata.
+
+1. **Perform Content Extraction:** Use the analyzer to process files and extract structured content.
+
+1. **(Optional) Enhance with Field Extraction:** Optionally, specify AI-generated fields to enrich the extracted content with added metadata.
 
 ## Creating an analyzer
 
