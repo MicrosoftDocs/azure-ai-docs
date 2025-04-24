@@ -54,7 +54,7 @@ If you're an admin, or leading a development team, and need to manage the team's
 
 Using a project also enables connectivity to other services such as Azure AI services and Azure Storage. For more information, see the [Azure AI Foundry architecture](./concepts/architecture.md).
 
-## <a name="project-type></a> Types of projects
+## <a name="project-types"></a> Types of projects
 
 Azure AI Foundry supports two types of projects: a **[!INCLUDE [hub](includes/hub-project-name.md)]** and a **[!INCLUDE [fdp](includes/fdp-project-name.md)]**. When you create a project in Azure AI Foundry portal, you’ll be guided to the correct project type for your needs.
 
