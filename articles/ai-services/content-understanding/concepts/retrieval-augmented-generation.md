@@ -446,13 +446,7 @@ After extracting data with Azure AI Content Understanding, the next steps focus 
 
 After processing multimodal content with Azure AI Content Understanding, the next step is to create a comprehensive search infrastructure that leverages this richly structured data. By embedding the markdown and JSON outputs using Azure OpenAI's embedding models and indexing them with [Azure AI Search](https://docs.azure.cn/en-us/search/tutorial-rag-build-solution-index-schema), you can create a unified knowledge repository that seamlessly spans all content modalities.
 
-Azure AI Search provides advanced search strategies to maximize the value of multimodal content:
-
-- **Hybrid Search:** Combines semantic understanding and keyword matching to retrieve information based on both conceptual similarity and explicit terminology, ideal for multimodal content with varied expressions.
-- **Vector Search:** Leverages embeddings to uncover subtle semantic connections across modalities, even when terminology differs.
-- **Semantic Ranking:** Prioritizes results based on deeper contextual understanding rather than keyword frequency, surfacing the most relevant information regardless of format.
-
-By carefully selecting and configuring these search techniques based on your specific use case requirements, you can ensure that your RAG system retrieves the most relevant content across all modalities, significantly enhancing the quality and accuracy of generated responses.
+Azure AI Search provides advanced search strategies to maximize the value of multimodal content. In this scenario, we utilize [hybrid search](https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview) approach which combines both vector and full text indexing to blend keyword precision with semantic understanding - an approach particularly effective for complex queries requiring both exact matching and contextual relevance. By combining traditional keyword matching with vector embeddings, hybrid search significantly enhances the quality and relevance of information fed to the generation model, resulting in more accurate and contextually appropriate responses.
 
 > [!NOTE]
 > For comprehensive guidance on implementing different search techniques, visit the [Azure AI Search documentation](https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview).
@@ -497,13 +491,9 @@ Below is a minimal consolidated index that support vector and hybrid search and 
 
 ## 4. Utilize Azure OpenAI Models
 
-Once your content is extracted and indexed, integrate [Azure OpenAI's embedding and chat models](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions) to create an interactive question-answering system:
+Once your content is extracted and indexed, integrate [Azure OpenAI's embedding and chat models](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions) to create an interactive question-answering system.
 
-1. **Retrieve relevant content** from your unified index when a user submits a query
-2. **Create an effective prompt** that combines the user's question with the retrieved context
-3. **Generate responses** using Azure OpenAI models that reference specific content from various modalities
-
-This approach grounds responses with your actual content, enabling the model to answer questions by referencing specific document sections, describing relevant images, quoting from video transcripts, or citing speaker statements from audio recordings.
+Content Understanding enables effective grounded responses with your actual content, enabling the model to answer questions by referencing specific document sections, describing relevant images, quoting from video transcripts, or citing speaker statements from audio recordings.
 
 The combination of Content Understanding's extraction capabilities, Azure AI Search's retrieval functions, and Azure OpenAI's generation abilities creates a powerful end-to-end RAG solution that can seamlessly work with all your content types.
 
