@@ -119,7 +119,7 @@ DownloadLicense=True \
 Mounts:License={CONTAINER_LICENSE_DIRECTORY} 
 ```
 
-The `DownloadLicense=True` parameter in your `docker run` command downloads a license file to enable your Docker container to run when it isn't connected to the internet. It also contains an expiration date, after which the license file is invalid to run the container. You can only use a license file with the appropriate container that you're approved for. For example, you can't use a license file for a `text-analyze` container with a `image-analyze` container.
+The `DownloadLicense=True` parameter in your `docker run` command downloads a license file to enable your Docker container to run when it isn't connected to the internet. It also contains an expiration date, after which the license file is invalid to run the container. You can only use a license file with the appropriate container that you're approved for. For example, you can't use a license file for a `text-analyze` container with an `image-analyze` container.
 
 Once the license file is downloaded, you can run the container in a disconnected environment. The following example shows the formatting of the `docker run` command you use, with placeholder values. Replace these values with your own values.
 

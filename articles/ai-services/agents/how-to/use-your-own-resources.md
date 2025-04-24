@@ -41,7 +41,7 @@ Replace the parameter value for `aiServiceAccountResourceId` with the full arm r
 
     The value returned is the `aiServiceAccountResourceId` you need to use in the template.
 
-2. In the basic agent template file, replace the following placeholders:
+3. In the basic agent template file, replace the following placeholders:
     
     ```
     aiServiceAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}
@@ -74,9 +74,10 @@ Use an existing AI Services / Azure OpenAI, Azure Storage account, Azure Cosmos 
     ```az login``` 
 2. Then run the command:
 
-    ```az search service show --resource-group  <your-resource-group> --name <your-storage-account>  --query "id" --output tsv```
-    
+    ```az storage account show --resource-group  <your-resource-group> --name <your-storage-account>  --query "id" --output tsv```
+   
      The output is the `aiStorageAccountResourceID` you need to use in the template.
+   
 3. In the standard agent template file, replace the following placeholders:
     
     ```

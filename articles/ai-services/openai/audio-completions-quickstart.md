@@ -45,13 +45,17 @@ recommendations: false
 
 ::: zone-end
 
-
 ## Clean-up resources
 
 If you want to clean up and remove an Azure OpenAI resource, you can delete the resource. Before deleting the resource, you must first delete any deployed models.
 
 - [Azure portal](../multi-service-resource.md?pivots=azportal#clean-up-resources)
 - [Azure CLI](../multi-service-resource.md?pivots=azcli#clean-up-resources)
+
+## Troubleshooting
+
+> [!NOTE]
+> When using `gpt-4o-audio-preview` for chat completions with the audio modality and `stream` is set to true the only supported audio format is pcm16.
 
 ## Related content
 
