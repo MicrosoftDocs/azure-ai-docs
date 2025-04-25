@@ -16,12 +16,12 @@ This tutorial explains how to create a retrieval-augmented generation (RAG) solu
 
 ## Exercises included in this tutorial
 
-1. **[Create an analyzer](#creating-an-analyzer)**. Learn how to create reusable analyzers to extract structured content from multimodal data using content extraction.
-1. **[Generate targeted metadata with field extraction](#content-and-field-extraction)**. Discover how to use AI to generate further metadata, such as summaries or key topics, to enrich extracted content.
-1. **[Preprocess extracted content](#preprocessing-output-from-content-understanding)**. Explore ways to transform extracted content into vector embeddings for semantic search and retrieval.
-1. **[Design a unified index](#embed-and-index-extracted-content)**. Develop a unified Azure AI Search index that integrates and organizes multimodal data for efficient retrieval.
-1. **[Semantic chunk retrieval](#semantic-chunk-retrieval)**. Extract contextually relevant information to deliver more precise and meaningful answers to user queries.
-1. **[Interact with data using chat models](#use-openai-to-interact-with-data)** Use Azure OpenAI chat models to engage with your indexed data, enabling conversational search, querying, and answering.
+* **[Create an analyzer](#creating-an-analyzer)**. Learn how to create reusable analyzers to extract structured content from multimodal data using content extraction.
+* **[Generate targeted metadata with field extraction](#content-and-field-extraction)**. Discover how to use AI to generate further metadata, such as summaries or key topics, to enrich extracted content.
+* **[Preprocess extracted content](#preprocessing-output-from-content-understanding)**. Explore ways to transform extracted content into vector embeddings for semantic search and retrieval.
+* **[Design a unified index](#embed-and-index-extracted-content)**. Develop a unified Azure AI Search index that integrates and organizes multimodal data for efficient retrieval.
+* **[Semantic chunk retrieval](#semantic-chunk-retrieval)**. Extract contextually relevant information to deliver more precise and meaningful answers to user queries.
+* **[Interact with data using chat models](#use-openai-to-interact-with-data)** Use Azure OpenAI chat models to engage with your indexed data, enabling conversational search, querying, and answering.
 
 ## Prerequisites
 
@@ -46,7 +46,7 @@ To get started, you need **An active Azure subscription**. If you don't have an 
 
 ## Extract data
 
-Retrieval-augmented generation (*RAG**) is a method that enhances the functionality of Large Language Models (*LLM**) by integrating data from external knowledge sources. Building a robust multimodal RAG solution begins with extracting and structuring data from diverse content types. Azure AI Content Understanding provides three key components to facilitate this process: **content extraction**, **field extraction**, and **analyzers**. Together, these components form the foundation for creating a unified, reusable, and enhanced data pipeline for RAG workflows.
+Retrieval-augmented generation (*RAG**) is a method that enhances the functionality of Large Language Models (**LLM**) by integrating data from external knowledge sources. Building a robust multimodal RAG solution begins with extracting and structuring data from diverse content types. Azure AI Content Understanding provides three key components to facilitate this process: **content extraction**, **field extraction**, and **analyzers**. Together, these components form the foundation for creating a unified, reusable, and enhanced data pipeline for RAG workflows.
 
 ## Implementation steps
 
@@ -58,7 +58,7 @@ To implement data extraction in Content Understanding, follow these steps:
 
 1. **(Optional) Enhance with Field Extraction:** Optionally, specify AI-generated fields to enrich the extracted content with added metadata.
 
-## Creating an analyzer
+## Create analyzers
 
 Analyzers are reusable components in Content Understanding that streamline the data extraction process. Once an analyzer is created, it can be used repeatedly to process files and extract content or fields based on predefined schemas. An analyzer acts as a blueprint for how data should be processed, ensuring consistency and efficiency across multiple files and content types.
 
@@ -113,7 +113,7 @@ sys.path.append(str(parent_dir))
 ```
 ---
 
-#### Create analyzers
+#### Code sample: create analyzer
 
 ``` python
 from pathlib import Path
@@ -788,6 +788,9 @@ while True:
 
 
 ## Next steps
-- [Explore our RAG Python code samples](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)
-- [Try a multimodal content solution accelerator](https://github.com/microsoft/content-processing-solution-accelerator)
-- [Learn more about the capabilities of Content Understanding]()
+
+* [Explore our RAG Python code samples](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)
+
+* [Try a multimodal content solution accelerator](https://github.com/microsoft/content-processing-solution-accelerator)
+
+* [Learn more Content Understanding capabilities](../concepts/capabilities.md)

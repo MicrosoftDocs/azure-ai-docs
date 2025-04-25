@@ -16,14 +16,14 @@ Retrieval-augmented Generation (**RAG**) is a method that enhances the capabilit
 
 Azure AI Content Understanding addresses these challenges by offering advanced content extraction capabilities across diverse modalities. The service seamlessly integrates advanced natural language processing, computer vision, and speech recognition into a unified framework. This integration eliminates the complexities of managing separate extraction pipelines and workflows. A unified approach ensures superior data handling for documents, images, audio, and video, thus enhancing both precision and depth in information retrieval. Such innovation proves especially beneficial for **RAG** applications, where the accuracy and contextual relevance of responses depend on a deep understanding of interconnections, interrelationships, and context.
 
-:::image type="content" source="../media/concepts/rag-architecture-1.png" alt-text="screenshot of Azure Content Understanding service architecture.":::
+:::image type="content" source="../media/concepts/rag-architecture-1.png" alt-text="screenshot of Azure Content Understanding service architecture." lightbox="../media/concepts/rag-architecture-1.png" :::
 
 ## Multimodal data and RAG
 
 In traditional content processing, simple text extraction sufficed for many content processing use cases. Modern enterprise environments encompass a vast array of complex information across diverse formats:
 
  * **Documents** featuring intricate layouts.
- * **Images** rich with visual details and insights. 
+ * **Images** rich with visual details and insights.
  * **Audio** recordings capturing pivotal conversations.
  * **Videos** that seamlessly integrate and unify multiple data types.
 
@@ -52,22 +52,23 @@ Azure AI Content Understanding addresses the core challenges of multimodal **RAG
 
 * **Optimized query performance:** Content Understanding mitigates modality bias and context fragmentation by providing structured, enriched data that supports advanced relevance ranking across modalities. This approach ensures that user queries yield the most relevant information, enhancing the coherence and precision of generated responses.
 
-:::image type="content" source="../media/concepts/rag-architecture-2.png" alt-text="Screenshot of Content Understanding RAG architecture overview, process, and workflow with Azure AI Search and Azure OpenAI.":::
+:::image type="content" source="../media/concepts/rag-architecture-2.png" alt-text="Screenshot of Content Understanding RAG architecture overview, process, and workflow with Azure AI Search and Azure OpenAI." lightbox="../media/concepts/rag-architecture-2.png" :::
 
 Content extraction forms the foundation of effective RAG systems by transforming raw multimodal data into structured, searchable formats optimized for retrieval. The implementation varies by content type:
 - **Document:** Extracts hierarchical structures, such as headers, paragraphs, tables, and page elements, preserving the logical organization of training materials.
-- **Audio:** Generates speaker-aware transcriptions that accurately capture spoken content while automatically detecting and processing multiple languages. 
+- **Audio:** Generates speaker-aware transcriptions that accurately capture spoken content while automatically detecting and processing multiple languages.
 - **Video:** Divides video into meaningful units, transcribes spoken content, and provides scene descriptions while addressing context window limitations in generative AI models.
 
 While content extraction provides a strong foundation for indexing and retrieval, it may not fully address domain-specific needs or provide deeper contextual insights. Learn more about [content extraction](./capabilities.md#content-extraction) capabilities.
 
 1. [Extract content](#content-extraction). Convert unstructured multimodal data into a structured representation.
 
-Field extraction complements content extraction by generating targeted metadata that enriches the knowledge base and improves retrieval precision. The implementation varies by content type:
-- **Document:** Extract key topics/fields to provide concise overviews of lengthy materials.
-- **Image:** Converts visual information into searchable text by verbalizing diagrams, extracting embedded text, and identifying graphical components.
-- **Audio:** Extract key topics or sentiment analysis from conversations and to provide added context for queries.
-- **Video:** Generate scene-level summaries, identify key topics, or analyze brand presence and product associations within video footage. 
+   Field extraction complements content extraction by generating targeted metadata that enriches the knowledge base and improves retrieval precision. The implementation varies by content type:
+
+   * **Document:** Extract key topics/fields to provide concise overviews of lengthy materials.
+   * **Image:** Convert visual information into searchable text by verbalizing diagrams, extracting embedded text, and identifying graphical components.
+   * **Audio:** Extract key topics or sentiment analysis from conversations and to provide added context for queries.
+   * **Video:** Generate scene-level summaries, identify key topics, or analyze brand presence and product associations within video footage.
 
 1. [Create a unified search index](#create-a-unified-search-index). Store the embedded vectors in a database or search index for efficient retrieval.
 
@@ -82,7 +83,7 @@ The RAG implementation process starts with data extraction using Azure AI Conten
 * **Audio:** Generates speaker-aware transcriptions that accurately capture spoken content across multiple languages through automatic detection and processing.
 * **Video:** Segments video content into meaningful units using scene detection and key frame extraction. It creates descriptive summaries, transcribes spoken dialogue, identifies key topics, and analyzes sentiment indicators throughout the footage. Scene descriptions are provided while addressing context limitations inherent to generative AI models.
 
-#### Field Extraction
+#### Field extraction
 
 While content extraction provides a strong foundation for indexing and retrieval, it may not fully address specialized domain-specific requirements or deliver deeper contextual insights. Field extraction is a valuable complement to content extraction by producing targeted metadata that enriches the knowledge base and improves retrieval accuracy:
 
@@ -94,9 +95,9 @@ While content extraction provides a strong foundation for indexing and retrieval
 
 Integrating content extraction with field extraction enables organizations to develop a knowledge base that is context-rich and optimized for indexing, retrieval, and RAG scenarios. This approach enables more precise and relevant responses to user inquiries. To learn more, *see* [content extraction](./capabilities.md#content-extraction) and [field extraction](./capabilities.md#field-extraction) capabilities.
 
-#### Code Sample: Analyzer and Schema Configuration
+#### Code sample: analyzer and schema configuration
 
-The following code samples show an analyzer and schema creation for various modalities in a multimodal RAG scenario. 
+The following code samples show an analyzer and schema creation for various modalities in a multimodal RAG scenario.
 
 ---
 
@@ -219,7 +220,7 @@ The following code samples show an analyzer and schema creation for various moda
 
 ---
 
-#### Code Sample: Extraction Response
+#### Code sample: extraction response
 
 The following code sample showcases the results of content and field extraction using Azure AI Content Understanding. These results demonstrate how multimodal data is transformed into structured, enriched formats, ready for indexing and retrieval in RAG workflows.
 
@@ -276,12 +277,12 @@ The following code sample showcases the results of content and field extraction 
             "words": [
               {
                ....
-              }, 
+              },
             ],
             "lines": [
               {
                 ...
-              }, 
+              },
             ]
           }
         ],
@@ -433,7 +434,7 @@ The following code sample showcases the results of content and field extraction 
         "height": 960,
         "markdown": "# Shot 0:0.0 => 0:1.800\n\n## Transcript\n\n```\n\nWEBVTT\n\n0:0.80 --> 0:10.560\n<v Speaker>When I was planning my trip...",
         "fields": {
-          
+
           "description": {
             "type": "string",
             "valueString": "The video begins with a view from a glass floor, showing a person's feet in white sneakers standing on it. The scene captures a downward view of a structure, possibly a tower, with a grid pattern on the floor and a clear view of the ground below. The lighting is bright, suggesting a sunny day, and the colors are dominated by the orange of the structure and the gray of the floor."
@@ -482,17 +483,17 @@ The following JSON code sample shows a minimal consolidated index that support v
     # Document content fields
     {"name": "document_content", "type": "Edm.String", "searchable": true, "retrievable": true},
     {"name": "document_headers", "type": "Edm.String", "searchable": true, "retrievable": true},
-    
+
     # Image-derived content
-    {"name": "visual_descriptions", "type": "Edm.String", "searchable": true, "retrievable": true}, 
-    { "name": "chunked_content_vectorized", "type": "Edm.Single", "dimensions": 1536, "vectorSearchProfile": "my-vector-profile", "searchable": true, "retrievable": false, "stored": false },   
+    {"name": "visual_descriptions", "type": "Edm.String", "searchable": true, "retrievable": true},
+    { "name": "chunked_content_vectorized", "type": "Edm.Single", "dimensions": 1536, "vectorSearchProfile": "my-vector-profile", "searchable": true, "retrievable": false, "stored": false },
 
     # Video content components
     {"name": "video_transcript", "type": "Edm.String", "searchable": true, "retrievable": true},
     {"name": "scene_descriptions", "type": "Edm.String", "searchable": true, "retrievable": true},
     {"name": "video_topics", "type": "Edm.String", "searchable": true, "retrievable": true},
     { "name": "chunked_content_vectorized", "type": "Edm.Single", "dimensions": 1536, "vectorSearchProfile": "my-vector-profile", "searchable": true, "retrievable": false, "stored": false },
-    
+
     # Audio processing results
     {"name": "audio_transcript", "type": "Edm.String", "searchable": true, "retrievable": true},
     {"name": "speaker_attribution", "type": "Edm.String", "searchable": true, "retrievable": true},
@@ -503,7 +504,7 @@ The following JSON code sample shows a minimal consolidated index that support v
       "algorithms": [
           { "name": "my-algo-config", "kind": "hnsw", "hnswParameters": { }  }
       ],
-      "profiles": [ 
+      "profiles": [
         { "name": "my-vector-profile", "algorithm": "my-algo-config" }
       ]
   }
@@ -511,7 +512,7 @@ The following JSON code sample shows a minimal consolidated index that support v
 ```
 ---
 
-### Utilize Azure OpenAI Models
+### Utilize Azure OpenAI models
 
 Once your content is extracted and indexed, integrate [Azure OpenAI's embedding and chat models](../../openai/concepts/models.md) to create an interactive question-answering system:
 
@@ -520,13 +521,21 @@ This approach grounds the response with your actual content, enabling the model 
 The combination of Content Understanding's extraction capabilities, Azure AI Search's retrieval functions, and Azure OpenAI's generation abilities creates a powerful end-to-end RAG solution that can seamlessly work with all your content types.
 
 ## Get started
+
 Content Understanding supports the following development options:
+
 * [REST API](../quickstart/use-rest-api.md) Quickstart.
-* [Azure Foundry](../quickstart//use-ai-foundry.md) Portal Quickstart. 
+
+* [Azure Foundry](../quickstart//use-ai-foundry.md) Portal Quickstart.
 
 ## Next steps
-* Try our RAG [code samples.](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)
+
+* Try our [RAG code samples.](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)
+
 * Follow our [RAG Tutorial](../tutorial/build-rag-solution.md)
-* Learn more about [document](../document/overview.md), [image](../image/overview.md), [audio](../audio/overview.md), [video](../video/overview.md) capabilities.
-* Learn more about Content Understanding [**best practices**](../concepts/best-practices.md) and [**capabilities**](../concepts/capabilities.md).
+
+* Learn more about [document](../document/overview.md), [image](../image/overview.md), [audio](../audio/overview.md), and [video](../video/overview.md) capabilities
+
+* Learn more about Content Understanding [**best practices**](../concepts/best-practices.md) and [**capabilities**](../concepts/capabilities.md)
+
 * Review Content Understanding [**code samples**](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python?tab=readme-ov-file#azure-ai-search-with-content-understanding-samples-python)
