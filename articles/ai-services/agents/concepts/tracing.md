@@ -21,7 +21,7 @@ Determining the reasoning behind your agent's executions is important for troubl
 
 Tracing solves this by allowing you to clearly see the inputs and outputs of each primitive involved in a particular agent run, in the order in which they were invoked.
 
-## Tracing in the Azure AI Foundry Agents playground.
+## Tracing in the Azure AI Foundry Agents playground
 
 The Agents playground in the Azure AI Foundry portal lets you trace threads and runs that your agents produce. To open a trace, select **Thread info** in an active thread.  
 
@@ -33,7 +33,7 @@ The screen that appears will be let you view the: thread, run, run steps and any
 
 > [!TIP]
 > If you want to view the trace of a previous thread, select **Agent Playground**. Choose a thread in the **Create and debug your agents** screen, and then select **Try in playground**.
-> :::image type="content" source="../media/thread-highlight.png" alt-text="A screenshot of the create and debug screen.." lightbox="../media/thread-highlight.png":::
+> :::image type="content" source="../media/thread-highlight.png" alt-text="A screenshot of the create and debug screen." lightbox="../media/thread-highlight.png":::
 > You will be able to see the **Thread info** button at the top of the screen to view the trace. 
 
 ## Trace agents using OpenTelemetry and an Application Insights resource
