@@ -124,15 +124,13 @@ You can test the network connection to Azure OpenAI using the Test-NetConnection
    Test-NetConnection 10.0.0.4 -Port 443
    ```
 
-    :::image type="content" source="../media/how-to/network/powershell.png" alt-text="Screenshot of network connection test with PowerShell" lightbox="../media/how-to/network/powershell.png":::
-
 This command should succeed only from a machine that is on the same private network as your Azure OpenAI instance. If this command fails, it means there is a networking issue. Here are some possible causes:
 
-1. DNS Issue: The Domain Name System (DNS) is responsible for translating domain names into IP addresses. If there's an issue with the DNS, it might not be able to correctly resolve the domain name of your Azure OpenAI instance to its IP address.
+- DNS Issue: The Domain Name System (DNS) is responsible for translating domain names into IP addresses. If there's an issue with the DNS, it might not be able to correctly resolve the domain name of your Azure OpenAI instance to its IP address.
 
-1. Machine Not on Private Network: If the machine you're running the command on is not on the same private network as your Azure OpenAI instance, the command will fail because it won't be able to reach the private IP address. Make sure that the machine is connected to the correct private network.
+- Machine Not on Private Network: If the machine you're running the command on is not on the same private network as your Azure OpenAI instance, the command will fail because it won't be able to reach the private IP address. Make sure that the machine is connected to the correct private network.
 
-1. Customer Firewall Blocking: If there's a custom firewall set up between the machine and the Azure OpenAI instance, it might be blocking the connection. Firewalls are security measures that control incoming and outgoing network traffic based on predetermined security rules. You will need to check your firewall settings and make sure that traffic on port 443 is allowed.
+- Customer Firewall Blocking: If there's a custom firewall set up between the machine and the Azure OpenAI instance, it might be blocking the connection. Firewalls are security measures that control incoming and outgoing network traffic based on predetermined security rules. You will need to check your firewall settings and make sure that traffic on port 443 is allowed.
 
 ## Next steps
 
