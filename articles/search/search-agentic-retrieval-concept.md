@@ -21,7 +21,7 @@ Programmatically, agentic retrieval is supported through a new Agents object cla
 
 ## Why use agentic retrieval
 
-You should use agentic retrieval when you want to customize a chat experience with high quality inputs that include your proprietary data. The grounding data exists as indexed documents (plain text and vectors) in Azure AI Search. The custom experience is powered by a new agent capability in AI Search that adds query expansion powered by a chat completion model for query planning and execution. 
+You should use agentic retrieval when you want to customize a chat experience with high quality inputs that include your proprietary data. The grounding data is derived from indexed documents (plain text and vectors) in Azure AI Search. The custom experience is powered by a new retrieval pipeline in AI Search that adds query expansion powered by a chat completion model for query planning and execution. It's intended for integration into custom chat solutions, particular those patterned after an agent-to-agent approach.
 
 The *agentic* aspect is an evaluation and reasoning step in query planning processing that's performed by a large language model (LLM). The LLM is tasked with designing multiple subqueries based on the inputs and parameters you provide. All queries execute in parallel and return a rich response that can be used holistically or partially, depending on your scenario. 
 
