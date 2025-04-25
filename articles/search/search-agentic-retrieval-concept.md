@@ -15,13 +15,17 @@ ms.date: 04/30/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, *agentic retrieval* is a new parallel query processing architecture that generates multiple queries from each retriever request and uses a chat completion model for query planning and execution. The *agentic* aspect is an evaluation and reasoning step in query planning processing that's performed by a large language model (LLM). The LLM is tasked with creating multiple subqueries based on the inputs and parameters you provide. All queries execute in parallel and return a rich response that can be used holistically. You can extract individual elements for your scenario.
+In Azure AI Search, *agentic retrieval* is a new parallel query processing architecture that generates multiple subqueries from a single retriever request, producing high quality grounding data for chat and generative AI solutions. 
 
-Programmatically, agentic retrieval is supported through a new Agents object class in the newest preview data plane REST API, 2025-05-01-preview. A retriever response is optimized for downstream consumption by other agents and chat apps.
+Programmatically, agentic retrieval is supported through a new Agents object class in the newest preview data plane REST API, 2025-05-01-preview. An agent's retriever response is optimized for downstream consumption by other agents and chat apps based on generative AI.
 
 ## Why use agentic retrieval
 
-Agentic retrieval adds latency to query processing, but it brings by these powerful capabilities:
+You should use agentic retrieval when you want to customize a chat experience with high quality inputs that include your proprietary data. The grounding data exists as indexed documents (plain text and vectors) in Azure AI Search. The custom experience is powered by a new agent capability in AI Search that adds query expansion and a chat completion model for query planning and execution. 
+
+The *agentic* aspect is an evaluation and reasoning step in query planning processing that's performed by a large language model (LLM). The LLM is tasked with designing multiple subqueries based on the inputs and parameters you provide. All queries execute in parallel and return a rich response that can be used holistically or you can extract individual elements, depending on your scenario. 
+
+Agentic retrieval adds latency to query processing, but it adds these capabilities:
 
 + Input existing chat history as a subquery.
 + Rewrite original query into multiple subqueries using both synonym maps *and* LLM-powered paraphrasing.
