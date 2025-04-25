@@ -27,20 +27,39 @@ In this quickstart, you use [Azure AI Foundry](https://ai.azure.com) to:
 . The Azure AI Foundry SDK is available in multiple languages, including Python, Java, JavaScript, and C#. This quickstart provides instructions for each of these languages.
 
 ## Prerequisites
+
 - An [Azure subscription](https://azure.microsoft.com/free/). If you don't have an Azure subscription, create a free account before you begin.
 
 ### Set up your environment  
 
 # [Azure AI Foundry portal](#tab/azure-ai-studio)
+
 No further installation necessary to use the Azure AI Foundry portal.
+
 # [Python SDK](#tab/python)
-Install info here for Python.  Do we also need to install the Azure CLI?  If so, add that here.
+
+1. [Set up your development environment](../how-to/develop/install-cli-sdk.md?tab-python)
+1. Install these packages:
+
+    ```
+    install openai and azure-ai-projects packages
+    pip install openai azure-ai-projects azure-identity
+    ```
+
 # [Java](#tab/java)
-Install info here for Java.  Do we also need to install the Azure CLI?  If so, add that here.
+
+1. [Set up your development environment](../how-to/develop/install-cli-sdk.md?tab=java)
+1. ??? 
+
 # [JavaScript](#tab/javascript)
-Install info here for JavaScript.  Do we also need to install the Azure CLI?  If so, add that here.
+
+1. [Set up your development environment](../how-to/develop/install-cli-sdk.md?tab=javascript)
+1. ??? 
+
 # [C#](#tab/csharp)
-Install info here for C#.  Do we also need to install the Azure CLI?  If so, add that here.
+
+1. [Set up your development environment](../how-to/develop/install-cli-sdk.md?tab-csharp)
+1. ??? 
 
 ---
 
@@ -69,23 +88,16 @@ Info here.
 
 ## Deploy a model
 
-# [Azure AI Foundry portal](#tab/azure-ai-studio)
+@@Do we have to do this in portal?  
 
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
+
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. If you aren't already in the project, select the project you just created. 
 1. From the left pane, select **Model catalog**.
-1. Search for the model you want to deploy.  For this quickstart, select **GPT 4.1-mini**.
+1. Search for the model you want to deploy.  For this quickstart, select **gpt-4o**.
 1. Select **Use this model**.
 1. Do not change the default settings.  Select **Deploy**.
-
-# [Python SDK](#tab/python)
-Info here.
-# [Java](#tab/java)
-Info here.
-# [JavaScript](#tab/javascript)
-Info here.
-# [C#](#tab/csharp)
-Info here.
-
----
 
 ## Run a chat completion
 
@@ -97,7 +109,10 @@ Info here.
 1. The model returns a response in the **Response** pane.
 
 # [Python SDK](#tab/python)
-Info here.
+
+:::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/doc-samples/getting-started/python/quickstart.py" id="chat_completion":::
+
+
 # [Java](#tab/java)
 Info here.
 # [JavaScript](#tab/javascript)
@@ -107,12 +122,14 @@ Info here.
 
 ---
 
-## Run an agent
+## Create and run an agent
 
 # [Azure AI Foundry portal](#tab/azure-ai-studio)
 Info here.
 # [Python SDK](#tab/python)
-Info here.
+
+:::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/doc-samples/getting-started/python/quickstart.py" id="create_and_run_agent":::
+
 # [Java](#tab/java)
 Info here.
 # [JavaScript](#tab/javascript)
@@ -121,6 +138,41 @@ Info here.
 Info here.
 
 ---
+
+## Add files to the agent
+
+# [Azure AI Foundry portal](#tab/azure-ai-studio)
+Info here.
+# [Python SDK](#tab/python)
+
+:::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/doc-samples/getting-started/python/quickstart.py" id="ccreate_filesearch_agent":::
+
+# [Java](#tab/java)
+Info here.
+# [JavaScript](#tab/javascript)
+Info here.
+# [C#](#tab/csharp)
+Info here.
+
+---
+
+## Evaluate the agent run
+
+# [Azure AI Foundry portal](#tab/azure-ai-studio)
+Info here.
+# [Python SDK](#tab/python)
+
+:::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/doc-samples/getting-started/python/quickstart.py" id="evaluate_agent_run":::
+
+# [Java](#tab/java)
+Info here.
+# [JavaScript](#tab/javascript)
+Info here.
+# [C#](#tab/csharp)
+Info here.
+
+---
+
 
 ## Clean up resources
 
