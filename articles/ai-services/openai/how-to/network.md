@@ -1,19 +1,32 @@
+---
+title: 'Securing Azure OpenAI inside a virtual network with private endpoints'
+titleSuffix: Azure OpenAI
+description: How to secure your Azure OpenAI resource inside a virtual network with private endpoints
+manager: nitinme
+ms.service: azure-ai-openai
+ms.topic: how-to
+ms.date: 04/25/2025
+author: mrbullwinkle
+ms.author: mbullwin
+recommendations: false
+---
+
 # Configure Azure OpenAI networking
 
 In this article, learn how to create and connect to a secure Azure OpenAI resource. The steps in this article use an Azure Virtual Network to create a security boundary for your Azure OpenAI resource.
 
 After completing this article, you'll have the following architecture:
 
-- An Azure Virtual Network, with a subnet where your Azure OpenAI script will reside 
+- An Azure Virtual Network, with a subnet where your Azure OpenAI resource will reside.
 - An Azure OpenAI resource that uses a private endpoint to communicate using the virtual network.
 - Azure Bastion, which allows you to use your browser to securely communicate with the jump box VM inside the virtual network.
 - An Azure Virtual Machine that you can remotely connect to and access resources secured inside the virtual network.
 
 ## Prerequisites
 
-Familiarity with Azure Virtual Networks and IP networking. If you aren't familiar, try the Fundamentals of computer networking module.  
+Familiarity with Azure Virtual Networks and IP networking. If you aren't familiar, try the [Fundamentals of computer networking module](/training/modules/network-fundamentals/).  
 
-For more on networking in Azure AI Services resource, see Configure Virtual Networks for Azure AI services.
+For more on networking in Azure AI Services resource, see [Configure Virtual Networks for Azure AI services](/azure/ai-services/cognitive-services-virtual-networks).
 
 ## Create a virtual network
 
@@ -22,7 +35,7 @@ To create a virtual network, use the following steps:
 1. In the [Azure portal](https://portal.azure.com), select the portal menu in the upper left corner. From the menu, select **+ Create a resource** and then enter **Virtual Network** in the search field. Select the Virtual Network entry, and then select **Create**.
 2. From the **Basics** tab, select the Azure subscription to use for this resource and then select or create a new resource group. Under Instance details, enter a friendly name for your virtual network and select the region to create it in.
 
-    [!network-basics]
+    :::image type="content" source="../../media/how-to/global-batch/network-basics.png" alt-text="Screenshot of virtual network setup." lightbox="../../media/how-to/global-batch/network-basics.png":::
 
 1. Accept the default settings for **Security** and IP **addresses**. A subnet titled "default" will be created for your virtual network. Best practice is to create another subnet to delegate all private endpoints.
 1. Select **Review + create**.
@@ -39,17 +52,17 @@ To create a virtual network, use the following steps:
 1. In the Azure portal, select the Azure OpenAI resource you created. In Resource Management, navigate to the Networking tab.
 2. Under Allow access from, select Disabled. Disabled ensures no networks can access this resource. Private endpoint connections will be the exclusive way to access this resource. Select Save to save the settings.
 
-    [!network-disabled]
+    :::image type="content" source="../../media/how-to/global-batch/network-disabled.png" alt-text="Screenshot of resource network disabled UX." lightbox="../../media/how-to/global-batch/network-disabled.png":::
 
 1. Navigate to the Private endpoint connections tab and select **+ Private endpoint**. 
 
-     [!private-endpoint]
+    :::image type="content" source="../../media/how-to/global-batch/private-endpoint.png" alt-text="Screenshot of private endpoint connections tab." lightbox="../../media/how-to/global-batch/private-endpoint.png":::
 
 1. From the Basics tab, select the Azure subscription to use for this resource and then select or create a new resource group. Under Instance details, enter a name for your resource and select the region to create it in. The region you create the private network in must be the same as the region you chose to create your virtual network in. The network interface name will automatically use the name and will add "-nic".
 
-    [!create-private-endpoint]
+    :::image type="content" source="../../media/how-to/global-batch/create-private-endpoint.png" alt-text="Screenshot of create private endpoint." lightbox="../../media/how-to/global-batch/create-private-endpoint.png":::
 
-1. From the Resource tab, the Resource type should be Microsoft.CognitiveServices/accounts. For Target sub-resource, select "account".
+1. From the Resource tab, the Resource type should be `Microsoft.CognitiveServices/accounts`. For Target sub-resource, select **account**.
 
 1. From the Virtual Network tab, use the following values:
    - Virtual network: The virtual network you created earlier.
@@ -61,19 +74,20 @@ To create a virtual network, use the following steps:
    - Subscription: The same Azure subscription that contains the previous resources.
    - Resource group: The same Azure resource group that contains the previous resources.
 
-    [!create-private-link]
+    :::image type="content" source="../../media/how-to/global-batch/create-private-link.png" alt-text="Screenshot of create private link DNS tab." lightbox="../../media/how-to/global-batch/create-private-link.png":::
 
 1. Select **Review + create**. Verify that the information is correct, and then select **Create**.
 
 1. Once the private endpoint is created, you should see your private endpoint connection name, state, and description. You can select the link to the private endpoint and view further details on its DNS configuration.
 
-    [!deployment-details]
+    
+    :::image type="content" source="../../media/how-to/global-batch/deployment-details.png" alt-text="Screenshot of deployment details post private link and endpoint deployment." lightbox="../../media/how-to/global-batch/deployment-details.png":::
 
 ## Configure gateway and client for local network access
 
 To access the Azure OpenAI Service from your local or on-premises client machines, there are two approaches. One approach is to configure a virtual machine deployed in the same virtual network. Another approach is to configure Azure VPN Gateway and Azure VPN Client.
 
-For guidelines to set up a virtual network gateway for your virtual network, see Tutorial – Create & manage a VPN gateway. To add point-to-site configuration, and enable Microsoft Entra ID based authentication, see Configure P2S VPN gateway for Microsoft Entra ID authentication. Download the Azure VPN Client profile configuration package, unzip, and import the AzureVPN/azurevpnconfig.xml file to your Azure VPN client.
+For guidelines to set up a virtual network gateway for your virtual network, see [Tutorial – Create & manage a VPN gateway](/azure/vpn-gateway/tutorial-create-gateway-portal#VNetGateway). To add point-to-site configuration, and enable Microsoft Entra ID based authentication, see [Configure a VPN gateway for Microsoft Entra ID](/azure/vpn-gateway/openvpn-azure-ad-tenant#enable-authentication) authentication. Download the Azure VPN Client profile configuration package, unzip, and import the AzureVPN/azurevpnconfig.xml file to your Azure VPN client.
 
 Configure your local machine hosts file to point your resources host names to the private IPs in your virtual network. The hosts file is located at C:\Windows\System32\drivers\etc for Windows, and at /etc/hosts on Linux. Example: 10.0.0.5 contoso.openai.azure.com
 
@@ -90,7 +104,7 @@ To set up a basic hub and spoke architecture:
 
 ## Configure your Network Security Group (NSG)
 
-Network Security Groups are used to control inbound and outbound traffic to network interfaces (NIC), VMs and subnets. You will need to configure NSG to allow traffic to and from Azure OpenAI. For more on configuring NSGs, see Azure network security groups overview.
+Network Security Groups are used to control inbound and outbound traffic to network interfaces (NIC), VMs and subnets. You will need to configure NSG to allow traffic to and from Azure OpenAI. For more on configuring NSGs, see [Azure network security groups overview](/azure/virtual-network/network-security-groups-overview).
 
 ## Testing your configuration
 
@@ -110,17 +124,19 @@ You can test the network connection to Azure OpenAI using the Test-NetConnection
    Test-NetConnection 10.0.0.4 -Port 443
    ```
 
-     [!powershell]
+    :::image type="content" source="../../media/how-to/global-batch/powershell.png" alt-text="Screenshot of network connection test with PowerShell" lightbox="../../media/how-to/global-batch/powershell.png":::
 
 This command should succeed only from a machine that is on the same private network as your Azure OpenAI instance. If this command fails, it means there is a networking issue. Here are some possible causes:
 
-1. DNS Issue: The Domain Name System (DNS) is responsible for translating domain names into IP addresses. If there's an issue with the DNS, it might not be able to correctly resolve the domain name of your Azure OpenAI instance to its IP address. 
-2. Machine Not on Private Network: If the machine you're running the command on is not on the same private network as your Azure OpenAI instance, the command will fail because it won't be able to reach the private IP address. Make sure that the machine is connected to the correct private network.
-3. Customer Firewall Blocking: If there's a custom firewall set up between the machine and the Azure OpenAI instance, it might be blocking the connection. Firewalls are security measures that control incoming and outgoing network traffic based on predetermined security rules. You will need to check your firewall settings and make sure that traffic on port 443 is allowed.
+1. DNS Issue: The Domain Name System (DNS) is responsible for translating domain names into IP addresses. If there's an issue with the DNS, it might not be able to correctly resolve the domain name of your Azure OpenAI instance to its IP address.
+
+1. Machine Not on Private Network: If the machine you're running the command on is not on the same private network as your Azure OpenAI instance, the command will fail because it won't be able to reach the private IP address. Make sure that the machine is connected to the correct private network.
+
+1. Customer Firewall Blocking: If there's a custom firewall set up between the machine and the Azure OpenAI instance, it might be blocking the connection. Firewalls are security measures that control incoming and outgoing network traffic based on predetermined security rules. You will need to check your firewall settings and make sure that traffic on port 443 is allowed.
 
 ## Next steps
 
-- Explore the Azure security baseline for Azure OpenAI
-- Explore the various Azure AI Services 
-- Learn how to Configure Virtual Networks for Azure AI services
-- Azure OpenAI Private Endpoints: Connecting Across VNET's | Microsoft Community Hub
+- Explore the [Azure security baseline for Azure OpenAI](/security/benchmark/azure/baselines/azure-openai-security-baseline#virtual-network-integration)
+- Explore the various [Azure AI Services](/azure/ai-services/what-are-ai-services)
+- Learn how to [Configure Virtual Networks for Azure AI services](/azure/ai-services/cognitive-services-virtual-networks?tabs=portal)
+- [Azure OpenAI Private Endpoints: Connecting Across VNETs | Microsoft Community Hub](https://techcommunity.microsoft.com/blog/azurearchitectureblog/azure-openai-private-endpoints-connecting-across-vnet%E2%80%99s/3913325)
