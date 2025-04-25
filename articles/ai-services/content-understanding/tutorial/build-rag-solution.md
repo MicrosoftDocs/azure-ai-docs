@@ -7,7 +7,7 @@ ms.author: tonyeiyalla
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: tutorial
-ms.date: 04/23/2025
+ms.date: 04/25/2025
 ---
 
 # Tutorial: Build a retrieval-augmented generation solution 
@@ -16,7 +16,7 @@ This tutorial explains how to create a retrieval-augmented generation (RAG) solu
 
 ## Exercises included in this tutorial
 
-* **[Create an analyzer](#creating-an-analyzer)**. Learn how to create reusable analyzers to extract structured content from multimodal data using content extraction.
+* **[Create analyzers](#create-analyzers)**. Learn how to create reusable analyzers to extract structured content from multimodal data using content extraction.
 * **[Generate targeted metadata with field extraction](#content-and-field-extraction)**. Discover how to use AI to generate further metadata, such as summaries or key topics, to enrich extracted content.
 * **[Preprocess extracted content](#preprocessing-output-from-content-understanding)**. Explore ways to transform extracted content into vector embeddings for semantic search and retrieval.
 * **[Design a unified index](#embed-and-index-extracted-content)**. Develop a unified Azure AI Search index that integrates and organizes multimodal data for efficient retrieval.
