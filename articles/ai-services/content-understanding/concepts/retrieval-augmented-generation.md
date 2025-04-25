@@ -7,7 +7,7 @@ ms.author: tonyeiyalla
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 04/23/2025
+ms.date: 04/25/2025
 ---
 
 # Retrieval-augmented generation with Content Understanding
