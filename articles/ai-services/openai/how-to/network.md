@@ -81,7 +81,7 @@ To create a virtual network, use the following steps:
 1. Once the private endpoint is created, you should see your private endpoint connection name, state, and description. You can select the link to the private endpoint and view further details on its DNS configuration.
 
     
-    :::image type="content" source="../media/how-to/network/network/deployment-details.png" alt-text="Screenshot of deployment details post private link and endpoint deployment." lightbox="../media/how-to/network/deployment-details.png":::
+    :::image type="content" source="../media/how-to/network/deployment-details.png" alt-text="Screenshot of deployment details post private link and endpoint deployment." lightbox="../media/how-to/network/deployment-details.png":::
 
 ## Configure gateway and client for local network access
 
