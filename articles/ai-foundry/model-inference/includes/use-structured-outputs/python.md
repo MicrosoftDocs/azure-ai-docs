@@ -20,13 +20,15 @@ When working with software, it's more challenging to parse free-form text output
 
 ## Prerequisites
 
-To use chat completion models in your application, you need:
+To use structured outputs with chat completions models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
 [!INCLUDE [how-to-prerequisites-python](../how-to-prerequisites-python.md)]
 
 * A chat completions model deployment with JSON and structured outputs support. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md).
+
+    * You can check which models support structured outputs by checking the column **Response format** in the [Models](../../concepts/models.md) article.
 
     * This article uses `Cohere-command-r-plus-08-2024`.
 
@@ -109,6 +111,14 @@ with open("github_issue_schema.json", "r") as f:
     github_issue_schema = json.load(f)
 ```
 
+When defining schemas, follow these recommendations:
+
+> [!div class="checklist"]
+> * Use clear and expressive keys.
+> * Use `_` if you need to separate words to convey meaning.
+> * Create clear titles and descriptions for important keys in your structure.
+> * Evaluate multiple structures until finding the one that works best for your use case.
+
 ### Use structure outputs
 
 We can use structure outputs with the defined schema as follows:
@@ -158,6 +168,8 @@ print(json.dumps(json_response_message, indent=4))
 
 Maintaining JSON schemas by hand is difficult and prone to errors. AI developers usually use [Pydantic](https://docs.pydantic.dev/) objects to describe the shapes of a given object. Pydantic is an open-source data validation library where you can flexibly define data structures for your applications.
 
+### Define the schema
+
 The following example shows how you can use Pydantic to define an schema for a GitHub issue.
 
 ```python
@@ -175,14 +187,16 @@ class Issue(BaseModel, extra="forbid"):
 Some things to notice:
 
 > [!div class="checklist"]
-> We represent schemas using a class that inherits from `BaseModel`.
-> We set `extra="forbid"` to instruct Pyndantic to do not accept additional properties from what we have specified.
-> We use type annotations to indicate the expected types.
-> `Literal` indicates we expect specific fixed values.
+> * We represent schemas using a class that inherits from `BaseModel`.
+> * We set `extra="forbid"` to instruct Pyndantic to do not accept additional properties from what we have specified.
+> * We use type annotations to indicate the expected types.
+> * `Literal` indicates we expect specific fixed values.
 
 ```python
 github_issue_schema = Issue.model_json_schema()
 ```
+
+### Use structure outputs
 
 Let's see how we can use the schema in the same way:
 
@@ -224,4 +238,19 @@ print(json.dumps(json_response_message, indent=4))
     "type": "Bug",
     "operating_system": "Windows 10"
 }
+```
+
+### Validate
+
+Structured Outputs can still contain mistakes. If you see mistakes, try adjusting your instructions, providing examples in the system instructions, or splitting tasks into simpler subtasks.
+
+The following example uses validators in Pydantic to verify the schema:
+
+```python
+from pydantic import ValidationError
+
+try:
+    Issue.model_validate(json.loads(response.choices[0].message.content), strict=True)
+except ValidationError as e:
+    print(f"Validation error: {e}")
 ```
