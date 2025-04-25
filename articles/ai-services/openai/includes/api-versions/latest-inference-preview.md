@@ -1215,6 +1215,7 @@ Generates a batch of images from a text caption on a given DALL-E or GPT-image-1
 
 **Content-Type**: application/json
 
+
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | n | integer | The number of images to generate. | No | 1 |
@@ -1222,10 +1223,13 @@ Generates a batch of images from a text caption on a given DALL-E or GPT-image-1
 | quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | standard (for DALL-E)</br>high (for GPT-image-1) |
 | response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. | No | url |
 | size | [imageSize](#imagesize) | The size of the generated images. | No | 1024x1024 |
-| style | [imageStyle](#imagestyle) | The style of the generated images. | No | vivid |
+| style | [imageStyle](#imagestyle) | The style of the generated images. (DALL-E 3 only)| No | vivid |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
-| output_format | string | The format in which the generated images are returned. GPT-image-1 models only. | No | PNG |
-| output_compression | integer | The compression level (on a scale of 0-100) of the generated images. GPT-image-1 | No | 0 |
+| output_format | [imageOutputFormat](#imageoutputformat) | The format in which the generated images are returned. (GPT-image-1 only) | No | PNG |
+| safety | [imageSafety](#imagesafety) | The safety setting of the image generation process. (GPT-image-1 only) | No | auto |
+ | No | auto |
+| background | [imageBackground](#imagebackground) | The desired appearance of the background of the image. (GPT-image-1 only) | No | auto |
+| compression_level | integer | The compression level (on a scale of 0-100) of the generated images. (GPT-image-1 only) | No | 0 |
 
 ### Responses
 
@@ -1355,6 +1359,7 @@ Generates an image based on an input image and text prompt instructions. Require
 
 **Content-Type**: application/json
 
+
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | image | file | The input image to edit. Must be a valid image URL or base64-encoded image. | Yes |  |
@@ -1364,10 +1369,8 @@ Generates an image based on an input image and text prompt instructions. Require
 | quality | string | The quality of the image that will be generated. Values are 'low', 'medium', 'high' | No | high |
 | response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. | No | url |
 | size | [imageSize](#imagesize) | The size of the generated images. | No | 1024x1024 |
-| style | [imageStyle](#imagestyle) | The style of the generated images. | No | vivid |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
 | output_format | [imageOutputFormat](#imageoutputformat) | The format in which the generated images are returned. | No | PNG |
-| output_compression | integer | The compression level (on a scale of 0-100) of the generated images. GPT-image-1 | No | 0 |
 
 
 ### Responses
