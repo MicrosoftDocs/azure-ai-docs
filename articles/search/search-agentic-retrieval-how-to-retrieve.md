@@ -15,13 +15,16 @@ ms.date: 04/30/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, *agentic retrieval* is a new parallel query processing architecture that uses a chat completion model for query planning and execution. 
+In Azure AI Search, *agentic retrieval* is a new parallel query processing architecture that uses a conversational language model for query planning and execution. 
 
-This article explains how to use the **retrieve** method that invokes an agent and parallel query processing. This article also unpacks the response. Currently, there's no "answer" in the response, but you can evaluate the component parts to determine whether further processing is required to make it suitable for your app.
+This article explains how to use the **retrieve** method that invokes an agent and parallel query processing. This article also unpacks the response. 
+
+> [!NOTE]
+> Currently, there's no model generated answer in the response. The response provides grounding data that you can use to generate an answer.
 
 ## Prerequisites
 
-+ An [agent definition](search-agentic-retrieval-how-to-create.md) that represents a chat completion model, used during query planning and execution.
++ An [agent definition](search-agentic-retrieval-how-to-create.md) that represents a conversational language model, used during query planning and execution.
 
 + Azure AI Search with a managed identity for role-based access to a chat model.
 
@@ -35,7 +38,7 @@ To follow the steps in this guide, we recommend [Visual Studio Code](https://cod
 
 Call the **retrieve** action on the agent object to return a response. Use the [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) data plane REST API or an Azure SDK prerelease package that provides equivalent functionality for this task.
 
-The input for the retrieval route is natural language, where the `messages` array captures the inputs needed for calling a chat completion model.
+The input for the retrieval route is chat conversation history in natural language, where the `messages` array contains the conversation.
 
 ```http
 # Send Grounding Request
@@ -46,23 +49,22 @@ Content-Type: application/json
 {
     "messages" : [
             {
-                "role" : "assistant",
+                "role" : "system",
                 "content" : [
-                  { "type" : "text", "text" : "How can I help you?" }
+                  { "type" : "text", "text" : "You are a helpful assistant for Contoso Human Resources. You have access to a search index containing guidelines about health care coverage for Washington state." }
                 ]
             },
             {
-                "role" : "visual interpreter",
+                "role" : "user",
                 "content" : [
-                  { "type" : "text", "text" : "What do you see in this image?" },
-                  { "type" : "image", "image" : {"url": "<base64-encoded URI>"} }
+                  { "type" : "text", "text" : "What are my vision benefits?" }
                 ]
             }
         ],
     "targetIndexParams" :  [
         { 
             "indexName" : "{{index-name}}",
-            "filterAddOn" : "State eq WA,
+            "filterAddOn" : "State eq 'WA'",
             "IncludeReferenceSourceData": true, 
             "rerankerThreshold " : 2.5,
             "maxDocsForReranker": 250
@@ -73,15 +75,19 @@ Content-Type: application/json
 
 **Key points**:
 
-+ `messages` articulates the messages sent to the model.
++ `messages` articulates the messages sent to the model. The message format is similar to Azure OpenAI APIs.
+
+  + `role` defines where the message came from, for example either `system` or `user`. The model you use determines which roles are valid.
+
+  + `content` is the message sent to the LLM. It must be text in this preview.
 
 + `targetIndexParams` provide instructions on the retrieval. Currently in this preview, you can only target a single index. 
 
-+ `filterAddOn` lets you set an [filter expression](search-filters.md) for keyword or hybrid search.
+  + `filterAddOn` lets you set an [OData filter expression](search-filters.md) for keyword or hybrid search.
 
-+ `IncludeReferenceSourceData` is initially set in the agent definition. You can override that setting in the retrieve action to return grounding data in the [references section](#review-the-references-array) of the response.
+  + `IncludeReferenceSourceData` is initially set in the agent definition. You can override that setting in the retrieve action to return grounding data in the [references section](#review-the-references-array) of the response.
 
-+ `rerankerThreshold` and `maxDocsForReranker` are also initially set in the agent definition. You can override them in the retrieve action to configure [semantic reranker](semantic-how-to-configure.md), setting minimum thresholds and the maximum number of inputs sent to the reranker.
+  + `rerankerThreshold` and `maxDocsForReranker` are also initially set in the agent definition. You can override them in the retrieve action to configure [semantic reranker](semantic-how-to-configure.md), setting minimum thresholds and the maximum number of inputs sent to the reranker.
 
 ## Review the response
 
@@ -90,24 +96,18 @@ The body of the response is also structured in the chat message style format. Cu
 ```http
 "response": [
     {
-        "role": "assistant",
+        "role": "system",
         "content": [
             {
                 "type": "text",
-                "text": [ {
-                     'azs/ref': '000000',
-                     'title': 'Chapter 4',
-                     'keywords': 'cloud formation,  wind speed, humidity'.
-                     'content': '<content chunk>'
-                
-                }]
+                "text": "[{\"ref_id\":0,\"title\":\"Vision benefits\",\"terms\":\"exams, frames, contacts\",\"content\":\"<content chunk>\"}]"
             }
         ]
     }
 ]
 ```
 
-+ `content` is a JSON array. It's a single string composed of the most relevant documents (or chunks) found in the search index, given the query and chat history inputs. This array is your grounding data that a chat model uses to formulate a response to the user's question.
++ `content` is a JSON array. It's a single string composed of the most relevant documents (or chunks) found in the search index, given the query and chat history inputs. This array is your grounding data that a conversational language model uses to formulate a response to the user's question.
 
 ## Review the activity array
 
@@ -201,7 +201,8 @@ Here's an example of the references array.
 ```
 
 <!-- Create H2s for the main patterns. -->
-## Provide grounding data
+<!-- This section is in progress. It needs a code sample for the simple case showing how to pipeline ground data to chat completions and responses -->
+## Use data for grounding
 
 The `includeReferenceSourceData` parameter tells the search engine to provide grounding data to the search agent.
 

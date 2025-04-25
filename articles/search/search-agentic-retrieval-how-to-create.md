@@ -15,21 +15,23 @@ ms.date: 04/30/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, an *agent* is a top-level object representing a connection to an LLM for use in agentic retrieval workloads. It specifies a model that provides agent capabilities, and it lists the search indexes that can use the agent at query time.
+In Azure AI Search, an *agent* is a top-level resource representing a connection to a conversational language model for use in agentic retrieval workloads. It specifies a model that provides agent capabilities, and it identifies the search index that can use the agent at query time.
 
-After you can create an agent, you can update it's properties at any time. If the agent is in use, updates take effect on the next job.
+After you can create an agent, you can update its properties at any time. If the agent is in use, updates take effect on the next job.
 
 ## Prerequisites
 
 + Familiarity with [agentic retrieval concepts and use cases](search-agentic-retrieval-concept.md).
 
-+ A chat completion model, either an LLM or SLM, that provides reasoning and evaluation.
++ A conversational language model on Azure OpenAI, either gpt-4o or gpt-4o-mini, that provides reasoning and evaluation.
 
 + Azure AI Search with a managed identity for role-based access to a chat model.
 
-+ A search index containing plain text, vectors, or image references. The index must have a [semantic configuration](semantic-how-to-configure.md).
++ Owner/Contributor or Search Service Contributor permissions to create and manage an agent. Search Index Data Reader to run queries.
 
-+ Region requirements. Azure AI Search and your model should be in the same region.
++ A search index containing plain text or vectors. The index must have a [semantic configuration](semantic-how-to-configure.md).
+
++ Region requirements: **East US**, **North Europe**, **Japan East**, **Sweden Central**. Public cross-region connections and private link connection from AI Search to the model are supported.
 
 + API requirements. Use 2025-05-01-preview data plane REST API or a prerelease package of an Azure SDK that provides Agent APIs.
 
@@ -37,7 +39,7 @@ To follow the steps in this guide, we recommend [Visual Studio Code](https://cod
 
 ## Deploy a model for agentic retrieval
 
-Make sure you have a supported model that can be accessed by Azure AI Search. The following instruction assumes Azure AI Foundry Model as the provider.
+Make sure you have a supported model that Azure AI Search can access. The following instruction assumes Azure AI Foundry Model as the provider.
 
 1. Sign in to [Azure AI Foundry portal](https://ai.azure.com/).
 
@@ -97,7 +99,9 @@ You can use API keys if you don't have permission to create role assignments.
 
 ## Check for existing agents
 
-The following request lists agents by name. Within the agents collection, all agents must be uniquely named. It's helpful to know about existing agents for reuse or for naming purposes.
+The following request lists agents by name. Within the agents collection, all agents must be uniquely named. It's helpful for knowing about existing agents for reuse or  naming purposes.
+
+### [**REST APIs**](#tab/rest-get)
 
 ```http
 # List Agents
@@ -113,9 +117,13 @@ GET https://{{search-url}}/agents/{{agent-name}}?api-version=2025-05-01-preview
 api-key: {{search-api-key}}
 ```
 
+---
+
 ## Create an agent
 
 A knowledge agent represents a connection to a model that you've deployed. Parameters on the model establish the connection.
+
+### [**REST APIs**](#tab/rest-create)
 
 To create an agent, use the 2025-05-01-preview data plane REST API or an Azure SDK prerelease package that provides equivalent functionality.
 
@@ -165,21 +173,26 @@ Content-Type: application/json
 
 + `name` must be unique within the agents collection it must adhere to [naming rules](/rest/api/searchservice/naming-rules) for objects on Azure AI Search.
 
-+ `targetIndexes` is required for agent creation. It lists the search indexes that can use the agent. Currently in this preview release, the `targetIndexes` array can contain only one index. *It must have a semantic configuration*, otherwise it can be any search index on the search service that has content you want to query.
++ `targetIndexes` is required for agent creation. It lists the search indexes that can use the agent. Currently in this preview release, the `targetIndexes` array can contain only one index. *It must have a default semantic configuration*, otherwise it can be any search index on the search service that has content you want to query.
 
 + `defaultRerankerThreshold` is the minimum semantic reranker score that's acceptable for inclusion in a response. [Reranker scores](semantic-search-overview.md#how-ranking-is-scored) range from 1 to 4. Plan on revising this value based on testing and what works for your content.
 
-+ `defaultIncludeReferenceSourceData` is a boolean that determines whether the reference portion of the response includes source data. We recommend starting with this value set to true while you evaluate which properties give you the best configuration for your content. It gives you a basis of comparison between raw content and processed content. Once you no longer find this information useful, set it to false.
++ `defaultIncludeReferenceSourceData` is a boolean that determines whether the reference portion of the response includes source data. We recommend starting with this value set to true if you want to shape your own response using output from the search engine. Otherwise, if you want to use the output in the response `content` string, you can set it to false.
 
 + `defaultMaxDocsForReranker` is the maximum number of documents that can be sent to the semantic ranker. Each subquery can pass a maximum of 50 documents to the semantic reranker, so setting this value above 50 generates more subqueries until the maximum is reached. For example, if you set this value to 200, then four subqueries are generated to support this number.
 
-+ `models` specifies one or more connections to an existing gpt-4o or gpt-4o-mini model. Currently in this preview release, models can contain just one model, and the model provider should be Azure AI Foundry Model. Obtain model information from the Azure AI Foundry portal or from a command line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. For more information, see [How to deploy Azure OpenAI models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-openai).
++ `models` specifies one or more connections to an existing gpt-4o or gpt-4o-mini model. Currently in this preview release, models can contain just one model, and the model provider must be Azure OpenAI. Obtain model information from the Azure AI Foundry portal or from a command line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. For more information, see [How to deploy Azure OpenAI models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-openai).
 
-+ `requestLimits` gives you control over the output generated during retrieval so that you can better manage inputs to the LLM.
+<!--  Check minimum 10k  -->
++ `requestLimits` gives you control over the output generated during retrieval so that you can better manage inputs to the LLM. 
 
-+ `maxOutputSize` is the number of tokens, with 10,000 tokens as the minimum. The most relevant matches are preserved but the overall response is truncated at the last complete document to fit your token budget.
+  + `maxOutputSize` is the maximum number of tokens in the response `content` string, with 10,000 tokens as the minimum. The most relevant matches are preserved but the overall response is truncated at the last complete document to fit your token budget. 
+
+  + `maxRuntimeInSeconds` sets the maximum amount of processing time for the entire request, inclusive of both Azure OpenAI and Azure AI Search.
 
 + `encryptionKey` is optional. Include an encryption key definition if you're supplementing with [customer-managed keys](search-security-manage-encryption-keys.md).
+
+---
 
 ## Confirm agent availability
 
@@ -195,27 +208,20 @@ Content-Type: application/json
 
 {
     "messages" : [
-            {
-                "role" : "user",
-                "content" : [
-                  {
-                    "text" : "hello world",
-                    "type" : "text"
-                  }
-                ]
-            }
-        ],
-    "targetIndexParams" :  [
-        { 
-            "indexName" : "{{index-name}}",
-            "filterAddOn" : null, 
-            "includeReferenceSourceData" : true 
-        } 
+        {
+            "role" : "user",
+            "content" : [
+                {
+                "text" : "hello world",
+                "type" : "text"
+                }
+            ]
+        }
     ]
 }
 ```
 
-For more information about the retrieve API, see [Retrieve data using an agent in Azure AI Search](search-agentic-retrieval-how-to-retrieve.md).
+For more information about the **retrieve** API, see [Retrieve data using an agent in Azure AI Search](search-agentic-retrieval-how-to-retrieve.md).
 
 ## Delete an agent
 
