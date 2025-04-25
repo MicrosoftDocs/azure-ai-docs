@@ -79,20 +79,22 @@ items:
               displayName: azure functions, functions
             - name: How to use Azure Functions
               href: how-to/tools/azure-functions-samples.md
+    - name: Use the Visual Studio Code extension
+      href: ../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context
     - name: Enterprise features
       items: 
         - name: Use your own resources
           href: how-to/use-your-own-resources.md
-        - name: Tracing with Application Insights
-          href: concepts/tracing.md
         - name: Content filtering
           href: ../openai/how-to/content-filters.md?context=/azure/ai-services/agents/context/context
         - name: Use virtual networks
           href: how-to/virtual-networks.md
+- name: Observability
+  items:
     - name: Service monitoring
       href: how-to/metrics.md
-    - name: Use the Visual Studio Code extension
-      href: ../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context
+    - name: Trace and observe agents
+      href: concepts/tracing.md
 - name: Responsible AI
   items:
     - name: Transparency note
