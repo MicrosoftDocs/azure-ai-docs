@@ -5,7 +5,7 @@ description: Learn how to fine-tune models using a managed compute with Azure AI
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 11/22/2024
+ms.date: 04/25/2025
 ms.reviewer: vkann
 reviewer: kvijaykannan
 ms.author: mopeakande
@@ -77,4 +77,5 @@ In this section, you go through the steps to configure fine-tuning for your mode
 ## Related Contents
 
 - [Fine-tune models with Azure AI Foundry](../concepts/fine-tuning-overview.md)
-- [How to use Phi-3 family chat models](deploy-models-phi-3.md)
+- [How to generate chat completions with Azure AI model inference](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context)
+- [Featured models of Azure AI Foundry](../concepts/models-featured.md)
