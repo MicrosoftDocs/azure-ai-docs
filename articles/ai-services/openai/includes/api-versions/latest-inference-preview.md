@@ -6134,11 +6134,11 @@ The desired appearance of the background of the image.
 
 ### imageOutputFormat
 
-The requested output format for the generated image.
+The format in which the generated images are returned.
 
 | Property | Value |
 |----------|-------|
-| **Description** | The requested output format for the generated image. |
+| **Description** | The format in which the generated images are returned. |
 | **Type** | string |
 | **Default** | PNG |
 | **Values** | `PNG`<br>`JPEG` |
@@ -6211,7 +6211,7 @@ The style of the generated images.
 | size | [imageSize](#imagesize) | The size of the generated images. | No | 1024x1024 |
 | style | [imageStyle](#imagestyle) | The style of the generated images. (DALL-E 3 only)| No | vivid |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
-| output_format | string | The format in which the generated images are returned. (GPT-image-1 only) | No | PNG |
+| output_format | [imageOutputFormat](#imageoutputformat) | The format in which the generated images are returned. (GPT-image-1 only) | No | PNG |
 | safety | [imageSafety](#imagesafety) | The safety setting of the image generation process. (GPT-image-1 only) | No | auto |
  | No | auto |
 | background | [imageBackground](#imagebackground) | The desired appearance of the background of the image. (GPT-image-1 only) | No | auto |
