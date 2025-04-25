@@ -85,7 +85,7 @@ Billing for semantic ranking during query execution will be implemented *after* 
   | Free tier| 1,000 free queries | 50 million free tokens |
 
 > [!NOTE]
-> Existing semantic ranker billing is unchanged if you're using it outside of agentic retrieval. In US currency, without agentic retrieval, semantic ranker is one dollar per thousand queries. With agentic retrieval, <LINK>
+> Existing semantic ranker billing is unchanged if you're using it outside of agentic retrieval. For pricing without agentic retrieval, see the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search/).
 
 ### Example: Estimate costs
 
