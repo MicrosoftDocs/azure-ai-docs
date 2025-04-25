@@ -27,6 +27,8 @@ You can use the tool to retrieve search results from many different search engin
 
 Sign up on the [Serp API home page](https://serpapi.com/).
 
+[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
+
 To create a Serp connection:
 
 1. Sign in to [Azure AI Foundry](https://ml.azure.com/).
