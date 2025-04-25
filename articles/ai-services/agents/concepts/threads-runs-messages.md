@@ -19,11 +19,12 @@ Azure AI Agent Service supports persistent threads, runs, and messages, which ar
 
 When you use an Agent, there are a series of steps that are involved.
 
-
+- **Creating an agent:** You create an agent to start sending messages and recieving responses.
 - **Creating a thread:** You create a thread once and append messages to it as users reply. This ensures that the conversation history is maintained and managed automatically.
 - **Sending messages:** Messages can be sent by both the agent and the user. These messages can include text, images, and other files, providing a rich interaction experience.
 - **Running the agent:** When a run is initiated, the agent processes the messages in the thread and performs tasks based on its configuration. It may append new messages to the thread as part of its response.
-
+- **Check the run status:** Monitor the run until it has completed. 
+- **Getting the response:** After the agent has created a response, display it to the user.
 
 :::image type="content" source="../media/run-thread-model.png" alt-text="A diagram showing an example of an agent run." lightbox="../media/run-thread-model.png":::
 
