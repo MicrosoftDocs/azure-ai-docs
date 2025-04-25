@@ -5,7 +5,7 @@ description: Learn how to fine-tune models using a managed compute with Azure AI
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 11/22/2024
+ms.date: 04/25/2025
 ms.reviewer: vkann
 reviewer: kvijaykannan
 ms.author: mopeakande
