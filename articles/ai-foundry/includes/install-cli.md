@@ -10,7 +10,7 @@ ms.date: 08/29/2024
 ms.custom: include, ignite-2024
 ---
 
-You install the the [Azure CLI](/azure/what-is-azure-cli)  and sign in from your local development environment, so that you can use your user credentials in accessing your Azure AI Foundry resources.
+You install the the [Azure CLI](/cli/azure/what-is-azure-cli)  and sign in from your local development environment, so that you can use your user credentials in accessing your Azure AI Foundry resources.
 
 In most cases you can install Azure CLI from your terminal using the following command: 
 
