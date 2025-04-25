@@ -1,7 +1,7 @@
 ---
-title: Supported models in Azure AI Agent Service
+title: Threads, Runs, and Messages in Azure AI Agent Service
 titleSuffix: Azure AI services
-description: Learn about the models you can use with Azure AI Agent Service.
+description: Learn about the components used in the Azure AI Agent Service.
 manager: nitinme
 author: aahill
 ms.author: aahi
