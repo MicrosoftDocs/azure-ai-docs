@@ -104,7 +104,7 @@ Info here.
 # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
 1. From the left pane, select **Playgrounds**. 
-1. Select the model **gpt-4o**
+1. Select the model **gpt-4o**.
 1. Fill in the prompt and select the **Send** button.
 1. The model returns a response in the **Response** pane.
 
