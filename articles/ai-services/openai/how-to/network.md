@@ -35,7 +35,7 @@ To create a virtual network, use the following steps:
 1. In the [Azure portal](https://portal.azure.com), select the portal menu in the upper left corner. From the menu, select **+ Create a resource** and then enter **Virtual Network** in the search field. Select the Virtual Network entry, and then select **Create**.
 2. From the **Basics** tab, select the Azure subscription to use for this resource and then select or create a new resource group. Under Instance details, enter a friendly name for your virtual network and select the region to create it in.
 
-    :::image type="content" source="../../media/how-to/network-basics.png" alt-text="Screenshot of virtual network setup." lightbox="../../media/how-to/network-basics.png":::
+    :::image type="content" source="../media/how-to/network/network-basics.png" alt-text="Screenshot of virtual network setup." lightbox="../media/how-to/network/network-basics.png":::
 
 1. Accept the default settings for **Security** and IP **addresses**. A subnet titled "default" will be created for your virtual network. Best practice is to create another subnet to delegate all private endpoints.
 1. Select **Review + create**.
@@ -52,15 +52,15 @@ To create a virtual network, use the following steps:
 1. In the Azure portal, select the Azure OpenAI resource you created. In Resource Management, navigate to the Networking tab.
 2. Under Allow access from, select Disabled. Disabled ensures no networks can access this resource. Private endpoint connections will be the exclusive way to access this resource. Select Save to save the settings.
 
-    :::image type="content" source="../../media/how-to/network-disabled.png" alt-text="Screenshot of resource network disabled UX." lightbox="../../media/how-to/network-disabled.png":::
+    :::image type="content" source="../media/how-to/network/network-disabled.png" alt-text="Screenshot of resource network disabled UX." lightbox="../media/how-to/network/network-disabled.png":::
 
 1. Navigate to the Private endpoint connections tab and select **+ Private endpoint**. 
 
-    :::image type="content" source="../../media/how-to/private-endpoint.png" alt-text="Screenshot of private endpoint connections tab." lightbox="../../media/how-to/private-endpoint.png":::
+    :::image type="content" source="../media/how-to/network/private-endpoint.png" alt-text="Screenshot of private endpoint connections tab." lightbox="../media/how-to/network/private-endpoint.png":::
 
 1. From the Basics tab, select the Azure subscription to use for this resource and then select or create a new resource group. Under Instance details, enter a name for your resource and select the region to create it in. The region you create the private network in must be the same as the region you chose to create your virtual network in. The network interface name will automatically use the name and will add "-nic".
 
-    :::image type="content" source="../../media/how-to/create-private-endpoint.png" alt-text="Screenshot of create private endpoint." lightbox="../../media/how-to/create-private-endpoint.png":::
+    :::image type="content" source="../media/how-to/network/create-private-endpoint.png" alt-text="Screenshot of create private endpoint." lightbox="../media/how-to/network/create-private-endpoint.png":::
 
 1. From the Resource tab, the Resource type should be `Microsoft.CognitiveServices/accounts`. For Target sub-resource, select **account**.
 
@@ -74,14 +74,14 @@ To create a virtual network, use the following steps:
    - Subscription: The same Azure subscription that contains the previous resources.
    - Resource group: The same Azure resource group that contains the previous resources.
 
-    :::image type="content" source="../../media/how-to/create-private-link.png" alt-text="Screenshot of create private link DNS tab." lightbox="../../media/how-to/create-private-link.png":::
+    :::image type="content" source="../media/how-to/network/create-private-link.png" alt-text="Screenshot of create private link DNS tab." lightbox="../media/how-to/network/create-private-link.png":::
 
 1. Select **Review + create**. Verify that the information is correct, and then select **Create**.
 
 1. Once the private endpoint is created, you should see your private endpoint connection name, state, and description. You can select the link to the private endpoint and view further details on its DNS configuration.
 
     
-    :::image type="content" source="../../media/how-to/deployment-details.png" alt-text="Screenshot of deployment details post private link and endpoint deployment." lightbox="../../media/how-to/deployment-details.png":::
+    :::image type="content" source="../media/how-to/network/network/deployment-details.png" alt-text="Screenshot of deployment details post private link and endpoint deployment." lightbox="../media/how-to/network/deployment-details.png":::
 
 ## Configure gateway and client for local network access
 
@@ -100,7 +100,7 @@ To set up a basic hub and spoke architecture:
 1. Create a second virtual network in your Azure Subscription, your spoke virtual network. This virtual network does not need to be in the same region.
 2. In Settings, navigate to the **Peerings** tab. Select **+ Add**.
 3. Under Remote virtual network summary, provide a Peering Link Name and select the virtual network you will peer, in this case the Hub virtual network. Ensure `"Allow <hub virtual network name> to access <spoke virtual network name>"` is selected.
-4. Under Local virtual network summary, provide a Peering Link Name and ensure "Allow <hub virtual network name> to access <spoke virtual network name>" is selected. Then select Add. 
+4. Under Local virtual network summary, provide a Peering Link Name and ensure `"Allow <hub virtual network name> to access <spoke virtual network name>"` is selected. Then select Add. 
 
 ## Configure your Network Security Group (NSG)
 
@@ -124,7 +124,7 @@ You can test the network connection to Azure OpenAI using the Test-NetConnection
    Test-NetConnection 10.0.0.4 -Port 443
    ```
 
-    :::image type="content" source="../../media/how-to/powershell.png" alt-text="Screenshot of network connection test with PowerShell" lightbox="../../media/how-to/powershell.png":::
+    :::image type="content" source="../media/how-to/network/powershell.png" alt-text="Screenshot of network connection test with PowerShell" lightbox="../media/how-to/network/powershell.png":::
 
 This command should succeed only from a machine that is on the same private network as your Azure OpenAI instance. If this command fails, it means there is a networking issue. Here are some possible causes:
 
