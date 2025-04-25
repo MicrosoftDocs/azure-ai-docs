@@ -111,9 +111,9 @@
       "branch_mapping": {}
     },
     {
-      "path_to_root": "azureai-samples-csharp",
-      "url": "https://github.com/Azure-Samples/azureai-samples",
-      "branch": "dantaylo/csharp",
+      "path_to_root": "foundry-samples",
+      "url": "https://github.com/azure-ai-foundry/foundry-samples",
+      "branch": "main",
       "branch_mapping": {}
     },
     {
