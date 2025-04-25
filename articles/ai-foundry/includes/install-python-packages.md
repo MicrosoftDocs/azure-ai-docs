@@ -23,7 +23,7 @@ ms.custom: include, ignite-2024
     ```
 
 > [!NOTE]
-> Use `azure-ai-projects` to access resources in a [!INCLUDE [hub-project-name](../../includes/hub-project-name.md)].  This package is not needed when working with a [!INCLUDE [fdp-project-name](../../includes/fdp-project-name.md)].
+> Use `azure-ai-projects` to access resources in a [!INCLUDE [hub-project-name](hub-project-name.md)].  This package is not needed when working with a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
 
 1. Install the packages:
 

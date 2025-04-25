@@ -25,7 +25,7 @@ Set up your development environment to use the [Azure AI Foundry](https://ai.azu
 
 In the IDE of your choice, create a new folder for your project.  Open a terminal window in that folder.
 
-[!INCLUDE [Install Python](../includes/install-python.md)]
+[!INCLUDE [Install Python](../../includes/install-python.md)]
 
 ## Install packages
 
