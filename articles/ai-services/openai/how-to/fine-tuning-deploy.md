@@ -370,14 +370,14 @@ Azure OpenAI fine-tuning supports the following deployment types.
 
 | Models | Region |
 |--|--|
+|GPT-4.1-finetune|East US2, North Central US, and Sweden Central|
+|GPT-4.1-mini-finetune|East US2, North Central US, and Sweden Central|
 |GPT-4o-finetune|East US2, North Central US, and Sweden Central|
 |GPT-4o-mini-finetune|East US2, North Central US, and Sweden Central|
 
 [Global standard](./deployment-types.md#global-standard) fine-tuned deployments offer [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), but custom model weights may temporarily be stored outside the geography of your Azure OpenAI resource.
 
 :::image type="content" source="../media/fine-tuning/global-standard.png" alt-text="Screenshot of the global standard deployment user experience with a fine-tuned model." lightbox="../media/fine-tuning/global-standard.png":::
-
-Global Standard fine-tuned deployments currently support structured outputs only on GPT-4o.
 
 ### Provisioned Managed (preview)
 
@@ -390,8 +390,6 @@ Global Standard fine-tuned deployments currently support structured outputs only
 - `gpt-4o-2024-08-06`
 
 [Provisioned managed](./deployment-types.md#provisioned) fine-tuned deployments offer [predictable performance](../concepts/provisioned-throughput.md) for fine-tuned deployments. As part of public preview, provisioned managed deployments may be created regionally via the data-plane [REST API](../reference.md#data-plane-inference) version `2024-10-01` or newer. See below for examples.
-
-Provisioned Managed fine-tuned deployments currently support structured outputs only on GPT-4o.
 
 #### Creating a Provisioned Managed deployment
 
