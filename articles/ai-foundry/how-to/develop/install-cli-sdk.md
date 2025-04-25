@@ -1,5 +1,5 @@
 ---
-title: Setup your development environment
+title: Set up your development environment
 titleSuffix: Azure AI Foundry
 description:  Instructions for installing the Azure AI Foundry SDK and the Azure CLI 
 manager: scottpolly
@@ -13,7 +13,7 @@ author: sdgilley
 #customer intent: As a developer, I want to install the Azure AI Foundry SDK in my development environment
 ---
 
-# Setup your development environment
+# Set up your development environment
 
 Set up your development environment to use the [Azure AI Foundry](https://ai.azure.com) SDK.  You also need Azure CLI for authentication so that your code can access your user credentials.
 
