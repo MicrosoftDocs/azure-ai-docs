@@ -56,7 +56,7 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 # [Python SDK](#tab/python)
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
-- [Setup your development environment](develop/install-cli-sdk.md)
+- [Set up your development environment](develop/install-cli-sdk.md)
 - Authenticate with `az login` or `az login --use-device-code` in your environment before running code.
 
 
