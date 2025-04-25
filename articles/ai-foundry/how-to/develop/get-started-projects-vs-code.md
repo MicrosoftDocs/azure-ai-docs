@@ -167,10 +167,10 @@ The **Model Catalog** is also available in the **Resources** section of the Azur
 
 In the Azure AI Foundry Extension view, select the **plus** icon next to **Models** to open the Model Catalog.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-plus-expanded.png" alt-text="Screenshot of the plus sign next to models with the list of models expanded." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-plus-expanded.png":::
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-plus-expanded.png" alt-text="Screenshot of the plus sign next to models with the list of models expanded." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-plus-expanded.png":::
 
-    > [!TIP] 
-    > You can also right-click on **Models** and select the **Deploy new AI model** option to open the Model Catalog to start the deployment process. 
+> [!TIP] 
+> You can also right-click on **Models** and select the **Deploy new AI model** option to open the Model Catalog to start the deployment process. 
 
 #### Open the model catalog from the Tools section
 
