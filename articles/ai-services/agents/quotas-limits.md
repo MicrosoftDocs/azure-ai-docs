@@ -7,7 +7,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: conceptual
-ms.date: 12/11/2024
+ms.date: 04/25/2025
 ms.custom: azure-ai-agents
 ---
 
@@ -21,7 +21,7 @@ The following sections provide you with a guide to the default quotas and limits
 
 | Limit Name | Limit Value |
 |--|--|
-| Max files per agent/thread | 10,000 when using the API or [Azure AI Foundry portal](https://ai.azure.com/). In Azure OpenAI Studio the limit was 20.|
+| Max files per agent/thread | 10,000 |
 | Max file size for agents & fine-tuning | 512 MB |
 | Max size for all uploaded files for agents |100 GB |  
 | agents token limit | 2,000,000 token limit |
