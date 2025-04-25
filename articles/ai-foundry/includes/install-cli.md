@@ -1,6 +1,6 @@
 ---
-title: include file
-description: include file
+title: Include file
+description: Include file
 author: sdgilley
 ms.reviewer: sgilley
 ms.author: sgilley
@@ -10,7 +10,7 @@ ms.date: 08/29/2024
 ms.custom: include, ignite-2024
 ---
 
-You install the the [Azure CLI](/cli/azure/what-is-azure-cli)  and sign in from your local development environment, so that you can use your user credentials in accessing your Azure AI Foundry resources.
+You install the [Azure CLI](/cli/azure/what-is-azure-cli)  and sign in from your local development environment, so that you can use your user credentials in accessing your Azure AI Foundry resources.
 
 In most cases you can install Azure CLI from your terminal using the following command: 
 
@@ -42,7 +42,7 @@ After you install the Azure CLI, sign in using the ``az login`` command and sign
 az login
 ```
 
-Alternatively, you can log in manually via the browser with a device code.
+Alternatively, you can sign in manually via the browser with a device code.
 
 ```
 az login --use-device-code
