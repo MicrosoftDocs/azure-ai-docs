@@ -64,7 +64,7 @@ Content-Type: application/json
             "indexName" : "{{index-name}}",
             "filterAddOn" : "State eq WA,
             "IncludeReferenceSourceData": true, 
-            "rerankerThreshold" : 2.5,
+            "rerankerThreshold " : 2.5,
             "maxDocsForReranker": 250
         } 
     ]
@@ -77,11 +77,11 @@ Content-Type: application/json
 
 + `targetIndexParams` provide instructions on the retrieval. Currently in this preview, you can only target a single index. 
 
-   You can provide a [filter expression](search-filters.md) for keyword or hybrid search. 
++ `filterAddOn` lets you set an [filter expression](search-filters.md) for keyword or hybrid search.
 
-   You can return grounding data in the [references section](#review-the-references-array) of the response.
++ `IncludeReferenceSourceData` is initially set in the agent definition. You can override that setting in the retrieve action to return grounding data in the [references section](#review-the-references-array) of the response.
 
-   You can set parameters for the [semantic reranker](semantic-how-to-configure.md) including minimum thresholds and the maximum number of inputs sent to the reranker.
++ `rerankerThreshold` and `maxDocsForReranker` are also initially set in the agent definition. You can override them in the retrieve action to configure [semantic reranker](semantic-how-to-configure.md), setting minimum thresholds and the maximum number of inputs sent to the reranker.
 
 ## Review the response
 
@@ -107,25 +107,100 @@ The body of the response is also structured in the chat message style format. Cu
 ]
 ```
 
++ `content` is a JSON array. It's a single string composed of the most relevant documents (or chunks) found in the search index, given the query and chat history inputs. This array is your grounding data that a chat model uses to formulate a response to the user's question.
+
 ## Review the activity array
 
-The activity array keeps track of the operations performed when executing the request, providing transparency of operations so that you can understand billing implications and the frequency of resource invocations.
+The activity array outputs the query plan and it helps you keep track of the operations performed when executing the request. It provides transparency of operations so that you can understand billing implications and the frequency of resource invocations.
 
 Output includes:
 
 + Token used for input
 + Token counts for output
++ Subqueries sent to the retrieval pipeline
 + Result count per subquery
++ Filters on the subquery, if applicable
 + Token counts used for ranking and extraction
+
+Here's an example of an activity array.
+
+```json
+  "activity": [
+    {
+      "type": "ModelQueryPlanning",
+      "id": 0,
+      "inputTokens": 1308,
+      "outputTokens": 141
+    },
+    {
+      "type": "AzureSearchQuery",
+      "id": 1,
+      "targetIndex": "myindex",
+      "query": {
+        "search": "hello world programming",
+        "filter": null
+      },
+      "queryTime": "2025-04-25T16:40:08.811Z",
+      "count": 2,
+      "elapsedMs": 867
+    },
+    {
+      "type": "AzureSearchQuery",
+      "id": 2,
+      "targetIndex": "myindex",
+      "query": {
+        "search": "hello world meaning",
+        "filter": null
+      },
+      "queryTime": "2025-04-25T16:40:08.955Z",
+      "count": 2,
+      "elapsedMs": 136
+    }
+  ],
+```
 
 ## Review the references array
 
-The `references` array is a direct reference from the underlying grounding data and includes the `sourceData` used to generate the response.
+The `references` array is a direct reference from the underlying grounding data and includes the `sourceData` used to generate the response. It consists of every single document that was found and semantically ranked by the search engine.
 
 The purpose of this array is to provide a chat message style structure for easy integration. For example, if you want to serialize the results into a different structure or you require some programmatic manipulation of the data before you returned it to the user.
 
 You can also get the structured data from the source data object in the references array to manipulate it however you see fit.
 
+Here's an example of the references array.
+
+```json
+  "references": [
+    {
+      "type": "AzureSearchDoc",
+      "id": "0",
+      "activitySource": 2,
+      "docKey": "2",
+      "sourceData": {
+        "id": "2",
+        "parent": {
+          "title": null,
+          "content": "good by cruel world"
+        }
+      }
+    },
+    {
+      "type": "AzureSearchDoc",
+      "id": "1",
+      "activitySource": 2,
+      "docKey": "4",
+      "sourceData": {
+        "id": "4",
+        "parent": {
+          "title": "zzzzzzz",
+          "content": "zzzzzzz"
+        }
+      }
+    }
+  ]
+```
+
+<!-- Create H2s for the main patterns. -->
 ## Provide grounding data
 
 The `includeReferenceSourceData` parameter tells the search engine to provide grounding data to the search agent.

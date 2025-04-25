@@ -345,6 +345,8 @@ items:
       href: search-agentic-retrieval-how-to-create.md
     - name: Use an agent to retrieve data
       href: search-agentic-retrieval-how-to-retrieve.md
+    - name: Build an agentic retrieval pipeline
+      href: search-agentic-retrieval-how-to-pipeline.md
   - name: Vector search
     items:
     - name: Create a vector index

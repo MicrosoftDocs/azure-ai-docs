@@ -17,69 +17,76 @@ ms.date: 04/30/2025
 
 In Azure AI Search, *agentic retrieval* is a new parallel query processing architecture that generates multiple subqueries from a single retriever request, producing high quality grounding data for chat and generative AI solutions. 
 
-Programmatically, agentic retrieval is supported through a new Agents object class in the newest preview data plane REST API, 2025-05-01-preview. An agent's retriever response is optimized for downstream consumption by other agents and chat apps based on generative AI.
+Programmatically, agentic retrieval is supported through a new Agents object class in the newest preview data plane REST API, 2025-05-01-preview. An agent's retriever response is designed for downstream consumption by other agents and chat apps based on generative AI.
 
 ## Why use agentic retrieval
 
-You should use agentic retrieval when you want to customize a chat experience with high quality inputs that include your proprietary data. The grounding data exists as indexed documents (plain text and vectors) in Azure AI Search. The custom experience is powered by a new agent capability in AI Search that adds query expansion and a chat completion model for query planning and execution. 
+You should use agentic retrieval when you want to customize a chat experience with high quality inputs that include your proprietary data. The grounding data exists as indexed documents (plain text and vectors) in Azure AI Search. The custom experience is powered by a new agent capability in AI Search that adds query expansion powered by a chat completion model for query planning and execution. 
 
-The *agentic* aspect is an evaluation and reasoning step in query planning processing that's performed by a large language model (LLM). The LLM is tasked with designing multiple subqueries based on the inputs and parameters you provide. All queries execute in parallel and return a rich response that can be used holistically or you can extract individual elements, depending on your scenario. 
+The *agentic* aspect is an evaluation and reasoning step in query planning processing that's performed by a large language model (LLM). The LLM is tasked with designing multiple subqueries based on the inputs and parameters you provide. All queries execute in parallel and return a rich response that can be used holistically or partially, depending on your scenario. 
 
 Agentic retrieval adds latency to query processing, but it adds these capabilities:
 
-+ Input existing chat history as a subquery.
-+ Rewrite original query into multiple subqueries using both synonym maps *and* LLM-powered paraphrasing.
-+ Correct spelling mistakes.
-+ Deconstruct a complex query, such as hybrid query with filters or a regular expression query, into component parts.
-+ Output is a unified result as a single string. Alternatively, you can extract parts of the response for your solution.
++ Reads the existing chat history as an input to the retrieval pipeline.
++ Rewrites an original query into multiple subqueries using both synonym maps (optional) *and* LLM-generated paraphrasing.
++ Corrects spelling mistakes.
++ Deconstructs a complex query, such as hybrid query with filters, into component parts.
++ Executes all subqueries in parallel.
++ Outputs a unified result as a single string. Alternatively, you can extract parts of the response for your solution.
 
 Agentic retrieval invokes the entire query processing pipeline multiple times for each query request, but it does so in parallel, preserving the efficiency and performance necessary for a satisfactory user experience.
 
 ## Agentic retrieval architecture
 
-Agentic retrieval is designed for conversational search that includes a chat completion model.
+Agentic retrieval is designed for a conversational search experience that includes a chat completion model.
 
 An important part of agentic retrieval is that an entire chat conversation can be included as inputs in subsequent queries, providing context and nuance for more relevant responses.
 
+<!-- Insert architecture diagram here -->
 Agentic retrieval has these components:
 
-+ An index containing plain text, vector content, and image references.
-+ A chat completion model that you deploy in Azure AI Foundry Model.
++ An index on Azure AI Search containing plain text, vector content, and image references.
++ An LLM that you deploy in Azure AI Foundry Model.
 + An agent that connects to a model, providing parameters and inputs to build a query plan. This agent is created using Azure AI Search APIs and exists on your search service.
-+ A multithreaded query processing engine in Azure AI Search that executes on the agent payload and returns a rich response.
++ A multithreaded query processing engine in Azure AI Search that executes on the LLM query plan and other parameters, returning a rich response that includes content and system data.
 
+<!-- Insert multiquery pipeline diagram here -->
 Agentic retrieval has these processes:
 
 + Request for agentic retrieval is initiated when your app passes in a query and conversation history to an agent.
 + Agent connects to an LLM for a query planning step, converting chat history into multiple subqueries.
 + All subqueries execute simultaneously on Azure AI Search and generate structured results and extracted references.
 + Results are merged.
-+ Response is formulated and returned as a three part response consisting of a unified result, a reference array, and an activities array that enumerates the steps.
++ Response is formulated and returned as a three part response consisting of a unified result, a reference array, and an activities array that enumerates all operations.
 
-## Order of operations
+## Availability and pricing
+
+Agentic retrieval is available in all supported regions and tiers, including the free tier. 
+
+Agentic retrieval has a hybrid billing system:
+
++ Billing for search queries and semantic ranking remains intact. In US currency, semantic ranker is one dollar per thousand queries.
+
++ Billing for agentic retrieval is token-based. Because there are multiple subqueries, this workload is billed by tokens to stabilize costs because the number of queries varies dynamically based on inputs and parameters.
+
+  | Aspect | Classic single-query pipeline | Agentic retrieval mulit-query pipeline |
+  |--------|------------------------|----------------------------|
+  | Unit | Query-based (1,000 queries) per unit of currency| Token-based (1 million tokens per unit of currency) |
+  | Cost per unit | Uniform cost per query | Uniform cost per token |
+  | Cost estimation | Estimate query count | Estimate token usage |
+  | Free tier| 1,000 free queries | 50 million free tokens |
+
+The model you assign to the agent is the one charged for token usage. For example, if you use gpt-4o, the token charge appears in the bill for gpt-4o.
+
+Semantic ranker, which is a premium feature, is an integral part of agentic retrieval. You're charged on the Azure AI Search side for token inputs to the semantic ranking models.
+
+## Development tasks
 
 Development tasks on the Azure AI Search side include:
 
 + Create an agent on Azure AI Search that maps to a deployed model in Azure AI Foundry Model.
 + Call retrieve with a query, conversation, and override parameters.
 + Parse the response for parts you want to include in your chat application.
-
-## Availability and pricing
-
-Agentic retrieval is available in all supported regions and tiers, including the free tier. 
-
-Billing is token-based. If you're familiar with the classic query-based billing model, this new approach bills by tokens to stabilize cost estimation, since the number of queries can vary dynamically based on inputs and parameters.
-
-| Aspect | Classic query pipeline | Agentic retrieval pipeline |
-|--------|------------------------|----------------------------|
-| Unit | Query-based (1,000 queries) per unit of currency| Token-based (1 million tokens per unit of currency) |
-| Cost per unit | Uniform cost per query | Uniform cost per token |
-| Cost estimation | Estimate query count | Estimate token usage |
-| Free tier| 1,000 free queries | 50 million free tokens |
-
-The model you assign to the agent is the one charged for token usage. For example, if you use gpt-4o, the token charge appears in the bill for gpt-4o.
-
-Semantic ranker, which is a premium feature, is an integral part of agentic retrieval. You're charged on the Azure AI Search side for token inputs to the semantic ranking models, but 
 
 ## How to get started
 

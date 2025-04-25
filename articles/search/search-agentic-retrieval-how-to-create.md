@@ -17,6 +17,8 @@ ms.date: 04/30/2025
 
 In Azure AI Search, an *agent* is a top-level object representing a connection to an LLM for use in agentic retrieval workloads. It specifies a model that provides agent capabilities, and it lists the search indexes that can use the agent at query time.
 
+After you can create an agent, you can update it's properties at any time. If the agent is in use, updates take effect on the next job.
+
 ## Prerequisites
 
 + Familiarity with [agentic retrieval concepts and use cases](search-agentic-retrieval-concept.md).
@@ -136,7 +138,7 @@ Content-Type: application/json
         {
             "indexName" : "{{index-name}}",
             "defaultRerankerThreshold": 2.5,
-            "defaultIncludeReferenceSourceData": false,
+            "defaultIncludeReferenceSourceData": true,
             "defaultMaxDocsForReranker": 200
         }
     ],
@@ -163,11 +165,19 @@ Content-Type: application/json
 
 + `name` must be unique within the agents collection it must adhere to [naming rules](/rest/api/searchservice/naming-rules) for objects on Azure AI Search.
 
-+ `targetIndexes` is required for agent creation. It lists the search indexes that can use the agent. Currently in this preview release, the `targetIndexes` array can contain only one index. It must have a semantic configuration, otherwise it can be any search index on the search service that has content you want to query. 
++ `targetIndexes` is required for agent creation. It lists the search indexes that can use the agent. Currently in this preview release, the `targetIndexes` array can contain only one index. *It must have a semantic configuration*, otherwise it can be any search index on the search service that has content you want to query.
+
++ `defaultRerankerThreshold` is the minimum semantic reranker score that's acceptable for inclusion in a response. [Reranker scores](semantic-search-overview.md#how-ranking-is-scored) range from 1 to 4. Plan on revising this value based on testing and what works for your content.
+
++ `defaultIncludeReferenceSourceData` is a boolean that determines whether the reference portion of the response includes source data. We recommend starting with this value set to true while you evaluate which properties give you the best configuration for your content. It gives you a basis of comparison between raw content and processed content. Once you no longer find this information useful, set it to false.
+
++ `defaultMaxDocsForReranker` is the maximum number of documents that can be sent to the semantic ranker. Each subquery can pass a maximum of 50 documents to the semantic reranker, so setting this value above 50 generates more subqueries until the maximum is reached. For example, if you set this value to 200, then four subqueries are generated to support this number.
 
 + `models` specifies one or more connections to an existing gpt-4o or gpt-4o-mini model. Currently in this preview release, models can contain just one model, and the model provider should be Azure AI Foundry Model. Obtain model information from the Azure AI Foundry portal or from a command line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. For more information, see [How to deploy Azure OpenAI models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-openai).
 
-+ `requestLimits` gives you control over the output generated during retrieval so that you can better manage inputs to the LLM. `maxOutputSize` is the number of tokens, with 10,000 tokens as the minimum. The most relevant matches are preserved but the overall response is truncated at the last complete document to fit your token budget.
++ `requestLimits` gives you control over the output generated during retrieval so that you can better manage inputs to the LLM.
+
++ `maxOutputSize` is the number of tokens, with 10,000 tokens as the minimum. The most relevant matches are preserved but the overall response is truncated at the last complete document to fit your token budget.
 
 + `encryptionKey` is optional. Include an encryption key definition if you're supplementing with [customer-managed keys](search-security-manage-encryption-keys.md).
 
