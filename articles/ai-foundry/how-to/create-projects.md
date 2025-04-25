@@ -26,7 +26,7 @@ Azure AI Foundry supports two types of projects: a **[!INCLUDE [fdp](../includes
 ::: zone pivot="fdp-project"
 
 > [!TIP]
-> The rest of this article shows how to create a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**.  Select [!INCLUDE [hub](../includes/hub-project-name.md)] at the top of this article if you want to create a [!INCLUDE [hub](../includes/hub-project-name.md)] instead.
+> The rest of this article shows how to create a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**.  Select **[!INCLUDE [hub](../includes/hub-project-name.md)]** at the top of this article if you want to create a [!INCLUDE [hub](../includes/hub-project-name.md)] instead.
 
 A [!INCLUDE [fdp](../includes/fdp-project-name.md)] is built on an Azure AI Foundry resource. This project type does not use a hub. Essential connections to storage and Azure AI Search are built into the resource for more seamless development. 
 
@@ -35,7 +35,7 @@ A [!INCLUDE [fdp](../includes/fdp-project-name.md)] is built on an Azure AI Foun
 ::: zone pivot="hub-project"
 
 > [!TIP]
-> The rest of this article shows how to create a **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select [!INCLUDE [fdp](../includes/fdp-project-name.md)] at the top of this article if you want to create a [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
+> The rest of this article shows how to create a **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** at the top of this article if you want to create a [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
 
 A [!INCLUDE [hub](../includes/hub-project-name.md)] is hosted by an Azure AI Foundry hub. If your company has an administrative team that has created a hub for you, you can create a project from that hub. If you are working on your own, you can create a project and a default hub will automatically be created for you.
 
@@ -49,15 +49,14 @@ For more information about the projects and hubs model, see [Azure AI Foundry hu
 
 Use the following tabs to select the method you plan to use to create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
-# [Azure AI Foundry portal](#tab/ai-studio)
+# [Azure AI Foundry portal](#tab/ai-foundry)
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 
 # [Python SDK](#tab/python)
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
-- [Azure AI Foundry SDK](develop/sdk-overview.md).
-- [Azure CLI](/cli/azure/install-azure-cli) 
+- [Setup your development environment](develop/install-cli-sdk.md)
 - Authenticate with `az login` or `az login --use-device-code` in your environment before running code.
 
 
@@ -74,7 +73,7 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 Use the following tabs to select the method you plan to use to create a [!INCLUDE [hub](../includes/hub-project-name.md)]:
 
-# [Azure AI Foundry portal](#tab/ai-studio)
+# [Azure AI Foundry portal](#tab/ai-foundry)
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 
@@ -98,7 +97,7 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 ## Create a project
 
-# [Azure AI Foundry portal](#tab/ai-studio)
+# [Azure AI Foundry portal](#tab/ai-foundry)
 
 ::: zone pivot="fdp-project"
 
@@ -236,7 +235,7 @@ The code in this section assumes you have an existing hub.  If you don't have a 
 
 ## View project settings
 
-# [Azure AI Foundry portal](#tab/ai-studio)
+# [Azure AI Foundry portal](#tab/ai-foundry)
 
 ::: zone pivot="fdp-project"
 

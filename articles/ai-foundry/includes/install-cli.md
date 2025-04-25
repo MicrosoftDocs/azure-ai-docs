@@ -10,9 +10,9 @@ ms.date: 08/29/2024
 ms.custom: include, ignite-2024
 ---
 
-You install the Azure CLI and sign in from your local development environment, so that you can use your user credentials to call the Azure OpenAI service.
+You install the the [Azure CLI](/azure/what-is-azure-cli)  and sign in from your local development environment, so that you can use your user credentials in accessing your Azure AI Foundry resources.
 
-In most cases you can install the Azure CLI from your terminal using the following command: 
+In most cases you can install Azure CLI from your terminal using the following command: 
 
 # [Windows](#tab/windows)
 
@@ -43,6 +43,7 @@ az login
 ```
 
 Alternatively, you can log in manually via the browser with a device code.
+
 ```
 az login --use-device-code
 ```
