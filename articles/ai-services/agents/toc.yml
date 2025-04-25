@@ -24,6 +24,8 @@ items:
 - name: Concepts
   expanded: true
   items:
+    - name: Threads, runs, and messages
+      href: concepts/threads-runs-messages.md 
     - name: Tools
       items:
         - name: Grounding with Bing Search
