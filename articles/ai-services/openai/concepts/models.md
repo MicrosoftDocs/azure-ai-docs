@@ -237,7 +237,7 @@ Once access has been granted, you will need to create a deployment for the model
 | Model | Region |
 |---|---|
 |`dall-e-3` | East US<br>Australia East<br>Sweden Central|
-|`gpt-image-1` | West US 2 (Global Standard) <br> UAE North (Global Standard) |
+|`gpt-image-1` | West US 3 (Global Standard) <br> UAE North (Global Standard) |
 
 ## Audio models
 
