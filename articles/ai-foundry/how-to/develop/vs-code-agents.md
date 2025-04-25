@@ -33,7 +33,7 @@ Follow these steps to create an Azure AI Agent:
  
 1. [Deploy a model](./get-started-projects-vs-code.md#deploy-a-model-from-the-model-catalog) to use with your agent.
 
-1. In the Azure AI Foundry Extension view, find the **Resources** ection.
+1. In the Azure AI Foundry Extension view, find the **Resources** section.
 
 1. Select the **+** (plus) icon next to the **Agents** subsection to create a new AI Agent.
 
@@ -187,7 +187,7 @@ Open the **Agents Playground** using the following steps:
 
 ## Explore Threads
 
-The **Threads** subsection displays the threads created a during a run with your agent. In the Azure Resources Extension view, select the **caret** icon in front of the **Threads** subsection to view the list of threads.
+The **Threads** subsection displays the threads created during a run with your agent. In the Azure Resources Extension view, select the **caret** icon in front of the **Threads** subsection to view the list of threads.
 
 :::image type="content" source="../../media/how-to/get-started-projects-vs-code/thread-list.png" alt-text="Screenshot of the threads in the Threads subsection." lightbox="../../media/how-to/get-started-projects-vs-code/thread-list.png":::
 

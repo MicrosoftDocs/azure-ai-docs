@@ -89,7 +89,7 @@ Sign in to your Azure subscription to access your resources with the following s
 
 1. Select **Open in Azure AI Foundry Extension**.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/open-aif-extension.png" alt-text="A screenshot of the Open in Azure AI Foundry Extension option." lightbox="../../media/how-to/get-started-projects-vs-code/open-aif-extension.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/open-azure-ai-foundry-extension.png" alt-text="A screenshot of the Open in Azure AI Foundry Extension option." lightbox="../../media/how-to/get-started-projects-vs-code/open-azure-ai-foundry-extension.png":::
 
 
 ### Explore the Azure AI Foundry Extension
@@ -97,7 +97,7 @@ Sign in to your Azure subscription to access your resources with the following s
 The Azure AI Foundry Extension opens in its own view, with the Azure AI Foundry Icon now displayed on the VS Code Navbar. The extension has three main sections: **Resources**, **Tools**, and **Help and Feedback**.
 
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/aif-ext-initial-view.png" alt-text="A screenshot of the Azure AI Foundry Extension with highlighted sections.":::
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/initial-view.png" alt-text="A screenshot of the Azure AI Foundry Extension with highlighted sections.":::
 
 - **Resources**: This section contains the resources you have access to in your Azure AI Foundry project. The **Resources** section is the main view for interacting with your Azure AI Foundry resources. It contains the following subsections:
   - **Models**: This section contains the models you can use to build and deploy your AI applications. The **Models** view is where you can find your deployed models in your Azure AI Foundry project.  
@@ -165,7 +165,7 @@ Access the model catalog from the command palette to explore and deploy a curate
 
 The **Model Catalog** is also available in the **Resources** section of the Azure AI Foundry Extension view. 
 
-- 1. In the Azure AI Foundry Extension view, select the **plus** icon next to **Models** to open the Model Catalog.
+In the Azure AI Foundry Extension view, select the **plus** icon next to **Models** to open the Model Catalog.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-plus-expanded.png" alt-text="Screenshot of the plus sign next to models with the list of models expanded." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-plus-expanded.png":::
 
