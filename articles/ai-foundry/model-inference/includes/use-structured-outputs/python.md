@@ -10,27 +10,12 @@ ms.topic: how-to
 ms.date: 1/21/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
-ms.custom: references_regions
 zone_pivot_groups: azure-ai-inference-samples
 ---
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
-
-When working with software, it's more challenging to parse free-form text outputs coming from language models. Structured outputs, like JSON, provide a clear format that software routines can read and process. This article explains how to use structured outputs to generate specific JSON schemas with the chat completions API with models deployed to Azure AI model inference in Azure AI services.
-
-## Prerequisites
-
-To use structured outputs with chat completions models in your application, you need:
-
-[!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
+[!INCLUDE [intro](intro.md)]
 
 [!INCLUDE [how-to-prerequisites-python](../how-to-prerequisites-python.md)]
-
-* A chat completions model deployment with JSON and structured outputs support. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md).
-
-    * You can check which models support structured outputs by checking the column **Response format** in the [Models](../../concepts/models.md) article.
-
-    * This article uses `Cohere-command-r-plus-08-2024`.
 
 * Initialize a client to consume the model:
 
@@ -104,13 +89,6 @@ __github_issue_schema.json__
 }
 ```
 
-Let's load this schema:
-
-```python
-with open("github_issue_schema.json", "r") as f:
-    github_issue_schema = json.load(f)
-```
-
 When defining schemas, follow these recommendations:
 
 > [!div class="checklist"]
@@ -118,6 +96,14 @@ When defining schemas, follow these recommendations:
 > * Use `_` if you need to separate words to convey meaning.
 > * Create clear titles and descriptions for important keys in your structure.
 > * Evaluate multiple structures until finding the one that works best for your use case.
+> * Take into account [limitations when indicating schemas](#supported-schemas). Limitations may vary per model.
+
+Let's load this schema:
+
+```python
+with open("github_issue_schema.json", "r") as f:
+    github_issue_schema = json.load(f)
+```
 
 ### Use structure outputs
 
@@ -163,7 +149,6 @@ print(json.dumps(json_response_message, indent=4))
 }
 ```
 
-
 ## Use Pydantic objects
 
 Maintaining JSON schemas by hand is difficult and prone to errors. AI developers usually use [Pydantic](https://docs.pydantic.dev/) objects to describe the shapes of a given object. Pydantic is an open-source data validation library where you can flexibly define data structures for your applications.
@@ -175,7 +160,6 @@ The following example shows how you can use Pydantic to define an schema for a G
 ```python
 from pydantic import BaseModel
 from typing import Literal
-from enum import Enum
 
 class Issue(BaseModel, extra="forbid"):
     title: str
@@ -244,13 +228,69 @@ print(json.dumps(json_response_message, indent=4))
 
 Structured Outputs can still contain mistakes. If you see mistakes, try adjusting your instructions, providing examples in the system instructions, or splitting tasks into simpler subtasks.
 
-The following example uses validators in Pydantic to verify the schema:
+It's a best practice to uses validators to ensure you get valid structures. In Pydantic, you can verify the schema of a given object as follows:
 
 ```python
 from pydantic import ValidationError
 
 try:
-    Issue.model_validate(json.loads(response.choices[0].message.content), strict=True)
+    Issue.model_validate(json_response_message, strict=True)
 except ValidationError as e:
     print(f"Validation error: {e}")
 ```
+
+### Supported schemas
+
+There are some limitations that models may place in how schemas are defined. When using structure outputs, consider the following limitations. Notice that limitations may vary per model.
+
+#### Optional fields
+
+Some models may require all the fields to be in the `required` section of the schema. If you need to use optional fields, use unions with null types to express that a given field can be optional.
+
+```python
+from pydantic import BaseModel
+from typing import Literal, Union
+
+class Issue(BaseModel, extra="forbid"):
+    title: str
+    description: str
+    type: Literal["Bug", "Feature", "Documentation", "Regression"]
+    operating_system: Union[str, None]
+```
+
+#### Nested types
+
+Models may support indicating nesting types. You can compose complex structures as needed:
+
+```python
+from pydantic import BaseModel
+from typing import Literal
+
+class Project(BaseModel, extra="forbid"):
+    name: str
+    owner: str
+
+class Issue(BaseModel, extra="forbid"):
+    title: str
+    description: str
+    type: Literal["Bug", "Feature", "Documentation", "Regression"]
+    operating_system: str
+    project: Project
+```
+
+Nested types also include recursive definition of types:
+
+```python
+from pydantic import BaseModel
+from typing import Literal, List
+
+class Issue(BaseModel, extra="forbid"):
+    title: str
+    description: str
+    type: Literal["Bug", "Feature", "Documentation", "Regression"]
+    operating_system: str
+    related_issues: List[Issue]
+```
+
+
+[!INCLUDE [supported-schemas](supported-schemas.md)]

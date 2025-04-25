@@ -10,7 +10,6 @@ ms.topic: how-to
 ms.date: 1/21/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
-ms.custom: references_regions
 zone_pivot_groups: azure-ai-inference-samples
 ---
 

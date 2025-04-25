@@ -10,23 +10,10 @@ ms.topic: how-to
 ms.date: 1/21/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
-ms.custom: references_regions
 zone_pivot_groups: azure-ai-inference-samples
 ---
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
-
-When working with software, it's more challenging to parse free-form text outputs coming from language models. Structured outputs, like JSON, provide a clear format that software routines can read and process. This article explains how to use structured outputs to generate specific JSON schemas with the chat completions API with models deployed to Azure AI model inference in Azure AI services.
-
-To use structured outputs with chat completions models in your application, you need:
-
-[!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
-
-* A chat completions model deployment with JSON and structured outputs support. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md).
-
-    * You can check which models support structured outputs by checking the column **Response format** in the [Models](../../concepts/models.md) article.
-
-    * This article uses `Cohere-command-r-plus-08-2024`.
+[!INCLUDE [intro](intro.md)]
 
 ## How to use structured outputs
 
@@ -78,11 +65,15 @@ __github_issue_schema.json__
 
 We can use structure outputs with the defined schema as follows:
 
+__Request__
+
 ```http
 POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
 Content-Type: application/json
 api-key: <key>
 ```
+
+__Body__
 
 ```json
 {
@@ -92,13 +83,11 @@ api-key: <key>
             "content": "Extract structured information from GitHub issues opened in our project.
 
                 Provide
-                - The title of the issue
-                - A 1-2 sentence description of the project
-                - The type of issue (Bug, Feature, Documentation, Regression)
-                - The operating system the issue was reported on
-                - Whether the issue is a duplicate of another issue
-            
-            Do not guess."
+                - The title of the issue.
+                - A 1-2 sentence description of the project.
+                - The type of issue (Bug, Feature, Documentation, Regression).
+                - The operating system the issue was reported on.
+                - Whether the issue is a duplicate of another issue."
         },
         {
             "role": "user",
@@ -142,11 +131,37 @@ api-key: <key>
 
 Let's see how this works:
 
-```output
+__Response__
+
+```json
 {
-    "title": "Metadata tags issue on access control lists - ADLSgen2 setup",
-    "description": "Our project seems to have an issue with the metadata tag for groups when deploying the application with access control lists and necessary settings.",
-    "type": "Bug",
-    "operating_system": "Windows 10"
+    "id": "0a1234b5de6789f01gh2i345j6789klm",
+    "object": "chat.completion",
+    "created": 1718726686,
+    "model": "mistral-large-2407",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "{
+                    \"title\": "Metadata tags issue on access control lists - ADLSgen2 setup\",
+                    \"description\": "Our project seems to have an issue with the metadata tag for groups when deploying the application with access control lists and necessary settings.\",
+                    \"type\": \"Bug\",
+                    \"operating_system\": \"Windows 10\"
+                }",
+                "tool_calls": null
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 150,
+        "total_tokens": 246,
+        "completion_tokens": 96
+    }
 }
 ```
+
+[!INCLUDE [supported-schemas](supported-schemas.md)]
