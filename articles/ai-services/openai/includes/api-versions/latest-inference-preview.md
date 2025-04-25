@@ -1357,7 +1357,7 @@ Generates an image based on an input image and text prompt instructions. Require
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| image | file | The input image to edit. Must be a valid image URL or base64-encoded image. tbd | Yes |  |
+| image | file | The input image to edit. Must be a valid image URL or base64-encoded image. | Yes |  |
 | n | integer | The number of images to generate. | No | 1 |
 | prompt | string | A text description of how the input image should be edited. The maximum length is 4000 characters. | Yes |  |
 | mask | file | A mask image to define the area of the input image that the model should edit, using fully transparent pixels (alpha of zero) in those areas. Must be a valid image URL or base64-encoded image. | No |  |
@@ -6195,7 +6195,7 @@ The style of the generated images.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| image | file | The input image to edit. Must be a valid image URL or base64-encoded image. tbd | Yes |  |
+| image | file | The input image to edit. Must be a valid image URL or base64-encoded image. | Yes |  |
 | n | integer | The number of images to generate. | No | 1 |
 | prompt | string | A text description of how the input image should be edited. The maximum length is 4000 characters. | Yes |  |
 | mask | file | A mask image to define the area of the input image that the model should edit, using fully transparent pixels (alpha of zero) in those areas. Must be a valid image URL or base64-encoded image. | No |  |

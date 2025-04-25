@@ -228,7 +228,7 @@ The image generation models generate images from text prompts that the user prov
 
 **For access to `gpt-image-1` registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who have access to other limited access models will still need to request access for this model.
 
-Request access: [`computer-use-preview` limited access model application](https://aka.ms/oai/gptimage1access)
+Request access: [`gpt-image-1` limited access model application](https://aka.ms/oai/gptimage1access)
 
 Once access has been granted, you will need to create a deployment for the model.
 
