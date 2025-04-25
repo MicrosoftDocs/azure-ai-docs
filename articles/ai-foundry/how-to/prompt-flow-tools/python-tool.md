@@ -111,6 +111,8 @@ If you're developing a Python tool that requires calling external services with 
 
 Create a custom connection that stores all your large language model API key or other required credentials.
 
+[!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
+
 1. Go to the **Management center** page for your project. 
 1. Under either the **Hub** or **Project** heading, select **Connected resources**.
 1. Select **+ New Connection**.
