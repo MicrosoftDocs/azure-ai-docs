@@ -6163,7 +6163,7 @@ The size of the generated images.
 | **Description** | The size of the generated images. |
 | **Type** | string |
 | **Default** | 1024x1024 |
-| **Values** | `256x256`<br>`512x512`<br>`1792x1024`<br>`1024x1792`<br>`1024x1024` |
+| **Values** | `256x256`, `512x512`, `1792x1024`, `1024x1792`, `1024x1024` (for DALL-E)</br>`1024x1024`, `1024x1536`, `1536x1024` (for GPT-image-1) |
 
 ### imageStyle
 
@@ -6202,7 +6202,7 @@ The style of the generated images.
 | quality | string | The quality of the image that will be generated. Values are 'low', 'medium', 'high' | No | high |
 | response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. | No | url |
 | size | [imageSize](#imagesize) | The size of the generated images. | No | 1024x1024 |
-| style | [imageStyle](#imagestyle) | The style of the generated images. | No | vivid |
+| style | [imageStyle](#imagestyle) | The style of the generated images. DALL-E 3 only. | No | vivid |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
 | output_format | [imageOutputFormat](#imageoutputformat) | The format in which the generated images are returned. | No | PNG |
 | output_compression | integer | The compression level (on a scale of 0-100) of the generated images. GPT-image-1 | No | 0 |
