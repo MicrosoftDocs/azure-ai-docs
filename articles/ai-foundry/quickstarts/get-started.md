@@ -109,7 +109,7 @@ Info here.
 
 # [Python SDK](#tab/python)
 
-:::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/doc-samples/getting-started/python/quickstart.py" id="chat_completion":::
+:::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/doc-samples/python/quickstart.py" id="chat_completion":::
 
 
 # [Java](#tab/java)
@@ -127,7 +127,7 @@ Info here.
 Info here.
 # [Python SDK](#tab/python)
 
-:::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/doc-samples/getting-started/python/quickstart.py" id="create_and_run_agent":::
+:::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/doc-samples/python/quickstart.py" id="create_and_run_agent":::
 
 # [Java](#tab/java)
 Info here.
@@ -144,7 +144,7 @@ Info here.
 Info here.
 # [Python SDK](#tab/python)
 
-:::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/doc-samples/getting-started/python/quickstart.py" id="ccreate_filesearch_agent":::
+:::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/doc-samples/python/quickstart.py" id="ccreate_filesearch_agent":::
 
 # [Java](#tab/java)
 Info here.
@@ -161,7 +161,7 @@ Info here.
 Info here.
 # [Python SDK](#tab/python)
 
-:::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/doc-samples/getting-started/python/quickstart.py" id="evaluate_agent_run":::
+:::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/doc-samples/python/quickstart.py" id="evaluate_agent_run":::
 
 # [Java](#tab/java)
 Info here.
