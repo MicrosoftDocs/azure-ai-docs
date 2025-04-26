@@ -58,9 +58,9 @@ Azure OpenAI `o-series` models are designed to tackle reasoning and problem-solv
 
 <sup>2</sup> The latest o<sup>&#42;</sup> series model support system messages to make migration easier. When you use a system message with `o4-mini`, `o3`, `o3-mini`, and `o1` it will be treated as a developer message. You should not use both a developer message and a system message in the same API request.
 
-<sup>3</sup> Access to the chain-of-thought reasoning summary is limited access only for `o4-mini`.
+<sup>3</sup> Access to the chain-of-thought reasoning summary is limited access only for `o3` & `o4-mini`.
 
-<sup>4</sup> Streaming for `o3` is currently only supported for Enterprise subscriptions.
+<sup>4</sup> Streaming for `o3` is limited access only.
 
 ### Not Supported
 
