@@ -138,7 +138,7 @@ To use all features of function calling including parallel functions, you need t
 
 ## Define a function for your agent to call
 
-Start by defining an Azure Function queue trigger function that will process function calls from the queue. 
+Start by defining an Azure Function queue trigger function that will process AI function calls from the queue. 
 
 # [Python](#tab/python)
 
@@ -186,7 +186,10 @@ No REST equivalent provided.
 
 ## Create an AI project client and agent
 
-In the sample below we create a client and an agent that has the tools definition for the Azure Function.
+In the sample below we create a client and an agent that has the AI tools definition for the Azure Function. The term `function` is used in two contexts within the AI tool definition: 
+
+* Azure Function: the type of tool. This is the Azure Functions app.
+* Function: the Http trigger function within the Azure Function to call when the tool is invoked in the AI Project. 
 
 # [Python](#tab/python)
 
@@ -403,3 +406,19 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-1
 ```
 
 ::: zone-end
+
+## Troubleshooting
+
+# [Python](#tab/python)
+
+For any issues with the Python code, create an issue on the [sample code repository](https://github.com/Azure-Samples/azure-functions-ai-services-agent-python/issues)
+
+# [TypeScript](#tab/typescript)
+
+For any issues with the TypeScript code, create an issue on the [sample code repository](https://github.com/Azure-Samples/azure-functions-ai-services-agent-javascript/issues)
+
+# [REST API](#tab/rest)
+
+No REST equivalent provided.
+
+---
