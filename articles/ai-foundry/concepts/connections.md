@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: conceptual
-ms.date: 02/21/2025
+ms.date: 04/26/2025
 ms.reviewer: meerakurup
 ms.author: sgilley
 author: sdgilley
@@ -17,17 +17,15 @@ author: sdgilley
 
 # Connections in Azure AI Foundry portal
 
-Connections in [Azure AI Foundry](https://ai.azure.com) are a way to authenticate and consume both Microsoft and non-Microsoft resources within your Azure AI Foundry projects. For example, connections can be used for prompt flow, training data, and deployments. [Connections can be created](../how-to/connections-add.md) exclusively for one project or shared with all projects in the same hub. 
+Connections in [Azure AI Foundry](https://ai.azure.com) are a way to authenticate and consume both Microsoft and non-Microsoft resources within your Azure AI Foundry projects. For example, connections can be used for prompt flow, training data, and deployments. In a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)], [connections can be created](../how-to/connections-add.md) exclusively for one project or shared with all projects in the same hub. 
 
 ## Connections to Azure AI services
 
-You can [create connections](../how-to/connections-add.md) to Azure AI services such as Azure OpenAI and Azure AI Content Safety. You can then use the connection in a prompt flow tool such as the LLM tool.
+You can [create connections](../how-to/connections-add.md) to Azure AI services such as Azure OpenAI and Azure AI Content Safety. 
+
+In a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)], you can use the connection in a prompt flow tool such as the LLM tool.
 
 :::image type="content" source="../media/prompt-flow/llm-tool-connection.png" alt-text="Screenshot of a connection used by the LLM tool in prompt flow." lightbox="../media/prompt-flow/llm-tool-connection.png":::
-
-As another example, you can [create a connection](../how-to/connections-add.md) to an Azure AI Search resource. The connection can then be used by prompt flow tools such as the Index Lookup tool.
-
-:::image type="content" source="../media/prompt-flow/index-lookup-tool-connection.png" alt-text="Screenshot of a connection used by the Index Lookup tool in prompt flow." lightbox="../media/prompt-flow/index-lookup-tool-connection.png":::
 
 ## Connections to non-Microsoft services
 
