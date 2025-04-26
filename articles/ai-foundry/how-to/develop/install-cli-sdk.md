@@ -15,7 +15,7 @@ author: sdgilley
 
 # Set up your development environment
 
-Set up your development environment to use the [Azure AI Foundry](https://ai.azure.com) SDK.  You also need Azure CLI for authentication so that your code can access your user credentials.
+Set up your development environment to use the [Azure AI Foundry](https://ai.azure.com) SDK. You also need Azure CLI for authentication so that your code can access your user credentials.
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ Set up your development environment to use the [Azure AI Foundry](https://ai.azu
 
 # [Python SDK](#tab/python)
 
-In the IDE of your choice, create a new folder for your project.  Open a terminal window in that folder.
+In the IDE of your choice, create a new folder for your project. Open a terminal window in that folder.
 
 [!INCLUDE [Install Python](../../includes/install-python.md)]
 
