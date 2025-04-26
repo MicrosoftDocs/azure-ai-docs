@@ -22,7 +22,9 @@ In this quickstart, you use [Azure AI Foundry](https://ai.azure.com) to:
 > * Create a project
 > * Deploy a model
 > * Run a chat completion
-> * Run an agent
+> * Create and run an agent
+> * Upload files to the agent
+> * Evaluate the agent run
 
 . The Azure AI Foundry SDK is available in multiple languages, including Python, Java, JavaScript, and C#. This quickstart provides instructions for each of these languages.
 
@@ -32,9 +34,9 @@ In this quickstart, you use [Azure AI Foundry](https://ai.azure.com) to:
 
 ### Set up your environment  
 
-# [Azure AI Foundry portal](#tab/azure-ai-studio)
+# [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-No further installation necessary to use the Azure AI Foundry portal.
+No installation is necessary to use the Azure AI Foundry portal.
 
 # [Python SDK](#tab/python)
 
@@ -64,7 +66,7 @@ No further installation necessary to use the Azure AI Foundry portal.
 
 ## Create a project 
 
-# [Azure AI Foundry portal](#tab/azure-ai-studio)
+# [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
@@ -72,9 +74,9 @@ No further installation necessary to use the Azure AI Foundry portal.
 1. Fill in a name for your project and select **Create**.  
 
 # [Python SDK](#tab/python)
-1. Install packages:
-1. Create a project
+
     :::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/create_project.py" id="create_project":::
+
 # [Java](#tab/java)
 Info here.
 # [JavaScript](#tab/javascript)
@@ -100,7 +102,7 @@ Info here.
 
 ## Run a chat completion
 
-# [Azure AI Foundry portal](#tab/azure-ai-studio)
+# [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
 1. In the tabs at the top of the deployed model, select **Playground**. 
 1. Fill in the prompt and select the **Send** button.
@@ -122,7 +124,7 @@ Info here.
 
 ## Create and run an agent
 
-# [Azure AI Foundry portal](#tab/azure-ai-studio)
+# [Azure AI Foundry portal](#tab/azure-ai-foundry)
 Info here.
 # [Python SDK](#tab/python)
 
@@ -139,7 +141,9 @@ Info here.
 
 ## Add files to the agent
 
-# [Azure AI Foundry portal](#tab/azure-ai-studio)
+Download [product_info_1.md]() to add to the agent.
+
+# [Azure AI Foundry portal](#tab/azure-ai-foundry)
 Info here.
 # [Python SDK](#tab/python)
 
@@ -156,7 +160,7 @@ Info here.
 
 ## Evaluate the agent run
 
-# [Azure AI Foundry portal](#tab/azure-ai-studio)
+# [Azure AI Foundry portal](#tab/azure-ai-foundry)
 Info here.
 # [Python SDK](#tab/python)
 
