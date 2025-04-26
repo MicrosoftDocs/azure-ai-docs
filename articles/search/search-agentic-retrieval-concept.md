@@ -8,6 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
+ms.custom: references_regions
 ms.date: 04/30/2025
 ---
 

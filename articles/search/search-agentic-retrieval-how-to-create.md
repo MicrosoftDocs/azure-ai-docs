@@ -101,7 +101,7 @@ You can use API keys if you don't have permission to create role assignments.
 
 The following request lists agents by name. Within the agents collection, all agents must be uniquely named. It's helpful for knowing about existing agents for reuse or  naming purposes.
 
-### [**REST APIs**](#tab/rest-get)
+<!-- ### [**REST APIs**](#tab/rest-get) -->
 
 ```http
 # List Agents
@@ -117,13 +117,13 @@ GET https://{{search-url}}/agents/{{agent-name}}?api-version=2025-05-01-preview
 api-key: {{search-api-key}}
 ```
 
----
+<!-- --- -->
 
 ## Create an agent
 
 A knowledge agent represents a connection to a model that you've deployed. Parameters on the model establish the connection.
 
-### [**REST APIs**](#tab/rest-create)
+<!-- ### [**REST APIs**](#tab/rest-create) -->
 
 To create an agent, use the 2025-05-01-preview data plane REST API or an Azure SDK prerelease package that provides equivalent functionality.
 
@@ -199,7 +199,7 @@ Content-Type: application/json
 
 + `encryptionKey` is optional. Include an encryption key definition if you're supplementing with [customer-managed keys](search-security-manage-encryption-keys.md).
 
----
+<!-- --- -->
 
 ## Confirm agent availability
 
