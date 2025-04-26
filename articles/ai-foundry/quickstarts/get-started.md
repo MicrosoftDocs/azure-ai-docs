@@ -75,7 +75,7 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 # [Python SDK](#tab/python)
 
-    :::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/create_project.py" id="create_project":::
+:::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/create_project.py" id="create_project":::
 
 # [Java](#tab/java)
 Info here.
