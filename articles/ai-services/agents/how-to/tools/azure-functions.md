@@ -176,20 +176,22 @@ def process_queue_message(msg: func.QueueMessage) -> None:
 
 # [TypeScript](#tab/typescript)
 
-:::code language="TypeScript" source="~/azure-functions-ai-services-agent-javascript/app/src/functions/queueGetWeather.ts"  :::
+:::code language="TypeScript" source="~/azure-functions-ai-services-agent-javascript/app/src/functions/queueGetWeather.ts" :::
 
 # [REST API](#tab/rest)
 
 No REST equivalent provided.
 
+
 ---
+
 
 ## Create an AI project client and agent
 
 In the sample below we create a client and an agent that has the AI tools definition for the Azure Function. The term `function` is used in two contexts within the AI tool definition: 
 
 * Azure Function: the type of tool. This is the Azure Functions app.
-* Function: the Http trigger function within the Azure Function to call when the tool is invoked in the AI Project. 
+* Function: the Http trigger function `GetWeather` within the Azure Function to call when the tool is invoked in the AI Project. 
 
 # [Python](#tab/python)
 
@@ -246,12 +248,12 @@ agent = project_client.agents.create_agent(
 )
 ```
 
-
 # [TypeScript](#tab/typescript)
 
 :::code language="TypeScript" source="~/azure-functions-ai-services-agent-javascript/app/src/azureProjectInit.ts" id="CreateAgent" :::
 
 # [REST API](#tab/rest)
+
 Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`. Then create the agent using:
 ```console
 curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
@@ -319,6 +321,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
   -H "Content-Type: application/json" \
   -d ''
 ```
+
 ---
 
 ## Create a run and check the output
@@ -404,7 +407,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-1
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 
-::: zone-end
+---
 
 ## Troubleshooting
 
@@ -421,3 +424,7 @@ For any issues with the TypeScript code, create an issue on the [sample code rep
 No REST equivalent provided.
 
 ---
+
+::: zone-end
+
+
