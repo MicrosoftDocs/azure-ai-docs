@@ -24,7 +24,7 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 
 | Item&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Type |  Description |
 |-----------------------------|------|--------------|
-[Agentic retrieval (preview)](search-agentic-retrieval-concept.md) | Query | Parallel query processing architecture that uses a large language model (LLM) for query planning, generating subqueries as needed to deliver high quality grounding data for custom chat applications. A [new agent object](search-agentic-retrieval-how-to-create.md) is introduced in this preview. The [retriever's response](search-agentic-retrieval-how-to-retrieve.md) is designed for agent and chat model consumption, with full transparency of the query plan and reference data. For more information on application integration, see [Build an agent-to-agent retrieval solution](search-agentic-retrieval-how-to-pipeline.md). |
+[Agentic retrieval (preview)](search-agentic-retrieval-concept.md) | Query | Parallel query processing architecture that uses a large language model (LLM) for query planning, generating subqueries as needed to deliver high quality grounding data for custom chat applications. A [new agent object](search-agentic-retrieval-how-to-create.md) is introduced in this preview. Its [response payload](search-agentic-retrieval-how-to-retrieve.md) is designed for downstream agent and chat model consumption, with full transparency of the query plan and reference data. For developer guidance, see [Build an agent-to-agent retrieval solution](search-agentic-retrieval-how-to-pipeline.md). |
 
 ## April 2025
 

@@ -17,13 +17,13 @@ ms.date: 04/30/2025
 
 In Azure AI Search, *agentic retrieval* is a new parallel query processing architecture that generates multiple subqueries from a single retrieval request, producing high quality grounding data for chat and generative AI solutions. 
 
-Programmatically, agentic retrieval is supported through a new Agents object in the newest preview data plane REST API, 2025-05-01-preview. An agent's retrieval response is designed for downstream consumption by other agents and chat apps based on generative AI.
+Programmatically, agentic retrieval is supported through a new Agents object in the newest preview data plane REST API 2025-05-01-preview and in Azure SDK prerelease packages that provide the feature. An agent's retrieval response is designed for downstream consumption by other agents and chat apps based on generative AI.
 
 ## Why use agentic retrieval
 
-You should use agentic retrieval when you want to customize a chat experience with high quality inputs that include your proprietary data. The grounding data is derived from indexed documents (plain text and vectors) in Azure AI Search. The custom experience is powered by a new retrieval pipeline in AI Search that adds query expansion powered by a conversational language model for query planning and execution. It's intended for integration into custom chat solutions, particular those patterned after an agent-to-agent approach.
+You should use agentic retrieval when you want to customize a chat experience with high quality inputs that include your proprietary data. The grounding data is derived from indexed documents (plain text and vectors) in Azure AI Search. The custom experience is powered by a new retrieval pipeline in AI Search that adds query expansion powered by a conversational language model for query planning. Query execution is through the retrieval pipeline on your search service, utilizing the best and most effective relevance enhancements in Azure AI Search. It's intended for integration into custom chat solutions, particularly those patterned after an agent-to-agent approach.
 
-The *agentic* aspect is a reasoning step in query planning processing that's performed by a large language model (LLM). The LLM is tasked with designing multiple subqueries based on the inputs and parameters you provide. All queries execute in parallel. Metadata about query execution is included in the response.
+The *agentic* aspect is a reasoning step in query planning processing that's performed by a large language model (LLM). The LLM is tasked with designing multiple subqueries based on the user query, any chat history that provides context, and parameters. Metadata about query execution and reference data is included in the response.
 
 Agentic retrieval adds latency to query processing, but it adds these capabilities:
 
@@ -31,10 +31,10 @@ Agentic retrieval adds latency to query processing, but it adds these capabiliti
 + Rewrites an original query into multiple subqueries using both synonym maps (optional) *and* LLM-generated paraphrasing.
 + Corrects spelling mistakes.
 + Deconstructs a complex query, such as hybrid query with filters, into component parts.
-+ Executes all subqueries in parallel.
++ Executes all subqueries in simultaneously.
 + Outputs a unified result as a single string. Alternatively, you can extract parts of the response for your solution.
 
-Agentic retrieval invokes the entire query processing pipeline multiple times for each query request, but it does so in parallel, preserving the efficiency and performance necessary for a satisfactory user experience.
+Agentic retrieval invokes the entire query processing pipeline multiple times for each query request, but it does so in parallel, preserving the efficiency and performance necessary for a reasonable user experience.
 
 > [!NOTE]
 > Including an LLM in query planning adds latency to a query pipeline. You can mitigate by using faster models such as gpt-4o-mini and summarizing the message threads, but you should expect longer query times with this pipeline.
@@ -136,7 +136,7 @@ Choose any of these options for you next step.
 <!-- + Watch this demo. -->
 + Quickstart. Learn the basic workflow using sample data and a prepared index and queries.
 
-+ How-to guides for a closer look at building an agentic retrieval pipeline: [Create an agent](search-agentic-retrieval-how-to-create.md) and [Use an agent to retrieve data](search-agentic-retrieval-how-to-retrieve.md).
++ How-to guides for a closer look at building an agentic retrieval pipeline: [Create an agent](search-agentic-retrieval-how-to-create.md) and [Use an agent to retrieve data](search-agentic-retrieval-how-to-retrieve.md). For developer guidance, see [Build an agent-to-agent retrieval solution](search-agentic-retrieval-how-to-pipeline.md).
 
 + REST API reference, Agents.
 

@@ -29,7 +29,7 @@ After you can create an agent, you can update its properties at any time. If the
 
 + Owner/Contributor or Search Service Contributor permissions to create and manage an agent. Search Index Data Reader to run queries.
 
-+ A search index containing plain text or vectors. The index must have a [semantic configuration](semantic-how-to-configure.md).
++ A search index containing plain text or vectors. The index must have a [semantic configuration](semantic-how-to-configure.md) with the `defaultConfiguration` specified.
 
 + Region requirements: **East US**, **North Europe**, **Japan East**, **Sweden Central**. Public cross-region connections and private link connection from AI Search to the model are supported.
 
@@ -173,7 +173,14 @@ Content-Type: application/json
 
 + `name` must be unique within the agents collection it must adhere to [naming rules](/rest/api/searchservice/naming-rules) for objects on Azure AI Search.
 
-+ `targetIndexes` is required for agent creation. It lists the search indexes that can use the agent. Currently in this preview release, the `targetIndexes` array can contain only one index. *It must have a default semantic configuration*, otherwise it can be any search index on the search service that has content you want to query.
++ `targetIndexes` is required for agent creation. It lists the search indexes that can use the agent. Currently in this preview release, the `targetIndexes` array can contain only one index. *It must have a default semantic configuration* (`defaultConfiguration`), otherwise it can be any search index on the search service that has content you want to query.
+
+    ```json
+    "semantic": {
+        "defaultConfiguration": "my-default-semantic-config",
+        "configurations": [ ]
+    }
+    ```
 
 + `defaultRerankerThreshold` is the minimum semantic reranker score that's acceptable for inclusion in a response. [Reranker scores](semantic-search-overview.md#how-ranking-is-scored) range from 1 to 4. Plan on revising this value based on testing and what works for your content.
 
