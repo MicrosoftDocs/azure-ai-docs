@@ -42,7 +42,6 @@ No further installation necessary to use the Azure AI Foundry portal.
 1. Install these packages:
 
     ```
-    install openai and azure-ai-projects packages
     pip install openai azure-ai-projects azure-identity
     ```
 
