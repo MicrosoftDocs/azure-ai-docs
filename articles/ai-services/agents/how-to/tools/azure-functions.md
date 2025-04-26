@@ -251,8 +251,6 @@ agent = project_client.agents.create_agent(
 
 :::code language="TypeScript" source="~/azure-functions-ai-services-agent-javascript/app/src/azureProjectInit.ts" id="CreateAgent" :::
 
-```
-
 # [REST API](#tab/rest)
 Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`. Then create the agent using:
 ```console
@@ -297,6 +295,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
     ]
   }'
 ```
+
 
 ---
 
