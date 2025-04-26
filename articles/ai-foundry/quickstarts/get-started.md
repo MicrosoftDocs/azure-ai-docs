@@ -143,7 +143,7 @@ Info here.
 Info here.
 # [Python SDK](#tab/python)
 
-:::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/quickstart.py" id="ccreate_filesearch_agent":::
+:::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/quickstart.py" id="create_filesearch_agent":::
 
 # [Java](#tab/java)
 Info here.

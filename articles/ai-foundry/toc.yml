@@ -8,7 +8,7 @@ items:
   expanded: true
   items:
     - name: Get started with Azure AI Foundry
-      href: quickstart/get-started.md  
+      href: quickstarts/get-started.md  
     - name: Azure AI Foundry SDK overview
       href: how-to/develop/sdk-overview.md
 
