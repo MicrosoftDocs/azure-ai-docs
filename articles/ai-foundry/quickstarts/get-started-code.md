@@ -10,7 +10,6 @@ ms.date: 04/26/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
-zone_pivot_groups: project-type
 # customer intent: As a developer, I want to build a custom chat app using the Azure AI SDK.
 ---
 
