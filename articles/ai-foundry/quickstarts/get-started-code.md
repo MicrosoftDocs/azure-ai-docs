@@ -19,7 +19,7 @@ In this quickstart, we walk you through setting up your local development enviro
 
 ## Prerequisites
 
-[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
+[!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
 
 * Before you can follow this quickstart, complete the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md) to deploy a **gpt-4o-mini** model into your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
 
