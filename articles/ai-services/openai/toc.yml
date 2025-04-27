@@ -191,7 +191,16 @@ items:
         displayName: finetuning, fine-tuning  
       - name: Troubleshooting guidance
         href: ./how-to/fine-tuning-troubleshoot.md
-        displayName: finetuning, fine-tuning  
+        displayName: finetuning, fine-tuning
+        
+  - name: Realtime API for speech and audio (preview)
+    items:
+      - name: Realtime API overview
+        href: ./how-to/realtime-audio.md
+      - name: Realtime API via WebRTC
+        href: ./how-to/realtime-audio-webrtc.md
+      - name: Realtime API via WebSockets
+        href: ./how-to/realtime-audio-websockets.md
   - name: Stored completions
     href: ./how-to/stored-completions.md
   - name: Use your data
@@ -207,8 +216,6 @@ items:
         href: ./how-to/azure-developer-cli.md
       - name: Troubleshooting and best practices
         href: ./how-to/on-your-data-best-practices.md
-  - name: Use the Realtime API (preview)
-    href: ./how-to/realtime-audio.md
   - name: Migrate to OpenAI Python v1.x
     href: ./how-to/migration.md
   - name: Migrate to OpenAI JavaScript v4.x
