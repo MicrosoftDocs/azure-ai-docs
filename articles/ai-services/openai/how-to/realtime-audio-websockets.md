@@ -20,18 +20,19 @@ Azure OpenAI GPT-4o Realtime API for speech and audio is part of the GPT-4o mode
 
 You can use the Realtime API via WebRTC or WebSocket to send audio input to the model and receive audio responses in real time. Follow the instructions in this article to get started with the Realtime API via WebSockets.
 
-In most cases, we recommend using the [Realtime API via WebRTC](./realtime-audio-webrtc.md) for real-time audio streaming. The WebRTC API is a web standard that enables real-time communication (RTC) between browsers and mobile applications. 
+Use the Realtime API via WebSockets in server-to-server scenarios where low latency isn't a requirement.
 
-WebSockets are not recommended for real-time audio streaming because they have higher latency than WebRTC. Use the Realtime API via WebSockets if you need to stream audio data from a server to a client, or if you need to send and receive data in real time between a client and server. 
+> [!TIP] 
+> In most cases, we recommend using the [Realtime API via WebRTC](./realtime-audio-webrtc.md) for real-time audio streaming in client-side applications such as a web application or mobile app. WebRTC is designed for low-latency, real-time audio streaming and is the best choice for most use cases.
 
 ## Supported models
 
-The GPT 4o real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
+The GPT-4o real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
 - `gpt-4o-mini-realtime-preview` (2024-12-17)
 - `gpt-4o-realtime-preview` (2024-12-17)
 - `gpt-4o-realtime-preview` (2024-10-01)
 
-See the [models and versions documentation](../concepts/models.md#audio-models) for more information.
+For more information about supported models, see the [models and versions documentation](../concepts/models.md#audio-models).
 
 ## Prerequisites
 

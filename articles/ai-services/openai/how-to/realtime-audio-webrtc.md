@@ -21,13 +21,12 @@ Azure OpenAI GPT-4o Realtime API for speech and audio is part of the GPT-4o mode
 You can use the Realtime API via WebRTC or WebSocket to send audio input to the model and receive audio responses in real time. Follow the instructions in this article to get started with the Realtime API via WebRTC.
 
 In most cases, we recommend using the WebRTC API for real-time audio streaming. The WebRTC API is a web standard that enables real-time communication (RTC) between browsers and mobile applications. Here are some reasons why WebRTC is preferred for real-time audio streaming:
-- **Lower Latency**: WebRTC is specifically designed to minimize delay, making it more suitable for audio and video communication where low latency is critical for maintaining quality and synchronization.
+- **Lower Latency**: WebRTC is designed to minimize delay, making it more suitable for audio and video communication where low latency is critical for maintaining quality and synchronization.
 - **Media Handling**: WebRTC has built-in support for audio and video codecs, providing optimized handling of media streams.
 - **Error Correction**: WebRTC includes mechanisms for handling packet loss and jitter, which are essential for maintaining the quality of audio streams over unpredictable networks.
 - **Peer-to-Peer Communication**: WebRTC allows direct communication between clients, reducing the need for a central server to relay audio data, which can further reduce latency.
-- **Network Traversal**: WebRTC includes built-in support for NAT traversal, which helps establish connections between clients behind firewalls or NATs.
 
-Use the [Realtime API via WebSockets](./realtime-audio-websockets.md) if you need to stream audio data from a server to a client, or if you need to send and receive data in real time between a client and server. WebSockets are not recommended for real-time audio streaming because they have higher latency than WebRTC.
+Use the [Realtime API via WebSockets](./realtime-audio-websockets.md) if you need to stream audio data from a server to a client, or if you need to send and receive data in real time between a client and server. WebSockets aren't recommended for real-time audio streaming because they have higher latency than WebRTC.
 
 ## Supported models
 
@@ -36,7 +35,7 @@ The GPT 4o real-time models are available for global deployments in [East US 2 a
 - `gpt-4o-realtime-preview` (2024-12-17)
 - `gpt-4o-realtime-preview` (2024-10-01)
 
-See the [models and versions documentation](../concepts/models.md#audio-models) for more information.
+For more information about supported models, see the [models and versions documentation](../concepts/models.md#audio-models).
 
 ## Prerequisites
 
@@ -74,7 +73,7 @@ The sessions URL includes the Azure OpenAI resource URL, deployment name, the `/
 
 You can use the ephemeral API key to authenticate a WebRTC session with the Realtime API. The ephemeral key is valid for one minute and is used to establish a secure WebRTC connection between the client and the Realtime API.
 
-The sequence diagram below illustrates the process of minting an ephemeral API key and using it to authenticate a WebRTC session with the Realtime API. The sequence diagram shows the following steps:
+Here's how the ephemeral API key is used in the Realtime API:
 
 1. Your client requests an ephemeral API key from your server.
 1. Your server mints the ephemeral API key using the standard API key. 
@@ -84,7 +83,9 @@ The sequence diagram below illustrates the process of minting an ephemeral API k
 
 1. Your server returns the ephemeral API key to your client.
 1. Your client uses the ephemeral API key to authenticate a session with the Realtime API via WebRTC.
-1. Send and receive audio data in real time using the WebRTC peer connection.
+1. You send and receive audio data in real time using the WebRTC peer connection.
+
+The following sequence diagram illustrates the process of minting an ephemeral API key and using it to authenticate a WebRTC session with the Realtime API. 
 
 :::image type="content" source="../media/how-to/real-time/ephemeral-key-webrtc.png" alt-text="Diagram of the ephemeral API key to WebRTC peer connection sequence." lightbox="../media/how-to/real-time/ephemeral-key-webrtc.png":::
 
@@ -109,7 +110,7 @@ The following code sample demonstrates how to use the GPT-4o Realtime API via We
 The sample code is an HTML page that allows you to start a session with the GPT-4o Realtime API and send audio input to the model. The model's responses are played back in real-time.
 
 > [!WARNING]
-> The sample code includes the API key hardcoded in the JavaScript. This is not recommended for production use. In a production environment, you should use a secure backend service to generate an ephemeral key and return it to the client.
+> The sample code includes the API key hardcoded in the JavaScript. This code isn't recommended for production use. In a production environment, you should use a secure backend service to generate an ephemeral key and return it to the client.
 
 1. Copy the following code into an HTML file and open it in a web browser:
 
@@ -294,7 +295,7 @@ The sample code is an HTML page that allows you to start a session with the GPT-
 
 1. Select **Start Session** to start a session with the GPT-4o Realtime API. The session ID and ephemeral key are displayed in the log container.
 1. Allow the browser to access your microphone when prompted.
-1. Confirmation messages are displayed in the log container as the session progresses. The following is an example of the log messages:
+1. Confirmation messages are displayed in the log container as the session progresses. Here's an example of the log messages:
 
     ```text
     Ephemeral Key Received: ***
