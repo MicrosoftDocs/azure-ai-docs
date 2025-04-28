@@ -575,7 +575,7 @@ To set the PNA flag for the Azure AI Foundry hub:
 
 ## Delete endpoints and subscriptions
 
-[!INCLUDE [tip-left-nav](../includes/tip-left-nav.md)]
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
 You can delete model subscriptions and endpoints. Deleting a model subscription makes any associated endpoint become *Unhealthy* and unusable.
 

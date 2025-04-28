@@ -6,7 +6,7 @@ author: mattgotteiner
 ms.author: magottei
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 03/21/2025
+ms.date: 04/14/2025
 ms.custom:
   - subject-reliability
   - references_regions

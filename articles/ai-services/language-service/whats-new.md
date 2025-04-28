@@ -17,14 +17,14 @@ Azure AI Language is updated on an ongoing basis. To stay up-to-date with recent
 ## March 2025
 
 * Azure AI Language resource now can be deployed to 3 new regions, Jio India Central, UK West and Canada East, for the following capabilities: 
- * Language detection 
- * Sentiment analysis 
- * Key phrase extraction 
- * Named entity recognition (NER) 
- * Personally identifiable information (PII) entity recognition 
- * Entity linking 
- * Text analytics for health 
- * Extractive text summarization 
+    * Language detection 
+    * Sentiment analysis 
+    * Key phrase extraction 
+    * Named entity recognition (NER) 
+    * Personally identifiable information (PII) entity recognition 
+    * Entity linking 
+    * Text analytics for health 
+    * Extractive text summarization 
 
 * Back-end infrastructure for the Named entity recognition (NER) and Text Personally identifiable information (PII) entity recognition models is now updated with extended context window limits. 
 

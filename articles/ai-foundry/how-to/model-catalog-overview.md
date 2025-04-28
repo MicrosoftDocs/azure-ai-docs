@@ -190,5 +190,5 @@ To set the public network access flag for the Azure AI Foundry hub:
 
 ## Related content
 
-* [Explore foundation models in Azure AI Foundry portal](../ai-services/how-to/connect-ai-services.md)
+* [Explore foundation models in Azure AI Foundry portal](../../ai-services/connect-services-ai-foundry-portal.md)
 * [Model deprecation and retirement in Azure AI model catalog](../concepts/model-lifecycle-retirement.md)

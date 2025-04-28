@@ -37,7 +37,7 @@ To run the example code, your configuration must include one of the following en
 
    - Create a [workspace configuration file](../how-to-configure-environment.md#local-and-dsvm-only-create-a-workspace-configuration-file).
    - Install the [Azure Machine Learning SDK](/python/api/overview/azure/ml/install).
-   - Create an [Azure container registry](/azure/container-registry/) or other Docker registry available on the internet.
+   - Create an [Azure Container Registry](/azure/container-registry/) or other Docker registry available on the internet.
 
 ## Set up a training experiment
 

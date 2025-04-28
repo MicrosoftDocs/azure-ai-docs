@@ -645,7 +645,7 @@ Transcribes audio into the input language.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| deployment-id | path | Yes | string | Deployment ID of the whisper model. |
+| deployment-id | path | Yes | string | Deployment ID of the speech to text model.<br/><br/>For information about supported models, see [/azure/ai-services/openai/concepts/models#audio-models]. |
 | api-version | query | Yes | string | API version |
 
 ### Request Header
@@ -731,7 +731,7 @@ Transcribes and translates input audio into English text.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| deployment-id | path | Yes | string | Deployment ID of the whisper model which was deployed. |
+| deployment-id | path | Yes | string | Deployment ID of the whisper model which was deployed.<br/><br/>For information about supported models, see [/azure/ai-services/openai/concepts/models#audio-models]. |
 | api-version | query | Yes | string | API version |
 
 ### Request Header
@@ -2318,6 +2318,6 @@ Completions extensions aren't part of the latest GA version of the Azure OpenAI 
 
 The Chat message object isn't part of the latest GA version of the Azure OpenAI data plane inference spec.
 
-### Text to speech
+### Text to speech (Preview)
 
 Is not currently part of the latest Azure OpenAI GA version of the Azure OpenAI data plane inference spec. Refer to the latest [preview](../../reference-preview.md) version for this capability.

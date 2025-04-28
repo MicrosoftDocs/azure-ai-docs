@@ -48,7 +48,7 @@ In this section, you learn how Azure AI integrates with Azure Monitor Applicatio
 
 If you haven’t set this up, here are some quick steps:
 
-[!INCLUDE [tip-left-nav](../includes/tip-left-nav.md)]
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
 1. Navigate to your project in [Azure AI Foundry](https://ai.azure.com).
 1. Select the Tracing page on the left-hand side.

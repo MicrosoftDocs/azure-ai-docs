@@ -7,13 +7,27 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: overview
-ms.date: 01/30/2025
+ms.date: 04/23/2025
 ms.custom: azure-ai-agents
 ---
 
 # What's new in Azure AI Agent Service
 
 This article provides a summary of the latest releases and major documentation updates for Azure AI Agent Service.
+
+## April 2025
+
+### Azure monitor integration
+
+You can now see metrics related to Agents in Azure monitor
+* The number of files indexed for file search.
+* The number of runs in a given timeframe.
+
+See the [Azure monitor](./how-to/metrics.md) and [metrics reference](./reference/monitor-service.md) articles for more information.
+
+### BYO thread storage
+The Standard Agent Setup now supports **Bring Your Own (BYO) thread storage using an Azure Cosmos DB for NoSQL account**. This feature ensures all thread messages and conversation history are stored in your own resources. See the [Quickstart](./quickstart.md) for more information on how to deploy a Standard agent project.
+
 
 ## March 2025
 

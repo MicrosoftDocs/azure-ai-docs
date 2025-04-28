@@ -10,7 +10,6 @@ ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
 ms.custom: copilot-learning-hub, ignite-2024
-zone_pivot_groups: project-type
 #customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can build a RAG-based chat app.
 ---
 
@@ -29,23 +28,16 @@ This tutorial is part two of a three-part tutorial.
 
 ## Prerequisites
 
+[!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
+
 * Complete [Tutorial:  Part 1 - Create resources for building a custom chat application with the Azure AI SDK](copilot-sdk-create-resources.md) to:
 
     * Create a project with a connected Azure AI Search index
     * Install the Azure CLI, Python, and required packages
     * Configure your environment variables
 
-::: zone pivot="fdp-project"
-
-* Use the same **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** you created in part 1. 
-
-::: zone-end
-
-::: zone pivot="hub-project"
-
 * Use the same **[!INCLUDE [hub](../includes/hub-project-name.md)]** you created in part 1. 
 
-::: zone-end
 
 ## Create example data for your chat app
 
@@ -194,16 +186,5 @@ But don't delete them yet, if you want to deploy your chat app to Azure in [the 
 
 ## Next step
 
-::: zone pivot="fdp-project"
-
 > [!div class="nextstepaction"]
-> [Part 3: Evaluate your chat app to Azure](copilot-sdk-evaluate.md?pivots=fdp-project)
-
-::: zone-end
-
-::: zone pivot="hub-project"
-
-> [!div class="nextstepaction"]
-> [Part 3: Evaluate your chat app to Azure](copilot-sdk-evaluate.md?pivots=hub-project)
-
-::: zone-end
+> [Part 3: Evaluate your chat app to Azure](copilot-sdk-evaluate.md)

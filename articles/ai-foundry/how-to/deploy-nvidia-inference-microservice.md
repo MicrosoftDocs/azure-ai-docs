@@ -55,7 +55,7 @@ NVIDIA inference microservices are containers built by NVIDIA for optimized pret
 
 ## Deploy NVIDIA Inference Microservices on Managed Compute
 
-[!INCLUDE [tip-left-nav](../includes/tip-left-nav.md)]
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com) and go to the **Home** page.
 2. Select **Model catalog** from the left sidebar.

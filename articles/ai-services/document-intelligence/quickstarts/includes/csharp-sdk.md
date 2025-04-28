@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 02/10/2025
+ms.date: 04/11/2025
 ms.author: lajanuar
 monikerRange: ">=doc-intel-3.0.0"
 ---

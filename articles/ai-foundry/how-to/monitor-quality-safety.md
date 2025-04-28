@@ -12,8 +12,8 @@ ms.topic: how-to
 ms.date: 7/31/2024
 ms.reviewer: alehughes
 reviewer: ahughes-msft
-ms.author: mopeakande
-author: msakande
+ms.author: lagayhar  
+author: lgayhardt
 ---
 
 # Monitor quality and token usage of deployed prompt flow applications
@@ -109,7 +109,7 @@ To set up monitoring for your prompt flow application, you first have to deploy 
 
 In this section, you learn how to deploy your prompt flow with inferencing data collection enabled. For more information on how to deploy your prompt flow, see [Deploy a flow for real-time inference](flow-deploy.md).
 
-[!INCLUDE [tip-left-nav](../includes/tip-left-nav.md)]
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com).
 1. If you're not already in your project, select it.

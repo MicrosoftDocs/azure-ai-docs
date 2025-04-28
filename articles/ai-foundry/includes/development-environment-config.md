@@ -9,8 +9,6 @@ ms.author: sgilley
 ms.custom: include file, build-2024
 ---
 
-1. Install Python as described in the [SDK quickstart](../quickstarts/get-started-code.md#create-a-new-python-environment).
-1. [Install the Azure Machine Learning SDK v2](https://aka.ms/sdk-v2-install).
 1. Install azure-identity: `pip install azure-identity`. If in a notebook cell, use `%pip install azure-identity`.
 1. Provide your subscription details:
 

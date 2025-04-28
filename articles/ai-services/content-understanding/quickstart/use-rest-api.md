@@ -7,7 +7,7 @@ ms.author: tonyeiyalla
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: quickstart
-ms.date: 11/19/2024
+ms.date: 04/14/2025
 ---
 
 # Quickstart: Azure AI Content Understanding REST APIs

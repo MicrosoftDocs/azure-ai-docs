@@ -12,7 +12,6 @@ ms.date: 04/10/2025
 ms.reviewer: zuramir
 ms.author: sgilley
 author: sdgilley
-zone_pivot_groups: project-type
 # customer intent: As a developer, I want use the chat playground in Azure AI Foundry portal so I can work with generative AI.
 ---
 
@@ -24,37 +23,10 @@ In this quickstart, you use [Azure AI Foundry](https://ai.azure.com) to deploy a
 
 For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-project-name.md)] or a [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information about the differences between these two project types, see [Project types](../what-is-azure-ai-foundry.md#project-types).
 
-::: zone pivot="fdp-project"
-
-> [!TIP]
-> The rest of this article uses a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**.  Select [!INCLUDE [hub](../includes/hub-project-name.md)] at the top of this article if you want to use a [!INCLUDE [hub](../includes/hub-project-name.md)] instead.
-
-::: zone-end
-
-::: zone pivot="hub-project"
-
-> [!TIP]
-> The rest of this article uses a **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select [!INCLUDE [hub](../includes/fdp-project-name.md)] at the top of this article if you want to use a [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
-
-::: zone-end
 
 If you don't have an Azure subscription, <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">create one for free</a>.
 
 ## Prerequisites
-
-::: zone pivot="hub-project"
-
-- To create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)], you need permissions to create an Azure AI Foundry hub or have one created for you.
-    - If your role is **Contributor** or **Owner**, you can follow the steps in this tutorial.
-    - If your role is **Azure AI Developer**, the hub must already be created before you can complete this tutorial. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../concepts/ai-resources.md) and [Azure AI roles](../concepts/rbac-azure-ai-foundry.md).
-
-::: zone-end
-
-::: zone pivot="fdp-project"
-
-To create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)], you need: 
-
-::: zone-end
 
 - A subscription below the [quota limit](../how-to/quota.md) to [deploy a new model in this tutorial](#deploy-a-chat-model). Otherwise you already need to have a [deployed chat model](../how-to/deploy-models-openai.md).
 

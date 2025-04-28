@@ -251,7 +251,7 @@ Customers must reach out to their account teams to schedule a managed migration.
 
 **Managed migration advantages:**
 
-- Bulk migration of all commitments in an subscription/region is beneficial for customers with many commitments.
+- Bulk migration of all commitments in a subscription/region is beneficial for customers with many commitments.
 - Seamless cost migration: No possibility of double-billing or extra hourly charges.
 
 **Managed migration disadvantages:**

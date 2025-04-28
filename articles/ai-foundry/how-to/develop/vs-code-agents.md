@@ -7,13 +7,13 @@ ms.service: azure-ai-foundry
 content_well_notification: 
   - AI-contribution
 ms.topic: how-to
-ms.date: 04/03/2025
+ms.date: 04/28/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
 ---
 
-# Work with Azure AI Agent Service in Visual Studio Code
+# Work with Azure AI Agent Service in Visual Studio Code (Preview)
 
 After you [get started with the AI Foundry the VS Code extension](./get-started-projects-vs-code.md), you can work with [Azure AI Agent Service](/azure/ai-services/agents/overview). Agents are "smart" microservices that:
 
@@ -25,17 +25,17 @@ Agents combine AI models with tools to access and interact with your data.
 
 Azure AI Foundry developers can stay productive by developing, testing, and deploying agents in the familiar and powerful environment of VS Code.
 
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+
 ###	Create and edit Azure AI Agents within the designer view
 
 Follow these steps to create an Azure AI Agent:
 
 1. First, finish the [Get Started](./get-started-projects-vs-code.md#get-started) section to sign in to your Azure resources and set your default project.
  
-1. [Deploy a model](./get-started-projects-vs-code.md#deploy-a-model) to use with your agent.
+1. [Deploy a model](./get-started-projects-vs-code.md#deploy-a-model-from-the-model-catalog) to use with your agent.
 
-1. Select your AI Foundry project in the Azure Resources sidebar. 
-
-1. Under your project, find the **Agents** section.
+1. In the Azure AI Foundry Extension view, find the **Resources** section.
 
 1. Select the **+** (plus) icon next to the **Agents** subsection to create a new AI Agent.
 
@@ -49,7 +49,7 @@ Follow these steps to create an Azure AI Agent:
 
 ### Interact with your agent in the designer
 
-After you choose your save location, the Designer view will open to edit your AI Agent.
+After you choose your save location, both the agent .yaml file and the Designer view will open to edit your AI Agent.
 
 1. Perform the following tasks in the agent designer:
 
@@ -69,24 +69,27 @@ After you choose your save location, the Designer view will open to edit your AI
 
         :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-designer.png" alt-text="Screenshot of the Agent designer that enables you to edit and interact with your AI Agent." lightbox="../../media/how-to/get-started-projects-vs-code/agent-designer.png":::
  
-1. Select the **Save locally** button in the bottom-center of the **Agent Preferences** screen to store your agent configuration.
+    1. To save the .yaml file, select **File** > **Save** in the VS Code menu bar.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/save-agent-locally.png" alt-text="Screenshot of the Agent designer with the 'Save locally' button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/save-agent-locally.png":::
+###	Explore the Azure AI Agent YAML definition
 
-###	Show the Azure AI Agent YAML definition
-
-Select the **Open Yaml File** on the top-right of the designer to open your AI Agent .yaml file. This file contains the details and setup information for your agent, similar to the following .yaml file example: 
+Your AI Agent .yaml file was opened at the same time the designer was. This file contains the details and setup information for your agent, similar to the following .yaml file example: 
 
 ```yml
+# yaml-language-server: $schema=https://aka.ms/ai-foundry-vsc/agent/1.0.0
 version: 1.0.0
-name: BingAgent
+name: my-agent
 description: Description of the agent
-metadata:
-  author: Author Name
-  tag: basic
 id: ''
+metadata:
+  authors:
+    - author1
+    - author2
+  tags:
+    - tag1
+    - tag2
 model:
-  id: ''
+  id: 'gpt-4o-1'
   options:
     temperature: 1
     top_p: 1
@@ -128,7 +131,7 @@ Create a tool configuration .yaml file using the following steps:
     - Azure AI Foundry Project name
     - Bing connection name
 
-1. Save the .yaml file.
+1. To save the .yaml file, select **File** > **Save** in the VS Code menu bar.
 
 #### Add the tool to the AI Agent
 
@@ -146,7 +149,8 @@ Add a tool to the AI Agent with the following steps:
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-added-tool.png" alt-text="Screenshot of the Agent designer TOOL section with the new tool highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-added-tool.png":::
 
-1. Select the **Save locally** button in the bottom-center of the **Agent Preferences** screen to store your agent configuration. 
+1. To save the .yaml file, select **File** > **Save** in the VS Code menu bar.
+
 
 ###	Deploy Azure AI Agents to the Azure AI Foundry Studio
 
@@ -177,13 +181,32 @@ Open the **Agents Playground** using the following steps:
 
 1. Right-click on your deployed agent and select the **Open Playground** option This action starts a thread with your agent and let you send messages.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-open-playground.png" alt-text="Screenshot of the agent context menu with the 'Open Playground' option highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-open-playground.png":::
-
 1. The **Playground** page is displayed.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png" alt-text="Screenshot of the **Agents Playground** page in VS Code." lightbox="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png":::
 
 1. Type your prompt and see the outputs. 
+
+## Explore Threads
+
+The **Threads** subsection displays the threads created during a run with your agent. In the Azure Resources Extension view, select the **caret** icon in front of the **Threads** subsection to view the list of threads.
+
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/thread-list.png" alt-text="Screenshot of the threads in the Threads subsection." lightbox="../../media/how-to/get-started-projects-vs-code/thread-list.png":::
+
+
+
+###  View thread details
+
+Select a thread to view its details. The **Thread Details** page is displayed. 
+
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/thread-view.png" alt-text="Screenshot of the thread details view." lightbox="../../media/how-to/get-started-projects-vs-code/thread-view.png":::
+
+- A **Thread** is a conversation session between an agent and a user. Threads store **Messages** and automatically handle truncation to fit content into a model’s context.
+
+- A **Message** is a single interaction between the agent and the user. Messages can include text, images, and other files. Messages are stored as a list on the Thread.
+
+- A **Run** is a single execution of an agent. Each run can have multiple threads, and each thread can have multiple messages. The agent uses its configuration and Thread’s Messages to perform tasks by calling models and tools. As part of a Run, the agent appends Messages to the Thread.
+
 
 ## Cleanup resources
 
@@ -191,7 +214,7 @@ The Azure resources that you created in this article are billed to your Azure su
 
 ### Delete your agents
 
-[!INCLUDE [tip-left-nav](../../includes/tip-left-nav.md)]
+[!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
 Delete the deployed agent in the [online AI Foundry portal](https://ai.azure.com). Select **Agents** from the navigation menu on the left, select your agent, then select the **Delete** button.
 

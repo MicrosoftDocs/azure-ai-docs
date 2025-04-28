@@ -12,12 +12,12 @@ manager: nitinme
 
 # What is prompt transformation?
 
-Prompt transformation is a process included in DALL-E 3 image generation that applies a safety and quality system message to your original prompt. It uses a large language model (LLM) call to add the message before sending your prompt to the model for image generation. This system message enriches your original prompt with the goal of generating more diverse and higher-quality images while maintaining intent. 
+Prompt transformation is a process included in the DALL-E 3 models that applies a safety and quality system message to your original prompt. It uses a large language model (LLM) call to add the message before sending your prompt to the model for image generation. This system message enriches your original prompt with the goal of generating more diverse and higher-quality images while maintaining intent. 
 
 After prompt transformation is applied to the original prompt, content filtering is applied as a secondary step before image generation; for more information, see [Content filtering](./content-filter.md).
 
 > [!TIP]
-> Learn more about image generation prompting in OpenAI's [DALL·E documentation](https://platform.openai.com/docs/guides/images/language-specific-tips).
+> Learn more about image generation prompting in OpenAI's [Image generation documentation](https://platform.openai.com/docs/guides/images/language-specific-tips).
 
 ## Prompt transformation example
 
@@ -30,7 +30,7 @@ After prompt transformation is applied to the original prompt, content filtering
 
 Prompt transformation is essential for responsible and high-quality generations. Not only does prompt transformation improve the safety of your generated image, but it also enriches your prompt in a more descriptive manner, leading to higher quality and descriptive imagery.
 
-Default prompt transformation in Azure OpenAI DALL-E 3 contains safety enhancements that steer the model away from generating images of Copyright Studio characters and artwork, public figures, and other harmful content such as sexual, hate and unfairness, violence, and self-harm content.
+Default prompt transformation contains safety enhancements that steer the model away from generating images of Copyright Studio characters and artwork, public figures, and other harmful content such as sexual, hate and unfairness, violence, and self-harm content.
 
 ## How do I use prompt transformation?
 
@@ -69,4 +69,4 @@ Output Content:
 ## Next step
 
 > [!div class="nextstepaction"]
-> [DALL-E quickstart](/azure/ai-services/openai/dall-e-quickstart)
+> [Image generation quickstart](/azure/ai-services/openai/dall-e-quickstart)

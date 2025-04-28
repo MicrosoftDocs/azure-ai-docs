@@ -36,7 +36,7 @@ When you start a compute session, you can use the default settings or customize 
 
 By default, the compute session uses the environment defined in `flow.dag.yaml` in the [flow folder](flow-develop.md#authoring-the-flow). It runs on a serverless compute with a virtual machine (VM) size for which you have sufficient quota in your workspace.
 
-[!INCLUDE [tip-left-nav](../includes/tip-left-nav.md)]
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
 1. Go to your project in Azure AI Foundry portal.
 1. From the left pane, select **Prompt flow** and then select the flow you want to run.

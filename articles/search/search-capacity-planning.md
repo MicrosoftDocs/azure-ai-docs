@@ -11,7 +11,7 @@ ms.custom:
   - ignite-2023
   - ignite-2024
 ms.topic: conceptual
-ms.date: 04/10/2025
+ms.date: 04/22/2025
 ---
 
 # Estimate and manage capacity of a search service
@@ -53,7 +53,8 @@ A single service must have sufficient resources to handle all workloads (indexin
 Guidelines for determining whether to add capacity include:
 
 + Meeting the high availability criteria for service-level agreement.
-+ The frequency of HTTP 503 errors is increasing.
++ The frequency of HTTP 503 (Service unavailable) errors is increasing.
++ The frequency of HTTP 429 (Too many requests) errors is increasing, an indication of low storage.
 + Large query volumes are expected.
 + A [one-time upgrade](#how-to-upgrade-capacity) to newer infrastructure and larger partitions isn’t sufficient.
 + The current number of partitions isn’t adequate for indexing workloads.

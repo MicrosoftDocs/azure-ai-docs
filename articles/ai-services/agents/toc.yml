@@ -58,6 +58,8 @@ items:
           href: ../openai/how-to/content-filters.md?context=/azure/ai-services/agents/context/context
         - name: Use virtual networks
           href: how-to/virtual-networks.md
+    - name: Service monitoring
+      href: how-to/metrics.md
     - name: Use the Visual Studio Code extension
       href: ../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context
 - name: Responsible AI
@@ -84,6 +86,8 @@ items:
           href: https://github.com/openai/openai-dotnet/blob/main/README.md
         - name: Python
           href: https://github.com/openai/openai-python/blob/main/README.md
+    - name: Data monitoring reference
+      href: reference/monitor-service.md
 - name: Resources
   items: 
     - name: Support and help options

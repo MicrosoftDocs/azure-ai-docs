@@ -59,7 +59,7 @@ Azure AI Foundry shows the supported source paths. You can create a data from a 
 
 A file (`uri_file`) data resource type points to a *single file* on storage (for example, a CSV file).
 
-[!INCLUDE [tip-left-nav](../includes/tip-left-nav.md)]
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
 These steps explain how to create a File typed data resource in the Azure AI Foundry portal:
 

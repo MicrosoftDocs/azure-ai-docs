@@ -30,7 +30,7 @@ To enable traces locally, you have two options:
 
 Before you can log to Azure AI Foundry portal, attach an Application Insights resource to your project.
 
-[!INCLUDE [tip-left-nav](../../includes/tip-left-nav.md)]
+[!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
 
 1. Navigate to your project in [Azure AI Foundry portal](https://ai.azure.com/).
@@ -104,7 +104,7 @@ For more information on how to send Azure AI Inference traces to Azure Monitor a
 
 From Azure AI Foundry project, you can also open your custom dashboard that provides you with insights specifically to help you monitor your generative AI application.
 
-In this Azure Workbook, you can view your Gen AI spans and jump into the Azure Monitor **End-to-end transaction details view** view to deep dive and investigate.
+In this Azure Workbook, you can view your Gen AI spans and jump into the Azure Monitor **End-to-end transaction details view** to deep dive and investigate.
 
 Learn more about using this workbook to monitor your application, see [Azure Workbook documentation](/azure/azure-monitor/visualize/workbooks-create-workbook).
 

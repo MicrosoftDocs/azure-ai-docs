@@ -47,7 +47,7 @@ After you deployed a prompt flow, you got the error message: "Tool load failed i
 
 To fix this error, take the following steps to manually assign the ML Data scientist role to your endpoint. It might take several minutes for the new role to take effect.
 
-[!INCLUDE [tip-left-nav](../includes/tip-left-nav.md)]
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
 1. Go to your project in [Azure AI Foundry](https://ai.azure.com) and select **Management center** from the left pane to open the settings page.
 1. Under the **Project** heading, select **Overview**.
