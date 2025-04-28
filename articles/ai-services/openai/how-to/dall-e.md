@@ -180,10 +180,6 @@ The default value is `high`.
 
 You can generate between one and 10 images in a single API call. The default value is `1`.
 
-#### Response format
-
-The format in which the generated images are returned. Must be either `url` (a URL pointing to the image) or `b64_json` (the base 64-byte code in JSON format). The default is `url`.
-
 #### User ID
 
 Use the *user* parameter to specify a unique identifier for the user making the request. This is useful for tracking and monitoring usage patterns. The value can be any string, such as a user ID or email address.
@@ -236,7 +232,7 @@ With DALL-E 3, you can't generate more than one image in a single API call: the 
 
 #### Response format
 
-The format in which the generated images are returned. Must be one of `url` (a URL pointing to the image) or `b64_json` (the base 64-byte code in JSON format). The default is `url`.
+The format in which dall-e-3 generated images are returned. Must be one of `url` or `b64_json`. This parameter isn't supported for gpt-image-1 which will always return base64-encoded images.
 
 ---
 
