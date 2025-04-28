@@ -35,11 +35,11 @@ The following is a list of tools supported by Azure AI Agent Service.
 | [Microsoft Fabric](./fabric.md) | Integrate your agent with the [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. |
 | [OpenAPI 3.0 Specified tool ](./openapi-spec.md) | C    onnect your Azure AI Agent to external APIs using functions with an OpenAPI 3.0 specification. |
 
+## Licensed data tools
+
 > [!IMPORTANT]
 > * Your use of connected non-Microsoft services is subject to the terms between you and the service provider. By connecting to a non-Microsoft service, you acknowledge that some of your data, such as prompt content, is passed to the non-Microsoft service, and/or your application might receive data from the non-Microsoft service. You're responsible for your use of non-Microsoft data. 
 > * Using tools from tool catalog may incur usage with tool providers, review the pricing plan with your selected tool data providers. 
-
-## Licensed data tools
 
 |Tool  |Description  |
 |---------|---------|
