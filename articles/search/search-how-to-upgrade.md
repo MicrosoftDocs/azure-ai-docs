@@ -8,7 +8,7 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 04/10/2025
+ms.date: 04/28/2025
 ---
 
 # Upgrade your Azure AI Search service in the Azure portal
@@ -35,15 +35,12 @@ In this preview, an upgrade only increases the [storage limit](#higher-storage-l
 To qualify for an upgrade, your service:
 
 > [!div class="checklist"]
-> + Must have been created before April 2024. Services created after April 2024 should already have higher capacity. To see when you created your service, [check your service creation date](#check-your-service-creation-or-upgrade-date).
-> + Must be in a region where higher capacity is enabled.
-> + Must be in one of the following regions:
->   + East US
->   + North Central US
->   + West Central US
->   + UK South
+> + Must have been [created before April 2024](#check-your-service-creation-or-upgrade-date). Services created after April 2024 should already have higher capacity.
+> + Must be in a [region where higher capacity is enabled](search-region-support.md).
 
-<!-- Check the footnotes in the [list of supported regions](search-region-support.md). -->
+> [!IMPORTANT]
+> + Some search services created before January 1, 2019 don't support upgrades. In this situation, you must create a new service in a high-capacity region to get increased storage and vector limits.
+> + Upgrades are subject to [capacity constraints](search-region-support.md). If regional capacity is constrained, your service can't be upgraded.
 
 ### Higher storage limits
 
@@ -71,11 +68,11 @@ For [eligible services](#upgrade-eligibility), the following table compares the 
 
 ## Check your service creation or upgrade date
 
-On the **Overview** page, you can view various metadata about your search service, including the **Create date (UTC)** and **Upgrade date (UTC)**.
+On the **Overview** page, you can view various metadata about your search service, including **Date created** and **Date upgraded**.
 
 :::image type="content" source="media/search-how-to-upgrade/service-creation-upgrade-metadata.png" alt-text="Screenshot of the service creation and service upgrade dates in the Azure portal." border="true" lightbox="media/search-how-to-upgrade/service-creation-upgrade-metadata.png":::
 
-The date you created your service partially determines its [upgrade eligibility](#upgrade-eligibility). If your service has never been upgraded, the **Upgrade date (UTC)** doesn't appear.
+The date you created your service partially determines its [upgrade eligibility](#upgrade-eligibility). If your service has never been upgraded, **Date upgraded** doesn't appear.
 
 ## Upgrade your service
 
@@ -89,7 +86,7 @@ To upgrade your service:
 
    :::image type="content" source="media/search-how-to-upgrade/upgrade-button.png" alt-text="Screenshot of the Upgrade button on the command bar in the Azure portal." border="true" lightbox="media/search-how-to-upgrade/upgrade-button.png":::
 
-   If this button appears dimmed, an upgrade isn’t available for your service. Your service either has the [latest upgrade](#check-your-service-creation-or-upgrade-date) or is in an [unsupported region](#upgrade-eligibility).
+   If this button appears dimmed, an upgrade isn’t available for your service. Your service either [has the latest upgrade](#check-your-service-creation-or-upgrade-date) or [doesn't qualify for an upgrade](#upgrade-eligibility).
 
 1. Review the upgrade details for your service, and then select **Upgrade**.
 
