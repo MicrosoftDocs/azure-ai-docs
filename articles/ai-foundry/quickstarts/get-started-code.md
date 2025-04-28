@@ -41,10 +41,10 @@ In this quickstart, we walk you through setting up your local development enviro
 
 ## Deploy a model
 
-[!INCLUDE [tip-left-pane](tip-left-pane.md)]
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com).
-1. Select a [!INCLUDE [hub-project-name](hub-project-name.md)].
+1. Select a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
 
 1. Select **Model catalog** from the left pane.
 
