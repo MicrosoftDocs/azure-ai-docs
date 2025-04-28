@@ -112,6 +112,14 @@ items:
           href: ./how-to/assistants-logic-apps.md
       - name: File search
         href: ./how-to/file-search.md
+  - name: Audio
+    items:
+      - name: Realtime API for speech and audio (preview)
+        href: ./how-to/realtime-audio.md
+      - name: Realtime API via WebRTC (preview)
+        href: ./how-to/realtime-audio-webrtc.md
+      - name: Realtime API via WebSockets (preview)
+        href: ./how-to/realtime-audio-websockets.md
   - name: Batch
     href: ./how-to/batch.md
   - name: Responses & chat completions
@@ -192,15 +200,6 @@ items:
       - name: Troubleshooting guidance
         href: ./how-to/fine-tuning-troubleshoot.md
         displayName: finetuning, fine-tuning
-        
-  - name: Realtime API for speech and audio (preview)
-    items:
-      - name: Realtime API overview
-        href: ./how-to/realtime-audio.md
-      - name: Realtime API via WebRTC
-        href: ./how-to/realtime-audio-webrtc.md
-      - name: Realtime API via WebSockets
-        href: ./how-to/realtime-audio-websockets.md
   - name: Stored completions
     href: ./how-to/stored-completions.md
   - name: Use your data
