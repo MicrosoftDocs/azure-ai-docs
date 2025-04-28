@@ -8,7 +8,7 @@ ms.subservice: inferencing
 author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan
-ms.date: 04/09/2025
+ms.date: 04/28/2025
 ms.topic: how-to
 ms.custom: how-to, devplatv2, cliv2, sdkv2, update-code2, devx-track-azurecli
 ---
@@ -19,7 +19,7 @@ ms.custom: how-to, devplatv2, cliv2, sdkv2, update-code2, devx-track-azurecli
 
 In this article, you learn to deploy your model to an online endpoint for use in real-time inferencing. You begin by deploying a model on your local machine to debug any errors. Then, you deploy and test the model in Azure, view the deployment logs, and monitor the service-level agreement (SLA). By the end of this article, you have a scalable HTTPS/REST endpoint that you can use for real-time inference.
 
-Online endpoints are endpoints that are used for real-time inferencing. There are two types of online endpoints: managed online endpoints and Kubernetes online endpoints. For more information about the differences, see [Managed online endpoints vs Kubernetes online endpoints](concept-endpoints-online.md#managed-online-endpoints-vs-kubernetes-online-endpoints).
+Online endpoints are endpoints that are used for real-time inferencing. There are two types of online endpoints: managed online endpoints and Kubernetes online endpoints. For more information about the differences, see [Managed online endpoints vs. Kubernetes online endpoints](concept-endpoints-online.md#managed-online-endpoints-vs-kubernetes-online-endpoints).
 
 Managed online endpoints help to deploy your machine learning models in a turnkey manner. Managed online endpoints work with powerful CPU and GPU machines in Azure in a scalable, fully managed way. Managed online endpoints take care of serving, scaling, securing, and monitoring your models. This assistance frees you from the overhead of setting up and managing the underlying infrastructure.
 
@@ -33,7 +33,7 @@ The main example in this article uses managed online endpoints for deployment. T
 
 [!INCLUDE [basic prereqs cli](includes/machine-learning-cli-prereqs.md)]
 
-* Azure role-based access control (Azure RBAC) is used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the Owner or Contributor role for the Machine Learning workspace, or a custom role allowing `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`. If you use Azure Machine Learning studio to create and manage online endpoints or deployments, you need an extra permission `Microsoft.Resources/deployments/write` from the resource group owner. For more information, see [Manage access to Azure Machine Learning workspaces](how-to-assign-roles.md).
+* Azure role-based access control (Azure RBAC) is used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the Owner or Contributor role for the Azure Machine Learning workspace, or a custom role must allow `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`. If you use Azure Machine Learning studio to create and manage online endpoints or deployments, you need the extra permission `Microsoft.Resources/deployments/write` from the resource group owner. For more information, see [Manage access to Azure Machine Learning workspaces](how-to-assign-roles.md).
 * (Optional) To deploy locally, you must [install Docker Engine](https://docs.docker.com/engine/install/) on your local computer. We *highly recommend* this option, which makes it easier to debug issues.
 
 # [Python SDK](#tab/python)
@@ -42,8 +42,8 @@ The main example in this article uses managed online endpoints for deployment. T
 
 [!INCLUDE [basic prereqs sdk](includes/machine-learning-sdk-v2-prereqs.md)]
 
-* Azure RBAC is used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the Owner or Contributor role for the Machine Learning workspace, or a custom role must allow `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`. For more information, see [Manage access to Azure Machine Learning workspaces](how-to-assign-roles.md).
-* (Optional) To deploy locally, you must [install Docker Engine](https://docs.docker.com/engine/install/) on your local computer. We *highly recommend* this option, so it's easier to debug issues.
+* Azure RBAC is used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the Owner or Contributor role for the Azure Machine Learning workspace, or a custom role must allow `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`. For more information, see [Manage access to Azure Machine Learning workspaces](how-to-assign-roles.md).
+* (Optional) To deploy locally, you must [install Docker Engine](https://docs.docker.com/engine/install/) on your local computer. We *highly recommend* this option, which makes it easier to debug issues.
 
 # [Studio](#tab/azure-studio)
 
@@ -51,7 +51,7 @@ Before you follow the steps in this article, make sure that you have the followi
 
 * An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
 * An Azure Machine Learning workspace and a compute instance. If you don't have these resources, see [Create resources you need to get started](quickstart-create-resources.md).
-* Azure RBAC is used to grant access to operations in Machine Learning. To perform the steps in this article, your user account must be assigned the Owner or Contributor role for the Machine Learning workspace, or a custom role must allow `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`. For more information, see [Manage access to an Azure Machine Learning workspace](how-to-assign-roles.md).
+* Azure RBAC is used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the Owner or Contributor role for the Azure Machine Learning workspace, or a custom role must allow `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`. For more information, see [Manage access to an Azure Machine Learning workspace](how-to-assign-roles.md).
 
 # [ARM template](#tab/arm)
 
@@ -59,12 +59,12 @@ The Azure CLI and CLI extension for machine learning are used in these steps, bu
 
 [!INCLUDE [basic prereqs cli](includes/machine-learning-cli-prereqs.md)]
 
-* Azure RBAC is used to grant access to operations in Machine Learning. To perform the steps in this article, your user account must be assigned the Owner or Contributor role for the Machine Learning workspace, or a custom role must allow `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`. For more information, see [Manage access to an Azure Machine Learning workspace](how-to-assign-roles.md).
+* Azure RBAC is used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the Owner or Contributor role for the Azure Machine Learning workspace, or a custom role must allow `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`. For more information, see [Manage access to an Azure Machine Learning workspace](how-to-assign-roles.md).
 
 ---
 
-* Ensure that you have enough virtual machine (VM) quota allocated for deployment. Machine Learning reserves 20% of your compute resources for performing upgrades on some VM versions. For example, if you request 10 instances in a deployment, you must have a quota of 12 for each number of cores for the VM version. Failure to account for the extra compute resources results in an error. There are some VM versions that are exempt from the extra quota reservation. For more information on quota allocation, see [Virtual machine quota allocation for deployment](how-to-manage-quotas.md#virtual-machine-quota-allocation-for-deployment).
-* Alternatively, you could use quota from the Machine Learning shared quota pool for a limited time. [!INCLUDE [machine-learning-shared-quota](includes/machine-learning-shared-quota.md)]
+* Ensure that you have enough virtual machine (VM) quota allocated for deployment. Azure Machine Learning reserves 20% of your compute resources for performing upgrades on some VM versions. For example, if you request 10 instances in a deployment, you must have a quota of 12 for each number of cores for the VM version. Failure to account for the extra compute resources results in an error. There are some VM versions that are exempt from the extra quota reservation. For more information on quota allocation, see [Virtual machine quota allocation for deployment](how-to-manage-quotas.md#virtual-machine-quota-allocation-for-deployment).
+* Alternatively, you could use quota from the Azure Machine Learning shared quota pool for a limited time. [!INCLUDE [machine-learning-shared-quota](includes/machine-learning-shared-quota.md)]
 
 ## Prepare your system
 
@@ -81,7 +81,7 @@ If you haven't already set the defaults for the Azure CLI, save your default set
 
 ### Clone the examples repository
 
-To follow along with this article, first clone the [azureml-examples repository](https://github.com/azure/azureml-examples), then change into the repository's *azureml-examples/cli* directory:
+To follow along with this article, first clone the [azureml-examples repository](https://github.com/azure/azureml-examples), and then change into the repository's *azureml-examples/cli* directory:
 
 ```azurecli
 git clone --depth 1 https://github.com/Azure/azureml-examples
@@ -99,7 +99,7 @@ The commands in this tutorial are in the files *deploy-local-endpoint.sh* and *d
 
 ### Clone the examples repository
 
-To run the training examples, first clone the [azureml-examples repository](https://github.com/azure/azureml-examples), then change into the *azureml-examples/sdk/python/endpoints/online/managed* directory:
+To run the training examples, first clone the [azureml-examples repository](https://github.com/azure/azureml-examples), and then change into the *azureml-examples/sdk/python/endpoints/online/managed* directory:
 
 ```bash
 git clone --depth 1 https://github.com/Azure/azureml-examples
@@ -112,7 +112,7 @@ The information in this article is based on the [online-endpoints-simple-deploym
 
 ### Connect to Azure Machine Learning workspace
 
-The [workspace](concept-workspace.md) is the top-level resource for Machine Learning. It provides a centralized place to work with all the artifacts you create when you use Machine Learning. In this section, you connect to the workspace in which you perform deployment tasks. To follow along, open your *online-endpoints-simple-deployment.ipynb* notebook.
+The [workspace](concept-workspace.md) is the top-level resource for Azure Machine Learning. It provides a centralized place to work with all the artifacts you create when you use Azure Machine Learning. In this section, you connect to the workspace in which you perform deployment tasks. To follow along, open your *online-endpoints-simple-deployment.ipynb* notebook.
 
 1. Import the required libraries:
 
@@ -132,9 +132,9 @@ The [workspace](concept-workspace.md) is the top-level resource for Machine Lear
     > [!NOTE]
     > If you use the Kubernetes online endpoint, import the `KubernetesOnlineEndpoint` and `KubernetesOnlineDeployment` class from the `azure.ai.ml.entities` library.
 
-1. Configure workspace details and get a handle to the workspace:
+1. Configure workspace details and get a handle to the workspace.
 
-    To connect to a workspace, you need identifier parameters like a subscription, resource group, and workspace name. You use these details in `MLClient` from `azure.ai.ml` to get a handle to the required Machine Learning workspace. This example uses the [default Azure authentication](/python/api/azure-identity/azure.identity.defaultazurecredential).
+    To connect to a workspace, you need these identifier parameters: a subscription, resource group, and workspace name. You use these details in `MLClient` from `azure.ai.ml` to get a handle to the required Azure Machine Learning workspace. This example uses the [default Azure authentication](/python/api/azure-identity/azure.identity.defaultazurecredential).
 
     ```python
     # enter details of your Azure Machine Learning workspace
@@ -169,7 +169,7 @@ Use `--depth 1` to clone only the latest commit to the repository, which reduces
 
 If you cloned the examples repo, your local machine already has copies of the files for this example, and you can skip to the next section. If you didn't clone the repo, download it to your local machine.
 
-1. Go to [examples repository (azureml-examples)](https://github.com/Azure/azureml-examples/).
+1. Go to the [examples repository (azureml-examples)](https://github.com/Azure/azureml-examples/).
 1. Go to the **<> Code** button on the page, and then on the **Local** tab, select **Download ZIP**.
 1. Locate the folder */cli/endpoints/online/model-1/model* and the file */cli/endpoints/online/model-1/onlinescoring/score.py*.
 
@@ -186,7 +186,7 @@ export RESOURCE_GROUP="<resource group>"
 export WORKSPACE="<workspace name>"
 ```
 
-A couple of the template examples require you to upload files to the Azure Blob store for your workspace. The following steps query the workspace and store this information in environment variables used in the examples:
+A couple of the template examples require you to upload files to Azure Blob Storage for your workspace. The following steps query the workspace and store this information in environment variables used in the examples:
 
 1. Get an access token:
 
@@ -202,7 +202,7 @@ A couple of the template examples require you to upload files to the Azure Blob 
 
 ### Clone the examples repository
 
-To follow along with this article, first clone the [azureml-examples repository](https://github.com/azure/azureml-examples), then change into the *azureml-examples* directory:
+To follow along with this article, first clone the [azureml-examples repository](https://github.com/azure/azureml-examples), and then change into the *azureml-examples* directory:
 
 ```azurecli
 git clone --depth 1 https://github.com/Azure/azureml-examples
@@ -237,7 +237,7 @@ The reference for the endpoint YAML format is described in the following table. 
 | ----------- | -------------------- |
 | `$schema`   | (Optional) The YAML schema. To see all available options in the YAML file, you can view the schema in the preceding code snippet in a browser.   |
 | `name`      | The name of the endpoint.                                               |
-| `auth_mode` | Use `key` for key-based authentication.<br>Use `aml_token` for Machine Learning token-based authentication.<br>Use `aad_token` for Microsoft Entra token-based authentication (preview). <br>For more information on authenticating, see [Authenticate clients for online endpoints](how-to-authenticate-online-endpoint.md). |
+| `auth_mode` | Use `key` for key-based authentication.<br>Use `aml_token` for Azure Machine Learning token-based authentication.<br>Use `aad_token` for Microsoft Entra token-based authentication (preview). <br>For more information on authenticating, see [Authenticate clients for online endpoints](how-to-authenticate-online-endpoint.md). |
 
 # [Python SDK](#tab/python)
 
@@ -264,7 +264,7 @@ endpoint = ManagedOnlineEndpoint(
 )
 ```
 
-The previous code uses `key` for key-based authentication. To use Machine Learning token-based authentication, use `aml_token`. To use Microsoft Entra token-based authentication (preview), use `aad_token`. For more information on authenticating, see [Authenticate clients for online endpoints](how-to-authenticate-online-endpoint.md).
+The previous code uses `key` for key-based authentication. To use Azure Machine Learning token-based authentication, use `aml_token`. To use Microsoft Entra token-based authentication (preview), use `aad_token`. For more information on authenticating, see [Authenticate clients for online endpoints](how-to-authenticate-online-endpoint.md).
 
 # [Studio](#tab/azure-studio)
 
@@ -313,7 +313,7 @@ For more information about the YAML schema, see the [online endpoint YAML refere
 > [!NOTE]
 > To use Kubernetes endpoints instead of managed online endpoints as a compute target:
 >
-> 1. Create and attach your Kubernetes cluster as a compute target to your Machine Learning workspace by using [Azure Machine Learning studio](how-to-attach-kubernetes-to-workspace.md).
+> 1. Create and attach your Kubernetes cluster as a compute target to your Azure Machine Learning workspace by using [Azure Machine Learning studio](how-to-attach-kubernetes-to-workspace.md).
 > 1. Use the [endpoint YAML](https://github.com/Azure/azureml-examples/blob/main/cli/endpoints/online/kubernetes/kubernetes-endpoint.yml) to target Kubernetes instead of the managed endpoint YAML. You need to edit the YAML to change the value of `compute` to the name of your registered compute target. You can use this [deployment.yaml](https://github.com/Azure/azureml-examples/blob/main/cli/endpoints/online/kubernetes/kubernetes-blue-deployment.yml) that has other properties that apply to a Kubernetes deployment.
 >
 > All the commands that are used in this article for managed online endpoints also apply to Kubernetes endpoints, except for the following capabilities that don't apply to Kubernetes endpoints:
@@ -380,7 +380,7 @@ The scoring script must have an `init()` function and a `run()` function.
 
 The scoring script must have an `init()` function and a `run()` function. This article uses the [score.py file](https://github.com/Azure/azureml-examples/blob/main/cli/endpoints/online/model-1/onlinescoring/score.py).
 
-When you use a template for deployment, you must first upload the scoring file to an Azure Blob store, and then register it:
+When you use a template for deployment, you must first upload the scoring file to Blob Storage, and then register it:
 
 1. The following code uses the Azure CLI command `az storage blob upload-batch` to upload the scoring file:
 
@@ -402,12 +402,12 @@ The `run()` function is called every time the endpoint is invoked. It does the a
 
 ## Deploy and debug locally by using a local endpoint
 
-We *highly recommend* that you test run your endpoint locally to validate and debug your code and configuration before you deploy to Azure. The Azure CLI and Python SDK support local endpoints and deployments, but Machine Learning studio and ARM templates don't.
+We *highly recommend* that you test run your endpoint locally to validate and debug your code and configuration before you deploy to Azure. The Azure CLI and Python SDK support local endpoints and deployments, but Azure Machine Learning studio and ARM templates don't.
 
 To deploy locally, [Docker Engine](https://docs.docker.com/engine/install/) must be installed and running. Docker Engine typically starts when the computer starts. If it doesn't, you can [troubleshoot Docker Engine](https://docs.docker.com/config/daemon/#start-the-daemon-manually).
 
 > [!TIP]
-> You can use the [Machine Learning inference HTTP server Python package](how-to-inference-server-http.md) to debug your scoring script locally *without Docker Engine*. Debugging with the inference server helps you to debug the scoring script before you deploy to local endpoints so that you can debug without being affected by the deployment container configurations.
+> You can use the [Azure Machine Learning inference HTTP server Python package](how-to-inference-server-http.md) to debug your scoring script locally *without Docker Engine*. Debugging with the inference server helps you to debug the scoring script before you deploy to local endpoints so that you can debug without being affected by the deployment container configurations.
 
 For more information on debugging online endpoints locally before you deploy to Azure, see [Online endpoint debugging](concept-endpoints-online.md#online-endpoint-debugging).
 
@@ -682,7 +682,7 @@ A model registration is a logical entity in the workspace that can contain a sin
 
 To register the example model, follow these steps:
 
-1. Go to [Machine Learning studio](https://ml.azure.com).
+1. Go to [Azure Machine Learning studio](https://ml.azure.com).
 1. On the left pane, select the **Models** page.
 1. Select **Register**, and then choose **From local files**.
 1. Select __Unspecified type__ for the __Model type__.
@@ -718,7 +718,7 @@ For more information on how to create an environment in the studio, see [Create 
 
 # [ARM template](#tab/arm)
 
-1. To register the model by using a template, you must first upload the model file to an Azure Blob store. The following example uses the `az storage blob upload-batch` command to upload a file to the default storage for your workspace:
+1. To register the model by using a template, you must first upload the model file to Blob Storage. The following example uses the `az storage blob upload-batch` command to upload a file to the default storage for your workspace:
 
     :::code language="{language}" source="~/azureml-examples-main/deploy-arm-templates-az-cli.sh" id="upload_model":::
 
@@ -737,7 +737,7 @@ For more information on how to create an environment in the studio, see [Create 
 ---
 
 > [!IMPORTANT]
-> When you define a custom environment for your deployment, ensure that the `azureml-inference-server-http` package is included in the conda file. This package is essential for the inference server to function properly. If you're unfamiliar with how to create your own custom environment, use one of our curated environments such as `minimal-py-inference` (for custom models that don't use `mlflow`) or `mlflow-py-inference` (for models that use `mlflow`). You can find these curated environments on the **Environments** tab of your instance of Machine Learning studio.
+> When you define a custom environment for your deployment, ensure that the `azureml-inference-server-http` package is included in the conda file. This package is essential for the inference server to function properly. If you're unfamiliar with how to create your own custom environment, use one of our curated environments such as `minimal-py-inference` (for custom models that don't use `mlflow`) or `mlflow-py-inference` (for models that use `mlflow`). You can find these curated environments on the **Environments** tab of your instance of Azure Machine Learning studio.
 
 ### Configure a deployment that uses registered assets
 
@@ -788,7 +788,7 @@ You can specify the CPU or GPU instance types and images in your deployment defi
 
 Your deployment definition in the _blue-deployment-with-registered-assets.yml_ file used a general-purpose type `Standard_DS3_v2` instance and the non-GPU Docker image `mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04:latest`. For GPU compute, choose a GPU compute type version and a GPU Docker image.
 
-For supported general-purpose and GPU instance types, see [Managed online endpoints SKU list](reference-managed-online-endpoints-vm-sku-list.md). For a list of Machine Learning CPU and GPU base images, see [Azure Machine Learning base images](https://github.com/Azure/AzureML-Containers).
+For supported general-purpose and GPU instance types, see [Managed online endpoints SKU list](reference-managed-online-endpoints-vm-sku-list.md). For a list of Azure Machine Learning CPU and GPU base images, see [Azure Machine Learning base images](https://github.com/Azure/AzureML-Containers).
 
 > [!NOTE]
 > To use Kubernetes instead of managed endpoints as a compute target, see [Introduction to Kubernetes compute target](./how-to-attach-kubernetes-anywhere.md).
@@ -799,7 +799,7 @@ You can specify the CPU or GPU instance types and images in your deployment conf
 
 Earlier, you configured a deployment that used a general-purpose type `Standard_DS3_v2` instance and a non-GPU Docker image `mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04:latest`. For GPU compute, choose a GPU compute type version and a GPU Docker image.
 
-For supported general-purpose and GPU instance types, see [Managed online endpoints SKU list](reference-managed-online-endpoints-vm-sku-list.md). For a list of Machine Learning CPU and GPU base images, see [Azure Machine Learning base images](https://github.com/Azure/AzureML-Containers).
+For supported general-purpose and GPU instance types, see [Managed online endpoints SKU list](reference-managed-online-endpoints-vm-sku-list.md). For a list of Azure Machine Learning CPU and GPU base images, see [Azure Machine Learning base images](https://github.com/Azure/AzureML-Containers).
 
 > [!NOTE]
 > To use Kubernetes instead of managed endpoints as a compute target, see [Introduction to Kubernetes compute target](./how-to-attach-kubernetes-anywhere.md).
@@ -814,7 +814,7 @@ For supported general-purpose and GPU instance types, see [Managed online endpoi
 
 The preceding registration of the environment specifies a non-GPU Docker image `mcr.microsoft.com/azureml/openmpi3.1.2-ubuntu18.04` by passing the value to the *environment-version.json* template by using the `dockerImage` parameter. For a GPU compute, provide a value for a GPU Docker image to the template (use the `dockerImage` parameter) and provide a GPU compute type version to the `online-endpoint-deployment.json` template (use the `skuName` parameter).
 
-For supported general-purpose and GPU instance types, see [Managed online endpoints SKU list](reference-managed-online-endpoints-vm-sku-list.md). For a list of Machine Learning CPU and GPU base images, see [Azure Machine Learning base images](https://github.com/Azure/AzureML-Containers).
+For supported general-purpose and GPU instance types, see [Managed online endpoints SKU list](reference-managed-online-endpoints-vm-sku-list.md). For a list of Azure Machine Learning CPU and GPU base images, see [Azure Machine Learning base images](https://github.com/Azure/AzureML-Containers).
 
 ---
 
@@ -874,7 +874,7 @@ Use the studio to create a managed online endpoint directly in your browser. Whe
 
 One way to create a managed online endpoint in the studio is from the **Models** page. This method also provides an easy way to add a model to an existing managed online deployment. To deploy the model named `model-1` that you registered previously in the [Register your model and environment](#register-your-model-and-environment) section:
 
-1. Go to the [Machine Learning studio](https://ml.azure.com).
+1. Go to [Azure Machine Learning studio](https://ml.azure.com).
 1. On the left pane, select the **Models** page.
 1. Select the model named **model-1**.
 1. Select **Deploy** > **Real-time endpoint**.
@@ -901,7 +901,7 @@ One way to create a managed online endpoint in the studio is from the **Models**
 
 Alternatively, you can create a managed online endpoint from the **Endpoints** page in the studio.
 
-1. Go to the [Machine Learning studio](https://ml.azure.com).
+1. Go to [Azure Machine Learning studio](https://ml.azure.com).
 1. On the left pane, select the **Endpoints** page.
 1. Select **+ Create**.
 
@@ -1220,7 +1220,7 @@ ml_client.online_endpoints.begin_delete(name=endpoint_name)
 
 If you aren't going to use the endpoint and deployment, delete them. By deleting the endpoint, you also delete all its underlying deployments.
 
-1. Go to [Machine Learning studio](https://ml.azure.com).
+1. Go to [Azure Machine Learning studio](https://ml.azure.com).
 1. On the left pane, select the **Endpoints** page.
 1. Select an endpoint.
 1. Select **Delete**.
