@@ -38,8 +38,6 @@ items:
     items:
     - name: Ask @Foundry for help
       href: at-foundry/ask-at-foundry.md
-    - name: Privacy, security and responsible use
-      href: at-foundry/responsible-ai.md
 
 - name: Explore AI model capabilities
   items:
