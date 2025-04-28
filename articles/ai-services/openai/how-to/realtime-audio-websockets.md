@@ -30,7 +30,8 @@ Use the Realtime API via WebSockets in server-to-server scenarios where low late
 The GPT-4o real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
 - `gpt-4o-mini-realtime-preview` (2024-12-17)
 - `gpt-4o-realtime-preview` (2024-12-17)
-- `gpt-4o-realtime-preview` (2024-10-01)
+
+You should use API version `2025-04-01-preview` in the URL for the Realtime API. 
 
 For more information about supported models, see the [models and versions documentation](../concepts/models.md#audio-models).
 

@@ -33,7 +33,8 @@ Use the [Realtime API via WebSockets](./realtime-audio-websockets.md) if you nee
 The GPT 4o real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
 - `gpt-4o-mini-realtime-preview` (2024-12-17)
 - `gpt-4o-realtime-preview` (2024-12-17)
-- `gpt-4o-realtime-preview` (2024-10-01)
+
+You should use API version `2025-04-01-preview` in the URL for the Realtime API. The API version is included in the sessions URL.
 
 For more information about supported models, see the [models and versions documentation](../concepts/models.md#audio-models).
 
@@ -51,21 +52,28 @@ You use different URLs to get an ephemeral API key and connect to the Realtime A
 
 | URL | Description | 
 |---|---|
-| Sessions URL | The `/realtime/sessions` URL is used to get an ephemeral API key. The sessions URL includes the Azure OpenAI resource URL, deployment name, the `/realtime/sessions` path, and the API version. |
-| WebRTC URL | The WebRTC URL is used to establish a WebRTC peer connection with the Realtime API. The WebRTC URL includes the region and the `realtimeapi-preview.ai.azure.com/v1/realtimertc` path.<br/><br/>The supported regions are `eastus2` and `swedencentral`. |
+| Sessions URL | The `/realtime/sessions` URL is used to get an ephemeral API key. The sessions URL includes the Azure OpenAI resource URL, deployment name, the `/realtime/sessions` path, and the API version.<br/><br/>You should use API version `2025-04-01-preview` in the URL.<br/><br/>For an example and more information, see the [Sessions URL](#sessions-url) section below.|
+| WebRTC URL | The WebRTC URL is used to establish a WebRTC peer connection with the Realtime API. The WebRTC URL includes the region and the `realtimeapi-preview.ai.azure.com/v1/realtimertc` path.<br/><br/>The supported regions are `eastus2` and `swedencentral`.<br/><br/>For an example and more information, see the [Sessions URL](#webrtc-url) section below.|
 
+### Sessions URL
 Here's an example of a well-constructed `realtime/sessions` URL that you use to get an ephemeral API key:
 
 ```http
-https://YourAzureOpenAIResourceName.openai.azure.com/openai/deployments/gpt-4o-mini-realtime-preview/realtime/sessions?api-version=2025-02-01-preview
+https://YourAzureOpenAIResourceName.openai.azure.com/openai/realtimeapi/sessions?api-version=2025-04-01-preview
 ```
-
+### WebRTC URL
 Make sure the region of the WebRTC URL matches the region of your Azure OpenAI resource.
 
 For example:
 - If your Azure OpenAI resource is in the swedencentral region,
-the WebRTC URL should be `https://swedencentral.realtimeapi-preview.ai.azure.com/v1/realtimertc`.
-- If your Azure OpenAI resource is in the eastus2 region, the WebRTC URL should be `https://eastus2.realtimeapi-preview.ai.azure.com/v1/realtimertc`.
+the WebRTC URL should be:
+    ```http
+    https://swedencentral.realtimeapi-preview.ai.azure.com/v1/realtimertc
+    ```
+- If your Azure OpenAI resource is in the eastus2 region, the WebRTC URL should be:
+    ```http
+    https://eastys2.realtimeapi-preview.ai.azure.com/v1/realtimertc
+    ```
 
 The sessions URL includes the Azure OpenAI resource URL, deployment name, the `/realtime/sessions` path, and the API version. The Azure OpenAI resource region isn't part of the sessions URL.
 
@@ -141,7 +149,7 @@ The sample code is an HTML page that allows you to start a session with the GPT-
             // The SESSIONS_URL includes the Azure OpenAI resource URL,
             // deployment name, the /realtime/sessions path, and the API version.
             // The Azure OpenAI resource region isn't part of the SESSIONS_URL.
-            const SESSIONS_URL="https://YourAzureOpenAIResourceName.openai.azure.com/openai/deployments/gpt-4o-mini-realtime-preview/realtime/sessions?api-version=2025-02-01-preview"
+            const SESSIONS_URL="https://YourAzureOpenAIResourceName.openai.azure.com/openai/realtimeapi/sessions?api-version=2025-04-01-preview"
     		
             // The API key of the Azure OpenAI resource.
             const API_KEY = "YOUR_API_KEY_HERE"; 
