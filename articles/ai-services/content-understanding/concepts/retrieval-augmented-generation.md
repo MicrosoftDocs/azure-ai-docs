@@ -50,7 +50,7 @@ A high level summary of RAG implementation pattern looks like this:
 3. Store embedded vectors in database or search index.  
 4. Use Generative AI chat models to query and generate responses from retrieval systems.
 
-Here’s an overview of the implementation process, beginning with data extraction using Azure AI Content Understanding as the foundation for transforming raw multimodal data into structured, searchable formats optimized for RAG workflows:
+Here's an overview of the implementation process, beginning with data extraction using Azure AI Content Understanding as the foundation for transforming raw multimodal data into structured, searchable formats optimized for RAG workflows:
 
 ### 1. Content Extraction: The Foundation for RAG with Content Understanding
 
@@ -337,16 +337,16 @@ Below is an example showcasing the results of content and field extraction using
             "valueString": "Maria Smith contacted Contoso to inquire about her current point balance. Agent John Doe confirmed her identity and informed her that she has 599 points. Maria did not require any further information and the call ended on a positive note."
           },
           "TrainingTopics": {
-						"type": "array",
-						"valueArray": [
-							{
-								"type": "string",
-								"valueString": "Compliance"
-							},
-							{
-								"type": "string",
-								"valueString": "Risk mitigation"
-							},]
+                        "type": "array",
+                        "valueArray": [
+                            {
+                                "type": "string",
+                                "valueString": "Compliance"
+                            },
+                            {
+                                "type": "string",
+                                "valueString": "Risk mitigation"
+                            },]
           },
           "People": {
             "type": "array",
@@ -416,16 +416,16 @@ Below is an example showcasing the results of content and field extraction using
             "valueString": "The video begins with a view from a glass floor, showing a person's feet in white sneakers standing on it. The scene captures a downward view of a structure, possibly a tower, with a grid pattern on the floor and a clear view of the ground below. The lighting is bright, suggesting a sunny day, and the colors are dominated by the orange of the structure and the gray of the floor."
           },
           "KeyTopics": {
-						"type": "array",
-						"valueArray": [
-							{
-								"type": "string",
-								"valueString": "Flight delay"
-							},
-							{
-								"type": "string",
-								"valueString": "Customer service"
-							},
+                        "type": "array",
+                        "valueArray": [
+                            {
+                                "type": "string",
+                                "valueString": "Flight delay"
+                            },
+                            {
+                                "type": "string",
+                                "valueString": "Customer service"
+                            },
             ]
           }
         },
