@@ -18,6 +18,8 @@ ms.topic: conceptual
 
 @Foundry is available in Azure AI Foundry as a preview feature.
 
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+
 ## Are @Foundry's results reliable?
 
 @Foundry is designed to generate the best possible responses with the context to which it has access. However, like any AI system, @Foundry's responses are not always perfect. All of @Foundry's responses should be carefully tested, reviewed, and vetted before making changes to your Azure environment.
