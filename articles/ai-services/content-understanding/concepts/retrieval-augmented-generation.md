@@ -58,7 +58,7 @@ A high level summary of **RAG** implementation pattern looks like this:
 
 Here's an overview of the implementation process, beginning with data extraction using Azure AI Content Understanding as the foundation for transforming raw multimodal data into structured, searchable formats optimized for **RAG** workflows:
 
-* [Content extraction](#content-extraction-the-foundation-for-rag-with-content-understanding)
+* [Content extraction](#content-extraction-rag-with-content-understanding-foundation)
 * [Field extraction](#field-extraction-enhance-knowledge-bases-for-better-retrieval)
 * [Create a unified search index](#create-a-unified-search-index)
 * [Utilize Azure OpenAI models](#utilize-azure-openai-models)
@@ -462,7 +462,7 @@ After Azure AI Content Understanding extracts data, the next steps focus on inte
 
 After processing multimodal content with Azure AI Content Understanding, create a comprehensive search infrastructure using your newly structured data. By embedding the markdown and JSON outputs with Azure OpenAI's embedding models and indexing them in Azure AI Search, you establish a unified knowledge repository spanning all content types.
 
-Azure AI Search offers advanced search strategies for multimodal content. In this implementation, [hybrid search](https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview) combines vector and full-text indexing to blend keyword precision with semantic understanding—ideal for complex queries requiring both exact matching and contextual relevance. This approach significantly enhances the quality of information fed to generation models, producing more accurate, contextually appropriate responses
+Azure AI Search offers advanced search strategies for multimodal content. In this implementation, [hybrid search](../../../search/hybrid-search-overview) combines vector and full-text indexing to blend keyword precision with semantic understanding—ideal for complex queries requiring both exact matching and contextual relevance. This approach significantly enhances the quality of information fed to generation models, producing more accurate, contextually appropriate responses
 
 To follow is a sample consolidated index that support vector and hybrid search and enables cross-modal search capabilities, allowing users to discover relevant information regardless of the original content format:
 
@@ -504,7 +504,7 @@ To follow is a sample consolidated index that support vector and hybrid search a
 
 ## Utilize Azure OpenAI models
 
-Once your content is extracted and indexed, integrate [Azure OpenAI's embedding and chat models](../../openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions) to create an interactive question-answering system.
+Once your content is extracted and indexed, integrate [Azure OpenAI's embedding and chat models](../../openai/concepts/models.md#chat-completions) to create an interactive question-answering system.
 
 Content Understanding empowers the model to provide accurate and contextually grounded responses by using your actual content. This process includes referencing specific sections of documents, interpreting relevant images, quoting from video transcripts, and citing speaker statements from audio recordings.
 
@@ -517,8 +517,8 @@ Content Understanding supports the following development options:
 
 ## Next steps
 
-* Try our **RAG** [code samples.]((https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples))
-* Follow our [**RAG** Tutorial](../tutorial/**RAG**-tutorial.md)
+* Try our **RAG** [code samples.](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)
+* Follow our [**RAG** Tutorial](../tutorial/build-rag-solution.md)
 * Learn more about [document](../document/overview.md), [image](../image/overview.md), [audio](../audio/overview.md), [video](../video/overview.md) capabilities.
 * Learn more about Content Understanding [**best practices**](../concepts/best-practices.md) and [**capabilities**](../concepts/capabilities.md).
 * Review Content Understanding [**code samples**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main)
