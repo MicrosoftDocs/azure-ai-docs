@@ -128,13 +128,13 @@ In the [Azure portal](https://portal.azure.com), search for and then select **Az
 
 :::image type="content" source="../media/portal/overview.png" lightbox="../media/portal/overview.png" alt-text="The Azure AI Foundry overview page in the Azure portal.":::
 
-You can also go directly to your project's resources in the Azure portal from the Azure AI Foundry portal by using the following steps:
+You can also go directly to your hub and project resources in the Azure portal from the Azure AI Foundry portal by using the following steps:
 
 > [!NOTE]
 > These steps assume that the hub and project are in the same resource group.
 
 1. In [Azure AI Foundry](https://ai.azure.com), go to the hub or project and select **Management center** to view your project resources.
-1. From the management center, select the overview for your project and then select the link to **Manage in Azure portal**.
+1. From the management center, select the overview for the hub or project and then select the link to **Manage in Azure portal**.
     
     :::image type="content" source="../media/concepts/azureai-project-view-ai-studio.png" alt-text="Screenshot of the Azure AI Foundry project overview page with links to the Azure portal." lightbox="../media/concepts/azureai-project-view-ai-studio.png":::
 
