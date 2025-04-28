@@ -26,37 +26,15 @@ ms.custom: ignite-2023, build-2024, ignite-2024
 
 With Azure AI Foundry, you can explore a wide variety of models, services and capabilities, and get to building AI applications that best serve your goals. Azure AI Foundry facilitates scalability for transforming proof of concepts into full-fledged production applications with ease. Continuous monitoring and refinement support long-term success.  
 
-:::image type="content" source="./media/explore/ai-studio-home.png" alt-text="Screenshot of the Azure AI Foundry home page with links to get started." lightbox="./media/explore/ai-studio-home.png":::
-
-When you come to the Azure AI Foundry portal, you find that all paths lead to a project. Projects are easy-to-manage containers for your work—and the key to collaboration, organization, and connecting data and other services. Before you create your first project, you can explore models from many providers, and try out AI services and capabilities. When you're ready to move forward with a model or service, Azure AI Foundry guides you to create a project. Once you are in a project, all of the Azure AI capabilities come to life.
-
-> [!NOTE]
-> If you want to focus only on Azure OpenAI models and capabilities, we have a place where you can work with your Azure OpenAI resource instead of a project. For more information, see [What is Azure OpenAI in Azure AI Foundry?](azure-openai-in-ai-foundry.md). However, for most situations, we recommend an Azure AI Foundry project to build with a wide range of AI models, functionalities and tools as you build, test, and deploy AI solutions.
-
 ## Work in an Azure AI Foundry project
 
 An Azure AI Foundry project is where you do most of your development work. You can work with your project in the Azure AI Foundry, or using the SDK in your preferred development environment. Once you have a project, you can connect to it from your code. You can explore models and capabilities before creating a project, but once you're ready to build, customize, test, and operationalize, a project is where you'll want to be.
-
-When you choose to deploy a model or work with AI Services, you're prompted to select a project if you aren't already in one.
-
-Once you're in a project, you'll see an overview of what you can do with it on the **Overview** page.
-
-:::image type="content" source="media/explore/project-view-current.png" alt-text="Screenshot shows the project overview in Azure AI Foundry." lightbox="media/explore/project-view-current.png":::
-
-The Azure AI Foundry portal is organized around your goals. Generally, as you develop with Azure AI, you'll likely go through a few distinct stages of project development:
-
-* **Define and explore**. In this stage you define your project goals, and then explore and test models and services against your use case to find the ones that enable you to achieve your goals.
-* **Build and customize**. In this stage, you're actively building solutions and applications with the models, tools, and capabilities you selected. You can also customize models to perform better for your use case by fine-tuning, grounding in your data, and more. Building and customizing might be something you choose to do in the Azure AI Foundry portal, or through code and the Azure AI Foundry SDKs. Either way, a project provides you with everything you need.
-  * Once you're actively developing in your project, the **Overview** page shows the things you want easy access to, like your endpoints and keys.
-* **Assess and improve**. In this stage, you're looking for where you can improve your application's performance. You might choose to use tools like tracing to debug your application or compare evaluations to hone in on how you want your application to behave. You can also integrate with safety & security systems so you can be confident when you take your application to production.
-
-If you're an admin, or leading a development team, and need to manage the team's resources, project access, quota, and more, you can do that in the Management Center.
 
 Using a project also enables connectivity to other services such as Azure AI services and Azure Storage. For more information, see the [Azure AI Foundry architecture](./concepts/architecture.md).
 
 ## <a name="project-types"></a> Types of projects
 
-Azure AI Foundry supports two types of projects: a **[!INCLUDE [hub](includes/hub-project-name.md)]** and a **[!INCLUDE [fdp](includes/fdp-project-name.md)]**. When you create a project in Azure AI Foundry portal, you’ll be guided to the correct project type for your needs.
+Azure AI Foundry supports two types of projects: a **[!INCLUDE [hub](includes/hub-project-name.md)]** and a **[!INCLUDE [fdp](includes/fdp-project-name.md)]**. In most cases, you'll want to use a [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)].
 
 * A **[!INCLUDE [hub](includes/hub-project-name.md)]** is hosted by an Azure AI Foundry hub. If your company has an administrative team that has created a hub for you, you can create a project from that hub. If you are working on your own, you can create a project and a default hub will automatically be created for you. See [Azure AI Foundry hubs](concepts/ai-resources.md).
 
@@ -79,8 +57,17 @@ Most features are available in both project types, but there are a few exception
 
 ## Navigate in the Azure AI Foundry portal
 
-In the Azure AI Foundry portal, you can navigate among all your resources using the breadcrumbs at the top of the page. The breadcrumbs show recent resources, along with a link to all resources.  
+In the Azure AI Foundry portal, you can navigate among all your resources using the breadcrumbs at the top of the page. The breadcrumbs show recent resources, along with a link to all resources. 
 
+The left pane is organized around your goals. Generally, as you develop with Azure AI, you'll likely go through a few distinct stages of project development:
+
+* **Define and explore**. In this stage you define your project goals, and then explore and test models and services against your use case to find the ones that enable you to achieve your goals.
+* **Build and customize**. In this stage, you're actively building solutions and applications with the models, tools, and capabilities you selected. You can also customize models to perform better for your use case by fine-tuning, grounding in your data, and more. Building and customizing might be something you choose to do in the Azure AI Foundry portal, or through code and the Azure AI Foundry SDKs. Either way, a project provides you with everything you need.
+  * Once you're actively developing in your project, the **Overview** page shows the things you want easy access to, like your endpoints and keys.
+* **Assess and improve**. In this stage, you're looking for where you can improve your application's performance. You might choose to use tools like tracing to debug your application or compare evaluations to hone in on how you want your application to behave. You can also integrate with safety & security systems so you can be confident when you take your application to production.
+
+If you're an admin, or leading a development team, and need to manage the team's resources, project access, quota, and more, you can do that in the Management Center.
+ 
 ### <a name="left-pane"></a> Customize the left pane
 
 The left pane of the Azure AI Foundry portal is your main navigation tool. Customize this area to show the parts of the portal you want to use.
