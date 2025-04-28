@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 4/28/2025
 ms.author: eur
 zone_pivot_groups: programming-languages-speech-sdk-cli
 keywords: on-premises, Docker, container
@@ -48,15 +48,21 @@ The tags are also available [in JSON format](https://mcr.microsoft.com/v2/azure-
   "name": "azure-cognitive-services/speechservices/custom-speech-to-text",
   "tags": [
     <--redacted for brevity-->
+    "4.0.0-amd64",
+    "4.1.0-amd64",
+    "4.10.0-amd64",
+    "4.11.0-amd64",
+    "4.12.0-amd64",
+    "4.2.0-amd64",
+    "4.3.0-amd64",
     "4.4.0-amd64",
     "4.5.0-amd64",
     "4.6.0-amd64",
     "4.7.0-amd64",
     "4.8.0-amd64",
     "4.9.0-amd64",
-    "4.10.0-amd64",
-    "4.11.0-amd64",
-    "4.12.0-amd64",
+    "5.0.0-preview-amd64",
+    "5.0.1-preview-amd64",
     "latest"
   ]
 }
