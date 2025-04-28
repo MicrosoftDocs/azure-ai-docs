@@ -1,7 +1,7 @@
 ---
-title: Create an index for agentic retrieval
+title: Define an index for agentic retrieval
 titleSuffix: Azure AI Search
-description: Create an index for agentic retrieval workloads in Azure AI Search.
+description: Create an index that has fields and configurations that work for agentic retrieval workloads in Azure AI Search.
 
 manager: nitinme
 author: HeidiSteen
@@ -11,15 +11,15 @@ ms.topic: how-to
 ms.date: 04/30/2025
 ---
 
-# Create an index for agentic retrieval in Azure AI Search
+# Define an index for agentic retrieval in Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 In Azure AI Search, *agentic retrieval* is a new parallel query processing architecture that uses a conversational language model for query planning and execution. 
 
-Queries are created internally. Certain aspects of those internally created queries are determined by your search index. This article describes the index elements affecting agentic retrieval.
+Queries are created internally. Certain aspects of those generated queries are determined by your search index. This article describes the index elements affecting agentic retrieval.
 
-You can use an existing index if it meets the criteria. Summarized, the search index specified in `targetIndexes` of an [agent definition](search-agentic-retrieval-how-to-create.md) must have these elements:
+You can use an existing index if it meets the criteria identified in this article. Summarized, the search index specified in the `targetIndexes` of an [agent definition](search-agentic-retrieval-how-to-create.md) must have these elements:
 
 + Fields attributed as `searchable` and `retrievable`
 + `semanticConfiguration`, with a `defaultSemanticConfiguration`
@@ -29,11 +29,11 @@ You can use an existing index if it meets the criteria. Summarized, the search i
 
 ## Add fields
 
-Recall that the large language model (LLM) is used twice. First, it's used to create a query plan. After the query plan is executed, search results are passed to the LLM again, this time as grounding data. LLMs consume and emit human readable plain text.
+Recall that the large language model (LLM) is used twice. First, it's used to create a query plan. After the query plan is executed, search results are passed to the LLM again, this time as grounding data. LLMs consume and emit human readable plain text that's provided in string fields.
 
 Required:
 
-+ You must have at least some string fields (`Edm.String`, `Collection(Edm.String)`, string subfields of `Edm.ComplexType`) to meet the requirements of semantic reranking and LLMs.
++ You must have at least some string fields (`Edm.String`, `Collection(Edm.String)`, string subfields of `Edm.ComplexType`) to perform semantic reranking and for inputs to LLMs.
 + Only `searchable` fields are included in a query plan.
 + Only `retrievable` fields are returned in a query response sent to the LLM as grounding data. Also, fields must be retrievable if you want you them included in the reference source data portion of the retrieval response.
 
