@@ -5,8 +5,8 @@ description: Learn how to ask the @Foundry agent for help, getting your question
 ms.service: azure-ai-foundry
 ms.date: 04/28/2025
 ms.reviewer: sgilley
-ms.author: jeomhove
-author: jeomhove
+ms.author: jfomhover
+author: jfomhover
 ---
 
 # Ask @Foundry for help (preview)
