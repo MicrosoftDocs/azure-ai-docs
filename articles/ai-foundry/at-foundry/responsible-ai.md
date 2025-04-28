@@ -1,9 +1,9 @@
 ---
 title: "Responsible AI FAQ for @Foundry"
 description: Learn about responsible AI use for the @Foundry agent in Azure AI Foundry.
-author: jeomhove
+author: jfomhover
 ms.reviewer: sgilley
-ms.author: jeomhove
+ms.author: jfomhover
 ms.date: 04/09/2025
 ms.topic: conceptual
 ---

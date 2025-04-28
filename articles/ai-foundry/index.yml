@@ -67,7 +67,7 @@ landingContent:
       - linkListType: how-to-guide
         links:
           - text: Ask @Foundry for help
-            url: at-foundry/ask-foundry.md
+            url: at-foundry/ask-at-foundry.md
           - text: Privacy, security and responsible use
             url: at-foundry/responsible-ai.md
 
