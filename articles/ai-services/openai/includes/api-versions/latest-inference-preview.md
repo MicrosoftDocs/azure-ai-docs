@@ -1367,7 +1367,7 @@ Generates an image based on an input image and text prompt instructions. Require
 | prompt | string | A text description of how the input image should be edited. The maximum length is 4000 characters. | Yes |  |
 | mask | file | A mask image to define the area of the input image that the model should edit, using fully transparent pixels (alpha of zero) in those areas. Must be a valid image URL or base64-encoded image. | No |  |
 | quality | string | The quality of the image that will be generated. Values are 'low', 'medium', 'high' | No | high |
-| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. | No | url |
+| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which dalle-3 generated images are returned. Must be one of `url` or `b64_json`. This parameter isn't supported for gpt-image-1 which will always return base64-encoded images. | No | url |
 | size | [imageSize](#imagesize) | The size of the generated images. | No | 1024x1024 |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
 | output_format | [imageOutputFormat](#imageoutputformat) | The format in which the generated images are returned. | No | PNG |
@@ -6163,7 +6163,7 @@ The format in which the generated images are returned.
 
 | Property | Value |
 |----------|-------|
-| **Description** | The format in which the generated images are returned. |
+| **Description** |  The format in which dalle-3 generated images are returned. Must be one of `url` or `b64_json`. This parameter isn't supported for gpt-image-1 which will always return base64-encoded images. |
 | **Type** | string |
 | **Default** | url |
 | **Values** | `url`<br>`b64_json` |
@@ -6210,7 +6210,7 @@ The style of the generated images.
 | n | integer | The number of images to generate. | No | 1 |
 | prompt | string | A text description of the desired image(s). The maximum length is 4000 characters. | Yes |  |
 | quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | standard (for DALL-E)</br>high (for GPT-image-1) |
-| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. | No | url |
+| response_format | [imagesResponseFormat](#imagesresponseformat) |  The format in which dalle-3 generated images are returned. Must be one of `url` or `b64_json`. This parameter isn't supported for gpt-image-1 which will always return base64-encoded images. | No | url |
 | size | [imageSize](#imagesize) | The size of the generated images. | No | 1024x1024 |
 | style | [imageStyle](#imagestyle) | The style of the generated images. (DALL-E 3 only)| No | vivid |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
@@ -6230,7 +6230,7 @@ The style of the generated images.
 | prompt | string | A text description of how the input image should be edited. The maximum length is 4000 characters. | Yes |  |
 | mask | file | A mask image to define the area of the input image that the model should edit, using fully transparent pixels (alpha of zero) in those areas. Must be a valid image URL or base64-encoded image. | No |  |
 | quality | string | The quality of the image that will be generated. Values are 'low', 'medium', 'high' | No | high |
-| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. | No | url |
+| response_format | [imagesResponseFormat](#imagesresponseformat) |  The format in which dalle-3 generated images are returned. Must be one of `url` or `b64_json`. This parameter isn't supported for gpt-image-1 which will always return base64-encoded images. | No | url |
 | size | [imageSize](#imagesize) | The size of the generated images. | No | 1024x1024 |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
 | output_format | [imageOutputFormat](#imageoutputformat) | The format in which the generated images are returned. | No | PNG |
