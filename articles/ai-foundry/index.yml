@@ -63,13 +63,6 @@ landingContent:
             url: how-to/benchmark-model-in-catalog.md
           - text: Plan and manage costs
             url: how-to/costs-plan-manage.md
-      
-      - linkListType: how-to-guide
-        links:
-          - text: Ask @Foundry for help
-            url: at-foundry/ask-at-foundry.md
-          - text: Privacy, security and responsible use
-            url: at-foundry/responsible-ai.md
 
   # Card
   - title: Azure AI Foundry SDK
