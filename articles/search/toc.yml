@@ -346,7 +346,7 @@ items:
     - name: Use an agent to retrieve data
       href: search-agentic-retrieval-how-to-retrieve.md
     - name: Define an index for agentic retrieval
-      href: search-agentic-retrieval-how-to-index.m
+      href: search-agentic-retrieval-how-to-index.md
     - name: Build an agentic retrieval pipeline
       href: search-agentic-retrieval-how-to-pipeline.md
   - name: Vector search

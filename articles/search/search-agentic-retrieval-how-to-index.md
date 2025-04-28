@@ -151,7 +151,7 @@ vector_search = VectorSearch(
 
 ## Add a scoring profile
 
-[Scoring profiles](index-add-scoring-profiles) are criteria for relevance boosting. They're applied to non-vector fields (text and numbers) and are evaluated last during query execution, although the precise behavior depends on the API version used to create the index.
+[Scoring profiles](index-add-scoring-profiles.md) are criteria for relevance boosting. They're applied to non-vector fields (text and numbers) and are evaluated last during query execution, although the precise behavior depends on the API version used to create the index.
 
 If you create the index using 2025-05-01-preview, the scoring profile executes last. If the index is an earlier version, scoring profiles are evaluated before semantic reranking.
 
