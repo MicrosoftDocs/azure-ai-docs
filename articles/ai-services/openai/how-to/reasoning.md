@@ -49,16 +49,18 @@ Azure OpenAI `o-series` models are designed to tackle reasoning and problem-solv
 | Responses API | ✅ | ✅  | - | - | - | - |
 | Functions/Tools | ✅ | ✅ | ✅  | ✅  |  - | - |
 | Parallel Tool Calls | - | - | -  | -  |  - | - |
-| `max_completion_tokens`<sup>*</sup> | ✅ | ✅ |✅ |✅ |✅ | ✅ |
-| System Messages<sup>**</sup> | ✅ | ✅ | ✅ | ✅ | - | - |
-| [Reasoning summary](#reasoning-summary) <sup>***</sup> | ✅ | ✅ | -  | -  |  - | - |
-| Streaming | ✅ | ✅ | ✅ | - | - | - |
+| `max_completion_tokens` <sup>1</sup> | ✅ | ✅ |✅ |✅ |✅ | ✅ |
+| System Messages <sup>2</sup> | ✅ | ✅ | ✅ | ✅ | - | - |
+| [Reasoning summary](#reasoning-summary) <sup>3</sup> | ✅ | ✅ | -  | -  |  - | - |
+| Streaming <sup>4</sup>  | ✅ | ✅| ✅ | - | - | - |
 
-<sup>*</sup> Reasoning models will only work with the `max_completion_tokens` parameter. <br><br>
+<sup>1</sup> Reasoning models will only work with the `max_completion_tokens` parameter. <br><br>
 
-<sup>**</sup>The latest o<sup>&#42;</sup> series model support system messages to make migration easier. When you use a system message with `o4-mini`, `o3`, `o3-mini`, and `o1` it will be treated as a developer message. You should not use both a developer message and a system message in the same API request.
+<sup>2</sup> The latest o<sup>&#42;</sup> series model support system messages to make migration easier. When you use a system message with `o4-mini`, `o3`, `o3-mini`, and `o1` it will be treated as a developer message. You should not use both a developer message and a system message in the same API request.
 
-<sup>***</sup> Access to the chain-of-thought reasoning summary is limited access only for `o4-mini`. 
+<sup>3</sup> Access to the chain-of-thought reasoning summary is limited access only for `o3` & `o4-mini`.
+
+<sup>4</sup> Streaming for `o3` is limited access only.
 
 ### Not Supported
 

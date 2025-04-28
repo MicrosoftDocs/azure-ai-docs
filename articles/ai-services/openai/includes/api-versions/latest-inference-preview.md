@@ -5,7 +5,7 @@ description: Latest preview data plane inference documentation generated from Op
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 03/24/2025
+ms.date: 04/23/2025
 ---
 
 ## Completions - Create
@@ -1192,7 +1192,7 @@ Status Code: 200
 POST https://{endpoint}/openai/deployments/{deployment-id}/images/generations?api-version=2025-03-01-preview
 ```
 
-Generates a batch of images from a text caption on a given DALLE model deployment
+Generates a batch of images from a text caption on a given DALL-E or GPT-image-1 model deployment
 
 ### URI Parameters
 
@@ -1215,15 +1215,21 @@ Generates a batch of images from a text caption on a given DALLE model deploymen
 
 **Content-Type**: application/json
 
+
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | n | integer | The number of images to generate. | No | 1 |
 | prompt | string | A text description of the desired image(s). The maximum length is 4000 characters. | Yes |  |
-| quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | standard |
-| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. | No | url |
+| quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | standard (for DALL-E)</br>high (for GPT-image-1) |
+| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which dall-e-3 generated images are returned. Must be one of `url` or `b64_json`. U This parameter isn't supported for gpt-image-1 which will always return base64-encoded images. | No | url |
 | size | [imageSize](#imagesize) | The size of the generated images. | No | 1024x1024 |
-| style | [imageStyle](#imagestyle) | The style of the generated images. | No | vivid |
+| style | [imageStyle](#imagestyle) | The style of the generated images. (DALL-E 3 only)| No | vivid |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
+| output_format | [imageOutputFormat](#imageoutputformat) | The format in which the generated images are returned. (GPT-image-1 only) | No | PNG |
+| safety | [imageSafety](#imagesafety) | The safety setting of the image generation process. (GPT-image-1 only) | No | auto |
+ | No | auto |
+| background | [imageBackground](#imagebackground) | The desired appearance of the background of the image. (GPT-image-1 only) | No | auto |
+| compression_level | integer | The compression level (on a scale of 0-100) of the generated images. (GPT-image-1 only) | No | 0 |
 
 ### Responses
 
@@ -1243,14 +1249,12 @@ Generates a batch of images from a text caption on a given DALLE model deploymen
 |:---|:---|:---|
 |application/json | [dalleErrorResponse](#dalleerrorresponse) | |
 
-### Examples
-
 ### Example
 
 Creates images given a prompt.
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/images/generations?api-version=2025-03-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/images/generations?api-version=2025-04-01-preview
 
 {
  "prompt": "In the style of WordArt, Microsoft Clippy wearing a cowboy hat.",
@@ -1263,6 +1267,9 @@ POST https://{endpoint}/openai/deployments/{deployment-id}/images/generations?ap
 
 **Responses**:
 Status Code: 200
+
+> [!NOTE]
+> The GPT-image-1 model doesn't return content filtering annotations.
 
 ```json
 {
@@ -1318,6 +1325,111 @@ Status Code: 200
         }
       }
     ]
+  }
+}
+```
+
+
+## Image generations - Edit
+
+```HTTP
+POST https://{endpoint}/openai/deployments/{deployment-id}/images/edits?api-version=2025-04-01-preview
+```
+
+Generates an image based on an input image and text prompt instructions. Requires a GPT-image-1 model deployment
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| deployment-id | path | Yes | string |  |
+| api-version | query | Yes | string |  |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Request Body
+
+**Content-Type**: application/json
+
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| image | file | The input image to edit. Must be a valid image URL or base64-encoded image. | Yes |  |
+| n | integer | The number of images to generate. | No | 1 |
+| prompt | string | A text description of how the input image should be edited. The maximum length is 4000 characters. | Yes |  |
+| mask | file | A mask image to define the area of the input image that the model should edit, using fully transparent pixels (alpha of zero) in those areas. Must be a valid image URL or base64-encoded image. | No |  |
+| quality | string | The quality of the image that will be generated. Values are 'low', 'medium', 'high' | No | high |
+| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which dalle-3 generated images are returned. Must be one of `url` or `b64_json`. This parameter isn't supported for gpt-image-1 which will always return base64-encoded images. | No | url |
+| size | [imageSize](#imagesize) | The size of the generated images. | No | 1024x1024 |
+| user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
+| output_format | [imageOutputFormat](#imageoutputformat) | The format in which the generated images are returned. | No | PNG |
+
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: Ok 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [generateImagesResponse](#generateimagesresponse) | |
+
+**Status Code:** default
+
+**Description**: An error occurred. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [dalleErrorResponse](#dalleerrorresponse) | |
+
+### Example
+
+Creates images given an input image and text instructions.
+
+```HTTP
+POST https://{endpoint}/openai/deployments/{deployment-id}/images/edits?api-version=2025-04-01-preview
+
+{
+  "image": "<base64_encoded_image>",
+  "prompt": "Add a beach ball in the center.",
+  "model": "gpt-image-1",
+  "size": "1024x1024", 
+  "n": 1,
+  "quality": "high"
+}
+
+```
+
+**Responses**:
+Status Code: 200
+
+> [!NOTE]
+> The GPT-image-1 model doesn't return content filtering annotations.
+
+```json
+{
+  "body": {
+    "created": 1698342300,
+    "data": [
+      {
+        "b64_json": "<base64_encoded_image>",
+        "revised_prompt": "A vivid, natural representation of Microsoft Clippy wearing a cowboy hat.",
+      }],
+    "usage": 
+      {
+        "input_tokens": 557,
+        "output_tokens": 1000,
+      }
+    
   }
 }
 ```
@@ -6012,6 +6124,28 @@ Speech request.
 | speed | number | The speed of the synthesized audio. Select a value from `0.25` to `4.0`. `1.0` is the default. | No | 1.0 |
 | voice | enum | The voice to use for speech synthesis.<br>Possible values: `alloy`, `echo`, `fable`, `onyx`, `nova`, `shimmer` | Yes |  |
 
+### imageBackground
+
+The desired appearance of the background of the image.
+
+| Property | Value |
+|----------|-------|
+| **Description** | The desired appearance of the background of the image. |
+| **Type** | string |
+| **Default** | auto |
+| **Values** | `transparent`</br>`opaque`</br>`auto`|
+
+### imageOutputFormat
+
+The format in which the generated images are returned.
+
+| Property | Value |
+|----------|-------|
+| **Description** | The format in which the generated images are returned. |
+| **Type** | string |
+| **Default** | PNG |
+| **Values** | `PNG`<br>`JPEG` |
+
 ### imageQuality
 
 The quality of the image that will be generated.
@@ -6020,8 +6154,8 @@ The quality of the image that will be generated.
 |----------|-------|
 | **Description** | The quality of the image that will be generated. |
 | **Type** | string |
-| **Default** | standard |
-| **Values** | `standard`<br>`hd` |
+| **Default** | standard (for DALL-E)<br>high (for GPT-image-1) |
+| **Values** | `standard`, `hd` (for DALL-E)<br>`low`, `medium`, `high` (for GPT-image-1) |
 
 ### imagesResponseFormat
 
@@ -6029,10 +6163,23 @@ The format in which the generated images are returned.
 
 | Property | Value |
 |----------|-------|
-| **Description** | The format in which the generated images are returned. |
+| **Description** |  The format in which dalle-3 generated images are returned. Must be one of `url` or `b64_json`. This parameter isn't supported for gpt-image-1 which will always return base64-encoded images. |
 | **Type** | string |
 | **Default** | url |
 | **Values** | `url`<br>`b64_json` |
+
+### imageSafety
+
+The safety setting of the image generation process.
+
+| Property | Value |
+|----------|-------|
+| **Description** | The safety setting of the image generation process. |
+| **Type** | string |
+| **Default** | auto |
+| **Values** | `strict`</br>`auto`|
+
+
 
 ### imageSize
 
@@ -6043,7 +6190,7 @@ The size of the generated images.
 | **Description** | The size of the generated images. |
 | **Type** | string |
 | **Default** | 1024x1024 |
-| **Values** | `256x256`<br>`512x512`<br>`1792x1024`<br>`1024x1792`<br>`1024x1024` |
+| **Values** | `256x256`, `512x512`, `1792x1024`, `1024x1792`, `1024x1024` (for DALL-E)</br>`1024x1024`, `1024x1536`, `1536x1024` (for GPT-image-1) |
 
 ### imageStyle
 
@@ -6062,11 +6209,34 @@ The style of the generated images.
 |------|------|-------------|----------|---------|
 | n | integer | The number of images to generate. | No | 1 |
 | prompt | string | A text description of the desired image(s). The maximum length is 4000 characters. | Yes |  |
-| quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | standard |
-| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. | No | url |
+| quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | standard (for DALL-E)</br>high (for GPT-image-1) |
+| response_format | [imagesResponseFormat](#imagesresponseformat) |  The format in which dalle-3 generated images are returned. Must be one of `url` or `b64_json`. This parameter isn't supported for gpt-image-1 which will always return base64-encoded images. | No | url |
 | size | [imageSize](#imagesize) | The size of the generated images. | No | 1024x1024 |
-| style | [imageStyle](#imagestyle) | The style of the generated images. | No | vivid |
+| style | [imageStyle](#imagestyle) | The style of the generated images. (DALL-E 3 only)| No | vivid |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
+| output_format | [imageOutputFormat](#imageoutputformat) | The format in which the generated images are returned. (GPT-image-1 only) | No | PNG |
+| safety | [imageSafety](#imagesafety) | The safety setting of the image generation process. (GPT-image-1 only) | No | auto |
+ | No | auto |
+| background | [imageBackground](#imagebackground) | The desired appearance of the background of the image. (GPT-image-1 only) | No | auto |
+| compression_level | integer | The compression level (on a scale of 0-100) of the generated images. (GPT-image-1 only) | No | 0 |
+
+### imageEditsRequest
+
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| image | file | The input image to edit. Must be a valid image URL or base64-encoded image. | Yes |  |
+| n | integer | The number of images to generate. | No | 1 |
+| prompt | string | A text description of how the input image should be edited. The maximum length is 4000 characters. | Yes |  |
+| mask | file | A mask image to define the area of the input image that the model should edit, using fully transparent pixels (alpha of zero) in those areas. Must be a valid image URL or base64-encoded image. | No |  |
+| quality | string | The quality of the image that will be generated. Values are 'low', 'medium', 'high' | No | high |
+| response_format | [imagesResponseFormat](#imagesresponseformat) |  The format in which dalle-3 generated images are returned. Must be one of `url` or `b64_json`. This parameter isn't supported for gpt-image-1 which will always return base64-encoded images. | No | url |
+| size | [imageSize](#imagesize) | The size of the generated images. | No | 1024x1024 |
+| user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
+| output_format | [imageOutputFormat](#imageoutputformat) | The format in which the generated images are returned. | No | PNG |
+
+
+
 
 ### generateImagesResponse
 

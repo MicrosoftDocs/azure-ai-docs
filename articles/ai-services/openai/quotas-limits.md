@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2023
   - references_regions
 ms.topic: conceptual
-ms.date: 4/14/2025
+ms.date: 04/23/2025
 ms.author: mbullwin
 ---
 
@@ -26,6 +26,7 @@ The following sections provide you with a quick guide to the default quotas and 
 | Azure OpenAI resources per region per Azure subscription | 30 |
 | Default DALL-E 2 quota limits | 2 concurrent requests |
 | Default DALL-E 3 quota limits| 2 capacity units (6 requests per minute)|
+| Default GPT-image-1 quota limits | 2 capacity units (6 requests per minute) |
 | Default speech to text audio API quota limits | 3 requests per minute |
 | Maximum prompt tokens per request | Varies per model. For more information, see [Azure OpenAI Service models](./concepts/models.md)|
 | Max Standard deployments per resource | 32 |

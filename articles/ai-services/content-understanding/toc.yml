@@ -65,13 +65,14 @@ items:
     - name: Accuracy and confidence
       displayName: accuracy, confidence, analyzers, optimization, fields, scores
       href: concepts/accuracy-confidence.md
-    - name: Retrieval Augmented Generation (RAG)
+    - name: Retrieval-augmented generation (RAG)
       displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
       href: concepts/retrieval-augmented-generation.md
 - name: Tutorials
   items:
-    - name: Retrieval Augmented Generation Tutorial
-      href: tutorial/RAG-tutorial.md
+    - name: Build a retrieval-augmented solution
+      displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
+      href: tutorial/build-rag-solution.md
 - name: Responsible AI
   items:
     - name: Transparency note
