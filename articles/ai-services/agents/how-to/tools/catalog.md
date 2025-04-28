@@ -41,6 +41,8 @@ The following is a list of tools supported by Azure AI Agent Service.
 
 ## Licensed data tools
 
+|Tool  |Description  |
+|---------|---------|
 | [Morningstar](./morningstar.md) | This tool lets you access Morningstar's investment research API that provides comprehensive analysis, ratings, and data on mutual funds, ETFs, stocks, and bonds. |
-| [Tripadvisor](./tripadvisor) | This tool lets you access Tripadvisor's useful travel platform that can, for example, provide travel guidance and reviews. |
+| [Tripadvisor](./tripadvisor.md) | This tool lets you access Tripadvisor's useful travel platform that can, for example, provide travel guidance and reviews. |
  

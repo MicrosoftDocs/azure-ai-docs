@@ -63,7 +63,6 @@ items:
             - name: tripadvisor
               href: how-to/tools/tripadvisor.md
               displayName: licensed data, tripadvisor
-          href: how-to/tools/licensed-data.md
         - name: Function calling
           href: how-to/tools/function-calling.md
         - name: Code interpreter
