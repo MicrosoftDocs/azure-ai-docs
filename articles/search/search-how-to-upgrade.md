@@ -70,7 +70,7 @@ For [eligible services](#upgrade-eligibility), the following table compares the 
 
 On the **Overview** page, you can view various metadata about your search service, including **Date created** and **Date upgraded**.
 
-:::image type="content" source="media/search-how-to-upgrade/service-creation-upgrade-metadata.png" alt-text="Screenshot of the service creation and service upgrade dates in the Azure portal." border="true" lightbox="media/search-how-to-upgrade/service-creation-upgrade-metadata.png":::
+:::image type="content" source="media/search-how-to-upgrade/service-created-upgraded-metadata.png" alt-text="Screenshot of the service creation and service upgrade dates in the Azure portal." border="true" lightbox="media/search-how-to-upgrade/service-created-upgraded-metadata.png":::
 
 The date you created your service partially determines its [upgrade eligibility](#upgrade-eligibility). If your service has never been upgraded, **Date upgraded** doesn't appear.
 
