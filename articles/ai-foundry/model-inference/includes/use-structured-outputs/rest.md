@@ -163,5 +163,3 @@ __Response__
     }
 }
 ```
-
-[!INCLUDE [supported-schemas](supported-schemas.md)]
