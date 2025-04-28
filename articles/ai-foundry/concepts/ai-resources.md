@@ -23,7 +23,7 @@ author: Blackmist
 
 Hubs are a top-level Azure resource for Azure AI Foundry and provide a central way for a team to govern security, connectivity, and computing resources across playgrounds and projects. Once a hub is created, developers can create projects from it and access shared company resources without needing an IT administrator's repeated help.
 
-Project workspaces that are created using a hub inherit the same security settings and shared resource access. Teams can create project workspaces as needed to organize their work, isolate data, and/or restrict access. 
+Projects that are created using a hub inherit the same security settings and shared resource access. Teams can create projects from a hub as needed to organize their work, isolate data, and/or restrict access. 
 
 In this article, you learn more about hub capabilities, and how to set up a hub for your organization. You can see the resources created in the [Azure portal](https://portal.azure.com/) and in [Azure AI Foundry](https://ai.azure.com).
 
@@ -54,7 +54,7 @@ Various management concepts are available on hubs to support team leads and admi
 
 ## Organize work in projects for customization
 
-A hub provides the hosting environment for [projects](../how-to/create-projects.md) in Azure AI Foundry portal. A project is an organizational container that has tools for AI customization and orchestration. It lets you organize your work, save state across different tools like prompt flow, and collaborate with others. For example, you can share uploaded files and connections to data sources.
+A hub provides the hosting environment for [projects](../how-to/create-projects.md?pivots=hub-project) in Azure AI Foundry portal. A project is an organizational container that has tools for AI customization and orchestration. It lets you organize your work, save state across different tools like prompt flow, and collaborate with others. For example, you can share uploaded files and connections to data sources.
 
 Multiple projects can use a hub, and multiple users can use a project. A project also helps you keep track of billing, and manage access and provides data isolation. Every project uses dedicated storage containers to let you upload files and share it with only other project members when using the 'data' experiences.
 
@@ -133,4 +133,4 @@ In the Azure portal, you can find resources that correspond to your project in A
 
 - [Quickstart: Analyze images and video in the chat playground](/azure/ai-services/openai/gpt-v-quickstart)
 - [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
-- [Learn more about projects](../how-to/create-projects.md)
+- [Learn more about projects](../how-to/create-projects.md?pivots=hub-project)
