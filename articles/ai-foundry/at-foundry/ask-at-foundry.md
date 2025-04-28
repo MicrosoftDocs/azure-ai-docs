@@ -2,13 +2,11 @@
 title: Ask @Foundry for help
 titleSuffix: Azure AI Foundry
 description: Learn how to ask the @Foundry agent for help, getting your questions answered based on Azure AI Foundry documentation and model catalog.
-manager: scottpolly
 ms.service: azure-ai-foundry
-ms.topic: how-to
 ms.date: 04/28/2025
-ms.reviewer: meerakurup 
+ms.reviewer: sgilley
 ms.author: jeomhove
-author: Blackmist
+author: jeomhove
 ---
 
 # Ask @Foundry for help (preview)
