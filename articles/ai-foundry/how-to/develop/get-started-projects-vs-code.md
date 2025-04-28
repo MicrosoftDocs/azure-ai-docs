@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 content_well_notification: 
   - AI-contribution
 ms.topic: how-to
-ms.date: 04/21/2025
+ms.date: 04/28/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
@@ -122,7 +122,7 @@ When you open a project in the Azure AI Foundry Extension, that project is set a
 
 Switch your default project by following these steps:
 
-1. Right-click on your deployed model and select the **Switch Default Project in Azure Extension** option. 
+1. Right-click on the Azure AI Foundry Project and select the **Switch Default Project in Azure Extension** option. 
 
 1. In the top center, select the Azure AI Foundry Project you want to use from the list of available projects and press Enter.
 
