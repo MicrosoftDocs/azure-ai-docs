@@ -138,6 +138,8 @@ from azure.ai.documentintelligence.models import AnalyzeDocumentRequest
 # set `<your-endpoint>` and `<your-key>` variables with the values from the Azure portal
 endpoint = "<your-endpoint>"
 key = "<your-key>"
+api_version="2024-11-30"
+
 
 # helper functions
 
@@ -163,7 +165,7 @@ def analyze_layout():
     formUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-layout.pdf"
 
     document_intelligence_client = DocumentIntelligenceClient(
-        endpoint=endpoint, credential=AzureKeyCredential(key)
+        endpoint=endpoint, credential=AzureKeyCredential(key), api_version=api_version
     )
 
     poller = document_intelligence_client.begin_analyze_document(
@@ -552,6 +554,7 @@ from azure.ai.documentintelligence.models import AnalyzeDocumentRequest
 # set `<your-endpoint>` and `<your-key>` variables with the values from the Azure portal
 endpoint = "<your-endpoint>"
 key = "<your-key>"
+api_version="2024-11-30"
 
 def analyze_invoice():
     # sample document
@@ -559,7 +562,7 @@ def analyze_invoice():
     invoiceUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-invoice.pdf"
 
     document_intelligence_client = DocumentIntelligenceClient(
-        endpoint=endpoint, credential=AzureKeyCredential(key)
+        endpoint=endpoint, credential=AzureKeyCredential(key), api_version=api_version
     )
 
     poller = document_intelligence_client.begin_analyze_document(
