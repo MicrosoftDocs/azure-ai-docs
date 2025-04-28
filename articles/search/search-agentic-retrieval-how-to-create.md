@@ -15,7 +15,7 @@ ms.date: 04/30/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, an *agent* is a top-level resource representing a connection to a conversational language model for use in agentic retrieval workloads. It specifies a model that provides agent capabilities, and it identifies the search index that can use the agent at query time.
+In Azure AI Search, an *agent* is a top-level resource representing a connection to a conversational language model for use in agentic retrieval workloads. It specifies a model that' provides reasoning capabilities', and it identifies the search index that can use the agent at query time.
 
 After you can create an agent, you can update its properties at any time. If the agent is in use, updates take effect on the next job.
 
@@ -27,9 +27,9 @@ After you can create an agent, you can update its properties at any time. If the
 
 + Azure AI Search with a managed identity for role-based access to a chat model.
 
-+ Owner/Contributor or Search Service Contributor permissions to create and manage an agent. Search Index Data Reader to run queries.
++ An Owner/Contributor or Search Service Contributor can create and manage an agent. Search Index Data Reader to run queries.
 
-+ A search index containing plain text or vectors. The index must have a [semantic configuration](semantic-how-to-configure.md) with the `defaultConfiguration` specified.
++ A search index containing plain text or vectors. The index must meet requirements for agentic retrieval. have a [semantic configuration](semantic-how-to-configure.md) with the `defaultConfiguration` specified.
 
 + Region requirements: **East US**, **North Europe**, **Japan East**, **Sweden Central**. Public cross-region connections and private link connection from AI Search to the model are supported.
 
