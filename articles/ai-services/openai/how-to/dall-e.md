@@ -182,7 +182,7 @@ You can generate between one and 10 images in a single API call. The default val
 
 #### Response format
 
-The format in which the generated images are returned. Must be either `url` (a URL pointing to the image) or `b64_json` (the base 64-byte code in JSON format). The default is `url`.
+The format in which dall-e-3 generated images are returned. Must be one of `url` or `b64_json`. This parameter isn't supported for gpt-image-1 which will always return base64-encoded images.
 
 #### User ID
 
@@ -236,7 +236,7 @@ With DALL-E 3, you can't generate more than one image in a single API call: the 
 
 #### Response format
 
-The format in which the generated images are returned. Must be one of `url` (a URL pointing to the image) or `b64_json` (the base 64-byte code in JSON format). The default is `url`.
+The format in which dall-e-3 generated images are returned. Must be one of `url` or `b64_json`. This parameter isn't supported for gpt-image-1 which will always return base64-encoded images.
 
 ---
 

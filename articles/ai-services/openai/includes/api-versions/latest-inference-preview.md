@@ -1221,7 +1221,7 @@ Generates a batch of images from a text caption on a given DALL-E or GPT-image-1
 | n | integer | The number of images to generate. | No | 1 |
 | prompt | string | A text description of the desired image(s). The maximum length is 4000 characters. | Yes |  |
 | quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | standard (for DALL-E)</br>high (for GPT-image-1) |
-| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. | No | url |
+| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which dall-e-3 generated images are returned. Must be one of `url` or `b64_json`. U This parameter isn't supported for gpt-image-1 which will always return base64-encoded images. | No | url |
 | size | [imageSize](#imagesize) | The size of the generated images. | No | 1024x1024 |
 | style | [imageStyle](#imagestyle) | The style of the generated images. (DALL-E 3 only)| No | vivid |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
