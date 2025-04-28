@@ -72,7 +72,7 @@ the WebRTC URL should be:
     ```
 - If your Azure OpenAI resource is in the eastus2 region, the WebRTC URL should be:
     ```http
-    https://eastys2.realtimeapi-preview.ai.azure.com/v1/realtimertc
+    https://eastus2.realtimeapi-preview.ai.azure.com/v1/realtimertc
     ```
 
 The sessions URL includes the Azure OpenAI resource URL, deployment name, the `/realtime/sessions` path, and the API version. The Azure OpenAI resource region isn't part of the sessions URL.
