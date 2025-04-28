@@ -16,6 +16,7 @@ ms.topic: conceptual
 
 The @Foundry agent is here to assist you with questions about Azure AI Foundry. To start using @Foundry, simply click on the @Foundry icon located in the top left bar of the interface. A chat window opens where you can type your questions and receive answers in real-time.
 
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 ## Capabilities
 
