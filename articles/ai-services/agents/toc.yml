@@ -28,8 +28,8 @@ items:
       href: concepts/threads-runs-messages.md 
     - name: Tools
       items:
-        - name: Tool catelog
-          href: how-to/tools/catelog.md
+        - name: Tool catalog
+          href: how-to/tools/catalog.md
         - name: Grounding with Bing Search
           items:
           - name: Overview
