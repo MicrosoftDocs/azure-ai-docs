@@ -61,7 +61,7 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 ---
 
-## Create a project 
+## Create a project[!INCLUDE [fdp-project-name](fdp-project-name.md)] 
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
@@ -75,18 +75,24 @@ No installation is necessary to use the Azure AI Foundry portal.
 :::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/create_project.py" id="create_project":::
 
 # [Java](#tab/java)
-Info here.
+
+Use instructions for **Azure AI Foundry portal** or **Python SDK** to create a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
+
 # [JavaScript](#tab/javascript)
-Info here.
+
+Use instructions for **Azure AI Foundry portal** or **Python SDK** to to create a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
+
 # [C#](#tab/csharp)
-Info here.
+
+Use instructions for **Azure AI Foundry portal** or **Python SDK** to create a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
+
 
 ---
 
 
 ## Deploy a model
 
-@@Do we have to do this in portal?  
+# [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
@@ -96,6 +102,24 @@ Info here.
 1. Search for the model you want to deploy.  For this quickstart, select **gpt-4o**.
 1. Select **Use this model**.
 1. Do not change the default settings.  Select **Deploy**.
+
+# [Python SDK](#tab/python)
+
+:::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/create_project.py" id="deploy_model":::
+
+# [Java](#tab/java)
+
+Use instructions for **Azure AI Foundry portal** or **Python SDK** to deploy the **gpt-4o** model into your [!INCLUDE [fdp-project-name](fdp-project-name.md)].
+
+# [JavaScript](#tab/javascript)
+
+Use instructions for **Azure AI Foundry portal** or **Python SDK** to deploy the **gpt-4o** model into your [!INCLUDE [fdp-project-name](fdp-project-name.md)].
+
+# [C#](#tab/csharp)
+
+Use instructions for **Azure AI Foundry portal** or **Python SDK** to deploy the **gpt-4o** model into your [!INCLUDE [fdp-project-name](fdp-project-name.md)].
+
+---
 
 ## Run a chat completion
 
