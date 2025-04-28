@@ -8,7 +8,7 @@ items:
   expanded: true
   items:
     - name: Get started with Azure AI Foundry
-      href: quickstarts/get-started.md  
+      href: quickstarts/get-started-code.md  
     - name: Azure AI Foundry SDK overview
       href: how-to/develop/sdk-overview.md
 
@@ -348,8 +348,6 @@ items:
       items:
       - name: Use the chat playground
         href: quickstarts/get-started-playground.md
-      - name: Build basic app with Azure AI Foundry SDK
-        href: quickstarts/get-started-code.md
     - name: In-depth tutorials
       items:
       - name: Build custom app with Azure AI Foundry SDK

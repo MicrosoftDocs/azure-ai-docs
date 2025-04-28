@@ -1,20 +1,14 @@
 ---
-title: Get started using the Azure AI Foundry SDK
-titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to get started using the Azure AI Foundry SDK.
-manager: scottpolly
+title: include file
+description: include file
+author: msakande
+ms.author: mopeakande
 ms.service: azure-ai-foundry
-ms.custom: build-2024, devx-track-azurecli, devx-track-python, ignite-2024
-ms.topic: how-to
-ms.date: 04/07/2025
-ms.reviewer: dantaylo
-ms.author: sgilley
-author: sdgilley
-# zone_pivot_groups: project-type
-# customer intent: As a developer, I want to build a custom chat app using the Azure AI SDK.
+ms.topic: include
+ms.date: 1/28/2025
+ms.custom: include file
 ---
 
-# Get started in Azure AI Foundry
 
 In this quickstart, you use [Azure AI Foundry](https://ai.azure.com) to:
 
@@ -26,7 +20,10 @@ In this quickstart, you use [Azure AI Foundry](https://ai.azure.com) to:
 > * Upload files to the agent
 > * Evaluate the agent run
 
-. The Azure AI Foundry SDK is available in multiple languages, including Python, Java, JavaScript, and C#. This quickstart provides instructions for each of these languages.
+The Azure AI Foundry SDK is available in multiple languages, including Python, Java, JavaScript, and C#. This quickstart provides instructions for each of these languages.
+
+> [!TIP]
+> The rest of this article shows how to create a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**.  Select **[!INCLUDE [hub](../includes/hub-project-name.md)]** at the top of this article if you want to create a [!INCLUDE [hub](../includes/hub-project-name.md)] instead.
 
 ## Prerequisites
 

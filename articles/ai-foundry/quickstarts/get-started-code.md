@@ -10,12 +10,19 @@ ms.date: 04/26/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
+zone_pivot_groups: project-type
 # customer intent: As a developer, I want to build a custom chat app using the Azure AI SDK.
 ---
 
-# Build a basic chat app in a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]
+
+# Get started with the Azure AI Foundry SDK
+
+::: zone pivot="hub-project"
 
 In this quickstart, we walk you through setting up your local development environment with the [Azure AI Foundry](https://ai.azure.com) SDK. We write a prompt, run it as part of your app code, trace the LLM calls being made, and run a basic evaluation on the outputs of the LLM.
+
+> [!TIP]
+> The rest of this article shows how to create a **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** at the top of this article if you want to create a [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
 
 ## Prerequisites
 
@@ -23,25 +30,21 @@ In this quickstart, we walk you through setting up your local development enviro
 
 * Before you can follow this quickstart, complete the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md) to deploy a **gpt-4o-mini** model into your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
 
-## Create a new Python environment
+### Set up your development environmant
 
-In the IDE of your choice, create a new folder for your project.  Open a terminal window in that folder.
+1. [Set up your development environment](../how-to/develop/install-cli-sdk.md?tab-python)
 
-[!INCLUDE [Install Python](../includes/install-python.md)]
+1. Make sure you install these packages:
 
-## Install packages
+    ```bash
+    pip install azure-ai-projects azure-ai-inference azure-identity 
+    ```
 
-Install packages:
+## Deploy a model
 
-```bash
-pip install azure-ai-projects azure-ai-inference azure-identity 
-```
+[!INCLUDE [deploy-model](../includes/deploy-model.md)]
 
-## Install the Azure CLI and sign in 
-
-[!INCLUDE [Install the Azure CLI](../includes/install-cli.md)]
-
-Keep this terminal window open to run your python scripts from here as well, now that you've signed in.
+7. Once the model is deployed, select **Open in playground** to test your model.
 
 ## Build your chat app
 
@@ -100,3 +103,10 @@ python chat.py
 > [!div class="nextstepaction"]
 > [Add data and use retrieval augmented generation (RAG) to build a custom chat app](../tutorials/copilot-sdk-create-resources.md?pivots=hub-project)
 
+::: zone-end
+
+::: zone pivot="fdp-project"
+
+[!INCLUDE [get-started-fdp](../includes/get-started-fdp.md)]
+
+::: zone-end
