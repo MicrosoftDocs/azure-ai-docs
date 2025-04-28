@@ -64,7 +64,7 @@ landingContent:
           - text: Plan and manage costs
             url: how-to/costs-plan-manage.md
 
-
+      
   # Card
   - title: Azure AI Foundry SDK
     linkLists:
