@@ -12,7 +12,7 @@ ms.topic: conceptual
 
 ## What is @Foundry in Azure AI Foundry?
 
-@Foundry is an AI agent that enabled users of Azure AI Foundry to navigate its capabilities, identify models and resources to build generative AI applications. For an overview of how @Foundry works and a summary of its capabilities, see [@Foundry overview](./ask-at-foundry.md).
+@Foundry is an AI agent that enabled users of Azure AI Foundry to navigate its capabilities, identify models, and resources to build generative AI applications. For an overview of how @Foundry works and a summary of its capabilities, see [@Foundry overview](./ask-at-foundry.md).
 
 ## What is the current status of @Foundry?
 
