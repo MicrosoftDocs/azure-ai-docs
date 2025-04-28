@@ -1173,6 +1173,7 @@ An Azure Firewall is deployed if an FQDN outbound rule is created while in the _
 
 > [!IMPORTANT]
 > The firewall isn't created until you add an outbound FQDN rule. For more information on pricing, see [Azure Firewall pricing](https://azure.microsoft.com/pricing/details/azure-firewall/) and view prices for the _standard_ version.
+> URL-based filtering is only supported with Premium SKU Azure Firewall, not Basic or Standard SKU Azure Firewall. Managed virtual network does not support Premium SKU Azure Firewall.
 
 Use the following tabs to learn how to select the firewall version for your managed virtual network.
 

@@ -121,8 +121,6 @@ items:
     items:
     - name: Deploy Azure OpenAI models
       items: 
-      - name: Azure OpenAI in Azure AI Foundry
-        href: azure-openai-in-azure-ai-foundry.md
       - name: Model region availability
         href:  ../ai-services/openai/concepts/models.md?context=/azure/ai-foundry/context/context
         displayName: OpenAI, gpt-4o, gpt-4o-mini, whisper

@@ -1,40 +1,27 @@
 ---
-title: Get started building a chat app using the Azure AI Foundry SDK
+title: Get started building a chat app
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to build a custom chat app in Python using the Azure AI SDK.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: build-2024, devx-track-azurecli, devx-track-python, ignite-2024
 ms.topic: how-to
-ms.date: 04/07/2025
+ms.date: 04/26/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
-zone_pivot_groups: project-type
 # customer intent: As a developer, I want to build a custom chat app using the Azure AI SDK.
 ---
 
-# Build a basic chat app in Python using Azure AI Foundry SDK
-
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+# Build a basic chat app in a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]
 
 In this quickstart, we walk you through setting up your local development environment with the [Azure AI Foundry](https://ai.azure.com) SDK. We write a prompt, run it as part of your app code, trace the LLM calls being made, and run a basic evaluation on the outputs of the LLM.
 
 ## Prerequisites
 
-::: zone pivot="fdp-project"
+[!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
 
-- An **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**.  Select [!INCLUDE [hub](../includes/hub-project-name.md)] at the top of this article if you want to complete this quickstart using a [!INCLUDE [hub](../includes/hub-project-name.md)] instead. For more about project types, see [Project types](../what-is-azure-ai-foundry.md#project-types).
-
-::: zone-end
-
-::: zone pivot="hub-project"
-
-- A **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select [!INCLUDE [fdp](../includes/fdp-project-name.md)] at the top of this article if you want to complete this quickstart using a [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
-
-::: zone-end
-
-* Before you can follow this quickstart, complete the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md) to deploy a **gpt-4o-mini** model into your project.
+* Before you can follow this quickstart, complete the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md) to deploy a **gpt-4o-mini** model into your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
 
 ## Create a new Python environment
 
@@ -44,7 +31,7 @@ In the IDE of your choice, create a new folder for your project.  Open a termina
 
 ## Install packages
 
-Install `azure-ai-projects`(preview), `azure-ai-inference` (preview), and azure-identity packages:
+Install packages:
 
 ```bash
 pip install azure-ai-projects azure-ai-inference azure-identity 
@@ -110,15 +97,6 @@ python chat.py
 
 ## Next step
 
-::: zone pivot="fdp-project"
-
-> [!div class="nextstepaction"]
-> [Add data and use retrieval augmented generation (RAG) to build a custom chat app](../tutorials/copilot-sdk-create-resources.md?pivots=fdp-project)
-
-::: zone-end
-::: zone pivot="hub-project"
-
 > [!div class="nextstepaction"]
 > [Add data and use retrieval augmented generation (RAG) to build a custom chat app](../tutorials/copilot-sdk-create-resources.md?pivots=hub-project)
 
-:::zone-end
