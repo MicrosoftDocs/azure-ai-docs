@@ -1,5 +1,5 @@
 ---
-title: Azure AI Content Understanding Retrieval Augmented Generation Concept
+title: Azure AI Content Understanding Multimodal Retrieval Augmented Generation 
 titleSuffix: Azure AI services
 description: Learn about Retrieval Augmented Generation
 author: laujan
@@ -10,7 +10,7 @@ ms.topic: overview
 ms.date: 03/16/2025
 ms.custom: 2025-understanding-release
 ---
-# Creating a Multimodal Retrieval Augmented Generation Solution with Content Understanding
+# Multimodal Retrieval Augmented Generation with Content Understanding
 
 # Introduction
 
