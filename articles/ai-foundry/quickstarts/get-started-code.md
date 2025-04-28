@@ -22,13 +22,12 @@ zone_pivot_groups: project-type
 In this quickstart, we walk you through setting up your local development environment with the [Azure AI Foundry](https://ai.azure.com) SDK. We write a prompt, run it as part of your app code, trace the LLM calls being made, and run a basic evaluation on the outputs of the LLM.
 
 > [!TIP]
-> The rest of this article shows how to create a **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** at the top of this article if you want to create a [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
+> The rest of this article shows how to use a **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** at the top of this article if you want to use a [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
 
 ## Prerequisites
 
-[!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
-
-* Before you can follow this quickstart, complete the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md) to deploy a **gpt-4o-mini** model into your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
+- An [Azure subscription](https://azure.microsoft.com/free/). If you don't have an Azure subscription, create a free account before you begin.
+- A [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. If you're new to Azure AI Foundry and don't have a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)], select **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** at the top of this article to use a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)] instead.
 
 ### Set up your development environmant
 
@@ -42,9 +41,23 @@ In this quickstart, we walk you through setting up your local development enviro
 
 ## Deploy a model
 
-[!INCLUDE [deploy-model](../includes/deploy-model.md)]
+[!INCLUDE [tip-left-pane](tip-left-pane.md)]
 
-7. Once the model is deployed, select **Open in playground** to test your model.
+1. Sign in to [Azure AI Foundry](https://ai.azure.com).
+1. Select a [!INCLUDE [hub-project-name](hub-project-name.md)].
+
+1. Select **Model catalog** from the left pane.
+
+1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 
+
+1. On the model details page, select **Deploy**.
+
+    :::image type="content" source="../media/tutorials/chat/deploy-model.png" alt-text="Screenshot of the model details page with a button to deploy the model." lightbox="../media/tutorials/chat/deploy-model.png":::
+
+
+1. Leave the default **Deployment name**. Select **Deploy**.
+
+1. Once the model is deployed, select **Open in playground** to test your model.
 
 ## Build your chat app
 

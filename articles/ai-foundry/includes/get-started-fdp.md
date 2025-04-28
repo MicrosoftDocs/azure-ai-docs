@@ -23,7 +23,7 @@ In this quickstart, you use [Azure AI Foundry](https://ai.azure.com) to:
 The Azure AI Foundry SDK is available in multiple languages, including Python, Java, JavaScript, and C#. This quickstart provides instructions for each of these languages.
 
 > [!TIP]
-> The rest of this article shows how to create a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**.  Select **[!INCLUDE [hub](../includes/hub-project-name.md)]** at the top of this article if you want to create a [!INCLUDE [hub](../includes/hub-project-name.md)] instead.
+> The rest of this article shows how to use a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**.  Select **[!INCLUDE [hub](../includes/hub-project-name.md)]** at the top of this article if you want to use a [!INCLUDE [hub](../includes/hub-project-name.md)] instead.
 
 ## Prerequisites
 

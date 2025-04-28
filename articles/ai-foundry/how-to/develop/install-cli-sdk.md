@@ -64,4 +64,4 @@ Keep this terminal window open to run your scripts from here as well, now that y
 
 ## Next step
 
-* [Get started in Azure AI Foundry](../../quickstarts/get-started.md)
+* [Get started in Azure AI Foundry](../../quickstarts/get-started-code.md)
