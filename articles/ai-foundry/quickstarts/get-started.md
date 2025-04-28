@@ -158,23 +158,6 @@ Info here.
 
 ---
 
-## Evaluate the agent run
-
-# [Azure AI Foundry portal](#tab/azure-ai-foundry)
-Info here.
-# [Python SDK](#tab/python)
-
-:::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/quickstart.py" id="evaluate_agent_run":::
-
-# [Java](#tab/java)
-Info here.
-# [JavaScript](#tab/javascript)
-Info here.
-# [C#](#tab/csharp)
-Info here.
-
----
-
 
 ## Clean up resources
 
