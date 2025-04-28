@@ -364,8 +364,7 @@ To define the endpoint and deployment, this article uses the ARM templates [onli
 
 ## Understand the scoring script
 
-> [!TIP]
-> The format of the scoring script for online endpoints is the same format that's used in the preceding version of the CLI and in the Python SDK.
+The format of the scoring script for online endpoints is the same format that's used in the preceding version of the CLI and in the Python SDK.
 
 # [Azure CLI](#tab/cli)
 The scoring script specified in `code_configuration.scoring_script` must have an `init()` function and a `run()` function.
@@ -406,8 +405,7 @@ We *highly recommend* that you test run your endpoint locally to validate and de
 
 To deploy locally, [Docker Engine](https://docs.docker.com/engine/install/) must be installed and running. Docker Engine typically starts when the computer starts. If it doesn't, you can [troubleshoot Docker Engine](https://docs.docker.com/config/daemon/#start-the-daemon-manually).
 
-> [!TIP]
-> You can use the [Azure Machine Learning inference HTTP server Python package](how-to-inference-server-http.md) to debug your scoring script locally *without Docker Engine*. Debugging with the inference server helps you to debug the scoring script before you deploy to local endpoints so that you can debug without being affected by the deployment container configurations.
+You can use the [Azure Machine Learning inference HTTP server Python package](how-to-inference-server-http.md) to debug your scoring script locally *without Docker Engine*. Debugging with the inference server helps you to debug the scoring script before you deploy to local endpoints so that you can debug without being affected by the deployment container configurations.
 
 For more information on debugging online endpoints locally before you deploy to Azure, see [Online endpoint debugging](concept-endpoints-online.md#online-endpoint-debugging).
 
@@ -598,9 +596,9 @@ Next, deploy your online endpoint to Azure. As a best practice for production, w
 
 We recommend that you register your model and environment before deployment to Azure so that you can specify their registered names and versions during deployment. After you register your assets, you can reuse them without the need to upload them every time you create deployments. This practice increases reproducibility and traceability.
 
-> [!NOTE]
-> Unlike deployment to Azure, local deployment doesn't support using registered models and environments. Instead, local deployment uses local model files and uses environments with local files only.
-> For deployment to Azure, you can use either local or registered assets (models and environments). In this section of the article, the deployment to Azure uses registered assets, but you have the option of using local assets instead. For an example of a deployment configuration that uploads local files to use for local deployment, see [Configure a deployment](#configure-a-deployment).
+Unlike deployment to Azure, local deployment doesn't support using registered models and environments. Instead, local deployment uses local model files and uses environments with local files only.
+
+For deployment to Azure, you can use either local or registered assets (models and environments). In this section of the article, the deployment to Azure uses registered assets, but you have the option of using local assets instead. For an example of a deployment configuration that uploads local files to use for local deployment, see [Configure a deployment](#configure-a-deployment).
 
 # [Azure CLI](#tab/cli)
 
