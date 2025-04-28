@@ -56,6 +56,13 @@ items:
         - name: Microsoft Fabric
           href: how-to/tools/fabric.md
         - name: Use licensed data
+          items:
+            - name: Morningstar
+              href: how-to/tools/morningstar.md
+              displayName: licensed data, morningstar
+            - name: tripadvisor
+              href: how-to/tools/tripadvisor.md
+              displayName: licensed data, tripadvisor
           href: how-to/tools/licensed-data.md
         - name: Function calling
           href: how-to/tools/function-calling.md

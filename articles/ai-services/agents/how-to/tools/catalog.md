@@ -16,16 +16,13 @@ ms.custom: azure-ai-agents
 
 The tool catalog in Azure AI Foundry portal is the hub to discover and use a wide range of tools for building AI agents with Azure AI Agent Service. The tool catalog features tools for extending your agents' abilities using hosted tools, and ones offered from partners such as Tripadvisor, and Morningstar. 
 
-> [!IMPORTANT]
-> * Your use of connected non-Microsoft services is subject to the terms between you and the service provider. By connecting to a non-Microsoft service, you acknowledge that some of your data, such as prompt content, is passed to the non-Microsoft service, and/or your application might receive data from the non-Microsoft service. You're responsible for your use of non-Microsoft data. 
-> * Using tools from tool catalog may incur usage with tool providers, review the pricing plan with your selected tool data providers. 
-
 ## Prerequisites 
 
 * [A created agent](../../quickstart.md) 
 
 ## Supported Tools 
 
+The following is a list of tools supported by Azure AI Agent Service. 
 
 |Tool  |Description  |
 |---------|---------|
@@ -35,11 +32,17 @@ The tool catalog in Azure AI Foundry portal is the hub to discover and use a wid
 |[File Search](./file-search.md)     | Augment agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.          |
 |[Function calling](./function-calling.md)     |Describe the structure of functions you create to an agent and have them be called when appropriate during the agent's interactions with users.         |
 |[Grounding with Bing Search](./bing-grounding.md)     | Enable your agent to use Bing Search to access and return information from the internet.         |
-| [Licensed data](./licensed-data.md) | Integrates licensed data from specialized non-Microsoft data providers to ground your agents. |
 | [Microsoft Fabric](./fabric.md) | Integrate your agent with the [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. |
 | [OpenAPI 3.0 Specified tool ](./openapi-spec.md) | C    onnect your Azure AI Agent to external APIs using functions with an OpenAPI 3.0 specification. |
 
+> [!IMPORTANT]
+> * Your use of connected non-Microsoft services is subject to the terms between you and the service provider. By connecting to a non-Microsoft service, you acknowledge that some of your data, such as prompt content, is passed to the non-Microsoft service, and/or your application might receive data from the non-Microsoft service. You're responsible for your use of non-Microsoft data. 
+> * Using tools from tool catalog may incur usage with tool providers, review the pricing plan with your selected tool data providers. 
 
+## Licensed data tools
+
+| [Morningstar](./morningstar.md) | This tool lets you access Morningstar's investment research API that provides comprehensive analysis, ratings, and data on mutual funds, ETFs, stocks, and bonds. |
+| [Tripadvisor](./tripadvisor) | This tool lets you access Tripadvisor's useful travel platform that can, for example, provide travel guidance and reviews. |
  
 
  
