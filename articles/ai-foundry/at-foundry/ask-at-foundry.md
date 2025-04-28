@@ -13,7 +13,7 @@ author: jfomhover
 
 ## Overview
 
-The @Foundry agent is here to assist you with questions about Azure AI Foundry. To start using @Foundry, simply click on the @Foundry icon located in the top left bar of the interface. This will open a chat window where you can type your questions and receive answers in real-time.
+The @Foundry agent is here to assist you with questions about Azure AI Foundry. To start using @Foundry, simply click on the @Foundry icon located in the top left bar of the interface. A chat window opens where you can type your questions and receive answers in real-time.
 
 
 ## Capabilities
@@ -25,8 +25,8 @@ The @Foundry agent is here to assist you with questions about Azure AI Foundry. 
 
 **What @Foundry Cannot Do** - While @Foundry is a powerful tool, it has some limitations:
 
-- **No Access to Your Resources**: @Foundry cannot access your Azure resources. For example, it cannot answer questions like "How much capacity do I have?" or "What is the status of my deployment?"
-- **Limited Scope**: It is restricted to answering questions related to the Azure AI Foundry documentation and model catalog. It cannot provide support for unrelated Azure services or external systems.
+- **No Access to Your Resources**: @Foundry can't access your Azure resources. For example, it can't answer questions like "How much capacity do I have?" or "What is the status of my deployment?"
+- **Limited Scope**: It's restricted to answering questions related to the Azure AI Foundry documentation and model catalog. It can't provide support for unrelated Azure services or external systems.
 
 Use @Foundry to make the most of the Azure AI Foundry experience, but keep its scope and limitations in mind when asking questions.
 
