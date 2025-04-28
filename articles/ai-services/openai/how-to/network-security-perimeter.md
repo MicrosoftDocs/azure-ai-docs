@@ -13,8 +13,7 @@ ms.service: azure-ai-openai
 
 > [!IMPORTANT]
 > Azure OpenAI service support for network security perimeter is in public preview under supplemental terms of use. It's available in regions providing the feature. This preview version is provided without a service level agreement, and it's not recommended for production workloads. Certain features might not be supported or might have constrained capabilities.
-
-Review the limitations and considerations section before you start.
+> Review the limitations and considerations section before you start.
 
 ## Overview
 This article explains how to join an Azure OpenAI service to a network security perimeter to control network access to your Azure OpenAI account. By joining a network security perimeter, you can:
@@ -25,14 +24,18 @@ This article explains how to join an Azure OpenAI service to a network security 
 You can add an Azure OpenAI service to a network security perimeter in the Azure portal, as described in this article. Alternatively, you can use the Azure Virtual Network Manager REST API to join a service, and use the Management REST APIs to view and synchronize the configuration settings.
 
 ## Limitations and considerations
-Azure OpenAI customer-managed keys might not behave as expected. The Azure OpenAI resources in the Azure subscription might not be able to use the fine-tune API or assistants API.
+* Azure OpenAI customer-managed keys might not behave as expected. The Azure OpenAI resources in the Azure subscription might not be able to use the fine-tune API or assistants API.
+
+* Network security perimeter controls only data plane operations within Azure OpenAI, not control plane operations. For example, users can deploy a model within their Azure OpenAI resource secured by the perimeter, but cannot use finetune models, upload files, or start a session in the Chat Playground. In these data plane scenarios, an error message will show that access is blocked by the Network Security Perimeter, as expected.
+
+* For an Azure OpenAI service within a network security perimeter, the resource must use a system or user-assigned managed identity and have a role assignment that permits read-access to data sources.
 
 ## Prerequisites
 
 > [!CAUTION] 
 > Make sure you fully understand the limitations and impact to your Azure Subscription listed in the previous section before registering the preview feature.
 
-First step, contact your Microsoft rep to allowlist your Azure subscription with the following feature flags:
+1. Contact your Microsoft rep to allowlist your Azure subscription with the following feature flags:
 
 |Namespace  |Feature name  | Description |
 |---------|---------|
@@ -40,7 +43,7 @@ First step, contact your Microsoft rep to allowlist your Azure subscription with
 
 To check if the feature flags are allowlisted, use command `az feature registration list`.
 
-Second, register the Network Security Perimeter feature from the Azure portal Preview features. The feature name is `AllowNSPInPublicPreview`. After registration, wait for 2 hours to take effect.
+2. Register the Network Security Perimeter feature from the Azure portal Preview features. The feature name is `AllowNSPInPublicPreview`. After registration, wait for 2 hours to take effect.
 
 ### Configure managed identity on your Azure OpenAI account
 To allow your Storage account to recognize your Azure OpenAI service via Microsoft Entra ID authentication, you need to enable the managed identity for your Azure OpenAI service. The easiest way is to toggle on system assigned managed identity on Azure portal. The required role for your Storage account is “Storage Blob Data Contributor.” Ensure the role is assigned to your Storage account from your Azure OpenAI account.
@@ -51,11 +54,20 @@ Azure Network Security Perimeter allows administrators to define a logical netwo
 You can add Azure OpenAI to a network security perimeter so that all indexing and query requests occur within the security boundary.
 
 1. In the Azure portal, find the network security perimeter service for your subscription.
-1. Select **Resources** from the left-hand menu.
-1. Select **Add** > **Associate** resources with an existing profile.
-1. Select the profile you created when you created the network security perimeter for Profile.
-1. Select Associate, and then select the Azure OpenAI service you created.
-1. Select Associate in the bottom left-hand section of the screen to create the association.
+2. Select **Resources** from the left-hand menu.
+
+[Image 1]
+
+3. Select **Add** > **Associate** resources with an existing profile.
+
+[Image 2]
+
+4. Select the profile you created when you created the network security perimeter for Profile.
+5. Select Associate, and then select the Azure OpenAI service you created.
+
+[Image 3]
+
+6. Select Associate in the bottom left-hand section of the screen to create the association.
 
 ### Network security perimeter access modes
 Network security perimeter supports two different access modes for associated resources:
@@ -74,17 +86,31 @@ The `publicNetworkAccess` setting determines the Azure OpenAI services associati
 ### Change the network security perimeter access mode
 1. Navigate to your network security perimeter resource in the Azure portal.
 2. Select **Resources** in the left-hand menu.
+
+[Image 4]
+
 3. Find your Azure OpenAI service in the table.
 4. Select the three dots in the far right of the Azure OpenAI service row. Select Change access mode in the popup.
+
+[Image 5]
+
 5. Select the desired access mode and select Apply.
+
+[Image 6]
 
 ## Enable logging network access
 1. Navigate to your network security perimeter resource in the Azure portal.
 2. Select **Diagnostic settings** in the left-hand menu.
+
+[Image 7]
+
 3. Select **Add diagnostic setting**.
 4. Enter any name such as "diagnostic" for Diagnostic setting name.
 5. Under Logs, select `allLogs`. `allLogs` ensures all inbound and outbound network access to resources in your network security perimeter is logged.
 6. Under Destination details, select Archive to a storage account or Send to Log Analytics workspace. The storage account must be in the same region as the network security perimeter. You can either use an existing storage account or create a new one. A Log Analytics workspace can be in a different region than the one used by the network security perimeter. You can also select any of the other applicable destinations.
+
+[Image 8]
+
 7. Select Save to create the diagnostic setting and start logging network access.
 
 ### Reading network access logs
@@ -101,14 +127,6 @@ Here's an example of the `network-security-perimeterPublicInboundResourceRulesAl
 | Matched Rule           | JSON description of the rule that was matched by the log                  | `{ "accessRule": "IP firewall" }`               |
 | SourceIPAddress        | Source IP of the inbound network access, if applicable                    | `1.1.1.1`                                       |
 | AccessRuleVersion      | Version of the network-security-perimeter access rules used to enforce the network access rules | 0                                              |
-
-#### Storage Account
-The storage account has containers for every log category (for example `insights-logs-network-security-perimeterpublicinboundperimeterrulesallowed`). The folder structure inside the container matches the resource ID of the network security perimeter and the time the logs were taken. Each line on the JSON log file contains a record of the network security perimeter network access that matches the log category.
-
-For example, the inbound perimeter rules allowed category log uses the following format:
-```json
-TBD
-```
 
 ## Add an access rule for your Azure OpenAI service
 
@@ -133,15 +151,23 @@ Inbound access rules can allow the internet and resources outside the perimeter 
 To add an inbound access rule in the Azure portal:
 
 1. Navigate to your network security perimeter resource in the Azure portal.
-1. Select **Profiles** in the left-hand menu.
+2. Select **Profiles** in the left-hand menu.
 
-1. Select the profile you're using with your network security perimeter.
+[Image 9]
 
-1. Select **Inbound access rules** in the left-hand menu.
+3. Select the profile you're using with your network security perimeter.
 
-1. Select **Add**.
+[Image 10]
 
-1. Enter or select the following values:
+4. Select **Inbound access rules** in the left-hand menu.
+
+[Image 11]
+
+5. Select **Add**.
+
+[Image 12]
+
+6. Enter or select the following values:
     
     | Setting | Value |
     |---------|-------|
@@ -149,7 +175,9 @@ To add an inbound access rule in the Azure portal:
     | Source Type | Valid values are IP address ranges or subscriptions. |
     | Allowed Sources | If you selected IP address ranges, enter the IP address range in a CIDR format that you want to allow inbound access from. Azure IP ranges are available at this link. If you selected **Subscriptions**, use the subscription you want to allow inbound access from. |
     
-1. Select **Add** to create the inbound access rule.
+7. Select **Add** to create the inbound access rule.
+
+[Image 13]
 
 ### Add an outbound access rule
 
@@ -161,13 +189,24 @@ Network security perimeter supports outbound access rules based on the Fully Qua
 
 To add an outbound access rule in the Azure portal:
 
-Navigate to your network security perimeter resource in the Azure portal.
+1. Navigate to your network security perimeter resource in the Azure portal.
+2. Select **Profiles** in the left-hand menu.
 
-1. Select **Profiles** in the left-hand menu.
-1. Select the profile you're using with your network security perimeter.
-1. Select **Outbound access rules** in the left-hand menu.
-1. Select **Add**.
-1. Enter or select the following values:
+[Image 14]
+
+3. Select the profile you're using with your network security perimeter.
+
+[Image 15]
+
+4. Select **Outbound access rules** in the left-hand menu.
+
+[Image 16]
+
+5. Select **Add**.
+
+[Image 17]
+
+6. Enter or select the following values:
     
     | Setting | Value |
     |---------|-------|
@@ -175,27 +214,29 @@ Navigate to your network security perimeter resource in the Azure portal.
     | Destination Type | Leave as FQDN |
     | Allowed Destinations | Enter a comma-separated list of FQDNs you want to allow outbound access to |
     
-1. Select **Add** to create the outbound access rule.
+7. Select **Add** to create the outbound access rule.
+
+[Image 18]
 
 ## Test your connection through network security perimeter
 
 To test your connection through network security perimeter, you need access to a web browser, either on a local computer with an internet connection or an Azure VM.
 
-1. Change your network security perimeter association to [enforced mode](../../../search/search-security-network-security-perimeter.md#network-security-perimeter-access-modes) to start enforcing network security perimeter requirements for network access to your Azure OpenAI service.
+1. Change your network security perimeter association to __enforced mode__ to start enforcing network security perimeter requirements for network access to your Azure OpenAI service.
 
-1. Decide if you want to use a local computer or an Azure VM.
+2. Decide if you want to use a local computer or an Azure VM.
 
     1. If you're using a local computer, you need to know your public IP address.
 
     1. If you're using an Azure virtual machine, you can either use a [private link](/azure/private-link/private-link-overview) or [check the IP address using the Azure portal](/azure/virtual-network/ip-services/virtual-network-network-interface-addresses).
 
-1. Using the IP address, you can create an [inbound access rule](../../../search/search-security-network-security-perimeter.md#add-an-inbound-access-rule) for that IP address to allow access. You can skip this step if you're using private link.
+3. Using the IP address, you can create an __inbound access rule__ for that IP address to allow access. You can skip this step if you're using private link.
 
-1. Finally, try navigating to the Azure OpenAI service in the Azure portal. If you can view the indexes successfully, then the network security perimeter is configured correctly.
+4. Finally, try navigating to the Azure OpenAI service in the Azure portal. If you can view the indexes successfully, then the network security perimeter is configured correctly.
 
 ## View and manage network security perimeter configuration
 
-You can use the [Network Security Perimeter Configuration REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2024-06-01-preview&preserve-view=true) to review and reconcile perimeter configurations. **Be sure to use preview API version** `2024-06-01-preview`. See the [Azure AI Search documentation](../../../search/search-manage-rest.md) for information on how to call the Management REST APIs.
+You can use the [Network Security Perimeter Configuration REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2024-06-01-preview&preserve-view=true) to review and reconcile perimeter configurations. **Be sure to use preview API version** `2024-10-01`. 
 
 ## See also
 
