@@ -34,6 +34,7 @@ The main example in this article uses managed online endpoints for deployment. T
 [!INCLUDE [basic prereqs cli](includes/machine-learning-cli-prereqs.md)]
 
 * Azure role-based access control (Azure RBAC) is used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the Owner or Contributor role for the Azure Machine Learning workspace, or a custom role must allow `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`. If you use Azure Machine Learning studio to create and manage online endpoints or deployments, you need the extra permission `Microsoft.Resources/deployments/write` from the resource group owner. For more information, see [Manage access to Azure Machine Learning workspaces](how-to-assign-roles.md).
+
 * (Optional) To deploy locally, you must [install Docker Engine](https://docs.docker.com/engine/install/) on your local computer. We *highly recommend* this option, which makes it easier to debug issues.
 
 # [Python SDK](#tab/python)
@@ -43,6 +44,7 @@ The main example in this article uses managed online endpoints for deployment. T
 [!INCLUDE [basic prereqs sdk](includes/machine-learning-sdk-v2-prereqs.md)]
 
 * Azure RBAC is used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the Owner or Contributor role for the Azure Machine Learning workspace, or a custom role must allow `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`. For more information, see [Manage access to Azure Machine Learning workspaces](how-to-assign-roles.md).
+
 * (Optional) To deploy locally, you must [install Docker Engine](https://docs.docker.com/engine/install/) on your local computer. We *highly recommend* this option, which makes it easier to debug issues.
 
 # [Studio](#tab/azure-studio)
@@ -55,7 +57,7 @@ Before you follow the steps in this article, make sure that you have the followi
 
 # [ARM template](#tab/arm)
 
-The Azure CLI and CLI extension for machine learning are used in these steps, but they're not the main focus. They're used more as utilities to pass templates to Azure and check the status of template deployments.
+The Azure CLI and the CLI extension for machine learning are used in these steps, but they're not the main focus. They're used more as utilities to pass templates to Azure and check the status of template deployments.
 
 [!INCLUDE [basic prereqs cli](includes/machine-learning-cli-prereqs.md)]
 
@@ -63,7 +65,8 @@ The Azure CLI and CLI extension for machine learning are used in these steps, bu
 
 ---
 
-* Ensure that you have enough virtual machine (VM) quota allocated for deployment. Azure Machine Learning reserves 20% of your compute resources for performing upgrades on some VM versions. For example, if you request 10 instances in a deployment, you must have a quota of 12 for each number of cores for the VM version. Failure to account for the extra compute resources results in an error. There are some VM versions that are exempt from the extra quota reservation. For more information on quota allocation, see [Virtual machine quota allocation for deployment](how-to-manage-quotas.md#virtual-machine-quota-allocation-for-deployment).
+* Ensure that you have enough virtual machine (VM) quota allocated for deployment. Azure Machine Learning reserves 20% of your compute resources for performing upgrades on some VM versions. For example, if you request 10 instances in a deployment, you must have a quota of 12 for each number of cores for the VM version. Failure to account for the extra compute resources results in an error. Some VM versions are exempt from the extra quota reservation. For more information on quota allocation, see [Virtual machine quota allocation for deployment](how-to-manage-quotas.md#virtual-machine-quota-allocation-for-deployment).
+
 * Alternatively, you could use quota from the Azure Machine Learning shared quota pool for a limited time. [!INCLUDE [machine-learning-shared-quota](includes/machine-learning-shared-quota.md)]
 
 ## Prepare your system
@@ -156,7 +159,7 @@ If you have Git installed on your local machine, you can follow the instructions
 
 ### Clone the examples repository
 
-To follow along with this article, first clone the [azureml-examples repository](https://github.com/azure/azureml-examples), then change into the *azureml-examples/cli/endpoints/online/model-1* directory.
+To follow along with this article, first clone the [azureml-examples repository](https://github.com/azure/azureml-examples), and then change into the *azureml-examples/cli/endpoints/online/model-1* directory.
 
 ```bash
 git clone --depth 1 https://github.com/Azure/azureml-examples
@@ -282,7 +285,7 @@ To set your endpoint name, run the following command to generate a random name. 
 
 ### Configure the endpoint
 
-To define the endpoint and deployment, this article uses Azure Resource Manager templates (ARM templates). The ARM templates that are used are [online-endpoint.json](https://github.com/Azure/azureml-examples/tree/main/arm-templates/online-endpoint.json) and [online-endpoint-deployment.json](https://github.com/Azure/azureml-examples/tree/main/arm-templates/online-endpoint-deployment.json). To use the templates for defining an online endpoint and deployment, see the [Deploy to Azure](#deploy-to-azure) section.
+To define the endpoint and deployment, this article uses the Azure Resource Manager templates (ARM templates) [online-endpoint.json](https://github.com/Azure/azureml-examples/tree/main/arm-templates/online-endpoint.json) and [online-endpoint-deployment.json](https://github.com/Azure/azureml-examples/tree/main/arm-templates/online-endpoint-deployment.json). To use the templates for defining an online endpoint and deployment, see the [Deploy to Azure](#deploy-to-azure) section.
 
 ---
 
@@ -688,7 +691,7 @@ To register the example model, follow these steps:
 
     :::image type="content" source="media/how-to-deploy-online-endpoints/register-model-folder.png" alt-text="Screenshot that shows the browse folder option." lightbox="media/how-to-deploy-online-endpoints/register-model-folder.png":::
 
-1. Select the *\azureml-examples\cli\endpoints\online\model-1\model* folder from the local copy of the repo that you cloned or downloaded earlier. When prompted, select __Upload__ and wait for the upload to finish.
+1. Select the *\azureml-examples\cli\endpoints\online\model-1\model* folder from the local copy of the repo that you cloned or downloaded earlier. When you're prompted, select __Upload__ and wait for the upload to finish.
 1. Select __Next__.
 1. Enter a friendly name for the model. The steps in this article assume that the model is named `model-1`.
 1. Select __Next__, and then select __Register__ to finish registration.
@@ -1065,9 +1068,9 @@ By default, logs are pulled from the inference server container. To see logs fro
 
 By using the `MLClient` parameter that you created earlier, you get a handle to the endpoint. You can then invoke the endpoint by using the `invoke` command with the following parameters:
 
-- `endpoint_name`: Name of the endpoint
-- `request_file`: File with request data
-- `deployment_name`: Name of the specific deployment to test in an endpoint
+- `endpoint_name`: Name of the endpoint.
+- `request_file`: File with request data.
+- `deployment_name`: Name of the specific deployment to test in an endpoint.
 
 Send a sample request by using a [JSON](https://github.com/Azure/azureml-examples/blob/main/sdk/python/endpoints/online/model-1/sample-request.json) file.
 
