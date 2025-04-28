@@ -175,7 +175,7 @@ Besides above requirements, the following outbound URLs are also required for Az
 | Outbound Endpoint| Port | Description|Training |Inference |
 |-----|-----|-----|:-----:|:-----:|
 | `*.kusto.windows.net`<br>`*.table.core.windows.net`<br>`*.queue.core.windows.net` | 443 | Required to upload system logs to Kusto. |__&check;__|__&check;__|
-| `<your ACR name>.azurecr.io`<br>`<your ACR name>.<region>.data.azurecr.io` | 443 | Azure container registry, required to pull docker images used for machine learning workloads.|__&check;__|__&check;__|
+| `<your ACR name>.azurecr.io`<br>`<your ACR name>.<region>.data.azurecr.io` | 443 | Azure Container Registry, required to pull docker images used for machine learning workloads.|__&check;__|__&check;__|
 | `<your storage account name>.blob.core.windows.net` | 443 | Azure blob storage, required to fetch machine learning project scripts, data or models, and upload job logs/outputs.|__&check;__|__&check;__|
 | `<your workspace ID>.workspace.<region>.api.azureml.ms`<br>`<region>.experiments.azureml.net`<br>`<region>.api.azureml.ms` | 443 | Azure Machine Learning service API.|__&check;__|__&check;__|
 | `pypi.org` | 443 | Python package index, to install pip packages used for training job environment initialization.|__&check;__|N/A|

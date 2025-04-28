@@ -91,7 +91,7 @@ As a fallback, there's a 60-second maximum wait in the run object when the threa
 
 ## Add file search to an agent using the Azure AI Foundry portal
 
-You can add the Bing Search tool to an agent programatically using the code examples listed at the top of this article, or the [Azure AI Foundry portal](https://ai.azure.com/). If you want to use the portal:
+You can add the File Search tool to an agent programatically using the code examples listed at the top of this article, or the [Azure AI Foundry portal](https://ai.azure.com/). If you want to use the portal:
 
 1. In the **Create and debug** screen for your agent, scroll down the **Setup** pane on the right to **knowledge**. Then select **Add**.
 

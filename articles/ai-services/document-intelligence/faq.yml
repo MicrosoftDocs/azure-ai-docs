@@ -7,7 +7,7 @@ metadata:
   ms.service: azure-ai-document-intelligence
   ms.custom: references_regions
   ms.topic: faq
-  ms.date: 01/14/2025
+  ms.date: 04/23/2025
   ms.author: lajanuar
 title: Frequently asked questions
 summary: |
@@ -56,7 +56,7 @@ sections:
 
           - With Azure AI Document Intelligence and Azure OpenAI combined, you can build an enterprise application to seamlessly interact with your documents using natural language. You can easily find answers, gain valuable insights, and generate new and engaging content from existing documents.
 
-          - You can find more details on the [retrieval augmented generation pattern here](concept/retrieval-augmented-generation.md).
+          - You can find more details on the [retrieval-augmented generation pattern here](concept/retrieval-augmented-generation.md).
 
       - question: |
          Can Document Intelligence help with semantic chunking within documents for retrieval-augmented generation?

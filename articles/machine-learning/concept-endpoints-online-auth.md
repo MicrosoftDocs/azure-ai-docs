@@ -121,7 +121,7 @@ If the endpoint identity is a SAI, the following roles are assigned to the endpo
 
 | Role | Description | Condition for automatic role assignment |
 | --- | --- | --- |
-| **AcrPull** | Allows the endpoint identity to pull images from the Azure container registry associated with the workspace | The endpoint identity is a SAI.
+| **AcrPull** | Allows the endpoint identity to pull images from the Azure Container Registry associated with the workspace | The endpoint identity is a SAI.
 | **Storage Blob Data Reader** | Allows the endpoint identity to read blobs from the default datastore of the workspace | The endpoint identity is a SAI.
 | **AzureML Metrics Writer (preview)** | Allows the endpoint identity to write metrics to the workspace | The endpoint identity is a SAI.
 | **Azure Machine Learning Workspace Connection Secrets Reader** | Allows the endpoint identity to read secrets from workspace connections | The endpoint identity is a SAI and the endpoint creation has a flag to enforce access to the default secret stores. The user identity that creates the endpoint also has permission to read secrets from workspace connections.

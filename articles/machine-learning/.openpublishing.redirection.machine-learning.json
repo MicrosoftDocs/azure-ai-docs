@@ -4286,6 +4286,86 @@
         "redirect_document_id": false
     },
     {
+        "source_path_from_root": "/articles/machine-learning/how-to-deploy-models-cohere-command.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#cohere",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-deploy-models-cohere-embed.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#cohere",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-deploy-models-cohere-rerank.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#cohere-rerank",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-deploy-models-jais.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#core42",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-deploy-models-jamba.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#ai21-labs",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-deploy-models-llama.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#meta",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-deploy-models-mistral.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#mistral-ai",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-deploy-models-phi-3.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#microsoft",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-deploy-models-phi-3-5-vision.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#microsoft",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-deploy-models-phi-3-vision.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#microsoft",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/deploy-stability-models.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#stability-ai",
+        "redirect_document_id": false
+    },    
+    {
+        "source_path_from_root": "/articles/machine-learning/reference-model-inference-api.md",
+        "redirect_url": "/rest/api/aifoundry/modelinference",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/reference-model-inference-chat-completions.md",
+        "redirect_url": "/rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/reference-model-inference-embeddings.md",
+        "redirect_url": "/rest/api/aifoundry/model-inference/get-embeddings/get-embeddings",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/reference-model-inference-images-embeddings.md",
+        "redirect_url": "/rest/api/aifoundry/model-inference/get-image-embeddings/get-image-embeddings",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/reference-model-inference-info.md",
+        "redirect_url": "/rest/api/aifoundry/model-inference/get-model-info/get-model-info",
+        "redirect_document_id": false
+    },
+    {
         "source_path_from_root": "/articles/machine-learning/prompt-flow/tools-reference/more-tools.md",
         "redirect_url": "/azure/machine-learning/prompt-flow/tools-reference/overview",
         "redirect_document_id": false

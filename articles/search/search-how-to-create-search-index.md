@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/01/2024
+ms.date: 04/14/2025
 ---
 
 # Create an index in Azure AI Search
