@@ -13,14 +13,39 @@ ms.date: 03/04/2025
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist
+zone_pivot_groups: project-type
 ---
 
 # Role-based access control in Azure AI Foundry portal
 
-In this article, you learn how to manage access (authorization) to an [Azure AI Foundry](https://ai.azure.com) hub. Azure role-based access control (Azure RBAC) is used to manage access to Azure resources, such as the ability to create new resources or use existing ones. Users in your Microsoft Entra ID are assigned specific roles, which grant access to resources. Azure provides both built-in roles and the ability to create custom roles. 
+In this article, you learn how to manage access (authorization) to your [Azure AI Foundry](https://ai.azure.com) resources. Azure role-based access control (Azure RBAC) is used to manage access to Azure resources, such as the ability to create new resources or use existing ones. Users in your Microsoft Entra ID are assigned specific roles, which grant access to resources. Azure provides both built-in roles and the ability to create custom roles.
+
+Azure AI Foundry supports two types of projects: a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** and a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. For more information about the differences between these two project types, see [Types of projects](../what-is-azure-ai-foundry.md#project-types). Use the selector at the top of this article to switch between the two project types.
 
 > [!WARNING]
 > Applying some roles might limit UI functionality in Azure AI Foundry portal for other users. For example, if a user's role doesn't have the ability to create a compute instance, the option to create a compute instance isn't available in studio. This behavior is expected, and prevents the user from attempting operations that would return an access denied error. 
+
+::: zone pivot="fdp-project"
+
+## Azure AI Foundry project roles
+
+Azure AI User: Cannot create project or account (only read), cannot do role assignments, has all DP actions
+AI Project Manager: Can create project, not account (only account read), can only assign Azure AI user role, has all DP actions
+Azure AI Account Owner: Can create project and account, can only assign Azure AI user role, no DP actions
+ 
+## Basic Agent requirements
+
+Control Plane: Azure AI Account Owner (to set-up an account and project) OR Azure AI Project Manager (if they are ONLY setting up a project) 
+Data Plane Roles: Azure AI User OR Azure AI Project Manager
+ 
+## Standard Agent requirements
+
+Control Plane: Azure AI Account Owner (to set-up an account and project) AND Role Based Access Administrator (to do role assignments on the other resources required for Standard Agent set-up like CosmosDB, Search, Storage, etc.) 
+Data Plane Roles: Azure AI User OR Azure AI Project Manager
+
+::: zone-end
+
+::: zone pivot="hub-project"
 
 ## Azure AI Foundry hub vs project
 
@@ -536,3 +561,5 @@ If you create a new hub and encounter errors with the new default role assignmen
 - [How to create an Azure AI Foundry hub](../how-to/create-azure-ai-resource.md)
 - [How to create an Azure AI Foundry project](../how-to/create-projects.md)
 - [How to create a connection in Azure AI Foundry portal](../how-to/connections-add.md)
+
+::: zone-end
