@@ -69,13 +69,13 @@ project_client = AIProjectClient.from_connection_string(
 
 ## Uploading evaluation data
 
-Prepare the data according the [input data requirements for built-in evaluators](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). For example in text evaluation, a `"./evaluate_test_data.jsonl"` file may contain single-turn data inputs like this: 
+Prepare the data according to the [input data requirements for built-in evaluators](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). For example in text evaluation, prepare a `"./evaluate_test_data.jsonl"` file that contains single-turn data inputs like this: 
 ```json
 {"query":"What is the capital of France?","response":"Paris."}
 {"query":"What atoms compose water?","response":"Hydrogen and oxygen."}
 {"query":"What color is my shirt?","response":"Blue."}
 ```
-or contain conversation data like this:
+or contains conversation data like this:
 ```json
 {"conversation":
     {
