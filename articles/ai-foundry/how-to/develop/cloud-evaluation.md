@@ -69,9 +69,50 @@ project_client = AIProjectClient.from_connection_string(
 
 ## Uploading evaluation data
 
+Prepare the data according the [input data requirements for built-in evaluators](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). For example in text evaluation, a `"./evaluate_test_data.jsonl"` file may contain single-turn data inputs like this: 
+```json
+{"query":"What is the capital of France?","response":"Paris."}
+{"query":"What atoms compose water?","response":"Hydrogen and oxygen."}
+{"query":"What color is my shirt?","response":"Blue."}
+```
+or contain conversation data like this:
+```json
+{"conversation":
+    {
+        "messages": [
+        {
+            "content": "Which tent is the most waterproof?", 
+            "role": "user"
+        },
+        {
+            "content": "The Alpine Explorer Tent is the most waterproof",
+            "role": "assistant", 
+            "context": "From the our product list the alpine explorer tent is the most waterproof. The Adventure Dining Table has higher weight."
+        },
+        {
+            "content": "How much does it cost?",
+            "role": "user"
+        },
+        {
+            "content": "The Alpine Explorer Tent is $120.",
+            "role": "assistant",
+            "context": null
+        }
+        ]
+    }
+}
+```
+
+For more details on input data formats, refer to [single-turn data](./evaluate-sdk.md#single-turn-support-for-text), [conversation data](./evaluate-sdk.md#conversation-support-for-text), and [conversation data for images and multi-modalities](./evaluate-sdk.md#conversation-support-for-images-and-multi-modal-text-and-image). 
+
+For agent evaluation, refer to [evaluator support for agent messages](./agent-evaluate-sdk.md#evaluators-with-agent-message-support).
+ 
+
 We provide two ways to register your data in Azure AI project required for evaluations in the cloud:
 
-1. **From SDK**: Upload new data from your local directory to your Azure AI project in the SDK, and fetch the dataset ID as a result:
+1. **From SDK**: Upload new data from your local directory to your Azure AI project in the SDK, and fetch the dataset ID as a result. 
+
+
 
 ```python
 data_id, _ = project_client.upload_file("./evaluate_test_data.jsonl")
@@ -197,7 +238,7 @@ After logging your custom evaluator to your Azure AI project, you can view it in
 
 ## Cloud evaluation (preview) with Azure AI Projects SDK
 
-You can now submit a cloud evaluation with Azure AI Projects SDK via a Python API. See the following example specifying an NLP evaluator (F1 score), AI-assisted quality and safety evaluator (Relevance and Violence), and a custom evaluator (Friendliness) with their [evaluator IDs](#specifying-evaluators-from-evaluator-library):
+Putting the above altogether, you can now submit a cloud evaluation with Azure AI Projects SDK via a Python API. See the following example specifying an NLP evaluator (F1 score), AI-assisted quality and safety evaluator (Relevance and Violence), and a custom evaluator (Friendliness) with their [evaluator IDs](#specifying-evaluators-from-evaluator-library):
 
 ```python
 import os, time
@@ -216,7 +257,7 @@ project_client = AIProjectClient.from_connection_string(
     conn_str="<connection_string>"
 )
 
-# Construct dataset ID per the instruction
+# Construct dataset ID per the instruction above
 data_id = "<dataset-id>"
 
 default_connection = project_client.connections.get_default(connection_type=ConnectionType.AZURE_OPEN_AI)
@@ -224,12 +265,8 @@ default_connection = project_client.connections.get_default(connection_type=Conn
 # Use the same model_config for your evaluator (or use different ones if needed)
 model_config = default_connection.to_evaluator_model_config(deployment_name=deployment_name, api_version=api_version)
 
-# Create an evaluation
-evaluation = Evaluation(
-    display_name="Cloud evaluation",
-    description="Evaluation of dataset",
-    data=Dataset(id=data_id),
-    evaluators={
+# select the list of evaluators you care about
+evaluators = {
         # Note the evaluator configuration key must follow a naming convention
         # the string must start with a letter with only alphanumeric characters 
         # and underscores. Take "f1_score" as example: "f1score" or "f1_evaluator" 
@@ -255,7 +292,14 @@ evaluation = Evaluation(
                 "model_config": model_config
             }
         )
-    },
+}
+
+# Create an evaluation
+evaluation = Evaluation(
+    display_name="Cloud evaluation",
+    description="Evaluation of dataset",
+    data=Dataset(id=data_id),
+    evaluators=evaluators
 )
 
 # Create evaluation
@@ -263,7 +307,7 @@ evaluation_response = project_client.evaluations.create(
     evaluation=evaluation,
 )
 
-# Get evaluation
+# Get evaluation result
 get_evaluation_response = project_client.evaluations.get(evaluation_response.id)
 
 print("----------------------------------------------------------------")
@@ -272,7 +316,8 @@ print("Evaluation status: ", get_evaluation_response.status)
 print("AI project URI: ", get_evaluation_response.properties["AiStudioEvaluationUri"])
 print("----------------------------------------------------------------")
 ```
-Now you can use the URI to view your evaluation results in your Azure AI project, in order to better assess the quality and safety performance of your applications.
+
+Following the URI, you will be redirected to Foundry to view your evaluation results in your Azure AI project and debug your application. Using reason fields and pass/fail, you will be able to better assess the quality and safety performance of your applications. You can run and compare multiple runs to test for regression or improvements.  
 
 ## Related content
 
