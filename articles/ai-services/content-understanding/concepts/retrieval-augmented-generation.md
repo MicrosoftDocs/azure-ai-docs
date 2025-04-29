@@ -462,7 +462,7 @@ After Azure AI Content Understanding extracts data, the next steps focus on inte
 
 After processing multimodal content with Azure AI Content Understanding, create a comprehensive search infrastructure using your newly structured data. By embedding the markdown and JSON outputs with Azure OpenAI's embedding models and indexing them in Azure AI Search, you establish a unified knowledge repository spanning all content types.
 
-Azure AI Search offers advanced search strategies for multimodal content. In this implementation, [hybrid search](../../../search/hybrid-search-overview) combines vector and full-text indexing to blend keyword precision with semantic understanding—ideal for complex queries requiring both exact matching and contextual relevance. This approach significantly enhances the quality of information fed to generation models, producing more accurate, contextually appropriate responses
+Azure AI Search offers advanced search strategies for multimodal content. In this implementation, [hybrid search](../../../search/hybrid-search-overview.md) combines vector and full-text indexing to blend keyword precision with semantic understanding—ideal for complex queries requiring both exact matching and contextual relevance. This approach significantly enhances the quality of information fed to generation models, producing more accurate, contextually appropriate responses
 
 To follow is a sample consolidated index that support vector and hybrid search and enables cross-modal search capabilities, allowing users to discover relevant information regardless of the original content format:
 
@@ -504,7 +504,7 @@ To follow is a sample consolidated index that support vector and hybrid search a
 
 ## Utilize Azure OpenAI models
 
-Once your content is extracted and indexed, integrate [Azure OpenAI's embedding and chat models](../../openai/concepts/models.md#chat-completions) to create an interactive question-answering system.
+Once your content is extracted and indexed, integrate [Azure OpenAI's embedding and chat models](../../openai/concepts/models.md) to create an interactive question-answering system.
 
 Content Understanding empowers the model to provide accurate and contextually grounded responses by using your actual content. This process includes referencing specific sections of documents, interpreting relevant images, quoting from video transcripts, and citing speaker statements from audio recordings.
 
