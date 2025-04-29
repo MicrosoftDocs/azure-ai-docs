@@ -1,7 +1,7 @@
 ---
-title: How to get started with an AI template
+title: How to get started with an AI agent template
 titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to use an AI template to get started with Azure AI Foundry.
+description: This article provides instructions on how to use an AI agent template to get started with Azure AI Foundry Agent Service.
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
@@ -22,12 +22,12 @@ Available templates include:
 * [Get started with AI agents](https://github.com/Azure-Samples/get-started-with-ai-agents)
 * [Unlock insights from conversational data](https://github.com/microsoft/Conversation-Knowledge-Mining-Solution-Accelerator)
 -->
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../ai-foundry/includes/feature-preview.md)]
 
 ## Prerequisites
 
 - [Azure subscription](https://azure.microsoft.com/free)
-- An [Azure AI Foundry project](../create-projects.md).
+- An [Azure AI Foundry project](../../../ai-foundry/create-projects.md).
 
 ## Start with a sample application
 
