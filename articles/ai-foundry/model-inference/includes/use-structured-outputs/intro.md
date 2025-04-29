@@ -29,4 +29,4 @@ To use structured outputs with chat completions models in your application, you 
 
     * You can check which models support structured outputs by checking the column **Response format** in the [Models](../../concepts/models.md) article.
 
-    * This article uses `Cohere-command-r-plus-08-2024`.
+    * This article uses `gpt-4o`.

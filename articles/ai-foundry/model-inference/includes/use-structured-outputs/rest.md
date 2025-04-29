@@ -68,7 +68,7 @@ We can use structure outputs with the defined schema as follows:
 __Request__
 
 ```http
-POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
+POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-12-01-preview
 Content-Type: application/json
 api-key: <key>
 ```
@@ -125,7 +125,7 @@ __Body__
             "strict": true
         }
     },
-    "model": "Cohere-command-r-plus-08-2024"
+    "model": "gpt-4o"
 }
 ```
 
@@ -138,7 +138,7 @@ __Response__
     "id": "0a1234b5de6789f01gh2i345j6789klm",
     "object": "chat.completion",
     "created": 1718726686,
-    "model": "Cohere-command-r-plus-08-2024",
+    "model": "gpt-4o",
     "choices": [
         {
             "index": 0,
@@ -170,7 +170,7 @@ You can use structured outputs with multi-modal models to extract information fr
 
 Let's consider the following chart:
 
-:::image type="content" source="../../media/use-structured-outputs/example_graph_treecover.png" alt-text="An example image showing a chart with the annual loss in thousand square kilometers of global tree cover across different climate zones." lightbox="../../media/use-structured-outputs/example_graph_treecover.png":::
+:::image type="content" source="../../media/use-structured-outputs/example-graph-treecover.png" alt-text="An example image showing a chart with the annual loss in thousand square kilometers of global tree cover across different climate zones." lightbox="../../media/use-structured-outputs/example-graph-treecover.png":::
 
 We can define a generic schema that can be used to encode the information contained in the chart and then use it for further analysis.
 
@@ -261,7 +261,7 @@ We can use structure outputs with the defined schema as follows:
 __Request__
 
 ```http
-POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
+POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-12-01-preview
 Content-Type: application/json
 api-key: <key>
 ```
@@ -366,7 +366,7 @@ __Body__
             "strict": true
         }
     },
-    "model": "Cohere-command-r-plus-08-2024"
+    "model": "gpt-4o"
 }
 ```
 
@@ -379,7 +379,7 @@ __Response__
     "id": "0a1234b5de6789f01gh2i345j6789klm",
     "object": "chat.completion",
     "created": 1718726686,
-    "model": "Cohere-command-r-plus-08-2024",
+    "model": "gpt-4o",
     "choices": [
         {
             "index": 0,
