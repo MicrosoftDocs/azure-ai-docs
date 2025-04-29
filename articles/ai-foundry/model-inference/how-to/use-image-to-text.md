@@ -16,6 +16,35 @@ zone_pivot_groups: azure-ai-inference-samples
 
 # How to generate images with Azure AI model inference
 
+::: zone pivot="programming-language-python"
+
+Azure AI model inference Python API does not support image models.
+
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+
+Azure AI model inference Javascript API does not support image models.
+
+::: zone-end
+
+
+::: zone pivot="programming-language-java"
+
+Azure AI model inference Java API does not support image models.
+
+::: zone-end
+
+
+::: zone pivot="programming-language-csharp"
+
+Azure AI model inference C Sharp API does not support image models.
+
+::: zone-end
+
+
+::: zone pivot="programming-language-rest"
+
 This article explains how to generate images with _image_ models deployed to Azure AI model inference in Azure AI services. Some models have unique parameters or data format requirements.
 
 ## Prerequisites
@@ -80,3 +109,6 @@ Some models only support specific data format. The following table list the supp
 
 * [Use embeddings models](use-embeddings.md)
 * [Azure AI Model Inference API](.././reference/reference-model-inference-api.md)
+
+::: zone-end
+
