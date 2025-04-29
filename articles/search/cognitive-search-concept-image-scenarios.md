@@ -60,7 +60,7 @@ After the source files are set up, enable image normalization by setting the `im
 + Large images are resized to a maximum height and width to make them uniform.
 + For images that have metadata that specifies orientation, image rotation is adjusted for vertical loading.
 
-Note that enabling `imageAction` (setting this parameter to other than `none`) will incur in additional charges for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/en-us/pricing/details/search/).
+Note that enabling `imageAction` (setting this parameter to other than `none`) will incur in additional charges for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
 
 Metadata adjustments are captured in a complex type created for each image. You can't opt out of the image normalization requirement. Skills that iterate over images, such as OCR and image analysis, expect normalized images.
 
