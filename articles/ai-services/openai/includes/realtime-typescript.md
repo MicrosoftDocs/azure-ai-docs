@@ -84,7 +84,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         
         // Required Azure OpenAI deployment name and API version
         const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4o-mini-realtime-preview";
-        const apiVersion = process.env.OPENAI_API_VERSION || "2024-10-01-preview"; 
+        const apiVersion = process.env.OPENAI_API_VERSION || "2025-04-01-preview"; 
     
         // Keyless authentication 
         const credential = new DefaultAzureCredential();
@@ -197,7 +197,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         
         // Required Azure OpenAI deployment name and API version
         const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4o-mini-realtime-preview";
-        const apiVersion = process.env.OPENAI_API_VERSION || "2024-10-01-preview"; 
+        const apiVersion = process.env.OPENAI_API_VERSION || "2025-04-01-preview"; 
         
         const azureOpenAIClient = new AzureOpenAI({
             apiKey: apiKey,
