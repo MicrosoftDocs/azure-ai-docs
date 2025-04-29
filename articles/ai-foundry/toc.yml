@@ -104,11 +104,11 @@ items:
         items:
         - name: Foundational AI models for healthcare
           href: how-to/healthcare-ai/healthcare-ai-models.md
-        - name: MedImageInsight - embedding model
+        - name: MedImageInsight model for embedding
           href: how-to/healthcare-ai/deploy-medimageinsight.md
-        - name: CXRReportGen - text generation model
+        - name: CXRReportGen model for text generation
           href: how-to/healthcare-ai/deploy-cxrreportgen.md
-        - name: MedImageParse - prompted segmentation model
+        - name: MedImageParse models for prompted segmentation 
           href: how-to/healthcare-ai/deploy-medimageparse.md
       - name: Nvidia Inference Microservices (NIM)
         href: how-to/deploy-nvidia-inference-microservice.md
@@ -157,10 +157,14 @@ items:
       items:
       - name: Batch
         href: ../ai-services/openai/how-to/batch.md?context=/azure/ai-foundry/context/context
-        displayName: OpenAI, global batch, globalbatch, chat, chat completions
+        displayName: OpenAI, global batch, globalbatch, chat, chat completions 
       - name: Reasoning models
         href: ../ai-services/openai/how-to/reasoning.md?context=/azure/ai-foundry/context/context
         displayName: OpenAI, o1, o1-mini, o3-mini, reasoning effort
+      - name: Responses API
+        href: ../ai-services/openai/how-to/responses.md?context=/azure/ai-foundry/context/context
+      - name: Computer use 
+        href: ../ai-services/openai/how-to/computer-use.md?context=/azure/ai-foundry/context/context
       - name: Function calling
         href: ../ai-services/openai/how-to/function-calling.md?context=/azure/ai-foundry/context/context
         displayName: OpenAI 
@@ -195,9 +199,32 @@ items:
       items:
       - name: Fine-tune Azure OpenAI models
         href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-foundry/context/context
-        displayname: vision fine-tuning, DPO, direct preference optimization
+        displayName: finetuning, fine-tuning 
       - name: When to use Azure OpenAI fine-tuning
         href: ../ai-services/openai/concepts/fine-tuning-considerations.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning 
+      - name: Deploy your Azure OpenAI fine-tuned model
+        href: ../ai-services/openai/how-to/fine-tuning-deploy.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning         
+      - name: Vision fine-tuning
+        href: ../ai-services/openai/how-to/fine-tuning-vision.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning 
+      - name: Preference fine-tuning
+        href: ../ai-services/openai/how-to/fine-tuning-direct-preference-optimization.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning 
+      - name: Safety evaluation
+        href: ../ai-services/openai/how-to/fine-tuning-safety-evaluation.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning 
+      - name: Tool calling
+        href: ../ai-services/openai/how-to/fine-tuning-functions.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning         
+      - name: Weights & Biases integration (preview)
+        href: ../ai-services/openai/how-to/weights-and-biases-integration.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning 
+      - name: Troubleshooting guidance
+        href: ../ai-services/openai/how-to/fine-tuning-troubleshoot.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning 
+
   - name: Content Safety
     items: 
     - name: What is Azure AI Content Safety service?
@@ -360,7 +387,34 @@ items:
       - name: Fine-tune models deployed via managed compute
         href: how-to/fine-tune-managed-compute.md
     - name: Fine-tune Azure OpenAI models
-      href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-foundry/context/context
+      items:
+      - name: Fine-tune Azure OpenAI models
+        href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning 
+      - name: When to use Azure OpenAI fine-tuning
+        href: ../ai-services/openai/concepts/fine-tuning-considerations.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning 
+      - name: Deploy your Azure OpenAI fine-tuned model
+        href: ../ai-services/openai/how-to/fine-tuning-deploy.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning         
+      - name: Vision fine-tuning
+        href: ../ai-services/openai/how-to/fine-tuning-vision.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning 
+      - name: Preference fine-tuning
+        href: ../ai-services/openai/how-to/fine-tuning-direct-preference-optimization.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning 
+      - name: Safety evaluation
+        href: ../ai-services/openai/how-to/fine-tuning-safety-evaluation.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning 
+      - name: Tool calling
+        href: ../ai-services/openai/how-to/fine-tuning-functions.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning         
+      - name: Weights & Biases integration (preview)
+        href: ../ai-services/openai/how-to/weights-and-biases-integration.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning 
+      - name: Troubleshooting guidance
+        href: ../ai-services/openai/how-to/fine-tuning-troubleshoot.md?context=/azure/ai-foundry/context/context
+        displayName: finetuning, fine-tuning 
     - name: Distillation
       href: concepts/concept-model-distillation.md
   - name: Tracing

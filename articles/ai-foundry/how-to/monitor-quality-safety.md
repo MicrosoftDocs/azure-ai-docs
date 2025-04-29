@@ -12,8 +12,8 @@ ms.topic: how-to
 ms.date: 7/31/2024
 ms.reviewer: alehughes
 reviewer: ahughes-msft
-ms.author: mopeakande
-author: msakande
+ms.author: lagayhar  
+author: lgayhardt
 ---
 
 # Monitor quality and token usage of deployed prompt flow applications

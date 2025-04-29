@@ -27,7 +27,7 @@ Some features take a dependency on other Azure services or infrastructure that a
 | [Availability zones](search-reliability.md#availability-zone-support) | Divides a region's data centers into distinct physical location groups, providing high availability within the same geo. | Regional support is noted in this article. |
 | [Semantic ranker](semantic-search-overview.md) | Takes a dependency on Microsoft-hosted models in specific regions. | Regional support is noted in this article. |
 | [Query rewrite](semantic-how-to-query-rewrite.md) | Takes a dependency on Microsoft-hosted models in specific regions. | Regional support is noted in this article. |
-| [AI service integration](cognitive-search-concept-intro.md) | Refers to [built-in skills](cognitive-search-predefined-skills.md) that make internal calls to Azure AI for enrichment and transformation during indexing. Integration requires that Azure AI Search coexists with an [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) in the same physical region. You can bypass region requirements if you use [identity-based connections](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection), currently in public preview. | Regional support is noted in this article. |
+| [AI enrichment](cognitive-search-concept-intro.md) | Refers to [built-in skills](cognitive-search-predefined-skills.md) that make internal calls to Azure AI for enrichment and transformation during indexing. Integration requires that Azure AI Search coexists with an [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) in the same physical region. You can bypass region requirements if you use [identity-based connections](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection), currently in public preview. | Regional support is noted in this article. |
 | [Azure OpenAI integration](vector-search-integrated-vectorization.md)  | Refers to the AzureOpenAIEmbedding skill and vectorizer that make internal calls to deployed embedding models on Azure OpenAI. | Check [Azure OpenAI model region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) for the most current list of regions for each embedding and chat model. Specific Azure OpenAI models are in fewer regions, so check for model availability first, and then verify Azure AI Search is available in the same region.|
 | [Azure AI Foundry integration](vector-search-integrated-vectorization-ai-studio.md) | Refers to skills and vectorizers that make internal calls to the models hosted in the model catalog. | Check [Azure AI Foundry region availability](/azure/ai-foundry/reference/region-support) for the most current list of regions. |
 | [Azure AI Vision 4.0 multimodal APIs](search-get-started-portal-image-search.md) | Refers to the Azure AI Vision multimodal embeddings skill and vectorizer that call the multimodal embedding API. | Check the [Azure AI Vision region list](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) first, and then verify Azure AI Search is available in the same region.|
@@ -36,11 +36,11 @@ Some features take a dependency on other Azure services or infrastructure that a
 
 You can create an Azure AI Search resource in any of the following Azure public regions. Almost all of these regions support [higher capacity tiers](search-limits-quotas-capacity.md#service-limits). Exceptions are noted where they apply.
 
-AI service integration refers to internal connections to an Azure AI services multi-service account and doesn't include Azure OpenAI integration.
+AI enrichment refers to internal connections to an Azure AI services multi-service account and doesn't include Azure OpenAI integration.
 
 ### Americas
 
-| Region | AI service integration | Availability zones | Semantic ranker | Query rewrite |
+| Region | AI enrichment | Availability zones | Semantic ranker | Query rewrite |
 |--|--|--|--|--|
 | Brazil South​​ ​| ✅ |  | ✅ |  |
 | Canada Central​​ | ✅ | ✅ | ✅ |  |
@@ -58,7 +58,7 @@ AI service integration refers to internal connections to an Azure AI services mu
 
 ### Europe
 
-| Region | AI service integration | Availability zones | Semantic ranker | Query rewrite |
+| Region | AI enrichment | Availability zones | Semantic ranker | Query rewrite |
 |--|--|--|--|--|
 | North Europe​ <sup>1</sup>​ | ✅ | ✅ | ✅ | ✅ |
 | West Europe​​ | ✅ | ✅ | ✅ |  |
@@ -80,7 +80,7 @@ AI service integration refers to internal connections to an Azure AI services mu
 
 ### Middle East
 
-| Region | AI service integration | Availability zones | Semantic ranker | Query rewrite |
+| Region | AI enrichment | Availability zones | Semantic ranker | Query rewrite |
 |--|--|--|--|--|
 | Israel Central​ <sup>1</sup> |  | ✅ |  |  |
 | Qatar Central​ <sup>1</sup> |  | ✅ |  |  |
@@ -90,13 +90,13 @@ AI service integration refers to internal connections to an Azure AI services mu
 
 ### Africa
 
-| Region | AI service integration | Availability zones | Semantic ranker | Query rewrite |
+| Region | AI enrichment | Availability zones | Semantic ranker | Query rewrite |
 |--|--|--|--|--|
 | South Africa North​ | ✅ | ✅ |  |  |
 
 ### Asia Pacific
 
-| Region | AI service integration | Availability zones | Semantic ranker | Query rewrite |
+| Region | AI enrichment | Availability zones | Semantic ranker | Query rewrite |
 |--|--|--|--|--|
 | Australia East​ ​| ✅ | ✅ | ✅ |  |
 | Australia Southeast​​​ |  |  | ✅ |  |
@@ -115,7 +115,7 @@ AI service integration refers to internal connections to an Azure AI services mu
 
 ## Azure Government regions
 
-| Region | AI service integration | Availability zones | Semantic ranker | Query rewrite |
+| Region | AI enrichment | Availability zones | Semantic ranker | Query rewrite |
 |--|--|--|--|--|
 | Arizona | ✅ |  | ✅ |  |
 | Texas |  |  |  |  |
@@ -123,7 +123,7 @@ AI service integration refers to internal connections to an Azure AI services mu
 
 ## Azure operated by 21Vianet
 
-| Region | AI service integration | Availability zones | Semantic ranker | Query rewrite |
+| Region | AI enrichment | Availability zones | Semantic ranker | Query rewrite |
 |--|--|--|--|--|
 | China East |  |  |  |  |
 | China East 2 <sup>1</sup> | ✅ |  |  |  |

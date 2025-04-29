@@ -5,7 +5,7 @@ description: Latest preview data plane inference documentation generated from Op
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 03/24/2025
+ms.date: 04/23/2025
 ---
 
 ## Completions - Create
@@ -280,7 +280,7 @@ Creates a completion for the chat message
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | audio | object | Parameters for audio output. Required when audio output is requested with<br>`modalities: ["audio"]`. <br> | No |  |
-| └─ format | enum | Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`,<br>`opus`, or `pcm16`. <br><br>Possible values: `wav`, `mp3`, `flac`, `opus`, `pcm16` | No |  |
+| └─ format | enum | Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`,<br>`opus`, or `pcm16`. <br><br>Possible values: `wav`, `mp3`, `flac`, `opus`, `pcm16`<br> When using `gpt-4o-audio-preview` and `stream` is set to true the only supported audio format is `pcm16`. | No |  |
 | └─ voice | enum | Specifies the voice type. Supported voices are `alloy`, `echo`, <br>`fable`, `onyx`, `nova`, and `shimmer`.<br><br>Possible values: `alloy`, `echo`, `fable`, `onyx`, `nova`, `shimmer` | No |  |
 | data_sources | array |   The configuration entries for Azure OpenAI chat extensions that use them.<br>  This additional specification is only compatible with Azure OpenAI. | No |  |
 | frequency_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.<br> | No | 0 |
@@ -298,7 +298,7 @@ Creates a completion for the chat message
 | prediction | [PredictionContent](#predictioncontent) | Configuration for a Predicted Output, which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. | No |  |
 | presence_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.<br> | No | 0 |
 | reasoning_effort | enum | **o1 models only** <br><br> Constrains effort on reasoning for <br>reasoning models.<br><br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.<br>Possible values: `low`, `medium`, `high` | No |  |
-| response_format | [ResponseFormatText](#responseformattext) or [ResponseFormatJsonObject](#responseformatjsonobject) or [ResponseFormatJsonSchema](#responseformatjsonschema) | An object specifying the format that the model must output. Compatible with [GPT-4o](https://learn.microsoft.com/azure/ai-services/openai/concepts/models#gpt-4-and-gpt-4-turbo-models), [GPT-4o mini](https://learn.microsoft.com/azure/ai-services/openai/concepts/models#gpt-4-and-gpt-4-turbo-models), [GPT-4 Turbo](https://learn.microsoft.com/azure/ai-services/openai/concepts/models#gpt-4-and-gpt-4-turbo-models) and all [GPT-3.5](https://learn.microsoft.com/azure/ai-services/openai/concepts/models#gpt-35) Turbo models newer than `gpt-3.5-turbo-1106`.<br><br>Setting to `{ "type": "json_schema", "json_schema": {...} }` enables Structured Outputs which guarantees the model will match your supplied JSON schema.<br><br>Setting to `{ "type": "json_object" }` enables JSON mode, which guarantees the message the model generates is valid JSON.<br><br>**Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off if `finish_reason="length"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length.<br> | No |  |
+| response_format | [ResponseFormatText](#responseformattext) or [ResponseFormatJsonObject](#responseformatjsonobject) or [ResponseFormatJsonSchema](#responseformatjsonschema) | An object specifying the format that the model must output. Compatible with [GPT-4o](../../../../ai-services/openai/concepts/models.md#gpt-4-and-gpt-4-turbo-models), [GPT-4o mini](../../../../ai-services/openai/concepts/models.md#gpt-4-and-gpt-4-turbo-models), [GPT-4 Turbo](../../../../ai-services/openai/concepts/models.md#gpt-4-and-gpt-4-turbo-models) and all [GPT-3.5](../../../../ai-services/openai/concepts/models.md#gpt-35) Turbo models newer than `gpt-3.5-turbo-1106`.<br><br>Setting to `{ "type": "json_schema", "json_schema": {...} }` enables Structured Outputs which guarantees the model will match your supplied JSON schema.<br><br>Setting to `{ "type": "json_object" }` enables JSON mode, which guarantees the message the model generates is valid JSON.<br><br>**Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off if `finish_reason="length"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length.<br> | No |  |
 | seed | integer | This feature is in Beta.<br>If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.<br>Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend.<br> | No |  |
 | stop | string or array | Up to 4 sequences where the API will stop generating further tokens.<br> | No |  |
 | store | boolean | Whether or not to store the output of this chat completion request for use in our model distillation or evaluation products. | No |  |
@@ -1192,7 +1192,7 @@ Status Code: 200
 POST https://{endpoint}/openai/deployments/{deployment-id}/images/generations?api-version=2025-03-01-preview
 ```
 
-Generates a batch of images from a text caption on a given DALLE model deployment
+Generates a batch of images from a text caption on a given DALL-E or GPT-image-1 model deployment
 
 ### URI Parameters
 
@@ -1215,15 +1215,21 @@ Generates a batch of images from a text caption on a given DALLE model deploymen
 
 **Content-Type**: application/json
 
+
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | n | integer | The number of images to generate. | No | 1 |
 | prompt | string | A text description of the desired image(s). The maximum length is 4000 characters. | Yes |  |
-| quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | standard |
-| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. | No | url |
+| quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | standard (for DALL-E)</br>high (for GPT-image-1) |
+| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which dall-e-3 generated images are returned. Must be one of `url` or `b64_json`. U This parameter isn't supported for gpt-image-1 which will always return base64-encoded images. | No | url |
 | size | [imageSize](#imagesize) | The size of the generated images. | No | 1024x1024 |
-| style | [imageStyle](#imagestyle) | The style of the generated images. | No | vivid |
+| style | [imageStyle](#imagestyle) | The style of the generated images. (DALL-E 3 only)| No | vivid |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
+| output_format | [imageOutputFormat](#imageoutputformat) | The format in which the generated images are returned. (GPT-image-1 only) | No | PNG |
+| safety | [imageSafety](#imagesafety) | The safety setting of the image generation process. (GPT-image-1 only) | No | auto |
+ | No | auto |
+| background | [imageBackground](#imagebackground) | The desired appearance of the background of the image. (GPT-image-1 only) | No | auto |
+| compression_level | integer | The compression level (on a scale of 0-100) of the generated images. (GPT-image-1 only) | No | 0 |
 
 ### Responses
 
@@ -1243,14 +1249,12 @@ Generates a batch of images from a text caption on a given DALLE model deploymen
 |:---|:---|:---|
 |application/json | [dalleErrorResponse](#dalleerrorresponse) | |
 
-### Examples
-
 ### Example
 
 Creates images given a prompt.
 
 ```HTTP
-POST https://{endpoint}/openai/deployments/{deployment-id}/images/generations?api-version=2025-03-01-preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/images/generations?api-version=2025-04-01-preview
 
 {
  "prompt": "In the style of WordArt, Microsoft Clippy wearing a cowboy hat.",
@@ -1263,6 +1267,9 @@ POST https://{endpoint}/openai/deployments/{deployment-id}/images/generations?ap
 
 **Responses**:
 Status Code: 200
+
+> [!NOTE]
+> The GPT-image-1 model doesn't return content filtering annotations.
 
 ```json
 {
@@ -1318,6 +1325,111 @@ Status Code: 200
         }
       }
     ]
+  }
+}
+```
+
+
+## Image generations - Edit
+
+```HTTP
+POST https://{endpoint}/openai/deployments/{deployment-id}/images/edits?api-version=2025-04-01-preview
+```
+
+Generates an image based on an input image and text prompt instructions. Requires a GPT-image-1 model deployment
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| deployment-id | path | Yes | string |  |
+| api-version | query | Yes | string |  |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Request Body
+
+**Content-Type**: application/json
+
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| image | file | The input image to edit. Must be a valid image URL or base64-encoded image. | Yes |  |
+| n | integer | The number of images to generate. | No | 1 |
+| prompt | string | A text description of how the input image should be edited. The maximum length is 4000 characters. | Yes |  |
+| mask | file | A mask image to define the area of the input image that the model should edit, using fully transparent pixels (alpha of zero) in those areas. Must be a valid image URL or base64-encoded image. | No |  |
+| quality | string | The quality of the image that will be generated. Values are 'low', 'medium', 'high' | No | high |
+| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which dalle-3 generated images are returned. Must be one of `url` or `b64_json`. This parameter isn't supported for gpt-image-1 which will always return base64-encoded images. | No | url |
+| size | [imageSize](#imagesize) | The size of the generated images. | No | 1024x1024 |
+| user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
+| output_format | [imageOutputFormat](#imageoutputformat) | The format in which the generated images are returned. | No | PNG |
+
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: Ok 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [generateImagesResponse](#generateimagesresponse) | |
+
+**Status Code:** default
+
+**Description**: An error occurred. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [dalleErrorResponse](#dalleerrorresponse) | |
+
+### Example
+
+Creates images given an input image and text instructions.
+
+```HTTP
+POST https://{endpoint}/openai/deployments/{deployment-id}/images/edits?api-version=2025-04-01-preview
+
+{
+  "image": "<base64_encoded_image>",
+  "prompt": "Add a beach ball in the center.",
+  "model": "gpt-image-1",
+  "size": "1024x1024", 
+  "n": 1,
+  "quality": "high"
+}
+
+```
+
+**Responses**:
+Status Code: 200
+
+> [!NOTE]
+> The GPT-image-1 model doesn't return content filtering annotations.
+
+```json
+{
+  "body": {
+    "created": 1698342300,
+    "data": [
+      {
+        "b64_json": "<base64_encoded_image>",
+        "revised_prompt": "A vivid, natural representation of Microsoft Clippy wearing a cowboy hat.",
+      }],
+    "usage": 
+      {
+        "input_tokens": 557,
+        "output_tokens": 1000,
+      }
+    
   }
 }
 ```
@@ -4938,7 +5050,7 @@ Represents a completion response from the API. Note: both the streamed and non-s
 | prediction | [PredictionContent](#predictioncontent) | Configuration for a Predicted Output, which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. | No |  |
 | presence_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.<br> | No | 0 |
 | reasoning_effort | enum | **o1 models only** <br><br> Constrains effort on reasoning for <br>reasoning models.<br><br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.<br>Possible values: `low`, `medium`, `high` | No |  |
-| response_format | [ResponseFormatText](#responseformattext) or [ResponseFormatJsonObject](#responseformatjsonobject) or [ResponseFormatJsonSchema](#responseformatjsonschema) | An object specifying the format that the model must output. Compatible with [GPT-4o](https://learn.microsoft.com/azure/ai-services/openai/concepts/models#gpt-4-and-gpt-4-turbo-models), [GPT-4o mini](https://learn.microsoft.com/azure/ai-services/openai/concepts/models#gpt-4-and-gpt-4-turbo-models), [GPT-4 Turbo](https://learn.microsoft.com/azure/ai-services/openai/concepts/models#gpt-4-and-gpt-4-turbo-models) and all [GPT-3.5](https://learn.microsoft.com/azure/ai-services/openai/concepts/models#gpt-35) Turbo models newer than `gpt-3.5-turbo-1106`.<br><br>Setting to `{ "type": "json_schema", "json_schema": {...} }` enables Structured Outputs which guarantees the model will match your supplied JSON schema.<br><br>Setting to `{ "type": "json_object" }` enables JSON mode, which guarantees the message the model generates is valid JSON.<br><br>**Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off if `finish_reason="length"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length.<br> | No |  |
+| response_format | [ResponseFormatText](#responseformattext) or [ResponseFormatJsonObject](#responseformatjsonobject) or [ResponseFormatJsonSchema](#responseformatjsonschema) | An object specifying the format that the model must output. Compatible with [GPT-4o](../../../../ai-services/openai/concepts/models.md#gpt-4-and-gpt-4-turbo-models), [GPT-4o mini](../../../../ai-services/openai/concepts/models.md#gpt-4-and-gpt-4-turbo-models), [GPT-4 Turbo](../../../../ai-services/openai/concepts/models.md#gpt-4-and-gpt-4-turbo-models) and all [GPT-3.5](../../../../ai-services/openai/concepts/models.md#gpt-35) Turbo models newer than `gpt-3.5-turbo-1106`.<br><br>Setting to `{ "type": "json_schema", "json_schema": {...} }` enables Structured Outputs which guarantees the model will match your supplied JSON schema.<br><br>Setting to `{ "type": "json_object" }` enables JSON mode, which guarantees the message the model generates is valid JSON.<br><br>**Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off if `finish_reason="length"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length.<br> | No |  |
 | seed | integer | This feature is in Beta.<br>If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.<br>Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend.<br> | No |  |
 | stop | string or array | Up to 4 sequences where the API will stop generating further tokens.<br> | No |  |
 | store | boolean | Whether or not to store the output of this chat completion request for use in our model distillation or evaluation products. | No |  |
@@ -4969,7 +5081,7 @@ User security context contains several parameters that describe the AI applicati
 |------|------|-------------|----------|---------|
 | description | string | A description of what the function does, used by the model to choose when and how to call the function. | No |  |
 | name | string | The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64. | Yes |  |
-| parameters | [FunctionParameters](#functionparameters) | The parameters the functions accepts, described as a JSON Schema object. See the guide](https://learn.microsoft.com/azure/ai-services/openai/how-to/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. <br><br>Omitting `parameters` defines a function with an empty parameter list. | No |  |
+| parameters | [FunctionParameters](#functionparameters) | The parameters the functions accepts, described as a JSON Schema object. See [the guide](../../../../ai-services/openai/how-to/function-calling.md) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. <br><br>Omitting `parameters` defines a function with an empty parameter list. | No |  |
 
 ### chatCompletionFunctionCallOption
 
@@ -4982,7 +5094,7 @@ Specifying a particular function via `{"name": "my_function"}` forces the model 
 
 ### chatCompletionFunctionParameters
 
-The parameters the functions accepts, described as a JSON Schema object. See the [guide/](https://learn.microsoft.com/azure/ai-services/openai/how-to/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.
+The parameters the functions accepts, described as a JSON Schema object. See the [guide](../../../../ai-services/openai/how-to/function-calling.md) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.
 
 No properties defined for this component.
 
@@ -5108,7 +5220,7 @@ This component can be one of the following:
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | image_url | object |  | Yes |  |
-| └─ detail | enum | Specifies the detail level of the image. Learn more in the [Vision guide](https://learn.microsoft.com/azure/ai-services/openai/how-to/gpt-with-vision?tabs=rest%2Csystem-assigned%2Cresource#detail-parameter-settings-in-image-processing-low-high-auto).<br>Possible values: `auto`, `low`, `high` | No |  |
+| └─ detail | enum | Specifies the detail level of the image. Learn more in the [Vision guide](../../../../ai-services/openai/how-to/gpt-with-vision.md?tabs=rest%2Csystem-assigned%2Cresource#detail-parameter-settings).<br>Possible values: `auto`, `low`, `high` | No |  |
 | └─ url | string | Either a URL of the image or the base64 encoded image data. | No |  |
 | type | enum | The type of the content part.<br>Possible values: `image_url` | Yes |  |
 
@@ -5866,7 +5978,7 @@ Usage statistics for the completion request.
 
 ### FunctionParameters
 
-The parameters the functions accepts, described as a JSON Schema object. See the guide](https://learn.microsoft.com/azure/ai-services/openai/how-to/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. 
+The parameters the functions accepts, described as a JSON Schema object. See the [guide](../../../../ai-services/openai/how-to/function-calling.md) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. 
 
 Omitting `parameters` defines a function with an empty parameter list.
 
@@ -5879,7 +5991,7 @@ No properties defined for this component.
 |------|------|-------------|----------|---------|
 | description | string | A description of what the function does, used by the model to choose when and how to call the function. | No |  |
 | name | string | The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64. | Yes |  |
-| parameters | [FunctionParameters](#functionparameters) | The parameters the functions accepts, described as a JSON Schema object. See the guide](https://learn.microsoft.com/azure/ai-services/openai/how-to/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. <br><br>Omitting `parameters` defines a function with an empty parameter list. | No |  |
+| parameters | [FunctionParameters](#functionparameters) | The parameters the functions accepts, described as a JSON Schema object. See the [guide](../../../../ai-services/openai/how-to/function-calling.md) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. <br><br>Omitting `parameters` defines a function with an empty parameter list. | No |  |
 | strict | boolean | Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. | No | False |
 
 ### ResponseFormatText
@@ -6012,6 +6124,28 @@ Speech request.
 | speed | number | The speed of the synthesized audio. Select a value from `0.25` to `4.0`. `1.0` is the default. | No | 1.0 |
 | voice | enum | The voice to use for speech synthesis.<br>Possible values: `alloy`, `echo`, `fable`, `onyx`, `nova`, `shimmer` | Yes |  |
 
+### imageBackground
+
+The desired appearance of the background of the image.
+
+| Property | Value |
+|----------|-------|
+| **Description** | The desired appearance of the background of the image. |
+| **Type** | string |
+| **Default** | auto |
+| **Values** | `transparent`</br>`opaque`</br>`auto`|
+
+### imageOutputFormat
+
+The format in which the generated images are returned.
+
+| Property | Value |
+|----------|-------|
+| **Description** | The format in which the generated images are returned. |
+| **Type** | string |
+| **Default** | PNG |
+| **Values** | `PNG`<br>`JPEG` |
+
 ### imageQuality
 
 The quality of the image that will be generated.
@@ -6020,8 +6154,8 @@ The quality of the image that will be generated.
 |----------|-------|
 | **Description** | The quality of the image that will be generated. |
 | **Type** | string |
-| **Default** | standard |
-| **Values** | `standard`<br>`hd` |
+| **Default** | standard (for DALL-E)<br>high (for GPT-image-1) |
+| **Values** | `standard`, `hd` (for DALL-E)<br>`low`, `medium`, `high` (for GPT-image-1) |
 
 ### imagesResponseFormat
 
@@ -6029,10 +6163,23 @@ The format in which the generated images are returned.
 
 | Property | Value |
 |----------|-------|
-| **Description** | The format in which the generated images are returned. |
+| **Description** |  The format in which dalle-3 generated images are returned. Must be one of `url` or `b64_json`. This parameter isn't supported for gpt-image-1 which will always return base64-encoded images. |
 | **Type** | string |
 | **Default** | url |
 | **Values** | `url`<br>`b64_json` |
+
+### imageSafety
+
+The safety setting of the image generation process.
+
+| Property | Value |
+|----------|-------|
+| **Description** | The safety setting of the image generation process. |
+| **Type** | string |
+| **Default** | auto |
+| **Values** | `strict`</br>`auto`|
+
+
 
 ### imageSize
 
@@ -6043,7 +6190,7 @@ The size of the generated images.
 | **Description** | The size of the generated images. |
 | **Type** | string |
 | **Default** | 1024x1024 |
-| **Values** | `256x256`<br>`512x512`<br>`1792x1024`<br>`1024x1792`<br>`1024x1024` |
+| **Values** | `256x256`, `512x512`, `1792x1024`, `1024x1792`, `1024x1024` (for DALL-E)</br>`1024x1024`, `1024x1536`, `1536x1024` (for GPT-image-1) |
 
 ### imageStyle
 
@@ -6062,11 +6209,34 @@ The style of the generated images.
 |------|------|-------------|----------|---------|
 | n | integer | The number of images to generate. | No | 1 |
 | prompt | string | A text description of the desired image(s). The maximum length is 4000 characters. | Yes |  |
-| quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | standard |
-| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. | No | url |
+| quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | standard (for DALL-E)</br>high (for GPT-image-1) |
+| response_format | [imagesResponseFormat](#imagesresponseformat) |  The format in which dalle-3 generated images are returned. Must be one of `url` or `b64_json`. This parameter isn't supported for gpt-image-1 which will always return base64-encoded images. | No | url |
 | size | [imageSize](#imagesize) | The size of the generated images. | No | 1024x1024 |
-| style | [imageStyle](#imagestyle) | The style of the generated images. | No | vivid |
+| style | [imageStyle](#imagestyle) | The style of the generated images. (DALL-E 3 only)| No | vivid |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
+| output_format | [imageOutputFormat](#imageoutputformat) | The format in which the generated images are returned. (GPT-image-1 only) | No | PNG |
+| safety | [imageSafety](#imagesafety) | The safety setting of the image generation process. (GPT-image-1 only) | No | auto |
+ | No | auto |
+| background | [imageBackground](#imagebackground) | The desired appearance of the background of the image. (GPT-image-1 only) | No | auto |
+| compression_level | integer | The compression level (on a scale of 0-100) of the generated images. (GPT-image-1 only) | No | 0 |
+
+### imageEditsRequest
+
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| image | file | The input image to edit. Must be a valid image URL or base64-encoded image. | Yes |  |
+| n | integer | The number of images to generate. | No | 1 |
+| prompt | string | A text description of how the input image should be edited. The maximum length is 4000 characters. | Yes |  |
+| mask | file | A mask image to define the area of the input image that the model should edit, using fully transparent pixels (alpha of zero) in those areas. Must be a valid image URL or base64-encoded image. | No |  |
+| quality | string | The quality of the image that will be generated. Values are 'low', 'medium', 'high' | No | high |
+| response_format | [imagesResponseFormat](#imagesresponseformat) |  The format in which dalle-3 generated images are returned. Must be one of `url` or `b64_json`. This parameter isn't supported for gpt-image-1 which will always return base64-encoded images. | No | url |
+| size | [imageSize](#imagesize) | The size of the generated images. | No | 1024x1024 |
+| user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
+| output_format | [imageOutputFormat](#imageoutputformat) | The format in which the generated images are returned. | No | PNG |
+
+
+
 
 ### generateImagesResponse
 
@@ -6309,7 +6479,7 @@ Represents an `assistant` that can call the model and use tools.
 | function | object | The function definition. | Yes |  |
 | └─ description | string | A description of what the function does, used by the model to choose when and how to call the function. | No |  |
 | └─ name | string | The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64. | No |  |
-| └─ parameters | [chatCompletionFunctionParameters](#chatcompletionfunctionparameters) | The parameters the functions accepts, described as a JSON Schema object. See the [guide/](https://learn.microsoft.com/azure/ai-services/openai/how-to/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. | No |  |
+| └─ parameters | [chatCompletionFunctionParameters](#chatcompletionfunctionparameters) | The parameters the functions accepts, described as a JSON Schema object. See the [guide](../../../../ai-services/openai/how-to/function-calling.md) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. | No |  |
 | type | string | The type of tool being defined: `function` | Yes |  |
 
 

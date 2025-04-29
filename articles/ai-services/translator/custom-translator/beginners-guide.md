@@ -6,13 +6,13 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.author: lajanuar
-ms.date: 01/27/2025
+ms.date: 04/14/2025
 ms.topic: overview
 ---
 
 # Azure AI Custom Translator for beginners
 
- [Azure AI Custom Translator](overview.md) enables you to a build translation system that reflects your business, industry, and domain-specific terminology and style. Training and deploying a custom system is easy and doesn't require any programming skills. The customized translation system seamlessly integrates into your existing applications, workflows, and websites and is available on Azure through the same cloud-based [Microsoft Text Translation API](../text-translation/reference/v3/translate.md?tabs=curl) service that powers billions of translations every day.
+ [Azure AI Custom Translator](overview.md) enables you to a build translation system that reflects your business, industry, and domain-specific terminology and style. Training and deploying a custom system is easy and doesn't require any programming skills. The customized translation system seamlessly integrates into your existing applications, workflows, and websites and is available on Azure through the same cloud-based [Microsoft Text translation API](../text-translation/reference/v3/translate.md?tabs=curl) service that powers billions of translations every day.
 
 The platform enables users to build and publish custom translation systems to and from English. The Custom Translator supports more than 60 languages that map directly to the languages available for Neural machine translation (NMT). For a complete list, *see* [Translator language support](../language-support.md).
 
@@ -20,7 +20,7 @@ The platform enables users to build and publish custom translation systems to an
 
 A well-trained custom translation model provides more accurate domain-specific translations because it relies on previously translated in-domain documents to learn preferred translations. Translator uses these terms and phrases in context to produce fluent translations in the target language while respecting context-dependent grammar.
 
-Training a full custom translation model requires a substantial amount of data. If you don't have at least 10,000 sentences of previously trained documents, you can't train a full-language translation model. However, you can either train a dictionary-only model or use the high-quality, out-of-the-box translations available with the Text Translation API.
+Training a full custom translation model requires a substantial amount of data. If you don't have at least 10,000 sentences of previously trained documents, you can't train a full-language translation model. However, you can either train a dictionary-only model or use the high-quality, out-of-the-box translations available with the Text translation API.
 
 :::image type="content" source="media/how-to/for-beginners.png" alt-text="Screenshot illustrating the difference between custom and general models.":::
 

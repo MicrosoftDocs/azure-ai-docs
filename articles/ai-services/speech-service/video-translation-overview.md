@@ -5,7 +5,7 @@ description: With video translation, you can seamlessly integrate multi-language
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 3/4/2025
+ms.date: 4/15/2025
 ms.reviewer: eur
 ms.author: eur
 author: eric-urban

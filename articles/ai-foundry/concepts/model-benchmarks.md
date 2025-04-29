@@ -9,8 +9,8 @@ ms.custom:
 ms.topic: concept-article
 ms.date: 04/04/2025
 ms.reviewer: changliu2
-ms.author: mopeakande
-author: msakande
+ms.author: lagayhar  
+author: lgayhardt
 ---
 
 # Model leaderboards in Azure AI Foundry portal (preview)

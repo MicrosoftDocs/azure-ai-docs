@@ -158,7 +158,10 @@ Create a project client in code:
 
 # [Sync](#tab/sync)
 
-:::code language="csharp" source="~/azureai-samples-csharp/scenarios/projects/basic-csharp/Program.cs" id="snippet_get_project":::
+```csharp
+var connectionString = "<your_connection_string>";
+var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential());
+```
 
 # [Async](#tab/async)
 
@@ -226,7 +229,33 @@ using Azure.AI.OpenAI;
 
 If you have existing code that uses the OpenAI SDK, you can use the project client to create an `AzureOpenAI` client that uses your project's Azure OpenAI connection:
 
-:::code language="csharp" source="~/azureai-samples-csharp/scenarios/projects/basic-csharp/Program.cs" id="azure_openai":::
+```csharp
+var connections = projectClient.GetConnectionsClient();
+ConnectionResponse connection = connections.GetDefaultConnection(ConnectionType.AzureOpenAI, withCredential: true);
+var properties = connection.Properties as ConnectionPropertiesApiKeyAuth;
+
+if (properties == null) {
+    throw new Exception("Invalid auth type, expected API key auth");
+}
+
+// Create and use an Azure OpenAI client
+AzureOpenAIClient azureOpenAIClient = new(
+    new Uri(properties.Target),
+    new AzureKeyCredential(properties.Credentials.Key));
+
+// This must match the custom deployment name you chose for your model
+ChatClient chatClient = azureOpenAIClient.GetChatClient("gpt-4o-mini");
+
+ChatCompletion completion = chatClient.CompleteChat(
+    [
+        new SystemChatMessage("You are a helpful assistant that talks like a pirate."),
+        new UserChatMessage("Does Azure OpenAI support customer managed keys?"),
+        new AssistantChatMessage("Yes, customer managed keys are supported by Azure OpenAI"),
+        new UserChatMessage("Do other Azure AI services support this too?")
+    ]);
+
+Console.WriteLine($"{completion.Role}: {completion.Content[0].Text}");
+```
 
 ::: zone-end
 
@@ -280,7 +309,25 @@ using Azure.AI.Inference;
 
 You can use the project client to get a configured and authenticated `ChatCompletionsClient` or `EmbeddingsClient`:
 
-:::code language="csharp" source="~/azureai-samples-csharp/scenarios/projects/basic-csharp/Program.cs" id="snippet_inference":::
+```csharp
+var connectionString = Environment.GetEnvironmentVariable("AIPROJECT_CONNECTION_STRING");
+var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential());
+
+ChatCompletionsClient chatClient = projectClient.GetChatCompletionsClient();
+
+var requestOptions = new ChatCompletionsOptions()
+{
+    Messages =
+        {
+            new ChatRequestSystemMessage("You are a helpful assistant."),
+            new ChatRequestUserMessage("How many feet are in a mile?"),
+        },
+    Model = "gpt-4o-mini"
+};
+
+Response<ChatCompletions> response = chatClient.Complete(requestOptions);
+Console.WriteLine(response.Value.Content);
+```
 
 ::: zone-end
 
@@ -405,7 +452,21 @@ using Azure.Search.Documents.Models;
 
 Instantiate the search and/or search index client as desired:
 
-:::code language="csharp" source="~/azureai-samples-csharp/scenarios/projects/basic-csharp/Program.cs" id="azure_aisearch":::
+```csharp
+var connections = projectClient.GetConnectionsClient();
+var connection = connections.GetDefaultConnection(ConnectionType.AzureAISearch, withCredential: true).Value;
+
+var properties = connection.Properties as ConnectionPropertiesApiKeyAuth;
+if (properties == null) {
+    throw new Exception("Invalid auth type, expected API key auth");
+}
+
+SearchClient searchClient = new SearchClient(
+    new Uri(properties.Target),
+    "products",
+    new AzureKeyCredential(properties.Credentials.Key));
+```
+
 
 ::: zone-end
 

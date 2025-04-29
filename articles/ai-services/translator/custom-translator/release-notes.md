@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-translator
 ms.custom:
   - ignite-2023
-ms.date: 11/01/2024
+ms.date: 04/14/2025
 ms.author: lajanuar
 ms.topic: release-notes
 ---

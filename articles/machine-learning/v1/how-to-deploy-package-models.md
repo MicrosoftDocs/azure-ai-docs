@@ -44,7 +44,7 @@ Both packages can be used to get a local Docker image.
 
 ### Download a packaged model
 
-The following example builds an image, which is registered in the Azure container registry for your workspace:
+The following example builds an image, which is registered in the Azure Container Registry for your workspace:
 
 ```python
 package = Model.package(ws, [model], inference_config)
@@ -79,16 +79,16 @@ package = Model.package(ws, [model], inference_config, generate_dockerfile=True)
 package.wait_for_creation(show_output=True)
 # Download the package.
 package.save("./imagefiles")
-# Get the Azure container registry that the model/Dockerfile uses.
+# Get the Azure Container Registry that the model/Dockerfile uses.
 acr=package.get_container_registry()
 print("Address:", acr.address)
 print("Username:", acr.username)
 print("Password:", acr.password)
 ```
 
-This code downloads the files needed to build the image to the `imagefiles` directory. The Dockerfile included in the saved files references a base image stored in an Azure container registry. When you build the image on your local Docker installation, you need to use the address, user name, and password to authenticate to the registry. Use the following steps to build the image by using a local Docker installation:
+This code downloads the files needed to build the image to the `imagefiles` directory. The Dockerfile included in the saved files references a base image stored in an Azure Container Registry. When you build the image on your local Docker installation, you need to use the address, user name, and password to authenticate to the registry. Use the following steps to build the image by using a local Docker installation:
 
-1. From a shell or command-line session, use the following command to authenticate Docker with the Azure container registry. Replace `<address>`, `<username>`, and `<password>` with the values retrieved by `package.get_container_registry()`.
+1. From a shell or command-line session, use the following command to authenticate Docker with the Azure Container Registry. Replace `<address>`, `<username>`, and `<password>` with the values retrieved by `package.get_container_registry()`.
 
     ```bash
     docker login <address> -u <username> -p <password>

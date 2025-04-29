@@ -1,11 +1,11 @@
 ---
-title: 'How to use the GPT-4o Realtime API for speech and audio with Azure OpenAI Service'
-titleSuffix: Azure OpenAI
-description: Learn how to use the GPT-4o Realtime API for speech and audio with Azure OpenAI Service.
+title: 'How to use the GPT-4o Realtime API for speech and audio with Azure OpenAI'
+titleSuffix: Azure OpenAI Service
+description: Learn how to use the GPT-4o Realtime API for speech and audio with Azure OpenAI.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 3/20/2025
+ms.date: 4/28/2025
 author: eric-urban
 ms.author: eur
 ms.custom: references_regions
@@ -20,14 +20,19 @@ Azure OpenAI GPT-4o Realtime API for speech and audio is part of the GPT-4o mode
 
 Most users of the Realtime API need to deliver and receive audio from an end-user in real time, including applications that use WebRTC or a telephony system. The Realtime API isn't designed to connect directly to end user devices and relies on client integrations to terminate end user audio streams. 
 
+You can use the Realtime API via WebRTC or WebSocket to send audio input to the model and receive audio responses in real time. In most cases, we recommend using the WebRTC API for low-latency real-time audio streaming. For more information, see:
+- [Realtime API via WebRTC](./realtime-audio-webrtc.md)
+- [Realtime API via WebSockets](./realtime-audio-websockets.md)
+
 ## Supported models
 
 The GPT 4o real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
 - `gpt-4o-mini-realtime-preview` (2024-12-17)
 - `gpt-4o-realtime-preview` (2024-12-17)
-- `gpt-4o-realtime-preview` (2024-10-01)
 
-See the [models and versions documentation](../concepts/models.md#gpt-4o-audio) for more information.
+You should use API version `2025-04-01-preview` in the URL for the Realtime API. 
+
+See the [models and versions documentation](../concepts/models.md#audio-models) for more information.
 
 ## Get started
 
@@ -39,84 +44,15 @@ Before you can use GPT-4o real-time audio, you need:
 
 Here are some of the ways you can get started with the GPT-4o Realtime API for speech and audio:
 - For steps to deploy and use the `gpt-4o-realtime-preview` or `gpt-4o-mini-realtime-preview` model, see [the real-time audio quickstart](../realtime-audio-quickstart.md).
-- Download the sample code from the [Azure OpenAI GPT-4o real-time audio repository on GitHub](https://github.com/azure-samples/aoai-realtime-audio-sdk).
+- Try the [WebRTC via HTML and JavaScript example](./realtime-audio-webrtc.md#webrtc-example-via-html-and-javascript) to get started with the Realtime API via WebRTC.
 - [The Azure-Samples/aisearch-openai-rag-audio repo](https://github.com/Azure-Samples/aisearch-openai-rag-audio) contains an example of how to implement RAG support in applications that use voice as their user interface, powered by the GPT-4o realtime API for audio.
-
-## Connection and authentication
-
-The Realtime API (via `/realtime`) is built on [the WebSockets API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) to facilitate fully asynchronous streaming communication between the end user and model. 
-
-> [!IMPORTANT]
-> Device details like capturing and rendering audio data are outside the scope of the Realtime API. It should be used in the context of a trusted, intermediate service that manages both connections to end users and model endpoint connections. Don't use it directly from untrusted end user devices.
-
-The Realtime API is accessed via a secure WebSocket connection to the `/realtime` endpoint of your Azure OpenAI resource.
-
-You can construct a full request URI by concatenating:
-
-- The secure WebSocket (`wss://`) protocol.
-- Your Azure OpenAI resource endpoint hostname, for example, `my-aoai-resource.openai.azure.com`
-- The `openai/realtime` API path.
-- An `api-version` query string parameter for a supported API version such as `2024-12-17`
-- A `deployment` query string parameter with the name of your `gpt-4o-realtime-preview` or `gpt-4o-mini-realtime-preview` model deployment.
-
-The following example is a well-constructed `/realtime` request URI:
-
-```http
-wss://my-eastus2-openai-resource.openai.azure.com/openai/realtime?api-version=2024-12-17&deployment=gpt-4o-mini-realtime-preview-deployment-name
-```
-
-To authenticate:
-- **Microsoft Entra** (recommended): Use token-based authentication with the `/realtime` API for an Azure OpenAI Service resource with managed identity enabled. Apply a retrieved authentication token using a `Bearer` token with the `Authorization` header.
-- **API key**: An `api-key` can be provided in one of two ways:
-  - Using an `api-key` connection header on the prehandshake connection. This option isn't available in a browser environment.
-  - Using an `api-key` query string parameter on the request URI. Query string parameters are encrypted when using https/wss.
-
-## Realtime API architecture
-
-Once the WebSocket connection session to `/realtime` is established and authenticated, the functional interaction takes place via events for sending and receiving WebSocket messages. These events each take the form of a JSON object. 
-
-:::image type="content" source="../media/how-to/real-time/realtime-api-sequence.png" alt-text="Diagram of the Realtime API authentication and connection sequence." lightbox="../media/how-to/real-time/realtime-api-sequence.png":::
-
-<!--
-sequenceDiagram
-  actor User as End User
-  participant MiddleTier as /realtime host
-  participant AOAI as Azure OpenAI
-  User->>MiddleTier: Begin interaction
-  MiddleTier->>MiddleTier: Authenticate/Validate User
-  MiddleTier--)User: audio information
-  User--)MiddleTier: 
-  MiddleTier--)User: text information
-  User--)MiddleTier: 
-  MiddleTier--)User: control information
-  User--)MiddleTier: 
-  MiddleTier->>AOAI: connect to /realtime
-  MiddleTier->>AOAI: configure session
-  AOAI->>MiddleTier: session start
-  MiddleTier--)AOAI: send/receive WS commands
-  AOAI--)MiddleTier: 
-  AOAI--)MiddleTier: create/start conversation responses
-  AOAI--)MiddleTier: (within responses) create/start/add/finish items
-  AOAI--)MiddleTier: (within items) create/stream/finish content parts
--->
-
-Events can be sent and received in parallel and applications should generally handle them both concurrently and asynchronously.
-
-- A client-side caller establishes a connection to `/realtime`, which starts a new [`session`](#session-configuration).
-- A `session` automatically creates a default `conversation`. Multiple concurrent conversations aren't supported.
-- The `conversation` accumulates input signals until a `response` is started, either via a direct event by the caller or automatically by voice activity detection (VAD).
-- Each `response` consists of one or more `items`, which can encapsulate messages, function calls, and other information.
-- Each message `item` has `content_part`, allowing multiple modalities (text and audio) to be represented across a single item.
-- The `session` manages configuration of caller input handling (for example, user audio) and common output generation handling.
-- Each caller-initiated [`response.create`](../realtime-audio-reference.md#realtimeclienteventresponsecreate) can override some of the output [`response`](../realtime-audio-reference.md#realtimeresponse) behavior, if desired.
-- Server-created `item` and the `content_part` in messages can be populated asynchronously and in parallel. For example, receiving audio, text, and function information concurrently in a round robin fashion.
 
 ## Session configuration
 
 Often, the first event sent by the caller on a newly established `/realtime` session is a [`session.update`](../realtime-audio-reference.md#realtimeclienteventsessionupdate) payload. This event controls a wide set of input and output behavior, with output and response generation properties then later overridable using the [`response.create`](../realtime-audio-reference.md#realtimeclienteventresponsecreate) event.
 
 The [`session.update`](../realtime-audio-reference.md#realtimeclienteventsessionupdate) event can be used to configure the following aspects of the session:
-- Transcription of user input audio is opted into via the session's `input_audio_transcription` property. Specifying a transcription model (`whisper-1`) in this configuration enables the delivery of [`conversation.item.audio_transcription.completed`](../realtime-audio-reference.md#realtimeservereventconversationiteminputaudiotranscriptioncompleted) events.
+- Transcription of user input audio is opted into via the session's `input_audio_transcription` property. Specifying a transcription model (such as `whisper-1`) in this configuration enables the delivery of [`conversation.item.audio_transcription.completed`](../realtime-audio-reference.md#realtimeservereventconversationiteminputaudiotranscriptioncompleted) events.
 - Turn handling is controlled by the `turn_detection` property. This property's type can be set to `none` or `server_vad` as described in the [voice activity detection (VAD) and the audio buffer](#voice-activity-detection-vad-and-the-audio-buffer) section.
 - Tools can be configured to enable the server to call out to external services or functions to enrich the conversation. Tools are defined as part of the `tools` property in the session configuration.
 

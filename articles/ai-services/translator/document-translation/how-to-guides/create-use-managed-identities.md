@@ -7,11 +7,11 @@ manager: nitinme
 ms.service: azure-ai-translator
 ms.custom: build-2023
 ms.topic: how-to
-ms.date: 01/27/2025
+ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 
-# Managed identities for Azure AI Document Translation
+# Managed identities for Azure AI Document translation
 
 Managed identities for Azure resources are service principals that create a Microsoft Entra identity and specific permissions for Azure managed resources. Managed identities are a safer way to grant access to storage data and replace the requirement for you to include shared access signature tokens (SAS) with your [source and target URLs](#post-request-body).
 
@@ -27,9 +27,9 @@ Managed identities for Azure resources are service principals that create a Micr
 >
 > * When using managed identities, don't include a SAS token URL with your HTTP requests. Using managed identities replaces the requirement for you to include shared access signature tokens (SAS) with your [source and target URLs](#post-request-body).
 >
-> * To use managed identities for Azure AI Document Translation operations, you must [create your Translator resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in a specific geographic Azure region such as **East US**. If your Translator resource region is set to **Global**, then you can't use managed identity for Azure AI Document Translation. You can still use [Shared Access Signature (SAS) tokens](create-sas-tokens.md) for Azure AI Document Translation.
+> * To use managed identities for Azure AI Document translation operations, you must [create your Translator resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in a specific geographic Azure region such as **East US**. If your Translator resource region is set to **Global**, then you can't use managed identity for Azure AI Document translation. You can still use [Shared Access Signature (SAS) tokens](create-sas-tokens.md) for Azure AI Document translation.
 >
-> * Azure AI Document Translation is supported in the S1 Standard Service Plan (Pay-as-you-go) and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
+> * Azure AI Document translation is supported in the S1 Standard Service Plan (Pay-as-you-go) and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
 >
 
 ## Prerequisites
@@ -68,7 +68,7 @@ To get started, you need:
 
 ## Managed identity assignments
 
-There are two types of managed identities: **system-assigned** and **user-assigned**. Currently, Azure AI Document Translation supports **system-assigned managed identity**:
+There are two types of managed identities: **system-assigned** and **user-assigned**. Currently, Azure AI Document translation supports **system-assigned managed identity**:
 
 * A system-assigned managed identity is **enabled** directly on a service instance. It isn't enabled by default; you must go to your resource and update the identity setting.
 
@@ -139,7 +139,7 @@ You must grant the Translator resource access to your storage account before it 
 
 ### Headers
 
-The following headers are included with each Azure AI Document Translation API request:
+The following headers are included with each Azure AI Document translation API request:
 
 |HTTP header|Description|
 |---|--|
@@ -251,7 +251,7 @@ Great! You just learned how to enable and use a system-assigned managed identity
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Quickstart: Get started with Azure AI Document Translation](../how-to-guides/use-rest-api-programmatically.md)
+> [Quickstart: Get started with Azure AI Document translation](../how-to-guides/use-rest-api-programmatically.md)
 
 > [!div class="nextstepaction"]
 > [Tutorial: Access Azure Storage from a web app using managed identities](/azure/app-service/scenario-secure-app-access-storage?bc=%2fazure%2fcognitive-services%2ftranslator%2fbreadcrumb%2ftoc.json&toc=%2fazure%2fcognitive-services%2ftranslator%2ftoc.json)

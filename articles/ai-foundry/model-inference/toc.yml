@@ -94,6 +94,8 @@ items:
           href: ./how-to/use-chat-reasoning.md
         - name: Work with multimodal models
           href: ./how-to/use-chat-multi-modal.md
+        - name: Use structured outputs
+          href: ./how-to/use-structured-outputs.md
     - name: Develop with LangChain and LangGraph
       href: ../how-to/develop/langchain.md?context=/azure/ai-foundry/model-inference/context/context
     - name: Develop with Llama-Index

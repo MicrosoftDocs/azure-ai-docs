@@ -7,7 +7,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: conceptual
-ms.date: 03/21/2025
+ms.date: 04/15/2025
 ms.custom: azure-ai-agents
 ---
 
@@ -37,8 +37,10 @@ Azure AI Agent Service supports the following Azure OpenAI models in the listed 
 | francecentral | | -                          | -                          | -                               | ✅                  | ✅                           | -                           | -                               | ✅ | ✅                         | ✅                          | -                          | ✅                             |
 | japaneast    | ✅  | -                          | -                          | -                               | -                   | -                           | -                           | -                               | -                      | ✅                         | -                          | ✅                         | ✅                              |
 | norwayeast   | |-  |  - |  - | -  | ✅ | -  |-  | -  | -  | -  | -  | - |
+| polandcentral  |  - | -  | - | -  | - | - | - | - | - | - | - | - | - |
 | southindia   | | - | - | - | - | ✅ | - | - | - | - | ✅ | ✅ | - |
 | swedencentral  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | ✅ | ✅ | ✅ | ✅ | - | ✅ |
+| switzerlandnorth  |  - | -  | - | -  | ✅ | - | - | - | ✅ | - | - | ✅ | ✅ |
 | uaenorth   | | - | - | - | - | - | - | - | - | - | - | - | - |
 | uksouth     |  | -                          | -                          | -                               | -                   | ✅                          | ✅                           | -                               | -                       | ✅                          | ✅                         | ✅                          | ✅                             |
 | westus      |  | ✅                         | ✅                          | ✅                            | -                   | ✅                          | -                           | ✅                               | - | -                          | ✅                         | ✅                          | -                              |
