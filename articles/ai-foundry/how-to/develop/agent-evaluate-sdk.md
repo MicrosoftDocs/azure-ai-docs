@@ -189,7 +189,7 @@ The result of the AI-assisted quality evaluators for a query and response pair i
 To further improve intelligibility, all evaluators accept a binary threshold (unless they output already binary outputs) and output two new keys. For the binarization threshold, a default is set and user can override it. The two new keys are:
 
 - `{metric_name}_result` a "pass" or "fail" string based on a binarization threshold.
-- `{metric_name}_threshold` a numerical binarization threshold set by default or by the user
+- `{metric_name}_threshold` a numerical binarization threshold set by default or by the user.
 - `additional_details` contains debugging information about the quality of a single agent run. 
 
 ```json
@@ -238,7 +238,7 @@ from azure.ai.evaluation import AIAgentConverter
 # Initialize the converter
 converter = AIAgentConverter(project_client)
 
-# specify a file path to save agent output (which is evaluation input data)
+# Specify a file path to save agent output (which is evaluation input data)
 filename = os.path.join(os.getcwd(), "evaluation_input_data.jsonl")
 
 evaluation_data = converter.prepare_evaluation_data(thread_ids=thread_id, filename=filename) 
@@ -255,7 +255,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-
+# Another convenient way to access model config from the project_client 
 project_client = AIProjectClient.from_connection_string(
     credential=DefaultAzureCredential(),
     conn_str=os.environ["PROJECT_CONNECTION_STRING"],
@@ -269,12 +269,12 @@ model_config = project_client.connections.get_default(
                                             include_credentials=True
                                           )
 
-# select evaluators
+# Select evaluators of your choice
 intent_resolution = IntentResolutionEvaluator(model_config=model_config)
 task_adherence = TaskAdherenceEvaluator(model_config=model_config)
 tool_call_accuracy = ToolCallAccuracyEvaluator(model_config=model_config)
 
-# batch run API
+# Batch evaluation API (local)
 from azure.ai.evaluation import evaluate
 
 response = evaluate(
@@ -292,9 +292,9 @@ response = evaluate(
         "resource_group_name": os.environ["RESOURCE_GROUP_NAME"],
     }
 )
-# look at the average scores 
+# Inspect the average scores at a high-level
 print(response["metrics"])
-# use the URL to inspect the results on the UI
+# Use the URL to inspect the results on the UI
 print(f'AI Foundary URL: {response.get("studio_url")}')
 ```
 
@@ -303,7 +303,7 @@ Following the URI, you will be redirected to Foundry to view your evaluation res
 With Azure AI Evaluation SDK client library, you can seamlessly evaluate your Azure AI agents via our converter support, which enables observability and transparency into agentic workflows.
 
 
-## Evaluators with agent message support
+## Evaluating other agents
 
 For agents outside of Azure AI Agent Service, you can still evaluate them by preparing the right data for the evaluators of your choice.
 
@@ -328,7 +328,7 @@ We'll demonstrate some examples of the two data formats: simple agent data, and 
 As with other [built-in AI-assisted quality evaluators](./evaluate-sdk.md#performance-and-quality-evaluators), `IntentResolutionEvaluator` and `TaskAdherenceEvaluator` output a likert score (integer 1-5; higher score is better). `ToolCallAccuracyEvaluator` outputs the passing rate of all tool calls made (a float between 0-1) based on user query. To further improve intelligibility, all evaluators accept a binary threshold and output two new keys. For the binarization threshold, a default is set and user can override it. The two new keys are:
 
 - `{metric_name}_result` a "pass" or "fail" string based on a binarization threshold.
-- `{metric_name}_threshold` a numerical binarization threshold set by default or by the user
+- `{metric_name}_threshold` a numerical binarization threshold set by default or by the user.
 
 ### Simple agent data
 

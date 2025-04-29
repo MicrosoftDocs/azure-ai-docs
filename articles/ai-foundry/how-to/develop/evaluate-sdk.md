@@ -161,7 +161,7 @@ conversation = {
 
 ```
 
-To run batch evaluations using [local evaluation](#local-evaluation-on-test-datasets-using-evaluate) or [upload your dataset to run cloud evaluation](./cloud-evaluation.md#uploading-evaluation-data), you will need to represent the dataset in `.jsonl` format. The above conversation is equivalent to a line of dataset as following in a `.jsonl` file:
+To run batch evaluations using [local evaluation](#local-evaluation-on-test-datasets-using-evaluate) or [upload your dataset to run cloud evaluation](./cloud-evaluation.md#uploading-evaluation-data), you will need to represent the dataset in `.jsonl` format. The previous conversation is equivalent to a line of dataset as following in a `.jsonl` file:
 
 ```json
 {"conversation":
@@ -441,7 +441,7 @@ The result of the AI-assisted quality evaluators for a query and response pair i
 To further improve intelligibility, all evaluators accept a binary threshold (unless they output already binary outputs) and output two new keys. For the binarization threshold, a default is set and user can override it. The two new keys are:
 
 - `{metric_name}_result` a "pass" or "fail" string based on a binarization threshold.
-- `{metric_name}_threshold` a numerical binarization threshold set by default or by the user
+- `{metric_name}_threshold` a numerical binarization threshold set by default or by the user.
 
 
 

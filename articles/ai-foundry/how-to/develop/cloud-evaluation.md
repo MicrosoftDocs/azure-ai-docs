@@ -103,9 +103,9 @@ or contain conversation data like this:
 }
 ```
 
-For more details on input data formats, refer to [single-turn data](./evaluate-sdk.md#single-turn-support-for-text), [conversation data](./evaluate-sdk.md#conversation-support-for-text), and [conversation data for images and multi-modalities](./evaluate-sdk.md#conversation-support-for-images-and-multi-modal-text-and-image). 
+To learn more about input data formats for evaluating GenAI applications, see [single-turn data](./evaluate-sdk.md#single-turn-support-for-text), [conversation data](./evaluate-sdk.md#conversation-support-for-text), and [conversation data for images and multi-modalities](./evaluate-sdk.md#conversation-support-for-images-and-multi-modal-text-and-image). 
 
-For agent evaluation, refer to [evaluator support for agent messages](./agent-evaluate-sdk.md#evaluators-with-agent-message-support).
+To learn more about input data formats for evaluating agents, see [evaluating Azure AI agents](./agent-evaluate-sdk.md#evaluate-azure-ai-agents) and [evaluating other agents](./agent-evaluate-sdk.md/#evaluating-other-agents).
  
 
 We provide two ways to register your data in Azure AI project required for evaluations in the cloud:
@@ -236,9 +236,9 @@ print("Versioned evaluator id:", registered_evaluator.id)
 
 After logging your custom evaluator to your Azure AI project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under **Evaluation** tab of your Azure AI project.
 
-## Cloud evaluation (preview) with Azure AI Projects SDK
+## Submit a cloud evaluation
 
-Putting the above altogether, you can now submit a cloud evaluation with Azure AI Projects SDK via a Python API. See the following example specifying an NLP evaluator (F1 score), AI-assisted quality and safety evaluator (Relevance and Violence), and a custom evaluator (Friendliness) with their [evaluator IDs](#specifying-evaluators-from-evaluator-library):
+Putting the previous code altogether, you can now submit a cloud evaluation with Azure AI Projects SDK client library via a Python API. See the following example specifying an NLP evaluator (F1 score), AI-assisted quality and safety evaluator (Relevance and Violence), and a custom evaluator (Friendliness) with their [evaluator IDs](#specifying-evaluators-from-evaluator-library):
 
 ```python
 import os, time
@@ -257,7 +257,7 @@ project_client = AIProjectClient.from_connection_string(
     conn_str="<connection_string>"
 )
 
-# Construct dataset ID per the instruction above
+# Construct dataset ID per the instruction previously
 data_id = "<dataset-id>"
 
 default_connection = project_client.connections.get_default(connection_type=ConnectionType.AZURE_OPEN_AI)
