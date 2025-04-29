@@ -8,21 +8,22 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: conceptual
-ms.date: 02/11/2025
+ms.date: 04/28/2025
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist
 ---
 
 # Azure AI Foundry architecture 
+
+> [!NOTE]
+> The architecture discussed in this article is specific to a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. For more information, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
     
 Azure AI Foundry provides a unified experience for AI developers and data scientists to build, evaluate, and deploy AI models through a web portal, SDK, or CLI. Azure AI Foundry is built on capabilities and services provided by other Azure services.
 
 :::image type="content" source="../media/concepts/ai-studio-architecture.png" alt-text="Diagram of the high-level architecture of Azure AI Foundry." lightbox="../media/concepts/ai-studio-architecture.png":::
 
 At the top level, Azure AI Foundry provides access to the following resources:
-
-<!-- The top level Azure AI Foundry resources (hub and project) are based on Azure Machine Learning. Connected resources, such as Azure OpenAI, Azure AI services, and Azure AI Search, are used by the hub and project in reference, but follow their own resource management lifecycle. -->
 
 - **Azure OpenAI**: Provides access to the latest OpenAI models. You can create secure deployments, try playgrounds, fine tune models, content filters, and batch jobs. The Azure OpenAI resource provider is `Microsoft.CognitiveServices/account` and the kind of resource is `OpenAI`. You can also connect to Azure OpenAI by using a kind of `AIServices`, which also includes other [Azure AI services](/azure/ai-services/what-are-ai-services).
 
