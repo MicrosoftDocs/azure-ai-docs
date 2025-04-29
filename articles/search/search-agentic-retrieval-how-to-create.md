@@ -210,7 +210,7 @@ Content-Type: application/json
 
 Call the **retrieve** action on the agent object to confirm the model connection and return a response. Use the [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) data plane REST API or an Azure SDK prerelease package that provides equivalent functionality for this task.
 
-Replace "hello world" with a query string that's valid for your search index.
+Replace "What are my vision benefits?" with a query string that's valid for your search index.
 
 ```http
 # Send Grounding Request
@@ -220,15 +220,27 @@ Content-Type: application/json
 
 {
     "messages" : [
-        {
-            "role" : "user",
-            "content" : [
-                {
-                "text" : "hello world",
-                "type" : "text"
-                }
-            ]
-        }
+            {
+                "role" : "system",
+                "content" : [
+                  { "type" : "text", "text" : "You are a helpful assistant for Contoso Human Resources. You have access to a search index containing guidelines about health care coverage for Washington state. If you can't find the answer in the search, say you don't know." }
+                ]
+            },
+            {
+                "role" : "user",
+                "content" : [
+                  { "type" : "text", "text" : "What are my vision benefits?" }
+                ]
+            }
+        ],
+    "targetIndexParams" :  [
+        { 
+            "indexName" : "{{index-name}}",
+            "filterAddOn" : "State eq 'WA'",
+            "IncludeReferenceSourceData": true, 
+            "rerankerThreshold " : 2.5,
+            "maxDocsForReranker": 250
+        } 
     ]
 }
 ```

@@ -17,7 +17,7 @@ ms.date: 04/30/2025
 
 In Azure AI Search, *agentic retrieval* is a new query architecture that uses a conversational language model for query planning and parallel query execution. 
 
-Queries are created internally. Certain aspects of those generated queries are determined by your search index. This article explains which index elements affect agentic retrieval. You can use an existing index if it meets the criteria identified in this article, even if it was created using earlier API versions.
+Queries are created internally. Certain aspects of those generated queries are determined by your search index. This article explains which index elements affect agentic retrieval. None of the required elements are new or specific to agentic retrieval, which means you can use an existing index if it meets the criteria identified in this article, even if it was created using earlier API versions.
 
 Summarized, the search index specified in the `targetIndexes` of an [agent definition](search-agentic-retrieval-how-to-create.md) must have these elements:
 
@@ -140,11 +140,11 @@ Here's an example index that works for agentic retrieval. It meets the criteria 
 
 **Key points**:
 
-Recall that the large language model (LLM) is used twice. First, it's used to create a query plan. After the query plan is executed, search results are passed to the LLM again, this time as grounding data. LLMs consume and emit tokenized strings of human readable plain text content. The fields in this index support model usage by providing plain text strings that are both `searchable` and `retrievable` in the response.
+In agentic retrieval, a large language model (LLM) is used twice. First, it's used to create a query plan. After the query plan is executed and search results are generated, those results are passed to the LLM again, this time as grounding data. LLMs consume and emit tokenized strings of human readable plain text content. For this reason, you must have `searchable` fields that provide plain text strings, and are `retrievable` in the response.
 
-This index includes a vector field that's used at query time. You don't need the vector in results because it isn't human or LLM readable, but it does need to be searchable. Since you don't need vectors in the response, both `retrievable` and `stored` are false. 
+This index includes a vector field that's used at query time. You don't need the vector in results because it isn't human or LLM readable, but it does need to be `searchable`. Since you don't need vectors in the response, both `retrievable` and `stored` are false. 
 
-The vectorizer defined in the vector search configuration is critical. It encodes subqueries into vectors at query time for similarity search over the vectors. The vectorizer must be the same embedding model used to create the vectors in the index.
+The vectorizer defined in the vector search configuration is critical. It determines whether your vector field is used during query execution. The vectorizer encodes subqueries into vectors at query time for similarity search over the vectors. The vectorizer must be the same embedding model used to create the vectors in the index.
 
 <!-- 
 > [!div class="checklist"]
