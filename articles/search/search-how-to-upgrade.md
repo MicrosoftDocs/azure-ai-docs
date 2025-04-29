@@ -8,7 +8,7 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 04/28/2025
+ms.date: 04/29/2025
 ---
 
 # Upgrade your Azure AI Search service in the Azure portal
@@ -26,7 +26,7 @@ This article describes how to upgrade your service in the [Azure portal](https:/
 
 ## About service upgrades
 
-In April 2024, Azure AI Search increased the [storage capacity](search-limits-quotas-capacity.md#service-limits) of newly created search services. Services created before April 2024 saw no capacity changes, so if you wanted larger and faster partitions, you had to create a new service. However, some older services can now be upgraded to benefit from the higher capacity partitions.
+In April 2024, Azure AI Search increased the [storage capacity](search-limits-quotas-capacity.md#service-limits) of newly created search services. Services created before April 2024 saw no capacity changes, so if you wanted larger and faster partitions, you had to create a new service. However, some older services can now be upgraded to benefit from the higher-capacity partitions.
 
 In this preview, an upgrade only increases the [storage limit](#higher-storage-limits) and [vector index size](#higher-vector-limits) of [eligible services](#upgrade-eligibility).
 
@@ -35,12 +35,12 @@ In this preview, an upgrade only increases the [storage limit](#higher-storage-l
 To qualify for an upgrade, your service:
 
 > [!div class="checklist"]
-> + Must have been [created before April 2024](#check-your-service-creation-or-upgrade-date). Services created after April 2024 should already have higher capacity.
-> + Must be in a [region where higher capacity is enabled](search-region-support.md).
+> + Must have been [created before April 3, 2024](#check-your-service-creation-or-upgrade-date). Services created after this date should already have higher capacity.
+> + Must be in a [region where higher capacity is enabled](search-region-support.md). Most regions provide higher-capacity partitions. Exceptions are noted in the footnotes of each table.
 
 > [!IMPORTANT]
 > + Some search services created before January 1, 2019 don't support upgrades. In this situation, you must create a new service in a high-capacity region to get increased storage and vector limits.
-> + Upgrades are subject to [capacity constraints](search-region-support.md). If regional capacity is constrained, your service can't be upgraded.
+> + Upgrades are subject to [capacity constraints](search-region-support.md). If regional capacity is constrained for your pricing tier, your service can't be upgraded.
 
 ### Higher storage limits
 
