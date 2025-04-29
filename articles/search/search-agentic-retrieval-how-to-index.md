@@ -140,7 +140,7 @@ Here's an example index that works for agentic retrieval. It meets the criteria 
 
 **Key points**:
 
-Recall that the large language model (LLM) is used twice. First, it's used to create a query plan. After the query plan is executed, search results are passed to the LLM again, this time as grounding data. LLMs consume and emit tokenized strings of human readable plain text content. The fields in this index supports model usage by providing plain text strings that are both `searchable` and `retrievable` in the response.
+Recall that the large language model (LLM) is used twice. First, it's used to create a query plan. After the query plan is executed, search results are passed to the LLM again, this time as grounding data. LLMs consume and emit tokenized strings of human readable plain text content. The fields in this index support model usage by providing plain text strings that are both `searchable` and `retrievable` in the response.
 
 This index includes a vector field that's used at query time. You don't need the vector in results because it isn't human or LLM readable, but it does need to be searchable. Since you don't need vectors in the response, both `retrievable` and `stored` are false. 
 
