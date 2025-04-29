@@ -1,10 +1,10 @@
 items:
-- name: Azure AI Agent Service Documentation
+- name: Azure AI Foundry Agent Service Documentation
   href: index.yml
 - name: Overview
   expanded: true
   items:
-  - name: What is Azure AI Agent Service (Preview)?
+  - name: What is Azure AI Foundry Agent Service (Preview)?
     href: overview.md
   - name: What's new
     href: ./whats-new.md
@@ -101,7 +101,7 @@ items:
   items:
     - name: Transparency note
       href: /legal/cognitive-services/agents/transparency-note?context=/azure/ai-services/agents/context/context
-    - name: Data, privacy, and security For Azure AI Agent Service
+    - name: Data, privacy, and security For Azure AI Foundry Agent Service
       href: /legal/cognitive-services/agents/data-privacy-security?context=/azure/ai-services/agents/context/context
 - name: Reference
   items:

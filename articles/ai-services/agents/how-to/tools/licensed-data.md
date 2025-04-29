@@ -1,7 +1,7 @@
 ---
 title: 'How to use Agents with your licensed data'
 titleSuffix: Azure AI services
-description: Learn how to connect your licensed data for grounding with Azure AI Agent Service.
+description: Learn how to connect your licensed data for grounding with Azure AI Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
 ms.service: azure
@@ -14,7 +14,7 @@ recommendations: false
 
 # Bring your licensed data
 
-Azure AI Agent Service integrates your own licensed data from specialized data providers: [Tripadvisor](https://tripadvisor-content-api.readme.io/reference/overview) and [Morningstar](https://developer.morningstar.com/). This integration enhances the quality of your agent's responses with high-quality, fresh data.
+Azure AI Foundry Agent Service integrates your own licensed data from specialized data providers: [Tripadvisor](https://tripadvisor-content-api.readme.io/reference/overview) and [Morningstar](https://developer.morningstar.com/). This integration enhances the quality of your agent's responses with high-quality, fresh data.
 
 * **Tripadvisor**: Tripadvisor is a useful travel platform that can, for example, provide travel guidance and reviews. 
 * **Morningstar**: Morningstar is a prominent investment research company that provides comprehensive analysis, ratings, and data on mutual funds, ETFs, stocks, and bonds.
@@ -31,7 +31,7 @@ These insights empower your agents to deliver nuanced, informed solutions tailor
 
 
 * Obtain an API key for your [Tripadvisor developer account](https://www.tripadvisor.com/developers?screen=credentials).
-* Make sure when you put 0.0.0.0/0 for the IP address restriction to allow traffic from Azure AI Agent Service.
+* Make sure when you put 0.0.0.0/0 for the IP address restriction to allow traffic from Azure AI Foundry Agent Service.
 
 # [Morningstar](#tab/morningstar)
 

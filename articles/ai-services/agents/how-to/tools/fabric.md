@@ -1,5 +1,5 @@
 ---
-title: 'How to use the data agents in Microsoft Fabric with Azure AI Agent Service'
+title: 'How to use the data agents in Microsoft Fabric with Azure AI Foundry Agent Service'
 titleSuffix: Azure OpenAI
 description: Learn how to perform data analytics in Azure AI Agents using Microsoft Fabric data agent.
 services: cognitive-services
@@ -351,7 +351,7 @@ for (let i = messages.data.length - 1; i >= 0; i--) {
 :::zone pivot="rest"
 
 >[!IMPORTANT]
-> This REST API allows developers to invoke the Grounding with Bing Search tool through the Azure AI Agent service. It does not send calls to the Grounding with Bing Search API directly. 
+> This REST API allows developers to invoke the Grounding with Bing Search tool through the Azure AI Foundry Agent Service. It does not send calls to the Grounding with Bing Search API directly. 
 
 Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`. The client creation is demonstrated in the next section.
 

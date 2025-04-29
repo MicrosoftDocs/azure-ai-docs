@@ -1,5 +1,5 @@
 ---
-title: 'How to use Azure AI Agent Service with OpenAPI Specified Tools'
+title: 'How to use Azure AI Foundry Agent Service with OpenAPI Specified Tools'
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure AI Agents with OpenAPI Specified Tools.
 services: cognitive-services
@@ -11,7 +11,7 @@ author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
 ---
-# How to use Azure AI Agent Service with OpenAPI Specified Tools
+# How to use Azure AI Foundry Agent Service with OpenAPI Specified Tools
 
 You can now connect your Azure AI Agent to an external API using an OpenAPI 3.0 specified tool, 
 allowing for scalable interoperability with various applications. Enable your custom tools 

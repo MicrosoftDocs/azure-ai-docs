@@ -1,5 +1,5 @@
 ---
-title: What's new in Azure AI Agent Service?
+title: What's new in Azure AI Foundry Agent Service?
 titleSuffix: Azure AI services
 description: Learn about new feature updates and additions for your AI Agents.
 manager: nitinme
@@ -11,9 +11,9 @@ ms.date: 04/23/2025
 ms.custom: azure-ai-agents
 ---
 
-# What's new in Azure AI Agent Service
+# What's new in Azure AI Foundry Agent Service
 
-This article provides a summary of the latest releases and major documentation updates for Azure AI Agent Service.
+This article provides a summary of the latest releases and major documentation updates for Azure AI Foundry Agent Service.
 
 ## April 2025
 
@@ -33,13 +33,13 @@ The Standard Agent Setup now supports **Bring Your Own (BYO) thread storage usin
 
 ### Microsoft Fabric tool
 
-The Microsoft Fabric tool is now available for the Azure AI Agent Service, allowing users to interact with data you have in Microsoft Fabric through chat and uncover data-driven and actionable insights. See the [how-to article](./how-to/tools/fabric.md) for more information.
+The Microsoft Fabric tool is now available for the Azure AI Foundry Agent Service, allowing users to interact with data you have in Microsoft Fabric through chat and uncover data-driven and actionable insights. See the [how-to article](./how-to/tools/fabric.md) for more information.
 
 ## February 2025
 
-### Use Azure AI Agent Service in the Azure AI Foundry portal
+### Use Azure AI Foundry Agent Service in the Azure AI Foundry portal
 
-You can now use the Azure AI Agent Service in the [Azure AI Foundry](https://ai.azure.com/). Create, debug and modify agents, view threads, add tools and chat with agents without writing code. See the [quickstart](./quickstart.md?pivots=ai-foundry) for steps on getting started. 
+You can now use the Azure AI Foundry Agent Service in the [Azure AI Foundry](https://ai.azure.com/). Create, debug and modify agents, view threads, add tools and chat with agents without writing code. See the [quickstart](./quickstart.md?pivots=ai-foundry) for steps on getting started. 
 
 ## December 2024
 
