@@ -74,15 +74,15 @@ Available to US government entities and their partners only. See more informatio
 - **Available pricing tiers:**
   - Standard. See more pricing details [here](https://azure.microsoft.com/pricing/details/ai-foundry/)
 - **Supported features:**
-  - [Azure OpenAI Services](../../ai-services/openai/azure-government)
+  - [Azure OpenAI Services](../../ai-services/openai/azure-government.md)
   - Azure AI Services
-    - [Speech](../../ai-services/translator/reference/sovereign-clouds?tabs=us)
+    - [Speech](../../ai-services/speech-service/regions.md)
     - Speech playground (preview)
     - Language playground (preview)
-    - Language + [Translator](../../ai-services/translator/reference/sovereign-clouds?tabs=us)
+    - Language + [Translator](../../ai-services/translator/reference/sovereign-clouds.md)
     - Vision + Document
     - Content Safety
-  - Model catalog. See list of supported models [here](../../machine-learning/reference-machine-learning-cloud-parity)
+  - Model catalog. See list of supported models [here](../../machine-learning/reference-machine-learning-cloud-parity.md)
   - Templates (preview)
   - Prompt flow
   - Tracing (preview)
