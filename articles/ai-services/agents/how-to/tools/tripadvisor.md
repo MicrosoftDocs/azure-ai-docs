@@ -12,14 +12,9 @@ ms.author: aahi
 recommendations: false
 ---
 
-# Bring your licensed data
+# Use Tripadvisor data to ground your AI agents
 
-Azure AI Agent Service integrates your own licensed data from specialized data providers: [Tripadvisor](https://tripadvisor-content-api.readme.io/reference/overview) and [Morningstar](https://developer.morningstar.com/). This integration enhances the quality of your agent's responses with high-quality, fresh data.
-
-* **Tripadvisor**: Tripadvisor is a useful travel platform that can, for example, provide travel guidance and reviews. 
-* **Morningstar**: Morningstar is a prominent investment research company that provides comprehensive analysis, ratings, and data on mutual funds, ETFs, stocks, and bonds.
-
-These insights empower your agents to deliver nuanced, informed solutions tailored to specific use cases by grounding them with these licensed datasets.
+Azure AI Agent Service lets you integrate licensed data from specialized data providers to enhance the quality of your agent's responses with high-quality, fresh data. [Tripadvisor](https://tripadvisor-content-api.readme.io/reference/overview) is a useful travel platform that can, for example, provide travel guidance and reviews. The insights from this data source can empower your agents to deliver nuanced, informed solutions tailored to specific use cases.
 
 > [!IMPORTANT]
 > - Your use of connected non-Microsoft services is subject to the terms between you and the service provider. By connecting to a non-Microsoft service, you acknowledge that some of your data, such as prompt content, is passed to the non-Microsoft service, and/or your application might receive data from the non-Microsoft service. You're responsible for your use of non-Microsoft data.
