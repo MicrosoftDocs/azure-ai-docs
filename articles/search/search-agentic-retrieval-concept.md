@@ -22,16 +22,16 @@ Programmatically, agentic retrieval is supported through a new Agents object in 
 
 ## Why use agentic retrieval
 
-You should use agentic retrieval when you want to customize a chat experience with high quality inputs that include your proprietary data. The grounding data is derived from indexed documents (plain text and vectors) in Azure AI Search. The custom experience is powered by a new retrieval pipeline in AI Search that adds query expansion powered by a conversational language model for query planning. Query execution is through the retrieval pipeline on your search service, utilizing the best and most effective relevance enhancements in Azure AI Search. It's intended for integration into custom chat solutions, particularly those patterned after an agent-to-agent approach.
+You should use agentic retrieval when you want to customize a chat experience with high quality inputs that include your proprietary data. The grounding data is built from queries against indexed documents (plain text and vectors) in Azure AI Search. The custom experience is powered by a new retrieval pipeline in AI Search that adds query expansion powered by a conversational language model for query planning. Query execution is through the search engine on your search service, utilizing the best and most effective relevance enhancements in Azure AI Search. Output is intended for integration into custom chat solutions, particularly those patterned after an agent-to-agent approach.
 
-The *agentic* aspect is a reasoning step in query planning processing that's performed by a large language model (LLM). The LLM is tasked with designing multiple subqueries based on the user query, any chat history that provides context, and parameters. Metadata about query execution and reference data is included in the response.
+The *agentic* aspect is a reasoning step in query planning processing that's performed by a large language model (LLM). The LLM is tasked with designing multiple subqueries based on: the user query, any chat history that provides context, and parameters on the request. Metadata about query execution and reference data is included in the response.
 
-Agentic retrieval adds latency to query processing, but it adds these capabilities:
+Agentic retrieval adds latency to query processing, but it makes up for it by adding these capabilities:
 
-+ Reads the existing chat history as an input to the retrieval pipeline.
++ Reads in chat history as an input to the retrieval pipeline.
 + Rewrites an original query into multiple subqueries using both synonym maps (optional) *and* LLM-generated paraphrasing.
 + Corrects spelling mistakes.
-+ Deconstructs a complex query, such as hybrid query with filters, into component parts.
++ Deconstructs a complex query that contains multiple "asks" into component parts (for example, "find me a hotel near the beach, with airport transportation, and that's within walking distance of vegetarian restaurants")
 + Executes all subqueries in simultaneously.
 + Outputs a unified result as a single string. Alternatively, you can extract parts of the response for your solution.
 

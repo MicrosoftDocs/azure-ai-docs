@@ -15,28 +15,33 @@ ms.date: 04/30/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, *agentic retrieval* is a new parallel query processing architecture that uses a conversational language model for query planning and execution. 
+In Azure AI Search, *agentic retrieval* is a new query architecture that uses a conversational language model for query planning and parallel query execution. 
 
-This article explains how to use the **retrieve** method that invokes an agent and parallel query processing. This article also unpacks the response. 
+This article explains how to use the **retrieve** method that invokes an agent and parallel query processing. This article also explains the components of the retrieval response. 
 
 > [!NOTE]
-> Currently, there's no model generated answer in the response. The response provides grounding data that you can use to generate an answer.
+> Currently, there's no model-generated "answer" in the response. Instead, the response provides grounding data that you can use to generate an answer from an LLM. For an end-to-end example, see [Build an agent-to-agent retrieval solution ](search-agentic-retrieval-how-to-pipeline.md) or [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo).
 
 ## Prerequisites
 
-+ An [agent definition](search-agentic-retrieval-how-to-create.md) that represents a conversational language model, used during query planning and execution.
++ An [agent definition](search-agentic-retrieval-how-to-create.md) that represents a conversational language model.
 
 + Azure AI Search with a managed identity for role-based access to a chat model.
 
-+ Region requirements. Azure AI Search and your model should be in the same region.
++ Region requirements. Azure AI Search and your model should be in the same region.  Public cross-region connections and private link connection from AI Search to the model are supported. 
+
+  + **East US**
+  + **North Europe**
+  + **Japan East**
+  + **Sweden Central**
 
 + API requirements. Use 2025-05-01-preview data plane REST API or a prerelease package of an Azure SDK that provides Agent APIs.
 
-To follow the steps in this guide, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending REST API calls to Azure AI Search.
+To follow the steps in this guide, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending REST API calls to Azure AI Search. There's no portal support at this time.
 
-## Call retrieve
+## Call the retrieve action
 
-Call the **retrieve** action on the agent object to return a response. Use the [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) data plane REST API or an Azure SDK prerelease package that provides equivalent functionality for this task.
+Call the **retrieve** action on the agent object to invoke retrieval and return a response. Use the [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) data plane REST API or an Azure SDK prerelease package that provides equivalent functionality for this task.
 
 The input for the retrieval route is chat conversation history in natural language, where the `messages` array contains the conversation.
 
@@ -51,7 +56,7 @@ Content-Type: application/json
             {
                 "role" : "system",
                 "content" : [
-                  { "type" : "text", "text" : "You are a helpful assistant for Contoso Human Resources. You have access to a search index containing guidelines about health care coverage for Washington state." }
+                  { "type" : "text", "text" : "You are a helpful assistant for Contoso Human Resources. You have access to a search index containing guidelines about health care coverage for Washington state. If you can't find the answer in the search, say you don't know." }
                 ]
             },
             {
@@ -109,6 +114,11 @@ The body of the response is also structured in the chat message style format. Cu
 
 `content` is a JSON array. It's a single string composed of the most relevant documents (or chunks) found in the search index, given the query and chat history inputs. This array is your grounding data that a conversational language model uses to formulate a response to the user's question.
 
+Fields in the content `text` response string include the ref_id and semantic configuration fields: `title`, `terms`, `terms`.
+
+Fields in referenceSourceData when source data is included
+Semantic fields only
+
 ## Review the activity array
 
 The activity array outputs the query plan and it helps you keep track of the operations performed when executing the request. It provides transparency of operations so that you can understand billing implications and the frequency of resource invocations.
@@ -161,7 +171,7 @@ Here's an example of an activity array.
 
 ## Review the references array
 
-The `references` array is a direct reference from the underlying grounding data and includes the `sourceData` used to generate the response. It consists of every single document that was found and semantically ranked by the search engine.
+The `references` array is a direct reference from the underlying grounding data and includes the `sourceData` used to generate the response. It consists of every single document that was found and semantically ranked by the search engine. Fields in the `sourceData` include an `id` and semantic fields: `title`, `terms`, `content`.
 
 The purpose of this array is to provide a chat message style structure for easy integration. For example, if you want to serialize the results into a different structure or you require some programmatic manipulation of the data before you returned it to the user.
 
