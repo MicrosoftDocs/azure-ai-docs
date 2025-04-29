@@ -1,7 +1,7 @@
 ---
-title: 'How to use Azure AI Agent Service Code Interpreter'
+title: 'How to use Azure AI Foundry Agent Service Code Interpreter'
 titleSuffix: Azure OpenAI
-description: Learn how to use Azure AI Agent Service Code Interpreter
+description: Learn how to use Azure AI Foundry Agent Service Code Interpreter
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
@@ -12,7 +12,7 @@ ms.author: aahi
 ms.custom: azure-ai-agents
 ---
 
-# Azure AI Agent Service Code Interpreter
+# Azure AI Foundry Agent Service Code Interpreter
 
 Code Interpreter allows the agents to write and run Python code in a sandboxed execution environment. With Code Interpreter enabled, your agent can run code iteratively to solve more challenging code, math, and data analysis problems. When your Agent writes code that fails to run, it can iterate on this code by modifying and running different code until the code execution succeeds.
 

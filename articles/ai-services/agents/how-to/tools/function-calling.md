@@ -1,5 +1,5 @@
 ---
-title: 'How to use Azure AI Agent Service with function calling'
+title: 'How to use Azure AI Foundry Agent Service with function calling'
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure AI Agents with function calling.
 services: cognitive-services

@@ -1,6 +1,6 @@
 ---
-title: Monitor Azure AI Agent Service
-description: Start here to learn how to use Azure Monitor to capture and analyze metrics for your Azure AI Agent Service.
+title: Monitor Azure AI Foundry Agent Service
+description: Start here to learn how to use Azure Monitor to capture and analyze metrics for your Azure AI Foundry Agent Service.
 ms.date: 03/20/2025
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: conceptual
@@ -9,7 +9,7 @@ ms.author: aahi
 ms.service: azure-ai-agent-service
 ---
 
-# Monitor Azure AI Agent Service
+# Monitor Azure AI Foundry Agent Service
 
 [!INCLUDE [horz-monitor-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-intro.md)]
 
@@ -17,7 +17,7 @@ Monitoring is available for agents in a [standard agent setup](../quickstart.md?
 
 ## Dashboards
 
-Azure AI Agent Service provides out-of-box dashboards. There are two key dashboards to monitor your resource: 
+Azure AI Foundry Agent Service provides out-of-box dashboards. There are two key dashboards to monitor your resource: 
 
 - The metrics dashboard in the AI Foundry resource view 
 - The dashboard in the overview pane within the Azure portal 
@@ -39,7 +39,7 @@ Azure Monitor provides platform metrics for most services. These metrics are:
 
 For a list of all metrics it's possible to gather for all resources in Azure Monitor, see [Supported metrics in Azure Monitor](/azure/azure-monitor/platform/metrics-supported).
 
-Azure AI Agent Service has commonality with a subset of Azure AI services. For a list of available metrics for Azure AI Agent Service, see the [monitoring data reference](../reference/monitor-service.md#metrics).
+Azure AI Foundry Agent Service has commonality with a subset of Azure AI services. For a list of available metrics for Azure AI Foundry Agent Service, see the [monitoring data reference](../reference/monitor-service.md#metrics).
 
 ## Analyze monitoring data
 
@@ -67,9 +67,9 @@ The common alert schema standardizes the consumption of Azure Monitor alert noti
 
 Every organization's alerting needs vary and can change over time. Generally, all alerts should be actionable and have a specific intended response if the alert occurs. If an alert doesn't require an immediate response, the condition can be captured in a report rather than an alert. Some use cases might require alerting anytime certain error conditions exist. In other cases, you might need alerts for errors that exceed a certain threshold for a designated time period.
 
-Depending on what type of application you're developing with your use of Azure AI Agent Service, [Azure Monitor Application Insights](/azure/azure-monitor/overview) might offer more monitoring benefits at the application layer.
+Depending on what type of application you're developing with your use of Azure AI Foundry Agent Service, [Azure Monitor Application Insights](/azure/azure-monitor/overview) might offer more monitoring benefits at the application layer.
 
-### Azure AI Agent service alert rules
+### Azure AI Foundry Agent Service alert rules
 
 You can set alerts for any metric listed in the [monitoring data reference](../reference/monitor-service.md).
 
@@ -77,5 +77,5 @@ You can set alerts for any metric listed in the [monitoring data reference](../r
 
 ## Related content
 
-- See [Monitoring data reference](../reference/monitor-service.md) for a reference of the metrics and other important values created for Azure AI Agent Service.
+- See [Monitoring data reference](../reference/monitor-service.md) for a reference of the metrics and other important values created for Azure AI Foundry Agent Service.
 - See [Monitoring Azure resources with Azure Monitor](/azure/azure-monitor/essentials/monitor-azure-resource) for general details on monitoring Azure resources.

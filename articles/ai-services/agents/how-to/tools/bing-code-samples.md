@@ -370,7 +370,7 @@ print(f"Messages: {messages}")
 Create a client object, which will contain the connection string for connecting to your AI project and other resources.
 
 >[!IMPORTANT]
-> 1. This REST API allows developers to invoke the Grounding with Bing Search tool through the Azure AI Agent service. It does not send calls to the Grounding with Bing Search API directly. 
+> 1. This REST API allows developers to invoke the Grounding with Bing Search tool through the Azure AI Foundry Agent Service. It does not send calls to the Grounding with Bing Search API directly. 
 
 Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`. The client creation is demonstrated in the next section.
 

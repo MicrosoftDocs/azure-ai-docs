@@ -1,7 +1,7 @@
 ---
-title: 'How to use a virtual network with the Azure AI Agent Service'
+title: 'How to use a virtual network with the Azure AI Foundry Agent Service'
 titleSuffix: Azure OpenAI
-description: Learn how to use your own virtual network with the Azure AI Agent Service. 
+description: Learn how to use your own virtual network with the Azure AI Foundry Agent Service. 
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
@@ -15,7 +15,7 @@ ms.custom: azure-ai-agents
 
 # Create a new network-secured agent with user-managed identity
 
-Azure AI Agent Service offers a standard agent configuration with private networking, allowing you to bring your own (BYO) private virtual network. This setup creates an isolated network environment that lets you securely access data and perform actions while maintaining full control over your network infrastructure. This guide provides a step-by-step walkthrough of the setup process and outlines all necessary requirements.
+Azure AI Foundry Agent Service offers a standard agent configuration with private networking, allowing you to bring your own (BYO) private virtual network. This setup creates an isolated network environment that lets you securely access data and perform actions while maintaining full control over your network infrastructure. This guide provides a step-by-step walkthrough of the setup process and outlines all necessary requirements.
 
 > [!NOTE]
 > Standard setup with private networking can only be configured by deploying the Bicep template described in this article. Once deployed, agents must be created using the SDK or REST API. You can't use the Azure AI Foundry portal to create agents in a project with private networking enabled.
