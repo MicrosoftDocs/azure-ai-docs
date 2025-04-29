@@ -15,7 +15,7 @@ ms.date: 04/30/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, an *agent* is a top-level resource representing a connection to a conversational language model for use in agentic retrieval workloads. It specifies a model that' provides reasoning capabilities', and it identifies the search index that can use the agent at query time.
+In Azure AI Search, an *agent* is a top-level resource representing a connection to a conversational language model for use in agentic retrieval workloads. It specifies a model that provides reasoning capabilities, and it identifies the search index used at query time.
 
 After you can create an agent, you can update its properties at any time. If the agent is in use, updates take effect on the next job.
 
@@ -23,19 +23,19 @@ After you can create an agent, you can update its properties at any time. If the
 
 + Familiarity with [agentic retrieval concepts and use cases](search-agentic-retrieval-concept.md).
 
-+ A conversational language model on Azure OpenAI, either gpt-4o or gpt-4o-mini, that provides reasoning and evaluation.
++ A conversational language model on Azure OpenAI, either gpt-4o or gpt-4o-mini.
 
 + Azure AI Search with a managed identity for role-based access to a chat model.
 
 + An Owner/Contributor or Search Service Contributor can create and manage an agent. Search Index Data Reader to run queries.
 
-+ A search index containing plain text or vectors. The index must meet requirements for agentic retrieval. have a [semantic configuration](semantic-how-to-configure.md) with the `defaultConfiguration` specified.
++ A search index containing plain text or vectors. The index must [meet requirements for agentic retrieval](search-agentic-retrieval-how-to-index.md), including a [semantic configuration](semantic-how-to-configure.md) with the `defaultConfiguration` specified.
 
-+ Region requirements: **East US**, **North Europe**, **Japan East**, **Sweden Central**. Public cross-region connections and private link connection from AI Search to the model are supported.
++ Region requirements. Azure AI Search and your model should be in the same region. **East US**, **North Europe**, **Japan East**, **Sweden Central**. Public cross-region connections and private link connection from AI Search to the model are supported.
 
-+ API requirements. Use 2025-05-01-preview data plane REST API or a prerelease package of an Azure SDK that provides Agent APIs.
++ API requirements. To create or use an agent, use 2025-05-01-preview data plane REST API or a prerelease package of an Azure SDK that provides Agent APIs.
 
-To follow the steps in this guide, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending REST API calls to Azure AI Search.
+To follow the steps in this guide, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending REST API calls to Azure AI Search. There's no portal support at this time.
 
 ## Deploy a model for agentic retrieval
 
@@ -121,7 +121,7 @@ api-key: {{search-api-key}}
 
 ## Create an agent
 
-A knowledge agent represents a connection to a model that you've deployed. Parameters on the model establish the connection.
+An agent represents a connection to a model that you've deployed. Parameters on the model establish the connection.
 
 <!-- ### [**REST APIs**](#tab/rest-create) -->
 
@@ -173,7 +173,7 @@ Content-Type: application/json
 
 + `name` must be unique within the agents collection it must adhere to [naming rules](/rest/api/searchservice/naming-rules) for objects on Azure AI Search.
 
-+ `targetIndexes` is required for agent creation. It lists the search indexes that can use the agent. Currently in this preview release, the `targetIndexes` array can contain only one index. *It must have a default semantic configuration* (`defaultConfiguration`), otherwise it can be any search index on the search service that has content you want to query.
++ `targetIndexes` is required for agent creation. It lists the search indexes that can use the agent. Currently in this preview release, the `targetIndexes` array can contain only one index. *It must have a default semantic configuration* (`defaultConfiguration`). For more information, see [Design an index for agentic retrieval](search-agentic-retrieval-how-to-index.md).
 
     ```json
     "semantic": {
@@ -193,7 +193,7 @@ Content-Type: application/json
 <!--  Check minimum 10k  -->
 + `requestLimits` gives you control over the output generated during retrieval so that you can better manage inputs to the LLM. 
 
-  + `maxOutputSize` is the maximum number of tokens in the response `content` string, with 10,000 tokens as the minimum. The most relevant matches are preserved but the overall response is truncated at the last complete document to fit your token budget. 
+  + `maxOutputSize` is the maximum number of tokens in the response `content` string, with 10,000 tokens as the minimum and no explicit maximum. The most relevant matches are preserved but the overall response is truncated at the last complete document to fit your token budget. 
 
   + `maxRuntimeInSeconds` sets the maximum amount of processing time for the entire request, inclusive of both Azure OpenAI and Azure AI Search.
 
@@ -201,7 +201,7 @@ Content-Type: application/json
 
 <!-- --- -->
 
-## Confirm agent availability
+## Confirm agent operations
 
 Call the **retrieve** action on the agent object to confirm the model connection and return a response. Use the [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) data plane REST API or an Azure SDK prerelease package that provides equivalent functionality for this task.
 
@@ -228,7 +228,7 @@ Content-Type: application/json
 }
 ```
 
-For more information about the **retrieve** API, see [Retrieve data using an agent in Azure AI Search](search-agentic-retrieval-how-to-retrieve.md).
+For more information about the **retrieve** API and the shape of the response, see [Retrieve data using an agent in Azure AI Search](search-agentic-retrieval-how-to-retrieve.md).
 
 ## Delete an agent
 
