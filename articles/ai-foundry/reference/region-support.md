@@ -60,9 +60,9 @@ The following table lists the availability of Azure AI Foundry features across A
 | Azure AI Content Safety        | To use the Content Safety APIs, you must create your Azure AI Content Safety resource in a supported region.                                           | [What is Azure AI Content Safety?](../../ai-services/content-safety/overview.md#region-availability)       |
 | Azure AI Agent Service         | Azure AI Agent Service supports the same models as the chat completions API in Azure OpenAI.                                                          | [Azure AI Agent Service region availability](../../ai-services/agents/concepts/model-region-support.md#azure-openai-models) |
 
-# Azure AI Foundry in sovereign clouds
+## Azure AI Foundry in sovereign clouds
 
-## Azure Government (United States)
+### Azure Government (United States)
 
 Available to US government entities and their partners only. See more information about Azure Government [here](/azure/azure-government/documentation-government-welcome) and [here.](/azure/azure-government/compare-azure-government-global-azure)
 
@@ -72,17 +72,17 @@ Available to US government entities and their partners only. See more informatio
   - US Gov Arizona
   - US Gov Virginia
 - **Available pricing tiers:**
-  - Standard. See more pricing details [here](https://azure.microsoft.com/en-us/pricing/details/ai-foundry/)
+  - Standard. See more pricing details [here](https://azure.microsoft.com/pricing/details/ai-foundry/)
 - **Supported features:**
-  - [Azure OpenAI Services](https://learn.microsoft.com/en-us/azure/ai-services/openai/azure-government)
+  - [Azure OpenAI Services](https://learn.microsoft.com/azure/ai-services/openai/azure-government)
   - Azure AI Services
-    - [Speech](https://learn.microsoft.com/en-us/azure/ai-services/translator/reference/sovereign-clouds?tabs=us)
+    - [Speech](https://learn.microsoft.com/azure/ai-services/translator/reference/sovereign-clouds?tabs=us)
     - Speech playground (preview)
     - Language playground (preview)
-    - Language + [Translator](https://learn.microsoft.com/en-us/azure/ai-services/translator/reference/sovereign-clouds?tabs=us)
+    - Language + [Translator](https://learn.microsoft.com/azure/ai-services/translator/reference/sovereign-clouds?tabs=us)
     - Vision + Document
     - Content Safety
-  - Model catalog. See list of supported models [here](https://learn.microsoft.com/en-us/azure/machine-learning/reference-machine-learning-cloud-parity?view=azureml-api-2#azure-government)
+  - Model catalog. See list of supported models [here](https://learn.microsoft.com/azure/machine-learning/reference-machine-learning-cloud-parity?view=azureml-api-2#azure-government)
   - Templates (preview)
   - Prompt flow
   - Tracing (preview)
