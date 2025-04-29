@@ -9,7 +9,7 @@ ms.date: 11/13/2024
 
 ## Set up your Azure AI Hub and Agent project
 
-The following section shows you how to set up the required resources for getting started with Azure AI Agent Service: 
+The following section shows you how to set up the required resources for getting started with Azure AI Foundry Agent Service: 
 
 1. Creating an [Azure AI Hub](../../../ai-foundry/quickstarts/get-started-playground.md) to set up your app environment and Azure resources.
 
@@ -59,7 +59,7 @@ By default, the deployment template is configured with the following values:
 > [!IMPORTANT]
 > **Don't change the modelFormat parameter.** 
 >
-> The templates only support deployment of Azure OpenAI models. See which Azure OpenAI models are supported in the [Azure AI Agent Service model support](../concepts/model-region-support.md) documentation.
+> The templates only support deployment of Azure OpenAI models. See which Azure OpenAI models are supported in the [Azure AI Foundry Agent Service model support](../concepts/model-region-support.md) documentation.
 
 
 ### [Optional] Use your own resources during agent setup

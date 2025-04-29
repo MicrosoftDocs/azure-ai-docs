@@ -1,5 +1,5 @@
 ---
-title: 'How to use Azure AI Search in Azure AI Agent Service'
+title: 'How to use Azure AI Search in Azure AI Foundry Agent Service'
 titleSuffix: Azure OpenAI
 description: Learn how to ground Azure AI Agents using Azure AI Search.
 services: cognitive-services

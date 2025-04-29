@@ -12,7 +12,7 @@ ms.author: aahi
 ms.custom: azure-ai-agents
 ---
 
-# Azure AI Agent Service file search tool
+# Azure AI Foundry Agent Service file search tool
 
 File search augments agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.  
 
