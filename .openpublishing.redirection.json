@@ -96,6 +96,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/licensed-data.md",
+      "redirect_url": "/azure/ai-services/agents/tools/catalog",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/search/search-howto-index-csv-blobs.md",
       "redirect_url": "/azure/search/search-how-to-index-csv-blobs",
       "redirect_document_id": false
