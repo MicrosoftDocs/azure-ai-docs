@@ -105,7 +105,7 @@ or contains conversation data like this:
 
 To learn more about input data formats for evaluating GenAI applications, see [single-turn data](./evaluate-sdk.md#single-turn-support-for-text), [conversation data](./evaluate-sdk.md#conversation-support-for-text), and [conversation data for images and multi-modalities](./evaluate-sdk.md#conversation-support-for-images-and-multi-modal-text-and-image). 
 
-To learn more about input data formats for evaluating agents, see [evaluating Azure AI agents](./agent-evaluate-sdk.md#evaluate-azure-ai-agents) and [evaluating other agents](./agent-evaluate-sdk.md/#evaluating-other-agents).
+To learn more about input data formats for evaluating agents, see [evaluating Azure AI agents](./agent-evaluate-sdk.md#evaluate-azure-ai-agents) and [evaluating other agents](./agent-evaluate-sdk.md#evaluating-other-agents).
  
 
 We provide two ways to register your data in Azure AI project required for evaluations in the cloud:
