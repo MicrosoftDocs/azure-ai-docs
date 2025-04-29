@@ -109,7 +109,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         client = AsyncAzureOpenAI(
             azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
             azure_ad_token_provider=token_provider,
-            api_version="2024-10-01-preview",
+            api_version="2025-04-01-preview",
         )
         async with client.beta.realtime.connect(
             model="gpt-4o-realtime-preview",  # name of your deployment
@@ -181,7 +181,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         client = AsyncAzureOpenAI(
             azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
             api_key=os.environ["AZURE_OPENAI_API_KEY"],
-            api_version="2024-10-01-preview",
+            api_version="2025-04-01-preview",
         )
         async with client.beta.realtime.connect(
             model="gpt-4o-realtime-preview",  # deployment name of your model
