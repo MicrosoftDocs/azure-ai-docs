@@ -78,6 +78,7 @@ Here is an example:
 Tables preserve complex structured data in a visually organized format. The Layout API uses HTML table syntax for maximum fidelity and compatibility:
 
 * Implements full HTML table markup (`<table>`, `<tr>`, `<th>`, `<td>`) rather than standard markdown tables
+* Preserves merged cell with HTML rowspan and colspan attributes.
 * Preserves table captions with the `<caption>` tag to maintain document context
 * Handles complex table structures including headers, cells, and footers
 * Maintains proper spacing with two blank lines before each table for improved readability
@@ -168,10 +169,11 @@ Barcodes and QR codes are represented using markdown image syntax with additiona
 Here is an example:
 
 ```
-![QrCode:value](./media/barcode/qr.svg)
+![QRCode](barcodes/1.1 "https://www.microsoft.com")
 
-![BarCode:001](./media/barcode/barcode.svg)
-
+![UPCA](barcodes/1.2 "012345678905")
+ 
+![barcode type](barcodes/pagenumber.barcodenumber "barcode value/content")
 ```
 ---
 
@@ -194,9 +196,9 @@ Here is an example:
 ```
 ---
 
-### PageNumber/PageHeader/PageFooter
+### PageBreak
 
-To easy figure out which parts belong to which page base on the pure Markdown content, we introduced PageBreak as the delimiter of the pages
+To easily figure out which parts belong to which page base on the pure Markdown content, we introduced PageBreak as the delimiter of the pages
 
 Here is an example:
 ``` md
@@ -217,6 +219,6 @@ Document Intelligence's Markdown elements provide a powerful way to represent th
 
 ## Next steps
 
-* Try processing your own forms and documents with [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
+* Try processing your documents with [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
 
 * Complete a [Document Intelligence quickstart](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) and get started creating a document processing app in the development language of your choice.
