@@ -3,37 +3,15 @@ items:
   href: index.yml
 - name: What is Azure AI Foundry?
   href: what-is-azure-ai-foundry.md
-- name: What's new in Azure AI Foundry?
-  href: whats-new-azure-ai-foundry.md
+
 - name: Get started
   expanded: true
   items:
-  - name: Quickstarts
-    items:
-    - name: Use the chat playground
-      href: quickstarts/get-started-playground.md
-    - name: Build basic app with Azure AI Foundry SDK
-      href: quickstarts/get-started-code.md
-    - name: Get started with Azure AI Foundry SDK
+    - name: Get started with Azure AI Foundry
+      href: quickstarts/get-started-code.md  
+    - name: Azure AI Foundry SDK overview
       href: how-to/develop/sdk-overview.md
-  - name: In-depth tutorials
-    items:
-    - name: Build custom app with Azure AI Foundry SDK
-      items:
-        - name: "Part 1: Set up project and install SDK"
-          href: tutorials/copilot-sdk-create-resources.md
-        - name: "Part 2: Build with data retrieval"
-          href: tutorials/copilot-sdk-build-rag.md
-          displayName: code,sdk
-        - name: "Part 3: Evaluate the chat app"
-          href: tutorials/copilot-sdk-evaluate.md
-          displayName: code,sdk
-    - name: Get started with DeepSeek-R1 reasoning model
-      href: model-inference/tutorials/get-started-deepseek-r1.md?context=/azure/ai-foundry/context/context
-    - name: Deploy an enterprise chat web app
-      href: tutorials/deploy-chat-web-app.md
-    - name: Build a RAG solution using Azure AI Search
-      href: /azure/search/tutorial-rag-build-solution?context=/azure/ai-foundry/context/context
+
 - name: Explore AI model capabilities
   items:
   - name: Use the model catalog
@@ -366,6 +344,28 @@ items:
       displayName: code,sdk
     - name: Develop with Semantic Kernel
       href: how-to/develop/semantic-kernel.md
+    - name: Quickstarts
+      items:
+      - name: Use the chat playground
+        href: quickstarts/get-started-playground.md
+    - name: In-depth tutorials
+      items:
+      - name: Build custom app with Azure AI Foundry SDK
+        items:
+          - name: "Part 1: Set up project and install SDK"
+            href: tutorials/copilot-sdk-create-resources.md
+          - name: "Part 2: Build with data retrieval"
+            href: tutorials/copilot-sdk-build-rag.md
+            displayName: code,sdk
+          - name: "Part 3: Evaluate the chat app"
+            href: tutorials/copilot-sdk-evaluate.md
+            displayName: code,sdk
+      - name: Get started with DeepSeek-R1 reasoning model
+        href: model-inference/tutorials/get-started-deepseek-r1.md?context=/azure/ai-foundry/context/context
+      - name: Deploy an enterprise chat web app
+        href: tutorials/deploy-chat-web-app.md
+      - name: Build a RAG solution using Azure AI Search
+        href: /azure/search/tutorial-rag-build-solution?context=/azure/ai-foundry/context/context      
 - name: Optimizations
   items:
   - name: Prompt engineering
@@ -644,6 +644,8 @@ items:
   
 - name: Other resources
   items:
+  - name: What's new in Azure AI Foundry?
+    href: whats-new-azure-ai-foundry.md
   - name: Azure AI FAQ
     href: faq.yml
   - name: Azure AI Foundry architecture
