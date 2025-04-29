@@ -178,6 +178,6 @@ Deleting a hub deletes all associated projects. When a project is deleted, all n
 
 ## Related content
 
-- [Create a project](create-projects.mdcreate-projects.md?pivots=hub-project)
+- [Create a project](create-projects.md?pivots=hub-project)
 - [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
 - [Learn more about hubs](../concepts/ai-resources.md)
