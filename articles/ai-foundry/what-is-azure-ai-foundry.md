@@ -28,9 +28,7 @@ With Azure AI Foundry, you can explore a wide variety of models, services and ca
 
 ## Work in an Azure AI Foundry project
 
-An Azure AI Foundry project is where you do most of your development work. You can work with your project in the Azure AI Foundry, or using the SDK in your preferred development environment. Once you have a project, you can connect to it from your code. You can explore models and capabilities before creating a project, but once you're ready to build, customize, test, and operationalize, a project is where you'll want to be.
-
-Using a project also enables connectivity to other services such as Azure AI services and Azure Storage. For more information, see the [Azure AI Foundry architecture](./concepts/architecture.md).
+An Azure AI Foundry project is where you do most of your development work. You can work with your project in the Azure AI Foundry portal, or use the SDK in your preferred development environment.
 
 ## <a name="project-types"></a> Types of projects
 
@@ -68,7 +66,7 @@ The left pane is organized around your goals. Generally, as you develop with Azu
 
 If you're an admin, or leading a development team, and need to manage the team's resources, project access, quota, and more, you can do that in the Management Center.
  
-### <a name="left-pane"></a> Customize the left pane
+## <a name="left-pane"></a> Customize the left pane
 
 The left pane of the Azure AI Foundry portal is your main navigation tool. Customize this area to show the parts of the portal you want to use.
 
