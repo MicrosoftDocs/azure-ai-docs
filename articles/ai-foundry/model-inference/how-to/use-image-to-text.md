@@ -48,10 +48,7 @@ To use image models in your application, you need:
     export AZURE_API_KEY = "<your-api-key>"
     ```
 
-1. Run a basic code sample. Paste the following code into a shell.
-
-  > [!NOTE]
-  > Different image models accept different data formats. In this example, `Mistral OCR 25.03` supports only base64 data. Document url or image url isn't supported.
+1. Run a basic code sample. Different image models accept different data formats. In this example, `Mistral OCR 25.03` supports only base64 data; document url or image url isn't supported. Paste the following code into a shell.
   
     ```http
     curl --request POST \
