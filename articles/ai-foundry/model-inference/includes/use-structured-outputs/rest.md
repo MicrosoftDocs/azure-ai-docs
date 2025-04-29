@@ -17,11 +17,11 @@ zone_pivot_groups: azure-ai-inference-samples
 
 ## How to use structured outputs
 
-Structured outputs uses JSON schemas to enforce output structure. JSON schemas describe the shape of the JSON object including expected values, types, and which ones are required. Those JSON objects are encoded as an string within the response of the model.
+Structured outputs use JSON schemas to enforce output structure. JSON schemas describe the shape of the JSON object including expected values, types, and which ones are required. Those JSON objects are encoded as a string within the response of the model.
 
 ### Example
 
-To exemplify the scenario, let's try to parse the attributes of a GitHub Issue from it's description. The following [example is extracted from a GitHub issue in Azure-Samples repository](https://api.github.com/repos/Azure-Samples/azure-search-openai-demo/issues/2231).
+To exemplify the scenario, let's try to parse the attributes of a GitHub Issue from its description. The following [example is extracted from a GitHub issue in Azure-Samples repository](https://api.github.com/repos/Azure-Samples/azure-search-openai-demo/issues/2231).
 
 ```output
 '<!--\r\nIF SUFFICIENT INFORMATION IS NOT PROVIDED VIA THE FOLLOWING TEMPLATE THE ISSUE MIGHT BE CLOSED WITHOUT FURTHER CONSIDERATION OR INVESTIGATION\r\n-->\r\n> Please provide us with the following information:\r\n> ---------------------------------------------------------------\r\n\r\n### This issue is for a: (mark with an `x`)\r\n```\r\n- [x] bug report -> please search issues before submitting\r\n- [ ] feature request\r\n- [ ] documentation issue or request\r\n- [ ] regression (a behavior that used to work and stopped in a new release)\r\n```\r\n\r\n### Minimal steps to reproduce\r\n> Deploy the app with auth and acl´s turned on, configure the acls file, run all the scripts needed.\r\n\r\n### Any log messages given by the failure\r\n> None\r\n\r\n### Expected/desired behavior\r\n> groups field to be filled the the groups id\'s that have permissions to "view the file"\r\n\r\n### OS and Version?\r\n> win 10\r\n### azd version?\r\n> azd version 1.11.0\r\n\r\n### Versions\r\n>\r\n\r\n### Mention any other details that might be useful\r\n\r\nAfter configuring the json with the perms all the scripts (`adlsgen2setup.py` and `prepdocs.ps1`) everything goes well but the groups metadata tag never gets to have any groups.\r\n\r\n![image](https://github.com/user-attachments/assets/40f1eb09-2c21-4244-98b5-adfb3fa16955)\r\n\r\n\r\n> ---------------------------------------------------------------\r\n> Thanks! We\'ll be in touch soon.\r\n'
@@ -138,7 +138,7 @@ __Response__
     "id": "0a1234b5de6789f01gh2i345j6789klm",
     "object": "chat.completion",
     "created": 1718726686,
-    "model": "mistral-large-2407",
+    "model": "Cohere-command-r-plus-08-2024",
     "choices": [
         {
             "index": 0,
@@ -163,3 +163,271 @@ __Response__
     }
 }
 ```
+
+## Structured outputs in images
+
+You can use structured outputs with multi-modal models to extract information from data like images. 
+
+Let's consider the following chart:
+
+:::image type="content" source="../../media/use-structured-outputs/example_graph_treecover.png" alt-text="An example image showing a chart with the annual loss in thousand square kilometers of global tree cover across different climate zones." lightbox="../../media/use-structured-outputs/example_graph_treecover.png":::
+
+We can define a generic schema that can be used to encode the information contained in the chart and then use it for further analysis.
+
+### Define the schema
+
+The following schema captures generic information contained in a chart:
+
+__graph_schema.json__
+
+```json
+{
+    "$defs": {
+        "DataPoint": {
+            "properties": {
+                "x": {
+                    "title": "X",
+                    "type": "number"
+                },
+                "y": {
+                    "title": "Y",
+                    "type": "number"
+                },
+                "serie": {
+                    "title": "Serie",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "x",
+                "y",
+                "serie"
+            ],
+            "title": "DataPoint",
+            "type": "object"
+        }
+    },
+    "title": "Graph",
+    "type": "object",
+    "properties": {
+        "title": {
+            "title": "Title",
+            "type": "string"
+        },
+        "description": {
+            "title": "Description",
+            "type": "string"
+        },
+        "x_axis": {
+            "title": "X Axis",
+            "type": "string"
+        },
+        "y_axis": {
+            "title": "Y Axis",
+            "type": "string"
+        },
+        "legend": {
+            "items": {
+                "type": "string"
+            },
+            "title": "Legend",
+            "type": "array"
+        },
+        "data": {
+            "items": {
+                "$ref": "#/$defs/DataPoint"
+            },
+            "title": "Data",
+            "type": "array"
+        }
+    },
+    "required": [
+        "title",
+        "description",
+        "x_axis",
+        "y_axis",
+        "legend",
+        "data"
+    ],
+    "additionalProperties": false
+}
+```
+
+
+## Use structure outputs
+
+We can use structure outputs with the defined schema as follows:
+
+__Request__
+
+```http
+POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
+Content-Type: application/json
+api-key: <key>
+```
+
+__Body__
+
+```json
+{
+    "messages": [
+        {
+            "role": "system",
+            "content": "Extract the information from the graph. Extrapolate the values of the x axe to ensure you have the correct number
+                      of data points for each of the years from 2001 to 2023. Scale the values of the y axes to account for the values
+                      being stacked."
+        },
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "image_url",
+                    "image_url": {
+                        "url": "data:image/jpg;base64,0xABCDFGHIJKLMNOPQRSTUVWXYZ..."
+                    }
+                }
+            ]
+        }
+    ],
+    "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+            "name": "graph_schema",
+            "schema": {
+                "$defs": {
+                    "DataPoint": {
+                        "properties": {
+                            "x": {
+                                "title": "X",
+                                "type": "number"
+                            },
+                            "y": {
+                                "title": "Y",
+                                "type": "number"
+                            },
+                            "serie": {
+                                "title": "Serie",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "x",
+                            "y",
+                            "serie"
+                        ],
+                        "title": "DataPoint",
+                        "type": "object"
+                    }
+                },
+                "title": "Graph",
+                "type": "object"
+                "properties": {
+                    "title": {
+                        "title": "Title",
+                        "type": "string"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "type": "string"
+                    },
+                    "x_axis": {
+                        "title": "X Axis",
+                        "type": "string"
+                    },
+                    "y_axis": {
+                        "title": "Y Axis",
+                        "type": "string"
+                    },
+                    "legend": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "title": "Legend",
+                        "type": "array"
+                    },
+                    "data": {
+                        "items": {
+                            "$ref": "#/$defs/DataPoint"
+                        },
+                        "title": "Data",
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "title",
+                    "description",
+                    "x_axis",
+                    "y_axis",
+                    "legend",
+                    "data"
+                ],
+                "additionalProperties": false
+            },
+            "strict": true
+        }
+    },
+    "model": "Cohere-command-r-plus-08-2024"
+}
+```
+
+Let's see how this works:
+
+__Response__
+
+```json
+{
+    "id": "0a1234b5de6789f01gh2i345j6789klm",
+    "object": "chat.completion",
+    "created": 1718726686,
+    "model": "Cohere-command-r-plus-08-2024",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "{
+                    \"title\": \"Global tree cover: annual loss\",
+                    \"description\": \"Annual loss in thousand square kilometers of global tree cover across different climate zones.\",
+                    \"x_axis\": \"Year\",
+                    \"y_axis\": \"Thousand square kilometers\",
+                    \"legend\": [
+                        \"Boreal\",
+                        \"Temperate\",
+                        \"Subtropical\",
+                        \"Tropical\"
+                    ],
+                    \"data\": [
+                        {
+                            \"x\": 2001,
+                            \"y\": -35,
+                            \"serie\": \"Boreal\"
+                        },
+                        {
+                            \"x\": 2001,
+                            \"y\": -10,
+                            \"serie\": \"Temperate\"
+                        },
+...
+                        {
+                            \"x\": 2023,
+                            \"y\": -195,
+                            \"serie\": \"Tropical\"
+                        }
+                    ]
+                }",
+                "tool_calls": null
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 1250,
+        "total_tokens": 3246,
+        "completion_tokens": 1996
+    }
+}
+```
+
+While the information isn't perfect, we can see the model was able to capture a good amount of information from the original chart.
+
