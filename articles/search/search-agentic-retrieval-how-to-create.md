@@ -31,7 +31,12 @@ After you can create an agent, you can update its properties at any time. If the
 
 + A search index containing plain text or vectors. The index must [meet requirements for agentic retrieval](search-agentic-retrieval-how-to-index.md), including a [semantic configuration](semantic-how-to-configure.md) with the `defaultConfiguration` specified.
 
-+ Region requirements. Azure AI Search and your model should be in the same region. **East US**, **North Europe**, **Japan East**, **Sweden Central**. Public cross-region connections and private link connection from AI Search to the model are supported.
++ Region requirements. Azure AI Search and your model should be in the same region.  Public cross-region connections and private link connection from AI Search to the model are supported. 
+
+  + **East US**
+  + **North Europe**
+  + **Japan East**
+  + **Sweden Central**
 
 + API requirements. To create or use an agent, use 2025-05-01-preview data plane REST API or a prerelease package of an Azure SDK that provides Agent APIs.
 

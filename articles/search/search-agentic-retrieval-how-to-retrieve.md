@@ -15,7 +15,7 @@ ms.date: 04/30/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, *agentic retrieval* is a new parallel query processing architecture that uses a conversational language model for query planning and execution. 
+In Azure AI Search, *agentic retrieval* is a new query architecture that uses a conversational language model for query planning and parallel query execution. 
 
 This article explains how to use the **retrieve** method that invokes an agent and parallel query processing. This article also explains the components of the retrieval response. 
 
@@ -28,13 +28,18 @@ This article explains how to use the **retrieve** method that invokes an agent a
 
 + Azure AI Search with a managed identity for role-based access to a chat model.
 
-+ Region requirements. Azure AI Search and your model should be in the same region. **East US**, **North Europe**, **Japan East**, **Sweden Central**. Public cross-region connections and private link connection from AI Search to the model are supported.
++ Region requirements. Azure AI Search and your model should be in the same region.  Public cross-region connections and private link connection from AI Search to the model are supported. 
+
+  + **East US**
+  + **North Europe**
+  + **Japan East**
+  + **Sweden Central**
 
 + API requirements. Use 2025-05-01-preview data plane REST API or a prerelease package of an Azure SDK that provides Agent APIs.
 
 To follow the steps in this guide, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending REST API calls to Azure AI Search. There's no portal support at this time.
 
-## Call retrieve
+## Call the retrieve action
 
 Call the **retrieve** action on the agent object to invoke retrieval and return a response. Use the [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) data plane REST API or an Azure SDK prerelease package that provides equivalent functionality for this task.
 

@@ -15,17 +15,17 @@ ms.date: 04/30/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, *agentic retrieval* is a new information retrieval engine that uses a conversational language model for query planning and parallel processing for query execution. 
+In Azure AI Search, *agentic retrieval* is a new query architecture that uses a conversational language model for query planning and parallel query execution. 
 
-Queries are created internally. Certain aspects of those generated queries are determined by your search index. This article explains which index elements affect agentic retrieval. You can use an existing index if it meets the criteria identified in this article. 
+Queries are created internally. Certain aspects of those generated queries are determined by your search index. This article explains which index elements affect agentic retrieval. You can use an existing index if it meets the criteria identified in this article, even if it was created using earlier API versions.
 
 Summarized, the search index specified in the `targetIndexes` of an [agent definition](search-agentic-retrieval-how-to-create.md) must have these elements:
 
-+ `searchable` and `retrievable` string fields
-+ A `semanticConfiguration`, with a `defaultSemanticConfiguration`
-+ A `vectorizer` if you have vector fields and you want vector queries
++ String fields attributed as `searchable` and `retrievable`
++ A semantic configuration, with a `defaultSemanticConfiguration`
++ A vectorizer if you want to include vector queries in the pipeline
 
-Optionally, the following index elements add more opportunities for optimization:
+Optionally, the following index elements increase your opportunities for optimization:
 
 + `scoringProfile` with a `defaultScoringProfile`, for boosting relevance
 + `synonymMaps` for terminology or jargon
@@ -33,7 +33,7 @@ Optionally, the following index elements add more opportunities for optimization
 
 ## Example index definition
 
-Here's an example index that's designed for agentic retrieval. It meets the criteria for required elements.
+Here's an example index that works for agentic retrieval. It meets the criteria for required elements.
 
 ```json
 {
@@ -140,11 +140,11 @@ Here's an example index that's designed for agentic retrieval. It meets the crit
 
 **Key points**:
 
-Recall that the large language model (LLM) is used twice. First, it's used to create a query plan. After the query plan is executed, search results are passed to the LLM again, this time as grounding data. LLMs consume and emit tokenized strings of human readable plain text content. This index provides plain text strings that are both `searchable` and `retrievable` in the response.
+Recall that the large language model (LLM) is used twice. First, it's used to create a query plan. After the query plan is executed, search results are passed to the LLM again, this time as grounding data. LLMs consume and emit tokenized strings of human readable plain text content. The fields in this index supports model usage by providing plain text strings that are both `searchable` and `retrievable` in the response.
 
-The vector field is used at query time. You don't need the vector in results because it isn't human or LLM readable. For the vector field, `retrievable` and `stored` are false. 
+This index includes a vector field that's used at query time. You don't need the vector in results because it isn't human or LLM readable, but it does need to be searchable. Since you don't need vectors in the response, both `retrievable` and `stored` are false. 
 
-The vectorizer is critical. It encodes subqueries into vectors at query time for similarity search over the vectors. The vectorizer in the index must be the same embedding model used to create the vectors in the index.
+The vectorizer defined in the vector search configuration is critical. It encodes subqueries into vectors at query time for similarity search over the vectors. The vectorizer must be the same embedding model used to create the vectors in the index.
 
 <!-- 
 > [!div class="checklist"]
@@ -160,7 +160,7 @@ The index must have at least one semantic configuration. The semantic configurat
 + A `defaultSemanticConfiguration` set to a named configuration.
 + A `prioritizedContentFields` set to at least one string field that is both `searchable` and `retrievable`.
 
-Within the configuration, `prioritizedContentFields` is required. Title and keywords are optional. For chunked content, you might not have either. If you add [entity recognition](cognitive-search-skill-entity-recognition-v3.md) or [key phrase extraction](cognitive-search-skill-keyphrases.md), you might have some keywords associated with each chunk that can be useful in search scenarios, perhaps in a scoring profile.
+Within the configuration, `prioritizedContentFields` is required. Title and keywords are optional. For chunked content, you might not have either. However, if you add [entity recognition](cognitive-search-skill-entity-recognition-v3.md) or [key phrase extraction](cognitive-search-skill-keyphrases.md), you might have some keywords associated with each chunk that can be useful in search scenarios, perhaps in a scoring profile.
 
 Here's an example of a semantic configuration that works for agentic retrieval:
 
