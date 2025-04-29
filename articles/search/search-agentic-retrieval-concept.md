@@ -141,7 +141,7 @@ Choose any of these options for you next step.
 
 + REST API reference, Agents.
 
-+ Azure OpenAI Demo, updated to use agentic retrieval.
++ [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo), updated to use agentic retrieval.
 
 <!-- From the web
 
