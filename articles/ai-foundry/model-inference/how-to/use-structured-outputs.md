@@ -1,5 +1,5 @@
 ---
-title: How to use structured outputs for chat models with Azure AI model inference
+title: How to use structured outputs for chat models
 titleSuffix: Azure AI Foundry
 description: Learn how to use structure outputs with chat completions with Azure AI model inference
 manager: scottpolly
@@ -14,7 +14,7 @@ ms.custom: references_regions
 zone_pivot_groups: azure-ai-inference-samples
 ---
 
-# How to use structured outputs for chat models with Azure AI model inference
+# How to use structured outputs for chat models
 
 
 ::: zone pivot="programming-language-python"
