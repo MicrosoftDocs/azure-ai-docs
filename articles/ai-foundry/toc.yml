@@ -525,6 +525,8 @@ items:
     items:
     - name: Create a project
       href: how-to/create-projects.md
+    - name: Create a project using a Bicep template
+      href: how-to/create-azure-ai-project-template.md
     - name: Hubs and projects overview
       href: concepts/ai-resources.md
     - name: Create your first hub
