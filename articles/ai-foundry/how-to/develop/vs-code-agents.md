@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 content_well_notification: 
   - AI-contribution
 ms.topic: how-to
-ms.date: 04/28/2025
+ms.date: 04/29/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
@@ -99,14 +99,15 @@ tools: []
 
 ### Add tools to the Azure AI Agent
 
-Azure AI Agent Service has a set of tools that you can use to interact with your data sources, such as:
- - Grounding with Bing search
- - Azure AI Search 
- - Azure Functions 
- - File retrieval 
- - Code interpreter
+Azure AI Agent Service has a set of knowledge and action tools that you can use to interact with your data sources, such as:
+ - [Grounding with Bing search](/azure/ai-services/agents/how-to/tools/bing-grounding?tabs=python&pivots=overview)
+ - [Azure AI Search](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview) 
+ - [Azure Functions](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview) 
+ - [File retrieval](/azure/ai-services/agents/how-to/tools/azure-functions?tabs=python&pivots=overview) 
+ - [Code interpreter](/azure/ai-services/agents/how-to/tools/code-interpreter?tabs=python&pivots=overview)
+ - [OpenAPI Specified tools](/azure/ai-services/agents/how-to/tools/openapi-spec?tabs=python&pivots=overview)
 
-#### Create the tool configuration file
+#### Configure the tools YAML file
 
 The Agent Designer adds tools to an AI Agent via .yaml files. 
 
@@ -133,7 +134,7 @@ Create a tool configuration .yaml file using the following steps:
 
 1. To save the .yaml file, select **File** > **Save** in the VS Code menu bar.
 
-#### Add the tool to the AI Agent
+#### Connect the tools file to the AI Agent
 
 Add a tool to the AI Agent with the following steps:
 
@@ -179,13 +180,17 @@ Selecting the deployed agent opens the **Agent Preferences** page in a view only
 
 Open the **Agents Playground** using the following steps:
 
-1. Right-click on your deployed agent and select the **Open Playground** option This action starts a thread with your agent and let you send messages.
+1. Right-click on your deployed agent and select the **Open Playground** option This action starts a thread with your agent and let you send messages. 
+
+1. Alternatively, select the **Agent Playground** link in the **Tools** subsection, and select your agent from the top-center list. 
 
 1. The **Playground** page is displayed.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png" alt-text="Screenshot of the **Agents Playground** page in VS Code." lightbox="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png":::
 
-1. Type your prompt and see the outputs. 
+1. Type your prompt and see the outputs. The **Grounding with Bing search** tool is used to search the web for information. The agent uses the model and tools you configured in the agent designer. The source of the information is displayed in the **Agent Annotations** section, highlighted in the following image. 
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-playground-run.png" alt-text="Screenshot of the Agents Playground page with agent annotations highlighted in VS Code." lightbox="../../media/how-to/get-started-projects-vs-code/agent-playground-run.png":::
 
 ## Explore Threads
 
@@ -193,11 +198,9 @@ The **Threads** subsection displays the threads created during a run with your a
 
 :::image type="content" source="../../media/how-to/get-started-projects-vs-code/thread-list.png" alt-text="Screenshot of the threads in the Threads subsection." lightbox="../../media/how-to/get-started-projects-vs-code/thread-list.png":::
 
-
-
 ###  View thread details
 
-Select a thread to view its details. The **Thread Details** page is displayed. 
+Select a thread to see the **Thread Details** page.
 
 :::image type="content" source="../../media/how-to/get-started-projects-vs-code/thread-view.png" alt-text="Screenshot of the thread details view." lightbox="../../media/how-to/get-started-projects-vs-code/thread-view.png":::
 
@@ -207,6 +210,11 @@ Select a thread to view its details. The **Thread Details** page is displayed.
 
 - A **Run** is a single execution of an agent. Each run can have multiple threads, and each thread can have multiple messages. The agent uses its configuration and Thread’s Messages to perform tasks by calling models and tools. As part of a Run, the agent appends Messages to the Thread.
 
+###  View run details
+
+Select the **View run info** button in the **Thread Details** page to see the run information in a JSON file.
+
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/run-file.png" alt-text="Screenshot of the run details .json file." lightbox="../../media/how-to/get-started-projects-vs-code/run-file.png":::
 
 ## Cleanup resources
 
@@ -216,7 +224,7 @@ The Azure resources that you created in this article are billed to your Azure su
 
 Delete the deployed agent in the [online AI Foundry portal](https://ai.azure.com). Select **Agents** from the navigation menu on the left, select your agent, then select the **Delete** button.
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-agent.png" alt-text="Screenshot of the AI Foundry portal with 'Agents' from the navigation menu on the left and the **Delete** button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-agent.png" alt-text="Screenshot of the AI Foundry portal with Agents from the navigation menu on the left and the Delete button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
 
 ### Delete your models
 
@@ -224,7 +232,7 @@ Delete the deployed agent in the [online AI Foundry portal](https://ai.azure.com
 
 1. Right-click on your deployed model to delete and select the **Delete** option.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-model.png" alt-text="Screenshot of the model context menu with the 'Delete' option highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/delete-model.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-model.png" alt-text="Screenshot of the model context menu with the Delete option highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/delete-model.png":::
 
 ### Delete your tools
 
