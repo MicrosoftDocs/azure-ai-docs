@@ -114,4 +114,4 @@ Remove-AzResourceGroup -Name exampleRG
 
 ## Related content
 
-- [What is Azure AI Foundry?](../what-is-ai-foundry.md)
+- [Get started with the SDK](../quickstarts//get-started-code.md?pivots=fdp-project)
