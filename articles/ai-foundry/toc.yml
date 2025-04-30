@@ -572,17 +572,19 @@ items:
       href: concepts/rbac-azure-ai-foundry.md
   - name: Network security
     items:
-    - name: Configure managed network
-      href: how-to/configure-managed-network.md
     - name: Configure private link
       displayName: custom dns
       href: how-to/configure-private-link.md
-    - name: Secure playground chat
-      href: how-to/secure-data-playground.md
-    - name: Securely access on-premises resources
-      href: how-to/access-on-premises-resources.md
-    - name: Troubleshoot secure project connectivity
-      href: how-to/troubleshoot-secure-connection-project.md
+    - name: Managed network for hubs
+      items:
+      - name: Configure managed network
+        href: how-to/configure-managed-network.md
+      - name: Secure playground chat
+        href: how-to/secure-data-playground.md
+      - name: Securely access on-premises resources
+        href: how-to/access-on-premises-resources.md
+      - name: Troubleshoot secure project connectivity
+        href: how-to/troubleshoot-secure-connection-project.md
   - name: Data protection & encryption
     items:
     - name: Configure customer-managed keys
