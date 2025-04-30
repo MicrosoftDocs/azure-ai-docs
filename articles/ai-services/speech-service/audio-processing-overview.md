@@ -5,7 +5,7 @@ description: An overview of audio processing and capabilities of the Microsoft A
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 9/12/2024
+ms.date: 3/10/2025
 author: eric-urban
 ms.author: eur
 ms.reviewer: hasshah

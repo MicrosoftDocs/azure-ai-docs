@@ -56,6 +56,8 @@ groups:
   title: Programming languages
   prompt: Choose a platform
   pivots:
+  - id: programming-language-foundry-portal
+    title: Foundry portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-java
@@ -71,10 +73,21 @@ groups:
   title: Programming languages
   prompt: Choose a platform
   pivots:
+  - id: programming-language-foundry-portal
+    title: Foundry portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-python
     title: Python
+  - id: programming-language-rest
+    title: REST
+- id: programming-languages-content-safety-foundry-rest
+# Owner: pafarley
+  title: Programming languages
+  prompt: Choose a platform
+  pivots:
+  - id: programming-language-foundry-portal
+    title: Foundry portal
   - id: programming-language-rest
     title: REST
 - id: cloud-location
@@ -578,6 +591,17 @@ groups:
     title: C#
   - id: programming-language-python
     title: Python
+- id: foundry-speech-studio-rest
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: ai-foundry-portal
+    title: Foundry portal
+  - id: speech-studio
+    title: Speech Studio
+  - id: rest-api
+    title: REST
 - id: speech-studio-rest
 # Owner: eur
   title: Programming languages
@@ -646,6 +670,15 @@ groups:
       title: Python
     - id: programming-language-rest
       title: REST
+- id: azure-ai-model-fine-tune
+# Owner: ssalgadodev
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+    - id: foundry-portal
+      title: Foundry Portal
+    - id: programming-language-python
+      title: Python
 - id: aml-control-methods
   # Owner: gopalv
   title: Azure Machine Learning control plane
@@ -1019,6 +1052,15 @@ groups:
     title: Code examples
   - id: supported-filetypes
     title: Supported file types
+# owner: aahi
+- id: selection-fabric-data-agent
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: overview
+    title: Overview
+  - id: code-example
+    title: Code examples
 # owner: fosteramanda
 - id: selection-file-search
   title: Selections
@@ -1109,3 +1151,12 @@ groups:
     title: Python
   - id: programming-language-typescript
     title: TypeScript
+- id: azure-portal-and-cli
+# Owner: Larryfr
+  title: Portal and CLI
+  prompt: Choose a usage method
+  pivots:
+  - id: azure-portal
+    title: Azure portal
+  - id: cli
+    title: Azure CLI

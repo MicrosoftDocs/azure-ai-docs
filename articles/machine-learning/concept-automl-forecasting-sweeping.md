@@ -10,7 +10,7 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: concept-article
 ms.custom: automl, sdkv1
-ms.date: 10/01/2024
+ms.date: 03/11/2025
 
 #customer intent: As a developer, I want to use AutoML in Azure Machine Learning, so I can search for (sweep) and select forecasting models.
 ---

@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 09/19/2024
+ms.date: 03/21/2025
 ---
 
 # Vector storage in Azure AI Search
@@ -29,9 +29,9 @@ Considerations for vector storage include the following points:
 
 In Azure AI Search, there are two patterns for working with search results. 
 
-+ Generative search. Language models formulate a response to the user's query using data from Azure AI Search. This pattern includes an orchestration layer to coordinate prompts and maintain context. In this pattern, search results are fed into prompt flows, received by chat models like GPT and Text-Davinci. This approach is based on [**Retrieval augmented generation (RAG)**](retrieval-augmented-generation-overview.md) architecture, where the search index provides the grounding data.
++ Generative search. Language models formulate a response to the user's query using grounding data from Azure AI Search. This pattern typically includes an orchestration layer to coordinate prompts and maintain context. In this pattern, search results are fed into prompt flows, received by chat models like GPT. This approach is based on [**Retrieval augmented generation (RAG)**](retrieval-augmented-generation-overview.md) architecture, where the search index provides the grounding data.
 
-+ Classic search using a search bar, query input string, and rendered results. The search engine accepts and executes the vector query, formulates a response, and you render those results in a client app. In Azure AI Search, results are returned in a flattened row set, and you can choose which fields to include search results. Since there's no chat model, it's expected that you would populate the vector store (search index) with nonvector content that's human readable in your response. Although the search engine matches on vectors, you should use nonvector values to populate the search results. [**Vector queries**](vector-search-how-to-query.md) and [**hybrid queries**](hybrid-search-how-to-query.md) cover the types of query requests you can formulate for classic search scenarios.
++ Classic search using a search bar, query input, and rendered results. The search engine formulates the response using verbatim content in the search index, with no extra reasoning or logic. At query time, your application code or the search engine vectorizes the user input into a vector. The search engine performs a vector search over vector fields and formulates a response. You render those results in a client app. In Azure AI Search, results are returned in a flattened row set, and you can choose which fields to include search results. Since there's no chat model, it's expected that you would populate the vector store (search index) with nonvector content that's human readable in your response. Although the search engine matches on vectors, you should use nonvector values to populate the search results. [**Vector queries**](vector-search-how-to-query.md) and [**hybrid queries**](hybrid-search-how-to-query.md) cover the types of query requests you can formulate for classic search scenarios.
 
 Your index schema should reflect your primary use case. The following section highlights the differences in field composition for solutions built for generative AI or classic search.
 
@@ -160,18 +160,18 @@ The following screenshot shows an S1 service configured with one partition and o
 
 :::image type="content" source="media/vector-search-overview/usage-tiles-storage-vector-index.png" alt-text="Screenshot of usage tiles showing storage, vector index, and index count.":::
 
-Vector index limits and estimations are covered in [another article](vector-search-index-size.md), but two points to emphasize up front is that maximum storage varies by service tier, and also by when the search service was created. Newer same-tier services have significantly more capacity for vector indexes. For these reasons, take the following actions:
+Vector index limits and estimations are covered in [another article](vector-search-index-size.md), but two points to emphasize are that maximum storage varies by service tier and by when the search service was created. Newer same-tier services have significantly more capacity for vector indexes. For these reasons, take the following actions:
 
-+ [Check the deployment date of your search service](vector-search-index-size.md#how-to-check-service-creation-date). If it was created before April 3, 2024, consider creating a new search service for greater capacity.
++ [Check the deployment date of your search service](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date). If it was created before April 3, 2024, you might be able to [upgrade your service](search-how-to-upgrade.md) for greater capacity.
 
-+ [Choose a scalable tier](search-sku-tier.md) if you anticipate fluctuations in vector storage requirements. The Basic tier is fixed at one partition on older search services. Consider Standard 1 (S1) and above for more flexibility and faster performance, or create a new search service that uses higher limits and more partitions at every nillable tier.
++ [Choose a scalable tier](search-sku-tier.md) if you anticipate fluctuations in vector storage requirements. The Basic tier is fixed at one partition on older search services. Consider Standard 1 (S1) and above for more flexibility and faster performance. In the 2025-02-01-preview, you can also [switch from a lower tier to a higher tier](search-capacity-planning.md#change-your-pricing-tier).
 
 ## Basic operations and interaction
 
 This section introduces vector run time operations, including connecting to and securing a single index.
 
 > [!NOTE]
-> When managing an index, be aware that there is no portal or API support for moving or copying an index. Instead, customers typically point their application deployment solution at a different search service (if using the same index name), or revise the name to create a copy on the current search service, and then build it.
+> When managing an index, be aware that there's no portal or API support for moving or copying an index. Instead, customers typically point their application deployment solution at a different search service (if using the same index name), or revise the name to create a copy on the current search service, and then build it.
 
 ### Continuously available
 

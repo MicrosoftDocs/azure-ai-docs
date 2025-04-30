@@ -6,11 +6,12 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
-ms.topic: how-to
+ms.topic: reference
 ms.date: 01/29/2025
-ms.reviewer: estraight
+ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
+ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ---
 
 # Index Lookup tool for Azure AI Foundry

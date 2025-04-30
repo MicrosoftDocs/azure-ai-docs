@@ -7,8 +7,8 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
   - ignite-2024
-ms.topic: overview
-ms.date: 02/27/2025
+ms.topic: how-to
+ms.date: 03/27/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
@@ -31,17 +31,74 @@ If you want to jump right in and start building an app, check out:
 - [Create a chat app](../../quickstarts/get-started-code.md)
 - [Create a custom RAG app](../../tutorials/copilot-sdk-create-resources.md)
 
-## Get started with Projects
+## Prerequisites
+
+* An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
+* [Create a project](../create-projects.md) if you don't have one already.
+* Sign in with the Azure CLI using the same account that you use to access your AI Project:
+
+    ```bash
+    az login
+    ```
+
+## Install everything
+
+Install all the Azure AI Foundry SDK packages as shown here, or install only the packages you need in the following sections.
+
+::: zone pivot="programming-language-python"
+
+1. Create a file named **requirements.txt**. Add the following packages to the file:
+
+    ```txt
+    azure-ai-projects 
+    azure-identity 
+    openai 
+    azure-ai-inference 
+    azure-search-documents 
+    azure-ai-evaluation 
+    azure-monitor-opentelemetry
+    ```
+
+1. Install the packages:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+---
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+```dotnet
+dotnet add package Azure.AI.Projects
+dotnet add package Azure.Identity
+dotnet add package Azure.AI.OpenAI
+dotnet add package Azure.AI.Inference
+dotnet add package Azure.Search.Documents
+```
+
+Add using statements:
+
+```csharp
+using Azure.Identity;
+using Azure.AI.Projects;
+using OpenAI.Chat;
+using Azure.AI.OpenAI;
+using Azure.AI.Inference;
+using Azure.Search.Documents;
+using Azure.Search.Documents.Models;
+```
+
+---
+
+::: zone-end
+
+
+## Get started with projects
 
 The best way to get started using the Azure AI Foundry SDK is by using a project. AI projects connect together different data, assets, and services you need to build AI applications. The AI project client allows you to easily access these project components from your code by using a single connection string.
-
-First follow steps to [create an AI Project](../create-projects.md) if you don't have one already.
-
-Sign in with the Azure CLI using the same account that you use to access your AI Project:
-
-```bash
-az login
-```
 
 Install the Azure AI projects client library:
 
@@ -101,7 +158,10 @@ Create a project client in code:
 
 # [Sync](#tab/sync)
 
-:::code language="csharp" source="~/azureai-samples-csharp/scenarios/projects/basic-csharp/Program.cs" id="snippet_get_project":::
+```csharp
+var connectionString = "<your_connection_string>";
+var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential());
+```
 
 # [Async](#tab/async)
 
@@ -169,7 +229,33 @@ using Azure.AI.OpenAI;
 
 If you have existing code that uses the OpenAI SDK, you can use the project client to create an `AzureOpenAI` client that uses your project's Azure OpenAI connection:
 
-:::code language="csharp" source="~/azureai-samples-csharp/scenarios/projects/basic-csharp/Program.cs" id="azure_openai":::
+```csharp
+var connections = projectClient.GetConnectionsClient();
+ConnectionResponse connection = connections.GetDefaultConnection(ConnectionType.AzureOpenAI, withCredential: true);
+var properties = connection.Properties as ConnectionPropertiesApiKeyAuth;
+
+if (properties == null) {
+    throw new Exception("Invalid auth type, expected API key auth");
+}
+
+// Create and use an Azure OpenAI client
+AzureOpenAIClient azureOpenAIClient = new(
+    new Uri(properties.Target),
+    new AzureKeyCredential(properties.Credentials.Key));
+
+// This must match the custom deployment name you chose for your model
+ChatClient chatClient = azureOpenAIClient.GetChatClient("gpt-4o-mini");
+
+ChatCompletion completion = chatClient.CompleteChat(
+    [
+        new SystemChatMessage("You are a helpful assistant that talks like a pirate."),
+        new UserChatMessage("Does Azure OpenAI support customer managed keys?"),
+        new AssistantChatMessage("Yes, customer managed keys are supported by Azure OpenAI"),
+        new UserChatMessage("Do other Azure AI services support this too?")
+    ]);
+
+Console.WriteLine($"{completion.Role}: {completion.Content[0].Text}");
+```
 
 ::: zone-end
 
@@ -223,7 +309,25 @@ using Azure.AI.Inference;
 
 You can use the project client to get a configured and authenticated `ChatCompletionsClient` or `EmbeddingsClient`:
 
-:::code language="csharp" source="~/azureai-samples-csharp/scenarios/projects/basic-csharp/Program.cs" id="snippet_inference":::
+```csharp
+var connectionString = Environment.GetEnvironmentVariable("AIPROJECT_CONNECTION_STRING");
+var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential());
+
+ChatCompletionsClient chatClient = projectClient.GetChatCompletionsClient();
+
+var requestOptions = new ChatCompletionsOptions()
+{
+    Messages =
+        {
+            new ChatRequestSystemMessage("You are a helpful assistant."),
+            new ChatRequestUserMessage("How many feet are in a mile?"),
+        },
+    Model = "gpt-4o-mini"
+};
+
+Response<ChatCompletions> response = chatClient.Complete(requestOptions);
+Console.WriteLine(response.Value.Content);
+```
 
 ::: zone-end
 
@@ -348,7 +452,21 @@ using Azure.Search.Documents.Models;
 
 Instantiate the search and/or search index client as desired:
 
-:::code language="csharp" source="~/azureai-samples-csharp/scenarios/projects/basic-csharp/Program.cs" id="azure_aisearch":::
+```csharp
+var connections = projectClient.GetConnectionsClient();
+var connection = connections.GetDefaultConnection(ConnectionType.AzureAISearch, withCredential: true).Value;
+
+var properties = connection.Properties as ConnectionPropertiesApiKeyAuth;
+if (properties == null) {
+    throw new Exception("Invalid auth type, expected API key auth");
+}
+
+SearchClient searchClient = new SearchClient(
+    new Uri(properties.Target),
+    "products",
+    new AzureKeyCredential(properties.Credentials.Key));
+```
+
 
 ::: zone-end
 

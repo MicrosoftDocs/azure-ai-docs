@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 9/20/2024
+ms.date: 3/10/2025
 ms.author: eur
 zone_pivot_groups: programming-languages-speech-services
 #Customer intent: As a developer, I want to learn how to translate speech from one language to text in another language so that I can convert spoken language into text in a different language.

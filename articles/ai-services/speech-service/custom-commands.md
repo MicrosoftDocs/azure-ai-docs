@@ -6,7 +6,7 @@ author: trrwilson
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 9/12/2024
+ms.date: 3/10/2025
 ms.author: travisw
 ms.custom: cogserv-non-critical-speech
 ---

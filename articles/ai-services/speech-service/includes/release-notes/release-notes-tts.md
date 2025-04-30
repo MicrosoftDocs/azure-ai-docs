@@ -2,23 +2,68 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 2/18/2025
+ms.date: 4/8/2025
 ms.author: eur
 ms.custom: references_regions
 ---
 
+### March 2025 release
+
+#### General availability of some HD voices
+
+The following HD voices are now generally available:
+
+| **Locale (BCP-47)** | **Voice name**                                         |
+|---------------------|--------------------------------------------------------|
+| `de-DE`             | `de-DE-Florian:DragonHDLatestNeural` (Male)            |
+| `de-DE`             | `de-DE-Seraphina:DragonHDLatestNeural` (Female)        |
+| `en-US`             | `en-US-Adam:DragonHDLatestNeural` (Male)               |
+| `en-US`             | `en-US-Andrew:DragonHDLatestNeural` (Male)             |
+| `en-US`             | `en-US-Andrew2:DragonHDLatestNeural` (Male)            |
+| `en-US`             | `en-US-Ava:DragonHDLatestNeural` (Female)              |
+| `en-US`             | `en-US-Brian:DragonHDLatestNeural` (Male)              |
+| `en-US`             | `en-US-Davis:DragonHDLatestNeural` (Male)              |
+| `en-US`             | `en-US-Emma:DragonHDLatestNeural` (Female)             |
+| `en-US`             | `en-US-Emma2:DragonHDLatestNeural` (Female)            |
+| `en-US`             | `en-US-Steffan:DragonHDLatestNeural` (Male)            |
+| `es-ES`             | `es-ES-Tristan:DragonHDLatestNeural` (Male)            |
+| `es-ES`             | `es-ES-Ximena:DragonHDLatestNeural` (Female)           |
+| `fr-FR`             | `fr-FR-Remy:DragonHDLatestNeural` (Male)               |
+| `fr-FR`             | `fr-FR-Vivienne:DragonHDLatestNeural` (Female)         |
+| `ja-JP`             | `ja-JP-Masaru:DragonHDLatestNeural` (Male)             |
+| `ja-JP`             | `ja-JP-Nanami:DragonHDLatestNeural` (Female)           |
+| `zh-CN`             | `zh-CN-Xiaochen:DragonHDLatestNeural` (Female)         |
+| `zh-CN`             | `zh-CN-Yunfan:DragonHDLatestNeural` (Male)             |
+
+#### Multi-talker voices for podcast scenarios (Preview)
+
+| **Locale (BCP-47)** | **Voice name**                                         |
+|---------------------|--------------------------------------------------------|
+| `en-US`             | `en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural` (Neutral)            |
+
+#### New HD voices (Preview)
+
+| **Locale (BCP-47)** | **Voice name**              |
+|---------------------|---------------------------|
+| `en-US`   | `en-US-Ava3:DragonHDLatestNeural` (Female) - optimized for Podcast | 
+| `en-US`   | `en-US-Andrew3:DragonHDLatestNeural` (Male) - optimized for Podcast | 
+
+#### Dragon HD Flash models (Preview)
+
+| **Locale (BCP-47)** | **Voice name**                                         |
+|---------------------|--------------------------------------------------------|
+| `zh-CN`             | `zh-CN-Xiaochen:DragonHDFlashLatestNeural` (Female)     |
+| `zh-CN`             | `zh-CN-Xiaoxiao:DragonHDFlashLatestNeural` (Female)     |
+| `zh-CN`             | `zh-CN-Xiaoxiao2:DragonHDFlashLatestNeural` (Female, Optimized for free-talking) |
+| `zh-CN`             | `zh-CN-Yunxiao:DragonHDFlashLatestNeural` (Male)       |
+| `zh-CN`             | `zh-CN-Yunyi:DragonHDFlashLatestNeural` (Male)          |
+
 ### February 2025 release
 
-#### Version 1.1 of HD voices (Public preview)
+#### Updated HD voices (Preview)
 
-Updated 13 current HD voices to the version 1.1 (latest) to support multilingual voices.
-
-- Specifying the "latest" model defaults to v1.1
-- v1.1 supports multilingual
-- If you want to call older version, specify the version in the voice name:
-    - Version 1.0: `en-US-Ava:DragonHDV1.0Neural`
-    - Latest (currently V1.1): `en-US-Ava:DragonHDLatestNeural`
-  
+Updated 13 current HD voices updated to support multilingual voices.
+ 
 | **Locale (BCP-47)** | **Voice name**              |
 |---------------------|---------------------------|
 | `de-DE`   | `de-DE-Seraphina:DragonHDLatestNeural` (Female) |
@@ -35,9 +80,9 @@ Updated 13 current HD voices to the version 1.1 (latest) to support multilingual
 | `ja-JP`   | `ja-JP-Masaru:DragonHDLatestNeural` (Male) |
 | `zh-CN`   | `zh-CN-Xiaochen:DragonHDLatestNeural` (Female) |
 
-#### Public preview of new HD voices
+#### New HD voices (Preview)
 
-Added 14 more HD voices that are only available in version 1.1. 
+Added 14 more HD voices
 
 | **Locale (BCP-47)** | **Voice name**              |
 |---------------------|---------------------------|
@@ -56,9 +101,20 @@ Added 14 more HD voices that are only available in version 1.1.
 | `ja-JP`   | `ja-JP-Nanami:DragonHDLatestNeural` (Female) |
 | `zh-CN`   | `zh-CN-Yunfan:DragonHDLatestNeural` (Male) |
 
-#### Azure OpenAI Service turbo voices
+#### Introducing new Multilingual voices (Preview)
 
-These turbo voices are now generally available:
+Added 4 more multilingual voices in `en-US` with emotions support.
+
+| **Locale (BCP-47)** | **Voice name**                | **Styles** |
+|---------------------|-----------------------------|------------|
+| `en-US`           | `DerekMultilingualNeural` (Male)  | `empathetic`, `excited`, `relieved`, `shy` |
+| `en-US`           | `PhoebeMultilingualNeural` (Female) | `empathetic`, `sad`, `serious` |
+| `en-US`           | `DavisMultilingualNeural` (Male)  | `empathetic`, `funny`, `relieved` |
+| `en-US`           | `NancyMultilingualNeural` (Female) | `excited`, `friendly`, `funny`, `relieved`, `shy` |
+
+#### Azure OpenAI Service turbo voices (Generally Available)
+
+These 6 turbo voices are now generally available:
 
 | **Locale (BCP-47)** | **Voice name**              |
 |---------------------|---------------------------|
@@ -69,7 +125,7 @@ These turbo voices are now generally available:
 | `en-US`   | `en-US-OnyxTurboMultilingualNeural` (Male) |
 | `en-US`   | `en-US-ShimmerTurboMultilingualNeural` (Female) |
 
-#### Voice quality improvements
+#### Voice quality improvements (Generally Available)
 
 Improved the quality of 16 voices.
 
@@ -92,7 +148,7 @@ Improved the quality of 16 voices.
 | `zh-HK`   | `zh-HK-HiuMaanNeural` (Female) |
 | `zh-HK`   | `zh-HK-WanLungNeural` (Male) |
 
-#### GA - Multi-style embedded Jenny
+#### Multi-style embedded Jenny (Generally Available)
 
 Added style support for `en-US-JennyNeural` in [embedded speech](../../embedded-speech.md). The same styles are supported as in the cloud. The following styles are supported: `angry`, `assistant`, `chat`, `cheerful`, `customerservice`, `excited`, `friendly`, `hopeful`, `newscast`, `sad`, `shouting`, `terrified`, `unfriendly`, and `whispering`.
 
@@ -460,7 +516,7 @@ Personal voice is now generally available. With personal voice, you can get AI g
 - The Azure AI Speech service supports OpenAI text to speech voices in the following regions: North Central US and Sweden Central. Like Azure AI Speech voices, OpenAI text to speech voices deliver high-quality speech synthesis to convert written text into natural sounding spoken audio. This unlocks a wide range of possibilities for immersive and interactive user experiences. For more information, see [What are OpenAI text to speech voices?](../../openai-voices.md).
 
   > [!NOTE]
-  > OpenAI text to speech voices are also available in [Azure OpenAI Service](../../../openai/reference.md#text-to-speech). 
+  > OpenAI text to speech voices are also available in [Azure OpenAI Service](../../../openai/reference.md#text-to-speech-preview). 
   
 - With this update, we have adjusted the pricing of prebuilt neural voices with Azure AI Speech. Check the updated pricing [here](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services).
 

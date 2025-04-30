@@ -8,7 +8,7 @@ ms.custom: devx-track-python, devx-track-dotnet, devx-track-extended-java, devx-
 ms.topic: quickstart
 author: aahill
 ms.author: aahi
-ms.date: 02/10/2025
+ms.date: 3/10/2025
 zone_pivot_groups: openai-quickstart-assistants
 recommendations: false
 ---
@@ -16,7 +16,7 @@ recommendations: false
 
 # Quickstart: Get started using Azure OpenAI Assistants (Preview)
 
-Azure OpenAI Assistants (Preview) allows you to create AI assistants tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, and custom functions.
+Azure OpenAI Assistants (Preview) allows you to create AI assistants tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, file search, and custom functions.
 
 ::: zone pivot="ai-foundry-portal"
 

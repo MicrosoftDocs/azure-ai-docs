@@ -2,7 +2,6 @@
 title: Configure Virtual Networks for Azure AI services
 titleSuffix: Azure AI services
 description: Configure layered network security for your Azure AI services resources.
-#services: cognitive-services
 author: aahill
 manager: nitinme
 ms.service: azure-ai-services
@@ -52,7 +51,7 @@ Virtual networks are supported in [regions where Azure AI services are available
 > - Translator
 
 > [!NOTE]
-> If you use Azure OpenAI, LUIS, Speech Services, or Language services, the `CognitiveServicesManagement` tag only enables you to use the service by using the SDK or REST API. To access and use the Azure AI Foundry portal, LUIS portal, Speech Studio, or Language Studio from a virtual network, you need to use the following tags:
+> If you use Azure OpenAI, LUIS, Speech Services, or Language services, the `CognitiveServicesManagement` tag only enables you to use the service by using the SDK or REST API. To access and use the [Azure AI Foundry portal](https://ai.azure.com/), LUIS portal, Speech Studio, or Language Studio from a virtual network, you need to use the following tags:
 >
 > - `AzureActiveDirectory`
 > - `AzureFrontDoor.Frontend`
@@ -61,7 +60,7 @@ Virtual networks are supported in [regions where Azure AI services are available
 > - `CognitiveServicesFrontEnd`
 > - `Storage` (Speech Studio only)
 > 
-> For information on Azure AI Foundry portal configurations, see the [Azure AI Foundry documentation](../ai-studio/how-to/configure-private-link.md).
+> For information on [Azure AI Foundry portal](https://ai.azure.com/) configurations, see the [Azure AI Foundry documentation](../ai-foundry/how-to/configure-private-link.md).
 
 ## Change the default network access rule
 

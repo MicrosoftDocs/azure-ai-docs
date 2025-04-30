@@ -24,16 +24,10 @@ To use embedding models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
+[!INCLUDE [how-to-prerequisites-python](../how-to-prerequisites-python.md)]
+
 * An embeddings model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add an embeddings model to your resource.
 
-* Install the Azure AI inference package with the following command:
-
-  ```bash
-  pip install -U azure-ai-inference
-  ```
-  
-  > [!TIP]
-  > Read more about the [Azure AI inference package and reference](https://aka.ms/azsdk/azure-ai-inference/python/reference).
 
 ## Use embeddings
 

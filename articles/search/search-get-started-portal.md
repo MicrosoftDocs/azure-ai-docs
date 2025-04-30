@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Create a search index in the Azure portal"
+title: "Quickstart: Keyword Search in the Azure Portal"
 titleSuffix: Azure AI Search
 description: Learn how to create, load, and query your first search index using the Import Data wizard in the Azure portal. This quickstart uses a fictitious hotel dataset for sample data.
 manager: nitinme
@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 02/27/2025
+ms.date: 03/04/2025
 ms.custom:
   - mode-ui
   - ignite-2023
@@ -16,7 +16,7 @@ ms.custom:
 
 # Quickstart: Create a search index in the Azure portal
 
-In this Azure AI Search quickstart, create your first search index using the [**Import data** wizard](search-import-data-portal.md) and a built-in sample of fictitious hotel data hosted by Microsoft. The wizard requires no code to create an index, helping you write interesting queries within minutes.
+In this quickstart, you create your first Azure AI Search index using the [**Import data** wizard](search-import-data-portal.md) and a built-in sample of fictitious hotel data hosted by Microsoft. The wizard requires no code to create an index, helping you write interesting queries within minutes.
 
 The wizard creates multiple objects on your search service, including a [searchable index](search-what-is-an-index.md), an [indexer](search-indexer-overview.md), and a data source connection for automated data retrieval. At the end of this quickstart, we review each object.
 
@@ -260,9 +260,9 @@ In the Azure portal, you can find and manage resources for your service under **
 > [!NOTE]
 > If you're using a free search service, remember that the limit is three indexes, three indexers, and three data sources. You can delete individual objects in the Azure portal to stay under the limit.
 
-## Next steps
+## Next step
 
 Try an Azure portal wizard to generate a ready-to-use web app that runs in a browser. Use this wizard on the small index you created in this quickstart, or use one of the built-in sample datasets for a richer search experience.
 
 > [!div class="nextstepaction"]
-> [Create a demo app in the Azure portal](search-create-app-portal.md)
+> [Quickstart: Create a demo search app in the Azure portal](search-create-app-portal.md)

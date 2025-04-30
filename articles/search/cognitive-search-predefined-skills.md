@@ -10,14 +10,14 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: concept-article
-ms.date: 09/19/2024
+ms.date: 03/11/2025
 ---
 
 # Skills for extra processing during indexing (Azure AI Search)
 
 This article describes the skills in Azure AI Search that you can include in a [skillset](cognitive-search-working-with-skillsets.md) to access external processing. 
 
-A *skill* provides an atomic operation that transforms content in some way. Often, it's an operation that recognizes or extracts text, but it can also be a utility skill that reshapes the enrichments that are already created. Typically, the output is text-based so that it can be used in [full text search](search-lucene-query-architecture.md) or vectors used in [vector search](vector-search-overview.md).
+A *skill* is an atomic operation that transforms content in some way. Often, it's an operation that recognizes or extracts text, but it can also be a utility skill that reshapes the enrichments that are already created. Typically, the output is either text-based so that it can be used in [full text search](search-lucene-query-architecture.md), or vectors used in [vector search](vector-search-overview.md).
 
 Skills are organized into categories:
 

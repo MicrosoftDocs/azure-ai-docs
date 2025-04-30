@@ -18,13 +18,13 @@ Use this article to get started using [Azure AI Foundry](https://ai.azure.com) t
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
 - Once you have your Azure subscription, <a href="/azure/ai-services/openai/how-to/create-resource?pivots=web-portal"  title="Create an Azure OpenAI resource."  target="_blank">create an Azure OpenAI resource </a>.
  For more information about resource creation, see the [resource deployment guide](/azure/ai-services/openai/how-to/create-resource).
-- An [Azure AI Foundry hub](/azure/ai-studio/how-to/create-azure-ai-resource) with your Azure OpenAI resource added as a connection. 
+- An [Azure AI Foundry hub](/azure/ai-foundry/how-to/create-azure-ai-resource) with your Azure OpenAI resource added as a connection. 
 
 ## Prepare your media
 
 You need an image to complete this quickstart. You can use this sample image or any other image you have available.
 
-:::image type="content" source="/azure/ai-studio/media/quickstarts/multimodal-vision/car-accident.png" alt-text="Photo of a car accident that can be used to complete the quickstart." lightbox="/azure/ai-studio/media/quickstarts/multimodal-vision/car-accident.png":::
+:::image type="content" source="/azure/ai-foundry/media/quickstarts/multimodal-vision/car-accident.png" alt-text="Photo of a car accident that can be used to complete the quickstart." lightbox="/azure/ai-foundry/media/quickstarts/multimodal-vision/car-accident.png":::
 
 ## Go to Azure AI Foundry
 

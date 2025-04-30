@@ -32,7 +32,7 @@ Let's quickly review the authentication headers available for use with Azure AI 
 | Header | Description |
 |--------|-------------|
 | Ocp-Apim-Subscription-Key | Use this header to authenticate with a resource key for a specific service or a multi-service resource key. |
-| Ocp-Apim-Subscription-Region | This header is only required when using a multi-service resource key with the [Azure AI Translator service](./Translator/reference/v3-0-reference.md). Use this header to specify the resource region. |
+| Ocp-Apim-Subscription-Region | This header is only required when using a multi-service resource key with the [Azure AI Translator service](translator/text-translation/reference/v3/reference.md). Use this header to specify the resource region. |
 | Authorization | Use this header if you are using an access token. The steps to perform a token exchange are detailed in the following sections. The value provided follows this format: `Bearer <TOKEN>`. |
 
 ## Authenticate with a single-service resource key

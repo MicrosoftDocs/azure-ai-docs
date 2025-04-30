@@ -1,10 +1,10 @@
 ---
 manager: nitinme
-author: eric-urban
-ms.author: eur
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 2/22/2025
+ms.date: 03/04/2025
 ---
 
 [!INCLUDE [Full text introduction](full-text-intro.md)]
@@ -14,9 +14,9 @@ ms.date: 2/22/2025
 
 ## Prerequisites
 
-- An active Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>
-- An Azure AI Search service. [Create a service](../../search-create-service-portal.md) if you don't have one. You can use a free tier for this quickstart.
-- [Visual Studio Code with the Python extension](https://code.visualstudio.com/docs/languages/python), or an equivalent IDE, with Python 3.10 or later. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure AI Search service. [Create a service](../../search-create-service-portal.md) if you don't have one. For this quickstart, you can use a free service.
+- [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python), or an equivalent IDE with Python 3.10 or later. If you haven't installed a suitable version of Python, follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter).
 
 ## Microsoft Entra ID prerequisites
 

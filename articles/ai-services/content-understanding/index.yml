@@ -9,7 +9,7 @@ metadata:
   ms.topic: landing-page
   author: laujan
   ms.author: lajanuar
-  ms.date: 11/19/2024
+  ms.date: 04/14/2025
 
 landingContent:
 
@@ -44,7 +44,7 @@ landingContent:
         - text: Try Content Understanding REST API
           url: quickstart/use-rest-api.md
         - text: Try Azure AI Foundry portal
-          url: image/overview.md
+          url: quickstart/use-ai-foundry.md
 
   - title: How-to guides
     linkLists:

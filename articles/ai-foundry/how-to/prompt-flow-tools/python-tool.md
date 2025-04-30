@@ -5,11 +5,12 @@ description: This article introduces you to the Python tool for flows in Azure A
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: ignite-2023, devx-track-python, build-2024, ignite-2024
-ms.topic: how-to
+ms.topic: reference
 ms.date: 01/29/2025
-ms.reviewer: keli19
+ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
+ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ---
 
 # Python tool for flows in Azure AI Foundry portal

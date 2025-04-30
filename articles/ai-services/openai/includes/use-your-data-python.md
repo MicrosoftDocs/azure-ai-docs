@@ -1,5 +1,4 @@
 ---
-#services: cognitive-services
 manager: nitinme
 author: mrbullwinkle #travisw
 ms.author: mbullwin #travisw

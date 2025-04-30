@@ -2,7 +2,6 @@
 title: Video Retrieval API reference - Image Analysis 4.0
 titleSuffix: Azure AI services
 description: Learn how to call the Video Retrieval APIs.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
@@ -15,6 +14,8 @@ ms.author: pafarley
 
 
 # Video Retrieval API reference
+
+[!INCLUDE [video-retrieval-deprecation](includes/video-retrieval-deprecation.md)]
 
 ## Authentication
 

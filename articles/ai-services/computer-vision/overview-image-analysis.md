@@ -2,7 +2,6 @@
 title: What is Image Analysis?
 titleSuffix: Azure AI services
 description: The Image Analysis service uses pretrained AI models to extract many different visual features from images.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
@@ -85,6 +84,7 @@ These APIs are only available in certain geographic regions. See [Region availab
 
 [!INCLUDE [segmentation-deprecation](includes/segmentation-deprecation.md)]
 
+<!--
 Image Analysis 4.0 (preview) offers the ability to remove the background of an image. This feature can either output an image of the detected foreground object with a transparent background, or a grayscale alpha matte image showing the opacity of the detected foreground object. 
 
 [Background removal](./concept-background-removal.md)
@@ -92,7 +92,7 @@ Image Analysis 4.0 (preview) offers the ability to remove the background of an i
 |Original image  |With background removed  |Alpha matte  |
 |:---------:|:---------:|:---------:|
 |   :::image type="content" source="media/background-removal/person-5.png" alt-text="Photo of a group of people using a tablet.":::  |    :::image type="content" source="media/background-removal/person-5-result.png" alt-text="Photo of a group of people using a tablet; background is transparent.":::     |   :::image type="content" source="media/background-removal/person-5-matte.png" alt-text="Alpha matte of a group of people.":::      |
-
+-->
 
 ## Service limits
 
@@ -128,21 +128,21 @@ Different Image Analysis features are available in different languages. See the 
 
 To use the Image Analysis APIs, you must create your Azure AI Vision resource in a supported region. The Image Analysis features are available in the following regions:
 
-|Region | Analyze Image<br>(minus 4.0 Captions) | Analyze Image<br>(including 4.0 Captions) | Product Recognition | Multimodal embeddings | Background removal |
-|---|---|---|---|---|--|
-| East US     | ✅  | ✅ | ✅ | ✅ | ✅ |
-| West US |  ✅ | ✅ |  | ✅ |✅ |
-| West US 2 |  ✅ |  | ✅ | ✅ | |
-| France Central |  ✅ | ✅ |  | ✅ | ✅ |
-| North Europe |  ✅ | ✅ |  | ✅ |✅ |
-| West Europe |  ✅ | ✅ |  | ✅ |✅ |
-| Sweden Central |  ✅ |  |  | ✅ | |
-| Switzerland North |  ✅ |  |  | ✅ | |
-| Australia East |  ✅ |  |  | ✅ | |
-| Southeast Asia |  ✅ | ✅ |  | ✅ |✅ |
-| East Asia |  ✅ | ✅ |  |  | |
-| Korea Central |  ✅ | ✅ |  | ✅ |✅ |
-| Japan East |  ✅ |  |  | ✅ | |
+|Region | Analyze Image<br>(minus 4.0 Captions) | Analyze Image<br>(including 4.0 Captions) | Product Recognition | Multimodal embeddings | 
+|---|---|---|---|---|
+| East US     | ✅  | ✅ | ✅ | ✅ | 
+| West US |  ✅ | ✅ |  | ✅ |
+| West US 2 |  ✅ |  | ✅ | ✅ | 
+| France Central |  ✅ | ✅ |  | ✅ | 
+| North Europe |  ✅ | ✅ |  | ✅ |
+| West Europe |  ✅ | ✅ |  | ✅ |
+| Sweden Central |  ✅ |  |  | ✅ | 
+| Switzerland North |  ✅ |  |  | ✅ | 
+| Australia East |  ✅ |  |  | ✅ | 
+| Southeast Asia |  ✅ | ✅ |  | ✅ |
+| East Asia |  ✅ | ✅ |  |  | 
+| Korea Central |  ✅ | ✅ |  | ✅ |
+| Japan East |  ✅ |  |  | ✅ | 
 
 
 ## Data privacy and security

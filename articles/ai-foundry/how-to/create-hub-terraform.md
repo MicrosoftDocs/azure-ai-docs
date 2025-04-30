@@ -2,7 +2,7 @@
 title: 'Use Terraform to create an Azure AI Foundry hub'
 description: In this article, you create an Azure AI Foundry hub, an Azure AI Foundry project, an AI services resource, and more resources.
 ms.topic: how-to
-ms.date: 02/12/2025
+ms.date: 03/07/2025
 titleSuffix: Azure AI Foundry 
 ms.service: azure-ai-foundry
 manager: scottpolly 
@@ -40,7 +40,7 @@ In this article, you use Terraform to create an [Azure AI Foundry](https://ai.az
 ## Implement the Terraform code
 
 > [!NOTE]
-> The sample code for this article is located in the [Azure Terraform GitHub repo](https://github.com/Azure/terraform/tree/master/quickstart/101-ai-studio). You can view the log file containing the [test results from current and previous versions of Terraform](https://github.com/Azure/terraform/tree/master/quickstart/101-ai-studio/TestRecord.md). You may need to update the resource provider versions used in the template to use the latest available versions.
+> The sample code for this article is located in the [Azure Terraform GitHub repo](https://github.com/Azure/terraform/tree/master/quickstart/101-azure-ai-foundry). You can view the log file containing the [test results from current and previous versions of Terraform](https://github.com/Azure/terraform/tree/master/quickstart/101-azure-ai-foundry/TestRecord.md). You may need to update the resource provider versions used in the template to use the latest available versions.
 > 
 > See more [articles and sample code showing how to use Terraform to manage Azure resources](/azure/terraform)
 
@@ -48,19 +48,19 @@ In this article, you use Terraform to create an [Azure AI Foundry](https://ai.az
 
 1. Create a file named `providers.tf` and insert the following code.
 
-    :::code language="Terraform" source="~/terraform_samples/quickstart/101-ai-studio/providers.tf":::
+    :::code language="Terraform" source="~/terraform_samples/quickstart/101-azure-ai-foundry/providers.tf":::
 
 1. Create a file named `main.tf` and insert the following code.
 
-    :::code language="Terraform" source="~/terraform_samples/quickstart/101-ai-studio/main.tf":::
+    :::code language="Terraform" source="~/terraform_samples/quickstart/101-azure-ai-foundry/main.tf":::
 
 1. Create a file named `variables.tf` and insert the following code.
 
-    :::code language="Terraform" source="~/terraform_samples/quickstart/101-ai-studio/variables.tf":::
+    :::code language="Terraform" source="~/terraform_samples/quickstart/101-azure-ai-foundry/variables.tf":::
 
 1. Create a file named `outputs.tf` and insert the following code.
     
-    :::code language="Terraform" source="~/terraform_samples/quickstart/101-ai-studio/outputs.tf":::
+    :::code language="Terraform" source="~/terraform_samples/quickstart/101-azure-ai-foundry/outputs.tf":::
 
 ## Initialize Terraform
 

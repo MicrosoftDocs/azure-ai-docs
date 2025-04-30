@@ -2,7 +2,6 @@
 title: Image Analysis SDK Overview
 titleSuffix: Azure AI services
 description: This page gives you an overview of the Azure AI Image Analysis SDK.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision

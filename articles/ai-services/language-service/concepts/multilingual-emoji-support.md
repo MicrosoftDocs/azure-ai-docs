@@ -2,7 +2,6 @@
 title: Multilingual and emoji support in Azure AI Language
 titleSuffix: Azure AI services
 description: Learn about offsets caused by multilingual and emoji encodings in Language service features.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language

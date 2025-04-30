@@ -1,7 +1,6 @@
 ---
 title: portal consolidation include file
 description: portal consolidation include file
-#services: cognitive-services
 manager: nitinme
 author: aahill
 ms.author: aahi

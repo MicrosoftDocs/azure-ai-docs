@@ -19,16 +19,12 @@ To complete this tutorial, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
+[!INCLUDE [how-to-prerequisites-python](../how-to-prerequisites-python.md)]
+
 * A model with reasoning capabilities model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a reasoning model. 
 
-  * This examples use `DeepSeek-R1`.
+  * This example uses `DeepSeek-R1`.
 
-* Install the [Azure AI inference package](https://aka.ms/azsdk/azure-ai-inference/python/reference) with the following command:
-
-  ```bash
-  pip install -U azure-ai-inference
-  ```
-  
 ## Use reasoning capabilities with chat
 
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.

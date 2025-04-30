@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/04/2024
+ms.date: 03/11/2025
 ms.reviewer: fasantia
 ms.author: sgilley
 author: sdgilley
@@ -21,7 +21,7 @@ Models deployed to [Azure AI Foundry](https://ai.azure.com) can be used with Lan
 
 - **Using the Azure AI model inference API:** All models deployed to Azure AI Foundry support the [Azure AI model inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LangChain, install the extensions `langchain-azure-ai`.
 
-- **Using the model's provider specific API:** Some models, like OpenAI, Cohere, or Mistral, offer their own set of APIs and extensions for LangChain. Those extensions may include specific functionalities that the model support and hence are suitable if you want to exploit them. When working with LangChain, install the extension specific for the model you want to use, like `langchain-openai` or `langchain-cohere`.
+- **Using the model's provider specific API:** Some models, like OpenAI, Cohere, or Mistral, offer their own set of APIs and extensions for LangChain. Those extensions might include specific functionalities that the model support and hence are suitable if you want to exploit them. When working with LangChain, install the extension specific for the model you want to use, like `langchain-openai` or `langchain-cohere`.
 
 In this tutorial, you learn how to use the packages `langchain-azure-ai` to build applications with LangChain.
 
@@ -38,7 +38,7 @@ To run this tutorial, you need:
     pip install langchain-core
     ```
 
-* In this example, we are working with the Azure AI model inference API, hence we install the following packages:
+* In this example, we're working with the Azure AI model inference API, hence we install the following packages:
 
     ```bash
     pip install -U langchain-azure-ai
@@ -65,7 +65,7 @@ export AZURE_INFERENCE_ENDPOINT="<your-model-endpoint-goes-here>"
 export AZURE_INFERENCE_CREDENTIAL="<your-key-goes-here>"
 ```
 
-Once configured, create a client to connect to the endpoint. In this case, we are working with a chat completions model hence we import the class `AzureAIChatCompletionsModel`.
+Once configured, create a client to connect to the endpoint. In this case, we're working with a chat completions model hence we import the class `AzureAIChatCompletionsModel`.
 
 ```python
 import os
@@ -98,7 +98,7 @@ model = AzureAIChatCompletionsModel(
 > [!NOTE]
 > When using Microsoft Entra ID, make sure that the endpoint was deployed with that authentication method and that you have the required permissions to invoke it.
 
-If you are planning to use asynchronous calling, it's a best practice to use the asynchronous version for the credentials:
+If you're planning to use asynchronous calling, it's a best practice to use the asynchronous version for the credentials:
 
 ```python
 from azure.identity.aio import (
@@ -127,7 +127,7 @@ model = AzureAIChatCompletionsModel(
 
 ## Use chat completions models
 
-Let's first use the model directly. `ChatModels` are instances of LangChain `Runnable`, which means they expose a standard interface for interacting with them. To simply call the model, we can pass in a list of messages to the `invoke` method.
+Let's first use the model directly. `ChatModels` are instances of LangChain `Runnable`, which means they expose a standard interface for interacting with them. To call the model, we can pass in a list of messages to the `invoke` method.
 
 ```python
 from langchain_core.messages import HumanMessage, SystemMessage
@@ -140,7 +140,7 @@ messages = [
 model.invoke(messages)
 ```
 
-You can also compose operations as needed in what's called **chains**. Let's now use a prompt template to translate sentences:
+You can also compose operations as needed in **chains**. Let's now use a prompt template to translate sentences:
 
 ```python
 from langchain_core.output_parsers import StrOutputParser
@@ -178,7 +178,7 @@ chain.invoke({"language": "italian", "text": "hi"})
 
 Models deployed to Azure AI Foundry support the Azure AI model inference API, which is standard across all the models. Chain multiple LLM operations based on the capabilities of each model so you can optimize for the right model based on capabilities. 
 
-In the following example, we create two model clients, one is a producer and another one is a verifier. To make the distinction clear, we are using a multi-model endpoint like the [Azure AI model inference service](../../model-inference/overview.md) and hence we are passing the parameter `model_name` to use a `Mistral-Large` and a `Mistral-Small` model, quoting the fact that **producing content is more complex than verifying it**.
+In the following example, we create two model clients. One is a producer and another one is a verifier. To make the distinction clear, we're using a multi-model endpoint like the [Azure AI model inference service](../../model-inference/overview.md) and hence we're passing the parameter `model_name` to use a `Mistral-Large` and a `Mistral-Small` model, quoting the fact that **producing content is more complex than verifying it**.
 
 ```python
 from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
@@ -254,7 +254,7 @@ chain.invoke({"topic": "living in a foreign country"})
 
 ## Use embeddings models
 
-In the same way, you create an LLM client, you can connect to an embeddings model. In the following example, we are setting the environment variable to now point to an embeddings model:
+In the same way, you create an LLM client, you can connect to an embeddings model. In the following example, we're setting the environment variable to now point to an embeddings model:
 
 ```bash
 export AZURE_INFERENCE_ENDPOINT="<your-model-endpoint-goes-here>"

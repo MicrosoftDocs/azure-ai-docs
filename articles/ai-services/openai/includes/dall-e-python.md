@@ -2,7 +2,6 @@
 title: 'Quickstart: Generate images with the Python SDK for Azure OpenAI Service'
 titleSuffix: Azure OpenAI Service
 description: Learn how to generate images with Azure OpenAI Service by using the Python SDK and the endpoint and access keys for your Azure OpenAI resource.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom:
@@ -121,7 +120,7 @@ Wait a few moments to get the response.
 
 Azure OpenAI stores the output image in the _generated_image.png_ file in your specified directory. The script also displays the image in your default image viewer.
 
-The image generation APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../concepts/content-filter.md).
+The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../concepts/content-filter.md).
 
 ## Clean up resources
 
@@ -132,6 +131,6 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 
 ## Next steps
 
-* Explore the image generation APIs in more depth with the [DALL-E how-to guide](../how-to/dall-e.md).
+* Explore the Image APIs in more depth with the [Image API how-to guide](../how-to/dall-e.md).
 * Try examples in the [Azure OpenAI Samples GitHub repository](https://github.com/Azure/openai-samples).
 * See the [API reference](../reference.md#image-generation)

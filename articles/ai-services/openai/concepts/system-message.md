@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI Service
 description: Learn about how to construct system messages also know as metaprompts to guide an AI system's behavior.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 09/20/2024
+ms.date: 03/27/2025
 ms.custom:
   - ignite-2023
 manager: nitinme

@@ -6,10 +6,11 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024
 ms.topic: how-to
-ms.date: 01/15/2025
+ms.date: 04/30/2025
 ms.reviewer: meerakurup
 ms.author: larryfr
 author: Blackmist
+zone_pivot_groups: azure-portal-and-cli
 # Customer intent: As an admin, I want to configure a private link for hub so that I can secure my hubs.
 ---
 
@@ -25,7 +26,6 @@ You get several hub default resources in your resource group. You need to config
 - Establish private endpoint connection to hub default resources. You need to have both a blob and file private endpoint for the default storage account.
 - If your storage account is private, [assign roles](#private-storage-configuration) to allow access.
 
-
 ## Prerequisites
 
 * You must have an existing Azure Virtual Network to create the private endpoint in. 
@@ -37,9 +37,9 @@ You get several hub default resources in your resource group. You need to config
 
 ## Create a hub that uses a private endpoint
 
-If you are creating a new hub, use the following tabs to select how you are creating the hub (Azure portal or Azure CLI.) Each of these methods __requires an existing virtual network__:
+If you are creating a new hub, use the following methods to create the hub (Azure portal or Azure CLI). Each of these methods __requires an existing virtual network__:
 
-# [Azure portal](#tab/azure-portal)
+:::zone pivot="azure-portal"
 
 > [!NOTE]
 > The information in this document is only about configuring a private link. For a walkthrough of creating a secure hub in the portal, see [Create a secure hub in the Azure portal](create-secure-ai-hub.md).
@@ -55,12 +55,78 @@ If you are creating a new hub, use the following tabs to select how you are crea
 
 1. Input required fields. When selecting the __Region__, select the same region as your virtual network.
 
-# [Azure CLI](#tab/cli)
+:::zone-end
+
+:::zone pivot="cli"
 
 > [!NOTE]
 > The information in this section doesn't cover basic hub configuration. For more information, see [Create a hub using the Azure CLI](./develop/create-hub-project-sdk.md?tabs=azurecli).
 
 After creating the hub, use the [Azure networking CLI commands](/cli/azure/network/private-endpoint#az-network-private-endpoint-create) to create a private link endpoint for the hub.
+
+```azurecli-interactive
+az network private-endpoint create \
+    --name <private-endpoint-name> \
+    --vnet-name <vnet-name> \
+    --subnet <subnet-name> \
+    --private-connection-resource-id "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>" \
+    --group-id amlworkspace \
+    --connection-name workspace \
+    --location <location> \
+    --resource-group <resource-group-name>
+```
+
+To create the private DNS zone entries for the workspace, use the following commands:
+
+```azurecli-interactive
+# Add privatelink.api.azureml.ms
+az network private-dns zone create \
+    -g <resource-group-name> \
+    --name privatelink.api.azureml.ms
+
+az network private-dns link vnet create \
+    -g <resource-group-name> \
+    --zone-name privatelink.api.azureml.ms \
+    --name <link-name> \
+    --virtual-network <vnet-name> \
+    --registration-enabled false
+
+az network private-endpoint dns-zone-group create \
+    -g <resource-group-name> \
+    --endpoint-name <private-endpoint-name> \
+    --name myzonegroup \
+    --private-dns-zone privatelink.api.azureml.ms \
+    --zone-name privatelink.api.azureml.ms
+```
+
+:::zone-end
+
+---
+
+## Add a private endpoint to a hub
+
+Use one of the following methods to add a private endpoint to an existing hub:
+
+:::zone pivot="azure-portal"
+
+1. From the [Azure portal](https://portal.azure.com), select your hub.
+1. From the left side of the page, select __Settings__, __Networking__, and then select the __Private endpoint connections__ tab. Select __+ Private endpoint__.
+
+    :::image type="content" source="../media/how-to/network/add-private-endpoint.png" alt-text="Screenshot of the private endpoint connections tab":::
+
+1. When going through the forms to create a private endpoint, be sure to:
+
+    - From __Basics__, select the same __Region__ as your virtual network.
+    - From __Resource__, select `amlworkspace` as the __target sub-resource__.
+    - From the __Virtual Network__ form, select the virtual network and subnet that you want to connect to.
+ 
+1. After populating the forms with any additional network configurations you require, use the __Review + create__ tab to review your settings and select __Create__ to create the private endpoint.
+
+:::zone-end
+
+:::zone pivot="cli"
+
+Use the [Azure networking CLI commands](/cli/azure/network/private-endpoint#az-network-private-endpoint-create) to create a private link endpoint for the hub.
 
 ```azurecli-interactive
 az network private-endpoint create \
@@ -116,84 +182,7 @@ az network private-endpoint dns-zone-group add \
     --zone-name privatelink.notebooks.azure.net
 ```
 
----
-
-## Add a private endpoint to a hub
-
-Use one of the following methods to add a private endpoint to an existing hub:
-
-# [Azure portal](#tab/azure-portal)
-
-1. From the [Azure portal](https://portal.azure.com), select your hub.
-1. From the left side of the page, select __Settings__, __Networking__, and then select the __Private endpoint connections__ tab. Select __+ Private endpoint__.
-
-    :::image type="content" source="../media/how-to/network/add-private-endpoint.png" alt-text="Screenshot of the private endpoint connections tab":::
-
-1. When going through the forms to create a private endpoint, be sure to:
-
-    - From __Basics__, select the same the __Region__ as your virtual network.
-    - From __Resource__, select `amlworkspace` as the __target sub-resource__.
-    - From the __Virtual Network__ form, select the virtual network and subnet that you want to connect to.
- 
-1. After populating the forms with any additional network configurations you require, use the __Review + create__ tab to review your settings and select __Create__ to create the private endpoint.
-
-# [Azure CLI](#tab/cli)
-
-Use the [Azure networking CLI commands](/cli/azure/network/private-endpoint#az-network-private-endpoint-create) to create a private link endpoint for the hub.
-
-```azurecli-interactive
-az network private-endpoint create \
-    --name <private-endpoint-name> \
-    --vnet-name <vnet-name> \
-    --subnet <subnet-name> \
-    --private-connection-resource-id "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>" \
-    --group-id amlworkspace \
-    --connection-name workspace \
-    --location <location> \
-    --resource-group <resource-group-name>
-```
-
-To create the private DNS zone entries for the workspace, use the following commands:
-
-```azurecli-interactive
-# Add privatelink.api.azureml.ms
-az network private-dns zone create \
-    -g <resource-group-name> \
-    --name 'privatelink.api.azureml.ms'
-
-az network private-dns link vnet create \
-    -g <resource-group-name> \
-    --zone-name 'privatelink.api.azureml.ms' \
-    --name <link-name> \
-    --virtual-network <vnet-name> \
-    --registration-enabled false
-
-az network private-endpoint dns-zone-group create \
-    -g <resource-group-name> \
-    --endpoint-name <private-endpoint-name> \
-    --name myzonegroup \
-    --private-dns-zone 'privatelink.api.azureml.ms' \
-    --zone-name 'privatelink.api.azureml.ms'
-
-# Add privatelink.notebooks.azure.net
-az network private-dns zone create \
-    -g <resource-group-name> \
-    --name 'privatelink.notebooks.azure.net'
-
-az network private-dns link vnet create \
-    -g <resource-group-name> \
-    --zone-name 'privatelink.notebooks.azure.net' \
-    --name <link-name> \
-    --virtual-network <vnet-name> \
-    --registration-enabled false
-
-az network private-endpoint dns-zone-group add \
-    -g <resource-group-name> \
-    --endpoint-name <private-endpoint-name> \
-    --name myzonegroup \
-    --private-dns-zone 'privatelink.notebooks.azure.net' \
-    --zone-name 'privatelink.notebooks.azure.net'
-```
+:::zone-end
 
 ---
 
@@ -206,7 +195,7 @@ You can remove one or all private endpoints for a hub. Removing a private endpoi
 
 To remove a private endpoint, use the following information:
 
-# [Azure portal](#tab/azure-portal)
+:::zone pivot="azure-portal"
 
 1. From the [Azure portal](https://portal.azure.com), select your hub.
 1. From the left side of the page, select __Settings__, __Networking__, and then select the __Private endpoint connections__ tab.
@@ -214,15 +203,19 @@ To remove a private endpoint, use the following information:
 
     :::image type="content" source="../media/how-to/network/remove-private-endpoint.png" alt-text="Screenshot of a selected private endpoint with the remove option highlighted.":::
 
-# [Azure CLI](#tab/cli)
+:::zone-end
+
+:::zone pivot="cli"
 
 When using the Azure CLI, use the following command to remove the private endpoint:
 
 ```azurecli
 az network private-endpoint delete \
     --name <private-endpoint-name> \
-    --resource-group <resource-group-name> \
+    --resource-group <resource-group-name>
 ```
+
+:::zone-end
 
 ---
 
@@ -235,13 +228,15 @@ In some situations, you might want to allow someone to connect to your secured h
 
 To enable public access, use the following steps:
 
-# [Azure portal](#tab/azure-portal)
+:::zone pivot="azure-portal"
 
 1. From the [Azure portal](https://portal.azure.com), select your hub.
 1. From the left side of the page, select __Networking__ and then select the __Public access__ tab.
 1. Select __Enabled from all networks__, and then select __Save__.
 
-# [Azure CLI](#tab/cli)
+:::zone-end
+
+:::zone pivot="cli"
 
 Use the following Azure CLI command to enable public access:
 
@@ -255,7 +250,7 @@ If you receive an error that the `ml` command isn't found, use the following com
 az extension add --name ml
 ```
 
----
+:::zone-end
 
 ## Enable Public Access only from internet IP ranges (preview)
 
@@ -382,6 +377,7 @@ If you need to configure custom DNS server without DNS forwarding, use the follo
 * `<instance-name>.<region>.instances.azureml.ms` - Only used by the `az ml compute connect-ssh` command to connect to computers in a managed virtual network. Not needed if you aren't using a managed network or SSH connections.
 
 * `<managed online endpoint name>.<region>.inference.ml.azure.com` - Used by managed online endpoints
+* `models.ai.azure.com` - Used for deploying Models as a Service
 
 To find the private IP addresses for your A records, see the [Azure Machine Learning custom DNS](/azure/machine-learning/how-to-custom-dns#find-the-ip-addresses) article.
 To check AI-PROJECT-GUID, go to the Azure portal, select your project, settings, properties, and the workspace ID is displayed.
@@ -393,6 +389,6 @@ To check AI-PROJECT-GUID, go to the Azure portal, select your project, settings,
 ## Next steps
 
 - [Create an Azure AI Foundry project](create-projects.md)
-- [Learn more about Azure AI Foundry](../what-is-ai-foundry.md)
+- [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
 - [Learn more about Azure AI Foundry hubs](../concepts/ai-resources.md)
 - [Troubleshoot secure connectivity to a project](troubleshoot-secure-connection-project.md)

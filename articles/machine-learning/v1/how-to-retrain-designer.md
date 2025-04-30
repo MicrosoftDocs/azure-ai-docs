@@ -15,6 +15,7 @@ ms.custom: UpdateFrequency5, designer
 
 # Use pipeline parameters to retrain models in the designer
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 In this how-to article, you learn how to use Azure Machine Learning designer to retrain a machine learning model using pipeline parameters. You will use published pipelines to automate your workflow and set parameters to train your model on new data. Pipeline parameters let you re-use existing pipelines for different jobs.  
 

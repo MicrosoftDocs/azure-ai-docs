@@ -21,7 +21,7 @@ This tutorial teaches you how to use Language in prompt flow utilizing [Azure AI
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 
-- You need an Azure AI Foundry hub or permissions to create one. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../../../ai-foundry/concepts/ai-resources.md) and [Azure AI roles](../../../ai-foundry/concepts/rbac-ai-foundry.md).
+- You need an Azure AI Foundry hub or permissions to create one. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../../../ai-foundry/concepts/ai-resources.md) and [Azure AI roles](../../../ai-foundry/concepts/rbac-azure-ai-foundry.md).
      - If your role is **Contributor** or **Owner**, you can [create a hub in this tutorial](#create-a-project-in-azure-ai-foundry-portal). 
      - If your role is **Azure AI Developer**, the hub must already be created. 
 
@@ -37,7 +37,7 @@ Your project is used to organize your work and save state.
 
 You can create an Azure AI Language flow by either cloning the samples available in the gallery or creating a flow from scratch. If you already have flow files in local or file share, you can also import the files to create a flow. For the purposes of this tutorial we'll be using the prebuilt **Analyze Conversations** flow.
 
-To create a prompt flow from the gallery in Azure AI Foundry portal:
+To create a prompt flow from the gallery in [Azure AI Foundry portal](https://ai.azure.com/):
 
 1. Sign in to Azure AI Foundry and select your project.
 

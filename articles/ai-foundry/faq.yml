@@ -82,5 +82,5 @@ sections:
 additionalContent: |
 
   ## Next steps
-  - [Azure AI Foundry](what-is-ai-foundry.md)
+  - [Azure AI Foundry](what-is-azure-ai-foundry.md)
   - [Plan and manage costs](./how-to/costs-plan-manage.md)

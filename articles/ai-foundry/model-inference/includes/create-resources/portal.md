@@ -46,7 +46,7 @@ To create a project with an Azure AI Services account, follow these steps:
 
 10. Azure AI model inference is a Preview feature that needs to be turned on in Azure AI Foundry. At the top navigation bar, over the right corner, select the **Preview features** icon. A contextual blade shows up at the right of the screen.
 
-11. Turn the feature **Deploy models to Azure AI model inference service** on.
+11. Turn on the **Deploy models to Azure AI model inference service** feature.
 
     :::image type="content" source="../../media/quickstart-ai-project/ai-project-inference-endpoint.gif" alt-text="An animation showing how to turn on the Azure AI model inference service deploy models feature in Azure AI Foundry portal." lightbox="../../media/quickstart-ai-project/ai-project-inference-endpoint.gif":::
 

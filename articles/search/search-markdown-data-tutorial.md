@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Index Markdown blobs'
+title: 'Tutorial: Index Markdown Blobs'
 titleSuffix: Azure AI Search
 description: Learn how to index and search Markdown in Azure blobs using Azure AI Search REST APIs.
 
@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: tutorial
-ms.date: 11/19/2024
+ms.date: 03/28/2025
 
 ---
 
@@ -17,9 +17,9 @@ ms.date: 11/19/2024
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Azure AI Search can index Markdown documents and arrays in Azure Blob Storage using an [indexer](search-indexer-overview.md) that knows how to read Markdown data. 
+Azure AI Search can index Markdown documents and arrays in Azure Blob Storage using an [indexer](search-indexer-overview.md) that knows how to read Markdown data.
 
-This tutorial shows you to index Markdown files indexed using the `oneToMany` Markdown parsing mode. It uses a REST client and the [Search REST APIs](/rest/api/searchservice/) to perform the following tasks:
+This tutorial shows you how to index Markdown files indexed using the `oneToMany` Markdown parsing mode. It uses a REST client and the [Search REST APIs](/rest/api/searchservice/) to:
 
 > [!div class="checklist"]
 > + Set up sample data and configure an `azureblob` data source
@@ -27,22 +27,22 @@ This tutorial shows you to index Markdown files indexed using the `oneToMany` Ma
 > + Create and run an indexer to read the container and extract searchable content
 > + Search the index you just created
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
-
 ## Prerequisites
+
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+
++ [Azure Storage](/azure/storage/common/storage-account-create).
+
++ [Azure AI Search](search-what-is-azure-search.md). [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription.
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
-+ [Azure Storage](/azure/storage/common/storage-account-create)
-
-+ [Azure AI Search](search-what-is-azure-search.md). [Create](search-create-service-portal.md) or [find an existing Azure AI Search resource](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) under your current subscription.
-
 > [!NOTE]
-> You can use the free service for this tutorial. A free search service limits you to three indexes, three indexers, and three data sources. This tutorial creates one of each. Before starting, make sure you have room on your service to accept the new resources.
+> You can use a free search service for this tutorial. The Free tier limits you to three indexes, three indexers, and three data sources. This tutorial creates one of each. Before you start, make sure you have room on your service to accept the new resources.
 
 ## Create a Markdown document
 
-Copy and paste the following Markdown into a file named `sample_markdown.md`. The sample data is a single Markdown file containing various Markdown elements. We chose one Markdown file to stay under the storage limits of the free tier.
+Copy and paste the following Markdown into a file named `sample_markdown.md`. The sample data is a single Markdown file containing various Markdown elements. We chose one Markdown file to stay under the storage limits of the Free tier.
 
 ````md
 # Project Documentation
@@ -193,7 +193,7 @@ Thank you for reviewing this example!
 
 ## Copy a search service URL and API key
 
-For this tutorial, connections to Azure AI Search require an endpoint and an API key. You can get these values from the Azure portal. For alternative connection methods, see [managed identities](search-howto-managed-identities-data-sources.md).
+For this tutorial, connections to Azure AI Search require an endpoint and an API key. You can get these values from the Azure portal. For alternative connection methods, see [Managed identities](search-howto-managed-identities-data-sources.md).
 
 1. Sign in to the [Azure portal](https://portal.azure.com), navigate to the search service **Overview** page, and copy the URL. An example endpoint might look like `https://mydemo.search.windows.net`.
 
@@ -205,7 +205,7 @@ For this tutorial, connections to Azure AI Search require an endpoint and an API
 
 1. Start Visual Studio Code and create a new file.
 
-1. Provide values for variables used in the request: 
+1. Provide values for variables used in the request.
 
    ```http
    @baseUrl = PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE
@@ -216,7 +216,7 @@ For this tutorial, connections to Azure AI Search require an endpoint and an API
 
 1. Save the file using a `.rest` or `.http` file extension.
 
-See [Quickstart: Text search using REST](search-get-started-rest.md) if you need help with the REST client.
+For help with the REST client, see [Quickstart: Keyword search using REST](search-get-started-rest.md).
 
 ## Create a data source
 
@@ -293,7 +293,7 @@ You only need fields for the Markdown elements that the parser supports. These f
 
 - `content`: A string that contains the raw Markdown found in a specific location, based on the header metadata at that point in the document.
 
-- `sections`: An object that contains subfields for the header metadata up to the desired header level. For example, when `markdownHeaderDepth` is set to `h3`, contains string fields `h1`, `h2`, and `h3`. These fields are indexed by mirroring this structure in the index, or through field mappings in the format `/sections/h1`, `sections/h2`, etc. See index and indexer configurations in the following samples for in-context examples. The subfields contained are:
+- `sections`: An object that contains subfields for the header metadata up to the desired header level. For example, when `markdownHeaderDepth` is set to `h3`, contains string fields `h1`, `h2`, and `h3`. These fields are indexed by mirroring this structure in the index, or through field mappings in the format `/sections/h1`, `sections/h2`, etc. For in-context examples, see the index and indexer configurations in the following samples. The subfields contained are:
   - `h1` - A string containing the h1 header value. Empty string if not set at this point in the document.
   - (Optional) `h2`- A string containing the h2 header value. Empty string if not set at this point in the document.
   - (Optional) `h3`- A string containing the h3 header value. Empty string if not set at this point in the document.
@@ -301,11 +301,11 @@ You only need fields for the Markdown elements that the parser supports. These f
   - (Optional) `h5`- A string containing the h5 header value. Empty string if not set at this point in the document.
   - (Optional) `h6`- A string containing the h6 header value. Empty string if not set at this point in the document.
 
-- `ordinal_position`: An integer value indicating the position of the section within the document hierarchy. This field is used for ordering the sections in their original sequence as they appear in the document, beginning with an ordinal position of 1 and incrementing sequentially for each content block. 
+- `ordinal_position`: An integer value that indicates the position of the section within the document hierarchy. This field is used for ordering the sections in their original sequence as they appear in the document, beginning with an ordinal position of 1 and incrementing sequentially for each content block.
 
-This implementation leverages [field mappings](search-indexer-field-mappings.md) in the indexer to map from the enriched content to the index. For more information on the parsed one-to-many document structure, see [index markdown blobs](search-how-to-index-markdown-blobs.md).
+This implementation uses [field mappings](search-indexer-field-mappings.md) in the indexer to map from the enriched content to the index. For more information about the parsed one-to-many document structure, see [Index Markdown blobs](search-how-to-index-markdown-blobs.md).
 
-This example provides samples of how to index data both with and without field mappings. In this case, we know that `h1` contains the title of the document, so we can map it to a field named `title`. We'll also be mapping the `h2` and `h3` fields to `h2_subheader` and `h3_subheader` respectively. The `content` and `ordinal_position` fields require no mapping because they are extracted from the Markdown directly into fields using those names. For an example of a full index schema that doesn't require field mappings, see the end of this section.
+This example provides samples of how to index data both with and without field mappings. In this case, we know that `h1` contains the title of the document, so we can map it to a field named `title`. We'll also be mapping the `h2` and `h3` fields to `h2_subheader` and `h3_subheader`, respectively. The `content` and `ordinal_position` fields require no mapping because they're extracted from the Markdown directly into fields using those names. For an example of a full index schema that doesn't require field mappings, see the end of this section.
 
 ```http
 ### Create an index
@@ -326,8 +326,10 @@ POST {{baseUrl}}/indexes?api-version=2024-11-01-preview  HTTP/1.1
     }
 ```
 
-###  Index schema in a configuration with no field mappings
-Field mappings allow you to manipulate and filter enriched content to fit into your desired index shape, but you may just want to take the enriched content directly. In that case, the schema would look like:
+### Index schema in a configuration with no field mappings
+
+Field mappings allow you to manipulate and filter enriched content to fit into your desired index shape. However, you might just want to take the enriched content directly. In that case, the schema would look like:
+
 ```http
 {
   "name": "sample-markdown-index",
@@ -347,9 +349,9 @@ Field mappings allow you to manipulate and filter enriched content to fit into y
 }
 ```
 
-To reiterate, we have subfields up to `h3` in the sections object because `markdownHeaderDepth` is set to `h3`. 
+To reiterate, we have subfields up to `h3` in the sections object because `markdownHeaderDepth` is set to `h3`.
 
-If you choose to use this schema, be sure to adjust later requests accordingly. This will require removing the field mappings from the indexer configuration and updating search queries to use the corresponding field names.
+If you use this schema, be sure to adjust later requests accordingly. This will require removing the field mappings from the indexer configuration and updating search queries to use the corresponding field names.
 
 ## Create and run an indexer
 
@@ -382,11 +384,11 @@ POST {{baseUrl}}/indexers?api-version=2024-11-01-preview  HTTP/1.1
     }
 ```
 
-**Key points**:
+Key points:
 
 + The indexer will only parse headers up to `h3`. Any lower-level headers (`h4`,`h5`,`h6`) will be treated as plain text and show up in the `content` field. This is why the index and field mappings only exist up to a depth of `h3`.
 
-+ The `content` and `ordinal_position` fields require no field mapping as they exist with those names in the enriched content.
++ The `content` and `ordinal_position` fields require no field mapping because they exist with those names in the enriched content.
 
 ## Run queries
 
@@ -404,7 +406,7 @@ POST {{baseUrl}}/indexes/sample-markdown-index/docs/search?api-version=2024-11-0
   }
 ```
 
-Send the request. This is an unspecified full text search query that returns all of the fields marked as retrievable in the index, along with a document count. The response should look like:
+Send the request. This is an unspecified full-text search query that returns all of the fields marked as retrievable in the index, along with a document count. The response should look like:
 
 ```json
 HTTP/1.1 200 OK
@@ -431,7 +433,7 @@ Connection: close
 
 ```
 
-Add a `search` parameter to search on a string. 
+Add a `search` parameter to search on a string.
 
 ```http
 ### Query the index
@@ -478,7 +480,8 @@ Connection: close
   ]
 }
 ```
-**Key points**:
+
+Key points:
 
 + Because the `markdownHeaderDepth` is set to `h3`, the `h4`, `h5`, and `h6` headers are treated as plaintext, so they appear in the `content` field.
 
@@ -528,14 +531,14 @@ Connection: close
 }
 ```
 
-For filters, you can also use Logical operators (and, or, not) and comparison operators (eq, ne, gt, lt, ge, le). String comparisons are case-sensitive. For more information and examples, see [Create a query](search-query-simple-examples.md).
+For filters, you can also use Logical operators (and, or, not) and comparison operators (eq, ne, gt, lt, ge, le). String comparisons are case sensitive. For more information and examples, see [Create a query](search-query-simple-examples.md).
 
 > [!NOTE]
 > The `$filter` parameter only works on fields that were marked filterable at the creation of your index.
 
 ## Reset and rerun
 
-Indexers can be reset, clearing execution history, which allows a full rerun. The following GET requests are for reset, followed by rerun.
+Indexers can be reset to clear execution history, which allows a full rerun. The following GET requests are for reset, followed by rerun.
 
 ```http
 ### Reset the indexer
@@ -562,7 +565,8 @@ When you're working in your own subscription, at the end of a project, it's a go
 You can use the Azure portal to delete indexes, indexers, and data sources.
 
 ## Next steps
-Now that you're familiar with the basics of Azure Blob indexing, let's take a closer look at indexer configuration for Markdown blobs in Azure Storage.
+
+Now that you're familiar with the basics of Azure Blob indexing, take a closer look at indexer configuration for Markdown blobs in Azure Storage:
 
 > [!div class="nextstepaction"]
 > [Configure Markdown blob indexing](search-how-to-index-markdown-blobs.md)

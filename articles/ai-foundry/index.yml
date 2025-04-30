@@ -4,7 +4,7 @@ title: Azure AI Foundry documentation # < 60 chars
 summary:  Safely design, customize, and manage AI applications and agents at scale.
 metadata:
   title: Azure AI Foundry documentation
-  description: Azure AI Foundry helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and pre-built and customizable APIs and models. Example applications include generative AI, natural language processing for conversations, search, monitoring, translation, speech, vision, and decision-making.
+  description: Azure AI Foundry helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and prebuilt and customizable APIs and models. Example applications include generative AI, natural language processing for conversations, search, monitoring, translation, speech, vision, and decision-making.
   ms.service: azure-ai-foundry
   ms.custom:
     - build-2024
@@ -15,7 +15,7 @@ metadata:
   ms.reviewer: sgilley
   ms.author: sgilley
   author: sdgilley
-  ms.date: 12/12/2024
+  ms.date: 03/04/2025
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
 landingContent:
@@ -27,13 +27,19 @@ landingContent:
       - linkListType: overview
         links:
           - text: What is Azure AI Foundry?
-            url: what-is-ai-foundry.md
+            url: what-is-azure-ai-foundry.md
           - text: Azure OpenAI Service in Azure AI Foundry
-            url: azure-openai-in-ai-foundry.md
+            url: azure-openai-in-azure-ai-foundry.md
+      - linkListType: concept
+        links:
+          - text: Azure AI Agent service
+            url: ../ai-services/agents/overview.md?context=/azure/ai-studio/context/context
           - text: Retrieval Augmented Generation (RAG)
             url: concepts/retrieval-augmented-generation.md
-          - text: Evaluation and monitoring metrics for generative AI
+          - text: Evaluation and monitoring metrics
             url: concepts/evaluation-metrics-built-in.md
+          - text: Fine-tuning 
+            url: concepts/fine-tuning-overview.md
           - text: Model deployment options
             url: concepts/deployments-overview.md
 
@@ -42,10 +48,12 @@ landingContent:
     linkLists:   
       - linkListType: quickstart
         links:
-          - text: Build a chat app in the playground
+          - text: Use the chat playground
             url: quickstarts/get-started-playground.md
-          - text: Build a chat app using the Azure AI SDK
+          - text: Build a basic app
             url: quickstarts/get-started-code.md
+          - text:  Create an agent
+            url: ../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context
 
       - linkListType: how-to-guide
         links:
@@ -53,8 +61,9 @@ landingContent:
             url: how-to/model-catalog-overview.md
           - text: Compare benchmarks across models and datasets
             url: how-to/benchmark-model-in-catalog.md
-          - text: What is Azure AI Agent service?
-            url: ../ai-services/agents/overview.md?context=/azure/ai-studio/context/context
+          - text: Plan and manage costs
+            url: how-to/costs-plan-manage.md
+
       
   # Card
   - title: Azure AI Foundry SDK
@@ -63,15 +72,12 @@ landingContent:
         links:
           - text: Get started with the Azure AI Foundry SDKs
             url: how-to/develop/sdk-overview.md
-          - text: Work with Azure AI Foundry projects in VS Code
-            url: how-to/develop/vscode.md
-
+          - text: Start with an AI template
+            url: how-to/develop/ai-template-get-started.md
       - linkListType: tutorial
         links:
-          - text: Build a custom chat app with the Azure AI SDK
+          - text: Build a custom app
             url: tutorials/copilot-sdk-create-resources.md
-          - text: Deploy an enterprise chat web app
-            url: tutorials/deploy-chat-web-app.md
             
       - linkListType: reference
         links:
@@ -79,7 +85,18 @@ landingContent:
             url: how-to\develop\sdk-overview.md
           - text: Azure OpenAI Service Reference
             url: ../ai-services/openai/reference.md
-  
+  # Card
+  - title: Build apps with a template
+    linkLists:
+      - linkListType: quickstart
+        links:
+          - text: Get started with AI chat
+            url: https://github.com/Azure-Samples/get-started-with-ai-chat
+          - text: Get started with AI agents
+            url: https://github.com/Azure-Samples/get-started-with-ai-agents
+          - text: Unlock insights from conversational data
+            url: https://github.com/microsoft/Conversation-Knowledge-Mining-Solution-Accelerator
+
   # Card
   - title: Explore more AI resources
     linkLists:
@@ -89,7 +106,7 @@ landingContent:
             url: https://aka.ms/LearnAzureAIStudio
           - text: Vector search in Azure AI Search
             url: /training/modules/improve-search-results-vector-search/
-      - linkListType: concept
+      - linkListType: reference
         links:
           - text: Azure Machine Learning
             url: /azure/machine-learning/

@@ -18,6 +18,8 @@ monikerRange: 'azureml-api-1'
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 Learn how to interactively debug Azure Machine Learning experiments, pipelines, and deployments using Visual Studio Code (VS Code) and [debugpy](https://github.com/microsoft/debugpy/).
 
 ## Run and debug experiments locally

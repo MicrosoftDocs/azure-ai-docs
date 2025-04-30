@@ -7,22 +7,23 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
-ms.topic: how-to
+ms.topic: reference
 ms.date: 01/29/2025
-ms.reviewer: keli19
+ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
+ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ---
 
 # Prompt tool for flows in Azure AI Foundry portal
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-The prompt flow Prompt tool offers a collection of textual templates that serve as a starting point for creating prompts. These templates, based on the [Jinja](https://jinja.palletsprojects.com/en/3.1.x/) template engine, facilitate the definition of prompts. The tool proves useful when prompt tuning is required before the prompts are fed into the large language model (LLM) in the prompt flow.
+The prompt flow Prompt tool offers a collection of textual templates that serve as a starting point for creating prompts. These templates, based on the [Jinja](https://jinja.palletsprojects.com/en/stable/) template engine, facilitate the definition of prompts. The tool proves useful when prompt tuning is required before the prompts are fed into the large language model (LLM) in the prompt flow.
 
 ## Prerequisites
 
-Prepare a prompt. The [LLM tool](llm-tool.md) and Prompt tool both support [Jinja](https://jinja.palletsprojects.com/en/3.1.x/) templates.
+Prepare a prompt. The [LLM tool](llm-tool.md) and Prompt tool both support [Jinja](https://jinja.palletsprojects.com/en/stable/) templates.
 
 In this example, the prompt incorporates Jinja templating syntax to dynamically generate the welcome message and personalize it based on the user's name. It also presents a menu of options for the user to choose from. Depending on whether the `user_name` variable is provided, it either addresses the user by name or uses a generic greeting.
     

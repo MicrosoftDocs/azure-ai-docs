@@ -7,24 +7,26 @@ ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.author: larryfr
 author: Blackmist
-ms.date: 08/15/2022
+ms.date: 03/05/2025
 ms.topic: how-to
 ms.reviewer: sehan
 ms.custom: UpdateFrequency5, deploy, docker, prebuilt, troubleshoot, devx-track-python
 ---
 # Troubleshooting prebuilt docker images for inference
 
-Learn how to troubleshoot problems you may see when using prebuilt docker images for inference with Azure Machine Learning.
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
+Learn how to troubleshoot problems you might see when using prebuilt docker images for inference with Azure Machine Learning.
 
 > [!IMPORTANT]
-> Using [Python package extensibility for prebuilt Docker images](how-to-prebuilt-docker-images-inference-python-extensibility.md) with Azure Machine Learning is currently in preview. Preview functionality is provided "as-is", with no guarantee of support or service level agreement. For more information, see the [Supplemental terms of use for Microsoft Azure previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> Using [Python package extensibility for prebuilt Docker images](how-to-prebuilt-docker-images-inference-python-extensibility.md) with Azure Machine Learning is currently in preview. Preview functionality is provided "as-is," with no guarantee of support or service level agreement. For more information, see the [Supplemental terms of use for Microsoft Azure previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 ## Model deployment failed
 
-If model deployment fails, you won't see logs in [Azure Machine Learning studio](https://ml.azure.com/) and `service.get_logs()` will return None.
-If there is a problem in the init() function of score.py, `service.get_logs()` will return logs for the same.
+If model deployment fails, there are no logs created in [Azure Machine Learning studio](https://ml.azure.com/) and `service.get_logs()` returns no logs.
+If there's a problem in the init() function of score.py, `service.get_logs()` returns logs for the same.
 
-So you'll need to run the container locally using one of the commands shown below and replace `<MCR-path>` with an image path. For a list of the images and paths, see [Prebuilt Docker images for inference](../concept-prebuilt-docker-images-inference.md).
+You need to run the container locally using one of the following commands and replace `<MCR-path>` with an image path. For a list of the images and paths, see [Prebuilt Docker images for inference](../concept-prebuilt-docker-images-inference.md).
 
 ### Mounting extensibility solution
 
@@ -44,7 +46,7 @@ docker run -it -v $(pwd):/var/azureml-app -e AZUREML_EXTRA_REQUIREMENTS_TXT="req
 
 ## Enable local debugging
 
-The local inference server allows you to quickly debug your entry script (`score.py`). In case the underlying score script has a bug, the server will fail to initialize or serve the model. Instead, it will throw an exception & the location where the issues occurred. [Learn more about Azure Machine Learning inference HTTP Server](../how-to-inference-server-http.md)
+The local inference server allows you to quickly debug your entry script (`score.py`). In case the underlying score script has a bug, the server fails to initialize or serve the model. Instead, it throws an exception & the location where the issues occurred. [Learn more about Azure Machine Learning inference HTTP Server](../how-to-inference-server-http.md)
 
 ## For common model deployment issues
 
@@ -52,7 +54,7 @@ For problems when deploying a model from Azure Machine Learning to Azure Contain
 
 ## init() or run() failing to write a file
 
-HTTP server in our Prebuilt Docker Images run as *non-root user*, it may not have access right to all directories. 
+HTTP server in our Prebuilt Docker Images run as *non-root user*, it might not have access right to all directories. 
 Only write to directories you have access rights to. For example, the `/tmp` directory in the container.
 
 ## Extra Python packages not installed
@@ -60,7 +62,7 @@ Only write to directories you have access rights to. For example, the `/tmp` dir
 * Check if there's a typo in the environment variable or file name.
 * Check the container log to see if `pip install -r <your_requirements.txt>` is installed or not.
 * Check if source directory is set correctly in the [inference config](/python/api/azureml-core/azureml.core.model.inferenceconfig#constructor) constructor.
-* If installation not found and log says "file not found", check if the file name shown in the log is correct.
+* If installation not found and log says "file not found," check if the file name shown in the log is correct.
 * If installation started but failed or timed out, try to install the same `requirements.txt` locally with same Python and pip version in clean environment (that is, no cache directory; `pip install --no-cache-dir -r requriements.txt`). See if the problem can be reproduced locally.
 
 ## Mounting solution failed
@@ -73,7 +75,7 @@ Only write to directories you have access rights to. For example, the `/tmp` dir
 
 ## Building an image based on the prebuilt Docker image failed
 
-* If failed during apt package installation, check if the user has been set to root before running the apt command? (Make sure switch back to non-root user) 
+* If failed during apt package installation, check if the user is set to root before running the apt command? (Make sure switch back to non-root user) 
 
 ## Run doesn't complete on GPU local deployment
 
@@ -92,7 +94,7 @@ GPU base images can't be used for local deployment, unless the local deployment 
     /var/azureml-app
     ```
 
-* If the `ENTRYPOINT` has been changed in the new built image, then the HTTP server and related components need to be loaded by `runsvdir /var/runit`
+* If the `ENTRYPOINT` is changed in the new built image, then the HTTP server and related components need to be loaded by `runsvdir /var/runit`
 
 ## Next steps
 

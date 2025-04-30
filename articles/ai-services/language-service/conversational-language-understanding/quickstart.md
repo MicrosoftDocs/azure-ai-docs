@@ -2,12 +2,11 @@
 title: Quickstart - create a conversational language understanding project
 titleSuffix: Azure AI services
 description: Quickly start building an AI model to extract information and predict the intentions of text-based utterances.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 10/21/2024
+ms.date: 04/29/2025
 ms.author: jboback
 ms.custom: language-service-clu, mode-other
 zone_pivot_groups: usage-custom-language-features

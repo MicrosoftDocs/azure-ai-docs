@@ -196,7 +196,7 @@ credential = DefaultAzureCredential(authority=authority)
 
 search_client = SearchClient(
     endpoint=service_endpoint, 
-    index=index_name, 
+    index_name=index_name, 
     credential=credential, 
     audience=audience)
 

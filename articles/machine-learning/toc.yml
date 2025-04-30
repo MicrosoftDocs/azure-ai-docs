@@ -239,17 +239,7 @@ items:
                   - name: Deploy and run MLflow models in Spark jobs
                     href: how-to-deploy-mlflow-model-spark-jobs.md
       - name: Use R with Azure Machine Learning
-        items:
-          - name: Bring R workloads
-            href: how-to-r-overview-r-capabilities.md
-          - name: Interactive R development
-            href: how-to-r-interactive-development.md
-          - name: Adapt R scripts for production
-            href: how-to-r-modify-script-for-production.md
-          - name: Train R model
-            href: how-to-r-train-model.md
-          - name: Deploy R model
-            href: how-to-r-deploy-r-model.md
+        href: how-to-r-interactive-development.md
       - name: Work with Microsoft Fabric
         items:
           - name: Access and use batch deployments from Fabric
@@ -263,6 +253,9 @@ items:
     - name: Create Azure Machine Learning Datastores
       displayName: Create datastores
       href: how-to-datastore.md
+    - name: Create a Datastore with the User Interface
+      displayName: Create a datastore with the UI
+      href: create-datastore-with-user-interface.md
     - name: Setup storage authentication
       displayName: Data administration and authentication
       href: how-to-administrate-data-authentication.md
@@ -584,9 +577,9 @@ items:
     href: how-to-interactive-jobs.md
   - name: Schedule jobs
     href: how-to-schedule-pipeline-job.md
-- name: Work with foundation models
+- name: Explore AI model capabilities
   items:
-    - name: Model Catalog Overview
+    - name: Model catalog overview
       href: concept-model-catalog.md
     - name: Data, privacy, and security for Model Catalog
       href: concept-data-privacy.md
@@ -596,66 +589,46 @@ items:
       href: how-to-use-foundation-models.md
     - name: Hugging Face Hub community partner models
       href: how-to-deploy-models-from-huggingface.md
-    - name: Healthcare AI models
+    - name: Work with models from the model catalog
       items:
-        - name: Foundational AI models for healthcare
-          href: /azure/ai-studio/how-to/healthcare-ai/healthcare-ai-models?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
-        - name: MedImageInsight - embedding model
-          href: /azure/ai-studio/how-to/healthcare-ai/deploy-medimageinsight?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
-        - name: CXRReportGen - text generation model
-          href: /azure/ai-studio/how-to/healthcare-ai/deploy-cxrreportgen?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
-        - name: MedImageParse - prompted segmentation model
-          href: /azure/ai-studio/how-to/healthcare-ai/deploy-medimageparse?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
-    - name: Phi-3 family models
-      items:
-        - name: Phi-3 family chat models
-          href: how-to-deploy-models-phi-3.md
-        - name: Phi-3 chat model with vision
-          href: how-to-deploy-models-phi-3-vision.md
-        - name: Phi-3.5 chat model with vision
-          href: how-to-deploy-models-phi-3-5-vision.md
-    - name: How to deploy TimeGEN-1 model
-      href: how-to-deploy-models-timegen-1.md
-    - name: How to deploy Mistral family models
-      href: how-to-deploy-models-mistral.md
-    - name: Cohere models
-      items:
-        - name: Cohere Command models
-          href: how-to-deploy-models-cohere-command.md
-        - name: Cohere Embed models
-          href: how-to-deploy-models-cohere-embed.md
-        - name: Cohere Rerank models
-          href: how-to-deploy-models-cohere-rerank.md
-    - name: Deploy Meta Llama models
-      items:
-        - name: How to deploy Meta Llama family models
-          href: how-to-deploy-models-llama.md
-    - name: How to deploy JAIS models
-      href: how-to-deploy-models-jais.md
-    - name: AI21 Jamba models
-      href: how-to-deploy-models-jamba.md
+      - name: Featured models in the model catalog
+        href: concept-models-featured.md
+      - name: Other featured models
+        items:
+        - name: Healthcare AI models
+          items:
+          - name: Foundational AI models for healthcare
+            href: /azure/ai-studio/how-to/healthcare-ai/healthcare-ai-models?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
+          - name: MedImageInsight - embedding model
+            href: /azure/ai-studio/how-to/healthcare-ai/deploy-medimageinsight?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
+          - name: CXRReportGen - text generation model
+            href: /azure/ai-studio/how-to/healthcare-ai/deploy-cxrreportgen?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
+          - name: MedImageParse - prompted segmentation model
+            href: /azure/ai-studio/how-to/healthcare-ai/deploy-medimageparse?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
+        - name: Gretel Navigator model
+          href: /azure/ai-studio/how-to/deploy-models-gretel-navigator?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
+        - name: Mistral-7B and Mixtral models
+          href: /azure/ai-studio/how-to/deploy-models-mistral-open?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
+      - name: Work with embedding models
+        items:
+          - name: Work with text embedding models
+            href: ../ai-foundry/model-inference/how-to/use-embeddings.md?context=/azure/machine-learning/context/context
+          - name: Work with image embedding models
+            href: ../ai-foundry/model-inference/how-to/use-image-embeddings.md?context=/azure/machine-learning/context/context
+      - name: Work with chat models
+        items:
+          - name: Work with chat completion models
+            href: ../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/machine-learning/context/context
+          - name: Work with reasoning models
+            href: ../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/machine-learning/context/context
+          - name: Work with multimodal models
+            href: ../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/machine-learning/context/context
     - name: Built-in policy to allow specific models
       href: how-to-built-in-policy-model-deployment.md
     - name: Custom policy to allow specific models
       href: how-to-custom-policy-model-deployment.md
-    - name: Stability AI models
-      href: deploy-stability-models.md
     - name: Use Model Catalog collections with virtual network
       href: how-to-network-isolation-model-catalog.md
-    - name: Azure AI Model Inference API
-      items:
-        - name: What's the Azure AI Model Inference API?
-          href: reference-model-inference-api.md
-        - name: Reference
-          items:
-            - name: Get Info
-              href: reference-model-inference-info.md
-            - name: Embeddings
-              href: reference-model-inference-embeddings.md
-            - name: Chat Completions
-              href: reference-model-inference-chat-completions.md
-            - name: Images Embeddings
-              href: reference-model-inference-images-embeddings.md
 - name: Use Generative AI
   items:
     - name: Build AI solutions with prompt flow
@@ -791,14 +764,6 @@ items:
       - name: Fairness in Machine Learning
         displayName: fairness, bias, model performance, disparity metrics, unfairness
         href: concept-fairness-ml.md
-    # v1
-      - name: Interpret ML models
-        href: ./v1/how-to-machine-learning-interpretability-aml.md
-      - name: Explain automated ML models
-        href: ./v1/how-to-machine-learning-interpretability-automl.md
-      - name: Fairness in Machine Learning
-        href: ./v1/how-to-machine-learning-fairness-aml.md
-    # end v1
       - name: Causal analysis
         href: concept-causal-inference.md
       - name: Assess errors in ML models
@@ -906,7 +871,7 @@ items:
         href: ./v1/how-to-create-machine-learning-pipelines.md
       - name: Moving data into and between ML pipeline steps (Python)
         href: ./v1/how-to-move-data-in-out-of-pipelines.md
-      - name: Use automated ML in ML pipelines (Python)
+      - name: Use AutoML in machine learning pipelines (Python)
         displayName: machine learning automl
         href: ./v1/how-to-use-automlstep-in-pipelines.md
       - name: Deploy ML pipelines (Python)
@@ -939,7 +904,7 @@ items:
           href: concept-endpoints-online.md
         - name: Model specification for online deployment
           href: concept-online-deployment-model-specification.md
-        - name: Deploy an ML model with an online endpoint
+        - name: Deploy a model to an online endpoint
           href: how-to-deploy-online-endpoints.md
         - name: Deploy models with safe rollout strategy
           href: how-to-safely-rollout-online-endpoints.md
@@ -955,7 +920,7 @@ items:
           href: how-to-monitor-online-endpoints.md
         - name: Debug online endpoints locally VS Code
           href: how-to-debug-managed-online-endpoints-visual-studio-code.md
-        - name: Debug scoring script with inference HTTP server
+        - name: Debug scoring scripts with inference HTTP server
           href: how-to-inference-server-http.md
         - name: Troubleshoot online endpoints
           href: how-to-troubleshoot-online-endpoints.md
@@ -1091,7 +1056,7 @@ items:
     - name: Consume web service
       displayName: create client consume request response synchronous
       href: ./v1/how-to-consume-web-service.md
-    - name: Advanced entry script authoring
+    - name: Author advanced entry scripts
       displayName: swagger inference schema binary cors
       href: ./v1/how-to-deploy-advanced-entry-script.md
     - name: Prebuilt Docker images
@@ -1695,6 +1660,8 @@ items:
           items:
             - name: Registry
               href: reference-yaml-registry.md
+    - name: Azure AI Model Inference API
+      href: /rest/api/aifoundry/modelinference
     - name: Azure PowerShell
       href: /powershell/module/az.machinelearningservices/
     - name: Service limits

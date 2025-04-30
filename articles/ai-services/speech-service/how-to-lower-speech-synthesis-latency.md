@@ -7,7 +7,7 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/20/2024
+ms.date: 3/10/2025
 ms.reviewer: yulili
 ms.custom: references_regions, devx-track-extended-java, devx-track-python
 zone_pivot_groups: programming-languages-set-nineteen
@@ -24,15 +24,19 @@ Normally, we measure the latency by `first byte latency` and `finish latency`, a
 
 | Latency | Description | [SpeechSynthesisResult](/dotnet/api/microsoft.cognitiveservices.speech.speechsynthesisresult) property key |
 |-----------|-------------|------------|
-| first byte latency | Indicates the time delay between the start of the synthesis task and receipt of the first chunk of audio data. | SpeechServiceResponse_SynthesisFirstByteLatencyMs |
-| finish latency | Indicates the time delay between the start of the synthesis task and the receipt of the whole synthesized audio data. | SpeechServiceResponse_SynthesisFinishLatencyMs |
+| `first byte client latency` | Indicates the time delay between the synthesis starts and the first audio chunk is received on the client including network latency.| `SpeechServiceResponse_SynthesisFirstByteLatencyMs` |
+| `finish client latency` | Indicates the time delay between the synthesis starts and the whole synthesized audio is received on the client including network latency. | `SpeechServiceResponse_SynthesisFinishLatencyMs` |
+| `network latency` | The network latency between the client and Azure TTS service. | `SpeechServiceResponse_SynthesisNetworkLatencyMs` |
+| `first byte service latency` | Indicates the time delay between Azure TTS service received synthesis request and the first audio chunk is returned. | `SpeechServiceResponse_SynthesisServiceLatencyMs` |
 
 The Speech SDK puts the latency durations in the Properties collection of [`SpeechSynthesisResult`](/dotnet/api/microsoft.cognitiveservices.speech.speechsynthesisresult). The following sample code shows these values.
 
 ```csharp
 var result = await synthesizer.SpeakTextAsync(text);
-Console.WriteLine($"first byte latency: \t{result.Properties.GetProperty(PropertyId.SpeechServiceResponse_SynthesisFirstByteLatencyMs)} ms");
-Console.WriteLine($"finish latency: \t{result.Properties.GetProperty(PropertyId.SpeechServiceResponse_SynthesisFinishLatencyMs)} ms");
+Console.WriteLine($"first byte client latency: \t{result.Properties.GetProperty(PropertyId.SpeechServiceResponse_SynthesisFirstByteLatencyMs)} ms");
+Console.WriteLine($"finish client latency: \t{result.Properties.GetProperty(PropertyId.SpeechServiceResponse_SynthesisFinishLatencyMs)} ms");
+Console.WriteLine($"network latency: \t{result.Properties.GetProperty(PropertyId.SpeechServiceResponse_SynthesisNetworkLatencyMs)} ms");
+Console.WriteLine($"first byte service latency: \t{result.Properties.GetProperty(PropertyId.SpeechServiceResponse_SynthesisServiceLatencyMs)} ms");
 // you can also get the result id, and send to us when you need help for diagnosis
 var resultId = result.ResultId;
 ```
@@ -43,8 +47,10 @@ var resultId = result.ResultId;
 
 | Latency | Description | [SpeechSynthesisResult](/cpp/cognitive-services/speech/speechsynthesisresult) property key |
 |-----------|-------------|------------|
-| `first byte latency` | Indicates the time delay between the synthesis starts and the first audio chunk is received. | `SpeechServiceResponse_SynthesisFirstByteLatencyMs` |
-| `finish latency` | Indicates the time delay between the synthesis starts and the whole synthesized audio is received. | `SpeechServiceResponse_SynthesisFinishLatencyMs` |
+| `first byte client latency` | Indicates the time delay between the synthesis starts and the first audio chunk is received on the client including network latency.| `SpeechServiceResponse_SynthesisFirstByteLatencyMs` |
+| `finish client latency` | Indicates the time delay between the synthesis starts and the whole synthesized audio is received on the client including network latency. | `SpeechServiceResponse_SynthesisFinishLatencyMs` |
+| `network latency` | The network latency between the client and Azure TTS service. | `SpeechServiceResponse_SynthesisNetworkLatencyMs` |
+| `first byte service latency` | Indicates the time delay between Azure TTS service received synthesis request and the first audio chunk is returned. | `SpeechServiceResponse_SynthesisServiceLatencyMs` |
 
 The Speech SDK measured the latencies and puts them in the property bag of [`SpeechSynthesisResult`](/cpp/cognitive-services/speech/speechsynthesisresult). Refer following codes to get them.
 
@@ -52,6 +58,8 @@ The Speech SDK measured the latencies and puts them in the property bag of [`Spe
 auto result = synthesizer->SpeakTextAsync(text).get();
 auto firstByteLatency = std::stoi(result->Properties.GetProperty(PropertyId::SpeechServiceResponse_SynthesisFirstByteLatencyMs));
 auto finishedLatency = std::stoi(result->Properties.GetProperty(PropertyId::SpeechServiceResponse_SynthesisFinishLatencyMs));
+auto firstByteLatency = std::stoi(result->Properties.GetProperty(PropertyId::SpeechServiceResponse_SynthesisNetworkLatencyMs));
+auto firstByteLatency = std::stoi(result->Properties.GetProperty(PropertyId::SpeechServiceResponse_SynthesisServiceLatencyMs));
 // you can also get the result id, and send to us when you need help for diagnosis
 auto resultId = result->ResultId;
 ```
@@ -62,15 +70,19 @@ auto resultId = result->ResultId;
 
 | Latency | Description | [SpeechSynthesisResult](/java/api/com.microsoft.cognitiveservices.speech.speechsynthesisresult) property key |
 |-----------|-------------|------------|
-| `first byte latency` | Indicates the time delay between the synthesis starts and the first audio chunk is received. | `SpeechServiceResponse_SynthesisFirstByteLatencyMs` |
-| `finish latency` | Indicates the time delay between the synthesis starts and the whole synthesized audio is received. | `SpeechServiceResponse_SynthesisFinishLatencyMs` |
+| `first byte client latency` | Indicates the time delay between the synthesis starts and the first audio chunk is received on the client including network latency.| `SpeechServiceResponse_SynthesisFirstByteLatencyMs` |
+| `finish client latency` | Indicates the time delay between the synthesis starts and the whole synthesized audio is received on the client including network latency. | `SpeechServiceResponse_SynthesisFinishLatencyMs` |
+| `network latency` | The network latency between the client and Azure TTS service. | `SpeechServiceResponse_SynthesisNetworkLatencyMs` |
+| `first byte service latency` | Indicates the time delay between Azure TTS service received synthesis request and the first audio chunk is returned. | `SpeechServiceResponse_SynthesisServiceLatencyMs` |
 
 The Speech SDK measured the latencies and puts them in the property bag of [`SpeechSynthesisResult`](/java/api/com.microsoft.cognitiveservices.speech.speechsynthesisresult). Refer following codes to get them.
 
 ```java
 SpeechSynthesisResult result = synthesizer.SpeakTextAsync(text).get();
-System.out.println("first byte latency: \t" + result.getProperties().getProperty(PropertyId.SpeechServiceResponse_SynthesisFirstByteLatencyMs) + " ms.");
-System.out.println("finish latency: \t" + result.getProperties().getProperty(PropertyId.SpeechServiceResponse_SynthesisFinishLatencyMs) + " ms.");
+System.out.println("first byte client latency: \t" + result.getProperties().getProperty(PropertyId.SpeechServiceResponse_SynthesisFirstByteLatencyMs) + " ms.");
+System.out.println("finish client latency: \t" + result.getProperties().getProperty(PropertyId.SpeechServiceResponse_SynthesisFinishLatencyMs) + " ms.");
+System.out.println("network latency: \t" + result.getProperties().getProperty(PropertyId.SpeechServiceResponse_SynthesisNetworkLatencyMs) + " ms.");
+System.out.println("first byte service latency: \t" + result.getProperties().getProperty(PropertyId.SpeechServiceResponse_SynthesisServiceLatencyMs) + " ms.");
 // you can also get the result id, and send to us when you need help for diagnosis
 String resultId = result.getResultId();
 ```
@@ -82,15 +94,19 @@ String resultId = result.getResultId();
 
 | Latency | Description | [SpeechSynthesisResult](/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.speechsynthesisresult) property key |
 |-----------|-------------|------------|
-| `first byte latency` | Indicates the time delay between the synthesis starts and the first audio chunk is received. | `SpeechServiceResponse_SynthesisFirstByteLatencyMs` |
-| `finish latency` | Indicates the time delay between the synthesis starts and the whole synthesized audio is received. | `SpeechServiceResponse_SynthesisFinishLatencyMs` |
+| `first byte client latency` | Indicates the time delay between the synthesis starts and the first audio chunk is received on the client including network latency.| `SpeechServiceResponse_SynthesisFirstByteLatencyMs` |
+| `finish client latency` | Indicates the time delay between the synthesis starts and the whole synthesized audio is received on the client including network latency. | `SpeechServiceResponse_SynthesisFinishLatencyMs` |
+| `network latency` | The network latency between the client and Azure TTS service. | `SpeechServiceResponse_SynthesisNetworkLatencyMs` |
+| `first byte service latency` | Indicates the time delay between Azure TTS service received synthesis request and the first audio chunk is returned. | `SpeechServiceResponse_SynthesisServiceLatencyMs` |
 
 The Speech SDK measured the latencies and puts them in the property bag of [`SpeechSynthesisResult`](/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.speechsynthesisresult). Refer following codes to get them.
 
 ```python
 result = synthesizer.speak_text_async(text).get()
-first_byte_latency = int(result.properties.get_property(speechsdk.PropertyId.SpeechServiceResponse_SynthesisFirstByteLatencyMs))
-finished_latency = int(result.properties.get_property(speechsdk.PropertyId.SpeechServiceResponse_SynthesisFinishLatencyMs))
+first_byte_client_latency = int(result.properties.get_property(speechsdk.PropertyId.SpeechServiceResponse_SynthesisFirstByteLatencyMs))
+finished_client_latency = int(result.properties.get_property(speechsdk.PropertyId.SpeechServiceResponse_SynthesisFinishLatencyMs))
+network_latency = int(result.properties.get_property(speechsdk.PropertyId.SpeechServiceResponse_SynthesisNetworkLatencyMs))
+first_byte_service_latency = int(result.properties.get_property(speechsdk.PropertyId.SpeechServiceResponse_SynthesisServiceLatencyMs))
 # you can also get the result id, and send to us when you need help for diagnosis
 result_id = result.result_id
 ```
@@ -101,15 +117,19 @@ result_id = result.result_id
 
 | Latency | Description | [SPXSpeechSynthesisResult](/objectivec/cognitive-services/speech/spxspeechsynthesisresult) property key |
 |-----------|-------------|------------|
-| `first byte latency` | Indicates the time delay between the synthesis starts and the first audio chunk is received. | `SPXSpeechServiceResponseSynthesisFirstByteLatencyMs` |
-| `finish latency` | Indicates the time delay between the synthesis starts and the whole synthesized audio is received. | `SPXSpeechServiceResponseSynthesisFinishLatencyMs` |
+| `first byte client latency` | Indicates the time delay between the synthesis starts and the first audio chunk is received on the client including network latency. | `SPXSpeechServiceResponseSynthesisFirstByteLatencyMs` |
+| `finish client latency` | Indicates the time delay between the synthesis starts and the whole synthesized audio is received on the client including network latency. | `SPXSpeechServiceResponseSynthesisFinishLatencyMs` |
+| `network latency` | The network latency between the client and Azure TTS service. | `SPXSpeechServiceResponseSynthesisNetworkLatencyMs` |
+| `first byte service latency` | Indicates the time delay between Azure TTS service received synthesis request and the first audio chunk is returned. | `SPXSpeechServiceResponseSynthesisServiceLatencyMs` |
 
 The Speech SDK measured the latencies and puts them in the property bag of [`SPXSpeechSynthesisResult`](/objectivec/cognitive-services/speech/spxspeechsynthesisresult). Refer following codes to get them.
 
 ```Objective-C
 SPXSpeechSynthesisResult *speechResult = [speechSynthesizer speakText:text];
-int firstByteLatency = [intString [speechResult.properties getPropertyById:SPXSpeechServiceResponseSynthesisFirstByteLatencyMs]];
-int finishedLatency = [intString [speechResult.properties getPropertyById:SPXSpeechServiceResponseSynthesisFinishLatencyMs]];
+int firstByteClientLatency = [intString [speechResult.properties getPropertyById:SPXSpeechServiceResponseSynthesisFirstByteLatencyMs]];
+int finishedClientLatency = [intString [speechResult.properties getPropertyById:SPXSpeechServiceResponseSynthesisFinishLatencyMs]];
+int networkLatency = [intString [speechResult.properties getPropertyById:SPXSpeechServiceResponseSynthesisNetworkLatencyMs]];
+int firstByteServiceLatency = [intString [speechResult.properties getPropertyById:SPXSpeechServiceResponseSynthesisServiceLatencyMs]];
 // you can also get the result id, and send to us when you need help for diagnosis
 NSString *resultId = result.resultId;
 ```

@@ -1,6 +1,5 @@
 ---
 title: Create an Azure service principal
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services

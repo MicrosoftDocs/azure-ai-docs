@@ -2,7 +2,6 @@
 title: Call the Image Analysis 3.2 API
 titleSuffix: Azure AI services
 description: Learn how to call the Image Analysis API and configure its behavior.
-#services: cognitive-services
 manager: nitinme
 author: PatrickFarley
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"

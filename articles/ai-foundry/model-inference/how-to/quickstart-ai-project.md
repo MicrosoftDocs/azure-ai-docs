@@ -50,7 +50,7 @@ To configure the project to use the Azure AI model inference capability in Azure
 
 2. At the top navigation bar, over the right corner, select the **Preview features** icon. A contextual blade shows up at the right of the screen.
 
-3. Turn the feature **Deploy models to Azure AI model inference service** on.
+3. Turn on the **Deploy models to Azure AI model inference service** feature.
 
     :::image type="content" source="../media/quickstart-ai-project/ai-project-inference-endpoint.gif" alt-text="An animation showing how to turn on the Deploy models to Azure AI model inference service feature in Azure AI Foundry portal." lightbox="../media/quickstart-ai-project/ai-project-inference-endpoint.gif":::
 

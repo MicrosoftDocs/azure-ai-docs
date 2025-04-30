@@ -38,6 +38,8 @@ To create and work with data, you need:
 
 ## Create data
 
+You are charged for the storage used by your data. To help estimate the cost, you can use the [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/). The data is stored in a container called `workspaceblobstore` in your project's Azure Storage account. 
+
 When you create your data, you need to set the data type. Azure AI Foundry supports these data types:
 
 |Type  |**Canonical Scenarios**|

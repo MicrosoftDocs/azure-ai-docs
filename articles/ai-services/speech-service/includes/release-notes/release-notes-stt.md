@@ -2,10 +2,24 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 2/18/2025
+ms.date: 3/28/2025
 ms.author: eur
 ms.custom: references_regions
 ---
+
+### March 2025 release
+
+## Conversation transcription multichannel diarization (retired)
+
+Conversation transcription multichannel diarization is retiring on March 28, 2025. 
+
+To continue using speech to text with diarization, use the following features instead:
+
+- [Real-time speech to text with diarization](../../get-started-stt-diarization.md)
+- [Fast transcription with diarization](../../fast-transcription-create.md)
+- [Batch transcription with diarization](../../batch-transcription.md)
+
+These speech to text features only support diarization for single-channel audio. Multichannel audio that you used with conversation transcription multichannel diarization isn't supported. 
 
 ### January 2025 release
 

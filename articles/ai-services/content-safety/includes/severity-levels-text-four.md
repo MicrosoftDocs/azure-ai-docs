@@ -1,7 +1,6 @@
 ---
 title: "Severity level tables - Text, four-level"
 description: Content safety severity level definition tables for text, four-level
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety

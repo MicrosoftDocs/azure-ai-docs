@@ -1,14 +1,13 @@
 ---
-title: Frequently asked questions - Azure AI Translator Document Translation
+title: Frequently asked questions - Azure AI Translator Document translation
 titleSuffix: Azure AI services
-description: Get answers to Azure AI Translator Document Translation frequently asked questions.
-#services: cognitive-services
+description: Get answers to Azure AI Translator Document translation frequently asked questions.
 author: laujan
 manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 01/27/2025
+ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 
@@ -16,11 +15,11 @@ ms.author: lajanuar
 
 # Answers to frequently asked questions
 
-## Azure AI Translator Document Translation: FAQ
+## Azure AI Translator Document translation: FAQ
 
 #### Should I specify the source language in a request?
 
-If the language of the content in the source document is known, we recommend that you specify the source language in the request to get a better translation. If the document has content in multiple languages or the language is unknown, then don't specify the source language in the request. Azure AI Translator Document Translation automatically identifies language for each text segment and translates.
+If the language of the content in the source document is known, we recommend that you specify the source language in the request to get a better translation. If the document has content in multiple languages or the language is unknown, then don't specify the source language in the request. Azure AI Translator Document translation automatically identifies language for each text segment and translates.
 
 #### To what extent are document layout, structure, formatting, and font style retained?
 
@@ -36,9 +35,9 @@ If the language of the content in the source document is known, we recommend tha
 
 No. The text in an image within a document isn't translated.
 
-#### Can Azure AI Translator Document Translation translate content from scanned documents?
+#### Can Azure AI Translator Document translation translate content from scanned documents?
 
-Yes. Azure AI Translator Document Translation translates content from _scanned PDF_ documents.
+Yes. Azure AI Translator Document translation translates content from _scanned PDF_ documents.
 
 #### Can encrypted or password-protected documents be translated?
 
@@ -51,3 +50,10 @@ No. Don't include SAS token-appended URLs. Managed identities eliminate the need
 #### Which PDF format renders the best results?
 
 PDF documents generated from digital file formats (also known as "native" PDFs) provide optimal output. Scanned PDFs are images of printed documents scanned into an electronic format. Translating scanned PDF files can result in loss of the original formatting, layout, and style, and affect the quality of the translation.
+
+#### Can I learn more about single document synchronous translation?
+
+Yes.
+
+* For more information, *see* [Synchronous document translation](overview.md#synchronous-translation)
+* To view `synchronous document translation` sample code in our GitHub repository, *see* [.NET/C#](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/translation/Azure.AI.Translation.Document/samples/Sample5_SynchronousTranslation.md); [Python](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-translation-document_1.0.0/sdk/translation/azure-ai-translation-document/samples/sample_begin_translation.py); [REST API](quickstarts/rest-api.md#synchronously-translate-a-single-document-post)

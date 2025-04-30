@@ -140,5 +140,5 @@ Azure AI services provide several support options to help you move forward with 
 ## Related content
 
 * Learn how to [get started with Azure](https://azure.microsoft.com/get-started/)
-* [Try Azure AI services and more in the Azure AI Foundry portal](../ai-studio/what-is-ai-studio.md)
+* [Try Azure AI services and more in the Azure AI Foundry portal](../ai-foundry/what-is-azure-ai-foundry.md)
 * [Plan and manage costs for Azure AI services](plan-manage-costs.md)

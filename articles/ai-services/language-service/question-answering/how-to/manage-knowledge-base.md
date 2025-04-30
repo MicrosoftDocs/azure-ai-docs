@@ -52,7 +52,7 @@ From the main custom question answering page in Language Studio you can:
 
 ## Manage sources
 
-1. Select **Manage sources** in the left navigation bar.
+1. Select **Manage sources** in the left pane.
 
 1.  There are three types of sources: **URLS**, **Files**, and **Chitchat**
 

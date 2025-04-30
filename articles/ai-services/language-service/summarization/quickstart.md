@@ -2,7 +2,6 @@
 title: "Quickstart: Use Summarization"
 titleSuffix: Azure AI services
 description: Use this quickstart to start using Summarization.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language

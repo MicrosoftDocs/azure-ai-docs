@@ -2,12 +2,11 @@
 title: What is summarization?
 titleSuffix: Azure AI services
 description: Learn about summarizing text.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 02/17/2025
+ms.date: 03/05/2025
 ms.author: jboback
 ms.custom: language-service-summarization, build-2024, ignite-2024
 ---
@@ -16,35 +15,37 @@ ms.custom: language-service-summarization, build-2024, ignite-2024
 
 [!INCLUDE [availability](includes/regional-availability.md)]
 
-Summarization is one feature offered by [Azure AI Language](../overview.md), which is a combination of generative Large Language models and task-optimized encoder models that offer summarization solutions with higher quality, cost efficiency, and lower latency.
+Summarization is a feature offered by [Azure AI Language](../overview.md), a combination of generative Large Language models and task-optimized encoder models that offer summarization solutions with higher quality, cost efficiency, and lower latency.
 Use this article to learn more about this feature, and how to use it in your applications.
 
-Out of the box, the service provides summarization solutions for three types of genre, plain texts, conversations, and native documents. Text summarization only accepts plain text blocks, and conversation summarization accept conversational input, including various speech audio signals in order for the model to effectively segment and summarize, and native document can directly summarize for documents in their native formats, such as Words, PDF, etc. 
+Out of the box, the service provides summarization solutions for three types of genre, plain texts, conversations, and native documents. Text summarization only accepts plain text blocks. Conversation summarization accepts conversational input, including various speech audio signals. Native document summarization accepts documents in their native formats, such as Word, PDF, or plain text. For more information, *see* [Supported document formats](../native-document-support/overview.md#supported-document-formats).
 
 > [!TIP]
-> Try out Summarization [in Azure AI Foundry portal](https://ai.azure.com/explore/language), where you can [utilize a currently existing Language Studio resource or create a new Azure AI Foundry resource](../../../ai-studio/ai-services/connect-ai-services.md) in order to use this service. 
+> Try out Summarization [in Azure AI Foundry portal](https://ai.azure.com/explore/language). There you can [utilize a currently existing Language Studio resource or create a new Azure AI Foundry resource](../../../ai-services/connect-services-ai-foundry-portal.md) in order to use this service.
+
+## Capabilities
 
 # [Text summarization](#tab/text-summarization)
 
 This documentation contains the following article types:
 
 * **[Quickstarts](quickstart.md?pivots=rest-api&tabs=text-summarization)** are getting-started instructions to guide you through making requests to the service.
-* **[How-to guides](how-to/document-summarization.md)** contain instructions for using the service in more specific or customized ways.
+* **[How-to guides](how-to/text-summarization.md)** contain instructions for using the service in more specific or customized ways.
 
-These features are designed to shorten content that could be considered too long to read.
+[!INCLUDE [Typical workflow for pre-configured language features](../includes/overview-typical-workflow.md)]
 
 ## Key features for text summarization
 
-Text summarization uses natural language processing techniques to generate a summary for plain texts, which can be from a document or a conversation, or any texts. There are two approaches of summarization this API provides:
+Text summarization uses natural language processing techniques to generate a summary for plain texts, which can be from a document, conversation, or any texts. There are two approaches of summarization this API provides:
 
-* [**Extractive summarization**](how-to/document-summarization.md#try-text-extractive-summarization): Produces a summary by extracting salient sentences within the document, together the positioning information of these sentences. 
+* [**Extractive summarization**](how-to/text-summarization.md#try-text-extractive-summarization): Produces a summary by extracting salient sentences within the source text, together the positioning information of these sentences.
 
-  * Multiple extracted sentences: These sentences collectively convey the main idea of the document. They're original sentences extracted from the input document's content.
+  * Multiple extracted sentences: These sentences collectively convey the main idea of the input text. They're original sentences extracted from the input text content.
   * Rank score: The rank score indicates how relevant a sentence is to the main topic. Text summarization ranks extracted sentences, and you can determine whether they're returned in the order they appear, or according to their rank.
  For example, if you request a three-sentence summary extractive summarization returns the three highest scored sentences.
   * Positional information: The start position and length of extracted sentences.
 
-* [**Abstractive summarization**](how-to/document-summarization.md#try-text-abstractive-summarization): Generates a summary with concise, coherent sentences or words that aren't verbatim extract sentences from the original document.
+* [**Abstractive summarization**](how-to/text-summarization.md#try-text-abstractive-summarization): Generates a summary with concise, coherent sentences or words that aren't verbatim extract sentences from the original source.
   * Summary texts: Abstractive summarization returns a summary for each contextual input range. A long input can be segmented so multiple groups of summary texts can be returned with their contextual input range.
   * Contextual input range: The range within the input that was used to generate the summary text.
 
@@ -54,7 +55,7 @@ As an example, consider the following paragraph of text:
 
 The text summarization API request is processed upon receipt of the request by creating a job for the API backend. If the job succeeded, the output of the API is returned. The output is available for retrieval for 24 hours. After this time, the output is purged. Due to multilingual and emoji support, the response can contain text offsets. For more information, see [how to process offsets](../concepts/multilingual-emoji-support.md).
 
-If we use the above example, the API might return these summaries:
+If we use the preceding example, the API might return these summaries:
 
 **Extractive summarization**:
 - "At Microsoft, we are on a quest to advance AI beyond existing techniques, by taking a more holistic, human-centric approach to learning and understanding."
@@ -82,21 +83,21 @@ Conversation summarization supports the following features:
 
 As an example, consider the following example conversation:
 
-**Agent**: "*Hello, you're chatting with Rene. How may I help you?*" 
+**Agent**: "*Hello, you're chatting with Rene. How may I help you?*"
 
-**Customer**: "*Hi, I tried to set up wifi connection for Smart Brew 300 espresso machine, but it didn't work.*" 
+**Customer**: "*Hi, I tried to set up wifi connection for Smart Brew 300 espresso machine, but it didn't work.*"
 
-**Agent**: "*I'm sorry to hear that. Let's see what we can do to fix this issue. Could you push the wifi connection button, hold for 3 seconds, then let me know if the power light is slowly blinking?*" 
+**Agent**: "*I'm sorry to hear that. Let's see what we can do to fix this issue. Could you push the wifi connection button, hold for 3 seconds, then let me know if the power light is slowly blinking?*"
 
-**Customer**: "*Yes, I pushed the wifi connection button, and now the power light is slowly blinking.*" 
+**Customer**: "*Yes, I pushed the wifi connection button, and now the power light is slowly blinking.*"
 
-**Agent**: "*Great. Thank you! Now, please check in your Contoso Coffee app. Does it prompt to ask you to connect with the machine?*" 
+**Agent**: "*Great. Thank you! Now, please check in your Contoso Coffee app. Does it prompt to ask you to connect with the machine?*"
 
-**Customer**: "*No. Nothing happened.*" 
+**Customer**: "*No. Nothing happened.*"
 
-**Agent**: "*I see. Thanks. Let's try if a factory reset can solve the issue. Could you please press and hold the center button for 5 seconds to start the factory reset.*"  
+**Agent**: "*I see. Thanks. Let's try if a factory reset can solve the issue. Could you please press and hold the center button for 5 seconds to start the factory reset.*"
 
-**Customer**: *"I've tried the factory reset and followed the above steps again, but it still didn't work."* 
+**Customer**: *"I've tried the factory reset and followed the above steps again, but it still didn't work."*
 
 **Agent**: "*I'm very sorry to hear that. Let me see if there's another way to fix the issue. Please hold on for a minute.*"
 
@@ -115,12 +116,11 @@ Conversation summarization feature would simplify the text as follows:
 This documentation contains the following article types:
 
 * **[Quickstarts](quickstart.md?pivots=rest-api&tabs=document-summarization)** are getting-started instructions to guide you through making requests to the service.
-* **[How-to guides](how-to/document-summarization.md)** contain instructions for using the service in more specific or customized ways.
+* **[How-to guides](../native-document-support/overview.md)** contain instructions for using the service in more specific or customized ways.
 
-Document summarization uses natural language processing techniques to generate a summary for documents. 
+Native document summarization uses natural language processing techniques to generate a summary for native documents. A native document refers to the file format used to create the original document such as Microsoft Word (docx) or a portable document file (pdf). Native document support eliminates the need for text preprocessing before using Azure AI Language resource capabilities. Currently, native document support is available for two types of summarization:
 
-A native document refers to the file format used to create the original document such as Microsoft Word (docx) or a portable document file (pdf). Native document support eliminates the need for text preprocessing prior to using Azure AI Language resource capabilities.  Currently, native document support is available for two types of summarization:
-* **Extractive summarization**: Produces a summary by extracting salient sentences within the document, together the positioning information of those sentences. 
+* [**Extractive summarization**](how-to/document-summarization.md): Produces a summary by extracting salient sentences within the document, together the positioning information of those sentences.
 
   * Multiple extracted sentences: These sentences collectively convey the main idea of the document. They're original sentences extracted from the input document's content.
   * Rank score: The rank score indicates how relevant a sentence is to the main topic. Text summarization ranks extracted sentences, and you can determine whether they're returned in the order they appear, or according to their rank.
@@ -132,7 +132,7 @@ A native document refers to the file format used to create the original document
   * Contextual input range: The range within the input that was used to generate the summary text.
 
 
- Currently **Document Summarization** supports the following native document formats:
+Currently, **Document Summarization** supports the following native document formats:
 
 |File type|File extension|Description|
 |---------|--------------|-----------|
@@ -140,7 +140,7 @@ A native document refers to the file format used to create the original document
 |Adobe PDF| `.pdf`       |A portable document file formatted document.|
 |Microsoft Word|`.docx`|A Microsoft Word document file.|
 
-For more information, *see* [**Use native documents for language processing**](../native-document-support/use-native-documents.md)
+For more information, *see* [**Summarize native documents**](how-to/document-summarization.md)
 
 ---
 

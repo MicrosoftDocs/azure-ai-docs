@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.author: larryfr
 author: Blackmist
-ms.date: 08/15/2022
+ms.date: 03/07/2025
 ms.topic: how-to
 ms.reviewer: sehan
 ms.custom: UpdateFrequency5, deploy, docker, prebuilt, sdkv1, devx-track-python
@@ -16,6 +16,8 @@ ms.custom: UpdateFrequency5, deploy, docker, prebuilt, sdkv1, devx-track-python
 # Python package extensibility for prebuilt Docker images (preview)
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 The [prebuilt Docker images for model inference](../concept-prebuilt-docker-images-inference.md) contain packages for popular machine learning frameworks. There are two methods that can be used to add Python packages __without rebuilding the Docker image__:
 
@@ -84,13 +86,13 @@ This approach mounts a directory that you provide into the image. The Python pac
 To extend your prebuilt docker container image through pre-installed Python packages, follow these steps:
 
 > [!IMPORTANT]
-> You must use packages compatible with Python 3.7. All current images are pinned to Python 3.7.
+> You must use packages compatible with Python 3.8 or 3.8, depending on the image you use.
 
 1. Create a virtual environment using [virtualenv](https://virtualenv.pypa.io/).
 
 1. Install your Dependencies. If you have a list of dependencies in a `requirements.txt`, for example, you can use that to install with `pip install -r requirements.txt` or just `pip install` individual dependencies.
 
-1. When you specify the `AZUREML_EXTRA_PYTHON_LIB_PATH` environment variable, make sure that you point to the correct site packages directory, which will vary depending on your environment name and Python version. The following code demonstrates setting the path for a virtual environment named `myenv` and Python 3.7:
+1. When you specify the `AZUREML_EXTRA_PYTHON_LIB_PATH` environment variable, make sure that you point to the correct site packages directory, which will vary depending on your environment name and Python version. The following code demonstrates setting the path for a virtual environment named `myenv` and Python 3.8:
 
 
     ```python
@@ -103,7 +105,7 @@ To extend your prebuilt docker container image through pre-installed Python pack
     myenv.python.user_managed_dependencies = True
 
     myenv.environment_variables = {
-        "AZUREML_EXTRA_PYTHON_LIB_PATH": "myenv/lib/python3.7/site-packages"
+        "AZUREML_EXTRA_PYTHON_LIB_PATH": "myenv/lib/python3.8/site-packages"
     }
     ```
 

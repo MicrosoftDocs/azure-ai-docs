@@ -1,24 +1,24 @@
 ---
 title: Azure AI Translator release history
 titleSuffix: Azure AI services
-description: Release notes and updates to the Azure AI Translator Service API.
+description: Release notes and updates for Azure AI Translator Service API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 02/27/2025
+ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 
 # Azure AI Translator release history
 
-Azure AI Translator is an innovative language service that enables users to translate text and documents, helps entities expand their global outreach, and supports preservation of at-risk and endangered languages. By utilizing the strengths of artificial intelligence and machine learning, this cutting-edge tool continually improved to offer more precise, swift, and adaptable translation services. Here, you can explore the key milestones and enhancements in the evolution of Azure AI Translator. For more information on recent advances, *see* [What's new?](../whats-new.md).
+Azure AI Translator is an innovative language service that enables users to translate text and documents, helps entities expand their global outreach, and supports preservation of at-risk and endangered languages. By utilizing the strengths of artificial intelligence and machine learning, this cutting-edge tool continually improved to offer more precise, swift, and adaptable translation services. Here, you can explore key milestones and enhancements in the evolution of Azure AI Translator. For more information on recent advances, *see* [What's new?](../whats-new.md).
 
 ## September 2023
 
 * Translator service has [text, document translation, and container language support](../language-support.md) for the following 18 languages:
 
-|Language|Code|Cloud – Text Translation and Document Translation|Containers – Text Translation|Description
+|Language|Code|Cloud – Text translation and Document translation|Containers – Text translation|Description
 |:----|:----|:----|:----|
 |chiShona|`sn`|✔|✔|The official language of Zimbabwe with more than 8 million native speakers.|
 |Hausa|`ha`|✔|✔|The most widely used language in West Africa with more than 150 million speakers worldwide.|
@@ -41,36 +41,36 @@ Azure AI Translator is an innovative language service that enables users to tran
 
 ## July 2023
 
-* Document Translation REST API v1.1 is now Generally Available (GA).
+* Document translation REST API v1.1 is now Generally Available (GA).
 
 ## June 2023
 
 **Documentation updates**
 
-* The [Document Translation SDK overview](../document-translation/document-sdk-overview.md) is now available to provide guidance and resources for the .NET/C# and Python `SDK`s.
-* The [Document Translation SDK quickstart](../document-translation/quickstarts/client-library-sdks.md) is now available for the C# and Python programming languages.
+* The [Document translation SDK overview](../document-translation/document-sdk-overview.md) is now available to provide guidance and resources for the .NET/C# and Python `SDK`s.
+* The [Document translation SDK quickstart](../document-translation/quickstarts/client-library-sdks.md) is now available for the C# and Python programming languages.
 
 ## May 2023
 
 **Announcing new releases for Build 2023**
 
-### Text Translation SDK (preview)
+### Text translation SDK (preview)
 
 The Text translation `SDK`s are now available in public preview for C#/.NET, Java, JavaScript/TypeScript, and Python programming languages.
 
-* To learn more, see [Text translation SDK overview](../text-sdk-overview.md).
-* To get started, try a [Text Translation SDK quickstart](../document-translation/document-sdk-overview.md) using a programming language of your choice.
+* To learn more, see [Text translation SDK overview](../text-translation/sdk-overview.md).
+* To get started, try a [Text translation SDK quickstart](../document-translation/document-sdk-overview.md) using a programming language of your choice.
 
 ### Microsoft Translator V3 Connector (preview)
 
 The Translator V3 Connector is now available in public preview. The connector creates a connection between your Translator Service instance and Microsoft Power Automate enabling you to use one or more prebuilt operations as steps in your apps and workflows. To learn more, see the following documentation:
 
-* [Automate document translation](../connector/document-translation-flow.md)
-* [Automate text translation](../connector/text-translator-flow.md)
+* [Automate document translation](../solutions/connector/document-translation-flow.md)
+* [Automate text translation](../solutions/connector/text-translator-flow.md)
 
 ## February 2023
 
-[**Document Translation in Language Studio**](../document-translation/language-studio.md) is now available for Public Preview. The feature provides a no-code user interface to interactively translate documents from local or Azure Blob Storage.
+[**Document translation in Language Studio**](../document-translation/language-studio.md) is now available for Public Preview. The feature provides a no-code user interface to interactively translate documents from local or Azure Blob Storage.
 
 ## November 2022
 
@@ -78,11 +78,27 @@ The Translator V3 Connector is now available in public preview. The connector cr
 
 Custom Translator version v2.0 is generally available and ready for use in your production applications!
 
+### Changes to Translator `Usage` metrics
+
+> [!IMPORTANT]
+> **`Characters Translated`** and **`Characters Trained`** metrics are deprecated and are removed from the Azure portal.
+
+|Deprecated metric| Current metrics | Description|
+|---|---|---|
+|Characters Translated (Deprecated)</br></br></br></br>|**&bullet; Text Characters Translated**</br></br>**&bullet;Text Custom Characters Translated**| &bullet; Number of characters in incoming **text** translation request.</br></br> &bullet; Number of characters in incoming **custom** translation request.  |
+|Characters Trained (Deprecated) | **&bullet; Text Trained Characters** | &bullet; Number of characters **trained** using text translation service.|
+
+* In 2021, two new metrics, **Text Characters Translated** and **Text Custom Characters Translated**, were added to help with granular metrics data service usage. These metrics replaced **Characters Translated** which provided combined usage data for the general and custom text translation service.
+
+* Similarly, the **Text Trained Characters** metric was added to replace the  **Characters Trained** metric.
+
+* **Characters Trained** and **Characters Translated** metrics support continues in the Azure portal with the deprecated flag to allow migration to the current metrics. As of October 2022, Characters Trained and Characters Translated are no longer available in the Azure portal.
+
 ## June 2022
 
-### Document Translation stable GA 1.0.0 release
+### Document translation stable GA 1.0.0 release
 
-Document Translation .NET and Python client-library `SDK`s are now generally available and ready for use in production applications!
+Document translation .NET and Python client-library `SDK`s are now generally available and ready for use in production applications!
 
 ### [**C#**](#tab/csharp)
 
@@ -114,9 +130,9 @@ Document Translation .NET and Python client-library `SDK`s are now generally ava
 
 ## May 2022
 
-### [Document Translation support for scanned PDF documents](https://aka.ms/blog_ScannedPdfTranslation)
+### [Document translation support for scanned PDF documents](https://aka.ms/blog_ScannedPdfTranslation)
 
-* Document Translation uses optical character recognition (OCR) technology to extract and translate text in scanned PDF document while retaining the original layout.
+* Document translation uses optical character recognition (OCR) technology to extract and translate text in scanned PDF document while retaining the original layout.
 
 ## April 2022
 
@@ -161,13 +177,13 @@ To learn more, see our Custom Translator [documentation](../custom-translator/ov
   * **Dhivehi**. Also known as Maldivian, it's an Indo-Iranian language primarily spoken in the island nation of Maldives.
   * **Georgian**. A Kartvelian language that is the official language of Georgia. It has approximately 4 million speakers.
   * **Kyrgyz**. A Turkic language that is the official language of Kyrgyzstan.
-  * **Macedonian (../cyrillic)**. An Eastern South Slavic language that is the official language of North Macedonia. It has approximately 2 million people.
-  * **Mongolian (../traditional)**. Traditional Mongolian script is the first writing system created specifically for the Mongolian language. Mongolian is the official language of Mongolia.
+  * **Macedonian (Cyrillic)**. An Eastern South Slavic language that is the official language of North Macedonia. It has approximately 2 million people.
+  * **Mongolian (traditional)**. Traditional Mongolian script is the first writing system created specifically for the Mongolian language. Mongolian is the official language of Mongolia.
   * **Tatar**. A Turkic language used by speakers in modern Tatarstan closely related to Crimean Tatar and Siberian Tatar but each belongs to different subgroups.
   * **Tibetan**. It has nearly 6 million speakers and can be found in many Tibetan Buddhist publications.
   * **Turkmen**. The official language of Turkmenistan. It's similar to Turkish and Azerbaijani.
   * **Uyghur**. A Turkic language with nearly 15 million speakers spoken primarily in Western China.
-  * **Uzbek (../latin)**. A Turkic language that is the official language of Uzbekistan. It has 34 million native speakers.
+  * **Uzbek (latin)**. A Turkic language that is the official language of Uzbekistan. It has 34 million native speakers.
 
 These additions bring the total number of languages supported in Translator to 103.
 
@@ -179,13 +195,13 @@ These additions bring the total number of languages supported in Translator to 1
 
 ## June 2021
 
-### [Document Translation client libraries for C#/.NET and Python](../document-translation/document-sdk-overview.md)—now available in prerelease
+### [Document translation client libraries for C#/.NET and Python](../document-translation/document-sdk-overview.md)—now available in prerelease
 
 ## May 2021
 
-### [Document Translation ― now generally available](https://www.microsoft.com/translator/blog/2021/05/25/translate-full-documents-with-document-translation-%e2%80%95-now-in-general-availability/)
+### [Document translation ― now generally available](https://www.microsoft.com/translator/blog/2021/05/25/translate-full-documents-with-document-translation-%e2%80%95-now-in-general-availability/)
 
-* **Feature release**: Translator's [Asynchronous batch translation](../document-translation/overview.md)  feature is generally available. Document Translation is designed to translate large files and batch documents with rich content while preserving original structure and format. You can also use custom glossaries and custom models built with [Custom Translator](../custom-translator/overview.md) to ensure your documents are translated quickly and accurately.
+* **Feature release**: Translator's [Asynchronous batch translation](../document-translation/overview.md)  feature is generally available. Document translation is designed to translate large files and batch documents with rich content while preserving original structure and format. You can also use custom glossaries and custom models built with [Custom Translator](../custom-translator/overview.md) to ensure your documents are translated quickly and accurately.
 
 ### [Translator service available in containers](https://www.microsoft.com/translator/blog/2021/05/25/translator-service-now-available-in-containers/)
 
@@ -193,9 +209,9 @@ These additions bring the total number of languages supported in Translator to 1
 
 ## February 2021
 
-### [Document Translation public preview](https://www.microsoft.com/translator/blog/2021/02/17/introducing-document-translation/)
+### [Document translation public preview](https://www.microsoft.com/translator/blog/2021/02/17/introducing-document-translation/)
 
-* **New release**:  [Asynchronous batch translation](../document-translation/overview.md) is available as a preview feature of the Translator Service. Preview features are still in development and aren't meant for production use. They're made available on a "preview" basis so customers can get early access and provide feedback. Document Translation enables you to translate large documents and process batch files while still preserving the original structure and format. _See_ [Microsoft Translator blog: Introducing Document Translation](https://www.microsoft.com/translator/blog/2021/02/17/introducing-document-translation/)
+* **New release**:  [Asynchronous batch translation](../document-translation/overview.md) is available as a preview feature of the Translator Service. Preview features are still in development and aren't meant for production use. They're made available on a "preview" basis so customers can get early access and provide feedback. Document translation enables you to translate large documents and process batch files while still preserving the original structure and format. _See_ [Microsoft Translator blog: Introducing Document translation](https://www.microsoft.com/translator/blog/2021/02/17/introducing-document-translation/)
 
 ### [Text and document translation support for nine added languages](https://www.microsoft.com/translator/blog/2021/02/22/microsoft-translator-releases-nine-new-languages-for-international-mother-language-day-2021/)
 
@@ -221,7 +237,7 @@ These additions bring the total number of languages supported in Translator to 1
 
 ### [Custom Translator V2 is generally available](https://www.microsoft.com/translator/blog/2021/01/27/inuktitut-is-now-available-in-microsoft-translator/)
 
-* **New release**: Custom Translator V2 upgrade is fully available to the generally available (GA). The V2 platform enables you to build custom models with all document types (../training, testing, tuning, phrase dictionary, and sentence dictionary). _See_  [Microsoft Translator blog: Custom Translator pushes the translation quality bar closer to human parity](https://www.microsoft.com/translator/blog/2020/11/12/microsoft-custom-translator-pushes-the-translation-quality-bar-closer-to-human-parity).
+* **New release**: Custom Translator V2 upgrade is fully available to the generally available (GA). The V2 platform enables you to build custom models with all document types (training, testing, tuning, phrase dictionary, and sentence dictionary). _See_  [Microsoft Translator blog: Custom Translator pushes the translation quality bar closer to human parity](https://www.microsoft.com/translator/blog/2020/11/12/microsoft-custom-translator-pushes-the-translation-quality-bar-closer-to-human-parity).
 
 ## October 2020
 

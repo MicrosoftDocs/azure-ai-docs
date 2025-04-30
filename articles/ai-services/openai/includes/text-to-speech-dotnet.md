@@ -2,76 +2,85 @@
 ms.topic: include
 manager: nitinme
 ms.service: azure-ai-openai
-ms.topic: include
-ms.date: 09/23/2024
-ms.reviewer: eur
-ms.author: alexwolf
-author: alexwolfmsft
+ms.date: 3/11/2025
+ms.reviewer: alexwolf
+ms.author: eur
+author: eric-urban
 recommendations: false
 ---
 
 ## Prerequisites
 
 - An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true).
-- An Azure OpenAI resource with a Whisper model deployed in a [supported region](../concepts/models.md#whisper-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+- An Azure OpenAI resource with a text to speech model (such as `tts`) deployed in a [supported region](../concepts/models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 - [The .NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download)
 
-## Create the .NET app
+### Microsoft Entra ID prerequisites
 
-1. Create a .NET app using the `dotnet new` command:
+For the recommended keyless authentication with Microsoft Entra ID, you need to:
+- Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
+- Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
-    ```dotnetcli
-    dotnet new console -n TextToSpeech
+## Set up
+
+1. Create a new folder `to-speech-quickstart` and go to the quickstart folder with the following command:
+
+    ```shell
+    mkdir to-speech-quickstart && cd to-speech-quickstart
     ```
 
-1. Change into the directory of the new app:
+1. Create a new console application with the following command:
 
-    ```dotnetcli
-    cd OpenAISpeech
+    ```shell
+    dotnet new console
     ```
 
-1. Install the [`Azure.OpenAI`](https://www.nuget.org/packages/Azure.AI.OpenAI/) client library:
-    
-    ```dotnetcli
+3. Install the [OpenAI .NET client library](https://www.nuget.org/packages/Azure.AI.OpenAI/) with the [dotnet add package](/dotnet/core/tools/dotnet-add-package) command:
+
+    ```console
     dotnet add package Azure.AI.OpenAI
     ```
 
-## Authenticate and connect to Azure OpenAI
+1. For the **recommended** keyless authentication with Microsoft Entra ID, install the [Azure.Identity](https://www.nuget.org/packages/Azure.Identity) package with:
 
-To make requests to your Azure OpenAI service, you need the service endpoint as well as authentication credentials via one of the following options:
-
-- [Microsoft Entra ID](/entra/fundamentals/whatis) is the recommended approach for authenticating to Azure services and is more secure than key-based alternatives. 
-- Access keys allow you to provide a secret key to connect to your resource.
-
-[!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
-
-### Get the Azure OpenAI endpoint
-
-The service endpoint can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively, you can find the endpoint via the **Deployments** page in Azure AI Foundry portal. An example endpoint is: `https://docs-test-001.openai.azure.com/`.
-
-:::image type="content" source="../media/quickstarts/endpoint.png" alt-text="Screenshot of the overview UI for an Azure OpenAI resource in the Azure portal with the endpoint & access keys location highlighted." lightbox="../media/quickstarts/endpoint.png":::
-
-### Authenticate using Microsoft Entra ID
-
-If you choose to use Microsoft Entra ID authentication, you'll need to complete the following:
-
-1. Add the [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity) package.
-
-    ```dotnetcli
+    ```console
     dotnet add package Azure.Identity
     ```
 
-1. Assign the `Cognitive Services User` role to your user account. This can be done in the Azure portal on your OpenAI resource under **Access control (IAM)** > **Add role assignment**.
-1. Sign-in to Azure using Visual Studio or the Azure CLI via `az login`.
+1. For the **recommended** keyless authentication with Microsoft Entra ID, sign in to Azure with the following command:
 
-### Authenticate using keys
+    ```console
+    az login
+    ```
 
-The access key value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either `KEY1` or `KEY2`. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption.
+## Retrieve resource information
 
-## Update the app code
+[!INCLUDE [resource authentication](resource-authentication.md)]
 
-1. Replace the contents of `program.cs` with the following code and update the placeholder values with your own.
+## Run the quickstart
 
+The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with an `AzureKeyCredential` object. 
+
+#### [Microsoft Entra ID](#tab/keyless)
+
+```csharp
+AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new DefaultAzureCredential()); 
+```
+
+#### [API key](#tab/api-key)
+
+```csharp
+AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new AzureKeyCredential(key));
+```
+---
+
+> [!NOTE]
+> You can get sample audio files, such as *wikipediaOcelot.wav*, from the [Azure AI Speech SDK repository at GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/sampledata/audiofiles).
+
+To run the quickstart, follow these steps:
+
+1. Replace the contents of `Program.cs` with the following code and update the placeholder values with your own.
+    
     ```csharp
     using Azure;
     using Azure.AI.OpenAI;
@@ -88,8 +97,8 @@ The access key value can be found in the **Keys & Endpoint** section when examin
     var deploymentName = "tts"; // Default deployment name, update with your own if necessary
     var speechFilePath = "YOUR_AUDIO_FILE_PATH";
     
-    var openAIClient = new AzureOpenAIClient(endpoint, credentials);
-    var audioClient = openAIClient.GetAudioClient(deploymentName);
+    AzureOpenAIClient openAIClient = new AzureOpenAIClient(endpoint, credentials);
+    AudioClient = openAIClient.GetAudioClient(deploymentName);
     
     var result = await audioClient.GenerateSpeechAsync(
                     "the quick brown chicken jumped over the lazy dogs");
@@ -105,4 +114,6 @@ The access key value can be found in the **Keys & Endpoint** section when examin
     dotnet run
     ```
 
-    The app generates an audio file at the location you specified for the `speechFilePath` variable. Play the file on your device to hear the generated audio.
+## Output
+
+The application will generate an audio file at the location you specified for the `speechFilePath` variable. Play the file on your device to hear the generated audio.

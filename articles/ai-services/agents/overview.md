@@ -56,7 +56,7 @@ Once you've gotten the basics, you can start using multiple agents together to a
 
 ## Why use Azure AI Agent Service?
 
-When compared to developing with the [Inference API](/azure/ai-studio/reference/reference-model-inference-api) directly, Azure AI Agent Service provides a more streamlined and secure way to build and deploy AI agents. This includes:
+When compared to developing with the [Model Inference API](/rest/api/aifoundry/modelinference) directly, Azure AI Agent Service provides a more streamlined and secure way to build and deploy AI agents. This includes:
 - **Automatic tool calling** – no need to parse a tool call, invoke the tool, and handle the response; all of this is now done server-side
 - **Securely managed data** – instead of managing your own conversation state, you can rely on threads to store all the information you need
 - **Out-of-the-box tools** – In addition to the file retrieval and code interpreter tools provided by Azure OpenAI Assistants, Azure AI Agent Service also comes with a set of tools that you can use to interact with your data sources, such as Bing, Azure AI Search, and Azure Functions.

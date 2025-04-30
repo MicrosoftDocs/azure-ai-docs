@@ -9,7 +9,7 @@ ms.author: jboback
 
 ## Prerequisites
 
-* [Create a Project in Foundry in the Azure AI Foundry Portal](../../../../../ai-studio/how-to/create-projects.md)
+* [Create a Project in Foundry in the Azure AI Foundry Portal](../../../../../ai-foundry/how-to/create-projects.md)
 
 ## Navigate to the Azure AI Foundry Playground
 
@@ -38,7 +38,7 @@ In **Configuration** there are the following options:
 |--------------------|-----------------------------------------|
 |Select API version  | Select which version of the API to use.    |
 |Select model version| Select which version of the model to use.|
-|Select country hint| Select the origin country of the input text. |
+|Select country hint| Select the origin country/region of the input text. |
 
 After your operation is completed, the **Details** section contains the following fields for the most detected language and script:
 
@@ -50,4 +50,4 @@ After your operation is completed, the **Details** section contains the followin
 |Script Name| The name of the most detected script in the text.
 |Iso 15924 Script Code| The ISO 15924 script code for the most detected script.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/language-detection.png" alt-text="A screenshot of an example of detect language in azure AI studio." lightbox="../../media/quickstarts/azure-ai-foundry/language-detection.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/language-detection.png" alt-text="A screenshot of an example of detect language in Azure AI Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/language-detection.png":::

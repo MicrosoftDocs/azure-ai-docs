@@ -4,23 +4,27 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: include
-ms.date: 01/28/2025
+ms.date: 03/21/2025
 ms.custom: devx-track-js
 ---
 
 The output contains the prompt, and answers.
 
 ```
-I need to solve the equation `3x + 11 = 14`. Can you help me?
----------------------------------
-Sure! I can help you solve the equation \(3x + 11 = 14\).
+Type: text
+Text: Sure, I can help you solve the equation \(3x + 11 = 14\).
 
-To solve this equation, we need to isolate the variable \(x\). Let's go ahead and solve it.
----------------------------------
-The solution to the equation \(3x + 11 = 14\) is \(x = 1\). 
+To solve for \(x\), we need to isolate \(x\) on one side of the equation. Here are the steps:
 
-Therefore, the value of \(x\) that satisfies the equation is 1. 
+1. Subtract 11 from both sides of the equation:
+\[3x + 11 - 11 = 14 - 11\]
+\[3x = 3\]
 
-Let me know if you need help with anything else!
----------------------------------
+2. Divide both sides of the equation by 3:
+\[\frac{3x}{3} = \frac{3}{3}\]
+\[x = 1\]
+
+So the solution to the equation \(3x + 11 = 14\) is \(x = 1\).
+Type: text
+Text: I need to solve the equation `3x + 11 = 14`. Can you help me?
 ```

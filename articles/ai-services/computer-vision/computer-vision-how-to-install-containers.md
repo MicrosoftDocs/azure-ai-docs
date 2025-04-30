@@ -2,7 +2,6 @@
 title: Azure AI Vision 3.2 GA Read OCR container
 titleSuffix: Azure AI services
 description: Use the Read 3.2 OCR containers from Azure AI Vision to extract text from images and documents, on-premises.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
@@ -142,7 +141,7 @@ If you're using Azure Storage to store images for processing, you can create a [
 To find your connection string:
 
 1. Navigate to **Storage accounts** on the Azure portal, and find your account.
-2. Select on **Access keys** in the left navigation list.
+2. Select on **Access keys** in the left pane.
 3. Your connection string will be located below **Connection string**
 
 [!INCLUDE [Running multiple containers on the same host](../includes/cognitive-services-containers-run-multiple-same-host.md)]

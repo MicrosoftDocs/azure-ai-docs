@@ -20,6 +20,8 @@ monikerRange: 'azureml-api-1'
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 This article describes options for configuring training data and validation data splits along with cross-validation settings for your automated machine learning (automated ML) experiments. In Azure Machine Learning, when you use automated ML to build multiple machine learning models, each child run needs to validate the related model by calculating the quality metrics for that model, such as accuracy or area under the curve (AUC) weighted. These metrics are calculated by comparing the predictions made with each model with real labels from past observations in the validation data. Automated ML experiments perform model validation automatically.
 
 The following sections describe how you can customize validation settings with the [Azure Machine Learning Python SDK](/python/api/overview/azure/ml/). To learn more about how metrics are calculated based on validation type, see the [Set metric calculation for cross validation](#set-metric-calculation-for-cross-validation) section. If you're interesting in a low-code or no-code experience, see [Create your automated ML experiments in Azure Machine Learning studio](../how-to-use-automated-ml-for-ml-models.md#create-and-run-experiment). 
@@ -32,7 +34,7 @@ The following sections describe how you can customize validation settings with t
 
 - An understanding of train/validation data splits and cross-validation as machine learning concepts. For a high-level explanation, see the following articles:
 
-   - [About training, validation, and testing datasets in machine learning](https://towardsdatascience.com/train-validation-and-test-sets-72cb40cba9e7)
+   - [About training, validation, and testing datasets in machine learning](https://medium.com/towards-data-science/train-validation-and-test-sets-72cb40cba9e7)
 
    - [Understanding cross validation in machine learning](https://towardsdatascience.com/understanding-cross-validation-419dbd47e9bd) 
 

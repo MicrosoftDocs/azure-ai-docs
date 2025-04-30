@@ -47,10 +47,10 @@ After you deployed a prompt flow, you got the error message: "Tool load failed i
 
 To fix this error, take the following steps to manually assign the ML Data scientist role to your endpoint. It might take several minutes for the new role to take effect.
 
-1. Go to your project in [Azure AI Foundry](https://ai.azure.com) and select **Management center** from the left navigation menu to open the settings page.
+1. Go to your project in [Azure AI Foundry](https://ai.azure.com) and select **Management center** from the left pane to open the settings page.
 1. Under the **Project** heading, select **Overview**.
 1. Under **Quick reference**, select the link to your resource group to open it in the Azure portal. 
-1. Select **Access control (IAM)** from the left navigation menu in the Azure portal.
+1. Select **Access control (IAM)** from the left pane in the Azure portal.
 1. Select **Add role assignment**.
 1. Select **Azure ML Data Scientist**, and select __Next__.
 1. Select **Managed Identity**.
@@ -59,7 +59,7 @@ To fix this error, take the following steps to manually assign the ML Data scien
 1. Select your endpoint's name.
 1. Select **Select**.
 1. Select **Review + Assign**.
-1. Return to your project in Azure AI Foundry portal and select **Deployments** from the left navigation menu. 
+1. Return to your project in Azure AI Foundry portal and select **Deployments** from the left pane. 
 1. Select your deployment.
 1. Test the prompt flow deployment.
 
@@ -75,10 +75,10 @@ This error message refers to a situation where the deployment build failed. You 
 
 __Option 1: Find the build log for the Azure default blob storage.__
 
-1. Go to your project in [Azure AI Foundry](https://ai.azure.com) and select **Management center** from the left navigation menu to open the settings page.
+1. Go to your project in [Azure AI Foundry](https://ai.azure.com) and select **Management center** from the left pane to open the settings page.
 1. Under the **Hub** heading, select **Overview**.
 1. In the section for **Connected resources**, select the link to your storage account name. This name should be the name of the storage account listed in the error message you received. You'll be taken to the storage account page in the [Azure portal](https://portal.azure.com).
-1. On the storage account page, select **Data Storage** > **Containers** from the left navigation menu.
+1. On the storage account page, select **Data Storage** > **Containers** from the left pane.
 1. Select the container name that's listed in the error message you received.
 1. Select through folders to find the build logs.
 
@@ -88,7 +88,7 @@ __Option 2: Find the build log within Azure Machine Learning studio.__
 > This option to access the build log uses [Azure Machine Learning studio](https://ml.azure.com), which is a different portal than [Azure AI Foundry](https://ai.azure.com).
 
 1. Go to [Azure Machine Learning studio](https://ml.azure.com).
-2. Select **Endpoints** from the left navigation menu.
+2. Select **Endpoints** from the left pane.
 3. Select your endpoint name. It might be identical to your deployment name.
 4. Select the link to **Environment** from the deployment section.
 5. Select **Build log** at the top of the environment details page.
@@ -109,5 +109,5 @@ Playground only supports select models, such as Azure OpenAI models and Llama-2.
 
 ## Related content
 
-- [Azure AI Foundry overview](../what-is-ai-foundry.md)
+- [Azure AI Foundry overview](../what-is-azure-ai-foundry.md)
 - [Azure AI FAQ](../faq.yml)

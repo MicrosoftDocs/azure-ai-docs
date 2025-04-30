@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: quickstart
-ms.date: 12/31/2024
+ms.date: 04/03/2025
 ms.reviewer: ailsaleen
 ms.author: sgilley
 author: sdgilley
@@ -38,11 +38,11 @@ The navigation is list of links divided into different sections.
 
 If you haven't yet created or selected a project, you can still explore content under the **Work outside of a project**.
 
-Once you have created or selected a project, you can access more capabilities such as Model catalog, Playgrounds, and AI Services. Then there are collapsible sections for **Build and customize** (includes Code, Fine-tuning, Prompt-flow), **Assess and improve** (includes Tracing, Evaluation, and Safety + security) and **My assets** (includes Models + endpoints, Data + indexes, and Web apps). 
+Once you select a project, you can access more capabilities such as Model catalog, Playgrounds, and AI Services. Then there are collapsible sections for **Build and customize** (includes Code, Fine-tuning, Prompt-flow), **Assess and improve** (includes Tracing, Evaluation, and Safety + security) and **My assets** (includes Models + endpoints, Data + indexes, and Web apps). 
 
-Once you have created or selected a project, you can also use the **Recent projects picker** button within the navigation to change project at any time.
+Once you select a project, you can also use the **Recent projects picker** button within the navigation to change project at any time.
 
-For more information about the navigation, see [What is Azure AI Foundry](../what-is-ai-foundry.md).
+For more information about the navigation, see [What is Azure AI Foundry](../what-is-azure-ai-foundry.md).
 
 ## Projects 
 
@@ -57,7 +57,7 @@ You then get taken to the project overview page.
 
 The playground is where you can interact with models and experiment with different prompts and parameters. Different playgrounds are available depending on which model you would like to interact with. 
 
-Once you have created or selected a project, go to the navigation landmark. Press the down arrow until you hear *Playgrounds*.
+Once you select a project, go to the navigation landmark. Press the down arrow until you hear *Playgrounds*.
 
 ### Chat playground structure 
 
@@ -72,7 +72,7 @@ The chat session pane is where you can chat to the model and test out your assis
 
 Prompt flow is a tool to create executable flows, linking LLMs, prompts, and Python tools through a visualized graph. You can use this to prototype, experiment, and iterate on your AI applications before deploying. 
 
-Once you have created or selected a project, go to the navigation landmark. Press the down arrow until you hear *Prompt flow* and select this link.
+Once you select a project, go to the navigation landmark. Press the down arrow until you hear *Prompt flow* and select this link.
 
 The prompt flow UI in Azure AI Foundry portal is composed of the following main sections: the command toolbar, flow (includes list of the flow nodes), files, and graph view. The flow, files, and graph sections each have their own H2 headings that can be used for navigation.
 
@@ -101,7 +101,7 @@ Evaluation is a tool to help you evaluate the performance of your generative AI 
 
 To review evaluation metrics, you must first create an evaluation. 
 
-1. Once you have created or selected a project, go to the navigation landmark. Press the down arrow until you hear *Evaluation* and select this link.
+1. Once you select a project, go to the navigation landmark. Press the down arrow until you hear *Evaluation* and select this link.
 1. Press the Tab key until you hear *new evaluation* and select this button. 
 1. Enter the information requested in the **Create a new evaluation** dialog. Once complete, your focus is returned to the evaluations list. 
 
@@ -124,6 +124,6 @@ If you're a government, commercial, or enterprise customer, contact the enterpri
 
 ## Related content
 
-* Learn how you can build generative AI applications in the [Azure AI Foundry](../what-is-ai-foundry.md).
+* Learn how you can build generative AI applications in the [Azure AI Foundry](../what-is-azure-ai-foundry.md).
 * [Build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK](copilot-sdk-create-resources.md)
 * Get answers to frequently asked questions in the [Azure AI FAQ article](../faq.yml).

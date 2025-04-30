@@ -80,7 +80,7 @@ Enter `spx` or `spx help` to see help for the Speech CLI.
 
 #### [Docker (Windows, Linux, macOS)](#tab/dockerinstall)
 
-The following example pulls a public container image from Docker Hub. We recommend that you authenticate with your Docker Hub account (`docker login`) first instead of making an anonymous pull request. To improve reliability when you're using public content, import and manage the image in a private Azure container registry. [Learn more about working with public images](/azure/container-registry/buffer-gate-public-content).
+The following example pulls a public container image from Docker Hub. We recommend that you authenticate with your Docker Hub account (`docker login`) first instead of making an anonymous pull request. To improve reliability when you're using public content, import and manage the image in a private Azure Container Registry. [Learn more about working with public images](/azure/container-registry/buffer-gate-public-content).
 
 Follow these steps to install the Speech CLI in a Docker container:
 

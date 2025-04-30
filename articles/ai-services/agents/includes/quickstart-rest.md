@@ -11,7 +11,12 @@ ms.date: 02/15/2025
 ## Prerequisites
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
-* Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-studio/concepts/rbac-ai-studio.md) assigned at the appropriate level.
+* Ensure that each team member who wants to use the Agent Playground or SDK to create or edit agents has been assigned the built-in **Azure AI Developer** [RBAC role](../../../ai-foundry/concepts/rbac-azure-ai-foundry.md) for the project.
+    * Note: assign these roles after the template has been deployed
+    * The minimum set of permissions required is: **agents/*/read**, **agents/*/action**, **agents/*/delete** 
+* Ensure that each team member who wants to use the Agent Playground or Agent SDK to create or edit agents has been assigned the built-in **Azure AI Developer** [RBAC role](../../../ai-foundry/concepts/rbac-azure-ai-foundry.md) for the project.
+    * Note: assign these roles after the template has been deployed
+    * The minimum set of permissions required is: **agents/*/read**, **agents/*/action**, **agents/*/delete**  
 * You need the **Cognitive Services OpenAI User** role assigned to use the Azure AI Services resource.
 * Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
 

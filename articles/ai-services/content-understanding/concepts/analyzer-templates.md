@@ -19,7 +19,7 @@ fields in the schemas to better fit your needs. Learn more about the analyzer te
 
 ## Modality templates
 
-The following analyzer templates are available for use in the [Azure AI Foundry Content Understanding experience](https://ai.azure.com/). For more information, *see* [Use Content Understanding in the Azure AI Foundry](../quickstart/use-ai-foundry.md) for a step-by-step guide to creating your first analyzer.
+The following analyzer templates are available for use in the [Azure AI Foundry Content Understanding experience](https://aka.ms/cu-landing). For more information, *see* [Use Content Understanding in the Azure AI Foundry](../quickstart/use-ai-foundry.md) for a step-by-step guide to creating your first analyzer.
 
 # [Document](#tab/document)
 

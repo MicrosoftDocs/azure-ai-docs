@@ -8,7 +8,7 @@ ms.subservice: inferencing
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: aashishb
-ms.date: 11/16/2022
+ms.date: 03/11/2025
 ms.topic: how-to
 ms.devlang: csharp
 # ms.devlang: csharp, golang, java, python
@@ -18,6 +18,7 @@ ms.custom: UpdateFrequency5, devx-track-python, devx-track-csharp, cliv1, sdkv1,
 
 # Consume an Azure Machine Learning model deployed as a web service
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 Deploying an Azure Machine Learning model as a web service creates a REST API endpoint. You can send data to this endpoint and receive the prediction returned by the model. In this document, learn how to create clients for the web service by using C#, Go, Java, and Python.
 
@@ -104,7 +105,7 @@ The following table shows what these URIs look like:
 | Swagger URI | `http://104.214.29.152/api/v1/service/<service-name>/swagger.json` |
 
 > [!TIP]
-> The IP address will be different for your deployment. Each AKS cluster will have its own IP address that is shared by deployments to that cluster.
+> The IP address is different for your deployment. Each AKS cluster has its own IP address that is shared by deployments to that cluster.
 
 ### Secured web service
 
@@ -150,7 +151,7 @@ print(primary)
 
 #### Authentication with tokens
 
-When you enable token authentication for a web service, a user must provide an Azure Machine Learning JWT token to the web service to access it. 
+When you enable token authentication for a web service, a user must provide an Azure Machine Learning JWT to the web service to access it. 
 
 * Token authentication is disabled by default when you're deploying to Azure Kubernetes Service.
 * Token authentication isn't supported when you're deploying to Azure Container Instances.
@@ -214,7 +215,7 @@ For information on enabling CORS support in your service, see [Cross-origin reso
 
 ## Call the service (C#)
 
-This example demonstrates how to use C# to call the web service created from the [Train within notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/intro-to-pipelines/notebook_runner/training_notebook.ipynb) example:
+This example demonstrates how to use C# to call a web service:
 
 ```csharp
 using System;
@@ -301,181 +302,9 @@ The results returned are similar to the following JSON document:
 [217.67978776218715, 224.78937091757172]
 ```
 
-## Call the service (Go)
-
-This example demonstrates how to use Go to call the web service created from the [Train within notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/intro-to-pipelines/notebook_runner/training_notebook.ipynb) example:
-
-```go
-package main
-
-import (
-    "bytes"
-    "encoding/json"
-    "fmt"
-    "io/ioutil"
-    "net/http"
-)
-
-// Features for this model are an array of decimal values
-type Features []float64
-
-// The web service input can accept multiple sets of values for scoring
-type InputData struct {
-    Data []Features `json:"data",omitempty`
-}
-
-// Define some example data
-var exampleData = []Features{
-    []float64{
-        0.0199132141783263, 
-        0.0506801187398187, 
-        0.104808689473925, 
-        0.0700725447072635, 
-        -0.0359677812752396, 
-        -0.0266789028311707, 
-        -0.0249926566315915, 
-        -0.00259226199818282, 
-        0.00371173823343597, 
-        0.0403433716478807,
-    },
-    []float64{
-        -0.0127796318808497, 
-        -0.044641636506989, 
-        0.0606183944448076, 
-        0.0528581912385822, 
-        0.0479653430750293, 
-        0.0293746718291555, 
-        -0.0176293810234174, 
-        0.0343088588777263, 
-        0.0702112981933102, 
-        0.00720651632920303,
-    },
-}
-
-// Set to the URI for your service
-var serviceUri string = "<your web service URI>"
-// Set to the authentication key or token (if any) for your service
-var authKey string = "<your key or token>"
-
-func main() {
-    // Create the input data from example data
-    jsonData := InputData{
-        Data: exampleData,
-    }
-    // Create JSON from it and create the body for the HTTP request
-    jsonValue, _ := json.Marshal(jsonData)
-    body := bytes.NewBuffer(jsonValue)
-
-    // Create the HTTP request
-    client := &http.Client{}
-    request, err := http.NewRequest("POST", serviceUri, body)
-    request.Header.Add("Content-Type", "application/json")
-
-    // These next two are only needed if using an authentication key
-    bearer := fmt.Sprintf("Bearer %v", authKey)
-    request.Header.Add("Authorization", bearer)
-
-    // Send the request to the web service
-    resp, err := client.Do(request)
-    if err != nil {
-        fmt.Println("Failure: ", err)
-    }
-
-    // Display the response received
-    respBody, _ := ioutil.ReadAll(resp.Body)
-    fmt.Println(string(respBody))
-}
-```
-
-The results returned are similar to the following JSON document:
-
-```json
-[217.67978776218715, 224.78937091757172]
-```
-
-## Call the service (Java)
-
-This example demonstrates how to use Java to call the web service created from the [Train within notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/intro-to-pipelines/notebook_runner/training_notebook.ipynb) example:
-
-```java
-import java.io.IOException;
-import org.apache.http.client.fluent.*;
-import org.apache.http.entity.ContentType;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
-public class App {
-    // Handle making the request
-    public static void sendRequest(String data) {
-        // Replace with the scoring_uri of your service
-        String uri = "<your web service URI>";
-        // If using authentication, replace with the auth key or token
-        String key = "<your key or token>";
-        try {
-            // Create the request
-            Content content = Request.Post(uri)
-            .addHeader("Content-Type", "application/json")
-            // Only needed if using authentication
-            .addHeader("Authorization", "Bearer " + key)
-            // Set the JSON data as the body
-            .bodyString(data, ContentType.APPLICATION_JSON)
-            // Make the request and display the response.
-            .execute().returnContent();
-            System.out.println(content);
-        }
-        catch (IOException e) {
-            System.out.println(e);
-        }
-    }
-    public static void main(String[] args) {
-        // Create the data to send to the service
-        JSONObject obj = new JSONObject();
-        // In this case, it's an array of arrays
-        JSONArray dataItems = new JSONArray();
-        // Inner array has 10 elements
-        JSONArray item1 = new JSONArray();
-        item1.add(0.0199132141783263);
-        item1.add(0.0506801187398187);
-        item1.add(0.104808689473925);
-        item1.add(0.0700725447072635);
-        item1.add(-0.0359677812752396);
-        item1.add(-0.0266789028311707);
-        item1.add(-0.0249926566315915);
-        item1.add(-0.00259226199818282);
-        item1.add(0.00371173823343597);
-        item1.add(0.0403433716478807);
-        // Add the first set of data to be scored
-        dataItems.add(item1);
-        // Create and add the second set
-        JSONArray item2 = new JSONArray();
-        item2.add(-0.0127796318808497);
-        item2.add(-0.044641636506989);
-        item2.add(0.0606183944448076);
-        item2.add(0.0528581912385822);
-        item2.add(0.0479653430750293);
-        item2.add(0.0293746718291555);
-        item2.add(-0.0176293810234174);
-        item2.add(0.0343088588777263);
-        item2.add(0.0702112981933102);
-        item2.add(0.00720651632920303);
-        dataItems.add(item2);
-        obj.put("data", dataItems);
-
-        // Make the request using the JSON document string
-        sendRequest(obj.toJSONString());
-    }
-}
-```
-
-The results returned are similar to the following JSON document:
-
-```json
-[217.67978776218715, 224.78937091757172]
-```
-
 ## Call the service (Python)
 
-This example demonstrates how to use Python to call the web service created from the [Train within notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/intro-to-pipelines/notebook_runner/training_notebook.ipynb) example:
+This example demonstrates how to use Python to call a web service:
 
 ```python
 import requests
@@ -679,14 +508,6 @@ For a utility that can create client libraries from the specification, see [swag
 
 > [!TIP]
 > You can retrieve the schema JSON document after you deploy the service. Use the [swagger_uri property](/python/api/azureml-core/azureml.core.webservice.local.localwebservice#swagger-uri) from the deployed web service (for example, `service.swagger_uri`) to get the URI to the local web service's Swagger file.
-
-## Consume the service from Power BI
-
-Power BI supports consumption of Azure Machine Learning web services to enrich the data in Power BI with predictions. 
-
-To generate a web service that's supported for consumption in Power BI, the schema must support the format that's required by Power BI. [Learn how to create a Power BI-supported schema](./how-to-deploy-advanced-entry-script.md#power-bi-compatible-endpoint).
-
-Once the web service is deployed, it's consumable from Power BI dataflows. [Learn how to consume an Azure Machine Learning web service from Power BI](/power-bi/service-machine-learning-integration).
 
 ## Next steps
 

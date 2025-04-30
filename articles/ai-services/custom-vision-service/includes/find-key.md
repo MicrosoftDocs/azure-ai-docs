@@ -1,7 +1,6 @@
 ---
 title: "Find your training key and endpoint"
 titleSuffix: "Azure AI services"
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 

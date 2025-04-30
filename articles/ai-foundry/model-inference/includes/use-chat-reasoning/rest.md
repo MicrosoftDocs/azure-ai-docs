@@ -21,7 +21,7 @@ To complete this tutorial, you need:
 
 * A model with reasoning capabilities model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a reasoning model. 
 
-  * This examples use `DeepSeek-R1`.
+  * This example uses `DeepSeek-R1`.
 
 ## Use reasoning capabilities with chat
 
@@ -36,13 +36,15 @@ api-key: <key>
 > [!TIP]
 > Verify that you have deployed the model to Azure AI Services resource with the Azure AI model inference API. `Deepseek-R1` is also available as Serverless API Endpoints. However, those endpoints don't take the parameter `model` as explained in this tutorial. You can verify that by going to [Azure AI Foundry portal]() > Models + endpoints, and verify that the model is listed under the section **Azure AI Services**.
 
-If you have configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header:
+If you have configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header with the format `Bearer <token>`. Use scope `https://cognitiveservices.azure.com/.default`. 
 
 ```http
 POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
 Content-Type: application/json
 Authorization: Bearer <token>
 ```
+
+Using Microsoft Entra ID may require additional configuration in your resource to grant access. Learn how to [configure key-less authentication with Microsoft Entra ID](../../how-to/configure-entra-id.md).
 
 ### Create a chat completion request
 

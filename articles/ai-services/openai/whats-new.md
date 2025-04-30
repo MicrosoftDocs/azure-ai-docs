@@ -4,14 +4,14 @@ titleSuffix: Azure AI services
 description: Learn about the latest news and features updates for Azure OpenAI.
 manager: nitinme
 author: mrbullwinkle
-ms.author: mbullwin
+ms.author: mbullwin #
 ms.service: azure-ai-openai
 ms.custom:
   - ignite-2023
   - references_regions
   - ignite-2024
 ms.topic: whats-new
-ms.date: 2/27/2025
+ms.date: 04/16/2025
 recommendations: false
 ---
 
@@ -19,15 +19,66 @@ recommendations: false
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI Service.
 
+## April 2025
+
+### GPT-image-1 released (preview, limited access)
+
+GPT-image-1 (2025-04-15) is the latest image generation model from Azure OpenAI. It features major improvements over DALL-E, including:
+- Better at responding to precise instructions.
+- Reliably renders text.
+- Accepts images as input, which enables the new capabilities of image editing and inpainting.
+
+Request access: [Limited access model application](https://aka.ms/oai/gptimage1access)
+
+Follow the [image generation how-to guide](/en-us/azure/ai-services/openai/how-to/dall-e) to get started with the new model.
+
+### o4-mini and o3 models released
+
+`o4-mini` and `o3` models are now available. These are the latest reasoning models from Azure OpenAI offering significantly enhanced reasoning, quality, and performance. For more information, see the [getting started with reasoning models page](./how-to/reasoning.md).
+
+### GPT-4.1 released
+
+GPT 4.1 and GPT 4.1-nano are now available. These are the latest models from Azure OpenAI. GPT 4.1 has a 1 million token context limit. For more information, see the [models page](./concepts/models.md#gpt-41-series).
+
+### gpt-4o audio models released
+
+New audio models powered by GPT-4o are now available.  
+
+- The `gpt-4o-transcribe` and `gpt-4o-mini-transcribe` speech to text models are released. Use these models via the `/audio` and `/realtime` APIs.  
+
+- The `gpt-4o-mini-tts` text to speech model is released. Use the `gpt-4o-mini-tts` model for text to speech generation via the `/audio` API.
+
+For more information about available models, see the [models and versions documentation](./concepts/models.md#audio-models).
+
+## March 2025
+
+### Responses API & computer-use-preview model
+
+The [Responses API](./how-to/responses.md) is a new stateful API from Azure OpenAI. It brings together the best capabilities from the chat completions and assistants API in one unified experience. The Responses API also adds support for the new `computer-use-preview` model which powers the [Computer use](./how-to/computer-use.md) capability.
+
+**For access to `computer-use-preview` registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who have access to other limited access models will still need to request access for this model.
+
+Request access: [`computer-use-preview` limited access model application](https://aka.ms/oai/cuaaccess)
+
+For more information on model capabilities, and region availability see the [models documentation](./concepts/models.md#computer-use-preview).
+
+:::image type="content" source="./media/computer-use-preview.gif" alt-text="Animated gif of computer-use-preview model integrated with playwright." lightbox="./media/computer-use-preview.gif":::
+
+[Playwright integration demo code](./how-to/responses.md#computer-use).
+
+### Provisioned spillover (preview)
+
+Spillover manages traffic fluctuations on provisioned deployments by routing overages to a designated standard deployment. To learn more about how to maximize utilization for your provisioned deployments with spillover, see [Manage traffic with spillover for provisioned deployments (preview)](./how-to/spillover-traffic-management.md).
+
+### Specify content filtering configurations 
+
+In addition to the deployment-level content filtering configuration, we now also provide a request header that allows you specify your custom configuration at request time for every API call. For more information, see [Use content filters (preview)](./how-to/content-filters.md#specify-a-content-filtering-configuration-at-request-time-preview).
+
 ## February 2025
 
 ### GPT-4.5 Preview
 
 The latest GPT model that excels at diverse text and image tasks is now available on Azure OpenAI.
-
-**For access to `gpt-4.5-preview` registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who have access to other limited access models will still need to request access for this model.
-
-Request access: [GPT-4.5-preview limited access model application](https://aka.ms/oai/gptaccess)
 
 For more information on model capabilities, and region availability see the [models documentation](./concepts/models.md#gpt-45-preview).
 
@@ -47,7 +98,7 @@ The `gpt-4o-mini-audio-preview` (2024-12-17) model is the latest audio completio
 
 The `gpt-4o-mini-realtime-preview` (2024-12-17) model is the latest real-time audio model. The real-time models use the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions. For more information, see the [real-time audio quickstart](./realtime-audio-quickstart.md).
 
-For more information about available models, see the [models and versions documentation](./concepts/models.md#gpt-4o-audio).
+For more information about available models, see the [models and versions documentation](./concepts/models.md#audio-models).
 
 ## January 2025
 
@@ -70,7 +121,7 @@ The `gpt-4o-realtime-preview` model version 2024-12-17 is available for global d
 
 - Added support for [prompt caching](./how-to/prompt-caching.md) with the `gpt-4o-realtime-preview` model.
 - Added support for new voices. The `gpt-4o-realtime-preview` models now support the following voices: "alloy", "ash", "ballad", "coral", "echo", "sage", "shimmer", "verse".
-- Rate limits are no longer based on connections per minute. Rate limiting is now based on RPM (requests per minute) and TPM (tokens per minute) for the `gpt-4o-realtime-preview` model. The rate limits for each `gpt-4o-realtime-preview` model deployment are 100K TPM and 1K RPM. During the preview, Azure AI Foundry portal and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit will be 100K TPM and 1K RPM.
+- Rate limits are no longer based on connections per minute. Rate limiting is now based on RPM (requests per minute) and TPM (tokens per minute) for the `gpt-4o-realtime-preview` model. The rate limits for each `gpt-4o-realtime-preview` model deployment are 100K TPM and 1K RPM. During the preview, [Azure AI Foundry portal](https://ai.azure.com/) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit will be 100K TPM and 1K RPM.
 
 For more information, see the [GPT-4o real-time audio quickstart](realtime-audio-quickstart.md) and the [how-to guide](./how-to/realtime-audio.md).
 
@@ -92,7 +143,7 @@ To learn more about the advanced `o1` series models see, [getting started with o
 
 ### Preference fine-tuning (preview)
 
-[Direct preference optimization (DPO)](./how-to/fine-tuning.md#direct-preference-optimization-dpo-preview) is a new alignment technique for large language models, designed to adjust model weights based on human preferences. Unlike reinforcement learning from human feedback (RLHF), DPO does not require fitting a reward model and uses simpler data (binary preferences) for training. This method is computationally lighter and faster, making it equally effective at alignment while being more efficient. DPO is especially useful in scenarios where subjective elements like tone, style, or specific content preferences are important. We’re excited to announce the public preview of DPO in Azure OpenAI Service, starting with the `gpt-4o-2024-08-06` model.
+[Direct preference optimization (DPO)](./how-to/fine-tuning-direct-preference-optimization.md) is a new alignment technique for large language models, designed to adjust model weights based on human preferences. Unlike reinforcement learning from human feedback (RLHF), DPO does not require fitting a reward model and uses simpler data (binary preferences) for training. This method is computationally lighter and faster, making it equally effective at alignment while being more efficient. DPO is especially useful in scenarios where subjective elements like tone, style, or specific content preferences are important. We’re excited to announce the public preview of DPO in Azure OpenAI Service, starting with the `gpt-4o-2024-08-06` model.
 
 For fine-tuning model region availability, see the [models page](./concepts/models.md#fine-tuning-models).
 
@@ -200,7 +251,7 @@ Global batch now supports GPT-4o (2024-08-06). See the [global batch getting sta
 
 ### Azure OpenAI Studio UX updates
 
-As of September 19, 2024, when you go to the [Azure OpenAI Studio](https://oai.azure.com/) you no longer see the legacy Azure OpenAI Studio by default. If needed you'll still be able to go back to the previous experience by using the **Switch to the old look** toggle in the top bar of the UI for the next couple of weeks. If you switch back to legacy Azure AI Foundry portal, it helps if you fill out the feedback form to let us know why. We're actively monitoring this feedback to improve the new experience.
+As of September 19, 2024, when you go to the [Azure OpenAI Studio](https://oai.azure.com/) you no longer see the legacy Azure OpenAI Studio by default. If needed you'll still be able to go back to the previous experience by using the **Switch to the old look** toggle in the top bar of the UI for the next couple of weeks. If you switch back to legacy [Azure AI Foundry portal](https://ai.azure.com/), it helps if you fill out the feedback form to let us know why. We're actively monitoring this feedback to improve the new experience.
 
 
 ### GPT-4o 2024-08-06 provisioned deployments
@@ -301,7 +352,7 @@ On August 6, 2024, OpenAI [announced](https://openai.com/index/introducing-struc
 
 Azure customers can test out GPT-4o `2024-08-06` today in the new Azure AI Foundry early access playground (preview).
 
-Unlike the previous early access playground, the Azure AI Foundry portal early access playground (preview) doesn't require you to have a resource in a specific region.
+Unlike the previous early access playground, the [Azure AI Foundry portal](https://ai.azure.com/) early access playground (preview) doesn't require you to have a resource in a specific region.
 
 > [!NOTE]
 > Prompts and completions made through the early access playground (preview) might be processed in any Azure OpenAI region, and are currently subject to a 10 request per minute per Azure subscription limit. This limit might change in the future.
@@ -751,7 +802,7 @@ Azure OpenAI Service now supports speech to text APIs powered by OpenAI's Whispe
 
 ### Regional quota limits increases
 
-- Increases to the max default quota limits for certain models and regions. Migrating workloads to [these models and regions](./quotas-limits.md#regional-quota-limits) will allow you to take advantage of higher Tokens per minute (TPM).  
+- Increases to the max default quota limits for certain models and regions. Migrating workloads to [these models and regions](./quotas-limits.md) will allow you to take advantage of higher Tokens per minute (TPM).  
 
 ## August 2023
 

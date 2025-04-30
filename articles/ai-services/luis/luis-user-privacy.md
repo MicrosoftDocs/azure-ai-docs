@@ -2,7 +2,6 @@
 title: Export & delete data - LUIS
 titleSuffix: Azure AI services
 description: You have full control over viewing, exporting, and deleting their data. Delete customer data to ensure privacy and compliance.
-#services: cognitive-services
 ms.author: aahi
 author: aahill
 manager: nitinme
@@ -56,7 +55,7 @@ To enable [active learning](how-to/improve-application.md#log-user-queries-to-en
 * [Australia](#australia)
 * [United States](#united-states)
 
-With the exception of active learning data (detailed below), LUIS follows the [data storage practices for regional services](https://azuredatacentermap.azurewebsites.net/).
+With the exception of active learning data (detailed below), LUIS follows the [data storage practices for regional services](https://datacenters.microsoft.com/globe/explore/).
 
 [!INCLUDE [portal consolidation](includes/portal-consolidation.md)]
 

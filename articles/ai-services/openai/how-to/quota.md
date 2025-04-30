@@ -2,7 +2,6 @@
 title: Manage Azure OpenAI Service quota
 titleSuffix: Azure AI services
 description: Learn how to use Azure OpenAI to control your deployments rate limits.
-#services: cognitive-services
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-openai
@@ -44,11 +43,11 @@ The flexibility to distribute TPM globally within a subscription and region has 
 
 When you create a model deployment, you have the option to assign Tokens-Per-Minute (TPM) to that deployment. TPM can be modified in increments of 1,000, and will map to the TPM and RPM rate limits enforced on your deployment, as discussed above.
 
-To create a new deployment from within the Azure AI Foundry portal select **Deployments** > **Deploy model** > **Deploy base model** > **Select Model** > **Confirm**.
+To create a new deployment from within the [Azure AI Foundry portal](https://ai.azure.com/) select **Deployments** > **Deploy model** > **Deploy base model** > **Select Model** > **Confirm**.
 
 :::image type="content" source="../media/quota/deployment-new.png" alt-text="Screenshot of the deployment UI of Azure AI Foundry" lightbox="../media/quota/deployment-new.png":::
 
-Post deployment you can adjust your TPM allocation by selecting and editing your model from the **Deployments** page in Azure AI Foundry portal. You can also modify this setting from the **Management** > **Model quota** page.
+Post deployment you can adjust your TPM allocation by selecting and editing your model from the **Deployments** page in [Azure AI Foundry portal](https://ai.azure.com/). You can also modify this setting from the **Management** > **Model quota** page.
 
 > [!IMPORTANT]
 > Quotas and limits are subject to change, for the most up-date-information consult our [quotas and limits article](../quotas-limits.md).
@@ -68,7 +67,7 @@ All other model classes have a common max TPM value.
 
 ## View and request quota
 
-For an all up view of your quota allocations across deployments in a given region, select **Management** > **Quota** in Azure AI Foundry portal:
+For an all up view of your quota allocations across deployments in a given region, select **Management** > **Quota** in [Azure AI Foundry portal](https://ai.azure.com/):
 
 :::image type="content" source="../media/quota/quota-new.png" alt-text="Screenshot of the quota UI of Azure AI Foundry" lightbox="../media/quota/quota-new.png":::
 

@@ -44,8 +44,6 @@ pip install openai
 pip install azure-identity
 ```
 
-[!INCLUDE [Assistants v2 note](./assistants-v2-note.md)]
-
 > [!NOTE]
 > This library is maintained by OpenAI. Refer to the [release history](https://github.com/openai/openai-python/releases) to track the latest updates to the library.
 

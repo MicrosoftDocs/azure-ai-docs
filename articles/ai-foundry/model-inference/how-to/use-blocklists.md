@@ -21,7 +21,7 @@ The configurable content filters are sufficient for most content moderation need
 
 * An Azure AI services resource. For more information, see [Create an Azure AI Services resource](../../../ai-services/multi-service-resource.md?context=/azure/ai-services/model-inference/context/context).
 
-* An Azure AI Foundry project and Azure AI Foundry Hub [connected to your Azure AI services resource](configure-project-connection.md).
+* An Azure AI Foundry project [connected to your Azure AI services resource](configure-project-connection.md).
 
 * A model deployment. See [Add and configure models to Azure AI services](create-model-deployments.md) for adding models to your resource.
 

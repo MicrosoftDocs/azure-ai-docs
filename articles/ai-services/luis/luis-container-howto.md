@@ -2,7 +2,6 @@
 title: Install and run Docker containers for LUIS
 titleSuffix: Azure AI services
 description: Use the LUIS container to load your trained or published app, and gain access to its predictions on-premises.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
@@ -169,7 +168,7 @@ The versioned app's package is available from the **Versions** list page.
 1. Sign on to the LUIS [Azure portal](https://www.luis.ai).
 1. Select the app in the list.
 1. Select **Manage** in the app's navigation bar.
-1. Select **Versions** in the left navigation bar.
+1. Select **Versions** in the left pane.
 1. Select the checkbox to the left of the version name in the list.
 1. Select the **Export** item from the contextual toolbar above the list.
 1. Select **Export for container (GZIP)**.

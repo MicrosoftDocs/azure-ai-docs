@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 09/04/2024
+ms.date: 03/31/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -16,8 +16,6 @@ recommendations: false
 # Azure OpenAI Assistants function calling
 
 The Assistants API supports function calling, which allows you to describe the structure of functions to an Assistant and then return the functions that need to be called along with their arguments.
-
-[!INCLUDE [Assistants v2 note](../includes/assistants-v2-note.md)]
 
 ## Function calling support
 

@@ -7,7 +7,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/12/2024
+ms.date: 3/10/2025
 zone_pivot_groups: speech-cli-rest
 ms.custom: devx-track-csharp
 # Customer intent: As a user who implements audio transcription, I want create transcriptions in bulk so that I don't have to submit audio content repeatedly.
@@ -227,7 +227,7 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey" -H "Content-
   },
   "properties": {
     "wordLevelTimestampsEnabled": true,
-  },
+  }
 }'  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions"
 ```
 

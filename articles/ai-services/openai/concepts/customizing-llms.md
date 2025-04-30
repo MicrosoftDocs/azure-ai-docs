@@ -3,7 +3,7 @@ title: Azure OpenAI Service getting started with customizing a large language mo
 titleSuffix: Azure OpenAI Service
 description: Learn more about the concepts behind customizing an LLM with Azure OpenAI.
 ms.topic: conceptual
-ms.date: 09/20/2024
+ms.date: 03/27/2025
 ms.service: azure-ai-openai
 manager: nitinme
 author: mrbullwinkle
@@ -44,7 +44,7 @@ A Marketing Manager at an environmentally conscious company can use prompt engin
 
 ### Definition 
 
-[RAG (Retrieval Augmented Generation)](../../../ai-studio/concepts/retrieval-augmented-generation.md) is a method that integrates external data into a Large Language Model prompt to generate relevant responses. This approach is particularly beneficial when using a large corpus of unstructured text based on different topics. It allows for answers to be grounded in the organization’s knowledge base (KB), providing a more tailored and accurate response.
+[RAG (Retrieval Augmented Generation)](../../../ai-foundry/concepts/retrieval-augmented-generation.md) is a method that integrates external data into a Large Language Model prompt to generate relevant responses. This approach is particularly beneficial when using a large corpus of unstructured text based on different topics. It allows for answers to be grounded in the organization’s knowledge base (KB), providing a more tailored and accurate response.
 
 RAG is also advantageous when answering questions based on an organization’s private data or when the public data that the model was trained on might have become outdated. This helps ensure that the responses are always up-to-date and relevant, regardless of the changes in the data landscape.
 
@@ -62,7 +62,7 @@ A corporate HR department is looking to provide an intelligent assistant that an
 
 ### Getting started
 
-- [Retrieval Augmented Generation in Azure AI Foundry portal - Azure AI Foundry | Microsoft Learn](../../../ai-studio/concepts/retrieval-augmented-generation.md)
+- [Retrieval Augmented Generation in Azure AI Foundry portal](../../../ai-foundry/concepts/retrieval-augmented-generation.md)
 - [Retrieval Augmented Generation (RAG) in Azure AI Search](/azure/search/retrieval-augmented-generation-overview)
 - [Retrieval Augmented Generation using Azure Machine Learning prompt flow (preview)](/azure/machine-learning/concept-retrieval-augmented-generation)
 

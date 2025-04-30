@@ -1,20 +1,19 @@
 ---
-title: 'Quickstart - Get started using GPT-35-Turbo and GPT-4 with Azure OpenAI Service'
+title: 'Quickstart - Get started using chat completions with Azure OpenAI Service'
 titleSuffix: Azure OpenAI Service
-description: Walkthrough on how to get started with GPT-35-Turbo and GPT-4 on Azure OpenAI Service.
-#services: cognitive-services
+description: Walkthrough on how to get started using chat completions with Azure OpenAI Service.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-go
 ms.topic: quickstart
 author: mrbullwinkle
 ms.author: mbullwin
-ms.date: 09/20/2024
+ms.date: 3/21/2025
 zone_pivot_groups: openai-quickstart-new
 recommendations: false
 ---
 
-# Quickstart: Get started using GPT-35-Turbo and GPT-4 with Azure OpenAI Service
+# Quickstart: Get started using chat completions with Azure OpenAI Service
 
 Use this article to get started using Azure OpenAI.
 

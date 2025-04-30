@@ -7,7 +7,7 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: concept-article
-ms.date: 9/20/2024
+ms.date: 3/10/2025
 ms.reviewer: heikora
 ms.devlang: csharp
 ms.custom: devx-track-csharp

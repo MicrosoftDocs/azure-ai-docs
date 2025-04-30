@@ -747,18 +747,19 @@ __Private endpoints__:
 * When the isolation mode for the managed virtual network is `Allow internet outbound`, private endpoint outbound rules are automatically created as required rules from the managed virtual network for the hub and associated resources __with public network access disabled__ (Key Vault, Storage Account, Container Registry, hub).
 * When the isolation mode for the managed virtual network is `Allow only approved outbound`, private endpoint outbound rules are automatically created as required rules from the managed virtual network for the hub and associated resources __regardless of public network access mode for those resources__ (Key Vault, Storage Account, Container Registry, hub).
 
-__Outbound__ service tag rules:
+For Azure AI Foundry to run with private networking, there are a set of required service tags. There are no alternatives to replacing required service tags. The following table describes each required service tag and its purpose within Azure AI Foundry. 
 
-* `AzureActiveDirectory`
-* `Azure Machine Learning`
-* `BatchNodeManagement.region`
-* `AzureResourceManager`
-* `AzureFrontDoor.FirstParty`
-* `MicrosoftContainerRegistry`
-* `AzureMonitor`
-
-__Inbound__ service tag rules:
-* `AzureMachineLearning`
+| Service tag rule | Inbound or Outbound | Purpose |
+| ----------- | ----- | ----- |
+| `AzureMachineLearning` | Inbound | Create, update, and delete of Azure AI Foundry compute instance/cluster. |  
+| `AzureMachineLearning`| Outbound | Using Azure Machine Learning services. Python intellisense in notebooks uses port 18881. Creating, updating, and deleting an Azure Machine Learning compute instance uses port 5831. |
+| `AzureActiveDirectory` | Outbound | Authentication using Microsoft Entra ID. |
+| `BatchNodeManagement.region` | Outbound | Communication with Azure Batch back-end for Azure AI Foundry compute instances/clusters. |
+| `AzureResourceManager` | Outbound | Creation of Azure resources with Azure AI Foundry, Azure CLI, and Azure AI Foundry SDK. |
+| `AzureFrontDoor.FirstParty` | Outbound | Access docker images provided by Microsoft. |
+| `MicrosoftContainerRegistry` | Outbound | Access docker images provided by Microsoft. Setup of the Azure AI Foundry router for Azure Kubernetes Service. |		
+| `AzureMonitor` | Outbound | Used to log monitoring and metrics to Azure Monitor. Only needed if you haven't secured Azure Monitor for the workspace. This outbound is also used to log information for support incidents. |
+| `VirtualNetwork` | Outbound | Required when private endpoints are present in the virtual network or peered virtual networks. |
 
 ## List of scenario specific outbound rules
 
@@ -853,7 +854,7 @@ When you create a private endpoint for hub dependency resources, such as Azure S
 A private endpoint is automatically created for a connection if the target resource is an Azure resource listed previously. A valid target ID is expected for the private endpoint. A valid target ID for the connection can be the Azure Resource Manager ID of a parent resource. The target ID is also expected in the target of the connection or in `metadata.resourceid`. For more on connections, see [How to add a new connection in Azure AI Foundry portal](connections-add.md).
 
 > [!IMPORTANT]
-> As of March 31st 2025, the Azure AI Enterprise Network Connection Approver role must be assigned to the Azure AI Foundry hub's managed identity to approve private endpoints to securely access your Azure resources from the managed virtual network. This doesn't impact existing resources with approved private endpoints as the role is correctly assigned by the service. For new resources, ensure the role is assigned to the hub's managed identity. For Azure Data Factory, Azure Databricks, and Azure Function Apps, the Contributor role should instead be assigned to your hub's managed identity. This role assignment is applicable to both User-assigned identity and System-assigned identity workspaces. 
+> As of April 30th 2025, the Azure AI Enterprise Network Connection Approver role must be assigned to the Azure AI Foundry hub's managed identity to approve private endpoints to securely access your Azure resources from the managed virtual network. This doesn't impact existing resources with approved private endpoints as the role is correctly assigned by the service. For new resources, ensure the role is assigned to the hub's managed identity. For Azure Data Factory, Azure Databricks, and Azure Function Apps, the Contributor role should instead be assigned to your hub's managed identity. This role assignment is applicable to both User-assigned identity and System-assigned identity workspaces. 
 
 ## Select an Azure Firewall version for allowed only approved outbound
 

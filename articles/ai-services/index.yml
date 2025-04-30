@@ -22,7 +22,7 @@ highlightedContent:
       url: ./what-are-ai-services.md
     - title: What is Azure AI Foundry?
       itemType: overview
-      url: ../ai-studio/what-is-ai-studio.md
+      url: ../ai-foundry/what-is-azure-ai-foundry.md
     - title: Chat with Azure OpenAI models using your own data
       itemType: quickstart
       url: ./openai/use-your-data-quickstart.md
@@ -127,7 +127,7 @@ additionalContent:
         - title: Explore more AI resources
           links:
             - text: Azure AI Foundry portal
-              url: /azure/ai-studio/
+              url: /azure/ai-foundry/
             - text: Azure Machine Learning
               url: /azure/machine-learning/
             - text: The Book of AI

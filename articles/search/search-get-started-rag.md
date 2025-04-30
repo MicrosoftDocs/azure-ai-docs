@@ -1,47 +1,42 @@
 ---
-title: Quickstart RAG
+title: 'Quickstart: Generative Search (RAG)'
 titleSuffix: Azure AI Search
-description: In this quickstart, learn how to use grounding data from Azure AI Search with a chat model on Azure OpenAI.
+description: Learn how to use grounding data from Azure AI Search with a chat model on Azure OpenAI.
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: quickstart
-ms.date: 01/09/2025
+ms.date: 03/04/2025
 ---
 
-# Quickstart: Generative search (RAG) with grounding data from Azure AI Search
+# Quickstart: Generative search (RAG) using grounding data from Azure AI Search
 
-This quickstart shows you how to send queries to a chat completion model for a conversational search experience over your indexed content on Azure AI Search. You use the Azure portal to set up the resources, and then run Python code to call the APIs. 
+In this quickstart, you send queries to a chat completion model for a conversational search experience over your indexed content on Azure AI Search. After setting up Azure OpenAI and Azure AI Search resources in the Azure portal, you run Python code to call the APIs.
 
 ## Prerequisites
 
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+
+- An [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource).
+  - [Choose a region](/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#global-standard-model-availability) that supports the chat completion model you want to use (gpt-4o, gpt-4o-mini, or an equivalent model).
+  - [Deploy the chat completion model](/azure/ai-foundry/how-to/deploy-models-openai) in Azure AI Foundry or [use another approach](/azure/ai-services/openai/how-to/working-with-models).
+
+- An [Azure AI Search resource](search-create-service-portal.md).
+  - Use the same region as your Azure OpenAI resource.
+  - We recommend using the Basic tier or higher.
+  - [Enable semantic ranking](semantic-how-to-enable-disable.md).
+
 - [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and the [Jupyter package](https://pypi.org/project/jupyter/). For more information, see [Python in Visual Studio Code](https://code.visualstudio.com/docs/languages/python).
 
-- An Azure subscription with permissions to assign roles. [Create one for free](https://azure.microsoft.com/free/).
-
-- [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource)
-
-  - [Choose a region](/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#global-standard-model-availability) that supports the chat completion model you want to use (gpt-4o, gpt-4o-mini, or equivalent model). 
-  - [Deploy the chat completion model](/azure/ai-studio/how-to/deploy-models-openai) in Azure AI Foundry or [use another approach](/azure/ai-services/openai/how-to/working-with-models).
-
-- [Azure AI Search](search-create-service-portal.md)
-
-  - Same region as Azure OpenAI.
-  - Basic tier or higher is recommended.
-  - [Enable semantic ranking](semantic-how-to-enable-disable.md).
-  - [Enable role-based access control (see below)](#configure-access).
-
-To meet the same-region requirement, start by reviewing the [regions for the chat model](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) you want to use. Once you identify a region, confirm that Azure AI Search is available in the [same region](search-region-support.md#azure-public-regions).
-
-Make sure you know the name of the deployed model, and have the endpoints for both Azure resources at hand. You'll provide this information in the steps that follow.
+To meet the same-region requirement, start by reviewing the [regions for the chat model](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) you want to use. After you identify a region, confirm that Azure AI Search is available in the [same region](search-region-support.md#azure-public-regions).
 
 ## Download file
 
 [Download a Jupyter notebook](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-RAG) from GitHub to send the requests in this quickstart. For more information, see [Downloading files from GitHub](https://docs.github.com/get-started/start-your-journey/downloading-files-from-github).
 
-You can also start a new file on your local system and create requests manually by using the instructions in this article. 
+You can also start a new file on your local system and create requests manually by using the instructions in this article.
 
 ## Configure access
 
@@ -471,6 +466,6 @@ When you're working in your own subscription, it's a good idea at the end of a p
 
 You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
 
-## See also
+## Related content
 
-- [Tutorial: How to build a RAG solution in Azure AI Search](tutorial-rag-build-solution.md)
+- [Tutorial: Build a RAG solution in Azure AI Search](tutorial-rag-build-solution.md)

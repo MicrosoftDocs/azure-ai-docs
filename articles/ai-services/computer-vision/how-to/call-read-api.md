@@ -2,7 +2,6 @@
 title: Call the Azure AI Vision v3.2 GA Read API
 titleSuffix: Azure AI services
 description: Learn how to call the Azure AI Vision v3.2 GA Read API and configure its behavior in detail.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 

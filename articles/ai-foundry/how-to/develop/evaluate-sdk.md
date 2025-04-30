@@ -9,7 +9,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: how-to
-ms.date: 02/21/2025
+ms.date: 03/31/2025
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
@@ -19,7 +19,7 @@ author: lgayhardt
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 > [!NOTE]
-> Evaluation with the prompt flow SDK has been retired and replaced with Azure AI Evaluation SDK client library for Python. For more information about input data requirements, see the [API Reference Documentation](https://aka.ms/azureaieval-python-ref).
+> For more information about input data requirements, see the [API Reference Documentation](https://aka.ms/azureaieval-python-ref).
 
 To thoroughly assess the performance of your generative AI application when applied to a substantial dataset, you can evaluate a Generative AI application in your development environment with the Azure AI evaluation SDK. Given either a test dataset or a target, your generative AI application generations are quantitatively measured with both mathematical based metrics and AI-assisted quality and safety evaluators. Built-in or custom evaluators can provide you with comprehensive insights into the application's capabilities and limitations.
 
@@ -38,6 +38,7 @@ pip install azure-ai-evaluation
 Built-in evaluators support the following application scenarios:
 
 - **Query and response**: This scenario is designed for applications that involve sending in queries and generating responses, usually single-turn.
+- **Conversation**: This scenario is designed for applications that involve sending in queries and generating responses in a multi-turn exchange.
 - **Retrieval augmented generation**: This scenario is suitable for applications where the model engages in generation using a retrieval-augmented approach to extract information from your provided documents and generate detailed responses, usually multi-turn.
 
 For more in-depth information on each evaluator definition and how it's calculated, see [Evaluation and monitoring metrics for generative AI](../../concepts/evaluation-metrics-built-in.md).
@@ -46,7 +47,7 @@ For more in-depth information on each evaluator definition and how it's calculat
 |-----------|------------------------------------------------------------------------------------------------------------------------------------|
 | [Performance and quality](#performance-and-quality-evaluators) (AI-assisted)  | `GroundednessEvaluator`, `GroundednessProEvaluator`, `RetrievalEvaluator`, `RelevanceEvaluator`, `CoherenceEvaluator`, `FluencyEvaluator`, `SimilarityEvaluator` |
 | [Performance and quality](#performance-and-quality-evaluators) (NLP)  | `F1ScoreEvaluator`, `RougeScoreEvaluator`, `GleuScoreEvaluator`, `BleuScoreEvaluator`, `MeteorScoreEvaluator`|
-| [Risk and safety](#risk-and-safety-evaluators-preview) (AI-assisted)    | `ViolenceEvaluator`, `SexualEvaluator`, `SelfHarmEvaluator`, `HateUnfairnessEvaluator`, `IndirectAttackEvaluator`, `ProtectedMaterialEvaluator`                                             |
+| [Risk and safety](#risk-and-safety-evaluators-preview) (AI-assisted)    | `ViolenceEvaluator`, `SexualEvaluator`, `SelfHarmEvaluator`, `HateUnfairnessEvaluator`, `IndirectAttackEvaluator`, `ProtectedMaterialEvaluator`, `UngroundedAttributesEvaluator`, `CodeVulnerabilityEvaluator`|
 | [Composite](#composite-evaluators) | `QAEvaluator`, `ContentSafetyEvaluator`                                             |
 
 Built-in quality and safety metrics take in query and response pairs, along with additional information for specific evaluators.
@@ -66,6 +67,7 @@ Built-in evaluators can accept *either* query and response pairs or a list of co
 | `RelevanceEvaluator`      | Required: String | Required: String | N/A | N/A           | Supported for text |
 | `CoherenceEvaluator`      | Required: String | Required: String | N/A           | N/A           |Supported for text |
 | `FluencyEvaluator`        | N/A  | Required: String | N/A          | N/A           |Supported for text |
+|`ResponseCompletenessEvaluator`  | N/A  | Required: String | N/A           | Required: String |Not supported |
 | `SimilarityEvaluator` | Required: String | Required: String | N/A           | Required: String |Not supported |
 |`F1ScoreEvaluator` | N/A  | Required: String | N/A           | Required: String |Not supported |
 | `RougeScoreEvaluator` | N/A | Required: String | N/A           | Required: String           | Not supported |
@@ -78,6 +80,8 @@ Built-in evaluators can accept *either* query and response pairs or a list of co
 | `HateUnfairnessEvaluator`        | Required: String | Required: String | N/A           | N/A           |Supported for text and image |
 | `IndirectAttackEvaluator`      | Required: String | Required: String | Required: String | N/A           |Supported for text |
 | `ProtectedMaterialEvaluator`  | Required: String | Required: String | N/A           | N/A           |Supported for text and image |
+| `CodeVulnerabilityEvaluator`  | Required: String | Required: String | N/A           | N/A           |Supported for text|
+| `UngroundedAttributesEvaluator`  | Required: String | Required: String | Required: String          | N/A           |Supported for text |
 | `QAEvaluator`      | Required: String | Required: String | Required: String | Required: String           | Not supported |
 | `ContentSafetyEvaluator`     | Required: String | Required: String |  N/A  | N/A           | Supported for text and image |
 
@@ -229,7 +233,7 @@ import os
 from azure.identity import DefaultAzureCredential
 credential = DefaultAzureCredential()
 
-# Initialize Azure AI project and Azure OpenAI conncetion with your environment variables
+# Initialize Azure AI project and Azure OpenAI connection with your environment variables
 azure_ai_project = {
     "subscription_id": os.environ.get("AZURE_SUBSCRIPTION_ID"),
     "resource_group_name": os.environ.get("AZURE_RESOURCE_GROUP"),
@@ -246,7 +250,7 @@ model_config = {
 
 from azure.ai.evaluation import GroundednessProEvaluator, GroundednessEvaluator
 
-# Initialzing Groundedness and Groundedness Pro evaluators
+# Initializing Groundedness and Groundedness Pro evaluators
 groundedness_eval = GroundednessEvaluator(model_config)
 groundedness_pro_eval = GroundednessProEvaluator(azure_ai_project=azure_ai_project, credential=credential)
 
@@ -291,9 +295,16 @@ For
 
 The result of the AI-assisted quality evaluators for a query and response pair is a dictionary containing:
 
-- `{metric_name}` provides a numerical score.
-- `{metric_name}_label` provides a binary label.
+- `{metric_name}` provides a numerical score, on a likert scale (integer 1 to 5) or a float between 0-1.
+- `{metric_name}_label` provides a binary label (if the metric outputs a binary score naturally).
 - `{metric_name}_reason` explains why a certain score or label was given for each data point.
+
+To further improve intelligibility, all evaluators accept a binary threshold and output two new keys. For the binarization threshold, a default is set and user can override it. The two new keys are:
+
+- `{metric_name}_result` a "pass" or "fail" string based on a binarization threshold.
+- `{metric_name}_threshold` a numerical binarization threshold set by default or by the user
+
+
 
 #### Comparing quality and custom evaluators
 
@@ -364,7 +375,7 @@ credential = DefaultAzureCredential()
 # Initializing Violence Evaluator with project information
 violence_eval = ViolenceEvaluator(credential=credential, azure_ai_project=azure_ai_project)
 # Running Violence Evaluator on a query and response pair
-violence_score = violence_eval(query="What is the capital of France?", answer="Paris.")
+violence_score = violence_eval(query="What is the capital of France?", response="Paris.")
 print(violence_score)
 
 # Conversation mode
@@ -694,6 +705,8 @@ When passing in your built-in evaluators, it's important to specify the right ke
 | `HateUnfairnessEvaluator` | "hate_unfairness" |
 | `IndirectAttackEvaluator` | "indirect_attack" |
 | `ProtectedMaterialEvaluator`| "protected_material" |
+| `CodeVulnerabilityEvaluator`| "code_vulnerability" |
+| `UngroundedAttributesEvaluator`| "ungrounded_attributes" |
 | `QAEvaluator`             | "qa"              |
 | `ContentSafetyEvaluator`  | "content_safety"  |
 

@@ -7,7 +7,7 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 9/24/2024
+ms.date: 3/10/2025
 ms.reviewer: alexeyo
 #Customer intent: As a developer, I want to learn about the quotas and limits for the Speech service in Azure AI services.
 ---
@@ -48,7 +48,7 @@ You can use real-time speech to text with the [Speech SDK](speech-sdk.md) or the
 
 | Quota | Free (F0) | Standard (S0) |
 |-----|-----|-----|
-| Maximum audio input file size | N/A | 200 MB |
+| Maximum audio input file size | N/A | 300 MB |
 | Maximum audio length | N/A | 120 minutes per file  |
 | Maximum requests per minute | N/A | 600  |
 
@@ -188,14 +188,14 @@ The next sections describe specific cases of adjusting quotas.
 
 By default, the number of concurrent real-time speech to text and speech translation [requests combined](#real-time-speech-to-text-and-speech-translation) is limited to 100 per resource in the base model, and 100 per custom endpoint in the custom model. For the standard pricing tier, you can increase this amount. Before submitting the request, ensure that you're familiar with the material discussed earlier in this article, such as the best practices to mitigate throttling.
 
->[!NOTE]
+> [!NOTE]
 > Concurrent request limits for base and custom models need to be adjusted separately. You can have a Speech service resource that's associated with many custom endpoints hosting many custom model deployments. As needed, the limit adjustments per custom endpoint must be requested separately. 
 
 Increasing the limit of concurrent requests doesn't directly affect your costs. The Speech service uses a payment model that requires that you pay only for what you use. The limit defines how high the service can scale before it starts throttle your requests.
 
 You aren't able to see the existing value of the concurrent request limit parameter in the Azure portal, the command-line tools, or API requests. To verify the existing value, create an Azure support request.
 
->[!NOTE]
+> [!NOTE]
 >[Speech containers](speech-container-howto.md) don't require increases of the concurrent request limit, because containers are constrained only by the CPUs of the hardware they are hosted on. Speech containers do, however, have their own capacity limitations that should be taken into account. For more information, see the [Speech containers FAQ](./speech-container-howto.md).
 
 #### Have the required information ready
@@ -264,7 +264,7 @@ Increasing the limit of concurrent requests doesn't directly affect your costs. 
 
 You aren't able to see the existing value of the concurrent request limit parameter in the Azure portal, the command-line tools, or API requests. To verify the existing value, create an Azure support request.
 
->[!NOTE]
+> [!NOTE]
 >[Speech containers](speech-container-howto.md) don't require increases of the concurrent request limit, because containers are constrained only by the CPUs of the hardware they are hosted on.
  
 #### Prepare the required information

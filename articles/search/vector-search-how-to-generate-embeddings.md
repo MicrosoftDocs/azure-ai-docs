@@ -9,14 +9,14 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 09/19/2024
+ms.date: 03/11/2025
 ---
 
 # Generate embeddings for search queries and documents
 
-Azure AI Search doesn't host vectorization models, so one of your challenges is creating embeddings for query inputs and outputs. You can use any supported embedding model, but this article assumes Azure OpenAI embedding models for the steps.
+Azure AI Search doesn't host embedding models, so one of your challenges is creating vectors for query inputs and outputs. You can use any supported embedding model, but this article assumes Azure OpenAI embedding models for illustration.
 
-We recommend [integrated vectorization](vector-search-integrated-vectorization.md), which provides built-in data chunking and vectorization. Integrated vectorization takes a dependency on indexers, skillsets, and built-in or custom skills that point to a model that executes externally from Azure AI Search.
+We recommend [integrated vectorization](vector-search-integrated-vectorization.md), which provides built-in data chunking and vectorization. Integrated vectorization takes a dependency on indexers, skillsets, and built-in or custom skills that point to a model that executes externally from Azure AI Search. Several built-in skills point to embedding models in Azure AI Foundry, which makes integrated vectorization your easiest solution for solving the embedding challenge.
 
 If you want to handle data chunking and vectorization yourself, we provide demos in the [sample repository](https://github.com/Azure/azure-search-vector-samples/tree/main) that show you how to integrate with other community solutions.
 
@@ -30,7 +30,7 @@ If you want to handle data chunking and vectorization yourself, we provide demos
 
 ## Create resources in the same region
 
-Integrated vectorization requires resources to be in the same region:
+Integrated vectorization usually requires resources to be in the same region:
 
 1. [Check regions for a text embedding model](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability).
 
@@ -53,7 +53,7 @@ openai.api_base = "https://YOUR-OPENAI-RESOURCE.openai.azure.com"
 openai.api_version = "2024-02-01"
 
 response = openai.Embedding.create(
-    input="How do I use Python in VSCode?",
+    input="How do I use Python in VS Code?",
     engine="text-embedding-ada-002"
 )
 embeddings = response['data'][0]['embedding']

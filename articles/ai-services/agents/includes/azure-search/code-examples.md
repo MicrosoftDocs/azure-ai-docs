@@ -136,7 +136,8 @@ conn_id =  "/subscriptions/<your-subscription-id>/resourceGroups/<your-resource-
 
 # Initialize agent AI search tool and add the search index connection ID and index name
 # TO DO: replace <your-index-name> with the name of the index you want to use
-ai_search = AzureAISearchTool(index_connection_id=conn_id, index_name="<your-index-name>")
+ai_search = AzureAISearchTool(index_connection_id=conn_id, index_name="<your-index-name>",
+query_type="<select-search-type>")
 ```
 # [C#](#tab/csharp)
 ```csharp
@@ -149,7 +150,7 @@ ToolResources searchResource = new ToolResources
 {
     AzureAISearch = new AzureAISearchResource
     {
-        IndexList = { new IndexResource(connection.Id, "<your-index-name>") }
+        IndexList = { new IndexResource(connection.Id, "<your-index-name>", "<select-search-type>") }
     }
 };
 ```
@@ -261,7 +262,7 @@ message = project_client.agents.create_message(
 print(f"Created message, message ID: {message.id}")
     
 # Run the agent
-run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
+run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
 print(f"Run finished with status: {run.status}")
  
 if run.status == "failed":

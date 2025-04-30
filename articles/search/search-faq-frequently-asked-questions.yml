@@ -9,7 +9,7 @@ metadata:
   ms.author: haileytapia
   ms.service: azure-ai-search
   ms.topic: faq
-  ms.date: 01/16/2025
+  ms.date: 03/21/2025
 title: Azure AI Search Frequently Asked Questions
 summary:  Find answers to commonly asked questions about Azure AI Search.
 
@@ -36,7 +36,7 @@ sections:
         answer: |
           For vectors, the embedding models you use determines the linguistic experience. 
           
-          For nonvector strings and numbers, the default analyzer used for tokenization is standard Lucene and it's language agnostic. Otherwise, language support is expressed through [language analyzers](index-add-language-analyzers.md#supported-language-analyzers) that apply linguistic rules to inbound (indexing) and outbound (queries) content. Some features, such as [speller](speller-how-to-add.md#supported-languages) and [query rewrite](semantic-how-to-query-rewrite.md), are limited to a subset of languages.
+          For nonvector strings and numbers, the default analyzer used for tokenization is standard Lucene, which is language agnostic. Otherwise, language support is expressed through [language analyzers](index-add-language-analyzers.md#supported-language-analyzers) that apply linguistic rules to inbound (indexing) and outbound (queries) content. Some features, such as [speller](speller-how-to-add.md#supported-languages) and [query rewrite](semantic-how-to-query-rewrite.md), are limited to a subset of languages.
 
       - question: |
           How do I integrate search into my solution?
@@ -56,14 +56,26 @@ sections:
           You can't pause a search service. In Azure AI Search, computing resources are allocated when the service is created. It's not possible to release and reclaim those resources on-demand.
 
       - question: |
-          Can I upgrade, downgrade, rename or move the service?
+          Can I upgrade or downgrade the service?
         answer: |
-          Service tier, name, and region are fixed for the lifetime of the service.
+          Services created before April 2024 in select regions can be [upgraded to higher capacity clusters](search-how-to-upgrade.md). Downgrading your service isn't supported. 
+          
+          To get more capacity, you can also [switch to a higher pricing tier](search-capacity-planning.md#change-your-pricing-tier). Your region can't have [capacity constraints on the higher tier](search-region-support.md), and you can only move up between Basic and Standard (S1, S2, and S3) tiers, such as going from Basic to S1. Currently, you can't switch to a lower tier.
+          
+      - question: |
+          Can I rename or move the service?
+        answer: |
+          Service name and region are fixed for the lifetime of the service.
           
       - question: |
           If I migrate my search service to another subscription or resource group, should I expect any downtime?
         answer: |
           As long as you follow the [checklist before moving resources](/azure/azure-resource-manager/management/move-resource-group-and-subscription) and make sure each step is completed, there shouldn't be any downtime.
+
+      - question: |
+          Why do I see different storage limits for same-tier search services?
+        answer: |
+          Storage limits can vary by service creation date. In most supported regions, [newer services have higher storage limits than older services](search-limits-quotas-capacity.md#partition-storage-gb), even if they're on the same tier. However, you might be able to [upgrade your old service](search-how-to-upgrade.md) to access the new limits.
 
   - name: Indexing 
     questions:
@@ -130,7 +142,12 @@ sections:
       - question: |
           Why do I see different vector index size limits between my new search services and existing search services?
         answer: |
-          Azure AI Search rolled out improved vector index size limits worldwide for new search services, but [some regions experience capacity constraints](search-region-support.md), and some regions don't have the required infrastructure. New search services created in supported regions should see increased vector index size limits. Unfortunately, we can't migrate existing services to the new limits. Also, only vector indexes that use the Hierarchical Navigable Small World (HNSW) algorithm report on vector index size in the Azure portal. If your index uses exhaustive KNN, vector index size is reported as zero, even though the index contains vectors. 
+          Azure AI Search rolled out improved vector index size limits worldwide for new search services, but [some regions experience capacity constraints](search-region-support.md), and some regions don't have the required infrastructure. New search services created after May 2024 in supported regions should see increased vector index size limits. Alternatively, if you have an existing service in a supported region, you can [upgrade your service](search-how-to-upgrade.md) to access the new limits.
+          
+      - question: |
+          Why does my vector index show zero storage?
+        answer: |    
+          Only vector indexes that use the Hierarchical Navigable Small World (HNSW) algorithm report on vector index size in the Azure portal. If your index uses exhaustive KNN, vector index size is reported as zero, even though the index contains vectors. 
 
       - question: |
           How do I enable vector search on a search index?
@@ -141,7 +158,7 @@ sections:
           
           * Add a "vectorSearch" section to the index schema specifying the configuration used by vector search fields, including the parameters of the Approximate Nearest Neighbor algorithm used, like HNSW.
           
-          * Use the latest stable version[**2024-07-01**](/rest/api/searchservice), or an Azure SDK to create or update the index, load documents, and issue queries. For more information, see [Create a vector index](vector-search-how-to-create-index.md).
+          * Use the latest stable version, [**2024-07-01**](/rest/api/searchservice), or an Azure SDK to create or update the index, load documents, and issue queries. For more information, see [Create a vector index](vector-search-how-to-create-index.md).
 
   - name: Queries
     questions:
@@ -189,7 +206,7 @@ sections:
       - question: |
           Does Azure AI Search process customer data in other regions?
         answer: |
-          Processing (vectorization or applied AI transformations) is performed in the Geo that hosts the Azure AI services used by skills, or the Azure apps or functions hosting custom skills, or the Azure OpenAI or Azure AI Foundry region that hosts your deployed models. These resources are specified by you, so you can choose whether to provision them in the same Geo as your search service or not
+          Processing (vectorization or applied AI transformations) is performed in the Geo that hosts the Azure AI services used by skills, or the Azure apps or functions hosting custom skills, or the Azure OpenAI or Azure AI Foundry region that hosts your deployed models. These resources are specified by you, so you can choose whether to deploy them in the same Geo as your search service or not.
           
           If you send data to external (non-Azure) models or services, the processing location is determined by the external service. 
 

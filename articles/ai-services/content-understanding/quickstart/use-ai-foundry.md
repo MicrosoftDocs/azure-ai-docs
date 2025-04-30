@@ -6,12 +6,13 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: quickstart
-ms.date: 02/19/2025
+ms.date: 03/12/2025
 ms.custom: ignite-2024-understanding-release
 ---
 
 # Use Content Understanding in the Azure AI Foundry
-[The Azure AI Foundry](https://ai.azure.com/) is a comprehensive platform for developing and deploying generative AI applications and APIs responsibly. Azure AI Content Understanding is a new generative [Azure AI Service](../../what-are-ai-services.md) that analyzes files from varied modalities and extracts structured output in a user-defined field format. Input sources include document, video, image, and audio data. This guide shows you how to build and test a Content Understanding analyzer in the AI Foundry. You can then utilize the extracted data in any app or process you build using a simple REST API call. Content Understanding analyzers are fully customizable. You can create an analyzer by building your own schema from scratch or by using a suggested analyzer template offered to address common scenarios across each data type.
+
+[The Azure AI Foundry](https://aka.ms/cu-landing) is a comprehensive platform for developing and deploying generative AI applications and APIs responsibly. Azure AI Content Understanding is a new generative [Azure AI Service](../../what-are-ai-services.md) that analyzes files from varied modalities and extracts structured output in a user-defined field format. Input sources include document, video, image, and audio data. This guide shows you how to build and test a Content Understanding analyzer in the AI Foundry. You can then utilize the extracted data in any app or process you build using a simple REST API call. Content Understanding analyzers are fully customizable. You can create an analyzer by building your own schema from scratch or by using a suggested analyzer template offered to address common scenarios across each data type.
 
   :::image type="content" source="../media/quickstarts/ai-foundry-overview.png" alt-text="Screenshot of the Content Understanding workflow in the Azure AI Foundry.":::
 
@@ -21,31 +22,34 @@ To get started, make sure you have the following resources and permissions:
 
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/) before you begin.
 
-* An Azure AI Foundry hub is required to manage the resources provisioned in your Content Understanding project, and it must be created in one of the following supported regions: westus, swedencentral, or australiaeast. If you're creating a hub for the first time, *see* [How to create and manage an Azure AI Foundry hub](../../../ai-studio/how-to/create-azure-ai-resource.md?tabs=portal) to learn more. It's important to note you need the proper permissions to create a hub, or your admin may create one for you.
+* An Azure AI Foundry hub is required to manage the resources provisioned in your Content Understanding project, and it must be created in one of the following supported regions: westus, swedencentral, or australiaeast. If you're creating a hub for the first time, *see* [How to create and manage an Azure AI Foundry hub](../../../ai-foundry/how-to/create-azure-ai-resource.md?tabs=portal) to learn more. It's important to note you need the proper permissions to create a hub, or your admin may create one for you.
 
   * If your role is **Contributor** or **Owner**, you can proceed with creating your own hub.
 
-  * If your role is **Azure AI Developer**, the hub must already be created before you can complete this quickstart. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../../../ai-studio/concepts/ai-resources.md) and [Azure AI roles](../../../ai-studio/concepts/rbac-ai-studio.md).
+  * If your role is **Azure AI Developer**, the hub must already be created before you can complete this quickstart. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../../../ai-foundry/concepts/ai-resources.md) and [Azure AI roles](../../../ai-foundry/concepts/rbac-azure-ai-foundry.md).
 
 > [!IMPORTANT]
-> If your organization requires you to customize the security of storage resources, the AI Foundry doesn't currently expose all the features that can be configured. Refer to [Azure AI services API access keys](../../../ai-studio/concepts/encryption-keys-portal.md) to create resources that meet your organizations requirements through the Azure portal. Policy enforced in Azure on the hub scope applies to all projects managed under it. To learn how to utilize customer managed keys, refer to [(Preview) Service-side storage of encrypted data when using customer-managed keys](../../../ai-studio/concepts/encryption-keys-portal.md#preview-service-side-storage-of-encrypted-data-when-using-customer-managed-keys). Return here when you have resources created.
+> If your organization requires you to customize the security of storage resources, the AI Foundry doesn't currently expose all the features that can be configured. Refer to [Azure AI services API access keys](../../../ai-foundry/concepts/encryption-keys-portal.md) to create resources that meet your organizations requirements through the Azure portal. Policy enforced in Azure on the hub scope applies to all projects managed under it. To learn how to utilize customer managed keys, refer to [(Preview) Service-side storage of encrypted data when using customer-managed keys](../../../ai-foundry/concepts/encryption-keys-portal.md#preview-service-side-storage-of-encrypted-data-when-using-customer-managed-keys). Return here when you have resources created.
 
 ## Create your first Content Understanding project in the AI Foundry
 
 > [!NOTE]
 > The Content Understanding project type is separate from the Generative AI project type, also available in the AI Foundry.
 
-In order to try out [the Content Understanding service in the AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding), you have to create a Content Understanding project. You can access Content Understanding from:
+In order to try out [the Content Understanding service in the AI Foundry](https://aka.ms/cu-landing), you have to create a Content Understanding project. You can access Content Understanding from:
 
 * The [AI Foundry home page](https://ai.azure.com/)
-   :::image type="content" source="../media/quickstarts/foundry-home-page.png" alt-text="Screenshot of the AI Foundry home page.":::
 
-* The [AI Services landing page](https://ai.azure.com/https://ai.azure.com/explore/aiservices)
-   :::image type="content" source="../media/quickstarts/cu-ai-services-landing-page.png" alt-text="Screenshot of the AI Services landing page in AI Foundry.":::
+   :::image type="content" source="../media/quickstarts/foundry-home-page.png" lightbox="../media/quickstarts/foundry-home-page.png" alt-text="Screenshot of the AI Services landing page in AI Foundry.":::
+   
+
+* The [AI Foundry AI Services landing page](https://ai.azure.com/explore/aiservices)
+
+   :::image type="content" source="../media/quickstarts/ai-services-landing-page.png" lightbox="../media/quickstarts/ai-services-landing-page.png" alt-text="Screenshot of the AI Services landing page.":::
 
 Once on the Content Understanding page, select `Create a new Content Understanding Project`:
 
-   :::image type="content" source="../media/quickstarts/cu-landing-page.png" alt-text="Screenshot of Content Understanding page.":::
+   :::image type="content" source="../media/quickstarts/cu-landing-page.png" lightbox="../media/quickstarts/cu-landing-page.png" alt-text="Screenshot of Content Understanding page.":::
 
  Follow the steps in the project creation wizard, and start by selecting the hub that you already created. When the hub was created, it should provision an AI Services resource and a blob storage container which are selected by default. You can alternatively create one using the wizard, or the [Azure portal](../how-to/create-multi-service-resource.md). The following diagram illustrates the role of hubs, resources, and projects in the AI Foundry.
 

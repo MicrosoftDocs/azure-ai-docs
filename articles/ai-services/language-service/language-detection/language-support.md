@@ -2,7 +2,6 @@
 title: Language Detection language support
 titleSuffix: Azure AI services
 description: This article explains which natural languages are supported by the Language Detection API.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language

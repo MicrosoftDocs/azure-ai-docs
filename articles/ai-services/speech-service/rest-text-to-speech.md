@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/23/2024
+ms.date: 3/10/2025
 ms.author: eur
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the REST API to convert text into synthesized speech.

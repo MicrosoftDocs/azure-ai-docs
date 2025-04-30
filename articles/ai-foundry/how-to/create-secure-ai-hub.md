@@ -6,7 +6,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 02/21/2025
+ms.date: 03/11/2025
 ms.reviewer: meerakurup 
 ms.author: larryfr
 author: Blackmist
@@ -39,6 +39,9 @@ You can secure your [Azure AI Foundry](https://ai.azure.com) hub, projects, and 
 1. Select **Next: Networking** to configure the managed virtual network that Azure AI Foundry uses to secure its hub and projects.
     
     1. Select **Private with Internet Outbound**, which allows compute resources to access the public internet for resources such as Python packages.
+    
+        > [!TIP]
+        > To provision the virtual network during hub creation, select **Provision managed virtual network**. If this option isn't selected, the network isn't provisioned until you create a compute resource. For more information, see [Managed virtual network](configure-managed-network.md#manually-provision-a-managed-vnet).
 
         :::image type="content" source="../media/how-to/network/ai-hub-networking.png" alt-text="Screenshot of the Create a hub with the option to set network isolation information." lightbox="../media/how-to/network/ai-hub-networking.png":::
 
@@ -69,5 +72,5 @@ The managed virtual network doesn't directly provide access to your clients. Ins
 ## Next steps
 
 - [Create a project](create-projects.md)
-- [Learn more about Azure AI Foundry](../what-is-ai-foundry.md)
+- [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
 - [Learn more about Azure AI Foundry hubs](../concepts/ai-resources.md)

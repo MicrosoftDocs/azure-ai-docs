@@ -174,7 +174,32 @@ Before following the steps in this article, make sure you have the following pre
 ---
 
 > [!NOTE]
-> If you're using UAI workspace, make sure to add the Azure AI Enterprise Network Connection Approver role to your identity. For more information, see [User-assigned managed identity](how-to-identity-based-service-authentication.md).
+> To establish private endpoint connections in managed virtual networks using Azure Machine Learning, the workspace managed identity, whether system-assigned or user-assigned, must have permissions to approve the Private Endpoint connections on the target resources. Previously, this was done through automatic role assignments by the Azure Machine Learning service. However, there are security concerns about the automatic role assignment. To improve security, starting April 30th, 2025, we will discontinue this automatic permission grant logic. We recommend assigning the _Azure AI Enterprise Network Connection Approver_ role or a custom role with the necessary private endpoint connection permissions on the target resource types and grant this role to the Azure Machine Learning workspace's managed identity to allow Azure Machine Learning services to approve Private Endpoint connections to the target Azure resources.
+> 
+> Here's the list of private endpoint target resource types covered by the _Azure AI Enterprise Network Connection Approver_ role:
+> * Azure Application Gateway
+> * Azure Monitor
+> * Azure AI Search
+> * Event Hubs
+> * Azure SQL Database
+> * Azure Storage
+> * Azure Machine Learning workspace
+> * Azure Machine Learning registry
+> * Azure AI Foundry
+> * Azure Key Vault
+> * Azure CosmosDB
+> * Azure Database for MySQL
+> * Azure Database for PostgreSQL
+> * Azure AI Services
+> * Azure Cache for Redis
+> * Container Registry
+> * API Management
+> 
+> If you would like to create a custom role instead, see [Azure AI Enterprise Network Connection Approver role](/azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-enterprise-network-connection-approver) to add the specific actions for each resource type.
+> 
+> For creating private endpoint outbound rules to target resource types not covered by the _Azure AI Enterprise Network Connection Approver_ role, such as Azure Data Factory, Azure Databricks, and Azure Function Apps, a custom scoped-down role is recommended, defined only by the actions necessary to approve private endpoint connections on the target resource types.
+> 
+> For creating Private Endpoint outbound rules to default workspace resources, the required permissions are automatically covered by the role assignments granted during workspace creation, so no additional action is needed.
 
 ## Configure a managed virtual network to allow internet outbound
 
@@ -1032,9 +1057,6 @@ To allow installation of __Python packages for training and deployment__, add ou
 
 If you plan to use __Visual Studio Code__ with Azure Machine Learning, add outbound _FQDN_ rules to allow traffic to the following hosts:
 
-> [!WARNING]
-> FQDN outbound rules are implemented using Azure Firewall. If you use outbound FQDN rules, charges for Azure Firewall are added to your billing. For more information, see [Pricing](#pricing).
-
 > [!NOTE]
 > This isn't a complete list of the hosts required for all Visual Studio Code resources on the internet, only the most commonly used. For example, if you need access to a GitHub repository or other host, you must identify and add the required hosts for that scenario. For a complete list of host names, see [Network Connections in Visual Studio Code](https://code.visualstudio.com/docs/setup/network).
 
@@ -1091,9 +1113,6 @@ For more information, see [Configure private link](how-to-configure-private-link
 
 ## Private endpoints
 
-> [!IMPORTANT]
-> As of March 31st 2025, the Azure AI Enterprise Network Connection Approver role must be assigned to the Azure Machine Learning workspace's managed identity to approve private endpoints to securely access your Azure resources from the managed virtual network. This doesn't impact existing resources with approved private endpoints as the role is correctly assigned by the service. For new resources, ensure the role is assigned to the workspace's managed identity. For Azure Data Factory, Azure Databricks, and Azure Function Apps, the Contributor role should instead be assigned to your workspace's managed identity. This role assignment is applicable to both User-assigned identity and System-assigned identity workspaces. 
-
 Private endpoints are currently supported for the following Azure services:
 
 * Azure Machine Learning
@@ -1119,8 +1138,34 @@ When you create a private endpoint, you provide the _resource type_ and _subreso
 
 When you create a private endpoint for Azure Machine Learning dependency resources, such as Azure Storage, Azure Container Registry, and Azure Key Vault, the resource can be in a different Azure subscription. However, the resource must be in the same tenant as the Azure Machine Learning workspace.
 
-> [!IMPORTANT]
-> When configuring private endpoints for an Azure Machine Learning managed VNet, the private endpoints are only created when created when the first _compute is created_ or when managed VNet provisioning is forced. For more information on forcing the managed VNet provisioning, see [Configure for serverless Spark jobs](#manually-provision-a-managed-vnet).
+When configuring private endpoints for the workspace, they are only created when the first _compute is created_ or when managed virtual network provisioning is forced. For more information on forcing the managed virtual network provisioning, see [Manually provision the network](#manually-provision-a-managed-vnet).
+
+### Approval of private endpoints
+
+To establish Private Endpoint connections in managed virtual networks using Azure Machine Learning, the workspace managed identity, whether system-assigned or user-assigned, must have permissions to approve the Private Endpoint connections on the target resources. Previously, this was done through automatic role assignments by the Azure Machine Learning service. However, there are security concerns about the automatic role assignment. To improve security, starting April 30th, 2025, we will discontinue this automatic permission grant logic. We recommend assigning the Azure AI Enterprise Network Connection Approver role or a custom role with the necessary Private Endpoint connection permissions on the target resource types and grant this role to the Azure Machine Learning workspace's managed identity to allow Azure Machine Learning services to approve Private Endpoint connections to the target Azure resources.
+ 
+Here's the list of private endpoint target resource types covered by covered by  the Azure AI Enterprise Network Connection Approver role:
+* Azure Application Gateway
+* Azure Monitor
+* Azure AI Search
+* Event Hubs
+* Azure SQL Database
+* Azure Storage
+* Azure Machine Learning workspace
+* Azure Machine Learning registry
+* Azure AI Foundry
+* Azure Key Vault
+* Azure CosmosDB
+* Azure Database for MySQL
+* Azure Database for PostgreSQL
+* Azure AI Services
+* Azure Cache for Redis
+* Container Registry
+* API Management
+  
+For creating Private Endpoint outbound rules to target resource types not covered by the Azure AI Enterprise Network Connection Approver role, such as Azure Data Factory, Azure Databricks, and Azure Function Apps, a custom scoped-down role is recommended, defined only by the actions necessary to approve private endpoint connections on the target resource types.
+ 
+For creating Private Endpoint outbound rules to default workspace resources, the required permissions are automatically covered by the role assignments granted during workspace creation, so no additional action is needed.
 
 ## Select an Azure Firewall version for allowed only approved outbound
 
@@ -1128,6 +1173,7 @@ An Azure Firewall is deployed if an FQDN outbound rule is created while in the _
 
 > [!IMPORTANT]
 > The firewall isn't created until you add an outbound FQDN rule. For more information on pricing, see [Azure Firewall pricing](https://azure.microsoft.com/pricing/details/azure-firewall/) and view prices for the _standard_ version.
+> URL-based filtering is only supported with Premium SKU Azure Firewall, not Basic or Standard SKU Azure Firewall. Managed virtual network does not support Premium SKU Azure Firewall.
 
 Use the following tabs to learn how to select the firewall version for your managed virtual network.
 
@@ -1187,8 +1233,6 @@ The Azure Machine Learning managed virtual network feature is free. However, you
 * FQDN outbound rules only support ports 80 and 443.
 * If your compute instance is in a managed network and is configured for no public IP, use the `az ml compute connect-ssh` command to connect to it using SSH.
 * When using Managed virtual network, you can't deploy compute resources inside your custom virtual network. Compute resources can only be created inside the managed virtual network.
-* Managed network isolation can't establish a private connection from the managed virtual network to a user's on-premises resources.
-For the list of supported private connections, see [Private Endpoints](/azure/machine-learning/how-to-managed-network?view=azureml-api-2&tabs=azure-cli&preserve-view=true#private-endpoints).
 * If your managed network is configured to __allow only approved outbound__, you can't use an FQDN rule to access Azure Storage Accounts. You must use a private endpoint instead.
 * Ensure to allowlist Microsoft-managed private endpoints created for the managed virtual network in your custom policy.
 
