@@ -19,7 +19,6 @@ Welcome to what's new in the Azure AI Services docs for March 2025. This article
 
 - [Azure AI Document Intelligence release history](../ai-services/document-intelligence/reference/release-history.md)
 - [Azure OpenAI Responses API (Preview)](../ai-services/openai/how-to/responses.md)
-- [Bring your licensed data](../ai-services/agents/how-to/tools/licensed-data.md)
 - [Computer Use (preview) in Azure OpenAI](../ai-services/openai/how-to/computer-use.md)
 - [Deploy a fine-tuned model for inferencing](../ai-services/openai/how-to/fine-tuning-deploy.md)
 - [Direct preference optimization (preview)](../ai-services/openai/how-to/fine-tuning-direct-preference-optimization.md)
