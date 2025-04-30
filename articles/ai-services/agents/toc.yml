@@ -4,7 +4,7 @@ items:
 - name: Overview
   expanded: true
   items:
-  - name: What is Azure AI Foundry Agent Service (Preview)?
+  - name: What is Foundry Agent Service?
     href: overview.md
   - name: What's new
     href: ./whats-new.md

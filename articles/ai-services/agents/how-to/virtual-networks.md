@@ -68,7 +68,7 @@ Azure AI Foundry Agent Service offers a standard agent configuration with privat
 
 **Network secured setup**: Agents use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you incur costs based on your usage. The following bicep template provides:
 
-* Resources for the hub, project, storage account, key vault, AI Services, and Azure AI Search are created for you. The AI Services, AI Search, and Azure Blob Storage account are connected to your project/hub, and a gpt-4o-mini model is deployed in the westus2 region.
+* Resources for the project, storage account, key vault, AI Services, and Azure AI Search are created for you. The AI Services, AI Search, and Azure Blob Storage account are connected to your project/hub, and a gpt-4o-mini model is deployed in the westus2 region.
 * Customer-owned resources are secured with a provisioned managed network and authenticated with a user-managed identity with the necessary RBAC (Role-Based Access Control) permissions. Private links and DNS (Domain Name System) zones are created on behalf of the customer to ensure network connectivity.
 
 <br/>
@@ -105,8 +105,8 @@ Azure AI Foundry Agent Service offers a standard agent configuration with privat
       * Private endpoints in the Azure Resource subnet
       * Private DNS integration enabled
       * User assigned identity for authentication
-* Creates a hub and project using the resources provisioned and configures them to use the Agent Resource Subnet.  
-   * Accomplished by configuring the `capabilityHost` (a subresource of hub/project) to use the Agent Resource Subnet for network isolation and secure communication. 
+* Creates a project using the resources provisioned and configures them to use the Agent Resource Subnet.  
+   * Accomplished by configuring the `capabilityHost` (a subresource of the project) to use the Agent Resource Subnet for network isolation and secure communication. 
 </details>
 
 ### Option 1: autodeploy the bicep template
@@ -143,7 +143,7 @@ Azure AI Foundry Agent Service offers a standard agent configuration with privat
         az deployment group create --resource-group {my_resource_group} --template-file main.bicep
         ```
 
-    1. To specify custom names for the hub, project, storage account, and/or Azure AI service resources run the following command. A randomly generated suffix is added to prevent accidental duplication.
+    1. To specify custom names for the project, storage account, and/or Azure AI service resources run the following command. A randomly generated suffix is added to prevent accidental duplication.
 
         ```console
         az deployment group create --resource-group {my_resource_group} --template-file main.bicep --parameters aiHubName='your-hub-name' aiProjectName='your-project-name' storageName='your-storage-name' aiServicesName='your-ai-services-name' 
