@@ -4,48 +4,21 @@ titleSuffix: Azure AI Foundry
 description: Learn how to generate images with image models with Azure AI model inference
 manager: scottpolly
 author: msakande
-reviewer: Frogglew
+reviewer: frogglew
 ms.service: azure-ai-model-inference
 ms.topic: how-to
 ms.date: 04/29/2025
 ms.author: mopeakande
-ms.reviewer: saoh
+ms.reviewer: frogglew
 ms.custom: references_regions, tool_generated
 zone_pivot_groups: azure-ai-inference-samples
 ---
 
-# How to generate images with Azure AI model inference
-
-::: zone pivot="programming-language-python"
-
-Azure AI model inference Python API does not support image models.
-
-::: zone-end
-
-::: zone pivot="programming-language-javascript"
-
-Azure AI model inference Javascript API does not support image models.
-
-::: zone-end
-
-
-::: zone pivot="programming-language-java"
-
-Azure AI model inference Java API does not support image models.
-
-::: zone-end
-
-
-::: zone pivot="programming-language-csharp"
-
-Azure AI model inference C Sharp API does not support image models.
-
-::: zone-end
-
+# How to use image models on AI Foundry Models
 
 ::: zone pivot="programming-language-rest"
 
-This article explains how to generate images with _image_ models deployed to Azure AI model inference in Azure AI services. Some models have unique parameters or data format requirements.
+This article explains how to use _image_ models on AI Foundry. Some models have unique parameters or data format requirements.
 
 ## Prerequisites
 
@@ -53,11 +26,11 @@ To use image models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites](../includes/how-to-prerequisites.md)]
 
-* An image model deployment. If you don't have one, see [Add and configure models to Azure AI model inference](create-model-deployments.md) to add an image model to your resource. This article uses the Mistral OCR model.
+* An image model deployment on Azure AI Foundry. This article uses an Mistral OCR model deployment.
 
 ## Use image model
 
-1. Authenticate using API key. For serverless API endpoints, deploy the model to generate the endpoint URL and an API key to authenticate against the service. In this example, the endpoint and key are strings holding the endpoint URL and the API key. The API endpoint URL and API key can be found on the **Deployments + Endpoint** page once the model is deployed.
+1. Authenticate using API key. First, deploy the model to generate the endpoint URL and an API key to authenticate against the service. In this example, the endpoint and key are strings holding the endpoint URL and the API key. The API endpoint URL and API key can be found on the **Deployments + Endpoint** page once the model is deployed.
 
     If you're using bash:
   
@@ -77,7 +50,7 @@ To use image models in your application, you need:
     export AZURE_API_KEY = "<your-api-key>"
     ```
 
-1. Run a basic code sample. Different image models accept different data formats. In this example, `Mistral OCR 25.03` supports only base64 data; document url or image url isn't supported. Paste the following code into a shell.
+1. Run a basic code sample. Different image models accept different data formats. In this example, `Mistral OCR 25.03` supports only base64 encoded data; document url or image url isn't supported. Paste the following code into a shell.
   
     ```http
     curl --request POST \
@@ -94,21 +67,20 @@ To use image models in your application, you need:
     }'
     ```
 
-## Model specific requirements
+## Model specific parameters
 
-Some models only support specific data format. The following table list the supported and unsupported data formats for models.
+Some image models only support specific data format. Mistral OCR 25.03 for example requires `base64 encoded image data` for their `document_url` parameter. The following table list the supported and unsupported data formats for image models on Azure AI Foundry Models.
 
 | Model | Supported | Not supported |
 | :---- | ----- | ----- |
-| Mistral OCR 25.03 | base64 only  | document url or image url |
-| dall-e-3 | Must be one of url or b64_json | base64 |
-| gpt-image-1 | base64 only | document url or image url  |
+| Mistral OCR 25.03 | base64 encoded image data  | document url, image url |
+| dall-e-3 | document url, image url, b64_json | base64 encoded image data |
+| gpt-image-1 | base64 encoded image data, image url | document url  |
 
 
 ## Related content
 
-* [Use embeddings models](use-embeddings.md)
-* [Azure AI Model Inference API](.././reference/reference-model-inference-api.md)
+* [How to use Image Generation Models on Azure OpenAI](.././how-to/dall-e?tabs=gpt-image-1.md)
 
 ::: zone-end
 
