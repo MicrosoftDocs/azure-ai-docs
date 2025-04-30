@@ -34,15 +34,20 @@ This document provides guidance on using the ADLS Gen2 built-in indexer to inges
 - Indexer execution credential should have at least [Storage Blob Data Reader](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) role from the ADLS Gen2 data source.
 
 ## Limitations
-- [ACLs and RBAC limits in ADLS Gen2](/azure/storage/blobs/data-lake-storage-access-control-model#limits-on-azure-role-assignments-and-acl-entries).
-- [ADLS Gen2 ACLs assignments](/azure/storage/blobs/data-lake-storage-access-control#how-to-set-acls) are restricted with following guidelines for indexer at during Public Preview:
-  - At the root container, assign all groups and users that have access to any file, with both `read` and `execute` permissions.
+- Refer to the [ACLs and RBAC limits in ADLS Gen2](/azure/storage/blobs/data-lake-storage-access-control-model#limits-on-azure-role-assignments-and-acl-entries) for the maximum number of role assignments and ACL entries supported.
+- The `other` ACL category is not supported during Public Preview.
+- Guidelines for [ADLS Gen2 ACLs assignments](/azure/storage/blobs/data-lake-storage-access-control#how-to-set-acls) during Public Preview:
+  ### Root Container Permissions:
+  1. Assign all groups and users (security principals) that require access to any file within the container both `read` and `execute` permissions at the root container level.
+  1. Ensure both `read` and `execute` permissions are also added as "Default permissions" for the container, so they propagate to newly created files and directories automatically.
+  ### Existing Hierarchical File Structures:
+  For containers with existing hierarchical file structures, use the ADLS Gen2 tool to [apply ACLs recursively](/azure/storage/blobs/data-lake-storage-acl-azure-portal#apply-an-acl-recursively). This will propagate the root container's ACL assignments to all underlying directories and files.
+  ### Remove Excess Permissions:
+  After applying ACLs recursively, review permissions for each directory and file.
+  Remove any permissions for security principals that should not have access to specific directories or files.
+  ### Updating ACL Assignments:
+  If any new ACL assignments are added, repeat the above steps to ensure proper propagation and permissions alignment.
 
-    Also, assign all these security principals as part of container "Default permissions", with both `read` and `execute` permissions as well.
-  - For existing containers that already have hierarchical file structure, use the ADLS Gen2 tool [apply ACLs recursively](/azure/storage/blobs/data-lake-storage-acl-azure-portal#apply-an-acl-recursively) to propagate these ACL assignments to all underlying directories and files.
-  - Then go to each underlying directory and file to remove the assignments that should not access contents of the directory or file.
-  - If any new ACL assignment is added, repeat above steps.
-- `other` ACL category is not supported during Public Preview.
 
 ## Supported Scenarios  
 - Extraction of ACL and Azure RBAC container metadata from Azure Data Lake Storage Gen2.
