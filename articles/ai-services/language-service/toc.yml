@@ -437,6 +437,8 @@ items:
       - name: Redact PII from native documents
         href: personally-identifiable-information/how-to/redact-document-pii.md
       - name: Use containers
+        href: personally-identifiable-information/how-to/adapt-to-domain-pii.md
+      - name: Adapt PII to your domain
         items:
           - name: Use Docker containers
             href: personally-identifiable-information/how-to/use-containers.md

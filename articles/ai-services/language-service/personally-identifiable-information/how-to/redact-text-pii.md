@@ -45,12 +45,6 @@ There's also an optional field called `redactionCharacter` where you can input t
 
 The `MaskWithEntityType` policy allows you to mask the detected PII entity text with the detected entity type, that is, "[PERSON_1] received a call from [PHONENUMBER_1]". 
 
-## Submitting data
-
-Analysis is performed upon receipt of the request. Using the PII detection feature synchronously is stateless. No data is stored in your account, and results are returned immediately in the response.
-
-[!INCLUDE [asynchronous-result-availability](../../includes/async-result-availability.md)]
-
 ## Select which entities to be returned
 
 The API attempts to detect the [defined entity categories](../concepts/entity-categories.md) for a given input text language. If you want to specify which entities are detected and returned, use the optional `piiCategories` parameter with the appropriate entity categories. This parameter can also let you detect entities that aren't enabled by default for your input text language. The following example would detect only `Person`. You can specify one or more [entity types](../concepts/entity-categories.md) to be returned.
@@ -125,6 +119,23 @@ The API attempts to detect the [defined entity categories](../concepts/entity-ca
     }
 }
 ```
+
+## Adapting PII to your domain
+
+To accommodate and adapt to a customer’s custom vocabulary used to identify entities (also known as the “context”), the `entitySynonyms` feature allows customers to define their own synonyms for specific entity types. The goal of this feature is to help detect entities in contexts that the model is not familiar with but are used in the customer’s inputs by ensuring that the customer’s unique terms are recognized and correctly associated during the detection process. 
+
+The `valueExclusionPolicy` option allows customers to adapt the PII service for scenarios where customers prefer certain terms not to be detected and redacted even if those terms fall into a PII category they are interested in detected. For example, a police department might want personal identifiers redacted in most cases except for terms like “police officer”, “suspect”, and “witness”. 
+
+Customers can now adapt the PII service’s detecting by specifying their own regex using a regex recognition configuration file. See our [container how-to guides](use-containers.md) for a tutorial on how to install and run Personally Identifiable Information (PII) Detection containers. 
+
+A more detailed tutorial can be found in the “Adapting PII to your domain” how-to guide. 
+
+
+## Submitting data
+
+Analysis is performed upon receipt of the request. Using the PII detection feature synchronously is stateless. No data is stored in your account, and results are returned immediately in the response.
+
+[!INCLUDE [asynchronous-result-availability](../../includes/async-result-availability.md)]
 
 ## Getting PII results
 
