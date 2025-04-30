@@ -110,6 +110,10 @@ items:
       href: tutorial-rag-build-solution-maximize-relevance.md
     - name: Minimize storage and costs
       href: tutorial-rag-build-solution-minimize-storage.md
+    - name: Indexing blobs with text and images for multi-modal RAG scenarios using multi-modal embedding models and document extraction skill
+      href: search-multimodal-rag-with-embedding-and-doc-extraction.md
+    - name: Indexing blobs with text and images for multi-modal RAG scenarios using image verbalization and document extraction skill
+      href: search-multimodal-rag-with-image-verbalization-and-doc-extraction.md
   - name: Skills tutorials
     items:
     - name: C#
