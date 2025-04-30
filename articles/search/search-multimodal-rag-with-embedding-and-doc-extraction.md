@@ -21,13 +21,15 @@ In this scenario, vector embeddings are generated for both modalities using AI s
 
 You'll use:
 
-+ The [Document Extraction Skill](/articles/search/cognitive-search-skill-document-extraction.md) for extracting normalized images and text
++ The [Document Extraction skill](/articles/search/cognitive-search-skill-document-extraction.md) for extracting text and normalized images
+
 + Vectorization using the [Azure AI Vision multimodal embeddings skill](/articles/search/cognitive-search-skill-vision-vectorize.md), which generates embeddings from both text and images. The same skill is used for both modalities, with text inputs processed into embeddings for semantic search, and images processed into vector representations using Azure AI Vision models.
+
 + A search index configured to store text and image embeddings and support vector-based similarity search
 
-This tutorial demonstrates a lower-cost approach for indexing multi-modal content using DocumentExtractionSkill and image captioning. It enables extraction and search over both text and images from documents in Azure Blob Storage. However, it does not include locational metadata for text, such as page numbers or bounding regions. 
+This tutorial demonstrates a lower-cost approach for indexing multi-modal content using Document Extraction skill and image captioning. It enables extraction and search over both text and images from documents in Azure Blob Storage. However, it does not include locational metadata for text, such as page numbers or bounding regions. 
 
-For a more comprehensive solution that includes structured text layout and spatial metadata, see [TODO: LINK TO DOC INTELLIGENCE TUTORIAL].
+For a more comprehensive solution that includes structured text layout and spatial metadata, see [Indexing blobs with text and images for multi-modal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal).
 
 This tutorial shows you how to  index such data, using a REST client and the [Search REST APIs](/rest/api/searchservice/) to:
 
@@ -60,7 +62,7 @@ Download the sample PDF below:
 
 ### Upload sample data to Azure Storage
 
-1. In Azure Storage, create a new container named `doc-extraction-multimodality-container`.
+1. In Azure Storage, create a new container named **doc-extraction-multimodality-container**.
 
 1. [Upload the sample data file](/azure/storage/blobs/storage-quickstart-blobs-portal).
 
@@ -317,9 +319,9 @@ Key points:
 
 + Text and image embeddings are stored in the content_embedding field and must be configured with appropriate dimensions (e.g., 1024) and a vector search profile.
 
-+ `location_metadata` captures bounding polygon and page number metadata for each normalized image, enabling precise spatial search or UI overlays. Note that `location_metadata` only exists for images in this scenario. If you'd like to capture positional metadata for text as well, consider using [DocumentIntelligenceSkill](/articles/search/cognitive-search-skill-document-intelligence-layout.md) (TODO: update?)
++ `location_metadata` captures bounding polygon and page number metadata for each normalized image, enabling precise spatial search or UI overlays. Note that `location_metadata` only exists for images in this scenario. If you'd like to capture locational metadata for text as well, consider using [Document Layout Skill](/articles/search/cognitive-search-skill-document-intelligence-layout.md). An in-depth tutorial is linked at the bottom of the page.
 
-+ For more information on vector search, see [Vectors in Azure AI Search](/articles/search/vector-search-overview.md)
++ For more information on vector search, see [Vectors in Azure AI Search](/articles/search/vector-search-overview.md).
 
 + For more information on semantic ranking, see [Semantic ranking in Azure AI Search](/articles/search/semantic-search-overview.md)
 
@@ -543,13 +545,13 @@ This skillset extracts text and images, vectorizes both, and shapes the image me
 
 Key points:
 
-+ + The `content_text` field is populated with text extracted using the Document Extraction Skill and chunked using the Split Skill
++ The `content_text` field is populated with text extracted using the Document Extraction Skill and chunked using the Split Skill
 
 + `content_path` will contain the relative path to the image file within the designated image projection container. This field is generated only for images extracted from PDFs when `imageAction` is set to `generateNormalizedImages`, and can be mapped from the enriched document from the source field `/document/normalized_images/*/imagePath`.
 
 + The VectorizeSkill for vision enables embedding of both textual and visual data using the same skill type, differentiated by input (text vs image).
 
-+ For more information, see [Vision Vectorize skill](/articles/search/cognitive-search-skill-vision-vectorize.md).
++ For more information, see [Azure AI Vision multimodal embeddings skill](/articles/search/cognitive-search-skill-vision-vectorize.md).
 
 ## Create and run an indexer
 
@@ -601,7 +603,6 @@ POST {{baseUrl}}/indexes/doc-extraction-multimodal-embedding-index/docs/search?a
 
 Send the request. This is an unspecified full-text search query that returns all of the fields marked as retrievable in the index, along with a document count. The response should look like:
 
-TODO: Update the query below
 ```json
 HTTP/1.1 200 OK
 Transfer-Encoding: chunked
@@ -612,14 +613,14 @@ Server: Microsoft-IIS/10.0
 Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
 Preference-Applied: odata.include-annotations="*"
 OData-Version: 4.0
-request-id: a95c4021-f7b4-450b-ba55-596e59ecb6ec
-elapsed-time: 106
-Date: Wed, 13 Mar 2024 22:09:59 GMT
+request-id: 712ca003-9493-40f8-a15e-cf719734a805
+elapsed-time: 198
+Date: Wed, 30 Apr 2025 23:20:53 GMT
 Connection: close
 
 {
   "@odata.context": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes('doc-extraction-multimodal-embedding-index')/$metadata#docs(*)",
-  "@odata.count": 1521,
+  "@odata.count": 100,
   "@search.nextPageParameters": {
     "search": "*",
     "count": true,
@@ -632,7 +633,7 @@ Connection: close
 ```
 100 documents are returned in the response.
 
-For filters, you can also use Logical operators (and, or, not) and comparison operators (eq, ne, gt, lt, ge, le). String comparisons are case -sensitive. For more information and examples, see [Create a query](search-query-simple-examples.md).
+For filters, you can also use Logical operators (and, or, not) and comparison operators (eq, ne, gt, lt, ge, le). String comparisons are case-sensitive. For more information and examples, see [Create a query](search-query-simple-examples.md).
 
 > [!NOTE]
 > The `$filter` parameter only works on fields that were marked filterable during index creation.
@@ -673,4 +674,4 @@ Now that you're familiar with a sample implementation of multi-modal RAG, check 
 > [AI Vision multimodal embeddings skill](/articles/search/cognitive-search-skill-vision-vectorize.md)
 > [Vectors in Azure AI Search](/articles/search/vector-search-overview.md)
 > [Semantic ranking in Azure AI Search](/articles/search/semantic-search-overview.md)
-> [Other Rag Scenarios](/TODO)
+> [Indexing blobs with text and images for multi-modal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal)

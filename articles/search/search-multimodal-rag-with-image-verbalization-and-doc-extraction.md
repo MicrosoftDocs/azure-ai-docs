@@ -21,20 +21,20 @@ In this scenario, vector embeddings are generated for both modalities using AI s
 
 You'll use:
 
-+ The [Document Extraction Skill](/articles/search/cognitive-search-skill-document-extraction.md) for extracting normalized images and text
-+ Image description generation using the [Chat Completion Skill](/articles/search/cognitive-search-skill-genai-prompt.md), which creates text-based summaries of extracted images for search.
++ The [Document Extraction skill](/articles/search/cognitive-search-skill-document-extraction.md) for extracting normalized images and text
++ + The [Chat Completion skill](/articles/search/cognitive-search-skill-genai-prompt.md) to generate image captions—text-based descriptions of visual content—for search and grounding
 + A search index configured to store text and image embeddings and support vector-based similarity search
 
 This tutorial demonstrates a lower-cost approach for indexing multi-modal content using DocumentExtractionSkill and image captioning. It enables extraction and search over both text and images from documents in Azure Blob Storage. However, it does not include locational metadata for text, such as page numbers or bounding regions. 
 
-For a more comprehensive solution that includes structured text layout and spatial metadata, see [TODO: LINK TO DOC INTELLIGENCE TUTORIAL].
+For a more comprehensive solution that includes structured text layout and spatial metadata, see [Indexing blobs with text and images for multi-modal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal).
 
-This tutorial shows you how to  index such data, using a REST client and the [Search REST APIs](/rest/api/searchservice/) to:
+Using a REST client and the [Search REST APIs](/rest/api/searchservice/) you will:
 
 > [!div class="checklist"]
 > + Set up sample data and configure an `azureblob` data source
 > + Create an index with support for text and image embeddings
-> + Define a skillset with extraction and embedding steps
+> + Define a skillset with extraction, captioning, and embedding steps
 > + Create and run an indexer to process and index content
 > + Search the index you just created
 
@@ -57,7 +57,7 @@ Download the sample PDF below:
 
 ### Upload sample data to Azure Storage
 
-1. In Azure Storage, create a new container named `doc-extraction-image-verbalization-container`.
+1. In Azure Storage, create a new container named **doc-extraction-image-verbalization-container**.
 
 1. [Upload the sample data file](/azure/storage/blobs/storage-quickstart-blobs-portal).
 
@@ -315,8 +315,11 @@ POST {{baseUrl}}/indexes?api-version=2025-05-01  HTTP/1.1
 Key points:
 
 + Text and image embeddings are stored in the content_embedding field and must be configured with appropriate dimensions (e.g., 1024) and a vector search profile.
-+ `location_metadata` captures bounding polygon and page number metadata for each normalized image, enabling precise spatial search or UI overlays. Note that `location_metadata` only exists for images in this scenario. If you'd like to capture positional metadata for text as well, consider using [DocumentIntelligenceSkill](/articles/search/cognitive-search-skill-document-intelligence-layout.md) (TODO: update?)
-+ For more information on vector search, see [Vectors in Azure AI Search](/articles/search/vector-search-overview.md) 
+
++ `location_metadata` captures bounding polygon and page number metadata for each normalized image, enabling precise spatial search or UI overlays. Note that `location_metadata` only exists for images in this scenario. If you'd like to capture locational metadata for text as well, consider using [Document Layout Skill](/articles/search/cognitive-search-skill-document-intelligence-layout.md). An in-depth tutorial is linked at the bottom of the page.
+
++ For more information on vector search, see [Vectors in Azure AI Search](/articles/search/vector-search-overview.md).
+
 + For more information on semantic ranking, see [Semantic ranking in Azure AI Search](/articles/search/semantic-search-overview.md)
 
 ## Create an skillset
@@ -629,7 +632,6 @@ POST {{baseUrl}}/indexes/doc-extraction-image-verbalization-index/docs/search?ap
 
 Send the request. This is an unspecified full-text search query that returns all of the fields marked as retrievable in the index, along with a document count. The response should look like:
 
-TODO: Update the query below
 ```json
 HTTP/1.1 200 OK
 Transfer-Encoding: chunked
@@ -640,9 +642,9 @@ Server: Microsoft-IIS/10.0
 Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
 Preference-Applied: odata.include-annotations="*"
 OData-Version: 4.0
-request-id: a95c4021-f7b4-450b-ba55-596e59ecb6ec
-elapsed-time: 106
-Date: Wed, 13 Mar 2024 22:09:59 GMT
+request-id: 712ca003-9493-40f8-a15e-cf719734a805
+elapsed-time: 198
+Date: Wed, 30 Apr 2025 23:20:53 GMT
 Connection: close
 
 {
@@ -698,7 +700,7 @@ You can use the Azure portal to delete indexes, indexers, and data sources.
 Now that you're familiar with a sample implementation of multi-modal RAG, check out
 
 > [!div class="nextstepaction"]
-> [Chat Completion Skill](/TODO)
+> [Chat Completion skill](/articles/search/cognitive-search-skill-genai-prompt.md)
 > [Vectors in Azure AI Search](/articles/search/vector-search-overview.md)
 > [Semantic ranking in Azure AI Search](/articles/search/semantic-search-overview.md)
-> [Other Rag Scenarios](/TODO)
+> [Indexing blobs with text and images for multi-modal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal)
