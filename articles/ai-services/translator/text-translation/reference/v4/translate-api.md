@@ -1,7 +1,7 @@
 ---
 title: Azure AI Translator 2025-05-01-preview translate method
 titleSuffix: Azure AI services
-description: Understand the parameters, headers, and body messages for the Azure AI Translator 2025-05-01-preview translate text method.
+description: Understand the parameters, headers, and body messages for the Azure AI Translator 2025-05-01-preview translate method.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -10,7 +10,7 @@ ms.date: 04/22/2025
 ms.author: lajanuar
 ---
 
-# Translate text (2025-05-01-preview)
+# Translate (2025-05-01-preview)
 
 The Text translation API enables you to translate your source language text into a specified target language text.
 
@@ -67,7 +67,7 @@ Request parameters passed with the request are as follows:
 | Parameter | Type | Required? | Description |
 | --- | --- | --- | --- |
 | **script** | string | False | Specify the script of the translated text. |
-|**deploymentName** | string | False | Default is `general`, which uses `NMT` system. `gpt-4o-mini` uses GPT-4o-mini model. `gpt-4o` uses GPT-4o model. `<custom model id>` uses the custom `NMT` model tuned by customer. |
+|**deploymentName** | string | False | Default is `general`, which uses `NMT` system. `your-model-name-gpt-4o-mini` is an example deployment name for the GPT-4o-mini model. `gpt-4o` uses GPT-4o model.<br> `<custom model id>` uses the custom `NMT` model tuned by customer.<br>  |
 | **allowFallback** | string | False | Specifies that if the intended model isn't supported for a given source and target language pair, the service is permitted to fall back to a general system. This action ensures that translations can still be provided even when the preferred model is unavailable. Default is `true`. If `false` system returns an error if language pair isn't supported. |
 | **tone** | string | False | Desired tone of target translation. Accepted values are `formal`, `informal`, or `neutral`. |
 | **gender** (For more information, *see* [Gender-specific translations](#gender-specific-translations))| string | False | Desired gender of target translation. Accepted values are `male`, `female`, or `neutral`.|
@@ -149,7 +149,7 @@ Examples of JSON responses are provided in the [examples](#examples) section.
 
 ## Examples
 
-#### Translate text
+#### Translate
 
 ***Request***
 
@@ -243,7 +243,7 @@ Examples of JSON responses are provided in the [examples](#examples) section.
 "sourceCharactersCharged": 144
 ```
 
-#### Translate Text using `GPT-4o mini` and `NMT` deployments
+#### Translate using `GPT-4o mini` and `NMT` deployments
 
 Here, users request specific `GPT` models for deployment.
 
