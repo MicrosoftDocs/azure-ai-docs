@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI Provisioned Managed Deployments in the Azure Government cloud.
 author: challenp
 ms.service: azure-ai-openai
-ms.topic: concepts
+ms.topic: how-to
 ms.custom: references_regions, azuregovernment
 ms.date: 5/1/2025
 recommendations: false
@@ -15,9 +15,9 @@ recommendations: false
 Microsoft launched improvements to its Provisioned Throughput offering in Azure Commercial that are now coming to Azure Government and that address customer feedback on usability and operational agility that open new payment options and deployment scenarios. 
 
 This article highlights specific considerations for Azure Government. For general considerations on Provionsed Deployments and Reservations refer to:
-* [Azure OpenAI Provisioned Concepts](../concepts/provisioned-throughput.md)
+* [Azure OpenAI Provisioned Concepts](./provisioned-throughput.md)
 * [Getting started using provisioned deployments on the Azure OpenAI Service](../how-to/provisioned-get-started.md)
-* [Azure OpenAI Provisioned Onboarding Guide](./provisioned-throughput-onboarding.md)
+* [Azure OpenAI Provisioned Onboarding Guide](../how-to/provisioned-throughput-onboarding.md)
 * [Azure Reservations](https://aka.ms/oai/docs/ptum-reservations)
 
 ## What's changing?
