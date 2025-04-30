@@ -136,7 +136,7 @@ Optionally, you can also select **Add my own test script** and provide your own 
 1. Select **Custom voice** > *\<Your project name>* > **Train model** > **Train a new model**.
 1. Select **Neural - multi lingual** as the [training method](#choose-a-training-method) for your model. To use a different training method, see [Neural](?tabs=neural#train-your-custom-neural-voice-model) or [Neural - cross lingual](#tab/crosslingual) or [Neural - multi style](?tabs=multistyle#train-your-custom-neural-voice-model).
 
-   :::image type="content" source="../../../../media/custom-voice/cnv-train-neural-cross-lingual.png" alt-text="Screenshot that shows how to select neural cross lingual training.":::
+   :::image type="content" source="../../../../media/custom-voice/cnv-train-neural-multi-lingual.png" alt-text="Screenshot that shows how to select neural multi lingual training.":::
 
 1. Select the **Secondary language** that your voice speaks. You can select one or more secondary language for a voice model and the voice speaks languages you selected from training data.
 1. Select the data that you want to use for training. Duplicate audio names are removed from the training. Make sure that the data you select doesn't contain the same audio names across multiple *.zip* files.
