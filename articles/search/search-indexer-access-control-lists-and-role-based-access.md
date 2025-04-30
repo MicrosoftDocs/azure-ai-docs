@@ -30,7 +30,7 @@ This document provides guidance on using the ADLS Gen2 built-in indexer to inges
 - Datasource property [indexerIngestionOptions]() with various permission ingestion options from the indexer.
 - ACLs indexer ingestion supports different [credentials and connection strings](search-howto-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings): full access storage account connection string, or managed identity connection string.
 - RBAC scope ingestion requires [managed identity](search-howto-managed-identities-data-sources.md) credentials and [connection strings](search-howto-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings) format of managed identity only.
-- Indexer execution credential should have at least [Storage Blob Data Reader](/azure/storage/blobs/data-lake-storage-access-control-model.md#role-based-access-control-azure-rbac) role from the ADLS Gen2 data source.
+- Indexer execution credential should have at least [Storage Blob Data Reader](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) role from the ADLS Gen2 data source.
 
 ## Limitations
 - [ACLs and RBAC limits in ADLS Gen2](/azure/storage/blobs/data-lake-storage-access-control-model#limits-on-azure-role-assignments-and-acl-entries).
