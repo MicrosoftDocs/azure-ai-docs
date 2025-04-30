@@ -19,21 +19,20 @@ zone_pivot_groups: selection-bing-custom-grounding
 ::: zone pivot="portal"
 
 
-1. Go to the [Azure AI Foundry portal](https://ai.azure.com/) and use the Grounding with Bing Custom Search tool in your agent. 
+1. Navigate to the Create and debug screen for your agent in the [Azure AI Foundry portal](https://ai.azure.com/), scroll down the Setup pane on the right to **knowledge**. Then select **Add**.
 
-    1. Select the agent you created. 
+    :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot of the agents screen in the AI Foundry portal.":::
 
-    1. Select to add a knowledge tool. 
+1. Select the **Grounding with Bing Custom Search** tool.  
 
-    1. Select the **Grounding with Bing Custom Search** tool  
+1. Select to create a new connection, or use an existing connection 
 
-    1. Select to create a new connection or use an existing connection 
+    1. For a new connection, select your Grounding with Bing Custom Search resource. 
 
-    1. For new connection, select your Grounding with Bing Custom Search resource. 
+1. Once you have connected to a resource, select the configuration name. 
 
-    1. Once you have connected to a resource, select the configuration name. 
+1. Save the tool and start chatting with your agent. 
 
-    1. Save the tool and start chatting with your agent. 
 :::zone-end
 
 ::: zone pivot="javascript"

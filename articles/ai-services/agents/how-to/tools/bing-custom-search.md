@@ -43,6 +43,9 @@ Developers and end users don't have access to raw content returned from Groundin
 
 ## Setup 
 
+> [!NOTE]
+> You can only use Azure OpenAI models with Grounding with Bing Custom Search.
+
 1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md). 
 
 1. Create a Grounding with Bing Custom Search resource in the [Azure portal](https://portal.azure.com/#create/Microsoft.BingGroundingCustomSearch). You need to have owner or contributor role in your subscription or resource group to create it. Make sure you create this Grounding with Bing Custom Search resource in the same resource group as your Azure AI Agent, AI Project, and other resources. 
@@ -79,7 +82,22 @@ When you create or update a configuration, enter the following information:
 
 1. Determine if you want to include subpages. A subpage slice specifies a domain path. Bing searches all content found at and below the path. You can specify a maximum of two subfolders in the path. For example, `www.microsoft.com/windows/`. 
 
-1. Adjust ranking if needed 
+1. Adjust ranking if needed. 
+
+
+1. Navigate to the Create and debug screen for your agent in the [Azure AI Foundry portal](https://ai.azure.com/), scroll down the Setup pane on the right to **knowledge**. Then select **Add**.
+
+    :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot of the agents screen in the AI Foundry portal.":::
+
+1. Select the **Grounding with Bing Custom Search** tool.  
+
+1. Select to create a new connection, or use an existing connection 
+
+    1. For a new connection, select your Grounding with Bing Custom Search resource. 
+
+1. Once you have connected to a resource, select the configuration name. 
+
+1. Save the tool and start chatting with your agent. 
 
 ## Custom Search configuration capabilities 
 
