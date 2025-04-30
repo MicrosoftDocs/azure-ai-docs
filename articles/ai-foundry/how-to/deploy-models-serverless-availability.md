@@ -5,7 +5,7 @@ description: Learn about the regions where each model is available for deploymen
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 02/28/2025
+ms.date: 04/22/2025
 ms.author: mopeakande
 author: msakande
 ms.reviewer: fasantia
@@ -27,6 +27,10 @@ Certain models in the model catalog can be deployed as a serverless API with pay
 ## Region availability
 
 Pay-as-you-go billing is available only to users whose Azure subscription belongs to a billing account in a country/region where the model provider has made the offer available (see "offer availability region" in the table in the next section). If the offer is available in the relevant region, the user then must have a Hub/Project in the Azure region where the model is available for deployment or fine-tuning, as applicable (see "Hub/Project Region" columns in the following tables).
+
+> [!NOTE]
+> If you plan to access your deployed models in Azure Machine Learning Studio, you must use a **[!INCLUDE [hub](../includes/hub-project-name.md)]**, rather than a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. For more information, see [Project types](../what-is-azure-ai-foundry.md#project-types).
+
 
 [!INCLUDE [region-availability-maas](../includes/region-availability-maas.md)]
 
