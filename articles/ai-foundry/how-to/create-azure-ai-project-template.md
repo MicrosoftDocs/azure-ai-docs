@@ -1,5 +1,6 @@
 ---
 title: "Quickstart: Create a project using Bicep"
+titleSuffix: Azure AI Foundry
 description: Learn how to use a Bicep file (template) to create an Azure AI Foundry project in your Azure subscription.
 author: Blackmist
 ms.author: larryfr
@@ -55,28 +56,28 @@ This template creates the following resources:
 
 ## Deploy the Bicep file
 
-1. Deploy the Bicep file using either the Azure CLI or Azure PowerShell.
+Deploy the Bicep file using either the Azure CLI or Azure PowerShell.
 
-    # [Azure CLI](#tab/cli)
+# [Azure CLI](#tab/cli)
 
-    ```azurecli
-    az group create --name exampleRG --location eastus
-    az deployment group create --resource-group exampleRG --template-file main.bicep --parameters aiServicesName=myai aiProjectName=myai-proj 
-    ```
+```azurecli
+az group create --name exampleRG --location eastus
+az deployment group create --resource-group exampleRG --template-file main.bicep --parameters aiServicesName=myai aiProjectName=myai-proj 
+```
 
-    # [Azure PowerShell](#tab/powershell)
+# [Azure PowerShell](#tab/powershell)
 
-    ```azurepowershell
-    New-AzResourceGroup -Name exampleRG -Location eastus
-    New-AzResourceGroupDeployment -ResourceGroupName exampleRG -TemplateFile main.bicep -aiHubName myai -aiProjectName myai-proj
-    ```
+```azurepowershell
+New-AzResourceGroup -Name exampleRG -Location eastus
+New-AzResourceGroupDeployment -ResourceGroupName exampleRG -TemplateFile main.bicep -aiHubName myai -aiProjectName myai-proj
+```
 
-    ---
+---
 
-    > [!NOTE]
-    > Replace `myai` with the name of your resource.
+> [!NOTE]
+> Replace `myai` with the name of your resource.
 
-    When the deployment finishes, you should see a message indicating the deployment succeeded.
+When the deployment finishes, you should see a message indicating the deployment succeeded.
 
 ## Review deployed resources
 
