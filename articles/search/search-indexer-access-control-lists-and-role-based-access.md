@@ -15,7 +15,7 @@ ms.author: wli
 
 # Indexing Access Control Lists and Azure Role-Based Access scopes using Indexers in Azure AI Search
 
-[Azure AI Search ADLS Gen2 indexers](search-howto-index-azure-data-lake-storage.md) can ingest access control metadata like Access Control Lists (ACL) and Azure Role-Based Access (RBAC) scopes directly from Azure Data Lake Gen2 (ADLS Gen2), enabling secure and compliant document retrieval.
+[Azure AI Search ADLS Gen2 indexers](search-howto-index-azure-data-lake-storage.md) can ingest access control metadata like Access Control Lists (ACL) and Azure Role-Based Access (RBAC) scopes directly from Azure Data Lake Storage (ADLS) Gen2, enabling secure and compliant document retrieval.
 
  - [Azure RBAC scope](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) in Azure Data Lake Storage Gen2 assigns certain security principals with certain roles, as a coarse-grain access control method.
  - [Access control list (ACL)](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) from Azure Data Lake Storage Gen2 is a POSIX-liked fine-grain access control model.
@@ -24,7 +24,7 @@ This document provides guidance on using the ADLS Gen2 built-in indexer to inges
 
 ## Requirements
 - Azure Data Lake Storage Gen2 ([adlsgen2](search-howto-index-azure-data-lake-storage.md#define-the-data-source)) as the data source type.
-- Newly introduced data source property [indexerIngestionOptions]() with a variety of permission ingestion options from the indexer.
+- Newly introduced data source property [indexerIngestionOptions]() with various permission ingestion options from the indexer.
 - ACL indexer ingestion supports different [credentials and connection strings](search-howto-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings): full access storage account connection string, or managed identity connection string.
 - RBAC scope ingestion requires [managed identity](search-howto-managed-identities-data-sources.md) credentials and [connection strings](search-howto-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings) format of managed identity only.
 - Indexer execution credential should have at least [Storage Blob Data Reader](data-lake-storage-access-control-model.md#role-based-access-control-azure-rbac) role from the ADLS Gen2 data source.
@@ -32,7 +32,7 @@ This document provides guidance on using the ADLS Gen2 built-in indexer to inges
 ## Limitations
 - [ACL and RBAC limits in ADLS Gen2](/storage/blobs/data-lake-storage-access-control-model#limits-on-azure-role-assignments-and-acl-entries).
 - [ADLS Gen2 ACL assignments](/azure/storage/blobs/data-lake-storage-access-control#how-to-set-acls) are restricted with following guidelines for indexer at during Public Preview:
-  - At the root container, assign all groups and users that will have access to any file, with both `read` and `execute` permissions.
+  - At the root container, assign all groups and users that have access to any file, with both `read` and `execute` permissions.
 
     Also, assign all these security principals as part of container "Default permissions", with both `read` and `execute` permissions as well.
   - For existing containers that already have hierarchical file structure, use the ADLS Gen2 tool [apply ACL recursively](/azure/storage/blobs/data-lake-storage-acl-azure-portal#apply-an-acl-recursively) to propagate these ACL assignments to all underlying directories and files.
@@ -111,7 +111,8 @@ For example, in [ADLS Gen2 common scenarios related to permissions](/data-lake-s
   | - | - | - | - | - |
   | Read Data.txt	| --X	| --X	| --X	| R-- |
   
-  ACLs from each container/directory are fetched by indexer and solved as retained effective access of lower level, until solved out effective access for the file.
+  The indexer fetches ACLs from each container and directory, resolves them into the retained effective access of lower levels, and continues this process until it determines the effective access for the file.
+  
   ```txt
   / assigned access vs Oregon/ assigned access
     => Oregon/ effective access vs Portland/ assigned access
@@ -121,5 +122,5 @@ For example, in [ADLS Gen2 common scenarios related to permissions](/data-lake-s
 
 ## Recommendations and best practices
 - Plan the ADLS Gen2 folder structure carefully before creating any folders.
-- Organize identities into groups and use groups whenever possible, rather than granting access directly to individual users. Continuously adding individual users instead of leveraging groups increases the number of access control entries that must be tracked and evaluated. This can lead to more frequent updates to the index as security data changes, causing increased delays and inefficiencies in the refresh process.
+- Organize identities into groups and use groups whenever possible, rather than granting access directly to individual users. Continuously adding individual users instead of applying groups increases the number of access control entries that must be tracked and evaluated. Not following this best practice can lead to more frequent security metadata updates required to the index as this metadata changes, causing increased delays and inefficiencies in the refresh process.
 
