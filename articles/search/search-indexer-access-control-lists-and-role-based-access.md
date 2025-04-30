@@ -1,7 +1,7 @@
 ---  
 title: Indexing Access Control Lists and Azure Role-Based Access scopes using Indexers in Azure AI Search  
 titleSuffix: Azure AI Search  
-description: Learn how to configure Azure AI Search indexers for ingesting Access Control Lists (ACL) and Azure Role-Based Access (RBAC) metadata.  
+description: Learn how to configure Azure AI Search indexers for ingesting Access Control Lists (ACLs) and Azure Role-Based Access (RBAC) metadata.  
 ms.service: azure-ai-search  
 ms.topic: conceptual  
 ms.date: 04/29/2025  
@@ -18,33 +18,33 @@ ms.author: wli
 
 
 
-[Azure AI Search ADLS Gen2 indexers](search-howto-index-azure-data-lake-storage.md) can ingest access control metadata like Access Control Lists (ACL) and Azure Role-Based Access (RBAC) scopes directly from Azure Data Lake Storage (ADLS) Gen2, enabling secure and compliant document retrieval.
+[Azure AI Search ADLS Gen2 indexers](search-howto-index-azure-data-lake-storage.md) can ingest access control metadata like Access Control Lists (ACLs) and Azure Role-Based Access (RBAC) scopes directly from Azure Data Lake Storage (ADLS) Gen2, enabling secure and compliant document retrieval.
 
  - [Azure RBAC scope](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) in Azure Data Lake Storage Gen2 assigns certain security principals with certain roles, as a coarse-grain access control method.
- - [Access control list (ACL)](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) from Azure Data Lake Storage Gen2 is a POSIX-liked fine-grain access control model.
+ - [Access control lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) from Azure Data Lake Storage Gen2 is a POSIX-liked fine-grain access control model.
  
 This document provides guidance on using the ADLS Gen2 built-in indexer to ingest permission access control metadata alongside document content into the Azure AI Search index. This helps with secure, compliant, and efficient document retrieval through the Azure AI Search service.
 
 ## Requirements
 - Azure Data Lake Storage Gen2 ([adlsgen2](search-howto-index-azure-data-lake-storage.md#define-the-data-source)) as the data source type.
-- Newly introduced data source property [indexerIngestionOptions]() with various permission ingestion options from the indexer.
-- ACL indexer ingestion supports different [credentials and connection strings](search-howto-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings): full access storage account connection string, or managed identity connection string.
+- Datasource property [indexerIngestionOptions]() with various permission ingestion options from the indexer.
+- ACLs indexer ingestion supports different [credentials and connection strings](search-howto-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings): full access storage account connection string, or managed identity connection string.
 - RBAC scope ingestion requires [managed identity](search-howto-managed-identities-data-sources.md) credentials and [connection strings](search-howto-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings) format of managed identity only.
 - Indexer execution credential should have at least [Storage Blob Data Reader](/azure/storage/blobs/data-lake-storage-access-control-model.md#role-based-access-control-azure-rbac) role from the ADLS Gen2 data source.
 
 ## Limitations
-- [ACL and RBAC limits in ADLS Gen2](/azure/storage/blobs/data-lake-storage-access-control-model#limits-on-azure-role-assignments-and-acl-entries).
-- [ADLS Gen2 ACL assignments](/azure/storage/blobs/data-lake-storage-access-control#how-to-set-acls) are restricted with following guidelines for indexer at during Public Preview:
+- [ACLs and RBAC limits in ADLS Gen2](/azure/storage/blobs/data-lake-storage-access-control-model#limits-on-azure-role-assignments-and-acl-entries).
+- [ADLS Gen2 ACLs assignments](/azure/storage/blobs/data-lake-storage-access-control#how-to-set-acls) are restricted with following guidelines for indexer at during Public Preview:
   - At the root container, assign all groups and users that have access to any file, with both `read` and `execute` permissions.
 
     Also, assign all these security principals as part of container "Default permissions", with both `read` and `execute` permissions as well.
-  - For existing containers that already have hierarchical file structure, use the ADLS Gen2 tool [apply ACL recursively](/azure/storage/blobs/data-lake-storage-acl-azure-portal#apply-an-acl-recursively) to propagate these ACL assignments to all underlying directories and files.
+  - For existing containers that already have hierarchical file structure, use the ADLS Gen2 tool [apply ACLs recursively](/azure/storage/blobs/data-lake-storage-acl-azure-portal#apply-an-acl-recursively) to propagate these ACL assignments to all underlying directories and files.
   - Then go to each underlying directory and file to remove the assignments that should not access contents of the directory or file.
   - If any new ACL assignment is added, repeat above steps.
 - `other` ACL category is not supported during Public Preview.
 
 ## Supported Scenarios  
-- Extraction of ACL and RBAC metadata from Azure Data Lake Storage Gen2.
+- Extraction of ACL and Azure RBAC container metadata from Azure Data Lake Storage Gen2.
 - Tailored for RAG (Retrieval Augmented Generation) applications and enterprise search.
   
 ## Indexing with Indexers
