@@ -27,7 +27,7 @@ In this tutorial, you learn how to:
 
 * An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/ai-services).
 * A single Immersive Reader resource configured for Microsoft Entra authentication. Follow [these instructions](how-to-create-immersive-reader.md) to get set up.
-* A [NodeJS web app](quickstarts/client-libraries.md?pivots=programming-language-nodejs) that launches Immersive Reader.
+* A [Node.js web app](quickstarts/client-libraries.md?pivots=programming-language-nodejs) that launches Immersive Reader.
 
 ## Create multiple resources
 
