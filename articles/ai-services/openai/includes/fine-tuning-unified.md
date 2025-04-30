@@ -23,6 +23,6 @@ If you are only fine-tuning Azure OpenAI models, we recommend the Azure OpenAI c
 
 # [Hub/Project](#tab/hub)
 
-[!INCLUDE [Azure AI Foundry Hub/Project fine-tuning](../includes/fine-tuning-openai-in-ai-studio.md)]
+[!INCLUDE [Azure AI Foundry project fine-tuning](../includes/fine-tuning-openai-in-ai-studio.md)]
 
 ---

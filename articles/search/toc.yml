@@ -158,6 +158,8 @@ items:
       href: cognitive-search-working-with-skillsets.md
   - name: Retrieval
     items:
+    - name: Agentic search
+      href: search-agentic-retrieval-concept.md
     - name: Full-text search
       href: search-lucene-query-architecture.md
     - name: Vector search
@@ -276,7 +278,11 @@ items:
         - name: Search over blobs
           href: search-blob-storage-integration.md
         - name: ADLS Gen2
-          href: search-howto-index-azure-data-lake-storage.md
+          items:
+          - name: Search over ADLS Gen2 files
+            href: search-howto-index-azure-data-lake-storage.md
+          - name: Configure document-level access for ADLS Gen2
+            href: search-indexer-access-control-lists-and-role-based-access.md
         - name: Blobs
           href: search-howto-indexing-azure-blob-storage.md
         - name: Files
@@ -339,6 +345,16 @@ items:
           href: cognitive-search-create-custom-skill-example.md
       - name: Responsible AI best practices when using GenAI prompt skill
         href: responsible-ai-best-practices-genai-prompt-skill.md
+  - name: Agentic retrieval
+    items:
+    - name: Create an agent
+      href: search-agentic-retrieval-how-to-create.md
+    - name: Use an agent to retrieve data
+      href: search-agentic-retrieval-how-to-retrieve.md
+    - name: Define an index for agentic retrieval
+      href: search-agentic-retrieval-how-to-index.md
+    - name: Build an agentic retrieval pipeline
+      href: search-agentic-retrieval-how-to-pipeline.md
   - name: Vector search
     items:
     - name: Create a vector index
@@ -693,6 +709,8 @@ items:
       items:
       - name: Azure Machine Learning (AML)
         href: cognitive-search-aml-skill.md
+      - name: GenAI Prompt
+        href: cognitive-search-skill-genai-prompt.md
       - name: Custom Entity Lookup
         href: cognitive-search-skill-custom-entity-lookup.md
       - name: Custom Web API
