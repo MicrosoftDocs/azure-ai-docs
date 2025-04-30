@@ -20,17 +20,15 @@ Azure AI Language is a cloud-based service that applies Natural Language Process
 
 [!INCLUDE [development options](../includes/development-options.md)]
 
-## Determine how to process the data (optional)
-
-### Specify the PII detection model
+## Specify the PII detection model
 
 By default, this feature uses the latest available AI model on your text. You can also configure your API requests to use a specific [model version](../../concepts/model-lifecycle.md).
 
-### Input languages
+## Input languages
 
 When you submit input text to be processed, you can specify which of [the supported languages](../language-support.md) they're written in. If you don't specify a language, extraction defaults to English. The API may return offsets in the response to support different [multilingual and emoji encodings](../../concepts/multilingual-emoji-support.md). 
 
-### Redaction Policy (version 2024-11-5-preview only)
+## Redaction Policy (version 2024-11-5-preview only)
 In version `2024-11-5-preview`, you're able to define the `redactionPolicy` parameter to reflect the redaction policy to be used when redacting text. The policy field supports three policy types:
 
 - `DoNotRedact` 
