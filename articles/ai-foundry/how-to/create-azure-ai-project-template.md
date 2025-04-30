@@ -78,7 +78,7 @@ This template creates the following resources:
     > [!NOTE]
     > Replace `myai` with the name of your resource.
 
-    When the deployment finishes, you should seee a message indicating the deployment succeeded.
+    When the deployment finishes, you should see a message indicating the deployment succeeded.
 
 ## Review deployed resources
 
@@ -100,7 +100,7 @@ Get-AzResource -ResourceGroupName exampleRG
 
 ## Clean up resources
 
-If you plan to coninue working with subsequent quickstarts and tutorials, you can leave the resources created in this quickstart. If you want to remove the resources, use the followingg command.
+If you plan to continue working with subsequent quickstarts and tutorials, you can leave the resources created in this quickstart. If you want to remove the resources, use the following command.
 
 # [Azure CLI](#tab/cli)
 
