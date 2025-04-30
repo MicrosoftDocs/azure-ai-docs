@@ -61,7 +61,7 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 ---
 
-## Create a project[!INCLUDE [fdp-project-name](fdp-project-name.md)] 
+## Create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] 
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
