@@ -15,14 +15,14 @@ ms.date: 05/01/2025
 
 # Tutorial: Indexing blobs with text and images for multi-modal RAG scenarios using image verbalization and document extraction skill
 
-Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial demonstrates how to build a multi-modal retrieval system that supports Retrieval-Augmented Generation (RAG) with both textual and visual content. This is particularly useful when working with documents that combine rich visual context (such as charts, scanned pages, or infographics) alongside traditional text.
+Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial demonstrates how to build a multi-modal retrieval system that supports Retrieval-Augmented Generation (RAG) with both textual and visual content.
 
 In this scenario, vector embeddings are generated for both modalities using AI skills and stored in a searchable index. These embeddings can then be used in semantic or hybrid search experiences to ground generative models or improve relevance ranking.
 
 You'll use:
 
 + The [Document Extraction Skill](/articles/search/cognitive-search-skill-document-extraction.md) for extracting normalized images and text
-+ Image description generation using the [Chat Completion Skill](TODO: LINK TO CHAT COMPLETION), which creates text-based summaries of extracted images for search.
++ Image description generation using the [Chat Completion Skill](/articles/search/cognitive-search-skill-genai-prompt.md), which creates text-based summaries of extracted images for search.
 + A search index configured to store text and image embeddings and support vector-based similarity search
 
 This tutorial demonstrates a lower-cost approach for indexing multi-modal content using DocumentExtractionSkill and image captioning. It enables extraction and search over both text and images from documents in Azure Blob Storage. However, it does not include locational metadata for text, such as page numbers or bounding regions. 
