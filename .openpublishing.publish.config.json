@@ -187,12 +187,6 @@
       "url": "https://github.com/MicrosoftDocs/azure-docs-pr",
       "branch": "main",
       "branch_mapping": {}
-    },
-    {
-      "path_to_root": "ai-foundry-samples",
-      "url": "https://github.com/azure-ai-samples/foundry-samples",
-      "branch": "main",
-      "branch_mapping": {}
     }
   ],
   "branch_target_mapping": {},

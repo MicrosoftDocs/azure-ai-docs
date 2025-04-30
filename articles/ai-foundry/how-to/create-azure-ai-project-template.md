@@ -49,8 +49,6 @@ Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (temp
 
 The Bicep file used in this article can be found at [https://github.com/azure-ai-foundry/foundry-samples/tree/main/use-cases/infrastructure-as-code/00-basic](https://github.com/azure-ai-foundry/foundry-samples/tree/main/use-cases/infrastructure-as-code/00-basic).
 
-:::code language="bicep" source="~/ai-foundry-samples/use-cases/infrastructure-as-code/00-basic/main.bicep":::
-
 This template creates the following resources:
 
 - [microsoft.cognitiveservices/accountsp](/azure/templates/microsoft.cognitiveservices/accounts?pivots=deployment-language-bicep)
@@ -59,9 +57,7 @@ This template creates the following resources:
 
 ## Deploy the Bicep file
 
-1. Save the Bicep file as `main.bicep` to your local computer, or change to the `/use-cases/infrastructure-as-code/00-basic/main.bicep` directory if using a clone of the GitHub repo.
-
-1. Deploy the Bicep file using either Azure CLI or Azure PowerShell.
+1. Using either the Azure CLI or Azure PowerShell, change to the `/use-cases/infrastructure-as-code/00-basic/main.bicep` directory if using a clone of the GitHub repo. Then deploy the Bicep file.
 
     # [Azure CLI](#tab/cli)
 
