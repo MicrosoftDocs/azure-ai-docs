@@ -358,7 +358,7 @@ You can use our built-in AI-assisted and NLP quality evaluators to assess the pe
 > [!NOTE]
 > It's strongly recommended that `gpt-3.5-turbo` should be replaced by `gpt-4o-mini` for your evaluator model, as the latter is cheaper, more capable, and just as fast according to [OpenAI](https://platform.openai.com/docs/models/gpt-4#gpt-3-5-turbo).
 >
-> Make sure the you have at least `Cognitive Services OpenAI User` role for the Azure OpenAI resource to make inference calls with API key. To learn more about permissions, see [permissions for Azure OpenAI resource](../../../ai-services/openai/how-to/role-based-access-control.md#summary).  
+> Make sure that you have at least `Cognitive Services OpenAI User` role for the Azure OpenAI resource to make inference calls with API key. To learn more about permissions, see [permissions for Azure OpenAI resource](../../../ai-services/openai/how-to/role-based-access-control.md#summary).  
 
 2. For `GroundednessProEvaluator` (preview), instead of a GPT deployment in `model_config`, you must provide your `azure_ai_project` information. This accesses the backend evaluation service of your Azure AI project.
 

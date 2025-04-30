@@ -110,17 +110,17 @@ To learn more about input data formats for evaluating agents, see [evaluating Az
 
 We provide two ways to register your data in Azure AI project required for evaluations in the cloud:
 
-1. **From SDK**: Upload new data from your local directory to your Azure AI project in the SDK, and fetch the dataset ID as a result. 
+1. Uploading new datasets to your Project:
 
-
+- **From SDK**: Upload new data from your local directory to your Azure AI project in the SDK, and fetch the dataset ID as a result. 
 
 ```python
 data_id, _ = project_client.upload_file("./evaluate_test_data.jsonl")
 ```
 
-**From UI**: Alternatively, you can upload new data or update existing data versions by following the UI walkthrough under the **Data** tab of your Azure AI project.
+- **From UI**: Alternatively, you can upload new data or update existing data versions by following the UI walkthrough under the **Data** tab of your Azure AI project.
 
-2. Given existing datasets uploaded to your Project:
+2. Specifying existing datasets uploaded to your Project:
 
 - **From SDK**: if you already know the dataset name you created, construct the dataset ID in this format: `/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<project-name>/data/<dataset-name>/versions/<version-number>`
 
