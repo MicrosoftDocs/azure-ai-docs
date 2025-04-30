@@ -1,5 +1,5 @@
 ---
-title: 'What is the tool catelog in Azure AI Agents Service?'
+title: 'What is the tool catalog in Azure AI Agents Service?'
 titleSuffix: Azure OpenAI
 description: Learn how to use the various tools available in the Azure AI Agents Service.
 services: cognitive-services
@@ -33,7 +33,7 @@ The following is a list of tools supported by Azure AI Agent Service.
 |[Function calling](./function-calling.md)     |Describe the structure of functions you create to an agent and have them be called when appropriate during the agent's interactions with users.         |
 |[Grounding with Bing Search](./bing-grounding.md)     | Enable your agent to use Bing Search to access and return information from the internet.         |
 | [Microsoft Fabric](./fabric.md) | Integrate your agent with the [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. |
-| [OpenAPI 3.0 Specified tool ](./openapi-spec.md) | C    onnect your Azure AI Agent to external APIs using functions with an OpenAPI 3.0 specification. |
+| [OpenAPI 3.0 Specified tool ](./openapi-spec.md) | Connect your Azure AI Agent to external APIs using functions with an OpenAPI 3.0 specification. |
 
 ## Licensed data tools
 
