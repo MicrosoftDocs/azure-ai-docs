@@ -629,9 +629,9 @@ These entity categories include identifiable Azure information like authenticati
 
 # [Preview API](#tab/preview-api)
 
-## Category: Person
+## Type: Person
 
-This category contains the following entity:
+This type contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -645,7 +645,7 @@ This category contains the following entity:
 
         Names of people. Returned as both PII and PHI.
 
-        To get this entity category, add `Person` to the `piiCategories` parameter. `Person` will be returned in the API response if detected.
+        To get this entity type, add `Person` to the `piiCategories` parameter. `Person` will be returned in the API response if detected.
       
     :::column-end:::
     
@@ -657,9 +657,9 @@ This category contains the following entity:
    :::column-end:::
 :::row-end:::
 
-## Category: PersonType
+## Type: PersonType
 
-This category contains the following entity:
+This type contains the following entity:
 
 
 :::row:::
@@ -674,7 +674,7 @@ This category contains the following entity:
 
         Job types or roles held by a person.
 
-        To get this entity category, add `PersonType` to the `piiCategories` parameter. `PersonType` will be returned in the API response if detected.
+        To get this entity type, add `PersonType` to the `piiCategories` parameter. `PersonType` will be returned in the API response if detected.
       
     :::column-end:::
 
@@ -686,9 +686,9 @@ This category contains the following entity:
    :::column-end:::
 :::row-end:::
 
-## Category: PhoneNumber
+## Type: PhoneNumber
 
-This category contains the following entity:
+This type contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -702,7 +702,7 @@ This category contains the following entity:
 
         Phone numbers (US and EU phone numbers only). Returned as both PII and PHI.
 
-        To get this entity category, add `PhoneNumber` to the `piiCategories` parameter. `PhoneNumber` will be returned in the API response if detected.
+        To get this entity type, add `PhoneNumber` to the `piiCategories` parameter. `PhoneNumber` will be returned in the API response if detected.
       
     :::column-end:::
 
@@ -716,9 +716,9 @@ This category contains the following entity:
 :::row-end:::
 
 
-## Category: Organization
+## Type: Organization
 
-This category contains the following entity:
+This type contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -732,7 +732,7 @@ This category contains the following entity:
 
         Companies, political groups, musical bands, sport clubs, government bodies, and public organizations. Nationalities and religions are not included in this entity type. Returned as both PII and PHI.
 
-        To get this entity category, add `Organization` to the `piiCategories` parameter. `Organization` will be returned in the API response if detected.
+        To get this entity type, add `Organization` to the `piiCategories` parameter. `Organization` will be returned in the API response if detected.
       
     :::column-end:::
 
@@ -745,13 +745,13 @@ This category contains the following entity:
 
 :::row-end:::
 
-#### Subcategories
+#### Subtypes
 
-The entity in this category can have the following subcategories.
+The entity in this type can have the following subtypes.
 
 :::row:::
     :::column span="":::
-        **Entity subcategory**
+        **Entity subtype**
 
         Medical    
 
@@ -761,7 +761,7 @@ The entity in this category can have the following subcategories.
 
         Medical companies and groups.
 
-        To get this entity category, add `OrganizationMedical` to the `piiCategories` parameter. `OrganizationMedical` will be returned in the API response if detected.
+        To get this entity type, add `OrganizationMedical` to the `piiCategories` parameter. `OrganizationMedical` will be returned in the API response if detected.
       
     :::column-end:::
 
@@ -783,7 +783,7 @@ The entity in this category can have the following subcategories.
 
         Stock exchange groups. 
 
-        To get this entity category, add `OrganizationStockExchange` to the `piiCategories` parameter. `OrganizationStockExchange` will be returned in the API response if detected.
+        To get this entity type, add `OrganizationStockExchange` to the `piiCategories` parameter. `OrganizationStockExchange` will be returned in the API response if detected.
       
     :::column-end:::
 
@@ -804,7 +804,7 @@ The entity in this category can have the following subcategories.
 
         Sports-related organizations.
 
-        To get this entity category, add `OrganizationSports` to the `piiCategories` parameter. `OrganizationSports` will be returned in the API response if detected.
+        To get this entity type, add `OrganizationSports` to the `piiCategories` parameter. `OrganizationSports` will be returned in the API response if detected.
       
     :::column-end:::
 
@@ -817,9 +817,9 @@ The entity in this category can have the following subcategories.
 :::row-end:::
 
 
-## Category: Address
+## Type: Address
 
-This category contains the following entity:
+This type contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -833,7 +833,7 @@ This category contains the following entity:
 
         Full mailing address. Returned as both PII and PHI.
 
-        To get this entity category, add `Address` to the `piiCategories` parameter. `Address` will be returned in the API response if detected.
+        To get this entity type, add `Address` to the `piiCategories` parameter. `Address` will be returned in the API response if detected.
       
     :::column-end:::
 
@@ -846,9 +846,9 @@ This category contains the following entity:
 
 :::row-end:::
 
-## Category: Email
+## Type: Email
 
-This category contains the following entity:
+This type contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -862,7 +862,7 @@ This category contains the following entity:
 
         Email addresses. Returned as both PII and PHI.
       
-        To get this entity category, add `Email` to the `piiCategories` parameter. `Email` will be returned in the API response if detected.
+        To get this entity type, add `Email` to the `piiCategories` parameter. `Email` will be returned in the API response if detected.
 
     :::column-end:::
     :::column span="":::
@@ -874,9 +874,9 @@ This category contains the following entity:
 :::row-end:::
 
 
-## Category: URL
+## Type: URL
 
-This category contains the following entity:
+This type contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -890,7 +890,7 @@ This category contains the following entity:
 
         URLs to websites. Returned as both PII and PHI.
 
-        To get this entity category, add `URL` to the `piiCategories` parameter. `URL` will be returned in the API response if detected.
+        To get this entity type, add `URL` to the `piiCategories` parameter. `URL` will be returned in the API response if detected.
       
     :::column-end:::
 
@@ -903,9 +903,9 @@ This category contains the following entity:
 
 :::row-end:::
 
-## Category: IP Address
+## Type: IP Address
 
-This category contains the following entity:
+This type contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -919,7 +919,7 @@ This category contains the following entity:
 
         Network IP addresses. Returned as both PII and PHI.
 
-        To get this entity category, add `IPAddress` to the `piiCategories` parameter. `IPAddress` will be returned in the API response if detected.
+        To get this entity type, add `IPAddress` to the `piiCategories` parameter. `IPAddress` will be returned in the API response if detected.
       
     :::column-end:::
 
@@ -931,9 +931,9 @@ This category contains the following entity:
     :::column-end:::
 :::row-end:::
 
-## Category: DateTime
+## Type: DateTime
 
-This category contains the following entities:
+This type contains the following entities:
 
 :::row:::
     :::column span="":::
@@ -947,7 +947,7 @@ This category contains the following entities:
 
         Dates and times of day. 
 
-        To get this entity category, add `DateTime` to the `piiCategories` parameter. `DateTime` will be returned in the API response if detected.
+        To get this entity type, add `DateTime` to the `piiCategories` parameter. `DateTime` will be returned in the API response if detected.
       
     :::column-end:::
 :::column span="":::
@@ -958,13 +958,13 @@ This category contains the following entities:
    :::column-end:::
 :::row-end:::
 
-#### Subcategories
+#### Subtypes
 
-The entity in this category can have the following subcategories.
+The entity in this type can have the following subtypes.
 
 :::row:::
     :::column span="":::
-        **Entity subcategory**
+        **Entity subtype**
 
         Date
 
@@ -974,7 +974,7 @@ The entity in this category can have the following subcategories.
 
         Calender dates. Returned as both PII and PHI.
 
-        To get this entity category, add `Date` to the `piiCategories` parameter. `Date` will be returned in the API response if detected.
+        To get this entity type, add `Date` to the `piiCategories` parameter. `Date` will be returned in the API response if detected.
       
     :::column-end:::
     :::column span="2":::
@@ -996,7 +996,7 @@ The entity in this category can have the following subcategories.
 
         Dates and times of day.
 
-        To get this entity category, add DateAndTime to the piiCategories parameter. DateAndTime will be returned in the API response if detected.
+        To get this entity type, add `DateAndTime` to the `piiCategories` parameter. `DateAndTime` will be returned in the API response if detected.
 
 
     :::column-end:::
@@ -1023,13 +1023,13 @@ The entity in this category can have the following subcategories.
 
     :::column-end:::
 :::row-end:::
-## Subcategory: Age
+## Subtype: Age
 
-The PII service supports the Age subcategory within the broader Quantity category (since Age is the personally identifiable piece of information). 
+The PII service supports the Age subtype within the broader Quantity type (since Age is the personally identifiable piece of information). 
 
 :::row:::
     :::column span="":::
-        **Entity subcategory**
+        **Entity subtype**
 
         Age
 
@@ -1050,7 +1050,7 @@ The PII service supports the Age subcategory within the broader Quantity categor
 
 ### Azure information
 
-These entity categories include identifiable Azure information like authentication information and connection strings. Not returned as PHI.
+These entity types include identifiable Azure information like authentication information and connection strings. Not returned as PHI.
 
 :::row:::
     :::column span="":::
@@ -1064,7 +1064,7 @@ These entity categories include identifiable Azure information like authenticati
 
         Authorization key for an Azure Cosmos DB server.   
 
-        To get this entity category, add `AzureDocumentDBAuthKey` to the `piiCategories` parameter. `AzureDocumentDBAuthKey` will be returned in the API response if detected.
+        To get this entity type, add `AzureDocumentDBAuthKey` to the `piiCategories` parameter. `AzureDocumentDBAuthKey` will be returned in the API response if detected.
       
     :::column-end:::
     :::column span="":::
@@ -1085,7 +1085,7 @@ These entity categories include identifiable Azure information like authenticati
 
         Connection string for an Azure infrastructure as a service (IaaS) database, and SQL connection string.
 
-        To get this entity category, add `AzureIAASDatabaseConnectionAndSQLString` to the `piiCategories` parameter. `AzureIAASDatabaseConnectionAndSQLString` will be returned in the API response if detected.
+        To get this entity type, add `AzureIAASDatabaseConnectionAndSQLString` to the `piiCategories` parameter. `AzureIAASDatabaseConnectionAndSQLString` will be returned in the API response if detected.
       
     :::column-end:::
     :::column span="":::
@@ -1104,7 +1104,7 @@ These entity categories include identifiable Azure information like authenticati
 
         Connection string for Azure IoT. 
       
-        To get this entity category, add `AzureIoTConnectionString` to the `piiCategories` parameter. `AzureIoTConnectionString` will be returned in the API response if detected.
+        To get this entity type, add `AzureIoTConnectionString` to the `piiCategories` parameter. `AzureIoTConnectionString` will be returned in the API response if detected.
 
     :::column-end:::
     :::column span="":::
@@ -1123,7 +1123,7 @@ These entity categories include identifiable Azure information like authenticati
 
         Password for Azure publish settings.
 
-        To get this entity category, add `AzurePublishSettingPassword` to the `piiCategories` parameter. `AzurePublishSettingPassword` will be returned in the API response if detected.
+        To get this entity type, add `AzurePublishSettingPassword` to the `piiCategories` parameter. `AzurePublishSettingPassword` will be returned in the API response if detected.
       
     :::column-end:::
     :::column span="":::
@@ -1142,7 +1142,7 @@ These entity categories include identifiable Azure information like authenticati
 
         Connection string for a Redis cache.
 
-        To get this entity category, add `AzureRedisCacheString` to the `piiCategories` parameter. `AzureRedisCacheString` will be returned in the API response if detected.
+        To get this entity type, add `AzureRedisCacheString` to the `piiCategories` parameter. `AzureRedisCacheString` will be returned in the API response if detected.
       
     :::column-end:::
     :::column span="":::
@@ -1161,7 +1161,7 @@ These entity categories include identifiable Azure information like authenticati
 
         Connection string for Azure software as a service (SaaS).
 
-        To get this entity category, add `AzureSAS` to the `piiCategories` parameter. `AzureSAS` will be returned in the API response if detected.
+        To get this entity type, add `AzureSAS` to the `piiCategories` parameter. `AzureSAS` will be returned in the API response if detected.
       
     :::column-end:::
     :::column span="":::
@@ -1180,7 +1180,7 @@ These entity categories include identifiable Azure information like authenticati
 
         Connection string for an Azure service bus.
 
-        To get this entity category, add `AzureServiceBusString` to the `piiCategories` parameter. `AzureServiceBusString` will be returned in the API response if detected.
+        To get this entity type, add `AzureServiceBusString` to the `piiCategories` parameter. `AzureServiceBusString` will be returned in the API response if detected.
       
     :::column-end:::
     :::column span="":::
@@ -1199,7 +1199,7 @@ These entity categories include identifiable Azure information like authenticati
 
         Account key for an Azure storage account. 
 
-        To get this entity category, add `AzureStorageAccountKey` to the `piiCategories` parameter. `AzureStorageAccountKey` will be returned in the API response if detected.
+        To get this entity type, add `AzureStorageAccountKey` to the `piiCategories` parameter. `AzureStorageAccountKey` will be returned in the API response if detected.
       
     :::column-end:::
     :::column span="":::
@@ -1218,7 +1218,7 @@ These entity categories include identifiable Azure information like authenticati
 
         Generic account key for an Azure storage account.
 
-        To get this entity category, add `AzureStorageAccountGeneric` to the `piiCategories` parameter. `AzureStorageAccountGeneric` will be returned in the API response if detected.
+        To get this entity type, add `AzureStorageAccountGeneric` to the `piiCategories` parameter. `AzureStorageAccountGeneric` will be returned in the API response if detected.
       
     :::column-end:::
     :::column span="":::
@@ -1237,7 +1237,7 @@ These entity categories include identifiable Azure information like authenticati
 
         Connection string for a computer running SQL Server.
 
-        To get this entity category, add `SQLServerConnectionString` to the `piiCategories` parameter. `SQLServerConnectionString` will be returned in the API response if detected.
+        To get this entity type, add `SQLServerConnectionString` to the `piiCategories` parameter. `SQLServerConnectionString` will be returned in the API response if detected.
       
     :::column-end:::
     :::column span="":::

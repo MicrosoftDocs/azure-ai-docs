@@ -17,7 +17,7 @@ ms.custom: language-service-pii
 
 To accommodate and adapt to a customer’s custom vocabulary used to identify entities (also known as the “context”), the `entitySynonyms` feature allows customers to define their own synonyms for specific entity types. The goal of this feature is to help detect entities in contexts that the model is not familiar with but are used in the customer’s inputs by ensuring that the customer’s unique terms are recognized and correctly associated during the detection process. 
 
-This adapts the prebuilt PII service which is trained to detect entities based on general domain text which may not match a customer’s custom input vocabulary, such as write “Mobile”, “Cell”, or “Best number to reach me” instead of “Phone Number”. 
+This adapts the prebuilt PII service which is trained to detect entities based on general domain text which may not match a customer’s custom input vocabulary, such as write “BAN” instead of “InternationalBankAccountNumber”. 
 
 This means it can catch sensitive information even when it’s written in different styles, slang, or casual language. That makes the system much better at protecting privacy in real-world situations. 
 
@@ -36,60 +36,40 @@ After testing the service on their data, customers can use `entitySynonyms` to:
     "parameter":  
     "entitySynonyms":[  
         { 
-            "entityType": "bankAccountNumber", 
-            "synonyms": [ {"synonym": "BAN", "language": "en"] 
-        }, 
-        { 
-            "entityType": "phone", 
-            "synonyms": [ {"synonym": "Cell", "language" : "en"} , {"synonym":"tel", "language":"fr"] 
+            "entityType": "InternationalBankAccountNumber", 
+            "synonyms": [ {"synonym": "BAN", "language": "en"} ] 
         } 
 } 
 ```
 
-## Best practices and example parameter inputs
+## Usage guidelines
 
-1. Synonym trigger values should be able to replace the entity type name itself. For example, with the entity type BankAccountNumber, a valid synonym  could be “Financial Account Number” or “FAN”.
+1. Synonyms must be restricted to phrases that directly refer to the type, and preserve semantic correctness. For example, for the entity type `InternationalBankAccountNumber`, a valid synonym could be “Financial Account Number” or “FAN”. But, the word "deposit" though may be associated with type, as it does not directly have a meaning of a bank account number and therefore should not be used. 
+1. Synonyms should be country agnostic. For example “German passport” would not be helpful to include.
+1. Synonyms cannot be reused for more than one entity type.
+1. This synonym recognition feature only accepts a subset of entity types supported by the service. The supported entity types and example synonyms include:
 
-Synonyms must be restricted to phrases that directly refer to the type, and preserve semantic correctness. For example, the word "deposit" may be associated with BankAccountNumber type, but does not directly have a meaning of a bank account number and therefore should not be used. 
+| Supported entity type             | Entity Type                       | Example synonyms                                                                         |
+|-----------------------------------|-----------------------------------|------------------------------------------------------------------------------------------|
+| ABA Routing Number                | ABARoutingNumber                  | Routing transit number (RTN)                                                             |
+| Address                           | Address                           | My place is                                                                              |
+| Age                               | Age                               | Years old, age in years, current age, person’s age, biological age                       |
+| Bank Account Number               | BankAccountNumber                 | Bank acct no., savings account number, checking account number, financial account number |
+| Credit Card Number                | CreditCardNumber                  | Cc number, payment card number, credit acct no.                                          |
+| Date                              | DateTime                          | Given date, specified date                                                               |
+| Date of Birth                     | DateOfBirth                       | Birthday, DOB, birthdate                                                                 |
+| International Bank Account Number | InternationalBankingAccountNumber | IBAN, intl bank acct no.                                                                 |
+| Organization                      | Organization                      | company, business, firm, corporation, agency, group, institution, entity, legal entity, party, respondent, plaintiff, defendant, jurisdiction, partner, provider, facility, practice, network, institution, enterprise, LLC, Inc, LLP, incorporated, employer, brand, subsidiary |
+| Person                            | Person                            | Name, individual, account holder |
+| Person Type                       | PersonType                        | Role, title, position |
+| Phone number                      | PhoneNumber                       | Landline, cell, mobile |
+| Swift Code                        | SWIFTCode                         | SWIFT code, BIC (Bank Identifier Code), SWIFT Identifier |
 
-“I would like to deposit to…” being replaced with “bank account number” becomes “I would like to bank account number to…” which does not preserve semantic correctness.
-
-2. Synonyms should be country agnostic. For example “German passport” would not be helpful to include.
-3. Synonyms cannot be reused for more than one entity type.
-4. This synonym recognition feature only accepts a subset of entity types supported by the service. The supported entity types are: 
-    * Address
-    * Age
-    * Bank Account Number
-    * Credit Card Number
-    * Date
-    * Date of Birth
-    * International Bank Account Number
-    * Organization
-    * Person
-    * Person Type
-    * Phone Number
-    * Swift Code
-
-The following are a list of example synonyms:
-
-| Supported entity type             | Example synonyms   |
-|-----------------------------------|--------------------|
-| ABA Routing Number                | ABA routing number |
-| Address                           | address            |
-| Age                               | age                |
-| Credit Card Number                | Credit card number |
-| Date                              | date               |
-| International Bank Account Number | IBAN               |
-| Organization                      | company, business, firm, corporation, agency, group, institution, entity, legal entity, party, respondent, plaintiff, defendant, jurisdiction, partner, provider, facility, practice, network, institution, enterprise, LLC, Inc, LLP, incorporated, employer, brand, subsidiary |
-| Person                            | name               |
-| Person Type                       | role               |
-| Swift Code                        | SWIFT code         |
-
-## Customizing PII output by specifying values to include
+## Customizing PII output by specifying values to exclude
 
 The `valueExclusionPolicy` option allows customers to adapt the PII service for scenarios where customers prefer certain terms not to be detected and redacted even if those terms fall into a PII category they are interested in detected. For example, a police department might want personal identifiers redacted in most cases except for terms like “police officer”, “suspect”, and “witness”.  
 
-In the example below, customers can use the `valueExclusionPolicy` option to specify a list of values which they would not like to be detected or redacted from the input text. In the example below, if the user includes the specified value “1 Microsoft Way, Redmond, WA 98052, US”, even if the Address entity is turned-on, this value will not be redacted or listed in the returned API payload output. 
+In the example below, customers can use the `valueExclusionPolicy` option to specify a list of values which they would not like to be detected or redacted from the input text. In the example below, if the user specifies the value “1 Microsoft Way, Redmond, WA 98052, US”, even if the Address entity is turned-on, this value will not be redacted or listed in the returned API payload output. 
 
 Note that a subset of the specified excluded value, such as “1 Microsoft Way” will not be excluded.
 
@@ -240,4 +220,4 @@ Logging:Console:LogLevel:Default=Debug
 - Rule names must begin with ‘CE_’  
 - Rule names must be unique. 
 - Rule names may only use alphanumeric characters and underscores (‘_’)
-- Regex patterns follow the .Net regular Expressions format. See [our documentation on .NET regular expressions](https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expressions) for more information. 
+- Regex patterns follow the .Net regular Expressions format. See [our documentation on .NET regular expressions](https://learn.microsoft.com/dotnet/standard/base-types/regular-expressions) for more information. 
