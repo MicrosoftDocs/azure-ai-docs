@@ -15,7 +15,7 @@ ms.custom: azure-ai-agents
 
 # Azure AI Agents function calling
 
-Azure AI Agents supports function calling, which allows you to describe the structure of functions to an Assistant and then return the functions that need to be called along with their arguments.
+Azure AI Agents supports function calling, which allows you to describe the structure of functions to an agent and then return the functions that need to be called along with their arguments.
 
 > [!NOTE]
 > Runs expire ten minutes after creation. Be sure to submit your tool outputs before the expiration.

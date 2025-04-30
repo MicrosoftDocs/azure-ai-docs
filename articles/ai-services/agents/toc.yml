@@ -28,6 +28,8 @@ items:
       href: concepts/threads-runs-messages.md 
     - name: Tools
       items:
+        - name: Tool catalog
+          href: how-to/tools/catalog.md
         - name: Grounding with Bing Search
           items:
           - name: Overview
@@ -54,7 +56,13 @@ items:
         - name: Microsoft Fabric
           href: how-to/tools/fabric.md
         - name: Use licensed data
-          href: how-to/tools/licensed-data.md
+          items:
+            - name: Morningstar
+              href: how-to/tools/morningstar.md
+              displayName: licensed data, morningstar
+            - name: Tripadvisor
+              href: how-to/tools/tripadvisor.md
+              displayName: licensed data, tripadvisor
         - name: Function calling
           href: how-to/tools/function-calling.md
         - name: Code interpreter
