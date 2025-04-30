@@ -63,20 +63,23 @@ AgentsClient agentClient = projectClient.GetAgentsClient();
 To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/).
 
 ```csharp
-ConnectionResponse bingConnection = projectClient.GetConnectionsClient().GetConnection(bingConnectionName);
+AgentsClient agentClient = projectClient.GetAgentsClient();
+ConnectionResponse bingConnection = await projectClient.GetConnectionsClient().GetConnectionAsync(bingConnectionName);
 var connectionId = bingConnection.Id;
+var instanceName = "<your_config_instance_name>";
 
-ToolConnectionList connectionList = new()
-{
-    ConnectionList = { new ToolConnection(connectionId) }
-};
-BingGroundingToolDefinition bingGroundingTool = new(connectionList);
+SearchConfigurationList searchConfigurationList = new SearchConfigurationList(
+    new List<SearchConfiguration>
+    {
+        new SearchConfiguration(connectionId, instanceName)
+    });
 
-Agent agent = agentClient.CreateAgent(
-   model: modelDeploymentName,
-   name: "my-assistant",
-   instructions: "You are a helpful assistant.",
-   tools: [bingGroundingTool]);
+BingCustomSearchToolDefinition bingGroundingTool = new(searchConfigurationList);
+Agent agent = await agentClient.CreateAgentAsync(
+    model: modelDeploymentName,
+    name: "my-assistant",
+    instructions: "You are a helpful assistant.",
+    tools: [ bingGroundingTool ]);
 ```
 
 ## Step 3: Create a thread
