@@ -112,6 +112,8 @@ az group delete --name exampleRG
 Remove-AzResourceGroup -Name exampleRG
 ```
 
+---
+
 ## Related content
 
 - [Get started with the SDK](../quickstarts//get-started-code.md?pivots=fdp-project)
