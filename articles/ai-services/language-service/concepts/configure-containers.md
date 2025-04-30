@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2024
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 11/04/2024
+ms.date: 04/29/2025
 ms.author: jboback
 ---
 
