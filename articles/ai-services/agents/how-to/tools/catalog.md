@@ -20,7 +20,7 @@ The tool catalog in Azure AI Foundry portal is the hub to discover and use a wid
 
 * [A created agent](../../quickstart.md) 
 
-## Supported Tools 
+## Supported tools 
 
 The following is a list of tools supported by Azure AI Agent Service. 
 
