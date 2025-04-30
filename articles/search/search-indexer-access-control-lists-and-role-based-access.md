@@ -13,17 +13,18 @@ ms.author: wli
 # Indexing Access Control Lists and Azure Role-Based Access scopes using Indexers in Azure AI Search
 
 > [!IMPORTANT]
-> **Preview** – Indexing Access Control Lists and Azure Role-Based Access scopes using Indexers in Azure AI Search functionality is first available in the **2025-05-01-preview** REST API. 
+> Indexing Access Control Lists and Azure Role-Based Access scopes using Indexers in Azure AI Search functionality is first available in the **2025-05-01-preview** REST API. 
 > This feature is in public preview. It's offered "as-is", under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and supported on best effort only. Preview features aren't recommended for production workloads and aren't guaranteed to become generally available.
 
 
 
-[Azure AI Search ADLS Gen2 indexers](search-howto-index-azure-data-lake-storage.md) can ingest access control metadata like Access Control Lists (ACLs) and Azure Role-Based Access (RBAC) scopes directly from Azure Data Lake Storage (ADLS) Gen2, enabling secure and compliant document retrieval.
+[Azure AI Search ADLS Gen2 indexers](search-howto-index-azure-data-lake-storage.md) enable the ingestion of access control metadata, such as Access Control Lists (ACLs) and Azure Role-Based Access Control (RBAC) scopes, directly from Azure Data Lake Storage (ADLS) Gen2. This functionality helps align document-level permissions in the search index with the access controls defined in ADLS Gen2, allowing users to retrieve content in a way that reflects their existing permissions.
 
  - [Azure RBAC scope](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) in Azure Data Lake Storage Gen2 assigns certain security principals with certain roles, as a coarse-grain access control method.
  - [Access control lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) from Azure Data Lake Storage Gen2 is a POSIX-liked fine-grain access control model.
  
-This document provides guidance on using the ADLS Gen2 built-in indexer to ingest permission access control metadata alongside document content into the Azure AI Search index. This helps with secure, compliant, and efficient document retrieval through the Azure AI Search service.
+This document provides guidance on using the ADLS Gen2 built-in indexer to ingest permission access control metadata alongside document content into the Azure AI Search index. 
+
 
 ## Requirements
 - Azure Data Lake Storage Gen2 ([adlsgen2](search-howto-index-azure-data-lake-storage.md#define-the-data-source)) as the data source type.
