@@ -1,16 +1,16 @@
 ---
 title: Azure AI Translator 2025-05-01-preview translate method
 titleSuffix: Azure AI services
-description: Understand the parameters, headers, and body messages for the Azure AI Translator 2025-05-01-preview translate text method.
+description: Understand the parameters, headers, and body messages for the Azure AI Translator 2025-05-01-preview translate method.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/18/2025
+ms.date: 04/22/2025
 ms.author: lajanuar
 ---
 
-# Translate text (2025-05-01-preview)
+# Translate (2025-05-01-preview)
 
 The Text translation API enables you to translate your source language text into a specified target language text.
 
@@ -48,7 +48,7 @@ Request parameters passed with the request are as follows:
 
 | Parameter | Type | Required? | Description |
 | --- | --- | --- | --- |
-|**`api-version`**|string|True|Version of the API requested by the client.|
+|**`api-version`**|string|True|Version of the API requested by the client. Accepted value is `2025-05-01-preview`.|
 |**`text`** | string | True | Source text for translation. |
 | **`targets`** | array | True | User-specified values for the translated (`target`) text. |
 | **`language`** | string | True |The language code for the translated (`target`) text *specified in the `targets` array*. Accepted values are [supported language](../../../language-support.md) codes for the translation operation.|
@@ -58,8 +58,8 @@ Request parameters passed with the request are as follows:
 
 | Parameter | Type | Required? | Description |
 | --- | --- | --- | --- |
-| **textType** | string | False | Defines whether the text being translated is plain text or HTML text. Any HTML needs to be a well-formed, complete element. Possible values are: plain (default) or html. |
-| **language** | string | False | Specifies the language code for the `source` text. If not specified, the system autodetects the language of the source text. Possible values are list of language code supported by the specified model. |
+| **textType** | string | False | Defines whether the text being translated is plain text or HTML text. Any HTML needs to be a well-formed, complete element. Accepted values are: plain (default) or html. |
+| **language** | string | False | Specifies the language code for the `source` text. If not specified, the system autodetects the language of the source text. Accepted values are list of language code supported by the specified model. |
 | **script** | string | False | Specifies the script of the source text. |
 
 #### Optional parameters (included in the targets array)
@@ -67,18 +67,16 @@ Request parameters passed with the request are as follows:
 | Parameter | Type | Required? | Description |
 | --- | --- | --- | --- |
 | **script** | string | False | Specify the script of the translated text. |
-|**deploymentName** | string | False | Default is `general`, which uses `NMT` system. `gpt-4o-mini` uses GPT-4o-mini model. `gpt-4o` uses GPT-4o model. `<custom model id>` uses the custom `NMT` model tuned by customer. |
-| **allowFallback** | string | False | If the specified model isn't supported for a given source and target language pair, the service is permitted to revert to a general system. This action ensures that translations can still be provided even when the preferred model is unavailable. Default is `true`. If `false` system returns an error if language pair isn't supported. |
-| **grade** | string | False | Default is `basic`. For example, translation produced by simple prompt like `translate <source text> from <source language> to <target language>`|
-| **tone** | string | False | Desired tone of target translation. Enum: Formal, informal, neutral. |
-| **gender** (For more information, *see* [Gender-specific translations](#gender-specific-translations))| string | False | Desired gender of target translation.|
+|**deploymentName** | string | False | Default is `general`, which uses `NMT` system. `your-model-name-gpt-4o-mini` is an example deployment name for the GPT-4o-mini model. `gpt-4o` uses GPT-4o model.<br> `<custom model id>` uses the custom `NMT` model tuned by customer.<br>  |
+| **allowFallback** | string | False | Specifies that if the intended model isn't supported for a given source and target language pair, the service is permitted to fall back to a general system. This action ensures that translations can still be provided even when the preferred model is unavailable. Default is `true`. If `false` system returns an error if language pair isn't supported. |
+| **tone** | string | False | Desired tone of target translation. Accepted values are `formal`, `informal`, or `neutral`. |
+| **gender** (For more information, *see* [Gender-specific translations](#gender-specific-translations))| string | False | Desired gender of target translation. Accepted values are `male`, `female`, or `neutral`.|
 | **adaptiveDatasetId** | string | False | Reference dataset ID having sentence pair to generate adaptive customized translation |
 | **referenceTextPairs** | string | False | Reference text pairs to generate adaptive customized translation |
-| **referenceTextPairs.source** | string | False | Source text in reference text pair. |
+| **referenceTextPairs.source** | string | False | Source text in reference text pair. If provided, `adaptiveDatasetId` is ignored |
 | **referenceTextPairs.target** | string | False | Target text in reference text pair. |
-| **profanityAction** | string | False | Specifies how profanities should be treated in translations. Possible values are: `NoAction` (default), `Marked`, or `Deleted`. |
-| **profanityMarker** | string | False | Specifies how profanities should be marked in translations. Possible values are `Asterisk` (default) or Tag. |
-| **instruct** | string | False | Free flow textual instruction for `LLM` translation. This parameter negates all other key parameters within `targets`.|
+| **profanityAction** | string | False | Specifies how profanities should be treated in translations. Accepted values are: `NoAction` (default), `Marked`, or `Deleted`. |
+| **profanityMarker** | string | False | Specifies how profanities should be marked in translations. Accepted values are `Asterisk` (default) or Tag. |
 
 ##### Gender-specific translations
 
@@ -151,7 +149,7 @@ Examples of JSON responses are provided in the [examples](#examples) section.
 
 ## Examples
 
-#### Translate text
+#### Translate
 
 ***Request***
 
@@ -245,7 +243,7 @@ Examples of JSON responses are provided in the [examples](#examples) section.
 "sourceCharactersCharged": 144
 ```
 
-#### Translate Text using `GPT-4o mini` and `NMT` deployments
+#### Translate using `GPT-4o mini` and `NMT` deployments
 
 Here, users request specific `GPT` models for deployment.
 

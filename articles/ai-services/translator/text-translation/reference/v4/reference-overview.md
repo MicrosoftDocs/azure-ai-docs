@@ -24,67 +24,37 @@ Azure AI Translator prioritizes data security and privacy, complying with regula
 > * Make sure to review your code and internal workflows for adherence to best practices and restrict your production code to versions that you fully test.
 
 
-## What's new?
+## What's new for 2025-05-01-preview?
 
-* **LLM choice**. You can choose a large language model for translation based on quality, cost, and other factors, while avoiding costs associated with prompt engineering and quality evaluations.
+* **`LLM` choice**. You can choose a large language model for translation based on factors such as quality, cost, and other considerations.
 
-* **Adaptive custom translation**. New features enable adaptive custom translations using datasets or reference pairs to ensure more accurate and contextually relevant translations.
+* **Adaptive custom translation**. You can provide reference translations or translation memory datasets to enable an `LLM` model to perform few-shot translations tailored to your needs. Few-shot translation is a machine translation method where the model is trained or fine-tuned with only a limited number of examples to translate between languages.
 
-* **Enhanced translation**. The Text translation API supports a range of parameters, including text type, language codes, and options for tone and gender. This added enhancement provides more nuanced translation outputs.
+* The **Translator** resource doesn't support Neural Machine Translation (`NMT`) translations.
 
-## Base URLs
-
-Typically, The nearest datacenter to the point of origin manages requests to Translator. However, if there's a datacenter failure when utilizing the global endpoint, requests may be redirected beyond the initial geography.
-
-To ensure that requests are handled within a specific region, utilize the designated geographical endpoint so all requests are processed within the datacenters of the chosen geography.
-
-✔️ Feature: **Translator Text** </br>
-
-| Service endpoint | Request processing data center |
-|------------------|--------------------------|
-|**Global (recommended):**</br>**`api.cognitive.microsofttranslator.com`**|Closest available data center.|
-|**Americas:**</br>**`api-nam.cognitive.microsofttranslator.com`**|East US 2 &bull; West US 2|
-|**Asia Pacific:**</br>**`api-apc.cognitive.microsofttranslator.com`**|Japan East &bull; Southeast Asia|
-|**Europe (except Switzerland):**</br>**`api-eur.cognitive.microsofttranslator.com`**|France Central &bull; West Europe|
-|**Switzerland:**</br> For more information, *see* [Switzerland service endpoints](#switzerland-service-endpoints).|Switzerland North &bull; Switzerland West|
-
-#### Switzerland service endpoints
-
-Customers with a resource located in Switzerland North or Switzerland West can ensure that their Text API requests are served within Switzerland. To ensure that requests are handled in Switzerland, create the Translator resource in the `Resource region` `Switzerland North` or `Switzerland West`, then use the resource`s custom endpoint in your API requests.
-
-For example: If you create a Translator resource in Azure portal with `Resource region` as `Switzerland North` and your resource name is `my-swiss-n`, then your custom endpoint is `https&#8203;://my-swiss-n.cognitiveservices.azure.com`. And a sample request to translate is:
-
- ```bash
-// Pass secret key and region using headers to a custom endpoint
-curl -X POST "https://my-swiss-n.cognitiveservices.azure.com/translator/text/2025-05-01-preview/translate?to=fr" \
--H "Ocp-Apim-Subscription-Key: xxx" \
--H "Ocp-Apim-Subscription-Region: switzerlandnorth" \
--H "Content-Type: application/json" \
--d "[{`Text`:`Hello`}]" -v
-```
-
-> [!NOTE]
-> Custom Translator is currently unavailable in Switzerland.
+* You need to create an **Azure AI Foundry** resource to use an `LLM` model.
 
 ## Metrics
 
 Metrics allow you to view the translator usage and availability information in Azure portal, under metrics section as shown in the following screenshot. For more information, see [Data and platform metrics](/azure/azure-monitor/essentials/data-platform-metrics).
 
-![Screenshot of translator metrics.](../../../media/translatormetrics.png)
+:::image type="content" source="../../../media/azure-portal-metrics-v4.png" alt-text="Screenshot of HTTP request metrics in the Azure portal.":::
 
 This table lists available metrics with description of how they're used to monitor translation API calls.
 
 | Metrics | Description |
 |:----|:-----|
-| TotalCalls| Total number of API calls.|
-| TotalTokenCalls| Total number of API calls via token service using authentication token.|
-| SuccessfulCalls| Number of successful calls.|
-| TotalErrors| Number of calls with error response.|
-| BlockedCalls| Number of calls that exceeded rate or quota limit.|
-| ServerErrors| Number of calls with server internal error(5XX).|
-| ClientErrors| Number of calls with client-side error(4XX).|
+| BlockCalls| Number of calls that exceed rate or quota.|
+| ClientErrors| Number of calls with client-side error (HTTP response code 4xx)|
+| DataIn| Size of incoming data in bytes.|
+| DataOut| Size of outgoing data in bytes.|
 | Latency| Duration to complete request in milliseconds.|
-| CharactersTranslated| Total number of characters in incoming text request.|
+| RateLimit| The current rate limit of the ratelimit key.|
+| ServerErrors| Number of calls with server internal error (HTTP response code 5xx).|
+| SuccessfulCalls| Number of successful calls (HTTP response code 2xx).|
+| TotalCalls| Total number of calls.|
+| TotalErrors|Total number of calls with error response (HTTP response code 4xx or 5xx)|
+| TotalTokenCalls|Total number of token calls|
 
 ## Next steps
 
