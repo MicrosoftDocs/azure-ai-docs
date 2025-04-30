@@ -49,7 +49,7 @@ The Bicep file used in this article can be found at [https://github.com/azure-ai
 
 This template creates the following resources:
 
-- [microsoft.cognitiveservices/accountsp](/azure/templates/microsoft.cognitiveservices/accounts?pivots=deployment-language-bicep)
+- [microsoft.cognitiveservices/accounts](/azure/templates/microsoft.cognitiveservices/accounts?pivots=deployment-language-bicep)
 - [microsoft.cognitiveservices/accounts/projects](/azure/templates/microsoft.cognitiveservices/accounts/projects?pivots=deployment-language-bicep)
 
 
