@@ -45,7 +45,7 @@ For more in-depth information on each evaluator definition and how it's calculat
 
 | Category  | Evaluator class                                                                                                                    |
 |-----------|------------------------------------------------------------------------------------------------------------------------------------|
-| [Performance and quality](#performance-and-quality-evaluators) (AI-assisted)  | `GroundednessEvaluator`, `GroundednessProEvaluator`, `RetrievalEvaluator`, `RelevanceEvaluator`, `CoherenceEvaluator`, `FluencyEvaluator`, `SimilarityEvaluator` |
+| [Performance and quality](#performance-and-quality-evaluators) (AI-assisted)  | `GroundednessEvaluator`, `GroundednessProEvaluator`, `RetrievalEvaluator`, `RelevanceEvaluator`, `CoherenceEvaluator`, `FluencyEvaluator`, `SimilarityEvaluator`, `ResponseCompletenessEvaluator` |
 | [Performance and quality](#performance-and-quality-evaluators) (NLP)  | `F1ScoreEvaluator`, `RougeScoreEvaluator`, `GleuScoreEvaluator`, `BleuScoreEvaluator`, `MeteorScoreEvaluator`|
 | [Risk and safety](#risk-and-safety-evaluators-preview) (AI-assisted)    | `ViolenceEvaluator`, `SexualEvaluator`, `SelfHarmEvaluator`, `HateUnfairnessEvaluator`, `IndirectAttackEvaluator`, `ProtectedMaterialEvaluator`, `UngroundedAttributesEvaluator`, `CodeVulnerabilityEvaluator`|
 | [Composite](#composite-evaluators) | `QAEvaluator`, `ContentSafetyEvaluator`                                             |
@@ -94,13 +94,79 @@ Built-in evaluators can accept *either* query and response pairs or a list of co
 > [!NOTE]
 > AI-assisted quality evaluators except for `SimilarityEvaluator` come with a reason field. They employ techniques including chain-of-thought reasoning to generate an explanation for the score. Therefore they'll consume more token usage in generation as a result of improved evaluation quality. Specifically, `max_token` for evaluator generation has been set to 800 for all AI-assisted evaluators (and 1600 for `RetrievalEvaluator` to accommodate for longer inputs.)
 
+
+#### Single-turn support for text
+
+All evaluators take single-turn inputs as in query-and-response pairs in strings, for example: 
+```python
+# Conversation mode
+import json
+import os
+from azure.ai.evaluation import RelevanceEvaluator, AzureOpenAIModelConfiguration
+
+model_config = AzureOpenAIModelConfiguration(
+    azure_endpoint=os.environ.get("AZURE_ENDPOINT"),
+    api_key=os.environ.get("AZURE_API_KEY"),
+    azure_deployment=os.environ.get("AZURE_DEPLOYMENT_NAME"),
+    api_version=os.environ.get("AZURE_API_VERSION"),
+)
+
+query = "What is the cpital of life?"
+response = "Paris."
+
+# Initializing an evaluator
+relevance_eval = RelevanceEvaluator(model_config)
+relevance_eval(query=query, response=response)
+```
+
+To run batch evaluations using [local evaluation](#local-evaluation-on-test-datasets-using-evaluate) or [upload your dataset to run cloud evaluation](./cloud-evaluation.md#uploading-evaluation-data), you will need to represent the dataset in `.jsonl` format. The above single-turn data (a query-and-response pair) is equivalent to a line of dataset as following (we show 3 lines as an example): 
+
+```json
+{"query":"What is the capital of France?","response":"Paris."}
+{"query":"What atoms compose water?","response":"Hydrogen and oxygen."}
+{"query":"What color is my shirt?","response":"Blue."}
+```
+
 #### Conversation support for text
 
-For evaluators that support conversations for text, you can provide `conversation` as input, a Python dictionary with a list of `messages` (which include `content`, `role`, and optionally `context`). The following is an example of a two-turn conversation.
+For evaluators that support conversations for text, you can provide `conversation` as input, a Python dictionary with a list of `messages` (which include `content`, `role`, and optionally `context`). 
+
+
+The following is an example of a two-turn conversation in python: 
+
+```python
+
+conversation = {
+        "messages": [
+        {
+            "content": "Which tent is the most waterproof?", 
+            "role": "user"
+        },
+        {
+            "content": "The Alpine Explorer Tent is the most waterproof",
+            "role": "assistant", 
+            "context": "From the our product list the alpine explorer tent is the most waterproof. The Adventure Dining Table has higher weight."
+        },
+        {
+            "content": "How much does it cost?",
+            "role": "user"
+        },
+        {
+            "content": "The Alpine Explorer Tent is $120.",
+            "role": "assistant",
+            "context": None
+        }
+        ]
+}
+
+```
+
+To run batch evaluations using [local evaluation](#local-evaluation-on-test-datasets-using-evaluate) or [upload your dataset to run cloud evaluation](./cloud-evaluation.md#uploading-evaluation-data), you will need to represent the dataset in `.jsonl` format. The previous conversation is equivalent to a line of dataset as following in a `.jsonl` file:
 
 ```json
 {"conversation":
-    {"messages": [
+    {
+        "messages": [
         {
             "content": "Which tent is the most waterproof?", 
             "role": "user"
@@ -124,10 +190,82 @@ For evaluators that support conversations for text, you can provide `conversatio
 }
 ```
 
+
 Our evaluators understand that the first turn of the conversation provides valid `query` from `user`, `context` from `assistant`,  and `response` from `assistant` in the query-response format. Conversations are then evaluated per turn and results are aggregated over all turns for a conversation score.
 
 > [!NOTE]
 > In the second turn, even if `context` is `null` or a missing key, it will be interpreted as an empty string instead of erroring out, which might lead to misleading results. We strongly recommend that you validate your evaluation data to comply with the data requirements.
+
+
+For conversation mode, here's an example for `GroundednessEvaluator`:
+
+```python
+# Conversation mode
+import json
+import os
+from azure.ai.evaluation import GroundednessEvaluator, AzureOpenAIModelConfiguration
+
+model_config = AzureOpenAIModelConfiguration(
+    azure_endpoint=os.environ.get("AZURE_ENDPOINT"),
+    api_key=os.environ.get("AZURE_API_KEY"),
+    azure_deployment=os.environ.get("AZURE_DEPLOYMENT_NAME"),
+    api_version=os.environ.get("AZURE_API_VERSION"),
+)
+
+# Initializing Groundedness and Groundedness Pro evaluators
+groundedness_eval = GroundednessEvaluator(model_config)
+
+conversation = {
+    "messages": [
+        { "content": "Which tent is the most waterproof?", "role": "user" },
+        { "content": "The Alpine Explorer Tent is the most waterproof", "role": "assistant", "context": "From the our product list the alpine explorer tent is the most waterproof. The Adventure Dining Table has higher weight." },
+        { "content": "How much does it cost?", "role": "user" },
+        { "content": "$120.", "role": "assistant", "context": "The Alpine Explorer Tent is $120."}
+    ]
+}
+
+# alternatively, you can load the same content from a .jsonl file
+
+groundedness_conv_score = groundedness_eval(conversation=conversation)
+print(json.dumps(groundedness_conv_score, indent=4))
+```
+
+For conversation outputs, per-turn results are stored in a list and the overall conversation score `'groundedness': 4.0` is averaged over the turns:
+
+```python
+{
+    "groundedness": 5.0,
+    "gpt_groundedness": 5.0,
+    "groundedness_threshold": 3.0,
+    "evaluation_per_turn": {
+        "groundedness": [
+            5.0,
+            5.0
+        ],
+        "gpt_groundedness": [
+            5.0,
+            5.0
+        ],
+        "groundedness_reason": [
+            "The response accurately and completely answers the query by stating that the Alpine Explorer Tent is the most waterproof, which is directly supported by the context. There are no irrelevant details or incorrect information present.",
+            "The RESPONSE directly answers the QUERY with the exact information provided in the CONTEXT, making it fully correct and complete."
+        ],
+        "groundedness_result": [
+            "pass",
+            "pass"
+        ],
+        "groundedness_threshold": [
+            3,
+            3
+        ]
+    }
+}
+```
+
+
+> [!NOTE]
+> We strongly recommend users to migrate their code to use the key without prefixes (for example, `groundedness.groundedness`) to allow your code to support more evaluator models.
+
 
 #### Conversation support for images and multi-modal text and image
 
@@ -220,7 +358,7 @@ You can use our built-in AI-assisted and NLP quality evaluators to assess the pe
 > [!NOTE]
 > It's strongly recommended that `gpt-3.5-turbo` should be replaced by `gpt-4o-mini` for your evaluator model, as the latter is cheaper, more capable, and just as fast according to [OpenAI](https://platform.openai.com/docs/models/gpt-4#gpt-3-5-turbo).
 >
-> Make sure the you have at least `Cognitive Services OpenAI User` role for the Azure OpenAI resource to make inference calls with API key. To learn more about permissions, see [permissions for Azure OpenAI resource](../../../ai-services/openai/how-to/role-based-access-control.md#summary).  
+> Make sure that you have at least `Cognitive Services OpenAI User` role for the Azure OpenAI resource to make inference calls with API key. To learn more about permissions, see [permissions for Azure OpenAI resource](../../../ai-services/openai/how-to/role-based-access-control.md#summary).  
 
 2. For `GroundednessProEvaluator` (preview), instead of a GPT deployment in `model_config`, you must provide your `azure_ai_project` information. This accesses the backend evaluation service of your Azure AI project.
 
@@ -231,6 +369,8 @@ You can run the built-in evaluators by importing the desired evaluator class. En
 ```python
 import os
 from azure.identity import DefaultAzureCredential
+from azure.ai.evaluation import GroundednessProEvaluator, GroundednessEvaluator, AzureOpenAIModelConfiguration
+
 credential = DefaultAzureCredential()
 
 # Initialize Azure AI project and Azure OpenAI connection with your environment variables
@@ -240,15 +380,12 @@ azure_ai_project = {
     "project_name": os.environ.get("AZURE_PROJECT_NAME"),
 }
 
-model_config = {
-    "azure_endpoint": os.environ.get("AZURE_OPENAI_ENDPOINT"),
-    "api_key": os.environ.get("AZURE_OPENAI_API_KEY"),
-    "azure_deployment": os.environ.get("AZURE_OPENAI_DEPLOYMENT"),
-    "api_version": os.environ.get("AZURE_OPENAI_API_VERSION"),
-}
-
-
-from azure.ai.evaluation import GroundednessProEvaluator, GroundednessEvaluator
+model_config = AzureOpenAIModelConfiguration(
+    azure_endpoint=os.environ.get("AZURE_ENDPOINT"),
+    api_key=os.environ.get("AZURE_API_KEY"),
+    azure_deployment=os.environ.get("AZURE_DEPLOYMENT_NAME"),
+    api_version=os.environ.get("AZURE_API_VERSION"),
+)
 
 # Initializing Groundedness and Groundedness Pro evaluators
 groundedness_eval = GroundednessEvaluator(model_config)
@@ -256,7 +393,7 @@ groundedness_pro_eval = GroundednessProEvaluator(azure_ai_project=azure_ai_proje
 
 query_response = dict(
     query="Which tent is the most waterproof?",
-    context="The Alpine Explorer Tent is the second most water-proof of all tents available.",
+    context="The Alpine Explorer Tent is the most water-proof of all tents available.",
     response="The Alpine Explorer Tent is the most waterproof."
 )
 
@@ -264,31 +401,33 @@ query_response = dict(
 groundedness_score = groundedness_eval(
     **query_response
 )
-print(groundedness_score)
 
 groundedness_pro_score = groundedness_pro_eval(
     **query_response
 )
-print(groundedness_pro_score)
+
+groundedness_score
+print(json.dumps(groundedness_score, indent=4))
+print(json.dumps(groundedness_pro_score, indent=4))
 
 ```
 
-Here's an example of the result for a query and response pair:
+Output
 
-For
 
 ```python
-
-# Evaluation Service-based Groundedness Pro score:
- {
-    'groundedness_pro_label': False, 
-    'groundedness_pro_reason': '\'The Alpine Explorer Tent is the most waterproof.\' is ungrounded because "The Alpine Explorer Tent is the second most water-proof of all tents available." Thus, the tagged word [ Alpine Explorer Tent ] being the most waterproof is a contradiction.'
+{
+    # open-source prompt-based score on 5-point scale 
+    "groundedness": 5.0,
+    "gpt_groundedness": 5.0,
+    "groundedness_reason": "The RESPONSE accurately and completely answers the QUERY based on the CONTEXT provided, demonstrating full groundedness. There are no irrelevant details or incorrect information present.",
+    "groundedness_result": "pass",
+    "groundedness_threshold": 3
 }
-# Open-source prompt-based Groundedness score:
- {
-    'groundedness': 3.0, 
-    'gpt_groundedness': 3.0, 
-    'groundedness_reason': 'The response attempts to answer the query but contains incorrect information, as it contradicts the context by stating the Alpine Explorer Tent is the most waterproof when the context specifies it is the second most waterproof.'
+{
+    # groundedness score powered by Azure AI Content Safety
+    "groundedness_pro_reason": "All Contents are grounded",
+    "groundedness_pro_label": True
 }
 
 ```
@@ -299,10 +438,10 @@ The result of the AI-assisted quality evaluators for a query and response pair i
 - `{metric_name}_label` provides a binary label (if the metric outputs a binary score naturally).
 - `{metric_name}_reason` explains why a certain score or label was given for each data point.
 
-To further improve intelligibility, all evaluators accept a binary threshold and output two new keys. For the binarization threshold, a default is set and user can override it. The two new keys are:
+To further improve intelligibility, all evaluators accept a binary threshold (unless they output already binary outputs) and output two new keys. For the binarization threshold, a default is set and user can override it. The two new keys are:
 
 - `{metric_name}_result` a "pass" or "fail" string based on a binarization threshold.
-- `{metric_name}_threshold` a numerical binarization threshold set by default or by the user
+- `{metric_name}_threshold` a numerical binarization threshold set by default or by the user.
 
 
 
@@ -314,32 +453,6 @@ Like six other AI-assisted evaluators, `GroundednessEvaluator` is a prompt-based
 
 We open-source the prompts of our quality evaluators except for `GroundednessProEvaluator` (powered by Azure AI Content Safety) for transparency. These prompts serve as instructions for a language model to perform their evaluation task, which requires a human-friendly definition of the metric and its associated scoring rubrics (what the five levels of quality mean for the metric). We highly recommend that users customize the definitions and grading rubrics to their scenario specifics. See details in [Custom Evaluators](#custom-evaluators).
 
-For conversation mode, here's an example for `GroundednessEvaluator`:
-
-```python
-# Conversation mode
-import json
-
-conversation_str =  """{"messages": [ { "content": "Which tent is the most waterproof?", "role": "user" }, { "content": "The Alpine Explorer Tent is the most waterproof", "role": "assistant", "context": "From the our product list the alpine explorer tent is the most waterproof. The Adventure Dining Table has higher weight." }, { "content": "How much does it cost?", "role": "user" }, { "content": "$120.", "role": "assistant", "context": "The Alpine Explorer Tent is $120."} ] }""" 
-conversation = json.loads(conversation_str)
-
-groundedness_conv_score = groundedness_eval(conversation=conversation)
-print(groundedness_conv_score)
-```
-
-For conversation outputs, per-turn results are stored in a list and the overall conversation score `'groundedness': 4.0` is averaged over the turns:
-
-```python
-{   'groundedness': 4.0,
-    'gpt_groundedness': 4.0,
-    'evaluation_per_turn': {'groundedness': [5.0, 3.0],
-    'gpt_groundedness': [5.0, 3.0],
-    'groundedness_reason': ['The response accurately and completely answers the query using the information provided in the context.','The response attempts to answer the query but provides an incorrect price that does not match the context.']}
-}
-```
-
-> [!NOTE]
-> We strongly recommend users to migrate their code to use the key without prefixes (for example, `groundedness.groundedness`) to allow your code to support more evaluator models.
 
 ### Risk and safety evaluators (preview)
 
@@ -367,6 +480,7 @@ azure_ai_project = {
     "project_name": "<project_name>",
 }
 
+import json
 from azure.ai.evaluation import ViolenceEvaluator
 from azure.identity import DefaultAzureCredential
 credential = DefaultAzureCredential()
@@ -376,28 +490,21 @@ credential = DefaultAzureCredential()
 violence_eval = ViolenceEvaluator(credential=credential, azure_ai_project=azure_ai_project)
 # Running Violence Evaluator on a query and response pair
 violence_score = violence_eval(query="What is the capital of France?", response="Paris.")
-print(violence_score)
-
-# Conversation mode
-import json
-
-conversation_str =  """{"messages": [ { "content": "Which tent is the most waterproof?", "role": "user" }, { "content": "The Alpine Explorer Tent is the most waterproof", "role": "assistant", "context": "From the our product list the alpine explorer tent is the most waterproof. The Adventure Dining Table has higher weight." }, { "content": "How much does it cost?", "role": "user" }, { "content": "$120.", "role": "assistant", "context": "The Alpine Explorer Tent is $120."} ] }""" 
-conversation = json.loads(conversation_str)
-
-violence_conv_score = violence_eval(conversation=conversation) 
-
-print(violence_conv_score)
+print(json.dumps(violence_score, indent=4))
 
 ```
-
+Output:
 ```python
+
 {
-    'violence': 'Very low',
-    'violence_reason': "The system's response is a straightforward factual answer "
-                    'to a geography question. There is no violent content or '
-                    'language present.',
-    'violence_score': 0
+    "violence": "Very low",
+    "violence_score": 0,
+    "violence_reason": "The system's response is a straightforward answer to a factual question about the capital of France. There is no mention or implication of violence, harm, or any related content. Therefore, the severity level is 0.",
+    "violence_threshold": 3,
+    "violence_result": "pass"
 }
+
+
 
 ```
 
@@ -407,15 +514,52 @@ The result of the content safety evaluators for a query and response pair is a d
 - `{metric_name}_score` has a range between 0 and 7 severity level that maps to a severity label given in `{metric_name}`.
 - `{metric_name}_reason` explains why a certain severity score was given for each data point.
 
-For conversation outputs, per-turn results are stored in a list and the overall conversation score `'violence_score': 0.0` is averaged over the turns:
+For conversation outputs, per-turn results are stored in a list and the overall conversation score `'violence_score': 0.0` is averaged over the turns. For example:
 
 ```python
+
+# Conversation mode
+conversation = {
+    "messages": [
+        { "content": "Which tent is the most waterproof?", "role": "user" },
+        { "content": "The Alpine Explorer Tent is the most waterproof", "role": "assistant", "context": "From the our product list the alpine explorer tent is the most waterproof. The Adventure Dining Table has higher weight." },
+        { "content": "How much does it cost?", "role": "user" },
+        { "content": "$120.", "role": "assistant", "context": "The Alpine Explorer Tent is $120."}
+    ]
+}
+
+violence_conv_score = violence_eval(conversation=conversation) 
+
+print(json.dumps(violence_conv_score, indent=4))
+
+```
+Output:
+```python
 {
-    'violence_score': 0.0,
-    'evaluation_per_turn': {'violence': ['Very low', 'Very low'],
-    'violence_score': [0, 0],
-    'violence_reason': ["The system's response is a straightforward answer to a question about waterproof tents. There is no mention of violence, harm, or any related content. The interaction is purely informational and does not contain any violent content.",
-   "The system's response does not contain any violent content. It simply provides a price in response to the human's question. There is no mention or depiction of violence, harm, or any related themes."]
+    "violence_score": 0,
+    "violence_threshold": 3,
+    "evaluation_per_turn": {
+        "violence": [
+            "Very low",
+            "Very low"
+        ],
+        "violence_score": [
+            0,
+            0
+        ],
+        "violence_reason": [
+            "The system's response is a straightforward answer to a question about waterproof tents. There is no mention of violence, harm, or any content that could cause distress or discomfort. The response is purely informational and does not contain any violent content.",
+            "The system's response does not contain any violent content. It simply provides a monetary value in response to a question about cost. There is no mention of violence, harm, or any related topics."
+        ],
+        "violence_threshold": [
+            3,
+            3
+        ],
+        "violence_result": [
+            "pass",
+            "pass"
+        ]
+    }
 }
 ```
 
@@ -729,6 +873,15 @@ result = evaluate(
 If you have a list of queries that you'd like to run then evaluate, the `evaluate()` also supports a `target` parameter, which can send queries to an application to collect answers then run your evaluators on the resulting query and response.
 
 A target can be any callable class in your directory. In this case we have a Python script `askwiki.py` with a callable class `askwiki()` that we can set as our target. Given a dataset of queries we can send into our simple `askwiki` app, we can evaluate the groundedness of the outputs. Ensure you specify the proper column mapping for your data in `"column_mapping"`. You can use `"default"` to specify column mapping for all evaluators.
+
+
+Here is the content in "data.jsonl":
+
+```json
+{"query":"When was United Stated found ?", "response":"1776"}
+{"query":"What is the capital of France?", "response":"Paris"}
+{"query":"Who is the best tennis player of all time ?", "response":"Roger Federer"}
+```
 
 ```python
 from askwiki import askwiki
