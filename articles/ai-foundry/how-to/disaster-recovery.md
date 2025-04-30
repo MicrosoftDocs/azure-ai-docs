@@ -30,7 +30,7 @@ Microsoft strives to ensure that Azure services are always available. However, u
 > Azure AI Foundry itself does not provide automatic failover or disaster recovery.
 
 > [!NOTE]
-> The information in this article only applies to a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** is not supported. For more information, see [Project types](../what-is-azure-ai-foundry.md#project-types).
+> The information in this article only applies to a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** is not supported. For more information, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
 
 ## Understand Azure services for Azure AI Foundry
 

@@ -8,7 +8,7 @@ ms.service: azure-ai-language
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 10/07/2024
+ms.date: 04/29/2025
 ms.author: jboback
 keywords: on-premises, Docker, container
 ---

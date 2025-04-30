@@ -21,6 +21,17 @@ This article provides a summary of the latest releases and major documentation u
 
 ## April 2025
 
+### GPT-image-1 released (preview, limited access)
+
+GPT-image-1 (2025-04-15) is the latest image generation model from Azure OpenAI. It features major improvements over DALL-E, including:
+- Better at responding to precise instructions.
+- Reliably renders text.
+- Accepts images as input, which enables the new capabilities of image editing and inpainting.
+
+Request access: [Limited access model application](https://aka.ms/oai/gptimage1access)
+
+Follow the [image generation how-to guide](/en-us/azure/ai-services/openai/how-to/dall-e) to get started with the new model.
+
 ### o4-mini and o3 models released
 
 `o4-mini` and `o3` models are now available. These are the latest reasoning models from Azure OpenAI offering significantly enhanced reasoning, quality, and performance. For more information, see the [getting started with reasoning models page](./how-to/reasoning.md).

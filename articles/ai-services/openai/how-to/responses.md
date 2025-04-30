@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's new stateful Responses API.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 04/23/2025
+ms.date: 03/21/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 ms.custom: references_regions
@@ -46,6 +46,7 @@ The responses API is currently available in the following regions:
 - `gpt-4.1` (Version: `2025-04-14`)
 - `gpt-4.1-nano` (Version: `2025-04-14`)
 - `gpt-4.1-mini` (Version: `2025-04-14`)
+- `gpt-image-1` (Version: `2025-04-15`)
 - `o3` (Version: `2025-04-16`)
 - `o4-mini` (Version: `2025-04-16`)
 
@@ -54,11 +55,10 @@ Not every model is available in the regions supported by the responses API. Chec
 > [!NOTE]
 > Not currently supported:
 > - Structured outputs
-> - tool_choice
 > - image_url pointing to an internet address
-> - The web search tool is also not supported, and isn't part of the `2025-03-01-preview` API.  
+> - The web search tool is also not supported, and is not part of the `2025-03-01-preview` API.  
 > 
-> There's also a known issue with vision performance when using the Responses API, particularly with OCR tasks. As a temporary workaround set image detail to `high`. This article will be updated once this issue is resolved and as any additional feature support is added.
+> There is also a known issue with vision performance when using the Responses API, particularly with OCR tasks. As a temporary workaround set image detail to `high`. This article will be updated once this issue is resolved and as any additional feature support is added.
 
 
 ### Reference documentation
@@ -96,16 +96,6 @@ response = client.responses.create(
     input="This is a test."
     #truncation="auto" required when using computer-use-preview model.
 
-response_id = response.id
-response_status = response.status
-
-
-print(f"\n Response ID: {response_id}")
-print(f"\n Response Status: {response_status}\n")
-
-print(response.model_dump_json(indent=2))
-
-
 )
 ```
 
@@ -127,15 +117,6 @@ response = client.responses.create(
     model="gpt-4o", # replace with your model deployment name 
     input="This is a test."
     #truncation="auto" required when using computer-use-preview model.
-
-response_id = response.id
-response_status = response.status
-
-
-print(f"\n Response ID: {response_id}")
-print(f"\n Response Status: {response_status}\n")
-
-print(response.model_dump_json(indent=2))
 
 )
 ```
@@ -171,110 +152,56 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/responses?api-ve
 **Output:**
 
 ```json
-Response ID: resp_680915b58140819085f4c55454402f3600400b1e6ec996fc
-
-Response Status: completed
-
 {
-  "id": "resp_680915b58140819085f4c55454402f3600400b1e6ec996fc",
-  "created_at": 1745425845.0,
+  "id": "resp_67cb32528d6881909eb2859a55e18a85",
+  "created_at": 1741369938.0,
   "error": null,
   "incomplete_details": null,
   "instructions": null,
   "metadata": {},
-  "model": "gpt-4o",
+  "model": "gpt-4o-2024-08-06",
   "object": "response",
   "output": [
     {
-      "id": "msg_680915b5c8dc8190b21a72a55830fea900400b1e6ec996fc",
+      "id": "msg_67cb3252cfac8190865744873aada798",
       "content": [
         {
           "annotations": [],
-          "text": "It looks like you're testing out how this works! How can I assist you today?",
+          "text": "Great! How can I help you today?",
           "type": "output_text"
         }
       ],
       "role": "assistant",
-      "status": "completed",
+      "status": null,
       "type": "message"
     }
   ],
-  "parallel_tool_calls": true,
+  "output_text": "Great! How can I help you today?",
+  "parallel_tool_calls": null,
   "temperature": 1.0,
-  "tool_choice": "auto",
+  "tool_choice": null,
   "tools": [],
   "top_p": 1.0,
   "max_output_tokens": null,
   "previous_response_id": null,
-  "reasoning": {
-    "effort": null,
-    "generate_summary": null,
-    "summary": null
-  },
-  "service_tier": null,
+  "reasoning": null,
   "status": "completed",
-  "text": {
-    "format": {
-      "type": "text"
-    }
-  },
-  "truncation": "disabled",
+  "text": null,
+  "truncation": null,
   "usage": {
-    "input_tokens": 12,
-    "input_tokens_details": {
-      "cached_tokens": 0
-    },
-    "output_tokens": 18,
+    "input_tokens": 20,
+    "output_tokens": 11,
     "output_tokens_details": {
       "reasoning_tokens": 0
     },
-    "total_tokens": 30
+    "total_tokens": 31
   },
   "user": null,
-  "store": true
+  "reasoning_effort": null
 }
 ```
 
 ---
-
-Unlike the chat completions API, the responses API is asynchronous. More complex requests may not be completed by the time that an initial response is returned by the API. This is similar to how the Assistants API handles [thread/run status](/azure/ai-services/openai/how-to/assistant#retrieve-thread-status). 
-
-Note in the response output that the response object contains a `status` which can be monitored to determine when the response is finally complete. `status` can contain a value of `completed`, `failed`, `in_progress`, or `incomplete`.
-
-### Retrieve an individual response status
-
-In the previous Python examples we created a variable `response_id` and set it equal to the `response.id` of our `client.response.create()` call. We can then pass client.response.retrieve() to pull the current status of our response.
-
-```python
-
-retrieve_response =  client.responses.retrieve(response_id)
-print(retrieve_response.status)
-```
-
-### Monitor response status
-
-Depending on the complexity of your request it isn't uncommon to have an initial response with a status of `in_progress` with message output not yet generated. In that case you can create a loop to monitor the status of the response with code. The example below is for demonstration purposes only and is intended to be run in a Jupyter notebook. This code assumes you have already run the two previous Python examples and the Azure OpenAI client as well as `retrieve_response` have already been defined:
-
-```python
-import time
-from IPython.display import clear_output
-
-start_time = time.time()
-
-status = retrieve_response.status
-
-while status not in ["completed", "failed", "incomplete"]:
-    time.sleep(5)
-    retrieve_response =  client.responses.retrieve(response_id)
-    print("Elapsed time: {} minutes {} seconds".format(int((time.time() - start_time) // 60), int((time.time() - start_time) % 60)))
-    status = retrieve_response.status
-    print(f'Status: {status}')
-    clear_output(wait=True)
-
-print(f'Status: {status}')
-print("Elapsed time: {} minutes {} seconds".format(int((time.time() - start_time) // 60), int((time.time() - start_time) % 60)))
-print(retrieve_response.model_dump_json(indent=2))
-```
 
 ## Retrieve a response
 
@@ -678,7 +605,7 @@ print(response.model_dump_json(indent=2))
 
 ## Image input
 
-There's a known issue with image url based image input. Currently only base64 encoded images are supported.
+There is a known issue with image url based image input. Currently only base64 encoded images are supported.
 
 ### Image url
 
@@ -958,7 +885,7 @@ async def take_screenshot(page):
             return last_successful_screenshot
 ```
 
-This function captures the current browser state as an image and returns it as a base64-encoded string, ready to be sent to the model. We'll constantly do this in a loop after each step allowing the model to see if the command it tried to execute was successful or not, which then allows it to adjust based on the contents of the screenshot. We could let the model decide if it needs to take a screenshot, but for simplicity we'll force a screenshot to be taken for each iteration.
+This function captures the current browser state as an image and returns it as a base64-encoded string, ready to be sent to the model. We'll constantly do this in a loop after each step allowing the model to see if the command it tried to execute was successful or not, which then allows it to adjust based on the contents of the screenshot. We could let the model decide if it needs to take a screenshot, but for simplicity we will force a screenshot to be taken for each iteration.
 
 ### Model response processing
 

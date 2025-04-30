@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 02/12/2025
+ms.date: 04/29/2025
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist
@@ -17,6 +17,9 @@ author: Blackmist
 ---
 
 # How to create and manage an Azure AI Foundry hub
+
+> [!NOTE]
+> The information provided in this article is specific to a **[!INCLUDE [hub](../includes/hub-project-name.md)]**, and doesn't apply for a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. For more information, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
 
 In [Azure AI Foundry portal](https://ai.azure.com), hubs provide the environment for a team to collaborate and organize work, and help you as a team lead or IT admin centrally set up security settings and govern usage and spend. You can create and manage a hub from the Azure portal or from the Azure AI Foundry portal, and then your developers can create projects from the hub.
 
@@ -31,7 +34,7 @@ In this article, you learn how to create and manage a hub in Azure AI Foundry po
 
 To create a new hub, you need either the Owner or Contributor role on the resource group or on an existing hub. If you're unable to create a hub due to permissions, reach out to your administrator. If your organization is using [Azure Policy](/azure/governance/policy/overview), don't create the resource in Azure AI Foundry portal. Create the hub [in the Azure portal](#create-a-secure-hub-in-the-azure-portal) instead.
 
-[!INCLUDE [Create Azure AI Foundry hub](../includes/create-hub.md)] 
+When you [create a new [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](create-projects.md?pivots=hub-project), select **Create a new hub**.  
 
 ## Create a secure hub in the Azure portal
 
@@ -175,6 +178,6 @@ Deleting a hub deletes all associated projects. When a project is deleted, all n
 
 ## Related content
 
-- [Create a project](create-projects.md)
+- [Create a project](create-projects.md?pivots=hub-project)
 - [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
 - [Learn more about hubs](../concepts/ai-resources.md)

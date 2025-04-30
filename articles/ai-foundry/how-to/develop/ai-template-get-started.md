@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 02/20/2025
+ms.date: 04/28/2025
 ms.reviewer: varundua
 ms.author: sgilley
 author: sdgilley
@@ -40,7 +40,6 @@ Available templates include:
 1. On the left pane, select **Templates** (preview).
 1. Find the solution template you want to use.
 1. Select **Open in Github** to view the entire sample application.
-1. Or, clone the repository to your local machine with the provided command.
 1. In some cases, you can also view a step-by-step tutorial that explains the AI code.
 
 ## Explore the sample application
@@ -58,13 +57,6 @@ Instructions vary by sample, but most include how to:
 
 The README also includes information about the application, such as the use case, architecture, and pricing information.
 
-> [!TIP]
-> Discover more templates in our curated [AZD templates collection](https://azure.github.io/ai-app-templates). Deploy them with a single command ```azd up``` using the [Azure Developer CLI](/azure/developer/azure-developer-cli/).
-
-
-
-
 ## Related content
 
 - [Get started building a chat app using the Azure AI Foundry SDK](../../quickstarts/get-started-code.md)
-- [Develop AI apps using Azure AI services](/azure/developer/ai/)

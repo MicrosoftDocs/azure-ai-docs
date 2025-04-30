@@ -40,7 +40,7 @@ This article explains how to set up a basic image tagging script by using the Im
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [NodeJS SDK quickstart](../includes/quickstarts-sdk/image-analysis-node-sdk.md)]
+[!INCLUDE [Node.js SDK quickstart](../includes/quickstarts-sdk/image-analysis-node-sdk.md)]
 
 ::: zone-end
 
