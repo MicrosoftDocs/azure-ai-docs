@@ -7,13 +7,11 @@ ms.topic: include
 ms.date: 11/13/2024
 ---
 
-## Set up your Azure AI Hub and Agent project
+## Set up your Azure AI Foundry Agent Service project
 
 The following section shows you how to set up the required resources for getting started with Azure AI Foundry Agent Service: 
 
-1. Creating an [Azure AI Hub](../../../ai-foundry/quickstarts/get-started-playground.md) to set up your app environment and Azure resources.
-
-1. Creating an Azure AI project under your Hub creates an endpoint for your app to call, and sets up app services to access to resources in your tenant.
+1. Creating an [Azure AI project](../../../ai-foundry/quickstarts/get-started-playground.md) creates an endpoint for your app to call, and sets up app services to access to resources in your tenant.
 
 1. Connecting an Azure OpenAI resource or an Azure AI Services resource
 
@@ -39,8 +37,8 @@ https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.github
 
 | Description and Autodeploy  |  Diagram (click to zoom in) |
 | -----------------------------------------------| -----------------------|
-| Deploy a basic agent setup that uses Managed Identity for authentication. Resources for the AI hub, AI project, storage account, and AI Services are created for you. <br><br> The AI Services account is connected to your project and hub, and a gpt-4o-mini model is deployed in the eastus region. A Microsoft-managed key vault is used by default. <br><br> [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fazureai-samples%2Fmain%2Fscenarios%2FAgents%2Fsetup%2Fbasic-agent-identity%2Fazuredeploy.json) |  :::image type="content" source="../media/quickstart/basic-agent-setup-resources.png" alt-text="An architecture diagram for basic agent setup." lightbox="../media/quickstart/basic-agent-setup-resources.png"::: | 
-| Deploy a standard agent setup that uses Managed Identity for authentication. <br><br> Resources for the AI hub, AI project, key vault, storage account, AI Services, and AI Search are created for you. <br><br>The AI Services, AI Search, key vault, and storage account are connected to your project and hub. A gpt-4o-mini model is deployed in eastus region. <br><br> [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fazureai-samples%2Fmain%2Fscenarios%2FAgents%2Fsetup%2Fstandard-agent-with-threadstorage%2Fazuredeploy.json) | :::image type="content" source="../media/quickstart/standard-agent-setup-resources.png" alt-text="An architecture diagram for standard agent setup." lightbox="../media/quickstart/standard-agent-setup-resources.png"::: |
+| Deploy a basic agent setup that uses Managed Identity for authentication. Resources for the AI project, storage account, and AI Services are created for you. <br><br> The AI Services account is connected to your project, and a gpt-4o-mini model is deployed in the eastus region. A Microsoft-managed key vault is used by default. <br><br> [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fazureai-samples%2Fmain%2Fscenarios%2FAgents%2Fsetup%2Fbasic-agent-identity%2Fazuredeploy.json) |  :::image type="content" source="../media/quickstart/basic-agent-setup-resources.png" alt-text="An architecture diagram for basic agent setup." lightbox="../media/quickstart/basic-agent-setup-resources.png"::: | 
+| Deploy a standard agent setup that uses Managed Identity for authentication. <br><br> Resources for the AI project, key vault, storage account, AI Services, and AI Search are created for you. <br><br>The AI Services, AI Search, key vault, and storage account are connected to your project. A gpt-4o-mini model is deployed in eastus region. <br><br> [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fazureai-samples%2Fmain%2Fscenarios%2FAgents%2Fsetup%2Fstandard-agent-with-threadstorage%2Fazuredeploy.json) | :::image type="content" source="../media/quickstart/standard-agent-setup-resources.png" alt-text="An architecture diagram for standard agent setup." lightbox="../media/quickstart/standard-agent-setup-resources.png"::: |
 
 
 ### [Optional] Model selection in autodeploy template
