@@ -122,10 +122,9 @@ Given the scale of data ingestion, it might not be feasible to have a human in t
 
 ## Learn more about responsible AI
 
-* [Azure AI Search transparency note](https://learn.microsoft.com/legal/search/transparency-note?context=%2Fazure%2Fsearch%2Fcontext%2Fcontext&tabs=vector)
+* [Azure AI Search transparency note](https://learn.microsoft.com/legal/search/transparency-note)
 * [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai)
 * [Microsoft responsible AI resources](https://www.microsoft.com/ai/responsible-ai-resources)
-* [Microsoft Azure Learning courses on responsible AI](https://learn.microsoft.com/learn/paths/responsible-ai-business-principles/)
 
 ## Learn more about Azure AI Search
 
