@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 02/21/2025
+ms.date: 04/30/2025
 ms.reviewer: meerakurup
 ms.author: larryfr
 author: Blackmist
@@ -21,8 +21,8 @@ When connecting to an [Azure AI Foundry](https://ai.azure.com) project configure
 
 If you recieved an error loading your Azure AI hub or project, there may be one of two causes. 
 
-1) You set public network access to "Disabled" on your hub.
-2) You set public network access to "Enable from selected IPs" on your hub.
+1) You set public network access to __Disabled__ on your hub.
+2) You set public network access to __Enable from selected IPs__ on your hub.
 
 Depending on which setting you have selected for Public access to your Azure AI hub and projects, ensure the following: 
 
