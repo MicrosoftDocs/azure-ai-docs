@@ -28,15 +28,15 @@ Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (temp
     # [Azure CLI](#tab/cli)
 
     ```azurecli
-    git clone https://github.com/Azure/azure-quickstart-templates
-    cd azure-quickstart-templates/quickstarts/microsoft.machinelearningservices/aifoundry-basics
+    git clone https://github.com/Azure-AI-Foundry/foundry-samples
+    cd foundry-samples/use-cases/infrastructure-as-code/00-basic
     ```
 
     # [Azure PowerShell](#tab/powershell)
 
     ```azurepowershell
-    git clone https://github.com/Azure/azure-quickstart-templates
-    cd azure-quickstart-templates\quickstarts\microsoft.machinelearningservices\aifoundry-basics
+    git clone https://github.com/Azure-AI-Foundry/foundry-samples
+    cd foundry-samples/use-cases/infrastructure-as-code/00-basic
     ```
 
     ---
@@ -55,7 +55,7 @@ This template creates the following resources:
 
 ## Deploy the Bicep file
 
-1. Using either the Azure CLI or Azure PowerShell, change to the `/use-cases/infrastructure-as-code/00-basic/main.bicep` directory if using a clone of the GitHub repo. Then deploy the Bicep file.
+1. Deploy the Bicep file using either the Azure CLI or Azure PowerShell.
 
     # [Azure CLI](#tab/cli)
 
