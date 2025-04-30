@@ -26,13 +26,12 @@ Most users of the Realtime API need to deliver and receive audio from an end-use
 The GPT 4o real-time models are available for global deployments.
 - `gpt-4o-realtime-preview` (version `2024-12-17`)
 - `gpt-4o-mini-realtime-preview` (version `2024-12-17`)
-- `gpt-4o-realtime-preview` (version `2024-10-01`)
 
 See the [models and versions documentation](./concepts/models.md#audio-models) for more information.
 
 ## API support
 
-Support for the Realtime API was first added in API version `2024-10-01-preview`. Use version `2024-10-01-preview` to access the Realtime API. 
+Support for the Realtime API was first added in API version `2024-10-01-preview` (retired). Use version `2025-04-01-preview` to access the latest Realtime API features. 
 
 ::: zone pivot="ai-foundry-portal"
 
