@@ -36,7 +36,7 @@ Get started with the Azure AI Vision Read REST API or client libraries. The Read
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [NodeJS SDK quickstart](../includes/quickstarts-sdk/node-sdk.md)]
+[!INCLUDE [Node.js SDK quickstart](../includes/quickstarts-sdk/node-sdk.md)]
 
 ::: zone-end
 
