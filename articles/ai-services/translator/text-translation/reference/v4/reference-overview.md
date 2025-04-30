@@ -38,7 +38,7 @@ Azure AI Translator prioritizes data security and privacy, complying with regula
 
 Metrics allow you to view the translator usage and availability information in Azure portal, under metrics section as shown in the following screenshot. For more information, see [Data and platform metrics](/azure/azure-monitor/essentials/data-platform-metrics).
 
-:::image type="content" source="../../../media/azure-portal-metrics.png" alt-text="Screenshot of Translator HTTP request metrics in the Azure portal.":::
+:::image type="content" source="../../../media/azure-portal-metrics-v4.png" alt-text="Screenshot of HTTP request metrics in the Azure portal.":::
 
 This table lists available metrics with description of how they're used to monitor translation API calls.
 
