@@ -337,6 +337,8 @@ items:
           href: cognitive-search-custom-skill-scale.md
         - name: Example - Bing Entity Search
           href: cognitive-search-create-custom-skill-example.md
+      - name: Responsible AI best practices when using GenAI prompt skill
+        href: responsible-ai-best-practices-genai-prompt-skill.md
   - name: Vector search
     items:
     - name: Create a vector index
