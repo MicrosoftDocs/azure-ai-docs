@@ -33,9 +33,9 @@ After you validate your data files, use them to build your custom neural voice m
 
   To create a multiple style voice, you need to prepare a set of general training data, at least 300 utterances. Select one or more of the preset target speaking styles. You can also create multiple custom styles by providing style samples, of at least 100 utterances per style, as extra training data for the same voice. The supported preset styles vary according to different languages. See [available preset styles across different languages](?tabs=multistyle#available-preset-styles-across-different-languages).
 
-- [Neural - multi lingual](?tabs=multilingual#train-your-custom-neural-voice-model) (preview): Create a voice that speaks multiple languages using the single-language training data. For example, with the `en-US` training data, you can create a voice that speaks `en-US`, `de-DE`, `zh-CN` etc.
+- [Neural - multi lingual](?tabs=multilingual#train-your-custom-neural-voice-model) (preview): Create a voice that speaks multiple languages using the single-language training data. For example, with the `en-US` primary training data, you can create a voice that speaks `en-US`, `de-DE`, `zh-CN` etc secondary languages.
 
-  The language of the training data must be one of the [languages that are supported](../../../../language-support.md?tabs=tts#custom-neural-voice) and the target multiple languages must be in the [languages that are supported](../../../../language-support.md?tabs=tts#custom-neural-voice) for multi lingual voice training. You don't need to prepare training data in the target other languages.
+  The primary language of the training data and the secondary languages must be in the [languages that are supported](../../../../language-support.md?tabs=tts#custom-neural-voice) for multi lingual voice training. You don't need to prepare training data in the secondary languages.
 
 The language of the training data must be one of the [languages that are supported](../../../../language-support.md?tabs=tts) for custom neural voice, cross-lingual, or multiple style training.
 
