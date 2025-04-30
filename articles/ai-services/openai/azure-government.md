@@ -50,7 +50,7 @@ To request quota increases for these models, submit a request at [https://aka.ms
 | usgovvirginia | ✅ | - | - | ✅ | - |
 
 > [!IMPORTANT]
-> Reserved Instance Provisioned Deployments are now available in Azure Government as of May 2025. Refer to [Provisioned Managed Offering in Azure Government](../concepts/gov-provisioned.md) for more details.
+> Reserved Instance Provisioned Deployments are now available in Azure Government as of May 2025. Refer to [Provisioned Managed Offering in Azure Government](./concepts/gov-provisioned.md) for more details.
 
 <br>
 
