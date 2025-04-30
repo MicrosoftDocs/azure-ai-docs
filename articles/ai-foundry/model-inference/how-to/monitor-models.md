@@ -5,7 +5,7 @@ author: santiagxf
 ms.author: fasantia 
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 1/21/2025
+ms.date: 4/30/2025
 ---
 
 # Monitor model deployments in Azure AI model inference
