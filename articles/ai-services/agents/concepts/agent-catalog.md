@@ -29,7 +29,7 @@ Available templates include:
 - [Azure subscription](https://azure.microsoft.com/free)
 - An [Azure AI Foundry project](../../../ai-foundry/how-to/create-projects.md).
 
-## Start with a sample application
+## Find agent templates in the Azure AI Foundry portal
 
 1. Go to [Azure AI Foundry portal](https://ai.azure.com).
 1. Open your project in Azure AI Foundry portal.
@@ -41,7 +41,7 @@ Available templates include:
 1. Select **Open in Github** to view the entire sample application.
 1. In some cases, you can also view a step-by-step tutorial that explains the AI code.
 
-## Explore the sample application
+## Explore the templates
 
 Once you're looking at the GitHub repository for your sample, refer to the README for more instructions and information on how to deploy your own version of the application.
 
