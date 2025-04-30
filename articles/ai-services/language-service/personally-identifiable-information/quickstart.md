@@ -6,7 +6,7 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 10/21/2024
+ms.date: 04/29/2025
 ms.author: jboback
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
