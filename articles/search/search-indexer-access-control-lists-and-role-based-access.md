@@ -9,11 +9,14 @@ author: wlifuture
 ms.author: wli
 ---  
 
+
+# Indexing Access Control Lists and Azure Role-Based Access scopes using Indexers in Azure AI Search
+
 > [!IMPORTANT]
 > **Preview** – Indexing Access Control Lists and Azure Role-Based Access scopes using Indexers in Azure AI Search functionality is first available in the **2025-05-01-preview** REST API. 
 > This feature is in public preview. It's offered "as-is", under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and supported on best effort only. Preview features aren't recommended for production workloads and aren't guaranteed to become generally available.
 
-# Indexing Access Control Lists and Azure Role-Based Access scopes using Indexers in Azure AI Search
+
 
 [Azure AI Search ADLS Gen2 indexers](search-howto-index-azure-data-lake-storage.md) can ingest access control metadata like Access Control Lists (ACL) and Azure Role-Based Access (RBAC) scopes directly from Azure Data Lake Storage (ADLS) Gen2, enabling secure and compliant document retrieval.
 
@@ -27,10 +30,10 @@ This document provides guidance on using the ADLS Gen2 built-in indexer to inges
 - Newly introduced data source property [indexerIngestionOptions]() with various permission ingestion options from the indexer.
 - ACL indexer ingestion supports different [credentials and connection strings](search-howto-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings): full access storage account connection string, or managed identity connection string.
 - RBAC scope ingestion requires [managed identity](search-howto-managed-identities-data-sources.md) credentials and [connection strings](search-howto-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings) format of managed identity only.
-- Indexer execution credential should have at least [Storage Blob Data Reader](data-lake-storage-access-control-model.md#role-based-access-control-azure-rbac) role from the ADLS Gen2 data source.
+- Indexer execution credential should have at least [Storage Blob Data Reader](/azure/storage/blobs/data-lake-storage-access-control-model.md#role-based-access-control-azure-rbac) role from the ADLS Gen2 data source.
 
 ## Limitations
-- [ACL and RBAC limits in ADLS Gen2](/storage/blobs/data-lake-storage-access-control-model#limits-on-azure-role-assignments-and-acl-entries).
+- [ACL and RBAC limits in ADLS Gen2](/azure/storage/blobs/data-lake-storage-access-control-model#limits-on-azure-role-assignments-and-acl-entries).
 - [ADLS Gen2 ACL assignments](/azure/storage/blobs/data-lake-storage-access-control#how-to-set-acls) are restricted with following guidelines for indexer at during Public Preview:
   - At the root container, assign all groups and users that have access to any file, with both `read` and `execute` permissions.
 
@@ -103,9 +106,9 @@ This document provides guidance on using the ADLS Gen2 built-in indexer to inges
   ```
 
 ## ACL Hierarchical Permissions  
-Indexers retrieve ACL assignments from the specified container and all directories leading to each file by following the ADLS Gen2 [hierarchical access evaluation flow](/storage/blobs/data-lake-storage-access-control#common-scenarios-related-to-acl-permissions). They compute the final effective access lists for each file and index the different access categories into the corresponding index fields.
+Indexers retrieve ACL assignments from the specified container and all directories leading to each file by following the ADLS Gen2 [hierarchical access evaluation flow](/azure/storage/blobs/data-lake-storage-access-control#common-scenarios-related-to-acl-permissions). They compute the final effective access lists for each file and index the different access categories into the corresponding index fields.
 
-For example, in [ADLS Gen2 common scenarios related to permissions](/data-lake-storage-access-control#common-scenarios-related-to-acl-permissions) as the file path /Oregon/Portland/Data.txt.
+For example, in [ADLS Gen2 common scenarios related to permissions](/azure/storage/blobs/data-lake-storage-access-control#common-scenarios-related-to-acl-permissions) as the file path /Oregon/Portland/Data.txt.
 
   | Operation |	/ |	Oregon/ |	Portland/ |	Data.txt |
   | - | - | - | - | - |
