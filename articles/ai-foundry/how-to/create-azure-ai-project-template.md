@@ -17,8 +17,6 @@ ms.date: 04/29/2025
 > [!NOTE]
 > The Bicep file used in this article is specific to a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**, and doesn't apply for a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. For a template that creates a **[!INCLUDE [hub](../includes/hub-project-name.md)]**, see [Create an Azure AI Foundry hub using a template](create-azure-ai-hub-template.md).
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
-
 Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (template) to create an [Azure AI Foundry](https://ai.azure.com) project. A template makes it easy to create resources as a single, coordinated operation. A Bicep file is a text document that defines the resources that are needed for a deployment. It might also specify deployment parameters. Parameters are used to provide input values when using the file to deploy resources.
 
 ## Prerequisites
