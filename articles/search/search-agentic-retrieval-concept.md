@@ -47,19 +47,26 @@ Agentic retrieval is designed for a conversational search experience that includ
 <!-- Insert architecture diagram here -->
 Agentic retrieval has these components:
 
-+ An index on Azure AI Search containing plain text and vector content.
-+ An LLM that you deploy in Azure OpenAI used for query planning.
-+ An agent on Azure AI Search that connects to your model, providing parameters and inputs to build a query plan.
-+ A retrieval engine in Azure AI Search that executes on the LLM query plan and other parameters, returning a rich response that includes content and query plan metadata.
+| Component | Resource | Usage |
+|-----------|----------|-------|
+| LLM (gpt-4o series) | Azure OpenAI | Formulates subqueries for the query plan. Potentially used to provide an answer based on the grounding data, but you can use any model you want for this step. |
+ Search index | Azure AI Search | Contains plain text and vector content, a semantic configuration, other elements as needed. |
+| Agent | Azure AI Search | Connects to your model, providing parameters and inputs to build a query plan. |
+| Retrieval engine | Azure AI Search | Executes on the LLM-generated query plan and other parameters, returning a rich response that includes content and query plan metadata. |
+
+Your solution should include a tool or app that drives the pipeline. An agentic retrieval pipeline concludes with the response object that provides grounding data. Your solution should handle the response, including passing it to an LLM to generate an answer, which you render inline in the user conversation. For more information about this step, see [Build an agent-to-agent retrieval solution](search-agentic-retrieval-how-to-pipeline.md).
 
 <!-- Insert multiquery pipeline diagram here -->
 Agentic retrieval has these processes:
 
-+ Request for agentic retrieval is initiated when your app passes in a query and conversation history to an agent.
-+ Agent connects to an LLM for a query planning step, converting chat history into multiple subqueries.
-+ All subqueries execute simultaneously on Azure AI Search and generate structured results and extracted references.
-+ Results are merged.
-+ Response is formulated and returned as a three part response consisting of a unified result, a reference array, and an activities array that enumerates all operations.
++ Requests for agentic retrieval are initiated by calls to an agent on Azure AI Search.
++ Agents connect to an LLM and provides conversation history as an input (how much history is configurable by the number of messages you provide).
++ LLMs look at the conversation and determine whether to break it up into subqueries. The number of subqueries depends on what the LLM decides, and also whether `maxDocsForReranker` parameter is higher than 50. A new subquery is defined for each 50 document batch sent to the semantic ranker.
++ Subqueries execute simultaneously on Azure AI Search and generate structured results and extracted references.
++ Results are merged and ranked.
++ Agent responses are formulated and returned as a three part response consisting of a unified result (a long string), a reference array, and an activities array that enumerates all operations.
+
+Query execution and any optimizations that occur during query execution are determined by your search index. Namely, your semantic configuration, but also optionally: scoring profiles, synonym maps, analyzers and normalizers if you add filters.
 
 ## Availability and pricing
 
@@ -137,7 +144,11 @@ Choose any of these options for you next step.
 <!-- + Watch this demo. -->
 + Quickstart. Learn the basic workflow using sample data and a prepared index and queries.
 
-+ How-to guides for a closer look at building an agentic retrieval pipeline: [Create an agent](search-agentic-retrieval-how-to-create.md) and [Use an agent to retrieve data](search-agentic-retrieval-how-to-retrieve.md). For developer guidance, see [Build an agent-to-agent retrieval solution](search-agentic-retrieval-how-to-pipeline.md).
++ How-to guides for a closer look at building an agentic retrieval pipeline:
+
+  + [Create an agent](search-agentic-retrieval-how-to-create.md)
+  + [Use an agent to retrieve data](search-agentic-retrieval-how-to-retrieve.md)
+  + [Build an agent-to-agent retrieval solution](search-agentic-retrieval-how-to-pipeline.md).
 
 + REST API reference, Agents.
 

@@ -146,6 +146,8 @@ This index includes a vector field that's used at query time. You don't need the
 
 The vectorizer defined in the vector search configuration is critical. It determines whether your vector field is used during query execution. The vectorizer encodes subqueries into vectors at query time for similarity search over the vectors. The vectorizer must be the same embedding model used to create the vectors in the index.
 
+All `searchable` fields are included in query execution. There's no support for a `select` statement that explicitly states which fields to query.
+
 <!-- 
 > [!div class="checklist"]
 > + A fields collection with `searchable` text and vetor fields, and `retrievable` text fields
