@@ -278,7 +278,11 @@ items:
         - name: Search over blobs
           href: search-blob-storage-integration.md
         - name: ADLS Gen2
-          href: search-howto-index-azure-data-lake-storage.md
+          items:
+          - name: Search over ADLS Gen2 files
+            href: search-howto-index-azure-data-lake-storage.md
+          - name: Configure document-level access for ADLS Gen2
+            href: search-indexer-access-control-lists-and-role-based-access.md
         - name: Blobs
           href: search-howto-indexing-azure-blob-storage.md
         - name: Files
