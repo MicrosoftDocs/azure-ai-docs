@@ -17,9 +17,23 @@ author: Blackmist
 
 When connecting to an [Azure AI Foundry](https://ai.azure.com) project configured with a private endpoint, you might encounter a 403 or a messaging saying that access is forbidden. Use the information in this article to check for common configuration problems that can cause this error.
 
-## Securely connect to your project
+## Error loading Azure AI Hub or Project
 
-To connect to a project secured behind a virtual network, use one of the following methods:
+If you recieved an error loading your Azure AI hub or project, there may be one of two causes. 
+
+1) You set public network access to "Disabled" on your hub.
+2) You set public network access to "Enable from selected IPs" on your hub.
+
+Depending on which setting you have selected for Public access to your Azure AI hub and projects, ensure the following: 
+
+| Public Network Access Setting | Action |
+| ----- | ----- |
+| Disabled | Ensure an inbound private endpoint is created and approved from your virtual network to your Azure AI Foundry hub. Ensure you are securely connection to your hub or project using an Azure VPN, ExpressRoute, or Azure Bastion. |
+| Enable from selected IPs | Ensure your IP address is listed in the Firewall IP ranges allowed access Azure AI Foundry. If you cannot add your IP address, talk to your IT admin. |
+
+## Securely connect to your hub or project
+
+To connect to a hub or project secured behind a virtual network, use one of the following methods:
 
 * [Azure VPN gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways) - Connects on-premises networks to the virtual network over a private connection. Connection is made over the public internet. There are two types of VPN gateways that you might use:
 
