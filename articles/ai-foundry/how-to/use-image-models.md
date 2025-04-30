@@ -20,10 +20,16 @@ This article explains how to use _image_ models in the AI Foundry model catalog.
 ## Prerequisites
 
 To use image models in your application, you need:
+ 
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-[!INCLUDE [how-to-prerequisites](../includes/how-to-prerequisites.md)]
+- An [Azure AI Foundry project](create-projects.md).
 
-* An image model deployment on Azure AI Foundry. This article uses a __Mistral OCR__ model deployment.
+- An image model deployment on Azure AI Foundry. 
+
+  - This article uses a __Mistral OCR__ model deployment.
+
+- The endpoint URL and key.
 
 ## Use image model
 
@@ -105,7 +111,5 @@ Some image models only support specific data formats. Mistral OCR 25.03, for exa
 
 ## Related content
 
-* [How to use Image Generation Models on Azure OpenAI](.././how-to/dall-e?tabs=gpt-image-1.md)
-
-::: zone-end
+- [How to use image generation models on Azure OpenAI](../../ai-services/openai/how-to/dall-e.md)
 
