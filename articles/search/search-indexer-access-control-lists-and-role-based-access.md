@@ -55,7 +55,7 @@ This document provides guidance on using the ADLS Gen2 built-in indexer to inges
   
 ## Indexing with Indexers
 ### 1. Search Service configuration
-- For RBAC scope ingestion, [managed identity](search-howto-managed-identities-data-sources.md) is required, either system managed identiy or user-assigned managed identity.
+- For RBAC scope ingestion, [managed identity](search-howto-managed-identities-data-sources.md) is required, either system managed identity or user-assigned managed identity.
 
 ### 2. Data source configuration
 - Configure data source with `adlsgen2` type.
