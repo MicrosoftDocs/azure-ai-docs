@@ -703,6 +703,8 @@ items:
       items:
       - name: Azure Machine Learning (AML)
         href: cognitive-search-aml-skill.md
+      - name: GenAI Prompt
+        href: cognitive-search-skill-genai-prompt.md
       - name: Custom Entity Lookup
         href: cognitive-search-skill-custom-entity-lookup.md
       - name: Custom Web API
