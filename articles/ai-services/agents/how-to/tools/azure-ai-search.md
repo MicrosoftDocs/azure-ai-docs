@@ -1,6 +1,6 @@
 ---
 title: 'How to use an existing AI Search index with the Azure AI Search tool'
-titleSuffix: Azure OpenAI
+titleSuffix: Azure AI Foundry
 description: Learn how to use Agents Azure AI Search tool.
 services: azure-ai-agent-service
 manager: nitinme

@@ -1,6 +1,6 @@
 ---
 title: 'How to use Agents with Morningstar licensed data'
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry
 description: Learn how to use your developer account with Morningstar grounding with Azure AI Agent Service.
 services: cognitive-services
 manager: nitinme

@@ -1,6 +1,6 @@
 ---
 title: 'How to enable tracing in Azure AI Agents'
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry
 description: Learn how to trace your AI agent's executions for debugging and evaluation.
 services: cognitive-services
 manager: nitinme
@@ -27,7 +27,7 @@ The Agents playground in the Azure AI Foundry portal lets you trace threads and 
 
 :::image type="content" source="../media/ai-foundry-tracing.png" alt-text="A screenshot of the agent playground in the Azure AI Foundry portal." lightbox="../media/ai-foundry-tracing.png":::
 
-The screen that appears will be let you view the: thread, run, run steps and any tool calls that were made. You can view the inputs and outputs between the agent and user, as well as evaluations that you have set up.
+The screen that appears will be let you view the: thread, run, run steps and any tool calls that were made. You can view the inputs and outputs between the agent and user, as well the associated metadata.
 
 :::image type="content" source="../media/thread-trace.png" alt-text="A screenshot of a trace." lightbox="../media/thread-trace.png":::
 

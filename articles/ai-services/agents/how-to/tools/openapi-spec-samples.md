@@ -1,6 +1,6 @@
 ---
 title: 'OpenAPI spec code samples'
-titleSuffix: Azure OpenAI
+titleSuffix: Azure AI Foundry
 description: Find code samples to use OpenAPI tools with agents.
 services: cognitive-services
 manager: nitinme

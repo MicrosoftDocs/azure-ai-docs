@@ -1,6 +1,6 @@
 ---
 title: How to use Azure Functions with the Azure AI Foundry Agent Service
-titleSuffix: Azure OpenAI
+titleSuffix: Azure AI Foundry
 description: Learn how to use Azure functions with Azure AI Agents.
 services: azure-ai-agent-service
 manager: nitinme

@@ -1,6 +1,6 @@
 ---
 title: 'How to use Azure AI Agents file search'
-titleSuffix: Azure OpenAI
+titleSuffix: Azure AI Foundry
 description: Learn how to use Agents file search.
 services: cognitive-services
 manager: nitinme

@@ -1,6 +1,6 @@
 ---
 title: 'How to upload files using the file search tool'
-titleSuffix: Azure OpenAI
+titleSuffix: Azure AI Foundry
 description: Find code samples and instructions for uploading files to Azure AI Foundry Agent Service.
 services: cognitive-services
 manager: nitinme

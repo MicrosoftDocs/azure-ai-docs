@@ -1,6 +1,6 @@
 ---
 title: 'What is the tool catalog in Azure AI Agents Service?'
-titleSuffix: Azure OpenAI
+titleSuffix: Azure AI Foundry
 description: Learn how to use the various tools available in the Azure AI Agents Service.
 services: cognitive-services
 manager: nitinme

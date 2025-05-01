@@ -1,6 +1,6 @@
 ---
 title: Supported models in Azure AI Foundry Agent Service
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry
 description: Learn about the models you can use with Azure AI Foundry Agent Service.
 manager: nitinme
 author: aahill

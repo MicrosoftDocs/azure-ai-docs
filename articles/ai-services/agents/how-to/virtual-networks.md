@@ -1,6 +1,6 @@
 ---
 title: 'How to use a virtual network with the Azure AI Foundry Agent Service'
-titleSuffix: Azure OpenAI
+titleSuffix: Azure AI Foundry
 description: Learn how to use your own virtual network with the Azure AI Foundry Agent Service. 
 services: cognitive-services
 manager: nitinme

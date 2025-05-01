@@ -1,6 +1,6 @@
 ---
 title: What is Azure AI Foundry Agent Service?
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry
 description: Learn how to create agents that apply advanced language models for workflow automation.
 manager: nitinme
 author: aahill
