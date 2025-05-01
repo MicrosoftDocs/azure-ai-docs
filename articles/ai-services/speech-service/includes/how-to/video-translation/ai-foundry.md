@@ -19,7 +19,7 @@ In this article, you learn how to use video translation with Azure AI Speech in 
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a free account before you begin.
-- An Azure AI Services resource for Speech [in a supported region](../../../video-translation-overview.md#supported-regions-and-languages). If you don't have a Speech resource, create one in the [Azure portal](https://portal.azure.com/).
+- an AI Foundry resource for Speech [in a supported region](../../../video-translation-overview.md#supported-regions-and-languages). If you don't have a Speech resource, create one in the [Azure portal](https://portal.azure.com/).
 - An [Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview) account. 
 - You need a video file in .mp4 format, less than 5 GB, and shorter than 4 hours. For testing purposes, you can use the sample video file provided by Microsoft at [https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4](https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4).
 - Make sure video translation supports your [source and target language](../../../language-support.md?tabs=speech-translation#video-translation).
@@ -43,7 +43,7 @@ To try out the video translation demo, follow these steps:
 
 1. Select the **Play** button to hear the translated audio. Select the original video tab to play the original audio.
 
-   :::image type="content" source="../../../media/video-translation/foundry-portal/compare-original-translated.png" alt-text="Screenshot of selecting a voice type on the new project page." lightbox="../../../media/video-translation/foundry-portal/compare-original-translated.png":::
+   :::image type="content" source="../../../media/video-translation/foundry-portal/compare-original-translated.png" alt-text="Screenshot of selecting the original video tab." lightbox="../../../media/video-translation/foundry-portal/compare-original-translated.png":::
    
    The voice type options are:
    - **Prebuilt voice**: The service automatically selects the most suitable prebuilt voice by matching the speaker's voice in the video with prebuilt voices.

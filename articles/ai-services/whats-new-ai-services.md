@@ -6,7 +6,7 @@ author: skpmcdowell
 ms.topic: whats-new
 ms.subject: ai-services
 ms.custom: March-2025
-ms.date: 04/02/2025
+ms.date: 5/19/2025
 ---
 
 # Azure AI Services docs: What's new for March 2025

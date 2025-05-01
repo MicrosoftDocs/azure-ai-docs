@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: conceptual
-ms.date: 10/16/2024
+ms.date: 5/19/2025
 ms.author: pafarley
 ms.custom: devx-track-csharp
 ---

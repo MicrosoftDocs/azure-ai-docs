@@ -8,7 +8,7 @@ ms.service: azure-ai-services
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 01/10/2025
+ms.date: 5/19/2025
 ms.author: pafarley
 ---
 
