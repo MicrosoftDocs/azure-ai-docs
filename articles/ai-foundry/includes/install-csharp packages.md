@@ -12,7 +12,7 @@ ms.custom: include, build-2025
 
 To work with Azure AI services in your .NET project, you'll need to install several NuGet packages. There are two ways to add these packages:
 
-#### Option 1: Using the .NET CLI
+### Option 1: Using the .NET CLI
 
 You can add NuGet packages using the .NET CLI in the integrated terminal:
 
@@ -29,7 +29,7 @@ dotnet add package Azure.Search.Documents
 dotnet add package Azure.Monitor.OpenTelemetry.AspNetCore
 ```
 
-#### Option 2: Using the NuGet Package Manager in VS Code
+### Option 2: Using the NuGet Package Manager in VS Code
 
 1. Open your project in VS Code
 2. Right-click on your project in the Solution Explorer panel (from C# Dev Kit)
