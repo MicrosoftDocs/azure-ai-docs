@@ -1,7 +1,7 @@
 ---
-title: 'Tutorial: Indexing blobs with text and images for multi-modal RAG scenarios using image verbalization and document extraction skill'
+title: 'Tutorial: Indexing blobs with text and images using image verbalization and document extraction skill'
 titleSuffix: Azure AI Search
-description: Learn how to extract, describe, and index text and images from Azure Blob Storage using Chat Completion and Azure AI Search REST APIs to support multi-modal RAG scenarios.
+description: Learn how to extract, describe, and index text and images from Azure Blob Storage using Chat Completion and Azure AI Search REST APIs to support multimodal RAG scenarios.
 
 manager: arjagann
 author: mdonovan
@@ -13,11 +13,11 @@ ms.date: 05/01/2025
 
 ---
 
-# Tutorial: Indexing blobs with text and images for multi-modal RAG scenarios using image verbalization and document extraction skill
+# Tutorial: Indexing blobs with text and images using image verbalization and document extraction skill
 
-Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial demonstrates how to build a multi-modal retrieval system that supports Retrieval-Augmented Generation (RAG) with both textual and visual content.
+Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial shows how to build a multimodal retrieval pipeline that supports Retrieval-Augmented Generation (RAG) by describing visual content in natural language and embedding it alongside document text.
 
-In this scenario, vector embeddings are generated for both modalities using AI skills and stored in a searchable index. These embeddings can then be used in semantic or hybrid search experiences to ground generative models or improve relevance ranking.
+You'll extract content from a 36-page PDF using the Document Extraction skill to retrieve text and images. Each image is passed to the GenAI Prompt skill (currently in public preview) to generate a concise textual description. These descriptions, along with the original document text, are then embedded into vector representations using Azure OpenAI’s text-embedding-3-large model. The result is a single index containing semantically searchable content from both modalities—text and verbalized images.
 
 You'll use:
 
@@ -25,9 +25,9 @@ You'll use:
 + The [GenAI Prompt skill](/cognitive-search-skill-genai-prompt.md) to generate image captions—text-based descriptions of visual content—for search and grounding.
 + A search index configured to store text and image embeddings and support vector-based similarity search.
 
-This tutorial demonstrates a lower-cost approach for indexing multi-modal content using DocumentExtractionSkill and image captioning. It enables extraction and search over both text and images from documents in Azure Blob Storage. However, it does not include locational metadata for text, such as page numbers or bounding regions. 
+This tutorial demonstrates a lower-cost approach for indexing multimodal content using Document Extraction skill and image captioning. It enables extraction and search over both text and images from documents in Azure Blob Storage. However, it does not include locational metadata for text, such as page numbers or bounding regions. 
 
-For a more comprehensive solution that includes structured text layout and spatial metadata, see [Indexing blobs with text and images for multi-modal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal).
+For a more comprehensive solution that includes structured text layout and spatial metadata, see [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal).
 
 Note that setting `imageAction` to `generateNormalizedImages` as is required for this tutorial will incur an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
 
@@ -110,7 +110,7 @@ For help with the REST client, see [Quickstart: Keyword search using REST](searc
 
 ```http
 ### Create a data source
-POST {{baseUrl}}/datasources?api-version=2025-05-01  HTTP/1.1
+POST {{baseUrl}}/datasources?api-version=2025-05-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -140,7 +140,7 @@ HTTP/1.1 201 Created
 Transfer-Encoding: chunked
 Content-Type: application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
 ETag: "0x8DD8508DB96491B"
-Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows-int.net:443/datasources('doc-extraction-image-verbalization-ds')?api-version=2025-05-01-Preview
+Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows-int.net:443/datasources('doc-extraction-image-verbalization-ds')?api-version=2025-05-01-preview -Preview
 Server: Microsoft-IIS/10.0
 Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
 Preference-Applied: odata.include-annotations="*"
@@ -178,7 +178,7 @@ For nested JSON, the index fields must be identical to the source fields. Curren
 
 ```http
 ### Create an index
-POST {{baseUrl}}/indexes?api-version=2025-05-01  HTTP/1.1
+POST {{baseUrl}}/indexes?api-version=2025-05-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -328,7 +328,7 @@ Key points:
 
 ```http
 ### Create a skillset
-POST {{baseUrl}}/skillsets?api-version=2025-05-01  HTTP/1.1
+POST {{baseUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -588,7 +588,7 @@ Key points:
 
 ```http
 ### Create and run an indexer
-POST {{baseUrl}}/indexers?api-version=2025-05-01  HTTP/1.1
+POST {{baseUrl}}/indexers?api-version=2025-05-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -620,7 +620,7 @@ You can start searching as soon as the first document is loaded.
 
 ```http
 ### Query the index
-POST {{baseUrl}}/indexes/doc-extraction-image-verbalization-index/docs/search?api-version=2025-05-01  HTTP/1.1
+POST {{baseUrl}}/indexes/doc-extraction-image-verbalization-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
   
@@ -656,7 +656,7 @@ Connection: close
   },
   "value": [
   ],
-  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/doc-extraction-image-verbalization-index/docs/search?api-version=2025-05-01"
+  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/doc-extraction-image-verbalization-index/docs/search?api-version=2025-05-01-preview "
 }
 ```
 100 documents are returned in the response.
@@ -672,19 +672,19 @@ Indexers can be reset to clear execution history, which allows a full rerun. The
 
 ```http
 ### Reset the indexer
-POST {{baseUrl}}/indexers/doc-extraction-image-verbalization-indexer/reset?api-version=2025-05-01  HTTP/1.1
+POST {{baseUrl}}/indexers/doc-extraction-image-verbalization-indexer/reset?api-version=2025-05-01-preview   HTTP/1.1
   api-key: {{apiKey}}
 ```
 
 ```http
 ### Run the indexer
-POST {{baseUrl}}/indexers/doc-extraction-image-verbalization-indexer/run?api-version=2025-05-01  HTTP/1.1
+POST {{baseUrl}}/indexers/doc-extraction-image-verbalization-indexer/run?api-version=2025-05-01-preview   HTTP/1.1
   api-key: {{apiKey}}
 ```
 
 ```http
 ### Check indexer status 
-GET {{baseUrl}}/indexers/doc-extraction-image-verbalization-indexer/status?api-version=2025-05-01  HTTP/1.1
+GET {{baseUrl}}/indexers/doc-extraction-image-verbalization-indexer/status?api-version=2025-05-01-preview   HTTP/1.1
   api-key: {{apiKey}}
 ```
 
@@ -696,10 +696,10 @@ You can use the Azure portal to delete indexes, indexers, and data sources.
 
 ## Next steps
 
-Now that you're familiar with a sample implementation of multi-modal RAG, check out
+Now that you're familiar with a sample implementation of multimodal RAG, check out
 
 > [!div class="nextstepaction"]
 > [GenAI Prompt skill](/cognitive-search-skill-genai-prompt.md)
 > [Vectors in Azure AI Search](/vector-search-overview.md)
 > [Semantic ranking in Azure AI Search](/semantic-search-overview.md)
-> [Indexing blobs with text and images for multi-modal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal)
+> [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal)
