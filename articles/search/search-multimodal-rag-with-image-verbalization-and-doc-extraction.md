@@ -29,6 +29,8 @@ This tutorial demonstrates a lower-cost approach for indexing multi-modal conten
 
 For a more comprehensive solution that includes structured text layout and spatial metadata, see [Indexing blobs with text and images for multi-modal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal).
 
+Note that setting `imageAction` to `generateNormalizedImages` as is required for this tutorial will incur an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
+
 Using a REST client and the [Search REST APIs](/rest/api/searchservice/) you will:
 
 > [!div class="checklist"]
