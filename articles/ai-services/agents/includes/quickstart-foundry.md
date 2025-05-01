@@ -22,7 +22,7 @@ Before getting started, determine if you want to perform a basic agent setup or 
 > [!IMPORTANT]
 > The Azure AI Foundry portal only supports basic setup at this time. If you want to perform a standard agent setup, use the other tabs at the top of the article to learn about standard agent configuration.  
 
-## Create a project in Azure AI Foundry portal
+## Create a Foundry project in Azure AI Foundry portal
 
 To create a new project, you need either the Owner or Contributor role on the resource group. If you're unable to create a project due to permissions, reach out to your administrator.
 
