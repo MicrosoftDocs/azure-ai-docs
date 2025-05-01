@@ -52,17 +52,21 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+- You must be **Owner** of the subscription to assign the appropriate access control needed to use the project.
+
 
 # [Python SDK](#tab/python)
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
-- [Set up your development environment](develop/install-cli-sdk.md)
+- You must be **Owner** of the subscription to assign the appropriate access control needed to use the project.
+- [Set up your development environment](develop/install-cli-sdk.md?tabs=python)
 - Authenticate with `az login` or `az login --use-device-code` in your environment before running code.
 
 
 # [Azure CLI](#tab/azurecli)
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+- You must be **Owner** of the subscription to assign the appropriate access control needed to use the project.
 - [Azure CLI](/cli/azure/install-azure-cli) 
 
 ---
@@ -117,15 +121,34 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
-[!INCLUDE [SDK setup](../includes/development-environment-config-fdp.md)]
+1. Install azure-identity: `pip install azure-identity`. If in a notebook cell, use `%pip install azure-identity`.
 
-6. Use the following code to create an account:
+1. Use the following code to create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]:
 
     ```python
-    # Create account
+    from azure.identity import DefaultAzureCredential
+    from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+    import os
+    import json
+    
+    subscription_id = 'your-subscription-id'
+    resource_group_name = 'your-resource-group-name'
+    foundry_resource_name = 'your-foundry-resource-name'
+    foundry_project_name = 'your-foundry-project-name'
+    location = 'eastus'
+    
+    # TODO: add code to create create a new resource group
+    
+    client = CognitiveServicesManagementClient(
+        subscription_id=subscription_id,
+        credential=DefaultAzureCredential(), 
+        api_version="2025-04-01-preview"
+    )
+    
     account = client.accounts.begin_create(
-        resource_group_name=rgp,
-        account_name=account_name,
+        resource_group_name=resource_group_name,
+        account_name=foundry_resource_name,
+        foundry_project_name=foundry_project_name,
         account={
             "location": location,
             "kind": "AIServices",
@@ -140,24 +163,20 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
             }
         }
     )
-    ```
     
-7. Now use the account to create a project:
-
+    # TODO: code to do role assignment to give user project manager role on the account
+    ```
+1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you wish to use into the `DefaultAzureCredential`. Find your tenant ID from the [Azure portal](https://portal.azure.com) under **Microsoft Entra ID, External Identities**.
+        
     ```python
-    # Create project
-    account = client.projects.begin_create(
-        resource_group_name=rgp,
-        account_name=account_name,
-        project_name=project_name,
-        project={
-            "location": location,
-            "identity": {
-                "type": "SystemAssigned"
-            },
-            "properties": {}
-        }
-    )
+    DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
+    ```
+        
+1. (Optional) If you're working on in the [Azure Government - US](/azure/azure-government/documentation-government-welcome) or [Azure China 21Vianet](https://azure.microsoft.com/global-infrastructure/services/?regions=china-east-2%2cchina-non-regional&products=all) regions, specify the region into which you want to authenticate. You can specify the region with `DefaultAzureCredential`. The following example authenticates to the Azure Government - US region:
+        
+    ```python
+    from azure.identity import AzureAuthorityHosts
+    DefaultAzureCredential(authority=AzureAuthorityHosts.AZURE_GOVERNMENT)
     ```
 
 ::: zone-end
@@ -201,10 +220,23 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
     For more information on authenticating, see [Authentication methods](/cli/azure/authenticate-azure-cli).
 
-1. Once the extension is installed and authenticated to your Azure subscription, use the following command to create a new [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
+1. Once the extension is installed and authenticated to your Azure subscription, create a resource group:
 
     ```azurecli
-    az cognitiveservices account project create --name {my_project_name}
+    az group create --name {my_resource_group} --location eastus
+    ```
+
+1. Assign role assignments to the group.  Substitute your name and resource group in these commands:
+
+   ```azurecli
+    az role assignment create --role "Azure AI User" --assignee "joe@contoso.com" --resource-group {my_resource_group} 
+    az role assignment create --role "Azure AI Developer" --assignee "joe@contoso.com" --resource-group {my_resource_group} 
+    ```
+
+1. Now use the following command to create a new [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
+
+    ```azurecli
+    az cognitiveservices account project create --name {my_project_name} -resource-group {my_resource_group}
     ```
 
 ::: zone-end
