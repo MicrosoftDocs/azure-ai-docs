@@ -232,7 +232,7 @@ With DALL-E 3, you can't generate more than one image in a single API call: the 
 
 #### Response format
 
-The format in which dall-e-3 generated images are returned. Must be one of `url` or `b64_json`. This parameter isn't supported for gpt-image-1 which will always return base64-encoded images.
+The format in which DALL-E 3 generated images are returned. Must be one of `url` or `b64_json`. This parameter isn't supported for GPT-image-1 which always returns base64-encoded images.
 
 ---
 
