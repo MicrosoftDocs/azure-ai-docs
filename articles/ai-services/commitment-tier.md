@@ -1,5 +1,5 @@
 ---
-title: Create an Azure AI services resource with commitment tier pricing
+title: Use Azure AI services with commitment tier pricing
 description: Learn how to sign up for commitment tier pricing, which is different than pay-as-you-go pricing.
 author: aahill
 ms.author: aahi
@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2023
 ms.service: azure-ai-services
 ms.topic: conceptual
-ms.date: 04/15/2025
+ms.date: 5/19/2025
 ---
 
 # Purchase commitment tier pricing
@@ -36,7 +36,7 @@ For more information, see [Azure AI services pricing](https://azure.microsoft.co
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and select **Create a new resource** for one of the applicable Azure AI services or Azure AI services listed.
 
-2. Enter the applicable information to create your resource. Be sure to select the standard pricing tier.
+2. Enter the applicable information to create your AI Foundry resource. Be sure to select the standard pricing tier.
 
     > [!NOTE]
     > If you intend to purchase a commitment tier for disconnected container usage, you will need to request separate access and select the **Commitment tier disconnected containers** pricing tier. For more information, see [disconnected containers](./containers/disconnected-containers.md).

@@ -1,10 +1,10 @@
 ---
-title: 'Quickstart: Create an Azure AI services resource using Terraform'
-description: In this article, you create an Azure AI services resource using Terraform.
+title: 'Quickstart: Create an AI Foundry resource using Terraform'
+description: In this article, you create an AI Foundry resource using Terraform.
 keywords: Azure AI services, cognitive, artificial intelligence
 ms.service: azure-ai-services
 ms.topic: quickstart
-ms.date: 8/1/2024
+ms.date: 5/19/2025
 ms.custom:
   - devx-track-terraform
   - ignite-2023
@@ -15,7 +15,7 @@ content_well_notification:
 ai-usage: ai-assisted
 ---
 
-# Quickstart: Create an Azure AI services resource using Terraform
+# Quickstart: Create an AI Foundry resource using Terraform
 
 This article shows how to use Terraform to create an [Azure AI services multi-service resource](multi-service-resource.md?pivots=azportal) using [Terraform](/azure/developer/terraform/quickstart-configure).
 
@@ -29,7 +29,7 @@ In this article, you learn how to:
 > * Create a random pet name for the Azure resource group name using [random_pet](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/pet)
 > * Create an Azure resource group using [azurerm_resource_group](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group)
 > * Create a random string using [random_string](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string)
-> * Create an Azure AI services multi-service resource using [azurerm_cognitive_account](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account)
+> * Create an AI Foundry resource using [azurerm_cognitive_account](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account)
 
 ## Prerequisites
 

@@ -7,7 +7,7 @@ manager: nitinme
 keywords: Azure AI services, cognitive
 ms.service: azure-ai-services
 ms.topic: overview
-ms.date: 2/7/2025
+ms.date: 5/19/2025
 ms.author: eur
 ms.custom:
   - build-2023

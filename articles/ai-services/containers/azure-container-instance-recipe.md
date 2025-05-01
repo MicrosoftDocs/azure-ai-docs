@@ -7,9 +7,8 @@ manager: nitinme
 ms.custom: devx-track-azurecli
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 01/21/2025
+ms.date: 5/19/2025
 ms.author: aahi
-# https://github.com/Azure/cognitiveservices-aci
 #Customer intent: As a potential customer, I want to know more about how Azure AI services provides and supports Docker containers for each service.
 ---
 
@@ -21,9 +20,9 @@ With the following steps, scale Azure AI services applications in the cloud easi
 
 The recipe works with any Azure AI services container. The Azure AI services resource must be created before using the recipe. Each Azure AI service that supports containers has a "How to install" article for installing and configuring the service for a container. Some services require a file or set of files as input for the container, it is important that you understand and have used the container successfully before using this solution.
 
-* An Azure resource for the Azure AI service you're using.
-* Azure AI service resource **endpoint URL** - review your specific service's "How to install" for the container, to find where the endpoint URL is from within the Azure portal, and what a correct example of the URL looks like. The exact format can change from service to service.
-* Azure AI service resource **key** - the keys are on the **Keys** page for the Azure resource. You only need one of the two keys. The key is a string of 84 alpha-numeric characters.
+* An Azure resource for the Azure AI service that you're using.
+* Azure resource **endpoint URL** - review your specific service's "How to install" for the container, to find where the endpoint URL is from within the Azure portal, and what a correct example of the URL looks like. The exact format can change from service to service.
+* Azure resource **key** - the keys are on the **Keys** page for the Azure resource. You only need one of the two keys. The key is a string of 84 alpha-numeric characters.
 
 * A single Azure AI services container on your local host (your computer). Make sure you can:
   * Pull down the image with a `docker pull` command.
