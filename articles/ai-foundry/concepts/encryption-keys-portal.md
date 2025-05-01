@@ -8,7 +8,7 @@ ms.service: azure-ai-services
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 11/21/2024
+ms.date: 05/01/2025
 ms.reviewer: deeikele
 zone_pivot_groups: project-type
 # Customer intent: As an admin, I want to understand how I can use my own encryption keys with Azure AI Foundry.
@@ -80,15 +80,19 @@ You must use Azure Key Vault to store your customer-managed keys. You can either
 To enable customer-managed keys, the key vault containing your keys must meet these requirements:
 
 ::: zone-pivot="fdp-project"
+
 - You must enable both the **Soft Delete** and **Do Not Purge** properties on the key vault.
 - If you use the [Key Vault firewall](/azure/key-vault/general/access-behind-firewall), you must allow trusted Microsoft services to access the key vault.
 - You must grant your [!INCLUDE [fdp](../includes/fdp-project-name.md)] and Azure AI Services resource's system-assigned managed identity the following permissions on your key vault: *get key*, *wrap key*, *unwrap key*.
+
 ::: zone-pivot-end
 
 ::: zone-pivot="hub-project"
+
 - You must enable both the **Soft Delete** and **Do Not Purge** properties on the key vault.
 - If you use the [Key Vault firewall](/azure/key-vault/general/access-behind-firewall), you must allow trusted Microsoft services to access the key vault.
 - You must grant your hub and Azure AI Services resource's system-assigned managed identity the following permissions on your key vault: *get key*, *wrap key*, *unwrap key*.
+
 ::: zone-end
 
 The following limitations hold for Azure AI Services:
