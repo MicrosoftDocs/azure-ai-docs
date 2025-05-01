@@ -10,7 +10,7 @@ ms.author: mopeakande
 ms.reviewer: sehan
 ms.date: 08/19/2024
 ms.topic: how-to
-ms.custom: how-to, devplatv2, devx-track-azurecli, cliv2, sdkv2, devx-track-python
+ms.custom: how-to, devplatv2, devx-track-azurecli, cliv2, sdkv2, devx-track-python, update-code
 ms.devlang: azurecli
 ---
 

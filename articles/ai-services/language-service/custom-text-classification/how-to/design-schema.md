@@ -7,7 +7,7 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 12/19/2023
+ms.date: 11/21/2024
 ms.author: jboback
 ms.custom: language-service-custom-classification
 ---
@@ -24,9 +24,9 @@ The schema defines the classes that you need your model to classify your text in
 
     For example, if you are classifying support tickets, you might need the following classes: *login issue*, *hardware issue*, *connectivity issue*, and *new equipment request*.
 
-* **Avoid ambiguity in classes**: Ambiguity arises when the classes you specify share similar meaning to one another. The more ambiguous your schema is, the more labeled data you may need to differentiate between different classes.
+* **Avoid ambiguity in classes**: Ambiguity arises when the classes you specify share similar meaning to one another. The more ambiguous your schema is, the more labeled data you might need to differentiate between different classes.
 
-    For example, if you are classifying food recipes, they may be similar to an extent. To differentiate between *dessert recipe* and *main dish recipe*, you may need to label more examples to help your model distinguish between the two classes. Avoiding ambiguity saves time and yields better results. 
+    For example, if you are classifying food recipes, they may be similar to an extent. To differentiate between *dessert recipe* and *main dish recipe*, you might need to label more examples to help your model distinguish between the two classes. Avoiding ambiguity saves time and yields better results. 
 
 * **Out of scope data**: When using your model in production, consider adding an *out of scope* class to your schema if you expect documents that don't belong to any of your classes. Then add a few documents to your dataset to be labeled as *out of scope*. The model can learn to recognize irrelevant documents, and predict their labels accordingly.
 

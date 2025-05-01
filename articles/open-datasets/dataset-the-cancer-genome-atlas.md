@@ -35,9 +35,6 @@ This dataset is stored in the East US 2 Azure regions. Allocating compute resour
 
 East US 2: 'https://datasettcga.blob.core.windows.net/dataset'
 
-[SAS Token](/azure/storage/common/storage-sas-overview): ?sp=rl&st=2022-10-07T19:43:37Z&se=2030-10-02T03:43:37Z&spr=https&sv=2021-06-08&sr=c&sig=9YgXjisOpHJNgdeMb5lOOzBhA38PWGM8g2DHjo9A5Cs%3D
-
-
 ## Use terms
 
 Data is available without restrictions. For more information and citation details, see the [TCGA Program page](https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga/using-tcga/citing-tcga)

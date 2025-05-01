@@ -10,14 +10,14 @@ metadata:
   ms.topic: landing-page
   author: PatrickFarley
   ms.author: pafarley
-  ms.date: 01/22/2024
+  ms.date: 01/22/2025
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
 landingContent:
 # Cards and links should be based on top customer tasks or top subjects
 # Start card title with a verb
-  # Card 
+  # Card
   - title: About Custom Vision
     linkLists:
       - linkListType: overview
@@ -61,10 +61,6 @@ landingContent:
         links:
           - text: Use the prediction API
             url: use-prediction-api.md
-      - linkListType: tutorial
-        links:
-          - text: Logo detector for mobile
-            url: logo-detector-mobile.md
 
   - title: Test and improve models
     linkLists:
@@ -89,12 +85,6 @@ landingContent:
             url: custom-vision-onnx-windows-ml.md
           - text: Run TensorFlow model in Python
             url: export-model-python.md
-      - linkListType: tutorial
-        links:
-          - text: IoT Visual Alerts app
-            url: iot-visual-alerts-tutorial.md
-          - text: Logo detector for mobile
-            url: logo-detector-mobile.md
 
   - title: Reference
     linkLists:

@@ -62,7 +62,7 @@ Choose the tab for the environment you're using for other prerequisites.
 
 Creating a compute instance is a one time process for your workspace. You can reuse the compute as a development workstation or as a compute target for training. You can have multiple compute instances attached to your workspace.
 
-The dedicated cores per region per VM family quota and total regional quota, which applies to compute instance creation, is unified and shared with Azure Machine Learning training compute cluster quota. Stopping the compute instance doesn't release quota to ensure you are able to restart the compute instance. It isn't possible to change the virtual machine size of compute instance once it's created.
+The dedicated cores per region per VM family quota and total regional quota, which applies to compute instance creation, is unified and shared with Azure Machine Learning training compute cluster quota. Stopping the compute instance doesn't release quota to ensure you are able to restart the compute instance. A quota is a credit limit on Azure resources, not a capacity guarantee, Restarting a compute instance is still dependent on the available capacity of the region. If there is a capacity crunch in the region for the SKU, you may not be able to restart the compute instance.  It isn't possible to change the virtual machine size of compute instance once it's created.
 
 The fastest way to create a compute instance is to follow the [Create resources you need to get started](quickstart-create-resources.md).
 
@@ -154,7 +154,7 @@ A compute instance won't be considered idle if any custom application is running
 Also, if a compute instance has already been idle for a certain amount of time, if idle shutdown settings are updated to  an amount of time shorter than the current idle duration, the idle time clock is reset to 0. For example, if the compute instance has already been idle for 20 minutes, and the shutdown settings are updated to 15 minutes, the idle time clock is reset to 0.
 
 > [!IMPORTANT]
-> If the compute instance is also configured with a [managed identity](#assign-managed-identity), the compute instance won't shut down due to inactivity unless the managed identity has *contributor* access to the Azure Machine Learning workspace. For more information on assigning permissions, see [Manage access to Azure Machine Learning workspaces](how-to-assign-roles.md).
+> If the Azure Machine Learning workspace resource is also configured with a [managed identity](#assign-managed-identity), the compute instance won't shut down due to inactivity unless the managed identity has *contributor* access to the Azure Machine Learning workspace. For more information on assigning permissions, see [Manage access to Azure Machine Learning workspaces](how-to-assign-roles.md).
 
 The setting can be configured during compute instance creation or for existing compute instances via the following interfaces:
 
@@ -198,7 +198,7 @@ You can't change the idle time of an existing compute instance with the CLI.
 
 * For an existing compute instance:
 
-    1. In the left navigation bar, select **Compute**
+    1. In the left pane, select **Compute**
     1. In the list, select the compute instance you wish to change
     1. Select the **Edit** pencil in the **Schedules** section.
 
@@ -438,7 +438,7 @@ Assigned to user does not need compute write (create) permission to enable SSO.
 
 Here are the steps assigned to user needs to take. Please note creator of compute instance is not allowed to enable SSO on that compute instance due to security reasons.
 
-1. Click on compute in left navigation pane in Azure Machine Learning Studio.
+1. Click on compute in left pane in Azure Machine Learning studio.
 1. Click on the name of compute instance where you need to enable SSO.
 1. Edit the Single sign-on details section.
 

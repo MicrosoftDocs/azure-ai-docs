@@ -619,7 +619,7 @@ Once you've identified the data store you want to use, configure the output as f
 
 When you invoke a batch endpoint, some settings can be overwritten to make best use of the compute resources and to improve performance. The following settings can be configured on a per-job basis:
 
-* __Instance count__: use this setting to overwrite the number of instances to request from the compute cluster. For example, for larger volume of data inputs, you may want to use more instances to speed up the end to end batch scoring.
+* __Instance count__: use this setting to overwrite the number of instances to request from the compute cluster. For example, for larger volume of data inputs, you might want to use more instances to speed up the end to end batch scoring.
 * __Mini-batch size__: use this setting to overwrite the number of files to include in each mini-batch. The number of mini batches is decided by the total input file counts and mini-batch size. A smaller mini-batch size generates more mini batches. Mini batches can be run in parallel, but there might be extra scheduling and invocation overhead.
 * Other settings, such as __max retries__, __timeout__, and __error threshold__ can be overwritten. These settings might impact the end-to-end batch scoring time for different workloads.
 

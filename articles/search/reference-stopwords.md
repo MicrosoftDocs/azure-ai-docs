@@ -4,10 +4,10 @@ titleSuffix: Azure AI Search
 description: Reference documentation containing the stopwords list of the Microsoft language analyzers.
 
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
@@ -25,7 +25,7 @@ This article lists the stopwords used by the Microsoft analyzer for each languag
 For the stopword list for Lucene analyzers, see the [Apache Lucene source code on GitHub](https://github.com/apache/lucene/tree/main/lucene/analysis/common/src/resources/org/apache/lucene/analysis).
 
 > [!TIP]
-> To view the output of any given analyzer, call the [Analyze Text REST API](/rest/api/searchservice/test-analyzer). This API is often helpful for debugging unexpected search results.
+> To view the output of any given analyzer, call the [Analyze Text REST API](/rest/api/searchservice/indexes/analyze). This API is often helpful for debugging unexpected search results.
 
 ## Arabic (ar.microsoft)
 

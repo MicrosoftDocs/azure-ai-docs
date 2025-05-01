@@ -1,24 +1,24 @@
 ---
-title: Azure AI Studio model catalog vectorizer
+title: Azure AI Foundry model catalog vectorizer
 titleSuffix: Azure AI Search
-description: Connects to a deployed model from the Azure AI Studio model catalog at query time.
-author: careyjmac
-ms.author: chalton
-ms.service: cognitive-search
+description: Connects to a deployed model from the Azure AI Foundry model catalog at query time.
+author: gmndrg
+ms.author: gimondra
+ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: reference
-ms.date: 08/05/2024
+ms.date: 12/03/2024
 ---
 
-#	Azure AI Studio model catalog vectorizer
+#	Azure AI Foundry model catalog vectorizer
 
-> [!IMPORTANT] 
+> [!IMPORTANT]
 > This vectorizer is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [2024-05-01-Preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-05-01-Preview&preserve-view=true) supports this feature.
 
-The **Azure AI Studio model catalog** vectorizer connects to an embedding model that was deployed via [the Azure AI Studio model catalog](/azure/ai-studio/how-to/model-catalog) to an Azure Machine Learning endpoint. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed. 
+The **Azure AI Foundry model catalog** vectorizer connects to an embedding model that was deployed via [the Azure AI Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview) to an Azure Machine Learning endpoint. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed. 
 
-If you used integrated vectorization to create the vector arrays, the skillset should include an [AML skill pointing to the model catalog in Azure AI Studio (preview)](cognitive-search-aml-skill.md).
+If you used integrated vectorization to create the vector arrays, the skillset should include an [AML skill pointing to the model catalog in Azure AI Foundry portal](cognitive-search-aml-skill.md).
 
 ## Vectorizer parameters
 
@@ -27,7 +27,7 @@ Parameters are case-sensitive. Which parameters you choose to use depends on wha
 | Parameter name | Description |
 |--------------------|-------------|
 | `uri` | (Required) The [URI of the AML online endpoint](../machine-learning/how-to-authenticate-online-endpoint.md) to which the _JSON_ payload is sent. Only the **https** URI scheme is allowed. |
-| `modelName` | (Required) The model ID from the AI Studio model catalog that is deployed at the provided endpoint. Currently supported values are <ul><li>OpenAI-CLIP-Image-Text-Embeddings-vit-base-patch32 </li><li>OpenAI-CLIP-Image-Text-Embeddings-ViT-Large-Patch14-336 </li><li>Facebook-DinoV2-Image-Embeddings-ViT-Base </li><li>Facebook-DinoV2-Image-Embeddings-ViT-Giant </li><li>Cohere-embed-v3-english </li><li>Cohere-embed-v3-multilingual</ul> |
+| `modelName` | (Required) The model ID from the Azure AI Foundry model catalog that is deployed at the provided endpoint. Supported models are: <ul><li>Facebook-DinoV2-Image-Embeddings-ViT-Base </li><li>Facebook-DinoV2-Image-Embeddings-ViT-Giant </li><li>Cohere-embed-v3-english </li><li>Cohere-embed-v3-multilingual</ul> |
 | `key` | (Required for [key authentication](#WhatParametersToUse)) The [key for the AML online endpoint](../machine-learning/how-to-authenticate-online-endpoint.md). |
 | `resourceId` | (Required for [token authentication](#WhatParametersToUse)). The Azure Resource Manager resource ID of the AML online endpoint. It should be in the format subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.MachineLearningServices/workspaces/{workspace-name}/onlineendpoints/{endpoint_name}. |
 | `region` | (Optional for [token authentication](#WhatParametersToUse)). The [region](https://azure.microsoft.com/global-infrastructure/regions/) the AML online endpoint is deployed in. Needed if the region is different from the region of the search service. |
@@ -47,12 +47,10 @@ Which authentication parameters are required depends on what authentication your
 
 ## Supported vector query types
 
-Which vector query types are supported by the AI Studio model catalog vectorizer depends on the `modelName` that is configured.
+Which vector query types are supported by the Azure AI Foundry model catalog vectorizer depends on the `modelName` that is configured.
 
-| `modelName` | Supports `text` query | Supports `imageUrl` query | Supports `imageBinary` query |
+| Embedding model | Supports `text` query | Supports `imageUrl` query | Supports `imageBinary` query |
 |--------------------|-------------|-------------|-------------|
-| OpenAI-CLIP-Image-Text-Embeddings-vit-base-patch32 | X | X | X |
-| OpenAI-CLIP-Image-Text-Embeddings-ViT-Large-Patch14-336 | X | X | X |
 | Facebook-DinoV2-Image-Embeddings-ViT-Base |  | X | X |
 | Facebook-DinoV2-Image-Embeddings-ViT-Giant |  | X | X |
 | Cohere-embed-v3-english | X |  |  |
@@ -60,12 +58,10 @@ Which vector query types are supported by the AI Studio model catalog vectorizer
 
 ## Expected field dimensions
 
-The expected field dimensions for a field configured with an AI Studio model catalog vectorizer depend on the `modelName` that is configured.
+The expected field dimensions for a vector field configured with an Azure AI Foundry model catalog vectorizer depend on the `modelName` that is configured.
 
 | `modelName` | Expected dimensions |
 |--------------------|-------------|
-| OpenAI-CLIP-Image-Text-Embeddings-vit-base-patch32 | 512 |
-| OpenAI-CLIP-Image-Text-Embeddings-ViT-Large-Patch14-336 | 768 |
 | Facebook-DinoV2-Image-Embeddings-ViT-Base | 768 |
 | Facebook-DinoV2-Image-Embeddings-ViT-Giant | 1536 |
 | Cohere-embed-v3-english | 1024 |
@@ -73,16 +69,18 @@ The expected field dimensions for a field configured with an AI Studio model cat
 
 ## Sample definition
 
+Suggested model names in the Azure AI Foundry model catalog consist of the base model plus a random three-letter suffix. The name of your model will be different from the one shown in this example.
+
 ```json
 "vectorizers": [
     {
-        "name": "my-ai-studio-catalog-vectorizer",
+        "name": "my-model-catalog-vectorizer",
         "kind": "aml",
         "amlParameters": {
-            "uri": "https://my-aml-endpoint.eastus.inference.ml.azure.com/score",
-            "key": "0000000000000000000000000000000000000",
+            "uri": "https://Cohere-embed-v3-multilingual-hin.eastus.models.ai.azure.com",
+            "key": "aaaaaaaa-0b0b-1c1c-2d2d-333333333333",
             "timeout": "PT60S",
-            "modelName": "OpenAI-CLIP-Image-Text-Embeddings-vit-base-patch3",
+            "modelName": "Cohere-embed-v3-multilingual-hin",
             "resourceId": null,
             "region": null,
         },
@@ -93,7 +91,7 @@ The expected field dimensions for a field configured with an AI Studio model cat
 ## See also
 
 + [Integrated vectorization](vector-search-integrated-vectorization.md)
-+ [Integrated vectorization with models from Azure AI Studio](vector-search-integrated-vectorization-ai-studio.md)
++ [Integrated vectorization with models from Azure AI Foundry](vector-search-integrated-vectorization-ai-studio.md)
 + [How to configure a vectorizer in a search index](vector-search-how-to-configure-vectorizer.md)
 + [Azure Machine Learning skill](cognitive-search-aml-skill.md)
-+ [Azure AI Studio model catalog](/azure/ai-studio/how-to/model-catalog)
++ [Azure AI Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview)

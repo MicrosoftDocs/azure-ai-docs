@@ -4,14 +4,14 @@ titleSuffix: Azure AI Search
 description: Learn about tips and best practices for maximizing performance on a search service.
 author: mattgotteiner
 ms.author: magottei
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 06/06/2024
+ms.date: 03/21/2025
 ---
 
 # Tips for better performance in Azure AI Search
 
-This article is a collection of tips and best practices for boosting query and indexing performance for keyword search. Knowing which factors are most likely to impact search performance can help you avoid inefficiencies and get the most out of your search service. Some key factors include:
+This article is a collection of tips and best practices for boosting query and indexing performance for keyword search. Knowing which factors are most likely to affect search performance can help you avoid inefficiencies and get the most out of your search service. Some key factors include:
 
 + Index composition (schema and size)
 + Query design
@@ -22,7 +22,7 @@ This article is a collection of tips and best practices for boosting query and i
 
 ## Index size and schema
 
-Queries run faster on smaller indexes. This is partly a function of having fewer fields to scan, but it's also due to how the system caches content for future queries. After the first query, some content remains in memory where it's searched more efficiently. Because index size tends to grow over time, one best practice is to periodically revisit index composition, both schema and documents, to look for content reduction opportunities. However, if the index is right-sized, the only other calibration you can make is to increase capacity: either by [adding replicas](search-capacity-planning.md#adjust-capacity) or upgrading the service tier. The section ["Tip: Upgrade to a Standard S2 tier"](#tip-upgrade-to-a-standard-s2-tier) discusses the scale up versus scale out decision.
+Queries run faster on smaller indexes. This is partly a function of having fewer fields to scan, but it's also due to how the system caches content for future queries. After the first query, some content remains in memory where it's searched more efficiently. Because index size tends to grow over time, one best practice is to periodically revisit index composition, both schema and documents, to look for content reduction opportunities. However, if the index is right-sized, the only other calibration you can make is to increase capacity by [upgrading your service](search-how-to-upgrade.md), [adding replicas](search-capacity-planning.md#add-or-remove-partitions-and-replicas), or [switching to a higher tier](search-capacity-planning.md#change-your-pricing-tier). The section "[Tip: Switch to a Standard S2 tier](#tip-switch-to-a-standard-s2-tier)" discusses the scale up versus scale out decision.
 
 Schema complexity can also adversely affect indexing and query performance. Excessive field attribution builds in limitations and processing requirements. [Complex types](search-howto-complex-data-types.md) take longer to index and query. The next few sections explore each condition.
 
@@ -61,7 +61,7 @@ Query composition and complexity are one of the most important factors for perfo
 
 + **Number of searchable fields.** Each additional searchable field results in more work for the search service. You can limit the fields being searched at query time using the "searchFields" parameter. It's best to specify only the fields that you care about to improve performance.
 
-+ **Amount of data being returned.** Retrieving a large amount content can make queries slower. When structuring a query, return only those fields that you need to render the results page, and then retrieve remaining fields using the [Lookup API](/rest/api/searchservice/lookup-document) once a user selects a match.
++ **Amount of data being returned.** Retrieving a large amount content can make queries slower. When structuring a query, return only those fields that you need to render the results page, and then retrieve remaining fields using the [Lookup API](/rest/api/searchservice/documents/get) once a user selects a match.
 
 + **Use of partial term searches.** [Partial term searches](search-query-partial-matching.md), such as prefix search, fuzzy search, and regular expression search, are more computationally expensive than typical keyword searches, as they require full index scans to produce results.
 
@@ -93,7 +93,7 @@ When query performance is slowing down in general, adding more replicas frequent
 
 One positive side-effect of adding partitions is that slower queries sometimes perform faster due to parallel computing. We've noted parallelization on low selectivity queries, such as queries that match many documents, or facets providing counts over a large number of documents. Since significant computation is required to score the relevancy of the documents, or to count the numbers of documents, adding extra partitions helps queries complete faster.  
 
-To add partitions, use [Azure portal](search-capacity-planning.md#adjust-capacity), [PowerShell](search-manage-powershell.md), [Azure CLI](search-manage-azure-cli.md), or a management SDK.
+To add partitions, use the [Azure portal](search-capacity-planning.md#add-or-remove-partitions-and-replicas), [PowerShell](search-manage-powershell.md), [Azure CLI](search-manage-azure-cli.md), or a management SDK.
 
 ## Service capacity
 
@@ -103,13 +103,13 @@ The tier of your search service and the number of replicas/partitions also have 
 
 ### Tip: Create a new high capacity search service
 
-Basic and standard services created [in supported regions]([supported regions](search-limits-quotas-capacity.md#supported-regions-with-higher-storage-limits) after April 3, 2024 have more storage per partition than older services. Before upgrading to a higher tier and a higher billable rate, revisit the [tier service limits](search-limits-quotas-capacity.md#service-limits) to see if the same tier on a newer service gives you the necessary storage.
+Basic and Standard services created [in supported regions](search-limits-quotas-capacity.md#service-limits) after April 3, 2024 have more storage per partition than older services. If you have an older service, check if you can [upgrade your service](search-how-to-upgrade.md) to benefit from more capacity at the same billing rate. If an upgrade isn't available, review the [tier service limits](search-limits-quotas-capacity.md#service-limits) to see if the same tier on a newer service gives you the necessary storage.
 
-### Tip: Upgrade to a Standard S2 tier
+### Tip: Switch to a Standard S2 tier
 
 The Standard S1 search tier is often where customers start. A common pattern for S1 services is that indexes grow over time, which requires more partitions. More partitions lead to slower response times, so more replicas are added to handle the query load. As you can imagine, the cost of running an S1 service has now progressed to levels beyond the initial configuration.
 
-At this juncture, an important question to ask is whether it would be beneficial to move to a higher tier, as opposed to progressively increasing the number of partitions or replicas of the current service. 
+At this juncture, an important question to ask is whether it would be beneficial to [move to a higher tier](search-capacity-planning.md#change-your-pricing-tier), as opposed to progressively increasing the number of partitions or replicas of the current service.
 
 Consider the following topology as an example of a service that has taken on increasing levels of capacity:
 
@@ -133,7 +133,7 @@ However, if the administrator chose to move to a Standard S2 tier the topology w
 
 As this hypothetical scenario illustrates, you can have configurations on lower tiers that result in similar costs as if you had opted for a higher tier in the first place. However, higher tiers come with premium storage, which makes indexing faster. Higher tiers also have much more compute power, as well as extra memory. For the same costs, you could have more powerful infrastructure backing the same index.
 
-An important benefit of added memory is that more of the index can be cached, resulting in lower search latency, and a greater number of queries per second. With this extra power, the administrator may not need to even need to increase the replica count and could potentially pay less than by staying on the S1 service.
+An important benefit of added memory is that more of the index can be cached, resulting in lower search latency, and a greater number of queries per second. With this extra power, the administrator might not need to even need to increase the replica count and could potentially pay less than by staying on the S1 service.
 
 ### Tip: Consider alternatives to regular expression queries
 
@@ -146,5 +146,5 @@ Review these other articles related to service performance:
 + [Analyze performance](search-performance-analysis.md)
 + [Index large data sets in Azure AI Search](search-howto-large-index.md)
 + [Choose a service tier](search-sku-tier.md)
-+ [Plan or add capacity](search-capacity-planning.md#adjust-capacity)
++ [Plan or add capacity](search-capacity-planning.md#add-or-remove-partitions-and-replicas)
 + [Case Study: Use Cognitive Search to Support Complex AI Scenarios](https://techcommunity.microsoft.com/t5/azure-ai/case-study-effectively-using-cognitive-search-to-support-complex/ba-p/2804078)

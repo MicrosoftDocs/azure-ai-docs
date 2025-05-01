@@ -2,12 +2,11 @@
 title: Recipes for Docker containers
 titleSuffix: Azure AI services
 description: Learn how to build, test, and store containers with some or all of your configuration settings for deployment and reuse.
-#services: cognitive-services
 author: aahill
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 02/22/2024
+ms.date: 01/31/2025
 ms.author: aahi
 #Customer intent: As a potential customer, I want to know how to configure containers so I can reuse them.
 ---
@@ -23,8 +22,8 @@ Once you have this new layer of container (with settings), and you have tested i
 Any `docker run` examples in this document assume a Windows console with a `^` line continuation character. Consider the following for your own use:
 
 * Do not change the order of the arguments unless you are very familiar with docker containers.
-* If you are using an operating system other than Windows, or a console other than Windows console, use the correct console/terminal, folder syntax for mounts, and line continuation character for your console and system.  Because the Azure AI services container is a Linux operating system, the target mount uses a Linux-style folder syntax.
-* `docker run` examples use the directory off the `c:` drive to avoid any permission conflicts on Windows. If you need to use a specific directory as the input directory, you may need to grant the docker service permission.
+* If you are using an operating system other than Windows, or a console other than Windows console, use the correct console/terminal, folder syntax for mounts, and line continuation character for your console and system. Because the Azure AI services container is a Linux operating system, the target mount uses a Linux-style folder syntax.
+* `docker run` examples use the directory off the `c:` drive to avoid any permission conflicts on Windows. If you need to use a specific directory as the input directory, you might need to grant the docker service permission.
 
 ## Store no configuration settings in image
 
@@ -123,7 +122,7 @@ Follow these steps to use the Dockerfile and place the new image in your private
     az acr login --name <my-registry>
     ```
 
-    You can also sign in with docker login if you are assigned a service principal.
+    You can also sign in with `docker login` if you are assigned a service principal.
 
     ```Bash
     docker login <my-registry>.azurecr.io
@@ -158,7 +157,7 @@ COPY luisModel2 /input/
 
 ## Store all configuration settings
 
-If you are a single manager of the container, you may want to store all settings in the container. The new, resulting container will not need any variables passed in to run. 
+If you are a single manager of the container, you might want to store all settings in the container. The new, resulting container will not need any variables passed in to run. 
 
 Issues with this approach:
 

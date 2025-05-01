@@ -6,11 +6,12 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.custom: build-2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: larryfr
 author: Blackmist
-ms.reviewer: aashishb
-ms.date: 09/13/2023
+ms.reviewer: meerakurup
+ms.date: 09/12/2024
+# Customer Intent: As an admin, I want to understand how to secure Azure Machine Learning resources and workflows so that I can comply with my organization's security policies.
 ---
 
 # Enterprise security and governance for Azure Machine Learning
@@ -51,6 +52,8 @@ The system-assigned managed identity is used for internal service-to-service aut
 
 We don't recommend that admins revoke the access of the managed identity to the resources mentioned in the preceding table. You can restore access by using the [resync keys operation](how-to-change-storage-access-key.md).
 
+You should not grant users to have permission on the workspace's storage account to users that you do not want to be able to access workspace computes or identities. The workspace's storage account contains code and executables that will be run on your workspace computes. Users that have access to that storage account can edit or change code that will be executed in the context of the workspace, allowing access to workspace data and credentials.
+
 > [!NOTE]
 > If your Azure Machine Learning workspace has compute targets (for example, compute cluster, compute instance, or Azure Kubernetes Service [AKS] instance) that were created _before May 14, 2021_, you might have an additional Microsoft Entra account. The account name starts with `Microsoft-AzureML-Support-App-` and has contributor-level access to your subscription for every workspace region.
 >
@@ -58,7 +61,7 @@ We don't recommend that admins revoke the access of the managed identity to the 
 >
 > If your workspace has an attached AKS cluster, and it was created before May 14, 2021, _do not delete this Microsoft Entra account_. In this scenario, you must delete and re-create the AKS cluster before you can delete the Microsoft Entra account.
 
-You can provision the workspace to use a user-assigned managed identity, and then grant the managed identity additional roles. For example, you might grant a role to access your own Azure Container Registry instance for base Docker images.
+You can provision the workspace to use a user-assigned managed identity, and then grant the managed identity other roles. For example, you might grant a role to access your own Azure Container Registry instance for base Docker images.
 
 You can also configure managed identities for use with an Azure Machine Learning compute cluster. This managed identity is independent of the workspace managed identity. With a compute cluster, the managed identity is used to access resources such as secured datastores that the user running the training job might not have access to. For more information, see [Use managed identities for access control](how-to-identity-based-service-authentication.md).
 
@@ -89,19 +92,9 @@ You don't have to choose one or the other. For example, you can use an Azure Mac
   * Managed online endpoint
   * Batch online endpoint
 
-  For more information, see [Workspace managed virtual network isolation](how-to-managed-network.md).
-
 * __Azure Virtual Network instance__: Provides a more customizable virtual network offering. However, you're responsible for configuration and management. You might need to use network security groups, user-defined routes, or a firewall to restrict outbound communication.
 
-  For more information, see the following articles:
-
-  * [Secure Azure Machine Learning workspace resources using virtual networks](how-to-network-security-overview.md)
-  * [Secure an Azure Machine Learning workspace with virtual networks](how-to-secure-workspace-vnet.md)
-  * [Secure an Azure Machine Learning training environment with virtual networks](how-to-secure-training-vnet.md)
-  * [Secure an Azure Machine Learning inferencing environment with virtual networks](./how-to-secure-inferencing-vnet.md)
-  * [Use Azure Machine Learning studio in an Azure virtual network](how-to-enable-studio-virtual-network.md)
-  * [Use your workspace with a custom DNS server](how-to-custom-dns.md)
-  * [Configure inbound and outbound network traffic](how-to-access-azureml-behind-firewall.md)
+For more information, visit the [Compare network isolation configurations](concept-network-isolation-configurations.md) article.
 
 <a id="encryption-at-rest"></a><a id="azure-blob-storage"></a>
 
@@ -123,10 +116,8 @@ Azure Machine Learning has several inbound and outbound network dependencies. So
 
 For more information on Azure Policy, see the [Azure Policy documentation](/azure/governance/policy/overview). For more information on the policies that are specific to Azure Machine Learning, see [Audit and manage Azure Machine Learning](how-to-integrate-azure-policy.md).
 
-## Next steps
+## Related content
 
 * [Azure Machine Learning best practices for enterprise security](/azure/cloud-adoption-framework/ready/azure-best-practices/ai-machine-learning-enterprise-security)
-* [Use Azure Machine Learning with Azure Firewall](how-to-access-azureml-behind-firewall.md)
 * [Use Azure Machine Learning with Azure Virtual Network](how-to-network-security-overview.md)
-* [Encrypt data at rest and in transit](concept-data-encryption.md)
 * [Build a real-time recommendation API on Azure](/azure/architecture/reference-architectures/ai/real-time-recommendation)

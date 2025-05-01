@@ -30,7 +30,7 @@ When you submit an Azure Machine Learning training job that has source files fro
 
 Azure Machine Learning provides a shared file system for all users in a workspace. The best way to clone a Git repository into this file share is to create a compute instance and [open a terminal](./how-to-access-terminal.md). In the terminal, you have access to a full Git client and can clone and work with Git by using the Git CLI. For more information, see [Git CLI](https://git-scm.com/docs/gitcli).
 
-You can clone any Git repository you can authenticate to, such as a GitHub, Azure Repos, or BitBucket repo. It's best to clone the repository into your user directory, so that other users don't collide directly on your working branch.
+You can clone any Git repository you can authenticate to, such as a GitHub, Azure Repos, or Bitbucket repo. It's best to clone the repository into your user directory, so that other users don't collide directly on your working branch.
 
 There are some differences between cloning to the local file system of the compute instance or cloning to the shared file system, mounted as the *~/cloudfiles/code/* directory. In general, cloning to the local file system provides better performance than cloning to the mounted file system. However, if you delete and recreate the compute instance, the local file system is lost, while the mounted shared file system is kept.
 
@@ -87,7 +87,7 @@ Add the SSH key to your Git account by using the following instructions, dependi
   - [GitHub](https://docs.github.com/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account#adding-a-new-ssh-key-to-your-account)
   - [GitLab](https://docs.gitlab.com/ee/user/ssh.html#add-an-ssh-key-to-your-gitlab-account)
   - [Azure DevOps](/azure/devops/repos/git/use-ssh-keys-to-authenticate#step-2-add-the-public-key-to-azure-devops)
-  - [BitBucket](https://support.atlassian.com/bitbucket-cloud/docs/configure-ssh-and-two-step-verification/)
+  - [Bitbucket](https://support.atlassian.com/bitbucket-cloud/docs/configure-ssh-and-two-step-verification/)
 
 ### Clone the Git repository with SSH
 

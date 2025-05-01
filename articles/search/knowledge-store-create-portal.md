@@ -1,13 +1,13 @@
 ---
-title: "Quickstart: Create a knowledge store in the Azure portal"
+title: "Quickstart: Create a Knowledge Store in the Azure Portal"
 titleSuffix: Azure AI Search
-description: Use the Import data wizard to create a knowledge store used for persisting enriched content. Connect to a knowledge store for analysis from other apps, or send enriched content to downstream processes.
-author: HeidiSteen
-ms.author: heidist
+description: Learn how to use the Import Data wizard to create a knowledge store for persisting enriched content. Connect to a knowledge store for analysis from other apps or send enriched content to downstream processes.
+author: haileytap
+ms.author: haileytapia
 manager: nitinme
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 03/18/2024
+ms.date: 03/04/2025
 ms.custom:
   - mode-ui
   - ignite-2023
@@ -15,33 +15,32 @@ ms.custom:
 
 # Quickstart: Create a knowledge store in the Azure portal
 
-In this quickstart, you create a [knowledge store](knowledge-store-concept-intro.md) that serves as a repository for output generated from an [AI enrichment pipeline](cognitive-search-concept-intro.md) in  Azure AI Search. A knowledge store makes generated content available in Azure Storage for workloads other than search.
+In this quickstart, you create a [knowledge store](knowledge-store-concept-intro.md) that serves as a repository for output generated from an [AI enrichment pipeline](cognitive-search-concept-intro.md) in Azure AI Search. A knowledge store makes generated content available in Azure Storage for workloads other than search.
 
-First, you set up some sample data in Azure Storage. Next, you run the **Import data** wizard to create an enrichment pipeline that also generates a knowledge store. The knowledge store contains original source content pulled from the data  source (customer reviews of a hotel), plus AI-generated content that includes a sentiment label, key phrase extraction, and text translation of non-English customer comments.
+First, you set up sample data in Azure Storage. Next, you run the **Import data** wizard to create an enrichment pipeline that also generates a knowledge store. The knowledge store contains original source content pulled from the data source (customer reviews of a hotel), plus AI-generated content that includes a sentiment label, key phrase extraction, and text translation of non-English customer comments.
 
 ## Prerequisites
 
-Before you begin, have the following prerequisites in place:
-
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
 
-+ Azure AI Search. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your account. You can use a free service for this quickstart. 
++ An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. For this quickstart, you can use a free service.
 
-+ Azure Storage. [Create an account](/azure/storage/common/storage-account-create) or [find an existing account](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Storage%2storageAccounts/). The account type must be **StorageV2 (general purpose V2)**.
++ An Azure Storage account. [Create an account](/azure/storage/common/storage-account-create) or [find an existing account](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Storage%2storageAccounts/). The account type must be **StorageV2 (general purpose V2)**.
 
 + Sample data hosted in Azure Storage:
 
-  [Download HotelReviews_Free.csv](https://github.com/Azure-Samples/azure-search-sample-data/blob/main/hotelreviews/HotelReviews_data.csv). This CSV contains 19 pieces of customer feedback about a single hotel (originates from Kaggle.com). The file is in a repo with other sample data. If you don't want the whole repo, copy the raw content and paste it into a spreadsheet app on your device.
+  + [Download HotelReviews_Free.csv](https://github.com/Azure-Samples/azure-search-sample-data/blob/main/hotelreviews/HotelReviews_data.csv), which contains 19 pieces of customer feedback about a single hotel (originates from Kaggle.com). This CSV is in a repo with other sample data. If you don't want the whole repo, copy the raw content and paste it into a spreadsheet app on your device.
 
-  [Upload the file to a blob container](/azure/storage/blobs/storage-quickstart-blobs-portal) in Azure Storage.
+  + [Upload the file to a blob container](/azure/storage/blobs/storage-quickstart-blobs-portal) in Azure Storage.
 
-This quickstart also uses [Azure AI services](https://azure.microsoft.com/services/cognitive-services/) for AI enrichment. Because the workload is so small, Azure AI services is tapped behind the scenes for free processing for up to 20 transactions. This means that you can complete this exercise without having to create an extra Azure AI multi-service resource.
+> [!NOTE]
+> This quickstart uses [Azure AI services](https://azure.microsoft.com/services/cognitive-services/) for AI enrichment. Because the workload is so small, Azure AI services is tapped behind the scenes for free processing for up to 20 transactions. This means that you can complete this exercise without having to create an extra Azure AI services multi-service resource.
 
 ## Start the wizard
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) with your Azure account.
 
-1. [Find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Storage%2storageAccounts/) and on the Overview page, select **Import data** on the command bar to create a knowledge store in four steps.
+1. [Find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) and on the Overview page, select **Import data** on the command bar to create a knowledge store in four steps.
 
    :::image type="content" source="media/search-import-data-portal/import-data-cmd.png" alt-text="Screenshot of the Import data command" border="true":::
 
@@ -61,7 +60,7 @@ Because the data is multiple rows in one CSV file, set the *parsing mode* to get
 
    A connection string can be full access, having the following format: `DefaultEndpointsProtocol=https;AccountName=<YOUR-ACCOUNT-NAME>;AccountKey=<YOUR-ACCOUNT-KEY>;EndpointSuffix=core.windows.net`
 
-   Or, a connection string can reference a managed identity, assuming it's [configured and assigned a role](search-howto-managed-identities-data-sources.md) in Azure Storage: `ResourceId=/subscriptions/{YOUR-SUBSCRIPTION-ID}/resourceGroups/{YOUR-RESOURCE-GROUP-NAME}/providers/Microsoft.Storage/storageAccounts/{YOUR-ACCOUNT-NAME};`
+   Or, a connection string can reference a managed identity, assuming it's [configured and assigned a role](search-howto-managed-identities-data-sources.md) in Azure Storage: `ResourceId=/subscriptions/<YOUR-SUBSCRIPTION-ID>/resourceGroups/<YOUR-RESOURCE-GROUP-NAME>/providers/Microsoft.Storage/storageAccounts/<YOUR-ACCOUNT-NAME>;`
 
 1. In **Containers**, enter the name of the blob container holding the data ("hotel-reviews").
 
@@ -146,7 +145,7 @@ In the **Overview** page, open the **Indexers** tab in the middle of the page, a
 
 1. In the Azure portal, [open the Storage account](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Storage%2storageAccounts/) used to create the knowledge store.
 
-1. In the storage account's left navigation pane, select **Storage browser** to view the new tables. 
+1. In the storage account's left pane, select **Storage browser** to view the new tables. 
 
    You should see three tables, one for each projection that was offered in the "Save enrichments" section of the "Add enrichments" page.
 
@@ -166,16 +165,16 @@ In this quickstart, the table for "hotelReviewssPages" should look similar to th
 
 When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
+You can find and manage resources in the Azure portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
 
-If you're using a free service, remember that you're limited to three indexes, indexers, and data sources. You can delete individual items in the portal to stay under the limit.
+If you're using a free service, remember that you're limited to three indexes, indexers, and data sources. You can delete individual items in the Azure portal to stay under the limit.
 
 > [!TIP]
 > If you want to repeat this exercise or try a different AI enrichment walkthrough, delete the **hotel-reviews-idxr** indexer and the related objects to recreate them. Deleting the indexer resets the free daily transaction counter to zero.
 
-## Next steps
+## Next step
 
-Now that you've been introduced to a knowledge store, take a closer look at each step by switching over to the REST API walkthrough. Tasks that the wizard handled internally are explained in the REST walkthrough.
+Now that you've been introduced to a knowledge store, take a closer look at each step by completing the REST API walkthrough. The walkthrough explains tasks that the wizard handled internally.
 
 > [!div class="nextstepaction"]
 > [Create a knowledge store using REST](knowledge-store-create-rest.md)

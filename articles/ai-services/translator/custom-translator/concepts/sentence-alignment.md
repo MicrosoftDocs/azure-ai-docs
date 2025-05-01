@@ -1,11 +1,11 @@
 ---
-title: "Sentence pairing and alignment - Custom Translator"
+title: "Sentence pairing and alignment - Azure AI Custom Translator"
 titleSuffix: Azure AI services
-description: During the training execution, sentences present in parallel documents are paired or aligned. Custom Translator learns translations one sentence at a time, by reading a sentence and translating it. Then it aligns words and phrases in these two sentences to each other.
+description: During the training execution, sentences present in parallel documents are paired or aligned. Azure AI Custom Translator learns translations one sentence at a time, by reading a sentence and translating it. Then it aligns words and phrases in these two sentences to each other.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 02/12/2024
+ms.date: 04/14/2025
 ms.author: lajanuar
 ms.topic: conceptual
 ms.custom: cogserv-non-critical-translator
@@ -47,10 +47,10 @@ For a training to succeed, the following table shows the minimum number of sente
 
 > [!NOTE]
 >
-> - Training will not start and will fail if the 10,000 minimum sentence count for Training is not met.
-> - Tuning and Testing are optional. If you do not provide them, the system will remove an appropriate percentage from Training to use for validation and testing.
-> - You can train a model using only dictionary data. Please refer to [What is Dictionary](dictionaries.md).
-> - If your dictionary contains more than 250,000 sentences, our Document Translation feature is a better choice. Please refer to [Document Translation](../../document-translation/overview.md).
+> - Training doesn't start and fails if the 10,000 minimum sentence count for training isn't met.
+> - Tuning and testing are optional. If you don't provide them, the system removes an appropriate percentage from training to use for validation and testing.
+> - You can train a model using dictionary data only. For more information, *see* [What is a dictionary](dictionaries.md).
+> - The Document translation feature is recommended for training with dictionaries that contain more than 250,000 sentences. For more information, *see* [Document translation](../../document-translation/overview.md).
 > - Free (F0) subscription training has a maximum limit of 2,000,000 characters.
 
 ## Next steps

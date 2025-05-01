@@ -1,11 +1,11 @@
 ---
-title: "Use Document Intelligence (formerly Form Recognizer) SDK for Python (REST API v2.1)"
+title: "Use Document Intelligence SDK for Python (REST API v2.1)"
 description: Use the Document Intelligence SDK for Python (REST API v2.1) to create a forms processing app that extracts key data from documents.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 05/23/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ms.custom: devx-track-python
 ---
@@ -27,7 +27,7 @@ ms.custom: devx-track-python
 - A Document Intelligence resource. <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer"  title="Create a Document Intelligence resource."  target="_blank">Create a Document Intelligence resource </a> in the Azure portal. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
   1. After your resource deploys, select **Go to resource**.
-  1. In the left navigation menu, select **Keys and Endpoint**.
+  1. In the left pane, select **Keys and Endpoint**.
   1. Copy one of the keys and the **Endpoint** for use later in this article.
 
   :::image type="content" source="../../../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
@@ -57,7 +57,7 @@ Install the client library and create a Python application.
 
 ## Use the Object model
 
-With Document Intelligence, you can create two different client types. The first, `form_recognizer_client`, queries the service to recognize form fields and content. The second, `form_training_client`, creates and manages custom models to improve recognition.
+With Document Intelligence, you can create two different client types. The first—`form_recognizer_client`—queries the service to recognize form fields and content. The second—`form_training_client`—creates and manages custom models to improve recognition.
 
 `form_recognizer_client` provides the following operations:
 
@@ -100,7 +100,7 @@ Use the sample form and receipt images included in the samples, which is also av
 
 ## Analyze layout
 
-You can use Document Intelligence to analyze tables, lines, and words in documents, without needing to train a model. For more information about layout extraction, see the [Document Intelligence layout model](../../../concept-layout.md).
+You can use Document Intelligence to analyze tables, lines, and words in documents, without needing to train a model. For more information about layout extraction, see the [Document Intelligence layout model](../../../prebuilt/layout.md).
 
 To analyze the content of a file at a given URL, use the `begin_recognize_content_from_url` method. The returned value is a collection of `FormPage` objects. There's one object for each page in the submitted document. The following code iterates through these objects and prints the extracted key/value pairs and table data.
 
@@ -132,7 +132,7 @@ Confidence score: 1.0
 
 ## Analyze receipts
 
-This section demonstrates how to analyze and extract common fields from US receipts by using a pretrained receipt model. For more information about receipt analysis, see the [Document Intelligence receipt model](../../../concept-receipt.md). To analyze receipts from a URL, use the `begin_recognize_receipts_from_url` method.
+This section demonstrates how to analyze and extract common fields from US receipts by using a pretrained receipt model. For more information about receipt analysis, see the [Document Intelligence receipt model](../../../prebuilt/receipt.md). To analyze receipts from a URL, use the `begin_recognize_receipts_from_url` method.
 
 [!code-python[](~/cognitive-services-quickstart-code/python/FormRecognizer/FormRecognizerQuickstart.py?name=snippet_receipts)]
 
@@ -172,7 +172,7 @@ To analyze business cards from a URL, use the `begin_recognize_business_cards_fr
 
 ## Analyze invoices
 
-This section demonstrates how to analyze and extract common fields from sales invoices by using a pretrained model. For more information about invoice analysis, see the [Document Intelligence invoice model](../../../concept-invoice.md).
+This section demonstrates how to analyze and extract common fields from sales invoices by using a pretrained model. For more information about invoice analysis, see the [Document Intelligence invoice model](../../../prebuilt/invoice.md).
 
 To analyze invoices from a URL, use the `begin_recognize_invoices_from_url` method.
 
@@ -183,7 +183,7 @@ To analyze invoices from a URL, use the `begin_recognize_invoices_from_url` meth
 
 ## Analyze ID documents
 
-This section demonstrates how to analyze and extract key information from government-issued identification documents, including worldwide passports and U.S. driver's licenses, by using the Document Intelligence prebuilt ID model. For more information about ID document analysis, see the [Document Intelligence ID document model](../../../concept-id-document.md).
+This section demonstrates how to analyze and extract key information from government-issued identification documents such as worldwide passports and U.S. driver's licenses using the prebuilt ID model. For more information about ID document analysis, see the [Document Intelligence ID document model](../../../prebuilt/id-document.md).
 
 To analyze ID documents from a URL, use the `begin_recognize_id_documents_from_url` method.
 
@@ -286,7 +286,7 @@ Document errors: []
 This section demonstrates how to extract key/value information and other content from your custom template types, using models you trained with your own forms.
 
 > [!IMPORTANT]
-> In order to implement this scenario, you must have already trained a model so you can pass its ID into the method operation. See the [Train a model](#train-a-model-without-labels) section.
+> In order to implement this scenario, you must have a trained a model so you can pass its ID into the method operation. See the [Train a model](#train-a-model-without-labels) section.
 
 You use the `begin_recognize_custom_forms_from_url` method. The returned value is a collection of `RecognizedForm` objects. There's one object for each page in the submitted document. The following code prints the analysis results to the console. It prints each recognized field and corresponding value, along with a confidence score.
 
@@ -391,10 +391,6 @@ If you want to clean up and remove an Azure AI services subscription, you can de
 
 These issues might be helpful in troubleshooting.
 
-### General
-
-The Document Intelligence client library raises exceptions defined in [Azure Core](https://aka.ms/azsdk-python-azure-core).
-
 ### Logging
 
 This library uses the [standard logging library](https://docs.python.org/3/library/logging.html) for logging. Basic information about HTTP sessions, such as URLs and headers, is logged at the INFO level.
@@ -410,9 +406,11 @@ Similarly, `logging_enable` can enable detailed logging for a single operation, 
 ## REST samples on GitHub
 
 - Extract text, selection marks, and table structure from documents: [Extract layout data - Python](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/python/FormRecognizer/rest/python-layout.md)
-- Train custom models and extract custom form data:
+- Train a custom model and extract custom form data:
+
   - [Train without labels - Python](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/python/FormRecognizer/rest/python-train-extract.md)
   - [Train with labels - Python](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/python/FormRecognizer/rest/python-labeled-data.md)
+  
 - Extract data from invoices: [Extract invoice data - Python](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/python/FormRecognizer/rest/python-invoices.md)
 - Extract data from sales receipts: [Extract receipt data - Python](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/python/FormRecognizer/rest/python-receipts.md)
 - Extract data from business cards: [Extract business card data - Python](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/python/FormRecognizer/rest/python-business-cards.md)

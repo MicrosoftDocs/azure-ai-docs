@@ -2,12 +2,11 @@
 title: Orchestration workflow limits
 titleSuffix: Azure AI services
 description: Learn about the data, region, and throughput limits for Orchestration workflow
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 12/19/2023
+ms.date: 11/21/2024
 ms.author: jboback
 ms.custom: language-service-clu, mentions_regions
 ---

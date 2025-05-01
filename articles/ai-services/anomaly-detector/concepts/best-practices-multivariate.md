@@ -2,7 +2,6 @@
 title: Best practices for using the Multivariate Anomaly Detector API
 titleSuffix: Azure AI services
 description: Best practices for using the Anomaly Detector Multivariate API's to apply anomaly detection to your time series data.
-#services: cognitive-services
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
@@ -185,7 +184,7 @@ to determine whether data at `2021-01-02T00:01:00Z` is anomalous. It moves on in
 
 Normally we recommend you to use  `severity` as the filter to sift out 'anomalies' that aren't so important to your business. Depending on your scenario and data pattern, those anomalies that are less important often have relatively lower `severity` values or standalone (discontinuous) high `severity` values like random spikes.
 
-In cases where you've found a need of more sophisticated rules than thresholds against `severity` or duration of continuous high `severity` values, you may want to use `score` to build more powerful filters. Understanding how MVAD is using `score` to determine anomalies may help:
+In cases where you've found a need of more sophisticated rules than thresholds against `severity` or duration of continuous high `severity` values, you might want to use `score` to build more powerful filters. Understanding how MVAD is using `score` to determine anomalies may help:
 
 We consider whether a data point is anomalous from both global and local perspective. If `score` at a timestamp is higher than a certain threshold, then the timestamp is marked as an anomaly. If `score` is lower than the threshold but is relatively higher in a segment, it's also marked as an anomaly.
 

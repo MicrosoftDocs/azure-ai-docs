@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Extract metadata and structured information from unstructured data and shape it as a complex type in an AI enrichment pipeline in Azure AI Search.
 author: gmndrg
 ms.author: gimondra
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
@@ -241,7 +241,7 @@ In this case, the **Shaper** creates a complex type. This structure exists in-me
                     "chapterTitles": [
                       { "title": "Start young", "number": 1},
                       { "title": "Laugh often", "number": 2},
-                      { "title": "Eat, sleep and exercise", "number: 3}
+                      { "title": "Eat, sleep and exercise", "number": 3}
                     ]
                 }
             }

@@ -4,11 +4,12 @@ titleSuffix: Azure AI services
 description: Get reference documentation for Speech to text REST API.
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: reference
-ms.date: 6/6/2024
+ms.topic: concept-article
+ms.date: 3/10/2025
 ms.reviewer: eur
 author: eric-urban
 ms.author: eur
+# Customer intent: As a developer, I want to learn about the Speech to text REST API.
 ---
 
 # Speech to text REST API
@@ -16,22 +17,18 @@ ms.author: eur
 Speech to text REST API is used for [batch transcription](batch-transcription.md) and [custom speech](custom-speech-overview.md). 
 
 > [!IMPORTANT]
-> Speech to text REST API v3.2 is the latest version that's generally available. Preview versions *3.2-preview.1* and *3*.2-preview.2* will be removed in September 2024.
-> [Speech to text REST API](rest-speech-to-text.md) v3.1 will be retired on a date to be announced. For more information about upgrading, see the Speech to text REST API [v3.1 to v3.2](migrate-v3-1-to-v3-2.md) migration guide.
-> Speech to text REST API v3.0 will be retired on April 1st, 2026. For more information about upgrading, see the Speech to text REST API [v3.0 to v3.1](migrate-v3-0-to-v3-1.md) and [v3.1 to v3.2](migrate-v3-1-to-v3-2.md) migration guides.
+> Speech to text REST API version `2024-11-15` is the latest version that's generally available. 
+> - [Speech to text REST API](rest-speech-to-text.md) version `2024-05-15-preview` will be retired on a date to be announced. 
+> - Speech to text REST API `v3.0`, `v3.1`, `v3.2`, `3.2-preview.1`, and `3.2-preview.2` will be retired on April 1st, 2026. 
+> 
+> For more information about upgrading, see the Speech to text REST API [v3.0 to v3.1](migrate-v3-0-to-v3-1.md), [v3.1 to v3.2](migrate-v3-1-to-v3-2.md), and [v3.2 to 2024-11-15](migrate-2024-11-15.md) migration guides.
 
 > [!div class="nextstepaction"]
-> [See the Speech to text REST API 2024-05-15 reference documentation](/rest/api/speechtotext/operation-groups?view=rest-speechtotext-2024-05-15-preview&preserve-view=true)
-
-> [!div class="nextstepaction"]
-> [See the Speech to text REST API v3.2 reference documentation](/rest/api/speechtotext/operation-groups?view=rest-speechtotext-v3.2&preserve-view=true)
-
-> [!div class="nextstepaction"]
-> [See the Speech to text REST API v3.1 reference documentation](/rest/api/speechtotext/operation-groups?view=rest-speechtotext-v3.1&preserve-view=true)
+> [See the Speech to text REST API 2024-11-15 reference documentation](/rest/api/speechtotext/operation-groups?view=rest-speechtotext-2024-11-15&preserve-view=true)
 
 Use Speech to text REST API to:
 
-- [Fast transcription](fast-transcription-create.md): Transcribe audio files with returning results synchronously and much faster than real-time audio. Use the fast transcription API ([/speechtotext/transcriptions:transcribe](/rest/api/speechtotext/transcriptions/transcribe)) in the scenarios that you need the transcript of an audio recording as quickly as possible with predictable latency, such as quick audio or video transcription or video translation.
+- [Fast transcription](fast-transcription-create.md): Transcribe audio files with returning results synchronously and much faster than real-time audio. Use the fast transcription API ([/speechtotext/transcriptions:transcribe](https://go.microsoft.com/fwlink/?linkid=2296107)) in the scenarios that you need the transcript of an audio recording as quickly as possible with predictable latency, such as quick audio or video transcription or video translation.
 - [Custom speech](custom-speech-overview.md): Upload your own data, test and train a custom model, compare accuracy between models, and deploy a model to a custom endpoint. Copy models to other subscriptions if you want colleagues to have access to a model that you built, or if you want to deploy a model to more than one region.
 - [Batch transcription](batch-transcription.md): Transcribe audio files as a batch from multiple URLs or an Azure container. 
 

@@ -7,10 +7,11 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 1/22/2024
+ms.date: 4/28/2025
 ms.author: eur
 zone_pivot_groups: programming-languages-speech-sdk-cli
 keywords: on-premises, Docker, container
+#Customer intent: As a developer, I want to learn how to install and run speech to text containers with Docker.
 ---
 
 # Speech to text containers with Docker
@@ -30,7 +31,7 @@ The fully qualified container image name is, `mcr.microsoft.com/azure-cognitive-
 | Version | Path |
 |-----------|------------|
 | Latest | `mcr.microsoft.com/azure-cognitive-services/speechservices/speech-to-text:latest`<br/><br/>The `latest` tag pulls the latest image for the `en-US` locale. |
-| 4.6.0 | `mcr.microsoft.com/azure-cognitive-services/speechservices/speech-to-text:4.6.0-amd64-mr-in` |
+| 4.12.0 | `mcr.microsoft.com/azure-cognitive-services/speechservices/speech-to-text:4.12.0-amd64-mr-in` |
 
 All tags, except for `latest`, are in the following format and are case sensitive:
 
@@ -44,12 +45,19 @@ The tags are also available [in JSON format](https://mcr.microsoft.com/v2/azure-
 {
   "name": "azure-cognitive-services/speechservices/speech-to-text",
   "tags": [
-    "2.10.0-amd64-ar-ae",
-    "2.10.0-amd64-ar-bh",
-    "2.10.0-amd64-ar-eg",
-    "2.10.0-amd64-ar-iq",
-    "2.10.0-amd64-ar-jo",
-    <--redacted for brevity-->
+    <--redacted for brevity-->    
+    "4.12.0-amd64-sw-tz",
+    "4.12.0-amd64-ta-in",
+    "4.12.0-amd64-th-th",
+    "4.12.0-amd64-tr-tr",
+    "4.12.0-amd64-vi-vn",
+    "4.12.0-amd64-wuu-cn",
+    "4.12.0-amd64-yue-cn",
+    "4.12.0-amd64-zh-cn",
+    "4.12.0-amd64-zh-cn-sichuan",
+    "4.12.0-amd64-zh-hk",
+    "4.12.0-amd64-zh-tw",
+    "4.12.0-amd64-zu-za",
     "latest"
   ]
 }

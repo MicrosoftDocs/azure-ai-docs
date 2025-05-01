@@ -1,12 +1,12 @@
 ---
 title: "Quickstart: Image Analysis client library for Node.js"
 description: Get started with the Image Analysis client library for Node.js with this quickstart
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: include
-ms.date: 12/15/2020
+ms.date: 09/30/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ms.custom: devx-track-js
 ---
@@ -15,27 +15,23 @@ ms.custom: devx-track-js
 
 Use the Image Analysis client library for JavaScript to analyze a remote image for content tags.
 
+> [!TIP]
+> You can also analyze a local image. See the [ComputerVisionClient](/javascript/api/@azure/cognitiveservices-computervision/computervisionclient) methods, such as `describeImageInStream`. Or, see the [sample code on GitHub](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/javascript/ComputerVision/ImageAnalysisQuickstart.js) for scenarios involving local images.
 
 > [!TIP]
-> You can also analyze a local image. See the [ComputerVisionClient](/javascript/api/@azure/cognitiveservices-computervision/computervisionclient) methods, such as **describeImageInStream**. Or, see the sample code on [GitHub](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/javascript/ComputerVision/ImageAnalysisQuickstart.js) for scenarios involving local images.
-
-> [!TIP]
-> The Analyze API can do many different operations other than generate image tags. See the [Image Analysis how-to guide](../../how-to/call-analyze-image.md) for examples that showcase all of the available features.
+> The Analyze Image API can do many different operations other than generate image tags. See the [Image Analysis how-to guide](../../how-to/call-analyze-image.md) for examples that showcase all of the available features.
 
 [Reference documentation](/javascript/api/@azure/cognitiveservices-computervision/) | [Package (npm)](https://www.npmjs.com/package/@azure/cognitiveservices-computervision) | [Samples](/samples/browse/?products=azure&terms=computer-vision)
 
 ## Prerequisites
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
-* The current version of [Node.js](https://nodejs.org/)
-* Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision"  title="create a Vision resource"  target="_blank">create a Vision resource</a> in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**.
+* An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* The current version of [Node.js](https://nodejs.org/).
+* Once you have your Azure subscription, create a [Computer Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision) in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**.
     * You need the key and endpoint from the resource you create to connect your application to the Azure AI Vision service.
     * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
-
-
 [!INCLUDE [create environment variables](../environment-variables.md)]
-
 
 ## Analyze image
 
@@ -47,7 +43,7 @@ Use the Image Analysis client library for JavaScript to analyze a remote image f
     mkdir myapp && cd myapp
     ```
 
-    Run the `npm init` command to create a node application with a `package.json` file.
+    Run the `npm init` command to create a node application with a *package.json* file.
 
     ```console
     npm init
@@ -67,9 +63,9 @@ Use the Image Analysis client library for JavaScript to analyze a remote image f
     npm install async
     ```
 
-    Your app's `package.json` file will be updated with the dependencies.
+    Your app's `package.json` file is updated with the dependencies.
 
-    Create a new file, *index.js*. 
+    Create a new file, *index.js*.
 
 1. Open *index.js* in a text editor and paste in the following code.
 
@@ -82,9 +78,9 @@ Use the Image Analysis client library for JavaScript to analyze a remote image f
    node index.js
    ```
 
-
-
 ## Output
+
+The output of the operation should look like the following example.
 
 ```console
 -------------------------------------------------
@@ -97,8 +93,6 @@ Tags: grass (1.00), dog (0.99), mammal (0.99), animal (0.99), dog breed (0.99), 
 End of quickstart.
 ```
 
-
-
 ## Clean up resources
 
 If you want to clean up and remove an Azure AI services subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
@@ -106,12 +100,12 @@ If you want to clean up and remove an Azure AI services subscription, you can de
 * [Azure portal](../../../multi-service-resource.md?pivots=azportal#clean-up-resources)
 * [Azure CLI](../../../multi-service-resource.md?pivots=azcli#clean-up-resources)
 
-## Next steps
+## Next step
 
-In this quickstart, you learned how to install the Image Analysis client library and make basic image analysis calls. Next, learn more about the Analyze API features.
+In this quickstart, you learned how to install the Image Analysis client library and make basic image analysis calls. Next, learn more about the Analyze Image API features.
 
 > [!div class="nextstepaction"]
->[Call the Analyze API](../../how-to/call-analyze-image.md)
+>[Call the Analyze Image API](../../how-to/call-analyze-image.md)
 
-* [Image Analysis overview](../../overview-image-analysis.md)
-* The source code for this sample can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/javascript/ComputerVision/ImageAnalysisQuickstart.js).
+* [What is Image Analysis?](../../overview-image-analysis.md)
+* [Source code for this sample on GitHub](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/javascript/ComputerVision/ImageAnalysisQuickstart.js)

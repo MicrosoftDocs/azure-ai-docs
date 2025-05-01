@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: conceptual
-ms.date: 09/25/2023
+ms.date: 01/29/2025
 ms.author: pafarley
 ---
 
@@ -20,9 +20,9 @@ In all API calls, be sure to change the _api-version_ parameter in your code:
 
 |old | new |
 |--|--|
-`api-version=2023-04-30-preview` | `api-version=2023-10-01` |
+`api-version=2023-04-30-preview` | `api-version=2023-10-01` (or later version) |
 
-Note the following REST endpoint name changes:
+Note the following REST endpoint name changes from the preview API:
 
 | Public preview term          | GA term                 |  
 |-------------------|---------------------------|  
@@ -130,6 +130,8 @@ The **blocklistItems** API call with an item ID (retrieve a single item):
 ```
 
 
-## Next steps
+## Next step
 
-- [Quickstart: Analyze text content](../quickstart-text.md)
+
+> [!div class="nextstepaction"]
+> [Quickstart: Analyze text content](../quickstart-text.md)

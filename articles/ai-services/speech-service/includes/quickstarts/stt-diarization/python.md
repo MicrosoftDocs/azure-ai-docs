@@ -2,7 +2,7 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 01/30/2024
+ms.date: 3/10/2025
 ms.author: eur
 ---
 
@@ -53,12 +53,17 @@ Follow these steps to create a new console application.
         print('SessionStopped event')
 
     def conversation_transcriber_transcribed_cb(evt: speechsdk.SpeechRecognitionEventArgs):
-        print('TRANSCRIBED:')
+        print('\nTRANSCRIBED:')
         if evt.result.reason == speechsdk.ResultReason.RecognizedSpeech:
             print('\tText={}'.format(evt.result.text))
-            print('\tSpeaker ID={}'.format(evt.result.speaker_id))
+            print('\tSpeaker ID={}\n'.format(evt.result.speaker_id))
         elif evt.result.reason == speechsdk.ResultReason.NoMatch:
             print('\tNOMATCH: Speech could not be TRANSCRIBED: {}'.format(evt.result.no_match_details))
+
+    def conversation_transcriber_transcribing_cb(evt: speechsdk.SpeechRecognitionEventArgs):
+        print('TRANSCRIBING:')
+        print('\tText={}'.format(evt.result.text))
+        print('\tSpeaker ID={}'.format(evt.result.speaker_id))
 
     def conversation_transcriber_session_started_cb(evt: speechsdk.SessionEventArgs):
         print('SessionStarted event')
@@ -67,6 +72,7 @@ Follow these steps to create a new console application.
         # This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
         speech_config = speechsdk.SpeechConfig(subscription=os.environ.get('SPEECH_KEY'), region=os.environ.get('SPEECH_REGION'))
         speech_config.speech_recognition_language="en-US"
+        speech_config.set_property(property_id=speechsdk.PropertyId.SpeechServiceResponse_DiarizeIntermediateResults, value='true')
 
         audio_config = speechsdk.audio.AudioConfig(filename="katiesteve.wav")
         conversation_transcriber = speechsdk.transcription.ConversationTranscriber(speech_config=speech_config, audio_config=audio_config)
@@ -81,6 +87,7 @@ Follow these steps to create a new console application.
 
         # Connect callbacks to the events fired by the conversation transcriber
         conversation_transcriber.transcribed.connect(conversation_transcriber_transcribed_cb)
+        conversation_transcriber.transcribing.connect(conversation_transcriber_transcribing_cb)
         conversation_transcriber.session_started.connect(conversation_transcriber_session_started_cb)
         conversation_transcriber.session_stopped.connect(conversation_transcriber_session_stopped_cb)
         conversation_transcriber.canceled.connect(conversation_transcriber_recognition_canceled_cb)
@@ -122,35 +129,233 @@ Follow these steps to create a new console application.
 The transcribed conversation should be output as text:
 
 ```output
-SessionStarted event
-TRANSCRIBED:
-        Text=Good morning, Steve.
+TRANSCRIBING:
+        Text=good morning
         Speaker ID=Unknown
-TRANSCRIBED:
-        Text=Good morning, Katie.
+TRANSCRIBING:
+        Text=good morning steve
         Speaker ID=Unknown
+TRANSCRIBING:
+        Text=good morning steve how are
+        Speaker ID=Guest-1
+TRANSCRIBING:
+        Text=good morning steve how are you doing today
+        Speaker ID=Guest-1
+
+TRANSCRIBED:
+        Text=Good morning, Steve. How are you doing today?
+        Speaker ID=Guest-1
+
+TRANSCRIBING:
+        Text=good morning katie
+        Speaker ID=Unknown
+TRANSCRIBING:
+        Text=good morning katie i hope you're having a
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=good morning katie i hope you're having a great start to
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=good morning katie i hope you're having a great start to your day
+        Speaker ID=Guest-2
+
+TRANSCRIBED:
+        Text=Good morning, Katie. I hope you're having a great start to your day.
+        Speaker ID=Guest-2
+
+TRANSCRIBING:
+        Text=have you
+        Speaker ID=Unknown
+TRANSCRIBING:
+        Text=have you tried
+        Speaker ID=Unknown
+TRANSCRIBING:
+        Text=have you tried the latest
+        Speaker ID=Unknown
+TRANSCRIBING:
+        Text=have you tried the latest real
+        Speaker ID=Guest-1
+TRANSCRIBING:
+        Text=have you tried the latest real time
+        Speaker ID=Guest-1
+TRANSCRIBING:
+        Text=have you tried the latest real time diarization
+        Speaker ID=Guest-1
+TRANSCRIBING:
+        Text=have you tried the latest real time diarization in
+        Speaker ID=Guest-1
+TRANSCRIBING:
+        Text=have you tried the latest real time diarization in microsoft
+        Speaker ID=Guest-1
+TRANSCRIBING:
+        Text=have you tried the latest real time diarization in microsoft speech
+        Speaker ID=Guest-1
+TRANSCRIBING:
+        Text=have you tried the latest real time diarization in microsoft speech service
+        Speaker ID=Guest-1
+TRANSCRIBING:
+        Text=have you tried the latest real time diarization in microsoft speech service which
+        Speaker ID=Guest-1
+TRANSCRIBING:
+        Text=have you tried the latest real time diarization in microsoft speech service which can
+        Speaker ID=Guest-1
+TRANSCRIBING:
+        Text=have you tried the latest real time diarization in microsoft speech service which can tell you
+        Speaker ID=Guest-1
+TRANSCRIBING:
+        Text=have you tried the latest real time diarization in microsoft speech service which can tell you who said        
+        Speaker ID=Guest-1
+TRANSCRIBING:
+        Text=have you tried the latest real time diarization in microsoft speech service which can tell you who said what   
+        Speaker ID=Guest-1
+TRANSCRIBING:
+        Text=have you tried the latest real time diarization in microsoft speech service which can tell you who said what in
+        Speaker ID=Guest-1
+TRANSCRIBING:
+        Text=have you tried the latest real time diarization in microsoft speech service which can tell you who said what in real time
+        Speaker ID=Guest-1
+
 TRANSCRIBED:
         Text=Have you tried the latest real time diarization in Microsoft Speech Service which can tell you who said what in real time?
         Speaker ID=Guest-1
-TRANSCRIBED:
-        Text=Not yet. I've been using the batch transcription with diarization functionality, but it produces diarization result until whole audio get processed.
+
+TRANSCRIBING:
+        Text=not yet
+        Speaker ID=Unknown
+TRANSCRIBING:
+        Text=not yet i
         Speaker ID=Guest-2
-TRANSCRIBED:
-        Text=Is the new feature can diarize in real time?
+TRANSCRIBING:
+        Text=not yet i've been using
         Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch trans
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with diarization
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with diarization function
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with diarization functionality
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with diarization functionality but
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with diarization functionality but it
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with diarization functionality but it produces
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with diarization functionality but it produces di
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with diarization functionality but it produces diarization     
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with diarization functionality but it produces diarization results
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with diarization functionality but it produces diarization results after
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with diarization functionality but it produces diarization results after the
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with diarization functionality but it produces diarization results after the whole
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with diarization functionality but it produces diarization results after the whole audio
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with diarization functionality but it produces diarization results after the whole audio is
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with diarization functionality but it produces diarization results after the whole audio is processed
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with diarization functionality but it produces diarization results after the whole audio is processed is the
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with diarization functionality but it produces diarization results after the whole audio is processed is the new
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with diarization functionality but it produces diarization results after the whole audio is processed is the new feature
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with diarization functionality but it produces diarization results after the whole audio is processed is the new feature able to
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with diarization functionality but it produces diarization results after the whole audio is processed is the new feature able to di
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with diarization functionality but it produces diarization results after the whole audio is processed is the new feature able to diarize in real
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=not yet i've been using the batch transcription with diarization functionality but it produces diarization results after the whole audio is processed is the new feature able to diarize in real time
+        Speaker ID=Guest-2
+
 TRANSCRIBED:
-        Text=Absolutely.
+        Text=Not yet. I've been using the batch transcription with diarization functionality, but it produces diarization results after the whole audio is processed. Is the new feature able to diarize in real time?
+        Speaker ID=Guest-2
+
+TRANSCRIBING:
+        Text=absolutely
+        Speaker ID=Unknown
+TRANSCRIBING:
+        Text=absolutely i
+        Speaker ID=Unknown
+TRANSCRIBING:
+        Text=absolutely i recom
         Speaker ID=Guest-1
+TRANSCRIBING:
+        Text=absolutely i recommend
+        Speaker ID=Guest-1
+TRANSCRIBING:
+        Text=absolutely i recommend you give it a try
+        Speaker ID=Guest-1
+
+TRANSCRIBED:
+        Text=Absolutely, I recommend you give it a try.
+        Speaker ID=Guest-1
+
+TRANSCRIBING:
+        Text=that's exc
+        Speaker ID=Unknown
+TRANSCRIBING:
+        Text=that's exciting
+        Speaker ID=Unknown
+TRANSCRIBING:
+        Text=that's exciting let me
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=that's exciting let me try
+        Speaker ID=Guest-2
+TRANSCRIBING:
+        Text=that's exciting let me try it right now
+        Speaker ID=Guest-2
+
 TRANSCRIBED:
         Text=That's exciting. Let me try it right now.
         Speaker ID=Guest-2
-Canceled event
-CLOSING on ConversationTranscriptionCanceledEventArgs(session_id=92a0abb68636471dac07041b335d9be3, result=ConversationTranscriptionResult(result_id=ad1b1d83b5c742fcacca0692baa8df74, speaker_id=, text=, reason=ResultReason.Canceled))
-SessionStopped event
-CLOSING on SessionEventArgs(session_id=92a0abb68636471dac07041b335d9be3)
 ```
 
 Speakers are identified as Guest-1, Guest-2, and so on, depending on the number of speakers in the conversation.
+
+> [!NOTE]
+> You might see `Speaker ID=Unknown` in some of the early intermediate results when the speaker is not yet identified. Without intermediate diarization results (if you don't set the `PropertyId.SpeechServiceResponse_DiarizeIntermediateResults` property to "true"), the speaker ID is always "Unknown".
 
 ## Clean up resources
 

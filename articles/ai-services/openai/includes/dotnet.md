@@ -2,7 +2,6 @@
 title: 'Quickstart: Use Azure OpenAI Service with the C# SDK'
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the C# SDK. 
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
@@ -19,8 +18,6 @@ ms.date: 07/26/2023
 - The current version of <a href="https://dotnet.microsoft.com/download/dotnet-core" target="_blank">.NET Core</a>
 - An Azure OpenAI Service resource with the `gpt-35-turbo-instruct` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
-> [!div class="nextstepaction"]
-> [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=DOTNET&Pillar=AOAI&Product=gpt&Page=quickstart&Section=Prerequisites)
 
 ## Set up
 
@@ -61,12 +58,10 @@ dotnet add package Azure.AI.OpenAI --version 1.0.0-beta.17
 
 [!INCLUDE [environment-variables](environment-variables.md)]
 
-> [!div class="nextstepaction"]
-> [I ran into an issue with the setup.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=DOTNET&Pillar=AOAI&Product=gpt&Page=quickstart&Section=Set-up)
 
 ## Create a sample application
 
-From the project directory, open the *program.cs* file and replace with the following code:
+From the project directory, open the *Program.cs* file and replace with the following code:
 
 ```csharp
 using Azure;
@@ -95,7 +90,7 @@ Console.WriteLine($"Chatbot: {completion}");
 > For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
 
 ```cmd
-dotnet run program.cs
+dotnet run Program.cs
 ```
 
 ## Output
@@ -105,9 +100,6 @@ Chatbot:
 
 Microsoft was founded on April 4, 1975.
 ```
-
-> [!div class="nextstepaction"]
-> [I ran into an issue when running the code sample.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=DOTNET&Pillar=AOAI&Product=gpt&Page=quickstart&Section=Create-dotnet-application)
 
 
 ## Clean up resources
@@ -119,4 +111,4 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 
 ## Next steps
 
-* For more examples check out the [Azure OpenAI Samples GitHub repository](https://aka.ms/AOAICodeSamples)
+* For more examples check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai)

@@ -2,71 +2,35 @@
 title: 'Use your own data with Azure OpenAI Service'
 titleSuffix: Azure OpenAI
 description: Use this article to import and use your data in Azure OpenAI.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
-ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-go, devx-track-python
+ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-ts, devx-track-go, devx-track-python
 ms.topic: quickstart
 author: aahill
 ms.author: aahi
-ms.date: 08/21/2024
+ms.date: 04/29/2025
 recommendations: false
 zone_pivot_groups: openai-use-your-data
 ---
 
 # Quickstart: Chat with Azure OpenAI models using your own data
 
-::: zone pivot="programming-language-spring"
-
-[Source code](https://github.com/spring-projects-experimental/spring-ai)| [Source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai) | [Sample](https://github.com/rd-1-2022/ai-azure-retrieval-augmented-generation)
-
-::: zone-end
-
-::: zone pivot="programming-language-javascript"
-
-[Reference](/javascript/api/@azure/openai) | [Source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai) | [Package (npm)](https://www.npmjs.com/package/@azure/openai) | [Samples](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/openai/Azure.AI.OpenAI/tests/Samples)
-
-::: zone-end
-
-::: zone pivot="programming-language-python"
-
-[Reference](https://platform.openai.com/docs/api-reference?lang=python) | [Source code](https://github.com/openai/openai-python) | [Package (pypi)](https://pypi.org/project/openai/) | [Samples](https://github.com/openai/openai-cookbook/)
-
-These links reference the OpenAI API for Python. There's no Azure-specific OpenAI Python SDK. [Learn how to switch between the OpenAI services and Azure OpenAI services](/azure/ai-services/openai/how-to/switching-endpoints).
-
-::: zone-end
-
-::: zone pivot="programming-language-go"
-
-[Reference](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go) | [Source code](https://github.com/Azure/azure-sdk-for-go) | [Package (Go)](https://pkg.go.dev/github.com/azure/azure-dev) | [Samples](https://github.com/azure-samples/azure-sdk-for-go-samples)
-
-::: zone-end
-
 In this quickstart, you can use your own data with Azure OpenAI models. Using Azure OpenAI's models on your data can provide you with a powerful conversational AI platform that enables faster and more accurate communication.
+
+::: zone pivot="ai-foundry-portal"
 
 ## Prerequisites
 
-- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-
-- An Azure OpenAI resource deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
-
-- Be sure that you are assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
-
+The following resources: 
+- [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
+- [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
+- [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
+- An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+    - Be sure that you're assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
 - Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
-
-::: zone pivot="programming-language-javascript"
-
-- [Long Term Support (LTS) versions of Node.js](https://github.com/nodejs/release#release-schedule)
-
-::: zone-end
-
-> [!div class="nextstepaction"]
-> [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=OVERVIEW&Pillar=AOAI&Product=ownData&Page=quickstart&Section=Prerequisites)
 
 
 [!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
-
-::: zone pivot="programming-language-studio"
 
 [!INCLUDE [Studio quickstart](includes/use-your-data-studio.md)]
 
@@ -74,11 +38,38 @@ In this quickstart, you can use your own data with Azure OpenAI models. Using Az
 
 ::: zone pivot="programming-language-csharp"
 
+## Prerequisites
+
+The following resources: 
+- [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
+- [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
+- [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
+- An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+    - Be sure that you're assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
+- Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
+- The [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+
+[!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
+
 [!INCLUDE [Csharp quickstart](includes/use-your-data-dotnet.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-spring"
+
+[Source code](https://github.com/spring-projects-experimental/spring-ai)| [Source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai) | [Sample](https://github.com/rd-1-2022/ai-azure-retrieval-augmented-generation)
+
+## Prerequisites
+
+The following resources: 
+- [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
+- [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
+- [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
+- An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+    - Be sure that you're assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
+- Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
+    
+[!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
 
 [!INCLUDE [Spring quickstart](includes/use-your-data-spring.md)]
 
@@ -86,11 +77,77 @@ In this quickstart, you can use your own data with Azure OpenAI models. Using Az
 
 ::: zone pivot="programming-language-javascript"
 
+[Reference documentation](https://platform.openai.com/docs/api-reference/chat) | [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
+
+## Prerequisites
+
+- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
+- [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
+- An Azure OpenAI resource deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+
+- Be sure that you're assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
+
+- Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
+
+### Microsoft Entra ID prerequisites
+
+For the recommended keyless authentication with Microsoft Entra ID, you need to:
+- Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
+- Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+
+[!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
+
 [!INCLUDE [JavaScript quickstart](includes/use-your-data-javascript.md)]
 
 ::: zone-end
 
+::: zone pivot="programming-language-typescript"
+
+[Reference documentation](https://platform.openai.com/docs/api-reference/chat) | [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
+
+## Prerequisites
+
+- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
+
+- [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- [TypeScript](https://www.typescriptlang.org/download/)
+- [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
+- An Azure OpenAI resource deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+
+- Be sure that you're assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
+
+- Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
+
+### Microsoft Entra ID prerequisites
+
+For the recommended keyless authentication with Microsoft Entra ID, you need to:
+- Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
+- Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+
+[!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
+
+[!INCLUDE [TypeScript quickstart](includes/use-your-data-typescript.md)]
+
+::: zone-end
+
 ::: zone pivot="programming-language-python"
+
+## Prerequisites
+
+The following resources: 
+- [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
+- [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
+- [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
+- An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+    - Be sure that you're assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
+- Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
+
+[Reference](https://platform.openai.com/docs/api-reference?lang=python) | [Source code](https://github.com/openai/openai-python) | [Package (pypi)](https://pypi.org/project/openai/) | [Samples](https://github.com/openai/openai-cookbook/)
+
+These links reference the OpenAI API for Python. There's no Azure-specific OpenAI Python SDK. [Learn how to switch between the OpenAI services and Azure OpenAI services](/azure/ai-services/openai/how-to/switching-endpoints).
+
+[!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
 
 [!INCLUDE [Python quickstart](includes/use-your-data-python.md)]
 
@@ -98,17 +155,58 @@ In this quickstart, you can use your own data with Azure OpenAI models. Using Az
 
 ::: zone pivot="programming-language-powershell"
 
+
+## Prerequisites
+
+The following resources: 
+- [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
+- [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
+- [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
+- An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+    - Be sure that you're assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
+- Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
+
+[!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
+
 [!INCLUDE [PowerShell quickstart](includes/use-your-data-powershell.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-go"
 
+
+## Prerequisites
+
+The following resources: 
+- [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
+- [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
+- [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
+- An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+    - Be sure that you're assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
+- Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
+
+[Reference](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go) | [Source code](https://github.com/Azure/azure-sdk-for-go) | [Package (Go)](https://pkg.go.dev/github.com/azure/azure-dev) | [Samples](https://github.com/azure-samples/azure-sdk-for-go-samples)
+
+[!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
+
 [!INCLUDE [Go quickstart](includes/use-your-data-go.md)]
 
 ::: zone-end
 
 ::: zone pivot="rest-api"
+
+
+## Prerequisites
+
+The following resources: 
+- [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
+- [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
+- [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
+- An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
+    - Be sure that you're assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
+- Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
+
+[!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
 
 [!INCLUDE [REST API quickstart](includes/use-your-data-rest.md)]
 

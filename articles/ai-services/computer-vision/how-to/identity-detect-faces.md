@@ -2,17 +2,19 @@
 title: "Call the Detect API - Face"
 titleSuffix: Azure AI services
 description: This guide demonstrates how to use face detection to extract attributes like age, emotion, or head pose from a given image.
-#services: cognitive-services
+#customer intent: As a developer, I want to use face detection to extract attributes from images so that I can analyze and process facial data.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.topic: how-to
-ms.date: 02/14/2024
+ms.date: 01/22/2025
 ms.author: pafarley
 ms.devlang: csharp
 ms.custom: devx-track-csharp
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
+
 ---
 
 # Call the Detect API
@@ -26,9 +28,9 @@ This guide demonstrates how to use the face detection API to extract attributes 
 The code snippets in this guide are written in C# by using the Azure AI Face client library. The same functionality is available through the [REST API](/rest/api/face/face-detection-operations/detect).
 
 
-## Setup
+## Prerequisites
 
-This guide assumes that you already constructed a [FaceClient](/dotnet/api/azure.ai.vision.face.faceclient) object, named `faceClient`, using a Face key and endpoint URL. For instructions on how to set up this feature, follow one of the quickstarts.
+- This guide assumes that you already constructed a [FaceClient](/dotnet/api/azure.ai.vision.face.faceclient) object, named `faceClient`, using a Face key and endpoint URL. For instructions on how to set up this feature, follow one of the quickstarts.
 
 ## Submit data to the service
 
@@ -42,7 +44,7 @@ For information on how to parse the location and dimensions of the face, see [Fa
 
 ## Determine how to process the data
 
-This guide focuses on the specifics of the Detect call, such as what arguments you can pass and what you can do with the returned data. We recommend that you query for only the features you need. Each operation takes more time to complete.
+This guide focuses on the specifics of the Detect call, such as what arguments you can pass and what you can do with the returned data. We recommend that you query for only the features you need. Each operation takes additional time to complete.
 
 ### Get face ID
 
@@ -90,13 +92,13 @@ The following code shows how you might retrieve the face attribute data that you
 
 To learn more about each of the attributes, see the [Face detection and attributes](../concept-face-detection.md) conceptual guide.
 
-## Next steps
+## Next step
 
 In this guide, you learned how to use the various functionalities of face detection and analysis. Next, integrate these features into an app to add face data from users.
 
 - [Tutorial: Add users to a Face service](../enrollment-overview.md)
 
-## Related articles
+## Related content
 
 - [Reference documentation (REST)](/rest/api/face/operation-groups)
 - [Reference documentation (.NET SDK)](https://aka.ms/azsdk-csharp-face-ref)

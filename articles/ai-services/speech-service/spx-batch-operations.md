@@ -5,10 +5,11 @@ description: Learn how to do batch speech to text (speech recognition), batch te
 author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: reference
-ms.date: 1/22/2024
+ms.topic: how-to
+ms.date: 3/10/2025
 ms.author: eur
 ms.custom: mode-api
+#Customer intent: As a developer, I want to learn how to run batch operations with the Speech CLI.
 ---
 
 # Run batch operations with the Speech CLI
@@ -41,8 +42,8 @@ sample_2	8f9b378f6d0b42f99522f1173492f013	Sample text synthesized.
 
 The easiest way to run batch text to speech is to create a new `.tsv` (tab-separated-value) file, and use the `--foreach` command in the Speech CLI. You can create a `.tsv` file using your favorite text editor, for this example, let's call it `text_synthesis.tsv`:
 
->[!IMPORTANT]
-> When copying the contents of this text file, make sure that your file has a **tab** not spaces between the file location and the text. Sometimes, when copying the contents from this example, tabs are converted to spaces causing the `spx` command to fail when run.
+> [!IMPORTANT]
+> When you copy the contents of this text file, make sure that your file has a **tab** not spaces between the file location and the text. Sometimes, when copying the contents from this example, tabs are converted to spaces causing the `spx` command to fail when run.
 
 ```Input
 audio.output	text

@@ -2,14 +2,13 @@
 title: Deploy custom language projects to multiple regions in Azure AI Language
 titleSuffix: Azure AI services
 description: Learn about how to deploy your custom language projects to multiple regions.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 12/19/2023
+ms.date: 04/29/2025
 ms.author: jboback
-ms.custom: language-service-clu
+ms.custom: language-service-clu, ignite-2024
 ---
 
 # Deploy custom language projects to multiple regions
@@ -22,7 +21,7 @@ ms.custom: language-service-clu
 > * [Custom named entity recognition (NER)](../../custom-named-entity-recognition/overview.md)
 > * [Orchestration workflow](../../orchestration-workflow/overview.md)
 
-Custom language service features enable you to deploy your project to more than one region. This capability makes it much easier to access your project globally while you manage only one instance of your project in one place.
+Custom language service features enable you to deploy your project to more than one region. This capability makes it much easier to access your project globally while you manage only one instance of your project in one place. As of November 2024, custom language service features also enable you to deploy your project to multiple resources within a single region via the API, so that you can use your custom model wherever you need.
 
 Before you deploy a project, you can assign *deployment resources* in other regions. Each deployment resource is a different Language resource from the one that you use to author your project. You deploy to those resources and then target your prediction requests to that resource in their respective regions and your queries are served directly from that region.
 
@@ -53,13 +52,6 @@ For example, if a project `ContosoSupport` was created by the resource `MyWestUS
 You can only swap deployments that are available in the exact same regions. Otherwise, swapping fails.
 
 If you remove an assigned resource from your project, all of the project deployments to that resource are deleted.
-
-> [!NOTE]
-> Orchestration workflow only:
->
-> You *can't* assign deployment resources to orchestration workflow projects with custom question answering or LUIS connections. Subsequently, you can't add custom question answering or LUIS connections to projects that have assigned resources.
->
-> For multiregion deployment to work as expected, the connected CLU projects *must also be deployed* to the same regional resources to which you deployed the orchestration workflow project. Otherwise, the orchestration workflow project attempts to route a request to a deployment in its region that doesn't exist.
 
 Some regions are only available for deployment and not for authoring projects.
 

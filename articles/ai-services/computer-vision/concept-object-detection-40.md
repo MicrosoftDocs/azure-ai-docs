@@ -1,38 +1,33 @@
 ---
-title: Object detection - Image Analysis 4.0
+title: Object detection using Image Analysis 4.0
 titleSuffix: Azure AI services
 description: Learn concepts related to the object detection feature of the Image Analysis 4.0 API - usage and limits.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 01/19/2024
+ms.date: 10/31/2024
 ms.author: pafarley
 ---
 
 # Object detection (version 4.0)
 
-Object detection is similar to [tagging](concept-tag-images-40.md), but the API returns the bounding box coordinates (in pixels) for each object found in the image. For example, if an image contains a dog, cat, and person, the object detection operation will list those objects with their coordinates in the image. You can use this functionality to process the relationships between the objects in an image. It also lets you determine whether there are multiple instances of the same object in an image.
+Object detection is similar to [tagging](concept-tag-images-40.md), but the API returns the bounding box coordinates (in pixels) for each object found in the image. For example, if an image contains a dog, cat, and person, the object detection operation lists those objects with their coordinates in the image. You can use this functionality to process the relationships between the objects in an image. It also lets you determine whether there are multiple instances of the same object in an image.
 
-The object detection function applies tags based on the objects or living things identified in the image. There is no formal relationship between the tagging taxonomy and the object detection taxonomy. At a conceptual level, the object detection function only finds objects and living things, while the tag function can also include contextual terms like "indoor", which can't be localized with bounding boxes.
+The object detection function applies tags based on the objects or living things identified in the image. There's no formal relationship between the tagging taxonomy and the object detection taxonomy. At a conceptual level, the object detection function only finds objects and living things, while the tag function can also include contextual terms like *indoor*, which can't be localized with bounding boxes.
 
-Try out the capabilities of object detection quickly and easily in your browser using Vision Studio.
+Try out the capabilities of object detection quickly and easily in your browser by using Azure AI Vision Studio.
 
 > [!div class="nextstepaction"]
 > [Try Vision Studio](https://portal.vision.cognitive.azure.com/)
 
-> [!TIP]
-> You can use the Object detection feature through the [Azure OpenAI](/azure/ai-services/openai/overview) service. The **GPT-4 Turbo with Vision** model lets you chat with an AI assistant that can analyze the images you share, and the Vision Enhancement option uses Image Analysis to provide the AI assistance with more details (readable text and object locations) about the image. For more information, see the [GPT-4 Turbo with Vision quickstart](/azure/ai-services/openai/gpt-v-quickstart).
 
 ## Object detection example
 
-The following JSON response illustrates what the Analysis 4.0 API returns when detecting objects in the example image. 
+The following JSON response illustrates what the Image Analysis 4.0 API returns when detecting objects in the example image.
 
-![A woman using a Microsoft Surface device in a kitchen](./Images/windows-kitchen.jpg)
-
-
+:::image type="content" source="images/windows-kitchen.jpg" alt-text="Photograph of a woman using a Microsoft Surface device in a kitchen.":::
 
 ```json
 {
@@ -76,12 +71,13 @@ It's important to note the limitations of object detection so you can avoid or m
 
 * Objects are generally not detected if they're small (less than 5% of the image).
 * Objects are generally not detected if they're arranged closely together (a stack of plates, for example).
-* Objects are not differentiated by brand or product names (different types of sodas on a store shelf, for example). However, you can get brand information from an image by using the [Brand detection](concept-brand-detection.md) feature.
+* Objects aren't differentiated by brand or product names (different types of sodas on a store shelf, for example). However, you can get brand information from an image by using the [Brand detection](concept-brand-detection.md) feature.
 
 ## Use the API
 
-The object detection feature is part of the [Analyze Image](https://aka.ms/vision-4-0-ref) API. You can call this API using REST. Include `Objects` in the **features** query parameter. Then, when you get the full JSON response, parse the string for the contents of the `"objects"` section.
+The object detection feature is part of the [Analyze Image API](https://aka.ms/vision-4-0-ref). You can call this API using REST. Include `Objects` in the `features` query parameter. Then, when you get the full JSON response, parse the string for the contents of the `"objects"` section.
 
-## Next steps
+## Next step
 
-* [Call the Analyze Image API](./how-to/call-analyze-image-40.md)
+> [!div class="nextstepaction"]
+> [Call the Analyze Image API](how-to/call-analyze-image-40.md)

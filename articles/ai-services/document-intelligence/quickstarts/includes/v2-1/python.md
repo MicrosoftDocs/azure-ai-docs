@@ -1,12 +1,12 @@
 ---
-title: "Get started: Document Intelligence (formerly Form Recognizer) client library for Python v2.1"
+title: "Get started: Document Intelligence client library for Python v2.1"
 titleSuffix: Azure AI services
-description: Form and document processing, data extraction, and analysis using Document Intelligence Python client library SDKs v2.1
+description: Form and document processing, data extraction, and analysis using Document Intelligence Python client library v2.1
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: includes
-ms.date: 05/23/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ---
 
@@ -180,22 +180,22 @@ if __name__ == "__main__":
 
 ## **Try it**: Prebuilt model
 
-This sample demonstrates how to analyze data from certain types of common documents with pretrained models, using an invoice as an example. *See* our prebuilt concept page for a complete list of [**invoice fields**](../../../concept-invoice.md#field-extraction)
+This sample demonstrates how to analyze data from certain types of common documents with pretrained models, using an invoice as an example. *See* our prebuilt concept page for a complete list of [**invoice fields**](../../../prebuilt/invoice.md#field-extraction)
 
 > [!div class="checklist"]
 >
 > * For this example, we wll analyze an invoice document using a prebuilt model. You can use our [sample invoice document](https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-invoice.pdf) for this quickstart.
 > * We've added the file URI value to the ``formUrl` variable at the top of the file.
 > * To analyze a given file at a URI, you'll use the ``begin_recognize_invoices_from_url` method.
-> * For simplicity, all the fields that the service returns are not shown here. To see the list of all supported fields and corresponding types, see our [Invoice](../../../concept-invoice.md#field-extraction) concept page.
+> * For simplicity, all the fields that the service returns are not shown here. To see the list of all supported fields and corresponding types, see our [Invoice](../../../prebuilt/invoice.md#field-extraction) concept page.
 
 ### Choose a prebuilt model
 
-You aren't limited to invoices—there are several prebuilt models to choose from, each of which has its own set of supported fields. The model to use for the analyze operation depends on the type of document to be analyzed. Here are the prebuilt models currently supported by the Document Intelligence service:
+You aren't limited to invoices—there are several prebuilt models to choose from, each of which has its own set of supported fields. The model to use for the `analyze` operation depends on the type of document to be analyzed. Here are the prebuilt models currently supported by the Document Intelligence service:
 
-* [**Invoice**](../../../concept-invoice.md): extracts text, selection marks, tables, fields, and key information from invoices.
-* [**Receipt**](../../../concept-receipt.md): extracts text and key information from receipts.
-* [**ID document**](../../../concept-id-document.md): extracts text and key information from driver licenses and international passports.
+* [**Invoice**](../../../prebuilt/invoice.md): extracts text, selection marks, tables, fields, and key information from invoices.
+* [**Receipt**](../../../prebuilt/receipt.md): extracts text and key information from receipts.
+* [**ID document**](../../../prebuilt/id-document.md): extracts text and key information from driver licenses and international passports.
 * [**Business-card**](../../../concept-business-card.md): extracts text and key information from business cards.
 
 ### Add the following code to your prebuilt invoice application below the `key` variable

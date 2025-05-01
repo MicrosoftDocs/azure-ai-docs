@@ -2,26 +2,29 @@
 title: Enable role-based access control
 titleSuffix: Azure AI Search
 description: Enable or disable role-based access control for token authentication using Microsoft Entra ID on Azure AI Search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/18/2024
-
+ms.date: 1/16/2025
+#customer intent: As a developer, I want to enable role-based access control for token authentication using Microsoft Entra ID on Azure AI Search so that I can secure my search service.
 ---
 
 # Enable or disable role-based access control in Azure AI Search
 
-Before you can assign roles for authorized access to Azure AI Search, enable role-based access control on your search service.
+Azure AI Search supports both keyless and [key-based authentication](search-security-api-keys.md) for all data plane operations. You can use Microsoft Entra ID authentication and role-based authorization to enable access to operations and content.
 
-Role-based access for data plane operations is optional, but recommended as the more secure option. The alternative is [key-based authentication](search-security-api-keys.md), which is the default. 
+> [!IMPORTANT]
+> When you create a search service, key-based authentication is the default, but it's not the most secure option. We recommend that you replace it with role-based access as described in this article.
 
-Roles for service administration (control plane) are built in and can't be enabled or disabled. 
+Before you can assign roles for authorized data plane access to Azure AI Search, you must enable role-based access control on your search service. Roles for service administration (control plane) are built in and can't be enabled or disabled. 
 
-> [!NOTE]
-> *Data plane* refers to operations against the search service endpoint, such as indexing or queries, or any other operation specified in the [Search REST API](/rest/api/searchservice/) or equivalent Azure SDK client libraries.
+*Data plane* refers to operations against the search service endpoint, such as indexing or queries, or any other operation specified in the [Search Service REST APIs](/rest/api/searchservice/) or equivalent Azure SDK client libraries. 
+
+*Control plane* refers to Azure resource management, such as creating or configuring a search service, or any other operation specified in the [Search Management REST APIs](/rest/api/searchmanagement/). 
+
+You can only enable or disable role-based access control for data plane operations. Control plane operations always use Owner, Contributor, or Reader roles. If you observe key-related activity, such as Get Admin Keys, in the **Activity Log** on a roles-only search service, those actions are initiated on the control plane and don't affect your content or content-related operations.
 
 ## Prerequisites
 
@@ -39,23 +42,23 @@ The default failure mode for unauthorized requests is `http401WithBearerChalleng
 
 ### [**Azure portal**](#tab/config-svc-portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and open the search service page.
+1. Sign in to the [Azure portal](https://portal.azure.com) and navigate to your search service.
 
-1. Select **Settings** and then select **Keys** in the left navigation pane.
+1. Select **Settings** and then select **Keys** in the left pane.
 
    :::image type="content" source="media/search-security-rbac/search-security-enable-roles.png" lightbox="media/search-security-rbac/search-security-enable-roles.png" alt-text="Screenshot of the keys page with authentication options." border="true":::
 
-1. Choose **Role-based control** or **Both** if you're currently using keys and need time to transition clients to role-based access control. 
+1. Choose **Role-based control**. Only choose **Both** if you're currently using keys and need time to transition clients to role-based access control. 
 
    | Option | Description |
    |--------|--------------|
-   | API Key | (default). Requires [API keys](search-security-api-keys.md) on the request header for authorization. |
-   | Role-based access control | Requires membership in a role assignment to complete the task. It also requires an authorization header on the request. |
+   | API Key (default) | Requires [API keys](search-security-api-keys.md) on the request header for authorization. |
+   | Role-based access control (recommended) | Requires membership in a role assignment to complete the task. It also requires an authorization header on the request. |
    | Both | Requests are valid using either an API key or role-based access control, but if you provide both in the same request, the API key is used. |
 
-1. As an administrator, if you choose a roles-only approach, [assign data plane roles](search-security-rbac.md) to your user account to restore full administrative access over data plane operations in the Azure portal. Roles include Search Service Contributor, Search Index Data Contributor, and Search Index Data Reader. You need all three roles if you want equivalent access.
+1. As an administrator, if you choose a roles-only approach, [assign data plane roles](search-security-rbac.md) to your user account to restore full administrative access over data plane operations in the Azure portal. Roles include Search Service Contributor, Search Index Data Contributor, and Search Index Data Reader. You need the first two roles if you want equivalent access.
 
-   Sometimes it can take five to ten minutes for role assignments to take effect. Until that happens, the following message appears in the portal pages used for data plane operations.
+   Sometimes it can take five to ten minutes for role assignments to take effect. Until that happens, the following message appears in the Azure portal pages used for data plane operations.
 
    :::image type="content" source="media/search-security-rbac/you-do-not-have-access.png" alt-text="Screenshot of portal message indicating insufficient permissions.":::
 
@@ -142,11 +145,11 @@ All calls to the Management REST API are authenticated through Microsoft Entra I
 
 It's possible to disable role-based access control for data plane operations and use key-based authentication instead. You might do this as part of a test workflow, for example to rule out permission issues.
 
-Reverse the steps you followed previously to enable role-based access.
+To disable role-based access control in the Azure portal:
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and open the search service page.
 
-1. Select **Settings** and then select **Keys** in the left navigation pane.
+1. Select **Settings** and then select **Keys** in the left pane.
 
 1. Select **API Keys**.
 
@@ -220,14 +223,6 @@ To disable key-based authentication, set "disableLocalAuth" to true.
     ```
 
 To re-enable key authentication, set "disableLocalAuth" to false. The search service resumes acceptance of API keys on the request automatically (assuming they're specified).
-
----
-
-## Limitations
-
-+ Role-based access control can increase the latency of some requests. Each unique combination of service resource (index, indexer, etc.) and service principal triggers an authorization check. These authorization checks can add up to 200 milliseconds of latency per request. 
-
-+ In rare cases where requests originate from a high number of different service principals, all targeting different service resources (indexes, indexers, etc.), it's possible for the authorization checks to result in throttling. Throttling would only happen if hundreds of unique combinations of search service resource and service principal were used within a second.
 
 ---
 

@@ -2,13 +2,13 @@
 title: OCR - Optical Character Recognition
 titleSuffix: Azure AI services
 description: Learn how the optical character recognition (OCR) services extract print and handwritten text from images and documents in global languages.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: overview
-ms.date: 06/26/2024
+ms.date: 10/16/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ms.custom: devx-track-csharp
 ---
@@ -30,7 +30,7 @@ Microsoft's **Read** OCR engine is composed of multiple advanced machine-learnin
 
 ## How is OCR related to Intelligent Document Processing (IDP)?
 
-Intelligent Document Processing (IDP) uses OCR as its foundational technology to additionally extract structure, relationships, key-values, entities, and other document-centric insights with an advanced machine-learning based AI service like [Document Intelligence](../../ai-services/document-intelligence/overview.md). Document Intelligence includes a document-optimized version of **Read** as its OCR engine while delegating to other models for higher-end insights. If you are extracting text from scanned and digital documents, use [Document Intelligence Read OCR](../../ai-services/document-intelligence/concept-read.md).
+Intelligent Document Processing (IDP) uses OCR as its foundational technology to additionally extract structure, relationships, key-values, entities, and other document-centric insights with an advanced machine-learning based AI service like [Document Intelligence](../../ai-services/document-intelligence/overview.md). Document Intelligence includes a document-optimized version of **Read** as its OCR engine while delegating to other models for higher-end insights. If you are extracting text from scanned and digital documents, use [Document Intelligence Read OCR](../document-intelligence/prebuilt/read.md).
 
 ## How to use OCR
 
@@ -61,6 +61,19 @@ The Read OCR model is available in Azure AI Vision and Document Intelligence wit
 The cloud APIs are the preferred option for most customers because of their ease of integration and fast productivity out of the box. Azure and the Azure AI Vision service handle scale, performance, data security, and compliance needs while you focus on meeting your customers' needs.
 
 For on-premises deployment, the [Read Docker container](./computer-vision-how-to-install-containers.md) enables you to deploy the Azure AI Vision v3.2 generally available OCR capabilities in your own local environment. Containers are great for specific security and data governance requirements.
+
+
+## Input requirements
+
+The **Read** API takes images and documents as its input. The images and documents must meet the following requirements:
+
+* Supported file formats are JPEG, PNG, BMP, PDF, and TIFF.
+* For PDF and TIFF files, up to 2,000 pages (only the first two pages for the free tier) are processed.
+* The file size of images must be less than 500 MB (4 MB for the free tier) with dimensions at least 50 x 50 pixels and at most 10,000 x 10,000 pixels. PDF files don't have a size limit.
+* The minimum height of the text to be extracted is 12 pixels for a 1024 x 768 image, which corresponds to about 8-point font text at 150 DPI.
+
+>[!NOTE]
+> You don't need to crop an image for text lines. Send the whole image to the Read API and it recognizes all texts.
 
 ## OCR data privacy and security
 

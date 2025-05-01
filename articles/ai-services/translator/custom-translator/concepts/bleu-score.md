@@ -1,15 +1,15 @@
 ---
-title: "What is a BLEU score? - Custom Translator"
+title: "What is a BLEU score? - Azure AI Custom Translator"
 titleSuffix: Azure AI services
 description: BLEU is a measurement of the differences between machine translation and human-created reference translations of the same source sentence.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 07/09/2024
+ms.date: 01/27/2025
 ms.author: lajanuar
 ms.custom: cogserv-non-critical-translator
-#Customer intent: As a Custom Translator user, I want to understand how BLEU score works so that I understand system test outcome better.
+#Customer intent: As an Azure AI Custom Translator user, I want to understand how BLEU score works so that I understand system test outcome better.
 ---
 
 # What is a BLEU score?

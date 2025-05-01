@@ -1,14 +1,12 @@
 ---
-title: "Check my usage and estimate the cost -  Document Intelligence (formerly Form Recognizer)"
+title: "Check my usage and estimate the cost -  Document Intelligence "
 titleSuffix: Azure AI services
 description: Learn how to use Azure portal to check how many pages are analyzed and estimate the total price.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 ms.topic: how-to
-ms.date: 05/23/2024
+ms.date: 11/19/2024
 ms.author: luzhan
 ---
 
@@ -19,11 +17,11 @@ ms.author: luzhan
  [!INCLUDE [applies to v4.0 v3.1 v3.0 v2.1](../includes/applies-to-v40-v31-v30-v21.md)]
 ::: moniker-end
 
-In this guide, you'll learn how to use the metrics dashboard in the Azure portal to view how many pages were processed by Azure AI Document Intelligence. You'll also learn how to estimate the cost of processing those pages using the Azure pricing calculator.
+In this guide, learn how to use the metrics dashboard in the Azure portal to view how many pages are processed. You also learn how to estimate the cost of processing those pages using the Azure pricing calculator.
 
 ## Check how many pages were processed
 
-We'll start by looking at the page processing data for a given time period:
+We start by looking at the page processing data for a given time period:
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
@@ -33,7 +31,7 @@ We'll start by looking at the page processing data for a given time period:
 
    :::image type="content" source="../media/azure-portal-overview-menu.png" alt-text="Screenshot of the Azure portal overview page menu.":::
 
-1. Select a time range and you'll see the **Processed Pages** chart displayed.
+1. Select a time range and you see the **Processed Pages** chart displayed.
 
     :::image type="content" source="../media/azure-portal-overview-monitoring.png" alt-text="Screenshot that shows how many pages are processed on the resource overview page." lightbox="../media/azure-portal-processed-pages.png":::
 
@@ -41,7 +39,7 @@ We'll start by looking at the page processing data for a given time period:
 
 We can now take a deeper dive to see each model's analyzed pages:
 
-1. Under the **Monitoring** section, select **Metrics** from the left navigation menu.
+1. Under the **Monitoring** section, select **Metrics** from the left pane.
 
    :::image type="content" source="../media/azure-portal-monitoring-metrics.png" alt-text="Screenshot of the monitoring menu in the Azure portal.":::
 
@@ -57,13 +55,13 @@ We can now take a deeper dive to see each model's analyzed pages:
 
 1. Select **Apply splitting**.
 
-    :::image type="content" source="../media/azure-portal-apply-splitting.png" alt-text="Screenshot of the Apply splitting option in the Azure portal.":::
+    :::image type="content" source="../media/azure-portal-apply-splitting.png" alt-text="Screenshot of apply splitting option in the Azure portal.":::
 
 1. Choose **FeatureName** from the **Values** dropdown menu.
 
-    :::image type="content" source="../media/azure-portal-splitting-on-feature-name.png" alt-text="Screenshot of the Apply splitting values dropdown menu.":::
+    :::image type="content" source="../media/azure-portal-splitting-on-feature-name.png" alt-text="Screenshot of apply splitting values dropdown menu.":::
 
-1. You'll see a breakdown of the pages analyzed by each model.
+1. You see a breakdown of the pages analyzed by each model.
 
     :::image type="content" source="../media/azure-portal-metrics-drill-down.png" alt-text="Screenshot demonstrating how to drill down to check analyzed pages by model." lightbox="../media/azure-portal-drill-down-closeup.png":::
 
@@ -77,17 +75,17 @@ Now that we have the page processed data from the portal, we can use the Azure p
 
 1. Search for **Azure AI Document Intelligence** in the **Search products** search box.
 
-1. Select **Azure AI Document Intelligence** and you'll see that it has been added to the page.
+1. Select **Azure AI Document Intelligence** and you see it was added to the page.
 
-1. Under **Your Estimate**, select the relevant **Region**, **Payment Option** and **Instance** for your Document Intelligence resource. For more information, *see* [Azure AI Document Intelligence pricing options](https://azure.microsoft.com/pricing/details/form-recognizer/#pricing).
+1. Under **Your Estimate**, select the relevant **Region**, **Payment Option**, and **Instance** for your Document Intelligence resource. For more information, *see* [Azure AI Document Intelligence pricing options](https://azure.microsoft.com/pricing/details/form-recognizer/#pricing).
 
-1. Enter the number of pages processed from the Azure portal metrics dashboard. That data can be found using the steps in sections [Check how many pages are processed](#check-how-many-pages-were-processed) or [Examine analyzed pages](#examine-analyzed-pages), above.
+1. Enter the number of pages processed from the Azure portal metrics dashboard. That data can be found using the steps in sections [Check how many pages are processed](#check-how-many-pages-were-processed) or [Examine analyzed pages](#examine-analyzed-pages).
 
-1. The estimated price is on the right, after the equal (**=**) sign.
+1. The estimated price is on the right page section, after the equal (**=**) sign.
 
     :::image type="content" source="../media/azure-portal-pricing.png" alt-text="Screenshot of how to estimate the price based on processed pages.":::
 
-That's it. You now know where to find how many pages you have processed using Document Intelligence and how to estimate the cost.
+That's it. You now know where to find how many pages you process using Document Intelligence and how to estimate the cost.
 
 ## Next steps
 

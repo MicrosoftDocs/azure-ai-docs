@@ -9,16 +9,19 @@ ms.topic: how-to
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: vijetaj
-ms.date: 03/13/2024
+ms.date: 09/23/2024
+ms.custom: update-code
 ---
 
 # Customize the compute instance with a script
 
-Use a setup script for an automated way to customize and configure a compute instance at provisioning time. 
+Use a setup script for an automated way to customize and configure a compute instance at provisioning time.
 
 Use a compute instance as your fully configured and managed development environment in the cloud. For development and testing, you can also use the instance as a [training compute target](concept-compute-target.md#training-compute-targets) or for an [inference target](concept-compute-target.md#compute-targets-for-inference).  A compute instance can run multiple jobs in parallel and has a job queue. As a development environment, a compute instance can't be shared with other users in your workspace.
 
-As an administrator, you can write a customization script to be used to provision all compute instances in the workspace according to your requirements. You can configure your setup script as a Creation script, which will run once when the compute instance is created. Or you can configure it as a Startup script, which will run every time the compute instance is started (including initial creation).
+As an administrator, you can write a customization script to be used to provision all compute instances in the workspace according to your requirements. You can configure your setup script as a:
+* Creation script - runs once when the compute instance is created. 
+* Startup script- runs every time the compute instance is started (including initial creation).
 
 Some examples of what you can do in a setup script:
 
@@ -96,10 +99,10 @@ In a Resource Manager [template](https://github.com/Azure/azure-quickstart-templ
 }
 ```
 
-`scriptData` above specifies the location of the creation script in the notebooks file share such as `Users/admin/testscript.sh`.
-`scriptArguments` is optional above and specifies the arguments for the creation script.
+`scriptData` in this code specifies the location of the creation script in the notebooks file share such as `Users/admin/testscript.sh`.
+`scriptArguments` is optional and specifies the arguments for the creation script.
 
-You could instead provide the script inline for a Resource Manager template. The shell command can refer to any dependencies uploaded into the notebooks file share. When you use an inline string, the working directory for the script is `/mnt/batch/tasks/shared/LS_root/mounts/clusters/**\<ciname\>**/code/Users`.
+You could instead provide the script inline for a Resource Manager template. The shell command can refer to any dependencies uploaded into the notebooks file share. When you use an inline string, the working directory for the script is `/mnt/batch/tasks/shared/LS_root/mounts/clusters/<ciname>/code/Users`, where .`<ciname>` is the name of the compute instance.
 
 For example, specify a base64 encoded command string for `scriptData`:
 

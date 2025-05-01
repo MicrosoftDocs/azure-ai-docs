@@ -19,6 +19,9 @@
         "dest": "."
       },
       {
+        "group": "grp-machine-learning",
+        "src": "articles/machine-learning",
+        "dest": "./machine-learning",
         "files": [
           "**/*.md",
           "**/*.yml"
@@ -29,26 +32,12 @@
           "**/obj/**",
           "**/v1/**",
           "**/v-fake/**"
-        ],
-        "src": "articles/machine-learning",
-        "dest": "./machine-learning",
-        "group": "grp-machine-learning"
+        ]
       },
       {
-        "files": [
-          "**/*.md",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "**/_themes/**",
-          "**/includes/**",
-          "**/obj/**"
-        ],
+        "group": "grp-document-intelligence",
         "src": "articles/ai-services/document-intelligence",
         "dest": "./ai-services/document-intelligence/",
-        "group": "grp-document-intelligence"
-      },
-      {
         "files": [
           "**/*.md",
           "**/*.yml"
@@ -57,10 +46,35 @@
           "**/_themes/**",
           "**/includes/**",
           "**/obj/**"
-        ],
+        ]
+      },
+      {
+        "group": "grp-machine-learningv1",
         "src": "articles/machine-learning/v1",
         "dest": "./machine-learning",
-        "group": "grp-machine-learningv1"
+        "files": [
+          "**/*.md",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "**/_themes/**",
+          "**/includes/**",
+          "**/obj/**"
+        ]
+      },
+      {
+        "group": "grp-machine-learningv1",
+        "src": "articles/machine-learning/v-fake",
+        "dest": "./machine-learning/v1",        
+        "files": [
+          "**/*.md",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "**/_themes/**",
+          "**/includes/**",
+          "**/obj/**"
+        ]
       },
       {
         "files": [
@@ -68,6 +82,13 @@
         ],
         "src": "breadcrumb/azure-ai",
         "dest": "breadcrumb/azure-ai"
+      },
+      {
+        "files": [
+          "zone-pivot-groups.yml"
+        ],
+        "src": "zone-pivots",
+        "dest": "zone-pivots/azure-ai/"
       }
     ],
     "resource": [
@@ -90,6 +111,9 @@
         "dest": "."
       },
       {
+        "group": "grp-document-intelligence",
+        "src": "articles/ai-services/document-intelligence",
+        "dest": "./ai-services/document-intelligence/",
         "files": [
           "**/*.gif",
           "**/*.jpeg",
@@ -100,12 +124,12 @@
         "exclude": [
           "**/_themes/**",
           "**/obj/**"
-        ],
-        "src": "articles/ai-services/document-intelligence",
-        "dest": "./ai-services/document-intelligence/",
-        "group": "grp-document-intelligence"
+        ]
       },
       {
+        "group": "grp-machine-learning",
+        "src": "articles/machine-learning",
+        "dest": "./machine-learning/",
         "files": [
           "**/*.gif",
           "**/*.jpeg",
@@ -118,12 +142,12 @@
           "**/obj/**",
           "**/v1/**",
           "**/v-fake/**"
-        ],
-        "src": "articles/machine-learning",
-        "dest": "./machine-learning/",
-        "group": "grp-machine-learning"
+        ]
       },
       {
+        "group": "grp-machine-learningv1",
+        "src": "articles/machine-learning/v1",
+        "dest": "./machine-learning/",
         "files": [
           "**/*.gif",
           "**/*.jpeg",
@@ -134,10 +158,23 @@
         "exclude": [
           "**/_themes/**",
           "**/obj/**"
+        ]
+      },
+      {
+        "group": "grp-machine-learningv1",
+        "src": "articles/machine-learning/v-fake",
+        "dest": "./machine-learning/v1",
+        "files": [
+          "**/*.gif",
+          "**/*.jpeg",
+          "**/*.jpg",
+          "**/*.png",
+          "**/*.svg"
         ],
-        "src": "articles/machine-learning/v1",
-        "dest": "./machine-learning/",
-        "group": "grp-machine-learningv1"
+        "exclude": [
+          "**/_themes/**",
+          "**/obj/**"
+        ]
       }
     ],
     "groups": {
@@ -230,7 +267,8 @@
         "Certification"
       ],
       "uhfHeaderId": "azure",
-      "ms.suite": "office"
+      "ms.suite": "office",
+      "zone_pivot_group_filename": "zone-pivots/azure-ai/zone-pivot-groups.json"
     },
     "fileMetadata": {
       "author": {
@@ -318,13 +356,13 @@
       },
       "manager": {
         "articles/search/**/*.md": "nitinme",
-        "articles/ai-studio/**/*.md": "nitinme",
+        "articles/ai-studio/**/*.md": "scottpolly",
         "articles/ai-services/**/*.md": "nitinme",
         "articles/genomics/**/*.md": "scottpolly",
         "articles/genomics/**/*.yml": "scottpolly"
       },
       "ms.author": {
-        "articles/ai-studio/**/*.md": "eur",
+        "articles/ai-studio/**/*.md": "sgilley",
         "articles/ai-services/**/*.md": "eur",
         "articles/ai-services/anomaly-detector/**/*.md": "mbullwin",
         "articles/ai-services/computer-vision/**/*.md": "pafarley",
@@ -346,23 +384,45 @@
       "ms.collection": {
         "articles/ai-services/**/*.md": "ce-skilling-ai-copilot",
         "articles/ai-services/**/*.yml": "ce-skilling-ai-copilot",
-        "articles/ai-studio/**/*.md": "ce-skilling-ai-copilot",
-        "articles/ai-studio/**/*.yml": "ce-skilling-ai-copilot",
+        "articles/ai-services/openai/**/*.md": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
+        "articles/ai-services/openai/**/*.yml": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
+        "articles/ai-services/content-understanding/**/*.md": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
+        "articles/ai-services/content-understanding/**/*.yml": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
+        "articles/ai-services/anomaly-detector/**/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/ai-services/anomaly-detector/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/ai-services/content-moderator/**/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/ai-services/content-moderator/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/ai-services/custom-vision-service/**/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/ai-services/custom-vision-service/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/ai-services/metrics-advisor/**/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/ai-services/metrics-advisor/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/ai-services/personalizer/**/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/ai-services/personalizer/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/ai-services/luis/**/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/ai-services/luis/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/ai-services/qnamaker/**/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/ai-services/qnamaker/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/ai-services/immersive-reader/**/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/ai-services/immersive-reader/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/ai-studio/**/*.md": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
+        "articles/ai-studio/**/*.yml": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
+        "articles/ai-foundry/**/*.md": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
+        "articles/ai-foundry/**/*.yml": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
         "articles/search/**/*.md": "ce-skilling-ai-copilot",
         "articles/search/**/*.yml": "ce-skilling-ai-copilot",
-        "articles/machine-learning/*.md": "ce-skilling-ai-copilot",
-        "articles/machine-learning/component-reference/*.md": "ce-skilling-ai-copilot",
-        "articles/machine-learning/component-reference/*.yml": "ce-skilling-ai-copilot",
-        "articles/machine-learning/component-reference-v2/*.md": "ce-skilling-ai-copilot",
-        "articles/machine-learning/component-reference-v2/*.yml": "ce-skilling-ai-copilot",
+        "articles/machine-learning/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/machine-learning/component-reference/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/machine-learning/component-reference/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/machine-learning/component-reference-v2/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/machine-learning/component-reference-v2/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
         "articles/machine-learning/prompt-flow/*.md": "ce-skilling-ai-copilot",
-        "articles/machine-learning/v1/*.md": "ce-skilling-ai-copilot"
+        "articles/machine-learning/v1/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
       },
       "ms.custom": {
         "articles/machine-learning/v1/*.md": "UpdateFrequency5"
       },
       "ms.service": {
-        "articles/ai-studio/**/*.md": "azure-ai-services",
+        "articles/ai-studio/**/*.md": "azure-ai-foundry",
         "articles/ai-services/**/*.md": "azure-ai-services",
         "articles/ai-services/speech-service/*.md": "azure-ai-speech",
         "articles/ai-services/translator/**/*.md": "azure-ai-translator",

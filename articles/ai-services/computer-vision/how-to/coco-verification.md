@@ -2,22 +2,23 @@
 title: Verify a COCO annotation file
 titleSuffix: Azure AI services
 description: Use a Python script to verify your COCO file for custom model training.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.custom: devx-track-python
 ms.topic: how-to
 ms.date: 01/19/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
 # Check the format of your COCO annotation file
 
-<!-- nbstart https://raw.githubusercontent.com/Azure-Samples/cognitive-service-vision-model-customization-python-samples/main/docs/check_coco_annotation.ipynb -->
+
+[!INCLUDE [model-customization-deprecation](../includes/model-customization-deprecation.md)]
 
 > [!TIP]
-> This article is based on the Jupyter notebook _check_coco_annotation.ipynb_. **[Open in GitHub](https://github.com/Azure-Samples/cognitive-service-vision-model-customization-python-samples/blob/main/docs/check_coco_annotation.ipynb)**.
+> This article is based on the Jupyter notebook *check_coco_annotation.ipynb*. **[Open in GitHub](https://github.com/Azure-Samples/cognitive-service-vision-model-customization-python-samples/blob/main/docs/check_coco_annotation.ipynb)**.
 
 This guide demonstrates how to check if the format of your annotation file is correct. First, install the python samples package from the command line:
 
@@ -39,12 +40,12 @@ purpose = Purpose.TRAINING # or Purpose.EVALUATION
 check_coco_annotation_file(json.loads(coco_file_path.read_text()), annotation_kind, purpose)
 ```
 
-<!-- nbend -->
 
 ## Use COCO file in a new project
 
 Once your COCO file is verified, you're ready to import it to your model customization project. See [Create and train a custom model](model-customization.md) and go to the section on selecting/importing a COCO file&mdash;you can follow the guide from there to the end.
 
-## Next steps
+## Next step
 
-* [Create and train a custom model](model-customization.md)
+> [!div class="nextstepaction"]
+> [Create and train a custom model](model-customization.md)

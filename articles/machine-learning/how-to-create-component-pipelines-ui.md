@@ -8,7 +8,7 @@ ms.subservice: core
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: keli19
-ms.date:  01/31/2024
+ms.date:  12/26/2024
 ms.topic: how-to
 ms.custom: devplatv2, designer
 ---
@@ -47,17 +47,18 @@ In this article, you'll learn how to create and run [machine learning pipelines]
 
 ## Register component in your workspace
 
-To build pipeline using components in UI, you need to register components to your workspace first. You can use UI, CLI or SDK to register components to your workspace, so that you can share and reuse the component within the workspace. Registered components support automatic versioning so you can update the component but assure that pipelines that require an older version continues to work.  
+To build pipeline using components in UI, you need to register components to your workspace first. You can use UI, CLI, or SDK to register components to your workspace, so that you can share and reuse the component within the workspace. Registered components support automatic versioning so you can update the component but assure that pipelines that require an older version continues to work.  
 
 The following example uses UI to register components, and the [component source files](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components)  are in the `cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components` directory of the [`azureml-examples` repository](https://github.com/Azure/azureml-examples). You need to clone the repo to local first.
 
-1. In your Azure Machine Learning workspace, navigate to **Components** page and select **New Component** (one of the two style pages will appear).
+1. In your Azure Machine Learning workspace, navigate to **Components** page and select **New Component**.
+    One of the two style pages will appear:
 
-:::image type="content" source="./media/how-to-create-component-pipelines-ui/register-component-entry-button-2.png" alt-text="Screenshot showing register entry button in component page." lightbox ="./media/how-to-create-component-pipelines-ui/register-component-entry-button-2.png":::
+    :::image type="content" source="./media/how-to-create-component-pipelines-ui/register-component-entry-button-2.png" alt-text="Screenshot showing register entry button in component page." lightbox ="./media/how-to-create-component-pipelines-ui/register-component-entry-button-2.png":::
 
-:::image type="content" source="./media/how-to-create-component-pipelines-ui/register-component-entry-button.png" alt-text="Screenshot showing register entry button in component page  with can include archive." lightbox ="./media/how-to-create-component-pipelines-ui/register-component-entry-button.png":::
+    :::image type="content" source="./media/how-to-create-component-pipelines-ui/register-component-entry-button.png" alt-text="Screenshot showing register entry button in component page  with can include archive." lightbox ="./media/how-to-create-component-pipelines-ui/register-component-entry-button.png":::
 
-This example uses `train.yml` [in the directory](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components). The YAML file defines the name, type, interface including inputs and outputs, code, environment and command of this component. The code of this component `train.py` is under `./train_src` folder, which describes the execution logic of this component. To learn more about the component schema, see the [command component YAML schema reference](reference-yaml-component-command.md).
+This example uses `train.yml` [in the 1b_e2e_registered_components directory](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components). The YAML file defines the name, type, interface including inputs and outputs, code, environment and command of this component. The code of this component `train.py` is under `./train_src` folder, which describes the execution logic of this component. To learn more about the component schema, see the [command component YAML schema reference](reference-yaml-component-command.md).
 
 >[!Note]
 > When register components in UI, `code` defined in the component YAML file can only point to the current folder where YAML file locates or the subfolders, which means you cannot specify `../` for `code` as UI cannot recognize the parent directory.
@@ -86,15 +87,15 @@ This example uses `train.yml` [in the directory](https://github.com/Azure/azurem
 
     :::image type="content" source="./media/how-to-create-component-pipelines-ui/rename-pipeline.png" alt-text="Screenshot showing rename the pipeline." lightbox ="./media/how-to-create-component-pipelines-ui/rename-pipeline.png":::
 
-3. In designer asset library, you can see **Data**, **Model** and **Components** tabs. Switch to the **Components** tab, you can see the components registered from previous section. If there are too many components, you can search with the component name.
+3. In designer asset library, you can see **Data**, **Model**, and **Components** tabs. Switch to the **Components** tab, you can see the components registered from previous section. If there are too many components, you can search with the component name.
 
     :::image type="content" source="./media/how-to-create-component-pipelines-ui/asset-library.png" alt-text="Screenshot showing registered component in asset library." lightbox ="./media/how-to-create-component-pipelines-ui/asset-library.png":::
 
-    Find the *train*, *score* and *eval* components registered in previous section then drag-and-drop them on the canvas. By default it uses the default version of the component, and you can change to a specific version in the right pane of component. The component right pane is invoked by double click on the component.
+    Find the *train*, *score*, and *eval* components registered in previous section then drag-and-drop them on the canvas. By default it uses the default version of the component. To change to a specific version, double click on the component to open the component pane.
 
     :::image type="content" source="./media/how-to-create-component-pipelines-ui/change-component-version.png" alt-text="Screenshot showing changing version of component." lightbox ="./media/how-to-create-component-pipelines-ui/change-component-version.png":::
 
-    In this example, we'll use the sample data under [this path](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components/data). Register the data into your workspace by selecting the add icon in designer asset library -> data tab, set Type = Folder(uri_folder) then follow the wizard to register the data. The data type need to be uri_folder to align with the [train component definition](https://github.com/Azure/azureml-examples/blob/main/cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components/train.yml).
+    In this example, we'll use [the sample data in the data folder](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components/data). Register the data into your workspace by selecting the add icon in designer asset library -> data tab, set Type = Folder(uri_folder) then follow the wizard to register the data. The data type needs to be uri_folder to align with the [train component definition](https://github.com/Azure/azureml-examples/blob/main/cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components/train.yml).
 
     :::image type="content" source="./media/how-to-create-component-pipelines-ui/add-data.png" alt-text="Screenshot showing add data." lightbox ="./media/how-to-create-component-pipelines-ui/add-data.png":::
 
@@ -111,7 +112,7 @@ This example uses `train.yml` [in the directory](https://github.com/Azure/azurem
 
      :::image type="content" source="./media/how-to-create-component-pipelines-ui/component-parameter.png" alt-text="Screenshot showing component parameter settings." lightbox ="./media/how-to-create-component-pipelines-ui/component-parameter.png":::
 
-    For components with primitive type inputs like number, integer, string and boolean, you can change values of such inputs in the component detailed pane, under **Inputs** section.
+    For components with primitive type inputs like number, integer, string, and boolean, you can change values of such inputs in the component detailed pane, under **Inputs** section.
 
     You can also change the output settings (where to store the component's output) and run settings (compute target to run this component) in the right pane.
 
@@ -124,11 +125,11 @@ This example uses `train.yml` [in the directory](https://github.com/Azure/azurem
 
 ## Submit pipeline
 
-1. Select **Configure & Submit** on the right top corner to submit the pipeline.
+1. Select **Configure & Submit** to submit the pipeline.
 
     :::image type="content" source="./media/how-to-create-component-pipelines-ui/configure-submit.png" alt-text="Screenshot showing configure and submit button." border="false":::
 
-1. Then you'll see a step-by-step wizard, follow the wizard to submit the pipeline job.
+1. Then you'll see a step-by-step wizard. Follow the wizard to submit the pipeline job.
 
   :::image type="content" source="./media/how-to-create-component-pipelines-ui/submission-wizard.png" alt-text="Screenshot showing submission wizard." lightbox ="./media/how-to-create-component-pipelines-ui/submission-wizard.png":::
 

@@ -6,7 +6,7 @@ ms.author: mbullwin
 ms.custom: subject-cost-optimization
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 05/08/2024
+ms.date: 04/30/2025
 ---
 
 
@@ -18,7 +18,7 @@ You can also review forecasted costs and identify spending trends to identify ar
 
 ## Prerequisites
 
-Cost analysis in Cost Management supports most Azure account types, but not all of them. To view the full list of supported account types, see [Understand Cost Management data](/azure/cost-management-billing/costs/understand-cost-mgt-data?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn). To view cost data, you need at least read access for an Azure account. For information about assigning access to Azure Cost Management data, see [Assign access to data](/azure/cost-management/assign-access-acm-data?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
+Cost analysis in Cost Management supports most Azure account types, but not all of them. To view the full list of supported account types, see [Understand Cost Management data](/azure/cost-management-billing/costs/understand-cost-mgt-data?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn). To view cost data, you need at least read access for an Azure account. For information about assigning access to Microsoft Cost Management data, see [Assign access to data](/azure/cost-management/assign-access-acm-data?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 
 ## Estimate costs before using Azure OpenAI
 
@@ -28,9 +28,9 @@ Use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculato
 
 Azure OpenAI Service runs on Azure infrastructure that accrues costs when you deploy new resources. There could be other infrastructure costs that might accrue. The following sections describe how you're charged for Azure OpenAI Service.
 
-### Base series and Codex series models
+### Model inference chat completions
 
-Azure OpenAI base series and Codex series models are charged per 1,000 tokens. Costs vary depending on which model series you choose: Ada, Babbage, Curie, Davinci, or Code-Cushman.
+Azure OpenAI chat completions model inference is [charged per 1,000 tokens with different rates](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) depending on model and [deployment type](./deployment-types.md). For most models pricing is now listed in terms of 1 million tokens.
 
 Azure OpenAI models understand and process text by breaking it down into tokens. For reference, each token is roughly four characters for typical English text.
 
@@ -38,15 +38,16 @@ Token costs are for both input and output. For example, suppose you have a 1,000
 
 In practice, for this type of completion call, the token input/output wouldn't be perfectly 1:1. A conversion from one programming language to another could result in a longer or shorter output depending on many factors. One such factor is the value assigned to the `max_tokens` parameter.
 
-### Base Series and Codex series fine-tuned models
+### Fine-tuned models
 
-Azure OpenAI fine-tuned models are charged based on three factors:
+Azure OpenAI fine-tuning models are charged based on the [number of tokens in your training file](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/pricing-update-token-based-billing-for-fine-tuning-training-%F0%9F%8E%89/4164465). For the latest prices, see the [official pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 
-- Training hours
+Once your fine-tuned model is deployed, you're also charged based on:
+
 - Hosting hours
-- Inference per 1,000 tokens
+- Inference per 1,000 tokens (broken down by input usage and output usage)
 
-The hosting hours cost is important to be aware of since after a fine-tuned model is deployed, it continues to incur an hourly cost regardless of whether you're actively using it. Monitor fine-tuned model costs closely.
+The hosting hours cost is important to be aware of since after a fine-tuned model is deployed, it continues to incur an hourly cost regardless of whether you're actively using it. Monitor deployed fine-tuned model costs closely.
 
 > [!IMPORTANT]
 > After you deploy a customized model, if at any time the deployment remains inactive for greater than fifteen (15) days,
@@ -130,7 +131,7 @@ You can also [export your cost data](/azure/cost-management-billing/costs/tutori
 
 ## Next steps
 
-- Learn [how to optimize your cloud investment with Azure Cost Management](/azure/cost-management-billing/costs/cost-mgt-best-practices?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
+- Learn [how to optimize your cloud investment with Microsoft Cost Management](/azure/cost-management-billing/costs/cost-mgt-best-practices?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 - Learn more about managing costs with [cost analysis](/azure/cost-management-billing/costs/quick-acm-cost-analysis?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 - Learn about how to [prevent unexpected costs](/azure/cost-management-billing/understand/analyze-unexpected-charges?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 - Take the [Cost Management](/training/paths/control-spending-manage-bills?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) guided learning course.

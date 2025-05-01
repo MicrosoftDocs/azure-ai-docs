@@ -40,7 +40,7 @@ $Env:COGNITIVE_SERVICE_KEY = your-key
 setx COGNITIVE_SERVICE_KEY your-key
 ```
 
-After you add the environment variable using `setx`, you may need to restart any running consoles or other programs that will need to read the environment variable. For example, if you are using Visual Studio as your editor, restart Visual Studio before running the example. 
+After you add the environment variable using `setx`, you might need to restart any running consoles or other programs that will need to read the environment variable. For example, if you are using Visual Studio as your editor, restart Visual Studio before running the example. 
 
 #### [Linux](#tab/linux)
 

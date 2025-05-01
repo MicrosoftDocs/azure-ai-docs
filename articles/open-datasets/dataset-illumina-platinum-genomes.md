@@ -8,7 +8,7 @@ ms.date: 04/16/2021
 
 # Illumina Platinum Genomes
 
-Whole-genome sequencing is enabling researchers worldwide to characterize the human genome more fully and accurately. This requires a comprehensive, genome-wide catalog of high-confidence variants called in a set of genomes as a benchmark. Illumina has generated deep, whole-genome sequence data of 17 individuals in a three-generation pedigree. Illumina has called variants in each genome using a range of currently available algorithms.
+Whole-genome sequencing is enabling researchers worldwide to characterize the human genome more fully and accurately. This effort requires a comprehensive, genome-wide catalog of high-confidence variants called in a set of genomes as a benchmark. Illumina generated deep, whole-genome sequence data of 17 individuals in a three-generation pedigree. Illumina called variants in each genome using a range of currently available algorithms.
 
 For more information on the data, see the official [Illumina site](https://www.illumina.com/platinumgenomes.html).
 
@@ -32,8 +32,6 @@ West US 2: 'https://datasetplatinumgenomes.blob.core.windows.net/dataset'
 
 West Central US: 'https://datasetplatinumgenomes-secondary.blob.core.windows.net/dataset'
 
-[SAS Token](/azure/storage/common/storage-sas-overview): sv=2019-02-02&se=2050-01-01T08%3A00%3A00Z&si=prod&sr=c&sig=FFfZ0QaDcnEPQmWsshtpoYOjbzd4jtwIWeK%2Fc4i9MqM%3D
-
 ## Use Terms
 
 Data is available without restrictions. For more information and citation details, see the [official Illumina site](https://www.illumina.com/platinumgenomes.html).
@@ -53,7 +51,7 @@ For any questions or feedback about the dataset, contact platinumgenomes@illumin
 
 ## Getting the Illumina Platinum Genomes from Azure Open Datasets and Doing Initial Analysis 
 
-Use Jupyter notebooks, GATK, and Picard to do the following:
+Use Jupyter notebooks, GATK, and Picard in analyses such as:
 
 1. Annotate genotypes using VariantFiltration
 2. Select Specific Variants
@@ -75,7 +73,7 @@ This notebook requires the following libraries:
 
 ## Getting the Genomics data from Azure Open Datasets
 
-Several public genomics data has been uploaded as an Azure Open Dataset [here](https://azure.microsoft.com/services/open-datasets/catalog/). We create a blob service linked to this open dataset. You can find examples of data calling procedure from Azure Open Dataset for `Illumina Platinum Genomes` datasets in below:
+Several public genomics data has been uploaded as an Azure Open Dataset [here](https://azure.microsoft.com/services/open-datasets/catalog/). We create a blob service linked to this open dataset. You can find examples of data calling procedure from Azure Open Dataset for `Illumina Platinum Genomes` datasets as:
 
 ### Downloading the specific 'Illumina Platinum Genomes'
 
@@ -162,7 +160,7 @@ Extract fields from a VCF file to a tab-delimited table. This tool extracts spec
 
 INFO/site-level fields:
 
-Use the `-F` argument to extract INFO fields; each field will occupy a single column in the output file. The field can be any standard VCF column (for example, CHROM, ID, QUAL) or any annotation name in the INFO field (for example, AC, AF). The tool also supports the following fields:
+Use the `-F` argument to extract INFO fields; each field occupies a single column in the output file. The field can be any standard VCF column (for example, CHROM, ID, QUAL) or any annotation name in the INFO field (for example, AC, AF). The tool also supports the following fields:
 
 EVENTLENGTH (length of the event)
 TRANSITION (1 for a bi-allelic transition (SNP), 0 for bi-allelic transversion (SNP), -1 for INDELs and multi-allelics)

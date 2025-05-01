@@ -11,6 +11,7 @@ ms.reviewer: fasantia
 reviewer: santiagxf
 ms.author: mopeakande
 author: msakande
+ms.collection: ce-skilling-ai-copilot 
 ms.custom: build-2024, serverless, devx-track-azurecli
 ---
 
@@ -267,7 +268,7 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
 
         :::image type="content" source="media/how-to-deploy-models-serverless/deployment-name.png" alt-text="A screenshot showing how to specify the name of the deployment you want to create." lightbox="media/how-to-deploy-models-serverless/deployment-name.png":::
        > [!TIP]
-       > The **Content filter (preview)** option is enabled by default. Leave the default setting for the service to detect harmful content such as hate, self-harm, sexual, and violent content. For more information about content filtering, see [Content safety for models deployed via serverless APIs](concept-model-catalog.md#content-safety-for-models-deployed-via-maas).
+       > The **Content filter (preview)** option is enabled by default. Leave the default setting for the service to detect harmful content such as hate, self-harm, sexual, and violent content. For more information about content filtering (preview), see [Content safety for models deployed via serverless APIs](concept-model-catalog.md#content-safety-for-models-deployed-via-maas).
 
     1. Select **Deploy**. Wait until the deployment is ready and you're redirected to the Deployments page.
 
@@ -383,16 +384,9 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
     # [Python SDK](#tab/python)
 
     ```python
-    endpoint_name="meta-llama3-8b-qwerty"
-    
-    serverless_endpoint = ServerlessEndpoint(
-        name=endpoint_name,
-        model_id=model_id
-    )
-
-    created_endpoint = client.serverless_endpoints.begin_create_or_update(
-        serverless_endpoint
-    ).result()
+    endpoints = ml_client.online_endpoints.list()
+    for endpoint in endpoints:
+        print(endpoint.name)
     ```
 
     # [ARM](#tab/arm)
@@ -441,7 +435,7 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
 
 ## Use the serverless API endpoint
 
-Models deployed in Azure Machine Learning and Azure AI studio in Serverless API endpoints support the [Azure AI Model Inference API](reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
+Models deployed in Azure Machine Learning and Azure AI Foundry in Serverless API endpoints support the [Azure AI Model Inference API](reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
 
 Read more about the [capabilities of this API](reference-model-inference-api.md#capabilities) and how [you can use it when building applications](reference-model-inference-api.md#getting-started). 
 
@@ -526,7 +520,7 @@ You can find the pricing information on the __Pricing and terms__ tab of the dep
 
 #### Cost for non-Microsoft models
 
-Non-Microsoft models deployed as serverless API endpoints are offered through the Azure Marketplace and integrated with Azure AI Studio for use. You can find the Azure Marketplace pricing when deploying or fine-tuning these models.
+Non-Microsoft models deployed as serverless API endpoints are offered through the Azure Marketplace and integrated with Azure AI Foundry for use. You can find the Azure Marketplace pricing when deploying or fine-tuning these models.
 
 Each time a workspace subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently.
 

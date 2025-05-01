@@ -3,7 +3,7 @@ title: 'Quickstart: Create a Windows Data Science Virtual Machine'
 titleSuffix: Azure Data Science Virtual Machine
 description: Learn how to configure and create a Data Science Virtual Machine on Azure for analytics and machine learning.
 services: machine-learning
-ms.service: data-science-vm
+ms.service: azure-data-science-virtual-machines
 author: fbsolo-ms1 
 ms.author: franksolomon 
 ms.topic: quickstart

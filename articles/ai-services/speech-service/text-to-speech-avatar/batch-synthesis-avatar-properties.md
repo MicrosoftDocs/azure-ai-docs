@@ -1,12 +1,12 @@
 ---
 title: Batch synthesis properties - Speech service
 titleSuffix: Azure AI services
-description: Learn about the batch synthesis properties that are available for text to speech avatar. 
+description: Learn about the batch synthesis properties that are available for text to speech avatar.
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 2/24/2024
-ms.reviewer: v-baolianzou
+ms.date: 1/13/2025
+ms.reviewer: eur
 ms.author: eur
 author: eric-urban
 ---
@@ -15,7 +15,7 @@ author: eric-urban
 
 Batch synthesis properties can be grouped as: avatar related properties, batch job related properties, and text to speech related properties,  which are described in the following tables.
 
-Some properties in JSON format are required when you create a new batch synthesis job. Other properties are optional. The batch synthesis response includes other properties to provide information about the synthesis status and results. For example, the `outputs.result` property contains the location from where you can download a video file containing the avatar video. From `outputs.summary`, you can access the summary and debug details. 
+Some properties in JSON format are required when you create a new batch synthesis job. Other properties are optional. The batch synthesis response includes other properties to provide information about the synthesis status and results. For example, the `outputs.result` property contains the location from where you can download a video file containing the avatar video. From `outputs.summary`, you can access the summary and debug details.
 
 ## Avatar properties
 
@@ -26,8 +26,8 @@ The following table describes the avatar properties.
 | avatarConfig.talkingAvatarCharacter      | The character name of the talking avatar.<br/><br/>The supported avatar characters can be found [here](avatar-gestures-with-ssml.md#supported-prebuilt-avatar-characters-styles-and-gestures).<br/><br/>This property is required.|
 | avatarConfig.talkingAvatarStyle          | The style name of the talking avatar.<br/><br/>The supported avatar styles can be found [here](avatar-gestures-with-ssml.md#supported-prebuilt-avatar-characters-styles-and-gestures).<br/><br/>This property is required for prebuilt avatar, and optional for customized avatar.|
 | avatarConfig.customized                  | A bool value indicating whether the avatar to be used is customized avatar or not. True for customized avatar, and false for prebuilt avatar.<br/><br/>This property is optional, and the default value is `false`.|
-| avatarConfig.videoFormat                 | The format for output video file, could be mp4 or webm.<br/><br/>The `webm` format is required for transparent background.<br/><br/>This property is optional, and the default value is mp4.|
-| avatarConfig.videoCodec                  | The codec for output video, could be h264, hevc or vp9.<br/><br/>Vp9 is required for transparent background. The synthesis speed will be slower with vp9 codec, as vp9 encoding is slower.<br/><br/>This property is optional, and the default value is hevc.|
+| avatarConfig.videoFormat                 | The format for output video file could be mp4 or webm.<br/><br/>The `webm` format is required for transparent background.<br/><br/>This property is optional, and the default value is mp4.|
+| avatarConfig.videoCodec                  | The codec for output video, could be h264, hevc, vp9 or av1.<br/><br/>Vp9 is required for transparent background. The synthesis speed will be slower with vp9 codec, as vp9 encoding is slower.<br/><br/>This property is optional, and the default value is hevc.|
 | avatarConfig.bitrateKbps                 | The bitrate for output video, which is integer value, with unit kbps.<br/><br/>This property is optional, and the default value is 2000.|
 | avatarConfig.videoCrop                   | This property allows you to crop the video output, which means, to output a rectangle subarea of the original video. This property has two fields, which define the top-left vertex and bottom-right vertex of the rectangle.<br/><br/>This property is optional, and the default behavior is to output the full video.|
 | avatarConfig.videoCrop.topLeft           |The top-left vertex of the rectangle for video crop. This property has two fields x and y, to define the horizontal and vertical position of the vertex.<br/><br/>This property is required when properties.videoCrop is set.|
@@ -50,7 +50,7 @@ The following table describes the batch synthesis job properties.
 | lastActionDateTime       | The most recent date and time when the status property value changed.<br/><br/>This property is read-only.|
 | properties               | A defined set of optional batch synthesis configuration settings.  |
 | properties.destinationContainerUrl | The batch synthesis results can be stored in a writable Azure container. If you don't specify a container URI with [shared access signatures (SAS)](/azure/storage/common/storage-sas-overview) token, the Speech service stores the results in a container managed by Microsoft. SAS with stored access policies isn't supported. When the synthesis job is deleted, the result data is also deleted.<br/><br/>This optional property isn't included in the response when you get the synthesis job.|
-| properties.timeToLiveInHours    |A duration in hours after the synthesis job is created, when the synthesis results will be automatically deleted.  The maximum time to live is 744 hours. The date and time of automatic deletion, for synthesis jobs with a status of "Succeeded" or "Failed" is calculated as the sum of the lastActionDateTime and timeToLive properties.<br/><br/>Otherwise, you can call the [delete synthesis method](../batch-synthesis.md#delete-batch-synthesis) to remove the job sooner. | 
+| properties.timeToLiveInHours    |A duration in hours after the synthesis job is created, when the synthesis results will be automatically deleted.  The maximum time to live is 744 hours. The date and time of automatic deletion, for synthesis jobs with a status of "Succeeded" or "Failed" is calculated as the sum of the lastActionDateTime and timeToLive properties.<br/><br/>Otherwise, you can call the [delete synthesis method](../batch-synthesis.md#delete-batch-synthesis) to remove the job sooner. |
 | status                   | The batch synthesis processing status.<br/><br/>The status should progress from "NotStarted" to "Running", and finally to either "Succeeded" or "Failed".<br/><br/>This property is read-only.|
 
 
@@ -83,7 +83,7 @@ To generate a transparent background video, you must set the following propertie
 |-------------------------|---------------------------------------------|
 | properties.videoFormat  | webm                                        |
 | properties.videoCodec   | vp9                                         |
-| properties.backgroundColor | #00000000 (or transparent)               |
+| properties.backgroundColor | #00000000 (or `transparent`)               |
 
 Clipchamp is one example of a video editing tool that supports the transparent background video generated by the batch synthesis API.
 

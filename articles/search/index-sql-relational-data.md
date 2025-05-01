@@ -5,20 +5,20 @@ description: Learn how to model relational data, denormalized into a flat result
 author: HeidiSteen
 manager: nitinme
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 03/18/2024
+ms.date: 01/18/2025
 ---
 
 # How to model relational SQL data for import and indexing in Azure AI Search
 
-Azure AI Search accepts a flat rowset as input to the [indexing pipeline](search-what-is-an-index.md). If your source data originates from joined tables in a SQL Server relational database, this article explains how to construct the result set, and how to model a parent-child relationship in an Azure AI Search index.
+Azure AI Search accepts a flat rowset as input to the [indexing pipeline](search-what-is-an-index.md). If your source data originates from joined tables in a SQL Server relational database, this article explains how to construct the rowset, and how to model a parent-child relationship in an Azure AI Search index.
 
 As an illustration, we refer to a hypothetical hotels database, based on [demo data](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/hotels). Assume the database consists of a `Hotels$` table with 50 hotels, and a `Rooms$` table with rooms of varying types, rates, and amenities, for a total of 750 rooms. There's a one-to-many relationship between the tables. In our approach, a view provides the query that returns 50 rows, one row per hotel, with associated room detail embedded into each row.
 
-   ![Tables and view in the Hotels database](media/index-sql-relational-data/hotels-database-tables-view.png "Tables and view in the Hotels database")
+![Tables and view in the Hotels database](media/index-sql-relational-data/hotels-database-tables-view.png "Screenshot of tables and view in the Hotels database.")
 
 ## The problem of denormalized data
 
@@ -32,9 +32,9 @@ ON Rooms$.HotelID = Hotels$.HotelID
 
 Results from this query return all of the Hotel fields, followed by all Room fields, with preliminary hotel information repeating for each room value.
 
-   ![Denormalized data, redundant hotel data when room fields are added](media/index-sql-relational-data/denormalize-data-query.png "Denormalized data, redundant hotel data when room fields are added")
+![Denormalized data, redundant hotel data when room fields are added](media/index-sql-relational-data/denormalize-data-query.png "Screenshot of denormalized data, redundant hotel data when room fields are added.")
 
-While this query succeeds on the surface (providing all of the data in a flat row set), it fails in delivering the right document structure for the expected search experience. During indexing, Azure AI Search creates one search document for each row ingested. If your search documents looked like the above results, you would have perceived duplicates - seven separate documents for the Twin Dome hotel alone. A query on "hotels in Florida" would return seven results for just the Twin Dome hotel, pushing other relevant hotels deep into the search results.
+While this query succeeds on the surface (providing all of the data in a flat rowset), it fails in delivering the right document structure for the expected search experience. During indexing, Azure AI Search creates one search document for each row ingested. If your search documents looked like the above results, you would have perceived duplicates - seven separate documents for the Old Century Hotel alone. A query on "hotels in Florida" would return seven results for just the Old Century Hotel, pushing other relevant hotels deep into the search results.
 
 To get the expected experience of one document per hotel, you should provide a rowset at the right granularity, but with complete information. This article explains how.
 
@@ -94,11 +94,11 @@ The solution is to capture the room detail as nested JSON, and then insert the J
 
    The following screenshot shows the resulting view, with the *Rooms* nvarchar field at the bottom. The *Rooms* field exists only in the HotelRooms view.
 
-   ![HotelRooms view](media/index-sql-relational-data/hotelsrooms-view.png "HoteRooms view")
+   ![HotelRooms view](media/index-sql-relational-data/hotelsrooms-view.png "Screenshot of the HotelRooms view.")
 
 1. Run `SELECT * FROM dbo.HotelRooms` to retrieve the row set. This query returns 50 rows, one per hotel, with associated room information as a JSON collection. 
 
-   ![Rowset from HotelRooms view](media/index-sql-relational-data/hotelrooms-rowset.png "Rowset from HotelRooms view")
+   ![Rowset from HotelRooms view](media/index-sql-relational-data/hotelrooms-rowset.png "Screenshot of the rowset from the HotelRooms view.")
 
 This rowset is now ready for import into Azure AI Search.
 
@@ -159,7 +159,7 @@ As noted in [Model complex types](search-howto-complex-data-types.md): "the docu
 
 Using your own data set, you can use the [Import data wizard](search-import-data-portal.md) to create and load the index. The wizard detects the embedded JSON collection, such as the one contained in *Rooms*, and infers an index schema that includes a complex type collection. 
 
-  ![Index inferred by Import data wizard](media/index-sql-relational-data/search-index-rooms-complex-collection.png "Index inferred by Import data wizard")
+  ![Index inferred by Import data wizard](media/index-sql-relational-data/search-index-rooms-complex-collection.png "Screenshot of the an index inferred by Import data wizard.")
 
 Try the following quickstart to learn the basic steps of the Import data wizard.
 

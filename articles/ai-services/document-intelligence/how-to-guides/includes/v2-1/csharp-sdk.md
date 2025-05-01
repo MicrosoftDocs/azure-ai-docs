@@ -1,11 +1,11 @@
 ---
-title: "Use Document Intelligence (formerly Form Recognizer) SDK for C#/.NET (REST API v2.1)"
+title: "Use Document Intelligence SDK for C#/.NET (REST API v2.1)"
 description: 'Use the Document Intelligence SDK for C# / .NET (REST API v2.1) to create a forms processing app that extracts key data from documents.'
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 05/23/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ms.custom: devx-track-csharp
 ---
@@ -30,7 +30,7 @@ ms.custom: devx-track-csharp
 - The key and endpoint from the resource you create to connect your application to the Azure Document Intelligence service.
 
   1. After your resource deploys, select **Go to resource**.
-  1. In the left navigation menu, select **Keys and Endpoint**.
+  1. In the left pane, select **Keys and Endpoint**.
   1. Copy one of the keys and the **Endpoint** for use later in this article.
 
   :::image type="content" source="../../../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
@@ -74,7 +74,7 @@ From the project directory, open the *Program.cs* file in an editor or IDE. Add 
 In the application's `Program` class, create variables for your resource's key and endpoint.
 
 > [!IMPORTANT]
-> Go to the Azure portal. If the Document Intelligence resource you created in the Prerequisites section deployed successfully, select the **Go to Resource** button under **Next Steps**. In the left navigation menu, under **Resource Management**, select **Keys and Endpoint**.
+> Go to the Azure portal. If the Document Intelligence resource you created in the Prerequisites section deployed successfully, select the **Go to Resource** button under **Next Steps**. In the left pane, under **Resource Management**, select **Keys and Endpoint**.
 >
 > Remember to remove the key from your code when you're done. Never post it publicly. For production, use secure methods to store and access your credentials. For more information, see [Azure AI services security](../../../../../ai-services/security-features.md).
 
@@ -91,12 +91,12 @@ With Document Intelligence, you can create two different client types. The first
 `FormRecognizerClient` provides the following operations:
 
 - Recognize form fields and content by using custom models trained to analyze your custom forms. These values are returned in a collection of `RecognizedForm` objects. See [Analyze forms with a custom model](#analyze-forms-with-a-custom-model).
-- Recognize form content, including tables, lines, and words, without the need to train a model.  Form content is returned in a collection of `FormPage` objects. See [Analyze layout](#analyze-layout).
+- Recognize form content, including tables, lines, and words, without the need to train a model. Form content is returned in a collection of `FormPage` objects. See [Analyze layout](#analyze-layout).
 - Recognize common fields from US receipts, business cards, invoices, and ID documents using a pretrained model on the Document Intelligence service.
 
 `FormTrainingClient` provides operations to:
 
-- Train custom models to analyze all fields and values found in your custom forms.  A `CustomFormModel` is returned that indicates the form types the model analyzes and the fields it extracts for each form type.
+- Train custom models to analyze all fields and values found in your custom forms. A `CustomFormModel` is returned that indicates the form types the model analyzes and the fields it extracts for each form type.
 - Train custom models to analyze specific fields and values you specify by labeling your custom forms. A `CustomFormModel` is returned that indicates the fields that the model extracts and the estimated accuracy for each field.
 - Manage models created in your account.
 - Copy a custom model from one Document Intelligence resource to another.
@@ -136,7 +136,7 @@ Save the URL of the included sample image. That image is also available on [GitH
 
 ## Analyze layout
 
-You can use Document Intelligence to analyze tables, lines, and words in documents, without needing to train a model. The returned value is a collection of **FormPage** objects. There's one object for each page in the submitted document. For more information about layout extraction, see [Document Intelligence layout model](../../../concept-layout.md).
+You can use Document Intelligence to analyze tables, lines, and words in documents, without needing to train a model. The returned value is a collection of **FormPage** objects. There's one object for each page in the submitted document. For more information about layout extraction, see [Document Intelligence layout model](../../../prebuilt/layout.md).
 
 To analyze the content of a file at a given URL, use the `StartRecognizeContentFromUri` method.
 
@@ -186,7 +186,7 @@ Table 0 has 2 rows and 6 columns.
 
 ## Analyze receipts
 
-This section demonstrates how to analyze and extract common fields from US receipts by using a pretrained receipt model. For more information about receipt analysis, see the [Document Intelligence receipt model](../../../concept-receipt.md).
+This section demonstrates how to analyze and extract common fields from US receipts by using a pretrained receipt model. For more information about receipt analysis, see the [Document Intelligence receipt model](../../../prebuilt/receipt.md).
 
 To analyze receipts from a URL, use the `StartRecognizeReceiptsFromUri` method.
 
@@ -260,7 +260,7 @@ The following code processes the business card at the given URI and prints the m
 
 ## Analyze invoices
 
-This section demonstrates how to analyze and extract common fields from sales invoices by using a pretrained model. For more information about invoice analysis, see the [Document Intelligence invoice model](../../../concept-invoice.md).
+This section demonstrates how to analyze and extract common fields from sales invoices by using a pretrained model. For more information about invoice analysis, see the [Document Intelligence invoice model](../../../prebuilt/invoice.md).
 
 To analyze invoices from a URL, use the `StartRecognizeInvoicesFromUriAsync` method.
 
@@ -275,7 +275,7 @@ The following code processes the invoice at the given URI and prints the major f
 
 ## Analyze ID documents
 
-This section demonstrates how to analyze and extract key information from government-issued identification documents—worldwide passports and U.S. driver's licenses by using the Document Intelligence prebuilt ID model. For more information about ID document analysis, see the [Document Intelligence ID document model](../../../concept-id-document.md).
+This section demonstrates how to analyze and extract key information from government-issued identification documents—worldwide passports and U.S. driver's licenses by using the Document Intelligence prebuilt ID model. For more information about ID document analysis, see the [Document Intelligence ID document model](../../../prebuilt/id-document.md).
 
 To analyze ID documents from a URI, use the `StartRecognizeIdentityDocumentsFromUriAsync` method.
 
@@ -309,7 +309,7 @@ Finally, return the trained model ID for use in later steps.
 
 [!code-csharp[](~/cognitive-services-quickstart-code/dotnet/FormRecognizer/FormRecognizerQuickstart.cs?name=snippet_train_return)]
 
-This output has been truncated for readability.
+This output is truncated for readability.
 
 ```output
 Merchant Name: 'Contoso Contoso', with confidence 0.516
@@ -373,7 +373,7 @@ The returned `CustomFormModel` indicates the fields that the model can extract, 
 
 [!code-csharp[](~/cognitive-services-quickstart-code/dotnet/FormRecognizer/FormRecognizerQuickstart.cs?name=snippet_trainlabels_response)]
 
-This output has been truncated for readability.
+This output is truncated for readability.
 
 ```output
 Form Page 1 has 18 lines.
@@ -431,7 +431,7 @@ The returned value is a collection of `RecognizedForm` objects. There's one obje
 
 [!code-csharp[](~/cognitive-services-quickstart-code/dotnet/FormRecognizer/FormRecognizerQuickstart.cs?name=snippet_analyze_response)]
 
-This output response has been truncated for readability.
+This output response is truncated for readability.
 
 ```output
 Custom Model Info:
@@ -498,7 +498,7 @@ This section demonstrates how to manage the custom models stored in your account
 
 ### Check the number of models in the FormRecognizer resource account
 
-The following code block checks how many models you've saved in your Document Intelligence account and compares it to the account limit.
+The following code block checks how many models you saved in your Document Intelligence account and compares it to the account limit.
 
 [!code-csharp[](~/cognitive-services-quickstart-code/dotnet/FormRecognizer/FormRecognizerQuickstart.cs?name=snippet_manage_model_count)]
 
@@ -515,7 +515,7 @@ The following code blocklists the current models in your account and prints thei
 
 [!code-csharp[](~/cognitive-services-quickstart-code/dotnet/FormRecognizer/FormRecognizerQuickstart.cs?name=snippet_manage_model_list)]
 
-This output has been truncated for readability.
+This output is truncated for readability.
 
 ```output
 Custom Model Info:
@@ -541,7 +541,7 @@ The following code block trains a new model, just like in [Train a model without
 
 [!code-csharp[](~/cognitive-services-quickstart-code/dotnet/FormRecognizer/FormRecognizerQuickstart.cs?name=snippet_manage_model_get)]
 
-This output has been truncated for readability.
+This output is truncated for readability.
 
 ```output
 Custom Model Info:

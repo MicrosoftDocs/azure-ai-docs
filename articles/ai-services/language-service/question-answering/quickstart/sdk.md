@@ -3,7 +3,7 @@ title: "Quickstart: Use SDK to create and manage project - custom question answe
 description: This quickstart shows you how to create and manage your project using custom question answering.
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 12/19/2023
+ms.date: 03/24/2025
 author: jboback
 ms.author: jboback
 recommendations: false
@@ -14,9 +14,6 @@ zone_pivot_groups: custom-qna-quickstart
 ---
 
 # Quickstart: custom question answering
-
-> [!NOTE]
-> [Azure OpenAI On Your Data](../../../openai/concepts/use-your-data.md) utilizes large language models (LLMs) to produce similar results to Custom Question Answering. If you wish to connect an existing Custom Question Answering project to Azure OpenAI On Your Data, please check out our [guide](../how-to/azure-openai-integration.md).
 
 > [!NOTE]
 > Are you looking to migrate your workloads from QnA Maker? See our [migration guide](../how-to/migrate-qnamaker-to-question-answering.md) for information on feature comparisons and migration steps.

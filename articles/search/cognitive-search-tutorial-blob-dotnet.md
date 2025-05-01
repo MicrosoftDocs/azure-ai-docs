@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Skillsets using C#'
+title: 'Tutorial: Skillsets Using C#'
 titleSuffix: Azure AI Search
 description: Use C# and the Azure SDK for .NET to create skillsets. This skillset applies AI transformations and analyses to create searchable content from images and unstructured text.
 
@@ -7,9 +7,9 @@ author: HeidiSteen
 ms.author: heidist
 manager: nitinme
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: tutorial
-ms.date: 03/06/2024
+ms.date: 03/31/2025
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
@@ -18,19 +18,17 @@ ms.custom:
 
 # C# Tutorial: Use skillsets to generate searchable content in Azure AI Search
 
-In this tutorial, learn how to use the [Azure SDK for .NET](https://www.nuget.org/packages/Azure.Search.Documents/) to create an [AI enrichment pipeline](cognitive-search-concept-intro.md) for content extraction and transformations during indexing.
+Learn how to use the [Azure SDK for .NET](https://www.nuget.org/packages/Azure.Search.Documents/) to create an [AI enrichment pipeline](cognitive-search-concept-intro.md) for content extraction and transformations during indexing.
 
-Skillsets add AI processing to raw content, making that content more uniform and searchable. Once you know how skillsets work, you can support a broad range of transformations: from image analysis, to natural language processing, to customized processing that you provide externally.
+Skillsets add AI processing to raw content, making it more uniform and searchable. Once you know how skillsets work, you can support a broad range of transformations, from image analysis to natural language processing to customized processing that you provide externally.
 
-This tutorial helps you learn how to:
+In this tutorial, you:
 
 > [!div class="checklist"]
 > + Define objects in an enrichment pipeline.
 > + Build a skillset. Invoke OCR, language detection, entity recognition, and key phrase extraction.
 > + Execute the pipeline. Create and load a search index.
-> + Check the results using full text search.
-
-If you don't have an Azure subscription, open a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+> + Check the results using full-text search.
 
 ## Overview
 
@@ -42,16 +40,18 @@ Once content is extracted, the [skillset](cognitive-search-working-with-skillset
 
 ## Prerequisites
 
-+ [Visual Studio](https://visualstudio.microsoft.com/downloads/)
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-+ [Azure.Search.Documents 11.x NuGet package](https://www.nuget.org/packages/Azure.Search.Documents) 
++ [Azure Storage](/azure/storage/common/storage-account-create).
 
-+ [Azure Storage](/azure/storage/common/storage-account-create)
++ [Azure AI Search](search-create-app-portal.md).
 
-+ [Azure AI Search](search-create-app-portal.md)
++ [Azure.Search.Documents 11.x NuGet package](https://www.nuget.org/packages/Azure.Search.Documents).
+
++ [Visual Studio](https://visualstudio.microsoft.com/downloads/).
 
 > [!NOTE]
-> You can use a free search service for this tutorial. The free tier limits you to three indexes, three indexers, and three data sources. This tutorial creates one of each. Before starting, make sure you have room on your service to accept the new resources.
+> You can use a free search service for this tutorial. The Free tier limits you to three indexes, three indexers, and three data sources. This tutorial creates one of each. Before you start, make sure you have room on your service to accept the new resources.
 
 ### Download files
 
@@ -237,9 +237,9 @@ Console.WriteLine("Creating or updating the data source...");
 SearchIndexerDataSourceConnection dataSource = CreateOrUpdateDataSource(indexerClient, configuration);
 ```
 
-Build and run the solution. Since this is your first request, check the Azure portal to confirm the data source was created in Azure AI Search. On the search service overview page, verify the Data Sources list has a new item. You might need to wait a few minutes for the portal page to refresh.
+Build and run the solution. Since this is your first request, check the Azure portal to confirm the data source was created in Azure AI Search. On the search service overview page, verify the Data Sources list has a new item. You might need to wait a few minutes for the Azure portal page to refresh.
 
-  ![Data sources tile in the portal](./media/cognitive-search-tutorial-blob/data-source-tile.png "Data sources tile in the portal")
+  ![Data sources tile in the Azure portal](./media/cognitive-search-tutorial-blob/data-source-tile.png "Data sources tile in the Azure portal")
 
 ### Step 2: Create a skillset
 
@@ -630,7 +630,7 @@ Add the following using statement to resolve the disambiguated reference.
 using Index = Azure.Search.Documents.Indexes.Models;
 ```
 
-To learn more about index concepts, see [Create Index (REST API)](/rest/api/searchservice/create-index).
+To learn more about index concepts, see [Create Index (REST API)](/rest/api/searchservice/indexes/create).
 
 ### Step 4: Create and run an indexer
 
@@ -784,7 +784,7 @@ CheckIndexerOverallStatus(indexerClient, demoIndexer);
 
 In Azure AI Search tutorial console apps, we typically add a 2-second delay before running queries that return results, but because enrichment takes several minutes to complete, we'll close the console app and use another approach instead.
 
-The easiest option is [Search explorer](search-explorer.md) in the portal. You can first run an empty query that returns all documents, or a more targeted search that returns new field content created by the pipeline. 
+The easiest option is [Search explorer](search-explorer.md) in the Azure portal. You can first run an empty query that returns all documents, or a more targeted search that returns new field content created by the pipeline. 
 
 1. In Azure portal, in the search Overview page, select **Indexes**.
 
@@ -802,7 +802,7 @@ The easiest option is [Search explorer](search-explorer.md) in the portal. You c
 
 In the early experimental stages of development, the most practical approach for design iteration is to delete the objects from Azure AI Search and allow your code to rebuild them. Resource names are unique. Deleting an object lets you recreate it using the same name.
 
-The sample code for this tutorial checks for existing objects and deletes them so that you can rerun your code. You can also use the portal to delete indexes, indexers, data sources, and skillsets.
+The sample code for this tutorial checks for existing objects and deletes them so that you can rerun your code. You can also use the Azure portal to delete indexes, indexers, data sources, and skillsets.
 
 ## Takeaways
 
@@ -816,7 +816,7 @@ Finally, you learned how to test results and reset the system for further iterat
 
 When you're working in your own subscription, at the end of a project, it's a good idea to remove the resources that you no longer need. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal, using the All resources or Resource groups link in the left-navigation pane.
+You can find and manage resources in the Azure portal, using the All resources or Resource groups link in the left-navigation pane.
 
 ## Next steps
 

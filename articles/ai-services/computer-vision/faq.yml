@@ -10,12 +10,13 @@ metadata:
   ms.service: azure-ai-vision
   ms.topic: faq
   ms.date: 02/27/2024
+  ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
   ms.author: pafarley
   ms.custom: cogserv-non-critical-vision
 title: Azure AI Vision API Frequently Asked Questions
 summary: |
   > [!TIP]
-  > If you can't find answers to your questions in this FAQ, ask the Azure AI Vision API community on [StackOverflow](https://stackoverflow.com/questions/tagged/project-oxford+or+microsoft-cognitive) or contact Help and Support on [UserVoice](https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858)
+  > If you can't find answers to your questions in this FAQ, ask the Azure AI Vision API community on [Stack Overflow](https://stackoverflow.com/questions/tagged/project-oxford+or+microsoft-cognitive) or contact Help and Support on [UserVoice](https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858)
 
 
 sections:

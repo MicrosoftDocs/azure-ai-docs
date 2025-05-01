@@ -1,16 +1,16 @@
 ---
-title: "Build and train a custom model - Document Intelligence (formerly Form Recognizer)"
+title: "Build and train a custom model - Document Intelligence "
 titleSuffix: Azure AI services
 description: Learn how to build, label, and train a custom model.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 08/07/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ---
-
+<!-- markdownlint-disable DOCSMD006 -->
 
 # Build and train a custom extraction model
 
@@ -18,10 +18,7 @@ monikerRange: '<=doc-intel-4.0.0'
 
 [!INCLUDE [applies to v4.0 v3.1 v3.0](../includes/applies-to-v40-v31-v30.md)]   ![blue-checkmark](../media/blue-yes-icon.png) [v2.1](?view=doc-intel-2.1.0&preserve-view=true)
 
-> [!IMPORTANT]
-> Custom generative model training behavior is different from custom template and neural model training. The following document covers training only for custom template and neural models. For guidance on custom generative, refer to [custom generative model](../concept-custom-generative.md)
-
-Document Intelligence custom models require a handful of training documents to get started. If you have at least five documents, you can get started training a custom model. You can train either a [custom template model (custom form)](../concept-custom-template.md) or a [custom neural model (custom document)](../concept-custom-neural.md) or [custom template model (custom form)](../concept-custom-generative.md). This document walks you through the process of training the custom models.
+Document Intelligence custom models require a handful of training documents to get started. If you have at least five documents, you can get started training a custom model. You can train either a [custom template model (custom form)](../train/custom-template.md) or a [custom neural model (custom document)](../train/custom-neural.md). This document walks you through the process of training the custom models.
 
 ## Custom model input requirements
 
@@ -46,13 +43,13 @@ Once you gather a set of forms or documents for training, you need to upload it 
 
 * Once you gather and upload your training dataset, you're ready to train your custom model. In the following video, we create a project and explore some of the fundamentals for successfully labeling and training a model.
 
-> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE5fX1c]
+> [!VIDEO b716cdc7-3c23-4c69-a2ef-e131166f792b]
 
 ## Create a project in the Document Intelligence Studio
 
 The Document Intelligence Studio provides and orchestrates all the API calls required to complete your dataset and train your model.
 
-1. Start by navigating to the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio). The first time you use the Studio, you need to [initialize your subscription, resource group, and resource](../quickstarts/try-document-intelligence-studio.md). Then, follow the [prerequisites for custom projects](../quickstarts/try-document-intelligence-studio.md#added-prerequisites-for-custom-projects) to configure the Studio to access your training dataset.
+1. Start by navigating to the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio). The first time you use the Studio, you need to [initialize your subscription, resource group, and resource](../studio-overview.md). Then, follow the [prerequisites for custom projects](../quickstarts/studio-custom-project.md#additional-prerequisites-for-custom-projects) to configure the Studio to access your training dataset.
 
 1. In the Studio, select the **Custom extraction model** tile and select the **Create a project** button.
 
@@ -63,7 +60,7 @@ The Document Intelligence Studio provides and orchestrates all the API calls req
     1. On the next step in the workflow, choose or create a Document Intelligence resource before you select continue.
 
     > [!IMPORTANT]
-    > Custom neural models are only available in a few regions. If you plan on training a neural model, please select or create a resource in one of [these supported regions](../concept-custom-neural.md#supported-regions).
+    > Custom neural models are only available in a few regions. If you plan on training a neural model, please select or create a resource in one of [these supported regions](../train/custom-neural.md#supported-regions).
 
     :::image type="content" source="../media/how-to/studio-custom-configure-resource.png" alt-text="Screenshot of Select the Document Intelligence resource.":::
 
@@ -99,7 +96,7 @@ With your dataset labeled, you're now ready to train your model. Select the trai
 
 1. On the train model dialog, provide a unique model ID and, optionally, a description. The model ID accepts a string data type.
 
-1. For the build mode, select the type of model you want to train. Learn more about the [model types and capabilities](../concept-custom.md).
+1. For the build mode, select the type of model you want to train. Learn more about the [model types and capabilities](../train/custom-model.md).
 
     :::image type="content" source="../media/how-to/studio-train-model.png" alt-text="Screenshot of Train model dialog.":::
 
@@ -192,10 +189,10 @@ Now that you learned how to build a training data set, follow a quickstart to tr
 :::moniker range=">=doc-intel-3.0.0"
 
 > [!div class="nextstepaction"]
-> [Learn about custom model types](../concept-custom.md)
+> [Learn about custom model types](../train/custom-model.md)
 
 > [!div class="nextstepaction"]
-> [Learn about accuracy and confidence with custom models](../concept-accuracy-confidence.md)
+> [Learn about accuracy and confidence with custom models](../concept/accuracy-confidence.md)
 :::moniker-end
 
 :::moniker range="doc-intel-2.1.0"
@@ -207,5 +204,5 @@ Now that you learned how to build a training data set, follow a quickstart to tr
 ### See also
 
 * [Train a model and extract document data using the client library or REST API](../quickstarts/get-started-sdks-rest-api.md)
-* [Custom generative model](../concept-custom-generative.md)
+
 * [What is Document Intelligence?](../overview.md)

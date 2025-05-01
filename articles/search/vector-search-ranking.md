@@ -5,16 +5,16 @@ description: Explains the concepts behind vector relevance, scoring, including h
 
 author: yahnoosh
 ms.author: jlembicz
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 08/05/2024
+ms.topic: concept-article
+ms.date: 12/05/2024
 ---
 
 # Relevance in vector search
 
-During vector query execution, the search engine looks for similar vectors to find the best candidates to return in search results. Depending on how you indexed the vector content, the search for relevant matches is either exhaustive, or constrained to near neighbors for faster processing. Once candidates are found, similarity metrics are used to score each result based on the strength of the match. 
+During vector query execution, the search engine looks for similar vectors to find the best candidates to return in search results. Depending on how you indexed the vector content, the search for relevant matches is either exhaustive, or constrained to nearest neighbors for faster processing. Once candidates are found, similarity metrics are used to score each result based on the strength of the match. 
 
 This article explains the algorithms used to find relevant matches and the similarity metrics used for scoring. It also offers tips for improving relevance if search results don't meet expectations.
 
@@ -89,6 +89,9 @@ The algorithm finds candidate vectors to evaluate similarity. To perform this ta
 | `cosine` | This metric measures the angle between two vectors, and isn't affected by differing vector lengths. Mathematically, it calculates the angle between two vectors. Cosine is the similarity metric used by [Azure OpenAI embedding models](/azure/ai-services/openai/concepts/understand-embeddings#cosine-similarity), so if you're using Azure OpenAI, specify `cosine` in the vector configuration.|
 | `dotProduct` | This metric measures both the length of each pair of two vectors, and the angle between them. Mathematically, it calculates the products of vectors' magnitudes and the angle between them. For normalized vectors, this is identical to `cosine` similarity, but slightly more performant. |
 | `euclidean` | (also known as `l2 norm`) This metric measures the length of the vector difference between two vectors. Mathematically, it calculates the Euclidean distance between two vectors, which is the l2-norm of the difference of the two vectors. |
+
+> [!NOTE]
+> If you run two or more vector queries in parallel, or if you do a hybrid search that combines vector and text queries in the same request, [Reciprocal Rank Fusion (RRF)](hybrid-search-ranking.md) is used for scoring the final search results.
 
 ## Scores in a vector search results
 

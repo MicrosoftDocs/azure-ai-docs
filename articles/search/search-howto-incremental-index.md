@@ -4,17 +4,17 @@ titleSuffix: Azure AI Search
 description: Enable caching of enriched content for potential reuse when modifying downstream skills and projections in an AI enrichment pipeline.
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 06/25/2024
+ms.date: 02/24/2025
 ---
 
 # Enable caching for incremental enrichment in Azure AI Search
 
 > [!IMPORTANT] 
-> This feature is in public preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [preview REST API](/rest/api/searchservice/index-preview) supports this feature.
+> This feature is in public preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). [Preview REST APIs](/rest/api/searchservice/index-preview) support this feature.
 
 This article explains how to add caching to an enrichment pipeline so that you can modify downstream enrichment steps without having to rebuild in full every time. By default, a skillset is stateless, and changing any part of its composition requires a full rerun of the indexer. With an [**enrichment cache**](cognitive-search-incremental-indexing-conceptual.md), the indexer can determine which parts of the document tree must be refreshed based on changes detected in the skillset or indexer definitions. Existing processed output is preserved and reused wherever possible. 
 
@@ -29,7 +29,11 @@ Cached content is placed in Azure Storage using account information that you pro
 You should be familiar with setting up indexers. Start with [indexer overview](search-indexer-overview.md) and then continue on to [skillsets](cognitive-search-working-with-skillsets.md) to learn about enrichment pipelines. For more background on key concepts, see [incremental enrichment](cognitive-search-incremental-indexing-conceptual.md).
 
 > [!CAUTION]
-> If you're using the [SharePoint Online indexer (Preview)](search-howto-index-sharepoint-online.md), you should avoid incremental enrichment. Under certain circumstances, the cache becomes invalid, requiring an [indexer reset and run](search-howto-run-reset-indexers.md), should you choose to reload it.
+> Avoid enrichment caching for data originating from the [SharePoint Online indexer (Preview)](search-howto-index-sharepoint-online.md). Under certain circumstances, the cache becomes invalid, requiring a [full indexer reset and run](search-howto-run-reset-indexers.md), should you choose to reload it.
+
+## Permissions
+
+Azure AI Search needs write-access to Azure Storage. If you're using a managed identity for your search service, make sure it's assigned to the **Storage Blob Data Contributor** and **Storage Table Data Reader** roles. For more information, see [Connect to Azure Storage using a managed identity (Azure AI Search)](search-howto-managed-identities-storage.md).
 
 ## Enable on new indexers
 
@@ -41,7 +45,7 @@ You can use the Azure portal, preview APIs, or beta Azure SDKs are required to e
 1. Provide an indexer name and an existing index, data source, and skillset.
 1. Enable incremental caching and set the Azure Storage account.
 
-   :::image type="content" source="media/search-incremental-index/portal-option.png" alt-text="Screenshot of the portal option for enrichment cache.":::
+   :::image type="content" source="media/search-incremental-index/portal-option.png" alt-text="Screenshot of the Azure portal option for enrichment cache.":::
 
 ### [**REST**](#tab/rest)
 
@@ -108,7 +112,7 @@ POST https://[service name].search.windows.net/indexers?api-version=2024-05-01-p
 
 ### Step 3: Reset the indexer
 
-[Reset Indexer](/rest/api/searchservice/indexers/reset) is required when setting up incremental enrichment for existing indexers to ensure all documents are in a consistent state. You can use the portal or an API client for this task.
+[Reset Indexer](/rest/api/searchservice/indexers/reset) is required when setting up incremental enrichment for existing indexers to ensure all documents are in a consistent state. You can use the Azure portal or an API client for this task.
 
 ```https
 POST https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME]/reset?api-version=2024-05-01-preview
@@ -134,7 +138,7 @@ PUT https://[YOUR-SEARCH-SERVICE].search.windows.net/indexers/[YOUR-INDEXER-NAME
     }
 ```
 
-If you now issue another GET request on the indexer, the response from the service includes an `ID` property in the cache object. The alphanumeric string is appended to the name of the container containing all the cached results and intermediate state of each document processed by this indexer. The ID is used to uniquely name the cache in Blob storage.
+If you now issue another GET request on the indexer, the response from the service includes an `ID` property in the cache object. The string is appended to the name of the container containing all the cached results and intermediate state of each document processed by this indexer. The ID is used to uniquely name the cache in Blob storage.
 
 ```http
     "cache": {
@@ -146,7 +150,7 @@ If you now issue another GET request on the indexer, the response from the servi
 
 ### Step 5: Run the indexer
 
-To run indexer, you can use the portal or the API. In the portal, from the indexers list, select the indexer and select **Run**. One advantage to using the portal is that you can monitor indexer status, note the duration of the job, and how many documents are processed. Portal pages are refreshed every few minutes.
+To run indexer, you can use the Azure portal or the API. In the Azure portal, from the indexers list, select the indexer and select **Run**. One advantage to using the Azure portal is that you can monitor indexer status, note the duration of the job, and how many documents are processed. Portal pages are refreshed every few minutes.
 
 Alternatively, you can use REST to [run the indexer](/rest/api/searchservice/indexers/run):
 

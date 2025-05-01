@@ -1,22 +1,24 @@
 ---
-title: Do image retrieval using multimodal embeddings - Image Analysis 4.0
+title: Image retrieval using multimodal embeddings
 titleSuffix: Azure AI services
-description: Learn how to call the image retrieval API to vectorize image and search terms.
-#services: cognitive-services
+description: Learn how to use the image retrieval API to vectorize images and search terms, enabling text-based image searches without metadata.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 02/20/2024
+ms.date: 02/22/2025
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
+
+#customer intent: As a developer, I want to use the image retrieval API to vectorize images and text so that I can perform text-based image searches.
 ---
 
 # Do image retrieval using multimodal embeddings (version 4.0)
 
 The Multimodal embeddings APIs enable the _vectorization_ of images and text queries. They convert images to coordinates in a multi-dimensional vector space. Then, incoming text queries can also be converted to vectors, and images can be matched to the text based on semantic closeness. This allows the user to search a set of images using text, without the need to use image tags or other metadata. Semantic closeness often produces better results in search.
 
-The `2024-02-01` API includes a multi-lingual model that supports text search in 102 languages. The original English-only model is still available, but it cannot be combined with the new model in the same search index. If you vectorized text and images using the English-only model, these vectors won’t be compatible with multi-lingual text and image vectors.
+The `2024-02-01` API includes a multi-lingual model (model version `2023-04-15`) that supports text search in 102 languages. The original English-only model (version `2022-04-11`) is still available, but it cannot be combined with the new model in the same search index. If you vectorized text and images using the English-only model, these vectors won’t be compatible with multi-lingual text and image vectors.
 
 > [!IMPORTANT]
 > These APIs are only available in certain geographic regions. See [Region availability](../overview-image-analysis.md#region-availability).
@@ -35,7 +37,7 @@ You can try out the Multimodal embeddings feature quickly and easily in your bro
 > The Vision Studio experience is limited to 500 images. To use a larger image set, create your own search application using the APIs in this guide.
 
 > [!div class="nextstepaction"]
-> [Try Vision Studio](https://portal.vision.cognitive.azure.com/)
+> [Try Vision Studio](https://portal.vision.cognitive.azure.com/gallery/imageanalysis)
 
 ## Call the Vectorize Image API
 
@@ -84,7 +86,7 @@ The API call returns a **vector** JSON object, which defines the text string's c
 
 ```json
 { 
-  "modelVersion": "2022-04-11", 
+  "modelVersion": "2023-04-15", 
   "vector": [ -0.09442752, -0.00067171326, -0.010985051, ... ] 
 }
 ```
@@ -124,6 +126,7 @@ def cosine_similarity(vector1, vector2):
 
 ---
 
-## Next steps
+## Next step
 
-[Image retrieval concepts](../concept-image-retrieval.md)
+> [!div class="nextstepaction"]
+> [Image retrieval concepts](../concept-image-retrieval.md)

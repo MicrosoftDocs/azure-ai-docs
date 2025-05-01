@@ -5,11 +5,11 @@ description: Use the REST APIs to create an Azure AI Search knowledge store for 
 author: HeidiSteen
 manager: nitinme
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 03/08/2024
+ms.date: 12/10/2024
 ---
 
 # Create a knowledge store using REST
@@ -31,7 +31,7 @@ To make the initial data set available, the hotel reviews are first imported int
 
 + Azure Storage. [Create an account](/azure/storage/common/storage-account-create) or [find an existing one](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Storage%2storageAccounts/). The account type must be **StorageV2 (general purpose V2)**.
 
-The skillset in this examples uses Azure AI Services for enrichments. Because the workload is so small, Azure AI services is tapped behind the scenes to provide free processing for up to 20 transactions daily. A small workload means that you can skip creating or attaching an Azure AI multi-service resource.
+The skillset in this examples uses Azure AI Services for enrichments. Because the workload is so small, Azure AI services is tapped behind the scenes to provide free processing for up to 20 transactions daily. A small workload means that you can skip creating or attaching an Azure AI services multi-service resource.
 
 ## Upload data to Azure Storage and get a connection string
 
@@ -68,7 +68,7 @@ A valid API key establishes trust, on a per request basis, between the applicati
 
 ## Create an index
 
-[Create Index (REST)](/rest/api/searchservice/create-index) creates  a search index on the search service. A search index is unrelated to a knowledge store, but the indexer requires one. The search index contains the same content as the knowledge store, which you can explore by sending query requests.
+[Create Index (REST)](/rest/api/searchservice/indexes/create) creates  a search index on the search service. A search index is unrelated to a knowledge store, but the indexer requires one. The search index contains the same content as the knowledge store, which you can explore by sending query requests.
 
 1. Open a new text file in Visual Studio Code.
 
@@ -113,7 +113,7 @@ A valid API key establishes trust, on a per request basis, between the applicati
 
 ## Create a data source
 
-[Create Data Source](/rest/api/searchservice/create-data-source) creates a data source connection on Azure AI Search.
+[Create Data Source](/rest/api/searchservice/data-sources/create) creates a data source connection on Azure AI Search.
 
 1. Paste in the following example to create the data source.
 
@@ -144,7 +144,7 @@ A valid API key establishes trust, on a per request basis, between the applicati
 
 ## Create a skillset 
 
-A skillset defines enrichments (skills) and your knowledge store. [Create Skillset](/rest/api/searchservice/create-indexer) creates the object on your search service.
+A skillset defines enrichments (skills) and your knowledge store. [Create Skillset](/rest/api/searchservice/indexers/create) creates the object on your search service.
 
 1. Paste in the following example to create the skillset.
 
@@ -311,7 +311,7 @@ A skillset defines enrichments (skills) and your knowledge store. [Create Skills
 
 ## Create an indexer
 
-[Create Indexer](/rest/api/searchservice/create-indexer) creates and runs the indexer. Indexer execution starts by cracking the documents, extracting text and images, and initializing the skillset. The indexer checks for the other objects that you created: the datasource, the index, and the skillset. 
+[Create Indexer](/rest/api/searchservice/indexers/create) creates and runs the indexer. Indexer execution starts by cracking the documents, extracting text and images, and initializing the skillset. The indexer checks for the other objects that you created: the datasource, the index, and the skillset. 
 
 1. Paste in the following example to create the indexer.
 
@@ -408,7 +408,7 @@ In this walkthrough, the knowledge store is composed of a various tables showing
 
 When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
+You can find and manage resources in the Azure portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
 
 ## Next steps
 

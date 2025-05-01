@@ -5,83 +5,189 @@ items:
   expanded: true
   items:
   - name: What is Azure AI Document Intelligence?
-    displayName: models, develop, development, cognitive, applied, form recognizer, form, recognizer
+    displayName: models, develop, development, cognitive, applied, form recognizer, form, recognizer, region availability, regional availability
     href: overview.md
+  - name: What's new
+    displayName: changelog, release, updates, previews, beta, packages, ga, cognitive, applied, form recognizer, form, recognizer
+    href: whats-new.md
   - name: Which model should I choose?
-    href: choose-model-feature.md
+    href: concept/choose-model-feature.md
+  - name: Create a Document Intelligence resource
+    displayName: endpoint, key, portal
+    href:  how-to-guides/create-document-intelligence-resource.md
   - name: Document Intelligence Studio
     displayName: get started
     href: studio-overview.md
-  - name: FAQ
-    displayName: storage, security, privacy, help, support, versions, development, migrate, migration, cognitive, applied, form recognizer, form, recognizer
-    href: faq.yml
-  - name: Document Intelligence client libraries
-    expanded: true
-    items:
-      - name: Changelog and migration guide
-        displayName: latest, update, beta, package, preview, version
-        href: changelog-release-history.md
-      - name: "SDK targets: REST API v4.0 (preview)"
-        displayName: get started, installation, downloads, documentAnalysisClient, document analysis client, Azure AD, Azure Active Directory, identity, changelog, package, version,AzureKeyCredential, Azure key credential, key, endpoint
-        href: sdk-overview-v4-0.md
-      - name: "SDK targets: REST API 2023–7–31 latest (GA)"
-        displayName: get started, installation, downloads, documentAnalysisClient, document analysis client, Azure AD, Azure Active Directory, identity, changelog, package, version,AzureKeyCredential, Azure key credential, key, endpoint
-        href: sdk-overview-v3-1.md
-      - name:  "SDK targets: REST API 2022–08–31 (GA)"
-        displayName: get started, installation, downloads, documentAnalysisClient, document analysis client, Azure AD, Azure Active Directory, identity, changelog, package, version,AzureKeyCredential, Azure key credential, key, endpoint
-        href: sdk-overview-v3-0.md
-      - name:  "SDK targets: REST API v2.1 (GA)"
-        displayName: get started, installation, downloads, formRecognizerClientClient, form recognizer client, Azure AD, Azure Active Directory, identity, changelog, package, version,AzureKeyCredential, Azure key credential, key, endpoint
-        href: sdk-overview-v2-1.md
   - name: Language support
     items:
       - name: Document analysis models
         displayName: language, locale, handwritten, handwriting, text, detect, detection, general, document, printed
-        href: language-support-ocr.md?view=doc-intel-4.0.0&preserve-view=true
+        href: language-support/ocr.md?view=doc-intel-4.0.0&preserve-view=true
       - name: Prebuilt models
         displayName: locale, handwritten, handwriting, text, detect, detection, printed
-        href: language-support-prebuilt.md
+        href: language-support/prebuilt.md
       - name: Custom models
         displayName: locale, handwritten, handwriting, text, detect, detection, printed
-        href: language-support-custom.md
+        href: language-support/custom.md
   - name: Pricing
     displayName: cost, free, F0, tiers, standard, S0
     href: https://azure.microsoft.com/pricing/details/form-recognizer/
   - name: Service limits and billing
     displayName: quota, tiers, throttle, max, adjustments, requests, support, ocr
     href: service-limits.md
-  - name: What's new
-    displayName: changelog, release, updates, previews, beta, packages, ga, cognitive, applied, form recognizer, form, recognizer
-    href: whats-new.md
+  - name: Document Intelligence client libraries
+    items:
+      - name: "SDK targets: REST API v4.0 2024-11-30 latest (GA)"
+        displayName: get started, installation, downloads, documentAnalysisClient, document analysis client, Azure AD, Azure Active Directory, identity, changelog, package, version,AzureKeyCredential, Azure key credential, key, endpoint
+        href: sdk-overview-v4-0.md
+      - name: "SDK targets: REST API 2023-7-31 (GA)"
+        displayName: get started, installation, downloads, documentAnalysisClient, document analysis client, Azure AD, Azure Active Directory, identity, changelog, package, version,AzureKeyCredential, Azure key credential, key, endpoint
+        href: sdk-overview-v3-1.md
+      - name:  "SDK targets: REST API 2022-08-31 (GA)"
+        displayName: get started, installation, downloads, documentAnalysisClient, document analysis client, Azure AD, Azure Active Directory, identity, changelog, package, version,AzureKeyCredential, Azure key credential, key, endpoint
+        href: sdk-overview-v3-0.md
+      - name:  "SDK targets: REST API v2.1 (GA)"
+        displayName: get started, installation, downloads, formRecognizerClientClient, form recognizer client, Azure AD, Azure Active Directory, identity, changelog, package, version,AzureKeyCredential, Azure key credential, key, endpoint
+        href: v21/sdk-overview-v2-1.md
+  - name: Changelog and migration guide
+    displayName: latest, update, beta, package, preview, version
+    href: changelog-release-history.md
+  - name: Frequently asked questions (FAQ)
+    displayName: storage, security, privacy, help, support, versions, development, migrate, migration, cognitive, applied, form recognizer, form, recognizer
+    href: faq.yml
+- name: Prebuilt models
+  items:
+  - name: Model overview
+    displayName: get started, prebuilt, extraction, input
+    href: model-overview.md
+  - name: Bank check (US)
+    displayName: routing, account, number, amount, payee, issuer, date
+    href: prebuilt/bank-check.md
+  - name: Bank statement (US)
+    displayName: transactions, deposits, withdrawals, balance, account, number, date
+    href: prebuilt/bank-statement.md
+  - name: Business card
+    displayName: /rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP
+    href: prebuilt/business-card.md?view<=doc-intel-3.1.0&preserve-view=true
+  - name: Contract
+    displayName: contracts, agreements, legal, terms, conditions, clauses, parties, dates, signatures
+    href: prebuilt/contract.md
+  - name: Credit card
+    displayName: debit
+    href: prebuilt/credit-card.md
+  - name: General document
+    displayName: key value pairs, selection marks, structured
+    href: prebuilt/general-document.md?view<=doc-intel-3.1.0&preserve-view=true
+  - name: Health insurance card (US)
+    displayName: health, proof, hospital
+    href: prebuilt/health-insurance-card.md
+  - name: ID document
+    displayName: passport, visa, ID, social security, green card
+    href: prebuilt/id-document.md
+  - name: Invoice
+    displayName: sales, vendors, VAT
+    href: prebuilt/invoice.md
+  - name: Layout
+    displayName: tables, selection marks, structure, paragraph roles, text, headers, page numbers
+    href: prebuilt/layout.md
+  - name: Marriage certificate (US)
+    displayName: license
+    href: prebuilt/marriage-certificate.md
+  - name: Mortgage documents (US)
+    displayName: 1003, 1008, closing, disclosure
+    href: prebuilt/mortgage-documents.md
+  - name: Pay stub
+    displayName: compensation, earnings, deductions, taxes, benefits, employer, employee
+    href: prebuilt/pay-stub.md
+  - name: Read
+    displayName: text
+    href: prebuilt/read.md
+  - name: Receipt
+    displayName: sales, merchants
+    href: prebuilt/receipt.md
+  - name: Tax documents (US)
+    displayName: tax, forms, 1098, 1098-E, 1098-T, W-2, wages, taxes, salary, employees, tuition, loan, interest, mortgage
+    href: prebuilt/tax-document.md
+- name: Custom models
+  items:
+  - name: Custom model overview
+    displayName: table, label, ocr, confidence, template, neural
+    href: train/custom-model.md
+  - name: Composed models
+    displayName: custom, assign, modelId, model ID
+    href:  train/composed-models.md
+  - name: Incremental classifier
+    displayName: custom, classification, training
+    href: concept/incremental-classifier.md
+  - name: Custom template model
+    displayName: structure, selection, labels, tables, tabular, train, template, neural, build mode, signatures, custom
+    href: train/custom-template.md
+  - name: Custom neural model
+    displayName: selection, structure, tables, tabular, train, template, neural, build mode, signatures, custom
+    href: train/custom-neural.md
+  - name: Custom classification model
+    displayName: custom, train, classification, splitting
+    href: train/custom-classifier.md
+  - name: Custom labels
+    displayName: structure, selection, labels, tables, tabular, train
+    href: train/custom-labels.md
+  - name: Custom labeling tips
+    displayName: structure, selection, labels, tables, tabular, train, tips
+    href: train/custom-label-tips.md
+  - name: Custom model lifecycle
+    displayName: custom, train, modelId, model ID, expiration, train, build
+    href: train/custom-lifecycle.md
+- name: Add-on features
+  items:
+  - name: Enhanced capabilities
+    displayName: extract, formula, font, styles, fontStyle, ocr.highResolution, ocr.formula, high resolution, background color, inline, display
+    href: concept-add-on-capabilities.md
+  - name: Query field extraction
+    displayName: queries, fields, OpenAI, chat
+    href: concept-query-fields.md
+- name: Concepts
+  items:
+  - name: Accuracy and confidence scores
+    displayName: tables, labels, ocr, performance, signatures
+    href: concept/accuracy-confidence.md
+  - name: Analyze document API response
+    displayName: words, lines, pages, bounding regions, documents
+    href: concept/analyze-document-response.md
+  - name: Retrieval-Augmented Generation (RAG)
+    displayName: RAG, LLM, semantic, chunk, LangChain, language model
+    href: concept/retrieval-augmented-generation.md
+  - name: Batch documents analysis
+    displayName: analyze, azureBlobFileListSource, azureBlobSource, azureBlobFileListSource, resultContainerUrl, resultPrefix, overwriteExisting
+    href: concept-batch-analysis.md
+  - name: Troubleshoot latency issues
+    displayName: latency, performance, slow, response, time, analyze
+    href: concept/troubleshoot-latency.md
 - name: Quickstarts
   items:
-    - name: Document Intelligence Studio
+    - name: Document Intelligence Studio custom projects
       displayName: get started, cors, blob, storage, upload, labels, custom, dynamic, fixed, signatures
-      href: quickstarts/try-document-intelligence-studio.md
+      href: quickstarts/studio-custom-project.md
+    - name: Get started with Document Intelligence Studio
+      displayName: get started, studio, upload, labels, custom, dynamic, fixed, signatures
+      href: quickstarts/get-started-studio.md
     - name: "Get started with Document Intelligence client libraries"
       displayName: formRecognizerClient, Document Intelligence client, boundingBox, box, begin_recognize
       href: quickstarts/get-started-sdks-rest-api.md
     - name: Sample Labeling tool
       displayName: tables, labels, ocr, bounding box
-      href: quickstarts/try-sample-label-tool.md
+      href: v21/try-sample-label-tool.md
 - name: How-to guides
   items:
   - name: Use Document Intelligence models
     displayName: documentAnalysisClient, document analysis client, polygon, boundingPolygon, begin_analyze_document,ormRecognizerClient, Document Intelligence client, boundingBox, box, begin_recognize, v2.1
     href: how-to-guides/use-sdk-rest-api.md
-  - name: Create a Document Intelligence resource
-    displayName: endpoint, key, portal
-    href:  create-document-intelligence-resource.md
-  - name: 🆕 Build and train a custom generative model
-    displayName: ai studio, neural, template, custom
-    href: how-to-guides/build-train-custom-generative-model.md  
   - name: Check my usage and estimate the cost
     displayName: price, metrics, dashboard, check, estimate
     href: how-to-guides/estimate-cost.md
   - name: Create SAS tokens for storage containers
     displayName: blob, delegation, shared, explorer
-    href:  create-sas-tokens.md
-  - name: "SDK Migration guides: 2023-10-31-preview"
+    href:  authentication/create-sas-tokens.md
+  - name: "SDK Migration guides"
     items:
     - name: ".NET/C# SDK"
       href: https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/documentintelligence/Azure.AI.DocumentIntelligence/MigrationGuide.md
@@ -110,13 +216,13 @@ items:
       href: how-to-guides/compose-custom-models.md
     - name: Deploy the sample-labeling tool
       displayName: FOTT, migration, containers, docker
-      href: deploy-label-tool.md
+      href: v21/deploy-label-tool.md
     - name: Train a custom model with the sample-labeling tool
       displayName: FOTT, migration, containers, docker
-      href: label-tool.md
+      href: v21/label-tool.md
     - name: Use table tags to train your custom model
       displayName: FOTT, migration, dynamic
-      href: supervised-table-tags.md
+      href: v21/supervised-table-tags.md
   - name: Back up and recover models
     displayName: disaster, recovery, region, copy, modelId, model ID
     href: disaster-recovery.md
@@ -127,13 +233,13 @@ items:
       href: ../../ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-services/document-intelligence/context/context
     - name: Create and use managed identities
       displayName: azure RBAC, role based access control, sas, private, assigned, system assigned, role, blob
-      href: managed-identities.md
+      href: authentication/managed-identities.md
     - name: Configure managed identities with private endpoints
       displayName: Azure RBAC, role based access control, sas, private, assigned, system assigned, role, blob, virtual, firewalls, VNet, virtual networks, endpoints, storage
-      href: managed-identities-secured-access.md
+      href: authentication/managed-identities-secured-access.md
     - name: Use customer-managed keys
       displayName: encrypt, encryption, key vault
-      href: encrypt-data-at-rest.md
+      href: authentication/encrypt-data-at-rest.md
     - name: Use Microsoft Entra authentication
       displayName: headers, subscription, access token, azure active directory, subdomain, role, service principal
       href: ../../ai-services/authentication.md?context=/azure/ai-services/document-intelligence/context/context
@@ -151,109 +257,7 @@ items:
   - name: Disconnected containers
     displayName: docker, commitment, plan, environment, usage
     href: containers/disconnected.md
-- name: Concepts
-  items:
-  - name: Model overview
-    displayName: get started, prebuilt, extraction, input
-    href: concept-model-overview.md
-  - name: Accuracy and confidence scores
-    displayName: tables, labels, ocr, performance, signatures
-    href: concept-accuracy-confidence.md
-  - name: Analyze document API response
-    displayName: words, lines, pages, bounding regions, documents
-    href: concept-analyze-document-response.md
-  - name: Read model
-    displayName: text
-    href: concept-read.md
-  - name: General document model
-    displayName: key value pairs, selection marks, structured
-    href: concept-general-document.md?view<=doc-intel-3.1.0&preserve-view=true
-  - name: Layout model
-    displayName: tables, selection marks, structure, paragraph roles, text, headers, page numbers
-    href: concept-layout.md
-  - name: Add-on capabilities
-    displayName: extract, formula, font, styles, fontStyle, ocr.highResolution, ocr.formula, high resolution, background color, inline, display
-    href: concept-add-on-capabilities.md
-  - name: Query field extraction
-    displayName: queries, fields, OpenAI, chat
-    href: concept-query-fields.md
-  - name: 🆕 Retrieval-Augmented Generation (RAG)
-    displayName: RAG, LLM, semantic, chunk, LangChain, language model
-    href: concept-retrieval-augmented-generation.md
-  - name: 🆕Custom generative model
-    displayName: ai studio, neural, template, custom
-    href: concept-custom-generative.md
-  - name: 🆕 Batch documents analysis 
-    displayName: analyze, azureBlobFileListSource, azureBlobSource, azureBlobFileListSource, resultContainerUrl, resultPrefix, overwriteExisting
-    href: concept-batch-analysis.md
-  - name: 🆕 Pay stub model
-    displayName: compensation, earnings, deductions, taxes, benefits, employer, employee
-    href: concept-pay-stub.md
-  - name: 🆕 Bank check model
-    displayName: routing, account, number, amount, payee, issuer, date
-    href: concept-bank-check.md
-  - name: 🆕 Bank statement model
-    displayName: transactions, deposits, withdrawals, balance, account, number, date
-    href: concept-bank-statement.md
-  - name: Credit card model
-    displayName: debit
-    href: concept-credit-card.md
-  - name: US mortgage documents
-    displayName: 1003, 1008, closing, disclosure
-    href: concept-mortgage-documents.md
-  - name: Marriage certificate model
-    displayName: license
-    href: concept-marriage-certificate.md
-  - name: Contract model
-    displayName: contracts, agreements, legal, terms, conditions, clauses, parties, dates, signatures
-    href: concept-contract.md
-  - name: U.S.Tax document models
-    displayName: tax, forms, 1098, 1098-E, 1098-T, W-2, wages, taxes, salary, employees, tuition, loan, interest, mortgage
-    href: concept-tax-document.md
-  - name: Health insurance card model
-    displayName: health, proof, hospital
-    href: concept-health-insurance-card.md
-  - name: Invoice model
-    displayName: sales, vendors, VAT
-    href: concept-invoice.md
-  - name: Receipt model
-    displayName: sales, merchants
-    href: concept-receipt.md
-  - name: ID document model
-    displayName: passport, visa, ID, social security, green card
-    href: concept-id-document.md
-  - name: Business card model
-    displayName: /rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP
-    href: concept-business-card.md?view<=doc-intel-3.1.0&preserve-view=true
-  - name: Custom models
-    items:
-    - name: Custom model overview
-      displayName: table, label, ocr, confidence, template, neural
-      href: concept-custom.md
-    - name: 🆕 Composed models
-      displayName: custom, assign, modelId, model ID
-      href:  concept-composed-models.md
-    - name: 🆕 Incremental classifier
-      displayName: custom, classification, training
-      href: concept-incremental-classifier.md  
-    - name: Custom template model
-      displayName: structure, selection, labels, tables, tabular, train, template, neural, build mode, signatures, custom
-      href: concept-custom-template.md
-    - name: Custom neural model
-      displayName: selection, structure, tables, tabular, train, template, neural, build mode, signatures, custom
-      href: concept-custom-neural.md
-    - name: Custom classification model
-      displayName: custom, train, classification, splitting
-      href: concept-custom-classifier.md
-    - name: Custom labels
-      displayName: structure, selection, labels, tables, tabular, train
-      href: concept-custom-label.md
-    - name: Custom labeling tips
-      displayName: structure, selection, labels, tables, tabular, train, tips
-      href: concept-custom-label-tips.md
-    - name: Custom model lifecycle
-      displayName: custom, train, modelId, model ID, expiration, train, build
-      href: concept-custom-lifecycle.md
+
 - name: Code samples
   items:
   - name: "C#/.NET"
@@ -295,19 +299,17 @@ items:
   items:
   - name: REST APIs
     items:
-    - name: 2024-02-29-preview (v4.0)
-      href: /rest/api/aiservices/document-models/build-model?view=rest-aiservices-2024-02-29-preview&preserve-view=true&branch=docintelligence&tabs=HTTP
-    - name: 2023-10-31-preview (v4.0)
-      href: /rest/api/aiservices/operation-groups?view=rest-aiservices-2023-10-31-preview&preserve-view=true&tabs=HTTP
-    - name: 2023-07-31 (v3.1)
+    - name: 2024-11-30 GA(v4.0)
+      href: /rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true
+    - name: 2023-07-31 GA (v3.1)
       href: /rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP
-    - name: 2022-08-31 (v3.0)
+    - name: 2022-08-31 GA (v3.0)
       href: /rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP
     - name: Error codes v4.0, v3.1, and v3.0
-      href: v3-error-guide.md
+      href: how-to-guides/resolve-errors.md
     - name: v2.1
       href: /rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true
-  - name: Client libraries (2023-10-31-preview)
+  - name: Client libraries (2024-11-30 GA)
     items:
     - name: C# / .NET
       href: /dotnet/api/overview/azure/ai.documentintelligence-readme?view=azure-dotnet-preview&preserve-view=true
@@ -317,6 +319,43 @@ items:
       href: /javascript/api/overview/azure/ai-document-intelligence-rest-readme?view=azure-node-preview&preserve-view=true
     - name: Python
       href: /python/api/overview/azure/ai-documentintelligence-readme?view=azure-python-preview&preserve-view=true
+  - name: Schema 2024-11-30 (GA)
+    items:
+    - name: Bank check (US)
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/bank-check.md
+    - name: Bank statement (US)
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/bank-statement.md
+    - name: Business card (2023-07-31 GA)
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2023-07-31-ga/business-card.md
+    - name: Contract
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/contract.md
+    - name: Credit card
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/credit-card.md
+    - name: Health insurance card (US)
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/health-insurance-card.md
+    - name: ID document
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/id-document.md
+    - name: Invoice
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/invoice.md
+    - name: Marriage certificate
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/marriage-certificate.md
+    - name: Pay stub
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/pay-stub.md
+    - name: Receipt
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/receipt.md
+    - name: US tax W-2 form
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/us-tax/w2.md
+    - name: US tax W-4 form
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/us-tax/w4.md
+    - name: US tax 1040 forms and schedules
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/schema/2024-11-30-ga/us-tax/1040
+    - name: US tax 1095 forms and schedules
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/schema/2024-11-30-ga/us-tax/1095
+    - name: US tax 1098 forms and schedules
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/schema/2024-11-30-ga/us-tax/1098
+    - name: US tax 1099 forms and schedules
+      href: https://github.com/Azure-Samples/document-intelligence-code-samples/tree/main/schema/2024-11-30-ga/us-tax/1099
+
 - name: Resources
   items:
   - name: Enterprise readiness
@@ -329,3 +368,5 @@ items:
     href: ../../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/document-intelligence/context/context
   - name: Privacy and cookies
     href: https://privacy.microsoft.com/en-US/privacystatement
+  - name: Azure AI Document Intelligence release history
+    href: reference/release-history.md

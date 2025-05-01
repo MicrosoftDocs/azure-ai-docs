@@ -7,7 +7,7 @@ metadata:
   manager: nitinme
   ms.service: azure-ai-openai
   ms.topic: faq
-  ms.date: 08/13/2024
+  ms.date: 03/27/2025
   ms.author: mbullwin
   author: mrbullwinkle
 title: Azure OpenAI Service frequently asked questions
@@ -41,7 +41,7 @@ sections:
       - question: |
           How do the capabilities of Azure OpenAI compare to OpenAI?
         answer: | 
-          Azure OpenAI Service gives customers advanced language AI with OpenAI GPT-3, Codex, and DALL-E models with the security and enterprise promise of Azure. Azure OpenAI codevelops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
+          Azure OpenAI Service gives customers advanced language AI with the latest OpenAI models with the security and enterprise promise of Azure. Azure OpenAI codevelops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
           
           With Azure OpenAI, customers get the security capabilities of Microsoft Azure while running the same models as OpenAI. 
       - question: |
@@ -63,23 +63,8 @@ sections:
       - question: |
           Where can I read about better ways to use Azure OpenAI to get the responses I want from the service?
         answer: | 
-          Check out our [introduction to prompt engineering](./concepts/prompt-engineering.md). While these models are powerful, their behavior is also very sensitive to the prompts they receive from the user. This makes prompt construction an important skill to develop. After you've completed the introduction, check out our article on [advanced prompt engineering techniques](./concepts/advanced-prompt-engineering.md).
-      - question: |
-          My guest account has been given access to an Azure OpenAI resource, but I'm unable to access that resource in the Azure OpenAI Studio. How do I enable access?
-        answer: | 
-          This is expected behavior when using the default sign-in experience for the [Azure OpenAI Studio](https://oai.azure.com).
-          
-          To access Azure OpenAI Studio from a guest account that has been granted access to an Azure OpenAI resource:
-          
-          1. Open a private browser session and then navigate to [https://oai.azure.com](https://oai.azure.com).
-          2. Rather than immediately entering your guest account credentials instead select `Sign-in options` 
-          3. Now select **Sign in to an organization** 
-          4. Enter the domain name of the organization that granted your guest account access to the Azure OpenAI resource. 
-          5. Now sign-in with your guest account credentials. 
-          
-          You should now be able to access the resource via the Azure OpenAI Studio.
-          
-          Alternatively if you're signed into the [Azure portal](https://portal.azure.com) from the Azure OpenAI resource's Overview pane you can select **Go to Azure OpenAI Studio** to automatically sign in with the appropriate organizational context.   
+          Check out our [introduction to prompt engineering](./concepts/prompt-engineering.md). While these models are powerful, their behavior is also very sensitive to the prompts they receive from the user. This makes prompt construction an important skill to develop. After you've completed the introduction, check out our article on [system messages](./concepts/advanced-prompt-engineering.md).
+      
       - question: |
           When I ask GPT-4 which model it's running, it tells me it's running GPT-3. Why does this happen?
         answer: | 
@@ -87,7 +72,7 @@ sections:
 
           **Why does this happen?**
 
-          Ultimately, the model is performing next [token](/semantic-kernel/prompt-engineering/tokens) prediction in response to your question. The model doesn't have any native ability to query what model version is currently being run to answer your question. To answer this question, you can always go to **Azure OpenAI Studio** > **Management** > **Deployments** > and consult the model name column to confirm what model is currently associated with a given deployment name.
+          Ultimately, the model is performing next [token](/semantic-kernel/prompt-engineering/tokens) prediction in response to your question. The model doesn't have any native ability to query what model version is currently being run to answer your question. To answer this question, you can always go to **Azure AI Foundry** > **Management** > **Deployments** > and consult the model name column to confirm what model is currently associated with a given deployment name.
 
           The questions, "What model are you running?" or "What is the latest model from OpenAI?" produce similar quality results to asking the model what the weather will be today. It might return the correct result, but purely by chance. On its own, the model has no real-world information other than what was part of its training/training data. In the case of GPT-4, as of August 2023 the underlying training data goes only up to September 2021. GPT-4 wasn't released until March 2023, so barring OpenAI releasing a new version with updated training data, or a new version that is fine-tuned to answer those specific questions, it's expected behavior for GPT-4 to respond that GPT-3 is the latest model release from OpenAI.
 
@@ -95,6 +80,15 @@ sections:
 
           To learn more about how GPT models are trained and work we recommend watching [Andrej Karpathy's talk from Build 2023 on the state of GPT](https://www.youtube.com/watch?v=bZQun8Y4L2A).
       
+      - question: |
+          How can I get the model to respond in a specific language?
+        answer: | 
+          Ensure that your prompt is clear and specific about the language requirement. If the issue persists, consider adding more context or rephrasing the prompt to reinforce the language instruction.
+
+          Example prompts:
+          * "Please respond in English and only in English."
+          * "Answer the following question in English: What is the weather like in Fresno?"
+          
       - question: |
           I asked the model when its knowledge cutoff is and it gave me a different answer than what is on the Azure OpenAI model's page. Why does this happen?
         answer:
@@ -121,7 +115,7 @@ sections:
           We noticed charges associated with API calls that failed to complete with status code 400. Why are failed API calls generating a charge? 
         answer:
           If the service performs processing, you will be charged even if the status code is not successful (not 200).
-          Common examples of this are, a 400 error due to a content filter or input limit, or a 408 error due to a timeout. Charges will also occur when a `status 200` is received with a `finish_reason` of `content_filter`.
+          Common examples of this are, a 400 error due to a content filter or input limit, or a 408 error due to a time-out. Charges will also occur when a `status 200` is received with a `finish_reason` of `content_filter`.
           In this case the prompt did not have any issues, but the completion generated by the model was detected to violate the content filtering rules, which result in the completion being filtered. 
 
           If the service doesn't perform processing, you won't be charged.
@@ -132,7 +126,23 @@ sections:
           How do I get access to Azure OpenAI? 
         answer: |
           A Limited Access registration form is not required to access most Azure OpenAI models. Learn more on the [Azure OpenAI Limited Access page](/legal/cognitive-services/openai/limited-access?context=/azure/ai-services/openai/context/context).
-
+      - question: |
+          My guest account has been given access to an Azure OpenAI resource, but I'm unable to access that resource in the [Azure AI Foundry portal](https://ai.azure.com/). How do I enable access?
+        answer: | 
+          This is expected behavior when using the default sign-in experience for the [Azure AI Foundry](https://ai.azure.com).
+          
+          To access Azure AI Foundry from a guest account that has been granted access to an Azure OpenAI resource:
+          
+          1. Open a private browser session and then navigate to [https://ai.azure.com](https://ai.azure.com).
+          2. Rather than immediately entering your guest account credentials instead select `Sign-in options` 
+          3. Now select **Sign in to an organization** 
+          4. Enter the domain name of the organization that granted your guest account access to the Azure OpenAI resource. 
+          5. Now sign-in with your guest account credentials. 
+          
+          You should now be able to access the resource via the [Azure AI Foundry portal](https://ai.azure.com/).
+          
+          Alternatively if you're signed into the [Azure portal](https://portal.azure.com) from the Azure OpenAI resource's Overview pane you can select **Go to Azure AI Foundry** to automatically sign in with the appropriate organizational context.   
+  
   - name: Learning more and where to ask questions
     questions:
       - question: |
@@ -163,7 +173,11 @@ sections:
         answer: |
           Consult the Azure OpenAI [model availability guide](./concepts/models.md#model-summary-table-and-region-availability) for region availability.
       - question: |
-          How do I enable fine-tuning? Create a custom model is greyed out in Azure OpenAI Studio.  
+          What are the SLAs (Service Level Agreements) in Azure OpenAI?
+        answer:
+          We do offer an Availability SLA for all resources and a Latency SLA for Provisioned-Managed Deployments. For more information about the SLA for Azure OpenAI Service, see the [Service Level Agreements (SLA) for Online Services page](https://azure.microsoft.com/support/legal/sla/cognitive-services/v1_1/). 
+      - question: |
+          How do I enable fine-tuning? Create a custom model is greyed out in [Azure AI Foundry portal](https://ai.azure.com/).  
         answer: |
           In order to successfully access fine-tuning, you need Cognitive Services OpenAI Contributor assigned. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information, please review the [role-based access control guidance](/azure/ai-services/openai/how-to/role-based-access-control#cognitive-services-openai-contributor).
       - question: |
@@ -173,11 +187,7 @@ sections:
       - question: |
           What is the maximum number of fine-tuned models I can create?
         answer: |
-          100
-      - question: |
-          What are the SLAs for API responses in Azure OpenAI?
-        answer:
-          We don't have a defined API response time Service Level Agreement (SLA) at this time. For more information about the SLA for Azure OpenAI Service, see the [Service Level Agreements (SLA) for Online Services page](https://azure.microsoft.com/support/legal/sla/cognitive-services/v1_1/).  
+          100  
       - question: |
           Why was my fine-tuned model deployment deleted? 
         answer:
@@ -199,7 +209,7 @@ sections:
       - question: |
           Can I use GPT-4 to generate images?
         answer: |
-          No, you can use `dall-e-3` to generate images and `gpt-4-visual-preview` to understand images.
+          No, you can use `dall-e-3` to generate images and `gpt-4-vision-preview` to understand images.
       - question: |
           What type of files can I upload?
         answer: |
@@ -227,7 +237,7 @@ sections:
       - question: |
           What are the known limitations of GPT-4 Turbo with Vision?
         answer: |
-          See the [limitations](./concepts/gpt-with-vision.md#limitations) section of the GPT-4 Turbo with Vision concepts guide.
+          See the [limitations](./concepts/gpt-with-vision.md#input-limitations) section of the GPT-4 Turbo with Vision concepts guide.
       - question: |
           I keep getting truncated responses when I use GPT-4 Turbo vision models. Why is this happening?
         answer:
@@ -296,9 +306,9 @@ sections:
         answer:
           You can customize your published web app in the Azure portal. The source code for the published web app is [available on GitHub](https://go.microsoft.com/fwlink/?linkid=2244395), where you can find information on changing the app frontend, as well as instructions for building and deploying the app.
       - question: |
-          Will my web app be overwritten when I deploy the app again from the Azure AI Studio?
+          Will my web app be overwritten when I deploy the app again from the [Azure AI Foundry portal](https://ai.azure.com/)?
         answer:
-          Your app code won't be overwritten when you update your app. The app will be updated to use the Azure OpenAI resource, Azure AI Search index (if you're using Azure OpenAI on your data), and model settings selected in the Azure OpenAI Studio without any change to the appearance or functionality. 
+          Your app code won't be overwritten when you update your app. The app will be updated to use the Azure OpenAI resource, Azure AI Search index (if you're using Azure OpenAI on your data), and model settings selected in the [Azure AI Foundry portal](https://ai.azure.com/) without any change to the appearance or functionality. 
   - name: Using your data
     questions:
       - question: |
@@ -308,7 +318,7 @@ sections:
       - question: |
           How can I access Azure OpenAI on your data?  
         answer:
-          All Azure OpenAI customers can use Azure OpenAI on your data via the Azure AI studio and Rest API.
+          All Azure OpenAI customers can use Azure OpenAI on your data via the [Azure AI Foundry portal](https://ai.azure.com/) and Rest API.
       - question: |
           What data sources does Azure OpenAI on your data support?
         answer:
@@ -316,7 +326,7 @@ sections:
       - question: |
           How much does it cost to use Azure OpenAI on your data?
         answer:
-          When using Azure OpenAI on your data, you incur costs when you use Azure AI Search, Azure Blob Storage, Azure Web App Service, semantic search and OpenAI models. There's no additional cost for using the "your data" feature in the Azure AI Studio.
+          When using Azure OpenAI on your data, you incur costs when you use Azure AI Search, Azure Blob Storage, Azure Web App Service, semantic search and OpenAI models. There's no additional cost for using the "your data" feature in the [Azure AI Foundry portal](https://ai.azure.com/).
       - question: |
           How can I customize or automate the index creation process?
         answer:
@@ -346,7 +356,7 @@ sections:
         answer:
           You must send queries in the same language of your data. Your data can be in any of the languages supported by [Azure AI Search](/azure/search/search-language-support).
       - question: |
-          If Semantic Search is enabled for my Azure AI Search resource, will it be automatically applied to Azure OpenAI on your data in the Azure OpenAI Studio?
+          If Semantic Search is enabled for my Azure AI Search resource, will it be automatically applied to Azure OpenAI on your data in the [Azure AI Foundry portal](https://ai.azure.com/)?
         answer:
           When you select "Azure AI Search" as the data source, you can choose to apply semantic search. 
           If you select "Azure Blob Container" or "Upload files" as the data source, you can create the index as usual. Afterwards you would reingest the data using the "Azure AI Search" option to select the same index and apply Semantic Search. You will then be ready to chat on your data with semantic search applied.

@@ -1,22 +1,22 @@
 ---
 title: Content tags - Image Analysis 4.0
 titleSuffix: Azure AI services
-description: Learn concepts related to the images tagging feature of the Image Analysis 4.0 API.
-#services: cognitive-services
+description: Learn how to generate image tags for a wide variety of objects by using the Image Analysis 4.0 API.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 01/19/2024
+ms.date: 11/01/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
-# Image tagging (version 4.0)
+# Image tagging with Image Analysis version 4.0
 
-Image Analysis can return content tags for thousands of recognizable objects, living beings, scenery, and actions that appear in images. Tagging is not limited to the main subject, such as a person in the foreground, but also includes the setting (indoor or outdoor), furniture, tools, plants, animals, accessories, gadgets, and so on. Tags aren't organized as a taxonomy and don't have inheritance hierarchies. When tags are ambiguous or not common knowledge, the API response provides hints to clarify the meaning of the tag in context of a known setting.
+Image Analysis can return content tags for thousands of recognizable objects, living beings, scenery, and actions that appear in images. Tagging isn't limited to the main subject, such as a person in the foreground, but also includes the setting (indoor or outdoor), furniture, tools, plants, animals, accessories, gadgets, and so on. Tags aren't organized as a taxonomy and don't have inheritance hierarchies. When tags are ambiguous or not common knowledge, the API response provides hints to clarify the meaning of the tag in the context of a known setting.
 
-Try out the image tagging features quickly and easily in your browser using Vision Studio.
+Try out the image tagging feature quickly and easily in your browser by using Azure AI Vision Studio.
 
 > [!div class="nextstepaction"]
 > [Try Vision Studio](https://portal.vision.cognitive.azure.com/)
@@ -25,8 +25,7 @@ Try out the image tagging features quickly and easily in your browser using Visi
 
 The following JSON response illustrates what Azure AI Vision returns when tagging visual features detected in the example image.
 
-![A blue house and the front yard](./Images/house_yard.png).
-
+:::image type="content" source="images/house_yard.png" alt-text="Photograph of a blue house and the front yard.":::
 
 ```json
 {
@@ -138,12 +137,11 @@ The following JSON response illustrates what Azure AI Vision returns when taggin
 
 ## Use the API
 
-The tagging feature is part of the [Analyze Image](https://aka.ms/vision-4-0-ref) API. You can call this API using REST. Include `Tags` in the **features** query parameter. Then, when you get the full JSON response, parse the string for the contents of the `"tags"` section.
+The tagging feature is part of the [Analyze Image](https://aka.ms/vision-4-0-ref) API. You can call this API using REST. Include `Tags` in the `features` query parameter. Then, when you get the full JSON response, parse the string for the contents of the `"tags"` section.
 
+* [Quickstart: Image Analysis 4.0](./quickstarts-sdk/image-analysis-client-library-40.md?pivots=programming-language-csharp)
 
-* [Quickstart: Image Analysis REST API or client libraries](./quickstarts-sdk/image-analysis-client-library-40.md?pivots=programming-language-csharp)
+## Related content
 
-## Next steps
-
-* Learn the related concept of [describing images](concept-describe-images-40.md).
+* Learn the related concept of [describing images](concept-describe-images-40.md)
 * [Call the Analyze Image API](./how-to/call-analyze-image-40.md)

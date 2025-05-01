@@ -9,7 +9,7 @@ ms.topic: sample
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sgilley
-ms.date: 02/05/2024
+ms.date: 09/09/2024
 #Customer intent: As a professional data scientist, I find and run example Jupyter Notebooks for Azure Machine Learning.
 ---
 
@@ -23,20 +23,20 @@ This article shows you how to access the repository from the following environme
 
 - Azure Machine Learning compute instance
 - Your own compute resource
-- Data Science Virtual Machine
+- Data Science Virtual Machine (DSVM)
 
 You can also [browse code samples](/samples/browse/?expanded=azure&products=azure-machine-learning) for more examples.
 
 ## Option 1: Access on Azure Machine Learning compute instance (recommended)
 
-The easiest way to get started with the samples is to complete the [Create resources to get started](quickstart-create-resources.md). Once completed, you'll have a dedicated notebook server preloaded with the SDK and the Azure Machine Learning Notebooks repository. No downloads or installation necessary.
+The easiest way to get started with the samples is to complete [Create resources to get started](quickstart-create-resources.md). Once completed, you have a dedicated notebook server preloaded with the SDK and the Azure Machine Learning Notebooks repository. No downloads or installation necessary.
 
 To view example notebooks:
 
 1. Sign in to [studio](https://ml.azure.com) and select your workspace if necessary.
 1. Select **Notebooks**.
 1. Select the **Samples** tab. Use the **SDK v2** folder for examples using Python SDK v2.
-1. Open the notebook you want to run.  Select **Clone this notebook** to create a copy in your workspace file share.  This action will copy the notebook along with any dependent resources.
+1. Open the notebook you want to run. Select **Clone this notebook** to create a copy in your workspace file share. This action copies the notebook, along with any dependent resources, to the file storage in your project.
 
 ## Option 2: Access on your own notebook server
 
@@ -48,14 +48,14 @@ These instructions install the base SDK packages necessary for the quickstart an
 
 ## Option 3: Access on a DSVM
 
-The Data Science Virtual Machine (DSVM) is a customized VM image built specifically for doing data science. If you [create a DSVM](how-to-configure-environment.md#local-and-dsvm-only-create-a-workspace-configuration-file), the SDK and notebook server are installed and configured for you. However, you'll still need to create a workspace and clone the sample repository.
+The Data Science Virtual Machine (DSVM) is a customized Virtual Machine (VM) image built specifically for doing data science. If you [create a DSVM](how-to-configure-environment.md#local-and-dsvm-only-create-a-workspace-configuration-file), the SDK and notebook server are installed and configured for you. However, you still need to create a workspace and clone the sample repository.
 
-1. [Create an Azure Machine Learning workspace](how-to-manage-workspace.md).
+1. [Create an Azure Machine Learning workspace](./quickstart-create-resources.md#create-the-workspace).
 
 1. Clone the [the AzureML-Examples repository](https://aka.ms/aml-notebooks).
 
     ```bash
-    git clone https://github.com/Azure/azureml-examples.git --depth 1
+    git clone https://github.com/Azure/azureml-examples.git **depth 1
     ```
 
 1. Start the notebook server from the directory that contains the clone.
@@ -66,22 +66,22 @@ The Data Science Virtual Machine (DSVM) is a customized VM image built specifica
 
 ## Connect to a workspace
 
-Some of the samples use `MLClient.from_config()` to connect to a workspace.  For these samples to work, you need a configuration file in a directory on the path to the sample.  
+Some of the samples use `MLClient.from_config()` to connect to a workspace. For these samples to work, you need a configuration file in a directory on the path to the sample. 
 
-The configuration file is created for you on the Azure Machine Learning compute instance.  To use the code on your own notebook server or DSVM, create the configuration file manually.  Use either of the following methods:
+The configuration file is created for you on the Azure Machine Learning compute instance. To use the code on your own notebook server or DSVM, create the configuration file manually. Use either of the following methods:
 
-* Write a [configuration file](how-to-configure-environment.md#) file (**aml_config/config.json**) in the root of your cloned repository.
+- Write a [configuration file](how-to-configure-environment.md#) file (**aml_config/config.json**) in the root of your cloned repository.
 
-* Download the workspace configuration file:
+- Download the workspace configuration file:
 
-    * Sign in to [Azure Machine Learning studio](https://ml.azure.com)
-    * Select your workspace settings in the upper right
-    * Select **Download config file**
-    * Place the file in the root of your cloned repository.
+    - Sign in to [Azure Machine Learning studio](https://ml.azure.com)
+    - Select your workspace settings in the upper right
+    - Select **Download config file**
+    - Place the file in the root of your cloned repository.
 
     ![Screenshot of download config.json.](./media/aml-dsvm-server/download-config.png)
 
-## Next steps
+## Related resources
 
 Explore the [AzureML-Examples](https://github.com/Azure/azureml-examples) repository to discover what Azure Machine Learning can do.
 

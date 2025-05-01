@@ -6,16 +6,16 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/18/2024
+ms.date: 3/10/2025
 ms.author: eur
 ---
 
 # Custom neural voice lite (preview)
 
-Speech Studio provides two custom neural voice (CNV) project types: CNV lite and CNV professional. 
+Azure AI Speech provides two custom neural voice (CNV) project types: CNV lite and CNV professional. 
 
 - Custom neural voice (CNV) professional allows you to upload your training data collected through professional recording studios and create a higher-quality voice that is nearly indistinguishable from its human samples. CNV professional access is limited based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
-- Custom neural voice (CNV) lite is a project type in public preview. You can demo and evaluate custom neural voice before investing in professional recordings to create a higher-quality voice. No application is required. Microsoft restricts and selects the recording and testing samples for use with CNV lite. You must apply for full access to CNV professional in order to deploy and use the CNV lite model for business purpose. 
+- Custom neural voice (CNV) lite is a project type in public preview. You can demo and evaluate custom neural voice before investing in professional recordings to create a higher-quality voice. No application is required for demo and evaluation purposes. However, Microsoft restricts and selects the recording and testing samples for use with CNV lite. You must apply for full access to CNV professional in order to deploy and use the CNV lite model for business purpose. In that case, request access on the [intake form](https://aka.ms/customneural).
 
 With a CNV lite project, you record your voice online by reading 20-50 pre-defined scripts provided by Microsoft. After you've recorded at least 20 samples, you can start to train a model. Once the model is trained successfully, you can review the model and check out 20 output samples produced with another set of pre-defined scripts.
 
@@ -41,26 +41,26 @@ The following table summarizes key differences between the CNV lite and CNV prof
 To create a custom neural voice lite project, follow these steps:
 
 1. Sign in to the [Speech Studio](https://aka.ms/speechstudio/customvoice).
-1. Select the subscription and Speech resource to work with. 
-
-    > [!IMPORTANT]
-    > Custom neural voice training is currently only available in some regions. See footnotes in the [regions](regions.md#speech-service) table for more information.
-
+1. Select the subscription and Speech resource to work with.
 1. Select **Custom voice** > **Create a project**. 
-1. Select **Custom neural voice lite** > **Next**. 
-
-    > [!NOTE]
-    > To create a custom neural voice Pro project, see [Create a project for custom neural voice](professional-voice-create-project.md).
+1. Select **Custom neural voice lite** > **Next**. To create a custom neural voice professional project instead, see [Create a project for custom neural voice](professional-voice-create-project.md).
 
 1. Follow the instructions provided by the wizard to create your project. 
+    
+    > [!IMPORTANT]
+    > The CNV lite project expires after 90 days unless the [verbal statement](#submit-verbal-statement) recorded by the voice talent is submitted.
+
 1. Select the new project by name or select **Go to project**. You see these menu items in the left panel: **Record and build**, **Review model**, and **Deploy model**.  
+
     :::image type="content" source="media/custom-voice/lite/lite-project-get-started.png" alt-text="Screenshot with an overview of the CNV lite record, train, test, and deploy workflow.":::
 
-The CNV lite project expires after 90 days unless the [verbal statement](#submit-verbal-statement) recorded by the voice talent is submitted.
 
 ## Record and build a CNV lite model
 
 Record at least 20 voice samples (up to 50) with provided scripts online. Voice samples recorded here are used to create a synthetic version of your voice.
+
+> [!NOTE]
+> Custom neural voice training is currently only available in some regions. See footnotes in the [regions](regions.md#regions) table for more information.
 
 Here are some tips to help you record your voice samples:
 - Use a good microphone. Increase the clarity of your samples by using a high-quality microphone. Speak about 8 inches away from the microphone to avoid mouth noises.

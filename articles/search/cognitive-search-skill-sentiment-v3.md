@@ -3,9 +3,9 @@ title: Sentiment cognitive skill (v3)
 titleSuffix: Azure AI Search
 description: Provides sentiment labels for text in an AI enrichment pipeline in Azure AI Search.
 
-author: careyjmac
-ms.author: chalton
-ms.service: cognitive-search
+author: gmndrg
+ms.author: gimondra
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference

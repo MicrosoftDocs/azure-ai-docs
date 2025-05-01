@@ -57,6 +57,9 @@ Start at [Azure Machine Learning studio](https://ml.azure.com).
 
 ---
 
+> [!NOTE]
+> When configuring a Virtual Network (VNet) located in a different resource group from your Azure Machine Learning workspace, be aware that resources such as Network Security Groups (NSGs), Public IPs, and Load Balancers will be created in the same resource group as the VNet. This behavior ensures proper network management and isolation.
+
 ## What is a compute cluster?
 
 Azure Machine Learning compute cluster is a managed-compute infrastructure that allows you to easily create a single or multi-node compute. The compute cluster is a resource that can be shared with other users in your workspace. The compute scales up automatically when a job is submitted, and can be put in an Azure Virtual Network. Compute cluster supports **no public IP** deployment as well in virtual network. The compute executes in a containerized environment and packages your model dependencies in a [Docker container](https://www.docker.com/why-docker).
@@ -73,6 +76,9 @@ Compute clusters can run jobs securely in either a [managed virtual network](how
 * Azure Machine Learning Compute has default limits, such as the number of cores that can be allocated. For more information, see [Manage and request quotas for Azure resources](how-to-manage-quotas.md).
 
 * Azure allows you to place *locks* on resources, so that they can't be deleted or are read only. **Do not apply resource locks to the resource group that contains your workspace**. Applying a lock to the resource group that contains your workspace prevents scaling operations for Azure Machine Learning compute clusters. For more information on locking resources, see [Lock resources to prevent unexpected changes](/azure/azure-resource-manager/management/lock-resources).
+
+> [!Caution]
+> Applying resource locks, such as "Delete" or "Read-only", to the resource group that contains your Machine Learning workspace or to a separate resource group where you've configured a virtual network can prevent operations like creation, scaling, or deletion of these clusters. Ensure that resource locks are configured appropriately to avoid unintended disruptions. 
 
 ## Create
 

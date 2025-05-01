@@ -16,6 +16,8 @@ ms.custom: UpdateFrequency5, automl
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 Automated machine learning, also referred to as automated ML or AutoML, is the process of automating the time-consuming, iterative tasks of machine learning model development. It allows data scientists, analysts, and developers to build ML models with high scale, efficiency, and productivity all while sustaining model quality. Automated ML in Azure Machine Learning is based on a breakthrough from our [Microsoft Research division](https://www.microsoft.com/research/project/automl/).
 
 Traditional machine learning model development is resource-intensive, requiring significant domain knowledge and time to produce and compare dozens of models. With automated machine learning, you'll accelerate the time it takes to get production-ready ML models with great ease and efficiency.
@@ -178,7 +180,7 @@ Using **Azure Machine Learning**, you can design and run your automated ML train
    * For limited or no code experience, try the Azure Machine Learning studio web experience at [https://ml.azure.com](https://ml.azure.com/)  
    * For Python developers, check out the [Azure Machine Learning Python SDK (v1)](../how-to-configure-auto-train.md) 
     
-1. **Specify the source and format of the labeled training data**: Numpy arrays or Pandas dataframe
+1. **Specify the source and format of the labeled training data**: NumPy arrays or Pandas dataframe
 
 1. **Configure the compute target for model training**, such as your [local computer, Azure Machine Learning Computes, remote VMs, or Azure Databricks with SDK v1](how-to-set-up-training-targets.md).
 
@@ -197,7 +199,7 @@ You can also inspect the logged job information, which [contains metrics](../how
 
 While model building is automated, you can also [learn how important or relevant features are](../how-to-configure-auto-train.md) to the generated models.
 
-> [!VIDEO https://www.microsoft.com/videoplayer/embed/RE2Xc9t]
+> [!VIDEO eddb2bd4-407e-470d-8fe9-6e60585b9910]
 
 <a name="local-remote"></a>
 
@@ -253,7 +255,7 @@ To help confirm that such bias isn't applied to the final recommended model, aut
 >[!IMPORTANT]
 > Testing your models with a test dataset to evaluate generated models is a preview feature. This capability is an [experimental](/python/api/overview/azure/ml/#stable-vs-experimental) preview feature, and may change at any time.
 
-Learn how to [configure AutoML experiments to use test data (preview) with the SDK (v1)](how-to-configure-cross-validation-data-splits.md#provide-test-data-preview) or with the [Azure Machine Learning studio](../how-to-use-automated-ml-for-ml-models.md#create-and-run-experiment).
+Learn how to [configure AutoML experiments to use test data (preview) with the SDK (v1)](how-to-configure-cross-validation-data-splits.md#provide-test-dataset-preview) or with the [Azure Machine Learning studio](../how-to-use-automated-ml-for-ml-models.md#create-and-run-experiment).
 
 You can also [test any existing automated ML model (preview) (v1)](../how-to-configure-auto-train.md)), including models from child jobs, by providing your own test data or by setting aside a portion of your training data. 
 

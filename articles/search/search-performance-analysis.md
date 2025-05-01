@@ -4,9 +4,9 @@ titleSuffix: Azure AI Search
 description: Learn about the tools, behaviors, and approaches for analyzing query and indexing performance in Azure AI Search.
 author: mattgotteiner
 ms.author: magottei
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 06/06/2024
+ms.date: 01/16/2025
 ---
 
 # Analyze performance in Azure AI Search
@@ -16,8 +16,6 @@ This article describes the tools, behaviors, and approaches for analyzing query 
 ## Develop baseline numbers
 
 In any large implementation, it's critical to do a performance benchmarking test of your Azure AI Search service before you roll it into production. You should test both the search query load that you expect, but also the expected data ingestion workloads (if possible, run both workloads simultaneously). Having benchmark numbers helps to validate the proper [search tier](search-sku-tier.md), [service configuration](search-capacity-planning.md), and expected [query latency](search-performance-analysis.md#average-query-latency).
-
-To develop benchmarks, we recommend the [azure-search-performance-testing (GitHub)](https://github.com/Azure-Samples/azure-search-performance-testing) tool.
 
 To isolate the effects of a distributed service architecture, try testing on service configurations of one replica and one partition.
 
@@ -59,8 +57,8 @@ AzureDiagnostics
 Examining throttling over a specific time period can help you identify the times where throttling might occur more frequently. In the below example, a time series chart is used to show the number of throttled queries that occurred over a specified time frame. In this case, the throttled queries correlated with the times in with the performance benchmarking was performed.
 
 ```kusto
-let ['_startTime']=datetime('2021-02-25T20:45:07Z');
-let ['_endTime']=datetime('2021-03-03T20:45:07Z');
+let ['_startTime']=datetime('2024-02-25T20:45:07Z');
+let ['_endTime']=datetime('2024-03-03T20:45:07Z');
 let intervalsize = 1m; 
 AzureDiagnostics 
 | where TimeGenerated > ago(7d)
@@ -122,8 +120,8 @@ In the below query, an interval size of 1 minute is used to show the average lat
 
 ```kusto
 let intervalsize = 1m; 
-let _startTime = datetime('2021-02-23 17:40');
-let _endTime = datetime('2021-02-23 18:00');
+let _startTime = datetime('2024-02-23 17:40');
+let _endTime = datetime('2024-02-23 18:00');
 AzureDiagnostics
 | where TimeGenerated between(['_startTime']..['_endTime']) // Time range filtering
 | summarize AverageQueryLatency = avgif(DurationMs, OperationName in ("Query.Search", "Query.Suggest", "Query.Lookup", "Query.Autocomplete"))
@@ -139,8 +137,8 @@ The following query looks at the average number of queries per minute to ensure 
 
 ```kusto
 let intervalsize = 1m; 
-let _startTime = datetime('2021-02-23 17:40');
-let _endTime = datetime('2021-02-23 18:00');
+let _startTime = datetime('2024-02-23 17:40');
+let _endTime = datetime('2024-02-23 18:00');
 AzureDiagnostics
 | where TimeGenerated between(['_startTime'] .. ['_endTime']) // Time range filtering
 | summarize QueriesPerMinute=bin(countif(OperationName in ("Query.Search", "Query.Suggest", "Query.Lookup", "Query.Autocomplete"))/(intervalsize/1m), 0.01)
@@ -158,8 +156,8 @@ From this insight, we can see that it took about 3 minutes for the search servic
 
 ```kusto
 let intervalsize = 1m; 
-let _startTime = datetime('2021-02-23 17:40');
-let _endTime = datetime('2021-02-23 18:00');
+let _startTime = datetime('2024-02-23 17:40');
+let _endTime = datetime('2024-02-23 18:00');
 AzureDiagnostics
 | where TimeGenerated between(['_startTime'] .. ['_endTime']) // Time range filtering
 | summarize IndexingOperationsPerSecond=bin(countif(OperationName == "Indexing.Index")/ (intervalsize/1m), 0.01)
@@ -171,7 +169,7 @@ AzureDiagnostics
 
 ## Background service processing
 
-It isn't unusual to see periodic spikes in query or indexing latency. Spikes might occur in response to indexing or high query rates, but could also occur during merge operations. Search indexes are stored in chunks - or shards. Periodically, the system merges smaller shards into large shards, which can help optimize service performance. This merge process also cleans up documents that have previously been marked for deletion from the index, resulting in the recovery of storage space. 
+It's common to see occasional spikes in query or indexing latency. Spikes might occur in response to indexing or high query rates, but could also occur during merge operations. Search indexes are stored in chunks - or shards. Periodically, the system merges smaller shards into large shards, which can help optimize service performance. This merge process also cleans up documents that have previously been marked for deletion from the index, resulting in the recovery of storage space. 
 
 Merging shards is fast, but also resource intensive and thus has the potential to degrade service performance. If you notice short bursts of query latency, and those bursts coincide with recent changes to indexed content, you can assume the latency is due to shard merge operations. 
 

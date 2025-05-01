@@ -1,19 +1,22 @@
 ---
-title: Deploy ML models to Azure Kubernetes Service with CLI and SDK v1
+title: Deploy ML models to Azure Kubernetes Service - CLI/SDK v1
 titleSuffix: Azure Machine Learning
 description: 'Use CLI (v1) and SDK (v1) to deploy your Azure Machine Learning models as a web service using Azure Kubernetes Service.'
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
-ms.custom: UpdateFrequency5, deploy, cliv1, sdkv1
+ms.custom: UpdateFrequency5, deploy, cliv1, sdkv1, FY25Q1-Linter
 author: Blackmist
 ms.author: larryfr
 ms.reviewer: bozhlin
-ms.date: 03/08/2024
+ms.date: 09/09/2024
+# Customer Intent: As a data scientist, I want to deploy my machine learning model to Azure Kubernetes Service so that I can scale my model to meet production demands.
 ---
 
 # Deploy a model to an Azure Kubernetes Service cluster with v1
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 > [!IMPORTANT]
 > This article explains how to use the Azure Machine Learning CLI (v1) and Azure Machine Learning SDK for Python (v1) to deploy a model. For the recommended approach for v2, see [Deploy and score a machine learning model by using an online endpoint](/azure/machine-learning/how-to-deploy-managed-online-endpoints).
@@ -43,7 +46,7 @@ When deploying to AKS, you deploy to an AKS cluster that's *connected to your wo
 
 - The [Azure CLI extension (v1) for Machine Learning service](reference-azure-machine-learning-cli.md), [Azure Machine Learning Python SDK](/python/api/overview/azure/ml/intro), or the [Azure Machine Learning Visual Studio Code extension](../how-to-setup-vs-code.md).
 
-    [!INCLUDE [cli v1 deprecation](../includes/machine-learning-cli-v1-deprecation.md)]
+    [!INCLUDE [CLI v1 deprecation](../includes/machine-learning-cli-v1-deprecation.md)]
 
 - The Python code snippets in this article assume that the following variables are set:
 
@@ -196,7 +199,7 @@ For more information on the classes, methods, and parameters used in this exampl
 
 # [Azure CLI](#tab/azure-cli)
 
-[!INCLUDE [cli v1](../includes/machine-learning-cli-v1.md)]
+[!INCLUDE [CLI v1](../includes/machine-learning-cli-v1.md)]
 
 To deploy using the CLI, use the following command. Replace `myaks` with the name of the AKS compute target. Replace `mymodel:1` with the name and version of the registered model. Replace `myservice` with the name to give this service:
 
@@ -283,9 +286,9 @@ For information on using VS Code, see [deploy to AKS via the VS Code extension](
 The component that handles autoscaling for Azure Machine Learning model deployments is azureml-fe, which is a smart request router. Since all inference requests go through it, it has the necessary data to automatically scale the deployed models.
 
 > [!IMPORTANT]
-> * **Don't enable Kubernetes Horizontal Pod Autoscaler (HPA) for model deployments**. Doing so causes the two auto-scaling components to compete with each other. Azureml-fe is designed to auto-scale models deployed by Azure Machine Learning, where HPA would have to guess or approximate model utilization from a generic metric like CPU usage or a custom metric configuration.
+> * __Don't enable Kubernetes Horizontal Pod Autoscaler (HPA) for model deployments__. Doing so causes the two auto-scaling components to compete with each other. Azureml-fe is designed to auto-scale models deployed by Azure Machine Learning, where HPA would have to guess or approximate model utilization from a generic metric like CPU usage or a custom metric configuration.
 > 
-> * **Azureml-fe does not scale the number of nodes in an AKS cluster**, because this could lead to unexpected cost increases. Instead, **it scales the number of replicas for the model** within the physical cluster boundaries. If you need to scale the number of nodes within the cluster, you can manually scale the cluster or [configure the AKS cluster autoscaler](/azure/aks/cluster-autoscaler).
+> * __Azureml-fe does not scale the number of nodes in an AKS cluster__, because this could lead to unexpected cost increases. Instead, __it scales the number of replicas for the model__ within the physical cluster boundaries. If you need to scale the number of nodes within the cluster, you can manually scale the cluster or [configure the AKS cluster autoscaler](/azure/aks/cluster-autoscaler).
 
 Autoscaling can be controlled by setting `autoscale_target_utilization`, `autoscale_min_replicas`, and `autoscale_max_replicas` for the AKS web service. The following example demonstrates how to enable autoscaling:
 
@@ -353,7 +356,7 @@ To enable token authentication, set the `token_auth_enabled=True` parameter when
 deployment_config = AksWebservice.deploy_configuration(cpu_cores=1, memory_gb=1, token_auth_enabled=True)
 ```
 
-If token authentication is enabled, you can use the `get_token` method to retrieve a JWT token and that token's expiration time:
+If token authentication is enabled, you can use the `get_token` method to retrieve a JWT and that token's expiration time:
 
 ```python
 token, refresh_by = service.get_token()

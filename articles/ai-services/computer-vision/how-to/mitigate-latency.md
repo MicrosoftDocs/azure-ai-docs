@@ -1,23 +1,25 @@
 ---
-title: How to mitigate latency and improve performance when using the Face service
+title: Mitigate latency and improve Face service performance
 titleSuffix: Azure AI services
-description: Learn how to mitigate network latency and improve service performance when using the Face service.
-#services: cognitive-services
+description: Learn how to mitigate network latency and improve service performance when using the Azure AI Face service to enhance user experience.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
+ms.subservice: azure-ai-face
 ms.topic: how-to
-ms.date: 11/06/2023
+ms.date: 01/22/2025
 ms.author: pafarley
 ms.devlang: csharp
 ms.custom:
   - cogserv-non-critical-vision
   - ignite-2023
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
+#customer intent: As a developer, I want to mitigate latency and improve performance when using the Face service so that my application provides a better user experience.
 ---
 
 # Mitigate latency and improve performance
 
-This guide describes how to mitigate network latency and improve service performance when using the Face service. The speed and performance of your application will affect the experience of your end-users, such as people who enroll in and use a face identification system.
+This guide describes how to mitigate network latency and improve service performance when using Azure Face service. The speed and performance of your application will affect the experience of your end-users, such as people who enroll in and use the face identification system.
 
 ## Mitigate latency
 
@@ -57,6 +59,11 @@ If the image files you use are large, it affects the response time of the Face s
 - It takes more time to upload the file.
 - It takes the service more time to process the file, in proportion to the file size.
 
+Note the following additional tips:
+- For face detection, when using detection model `FaceDetectionModel.Detection01`, reducing the image file size increases processing speed. When you use detection model `FaceDetectionModel.Detection02`, reducing the image file size will only increase processing speed if the image file is smaller than 1920x1080 pixels.
+- For face recognition, reducing the face size will only increase the speed if the image is smaller than 200x200 pixels.
+- The performance of the face detection methods also depends on how many faces are in an image. The Face service can return up to 100 faces for an image. Faces are ranked by face rectangle size from large to small.
+
 
 #### The tradeoff between accuracy and network speed
 
@@ -64,14 +71,6 @@ The quality of the input images affects both the accuracy and the latency of the
 
 To achieve the optimal balance between accuracy and speed, follow these tips to optimize your input data. 
 - For face detection and recognition operations, see [input data for face detection](../concept-face-detection.md#input-requirements) and [input data for face recognition](../concept-face-recognition.md#input-requirements).
-- For liveness detection, see the [tutorial](../Tutorials/liveness.md#select-a-good-reference-image). 
-
-#### Other file size tips
-
-Note the following additional tips:
-- For face detection, when using detection model `FaceDetectionModel.Detection01`, reducing the image file size increases processing speed. When you use detection model `FaceDetectionModel.Detection02`, reducing the image file size will only increase processing speed if the image file is smaller than 1920x1080 pixels.
-- For face recognition, reducing the face size will only increase the speed if the image is smaller than 200x200 pixels.
-- The performance of the face detection methods also depends on how many faces are in an image. The Face service can return up to 100 faces for an image. Faces are ranked by face rectangle size from large to small.
 
 
 ## Call APIs in parallel when possible
@@ -98,7 +97,7 @@ The errors `429` and `503` may occur on your Face API calls for various reasons.
  
 |HTTP error code  | Description |Recommendation  |
 |---------|---------|---------|
-|  `429`   |   Throttling    |    You may encounter a rate limit with concurrent calls. You should decrease the frequency of calls and retry with exponential backoff. Avoid immediate retries and avoid re-sending numerous requests simultaneously. </br></br>If you want to increase the limit, see the [Request an increase](../identity-quotas-limits.md#how-to-request-an-increase-to-the-default-limits) section of the quotas guide.  |
+|  `429`   |   Throttling    |    You may encounter a rate limit with concurrent calls. You should decrease the frequency of calls and retry with exponential backoff. Avoid immediate retries and avoid re-sending numerous requests simultaneously. </br></br>If you want to increase the limit, see the [Request an increase](../identity-quotas-limits.md#request-an-increase-to-the-default-limits) section of the quotas guide.  |
 | `503` |   Service unavailable    |   The service may be busy and unable to respond to your request immediately. You should adopt a back-off strategy similar to the one for error `429`.   |
 
 ## Ensure reliability and support 
@@ -109,7 +108,7 @@ The following are other tips to ensure the reliability and high support of your 
     - Always record the `client-request-id` and the response you received when you encounter an unexpected response. If you need any assistance, provide this information to Microsoft Support, along with the Azure resource ID and the time period when the problem occurred.
 - Conduct a pilot test before you release your application into production. Ensure that your application can handle errors properly and effectively. 
 
-## Next steps
+## Next step
 
 In this guide, you learned how to improve performance when using the Face service. Next, follow the tutorial to set up a working software solution that combines server-side and client-side logic to do face liveness detection on users.
 

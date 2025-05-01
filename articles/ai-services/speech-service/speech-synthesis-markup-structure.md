@@ -6,8 +6,9 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 8/20/2024
+ms.date: 3/10/2025
 ms.author: eur
+#Customer intent: As a developer, I want to learn about the Speech Synthesis Markup Language (SSML) document structure.
 ---
 
 # SSML document structure and events
@@ -15,6 +16,14 @@ ms.author: eur
 The Speech Synthesis Markup Language (SSML) with input text determines the structure, content, and other characteristics of the text to speech output. For example, you can use SSML to define a paragraph, a sentence, a break or a pause, or silence. You can wrap text with event tags such as bookmark or viseme that can be processed later by your application.
 
 Refer to the sections below for details about how to structure elements in the SSML document. 
+
+> [!NOTE]
+> In addition to Azure AI Speech neural (non HD) voices, you can also use [Azure AI Speech high definition (HD) voices](high-definition-voices.md) and [Azure OpenAI neural (HD and non HD) voices](openai-voices.md). The HD voices provide a higher quality for more versatile scenarios.
+> 
+> Some voices don't support all [Speech Synthesis Markup Language (SSML)](speech-synthesis-markup-structure.md) tags. This includes neural text to speech HD voices, personal voices, and embedded voices. 
+- For Azure AI Speech high definition (HD) voices, check the SSML support [here](high-definition-voices.md#supported-and-unsupported-ssml-elements-for-azure-ai-speech-hd-voices). 
+- For personal voice, you can find the SSML support [here](personal-voice-how-to-use.md#supported-and-unsupported-ssml-elements-for-personal-voice). 
+- For embedded voices, check the SSML support [here](embedded-speech.md#embedded-voices-capabilities).
 
 ## Document structure
 

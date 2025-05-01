@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn about model versions in Azure OpenAI. 
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 10/30/2023
+ms.date: 04/30/2025
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
 ms.author: mbullwin #chrhoder
@@ -15,15 +15,14 @@ recommendations: false
 
 Azure OpenAI Service is committed to providing the best generative AI models for customers. As part of this commitment, Azure OpenAI Service regularly releases new model versions to incorporate the latest features and improvements from OpenAI.
 
-In particular, the GPT-3.5 Turbo and GPT-4 models see regular updates with new features.  For example, versions 0613 of GPT-3.5 Turbo and GPT-4 introduced function calling.  Function calling is a popular feature that allows the model to create structured outputs that can be used to call external tools.
-
 ## How model versions work
 
-We want to make it easy for customers to stay up to date as models improve.  Customers can choose to start with a particular version and to automatically update as new versions are released.
+We want to make it easy for customers to stay up to date as models improve. Customers can choose to start with a particular version and to automatically update as new versions are released.
 
-When a customer deploys GPT-3.5-Turbo and GPT-4 on Azure OpenAI Service, the standard behavior is to deploy the current default version – for example, GPT-4 version 0314.  When the default version changes to say GPT-4 version 0613, the deployment is automatically updated to version 0613 so that customer deployments feature the latest capabilities of the model.
+> [!NOTE]
+> The following upgrade guidance only applies to Standard deployment types. For guidance on updating or migrating provisioned deployment types, review the [model management documentation](../how-to/working-with-models.md).
 
-Customers can also deploy a specific version like GPT-4 0613 and choose an update policy, which can include the following options:
+When you deploy a model you can choose an update policy, which can include the following options:
 
 * Deployments set to **Auto-update to default** automatically update to use the new default version.
 * Deployments set to **Upgrade when expired** automatically update when its current version is retired.
@@ -31,16 +30,24 @@ Customers can also deploy a specific version like GPT-4 0613 and choose an updat
 
 ## How Azure updates OpenAI models
 
-Azure works closely with OpenAI to release new model versions.  When a new version of a model is released, a customer can immediately test it in new deployments.  Azure publishes when new versions of models are released, and notifies customers at least two weeks before a new version becomes the default version of the model.   Azure also maintains the previous major version of the model until its retirement date, so customers can switch back to it if desired.
+Azure works closely with OpenAI to release new model versions. When a new version of a model is released, a customer can immediately test it in new deployments. Azure publishes when new versions of models are released, and notifies customers at least two weeks before a new version becomes the default version of the model.   Azure also maintains the previous major version of the model until its retirement date, so customers can switch back to it if desired.
 
 ## What you need to know about Azure OpenAI model version upgrades
 
-As a customer of Azure OpenAI models, you might notice some changes in the model behavior and compatibility after a version upgrade.  These changes might affect your applications and workflows that rely on the models.  Here are some tips to help you prepare for version upgrades and minimize the impact:
+As a customer of Azure OpenAI models, you might notice some changes in the model behavior and compatibility after a version upgrade. These changes might affect your applications and workflows that rely on the models. Here are some tips to help you prepare for version upgrades:
 
 * Read [what’s new](../whats-new.md) and [models](../concepts/models.md) to understand the changes and new features.
 * Read the documentation on [model deployments](../how-to/create-resource.md) and [version upgrades](../how-to/working-with-models.md) to understand how to work with model versions.
 * Test your applications and workflows with the new model version after release.
 * Update your code and configuration to use the new features and capabilities of the new model version.
+
+### Will a model upgrade happen if the new model version is not yet available in that region?
+
+Yes, even in cases where the latest model version is not yet available in a region, we will automatically 
+upgrade deployments during the scheduled upgrade window. Our engineering team will begin rollout of the new model version starting on the announced 
+upgrade date. For example, if `gpt-35-turbo-0125` is not yet available in Japan East, we will deploy `gpt-35-turbo-0125` to Japan East to upgrade older model 
+versions as part of the default model version upgrade process. 
+
 
 ## Next Steps
 

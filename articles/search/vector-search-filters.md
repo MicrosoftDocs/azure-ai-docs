@@ -5,11 +5,11 @@ description: Explains prefilters and post-filters in vector queries, and how fil
 
 author: heidisteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 08/19/2024
+ms.date: 02/24/2025
 ---
 
 # Add a filter in a vector query in Azure AI Search
@@ -26,7 +26,7 @@ You can also use [Search Explorer](search-get-started-portal-import-vectors.md#c
 
 ## How filtering works in a vector query
 
-Filters apply to `filterable` nonvector fields, either a string field or numeric, to include or exclude search documents based on filter criteria. Although a vector field isn't filterable itself, filters can be applied to other fields in the same index, including or excluding the documents that also contain vector fields.
+Filters apply to `filterable` *nonvector* fields, either a string field or numeric, to include or exclude search documents based on filter criteria. Although a vector field isn't filterable itself, filters can be applied to other nonvector fields in the same index, including or excluding the documents that also happen to contain vector fields you're searching on.
 
 Filters are applied before or after query execution based on the `vectorFilterMode` parameter.
 

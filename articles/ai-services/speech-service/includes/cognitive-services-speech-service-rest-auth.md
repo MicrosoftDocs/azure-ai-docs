@@ -165,7 +165,7 @@ Follow the steps here [Use Microsoft Entra authentication](../how-to-configure-a
 
 > [!div class="checklist"]
 >
-> - Create a Speech resource
+> - Create an AI Services resource for Speech
 > - Configure the Speech resource for Microsoft Entra authentication
 > - Get a Microsoft Entra access token
 > - Get the Speech resource ID

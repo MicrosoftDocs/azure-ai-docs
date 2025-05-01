@@ -1,12 +1,12 @@
 ---
 title: "Quickstart: Optical character recognition client library for Python"
 description: Get started with the Optical character recognition client library for Python with this quickstart.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 08/07/2023
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
@@ -26,9 +26,8 @@ Use the optical character recognition (OCR) client library to read printed and h
 - Your Python installation should include [pip](https://pip.pypa.io/en/stable/). You can check whether you have pip installed, run `pip --version` on the command line. Get pip by installing the latest version of Python.
 - <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision" title="create a Vision resource" target="_blank">An Azure AI Vision resource</a>. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 - The key and endpoint from the resource you create to connect your application to the Azure AI Vision service.
-
   1. After your Azure Vision resource deploys, select **Go to resource**.
-  1. In the left navigation menu, select **Keys and Endpoint**.
+  1. In the left pane, select **Keys and Endpoint**.
   1. Copy one of the keys and the **Endpoint** for use later in the quickstart.
 
 [!INCLUDE [create environment variables](../environment-variables.md)]

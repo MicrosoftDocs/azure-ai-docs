@@ -8,9 +8,10 @@ ms.subservice: enterprise-readiness
 ms.topic: how-to
 author: Blackmist
 ms.author: larryfr
-ms.date: 01/08/2024
+ms.date: 10/03/2024
 ms.reviewer: balapv
 ms.custom: devx-track-azurecli, devplatv2
+# Customer intent: As an admin, I want to understand how to install the Azure CLI extension for Azure Machine Learning.
 ---
 
 # Install and set up the CLI (v2)
@@ -34,7 +35,7 @@ The new Machine Learning extension **requires Azure CLI version `>=2.38.0`**. En
 
 If it isn't, [upgrade your Azure CLI](/cli/azure/update-azure-cli).
 
-Check the Azure CLI extensions you've installed:
+Check the Azure CLI extensions that are installed:
 
 :::code language="azurecli" source="~/azureml-examples-main/cli/misc.sh" id="az_extension_list":::
 
@@ -64,7 +65,7 @@ For information on how to install on other Linux distributions, visit [Install t
 
 ## Set up
 
-Login:
+Sign in:
 
 :::code language="azurecli" source="~/azureml-examples-main/cli/misc.sh" id="az_login":::
 
@@ -77,7 +78,7 @@ Optionally, setup common variables in your shell for usage in subsequent command
 :::code language="azurecli" source="~/azureml-examples-main/setup/setup-repo/azure-github.sh" id="set_variables":::
 
 > [!WARNING]
-> This uses Bash syntax for setting variables -- adjust as needed for your shell. You can also replace the values in commands below inline rather than using variables.
+> This uses Bash syntax for setting variables. Adjust as needed for your shell. You can also replace the values in commands in the following examples inline rather than using variables.
 
 If it doesn't already exist, you can create the Azure resource group:
 
@@ -105,20 +106,20 @@ You can show your current defaults using `--list-defaults/-l`:
 
 The `ml` CLI extension (sometimes called 'CLI v2') for Azure Machine Learning sends operational data (YAML parameters and metadata) over the public internet. All the `ml` CLI extension commands communicate with the Azure Resource Manager. This communication is secured using HTTPS/TLS 1.2.
 
-Data in a data store that is secured in a virtual network is _not_ sent over the public internet. For example, if your training data is located in the default storage account for the workspace, and the storage account is in a virtual network.
+Data in a data store that is secured in a virtual network isn't_ sent over the public internet. For example, if your training data is located in the default storage account for the workspace, and the storage account is in a virtual network.
 
 > [!NOTE]
 > With the previous extension (`azure-cli-ml`, sometimes called 'CLI v1'), only some of the commands communicate with the Azure Resource Manager. Specifically, commands that create, update, delete, list, or show Azure resources. Operations such as submitting a training job communicate directly with the Azure Machine Learning workspace. If your workspace is [secured with a private endpoint](how-to-configure-private-link.md), that is enough to secure commands provided by the `azure-cli-ml` extension.
 
 # [Public workspace](#tab/public)
 
-If your Azure Machine Learning workspace is public (that is, not behind a virtual network), then there is no additional configuration required. Communications are secured using HTTPS/TLS 1.2
+If your Azure Machine Learning workspace is public (that is, not behind a virtual network), then there's no extra configuration required. Communications are secured using HTTPS/TLS 1.2
 
 # [Private workspace](#tab/private)
 
 If your Azure Machine Learning workspace uses a private endpoint and virtual network, choose one of the following configurations to use:
 
-* If you are __OK__ with the CLI v2 communication over the public internet, use the following `--public-network-access` parameter for the `az ml workspace update` command to enable public network access. For example, the following command updates a workspace for public network access:
+* If you're __OK__ with the CLI v2 communication over the public internet, use the following `--public-network-access` parameter for the `az ml workspace update` command to enable public network access. For example, the following command updates a workspace for public network access:
 
     ```azurecli
     az ml workspace update --name myworkspace --public-network-access enabled

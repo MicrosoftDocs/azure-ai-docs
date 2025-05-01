@@ -3,7 +3,7 @@ title: Azure OpenAI Service getting started with customizing a large language mo
 titleSuffix: Azure OpenAI Service
 description: Learn more about the concepts behind customizing an LLM with Azure OpenAI.
 ms.topic: conceptual
-ms.date: 03/26/2024
+ms.date: 03/27/2025
 ms.service: azure-ai-openai
 manager: nitinme
 author: mrbullwinkle
@@ -35,8 +35,8 @@ A Marketing Manager at an environmentally conscious company can use prompt engin
 
 ### Getting started
 
-- [Introduction to prompt engineering](./prompt-engineering.md)
-- [Prompt engineering techniques](./advanced-prompt-engineering.md)
+- [Prompt engineering techniques](./prompt-engineering.md)
+- [System messages](./advanced-prompt-engineering.md)
 - [15 tips to become a better prompt engineer for generative AI](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/15-tips-to-become-a-better-prompt-engineer-for-generative-ai/ba-p/3882935)
 - [The basics of prompt engineering (video)](https://www.youtube.com/watch?v=e7w6QV1NX1c)
 
@@ -44,7 +44,7 @@ A Marketing Manager at an environmentally conscious company can use prompt engin
 
 ### Definition 
 
-[RAG (Retrieval Augmented Generation)](../../../ai-studio/concepts/retrieval-augmented-generation.md) is a method that integrates external data into a Large Language Model prompt to generate relevant responses. This approach is particularly beneficial when using a large corpus of unstructured text based on different topics. It allows for answers to be grounded in the organization’s knowledge base (KB), providing a more tailored and accurate response.
+[RAG (Retrieval Augmented Generation)](../../../ai-foundry/concepts/retrieval-augmented-generation.md) is a method that integrates external data into a Large Language Model prompt to generate relevant responses. This approach is particularly beneficial when using a large corpus of unstructured text based on different topics. It allows for answers to be grounded in the organization’s knowledge base (KB), providing a more tailored and accurate response.
 
 RAG is also advantageous when answering questions based on an organization’s private data or when the public data that the model was trained on might have become outdated. This helps ensure that the responses are always up-to-date and relevant, regardless of the changes in the data landscape.
 
@@ -62,7 +62,7 @@ A corporate HR department is looking to provide an intelligent assistant that an
 
 ### Getting started
 
-- [Retrieval Augmented Generation in Azure AI Studio - Azure AI Studio | Microsoft Learn](../../../ai-studio/concepts/retrieval-augmented-generation.md)
+- [Retrieval Augmented Generation in Azure AI Foundry portal](../../../ai-foundry/concepts/retrieval-augmented-generation.md)
 - [Retrieval Augmented Generation (RAG) in Azure AI Search](/azure/search/retrieval-augmented-generation-overview)
 - [Retrieval Augmented Generation using Azure Machine Learning prompt flow (preview)](/azure/machine-learning/concept-retrieval-augmented-generation)
 
@@ -76,9 +76,9 @@ Fine-tuning requires the use of high-quality training data, in a [special exampl
 
 ### Illustrative use case
 
-An IT department has been using GPT-4 to convert natural language queries to SQL, but they have found that the responses are not always reliably grounded in their schema, and the cost is prohibitively high.
+An IT department has been using GPT-4o to convert natural language queries to SQL, but they have found that the responses are not always reliably grounded in their schema, and the cost is prohibitively high.
 
-They fine-tune GPT-3.5-Turbo with hundreds of requests and correct responses and produce a model that performs better than the base model with lower costs and latency.
+They fine-tune GPT-4o mini with hundreds of requests and correct responses and produce a model that performs better than the base model with lower costs and latency.
 
 ### Things to consider
 
@@ -90,7 +90,7 @@ They fine-tune GPT-3.5-Turbo with hundreds of requests and correct responses and
 
 - Fine-tuning costs:
 
-  - Fine-tuning can reduce costs across two dimensions: (1) by using fewer tokens depending on the task (2) by using a smaller model (for example GPT 3.5 Turbo can potentially be fine-tuned to achieve the same quality of GPT-4 on a particular task).
+  - Fine-tuning can reduce costs across two dimensions: (1) by using fewer tokens depending on the task (2) by using a smaller model (for example GPT-4o mini can potentially be fine-tuned to achieve the same quality of GPT-4o on a particular task).
 
   - Fine-tuning has upfront costs for training the model. And additional hourly costs for hosting the custom model once it's deployed.
 
@@ -98,5 +98,5 @@ They fine-tune GPT-3.5-Turbo with hundreds of requests and correct responses and
 
 - [When to use Azure OpenAI fine-tuning](./fine-tuning-considerations.md)
 - [Customize a model with fine-tuning](../how-to/fine-tuning.md)
-- [Azure OpenAI GPT 3.5 Turbo fine-tuning tutorial](../tutorials/fine-tune.md)
+- [Azure OpenAI GPT-4o Turbo fine-tuning tutorial](../tutorials/fine-tune.md)
 - [To fine-tune or not to fine-tune? (Video)](https://www.youtube.com/watch?v=0Jo-z-MFxJs)

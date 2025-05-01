@@ -1,32 +1,30 @@
 ---
-title: 'Tutorial: Skillsets using REST'
+title: 'Tutorial: Skillsets Using REST'
 titleSuffix: Azure AI Search
 description: Use the Search REST APIs to create skillsets. This skillset applies AI transformations and analyses to create searchable content from images and unstructured text.
 
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 03/06/2024
+ms.date: 03/31/2025
 ---
 
 # REST Tutorial: Use skillsets to generate searchable content in Azure AI Search
 
-In this tutorial, learn how to call REST APIs that create an [AI enrichment pipeline](cognitive-search-concept-intro.md) for content extraction and transformations during indexing.
+Learn how to call REST APIs that create an [AI enrichment pipeline](cognitive-search-concept-intro.md) for content extraction and transformations during indexing.
 
-Skillsets add AI processing to raw content, making that content more uniform and searchable. Once you know how skillsets work, you can support a broad range of transformations: from image analysis, to natural language processing, to customized processing that you provide externally.
+Skillsets add AI processing to raw content, making it more uniform and searchable. Once you know how skillsets work, you can support a broad range of transformations, from image analysis to natural language processing to customized processing that you provide externally.
 
-This tutorial helps you learn how to:
+In this tutorial, you:
 
 > [!div class="checklist"]
 > + Define objects in an enrichment pipeline.
 > + Build a skillset. Invoke OCR, language detection, entity recognition, and key phrase extraction.
 > + Execute the pipeline. Create and load a search index.
 > + Check the results using full text search.
-
-If you don't have an Azure subscription, open a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
 ## Overview
 
@@ -38,20 +36,22 @@ Once content is extracted, the [skillset](cognitive-search-working-with-skillset
 
 ## Prerequisites
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
 + [Azure Storage](/azure/storage/common/storage-account-create)
 
 + [Azure AI Search](search-create-app-portal.md)
 
++ [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
+
 > [!NOTE]
-> You can use a free search service for this tutorial. The free tier limits you to three indexes, three indexers, and three data sources. This tutorial creates one of each. Before starting, make sure you have room on your service to accept the new resources.
+> You can use a free search service for this tutorial. The Free tier limits you to three indexes, three indexers, and three data sources. This tutorial creates one of each. Before you start, make sure you have room on your service to accept the new resources.
 
 ### Download files
 
 Download a zip file of the sample data repository and extract the contents. [Learn how](https://docs.github.com/get-started/start-your-journey/downloading-files-from-github).
 
-+ [Sample data files (mixed media)](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/ai-enrichment-mixed-media). 
++ [Sample data files (mixed media)](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/ai-enrichment-mixed-media).
 
 + [Sample REST file](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/skillset-tutorial)
 
@@ -97,7 +97,7 @@ AI enrichment is indexer-driven. This part of the walkthrough creates four objec
 
 ### Step 1: Create a data source
 
-Call [Create Data Source](/rest/api/searchservice/create-data-source) to set the connection string to the Blob container containing the sample data files.
+Call [Create Data Source](/rest/api/searchservice/data-sources/create) to set the connection string to the Blob container containing the sample data files.
 
 ```http
 ### Create a data source
@@ -311,7 +311,7 @@ POST {{baseUrl}}/skillsets?api-version=2024-07-01  HTTP/1.1
 
 ### Step 3: Create an index
 
-Call [Create Index](/rest/api/searchservice/create-index) to provide the schema used to create inverted indexes and other constructs in Azure AI Search. 
+Call [Create Index](/rest/api/searchservice/indexes/create) to provide the schema used to create inverted indexes and other constructs in Azure AI Search. 
 
 The largest component of an index is the fields collection, where data type and attributes determine content and behavior in Azure AI Search. Make sure you have fields for your newly generated output.
 
@@ -404,7 +404,7 @@ POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
 
 ### Step 4: Create and run an indexer
 
-Call [Create Indexer](/rest/api/searchservice/create-indexer) to drive the pipeline. The three components you have created thus far (data source, skillset, index) are inputs to an indexer. Creating the indexer on Azure AI Search is the event that puts the entire pipeline into motion.
+Call [Create Indexer](/rest/api/searchservice/indexers/create) to drive the pipeline. The three components you have created thus far (data source, skillset, index) are inputs to an indexer. Creating the indexer on Azure AI Search is the event that puts the entire pipeline into motion.
 
 Expect this step to take several minutes to complete. Even though the data set is small, analytical skills are computation-intensive.
 
@@ -497,7 +497,7 @@ POST {{baseUrl}}/indexers?api-version=2024-07-01  HTTP/1.1
 
 Indexing and enrichment commence as soon as you submit the Create Indexer request. Depending on skillset complexity and operations, indexing can take a while.
 
-To find out whether the indexer is still running, call [Get Indexer Status](/rest/api/searchservice/get-indexer-status) to check the indexer status.
+To find out whether the indexer is still running, call [Get Indexer Status](/rest/api/searchservice/indexers/get-status) to check the indexer status.
 
 ```http
 ### Get Indexer Status (wait several minutes for the indexer to complete)
@@ -514,7 +514,7 @@ GET {{baseUrl}}/indexers/cog-search-demo-idxr/status?api-version=2024-07-01  HTT
 
 ## Check results
 
-Now that you've created an index that contains AI-generated content, call [Search Documents](/rest/api/searchservice/search-documents) to run some queries to see the results.
+Now that you've created an index that contains AI-generated content, call [Search Documents](/rest/api/searchservice/documents/search-post) to run some queries to see the results.
 
 ```http
 ### Query the index\
@@ -545,7 +545,7 @@ POST {{baseUrl}}/indexes/cog-search-demo-idx/docs/search?api-version=2024-07-01 
   }
 ```
 
-These queries illustrate a few of the ways you can work with query syntax and filters on new fields created by Azure AI Search. For more query examples, see [Examples in Search Documents REST API](/rest/api/searchservice/search-documents#bkmk_examples), [Simple syntax query examples](search-query-simple-examples.md), and [Full Lucene query examples](search-query-lucene-examples.md).
+These queries illustrate a few of the ways you can work with query syntax and filters on new fields created by Azure AI Search. For more query examples, see [Examples in Search Documents REST API](/rest/api/searchservice/documents/search-post#examples), [Simple syntax query examples](search-query-simple-examples.md), and [Full Lucene query examples](search-query-lucene-examples.md).
 
 <a name="reset"></a>
 
@@ -565,7 +565,7 @@ Finally, you learned how to test results and reset the system for further iterat
 
 When you're working in your own subscription, at the end of a project, it's a good idea to remove the resources that you no longer need. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal, using the All resources or Resource groups link in the left-navigation pane.
+You can find and manage resources in the Azure portal, using the All resources or Resource groups link in the left-navigation pane.
 
 ## Next steps
 

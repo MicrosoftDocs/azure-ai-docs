@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Provides guidance on how to set managed identity with Microsoft Entra ID
 ms.service: azure-ai-openai
 ms.topic: how-to 
-ms.date: 06/25/2024
+ms.date: 04/30/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -50,13 +50,13 @@ token_provider = get_bearer_token_provider(
 )
 
 client = AzureOpenAI(
-    api_version="2024-02-15-preview",
+    api_version="2024-04-01-preview",
     azure_endpoint="https://{your-custom-endpoint}.openai.azure.com/",
     azure_ad_token_provider=token_provider
 )
 
 response = client.chat.completions.create(
-    model="gpt-35-turbo-0125", # model = "deployment_name".
+    model="gpt-4o", # model = "deployment_name".
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},

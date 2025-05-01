@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/18/2024
+ms.date: 3/10/2025
 ms.author: eur
 ---
 
@@ -45,7 +45,7 @@ Batch synthesis properties are described in the following table.
 |`properties.outputFormat`|The audio output format.<br/><br/>For information about the accepted values, see [audio output formats](rest-text-to-speech.md#audio-outputs). The default output format is `riff-24khz-16bit-mono-pcm`.|
 |`properties.sentenceBoundaryEnabled`|Determines whether to generate sentence boundary data. This optional `bool` value ("true" or "false") is "false" by default.<br/><br/>If sentence boundary data is requested, then a corresponding `[nnnn].sentence.json` file is included in the results data ZIP file.|
 |`properties.succeededAudioCount`|The count of batch synthesis inputs to audio output succeeded.<br/><br/>This property is read-only.|
-|`properties.timeToLiveInHours`|A duration in hours after the synthesis job is created, when the synthesis results will be automatically deleted. This optional setting is `744` (31 days) by default. The maximum time to live is 31 days. The date and time of automatic deletion (for synthesis jobs with a status of "Succeeded" or "Failed") is equal to the `lastActionDateTime` + `timeToLiveInHours` properties.<br/><br/>Otherwise, you can call the [delete](./batch-synthesis.md#delete-batch-synthesis) synthesis method to remove the job sooner.|
+|`properties.timeToLiveInHours`|A duration in hours after the synthesis job is completed, when the synthesis results will be automatically deleted. This optional setting is `168` (7 days) by default. The maximum time to live is `744` (31 days). The date and time of automatic deletion (for synthesis jobs with a status of "Succeeded" or "Failed") is equal to the `lastActionDateTime` + `timeToLiveInHours` properties.<br/><br/>Otherwise, you can call the [delete](./batch-synthesis.md#delete-batch-synthesis) synthesis method to remove the job sooner.|
 |`properties.wordBoundaryEnabled`|Determines whether to generate word boundary data. This optional `bool` value ("true" or "false") is "false" by default.<br/><br/>If word boundary data is requested, then a corresponding `[nnnn].word.json` file is included in the results data ZIP file.|
 |`status`|The batch synthesis processing status.<br/><br/>The status should progress from "NotStarted" to "Running", and finally to either "Succeeded" or "Failed".<br/><br/>This property is read-only.|
 |`synthesisConfig`|The configuration settings to use for batch synthesis of plain text.<br/><br/>This property is only applicable when `inputKind` is set to `"PlainText"`.|

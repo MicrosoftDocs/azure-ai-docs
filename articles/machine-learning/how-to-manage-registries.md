@@ -1,16 +1,17 @@
 ---
 title: Create and manage registries
 titleSuffix: Azure Machine Learning
-description: Learn how create registries with the CLI, REST API, Azure portal, and Azure Machine Learning studio
+description: Learn how create Azure Machine Learning registries with the CLI, REST API, Azure portal, and Azure Machine Learning studio.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: kritifaujdar
-ms.date: 08/19/2024
+ms.date: 10/10/2024
 ms.topic: how-to
 ms.custom: build-2023
+# Customer intent: As an admin, I want to understand how to create and manage Azure Machine Learning registries so that I can share assets across workspaces.
 ---
 
 # Manage Azure Machine Learning registries
@@ -29,8 +30,6 @@ Azure Machine Learning registries enable you to create and use those assets in d
 ## Prerequisites
 
 [!INCLUDE [CLI v2 preres](includes/machine-learning-cli-prereqs.md)]
-
-[!INCLUDE [CLI v2 update](./includes/new-feature-cli.md)]
 
 ## Prepare to create registry
 
@@ -124,7 +123,7 @@ You can create registries in Azure Machine Learning studio using the following s
 # [REST API](#tab/rest)
 
 > [!TIP]
-> You need the **curl** utility to complete this step. The **curl** program is available in the [Windows Subsystem for Linux](/windows/wsl/install-win10) or any UNIX distribution. In PowerShell, **curl** is an alias for **Invoke-WebRequest** and `curl -d "key=val" -X POST uri` becomes `Invoke-WebRequest -Body "key=val" -Method POST -Uri uri`.  
+> You need the __curl__ utility to complete this step. The __curl__ program is available in the [Windows Subsystem for Linux](/windows/wsl/install-win10) or any UNIX distribution. In PowerShell, __curl__ is an alias for __Invoke-WebRequest__ and `curl -d "key=val" -X POST uri` becomes `Invoke-WebRequest -Body "key=val" -Method POST -Uri uri`.  
 
 To authenticate REST API calls, you need an authentication token for your Azure user account. You can use the following command to retrieve a token:
 
@@ -265,7 +264,7 @@ Microsoft.MachineLearningServices/registries/write| Allows the user to create or
 Microsoft.MachineLearningServices/registries/delete | Allows the user to delete registries
 
 
-## Next steps
+## Related content
 
 * [Learn how to share models, components, and environments across workspaces with registries](./how-to-share-models-pipelines-across-workspaces-with-registries.md)
 * [Network isolation with registries](./how-to-registry-network-isolation.md)

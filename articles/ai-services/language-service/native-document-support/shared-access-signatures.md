@@ -6,7 +6,7 @@ ms.topic: how-to
 manager: nitinme
 ms.author: lajanuar
 author: laujan
-ms.date: 01/31/2024
+ms.date: 03/05/2025
 ---
 
 # SAS tokens for your storage containers
@@ -19,17 +19,15 @@ Learn to create user delegation, shared access signature (SAS) tokens, using the
 >
 > [Role-based access control (managed identities)](../concepts/role-based-access-control.md) provide an alternate method for granting access to your storage data without the need to include SAS tokens with your HTTP requests.
 >
-> * You can use managed identities to grant access to any resource that supports Microsoft Entra authentication, including your own applications.
+> * Using managed identities grants access to any resource that supports Microsoft Entra authentication, including your own applications.
 > * Using managed identities replaces the requirement for you to include shared access signature tokens (SAS) with your source and target URLs.
-> * There's no added cost to use managed identities in Azure.
+> * Using managed identities doesn't require an added cost in Azure.
 
 At a high level, here's how SAS tokens work:
 
 * Your application submits the SAS token to Azure Storage as part of a REST API request.
 
-* If the storage service verifies that the SAS is valid, the request is authorized.
-
-* If the SAS token is deemed invalid, the request is declined, and the error code 403 (Forbidden) is returned.
+* The storage service verifies that the SAS is valid and then the request is authorized. If the SAS token is deemed invalid, the request is declined, and the error code 403 (Forbidden) is returned.
 
 Azure Blob Storage offers three resource types:
 
@@ -41,7 +39,7 @@ Azure Blob Storage offers three resource types:
 >
 > * SAS tokens are used to grant permissions to storage resources, and should be protected in the same manner as an account key.
 >
-> * Operations that use SAS tokens should be performed only over an HTTPS connection, and SAS URIs should only be distributed on a secure connection such as HTTPS.
+> * Operations that use SAS tokens should be performed only over an HTTPS connection, and `SAS URI`s should only be distributed on a secure connection such as HTTPS.
 
 ## Prerequisites
 
@@ -80,9 +78,9 @@ Workflow: **Your storage account** → **containers** → **your container** →
     * Consider setting a longer duration period for the time you're using your storage account for Language Service operations.
     * The value of the expiry time is determined by whether you're using an **Account key** or **User delegation key** **Signing method**:
        * **Account key**: No imposed maximum time limit; however, best practices recommended that you configure an expiration policy to limit the interval and minimize compromise. [Configure an expiration policy for shared access signatures](/azure/storage/common/sas-expiration-policy).
-       * **User delegation key**: The value for the expiry time is a maximum of seven days from the creation of the SAS token. The SAS is invalid after the user delegation key expires, so a SAS with an expiry time of greater than seven days will still only be valid for seven days. For more information,*see* [Use Microsoft Entra credentials to secure a SAS](/azure/storage/blobs/storage-blob-user-delegation-sas-create-cli#use-azure-ad-credentials-to-secure-a-sas).
+       * **User delegation key**: The value for the expiry time is a maximum of seven days from the creation of the SAS token. The SAS is invalid after the user delegation key expires, so a SAS with an expiry time of greater than seven days will still only be valid for seven days. For more information, *see* [Use Microsoft Entra credentials to secure a SAS](/azure/storage/blobs/storage-blob-user-delegation-sas-create-cli#use-azure-ad-credentials-to-secure-a-sas).
 
-1. The **Allowed IP addresses** field is optional and specifies an IP address or a range of IP addresses from which to accept requests. If the request IP address doesn't match the IP address or address range specified on the SAS token, authorization fails. The IP address or a range of IP addresses must be public IPs, not private. For more information,*see*, [**Specify an IP address or IP range**](/rest/api/storageservices/create-account-sas#specify-an-ip-address-or-ip-range).
+1. The **Allowed IP addresses** field is optional and specifies an IP address or a range of IP addresses from which to accept requests. If the request IP address doesn't match the IP address or address range specified on the SAS token, authorization fails. The IP address or a range of IP addresses must be public IPs, not private. For more information, *see*, [**Specify an IP address or IP range**](/rest/api/storageservices/create-account-sas#specify-an-ip-address-or-ip-range).
 
 1. The **Allowed protocols** field is optional and specifies the protocol permitted for a request made with the SAS. The default value is HTTPS.
 
@@ -130,5 +128,5 @@ That's it! You learned how to create SAS tokens to authorize how clients access 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn more about native document support](use-native-documents.md "Learn how to process and analyze native documents.") [Learn more about granting access with SAS ](/azure/storage/common/storage-sas-overview "Grant limited access to Azure Storage resources using shared access SAS.")
+> [Learn more about native document support](overview.md "Learn how to process and analyze native documents.") [Learn more about granting access with SAS ](/azure/storage/common/storage-sas-overview "Grant limited access to Azure Storage resources using shared access SAS.")
 >

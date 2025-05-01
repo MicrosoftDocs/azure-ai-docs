@@ -9,10 +9,12 @@ ms.topic: conceptual
 ms.reviewer: None
 author: lgayhardt
 ms.author: lagayhar
-ms.date: 01/18/2024
+ms.date: 08/29/2024
 adobe-target: true
 ---
 # Machine Learning Algorithm Cheat Sheet for Azure Machine Learning designer
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 The **Azure Machine Learning Algorithm Cheat Sheet** helps you choose the right algorithm from the designer for a predictive analytics model.
 

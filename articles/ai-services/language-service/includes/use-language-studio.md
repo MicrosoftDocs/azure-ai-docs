@@ -7,8 +7,8 @@
  ms.topic: include
  ms.date: 12/19/2023
  ms.author: jboback
- ms.custom: include
+ms.custom: include, ignite-2024
 ---
 
 > [!TIP]
-> You can use [**Language Studio**](../language-studio.md) to try Language service features without needing to write code. 
+> You can use [**Azure AI Foundry**](../../../ai-foundry/what-is-azure-ai-foundry.md) to try summarization without needing to write code. 

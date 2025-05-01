@@ -1,14 +1,13 @@
 ---
 title: Custom subdomains
 titleSuffix: Azure AI services
-description: Custom subdomain names for each Azure AI services resource are created through the Azure portal, Azure Cloud Shell, or Azure CLI.
-#services: cognitive-services
+description: Learn how to add custom subdomain names for Azure AI services resource by using the Azure portal, Azure Cloud Shell, or Azure CLI.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.custom: devx-track-azurecli
 ms.topic: conceptual
-ms.date: 01/20/2024
+ms.date: 10/30/2024
 ms.author: pafarley
 ---
 
@@ -18,19 +17,19 @@ Starting in July 2019, Azure AI services use custom subdomain names for each res
 
 ## How does this impact existing resources?
 
-Azure AI services resources created before July 1, 2019 use the regional endpoints for the associated service. These endpoints work with existing and new resources.
+Azure AI services resources created before July 1, 2019, use the regional endpoints for the associated service. These endpoints work with existing and new resources.
 
 If you'd like to migrate an existing resource to use custom subdomain names to enable features like Microsoft Entra ID, follow these instructions:
 
 1. Sign in to the Azure portal and locate the Azure AI services resource that you'd like to add a custom subdomain name to.
-2. In the **Overview** blade, locate and select **Generate Custom Domain Name**.
+2. In the **Overview** section, locate and select **Generate Custom Domain Name**.
 3. This opens a panel with instructions to create a unique custom subdomain for your resource.
    > [!WARNING]
-   > After you've created a custom subdomain name it **cannot** be changed.
+   > After you create a custom subdomain name, it **can not** be changed.
 
 ## Do I need to update my existing resources?
 
-No. The regional endpoint will continue to work for new and existing Azure AI services and the custom subdomain name is optional. Even if a custom subdomain name is added the regional endpoint will continue to work with the resource.
+No. The regional endpoint continues to work for new and existing Azure AI services and the custom subdomain name is optional. Even if a custom subdomain name is added, the regional endpoint continues to work with the resource.
 
 ## What if an SDK asks me for the region for a resource?
 
@@ -39,7 +38,7 @@ No. The regional endpoint will continue to work for new and existing Azure AI se
 
 Regional endpoints and custom subdomain names are both supported and can be used interchangeably. However, the full endpoint is required.
 
-Region information is available in the **Overview** blade for your resource in the [Azure portal](https://portal.azure.com). For the full list of regional endpoints, see [Is there a list of regional endpoints?](#is-there-a-list-of-regional-endpoints)
+Region information is available in the **Overview** section for your resource in the [Azure portal](https://portal.azure.com). For the full list of regional endpoints, see [Is there a list of regional endpoints?](#is-there-a-list-of-regional-endpoints)
 
 ## Are custom subdomain names regional?
 
@@ -47,15 +46,15 @@ Yes. Using a custom subdomain name doesn't change any of the regional aspects of
 
 ## What are the requirements for a custom subdomain name?
 
-A custom subdomain name is unique to your resource. The name can only include alphanumeric characters and the `-` character; it must be between 2 and 64 characters in length and cannot end with a `-`.
+A custom subdomain name is unique to your resource. The name can only include alphanumeric characters and the `-` character; it must be between 2 and 64 characters in length and can't end with a `-`.
 
 ## Can I change a custom domain name?
 
-No. After a custom subdomain name is created and associated with a resource it cannot be changed.
+No. After a custom subdomain name is created and associated with a resource, it can't be changed.
 
 ## Can I reuse a custom domain name?
 
-Each custom subdomain name is unique, so in order to reuse a custom subdomain name that you've assigned to an Azure AI services resource, you'll need to delete the existing resource. After the resource has been deleted, you can reuse the custom subdomain name.
+Each custom subdomain name is unique. In order to reuse a custom subdomain name that you've assigned to an Azure AI services resource, you'll need to delete the existing resource. After the resource is deleted, you can reuse the custom subdomain name.
 
 ## Is there a list of regional endpoints?
 
@@ -92,7 +91,7 @@ Yes. This is a list of regional endpoints that you can use with Azure AI service
 | China | China East 2 | `https://chinaeast2.api.cognitive.azure.cn` |
 | | China North | `https://chinanorth.api.cognitive.azure.cn` |
 
-## See also
+## Related content
 
 * [What are Azure AI services?](./what-are-ai-services.md)
-* [Authentication](authentication.md)
+* [Authenticate requests to Azure AI services](authentication.md)

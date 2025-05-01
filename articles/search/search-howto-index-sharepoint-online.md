@@ -5,11 +5,11 @@ description: Set up a SharePoint Online indexer to automate indexing of document
 author: gmndrg
 ms.author: gimondra
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 08/20/2024
+ms.date: 02/24/2025
 ---
 
 # Index data from SharePoint document libraries
@@ -64,7 +64,7 @@ Here are the limitations of this feature:
 
 + Indexing sub-sites recursively from a specific site provided isn't supported.
 
-+ SharePoint Online indexer isn't supported when [Microsoft ENTRA ID Conditional Access](/entra/identity/conditional-access/overview) is enabled.
++ SharePoint Online indexer isn't supported when [Microsoft Entra ID Conditional Access](/entra/identity/conditional-access/overview) is enabled.
 
 Here are the considerations when using this feature:
 
@@ -74,7 +74,7 @@ Here are the considerations when using this feature:
 
 <!-- + There could be Microsoft 365 processes that update SharePoint file system-metadata (based on different configurations in SharePoint) and will cause the SharePoint Online indexer to trigger. Make sure that you test your setup and understand the document processing count prior to using any AI enrichment. Since this is a third-party connector to Azure (SharePoint is located in Microsoft 365), SharePoint configuration is not checked by the indexer. -->
 
-+ If your SharePoint configuration allows Microsoft 365 processes to update SharePoint file system metadata, be aware that these updates can trigger the SharePoint Online indexer, causing the indexer to ingest documents multiple times. Because the SharePoint Online indexer is a third-party connector to Azure, the indexer can't read the configuration or vary its behavior. It responds to changes in new and changed content, regardless of how those updates are made. For this reason, make sure that you test your setup and understand the document processing count prior to using the indexer and any AI enrichment.
++ If your SharePoint configuration allows Microsoft 365 processes to update SharePoint file system metadata, be aware that these updates can trigger the SharePoint Online indexer, causing the indexer to ingest documents multiple times. Because the SharePoint Online indexer is a non-Microsoft connector to Azure, the indexer can't read the configuration or vary its behavior. It responds to changes in new and changed content, regardless of how those updates are made. For this reason, make sure that you test your setup and understand the document processing count prior to using the indexer and any AI enrichment.
 
 
 
@@ -107,7 +107,7 @@ We recommend app-based permissions. See [limitations](#limitations-and-considera
 
 + Application permissions (recommended), where the indexer runs under the [identity of the SharePoint tenant](/sharepoint/dev/solution-guidance/security-apponly-azureacs) with access to all sites and files. The indexer requires a [client secret](/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow). The indexer will also require [tenant admin approval](/azure/active-directory/manage-apps/grant-admin-consent) before it can index any content.
 
-+ Delegated permissions, where the indexer runs under the identity of the user or app sending the request. Data access is limited to the sites and files to which the caller has access. To support delegated permissions, the indexer requires a [device code prompt](/azure/active-directory/develop/v2-oauth2-device-code) to sign in on behalf of the user. User-delegated permissions enforces token expiration every 75 minutes, per the most recent security libraries used to implement this authentication type. This is not a behavior that can be adjusted. An expired token requires manual indexing using [Run Indexer (preview)](/rest/api/searchservice/indexers/run?view=rest-searchservice-2024-05-01-preview&tabs=HTTP&preserve-view=true). For this reason, you might want app-based permissions instead.
++ Delegated permissions, where the indexer runs under the identity of the user or app sending the request. Data access is limited to the sites and files to which the caller has access. To support delegated permissions, the indexer requires a [device code prompt](/azure/active-directory/develop/v2-oauth2-device-code) to sign in on behalf of the user. User-delegated permissions enforce token expiration every 75 minutes, per the most recent security libraries used to implement this authentication type. This isn't a behavior that can be adjusted. An expired token requires manual indexing using [Run Indexer (preview)](/rest/api/searchservice/indexers/run?view=rest-searchservice-2024-05-01-preview&tabs=HTTP&preserve-view=true). For this reason, you might want app-based permissions instead.
 
 
 <a name='step-3-create-an-azure-ad-application'></a>
@@ -253,7 +253,7 @@ api-key: [admin key]
 
 An indexer connects a data source with a target search index and provides a schedule to automate the data refresh. Once the index and data source are created, you can create the indexer.
 
-If you are using delegated permissions, during this step, you’re asked to sign in with organization credentials that have access to the SharePoint site. If possible, we recommend creating a new organizational user account and giving that new user the exact permissions that you want the indexer to have. 
+If you're using delegated permissions, during this step, you’re asked to sign in with organization credentials that have access to the SharePoint site. If possible, we recommend creating a new organizational user account and giving that new user the exact permissions that you want the indexer to have. 
 
 There are a few steps to creating the indexer:
 
@@ -292,7 +292,7 @@ There are a few steps to creating the indexer:
     }
     ```
 
-   If you're using application permissions, it's necessary to wait until the initial run is complete before starting to query your index. The following instructions provided in this step pertain specifically to delegated permissions, and are not applicable to application permissions.
+   If you're using application permissions, it's necessary to wait until the initial run is complete before starting to query your index. The following instructions provided in this step pertain specifically to delegated permissions, and aren't applicable to application permissions.
 
 1. When you create the indexer for the first time, the [Create Indexer (preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2024-05-01-preview&tabs=HTTP&preserve-view=true) request waits until you complete the next step. You must call [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2024-05-01-preview&tabs=HTTP&preserve-view=true) to get the link and enter your new device code. 
 
@@ -377,7 +377,7 @@ Here are the steps for updating a data source, assuming an expired device code:
 
 ## Indexing document metadata
 
-If you're indexing document metadata (`"dataToExtract": "contentAndMetadata"`), the following metadata will be available to index.
+If you're indexing document metadata (`"dataToExtract": "contentAndMetadata"`), the following metadata is available to index.
 
 | Identifier | Type | Description | 
 | ------------- | -------------- | ----------- |
@@ -487,7 +487,7 @@ You can also continue indexing if errors happen at any point of processing, eith
 }
 ```
 
-If a file on the SharePoint site has encryption enabled, an error message similar to the following may be encountered:
+If a file on the SharePoint site has encryption enabled, you might see the following error message:
  
 ```
 Code: resourceModified Message: The resource has changed since the caller last read it; usually an eTag mismatch Inner error: Code: irmEncryptFailedToFindProtector

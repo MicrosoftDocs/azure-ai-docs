@@ -1,27 +1,27 @@
 ---
-title: "Quickstart: Document Intelligence (formerly Form Recognizer) Java SDK (beta) | v3.1 | v3.0"
+title: "Quickstart: Document Intelligence Java SDK"
 titleSuffix: Azure AI services
 description: Form and document processing, data extraction, and analysis using Document Intelligence Java client library.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 05/23/2024
+ms.date: 02/10/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD025 -->
 <!-- markdownlint-disable MD036 -->
 
 :::moniker range="doc-intel-4.0.0"
-[Client library](/java/api/overview/azure/ai-documentintelligence-readme?view=azure-java-preview&preserve-view=true) | [SDK reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-ai-documentintelligence/1.0.0-beta.2/index.html) | [REST API reference](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true) | [Package (Maven)](https://central.sonatype.com/artifact/com.azure/azure-ai-documentintelligence/1.0.0-beta.2) | [Samples]( https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-documentintelligence_1.0.0-beta.2/sdk/documentintelligence/azure-ai-documentintelligence/src/samples/README.md) |[Supported REST API version](../../sdk-overview-v4-0.md)
+[Client library](/java/api/com.azure.ai.documentintelligence?view=azure-java-stable&preserve-view=true) | [REST API reference](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-documentintelligence/1.0.0) | [Samples](https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-documentintelligence_1.0.0/sdk/documentintelligence/azure-ai-documentintelligence/src/samples#examples) |[Supported REST API version](../../sdk-overview-v4-0.md)
 :::moniker-end
 
 :::moniker range="doc-intel-3.1.0"
-[Client library](/java/api/overview/azure/ai-formrecognizer-readme?view=azure-java-stable&preserve-view=true) | [SDK reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-ai-formrecognizer/4.1.0/index.html) | [REST API reference](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-formrecognizer/4.1.0) | [Samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/formrecognizer/azure-ai-formrecognizer/src/samples#readme)| [Supported REST API version](../../sdk-overview-v3-1.md)
+[Client library](/java/api/overview/azure/ai-formrecognizer-readme?view=azure-java-stable&preserve-view=true) |[REST API reference](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-formrecognizer/4.1.0) | [Samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/formrecognizer/azure-ai-formrecognizer/src/samples#readme)| [Supported REST API version](../../sdk-overview-v3-1.md)
 :::moniker-end
 
 :::moniker range="doc-intel-3.0.0"
-[Client library](/java/api/overview/azure/ai-formrecognizer-readme?view=azure-java-stable&preserve-view=true) | [SDK reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-ai-formrecognizer/4.0.0/index.html) | [REST API reference](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-formrecognizer/4.0.0) | [Samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/formrecognizer/azure-ai-formrecognizer/src/samples)|[Supported REST API version](../../sdk-overview-v3-0.md)
+[Client library](/java/api/overview/azure/ai-formrecognizer-readme?view=azure-java-stable&preserve-view=true) || [REST API reference](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-formrecognizer/4.0.0) | [Samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/formrecognizer/azure-ai-formrecognizer/src/samples)|[Supported REST API version](../../sdk-overview-v3-0.md)
 :::moniker-end
 
 In this quickstart, use the following features to analyze and extract data and values from forms and documents:
@@ -39,7 +39,7 @@ In this quickstart, use the following features to analyze and extract data and v
   >[!TIP]
   >
   > * Visual Studio Code offers a **Coding Pack for Java** for Windows and macOS.The coding pack is a bundle of VS Code, the Java Development Kit (JDK), and a collection of suggested extensions by Microsoft. The Coding Pack can also be used to fix an existing development environment.
-  > * If you are using VS Code and the Coding Pack For Java, install the [**Gradle for Java**](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-gradle) extension.
+  > * If you're using VS Code and the Coding Pack For Java, install the [**Gradle for Java**](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-gradle) extension.
 
 * If you aren't using Visual Studio Code, make sure you have the following installed in your development environment:
 
@@ -50,7 +50,7 @@ In this quickstart, use the following features to analyze and extract data and v
 * An Azure AI services or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) Document Intelligence resource, in the Azure portal, to get your key and endpoint. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
     > [!TIP]
-    > Create an Azure AI services resource if you plan to access multiple Azure AI services under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. Please note that you'll  need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
+    > Create an Azure AI services resource if you plan to access multiple Azure AI services under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. You need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
 
 * After your resource deploys, select **Go to resource**. You need the key and endpoint from the resource you create to connect your application to the Document Intelligence API. Later, you paste your key and endpoint into the code:
 
@@ -128,7 +128,7 @@ Open the project's *build.gradle.kts* file in your IDE. Copay and past the follo
          mavenCentral()
      }
      dependencies {
-         implementation group: 'com.azure', name: 'azure-ai-documentintelligence', version: '1.0.0-beta.2'
+         implementation group: 'com.azure', name: 'azure-ai-documentintelligence', version: '1.0.0'
 
      }
   ```
@@ -246,8 +246,7 @@ To interact with the Document Intelligence service, you need to create an instan
 
 :::moniker-end
 
-> [!IMPORTANT]
-> Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, *see* Azure AI services [security](../../../../ai-services/security-features.md).
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 ## Layout model
 
@@ -424,7 +423,7 @@ public class FormRecognizer {
       documentPage.getLines().forEach(documentLine ->
         System.out.printf("Line %s is within a bounding polygon %s.%n",
           documentLine.getContent(),
-          documentLine.getBoundingPolygon().toString()));
+          documentLine.getPolygon().toString()));
 
       // words
       documentPage.getWords().forEach(documentWord ->
@@ -436,7 +435,7 @@ public class FormRecognizer {
       documentPage.getSelectionMarks().forEach(documentSelectionMark ->
         System.out.printf("Selection mark is %s and is within a bounding polygon %s with confidence %.2f.%n",
           documentSelectionMark.getState().toString(),
-          documentSelectionMark.getBoundingPolygon().toString(),
+          documentSelectionMark.getPolygon().toString(),
           documentSelectionMark.getConfidence()));
     });
 
@@ -454,8 +453,8 @@ public class FormRecognizer {
     }
   }
   // Utility function to get the bounding polygon coordinates
-  private static String getBoundingCoordinates(List < Point > boundingPolygon) {
-    return boundingPolygon.stream().map(point -> String.format("[%.2f, %.2f]", point.getX(),
+  private static String getBoundingCoordinates(List < Point > Polygon) {
+    return Polygon.stream().map(point -> String.format("[%.2f, %.2f]", point.getX(),
       point.getY())).collect(Collectors.joining(", "));
   }
 }
@@ -556,7 +555,7 @@ public class FormRecognizer {
       documentPage.getLines().forEach(documentLine ->
         System.out.printf("Line '%s' is within a bounding polygon %s.%n",
           documentLine.getContent(),
-          getBoundingCoordinates(documentLine.getBoundingPolygon())));
+          getBoundingCoordinates(documentLine.getPolygon())));
 
       // words
       documentPage.getWords().forEach(documentWord ->
@@ -568,7 +567,7 @@ public class FormRecognizer {
       documentPage.getSelectionMarks().forEach(documentSelectionMark ->
         System.out.printf("Selection mark is '%s' and is within a bounding polygon %s with confidence %.2f.%n",
           documentSelectionMark.getSelectionMarkState().toString(),
-          getBoundingCoordinates(documentSelectionMark.getBoundingPolygon()),
+          getBoundingCoordinates(documentSelectionMark.getPolygon()),
           documentSelectionMark.getConfidence()));
     });
 
@@ -593,8 +592,8 @@ public class FormRecognizer {
   /**
    * Utility function to get the bounding polygon coordinates.
    */
-  private static String getBoundingCoordinates(List < Point > boundingPolygon) {
-    return boundingPolygon.stream().map(point -> String.format("[%.2f, %.2f]", point.getX(),
+  private static String getBoundingCoordinates(List < Point > Polygon) {
+    return Polygon.stream().map(point -> String.format("[%.2f, %.2f]", point.getX(),
       point.getY())).collect(Collectors.joining(", "));
   }
 }
@@ -623,14 +622,14 @@ After you add a code sample to your application, navigate back to your main proj
 Analyze and extract common fields from specific document types using a prebuilt model. In this example, we analyze an invoice using the **prebuilt-invoice** model.
 
 > [!TIP]
-> You aren't limited to invoices—there are several prebuilt models to choose from, each of which has its own set of supported fields. The model to use for the `analyze` operation depends on the type of document to be analyzed. See [**model data extraction**](../../concept-model-overview.md#model-data-extraction).
+> You aren't limited to invoices—there are several prebuilt models to choose from, each of which has its own set of supported fields. The model to use for the `analyze` operation depends on the type of document to be analyzed. See [**model data extraction**](../../model-overview.md#model-data-extraction).
 
 > [!div class="checklist"]
 >
 > * Analyze an invoice using the prebuilt-invoice model. You can use our [sample invoice document](https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-invoice.pdf) for this quickstart.
 > * We've added the file URL value to the `invoiceUrl` variable at the top of the file.
 > * To analyze a given file at a URI, you'll use the `beginAnalyzeDocuments` method and pass `PrebuiltModels.Invoice` as the model Id. The returned value is a `result` object containing data about the submitted document.
-> * For simplicity, all the key-value pairs that the service returns are not shown here. To see the list of all supported fields and corresponding types, see our [Invoice](../../concept-invoice.md#field-extraction) concept page.
+> * For simplicity, all the key-value pairs that the service returns are not shown here. To see the list of all supported fields and corresponding types, see our [Invoice](../../prebuilt/invoice.md#field-extraction) concept page.
 
 :::moniker range="doc-intel-4.0.0"
 **Add the following code sample to the `DocIntelligence.java` file. Make sure you update the key and endpoint variables with values from your Azure portal Document Intelligence instance:**

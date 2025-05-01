@@ -6,11 +6,11 @@ description: Retrieve the encryption key name and version used in an index or sy
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 02/16/2024
+ms.date: 04/14/2025
 ---
 
 # Find encrypted objects and information
@@ -25,7 +25,7 @@ Objects that aren't encrypted with a customer-managed key have an empty **encryp
    "keyVaultKeyName":"myEncryptionKey",
    "keyVaultKeyVersion":"eaab6a663d59439ebb95ce2fe7d5f660",
    "accessCredentials":{
-      "applicationId":"00000000-0000-0000-0000-000000000000",
+      "applicationId":"00001111-aaaa-2222-bbbb-3333cccc4444",
       "applicationSecret":"myApplicationSecret"
    }
 }
@@ -35,13 +35,13 @@ The **encryptionKey** construct is the same for all encrypted objects. It's a fi
 
 ## Permissions for retrieving object definitions
 
-You must have [Search Service Contributor](search-security-rbac.md#built-in-roles-used-in-search) or equivalent permissions. To use [key-based authentication](search-security-api-keys.md) instead, provide an admin API key. Admin permissions are required on requests that return object definitions and metadata. The easiest way to get the admin API key is through the portal.
+You must have [Search Service Contributor](search-security-rbac.md#built-in-roles-used-in-search) or equivalent permissions. To use [key-based authentication](search-security-api-keys.md) instead, provide an admin API key. Admin permissions are required on requests that return object definitions and metadata. The easiest way to get the admin API key is through the Azure portal.
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and open the search service overview page.
 
 1. On the left side, select **Keys** and copy an admin API. 
 
-For the remaining steps, switch to PowerShell and the REST API. The portal doesn't show encryption key information for any object.
+For the remaining steps, switch to PowerShell and the REST API. The Azure portal doesn't show encryption key information for any object.
 
 ## Retrieve object properties
 

@@ -1,5 +1,5 @@
 ---
-title: Schedule Azure Machine Learning pipeline jobs
+title: Schedule pipeline jobs
 titleSuffix: Azure Machine Learning
 description: Learn how to schedule pipeline jobs that allow you to automate routine, time-consuming tasks such as data processing, training, and monitoring.
 services: machine-learning
@@ -8,7 +8,7 @@ ms.subservice: mlops
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: keli19
-ms.date: 03/27/2023
+ms.date: 09/09/2024
 ms.topic: how-to
 ---
 
@@ -16,336 +16,323 @@ ms.topic: how-to
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-In this article, you'll learn how to programmatically schedule a pipeline to run on Azure and use the schedule UI to do the same. You can create a schedule based on elapsed time. Time-based schedules can be used to take care of routine tasks, such as retrain models or do batch predictions regularly to keep them up-to-date. After learning how to create schedules, you'll learn how to retrieve, update and deactivate them via CLI, SDK, and studio UI.
+In this article, you learn how to schedule machine learning pipelines to run on Azure. You can schedule routine tasks like retraining models or regularly updating batch predictions based on elapsed time.
+
+This article shows you how to create, retrieve, update, and deactivate schedules by using the Azure Machine Learning CLI, Azure Machine Learning SDK v2 for Python, or Azure Machine Learning studio UI.
 
 > [!TIP]
-> If you need to schedule jobs using an external orchestrator, like Azure Data Factory or Microsoft Fabric, consider deploying your pipeline jobs under a Batch Endpoint. Learn more about [how to deploy jobs under a batch endpoint](how-to-use-batch-pipeline-from-job.md), and [how to consume batch endpoints from Microsoft Fabric](how-to-use-batch-fabric.md).
+> To schedule jobs by using an external orchestrator, like Azure Data Factory or Microsoft Fabric, consider deploying your pipeline jobs under a batch endpoint. For more information, see [Deploy existing pipeline jobs to batch endpoints](how-to-use-batch-pipeline-from-job.md) and [Run Azure Machine Learning models from Fabric by using batch endpoints (preview)](how-to-use-batch-fabric.md).
 
 ## Prerequisites
 
-- You must have an Azure subscription to use Azure Machine Learning. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today.
+- An Azure subscription. If you don't have one, [create a free account](https://azure.microsoft.com/free/) before you begin. 
+- An Azure Machine Learning workspace. To create a workspace, see [Create workspace resources](quickstart-create-resources.md).
+- An understanding of Azure Machine Learning pipelines. For information, see [What are machine learning pipelines](concept-ml-pipelines.md).
 
 # [Azure CLI](#tab/cliv2)
 
-- Install the Azure CLI and the `ml` extension. Follow the installation steps in [Install, set up, and use the CLI (v2)](how-to-configure-cli.md).
-
-- Create an Azure Machine Learning workspace if you don't have one. For workspace creation, see [Install, set up, and use the CLI (v2)](how-to-configure-cli.md).
+- The Azure CLI and `ml` extension installed by following the instructions in [Install, set up, and use the CLI (v2)](how-to-configure-cli.md).
+- Knowledge of how to create Azure Machine Learning YAML pipelines. For information, see [Create and run machine learning pipelines using components with the Azure Machine Learning CLI](how-to-create-component-pipelines-cli.md).
 
 # [Python SDK](#tab/python)
 
-- Create an Azure Machine Learning workspace if you don't have one.
-- The [Azure Machine Learning SDK v2 for Python](/python/api/overview/azure/ai-ml-readme).
+- The [Azure Machine Learning SDK v2 for Python](/python/api/overview/azure/ai-ml-readme) installed.
+- Knowledge of how to create Python pipelines for Azure Machine Learning. For information, see [Create and run machine learning pipelines using components with the Azure Machine Learning SDK](how-to-create-component-pipeline-python.md).
 
-# [studio UI](#tab/ui)
+# [Studio UI](#tab/ui)
 
-- An Azure Machine Learning workspace. See [Create workspace resources](quickstart-create-resources.md).
-- Understanding of Azure Machine Learning pipelines. See [what are machine learning pipelines](concept-ml-pipelines.md), and how to create pipeline job in [CLI v2](how-to-create-component-pipelines-cli.md) or [SDK v2](how-to-create-component-pipeline-python.md).
+- Knowledge of how to create pipelines in Azure Machine Learning studio. For information, see [Create and run machine learning pipelines using components with the Azure Machine Learning studio](how-to-create-component-pipelines-ui.md).
 
 ---
 
-## Schedule a pipeline job
+## Limitations
 
-To run a pipeline job on a recurring basis, you'll need to create a schedule. A `Schedule` associates a job, and a trigger. The trigger can either be `cron` that use cron expression to describe the wait between runs or `recurrence` that specify using what frequency to trigger job. In each case, you need to define a pipeline job first, it can be existing pipeline jobs or a pipeline job define inline, refer to [Create a pipeline job in CLI](how-to-create-component-pipelines-cli.md) and [Create a pipeline job in SDK](how-to-create-component-pipeline-python.md).
-
-You can schedule a pipeline job yaml in local or an existing pipeline job in workspace.
+- Azure Machine Learning v2 schedules don't support event-based triggers.
+- CLI and SDK v2 schedules support specifying complex recurrence patterns that contain multiple trigger timestamps. The studio UI displays the complex patterns but doesn't support editing them.
+- The studio UI supports only v2 schedules, and can't list or access v1 schedules that are based on published pipelines or pipeline endpoints. You can create a schedule for an unpublished pipeline.
+- If recurrence is set as the 31st or 30th day of every month, the schedule doesn't trigger jobs in months that have fewer days.
+- `DAYS` and `MONTHS` values aren't supported in cron schedule expressions. Values passed for these parameters are ignored and treated as `*`.
+- Even after assigning a managed identity to a schedule, the author must retain their job run permissions for the schedule to function.
 
 ## Create a schedule
 
-### Create a time-based schedule with recurrence pattern
+When you have a pipeline job with satisfying performance and outputs, you can set up a schedule to automatically trigger the job on a regular basis. To do so, you must create a schedule that associates the job with a trigger. The trigger can be either a `recurrence` pattern or a `cron` expression that specifies the interval and frequency to run the job.
+
+In both cases, you need to define a pipeline job first, either inline or by specifying an existing pipeline job. You can define pipelines in YAML and run them from the CLI, author pipelines inline in Python, or compose pipelines in Azure Machine Learning studio. You can create pipeline jobs locally or from existing jobs in the workspace.
+
+You can create v2 schedules for v2 or v1 pipeline jobs by using the studio UI, SDK v2, or CLI v2. You don't have to publish existing pipelines first to set up schedules for pipeline jobs.
 
 # [Azure CLI](#tab/cliv2)
 
-[!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
+The code examples in this article are from [Working with Schedule in Azure Machine Learning CLI 2.0](https://github.com/Azure/azureml-examples/tree/main/cli/schedules).
+
+# [Python SDK](#tab/python)
+
+The code examples in this article are excerpts from the [Working with Schedule](https://github.com/Azure/azureml-examples/blob/main/sdk/python/schedules/job-schedule.ipynb) Azure Machine Learning notebook. Run the notebook to create and manage the schedules as described.
+
+# [Studio UI](#tab/ui)
+
+To create a schedule for an Azure Machine Learning pipeline job in the studio UI, open the pipeline job detail page.
+
+---
+
+### Define a time-based schedule with a recurrence pattern
+
+# [Azure CLI](#tab/cliv2)
+
+The following YAML code defines a recurring schedule for a pipeline job. The required `type` parameter specifies that the `trigger` type is `recurrence`.
 
 :::code language="yaml"source="~/azureml-examples-main/cli/schedules/recurrence-job-schedule.yml":::
 
-`trigger` contains the following properties:
-
-- **(Required)**  `type` specifies the schedule type is `recurrence`. It can also be `cron`, see details in the next section.
-
-List continues below.
+You must or can provide the following schedule parameters:
 
 # [Python SDK](#tab/python)
 
-[!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
+The following code uses `RecurrenceTrigger` to provide a better coding experience.
 
-[!notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=create_schedule_recurrence)]
+[!Notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=create_schedule_recurrence)]
 
-`RecurrenceTrigger` contains following properties:
+You must or can provide the following schedule parameters:
 
-- **(Required)** To provide better coding experience, we use `RecurrenceTrigger` for recurrence schedule.
+# [Studio UI](#tab/ui)
 
-List continues below.
+To open the schedule creation wizard, select **Schedule** > **Create new schedule** at the top of the page.
 
-# [studio UI](#tab/ui)
-
-> [!NOTE]
-> Currently, Azure Machine Learning schedules (v2) only support pipeline job.
->
->The UI functions are only for Azure Machine Learning schedules (v2), which means v1 schedules created based on published pipelines or pipeline endpoints are not supported in UI - will NOT be listed or accessed in UI. However, you can create v2 schedules for your v1 pipeline jobs using SDK/CLI v2, or UI.
-
-When you have a pipeline job with satisfying performance and outputs, you can set up a schedule to automatically trigger this job on a regular basis.
-
-1. In pipeline job detail page, select **Schedule** -> **Create new schedule** to open the schedule creation wizard.  
-
-    :::image type="content" source="./media/how-to-schedule-pipeline-job/schedule-entry-button.png" alt-text="Screenshot of the jobs tab with schedule button selecting showing the create new schedule button." lightbox= "./media/how-to-schedule-pipeline-job/schedule-entry-button.png":::
-
-2. The *Basic settings* of  the schedule creation wizard contain following properties.
-
-    :::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-basic-settings.png" alt-text="Screenshot of schedule creation wizard showing the basic settings." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-basic-settings.png":::
-
-    - **Name**: the unique identifier of the schedule within the workspace.
-    - **Description**: description of the schedule.
-    - **Trigger**: specifies the recurrence pattern of the schedule, including following properties.
-      - **Time zone**: the time zone based on which to calculate the trigger time, by default is (UTC) Coordinated Universal Time.
-      - **Recurrence** or **Cron expression**: select recurrence to specify the recurring pattern. Under **Recurrence**, you can specify the recurrence frequency as minutely, hourly, daily, weekly and monthly.
-      - **Start**: specifies the date from when the schedule becomes active. By default it's the date you create this schedule.
-      - **End**: specifies the date after when the schedule becomes inactive. By default it's NONE, which means the schedule will always be active until you manually disable it.
-      - **Tags**: tags of the schedule.
-
-    After you configure the basic settings, you can directly select **Review + Create**, and the schedule will automatically submit jobs according to the recurrence pattern you specified.
+:::image type="content" source="./media/how-to-schedule-pipeline-job/schedule-entry-button.png" alt-text="Screenshot of the jobs tab showing the Create new schedule button selected." lightbox= "./media/how-to-schedule-pipeline-job/schedule-entry-button.png":::
 
 ---
-> [!NOTE]
-> The following properties that need to be specified apply for CLI and SDK.
 
-- **(Required)** `frequency` specifies the unit of time that describes how often the schedule fires. Can be `minute`, `hour`, `day`, `week`, `month`.
-  
-- **(Required)** `interval` specifies how often the schedule fires based on the frequency, which is the number of time units to wait until the schedule fires again.
-  
-- (Optional) `schedule` defines the recurrence pattern, containing `hours`, `minutes`, and `weekdays`.
-    - When `frequency` is `day`, pattern can specify `hours` and `minutes`.
-    - When `frequency` is `week` and `month`, pattern can specify `hours`, `minutes` and `weekdays`.
-    - `hours` should be an integer or a list, from 0 to 23.
-    - `minutes` should be an integer or a list, from 0 to 59.
-    - `weekdays` can be a string or list from `monday` to `sunday`.
-    - If `schedule` is omitted, the job(s) will be triggered according to the logic of `start_time`, `frequency` and `interval`.
+# [Azure CLI / Python SDK](#tab/cliv2+python)
 
-- (Optional) `start_time` describes the start date and time with timezone. If `start_time` is omitted, start_time will be equal to the job created time. If the start time is in the past, the first job will run at the next calculated run time.
+#### Parameters
 
-- (Optional) `end_time` describes the end date and time with timezone. If `end_time` is omitted, the schedule will continue trigger jobs until the schedule is manually disabled.  
+- `frequency` **(required)** is the time unit on which basis the schedule fires. Can be `minutes`, `hours`, `days`, `weeks`, or `months`.
+- `interval` **(required)** is the number of time units between schedule recurrences.
+- `schedule` (optional) defines the recurrence pattern, which can contain `hours`, `minutes`, and `weekdays`. If omitted, jobs trigger according to the logic of `start_time`, `frequency`, and `interval`.
+  - When `frequency` is `day`, the pattern can specify `hours` and `minutes`.
+  - When `frequency` is `week` or `month`, the pattern can specify `hours`, `minutes`, and `weekdays`.
+    - `hours` is an integer or list from 0 to 23.
+    - `minutes` is an integer or list from 0 to 59.
+    - `weekdays` is a string or list from `monday` to `sunday`.
+- `start_time` (optional) is the start date and time with timezone. If omitted, the default is equal to schedule creation time. If the start time is in the past, the first job runs at the next calculated run time.
+- `end_time` (optional) is the end date and time with timezone. If omitted, the schedule remains active until manually disabled.
+- `time_zone` (optional) specifies the time zone of the recurrence schedule. If omitted, the default is Coordinated Universal Time (UTC). For more information about timezone values, see the [appendix for timezone values](reference-yaml-schedule.md#appendix).
 
-- (Optional) `time_zone` specifies the time zone of the recurrence. If omitted, by default is UTC. To learn more about timezone values, see [appendix for timezone values](reference-yaml-schedule.md#appendix).
+# [Studio UI](#tab/ui)
 
-### Create a time-based schedule with cron expression
+To define a recurrence-based schedule, on the **Basic settings** screen, define the following properties. Only the **Name** property requires you to enter a value. If you don't specify values for the other properties, the default schedule is a **Recurrence** pattern that starts at schedule creation and runs every Monday through Friday at 4:00 PM UTC.
+
+- **Name**: Unique identifier of the schedule within the workspace.
+- **Description**: Schedule description.
+- **Trigger**: Recurrence pattern of the schedule, including the following properties:
+  - **Time zone**: Time zone to use for the trigger time, UTC by default.
+  - Select **Recurrence** and specify a recurring pattern of minutes, hours, days, weeks, or months.
+  - **Start**: Date the schedule becomes active, by default the date created.
+  - **End**: Date when the schedule becomes inactive. By default the value is none, and the schedule remains active until manually disabled.
+  - **Tags**: Tags on the schedule.
+
+:::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-basic-settings.png" alt-text="Screenshot of schedule creation wizard showing the basic settings." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-basic-settings.png":::
+
+---
 
 # [Azure CLI](#tab/cliv2)
 
-[!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
+After you create the schedule YAML, use the following command to create the schedule via CLI:
+
+```azurecli
+# This action creates related resources for a schedule. It takes dozens of seconds to complete.
+az ml schedule create --file simple-pipeline-job.yml --no-wait
+```
+
+# [Python SDK](#tab/python)
+
+The following Python code creates the schedule you defined:
+
+[!Notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=create_schedule)]
+
+# [Studio UI](#tab/ui)
+
+After you configure the basic settings, select **Review + Create**, review the settings, and then select **Review + Create** again to create the schedule.
+
+---
+
+### Define a time-based schedule with a cron expression
+
+A cron expression can specify a flexible and customized recurrence pattern for a schedule. A standard crontab expression is composed of the space-delimited fields `MINUTES HOURS DAYS MONTHS DAYS-OF-WEEK`. A wildcard `*` means all values for a field.
+
+In an Azure Machine Language schedule cron expression:
+
+- `MINUTES` is an integer or list from 0 to 59.
+- `HOURS` is an integer or list from 0 to 23.
+- `DAYS` values aren't supported, and are always treated as `*`. The `*` value in `DAYS` means all days in a month, which varies with month and year. 
+- `MONTHS` values aren't supported, and are always treated as `*`.
+- `DAYS-OF-WEEK` is an integer or list from 0 to 6, where 0 = Sunday. Names of days are also accepted.
+
+For example, the expression `15 16 * * 1` means 4:15 PM UTC every Monday. For more information about crontab expressions, see the [Crontab Expression wiki on GitHub](https://github.com/atifaziz/NCrontab/wiki/Crontab-Expression).
+
+# [Azure CLI](#tab/cliv2)
+
+The following YAML code defines a recurring schedule for a pipeline job. The required `type` parameter specifies that the `trigger` type is `cron`.
 
 :::code language="yaml" source="~/azureml-examples-main/cli/schedules/cron-job-schedule.yml":::
 
-The `trigger` section defines the schedule details and contains following properties:
-
-- **(Required)** `type` specifies the schedule type is `cron`.
-
-List continues below.
+You must or can provide the following schedule parameters:
 
 # [Python SDK](#tab/python)
 
-[!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
+The following code uses `CronTrigger` to provide a better coding experience.
 
-[!notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=create_schedule_cron)]
+[!Notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=create_schedule_cron)]
 
-The `CronTrigger` section defines the schedule details and contains following properties:
+You must or can provide the following schedule parameters:
 
-- **(Required)** To provide better coding experience, we use `CronTrigger` for recurrence schedule.
+# [Studio UI](#tab/ui)
 
-List continues below.
-
-# [studio UI](#tab/ui)
-
-When you have a pipeline job with satisfying performance and outputs, you can set up a schedule to automatically trigger this job on a regular basis.
-
-1. In pipeline job detail page, select **Schedule** -> **Create new schedule** to open the schedule creation wizard.
-
-2. The *Basic settings* of the schedule creation wizard contain following properties.
-
-    - **Name**: the unique identifier of the schedule within the workspace.
-    - **Description**: description of the schedule.
-    - **Trigger**: specifies the recurrence pattern of the schedule, including following properties.
-      - **Time zone**: the time zone based on which to calculate the trigger time, by default is (UTC) Coordinated Universal Time.
-      - **Recurrence** or **Cron expression**: select cron expression to specify the recurring pattern. **Cron expression** allows you to specify more flexible and customized recurrence pattern.
-      - **Start**: specifies the date from when the schedule becomes active. By default it's the date you create this schedule.
-      - **End**: specifies the date after when the schedule becomes inactive. By default it's NONE, which means the schedule will always be active until you manually disable it.
-      - **Tags**: tags of the schedule.
-
-    After you configure the basic settings, you can directly select Review + Create, and the schedule will automatically submit jobs according to the recurrence pattern you specified.
+To define a cron-based schedule, select **Cron expression** instead of **Recurrence** on the **Basic settings** screen for the schedule.
 
 ---
 
-- **(Required)** `expression` uses standard crontab expression to express a recurring schedule. A single expression is composed of five space-delimited fields:
+# [Azure CLI / Python SDK](#tab/cliv2+python)
 
-    `MINUTES HOURS DAYS MONTHS DAYS-OF-WEEK`
+#### Parameters
 
-    - A single wildcard (`*`), which covers all values for the field. So a `*` in days means all days of a month (which varies with month and year).
-    - The `expression: "15 16 * * 1"` in the sample above means the 16:15PM on every Monday.
-    - The table below lists the valid values for each field:
- 
-        | Field          |   Range  | Comment                                                   |
-        |----------------|----------|-----------------------------------------------------------|
-        | `MINUTES`      |    0-59  | -                                                         |
-        | `HOURS`        |    0-23  | -                                                         |
-        | `DAYS`         |    -  |    Not supported. The value will be ignored and treat as `*`.    |
-        | `MONTHS`       |    -  | Not supported. The value will be ignored and treat as `*`.        |
-        | `DAYS-OF-WEEK` |    0-6   | Zero (0) means Sunday. Names of days also accepted. |
+- `expression` **(required)** is a standard crontab expression that expresses a recurring schedule.
+- `start_time` (optional) is the schedule start date and time with timezone. For example, `start_time: "2022-05-10T10:15:00-04:00"` means the schedule starts from 10:15:00 AM on May 10, 2022 in UTC-4 timezone. If omitted, the default is equal to schedule creation time. If the start time is in the past, the first job runs at the next calculated run time.
+- `end_time` (optional) is the end date and time with timezone. If omitted, the schedule remains active until manually disabled.
+- `time_zone` (optional) specifies the time zone of the recurrence schedule. If omitted, the default is UTC.
 
-    - To learn more about how to use crontab expression, see  [Crontab Expression wiki on GitHub ](https://github.com/atifaziz/NCrontab/wiki/Crontab-Expression).
+# [Studio UI](#tab/ui)
 
-    > [!IMPORTANT]
-    > `DAYS` and `MONTH` are not supported. If you pass a value, it will be ignored and treat as `*`.
+Only the **Name** property requires you to enter a value. If you don't specify a cron expression, the default cron expression creates a schedule that runs daily at 4:00 PM UTC.
 
-- (Optional) `start_time` specifies the start date and time with timezone of the schedule. `start_time: "2022-05-10T10:15:00-04:00"` means the schedule starts from 10:15:00AM on 2022-05-10 in UTC-4 timezone. If `start_time` is omitted, the `start_time` will be equal to schedule creation time. If the start time is in the past, the first job will run at the next calculated run time.
+- **Name**: Unique identifier of the schedule within the workspace.
+- **Description**: Description of the schedule.
+- **Trigger**: Recurrence pattern of the schedule, including the following properties:
+  - **Time zone**: Time zone to use for the trigger time, Coordinated Universal Time (UTC) by default.
+  - Select **Cron expression** and provide a standard crontab expression that expresses a recurring schedule.
+  - **Start**: Date the schedule becomes active, by default the date created.
+  - **End**: Date the schedule becomes inactive. By default the value is none, and a schedule remains active until you manually disable it.
+  - **Tags**: Tags on the schedule.
 
-- (Optional) `end_time` describes the end date and time with timezone. If `end_time` is omitted, the schedule will continue trigger jobs until the schedule is manually disabled.  
+:::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-basic-settings-cron.png" alt-text="Screenshot of schedule creation wizard showing the basic settings for cron." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-basic-settings-cron.png":::
 
-- (Optional) `time_zone`specifies the time zone of the expression. If omitted, by default is UTC. See [appendix for timezone values](reference-yaml-schedule.md#appendix).
-
-Limitations:
-
-- Currently Azure Machine Learning v2 schedule doesn't support event-based trigger.
-- You can specify complex recurrence pattern containing multiple trigger timestamps using Azure Machine Learning SDK/CLI v2, while UI only displays the complex pattern and doesn't support editing.
-- If you set the recurrence as the 31st day of every month, in months with less than 31 days, the schedule won't trigger jobs.
-
-### Change runtime settings when defining schedule
-
-When defining a schedule using an existing job, you can change the runtime settings of the job. Using this approach, you can define multi-schedules using the same job with different inputs.
+---
 
 # [Azure CLI](#tab/cliv2)
 
-[!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
+After you create the schedule YAML, use the following command to create the schedule via CLI:
+
+```azurecli
+# This action creates related resources for a schedule. It takes dozens of seconds to complete.
+az ml schedule create --file simple-pipeline-job.yml --no-wait
+```
+
+# [Python SDK](#tab/python)
+
+The following Python code creates the schedule you defined:
+
+[!Notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=create_schedule)]
+
+# [Studio UI](#tab/ui)
+
+After you configure the basic settings, select **Review + Create**, review the settings, and then select **Review + Create** again to create the schedule.
+
+---
+
+### Change job settings when you define schedules
+
+Sometimes you might want the jobs triggered by schedules to have different configurations from the test jobs. When you define a schedule by using an existing job, you can change the job settings. This approach lets you define multiple schedules that use the same job with different inputs.
+
+# [Azure CLI](#tab/cliv2)
+
+When you define a schedule, you can change the `settings`, `inputs`, or `outputs` to use when running the pipeline job. You can also change the `experiment_name` of the triggered job.
+
+The following schedule definition changes the settings of an existing job.
 
 :::code language="yaml" source="~/azureml-examples-main/cli/schedules/cron-with-settings-job-schedule.yml":::
 
 # [Python SDK](#tab/python)
 
-[!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
+When you define a schedule, you can change the `settings`, `inputs`, or `outputs` to use when running the pipeline job. You can also change the `experiment_name` of the triggered job.
 
-[!notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=change_run_settings)]
+The following schedule definition changes the settings of a pipeline per job.
 
-# [studio UI](#tab/ui)
+[!Notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=change_run_settings)]
 
-1. Sometimes you may want the jobs triggered by schedules have different configurations from the test jobs. In **Advanced settings** in the schedule creation wizard, you can modify the job inputs/outputs, and run time settings, based on the current job.
+# [Studio UI](#tab/ui)
 
-    In the substep **Job inputs & outputs**, you can modify inputs and outputs for the future jobs triggered by schedules. You may want the jobs triggered by schedules running with dynamic parameters values. Currently you can use following MACRO expression for job inputs and outputs path.
+In the studio UI, you can use **Advanced settings** in the schedule creation wizard to modify `inputs`, `outputs`, and runtime `settings` for a pipeline job. You can't change the `experiment_name` in the studio UI.
 
-    | Expression                           | Description             |
-    |--------------------------------------|-------------------------|
-    | `${{name}}`                          | name of the job         |
-    | `${{creation_context.trigger_time}}` | trigger time of the job |
+1. In **Job inputs & outputs**, you can modify inputs and outputs for future jobs triggered by the schedule. You can use macro expressions for the inputs and outputs paths.
 
-      :::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-advanced-settings-inputs-outputs.png" alt-text="Screenshot of create new schedule on the advanced settings job inputs and outputs tab." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-advanced-settings-inputs-outputs.png":::
+   :::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-advanced-settings-inputs-outputs.png" alt-text="Screenshot of create new schedule on the advanced settings job inputs and outputs tab." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-advanced-settings-inputs-outputs.png":::
 
-    In the substep **Job runtime settings**, you can modify compute and other run time settings for jobs triggered by the schedule.
+1. In **Job runtime settings**, you can modify compute and other runtime settings for jobs triggered by the schedule.
 
-    :::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-advanced-settings-runtime.png" alt-text="Screenshot of schedule creation wizard showing the job runtime settings." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-advanced-settings-runtime.png":::
+   :::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-advanced-settings-runtime.png" alt-text="Screenshot of schedule creation wizard showing the job runtime settings." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-advanced-settings-runtime.png":::
 
+1. Select **Review + Create** to review the schedule settings you configured, and then select **Review + Create** again to create the schedule.
 
-2. Select **Review + Create** to review the schedule settings you've configured.
-
-    :::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-review.png" alt-text="Screenshot of schedule creation wizard showing the review of the schedule settings." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-review.png":::
-
-3. Select **Review + Create** to finish the creation. There will be notification when the creation is completed.
+   :::image type="content" source="./media/how-to-schedule-pipeline-job/create-schedule-review.png" alt-text="Screenshot of schedule creation wizard showing the review of the schedule settings." lightbox= "./media/how-to-schedule-pipeline-job/create-schedule-review.png":::
 
 ---
 
-Following properties can be changed when defining schedule:
+#### Use supported expressions in schedules
 
-| Property | Description |
-| --- | --- |
-|settings| A dictionary of settings to be used when running the pipeline job. |
-|inputs| A dictionary of inputs to be used when running the pipeline job. |
-|outputs| A dictionary of inputs to be used when running the pipeline job. |
-|experiment_name|Experiment name of triggered job.|
-
-> [!NOTE]
-> Studio UI users can only modify input, output, and runtime settings when creating a schedule. `experiment_name` can only be changed using the CLI or SDK.
-
-### Expressions supported in schedule
-
-When define schedule, we support following expression that will be resolved to real value during job runtime.
+When you define a schedule, you can use the following macro expressions to define dynamic parameter values that resolve to actual values during job runtime.
 
 | Expression | Description |Supported properties|
 |----------------|----------------|-------------|
-|`${{creation_context.trigger_time}}`|The time when the schedule is triggered.|String type inputs of pipeline job|
-|`${{name}}`|The name of job.|outputs.path of pipeline job|
+|`${{name}}`|Name of the job|`outputs` path of the pipeline job|
+|`${{creation_context.trigger_time}}`|Trigger time of the job | String type `inputs` of the pipeline job|
 
 ## Manage schedule
 
-### Create schedule
+You can list, view details, update, disable, enable, and delete schedules in a workspace.
+
+### List schedules
 
 # [Azure CLI](#tab/cliv2)
-
-[!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
-
-After you create the schedule yaml, you can use the following command to create a schedule via CLI.
-
-:::code language="azurecli" source="~/azureml-examples-main/cli/schedules/schedule.sh" ID="create_schedule":::
-
-# [Python SDK](#tab/python)
-
-[!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
-
-[!notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=create_schedule)]
-
-# [studio UI](#tab/ui)
-
-See [Create a time-based schedule with recurrence pattern](#create-a-time-based-schedule-with-recurrence-pattern) or [Create a time-based schedule with cron expression](#create-a-time-based-schedule-with-cron-expression).
-
----
-
-### List schedules in a workspace
-
-# [Azure CLI](#tab/cliv2)
-
-[!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 
 :::code language="azurecli" source="~/azureml-examples-main/cli/schedules/schedule.sh" ID="list_schedule":::
 
 # [Python SDK](#tab/python)
 
-[!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
+[!Notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=list_schedule)]
 
-[!notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=list_schedule)]
+# [Studio UI](#tab/ui)
 
-# [studio UI](#tab/ui)
-
-In the studio portal, under **Jobs** extension select the **All schedules** tab, where you can find all your job schedules created by SDK/CLI/UI in a single list.
-In the schedule list, you can have an overview of all schedules in this workspace.
+Under **Jobs** in the studio, select the **All schedules** tab to see a list of all the v2 job schedules created by SDK, CLI, or studio UI in this workspace.
 
 :::image type="content" source="./media/how-to-schedule-pipeline-job/schedule-list.png" alt-text="Screenshot of the all schedule tabs showing the list of schedule in this workspace." lightbox= "./media/how-to-schedule-pipeline-job/schedule-list.png":::
 
 ---
 
-### Check schedule detail
+### View schedule details
 
 # [Azure CLI](#tab/cliv2)
-
-[!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 
 :::code language="azurecli" source="~/azureml-examples-main/cli/schedules/schedule.sh" ID="show_schedule":::
 
 # [Python SDK](#tab/python)
 
-[!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
+[!Notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=show_schedule)]
 
-[!notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=show_schedule)]
+# [Studio UI](#tab/ui)
 
-# [studio UI](#tab/ui)
+Select a schedule name to show the schedule detail page, which contains the following tabs:
 
-You can select a schedule name to show the schedule detail page. The schedule detail page contains the following tabs:
+- **Overview** provides basic information about the schedule.
 
-- **Overview**: basic information of this schedule.
+  :::image type="content" source="./media/how-to-schedule-pipeline-job/schedule-detail-overview.png" alt-text="Screenshot of the overview tab in the schedule detail page." lightbox= "./media/how-to-schedule-pipeline-job/schedule-detail-overview.png":::
 
-    :::image type="content" source="./media/how-to-schedule-pipeline-job/schedule-detail-overview.png" alt-text="Screenshot of the overview tab in the schedule detail page." lightbox= "./media/how-to-schedule-pipeline-job/schedule-detail-overview.png":::
-
-- **Job definition**: defines the job triggered by this schedule.
+- **Job definition** defines the job triggered by the schedule.
 
   :::image type="content" source="./media/how-to-schedule-pipeline-job/schedule-detail-job-definition.png" alt-text="Screenshot of the job definition tab in the schedule detail page." lightbox= "./media/how-to-schedule-pipeline-job/schedule-detail-job-definition.png":::
 
-- **Jobs history**: a list of all jobs triggered by this schedule.
+- **Jobs history** provides a list of all jobs triggered by the schedule.
 
- :::image type="content" source="./media/how-to-schedule-pipeline-job/schedule-detail-jobs-history.png" alt-text="Screenshot of the jobs history tab in the schedule detail page." lightbox= "./media/how-to-schedule-pipeline-job/schedule-detail-jobs-history.png":::
+  :::image type="content" source="./media/how-to-schedule-pipeline-job/schedule-detail-jobs-history.png" alt-text="Screenshot of the jobs history tab in the schedule detail page." lightbox= "./media/how-to-schedule-pipeline-job/schedule-detail-jobs-history.png":::
 
 ---
 
@@ -353,68 +340,59 @@ You can select a schedule name to show the schedule detail page. The schedule de
 
 # [Azure CLI](#tab/cliv2)
 
-[!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
-
 :::code language="azurecli" source="~/azureml-examples-main/cli/schedules/schedule.sh" ID="update_schedule":::
 
 > [!NOTE]
-> If you would like to update more than just tags/description, it is recomend to use `az ml schedule create --file update_schedule.yml`
+> To update more than just tags and description, consider using `az ml schedule create --file update_schedule.yml`.
 
 # [Python SDK](#tab/python)
 
-[!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
+[!Notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=enable_schedule)]
 
-[!notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=create_schedule)]
+# [Studio UI](#tab/ui)
 
-# [studio UI](#tab/ui)
-
-#### Update a new version pipeline to existing schedule
-
-
-Once you set up a schedule to do retraining or batch inference on production regularly, you may still work on fine tuning or optimizing the model.
-
-When you have a new version pipeline job with optimized performance, you can update the new version pipeline to an existing schedule.
-
-1. In the new version pipeline job detail page, select **Schedule** -> **Update to existing schedule**.
-
-     :::image type="content" source="./media/how-to-schedule-pipeline-job/update-to-existing-schedule.png" alt-text="Screenshot of the jobs tab with schedule button selected showing update to existing schedule button." lightbox= "./media/how-to-schedule-pipeline-job/update-to-existing-schedule.png":::
-
-2. Select an existing schedule from the table. 
-
-    :::image type="content" source="./media/how-to-schedule-pipeline-job/update-select-schedule.png" alt-text="Screenshot of update select schedule showing the select schedule tab." lightbox= "./media/how-to-schedule-pipeline-job/update-select-schedule.png":::
-
-> [!IMPORTANT]
-> Make sure you select the correct schedule you want to update. Once you finish update, the schedule will trigger different jobs.
-
-3. You can also modify the job inputs/outputs, and run time settings for the future jobs triggered by the schedule.
-
-4. Select **Review + Update** to finish the update process. There will be notification when update is completed.
-
-5. After update is completed, in the schedule detail page, you can view the new job definition.
-
-#### Update in schedule detail page
-
-In schedule detail page, you can select **Update settings** to update the basic settings and advanced settings (including job input/output and runtime settings) of the schedule.
+In the schedule detail page, you can select **Update settings** to update the schedule settings, including job input/output and runtime settings.
 
 :::image type="content" source="./media/how-to-schedule-pipeline-job/schedule-update-settings.png" alt-text="Screenshot of update settings showing the basic settings tab." lightbox= "./media/how-to-schedule-pipeline-job/schedule-update-settings.png":::
 
---- 
+#### Update a new version pipeline to an existing schedule
+
+Once you set up a schedule to do regular retraining or batch inference on production, you might continue fine tuning or optimizing the model. When you have a new version pipeline job with optimized performance, you can update the new version pipeline to run on an existing schedule.
+
+1. In the new version pipeline job detail page, select **Schedule** > **Update to existing schedule**.
+
+   :::image type="content" source="./media/how-to-schedule-pipeline-job/update-to-existing-schedule.png" alt-text="Screenshot of the jobs tab with schedule button selected showing update to existing schedule button." lightbox= "./media/how-to-schedule-pipeline-job/update-to-existing-schedule.png":::
+
+1. Select an existing schedule to update its job definition.
+
+   :::image type="content" source="./media/how-to-schedule-pipeline-job/update-select-schedule.png" alt-text="Screenshot of update select schedule showing the select schedule tab." lightbox= "./media/how-to-schedule-pipeline-job/update-select-schedule.png":::
+
+   > [!IMPORTANT]
+   > Make sure you select the correct schedule you want to update.
+
+1. Optionally, select **Next** to modify the job inputs/outputs and runtime settings for the future jobs triggered by the schedule.
+
+1. Select **Review + Update** to review the schedule settings, and then select **Review + Update** again to finish the update.
+
+After the update completes, you can view the new job definition in the schedule detail page. The schedule now triggers the new job.
+
+---
 
 ### Disable a schedule
 
 # [Azure CLI](#tab/cliv2)
 
-[!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
-
 :::code language="azurecli" source="~/azureml-examples-main/cli/schedules/schedule.sh" ID="disable_schedule":::
 
 # [Python SDK](#tab/python)
 
-[!notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=disable_schedule)]
+The following code returns `False`:
 
-# [studio UI](#tab/ui)
+[!Notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=disable_schedule)]
 
-On the schedule detail page, you can disable the current schedule. You can also disable schedules from the **All schedules** tab.
+# [Studio UI](#tab/ui)
+
+You can disable schedules from the **All schedules** tab or disable the current schedule from the schedule detail page.
 
 ---
 
@@ -422,25 +400,44 @@ On the schedule detail page, you can disable the current schedule. You can also 
 
 # [Azure CLI](#tab/cliv2)
 
-[!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
-
 :::code language="azurecli" source="~/azureml-examples-main/cli/schedules/schedule.sh" ID="enable_schedule":::
 
 # [Python SDK](#tab/python)
 
-[!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
+The following code returns `True`:
 
-[!notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=enable_schedule)]
+```python
+job_schedule = ml_client.schedules.begin_enable(name=schedule_name).result()
+job_schedule.is_enabled
+```
 
-# [studio UI](#tab/ui)
+# [Studio UI](#tab/ui)
 
-On the schedule detail page, you can enable the current schedule. You can also enable schedules from the **All schedules** tab.
+You can enable schedules from the **All schedules** tab or enable the current schedule from the schedule detail page.
 
 ---
 
+### Delete a schedule
+
+> [!IMPORTANT]
+> You must first disable a schedule to delete it. Deletion is permanent and unrecoverable.
+
+# [Azure CLI](#tab/cliv2)
+
+:::code language="azurecli" source="~/azureml-examples-main/cli/schedules/schedule.sh" ID="delete_schedule":::  
+
+# [Python SDK](#tab/python)
+
+[!Notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=delete_schedule)]
+
+# [Studio UI](#tab/ui)
+
+You can delete schedules from the **All schedules** tab or delete the current schedule from the schedule detail page.
+
+---
 ## Query triggered jobs from a schedule
 
-All the display name of jobs triggered by schedule will have the display name as <schedule_name>-YYYYMMDDThhmmssZ. For example, if a schedule with a name of named-schedule is created with a scheduled run every 12 hours starting at 6 AM on Jan 1 2021, then the display names of the jobs created will be as follows:
+Jobs triggered by a specific schedule all have the display name `<schedule_name>-YYYYMMDDThhmmssZ`. For example, if a schedule named `named-schedule` runs every 12 hours starting at 6 AM on January 1, 2021, the display names of the jobs created are as follows:
 
 - named-schedule-20210101T060000Z
 - named-schedule-20210101T180000Z
@@ -453,70 +450,32 @@ You can also apply [Azure CLI JMESPath query](/cli/azure/query-azure-cli) to que
 
 :::code language="azurecli" source="~/azureml-examples-main/cli/schedules/schedule.sh" ID="query_triggered_jobs":::  
 
-> [!NOTE]
-> For a simpler way to find all jobs triggered by a schedule, see the *Jobs history* on the *schedule detail page* using the studio UI.
+> [!TIP]
+> The **Jobs history** tab on the schedule detail page in the studio provides a simple way to find all jobs triggered by a schedule.
 
 ---
 
-## Delete a schedule
+## Role-based access control (RBAC) support
 
-> [!IMPORTANT]
-> A schedule must be disabled to be deleted. Delete is an unrecoverable action. After a schedule is deleted, you can never access or recover it.
+Because schedules are used for production, it's important to reduce the possibility and impact of misoperation. Workspace admins can restrict access to schedule creation and management in a workspace.
 
-# [Azure CLI](#tab/cliv2)
-
-[!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
-
-:::code language="azurecli" source="~/azureml-examples-main/cli/schedules/schedule.sh" ID="delete_schedule":::  
-
-# [Python SDK](#tab/python)
-
-[!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
-
-[!notebook-python[] (~/azureml-examples-main/sdk/python/schedules/job-schedule.ipynb?name=delete_schedule)]
-
-# [studio UI](#tab/ui)
-
-You can delete a schedule from the schedule detail page or all schedules tab.
-
----
-## RBAC (Role-based-access-control) support
-
-Since schedules are usually used for production, to reduce impact of misoperation, workspace admins may want to restrict access to creating and managing schedules within a workspace.
-
-Currently there are three action rules related to schedules and you can configure in Azure portal. You can learn more details about [how to manage access to an Azure Machine Learning workspace.](how-to-assign-roles.md#create-custom-role)
+Admins can configure the following action rules related to schedules in the Azure portal. For more information, see [Manage access to Azure Machine Learning workspaces](how-to-assign-roles.md).
 
 | Action | Description                                                                | Rule                                                          |
 |--------|----------------------------------------------------------------------------|---------------------------------------------------------------|
-| Read   | Get and list schedules in Machine Learning workspace                        | Microsoft.MachineLearningServices/workspaces/schedules/read   |
-| Write  | Create, update, disable and enable schedules in Machine Learning workspace | Microsoft.MachineLearningServices/workspaces/schedules/write  |
-| Delete | Delete a schedule in Machine Learning workspace                            | Microsoft.MachineLearningServices/workspaces/schedules/delete |
+| Read   | Get and list schedules                       | Microsoft.MachineLearningServices/workspaces/schedules/read   |
+| Write  | Create, update, disable, and enable schedules | Microsoft.MachineLearningServices/workspaces/schedules/write  |
+| Delete | Delete schedules                             | Microsoft.MachineLearningServices/workspaces/schedules/delete |
 
 ## Cost considerations
 
-- Schedules are billed based on the number of schedules, each schedule will create a logic apps host Azure Machine Learning subs on behalf (HOBO) of the user. 
-- The cost of logic apps will change back to the user's Azure subscription, and you can find costs of HOBO resources are billed using the same meter emitted by the original RP. They are shown under the host resource (the workspace).
+Schedules are billed based on the number of schedules. Each schedule creates a logic app that Azure Machine Learning hosts on behalf of (HOBO) the user.
 
-## Frequently asked questions
+The logic app charges back to the user's Azure subscription. HOBO resource costs are billed using the same meter emitted by the original resource provider. Charges appear under the host resource, which is the Azure Machine Learning workspace.
 
-- Why my schedules created by SDK aren't listed in UI?
+## Related content
 
-    The schedules UI is for v2 schedules. Hence, your v1 schedules won't be listed or accessed via UI.
-
-    However, v2 schedules also support v1 pipeline jobs. You don't have to publish pipeline first, and you can directly set up schedules for a pipeline job.
-
-- Why my schedules don't trigger job at the time I set before?
-  - By default schedules will use UTC timezone to calculate trigger time. You can specify timezone in the creation wizard, or update timezone in schedule detail page.
-  - If you set the recurrence as the 31st day of every month, in months with less than 31 days, the schedule won't trigger jobs.
-  - If you're using cron expressions, MONTH isn't supported. If you pass a value, it will be ignored and treated as *. This is a known limitation.
-- Are event-based schedules supported?
-  - No, V2 schedule does not support event-based schedules.
-
-## Next steps
-
-* Learn more about the [CLI (v2) schedule YAML schema](./reference-yaml-schedule.md).
-* Learn how to [create pipeline job in CLI v2](how-to-create-component-pipelines-cli.md).
-* Learn how to [create pipeline job in SDK v2](how-to-create-component-pipeline-python.md).
-* Learn more about [CLI (v2) core YAML syntax](reference-yaml-core-syntax.md).
-* Learn more about [Pipelines](concept-ml-pipelines.md).
-* Learn more about [Component](concept-component.md).
+- [CLI (v2) job schedule YAML schema](./reference-yaml-schedule.md)
+- [CLI (v2) core YAML syntax](reference-yaml-core-syntax.md)
+- [What are machine learning pipelines?](concept-ml-pipelines.md)
+- [What is an Azure Machine Learning component?](concept-component.md)

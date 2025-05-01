@@ -1,13 +1,13 @@
 ---
-title: "Use Document Intelligence (formerly Form Recognizer) SDK for Python (REST API v3.0)"
+title: "Use Document Intelligence SDK for Python (REST API v3.0)"
 description: 'Use the Document Intelligence SDK for Python (REST API v3.0) to create a forms processing app that extracts key data from documents.'
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 05/23/2024
+ms.date: 02/10/2025
 ms.author: lajanuar
-ms.custom: devx-track-csharp, ignite-2023, linux-related-content
+ms.custom: devx-track-csharp, linux-related-content
 ---
 
 <!-- markdownlint-disable MD001 -->
@@ -15,7 +15,7 @@ ms.custom: devx-track-csharp, ignite-2023, linux-related-content
 <!-- markdownlint-disable MD033 -->
 <!-- markdownlint-disable MD034 -->
 
-[Client library](/python/api/overview/azure/ai-documentintelligence-readme?view=azure-python-preview&preserve-view=true) |[SDK reference](https://azuresdkdocs.blob.core.windows.net/$web/python/azure-ai-documentintelligence/latest/index.html) | [REST API reference](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2024-02-29-preview&preserve-view=true&tabs=HTTP) | [Package (PyPi)](https://pypi.org/project/azure-ai-documentintelligence/1.0.0b2/) | [Samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/documentintelligence/azure-ai-documentintelligence/samples) | [Supported REST API version](../../../sdk-overview-v4-0.md#supported-programming-languages)
+[Client library](/python/api/overview/azure/ai-documentintelligence-readme?view=azure-python-preview&preserve-view=true) | [REST API reference](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) | [Package (PyPi)](https://pypi.org/project/azure-ai-documentintelligence/1.0.0b4/) | [Samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/documentintelligence/azure-ai-documentintelligence/samples) | [Supported REST API version](../../../sdk-overview-v4-0.md#supported-programming-languages)
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ ms.custom: devx-track-csharp, ignite-2023, linux-related-content
 - The key and endpoint from the resource you create to connect your application to the Azure Document Intelligence service.
 
   1. After your resource deploys, select **Go to resource**.
-  1. In the left navigation menu, select **Keys and Endpoint**.
+  1. In the left pane, select **Keys and Endpoint**.
   1. Copy one of the keys and the **Endpoint** for use later in this article.
 
   :::image type="content" source="../../../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
@@ -49,7 +49,7 @@ ms.custom: devx-track-csharp, ignite-2023, linux-related-content
 Open a console window in your local environment and install the Azure AI Document Intelligence client library for Python with pip:
 
 ```console
-pip install azure-ai-documentintelligence==1.0.0b2
+pip install azure-ai-documentintelligence==1.0.0b4
 ```
 
 ## Create your Python application
@@ -80,6 +80,7 @@ import os
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.documentintelligence import DocumentIntelligenceClient
 from azure.ai.documentintelligence.models import AnalyzeResult
+from azure.ai.documentintelligence.models import AnalyzeDocumentRequest
 
 # use your `key` and `endpoint` environment variables
 key = os.environ.get('DI_KEY')
@@ -172,7 +173,7 @@ if __name__ == "__main__":
 ```
 
 > [!div class="nextstepaction"]
-> [View complete code on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Read_model/sample_analyze_read.py)  [More samples](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Read_model) 
+> [View complete code on GitHub.](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Read_model/sample_analyze_read.py)  [More samples](https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/Python(v4.0)/Read_model)
 
 Visit the Azure samples repository on GitHub and view the [`read` model output](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/python/FormRecognizer/how-to-guide/read-model-output.md).
 
@@ -183,6 +184,7 @@ import os
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.documentintelligence import DocumentIntelligenceClient
 from azure.ai.documentintelligence.models import AnalyzeResult
+from azure.ai.documentintelligence.models import AnalyzeDocumentRequest
 
 
 # use your `key` and `endpoint` environment variables
@@ -263,6 +265,7 @@ import os
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.documentintelligence import DocumentIntelligenceClient
 from azure.ai.documentintelligence.models import AnalyzeResult
+from azure.ai.documentintelligence.models import AnalyzeDocumentRequest
 
 # use your `key` and `endpoint` environment variables
 key = os.environ.get('DI_KEY')
@@ -458,6 +461,7 @@ import os
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.documentintelligence import DocumentIntelligenceClient
 from azure.ai.documentintelligence.models import AnalyzeResult
+from azure.ai.documentintelligence.models import AnalyzeDocumentRequest
 
 # use your `key` and `endpoint` environment variables
 key = os.environ.get('DI_KEY')
@@ -648,6 +652,7 @@ import os
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.documentintelligence import DocumentIntelligenceClient
 from azure.ai.documentintelligence.models import AnalyzeResult
+from azure.ai.documentintelligence.models import AnalyzeDocumentRequest
 
 # use your `key` and `endpoint` environment variables
 key = os.environ.get('DI_KEY')
@@ -740,6 +745,7 @@ import os
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.documentintelligence import DocumentIntelligenceClient
 from azure.ai.documentintelligence.models import AnalyzeResult
+from azure.ai.documentintelligence.models import AnalyzeDocumentRequest
 
 # use your `key` and `endpoint` environment variables
 key = os.environ.get('DI_KEY')

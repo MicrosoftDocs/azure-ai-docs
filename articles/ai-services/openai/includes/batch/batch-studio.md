@@ -41,14 +41,27 @@ Like [fine-tuning](../../how-to/fine-tuning.md), global batch uses files in JSON
 ### Input with image url
 
 ```json
-{"custom_id": "request-1", "method": "POST", "url": "/chat/completions", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "messages": [{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": [{"type": "text", "text": "What’s in this image?"},{"type": "image_url","image_url": {"url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-docs/main/articles/ai-services/openai/media/how-to/generated-seattle.png"}}]}],"max_tokens": 1000}}
+{"custom_id": "request-1", "method": "POST", "url": "/chat/completions", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "messages": [{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": [{"type": "text", "text": "What’s in this image?"},{"type": "image_url","image_url": {"url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-docs/main/articles/ai-services/openai/media/how-to/generated-seattle.png", "detail": "high"}}]}],"max_tokens": 1000}}
 ```
+The `detail` parameter tells the model what level of detail to use when processing and understanding the image (`low`, `high`, or `auto` to let the model decide). If you skip the parameter, the model will use `auto`.
+
+# [Structured outputs](#tab/structured-outputs)
+
+```json
+{"custom_id": "task-0", "method": "POST", "url": "/chat/completions", "body": {"model": "REPLACE-WITH-MODEL-DEPLOYMENT-NAME", "messages": [{"role": "system", "content": "Extract the event information."}, {"role": "user", "content": "Alice and Bob are going to a science fair on Friday."}], "response_format": {"type": "json_schema", "json_schema": {"name": "CalendarEventResponse", "strict": true, "schema": {"type": "object", "properties": {"name": {"type": "string"}, "date": {"type": "string"}, "participants": {"type": "array", "items": {"type": "string"}}}, "required": ["name", "date", "participants"], "additionalProperties": false}}}}}
+```
+
 
 ---
 
 The `custom_id` is required to allow you to identify which individual batch request corresponds to a given response. Responses won't be returned in identical order to the order defined in the `.jsonl` batch file.
 
-`model` attribute should be set to match the name of the Global Batch deployment you wish to target for inference responses.
+`model` attribute should be set to match the name of the Global Batch deployment you wish to target for inference responses. 
+
+> [!IMPORTANT]
+> The `model` attribute must be set to match the name of the Global Batch deployment you wish to target for inference responses. The **same Global Batch model deployment name must be present on each line of the batch file.** If you want to target a different deployment you must do so in a separate batch file/job.
+>
+> For the best performance we recommend submitting large files for batch processing, rather than a large number of small files with only a few lines in each file.
 
 ### Create input file
 
@@ -58,11 +71,11 @@ For this article, we'll create a file named `test.jsonl` and will copy the conte
 
 Once your input file is prepared, you first need to upload the file to then be able to kick off a batch job. File upload can be done both programmatically or via the Studio.
 
-1. Sign in to [AI Studio](https://ai.azure.com).
+1. Sign in to [Azure AI Foundry portal](https://ai.azure.com).
 2. Select the Azure OpenAI resource where you have a global batch model deployment available.
-3. Select **Batch jobs PREVIEW** > **+Create batch jobs**.
+3. Select **Batch jobs** > **+Create batch jobs**.
 
-    :::image type="content" source="../../media/how-to/global-batch/create-batch-job-empty.png" alt-text="Screenshot that shows the batch job creation experience in Azure AI Studio." lightbox="../../media/how-to/global-batch/create-batch-job-empty.png":::
+    :::image type="content" source="../../media/how-to/global-batch/create-batch-job-empty.png" alt-text="Screenshot that shows the batch job creation experience in Azure AI Foundry portal." lightbox="../../media/how-to/global-batch/create-batch-job-empty.png":::
 
 4. From the dropdown under **Batch data** > **Upload files** > select **Upload file** and provide the path for the `test.jsonl` file created in the previous step > **Next**.
 
@@ -72,7 +85,7 @@ Once your input file is prepared, you first need to upload the file to then be a
 
 Select **Create** to start your batch job.
 
-:::image type="content" source="../../media/how-to/global-batch/deployment.png" alt-text="Screenshot of the create a batch job Azure Studio UI experience." lightbox="../../media/how-to/global-batch/deployment.png":::
+:::image type="content" source="../../media/how-to/global-batch/deployment.png" alt-text="Screenshot of the create a batch job Azure AI Foundry portal experience." lightbox="../../media/how-to/global-batch/deployment.png":::
 
 ## Track batch job progress
 
@@ -82,7 +95,7 @@ Once your job is created, you can monitor the job's progress by selecting the Jo
 
 You can track job status for your job in the right-hand pane:
 
-:::image type="content" source="../../media/how-to/global-batch/status.png" alt-text="Screenshot that shows the batch job status experience in Azure AI Studio." lightbox="../../media/how-to/global-batch/status.png":::
+:::image type="content" source="../../media/how-to/global-batch/status.png" alt-text="Screenshot that shows the batch job status experience in Azure AI Foundry portal." lightbox="../../media/how-to/global-batch/status.png":::
 
 ## Retrieve batch job output file
 
@@ -94,4 +107,4 @@ Once your job has completed or reached a terminal state, it will generate an err
 
 Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
 
-:::image type="content" source="../../media/how-to/global-batch/cancel.png" alt-text="Screenshot that shows the batch job cancel button in Azure AI Studio." lightbox="../../media/how-to/global-batch/cancel.png":::
+:::image type="content" source="../../media/how-to/global-batch/cancel.png" alt-text="Screenshot that shows the batch job cancel button in Azure AI Foundry portal." lightbox="../../media/how-to/global-batch/cancel.png":::

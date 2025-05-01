@@ -1,19 +1,19 @@
 ---
-title: Map enrichments in indexers
+title: Map enriched output to fields in a search index
 titleSuffix: Azure AI Search
 description: Export the enriched content created by a skillset by mapping its output fields to fields in a search index.
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 07/30/2024
+ms.date: 04/14/2025
 ---
 
 # Map enriched output to fields in a search index in Azure AI Search
 
-![Indexer Stages](./media/cognitive-search-output-field-mapping/indexer-stages-output-field-mapping.png "indexer stages")
+:::image type="content" source="media/cognitive-search-output-field-mapping/indexer-stages-output-field-mapping.png" alt-text="Diagram of the Indexer Stages with Output Field Mappings highlighted.":::
 
 This article explains how to set up *output field mappings*, defining a data path between in-memory data generated during [skillset processing](cognitive-search-concept-intro.md), and target fields in a search index. During indexer execution, skills-generated information exists in memory only. To persist this information in a search index, you need to tell the indexer where to send the data.
 
@@ -35,14 +35,14 @@ In contrast with a [`fieldMappings`](search-indexer-field-mappings.md) definitio
 
 - Indexer, index, data source, and skillset.
 
-- Index fields must be simple or top-level fields. You can't output to a [complex type](search-howto-complex-data-types.md), but if you have a complex type, you can use an output field definition to flatten parts of the complex type and send them to a collection in a search index. 
+- Index fields must be simple or top-level fields. You can't output to a [complex type](search-howto-complex-data-types.md). However, if you have a complex type, you can use an output field definition to flatten parts of the complex type and send them to a collection in a search index.
 
 ## When to use an output field mapping
 
 Output field mappings are required if your indexer has an attached [skillset](cognitive-search-working-with-skillsets.md) that creates new information that you want in your index. Examples include:
 
 - Vectors from embedding skills
-- OCR text from image skills
+- Optical character recognition (OCR) text from image skills
 - Locations, organizations, or people from entity recognition skills
 
 Output field mappings can also be used to:
@@ -95,13 +95,13 @@ You can use the REST API or an Azure SDK to define output field mappings.
 
     | Property | Description |
     |----------|-------------|
-    | sourceFieldName | Required. Specifies a path to enriched content. An example might be `/document/content`. See [Reference enrichments in an Azure AI Search skillset](cognitive-search-concept-annotations-syntax.md) for path syntax and examples. |
+    | sourceFieldName | Required. Specifies a path to enriched content. An example might be */document/content*. See [Reference enrichments in an Azure AI Search skillset](cognitive-search-concept-annotations-syntax.md) for path syntax and examples. |
     | targetFieldName | Optional. Specifies the search field that receives the enriched content. Target fields must be top-level simple fields or collections. It can't be a path to a subfield in a complex type. If you want to retrieve specific nodes in a complex structure, you can [flatten individual nodes](#flattening-information-from-complex-types) in memory, and then send the output to a string collection in your index. |
     | mappingFunction | Optional. Adds extra processing provided by [mapping functions](search-indexer-field-mappings.md#mappingFunctions) supported by indexers. For enrichment nodes, encoding and decoding are the most commonly used functions. |
 
 1. The `targetFieldName` is always the name of the field in the search index.
 
-1. The `sourceFieldName` is a path to a node in the enriched document. It's the output of a skill. The path always starts with `/document`, and if you're indexing from a blob, the second element of the path is `/content`. The third element is the value produced by the skill. For more information and examples, see [Reference enrichments in an Azure AI Search skillset](cognitive-search-concept-annotations-syntax.md).
+1. The `sourceFieldName` is a path to a node in the enriched document. It's the output of a skill. The path always starts with */document*, and if you're indexing from a blob, the second element of the path is */content*. The third element is the value produced by the skill. For more information and examples, see [Reference enrichments in an Azure AI Search skillset](cognitive-search-concept-annotations-syntax.md).
 
     This example adds entities and sentiment labels extracted from a blob's content property to fields in a search index.
     
@@ -136,7 +136,7 @@ You can use the REST API or an Azure SDK to define output field mappings.
 
 ### [**.NET SDK (C#)**](#tab/csharp)
 
-In the Azure SDK for .NET, use the [OutputFieldMappingEntry](/dotnet/api/azure.search.documents.indexes.models.outputfieldmappingentry) class that provides "Name" and "TargetFieldName" properties and an optional "MappingFunction" reference.
+In the Azure SDK for .NET, use the [OutputFieldMappingEntry](/dotnet/api/azure.search.documents.indexes.models.outputfieldmappingentry) class that provides `Name` and `TargetFieldName` properties and an optional `MappingFunction` reference.
 
 Specify output field mappings when constructing the indexer, or later by directly setting [SearchIndexer.OutputFieldMappings](/dotnet/api/azure.search.documents.indexes.models.searchindexer.outputfieldmappings). The following C# example sets the output field mappings when constructing an indexer.
 
@@ -177,12 +177,12 @@ Assume a skillset that generates embeddings for a vector field, and an index tha
   ]
 ```
 
-The source field path is skill output. In this example, the output is `text_vector`. Target name is an optional property. If you don't give the output mapping a target name, the path would be `embedding` or more precisely, `/document/content/embedding`.
+The source field path is skill output. In this example, the output is *text_vector*. Target name is an optional property. If you don't give the output mapping a target name, the path would be *embedding* or more precisely, */document/content/embedding*.
 
 ```json
 {
   "name": "test-vector-size-ss",  
-  "description": "Generate embeddings using AOAI",
+  "description": "Generate embeddings using Azure OpenAI Service",
   "skills": [
     {
       "@odata.type": "#Microsoft.Skills.Text.AzureOpenAIEmbeddingSkill",
@@ -254,7 +254,7 @@ Here's an example of a document in Azure Cosmos DB with nested JSON:
 }
 ```
 
-If you wanted to fully index the above source document, you'd create an index definition where the field names, levels, and types are reflected as a complex type. Because field mappings aren't supported for complex types in the search index, your index definition must mirror the source document.
+If you wanted to fully index this source document, you'd create an index definition where the field names, levels, and types are reflected as a complex type. Because field mappings aren't supported for complex types in the search index, your index definition must mirror the source document.
 
 ```json
 {
@@ -283,7 +283,7 @@ If you wanted to fully index the above source document, you'd create an index de
 }
 ```
 
-Here's a sample indexer definition that executes the import (notice there are no field mappings and no skillset).
+Here's a sample indexer definition that executes the import. Notice there are no field mappings and no skillset.
 
 ```json
 {
@@ -304,7 +304,7 @@ The result is the following sample search document, similar to the original in A
   "value": [
     {
       "@search.score": 1,
-      "id": "240a98f5-90c9-406b-a8c8-f50ff86f116c",
+      "id": "11bb11bb-cc22-dd33-ee44-55ff55ff55ff",
       "palette": "primary colors",
       "colors": [
         {
@@ -338,9 +338,9 @@ The result is the following sample search document, similar to the original in A
 
 An alternative rendering in a search index is to flatten individual nodes in the source's nested structure into a string collection in a search index.
 
-To accomplish this task, you'll need an `outputFieldMappings` that maps an in-memory node to a string collection in the index. Although output field mappings primarily apply to skill outputs, you can also use them to address nodes after ["document cracking"](search-indexer-overview.md#stage-1-document-cracking) where the indexer opens a source document and reads it into memory.
+To accomplish this task, you'll need an `outputFieldMappings` that maps an in-memory node to a string collection in the index. Although output field mappings primarily apply to skill outputs, you can also use them to address nodes after [document cracking](search-indexer-overview.md#stage-1-document-cracking) where the indexer opens a source document and reads it into memory.
 
-Below is a sample index definition, using string collections to receive flattened output:
+The following sample index definition uses string collections to receive flattened output:
 
 ```json
 {
@@ -378,14 +378,14 @@ Here's the sample indexer definition, using `outputFieldMappings` to associate t
 }
 ```
 
-Results from the above definition are as follows. Simplifying the structure loses context in this case. There's no longer any associations between a given color and the mediums it's available in. However, depending on your scenario, a result similar to the one shown below might be exactly what you need.
+Results from the definition are as follows. Simplifying the structure loses context in this case. There's no longer any associations between a given color and the mediums it's available in. However, depending on your scenario, a result similar to the following example might be exactly what you need.
 
 ```json
 {
   "value": [
     {
       "@search.score": 1,
-      "id": "240a98f5-90c9-406b-a8c8-f50ff86f116c",
+      "id": "11bb11bb-cc22-dd33-ee44-55ff55ff55ff",
       "palette": "primary colors",
       "color_names": [
         "blue",
@@ -402,8 +402,8 @@ Results from the above definition are as follows. Simplifying the structure lose
 }
 ```
 
-## See also
+## Related content
 
-+ [Define field mappings in a search indexer](search-indexer-field-mappings.md)
++ [Field mappings and transformations](search-indexer-field-mappings.md)
 + [AI enrichment overview](cognitive-search-concept-intro.md)
-+ [Skillset overview](cognitive-search-working-with-skillsets.md)
++ [Skillset concepts](cognitive-search-working-with-skillsets.md)

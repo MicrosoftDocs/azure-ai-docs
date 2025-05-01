@@ -1,24 +1,24 @@
 ---
 title: Multimodal embeddings concepts - Image Analysis 4.0
 titleSuffix: Azure AI services
-description: Concepts related to image vectorization using the Image Analysis 4.0 API.
-#services: cognitive-services
+description: Learn about concepts related to image vectorization and search/retrieval using the Image Analysis 4.0 API.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 02/20/2024
+ms.date: 09/25/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
 # Multimodal embeddings (version 4.0)
 
-Multimodal embedding is the process of generating a numerical representation of an image that captures its features and characteristics in a vector format. These vectors encode the content and context of an image in a way that is compatible with text search over the same vector space.
+Multimodal embedding is the process of generating a vector representation of an image that captures its features and characteristics. These vectors encode the content and context of an image in a way that is compatible with text search over the same vector space.
 
-Image retrieval systems have traditionally used features extracted from the images, such as content labels, tags, and image descriptors, to compare images and rank them by similarity. However, vector similarity search is gaining more popularity due to a number of benefits over traditional keyword-based search and is becoming a vital component in popular content search services.
+Image retrieval systems have traditionally used features extracted from the images, such as content labels, tags, and image descriptors, to compare images and rank them by similarity. However, vector similarity search offers a number of benefits over traditional keyword-based search and is becoming a vital component in popular content search services.
 
-## What's the difference between vector search and keyword-based search? 
+## Differences between vector search and keyword search
 
 Keyword search is the most basic and traditional method of information retrieval. In that approach, the search engine looks for the exact match of the keywords or phrases entered by the user in the search query and compares it with the labels and tags provided for the images. The search engine then returns images that contain those exact keywords as content tags and image labels. Keyword search relies heavily on the user's ability to use relevant and specific search terms.
 
@@ -50,18 +50,17 @@ Each dimension of the vector corresponds to a different feature or attribute of 
 
 The following are the main steps of the image retrieval process using Multimodal embeddings.
 
-:::image type="content" source="media/image-retrieval.png" alt-text="Diagram of image retrieval process.":::
+:::image type="content" source="media/image-retrieval.png" alt-text="Diagram of the multimodal embedding / image retrieval process.":::
 
 1. Vectorize Images and Text: the Multimodal embeddings APIs, **VectorizeImage** and **VectorizeText**, can be used to extract feature vectors out of an image or text respectively. The APIs return a single feature vector representing the entire input.
    > [!NOTE]
    > Multimodal embedding does not do any biometric processing of human faces. For face detection and identification, see the [Azure AI Face service](./overview-identity.md).
-
 1. Measure similarity: Vector search systems typically use distance metrics, such as cosine distance or Euclidean distance, to compare vectors and rank them by similarity. The [Vision studio](https://portal.vision.cognitive.azure.com/) demo uses [cosine distance](./how-to/image-retrieval.md#calculate-vector-similarity) to measure similarity.  
 1. Retrieve Images: Use the top _N_ vectors similar to the search query and retrieve images corresponding to those vectors from your photo library to  provide as the final result.
 
 ### Relevance score 
 
-The image and video retrieval services return a field called "relevance." The term "relevance" denotes a measure of similarity score between a query and image or video frame embeddings. The relevance score is composed of two parts:
+The image and video retrieval services return a field called "relevance." The term "relevance" denotes a measure of similarity between a query and image or video frame embeddings. The relevance score is composed of two parts:
 1. The cosine similarity (that falls in the range of [0,1]) between the query and image or video frame embeddings.
 1. A metadata score, which reflects the similarity between the query and the metadata associated with the image or video frame.
 

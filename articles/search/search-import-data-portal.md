@@ -1,97 +1,160 @@
 ---
 title: Import wizards in Azure portal
 titleSuffix: Azure AI Search
-description: Learn about the import wizards in the Azure portal used to create and load an index, and optionally invoke applied AI for vectorization, natural language processing, translation, OCR, and image analysis.
+description: Learn about the import wizards in the Azure portal used to create and load an index, and optionally invoke applied AI for vectorization, natural language processing, language translation, OCR, and image analysis.
 author: HeidiSteen
 manager: nitinme
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
-  - ignite-2023
-ms.topic: conceptual
-ms.date: 07/01/2024
+  - ignite-2024
+ms.topic: concept-article
+ms.date: 11/20/2024
+customer intent: As a developer, I want to use wizards for index creation so that I can query the content quickly.
 ---
 
-# Import wizards in Azure AI Search
+# Import data wizards in the Azure portal
 
-Azure AI Search has two import wizards that automate indexing and object definitions so that you can begin querying immediately. If you're new to Azure AI Search, these wizards are one of the most powerful features at your disposal. With minimal effort, you can create an indexing or enrichment pipeline that exercises most of the functionality of Azure AI Search.
+Azure AI Search has two import wizards that automate indexing and object creation so that you can begin querying immediately. If you're new to Azure AI Search, these wizards are one of the most powerful features at your disposal. With minimal effort, you can create an indexing or enrichment pipeline that exercises most of the functionality of Azure AI Search.
 
-The **Import data wizard** supports nonvector workflows. You can extract alphanumeric text from raw documents. You can also configure applied AI and built-in skills that infer structure and generate text searchable content from image files and unstructured data.
++ **Import data wizard** supports nonvector workflows. You can extract text and numbers from raw documents. You can also configure applied AI and built-in skills that infer structure and generate text searchable content from image files and unstructured data.
 
-The **Import and vectorize data wizard** supports vectorization. You must specify an existing deployment of an embedding model, but the wizard makes the connection, formulates the request, and handles the response. It generates vector content from text or image content.
++ **Import and vectorize data wizard** adds chunking and vectorization. You must specify an existing deployment of an embedding model, but the wizard makes the connection, formulates the request, and handles the response. It generates vector content from text or image content.
 
 If you're using the wizard for proof-of-concept testing, this article explains the internal workings of the wizards so that you can use them more effectively.
 
-This article isn't a step by step. For help with using the wizard with built-in sample data see:
+This article isn't a step by step. For help with using the wizard with sample data see:
 
 + [Quickstart: Create a search index](search-get-started-portal.md)
-+ [Quickstart: Create a text translation and entity skillset](cognitive-search-quickstart-blob.md)
++ [Quickstart: Create a text translation and entity skillset](search-get-started-skillset.md)
 + [Quickstart: Create a vector index](search-get-started-portal-import-vectors.md)
 + [Quickstart: image search (vectors)](search-get-started-portal-image-search.md)
 
-## Starting the wizards
+## Supported data sources and scenarios
 
-In the [Azure portal](https://portal.azure.com), open the search service page from the dashboard or [find your service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in the service list. 
+The wizards support most of the data sources supported by indexers.
 
-In the service Overview page at the top, select **Import data** or **Import and vectorize data**.
+| Data | Import data wizard | Import and vectorize data wizard |
+|------|--------------------|----------------------------------|
+| [ADLS Gen2](search-howto-index-azure-data-lake-storage.md)  | ✅ | ✅ |
+| [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md) | ✅ | ✅ |
+| [Azure File Storage](search-file-storage-integration.md)  | ❌ | ❌ |
+| [Azure Table Storage](search-howto-indexing-azure-tables.md)  | ✅ | ✅ |
+| [Azure SQL database and managed instance](search-how-to-index-sql-database.md)  | ✅ | ✅ |
+| [Cosmos DB for NoSQL](search-howto-index-cosmosdb.md) | ✅ | ✅ |
+| [Cosmos DB for MongoDB](search-howto-index-cosmosdb-mongodb.md) | ✅ | ✅ |
+| [Cosmos DB for Apache Gremlin](search-howto-index-cosmosdb-gremlin.md) | ✅ | ✅ |
+| [MySQL](search-howto-index-mysql.md)  | ❌ | ❌ |
+| [OneLake](search-how-to-index-onelake-files.md)  | ✅ | ✅ |
+| [SharePoint Online](search-howto-index-sharepoint-online.md)  | ❌ | ❌ |
+| [SQL Server on virtual machines](search-how-to-index-sql-server.md)  | ✅ | ✅ |
 
-:::image type="content" source="media/search-import-data-portal/import-data-cmd.png" alt-text="Screenshot of the import wizard options on the action bar.":::
+### Sample data
 
-The wizards open fully expanded in the browser window so that you have more room to work. 
+Microsoft hosts sample data so that you can omit a data source configuration step on a wizard workflow.
 
-You can also launch **Import data** from other Azure services, including Azure Cosmos DB, Azure SQL Database, SQL Managed Instance, and Azure Blob Storage. Look for **Add Azure AI Search** in the left-navigation pane on the service overview page.
+| Sample data | Import data wizard | Import and vectorize data wizard |
+|------|--------------------|----------------------------------|
+| hotels | ✅ | ❌ |
+| real estate  | ✅ | ❌ |
 
-## Objects created by the wizard
+### Skills
 
-The wizard outputs the objects in the following table. After the objects are created, you can review their JSON definitions in the portal or call them from code.
+This section lists the skills that might appear in a skillset generated by a wizard. Wizards generate a skillset and output field mappings based on options you select. After the skillset is created, you can modify its JSON definition to add more skills.
 
-| Object | Description | 
+Here are some points to keep in mind about the skills in the following list:
+
++ OCR and image analysis options are available for blobs in Azure Storage and files in OneLake, assuming the default parsing mode. Images are either an image content type (such as PNG or JPG) or an embedded image in an application file (such as PDF).
++ Shaper is added if you configure a knowledge store.
++ Text Split and Text Merge are added for data chunking if you choose an embedding model. They are added for other non-embedding skills if the source field granularity is set to pages or sentences.
+
+| Skills | Import data wizard | Import and vectorize data wizard |
+|------|--------------------|----------------------------------|
+| [AI Vision multimodal](cognitive-search-skill-vision-vectorize.md)  | ❌ | ✅ |
+| [Azure OpenAI embedding](cognitive-search-skill-azure-openai-embedding.md)  | ❌ | ✅ |
+| [Azure Machine Learning (Azure AI Foundry model catalog)](cognitive-search-aml-skill.md)  | ❌ | ✅ |
+| [Document layout](cognitive-search-skill-document-intelligence-layout.md)  | ❌ | ✅ |
+| [Entity recognition](cognitive-search-skill-entity-recognition-v3.md)  | ✅ | ❌ |
+| [Image analysis (applies to blobs, default parsing, whole file indexing](cognitive-search-skill-image-analysis.md)  | ✅ | ❌ |
+| [Keyword extraction](cognitive-search-skill-keyphrases.md)  | ✅ | ❌ |
+| [Language detection](cognitive-search-skill-language-detection.md)  | ✅ | ❌ |
+| [Text translation](cognitive-search-skill-text-translation.md)  | ✅ | ❌ |
+| [OCR (applies to blobs, default parsing, whole file indexing)](cognitive-search-skill-ocr.md)  | ✅ | ✅ |
+| [PII detection](cognitive-search-skill-pii-detection.md)  | ✅ | ❌ |
+| [Sentiment analysis](cognitive-search-skill-sentiment.md)  | ✅ | ❌ |
+| [Shaper (applies to knowledge store)](cognitive-search-skill-shaper.md)  | ✅ | ❌ |
+| [Text Split](cognitive-search-skill-textsplit.md)  | ✅ | ✅ |
+| [Text Merge](cognitive-search-skill-textmerger.md)  | ✅ | ✅ |
+
+### Knowledge store
+
+You can [generate a knowledge store](knowledge-store-create-portal.md) for secondary storage of enriched (skills-generated) content. You might want a knowledge store for information retrieval workflows that don't require a search engine.
+
+| Knowledge store | Import data wizard | Import and vectorize data wizard |
+|------|--------------------|----------------------------------|
+| storage | ✅ | ❌ |
+
+## What the wizards create
+
+The import wizards create the objects described in the following table. After the objects are created, you can review their JSON definitions in the Azure portal or call them from code.
+
+To view these objects after the wizard runs:
+
+1. [Sign in to the Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+
+1. Select **Search management** on the menu to find pages for indexes, indexers, data sources, and skillsets.
+
+| Object | Description |
 |--------|-------------|
-| [Indexer](/rest/api/searchservice/create-indexer)  | A configuration object specifying a data source, target index, an optional skillset, optional schedule, and optional configuration settings for error handing and base-64 encoding. |
-| [Data Source](/rest/api/searchservice/create-data-source)  | Persists connection information to a [supported data source](search-indexer-overview.md#supported-data-sources) on Azure. A data source object is used exclusively with indexers. | 
-| [Index](/rest/api/searchservice/create-index) | Physical data structure used for full text search and other queries. | 
-| [Skillset](/rest/api/searchservice/skillsets/create) | Optional. A complete set of instructions for manipulating, transforming, and shaping content, including analyzing and extracting information from image files. Skillsets are also used for integrated vectorization. Unless the volume of work fall under the limit of 20 transactions per indexer per day, the skillset must include a reference to an Azure AI multiservice resource that provides enrichment. For integrated vectorization, you can use either Azure AI Vision or an embedding model in the Azure AI Studio model catalog. | 
-| [Knowledge store](knowledge-store-concept-intro.md) | Optional. Stores output from in tables and blobs in Azure Storage for independent analysis or downstream processing in nonsearch scenarios. |
+| [Indexer](/rest/api/searchservice/indexers/create)  | A configuration object specifying a data source, target index, an optional skillset, optional schedule, and optional configuration settings for error handing and base-64 encoding. |
+| [Data Source](/rest/api/searchservice/data-sources/create)  | Persists connection information to a [supported data source](search-indexer-overview.md#supported-data-sources) on Azure. A data source object is used exclusively with indexers. | 
+| [Index](/rest/api/searchservice/indexes/create) | Physical data structure used for full text search and other queries. | 
+| [Skillset](/rest/api/searchservice/skillsets/create) | Optional. A complete set of instructions for manipulating, transforming, and shaping content, including analyzing and extracting information from image files. Skillsets are also used for integrated vectorization. Unless the volume of work fall under the limit of 20 transactions per indexer per day, the skillset must include a reference to an Azure AI services multi-service resource that provides enrichment. For integrated vectorization, you can use either Azure AI Vision or an embedding model in the Azure AI Foundry model catalog. | 
+| [Knowledge store](knowledge-store-concept-intro.md) | Optional. Available only in the **Import data** wizard. Stores enriched skillset output from in tables and blobs in Azure Storage for independent analysis or downstream processing in nonsearch scenarios. |
 
 ## Benefits
 
 Before writing any code, you can use the wizards for prototyping and proof-of-concept testing. The wizards connect to external data sources, sample the data to create an initial index, and then import and optionally vectorize the data as JSON documents into an index on Azure AI Search. 
 
-If you're evaluating skillsets, the wizard handles output field mappings and adds helper functions to create usable objects. Text split is added if you specify a parsing mode. Text merge is added if you chose image analysis so that the wizard can reunite text descriptions with image content. Shaper skills added to support valid projections if you chose the knowledge store option. All of the above tasks come with a learning curve. If you're new to enrichment, the ability to have these steps handled for you allows you to measure the value of a skill without having to invest much time and effort.
+If you're evaluating skillsets, the wizard handles output field mappings and adds helper functions to create usable objects. Text split is added if you specify a parsing mode. Text merge is added if you chose image analysis so that the wizard can reunite text descriptions with image content. Shaper skills are added to support valid projections if you chose the knowledge store option. All of the above tasks come with a learning curve. If you're new to enrichment, the ability to have these steps handled for you allows you to measure the value of a skill without having to invest much time and effort.
 
 Sampling is the process by which an index schema is inferred, and it has some limitations. When the data source is created, the wizard picks a random sample of documents to decide what columns are part of the data source. Not all files are read, as this could potentially take hours for very large data sources. Given a selection of documents, source metadata, such as field name or type, is used to create a fields collection in an index schema. Depending on the complexity of source data, you might need to edit the initial schema for accuracy, or extend it for completeness. You can make your changes inline on the index definition page.
 
-Overall, the advantages of using the wizard are clear: as long as requirements are met, you can create a queryable index within minutes. Some of the complexities of indexing, such as serializing data as JSON documents, are handled by the wizard.
+Overall, the advantages of using the wizard are clear: as long as requirements are met, you can create a queryable index within minutes. Some of the complexities of indexing, such as serializing data as JSON documents, are handled by the wizards.
 
 ## Limitations
 
-The wizard isn't without limitations. Constraints are summarized as follows:
+The import wizards aren't without limitations. Constraints are summarized as follows:
 
-+ The wizard doesn't support iteration or reuse. Each pass through the wizard creates a new index, skillset, and indexer configuration. Only data sources can be persisted and reused within the wizard. To edit or refine other objects, either delete the objects and start over, or use the REST APIs or .NET SDK to modify the structures.
++ The wizards don't support iteration or reuse. Each pass through the wizard creates a new index, skillset, and indexer configuration. Only data sources can be persisted and reused within the wizard. To edit or refine other objects, either delete the objects and start over, or use the REST APIs or .NET SDK to modify the structures.
 
 + Source content must reside in a [supported data source](search-indexer-overview.md#supported-data-sources).
 
 + Sampling is over a subset of source data. For large data sources, it's possible for the wizard to miss fields. You might need to extend the schema, or correct the inferred data types, if sampling is insufficient.
 
-+ AI enrichment, as exposed in the portal, is limited to a subset of built-in skills. 
++ AI enrichment, as exposed in the Azure portal, is limited to a subset of built-in skills. 
 
-+ A [knowledge store](knowledge-store-concept-intro.md), which can be created by the wizard, is limited to a few default projections and uses a default naming convention. If you want to customize names or projections, you'll need to create the knowledge store through REST API or the SDKs.
++ A [knowledge store](knowledge-store-concept-intro.md), which can be created by the **Import data** wizard, is limited to a few default projections and uses a default naming convention. If you want to customize names or projections, you'll need to create the knowledge store through REST API or the SDKs.
 
 ## Secure connections
 
-The import wizards make outbound connections using the portal controller and public endpoints. You can't use the wizards if Azure resources are accessed over a private connection or through a shared private link. 
+The import wizards make outbound connections using the Azure portal controller and public endpoints. You can't use the wizards if Azure resources are accessed over a private connection or through a shared private link. 
 
 You can use the wizards over restricted public connections, but not all functionality is available.
 
 + On a search service, importing the built-in sample data requires a public endpoint and no firewall rules.
 
-  Sample data is hosted by Microsoft on specific Azure resources. The portal controller connects to those resources over a public endpoint. If you put your search service behind a firewall, you get this error when attempting to retrieve the builtin sample data: `Import configuration failed, error creating Data Source`, followed by `"An error has occured."`.
+  Sample data is hosted by Microsoft on specific Azure resources. the Azure portal controller connects to those resources over a public endpoint. If you put your search service behind a firewall, you get this error when attempting to retrieve the builtin sample data: `Import configuration failed, error creating Data Source`, followed by `"An error has occured."`.
 
 + On supported Azure data sources protected by firewalls, you can retrieve data if you have the right firewall rules in place. 
 
   The Azure resource must admit network requests from the IP address of the device used on the connection. You should also list Azure AI Search as a trusted service on the resource's network configuration. For example, in Azure Storage, you can list `Microsoft.Search/searchServices` as a trusted service.
 
-+ On connections to an Azure AI multiservice account that you provide, or on connections to embedding models deployed in Azure AI Studio or Azure OpenAI, public internet access must be enabled. These Azure resources are called when you use built-in skills in the **Import data** wizard or integrated vectorization in the **Import and vectorize data** wizard.
++ On connections to an Azure AI services multi-service account that you provide, or on connections to embedding models deployed in [Azure AI Foundry portal](https://ai.azure.com/) or Azure OpenAI, public internet access must be enabled unless your search service meets the creation date, tier, and region requirements for private connections. For more information about these requirements, see [Make outbound connections through a shared private link](search-indexer-howto-access-private.md).
+
+  Connections to Azure AI services multi-service are for [billing purposes](cognitive-search-attach-cognitive-services.md). Billing occurs when API calls exceed the free transaction count (20 per indexer run) for built-in skills called by the **Import data** wizard or integrated vectorization in the **Import and vectorize data** wizard. 
+
+  If Azure AI Search can't connect:
 
   + In the **Import and vectorize data** wizard, the error is `"Access denied due to Virtual Network/Firewall rules."`
 
@@ -107,11 +170,31 @@ The wizard is organized into four main steps:
 
 1. Create an index schema, inferred by sampling source data.
 
-1. Optionally, add applied AI to extract or generate content and structure. Inputs for creating a knowledge store are collected in this step.
+1. Optionally, it adds skills to extract or generate content and structure. Inputs for creating a knowledge store are collected in this step.
 
 1. Run the wizard to create objects, optionally vectorize data, load data into an index, set a schedule and other configuration options.
 
 The workflow is a pipeline, so it's one way. You can't use the wizard to edit any of the objects that were created, but you can use other portal tools, such as the index or indexer designer or the JSON editors, for allowed updates.
+
+### Starting the wizards
+
+Here's how you start the wizards.
+
+1. In the [Azure portal](https://portal.azure.com), open the search service page from the dashboard or [find your service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in the service list. 
+
+1. In the service Overview page at the top, select **Import data** or **Import and vectorize data**.
+
+    :::image type="content" source="media/search-import-data-portal/import-data-cmd.png" alt-text="Screenshot of the import wizard options." border="true":::
+
+    The wizards open fully expanded in the browser window so that you have more room to work.
+
+1. If you selected **Import data**, you can select the **Samples** option to index a Microsoft-hosted dataset from a supported data source.
+
+    :::image type="content" source="media/search-what-is-an-index/add-index-import-samples.png" alt-text="Screenshot of the import data page with the samples option selected." border="true":::
+
+1. Follow the remaining steps in the wizard to create the index and indexer.
+
+You can also launch **Import data** from other Azure services, including Azure Cosmos DB, Azure SQL Database, SQL Managed Instance, and Azure Blob Storage. Look for **Add Azure AI Search** in the left-navigation pane on the service overview page.
 
 <a name="data-source-inputs"></a>
 
@@ -145,13 +228,13 @@ Because sampling is an imprecise exercise, review the index for the following co
 
 1. Is the field list accurate? If your data source contains fields that weren't picked up in sampling, you can manually add any new fields that sampling missed, and remove any that don't add value to a search experience or that won't be used in a [filter expression](search-query-odata-filter.md) or [scoring profile](index-add-scoring-profiles.md).
 
-1. Is the data type appropriate for the incoming data? Azure AI Search supports the [entity data model (EDM) data types](/rest/api/searchservice/supported-data-types). For Azure SQL data, there's [mapping chart](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md#TypeMapping) that lays out equivalent values. For more background, see [Field mappings and transformations](search-indexer-field-mappings.md).
+1. Is the data type appropriate for the incoming data? Azure AI Search supports the [entity data model (EDM) data types](/rest/api/searchservice/supported-data-types). For Azure SQL data, there's [mapping chart](search-how-to-index-sql-database.md#TypeMapping) that lays out equivalent values. For more background, see [Field mappings and transformations](search-indexer-field-mappings.md).
 
 1. Do you have one field that can serve as the *key*? This field must be Edm.string and it must uniquely identify a document. For relational data, it might be mapped to a primary key. For blobs, it might be the `metadata-storage-path`. If field values include spaces or dashes, you must set the **Base-64 Encode Key** option in the **Create an Indexer** step, under **Advanced options**, to suppress the validation check for these characters.
 
 1. Set attributes to determine how that field is used in an index. 
 
-   Take your time with this step because attributes determine the physical expression of fields in the index. If you want to change attributes later, even programmatically, you'll almost always need to drop and rebuild the index. Core attributes like **Searchable** and **Retrievable** have a [negligible impact on storage](search-what-is-an-index.md#index-size). Enabling filters and using suggesters increase storage requirements. 
+   Take your time with this step because attributes determine the physical expression of fields in the index. If you want to change attributes later, even programmatically, you'll almost always need to drop and rebuild the index. Core attributes like **Searchable** and **Retrievable** have a [negligible effect on storage](search-what-is-an-index.md#index-size). Enabling filters and using suggesters increase storage requirements. 
 
    + **Searchable** enables full-text search. Every field used in free form queries or in query expressions must have this attribute. Inverted indexes are created for each field that you mark as **Searchable**.
 
@@ -165,7 +248,7 @@ Because sampling is an imprecise exercise, review the index for the following co
 
 1. Do you need [lexical analysis](search-lucene-query-architecture.md#stage-2-lexical-analysis)? For Edm.string fields that are **Searchable**, you can set an **Analyzer** if you want language-enhanced indexing and querying. 
 
-   The default is *Standard Lucene* but you could choose *Microsoft English* if you wanted to use Microsoft's analyzer for advanced lexical processing, such as resolving irregular noun and verb forms. Only language analyzers can be specified in the portal. If you use a custom analyzer or a non-language analyzer like Keyword, Pattern, and so forth, you must create it programmatically. For more information about analyzers, see [Add language analyzers](search-language-support.md).
+   The default is *Standard Lucene* but you could choose *Microsoft English* if you wanted to use Microsoft's analyzer for advanced lexical processing, such as resolving irregular noun and verb forms. Only language analyzers can be specified in the Azure portal. If you use a custom analyzer or a non-language analyzer like Keyword, Pattern, and so forth, you must create it programmatically. For more information about analyzers, see [Add language analyzers](search-language-support.md).
 
 1. Do you need typeahead functionality in the form of autocomplete or suggested results? Select the **Suggester** the checkbox to enable [typeahead query suggestions and autocomplete](index-add-suggesters.md) on selected fields. Suggesters add to the number of tokenized terms in your index, and thus consume more storage.
 
@@ -178,9 +261,11 @@ Internally, the wizard also sets up the following definitions, which aren't visi
 + [field mappings](search-indexer-field-mappings.md) between the data source and index
 + [output field mappings](cognitive-search-output-field-mapping.md) between skill output and an index
 
-## Next steps
+## Try the wizards
 
-The best way to understand the benefits and limitations of the wizard is to step through it. Here's a quickstart that explains each step.
+The best way to understand the benefits and limitations of the wizard is to step through it. Here are some quickstarts that are based on the wizard.
 
-> [!div class="nextstepaction"]
-> [Quickstart: Create a search index using the Azure portal](search-get-started-portal.md)
++ [Quickstart: Create a search index](search-get-started-portal.md)
++ [Quickstart: Create a text translation and entity skillset](search-get-started-skillset.md)
++ [Quickstart: Create a vector index](search-get-started-portal-import-vectors.md)
++ [Quickstart: image search (vectors)](search-get-started-portal-image-search.md)

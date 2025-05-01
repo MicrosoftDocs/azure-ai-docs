@@ -6,7 +6,7 @@ ms.service: azure-ai-language
 author: PatrickFarley
 ms.author: pafarley
 ms.topic: how-to
-ms.date: 12/19/2023
+ms.date: 11/21/2024
 ---
 
 # Use smart URL refresh with a project
@@ -26,7 +26,7 @@ This functionality is provided to support scenarios where the content in the sou
 If you have a project with a URL source that has changed, you can trigger a smart URL refresh to keep your project up to date. The service will scan the URL for updated content and generate QnA pairs. It will add any new QnA pairs to your project and also delete any pairs that have disappeared from the source (with exceptions&mdash;see below). It also merges old and new QnA pairs in some situations (see below).
 
 > [!IMPORTANT]
-> Because smart URL refresh can involve deleting old content from your project, you may want to [create a backup](./export-import-refresh.md) of your project before you do any refresh operations.
+> Because smart URL refresh can involve deleting old content from your project, you might want to [create a backup](./export-import-refresh.md) of your project before you do any refresh operations.
 
 You can trigger a URL refresh in Language Studio by opening your project, selecting the source in the **Manage sources** list, and selecting **Refresh URL**.
 
@@ -64,14 +64,14 @@ See the following example of a merge operation with differing questions and prom
 
 |Source iteration|Question  |Answer  |Prompts  |
 |---------|---------|---------|--|
-|old |"What is the new HR policy?"     |  "You may have to choose among the following options:"       | P1, P2        |
-|new |"What is the new payroll policy?"    |  "You may have to choose among the following options:"    |  P3, P4   |
+|old |"What is the new HR policy?"     |  "You might have to choose among the following options:"       | P1, P2        |
+|new |"What is the new payroll policy?"    |  "You might have to choose among the following options:"    |  P3, P4   |
 
-The prompts P1 and P2 come from the original source and are different from prompts P3 and P4 of the new QnA pair. They both have the same answer, `You may have to choose among the following options:`, but it leads to different prompts. In this case, the resulting QnA pair would look like this:
+The prompts P1 and P2 come from the original source and are different from prompts P3 and P4 of the new QnA pair. They both have the same answer, `You might have to choose among the following options:`, but it leads to different prompts. In this case, the resulting QnA pair would look like this:
 
 |Question  |Answer  |Prompts  |
 |---------|---------|--|
-|"What is the new HR policy?" </br>(alternate question: "What is the new payroll policy?")    |  "You may have to choose among the following options:"       | P3, P4  |
+|"What is the new HR policy?" </br>(alternate question: "What is the new payroll policy?")    |  "You might have to choose among the following options:"       | P3, P4  |
 
 #### Duplicate answers scenario
 

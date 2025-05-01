@@ -4,9 +4,9 @@ titleSuffix: Azure AI Search
 description: Evaluates text and, for each record, returns text translated to the specified target language in an  AI enrichment pipeline in Azure AI Search.
 
 manager: nitinme
-author: careyjmac
-ms.author: chalton
-ms.service: cognitive-search
+author: gmndrg
+ms.author: gimondra
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
@@ -17,7 +17,7 @@ ms.date: 09/19/2022
 
 The **Text Translation** skill evaluates text and, for each record, returns the text translated to the specified target language. This skill uses the [Translator Text API v3.0](/azure/ai-services/translator/reference/v3-0-translate) available in Azure AI services.
 
-This capability is useful if you expect that your documents may not all be in one language, in which case you can normalize the text to a single language before indexing for search by translating it.  It's also useful for localization use cases, where you may want to have copies of the same text available in multiple languages.
+This capability is useful if you expect that your documents may not all be in one language, in which case you can normalize the text to a single language before indexing for search by translating it.  It's also useful for localization use cases, where you might want to have copies of the same text available in multiple languages.
 
 The [Translator Text API v3.0](/azure/ai-services/translator/reference/v3-0-reference) is a non-regional Azure AI service, meaning that your data isn't guaranteed to stay in the same region as your Azure AI Search or attached Azure AI services resource.
 

@@ -1,14 +1,14 @@
 ---
-title: 'Quickstart: Use the OpenAI Service via the JavaScript SDK'
+title: 'Quickstart: Use the Azure OpenAI Service via the JavaScript SDK'
 titleSuffix: Azure OpenAI Service
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the JavaScript SDK. 
 manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+author: aahill
+ms.author: aahi
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 05/30/2024
-ms.custom: passwordless-js, devex-track-javascript
+ms.date: 10/28/2024
+ms.custom: passwordless-ts, devex-track-js
 ---
 
 <a href="/javascript/api/@azure/openai-assistants" target="_blank">Reference documentation</a> | <a href="https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai" target="_blank">Library source code</a> | <a href="https://www.npmjs.com/package/@azure/openai-assistants" target="_blank">Package (npm)</a> |
@@ -16,80 +16,57 @@ ms.custom: passwordless-js, devex-track-javascript
 ## Prerequisites
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>
-- <a href="https://nodejs.org/" target="_blank">Node.js LTS with TypeScript or ESM support.</a>
+- <a href="https://nodejs.org/" target="_blank">Node.js LTS or ESM support.</a>
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI. 
 - An Azure OpenAI resource with a [compatible model in a supported region](../concepts/models.md#assistants-preview).
 - We recommend reviewing the [Responsible AI transparency note](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=text) and other [Responsible AI resources](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) to familiarize yourself with the capabilities and limitations of the Azure OpenAI Service.
 - An Azure OpenAI resource with the `gpt-4 (1106-preview)` model deployed was used testing this example. 
 
-## Passwordless authentication is recommended
+### Microsoft Entra ID prerequisites
 
-For passwordless authentication, you need to 
-
-1. Use the `@azure/identity` package.
-1. Assign the `Cognitive Services User` role to your user account. This can be done in the Azure portal under **Access control (IAM)** > **Add role assignment**.
-1. Sign in with the Azure CLI such as `az login`.
+For the recommended keyless authentication with Microsoft Entra ID, you need to:
+- Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
+- Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
 ## Set up
+ 
+1. Create a new folder `assistants-quickstart` and go to the quickstart folder with the following command:
 
-1. Install the OpenAI Assistants client library for JavaScript with:
+    ```shell
+    mkdir assistants-quickstart && cd assistants-quickstart
+    ```
+    
+
+1. Create the `package.json` with the following command:
+
+    ```shell
+    npm init -y
+    ```   
+
+1. Install the OpenAI client library for JavaScript with:
 
     ```console
     npm install openai
     ```
 
-2. For the **recommended** passwordless authentication:
+1. For the **recommended** passwordless authentication:
 
     ```console
     npm install @azure/identity
     ```
 
-## Retrieve key and endpoint
 
-To successfully make a call against the Azure OpenAI service, you'll need the following:
+## Retrieve resource information
 
-|Variable name | Value |
-|--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys and Endpoint** section when examining your resource from the Azure portal. Alternatively, you can find the value in **Azure OpenAI Studio** > **Playground** > **View code**. An example endpoint is: `https://docs-test-001.openai.azure.com/`.|
-| `API-KEY` | This value can be found in the **Keys and Endpoint** section when examining your resource from the Azure portal. You can use either `KEY1` or `KEY2`.|
-| `DEPLOYMENT-NAME` | This value will correspond to the custom name you chose for your deployment when you deployed a model. This value can be found under **Resource Management** > **Model Deployments** in the Azure portal or alternatively under **Management** > **Deployments** in Azure OpenAI Studio.|
+[!INCLUDE [resource authentication](resource-authentication.md)]
 
-Go to your resource in the Azure portal. The **Keys and Endpoint** can be found in the **Resource Management** section. Copy your endpoint and access key as you'll need both for authenticating your API calls. You can use either `KEY1` or `KEY2`. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption.
+> [!CAUTION]
+> To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
 
-:::image type="content" source="../media/quickstarts/endpoint.png" alt-text="Screenshot of the overview blade for an OpenAI Resource in the Azure portal with the endpoint & access keys location circled in red." lightbox="../media/quickstarts/endpoint.png":::
-
-[!INCLUDE [environment-variables](environment-variables.md)]
-
-Add additional environment variables for the deployment name and API version: 
-* `AZURE_OPENAI_DEPLOYMENT_NAME`: Your deployment name as shown in the Azure portal.
-* `OPENAI_API_VERSION`: Learn more about [API Versions](/azure/ai-services/openai/concepts/model-versions).
-
-# [Command Line](#tab/command-line)
-
-```cmd
-setx AZURE_OPENAI_DEPLOYMENT_NAME "REPLACE_WITH_YOUR_DEPLOYMENT_NAME" 
-setx OPENAI_API_VERSION "REPLACE_WITH_YOUR_API_VERSION" 
-```
-
-# [PowerShell](#tab/powershell)
-
-```powershell
-[System.Environment]::SetEnvironmentVariable('AZURE_OPENAI_DEPLOYMENT_NAME', 'REPLACE_WITH_YOUR_DEPLOYMENT_NAME', 'User')
-[System.Environment]::SetEnvironmentVariable('OPENAI_API_VERSION', 'REPLACE_WITH_YOUR_API_VERSION', 'User')
-```
-
-# [Bash](#tab/bash)
-
-```bash
-export AZURE_OPENAI_DEPLOYMENT_NAME="REPLACE_WITH_YOUR_DEPLOYMENT_NAME"
-export OPENAI_API_VERSION="REPLACE_WITH_YOUR_API_VERSION"
-```
-
----
 
 ## Create an assistant
 
-In our code we are going to specify the following values:
+In our code we're going to specify the following values:
 
 | **Name** | **Description** |
 |:---|:---|
@@ -100,30 +77,208 @@ In our code we are going to specify the following values:
 
 ### Tools
 
-An individual assistant can access up to 128 tools including `code interpreter`, as well as any custom tools you create via [functions](../how-to/assistant-functions.md).
+An individual assistant can access up to 128 tools including `code interpreter`, and any custom tools you create via [functions](../how-to/assistant-functions.md).
+    
+## Create a new JavaScript application
 
-#### [TypeScript](#tab/typescript)
+#### [Microsoft Entra ID](#tab/keyless)
 
-Sign in to Azure with `az login` then create and run an assistant with the following **recommended** passwordless TypeScript module (index.ts):
+1. Create the `index.js` file with the following code:
 
-:::code language="typescript" source="~/azure-typescript-e2e-apps/quickstarts/azure-openai-assistants/ts/src/index.ts" :::
+    ```javascript
+    const { AzureOpenAI } = require("openai");
+    const {
+      DefaultAzureCredential,
+      getBearerTokenProvider,
+    } = require("@azure/identity");
+    
+    // Get environment variables
+    const azureOpenAIEndpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
+    const azureOpenAIDeployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "Your deployment name";
+    const azureOpenAIVersion = process.env.OPENAI_API_VERSION || "A supported API version";
+    
+    // Check env variables
+    if (!azureOpenAIEndpoint || !azureOpenAIDeployment || !azureOpenAIVersion) {
+      throw new Error(
+        "You need to set the endpoint, deployment name, and API version."
+      );
+    }
+    
+    // Get Azure SDK client
+    const getClient = () => {
+      const credential = new DefaultAzureCredential();
+      const scope = "https://cognitiveservices.azure.com/.default";
+      const azureADTokenProvider = getBearerTokenProvider(credential, scope);
 
-To use the service key for authentication, you can create and run an assistant with the following TypeScript module (index.ts):
+      const assistantsClient = new AzureOpenAI({
+        endpoint: azureOpenAIEndpoint,
+        apiVersion: azureOpenAIVersion,
+        azureADTokenProvider,
+      });
+      return assistantsClient;
+    };
+    
+    const assistantsClient = getClient();
+    
+    const options = {
+      model: azureOpenAIDeployment, // Deployment name seen in Azure AI Foundry portal
+      name: "Math Tutor",
+      instructions:
+        "You are a personal math tutor. Write and run JavaScript code to answer math questions.",
+      tools: [{ type: "code_interpreter" }],
+    };
+    const role = "user";
+    const message = "I need to solve the equation `3x + 11 = 14`. Can you help me?";
+    
+    // Create an assistant
+    const assistantResponse = await assistantsClient.beta.assistants.create(
+      options
+    );
+    console.log(`Assistant created: ${JSON.stringify(assistantResponse)}`);
+    
+    // Create a thread
+    const assistantThread = await assistantsClient.beta.threads.create({});
+    console.log(`Thread created: ${JSON.stringify(assistantThread)}`);
+    
+    // Add a user question to the thread
+    const threadResponse = await assistantsClient.beta.threads.messages.create(
+      assistantThread.id,
+      {
+        role,
+        content: message,
+      }
+    );
+    console.log(`Message created:  ${JSON.stringify(threadResponse)}`);
+    
+    // Run the thread and poll it until it is in a terminal state
+    const runResponse = await assistantsClient.beta.threads.runs.createAndPoll(
+      assistantThread.id,
+      {
+        assistant_id: assistantResponse.id,
+      },
+      { pollIntervalMs: 500 }
+    );
+    console.log(`Run created:  ${JSON.stringify(runResponse)}`);
+    
+    // Get the messages
+    const runMessages = await assistantsClient.beta.threads.messages.list(
+      assistantThread.id
+    );
+    for await (const runMessageDatum of runMessages) {
+      for (const item of runMessageDatum.content) {
+        // types are: "image_file" or "text"
+        if (item.type === "text") {
+          console.log(`Message content: ${JSON.stringify(item.text?.value)}`);
+        }
+      }
+    }
+    ```
 
-:::code language="typescript" source="~/azure-typescript-e2e-apps/quickstarts/azure-openai-assistants/ts/src/index-using-password.ts" :::
+1. Sign in to Azure with the following command:
 
-#### [JavaScript](#tab/javascript)
+    ```shell
+    az login
+    ```
 
-Sign in to Azure with `az login` then create and run an assistant with the following **recommended** passwordless JavaScript module (index.mjs):
+1. Run the JavaScript file.
 
-:::code language="javascript" source="~/azure-typescript-e2e-apps/quickstarts/azure-openai-assistants/js/src/index.mjs" :::
+    ```shell
+    node index.js
+    ```
 
-To use the service key for authentication, you can create and run an assistant with the following JavaScript module (index.mjs):
+#### [API key](#tab/api-key)
 
-:::code language="javascript" source="~/azure-typescript-e2e-apps/quickstarts/azure-openai-assistants/js/src/index-using-password.mjs" :::
+1. Create the `index.js` file with the following code:
 
+    ```javascript
+    const { AzureOpenAI } = require("openai");
+    
+    // Get environment variables
+    const azureOpenAIKey = process.env.AZURE_OPENAI_KEY || "Your API key";
+    const azureOpenAIEndpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
+    const azureOpenAIDeployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "Your deployment name";
+    const azureOpenAIVersion = process.env.OPENAI_API_VERSION || "A supported API version";
+    
+    // Check env variables
+    if (!azureOpenAIKey || !azureOpenAIEndpoint || !azureOpenAIDeployment || !azureOpenAIVersion) {
+      throw new Error(
+        "You need to set the endpoint, deployment name, and API version."
+      );
+    }
+    
+    // Get Azure SDK client
+    const getClient = () => {
+      const assistantsClient = new AzureOpenAI({
+        endpoint: azureOpenAIEndpoint,
+        apiVersion: azureOpenAIVersion,
+        apiKey: azureOpenAIKey,
+      });
+      return assistantsClient;
+    };
+    
+    const assistantsClient = getClient();
+    
+    const options = {
+      model: azureOpenAIDeployment, // Deployment name seen in Azure AI Foundry portal
+      name: "Math Tutor",
+      instructions:
+        "You are a personal math tutor. Write and run JavaScript code to answer math questions.",
+      tools: [{ type: "code_interpreter" }],
+    };
+    const role = "user";
+    const message = "I need to solve the equation `3x + 11 = 14`. Can you help me?";
+    
+    // Create an assistant
+    const assistantResponse = await assistantsClient.beta.assistants.create(
+      options
+    );
+    console.log(`Assistant created: ${JSON.stringify(assistantResponse)}`);
+    
+    // Create a thread
+    const assistantThread = await assistantsClient.beta.threads.create({});
+    console.log(`Thread created: ${JSON.stringify(assistantThread)}`);
+    
+    // Add a user question to the thread
+    const threadResponse = await assistantsClient.beta.threads.messages.create(
+      assistantThread.id,
+      {
+        role,
+        content: message,
+      }
+    );
+    console.log(`Message created:  ${JSON.stringify(threadResponse)}`);
+    
+    // Run the thread and poll it until it is in a terminal state
+    const runResponse = await assistantsClient.beta.threads.runs.createAndPoll(
+      assistantThread.id,
+      {
+        assistant_id: assistantResponse.id,
+      },
+      { pollIntervalMs: 500 }
+    );
+    console.log(`Run created:  ${JSON.stringify(runResponse)}`);
+    
+    // Get the messages
+    const runMessages = await assistantsClient.beta.threads.messages.list(
+      assistantThread.id
+    );
+    for await (const runMessageDatum of runMessages) {
+      for (const item of runMessageDatum.content) {
+        // types are: "image_file" or "text"
+        if (item.type === "text") {
+          console.log(`Message content: ${JSON.stringify(item.text?.value)}`);
+        }
+      }
+    }
+    ```
 
---- 
+1. Run the JavaScript file.
+
+    ```shell
+    node index.js
+    ```
+
+---
 
 ## Output
 
@@ -138,7 +293,7 @@ Message content: "Yes, of course! To solve the equation \\( 3x + 11 = 14 \\), we
 Message content: "I need to solve the equation `3x + 11 = 14`. Can you help me?"
 ```
 
-It is important to remember that while the code interpreter gives the model the capability to respond to more complex queries by converting the questions into code and running that code iteratively in JavaScript until it reaches a solution, you still need to validate the response to confirm that the model correctly translated your question into a valid representation in code.
+It's important to remember that while the code interpreter gives the model the capability to respond to more complex queries by converting the questions into code and running that code iteratively in JavaScript until it reaches a solution, you still need to validate the response to confirm that the model correctly translated your question into a valid representation in code.
 
 ## Clean up resources
 

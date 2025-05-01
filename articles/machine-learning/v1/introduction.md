@@ -18,6 +18,10 @@ ms.custom: UpdateFrequency5, cliv1
 
 [!INCLUDE [dev v1](../includes/machine-learning-dev-v1.md)]
 
+[!INCLUDE [cli-version-info](../includes/machine-learning-cli-v1-deprecation.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 
 All articles in this section document the use of the first version of Azure Machine Learning Python SDK (v1) or Azure CLI ml extension (v1). For information on the current SDK and CLI, see [Azure Machine Learning SDK and CLI v2](../concept-v2.md).
 

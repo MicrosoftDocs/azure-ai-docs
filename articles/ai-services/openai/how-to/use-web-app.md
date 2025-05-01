@@ -7,23 +7,25 @@ ms.service: azure-ai-openai
 ms.topic: how-to
 author: aahill
 ms.author: aahi
-ms.date: 08/09/2024
+ms.date: 02/19/2025
 recommendations: false
 ---
 
 
 # Use the Azure OpenAI web app
 
-Along with Azure AI Studio, Azure OpenAI Studio, APIs, and SDKs, you can use the customizable standalone web app to interact with Azure OpenAI models by using a graphical user interface. Key features include:
+> [!NOTE]
+> The web app and its [source code](https://github.com/microsoft/sample-app-aoai-chatGPT) are provided "as is" and as a sample only. Customers are responsible for all customization and implementation of their web apps. See the support section for the web app on [GitHub](https://github.com/microsoft/sample-app-aoai-chatGPT/blob/main/SUPPORT.md) for more information.
+
+Along with [Azure AI Foundry portal](https://ai.azure.com/), APIs, and SDKs, you can use the customizable standalone web app to interact with Azure OpenAI models by using a graphical user interface. Key features include:
 * Connectivity with multiple data sources to support rich querying and retrieval-augmented generation, including Azure AI Search, Prompt Flow, and more.
 * Conversation history and user feedback collection through Cosmos DB.
 * Authentication with role-based access control via Microsoft Entra ID.
 * Customization of the user interface, data sources, and features using environment variables (no-code via Azure portal).
-* Support for modifying the underlying web application source code as an open-source repository. 
 
-You can deploy the app by using either [Azure AI Studio](/azure/ai-studio/tutorials/deploy-chat-web-app) or [Azure OpenAI Studio](/azure/ai-services/openai/use-your-data-quickstart), or through a manual deployment through the Azure portal or the Azure Developer CLI via your local machine [(instructions available at the repository here)](https://github.com/microsoft/sample-app-aoai-chatGPT). Depending on your deployment channel, you can preload a data source to chat with via the web application, but this can be changed after deployment. 
+You can deploy the app via the [Azure AI Foundry portal](/azure/ai-foundry/tutorials/deploy-chat-web-app), the [Azure portal](https://portal.azure.com), or the Azure Developer CLI via your local machine [(instructions available at the repository here)](https://github.com/microsoft/sample-app-aoai-chatGPT). Depending on your deployment channel, you can preload a data source to chat with via the web application, but this can be changed after deployment. 
 
-For Azure OpenAI beginners aspiring to chat with their data through the web application, [Azure AI Studio](/azure/ai-studio/tutorials/deploy-chat-web-app) is the recommended medium for initial deployment and data source configuration.
+For Azure OpenAI beginners aspiring to chat with their data through the web application, [Azure AI Foundry portal](/azure/ai-foundry/tutorials/deploy-chat-web-app) is the recommended medium for initial deployment and data source configuration.
 
 ![Screenshot that shows the web app interface.](../media/use-your-data/web-app.png)
 
@@ -58,8 +60,6 @@ When you're customizing the app, we recommend:
 - Clearly communicating how each setting that you implement affects the user experience.
 
 - Updating the app settings for each of your deployed apps to use new API keys after you rotate keys for your Azure OpenAI or Azure AI Search resource.
-
-Sample source code for the web app is available on [GitHub](https://github.com/microsoft/sample-app-aoai-chatGPT). Source code is provided "as is" and as a sample only. Customers are responsible for all customization and implementation of their web apps.
 
 ## Modifying the application user interface
 
@@ -119,9 +119,9 @@ To modify the application user interface, follow the instructions in the previou
 
 You can turn on chat history for your users of the web app. When you turn on the feature, users have access to their individual previous queries and responses.
 
-To turn on chat history, deploy or redeploy your model as a web app by using [Azure OpenAI Studio](https://oai.azure.com/portal) or [Azure AI Studio](https://ai.azure.com/) and select **Enable chat history and user feedback in the web app**.
+To turn on chat history, deploy or redeploy your model as a web app by using [Azure AI Foundry portal](https://ai.azure.com/) and select **Enable chat history and user feedback in the web app**.
 
-:::image type="content" source="../media/use-your-data/enable-chat-history.png" alt-text="Screenshot of the checkbox for enabling chat history in Azure OpenAI or Azure AI Studio." lightbox="../media/use-your-data/enable-chat-history.png":::
+:::image type="content" source="../media/use-your-data/enable-chat-history.png" alt-text="Screenshot of the checkbox for enabling chat history in Azure OpenAI or Azure AI Foundry." lightbox="../media/use-your-data/enable-chat-history.png":::
 
 > [!IMPORTANT]
 > Turning on chat history creates an [Azure Cosmos DB](/azure/cosmos-db/introduction) instance in your resource group, and it incurs [additional charges](https://azure.microsoft.com/pricing/details/cosmos-db/autoscale-provisioned/) for the storage that you use beyond any free tiers.
@@ -164,13 +164,9 @@ This can be accomplished using the Advanced edit or simple Edit options as previ
 
 ## Connecting to Azure AI Search and uploaded files as a data source
 
-### Using Azure AI Studio
+### Using Azure AI Foundry portal
 
-Follow [this tutorial on integrating Azure AI Search with AI Studio](/azure/ai-studio/tutorials/deploy-chat-web-app#add-your-data-and-try-the-chat-model-again) and redeploy your application.
-
-### Using Azure OpenAI Studio
-
-Follow [this tutorial on integrating Azure AI Search with OpenAI Studio](/azure/ai-services/openai/use-your-data-quickstart#add-your-data-using-azure-openai-studio) and redeploy your application.
+Follow [this tutorial on integrating Azure AI Search with Azure AI Foundry](/azure/ai-foundry/tutorials/deploy-chat-web-app#add-your-data-and-try-the-chat-model-again) or [quickstart](/azure/ai-services/openai/use-your-data-quickstart#add-your-data) and redeploy your application.
 
 ### Using environment variables
 
@@ -181,7 +177,7 @@ To connect to Azure AI Search without redeploying your app, you can modify the f
     - Data type: text
 - `AZURE_SEARCH_INDEX`: This is the name of your Azure AI Search instance's index name.
     - Data type: text
-- `AZURE_SEARCH_KEY`: This is the authentication key of your Azure AI Search instance. Optional if using Microsoft Entra ID for authentication.
+- `AZURE_SEARCH_KEY`: This is the authentication key of your Azure AI Search instance. Optional if using the recommended Microsoft Entra ID for authentication.
     - Data type: text
 
 ### Further customization scenarios using environment variables
@@ -195,15 +191,15 @@ To connect to Azure AI Search without redeploying your app, you can modify the f
 - `AZURE_SEARCH_ENABLE_IN_DOMAIN`: Limits responses to queries related only to your data.
     - Data type: boolean, should be set to `True`.
 - `AZURE_SEARCH_CONTENT_COLUMNS`: Specifies the list of fields in your Azure AI Search index that contain the text content of your documents, used when formulating a bot response.
-    - Data type: text, defaults to `content` if deployed from Azure AI Studio or Azure OpenAI Studio,
+    - Data type: text, defaults to `content` if deployed from [Azure AI Foundry portal](https://ai.azure.com/),
 - `AZURE_SEARCH_FILENAME_COLUMN`: Specifies the field from your Azure AI Search index that provides a unique identifier of the source data to display in the UI.
-    - Data type: text, defaults to `filepath` if deployed from Azure AI Studio or Azure OpenAI Studio,
+    - Data type: text, defaults to `filepath` if deployed from [Azure AI Foundry portal](https://ai.azure.com/),
 - `AZURE_SEARCH_TITLE_COLUMN`: Specifies the field from your Azure AI Search index that provides a relevant title or header for your data content to display in the UI.
-    - Data type: text, defaults to `title` if deployed from Azure AI Studio or Azure OpenAI Studio,
+    - Data type: text, defaults to `title` if deployed from [Azure AI Foundry portal](https://ai.azure.com/),
 - `AZURE_SEARCH_URL_COLUMN`: Specifies the field from your Azure AI Search index that contains a URL for the document.
-    - Data type: text, defaults to `url` if deployed from Azure AI Studio or Azure OpenAI Studio,
+    - Data type: text, defaults to `url` if deployed from [Azure AI Foundry portal](https://ai.azure.com/),
 - `AZURE_SEARCH_VECTOR_COLUMNS`: Specifies the list of fields in your Azure AI Search index that contain vector embeddings of your documents, used when formulating a bot response.
-    - Data type: text, defaults to `contentVector` if deployed from Azure AI Studio or Azure OpenAI Studio,
+    - Data type: text, defaults to `contentVector` if deployed from [Azure AI Foundry portal](https://ai.azure.com/),
 - `AZURE_SEARCH_QUERY_TYPE`: Specifies the query type to use: `simple`, `semantic`, `vector`, `vectorSimpleHybrid`, or `vectorSemanticHybrid`. This setting takes precedence over `AZURE_SEARCH_USE_SEMANTIC_SEARCH`.
     - Data type: text, we recommend testing with `vectorSemanticHybrid`.
 - `AZURE_SEARCH_PERMITTED_GROUPS_COLUMN`: Specifies the field from your Azure AI Search index that contains Microsoft Entra group IDs, determining document-level access control.
@@ -294,11 +290,11 @@ The JSON to paste in the Advanced edit JSON editor is:
 
 ## Connecting to Prompt Flow as a data source
 
-[Prompt flows](/azure/ai-studio/how-to/flow-develop) allow you to define highly customizable RAG and processing logic on a user's queries. 
+[Prompt flows](../../../ai-foundry/how-to/flow-develop.md) allow you to define highly customizable RAG and processing logic on a user's queries.
 
-### Creating and deploying your prompt flow in Azure AI Studio
+### Creating and deploying your prompt flow in Azure AI Foundry portal
 
-Follow [this tutorial](/azure/ai-studio/tutorials/deploy-copilot-ai-studio) to create, test, and deploy an inferencing endpoint for your prompt flow in Azure AI Studio.
+Follow [this tutorial](../../../ai-foundry/how-to/flow-deploy.md) to create, test, and deploy an inferencing endpoint for your prompt flow in [Azure AI Foundry portal](https://ai.azure.com/).
 
 ### Enable underlying citations from your prompt flow
 
@@ -408,7 +404,7 @@ If you customized or changed the app's source code, you need to update your app'
 
 ## Deleting your Cosmos DB instance
 
-Deleting your web app doesn't delete your Cosmos DB instance automatically. To delete your Cosmos DB instance along with all stored chats, you need to go to the associated resource in the [Azure portal](https://portal.azure.com) and delete it. If you delete the Cosmos DB resource but keep the chat history option selected on subsequent updates from the Azure OpenAI Studio, the application notifies the user of a connection error. However, the user can continue to use the web app without access to the chat history.
+Deleting your web app doesn't delete your Cosmos DB instance automatically. To delete your Cosmos DB instance along with all stored chats, you need to go to the associated resource in the [Azure portal](https://portal.azure.com) and delete it. If you delete the Cosmos DB resource but keep the chat history option selected on subsequent updates from the [Azure AI Foundry portal](https://ai.azure.com/), the application notifies the user of a connection error. However, the user can continue to use the web app without access to the chat history.
 
 ## Enabling Microsoft Entra ID authentication between services
 
@@ -452,7 +448,7 @@ In the webapp application settings, navigate to "Environment Variables" and make
 If using an embedding model deployed to the same resource as your model used for inference, there are no other settings changes required.
 
 However, if you're using an embedding model deployed to a different resource, make the following extra changes to your app's environment variables:
-* Set `AZURE_OPENAI_EMBEDDING_ENDPOINT` variable to the full API path of the embedding API for the resource you're using for embeddings, for example, `https://<your embedding AOAI resource name>.openai.azure.com/openai/deployments/<your embedding deployment name>/embeddings`
+* Set `AZURE_OPENAI_EMBEDDING_ENDPOINT` variable to the full API path of the embedding API for the resource you're using for embeddings, for example, `https://<your Azure OpenAI Service resource name>.openai.azure.com/openai/deployments/<your embedding deployment name>/embeddings`
 * Delete the `AZURE_OPENAI_EMBEDDING_KEY` variable to use Microsoft Entra ID authentication. 
 
 Once all of the environment variable changes are completed, restart the webapp to begin using Microsoft Entra ID authentication between services in the webapp. It will take a few minutes after restarting for any settings changes to take effect.

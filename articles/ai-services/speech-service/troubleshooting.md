@@ -6,8 +6,9 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: troubleshooting
-ms.date: 8/11/2024
+ms.date: 3/10/2025
 ms.author: eur
+#Customer intent: As a developer, I want to learn how to troubleshoot issues with the Speech SDK.
 ---
 
 # How to troubleshoot Speech SDK issues

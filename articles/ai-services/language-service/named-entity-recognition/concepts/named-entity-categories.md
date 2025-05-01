@@ -2,12 +2,11 @@
 title: Entity categories recognized by Named Entity Recognition in Azure AI Language
 titleSuffix: Azure AI services
 description: Learn about the entities the NER feature can recognize from unstructured text.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 12/19/2023
+ms.date: 04/29/2025
 ms.author: jboback
 ms.custom: language-service-ner
 ---
@@ -21,9 +20,9 @@ Use this article to find the entity categories that can be returned by [Named En
 
 # [Generally Available API](#tab/ga-api)
  
-## Category: Person
+## Type: Person
 
-This category contains the following entity:
+This type contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -46,9 +45,9 @@ This category contains the following entity:
    :::column-end:::
 :::row-end:::
 
-## Category: PersonType
+## Type: PersonType
 
-This category contains the following entity:
+This type contains the following entity:
 
 
 :::row:::
@@ -72,9 +71,9 @@ This category contains the following entity:
    :::column-end:::
 :::row-end:::
 
-## Category: Location
+## Type: Location
 
-This category contains the following entity:
+This type contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -97,13 +96,13 @@ This category contains the following entity:
    :::column-end:::
 :::row-end:::
 
-#### Subcategories
+#### Subtype
 
-The entity in this category can have the following subcategories.
+The entity in this type can have the following subtypes.
 
 :::row:::
     :::column span="":::
-        **Entity subcategory**
+        **Entity subtype**
 
         Geopolitical Entity (GPE)
 
@@ -156,9 +155,9 @@ The entity in this category can have the following subcategories.
    :::column-end:::
 :::row-end:::
 
-## Category: Organization
+## Type: Organization
 
-This category contains the following entity:
+This type contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -181,13 +180,13 @@ This category contains the following entity:
    :::column-end:::
 :::row-end:::
 
-#### Subcategories
+#### Subtype
 
-The entity in this category can have the following subcategories.
+The entity in this type can have the following subtype.
 
 :::row:::
     :::column span="":::
-        **Entity subcategory**
+        **Entity subtype**
 
         Medical
 
@@ -240,9 +239,9 @@ The entity in this category can have the following subcategories.
    :::column-end:::
 :::row-end:::
 
-## Category: Event
+## Type: Event
 
-This category contains the following entity:
+This type contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -265,13 +264,13 @@ This category contains the following entity:
    :::column-end:::
 :::row-end:::
 
-#### Subcategories
+#### Subtypes
 
-The entity in this category can have the following subcategories.
+The entity in this type can have the following subtype.
 
 :::row:::
     :::column span="":::
-        **Entity subcategory**
+        **Entity subtype**
 
         Cultural
 
@@ -324,9 +323,9 @@ The entity in this category can have the following subcategories.
    :::column-end:::
 :::row-end:::
 
-## Category: Product
+## Type: Product
 
-This category contains the following entity:
+This type contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -338,7 +337,7 @@ This category contains the following entity:
     :::column span="2":::
         **Details**
 
-        Physical objects of various categories.
+        Physical objects of various types.
       
     :::column-end:::
     :::column span="2":::
@@ -350,13 +349,13 @@ This category contains the following entity:
 :::row-end:::
 
 
-#### Subcategories
+#### Subtype
 
-The entity in this category can have the following subcategories.
+The entity in this type can have the following subtype.
 
 :::row:::
     :::column span="":::
-        **Entity subcategory**
+        **Entity subtype**
 
         Computing products
     :::column-end:::
@@ -374,9 +373,9 @@ The entity in this category can have the following subcategories.
    :::column-end:::
 :::row-end:::
 
-## Category: Skill
+## Type: Skill
 
-This category contains the following entity:
+This type contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -399,9 +398,9 @@ This category contains the following entity:
    :::column-end:::
 :::row-end:::
 
-## Category: Address
+## Type: Address
 
-This category contains the following entity:
+This type contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -424,9 +423,9 @@ This category contains the following entity:
    :::column-end:::
 :::row-end:::
 
-## Category: PhoneNumber
+## Type: PhoneNumber
 
-This category contains the following entity:
+This type contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -449,9 +448,9 @@ This category contains the following entity:
    :::column-end:::
 :::row-end:::
 
-## Category: Email
+## Type: Email
 
-This category contains the following entity:
+This type contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -474,9 +473,9 @@ This category contains the following entity:
    :::column-end:::
 :::row-end:::
 
-## Category: URL
+## Type: URL
 
-This category contains the following entity:
+This type contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -499,9 +498,9 @@ This category contains the following entity:
    :::column-end:::
 :::row-end:::
 
-## Category: IP
+## Type: IP
 
-This category contains the following entity:
+This type contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -524,9 +523,9 @@ This category contains the following entity:
    :::column-end:::
 :::row-end:::
 
-## Category: DateTime
+## Type: DateTime
 
-This category contains the following entities:
+This type contains the following entities:
 
 :::row:::
     :::column span="":::
@@ -549,15 +548,15 @@ This category contains the following entities:
    :::column-end:::
 :::row-end:::
 
-Entities in this category can have the following subcategories
+Entities in this type can have the following subtypes
 
-#### Subcategories
+#### Subtypes
 
-The entity in this category can have the following subcategories.
+The entity in this type can have the following subtypes.
 
 :::row:::
     :::column span="":::
-        **Entity subcategory**
+        **Entity subtype**
 
         Date
 
@@ -661,9 +660,9 @@ The entity in this category can have the following subcategories.
    :::column-end:::
 :::row-end:::
 
-## Category: Quantity
+## Type: Quantity
 
-This category contains the following entities:
+This type contains the following entities:
 
 :::row:::
     :::column span="":::
@@ -686,13 +685,13 @@ This category contains the following entities:
    :::column-end:::
 :::row-end:::
 
-#### Subcategories
+#### Subtypes
 
-The entity in this category can have the following subcategories.
+The entity in this type can have the following subtypes.
 
 :::row:::
     :::column span="":::
-        **Entity subcategory**
+        **Entity subtype**
 
         Number
 
@@ -808,10 +807,6 @@ The entity in this category can have the following subcategories.
 :::row-end:::
 
 # [Preview API](#tab/preview-api)
-
-## Supported Named Entity Recognition (NER) entity categories 
-
-Use this article to find the entity types and the additional tags that can be returned by [Named Entity Recognition (NER)](../how-to-call.md). NER runs a predictive model to identify and categorize named entities from an input document.
 
 ### Type: Address
 

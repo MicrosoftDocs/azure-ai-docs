@@ -1,17 +1,18 @@
 ---
-title: "How to guide: create and compose custom models with Document Intelligence (formerly Form Recognizer)"
+title: "How to guide: create and compose custom models with Document Intelligence "
 titleSuffix: Azure AI services
 description: Learn how to create, use, and manage Document Intelligence custom and composed models
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 08/07/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ---
 
-
 # Compose custom models
+
+<!-- markdownlint-disable MD049 --> emphasis style
 
 <!-- markdownlint-disable MD051 -->
 <!-- markdownlint-disable MD024 -->
@@ -35,11 +36,11 @@ ms.author: lajanuar
 ::: moniker range=">=doc-intel-3.0.0"
 
 > [!IMPORTANT]
-> Model compose behavior is changing for api-version=2024-07-31-preview and later, for more info refer to [composed custom models](../concept-composed-models.md). The following behavior only applies to v3.1 and previous versions
+> Model compose behavior is changed for api-version=2024-11-30 (GA). For more information refer to [composed custom models](../train/composed-models.md). The following behavior **only applies to v3.1 and previous versions**.
 
 A composed model is created by taking a collection of custom models and assigning them to a single model ID. You can assign up to 200 trained custom models to a single composed model ID. When a document is submitted to a composed model, the service performs a classification step to decide which custom model accurately represents the form presented for analysis. Composed models are useful when you train several models and want to group them to analyze similar form types. For example, your composed model might include custom models trained to analyze your supply, equipment, and furniture purchase orders. Instead of manually trying to select the appropriate model, you can use a composed model to determine the appropriate custom model for each analysis and extraction.
 
-To learn more, see [Composed custom models](../concept-composed-models.md).
+To learn more, see [Composed custom models](../train/composed-models.md).
 
 In this article, you learn how to create and use composed custom models to analyze your forms and documents.
 
@@ -55,10 +56,10 @@ To get started, you need the following resources:
 
   1. Copy the **Keys and Endpoint** values from the Azure portal and paste them in a convenient location, such as *Microsoft Notepad*. You need the key and endpoint values to connect your application to the Document Intelligence API.
 
-    :::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Still photo showing how to access resource key and endpoint URL.":::
+:::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Still photo showing how to access resource key and endpoint URL.":::
 
-    > [!TIP]
-    > For more information, see [**create a Document Intelligence resource**](../create-document-intelligence-resource.md).
+  > [!TIP]
+  > For more information, see [**create a Document Intelligence resource**](../how-to-guides/create-document-intelligence-resource.md).
 
 * **An Azure storage account.** If you don't know how to create an Azure storage account, follow the [Azure Storage quickstart for Azure portal](/azure/storage/blobs/storage-quickstart-blobs-portal). You can use the free pricing tier (F0) to try the service, and upgrade later to a paid tier for production.
 
@@ -110,13 +111,13 @@ To create custom models, start with configuring your project:
 
 :::image type="content" source="../media/studio/create-project.gif" alt-text="Animation showing create a custom project in Document Intelligence Studio.":::
 
-While creating your custom models, you may need to extract data collections from your documents. The collections may appear one of two formats. Using tables as the visual pattern:
+While creating your custom models, you might need to extract data collections from your documents. The collections may appear one of two formats. Using tables as the visual pattern:
 
 * Dynamic or variable count of values (rows) for a given set of fields (columns)
 
 * Specific collection of values for a given set of fields (columns and/or rows)
 
-See [Document Intelligence Studio: labeling as tables](../concept-custom-label.md#tabular-fields)
+See [Document Intelligence Studio: labeling as tables](../train/custom-labels.md#tabular-fields)
 
 ### [REST API](#tab/rest)
 
@@ -139,10 +140,9 @@ Training with labels leads to better performance in some scenarios. To train wit
 |**C#**|**StartBuildModel**|
 |**Java**| [**beginBuildModel**](/java/api/com.azure.ai.formrecognizer.documentanalysis.administration.documentmodeladministrationclient.beginbuildmodel)|
 |**JavaScript** | [**beginBuildModel**](/javascript/api/@azure/ai-form-recognizer/documentmodeladministrationclient?view=azure-node-latest#@azure-ai-form-recognizer-documentmodeladministrationclient-beginbuildmodel&preserve-view=true)|
-| **Python** | [**begin_build_document_model**](/python/api/azure-ai-formrecognizer/azure.ai.formrecognizer.documentmodeladministrationclient?view=azure-python#azure-ai-formrecognizer-documentmodeladministrationclient-begin-build-document-model&preserve-view=true)
+| **Python** | [**begin_build_document_model**](/python/api/azure-ai-formrecognizer/azure.ai.formrecognizer.documentmodeladministrationclient?view=azure-python#azure-ai-formrecognizer-documentmodeladministrationclient-begin-build-document-model&preserve-view=true)|
 
 ---
-
 
 ## Create a composed model
 
@@ -236,10 +236,10 @@ You can use the programming language of your choice to create a composed model:
 
 | Programming language| Code sample |
 |--|--|
-|**C#** | [Model compose](https://github.com/Azure/azure-sdk-for-net/blob/Azure.AI.FormRecognizer_4.0.0/sdk/formrecognizer/Azure.AI.FormRecognizer/samples/Sample_ModelCompose.md)
-|**Java** | [Model compose](https://github.com/Azure/azure-sdk-for-java/blob/afa0d44fa42979ae9ad9b92b23cdba493a562127/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/administration/ComposeDocumentModel.java)
-|**JavaScript** | [Compose model](https://github.com/witemple-msft/azure-sdk-for-js/blob/7e3196f7e529212a6bc329f5f06b0831bf4cc174/sdk/formrecognizer/ai-form-recognizer/samples/v4/javascript/composeModel.js)
-|**Python** | [Create composed model](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-formrecognizer_3.3.0/sdk/formrecognizer/azure-ai-formrecognizer/samples/v3.2_and_later/sample_compose_model.py)
+|**C#** | [Model compose](https://github.com/Azure/azure-sdk-for-net/blob/Azure.AI.FormRecognizer_4.0.0/sdk/formrecognizer/Azure.AI.FormRecognizer/samples/Sample_ModelCompose.md)|
+|**Java** | [Model compose](https://github.com/Azure/azure-sdk-for-java/blob/afa0d44fa42979ae9ad9b92b23cdba493a562127/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/administration/ComposeDocumentModel.java)|
+|**JavaScript** | [Compose model](https://github.com/witemple-msft/azure-sdk-for-js/blob/7e3196f7e529212a6bc329f5f06b0831bf4cc174/sdk/formrecognizer/ai-form-recognizer/samples/v4/javascript/composeModel.js)|
+|**Python** | [Create composed model](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-formrecognizer_3.3.0/sdk/formrecognizer/azure-ai-formrecognizer/samples/v3.2_and_later/sample_compose_model.py)|
 
 #### Analyze documents
 
@@ -247,10 +247,10 @@ Once you build your composed model, you can use it to analyze forms and document
 
 |Programming language| Code sample |
 |--|--|
-|**C#** | [Analyze a document with a custom/composed model using model ID](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/formrecognizer/Azure.AI.FormRecognizer/samples/Sample_AnalyzeWithCustomModel.md)
-|**Java** | [Analyze a document with a custom/composed model using model ID](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/AnalyzeCustomDocumentFromUrl.java)
-|**JavaScript** | [Analyze a document with a custom/composed model using model ID](https://github.com/witemple-msft/azure-sdk-for-js/blob/7e3196f7e529212a6bc329f5f06b0831bf4cc174/sdk/formrecognizer/ai-form-recognizer/samples/v4/javascript/analyzeDocumentByModelId.js)
-|**Python** | [Analyze a document with a custom/composed model using model ID](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-formrecognizer_3.3.0/sdk/formrecognizer/azure-ai-formrecognizer/samples/v3.2_and_later/sample_analyze_custom_documents.py)
+|**C#** | [Analyze a document with a custom/composed model using model ID](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/formrecognizer/Azure.AI.FormRecognizer/samples/Sample_AnalyzeWithCustomModel.md)|
+|**Java** | [Analyze a document with a custom/composed model using model ID](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/AnalyzeCustomDocumentFromUrl.java)|
+|**JavaScript** | [Analyze a document with a custom/composed model using model ID](https://github.com/witemple-msft/azure-sdk-for-js/blob/7e3196f7e529212a6bc329f5f06b0831bf4cc174/sdk/formrecognizer/ai-form-recognizer/samples/v4/javascript/analyzeDocumentByModelId.js)|
+|**Python** | [Analyze a document with a custom/composed model using model ID](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-formrecognizer_3.3.0/sdk/formrecognizer/azure-ai-formrecognizer/samples/v3.2_and_later/sample_analyze_custom_documents.py)|
 
 #### Manage your composed models
 
@@ -272,7 +272,7 @@ Great! You learned the steps to create custom and composed models and use them i
 Try one of our Document Intelligence quickstarts:
 
 > [!div class="nextstepaction"]
-> [Document Intelligence Studio](../quickstarts/try-document-intelligence-studio.md)
+> [Document Intelligence Studio](../studio-overview.md)
 
 > [!div class="nextstepaction"]
 > [REST API](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true)
@@ -318,11 +318,11 @@ In the Document Intelligence UI:
 
 1. Select **Use Custom to train a model with labels and get key value pairs**.
 
-      :::image type="content" source="../media/label-tool/fott-use-custom.png" alt-text="Screenshot of the `FOTT` tool select custom model option.":::
+  :::image type="content" source="../media/label-tool/fott-use-custom.png" alt-text="Screenshot of the `FOTT` tool select custom model option.":::
 
 1. In the next window, select **New project**:
 
-    :::image type="content" source="../media/label-tool/fott-new-project.png" alt-text="Screenshot of the `FOTT` tool select new project option.":::
+:::image type="content" source="../media/label-tool/fott-new-project.png" alt-text="Screenshot of the `FOTT` tool select new project option.":::
 
 ## Create your models
 
@@ -350,7 +350,7 @@ You [train your model](build-a-custom-model.md?view=doc-intel-2.1.0&preserve-vie
 
 When you train with labeled data, the model uses supervised learning to extract values of interest, using the labeled forms you provide. Labeled data results in better-performing models and can produce models that work with complex forms or forms containing values without keys.
 
-Document Intelligence uses the [Layout](../concept-layout.md) API to learn the expected sizes and positions of typeface and handwritten text elements and extract tables. Then it uses user-specified labels to learn the key/value associations and tables in the documents. We recommend that you use five manually labeled forms of the same type (same structure) to get started when training a new model. Add more labeled data as needed to improve the model accuracy. Document Intelligence enables training a model to extract key value pairs and tables using supervised learning capabilities.
+Document Intelligence uses the [Layout](../prebuilt/layout.md) API to learn the expected sizes and positions of typeface and handwritten text elements and extract tables. Then it uses user-specified labels to learn the key/value associations and tables in the documents. We recommend that you use five manually labeled forms of the same type (same structure) to get started when training a new model. Add more labeled data as needed to improve the model accuracy. Document Intelligence enables training a model to extract key value pairs and tables using supervised learning capabilities.
 
 [Get started with Train with labels](../label-tool.md)
 
@@ -434,17 +434,15 @@ Use the programming language code of your choice to create a composed model that
 
 * [**Java**](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/administration/ComposeDocumentModel.java).
 
-* [**JavaScript**](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/formrecognizer/ai-form-recognizer/samples/v3/javascript/createComposedModel.js).
+* [**JavaScript**](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/formrecognizer/ai-form-recognizer/samples/v5/javascript/composeModel.js).
 
 * [**Python**](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-formrecognizer_3.3.0/sdk/formrecognizer/azure-ai-formrecognizer/samples/v3.1/sample_create_composed_model.py)
 
 ---
 
-
 ## Analyze documents with your custom or composed model
 
  The custom form **Analyze** operation requires you to provide the `modelID`  in the call to Document Intelligence. You can provide a single custom model ID or a composed model ID for the `modelID` parameter.
-
 
 ### [**Document Intelligence Sample Labeling tool**](#tab/studio)
 
@@ -470,14 +468,13 @@ Using the programming language of your choice to analyze a form or document with
 
 * [**Java**](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/formrecognizer/azure-ai-formrecognizer/src/samples/java/com/azure/ai/formrecognizer/AnalyzeCustomDocumentFromUrl.java)
 
-* [**JavaScript**](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/formrecognizer/ai-form-recognizer/samples/v3/javascript/recognizeCustomForm.js)
+* [**JavaScript**](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/formrecognizer/ai-form-recognizer/samples/v5/javascript)
 
 * [**Python**](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/formrecognizer/azure-ai-formrecognizer/samples/v3.1/sample_recognize_custom_forms.py)
 
 ---
 
-
-Test your newly trained models by [analyzing forms](build-a-custom-model.md?view=doc-intel-2.1.0&preserve-view=true#test-the-model) that weren't part of the training dataset. Depending on the reported accuracy, you may want to do further training to improve the model. You can continue further training to [improve results](../label-tool.md#improve-results).
+Test your newly trained models by [analyzing forms](build-a-custom-model.md?view=doc-intel-2.1.0&preserve-view=true#test-the-model) that weren't part of the training dataset. Depending on the reported accuracy, you might want to do further training to improve the model. You can continue further training to [improve results](../label-tool.md#improve-results).
 
 ## Manage your custom models
 

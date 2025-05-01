@@ -2,18 +2,25 @@
 title: Text split skill
 titleSuffix: Azure AI Search
 description: Break text into chunks or pages of text based on length in an AI enrichment pipeline in Azure AI Search.
-author: careyjmac
-ms.author: chalton
-ms.service: cognitive-search
+author: gmndrg
+ms.author: gimondra
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 08/05/2024
+ms.date: 12/03/2024
 ---
 
 # Text split cognitive skill
 
-The **Text Split** skill breaks text into chunks of text. You can specify whether you want to break the text into sentences or into pages of a particular length. This skill is especially useful if there are maximum text length requirements in other skills downstream. 
+> [!IMPORTANT] 
+> Some parameters are in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [preview REST API](/rest/api/searchservice/index-preview) supports these parameters.
+
+The **Text Split** skill breaks text into chunks of text. You can specify whether you want to break the text into sentences or into pages of a particular length. This skill is useful if there are maximum text length requirements in other skills downstream, such as embedding skills that pass data chunks to embedding models on Azure OpenAI and other model providers. For more information about this scenario, see [Chunk documents for vector search](vector-search-how-to-chunk-documents.md).
+
+Several parameters are version-specific. The skills parameter table notes the API version in which a parameter was introduced so that you know whether a [version upgrade](search-api-migration.md) is required. To use version-specific features such as *token chunking* in **2024-09-01-preview**, you can use the Azure portal, or target a REST API version, or check an Azure SDK change log to see if it supports the feature.
+
+The Azure portal supports most preview features and can be used to create or update a skillset. For updates to the Text Split skill, edit the skillset JSON definition to add new preview parameters. 
 
 > [!NOTE]
 > This skill isn't bound to Azure AI services. It's non-billable and has no Azure AI services key requirement.
@@ -23,41 +30,54 @@ Microsoft.Skills.Text.SplitSkill
 
 ## Skill Parameters
 
-Parameters are case-sensitive.
+Parameters are case-sensitive. 
 
-| Parameter name	 | Description |
-|--------------------|-------------|
-| `textSplitMode`    | Either `pages` or `sentences`. Pages have a configurable maximum length, but the skill attempts to avoid truncating a sentence so the actual length might be smaller. Sentences are a string that terminates at sentence-ending punctuation, such as a period, question mark, or exclamation point, assuming the language has sentence-ending punctuation. | 
-| `maximumPageLength` | Only applies if `textSplitMode` is set to `pages`. This parameter refers to the maximum page length in characters as measured by `String.Length`. The minimum value is 300, the maximum is 50000, and the default value is 5000.  The algorithm does its best to break the text on sentence boundaries, so the size of each chunk might be slightly less than `maximumPageLength`. | 
-| `pageOverlapLength` | Only applies if `textSplitMode` is set to `pages`. Each page starts with this number of characters from the end of the previous page. If this parameter is set to 0, there's no overlapping text on successive pages. This parameter is supported in [2024-07-01](/rest/api/searchservice/skillsets/create-or-update) and newer preview REST APIs, and in Azure SDK packages that have been updated to support integrated vectorization. This [example](#example-for-chunking-and-vectorization) includes the parameter. |
-| `maximumPagesToTake` | Only applies if `textSplitMode` is set to `pages`. Number of pages to return. The default is 0, which means to return all pages. You should set this value if only a subset of pages are needed. This parameter is supported in [2024-07-01](/rest/api/searchservice/skillsets/create-or-update) and newer preview REST APIs, and in Azure SDK packages that have been updated to support integrated vectorization. This [example](#example-for-chunking-and-vectorization) includes the parameter.|
-| `defaultLanguageCode`	| (optional) One of the following language codes: `am, bs, cs, da, de, en, es, et, fr, he, hi, hr, hu, fi, id, is, it, ja, ko, lv, no, nl, pl, pt-PT, pt-BR, ru, sk, sl, sr, sv, tr, ur, zh-Hans`. Default is English (en). A few things to consider: <ul><li>Providing a language code is useful to avoid cutting a word in half for nonwhitespace languages such as Chinese, Japanese, and Korean.</li><li>If you don't know the language  in advance (for example, if you're using the [LanguageDetectionSkill](cognitive-search-skill-language-detection.md) to detect language), we recommend the `en` default. </li></ul>  |
+| Parameter name     | Version   | Description |
+|--------------------|-------------|-------------|
+| `textSplitMode`    | All versions | Either `pages` or `sentences`. Pages have a configurable maximum length, but the skill attempts to avoid truncating a sentence so the actual length might be smaller. Sentences are a string that terminates at sentence-ending punctuation, such as a period, question mark, or exclamation point, assuming the language has sentence-ending punctuation. | 
+| `maximumPageLength` | All versions | Only applies if `textSplitMode` is set to `pages`. For `unit` set to `characters`, this parameter refers to the maximum page length in characters as measured by `String.Length`. The minimum value is 300, the maximum is 50000, and the default value is 5000.  The algorithm does its best to break the text on sentence boundaries, so the size of each chunk might be slightly less than `maximumPageLength`. <br><br>For `unit` set to `azureOpenAITokens`, the maximum page length is the token length limit of the model. For text embedding models, a general recommendation for page length is 512 tokens. |
+| `defaultLanguageCode`	| All versions | (optional) One of the following language codes: `am, bs, cs, da, de, en, es, et, fr, he, hi, hr, hu, fi, id, is, it, ja, ko, lv, no, nl, pl, pt-PT, pt-BR, ru, sk, sl, sr, sv, tr, ur, zh-Hans`. Default is English (en). A few things to consider: <ul><li>Providing a language code is useful to avoid cutting a word in half for nonwhitespace languages such as Chinese, Japanese, and Korean.</li><li>If you don't know the language  in advance (for example, if you're using the [LanguageDetectionSkill](cognitive-search-skill-language-detection.md) to detect language), we recommend the `en` default. </li></ul>  |
+| `pageOverlapLength` | [2024-07-01](/rest/api/searchservice/skillsets/create-or-update) | Only applies if `textSplitMode` is set to `pages`. Each page starts with this number of characters or tokens from the end of the previous page. If this parameter is set to 0, there's no overlapping text on successive pages. This [example](#example-for-chunking-and-vectorization) includes the parameter. |
+| `maximumPagesToTake` | [2024-07-01](/rest/api/searchservice/skillsets/create-or-update) | Only applies if `textSplitMode` is set to `pages`. Number of pages to return. The default is 0, which means to return all pages. You should set this value if only a subset of pages are needed. This [example](#example-for-chunking-and-vectorization) includes the parameter.|
+| `unit` | [2024-09-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true) | **New**. Only applies if `textSplitMode` is set to `pages`. Specifies whether to chunk by `characters` (default) or `azureOpenAITokens`. Setting the unit affects `maximumPageLength` and `pageOverlapLength`. |
+| `azureOpenAITokenizerParameters` | [2024-09-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true) | **New**. An object providing extra parameters for the `azureOpenAITokens` unit. <br><br>`encoderModelName` is a designated tokenizer used for converting text into tokens, essential for natural language processing (NLP) tasks. Different models use different tokenizers. Valid values include cl100k_base (default) used by GPT-35-Turbo and GPT-4. Other valid values are r50k_base, p50k_base, and p50k_edit. The skill implements the tiktoken library by way of [SharpToken](https://www.nuget.org/packages/SharpToken) and `Microsoft.ML.Tokenizers` but doesn't support every encoder. For example, there's currently no support for o200k_base encoding used by GPT-4o. <br><br>`allowedSpecialTokens` defines a collection of special tokens that are permitted within the tokenization process. Special tokens are  string that you want to treat uniquely, ensuring they aren't split during tokenization. For example ["[START"], "[END]"]. For languages in which the tiktoken library is not performing the tokenization as expected, it's recommended to use text splitting instead.|
 
 ## Skill Inputs
 
 | Parameter name	   | Description      |
 |----------------------|------------------|
-| `text`	| The text to split into substring. |
-| `languageCode`	| (Optional) Language code for the document. If you don't know the language of the text inputs (for example, if you're using [LanguageDetectionSkill](cognitive-search-skill-language-detection.md) to detect the language), you can omit this parameter. If you set `languageCode` to a language isn't in the supported list for the `defaultLanguageCode`, a warning is emitted and the text isn't split.  |
+| `text` | The text to split into substring. |
+| `languageCode` | (Optional) Language code for the document. If you don't know the language of the text inputs (for example, if you're using [LanguageDetectionSkill](cognitive-search-skill-language-detection.md) to detect the language), you can omit this parameter. If you set `languageCode` to a language isn't in the supported list for the `defaultLanguageCode`, a warning is emitted and the text isn't split.  |
 
 ## Skill Outputs 
 
 | Parameter name	 | Description |
 |--------------------|-------------|
-| `textItems` | Output is an array of substrings that were extracted. `textItems` is the default name of the output. `targetName` is optional, but if you have multiple Text Split skills, make sure to set `targetName` so that you don't overwrite the data from the first skill with the second one. If `targetName` is set, use it in output field mappings or in downstream skills that use the skill output.|
+| `textItems` | Output is an array of substrings that were extracted. `textItems` is the default name of the output. <br><br>`targetName` is optional, but if you have multiple Text Split skills, make sure to set `targetName` so that you don't overwrite the data from the first skill with the second one. If `targetName` is set, use it in output field mappings or in downstream skills that consume the skill output, such as an embedding skill.|
 
 ## Sample definition
 
 ```json
 {
-    "@odata.type": "#Microsoft.Skills.Text.SplitSkill",
-    "textSplitMode" : "pages", 
-    "maximumPageLength": 1000,
-    "defaultLanguageCode": "en",
+    "name": "SplitSkill", 
+    "@odata.type": "#Microsoft.Skills.Text.SplitSkill", 
+    "description": "A skill that splits text into chunks", 
+    "context": "/document", 
+    "defaultLanguageCode": "en", 
+    "textSplitMode": "pages", 
+    "unit": "azureOpenAITokens", 
+    "azureOpenAITokenizerParameters":{ 
+        "encoderModelName":"cl100k_base", 
+        "allowedSpecialTokens": [ 
+            "[START]", 
+            "[END]" 
+        ] 
+    },
+    "maximumPageLength": 512,
     "inputs": [
         {
             "name": "text",
-            "source": "/document/content"
+            "source": "/document/text"
         },
         {
             "name": "languageCode",
@@ -67,7 +87,7 @@ Parameters are case-sensitive.
     "outputs": [
         {
             "name": "textItems",
-            "targetName": "mypages"
+            "targetName": "pages"
         }
     ]
 }

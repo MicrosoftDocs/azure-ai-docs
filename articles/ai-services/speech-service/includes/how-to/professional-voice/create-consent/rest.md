@@ -28,8 +28,8 @@ You can get the consent statement text for each locale from the text to speech G
 To add consent to a professional voice project from the URL of an audio file, use the [Consents_Create](/rest/api/aiservices/speechapi/consents/create) operation of the custom voice API. Construct the request body according to the following instructions:
 
 - Set the required `projectId` property. See [create a project](../../../../professional-voice-create-project.md).
-- Set the required `voiceTalentName` property. The voice talent name can't be changed later.
-- Set the required `companyName` property. The company name can't be changed later.
+- Set the required `voiceTalentName` property. The voice talent name must be the name of the person who recorded the consent statement. Enter the name in the same language used in the recorded statement. The voice talent name can't be changed later.
+- Set the required `companyName` property. The company name must match the company name spoken in the recorded statement. Ensure the company name is entered in the same language as the recorded statement. The company name can't be changed later. 
 - Set the required `audioUrl` property. The URL of the voice talent consent audio file. Use a URI with the [shared access signatures (SAS)](/azure/storage/common/storage-sas-overview) token.
 - Set the required `locale` property. This should be the locale of the consent. The locale can't be changed later. You can find the text to speech locale list [here](/azure/ai-services/speech-service/language-support?tabs=tts).
 

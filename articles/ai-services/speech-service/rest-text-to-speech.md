@@ -5,10 +5,11 @@ description: Learn how to use the REST API to convert text into synthesized spee
 author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: reference
-ms.date: 1/21/2024
+ms.topic: how-to
+ms.date: 3/10/2025
 ms.author: eur
 ms.custom: references_regions
+# Customer intent: As a developer, I want to learn how to use the REST API to convert text into synthesized speech.
 ---
 
 # Text to speech REST API
@@ -18,10 +19,10 @@ The Speech service allows you to [convert text into synthesized speech](#convert
 > [!TIP]
 > Use cases for the text to speech REST API are limited. Use it only in cases where you can't use the [Speech SDK](speech-sdk.md). For example, with the Speech SDK you can [subscribe to events](how-to-speech-synthesis.md#subscribe-to-synthesizer-events) for more insights about the text to speech processing and results.
 
-The text to speech REST API supports neural text to speech voices in many locales. Each available endpoint is associated with a region. A Speech resource key for the endpoint or region that you plan to use is required. Here are links to more information:
+The text to speech REST API supports neural text to speech voices in many locales. Each available endpoint is associated with a region. An API key for the endpoint or region that you plan to use is required. Here are links to more information:
 
 - For a complete list of voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
-- For information about regional availability, see [Speech service supported regions](regions.md#speech-service).
+- For information about regional availability, see [Speech service supported regions](regions.md#regions).
 - For Azure Government and Microsoft Azure operated by 21Vianet endpoints, see [this article about sovereign clouds](sovereign-clouds.md).
 
 > [!IMPORTANT]
@@ -40,10 +41,10 @@ You can use the `tts.speech.microsoft.com/cognitiveservices/voices/list` endpoin
 
 This table lists required and optional headers for text to speech requests:
 
-| Header | Description | Required or optional |
-|--------|-------------|---------------------|
-| `Ocp-Apim-Subscription-Key` | Your Speech resource key. | Either this header or `Authorization` is required. |
-| `Authorization` | An authorization token preceded by the word `Bearer`. For more information, see [Authentication](#authentication). | Either this header or `Ocp-Apim-Subscription-Key` is required. |
+| Header                      | Description                                                                                                        | Required or optional                                           |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------- |
+| `Ocp-Apim-Subscription-Key` | Your Speech resource key.                                                                                          | Either this header or `Authorization` is required.             |
+| `Authorization`             | An authorization token preceded by the word `Bearer`. For more information, see [Authentication](#authentication). | Either this header or `Ocp-Apim-Subscription-Key` is required. |
 
 ### Request body
 
@@ -72,7 +73,7 @@ curl --location --request GET 'https://YOUR_RESOURCE_REGION.tts.speech.microsoft
 You should receive a response with a JSON body that includes all supported locales, voices, gender, styles, and other details. The `WordsPerMinute` property for each voice can be used to estimate the length of the output speech. This JSON example shows partial results to illustrate the structure of a response:
 
 ```json
-[  
+[
     // Redacted for brevity
     {
         "Name": "Microsoft Server Speech Text to Speech Voice (en-US, JennyNeural)",
@@ -190,13 +191,13 @@ You should receive a response with a JSON body that includes all supported local
 
 The HTTP status code for each response indicates success or common errors.
 
-| HTTP status code | Description | Possible reason |
-|------------------|-------------|-----------------|
-| 200 | OK | The request was successful. |
-| 400 | Bad request | A required parameter is missing, empty, or null. Or, the value passed to either a required or optional parameter is invalid. A common reason is a header that's too long. |
-| 401 | Unauthorized | The request isn't authorized. Make sure your resource key or token is valid and in the correct region. |
-| 429 | Too many requests | You exceeded the quota or rate of requests allowed for your resource. |
-| 502 | Bad gateway    | There's a network or server-side problem. This status might also indicate invalid headers. |
+| HTTP status code | Description       | Possible reason                                                                                                                                                           |
+| ---------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 200              | OK                | The request was successful.                                                                                                                                               |
+| 400              | Bad request       | A required parameter is missing, empty, or null. Or, the value passed to either a required or optional parameter is invalid. A common reason is a header that's too long. |
+| 401              | Unauthorized      | The request isn't authorized. Make sure your resource key or token is valid and in the correct region.                                                                    |
+| 429              | Too many requests | You exceeded the quota or rate of requests allowed for your resource.                                                                                                     |
+| 502              | Bad gateway       | There's a network or server-side problem. This status might also indicate invalid headers.                                                                                |
 
 
 ## Convert text to speech
@@ -213,12 +214,12 @@ These regions are supported for text to speech through the REST API. Be sure to 
 
 This table lists required and optional headers for text to speech requests:
 
-| Header | Description | Required or optional |
-|--------|-------------|---------------------|
-| `Authorization` | An authorization token preceded by the word `Bearer`. For more information, see [Authentication](#authentication). | Required |
-| `Content-Type` | Specifies the content type for the provided text. Accepted value: `application/ssml+xml`. | Required |
-| `X-Microsoft-OutputFormat` | Specifies the audio output format. For a complete list of accepted values, see [Audio outputs](#audio-outputs). | Required |
-| `User-Agent` | The application name. The provided value must be fewer than 255 characters. | Required |
+| Header                     | Description                                                                                                        | Required or optional |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------ | -------------------- |
+| `Authorization`            | An authorization token preceded by the word `Bearer`. For more information, see [Authentication](#authentication). | Required             |
+| `Content-Type`             | Specifies the content type for the provided text. Accepted value: `application/ssml+xml`.                          | Required             |
+| `X-Microsoft-OutputFormat` | Specifies the audio output format. For a complete list of accepted values, see [Audio outputs](#audio-outputs).    | Required             |
+| `User-Agent`               | The application name. The provided value must be fewer than 255 characters.                                        | Required             |
 
 ### Request body
 
@@ -249,20 +250,21 @@ User-Agent: <Your application name>
 
 The HTTP status code for each response indicates success or common errors:
 
-| HTTP status code | Description | Possible reason |
-|------------------|-------------|-----------------|
-| 200 | OK | The request was successful. The response body is an audio file. |
-| 400 | Bad request | A required parameter is missing, empty, or null. Or, the value passed to either a required or optional parameter is invalid. A common reason is a header that's too long. |
-| 401 | Unauthorized | The request isn't authorized. Make sure your Speech resource key or token is valid and in the correct region. |
-| 415 | Unsupported media type | It's possible that the wrong `Content-Type` value was provided. `Content-Type` should be set to `application/ssml+xml`. |
-| 429 | Too many requests | You exceeded the quota or rate of requests allowed for your resource. |
-| 502 | Bad gateway    | There's a network or server-side problem. This status might also indicate invalid headers. |
+| HTTP status code | Description            | Possible reason                                                                                                                                                           |
+| ---------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 200              | OK                     | The request was successful. The response body is an audio file.                                                                                                           |
+| 400              | Bad request            | A required parameter is missing, empty, or null. Or, the value passed to either a required or optional parameter is invalid. A common reason is a header that's too long. |
+| 401              | Unauthorized           | The request isn't authorized. Make sure your Speech resource key or token is valid and in the correct region.                                                             |
+| 415              | Unsupported media type | It's possible that the wrong `Content-Type` value was provided. `Content-Type` should be set to `application/ssml+xml`.                                                   |
+| 429              | Too many requests      | You exceeded the quota or rate of requests allowed for your resource.                                                                                                     |
+| 502              | Bad gateway            | There's a network or server-side problem. This status might also indicate invalid headers.                                                                                |
+| 503              | Service Unavailable    | There's a server-side problem for various reasons.                                                                                                                        |
 
 If the HTTP status is `200 OK`, the body of the response contains an audio file in the requested format. This file can be played as it's transferred, saved to a buffer, or saved to a file.
 
 ## Audio outputs
 
-The supported streaming and nonstreaming audio formats are sent in each request as the `X-Microsoft-OutputFormat` header. Each format incorporates a bit rate and encoding type. The Speech service supports 48-kHz, 24-kHz, 16-kHz, and 8-kHz audio outputs. Each prebuilt neural voice model is available at 24kHz and high-fidelity 48kHz. 
+The supported streaming and nonstreaming audio formats are sent in each request as the `X-Microsoft-OutputFormat` header. Each format incorporates a bit rate and encoding type. The Speech service supports 48-kHz, 24-kHz, 16-kHz, and 8-kHz audio outputs. Each prebuilt neural voice model is available at 24kHz and high-fidelity 48kHz.
 
 #### [Streaming](#tab/streaming)
 
@@ -279,6 +281,7 @@ audio-24khz-96kbitrate-mono-mp3
 audio-24khz-160kbitrate-mono-mp3
 audio-48khz-96kbitrate-mono-mp3
 audio-48khz-192kbitrate-mono-mp3
+g722-16khz-64kbps
 ogg-16khz-16bit-mono-opus
 ogg-24khz-16bit-mono-opus
 ogg-48khz-16bit-mono-opus

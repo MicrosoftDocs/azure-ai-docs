@@ -1,44 +1,44 @@
 ---
-title: Improving your model - Custom Vision service
+title: Improve your model - Custom Vision service
 titleSuffix: Azure AI services
-description: In this article you'll learn how the amount, quality and variety of data can improve the quality of your model in the Custom Vision service.
-#services: cognitive-services
+description: In this article you learn how the amount, quality, and variety of data can improve the quality of your model in the Custom Vision service.
+#customer intent: As a developer, I want to improve my Custom Vision model so that it performs better with real-world data.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-custom-vision
 ms.topic: how-to
-ms.date: 02/14/2024
+ms.date: 01/22/2025   
 ms.author: pafarley
 ---
 
 # How to improve your Custom Vision model
 
-In this guide, you'll learn how to improve the quality of your Custom Vision model. The quality of your [classifier](./getting-started-build-a-classifier.md) or [object detector](./get-started-build-detector.md) depends on the amount, quality, and variety of labeled data you provide and how balanced the overall dataset is. A good model has a balanced training dataset that is representative of what will be submitted to it. The process of building such a model is iterative; it's common to take a few rounds of training to reach expected results.
+In this guide, you learn how to improve the quality of your Custom Vision model. The quality of your [classifier](./getting-started-build-a-classifier.md) or [object detector](./get-started-build-detector.md) depends on the amount, quality, and variety of labeled data you provide and how balanced the overall dataset is. A good model has a balanced training dataset that is representative of what is submitted to it. The process of building such a model is iterative; it's common to take a few rounds of training to reach expected results.
 
 The following is a general pattern to help you train a more accurate model:
 
 1. First-round training
 1. Add more images and balance data; retrain
 1. Add images with varying background, lighting, object size, camera angle, and style; retrain
-1. Use new image(s) to test prediction
+1. Use new images to test prediction
 1. Modify existing training data according to prediction results
 
 ## Prevent overfitting
 
-Sometimes a model will learn to make predictions based on arbitrary characteristics that your images have in common. For example, if you're creating a classifier for apples vs. citrus, and you've used images of apples in hands and of citrus on white plates, the classifier may give undue importance to hands vs. plates, rather than apples vs. citrus.
+Sometimes a model learns to make predictions based on arbitrary characteristics that your images have in common. For example, if you're creating a classifier for apples vs. citrus, and you've used images of apples in hands and of citrus on white plates, the classifier may give undue importance to hands vs. plates, rather than apples vs. citrus.
 
 To correct this problem, provide images with different angles, backgrounds, object size, groups, and other variations. The following sections expand upon these concepts.
 
-## Data quantity
+## Ensure data quantity
 
 The number of training images is the most important factor for your dataset. We recommend using at least 50 images per label as a starting point. With fewer images, there's a higher risk of overfitting, and while your performance numbers may suggest good quality, your model may struggle with real-world data. 
 
-## Data balance
+## Ensure data balance
 
-It's also important to consider the relative quantities of your training data. For instance, using 500 images for one label and 50 images for another label makes for an imbalanced training dataset. This will cause the model to be more accurate in predicting one label than another. You're likely to see better results if you maintain at least a 1:2 ratio between the label with the fewest images and the label with the most images. For example, if the label with the most images has 500 images, the label with the least images should have at least 250 images for training.
+It's also important to consider the relative quantities of your training data. For instance, using 500 images for one label and 50 images for another label makes for an imbalanced training dataset. This causes the model to be more accurate in predicting one label than another. You're likely to see better results if you maintain at least a 1:2 ratio between the label with the fewest images and the label with the most images. For example, if the label with the most images has 500 images, the label with the least images should have at least 250 images for training.
 
-## Data variety
+## Ensure data variety
 
 Be sure to use images that are representative of what will be submitted to the classifier during normal use. Otherwise, your model could learn to make predictions based on arbitrary characteristics that your images have in common. For example, if you're creating a classifier for apples vs. citrus, and you've used images of apples in hands and of citrus on white plates, the classifier may give undue importance to hands vs. plates, rather than apples vs. citrus.
 
@@ -66,18 +66,18 @@ To correct this problem, include a variety of images to ensure that your model c
 
     ![Photo of style samples.](./media/getting-started-improving-your-classifier/style.png)
 
-## Negative images (classifiers only)
+## Use negative images (classifiers only)
 
-If you're using an image classifier, you may need to add _negative samples_ to help make your classifier more accurate. Negative samples are images that don't match any of the other tags. When you upload these images, apply the special **Negative** label to them.
+If you're using an image classifier, you might need to add _negative samples_ to help make your classifier more accurate. Negative samples are images that don't match any of the other tags. When you upload these images, apply the special **Negative** label to them.
 
 Object detectors handle negative samples automatically, because any image areas outside of the drawn bounding boxes are considered negative.
 
 > [!NOTE]
 > The Custom Vision service supports some automatic negative image handling. For example, if you are building a grape vs. banana classifier and submit an image of a shoe for prediction, the classifier should score that image as close to 0% for both grape and banana.
 > 
-> On the other hand, in cases where the negative images are just a variation of the images used in training, it is likely that the model will classify the negative images as a labeled class due to the great similarities. For example, if you have an orange vs. grapefruit classifier, and you feed in an image of a clementine, it may score the clementine as an orange because many features of the clementine resemble those of oranges. If your negative images are of this nature, we recommend you create one or more additional tags (such as **Other**) and label the negative images with this tag during training to allow the model to better differentiate between these classes.
+> On the other hand, in cases where the negative images are just a variation of the images used in training, it is likely that the model will classify the negative images as a labeled class due to the great similarities. For example, if you have an orange vs. grapefruit classifier, and you feed in an image of a clementine, it may score the clementine as an orange because many features of the clementine resemble those of oranges. If your negative images are of this nature, we recommend you create one or more extra tags (such as **Other**) and label the negative images with this tag during training to allow the model to better differentiate between these classes.
 
-## Occlusion and truncation (object detectors only)
+## Handle occlusion and truncation (object detectors only)
 
 If you want your object detector to detect truncated objects (objects that are partially cut out of the image) or occluded objects (objects that are partially blocked by other objects in the image), you'll need to include training images that cover those cases.
 
@@ -94,7 +94,7 @@ When you use or test the model by submitting images to the prediction endpoint, 
 
 1. Hover over an image to see the tags that were predicted by the model. Images are sorted so that the ones that can bring the most improvements to the model are listed the top. To use a different sorting method, make a selection in the __Sort__ section. 
 
-    To add an image to your existing training data, select the image, set the correct tag(s), and select __Save and close__. The image will be removed from __Predictions__ and added to the set of training images. You can view it by selecting the __Training Images__ tab.
+    To add an image to your existing training data, select the image, set the correct tag(s), and select __Save and close__. The image is removed from __Predictions__ and added to the set of training images. You can view it by selecting the __Training Images__ tab.
 
     ![Screenshot of the tagging page.](./media/getting-started-improving-your-classifier/tag.png)
 
@@ -108,7 +108,7 @@ To inspect image predictions, go to the __Training Images__ tab, select your pre
 
 Sometimes a visual inspection can identify patterns that you can then correct by adding more training data or modifying existing training data. For example, a classifier for apples vs. limes may incorrectly label all green apples as limes. You can then correct this problem by adding and providing training data that contains tagged images of green apples.
 
-## Next steps
+## Next step
 
 In this guide, you learned several techniques to make your custom image classification model or object detector model more accurate. Next, learn how to test images programmatically by submitting them to the Prediction API.
 

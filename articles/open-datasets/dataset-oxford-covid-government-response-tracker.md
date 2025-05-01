@@ -156,7 +156,7 @@ df.dtypes
 
 This dataset contains data for the numerous countries/regions. Lets verify what countries/regions we have data for.
 
-We will start by looking at the latest data for each country:
+We will start by looking at the latest data for each country/region:
 
 ```python
 df.groupby('countryname').first().filter(['confirmedcases ', 'confirmeddeaths','h5_investment_in_vaccines',

@@ -1,30 +1,27 @@
 ---
-title: Use Document Translation APIs programmatically
-description: "How to create a Document Translation service using C#, Go, Java, Node.js, or Python and the REST API"
-#services: cognitive-services
+title: Use Document translation APIs programmatically
+description: "How to create a Document translation service using C#, Go, Java, Node.js, or Python and the REST API"
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 06/19/2024
+ms.date: 04/14/2025
 ms.author: lajanuar
 recommendations: false
 ms.devlang: csharp
 # ms.devlang: csharp, golang, java, javascript, python
-ms.custom: mode-other, build-2023, devx-track-extended-java, devx-track-python
+ms.custom: mode-other, devx-track-extended-java, devx-track-python, ignite-2024
 ---
 
 # Use REST APIs programmatically
 
- Document Translation is a cloud-based feature of the [Azure AI Translator](../../translator-overview.md) service. You can use the Document Translation API to asynchronously translate whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#batch-supported-document-formats) while preserving source document structure and text formatting. In this how-to guide, you learn to use Document Translation APIs with a programming language of your choice and the HTTP REST API.
+ Document translation is a cloud-based feature of the [Azure AI Translator](../../translator-overview.md) service. You can use the Document translation API to asynchronously translate whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#batch-supported-document-formats) while preserving source document structure and text formatting. In this how-to guide, you learn to use Document translation APIs with a programming language of your choice and the HTTP REST API.
 
 ## Prerequisites
 
 > [!NOTE]
 >
-> * Typically, when you create an Azure AI resource in the Azure portal, you have the option to create a multi-service key or a single-service key. However, Document Translation is currently supported in the Translator (single-service) resource only, and is **not** included in the Azure AI services (multi-service) resource.
->
-> * Document Translation is supported in the S1 Standard Service Plan (Pay-as-you-go) and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
+> Document translation is supported in the S1 Standard Service Plan (Pay-as-you-go) and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
 >
 
 To get started, you need:
@@ -36,22 +33,22 @@ To get started, you need:
   * **Source container**. This container is where you upload your files for translation (required).
   * **Target container**. This container is where your translated files are stored (required).
 
-* A [**single-service Translator resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (**not** a multi-service Azure AI services resource):
+* A [**Translator resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation):
 
   **Complete the Translator project and instance details fields as follows:**
 
   1. **Subscription**. Select one of your available Azure subscriptions.
 
-  1. **Resource Group**. You can create a new resource group or add your resource to a pre-existing resource group that shares the same lifecycle, permissions, and policies.
+  1. **Resource Group**. You can create a new resource group or add your resource to an existing resource group that shares the same lifecycle, permissions, and policies.
 
   1. **Resource Region**. Choose **Global** unless your business or application requires a specific region. If you're planning on using a [system-assigned managed identity](create-use-managed-identities.md) for authentication, choose a **geographic** region like **West US**.
 
   1. **Name**. Enter the name you chose for your resource. The name you choose must be unique within Azure.
 
      > [!NOTE]
-     > Document Translation requires a custom domain endpoint. The value that you enter in the Name field will be the custom domain name parameter for your endpoint.
+     > Document translation requires a custom domain endpoint. The value that you enter in the Name field is the custom domain name parameter for your endpoint.
 
-  1. **Pricing tier**. Document Translation isn't supported in the free tier. To try the service, select Standard S1.
+  1. **Pricing tier**. Document translation isn't supported in the free tier. To try the service, select Standard S1.
 
   1. Select **Review + Create**.
 
@@ -63,13 +60,13 @@ To get started, you need:
 
 * Requests to the Translator service require a read-only key and custom endpoint to authenticate access. The custom domain endpoint is a URL formatted with your resource name, hostname, and Translator subdirectories and is available in the Azure portal.
 
-1. If you created a new resource, after it deploys, select **Go to resource**. If you have an existing Document Translation resource, navigate directly to your resource page.
+1. If you created a new resource, after it deploys, select **Go to resource**. If you have an existing Document translation resource, navigate directly to your resource page.
 
 1. In the left rail, under *Resource Management*, select **Keys and Endpoint**.
 
 1. Copy and paste your **`key`** and **`document translation endpoint`** in a convenient location, such as *Microsoft Notepad*. Only one key is necessary to make an API call.
 
-1. You **`key`** and **`document translation endpoint`** into the code samples to authenticate your request to the Document Translation service.
+1. You **`key`** and **`document translation endpoint`** into the code samples to authenticate your request to the Document translation service.
 
     :::image type="content" source="../media/document-translation-key-endpoint.png" alt-text="Screenshot showing the get your key field in Azure portal.":::
 
@@ -77,10 +74,10 @@ To get started, you need:
 
 Requests to the Translator service require a read-only key for authenticating access.
 
-1. If you created a new resource, after it deploys, select **Go to resource**. If you have an existing Document Translation resource, navigate directly to your resource page.
+1. If you created a new resource, after it deploys, select **Go to resource**. If you have an existing Document translation resource, navigate directly to your resource page.
 1. In the left rail, under *Resource Management*, select **Keys and Endpoint**.
 1. Copy and paste your key in a convenient location, such as *Microsoft Notepad*.
-1. You paste it into the code sample to authenticate your request to the Document Translation service.
+1. You paste it into the code sample to authenticate your request to the Document translation service.
 
 :::image type="content" source="../../media/translator-keys.png" alt-text="Image of the get your key field in Azure portal.":::
 
@@ -92,11 +89,11 @@ You need to  [**create containers**](/azure/storage/blobs/storage-quickstart-blo
 * **Target container**. This container is where your translated files are stored (required).
 
 > [!NOTE]
-> Document Translation supports glossaries as blobs in target containers (not separate glossary containers). If want to include a custom glossary, add it to the target container and include the` glossaryUrl` with the request.  If the translation language pair is not present in the glossary, it will not be applied. *See* [Translate documents using a custom glossary](#translate-documents-using-a-custom-glossary)
+> Document translation supports glossaries as blobs in target containers (not separate glossary containers). If you want to include a custom glossary, add it to the target container and include the` glossaryUrl` with the request. If the translation language pair isn't present in the glossary, the glossary isn't applied. *See* [Translate documents using a custom glossary](#translate-documents-using-a-custom-glossary)
 
-### **Create SAS access tokens for Document Translation**
+### **Create SAS access tokens for Document translation**
 
-The `sourceUrl` , `targetUrl` , and optional `glossaryUrl`  must include a Shared Access Signature (SAS) token, appended as a query string. The token can be assigned to your container or specific blobs. *See* [**Create SAS tokens for Document Translation process**](create-sas-tokens.md).
+The `sourceUrl` , `targetUrl` , and optional `glossaryUrl`  must include a Shared Access Signature (SAS) token, appended as a query string. The token can be assigned to your container or specific blobs. *See* [**Create SAS tokens for Document translation process**](create-sas-tokens.md).
 
 * Your **source** container or blob must designate  **read** and **list** access.
 * Your **target** container or blob must designate  **write** and **list** access.
@@ -112,11 +109,11 @@ The `sourceUrl` , `targetUrl` , and optional `glossaryUrl`  must include a Share
 
 An asynchronous batch translation request is submitted to your Translator service endpoint via a POST request. If successful, the POST method returns a `202 Accepted`  response code and the service creates a batch request. The translated documents are listed in your target container.
 
-For detailed information regarding Azure AI Translator Service request limits, _see_ [**Document Translation request limits**](../../service-limits.md#document-translation).
+For detailed information regarding Azure AI Translator Service request limits, _see_ [**Document translation request limits**](../../service-limits.md#document-translation).
 
 ### HTTP headers
 
-The following headers are included with each Document Translation API request:
+The following headers are included with each Document translation API request:
 
 |HTTP header|Description|
 |---|--|
@@ -133,7 +130,7 @@ The following headers are included with each Document Translation API request:
 * The `targetUrl` for each target language must be unique.
 
 >[!NOTE]
-> If a file with the same name already exists in the destination, the job will fail.
+> If a file with the same name already exists in the destination, the job fails.
 
 <!-- markdownlint-disable MD024 -->
 ### Translate all documents in a container
@@ -212,7 +209,30 @@ The following headers are included with each Document Translation API request:
 }
 ```
 
-## Use code to submit Document Translation requests
+### 🆕 Translate text embedded in images within documents
+
+> [!Note]
+>
+> * This feature is optional and must be enabled for each translation request.
+> * Enabling this feature will incur additional costs based on usage. For more information, *see* [Azure AI Vision pricing](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/)
+> * This feature is currently available only with the Batch Document translation API.
+> * The Supported file format is `.docx` only.
+> * An Azure AI Services resource (not the standalone Translator resource) is required to use this feature.
+
+### Request configuration
+
+* Use the optional `translateTextWithinImage` parameter in the `options` field
+
+   * Data type: Boolean (`true` or `false`) 
+   * Default Boolean setting is `false`. Set the option to `true` to enable image text translation.
+
+* **Response Details**. When the feature is enabled, added image processing information is included with the response: 
+
+   * **`totalImageScansSucceeded`**. The number of successfully translated image scans.
+
+   * **`totalImageScansFailed`**. The number of image scans that failed processing.
+
+## Use code to submit Document translation requests
 
 ### Set up your coding Platform
 
@@ -308,9 +328,9 @@ gradle init --type basic
 
 > [!IMPORTANT]
 >
-> For the code samples, you'll hard-code your Shared Access Signature (SAS) URL where indicated. Remember to remove the SAS URL from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Managed Identity](create-use-managed-identities.md). For more information, _see_ Azure Storage [security](/azure/storage/common/authorize-data-access).
+> For the code samples, hard-code your Shared Access Signature (SAS) URL where indicated. Remember to remove the SAS URL from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Managed Identity](create-use-managed-identities.md). For more information, _see_ Azure Storage [security](/azure/storage/common/authorize-data-access).
 
-> You may need to update the following fields, depending upon the operation:
+> You might need to update the following fields, depending upon the operation:
 >>>
 >> * `endpoint`
 >> * `basePath`
@@ -735,7 +755,7 @@ func main() {
 
 ## Get status for a translation job
 
-Get the current status for a single job and a summary of all jobs in a Document Translation request. If successful, this method returns a `200 OK` response code.
+Get the current status for a single job and a summary of all jobs in a Document translation request. If successful, this method returns a `200 OK` response code.
 <!-- markdownlint-disable MD024 -->
 
 ### [C#](#tab/csharp)
@@ -917,7 +937,7 @@ func main() {
 
 ### Brief overview
 
-Retrieve the status for a specific document in a Document Translation request. If successful, this method returns a `200 OK` response code.
+Retrieve the status for a specific document in a Document translation request. If successful, this method returns a `200 OK` response code.
 
 ### [C#](#tab/csharp)
 
@@ -1279,13 +1299,13 @@ func main() {
 |------------------|-------------|-----------------|
 | 200 | OK | The request was successful. |
 | 400 | Bad Request | A required parameter is missing, empty, or null. Or, the value passed to either a required or optional parameter is invalid. A common issue is a header that is too long. |
-| 401 | Unauthorized | The request isn't authorized. Check to make sure your key or token is valid and in the correct region. When managing your subscription on the Azure portal, make sure you're using the **Translator** single-service resource  _not_ the **Azure AI services** multi-service resource.
+| 401 | Unauthorized | The request isn't authorized. Check to make sure your key or token is valid and in the correct region.
 | 429 | Too Many Requests | You exceeded the quota or rate of requests allowed for your subscription. |
 | 502 | Bad Gateway    | Network or server-side issue. Can also indicate invalid headers. |
 
 ## Learn more
 
-* [Translator v3 API reference](../../reference/v3-0-reference.md)
+* [Translator v3 API reference](../../text-translation/reference/v3/reference.md)
 * [Language support](../../language-support.md)
 
 ## Next steps

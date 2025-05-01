@@ -37,10 +37,9 @@ Prebuilt Docker container images for inference are used when deploying a model w
 
 Framework version | CPU/GPU | Pre-installed packages | MCR Path
  --- | --- | --- | --- |
-NA | CPU | NA | `mcr.microsoft.com/azureml/minimal-ubuntu20.04-py38-cpu-inference:latest`
-NA | GPU | NA | `mcr.microsoft.com/azureml/minimal-ubuntu20.04-py38-cuda11.6.2-gpu-inference:latest`
 NA | CPU | NA | `mcr.microsoft.com/azureml/minimal-ubuntu22.04-py39-cpu-inference:latest`
 NA | GPU | NA | `mcr.microsoft.com/azureml/minimal-ubuntu22.04-py39-cuda11.8-gpu-inference:latest`
+NA | CPU | NA | `mcr.microsoft.com/azureml/minimal-py312-inference:latest`
 
 > [!NOTE]
 > Azure Machine Learning supports [Curated environments](resource-curated-environments.md). You can [browse curated environments](how-to-manage-environments-in-studio.md#browse-curated-environments) and add filter for `Tags: Inferencing`.

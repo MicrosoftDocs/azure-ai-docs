@@ -17,13 +17,7 @@ monikerRange: 'azureml-api-2 || azureml-api-1'
 
 Azure Machine Learning is built on top of multiple Azure services. Although the stored data is encrypted through encryption keys that Microsoft provides, you can enhance security by also providing your own (customer-managed) keys. The keys that you provide are stored in Azure Key Vault. Your data is can be stored on a set of other resources that you manage in your Azure subscription, or [(preview) server-side on Microsoft managed resources](#preview-service-side-encryption-of-metadata).
 
-In addition to customer-managed keys (CMK), Azure Machine Learning provides an [hbi_workspace flag](/python/api/azure-ai-ml/azure.ai.ml.entities.workspace). Enabling this flag reduces the amount of data that Microsoft collects for diagnostic purposes and enables [extra encryption in Microsoft-managed environments](/azure/security/fundamentals/encryption-atrest). This flag also enables the following behaviors:
-
-* Starts encrypting the local scratch disk in your Azure Machine Learning compute cluster, if you didn't create any previous clusters in that subscription. Otherwise, you need to raise a support ticket to enable encryption of the scratch disk for your compute clusters.
-* Cleans up your local scratch disk between jobs.
-* Securely passes credentials for your storage account, container registry, and Secure Shell (SSH) account from the execution layer to your compute clusters by using your key vault.
-
-The `hbi_workspace` flag doesn't affect encryption in transit. It affects only encryption at rest.
+In addition to customer-managed keys (CMK), Azure Machine Learning provides an [high business impact configuration](/python/api/azure-ai-ml/azure.ai.ml.entities.workspace) for highly sensitive data workloads. Enabling this configuration reduces the amount of data that Microsoft collects for diagnostic purposes and enables [extra encryption in Microsoft-managed environments](/azure/security/fundamentals/encryption-atrest). 
 
 ## Prerequisites
 
@@ -42,6 +36,7 @@ For example, the managed identity for Azure Cosmos DB would need to have those p
 
 * After workspace creation, the customer-managed encryption key for resources that the workspace depends on can only be updated to another key in the original Azure Key Vault resource.
 * Unless you are using the [server-side preview](#preview-service-side-encryption-of-metadata), the encrypted data is stored on resources in a Microsoft-managed resource group in your subscription. You can't create these resources up front or transfer ownership of them to you. The data lifecycle is managed indirectly via the Azure Machine Learning APIs as you create objects in the Azure Machine Learning service.
+* If you are using the [server-side preview](#preview-service-side-encryption-of-metadata), Azure charges will continue to accrue during the soft delete retention period.
 * You can't delete Microsoft-managed resources that you use for customer-managed keys without also deleting your workspace.
 * You can't encrypt the compute cluster's OS disk by using your customer-managed keys. You must use Microsoft-managed keys.
 
@@ -124,22 +119,30 @@ Data that previously was stored in Azure Cosmos DB in your subscription, is stor
 
 Pipelines metadata that previously was stored in a storage account in a managed resource group, is now stored on the storage account in your subscription that is associated to the Azure Machine Learning workspace. Since this Azure Storage resource is managed separately in your subscription, you're responsible to configure encryption settings on it.
 
-To opt in for this preview, set the `enableServiceSideCMKEncryption` on a REST API or in your Bicep or Resource Manager template. You can also use Azure portal. Preview availability varies by [workspace kind](concept-workspace.md):
-
-| Kind | Supported |
-| ----- | ----- |
-| Default | Yes |
-| Hub | No |
-| Project | No |
+To opt in for this preview, set the `enableServiceSideCMKEncryption` on a REST API or in your Bicep or Resource Manager template. You can also use Azure portal.
 
 :::image type="content" source="./media/concept-customer-managed-keys/cmk-service-side-encryption.png" alt-text="Screenshot of the encryption tab with the option for server side encryption selected." lightbox="./media/concept-customer-managed-keys/cmk-service-side-encryption.png":::
 
 > [!NOTE]
-> During this preview key rotation and data labeling capabilities are not supported. Server-side encryption is currently not supported in reference to an Azure Key Vault for storing your encryption key that has public network access disabled.
+> - During this preview key rotation and data labeling capabilities are not supported. Server-side encryption is currently not supported in reference to an Azure Key Vault for storing your encryption key that has public network access disabled.
+> - If you are using the preview server-side storage, Azure charges will continue to accrue during the soft delete retention period.
 
-For a template that creates a workspace with service-side encryption of metadata, see [https://github.com/azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/machine-learning-workspace-cmk-service-side-encryption](https://github.com/azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/machine-learning-workspace-cmk-service-side-encryption).
+For templates that create a workspace with service-side encryption of metadata, see 
+
+- [Bicep template for creating default workspace](https://github.com/azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/machine-learning-workspace-cmk-service-side-encryption).
+- [Bicep template for creating hub workspace](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-cmk-service-side-encryption).
   
-## hbi_workspace flag
+## High business impact (HBI) configuration
+
+In standard workspace configurations, Azure Machine Learning collects diagnostic information for performance monitoring and improvement, as well as the troubleshooting of your compute clusters. For example, when two jobs are run on the same compute cluster using the same docker image, then the same image will be reusable between jobs without having to be rebuild or pulled twice reducing job start times.
+
+When handling highly sensitive data workloads, you may opt-out from the above behavior by setting the `hbi` flag on your workspace. This flag enables the following behaviors:
+* It reduces the amount of data that Microsoft collects for diagnostic purposes from your compute clusters and enables [extra encryption in Microsoft-managed environments](/azure/security/fundamentals/encryption-atrest). 
+* Starts encrypting the local scratch disk in your Azure Machine Learning compute cluster. This behavior is only enforced if you didn't create any previous clusters in that subscription. Otherwise, you are required to raise a support ticket to enable encryption of the scratch disk for your compute clusters.
+* Cleans up your local scratch disk between jobs. For example, this cleans up cached docker images and may affect job startup speed.
+* Passes credentials for your storage account, container registry, and Secure Shell (SSH) account from the execution layer to your compute clusters by using your Azure key vault.
+
+Note that `hbi_workspace` flag doesn't affect encryption in transit. It affects only encryption at rest.
 
 You can set the `hbi_workspace` flag only when you create a workspace. You can't change it for an existing workspace.
 

@@ -7,7 +7,7 @@ author: aapowell
 ms.author: aapowell
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 03/05/2024
+ms.date: 3/11/2025
 ---
 
 [Reference documentation](/dotnet/api/overview/azure/ai.openai.assistants-readme?context=/azure/ai-services/openai/context/context) |  [Source code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/openai/Azure.AI.OpenAI/src) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.OpenAI/)
@@ -18,129 +18,243 @@ ms.date: 03/05/2024
 - The [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 - An Azure OpenAI resource with a [compatible model in a supported region](../concepts/models.md#assistants-preview).
 - We recommend reviewing the [Responsible AI transparency note](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=text) and other [Responsible AI resources](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) to familiarize yourself with the capabilities and limitations of the Azure OpenAI Service.
-- An Azure OpenAI resource with the `gpt-4 (1106-preview)` model deployed was used testing this example.
+- An Azure OpenAI resource with the `gpt-4o` model deployed was used testing this example.
+
+### Microsoft Entra ID prerequisites
+
+For the recommended keyless authentication with Microsoft Entra ID, you need to:
+- Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
+- Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
 ## Set up
 
-### Create a new .NET Core application
+1. Create a new folder `assistants-quickstart` and go to the quickstart folder with the following command:
 
-In a console window (such as cmd, PowerShell, or Bash), use the `dotnet new` command to create a new console app with the name `azure-openai-quickstart`. This command creates a simple "Hello World" project with a single C# source file: *Program.cs*.
+    ```shell
+    mkdir assistants-quickstart && cd assistants-quickstart
+    ```
 
-```dotnetcli
-dotnet new console -n azure-openai-assistants-quickstart
-```
+1. Create a new console application with the following command:
 
-Change your directory to the newly created app folder. You can build the application with:
+    ```shell
+    dotnet new console
+    ```
 
-```dotnetcli
-dotnet build
-```
+3. Install the [OpenAI .NET client library](https://www.nuget.org/packages/Azure.AI.OpenAI/) with the [dotnet add package](/dotnet/core/tools/dotnet-add-package) command:
 
-The build output should contain no warnings or errors.
+    ```console
+    dotnet add package Azure.AI.OpenAI --prerelease
+    ```
 
-```output
-...
-Build succeeded.
- 0 Warning(s)
- 0 Error(s)
-...
-```
+1. For the **recommended** keyless authentication with Microsoft Entra ID, install the [Azure.Identity](https://www.nuget.org/packages/Azure.Identity) package with:
 
-Install the OpenAI .NET client library with:
+    ```console
+    dotnet add package Azure.Identity
+    ```
 
-```console
-dotnet add package Azure.AI.OpenAI.Assistants --prerelease
-```
+1. For the **recommended** keyless authentication with Microsoft Entra ID, sign in to Azure with the following command:
 
-[!INCLUDE [get-key-endpoint](get-key-endpoint.md)]
+    ```console
+    az login
+    ```
 
-[!INCLUDE [environment-variables](environment-variables.md)]
+## Retrieve resource information
 
-## Create an assistant
+[!INCLUDE [resource authentication](resource-authentication.md)]
 
-In our code we are going to specify the following values:
+## Run the quickstart
 
-| **Name** | **Description** |
-|:---|:---|
-| **Assistant name** | Your deployment name that is associated with a specific model. |
-| **Instructions** | Instructions are similar to system messages this is where you give the model guidance about how it should behave and any context it should reference when generating a response. You can describe the assistant's personality, tell it what it should and shouldn't answer, and tell it how to format responses. You can also provide examples of the steps it should take when answering responses. |
-| **Model** | This is where you set which model deployment name to use with your assistant. The retrieval tool requires `gpt-35-turbo (1106)` or `gpt-4 (1106-preview)` model. **Set this value to your deployment name, not the model name unless it is the same.** |
-| **Code interpreter** | Code interpreter provides access to a sandboxed Python environment that can be used to allow the model to test and execute code. |
+The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with an `AzureKeyCredential` object. 
 
-### Tools
-
-An individual assistant can access up to 128 tools including `code interpreter`, as well as any custom tools you create via [functions](../how-to/assistant-functions.md).
-
-Create and run an assistant with the following:
+#### [Microsoft Entra ID](#tab/keyless)
 
 ```csharp
-using Azure;
-using Azure.AI.OpenAI.Assistants;
+AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new DefaultAzureCredential()); 
+```
 
-string endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT") ?? throw new ArgumentNullException("AZURE_OPENAI_ENDPOINT");
-string key = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY") ?? throw new ArgumentNullException("AZURE_OPENAI_API_KEY");
-AssistantsClient client = new AssistantsClient(new Uri(endpoint), new AzureKeyCredential(key));
+#### [API key](#tab/api-key)
 
-// Create an assistant
-Assistant assistant = await client.CreateAssistantAsync(
-    new AssistantCreationOptions("gpt-4-1106-preview") // Replace this with the name of your model deployment
-    {
-        Name = "Math Tutor",
-        Instructions = "You are a personal math tutor. Write and run code to answer math questions.",
-        Tools = { new CodeInterpreterToolDefinition() }
-    });
+```csharp
+AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new AzureKeyCredential(key));
+```
+---
 
-// Create a thread
-AssistantThread thread = await client.CreateThreadAsync();
+To run the quickstart, follow these steps:
 
-// Add a user question to the thread
-ThreadMessage message = await client.CreateMessageAsync(
-    thread.Id,
-    MessageRole.User,
-    "I need to solve the equation `3x + 11 = 14`. Can you help me?");
-
-// Run the thread
-ThreadRun run = await client.CreateRunAsync(
-    thread.Id,
-    new CreateRunOptions(assistant.Id)
-);
-
-// Wait for the assistant to respond
-do
-{
-    await Task.Delay(TimeSpan.FromMilliseconds(500));
-    run = await client.GetRunAsync(thread.Id, run.Id);
-}
-while (run.Status == RunStatus.Queued
-    || run.Status == RunStatus.InProgress);
-
-// Get the messages
-PageableList<ThreadMessage> messagesPage = await client.GetMessagesAsync(thread.Id);
-IReadOnlyList<ThreadMessage> messages = messagesPage.Data;
-
-// Note: messages iterate from newest to oldest, with the messages[0] being the most recent
-foreach (ThreadMessage threadMessage in messages.Reverse())
-{
-    Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
-    foreach (MessageContent contentItem in threadMessage.ContentItems)
-    {
-        if (contentItem is MessageTextContent textItem)
+1. Replace the contents of `Program.cs` with the following code and update the placeholder values with your own.
+    
+    ```csharp
+    using Azure;
+    using Azure.AI.OpenAI;
+    using Azure.Identity;
+    using OpenAI.Assistants;
+    using OpenAI.Files;
+    using System.ClientModel;
+    
+    // Assistants is a beta API and subject to change
+    // Acknowledge its experimental status by suppressing the matching warning.
+    #pragma warning disable OPENAI001
+    
+    string deploymentName = "gpt-4o";
+    
+    string endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT") ?? "https://<your-resource-name>.openai.azure.com/";
+    string key = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY") ?? "<your-key>";
+    
+    // Use the recommended keyless credential instead of the AzureKeyCredential credential.
+    AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new DefaultAzureCredential()); 
+    //AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new AzureKeyCredential(key));
+    
+    OpenAIFileClient fileClient = openAIClient.GetOpenAIFileClient();
+    AssistantClient assistantClient = openAIClient.GetAssistantClient();
+    
+    // First, let's contrive a document we'll use retrieval with and upload it.
+    using Stream document = BinaryData.FromString("""
         {
-            Console.Write(textItem.Text);
+            "description": "This document contains the sale history data for Contoso products.",
+            "sales": [
+                {
+                    "month": "January",
+                    "by_product": {
+                        "113043": 15,
+                        "113045": 12,
+                        "113049": 2
+                    }
+                },
+                {
+                    "month": "February",
+                    "by_product": {
+                        "113045": 22
+                    }
+                },
+                {
+                    "month": "March",
+                    "by_product": {
+                        "113045": 16,
+                        "113055": 5
+                    }
+                }
+            ]
+        }
+        """).ToStream();
+    
+    OpenAI.Files.OpenAIFile salesFile = await fileClient.UploadFileAsync(
+        document,
+        "monthly_sales.json",
+        FileUploadPurpose.Assistants);
+    
+    // Now, we'll create a client intended to help with that data
+    OpenAI.Assistants.AssistantCreationOptions assistantOptions = new()
+    {
+        Name = "Example: Contoso sales RAG",
+        Instructions =
+            "You are an assistant that looks up sales data and helps visualize the information based"
+            + " on user queries. When asked to generate a graph, chart, or other visualization, use"
+            + " the code interpreter tool to do so.",
+        Tools =
+                {
+                    new FileSearchToolDefinition(),
+                    new OpenAI.Assistants.CodeInterpreterToolDefinition(),
+                },
+        ToolResources = new()
+        {
+            FileSearch = new()
+            {
+                NewVectorStores =
+                    {
+                        new VectorStoreCreationHelper([salesFile.Id]),
+                    }
+            }
+        },
+    };
+    
+    Assistant assistant = await assistantClient.CreateAssistantAsync(deploymentName, assistantOptions);
+    
+    // Create and run a thread with a user query about the data already associated with the assistant
+    ThreadCreationOptions threadOptions = new()
+    {
+        InitialMessages = { "How well did product 113045 sell in February? Graph its trend over time." }
+    };
+    
+    var initialMessage = new OpenAI.Assistants.ThreadInitializationMessage(OpenAI.Assistants.MessageRole.User, ["hi"]);
+    
+    ThreadRun threadRun = await assistantClient.CreateThreadAndRunAsync(assistant.Id, threadOptions);
+    
+    // Check back to see when the run is done
+    do
+    {
+        Thread.Sleep(TimeSpan.FromSeconds(1));
+        threadRun = assistantClient.GetRun(threadRun.ThreadId, threadRun.Id);
+    } while (!threadRun.Status.IsTerminal);
+    
+    // Finally, we'll print out the full history for the thread that includes the augmented generation
+    AsyncCollectionResult<OpenAI.Assistants.ThreadMessage> messages
+        = assistantClient.GetMessagesAsync(
+            threadRun.ThreadId,
+            new MessageCollectionOptions() { Order = MessageCollectionOrder.Ascending });
+    
+    await foreach (OpenAI.Assistants.ThreadMessage message in messages)
+    {
+        Console.Write($"[{message.Role.ToString().ToUpper()}]: ");
+        foreach (OpenAI.Assistants.MessageContent contentItem in message.Content)
+        {
+            if (!string.IsNullOrEmpty(contentItem.Text))
+            {
+                Console.WriteLine($"{contentItem.Text}");
+    
+                if (contentItem.TextAnnotations.Count > 0)
+                {
+                    Console.WriteLine();
+                }
+    
+                // Include annotations, if any.
+                foreach (TextAnnotation annotation in contentItem.TextAnnotations)
+                {
+                    if (!string.IsNullOrEmpty(annotation.InputFileId))
+                    {
+                        Console.WriteLine($"* File citation, file ID: {annotation.InputFileId}");
+                    }
+                    if (!string.IsNullOrEmpty(annotation.OutputFileId))
+                    {
+                        Console.WriteLine($"* File output, new file ID: {annotation.OutputFileId}");
+                    }
+                }
+            }
+            if (!string.IsNullOrEmpty(contentItem.ImageFileId))
+            {
+                OpenAI.Files.OpenAIFile imageFile = await fileClient.GetFileAsync(contentItem.ImageFileId);
+                BinaryData imageBytes = await fileClient.DownloadFileAsync(contentItem.ImageFileId);
+                using FileStream stream = File.OpenWrite($"{imageFile.Filename}.png");
+                imageBytes.ToStream().CopyTo(stream);
+    
+                Console.WriteLine($"<image: {imageFile.Filename}.png>");
+            }
         }
         Console.WriteLine();
     }
-}
-```
+    ```
 
-This will print an output as follows:
+1. Run the application with the following command:
 
-```
-2024-03-05 03:38:17 -       user: I need to solve the equation `3x + 11 = 14`. Can you help me?
-2024-03-05 03:38:25 -  assistant: The solution to the equation \(3x + 11 = 14\) is \(x = 1\).
-```
+    ```shell
+    dotnet run
+    ```
 
-New messages can be created on the thread before re-running, which will see the assistant use the past messages as context within the thread.
+## Output
+
+The console output should resemble the following:
+
+```text
+[USER]: How well did product 113045 sell in February? Graph its trend over time.
+
+[ASSISTANT]: Product 113045 sold 22 units in February. Let's visualize its sales trend over the given months (January through March).
+
+I'll create a graph to depict this trend.
+
+[ASSISTANT]: <image: 553380b7-fdb6-49cf-9df6-e8e6700d69f4.png>
+The graph above visualizes the sales trend for product 113045 from January to March. As seen, the sales peaked in February with 22 units sold, and fluctuated over the period from January (12 units) to March (16 units).
+
+If you need further analysis or more details, feel free to ask!
+```
 
 ## Clean up resources
 

@@ -2,12 +2,11 @@
 title: Use summarization Docker containers on-premises
 titleSuffix: Azure AI services
 description: Use Docker containers for the summarization API to summarize text, on-premises.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 12/19/2023
+ms.date: 11/21/2024
 ms.author: jboback
 keywords: on-premises, Docker, container
 ---
@@ -35,7 +34,7 @@ The following table describes the minimum and recommended specifications for the
 | Container Type             | Recommended number of CPU cores  | Recommended memory | Notes |
 |----------------------------|----------------------------------|--------------------|-------|
 | Summarization CPU container| 16                               | 48 GB              |       |
-| Summarization GPU container| 2                                | 24 GB              | Requires an Nvidia GPU that supports Cuda 11.8 with 16GB VRAM.|
+| Summarization GPU container| 2                                | 24 GB              | Requires an NVIDIA GPU that supports Cuda 11.8 with 16GB VRAM.|
 
 CPU core and memory correspond to the `--cpus` and `--memory` settings, which are used as part of the `docker run` command.
 

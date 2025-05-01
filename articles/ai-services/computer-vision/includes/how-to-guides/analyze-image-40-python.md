@@ -5,6 +5,7 @@ ms.service: ai-services
 ms.subservice: computer-vision
 ms.topic: include
 ms.date: 01/15/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ms.custom: references_regions
 ---
@@ -20,7 +21,7 @@ This guide assumes you've followed the steps of the [quickstart](/azure/ai-servi
 
 To authenticate against the Image Analysis service, you need a Computer Vision key and endpoint URL. This guide assumes that you've defined the environment variables `VISION_KEY` and `VISION_ENDPOINT` with your key and endpoint.
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 Start by creating an [ImageAnalysisClient](/python/api/azure-ai-vision-imageanalysis/azure.ai.vision.imageanalysis.imageanalysisclient) object using one of the constructors. For example:
 

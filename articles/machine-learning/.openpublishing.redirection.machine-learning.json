@@ -1,6 +1,36 @@
 {
     "redirections": [
     {
+        "source_path_from_root": "/articles/machine-learning/how-to-r-train-model.md",
+        "redirect_url": "/azure/machine-learning/how-to-r-interactive-development",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-r-deploy-r-model.md",
+        "redirect_url": "/azure/machine-learning/how-to-r-interactive-development",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-r-modify-script-for-production.md",
+        "redirect_url": "/azure/machine-learning/how-to-r-interactive-development",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-r-overview-r-capabilities.md",
+        "redirect_url": "/azure/machine-learning/how-to-r-interactive-development",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-regulate-registry-deployments.md",
+        "redirect_url": "/azure/machine-learning/how-to-built-in-policy-model-deployment",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/tutorial-create-secure-workspace-template.md",
+        "redirect_url": "/azure/machine-learning/tutorial-create-secure-workspace",
+        "redirect_document_id": false
+    },
+    {
         "source_path_from_root": "/articles/machine-learning/how-to-create-manage-compute-instance.md",
         "redirect_url": "/azure/machine-learning/how-to-create-compute-instance",
         "redirect_document_id": true
@@ -8,6 +38,21 @@
     {
         "source_path_from_root": "/articles/machine-learning/v-fake/tutorial-train-deploy-notebook.md",
         "redirect_url": "/azure/machine-learning/tutorial-train-deploy-notebook",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/concept-model-lifecycle-and-retirement.md",
+        "redirect_url": "/azure/machine-learning/concept-model-lifecycle-retirement",
+        "redirect_document_id": true
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/reference-model-inference-completions.md",
+        "redirect_url": "/azure/machine-learning/reference-model-inference-chat-completions",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/concept-model-lifecycle-retirement.md",
+        "redirect_url": "/azure/ai-foundry/concepts/model-lifecycle-retirement?context=/azure/machine-learning/context/context",
         "redirect_document_id": false
     },
     {
@@ -33,11 +78,6 @@
     {
         "source_path_from_root": "/articles/machine-learning/v-fake/tutorial-1st-experiment-bring-data.md",
         "redirect_url": "/azure/machine-learning/tutorial-1st-experiment-bring-data",
-        "redirect_document_id": true
-    },
-    {
-        "source_path_from_root": "/articles/machine-learning/v-fake/introduction.md",
-        "redirect_url": "/azure/machine-learning/introduction",
         "redirect_document_id": true
     },
     {
@@ -1466,18 +1506,23 @@
         "redirect_document_id": true
     },
     {
+        "source_path_from_root": "/articles/machine-learning/deploy-jais-models.md",
+        "redirect_url": "/azure/machine-learning/how-to-deploy-models-jais",
+        "redirect_document_id": true
+    },
+    {
         "source_path_from_root": "/articles/machine-learning/service/tutorial-data-prep.md",
         "redirect_url": "/azure/machine-learning/tutorial-auto-train-models",
         "redirect_document_id": false
     },
     {
         "source_path_from_root": "/articles/machine-learning/service/tutorial-auto-train-models.md",
-        "redirect_url": "/azure/machine-learning/v1/how-to-auto-train-models-v1",
+        "redirect_url": "/azure/machine-learning/how-to-auto-train-models-v1",
         "redirect_document_id": false
     },
     {
         "source_path_from_root": "/articles/machine-learning/tutorial-auto-train-models.md",
-        "redirect_url": "/azure/machine-learning/v1/how-to-auto-train-models-v1",
+        "redirect_url": "/azure/machine-learning/how-to-auto-train-models-v1",
         "redirect_document_id": false
     },
     {
@@ -3391,6 +3436,16 @@
         "redirect_document_id": true
     },
     {
+        "source_path_from_root": "/articles/machine-learning/v-fake/migrate-overview.md",
+        "redirect_url": "/azure/machine-learning/migrate-overview",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/v-fake/introduction.md",
+        "redirect_url": "/azure/machine-learning/introduction",
+        "redirect_document_id": true
+    },
+    {
         "source_path_from_root": "/articles/machine-learning/classic/migrate-execute-r-script.md",
         "redirect_url": "/azure/machine-learning/migrate-execute-r-script",
         "redirect_document_id": true
@@ -4111,11 +4166,6 @@
         "redirect_document_id": true
     },
     {
-        "source_path_from_root": "/articles/machine-learning/v-fake/migrate-overview.md",
-        "redirect_url": "/azure/machine-learning/migrate-overview",
-        "redirect_document_id": false
-    },
-    {
         "source_path_from_root": "/articles/machine-learning/v-fake/migrate-rebuild-experiment.md",
         "redirect_url": "/azure/machine-learning/migrate-rebuild-experiment",
         "redirect_document_id": false
@@ -4236,6 +4286,86 @@
         "redirect_document_id": false
     },
     {
+        "source_path_from_root": "/articles/machine-learning/how-to-deploy-models-cohere-command.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#cohere",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-deploy-models-cohere-embed.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#cohere",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-deploy-models-cohere-rerank.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#cohere-rerank",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-deploy-models-jais.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#core42",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-deploy-models-jamba.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#ai21-labs",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-deploy-models-llama.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#meta",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-deploy-models-mistral.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#mistral-ai",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-deploy-models-phi-3.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#microsoft",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-deploy-models-phi-3-5-vision.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#microsoft",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/how-to-deploy-models-phi-3-vision.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#microsoft",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/deploy-stability-models.md",
+        "redirect_url": "/azure/machine-learning/concept-models-featured#stability-ai",
+        "redirect_document_id": false
+    },    
+    {
+        "source_path_from_root": "/articles/machine-learning/reference-model-inference-api.md",
+        "redirect_url": "/rest/api/aifoundry/modelinference",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/reference-model-inference-chat-completions.md",
+        "redirect_url": "/rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/reference-model-inference-embeddings.md",
+        "redirect_url": "/rest/api/aifoundry/model-inference/get-embeddings/get-embeddings",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/reference-model-inference-images-embeddings.md",
+        "redirect_url": "/rest/api/aifoundry/model-inference/get-image-embeddings/get-image-embeddings",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/reference-model-inference-info.md",
+        "redirect_url": "/rest/api/aifoundry/model-inference/get-model-info/get-model-info",
+        "redirect_document_id": false
+    },
+    {
         "source_path_from_root": "/articles/machine-learning/prompt-flow/tools-reference/more-tools.md",
         "redirect_url": "/azure/machine-learning/prompt-flow/tools-reference/overview",
         "redirect_document_id": false
@@ -4286,6 +4416,11 @@
         "redirect_document_id": true
     },
     {
+        "source_path_from_root": "/articles/machine-learning/how-to-deploy-models-phi-3-5-moe.md",
+        "redirect_url": "/azure/machine-learning/how-to-deploy-models-phi-3",
+        "redirect_document_id": true
+    },
+    {
         "source_path_from_root": "/articles/machine-learning/prompt-flow/tools-reference/vector-db-lookup-tool.md",
         "redirect_url": "/azure/machine-learning/prompt-flow/tools-reference/index-lookup-tool",
         "redirect_document_id": false
@@ -4303,6 +4438,21 @@
     {
         "source_path_from_root": "/articles/machine-learning/security-baseline.md",
         "redirect_url": "/security/benchmark/azure/baselines/machine-learning-security-baseline",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/v1/how-to-machine-learning-interpretability-aml.md",
+        "redirect_url": "/azure/machine-learning/how-to-machine-learning-interpretability",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/v1/how-to-machine-learning-fairness-aml.md",
+        "redirect_url": "/azure/machine-learning/concept-fairness-ml",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/v1/how-to-machine-learning-interpretability-automl.md",
+        "redirect_url": "/azure/machine-learning/how-to-machine-learning-interpretability",
         "redirect_document_id": false
     }
 ]

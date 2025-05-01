@@ -8,7 +8,7 @@ ms.reviewer: vkann
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
-ms.date: 03/07/2024
+ms.date: 03/10/2025
 ms.topic: troubleshooting
 #customer intent: To troubleshoot and resolve issues that occur when creating your data labeling project.
 ---
@@ -80,7 +80,7 @@ When your workspace is secured with a virtual network, use these steps to set th
 
 ## When data preprocessing fails
 
-Another possible issue with creating a data labeling project is when data preprocessing fails. You'll see an error that looks like this:
+Another possible issue with creating a data labeling project is when data preprocessing fails. You see an error that looks like this:
 
 :::image type="content" source="media/how-to-troubleshoot-data-labeling/data-error.png" alt-text="Screenshot shows a data preprocessing error.":::
 
@@ -103,7 +103,7 @@ When the **Save credentials with the datastore for data access** is **Off**, the
 
 Once you have the compute cluster name with a managed identity, assign the Storage Blob Data Contributor role to the compute cluster. 
 
-Follow the previous steps to [Add Storage Blob Data Contributor access](#add-blob-access). But this time, you'll be selecting the compute resource in the **Select members** section, so that the compute cluster has access to the datastore.
+Follow the previous steps to [Add Storage Blob Data Contributor access](#add-blob-access). But this time, you are selecting the compute resource in the **Select members** section, so that the compute cluster has access to the datastore.
 
 * If you're using a system-assigned identity, search for the compute name by using the workspace name, followed by `/computes/` followed by the compute name. For example, if the workspace name is `myworkspace` and the compute name is `mycompute`, search for `myworkspace/computes/mycompute` to select the member.
 * If you're using a user-assigned identity, search for the user-assigned identity name.

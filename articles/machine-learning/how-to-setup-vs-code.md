@@ -1,5 +1,5 @@
 ---
-title: Set up Visual Studio Code desktop with the Azure Machine Learning extension (preview)
+title: Set up Visual Studio Code desktop with the Azure Machine Learning extension
 titleSuffix: Azure Machine Learning
 description: Learn how to set up the Azure Machine Learning Visual Studio Code extension.
 services: machine-learning
@@ -8,13 +8,13 @@ author: ssalgadodev
 ms.author: ssalgado
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 01/16/2024
+ms.date: 03/25/2025
 ms.topic: how-to
 ms.custom: devplatv2, build-2023
 monikerRange: 'azureml-api-1 || azureml-api-2'
 ---
 
-# Set up Visual Studio Code desktop with the Azure Machine Learning extension (preview)
+# Set up Visual Studio Code desktop with the Azure Machine Learning extension
 
 Learn how to set up the Azure Machine Learning Visual Studio Code extension for your machine learning workflows. You only need to do this setup when using the VS Code desktop application. If you use VS Code for the Web, this is handled for you.
 
@@ -25,8 +25,6 @@ The Azure Machine Learning extension for VS Code provides a user interface to:
 - Train machine learning models
 - Debug machine learning experiments locally
 - Schema-based language support, autocompletion and diagnostics for specification file authoring
-
-[!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
 ## Prerequisites
 

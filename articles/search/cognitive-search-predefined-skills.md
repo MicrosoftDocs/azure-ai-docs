@@ -4,23 +4,24 @@ titleSuffix: Azure AI Search
 description: Data extraction, natural language, and image processing skills add semantics and structure to raw content in an Azure AI Search enrichment pipeline. Data chunking and vectorization skills support vector search scenarios.
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
   - build-2024
-ms.topic: conceptual
-ms.date: 10/28/2023
+  - ignite-2024
+ms.topic: concept-article
+ms.date: 03/11/2025
 ---
 
 # Skills for extra processing during indexing (Azure AI Search)
 
-This article describes the skills provided with Azure AI Search that you can include in a [skillset](cognitive-search-working-with-skillsets.md) to access external processing. 
+This article describes the skills in Azure AI Search that you can include in a [skillset](cognitive-search-working-with-skillsets.md) to access external processing. 
 
-A *skill* provides an atomic operation that transforms content in some way. Often, it's an operation that recognizes or extracts text, but it can also be a utility skill that reshapes the enrichments that are already created. Typically, the output is text-based so that it can be used in [full text search](search-lucene-query-architecture.md) or vectors used in [vector search](vector-search-overview.md).
+A *skill* is an atomic operation that transforms content in some way. Often, it's an operation that recognizes or extracts text, but it can also be a utility skill that reshapes the enrichments that are already created. Typically, the output is either text-based so that it can be used in [full text search](search-lucene-query-architecture.md), or vectors used in [vector search](vector-search-overview.md).
 
 Skills are organized into categories:
 
-* A *built-in skill* wraps API calls to an Azure resource, where the inputs, outputs, and processing steps are well understood. For skills that call an Azure AI resource, the connection is made over the internal network. For skills that call Azure OpenAI, you provide the connection information that the search service uses to connect to the resource. A small quantity of processing is non-billable, but at larger volumes, processing is billable. Built-in skills are based on pretrained models from Microsoft, which means you can't train the model using your own training data.
+* A *built-in skill* wraps API calls to an Azure AI resource, where the inputs, outputs, and processing steps are well understood. For skills that call an Azure AI resource, the connection is made over the internal network. For skills that call Azure OpenAI, you provide the connection information that the search service uses to connect to the resource. A small quantity of processing is non-billable, but at larger volumes, processing is billable. Built-in skills are based on pretrained models from Microsoft, which means you can't train the model using your own training data.
 
 * A *custom skill* provides custom code that executes externally to the search service. It's accessed through a URI. Custom code is often made available through an Azure function app. To attach an open-source or third-party vectorization model, use a custom skill.
 
@@ -43,6 +44,7 @@ Skills that call the Azure AI are billed at the pay-as-you-go rate when you [att
 | [Microsoft.Skills.Vision.ImageAnalysisSkill](cognitive-search-skill-image-analysis.md) | This skill uses an image detection algorithm to identify the content of an image and generate a text description. | Azure AI services ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) | 
 | [Microsoft.Skills.Vision.OcrSkill](cognitive-search-skill-ocr.md) | Optical character recognition. | Azure AI services ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
 | [Microsoft.Skills.Vision.VectorizeSkill](cognitive-search-skill-vision-vectorize.md) | Multimodal image and text vectorization. | Azure AI services ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
+| [Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill](cognitive-search-skill-document-intelligence-layout.md) | Accelerate information extraction from documents. | Azure AI services ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
 
 ## Azure OpenAI skills
 

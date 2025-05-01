@@ -8,13 +8,13 @@ ms.author: larryfr
 ms.reviewer: balapv
 ms.service: azure-machine-learning
 ms.subservice: training
-ms.date: 09/10/2023
+ms.date: 10/07/2024
 ms.topic: how-to
 ms.custom:
   - sdkv2
   - build-2023
   - ignite-2023
-  - update-code2
+  - update-code3
 ---
 
 # Train models with Azure Machine Learning CLI, SDK, and REST API
@@ -211,17 +211,17 @@ The `az ml job create` command used in this example requires a YAML job definiti
 > [!NOTE]
 > To use [serverless compute](./how-to-use-serverless-compute.md), delete `compute: azureml:cpu-cluster"` in this code.
 
-:::code language="yaml" source="~/azureml-examples-main/cli/jobs/single-step/scikit-learn/iris/job.yml":::
+:::code language="yaml" source="~/azureml-examples-main/cli/jobs/single-step/lightgbm/iris/job.yml":::
 
 In the above, you configured:
 - `code` - path where the code to run the command is located
 - `command` - command that needs to be run
 - `inputs` - dictionary of inputs using name value pairs to the command. The key is a name for the input within the context of the job and the value is the input value. Inputs are referenced in the `command` using the `${{inputs.<input_name>}}` expression. For more information, see [SDK and CLI v2 expressions](concept-expressions.md).
-- `environment` - the environment needed to run the training script. In this example, we use a curated or ready-made environment provided by Azure Machine Learning called `AzureML-sklearn-0.24-ubuntu18.04-py37-cpu`. We use the latest version of this environment by using the `@latest` directive. You can also use custom environments by specifying a base docker image and specifying a conda yaml on top of it.
+- `environment` - the environment needed to run the training script. In this example, we use a curated or ready-made environment provided by Azure Machine Learning called `AzureML-lightgbm-3.3`. We use the latest version of this environment by using the `@latest` directive. You can also use custom environments by specifying a base docker image and specifying a conda yaml on top of it.
 To submit the job, use the following command. The run ID (name) of the training job is stored in the `$run_id` variable:
 
 ```azurecli
-run_id=$(az ml job create -f jobs/single-step/scikit-learn/iris/job.yml --query name -o tsv)
+run_id=$(az ml job create -f jobs/single-step/lightgbm/iris/job.yml --query name -o tsv)
 ```
 
 You can use the stored run ID to return information about the job. The `--web` parameter opens the Azure Machine Learning studio web UI where you can drill into details on the job:
@@ -235,7 +235,7 @@ As part of job submission, the training scripts and data must be uploaded to a c
 1. Use the following Azure CLI command to upload the training script. The command specifies the _directory_ that contains the files needed for training, not an individual file. If you'd like to use REST to upload the data instead, see the [Put Blob](/rest/api/storageservices/put-blob) reference:
 
     ```azurecli
-    az storage blob upload-batch -d $AZUREML_DEFAULT_CONTAINER/testjob -s cli/jobs/single-step/scikit-learn/iris/src/ --account-name $AZURE_STORAGE_ACCOUNT
+    az storage blob upload-batch -d $AZUREML_DEFAULT_CONTAINER/testjob -s cli/jobs/single-step/lightgbm/iris/src/ --account-name $AZURE_STORAGE_ACCOUNT
     ```
 
 1. Create a versioned reference to the training data. In this example, the data is already in the cloud and located at `https://azuremlexamples.blob.core.windows.net/datasets/iris.csv`. For more information on referencing data, see [Data in Azure Machine Learning](concept-data.md):
@@ -271,7 +271,7 @@ As part of job submission, the training scripts and data must be uploaded to a c
 1. Create the environment that the cluster will use to run the training script. In this example, we use a curated or ready-made environment provided by Azure Machine Learning called `AzureML-lightgbm-3.2-ubuntu18.04-py37-cpu`. The following command retrieves a list of the environment versions, with the newest being at the top of the collection. `jq` is used to retrieve the ID of the latest (`[0]`) version, which is then stored into the `$ENVIRONMENT` variable.
 
     ```bash
-    ENVIRONMENT=$(curl --location --request GET "https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/environments/AzureML-lightgbm-3.2-ubuntu18.04-py37-cpu/versions?api-version=$API_VERSION" --header "Authorization: Bearer $TOKEN" | jq -r .value[0].id)
+    ENVIRONMENT=$(curl --location --request GET "https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/$WORKSPACE/environments/AzureML-lightgbm-3.2-ubuntu18.04-py37-cpu?api-version=$API_VERSION" --header "Authorization: Bearer $TOKEN" | jq -r .id)
     ```
 
 1. Finally, submit the job. The following example shows how to submit the job, reference the training code ID, environment ID, URL for the input data, and the ID of the compute cluster. The job output location will be stored in the `$JOB_OUTPUT` variable:

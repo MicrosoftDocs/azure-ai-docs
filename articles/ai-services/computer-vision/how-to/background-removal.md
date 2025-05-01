@@ -2,37 +2,39 @@
 title: Remove the background in images
 titleSuffix: Azure AI services
 description: Learn how to call the Segment API to isolate and remove the background from images.
-#services: cognitive-services
 manager: nitinme
 author: PatrickFarley
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 02/21/2025
 ---
 
 # Remove the background in images
+
+[!INCLUDE [segmentation-deprecation](../includes/segmentation-deprecation.md)]
 
 This article demonstrates how to call the Image Analysis 4.0 API to segment an image (separate the foreground from background). It also shows you how to parse the returned information.
 
 > [!IMPORTANT]
 > Background removal is only available through direct REST API calls. It is not available through the SDKs.
 
+> [!IMPORTANT]
+> Background removal is only available in certain Azure regions. See [Region availability](./../overview-image-analysis.md#region-availability)
+
+
 ## Prerequisites
 
 This guide assumes you have successfully followed the steps mentioned in the [quickstart](../quickstarts-sdk/image-analysis-client-library-40.md) page. This means:
-
 * You have <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision"  title="created a Vision resource"  target="_blank">created a Vision resource </a> and obtained a key and endpoint URL.
 * You have successfully made a `curl.exe` call to the service (or used an alternative tool). You modify the `curl.exe` call based on the examples here.
 
 The [quickstart](../quickstarts-sdk/image-analysis-client-library-40.md) shows you how to extract visual features from an image. However, the concepts are similar to background removal. Therefore you benefit from starting with the quickstart and making modifications.
 
-> [!IMPORTANT]
-> Background removal is only available in certain Azure regions. See [Region availability](./../overview-image-analysis.md#region-availability)
+## Authentication to the service
 
-## Authenticate against the service
-
-To authenticate against the Image Analysis service, you need a Computer Vision key and endpoint URL.
+To authenticate to the Image Analysis service, you need a Computer Vision key and endpoint URL.
 
 > [!TIP]
 > Don't include the key directly in your code, and never post it publicly. See the Azure AI services [security](../../security-features.md) article for more authentication options like [Azure Key Vault](../../use-key-vault.md). 
@@ -74,7 +76,7 @@ Authentication is done by adding the HTTP request header **Ocp-Apim-Subscription
 
 ## Select the image to analyze
 
-The code in this guide uses remote images referenced by URL. You may want to try different images on your own to see the full capability of the Image Analysis features.
+The code in this guide uses remote images referenced by URL. You might want to try different images on your own to see the full capability of the Image Analysis features.
 
 <!--
 #### [C#](#tab/csharp)
@@ -224,9 +226,9 @@ The API returns an image the same size as the original for the `foregroundMattin
 [!INCLUDE [image-analysis-error-codes-40](../includes/image-analysis-error-codes-40.md)]
 
 
+## Next step
 
-## Next steps
-
-[Background removal concepts](../concept-background-removal.md)
+> [!div class="nextstepaction"]
+> [Background removal concepts](../concept-background-removal.md)
 
 

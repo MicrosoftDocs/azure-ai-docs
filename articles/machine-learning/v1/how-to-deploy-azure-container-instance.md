@@ -6,7 +6,7 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
-ms.custom: UpdateFrequency5, deploy, cliv1, sdkv1
+ms.custom: UpdateFrequency5, deploy, cliv1, sdkv1, ignite-2024
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: bozhlin
@@ -14,6 +14,10 @@ ms.date: 07/10/2024
 ---
 
 # Deploy a model to Azure Container Instances with CLI (v1)
+
+[!INCLUDE [cli v1 deprecation](../includes/machine-learning-cli-v1-deprecation.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 > [!IMPORTANT]
 > This article shows how to use the CLI and SDK v1 to deploy a model.  For the recommended approach for v2, see [Deploy and score a machine learning model by using an online endpoint](/azure/machine-learning/how-to-deploy-managed-online-endpoints).
@@ -38,8 +42,6 @@ For information on quota and region availability for ACI, see [Quotas and region
 
 - The [Azure CLI extension (v1) for Machine Learning service](reference-azure-machine-learning-cli.md), [Azure Machine Learning Python SDK](/python/api/overview/azure/ml/intro), or the [Azure Machine Learning Visual Studio Code extension](../how-to-setup-vs-code.md).
 
-    [!INCLUDE [cli v1 deprecation](../includes/machine-learning-cli-v1-deprecation.md)]
-
 - The __Python__ code snippets in this article assume that the following variables are set:
 
     * `ws` - Set to your workspace.
@@ -52,7 +54,9 @@ For information on quota and region availability for ACI, see [Quotas and region
 
 ## Limitations
 
-When your Azure Machine Learning workspace is configured with a private endpoint, deploying to Azure Container Instances in a virtual network isn't supported. Instead, consider using a [Managed online endpoint with network isolation](../how-to-secure-online-endpoint.md).
+> [!NOTE]
+> * Deploying Azure Container Instances in a virtual network is not supported. Instead, for network isolation, consider using [managed online endpoints](../how-to-secure-online-endpoint.md).
+> * To ensure effective support, it is essential to supply the necessary logs for your ACI containers. Without these logs, technical support cannot be guaranteed. It is recommended to use log analytics tools by specifying [`enable_app_insights=True`](/python/api/azureml-core/azureml.core.webservice.aciwebservice#variables) in your deployment configuration to manage and analyze your ACI container logs efficiently.
 
 ## Deploy to ACI
 

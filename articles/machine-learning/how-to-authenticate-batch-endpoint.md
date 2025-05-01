@@ -38,7 +38,7 @@ See [Configure RBAC for batch endpoint invoke](#configure-rbac-for-batch-endpoin
 The following examples show different ways to start batch deployment jobs using different types of credentials:
 
 > [!IMPORTANT]
-> When working on a private link-enabled workspaces, batch endpoints can't be invoked from the UI in Azure Machine Learning studio. Please use the Azure Machine Learning CLI v2 instead for job creation.
+> When working on private link-enabled workspaces, batch endpoints can't be invoked from the UI in Azure Machine Learning studio. Please use the Azure Machine Learning CLI v2 instead for job creation.
 
 ### Prerequisites
 
@@ -351,13 +351,15 @@ To configure the compute cluster for data access, follow these steps:
 
 1. Go to [Azure Machine Learning studio](https://ml.azure.com).
 
-1. Navigate to __Compute__, then __Compute clusters__, and select the compute cluster your deployment is using.
+1. Navigate to __Compute__, then __Compute clusters__.
+
+1. Select the compute cluster your deployment is using. This action opens the compute cluster's __Details__ page.
 
 1. Assign a managed identity to the compute cluster:
 
-   1. In the __Managed identity__ section, verify if the compute has a managed identity assigned. If not, select the option __Edit__.
+   1. Go to the __Managed identity__ section of the page and verify if the compute has a managed identity assigned. If not, select the pencil icon to edit the managed identity.
       
-   1. Select __Assign a managed identity__ and configure it as needed. You can use a System-Assigned Managed Identity or a User-Assigned Managed Identity. If using a System-Assigned Managed Identity, it is named as "[workspace name]/computes/[compute cluster name]".
+   1. Select the slider next to __Assign a managed identity__ to enable and configure it as needed. You can use a System-Assigned Managed Identity or a User-Assigned Managed Identity. If using a System-Assigned Managed Identity, it is named as "[workspace name]/computes/[compute cluster name]".
 
    1. Save the changes. 
 
@@ -378,8 +380,6 @@ To configure the compute cluster for data access, follow these steps:
    1. Look for the managed identity you have created. If using a System-Assigned Managed Identity, it is named as __"[workspace name]/computes/[compute cluster name]"__.
 
    1. Add the account, and complete the wizard.
-  
-    :::image type="content" source="media/how-to-authenticate-batch-endpoint/guide-manage-identity-assign.gif" alt-text="Animation showing the steps to assign the created managed identity to the storage account.":::
   
 1. Your endpoint is ready to receive jobs and input data from the selected storage account. 
 

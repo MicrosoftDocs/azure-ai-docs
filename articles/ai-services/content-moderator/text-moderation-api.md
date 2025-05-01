@@ -1,27 +1,28 @@
 ---
 title: Text Moderation - Content Moderator
 titleSuffix: Azure AI services
-description: Use text moderation for possible unwanted text, personal data, and custom lists of terms.
-#services: cognitive-services
+description: Use text moderation to detect potentially unwanted text, personal data, and custom lists of terms.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-moderator
 ms.topic: conceptual
-ms.date: 01/18/2024
+ms.date: 11/06/2024
 ms.author: pafarley
 
 ---
 
-# Learn text moderation concepts
+# Text moderation concepts
 
-Use Content Moderator's text moderation models to analyze text content, such as chat rooms, discussion boards, chatbots, e-commerce catalogs, and documents.
+[!INCLUDE [deprecation notice](includes/tool-deprecation.md)]
+
+You can use Azure Content Moderator's text moderation models to analyze text content, such as chat rooms, discussion boards, chatbots, e-commerce catalogs, and documents.
 
 The service response includes the following information:
 
 - Profanity: term-based matching with built-in list of profane terms in various languages
 - Classification: machine-assisted classification into three categories
 - Personal data
-- Auto-corrected text
+- Autocorrected text
 - Original text
 - Language
 
@@ -40,13 +41,13 @@ If the API detects any profane terms in any of the [supported languages](./langu
 ```
 
 > [!NOTE]
-> For the **language** parameter, assign `eng` or leave it empty to see the machine-assisted **classification** response (preview feature). **This feature supports English only**.
+> For the `language` parameter, assign `eng` or leave it empty to see the machine-assisted *classification* response (preview feature). **This feature supports English only**.
 >
-> For **profanity terms** detection, use the [ISO 639-3 code](http://www-01.sil.org/iso639-3/codes.asp) of the supported languages listed in this article, or leave it empty.
+> For *profanity terms* detection, use the [ISO 639-3 code](http://www-01.sil.org/iso639-3/codes.asp) of the supported languages listed in this article, or leave it empty.
 
 ## Classification
 
-Content Moderator's machine-assisted **text classification feature** supports **English only**, and helps detect potentially undesired content. The flagged content may be assessed as inappropriate depending on context. It conveys the likelihood of each category. The feature uses a trained model to identify possible abusive, derogatory or discriminatory language. This includes slang, abbreviated words, offensive, and intentionally misspelled words.
+Content Moderator's machine-assisted *text classification feature* supports *English only*, and helps detect potentially undesired content. The flagged content might be assessed as inappropriate depending on context. It conveys the likelihood of each category. The feature uses a trained model to identify possible abusive, derogatory, or discriminatory language. This includes slang, abbreviated words, offensive, and intentionally misspelled words.
 
 The following extract in the JSON extract shows an example output:
 
@@ -67,10 +68,10 @@ The following extract in the JSON extract shows an example output:
 
 ### Explanation
 
-- `Category1` refers to potential presence of language that may be considered sexually explicit or adult in certain situations.
-- `Category2` refers to potential presence of language that may be considered sexually suggestive or mature in certain situations.
-- `Category3` refers to potential presence of language that may be considered offensive in certain situations.
-- `Score` is between 0 and 1. The higher the score, the higher the model is predicting that the category may be applicable. This feature relies on a statistical model rather than manually coded outcomes. We recommend testing with your own content to determine how each category aligns to your requirements.
+- `Category1` refers to the potential presence of language that might be considered sexually explicit or adult in certain situations.
+- `Category2` refers to the potential presence of language that might be considered sexually suggestive or mature in certain situations.
+- `Category3` refers to the potential presence of language that might be considered offensive in certain situations.
+- `Score` is between 0 and 1. The higher the score, the higher the probability that the category might be applicable. This feature relies on a statistical model rather than manually coded outcomes. We recommend testing with your own content to determine how each category aligns to your requirements.
 - `ReviewRecommended` is either true or false depending on the internal score thresholds. Customers should assess whether to use this value or decide on custom thresholds based on their content policies.
 
 ## Personal data
@@ -120,24 +121,24 @@ The following example shows a sample response:
 }
 ```
 
-## Auto-correction
+## Autocorrection
 
-The text moderation response can optionally return the text with basic auto-correction applied. 
+The text moderation response can optionally return the text with basic autocorrection applied. 
 
 For example, the following input text has a misspelling.
 
 > The quick brown fox jumps over the lazzy dog.
 
-If you specify auto-correction, the response contains the corrected version of the text:
+If you specify autocorrection, the response contains the corrected version of the text:
 
 > The quick brown fox jumps over the lazy dog.
 
-## Creating and managing your custom lists of terms
+## Create and manage your custom lists of terms
 
-While the default, global list of terms works great for most cases, you may want to screen against terms that are specific to your business needs. For example, you may want to filter out any competitive brand names from posts by users.
+While the default, global list of terms works great for most cases, you might want to screen against terms that are specific to your business needs. For example, you might want to filter out any competitive brand names from posts by users.
 
 > [!NOTE]
-> There is a maximum limit of **5 term lists** with each list to **not exceed 10,000 terms**.
+> There is a maximum limit of *five term lists* with each list to *not exceed 10,000 terms*.
 >
 
 The following example shows the matching List ID:
@@ -152,8 +153,8 @@ The following example shows the matching List ID:
     }
 ```
 
-The Content Moderator provides a [Term List API](/rest/api/cognitiveservices/contentmoderator/list-management-term-lists) with operations for managing custom term lists. Check out the [Term Lists .NET quickstart](term-lists-quickstart-dotnet.md) if you are familiar with Visual Studio and C#.
+The Content Moderator provides a [Term List API](/rest/api/cognitiveservices/contentmoderator/list-management-term-lists) with operations for managing custom term lists. Check out the [Term Lists .NET quickstart](term-lists-quickstart-dotnet.md) if you're familiar with Visual Studio and C#.
 
-## Next steps
+## Related content
 
-Test out the APIs with the [Quickstart](client-libraries.md).
+- [Quickstart: Use the Content Moderator client library](client-libraries.md)

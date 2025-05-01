@@ -61,7 +61,7 @@ public async Task<string> GetTokenAsync()
 
 The `AuthenticationResult` object has an `AccessToken` property, which is the actual token you use when launching the Immersive Reader using the SDK. It also has an `ExpiresOn` property that denotes when the token expires. Before launching the Immersive Reader, you can check whether the token is expired, and acquire a new token only if it expired.
 
-## Using Node.JS
+## Using Node.js
 
 Add the [request](https://www.npmjs.com/package/request) npm package to your project. Use the following code to acquire a token, using the authentication values you got when you [created the Immersive Reader resource](./how-to-create-immersive-reader.md).
 

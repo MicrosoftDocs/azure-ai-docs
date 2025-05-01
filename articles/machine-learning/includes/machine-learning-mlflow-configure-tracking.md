@@ -2,7 +2,7 @@
 author: santiagxf
 ms.service: azure-machine-learning
 ms.topic: include
-ms.date: 01/02/2023
+ms.date: 11/20/2024
 ms.author: fasantia
 ---
 
@@ -12,61 +12,66 @@ ms.author: fasantia
     
     [!INCLUDE [cli v2](machine-learning-cli-v2.md)]
     
-    1. Login and configure your workspace:
+    1. Sign in and configure your workspace:
     
         ```bash
-        az account set --subscription <subscription>
-        az configure --defaults workspace=<workspace> group=<resource-group> location=<location> 
+        az account set --subscription <subscription-ID>
+        az configure --defaults workspace=<workspace-name> group=<resource-group-name> location=<location> 
         ```
     
-    1. You can get the tracking URI using the `az ml workspace` command:
+    1. Get the tracking URI by using the `az ml workspace` command:
     
         ```bash
         az ml workspace show --query mlflow_tracking_uri
         ```
         
-    # [Python](#tab/python)
+    # [Python SDK](#tab/python)
     
     [!INCLUDE [sdk v2](machine-learning-sdk-v2.md)]
     
-    You can get the Azure ML MLflow tracking URI using the [Azure Machine Learning SDK v2 for Python](../concept-v2.md). Ensure you have the library `azure-ai-ml` installed in the compute you are using. The following sample gets the unique MLFLow tracking URI associated with your workspace.
+    You can use the [Azure Machine Learning SDK v2 for Python](../concept-v2.md) to get the Azure Machine Learning MLflow tracking URI. Ensure that the `azure-ai-ml` library is installed in your compute instance. Then use the following code to get the unique MLFLow tracking URI that's associated with your workspace.
     
-    1. Login into your workspace using the `MLClient`. The easier way to do that is by using the workspace config file:
+    1. Use an instance of `MLClient` to sign in to your workspace. There are two options for signing in:
     
-        ```python
-        from azure.ai.ml import MLClient
-        from azure.identity import DefaultAzureCredential
+        - The easiest way is to use the workspace configuration file:
     
-        ml_client = MLClient.from_config(credential=DefaultAzureCredential())
-        ```
+          ```python
+          from azure.ai.ml import MLClient
+          from azure.identity import DefaultAzureCredential
     
-        > [!TIP]
-        > You can download the workspace configuration file by:
-        > 1. Navigate to [Azure ML studio](https://ml.azure.com)
-        > 2. Click on the upper-right corner of the page -> Download config file.
-        > 3. Save the file `config.json` in the same directory where you are working on.
+          ml_client = MLClient.from_config(credential=DefaultAzureCredential())
+          ```
     
-    1. Alternatively, you can use the subscription ID, resource group name and workspace name to get it:
+          > [!TIP]
+          >
+          > You can download the workspace configuration file by taking the following steps:
+          >
+          > 1. Go to [Azure Machine Learning studio](https://ml.azure.com).
+          > 1. In the upper right corner, select the name of your workspace.
+          > 1. In the Directory + Subscription + Workspace window, select __Download config file__.
+          > 3. Save the config.json file in the directory that you're working in.
     
-        ```python
-        from azure.ai.ml import MLClient
-        from azure.identity import DefaultAzureCredential
+       - Alternatively, you can use your subscription ID, resource group name, and workspace name to sign in:
     
-        #Enter details of your AzureML workspace
-        subscription_id = '<SUBSCRIPTION_ID>'
-        resource_group = '<RESOURCE_GROUP>'
-        workspace_name = '<WORKSPACE_NAME>'
+          ```python
+          from azure.ai.ml import MLClient
+          from azure.identity import DefaultAzureCredential
     
-        ml_client = MLClient(credential=DefaultAzureCredential(),
-                                subscription_id=subscription_id, 
-                                resource_group_name=resource_group,
-                                workspace_name=workspace_name)
-        ```
+          # Enter information about your Azure Machine Learning workspace.
+          subscription_id = "<subscription-ID>"
+          resource_group = "<resource-group-name>"
+          workspace_name = "<workspace-name>"
     
-        > [!IMPORTANT]
-        > `DefaultAzureCredential` will try to pull the credentials from the available context. If you want to specify credentials in a different way, for instance using the web browser in an interactive way, you can use `InteractiveBrowserCredential` or any other method available in [`azure.identity`](https://pypi.org/project/azure-identity/) package.
+          ml_client = MLClient(credential=DefaultAzureCredential(),
+                                  subscription_id=subscription_id, 
+                                  resource_group_name=resource_group,
+                                  workspace_name=workspace_name)
+          ```
     
-    1. Get the Azure Machine Learning Tracking URI:
+          > [!IMPORTANT]
+          > The `DefaultAzureCredential` method tries to pull credentials from the available context. But you might want to specify credentials in a different way, for instance by using the web browser in an interactive way. In these cases, you can use `InteractiveBrowserCredential` or any other method available in the [`azure.identity`](https://pypi.org/project/azure-identity/) package.
+    
+    1. Get the Azure Machine Learning tracking URI:
     
         ```python
         mlflow_tracking_uri = ml_client.workspaces.get(ml_client.workspace_name).mlflow_tracking_uri
@@ -74,38 +79,39 @@ ms.author: fasantia
     
     # [Studio](#tab/studio)
     
-    Use the Azure Machine Learning portal to get the tracking URI:
+    Use Azure Machine Learning studio to get the tracking URI:
     
-    1. Open the [Azure Machine Learning studio portal](https://ml.azure.com) and log in using your credentials.
+    1. Open [Azure Machine Learning studio](https://ml.azure.com) and use your credentials to sign in.
 
-    1. In the upper right corner, click on the name of your workspace to show the __Directory + Subscription + Workspace__ blade.
-
-    1. Click on __View all properties in Azure Portal__.
-
-    1. On the __Essentials__ section, you will find the property __MLflow tracking URI__.
+    1. In the upper right corner, select the name of your workspace.
     
+    1. In the Directory + Subscription + Workspace window, select __View all properties in Azure Portal__. The resource page for your workspace opens in the Azure portal.
+
+    1. Under __Essentials__, copy the __MLflow tracking URI__ value.    
     
     # [Manually](#tab/manual)
     
-    The Azure Machine Learning Tracking URI can be constructed using the subscription ID, region of where the resource is deployed, resource group name and workspace name. The following code sample shows how:
+    You can construct the Azure Machine Learning tracking URI manually. You need your subscription ID, the region your workspace is deployed in, your resource group name, and your workspace name. To get the URI, enter those values into the following code:
     
     > [!WARNING]
-    > If you are working in a private link-enabled workspace, the MLflow endpoint will also use a private link to communicate with Azure Machine Learning. As a consequence, the tracking URI will look different as proposed here. You need to get the tracking URI using the Azure ML SDK or CLI v2 on those cases.
+    > If you use a private link-enabled workspace, the MLflow endpoint also uses a private link to communicate with Azure Machine Learning. As a result, the tracking URI uses a format that's different from the one in this article. In this case, you need to use the Azure Machine Learning SDK for Python or the Azure Machine Learning CLI v2 to get the tracking URI.
     
     ```python
-    region = "<LOCATION>"
-    subscription_id = '<SUBSCRIPTION_ID>'
-    resource_group = '<RESOURCE_GROUP>'
-    workspace_name = '<AML_WORKSPACE_NAME>'
+    region = "<region>"
+    subscription_id = "<subscription-ID>"
+    resource_group = "<resource-group-name>"
+    workspace_name = "<workspace-name>"
     
     mlflow_tracking_uri = f"azureml://{region}.api.azureml.ms/mlflow/v1.0/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{workspace_name}"
     ```
 
-1. Configuring the tracking URI:
+    ---
 
-    # [Using MLflow SDK](#tab/mlflow)
+1. Configure the tracking URI:
+
+    # [MLflow SDK](#tab/mlflow)
     
-    Then the method [`set_tracking_uri()`](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.set_tracking_uri) points the MLflow tracking URI to that URI.
+    Use the [`set_tracking_uri()`](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.set_tracking_uri) method to set the MLflow tracking URI to the tracking URI of your workspace.
     
     ```python
     import mlflow
@@ -113,9 +119,9 @@ ms.author: fasantia
     mlflow.set_tracking_uri(mlflow_tracking_uri)
     ```
     
-    # [Using environment variables](#tab/environ)
+    # [Environment variables](#tab/environ)
     
-    You can set the MLflow environment variables [MLFLOW_TRACKING_URI](https://mlflow.org/docs/latest/tracking.html#logging-to-a-tracking-server) in your compute to make any interaction with MLflow in that compute to point by default to Azure Machine Learning.
+    In your compute instance, use the following code to set the `MLFLOW_TRACKING_URI` MLflow environment variable to the tracking URI of your workspace. This assignment makes all interactions with MLflow in that compute instance point to Azure Machine Learning by default. For more information, see [Logging functions](https://mlflow.org/docs/latest/tracking/tracking-api.html#logging-functions).
     
     ```bash
     MLFLOW_TRACKING_URI=$(az ml workspace show --query mlflow_tracking_uri | sed 's/"//g') 
@@ -124,4 +130,5 @@ ms.author: fasantia
     ---
 
     > [!TIP]
-    > When working on shared environments, like an Azure Databricks cluster, Azure Synapse Analytics cluster, or similar, it is useful to set the environment variable `MLFLOW_TRACKING_URI` at the cluster level to automatically configure the MLflow tracking URI to point to Azure Machine Learning for all the sessions running in the cluster rather than to do it on a per-session basis.
+    >
+    > Some scenarios involve working in a shared environment like an Azure Databricks cluster or an Azure Synapse Analytics cluster. In these cases, it's useful to set the `MLFLOW_TRACKING_URI` environment variable at the cluster level rather than for each session. Setting the variable at the cluster level automatically configures the MLflow tracking URI to point to Azure Machine Learning for all sessions in the cluster.

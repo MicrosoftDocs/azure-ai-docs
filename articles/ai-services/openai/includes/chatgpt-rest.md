@@ -2,7 +2,6 @@
 title: 'Quickstart: Use Azure OpenAI Service with the REST API'
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the REST API. 
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
@@ -25,8 +24,6 @@ ms.date: 03/21/2023
 [!INCLUDE [environment-variables](environment-variables.md)]
 
 
-> [!div class="nextstepaction"]
-> [I ran into an issue with the setup.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=REST&Pillar=AOAI&Product=Chatgpt&Page=quickstart&Section=Set-up)
 
 ## REST API
 
@@ -62,8 +59,6 @@ If you want to run this command in a normal Windows command prompt you would nee
 
 Output formatting adjusted for ease of reading, actual output is a single block of text without line breaks.
 
-> [!div class="nextstepaction"]
-> [I ran into an issue when running the code sample.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=REST&Pillar=AOAI&Product=Chatgpt&Page=quickstart&Section=Create-sample-code)
 
 ### Understanding the message structure
 
@@ -81,4 +76,4 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 ## Next steps
 
 * Learn more about how to work with GPT-35-Turbo and the GPT-4 models with [our how-to guide](../how-to/chatgpt.md).
-* For more examples, check out the [Azure OpenAI Samples GitHub repository](https://aka.ms/AOAICodeSamples)
+* For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai)

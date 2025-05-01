@@ -1,5 +1,274 @@
 {
   "redirections": [
-
+    {
+      "source_path": "articles/search/performance-benchmarks.md",
+      "redirect_url": "/previous-versions/azure/search/performance-benchmarks",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/search/search-traffic-analytics.md",
+      "redirect_url": "/previous-versions/azure/search/search-traffic-analytics",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/genomics/frequently-asked-questions-genomics.yml",
+      "redirect_url": "/previous-versions/azure/genomics/frequently-asked-questions-genomics",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/genomics/index.yml",
+      "redirect_url": "/previous-versions/azure/genomics/index",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/genomics/business-continuity-genomics.md",
+      "redirect_url": "/previous-versions/azure/genomics/business-continuity-genomics",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/genomics/file-support-ticket-genomics.md",
+      "redirect_url": "/previous-versions/azure/genomics/file-support-ticket-genomics",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/genomics/overview-what-is-genomics.md",
+      "redirect_url": "/previous-versions/azure/genomics/overview-what-is-genomics",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/genomics/quickstart-input-bam.md",
+      "redirect_url": "/previous-versions/azure/genomics/quickstart-input-bam",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/genomics/quickstart-input-multiple.md",
+      "redirect_url": "/previous-versions/azure/genomics/quickstart-input-multiple",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/genomics/quickstart-input-pair-fastq.md",
+      "redirect_url": "/previous-versions/azure/genomics/quickstart-input-pair-fastq",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/genomics/quickstart-input-sas.md",
+      "redirect_url": "/previous-versions/azure/genomics/quickstart-input-sas",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/genomics/quickstart-run-genomics-workflow-portal.md",
+      "redirect_url": "/previous-versions/azure/genomics/quickstart-run-genomics-workflow-portal",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/genomics/troubleshooting-guide-genomics.md",
+      "redirect_url": "/previous-versions/azure/genomics/troubleshooting-guide-genomics",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/genomics/version-release-history-genomics.md",
+      "redirect_url": "/previous-versions/azure/genomics/version-release-history-genomics",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-studio/concepts/what-are-ai-services.md",
+      "redirect_url": "/azure/ai-services/what-are-ai-services",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/use-your-image-data.md",
+      "redirect_url": "/azure/ai-services/openai/concepts/use-your-data",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/search/search-howto-create-indexers.md",
+      "redirect_url": "/azure/search/search-how-to-create-indexers",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/search/search-howto-dotnet-sdk.md",
+      "redirect_url": "/azure/search/search-how-to-dotnet-sdk",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/overview.md",
+      "redirect_url": "/azure/ai-services/agents/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/search/search-howto-index-csv-blobs.md",
+      "redirect_url": "/azure/search/search-how-to-index-csv-blobs",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/search/search-howto-large-index.md",
+      "redirect_url": "/azure/search/search-how-to-large-index",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/agents/concepts/agents.md",
+      "redirect_url": "/azure/ai-services/agents/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/use-your-data-securely.md",
+      "redirect_url": "/azure/ai-services/openai/how-to/on-your-data-configuration",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/concepts/data-formats.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/concepts/entity-components.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/concepts/evaluation-metrics.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/how-to/call-api.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/how-to/create-project.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/how-to/deploy-model.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/how-to/design-schema.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/how-to/fail-over.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/how-to/label-data.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/how-to/train-model.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/how-to/view-model-evaluation.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/language-support.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/overview.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/quickstart.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/reference/glossary.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom-text-analytics-for-health/reference/service-limits.md",
+      "redirect_url": "/azure/ai-services/language-service/text-analytics-for-health/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/sentiment-opinion-mining/custom/concepts/data-formats.md",
+      "redirect_url": "/azure/ai-services/language-service/sentiment-opinion-mining/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/sentiment-opinion-mining/custom/how-to/call-api.md",
+      "redirect_url": "/azure/ai-services/language-service/sentiment-opinion-mining/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/sentiment-opinion-mining/custom/how-to/create-project.md",
+      "redirect_url": "/azure/ai-services/language-service/sentiment-opinion-mining/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/sentiment-opinion-mining/custom/how-to/deploy-model.md",
+      "redirect_url": "/azure/ai-services/language-service/sentiment-opinion-mining/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/sentiment-opinion-mining/custom/how-to/design-schema.md",
+      "redirect_url": "/azure/ai-services/language-service/sentiment-opinion-mining/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/sentiment-opinion-mining/custom/how-to/label-data.md",
+      "redirect_url": "/azure/ai-services/language-service/sentiment-opinion-mining/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/sentiment-opinion-mining/custom/how-to/train-model.md",
+      "redirect_url": "/azure/ai-services/language-service/sentiment-opinion-mining/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/sentiment-opinion-mining/custom/quickstart.md",
+      "redirect_url": "/azure/ai-services/language-service/sentiment-opinion-mining/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/references/azure-machine-learning.md",
+      "redirect_url": "/azure/ai-services/openai/concepts/use-your-data",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/open-datasets/dataset-covid-19-open-research.md",
+      "redirect_url": "/azure/open-datasets/dataset-catalog",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/language-studio.md",
+      "redirect_url": "/azure/ai-services/language-service/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/summarization/region-support.md",
+      "redirect_url": "/azure/ai-services/language-service/concepts/regional-support",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/open-datasets/dataset-genomics-data-lake.md",
+      "redirect_url": "/azure/open-datasets/dataset-catalog",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/provisioned-reservation-update.md",
+      "redirect_url": "/azure/ai-services/openai/concepts/provisioned-migration",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/custom-vision-service/logo-detector-mobile.md",
+      "redirect_url": "/azure/ai-services/custom-vision-service",
+      "redirect_document_id": false
+    }
   ]
 }

@@ -2,14 +2,14 @@
 title: Configure containers - Language service
 titleSuffix: Azure AI services
 description: Language service provides each container with a common configuration framework, so that you can easily configure and manage storage, logging and telemetry, and security settings for your containers.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.custom:
   - ignite-2023
+  - ignite-2024
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 12/19/2023
+ms.date: 04/29/2025
 ms.author: jboback
 ---
 
@@ -23,6 +23,8 @@ Language service provides each container with a common configuration framework, 
 * Text Analytics for Health
 * Summarization
 * Named Entity Recognition (NER)
+* Personally Identifiable (PII) detection
+* Conversational Language Understanding (CLU)
 
 ## Configuration settings
 
@@ -48,7 +50,7 @@ The `Billing` setting specifies the endpoint URI of the _Language_ resource on A
 |Yes| `Billing` | String | Billing endpoint URI. |
 
 
-## Eula setting
+## EULA setting
 
 [!INCLUDE [Container shared configuration eula settings](../../includes/cognitive-services-containers-configuration-shared-settings-eula.md)]
 
@@ -70,11 +72,11 @@ Use bind mounts to read and write data to and from the container. You can specif
 
 The Language service containers don't use input or output mounts to store training or service data. 
 
-The exact syntax of the host mount location varies depending on the host operating system. Additionally, the host computer's mount location may not be accessible due to a conflict between permissions used by the docker service account and the host mount location permissions. 
+The exact syntax of the host mount location varies depending on the host operating system. The host computer's mount location may not be accessible due to a conflict between the docker service account permissions and the host mount location permissions. 
 
 |Optional| Name | Data type | Description |
 |-------|------|-----------|-------------|
-|Not allowed| `Input` | String | Language service containers do not use this.|
+|Not allowed| `Input` | String | Language service containers don't use this.|
 |Optional| `Output` | String | The target of the output mount. The default value is `/output`. This is the location of the logs. This includes container logs. <br><br>Example:<br>`--mount type=bind,src=c:\output,target=/output`|
 
 ## Next steps

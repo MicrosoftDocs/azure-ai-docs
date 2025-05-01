@@ -6,9 +6,9 @@ ms.date: 8/11/2024
 ms.author: eur
 ---
 
-You need to authenticate your application to access Azure AI services. For production, use a secure way to store and access your credentials. For example, after you get a key for your Speech resource, write it to a new environment variable on the local machine that runs the application.
+You need to authenticate your application to access Azure AI services. This article shows you how to use environment variables to store your credentials. You can then access the environment variables from your code to authenticate your application. For production, use a more secure way to store and access your credentials. 
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 To set the environment variables for your Speech resource key and region, open a console window, and follow the instructions for your operating system and development environment.
 

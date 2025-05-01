@@ -4,11 +4,11 @@ titleSuffix: Azure AI Search
 description: Cache intermediate content and incremental changes from AI enrichment pipeline in Azure Storage to preserve investments in existing processed documents. This feature is currently in public preview.
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 06/25/2024
+ms.date: 01/17/2025
 ---
 
 # Incremental enrichment and caching in Azure AI Search
@@ -40,7 +40,7 @@ The following example illustrates an indexer with caching enabled. See [Enable e
 To use the cache property, you can use 2020-06-30-preview or later when you [create or update an indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2024-05-01-preview&preserve-view=true). We recommend the latest preview API.
 
 ```json
-POST https://[search service name].search.windows.net/indexers?api-version=2024-05-01-rreview
+POST https://[YOUR-SEARCH-SERVICE-NAME].search.windows.net/indexers?api-version=2024-05-01-preview
     {
         "name": "myIndexerName",
         "targetIndexName": "myIndex",
@@ -83,7 +83,7 @@ Modifying a skill and reprocessing of that skill typically go hand in hand. Howe
 
 If you know that a change to the skill is indeed superficial, you should override skill evaluation by setting the `disableCacheReprocessingChangeDetection` parameter to true:
 
-1. Call [Update Skillset](/rest/api/searchservice/update-skillset) and modify the skillset definition.
+1. Call [Update Skillset](/rest/api/searchservice/skillsets/create-or-update) and modify the skillset definition.
 1. Append the "disableCacheReprocessingChangeDetection=true" parameter on the request.
 1. Submit the change.
 

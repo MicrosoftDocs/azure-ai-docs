@@ -7,12 +7,12 @@ ms.service: azure-ai-services
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 01/20/2024
+ms.date: 01/10/2025
 ---
 
 # Autoscale AI services limits
 
-This article provides guidance for how customers can access higher rate limits on their Azure AI services resources.
+This article provides guidance for how customers can access higher rate limits on certain Azure AI services resources.
 
 ## Overview
 
@@ -20,7 +20,7 @@ Each Azure AI services resource has a pre-configured static call rate (transacti
 
 ## Get started with the autoscale feature
 
-This feature is disabled by default for every new resource. Follow these instructions to enable it.
+This feature is disabled by default for every new resource. [If your resource supports autoscale](#which-services-support-the-autoscale-feature), follow these instructions to enable it:
 
 #### [Azure portal](#tab/portal)
 
@@ -40,6 +40,26 @@ az resource update --namespace Microsoft.CognitiveServices --resource-type accou
 ---
 
 ## Frequently asked questions
+
+### Which services support the autoscale feature?
+
+Autoscale feature is available in the paid subscription tier of the following services:
+
+* [Azure AI Vision](computer-vision/index.yml)
+* [Language](language-service/overview.md) (only available for sentiment analysis, key phrase extraction, named entity recognition, and text analytics for health)
+* [Anomaly Detector](anomaly-detector/overview.md)
+* [Content Moderator](content-moderator/overview.md)
+* [Custom Vision (Prediction)](custom-vision-service/overview.md)
+* [Immersive Reader](immersive-reader/overview.md)
+* [LUIS](luis/what-is-luis.md)
+* [Metrics Advisor](metrics-advisor/overview.md)
+* [Personalizer](personalizer/what-is-personalizer.md)
+* [QnAMaker](qnamaker/overview/overview.md)
+* [Document Intelligence](document-intelligence/overview.md?tabs=v3-0)
+
+### Can I test this feature using a free subscription?
+
+No, the autoscale feature isn't available to free tier subscriptions.
 
 ### Does enabling the autoscale feature mean my resource will never be throttled again?
 
@@ -63,29 +83,10 @@ Be aware of potential errors and their consequences. If a bug in your client app
 
 Yes, you can disable the autoscale feature through Azure portal or CLI and return to your default call rate limit setting. If your resource was previously approved for a higher default TPS, it goes back to that rate. It can take up to five minutes for the changes to go into effect.
 
-### Which services support the autoscale feature?
-
-Autoscale feature is available for the following services:
-
-* [Azure AI Vision](computer-vision/index.yml)
-* [Language](language-service/overview.md) (only available for sentiment analysis, key phrase extraction, named entity recognition, and text analytics for health)
-* [Anomaly Detector](anomaly-detector/overview.md)
-* [Content Moderator](content-moderator/overview.md)
-* [Custom Vision (Prediction)](custom-vision-service/overview.md)
-* [Immersive Reader](immersive-reader/overview.md)
-* [LUIS](luis/what-is-luis.md)
-* [Metrics Advisor](metrics-advisor/overview.md)
-* [Personalizer](personalizer/what-is-personalizer.md)
-* [QnAMaker](qnamaker/overview/overview.md)
-* [Document Intelligence](document-intelligence/overview.md?tabs=v3-0)
-
-### Can I test this feature using a free subscription?
-
-No, the autoscale feature isn't available to free tier subscriptions.
 
 ## Next steps
 
-* [Plan and Manage costs for Azure AI services](../ai-studio/how-to/costs-plan-manage.md).
-* [Optimize your cloud investment with Azure Cost Management](/azure/cost-management-billing/costs/cost-mgt-best-practices?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
+* [Plan and Manage costs for Azure AI services](../ai-foundry/how-to/costs-plan-manage.md).
+* [Optimize your cloud investment with Microsoft Cost Management](/azure/cost-management-billing/costs/cost-mgt-best-practices?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 * Learn about how to [prevent unexpected costs](/azure/cost-management-billing/cost-management-billing-overview?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 * Take the [Cost Management](/training/paths/control-spending-manage-bills?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) guided learning course.

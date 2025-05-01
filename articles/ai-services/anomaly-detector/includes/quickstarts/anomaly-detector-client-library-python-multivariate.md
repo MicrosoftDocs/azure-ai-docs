@@ -1,7 +1,6 @@
 ---
 title: Anomaly Detector Python multivariate client library quickstart
 titleSuffix: Azure AI services
-#services: cognitive-services
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
@@ -76,7 +75,7 @@ Go to your resource in the Azure portal. The **Endpoint and Keys** can be found 
 
 Create and assign persistent environment variables for your key and endpoint.
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 # [Command Line](#tab/command-line)
 

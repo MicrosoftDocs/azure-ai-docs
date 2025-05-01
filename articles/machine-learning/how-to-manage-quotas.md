@@ -8,20 +8,20 @@ ms.subservice: enterprise-readiness
 author: Blackmist
 ms.author: larryfr
 ms.reviewer: siarora
-ms.date: 09/15/2023
+ms.date: 10/04/2024
 ms.topic: how-to
 ms.custom: troubleshooting
+# Customer intent: As an admin, I want to understand how to manage and increase quotas and limits for resources with Azure Machine Learning.
 ---
 
 # Manage and increase quotas and limits for resources with Azure Machine Learning
 
 Azure uses quotas and limits to prevent budget overruns due to fraud, and to honor Azure capacity constraints. Consider these limits as you scale for production workloads. In this article, you learn about:
 
-> [!div class="checklist"]
-> + Default limits on Azure resources related to [Azure Machine Learning](overview-what-is-azure-machine-learning.md).
-> + Creating workspace-level quotas.
-> + Viewing your quotas and limits.
-> + Requesting quota increases.
+- Default limits on Azure resources related to [Azure Machine Learning](overview-what-is-azure-machine-learning.md).
+- Creating workspace-level quotas.
+- Viewing your quotas and limits.
+- Requesting quota increases.
 
 Along with managing quotas and limits, you can learn how to [plan and manage costs for Azure Machine Learning](concept-plan-manage-cost.md) or learn about the [service limits in Azure Machine Learning](resource-limits-capacity.md).
 
@@ -83,7 +83,7 @@ To raise the limits for the following items, [Request a quota increase](#request
 * Other resources in this section
 
 Available resources:
-+ **Dedicated cores per region** have a default limit of 24 to 300, depending on your subscription offer type. You can increase the number of dedicated cores per subscription for each VM family. Specialized VM families like NCv2, NCv3, or ND series start with a default of zero cores.  GPUs also default to zero cores.
++ **Dedicated cores per region** have a default limit of 24 to 300, depending on your subscription offer type. You can increase the number of dedicated cores per subscription for each VM family. Specialized VM families like NCv2, NCv3, or ND series start with a default of zero cores. GPUs also default to zero cores.
 
 + **Low-priority cores per region** have a default limit of 100 to 3,000, depending on your subscription offer type. The number of low-priority cores per subscription can be increased and is a single value across VM families.
 
@@ -121,9 +121,9 @@ You should use the shared quota only for creating temporary test endpoints, not 
 Azure Machine Learning online endpoints and batch endpoints have resource limits described in the following table.
 
 > [!IMPORTANT]
-> These limits are _regional_, meaning that you can use up to these limits per each region you're using. For example, if your current limit for number of endpoints per subscription is 100, you can create 100 endpoints in the East US region, 100 endpoints in the West US region, and 100 endpoints in each of the other supported regions in a single subscription. Same principle applies to all the other limits.
+> These limits are *regional*, meaning that you can use up to these limits per each region you're using. For example, if your current limit for number of endpoints per subscription is 100, you can create 100 endpoints in the East US region, 100 endpoints in the West US region, and 100 endpoints in each of the other supported regions in a single subscription. Same principle applies to all the other limits.
 
-To determine the current usage for an endpoint, [view the metrics](how-to-monitor-online-endpoints.md#metrics). 
+To determine the current usage for an endpoint, [view the metrics](how-to-monitor-online-endpoints.md#use-metrics). 
 
 To request an exception from the Azure Machine Learning product team, use the steps in the [Endpoint limit increases](#endpoint-limit-increases).
 
@@ -137,22 +137,24 @@ To request an exception from the Azure Machine Learning product team, use the st
 | Number of deployments per endpoint | 20 | Yes | All types of endpoints <sup>3</sup> |
 | Number of deployments per cluster | 100 | - | Kubernetes online endpoint |
 | Number of instances per deployment | 50 <sup>4</sup> | Yes | Managed online endpoint |
-| Max request time-out at endpoint level | 180 seconds | - | Managed online endpoint |
+| Max request time-out at endpoint level | 180 seconds <sup>5</sup> | - | Managed online endpoint |
 | Max request time-out at endpoint level | 300 seconds | - | Kubernetes online endpoint |
-| Total requests per second at endpoint level for all deployments  | 500 <sup>5</sup> | Yes | Managed online endpoint |
-| Total connections per second at endpoint level for all deployments  | 500 <sup>5</sup> | Yes | Managed online endpoint |
-| Total connections active at endpoint level for all deployments  | 500 <sup>5</sup> | Yes | Managed online endpoint |
-| Total bandwidth at endpoint level for all deployments  | 5 MBPS <sup>5</sup> | Yes | Managed online endpoint |
+| Total requests per second at endpoint level for all deployments  | 500 <sup>6</sup> | Yes | Managed online endpoint |
+| Total connections per second at endpoint level for all deployments  | 500 <sup>6</sup> | Yes | Managed online endpoint |
+| Total connections active at endpoint level for all deployments  | 500 <sup>6</sup> | Yes | Managed online endpoint |
+| Total bandwidth at endpoint level for all deployments  | 5 MBPS <sup>6</sup> | Yes | Managed online endpoint |
 
-<sup>1</sup> This is a regional limit. For example, if current limit on number of endpoint is 100, you can create 100 endpoints in the East US region, 100 endpoints in the West US region, and 100 endpoints in each of the other supported regions in a single subscription. Same principle applies to all the other limits. 
+<sup>1</sup> This is a regional limit. For example, if current limit on number of endpoints is 100, you can create 100 endpoints in the East US region, 100 endpoints in the West US region, and 100 endpoints in each of the other supported regions in a single subscription. Same principle applies to all the other limits. 
 
 <sup>2</sup> Single dashes like, `my-endpoint-name`, are accepted in endpoint and deployment names.
 
-<sup>3</sup> Endpoints and deployments can be of different types, but limits apply to the sum of all types. For example, the sum of managed online endpoints, Kubernetes online endpoint and batch endpoint under each subscription can't exceed 100 per region by default. Similarly, the sum of managed online deployments, Kubernetes online deployments and batch deployments under each subscription can't exceed 500 per region by default.
+<sup>3</sup> Endpoints and deployments can be of different types, but limits apply to the sum of all types. For example, the sum of managed online endpoints, Kubernetes online endpoint and batch endpoint under each subscription can't exceed 100 per region by default. Similarly, the sum of managed online deployments, Kubernetes online deployments, and batch deployments under each subscription can't exceed 500 per region by default.
 
 <sup>4</sup> We reserve 20% extra compute resources for performing upgrades. For example, if you request 10 instances in a deployment, you must have a quota for 12. Otherwise, you receive an error. There are some VM SKUs that are exempt from extra quota. For more information on quota allocation, see [virtual machine quota allocation for deployment](#virtual-machine-quota-allocation-for-deployment).
 
-<sup>5</sup> Requests per second, connections, bandwidth, etc. are related. If you request to increase any of these limits, ensure that you estimate/calculate other related limits together.
+<sup>5</sup> The request timeout maximum is 180 seconds unless it is a flow (prompt flow) deployment. The maximum request timeout for a flow deployment is 300 seconds. For more information on the timeout with flow deployments, see [deploy a flow in prompt flow](./prompt-flow/how-to-deploy-to-code.md#upstream-request-timeout-issue-when-consuming-the-endpoint).
+
+<sup>6</sup> Requests per second, connections, bandwidth, etc. are related. If you request to increase any of these limits, ensure that you estimate/calculate other related limits together.
 
 #### Virtual machine quota allocation for deployment
 
@@ -231,26 +233,26 @@ To view your quota for various Azure resources like virtual machines, storage, o
 
 1. On the left pane, select **All services** and then select **Subscriptions** under the **General** category.
 
-2. From the list of subscriptions, select the subscription whose quota you're looking for.
+1. From the list of subscriptions, select the subscription whose quota you're looking for.
 
-3. Select **Usage + quotas** to view your current quota limits and usage. Use the filters to select the provider and locations. 
+1. Select **Usage + quotas** to view your current quota limits and usage. Use the filters to select the provider and locations. 
 
-You manage the Azure Machine Learning compute quota on your subscription separately from other Azure quotas: 
+    You manage the Azure Machine Learning compute quota on your subscription separately from other Azure quotas: 
 
 1. Go to your **Azure Machine Learning** workspace in the Azure portal.
 
-2. On the left pane, in the **Support + troubleshooting** section, select **Usage + quotas** to view your current quota limits and usage.
+1. On the left pane, in the **Support + troubleshooting** section, select **Usage + quotas** to view your current quota limits and usage.
 
-[![Screenshot of Azure Portal view of current quota limits and usage.](./media/how-to-manage-quotas/portal-view-quota.png)](./media/how-to-manage-quotas/portal-view-quota.png)
+    [![Screenshot of Azure Portal view of current quota limits and usage.](./media/how-to-manage-quotas/portal-view-quota.png)](./media/how-to-manage-quotas/portal-view-quota.png)
 
-3. Select a subscription to view the quota limits. Filter to the region you're interested in.
+1. Select a subscription to view the quota limits. Filter to the region you're interested in.
 
-4. You can switch between a subscription-level view and a workspace-level view.
+1. You can switch between a subscription-level view and a workspace-level view.
 
 
 ## Request quota and limit increases
 
-VM quota increase is to increase the number of cores per VM family per region. Endpoint limit increase is to increase the endpoint-specific limits per subscription per region. Make sure to choose the right category when you are submitting the quota increase request, as described in the next section.
+VM quota increase is to increase the number of cores per VM family per region. Endpoint limit increase is to increase the endpoint-specific limits per subscription per region. Make sure to choose the right category when you're submitting the quota increase request, as described in the next section.
 
 ### VM quota increases
 
@@ -258,20 +260,20 @@ To raise the limit for Azure Machine Learning VM quota above the default limit, 
 
 1. Navigate to the **Usage + quotas** page by following the above instructions. View the current quota limits. Select the SKU for which you'd like to request an increase. 
 
-[![Screenshot of the VM quota details.](./media/how-to-manage-quotas/mlstudio-request-quota.png)](./media/how-to-manage-quotas/mlstudio-request-quota.png)
+    [![Screenshot of the VM quota details.](./media/how-to-manage-quotas/mlstudio-request-quota.png)](./media/how-to-manage-quotas/mlstudio-request-quota.png)
 
-2. Provide the quota you'd like to increase and the new limit value. Finally, select __Submit__ to continue. 
+1. Provide the quota you'd like to increase and the new limit value. Finally, select **Submit** to continue. 
 
-[![Screenshot of the new VM quota request form.](./media/how-to-manage-quotas/mlstudio-new-quota-limit.png)](./media/how-to-manage-quotas/mlstudio-new-quota-limit.png)
+    [![Screenshot of the new VM quota request form.](./media/how-to-manage-quotas/mlstudio-new-quota-limit.png)](./media/how-to-manage-quotas/mlstudio-new-quota-limit.png)
 
 ### Endpoint limit increases
 
 To raise endpoint limit, [open an online customer support request](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest/). When requesting for endpoint limit increase, provide the following information:
 
-1. When opening the support request, select __Service and subscription limits (quotas)__ as the __Issue type__.
+1. When opening the support request, select **Service and subscription limits (quotas)** as the **Issue type**.
 1. Select the subscription of your choice.
-1. Select __Machine Learning Service: Endpoint Limits__ as the __Quota type__.
-1. On the __Additional details__ tab, you need to provide detailed reasons for the limit increase in order for your request to be processed. Select __Enter details__ and then provide the limit you'd like to increase and the new value for each limit, the reason for the limit increase request, and __location(s)__ where you need the limit increase. 
+1. Select **Machine Learning Service: Endpoint Limits** as the **Quota type**.
+1. On the **Additional details** tab, you need to provide detailed reasons for the limit increase in order for your request to be processed. Select **Enter details** and then provide the limit you'd like to increase and the new value for each limit, the reason for the limit increase request, and **location(s)** where you need the limit increase. 
 Be sure to add the following information into the reason for limit increase:
     1. Description of your scenario and workload (such as text, image, and so on).
     1. Rationale for the requested increase.
@@ -281,35 +283,35 @@ Be sure to add the following information into the reason for limit increase:
         1. Confirm if you have a benchmark test that indicates the selected VM SKU and the number of instances that would meet your throughput and latency requirement.
         1. Provide the type of the payload and size of a single payload. Network bandwidth should align with the payload size and requests per second.
         1. Provide planned time plan (by when you need increased limits - provide staged plan if possible) and confirm if (1) the cost of running it at that scale is reflected in your budget and (2) the target VM SKUs are approved.
-1. Finally, select __Save and continue__ to continue.
+1. Finally, select **Save and continue** to continue.
 
-[![Screenshot of the endpoint limit details form.](./media/how-to-manage-quotas/quota-details.png)](./media/how-to-manage-quotas/quota-details.png)
+    [![Screenshot of the endpoint limit details form.](./media/how-to-manage-quotas/quota-details.png)](./media/how-to-manage-quotas/quota-details.png)
 
-> [!NOTE]
-> This endpoint limit increase request is different from VM quota increase request. If your request is related to VM quota increase, follow the instructions in the [VM quota increases](#vm-quota-increases) section.
+    > [!NOTE]
+    > This endpoint limit increase request is different from VM quota increase request. If your request is related to VM quota increase, follow the instructions in the [VM quota increases](#vm-quota-increases) section.
 
 ### Compute limit increases
 
 In order to increase the total compute limit, [open an online customer support request](https://ms.portal.azure.com/#view/Microsoft_Azure_Support/NewSupportRequestV3Blade/callerWorkflowId/5088c408-f627-4398-9aa3-c41cdd93a6eb/callerName/Microsoft_Azure_Support%2FHelpAndSupportOverview.ReactView). Provide the following information:
 
-1. When opening the support request, select __Technical__ as the __Issue type__.
+1. When opening the support request, select **Technical** as the **Issue type**.
 1. Select the subscription of your choice
-1. Select __Machine Learning__ as the __Service__.
+1. Select **Machine Learning** as the **Service**.
 1. Select the resource of your choice
 1. In the summary, mention "Increase total compute limits"
-1. Select __Compute Cluster__ as the __Problem type__ and __Cluster does not scale up or is stuck in resizing__ as the __Problem subtype__.
+1. Select **Compute Cluster** as the **Problem type** and **Cluster does not scale up or is stuck in resizing** as the **Problem subtype**.
 
     :::image type="content" source="media/how-to-manage-quotas/problem-description.png" alt-text="Screenshot of the problem description tab.":::
 
-1. On the __Additional details__ tab, provide the subscription ID, region, new limit (between 500 and 2500) and business justification if you would like to increase the total compute limits in this region.
+1. On the **Additional details** tab, provide the subscription ID, region, new limit (between 500 and 2500) and business justification if you would like to increase the total compute limits in this region.
 
     :::image type="content" source="media/how-to-manage-quotas/additional-details.png" alt-text="Screenshot of the additional details tab.":::
 
-1. Finally, select __Create__ to create a support request ticket.
+1. Finally, select **Create** to create a support request ticket.
 
 
-## Next steps
+## Related content
 
-+ [Plan and manage costs for Azure Machine Learning](concept-plan-manage-cost.md)
-+ [Service limits in Azure Machine Learning](resource-limits-capacity.md)
-+ [Troubleshooting managed online endpoints deployment and scoring](./how-to-troubleshoot-online-endpoints.md)
+- [Plan and manage costs for Azure Machine Learning](concept-plan-manage-cost.md)
+- [Service limits in Azure Machine Learning](resource-limits-capacity.md)
+- [Troubleshooting managed online endpoints deployment and scoring](./how-to-troubleshoot-online-endpoints.md)

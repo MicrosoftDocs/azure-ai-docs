@@ -1,20 +1,19 @@
 ---
-title: 'Quickstart - Deploy a model and generate text using Azure OpenAI Service'
+title: 'Quickstart - Deploy a model and generate text using the legacy completions API'
 titleSuffix: Azure OpenAI
-description: Walkthrough on how to get started with Azure OpenAI and make your first completions call.
-#services: cognitive-services
+description: Walkthrough on how to get started with Azure OpenAI and make your first legacy completions API call.
 manager: nitinme
 ms.service: azure-ai-openai
-ms.custom: devx-track-dotnet, devx-track-python, devx-track-extended-java, devx-track-js, devx-track-go
+ms.custom: devx-track-dotnet, devx-track-python, devx-track-extended-java, devx-track-js, devx-track-go, devx-track-ts
 ms.topic: quickstart
 author: mrbullwinkle
 ms.author: mbullwin
-ms.date: 08/23/2023
+ms.date: 03/26/2025
 zone_pivot_groups: openai-quickstart-new
 recommendations: false
 ---
 
-# Quickstart: Get started generating text using Azure OpenAI Service
+# Quickstart: Get started generating text using the legacy completions API
 
 Use this article to get started making your first calls to Azure OpenAI.
 
@@ -51,6 +50,11 @@ Use this article to get started making your first calls to Azure OpenAI.
 ::: zone pivot="programming-language-javascript"
 
 [!INCLUDE [JavaScript quickstart](includes/javascript.md)]
+
+::: zone-end
+::: zone pivot="programming-language-typescript"
+
+[!INCLUDE [TypeScript quickstart](includes/typescript.md)]
 
 ::: zone-end
 

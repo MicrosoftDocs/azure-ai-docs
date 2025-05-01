@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Extract a positive-negative sentiment score from text in an AI enrichment pipeline in Azure AI Search.
 author: gmndrg
 ms.author: gimondra
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference

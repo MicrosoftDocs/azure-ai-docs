@@ -80,7 +80,7 @@ A multi-regional deployment relies on creation of Azure Machine Learning and oth
     * __Hot/cold__: Primary region active, secondary region has Azure Machine Learning and other resources deployed, along with needed data. Resources such as models, model deployments, or pipelines would need to be manually deployed.
 
 > [!TIP]
-> Depending on your business requirements, you may decide to treat different Azure Machine Learning resources differently. For example, you may want to use hot/hot for deployed models (inference), and hot/cold for experiments (training).
+> Depending on your business requirements, you may decide to treat different Azure Machine Learning resources differently. For example, you might want to use hot/hot for deployed models (inference), and hot/cold for experiments (training).
 
 Azure Machine Learning builds on top of other services. Some services can be configured to replicate to other regions. Others you must manually create in multiple regions. The following table provides a list of services, who is responsible for replication, and an overview of the configuration:
 
@@ -127,7 +127,7 @@ __Data services__
 
 Certain Azure services support availability zones. For regions that support availability zones, if a zone goes down any workload pauses and data should be saved. However, the data is unavailable to refresh until the zone is back online.
 
-For more information, see [Availability zone service and regional support](/azure/reliability/availability-zones-service-support).
+For more information, see [Availability zone service support](/azure/reliability/availability-zones-service-support).
 
 ### Deploy critical components to multiple regions
 
@@ -171,7 +171,7 @@ Azure Machine Learning can't sync or recover artifacts or metadata between works
 
 ### Moving artifacts between workspaces
 
-Depending on your recovery approach, you may need to copy artifacts between the workspaces to continue your work. Currently, the portability of artifacts between workspaces is limited. We recommend managing artifacts as code where possible so that they can be recreated in the failover instance.
+Depending on your recovery approach, you might need to copy artifacts between the workspaces to continue your work. Currently, the portability of artifacts between workspaces is limited. We recommend managing artifacts as code where possible so that they can be recreated in the failover instance.
 
 The following artifacts can be exported and imported between workspaces by using the [Azure CLI extension for machine learning](reference-azure-machine-learning-cli.md):
 
@@ -199,4 +199,4 @@ Even if your workspace can't be recovered, you might still be able to retrieve y
 
 ## Next steps
 
-To learn about repeatable infrastructure deployments with Azure Machine Learning, use an [Azure Resource Manager template](tutorial-create-secure-workspace-template.md).
+To learn about repeatable infrastructure deployments with Azure Machine Learning, use a [Bicep template](/samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/), or [Terraform template](https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure).

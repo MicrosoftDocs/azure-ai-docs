@@ -6,9 +6,10 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 2/7/2024
+ms.date: 3/10/2025
 ms.author: eur
 zone_pivot_groups: speech-studio-rest
+#Customer intent: As a developer, I want to learn how to upload a training dataset for professional voice.
 ---
 
 # Add a professional voice training dataset

@@ -1,12 +1,12 @@
 ---
 title: "Quickstart: Image Analysis client library for .NET"
 description: In this quickstart, get started with the Image Analysis client library for .NET.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: include
-ms.date: 03/29/2021
+ms.date: 09/26/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
  
@@ -14,23 +14,21 @@ ms.author: pafarley
 
 Use the Image Analysis client library for C# to analyze an image for content tags. This quickstart defines a method, `AnalyzeImageUrl`, which uses the client object to analyze a remote image and print the results. 
 
-[Reference documentation](/dotnet/api/overview/azure/computer-vision) | [Library source code](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/cognitiveservices/Vision.ComputerVision) | [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.Vision.ComputerVision/) | [Samples](/samples/browse/?products=azure&terms=computer-vision)
+[Reference documentation](/dotnet/api/overview/azure/computer-vision) | [Library source code](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/cognitiveservices/Vision.ComputerVision) | [Package (NuGet)](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.Vision.ComputerVision/) | [Samples](/samples/browse/?products=azure&terms=computer-vision)
 
 > [!TIP]
 > You can also analyze a local image. See the [ComputerVisionClient](/dotnet/api/microsoft.azure.cognitiveservices.vision.computervision.computervisionclient) methods, such as **AnalyzeImageInStreamAsync**. Or, see the sample code on [GitHub](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/dotnet/ComputerVision/ImageAnalysisQuickstart.cs) for scenarios involving local images.
 
 > [!TIP]
-> The Analyze API can do many different operations other than generate image tags. See the [Image Analysis how-to guide](../../how-to/call-analyze-image.md) for examples that showcase all of the available features.
+> The Analyze Image API can do many different operations other than generate image tags. See the [Image Analysis how-to guide](../../how-to/call-analyze-image.md) for examples that showcase all of the available features.
 
 ## Prerequisites
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
-* The [Visual Studio IDE](https://visualstudio.microsoft.com/vs/) or current version of [.NET Core](https://dotnet.microsoft.com/download/dotnet-core).
-* Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision"  title="create a Computer Vision resource"  target="_blank">create a Computer Vision resource</a> in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**.
+* An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=ai-services).
+* The [Visual Studio IDE](https://visualstudio.microsoft.com/vs/) or current version of [.NET Core](https://dotnet.microsoft.com/en-us/download/dotnet).
+* Once you have your Azure subscription, create a [Computer Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision) in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**.
     * You need the key and endpoint from the resource you create to connect your application to the Azure AI Vision service.
     * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
-
-
 
 [!INCLUDE [create environment variables](../environment-variables.md)]
 
@@ -44,11 +42,11 @@ Use the Image Analysis client library for C# to analyze an image for content tag
 
     ### Install the client library 
 
-    Once you've created a new project, install the client library by right-clicking on the project solution in the **Solution Explorer** and selecting **Manage NuGet Packages**. In the package manager that opens select **Browse**, check **Include prerelease**, and search for `Microsoft.Azure.CognitiveServices.Vision.ComputerVision`. Select version `7.0.0`, and then **Install**. 
+    After you create a new project, install the client library by right-clicking on the project solution in the **Solution Explorer** and selecting **Manage NuGet Packages**. In the package manager that opens select **Browse**, check **Include prerelease**, and search for `Microsoft.Azure.CognitiveServices.Vision.ComputerVision`. Select version `7.0.0`, and then **Install**. 
 
     #### [CLI](#tab/cli)
 
-    In a console window (such as cmd, PowerShell, or Bash), use the `dotnet new` command to create a new console app with the name `computer-vision-quickstart`. This command creates a simple "Hello World" C# project with a single source file: *Program.cs*.
+    In a console window (such as cmd, PowerShell, or Bash), use the `dotnet new` command to create a new console app with the name `computer-vision-quickstart`. This command creates a simple *Hello World* C# project with a single source file: *Program.cs*.
 
     ```console
     dotnet new console -n computer-vision-quickstart
@@ -84,9 +82,7 @@ Use the Image Analysis client library for C# to analyze an image for content tag
 
    [!code-csharp[](~/cognitive-services-quickstart-code/dotnet/ComputerVision/ImageAnalysisQuickstart-single.cs?name=snippet_single)]
 
-
-   > [!IMPORTANT]
-   > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). See the Azure AI services [security](../../../security-features.md) article for more information.
+   [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 1. Run the application
 
@@ -96,7 +92,7 @@ Use the Image Analysis client library for C# to analyze an image for content tag
 
    #### [CLI](#tab/cli)
 
-   Run the application from your application directory with the `dotnet run` command.
+   Run the application from your application directory by using the `dotnet run` command.
 
    ```dotnet
    dotnet run
@@ -105,8 +101,9 @@ Use the Image Analysis client library for C# to analyze an image for content tag
    ---
 
 
-
 ## Output
+
+The output of your operation should look like the following example.
 
 ```console
 ----------------------------------------------------------
@@ -134,7 +131,6 @@ brown 0.6581960916519165
 ```
 
 
-
 ## Clean up resources
 
 If you want to clean up and remove an Azure AI services subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
@@ -142,13 +138,12 @@ If you want to clean up and remove an Azure AI services subscription, you can de
 * [Azure portal](../../../multi-service-resource.md?pivots=azportal#clean-up-resources)
 * [Azure CLI](../../../multi-service-resource.md?pivots=azcli#clean-up-resources)
 
-## Next steps
+## Related content
 
-In this quickstart, you learned how to install the Image Analysis client library and make basic image analysis calls. Next, learn more about the Analyze API features.
-
+In this quickstart, you learned how to install the Image Analysis client library and make basic image analysis calls. Next, learn more about the Image Analysis API features.
 
 > [!div class="nextstepaction"]
->[Call the Analyze API](../../how-to/call-analyze-image.md)
+>[Call the Analyze Image API](../../how-to/call-analyze-image.md)
 
-* [Image Analysis overview](../../overview-image-analysis.md)
-* The source code for this sample can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/dotnet/ComputerVision/ImageAnalysisQuickstart.cs).
+* [What is Image Analysis?](../../overview-image-analysis.md)
+* [Source code for this sample on GitHub](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/dotnet/ComputerVision/ImageAnalysisQuickstart.cs)

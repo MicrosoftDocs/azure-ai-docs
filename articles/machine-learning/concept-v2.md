@@ -9,7 +9,7 @@ ms.topic: conceptual
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: balapv
-ms.date: 01/17/2024
+ms.date: 09/30/2024
 ms.custom: cliv2, sdkv2, devx-track-python
 #Customer intent: As a data scientist, I want to know whether to use v1 or v2 of CLI and SDK.
 ---
@@ -92,25 +92,23 @@ SDK v2 is useful in the following scenarios:
 
 ## Should I use v1 or v2?
 
-Support for CLI v1 will end on September 30, 2025.  
+Support for CLI v1 will end on September 30, 2025. Support for SDK v1 will end on June 30, 2026. You can continue to use CLI v1 and SDK v1 until those dates. However, we recommend that you transition to CLI v2 and SDK v2 before those dates.
 
 We encourage you to migrate your code for both CLI and SDK v1 to CLI and SDK v2. For more information, see [Upgrade to v2](how-to-migrate-from-v1.md).
 
 ### CLI v2
 
-Azure Machine Learning CLI v1 has been deprecated. Support for the v1 extension will end on September 30, 2025. You will be able to install and use the v1 extension until that date.
+Azure Machine Learning CLI v1 has been deprecated. Support for the v1 extension will end on September 30, 2025. You'll be able to install and use the v1 extension until that date.
 
-We recommend that you transition to the `ml`, or v2, extension before September 30, 2025.
+We recommend that you transition to the `ml`, or v2, extension before September 30, 2025. For more information, see [Upgrade to v2](how-to-migrate-from-v1.md).
 
 ### SDK v2
 
-Azure Machine Learning Python SDK v1 doesn't have a planned deprecation date. If you have significant investments in Python SDK v1 and don't need any new features offered by SDK v2, you can continue to use SDK v1. However, you should consider using SDK v2 if:
+Support for the Azure Machine Learning SDK v1 will end on June 30, 2026. You'll be able to install and use the SDK v1 until that date.
 
-* You want to use new features like reusable components and managed inferencing.
-* You're starting a new workflow or pipeline. All new features and future investments will be introduced in v2.
-* You want to take advantage of the improved usability of the Python SDK v2 ability to compose jobs and pipelines by using Python functions, with easy evolution from simple to complex tasks.
+We recommend that you transition to the SDK v2 before June 30, 2026. For more information, see [Upgrade to v2](how-to-migrate-from-v1.md).
 
-## Next steps
+## Related content
 
 * [Upgrade from v1 to v2](how-to-migrate-from-v1.md)
 * Get started with CLI v2:

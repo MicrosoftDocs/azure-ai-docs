@@ -17,6 +17,8 @@ ms.date: 04/21/2022
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 [!INCLUDE [cli v1](../includes/machine-learning-cli-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 
 > [!IMPORTANT]
 > This article shows how to use the CLI and SDK v1 to create or attach an Azure Kubernetes Service cluster, which is considered as **legacy** feature now.  To attach Azure Kubernetes Service cluster using  the recommended approach for v2, see [Introduction to Kubernetes compute target in v2](../how-to-attach-kubernetes-anywhere.md).
@@ -45,7 +47,7 @@ Azure Machine Learning can deploy trained machine learning models to Azure Kuber
 
 - To attach an AKS cluster, the service principal/user performing the operation must be assigned the __Owner or contributor__ Azure role-based access control (Azure RBAC) role on the Azure resource group that contains the cluster. The service principal/user must also be assigned [Azure Kubernetes Service Cluster Admin Role](/azure/role-based-access-control/built-in-roles#azure-kubernetes-service-cluster-admin-role) on the cluster.
 
-- If you **attach** an AKS cluster, which has an [Authorized IP range enabled to access the API server](/azure/aks/api-server-authorized-ip-ranges), enable the Azure Machine Learning control plane IP ranges for the AKS cluster. The Azure Machine Learning control plane is deployed across paired regions and deploys inference pods on the AKS cluster. Without access to the API server, the inference pods cannot be deployed. Use the [IP ranges](https://www.microsoft.com/download/confirmation.aspx?id=56519) for both the [paired regions](/azure/availability-zones/cross-region-replication-azure) when enabling the IP ranges in an AKS cluster.
+- If you **attach** an AKS cluster, which has an [Authorized IP range enabled to access the API server](/azure/aks/api-server-authorized-ip-ranges), enable the Azure Machine Learning control plane IP ranges for the AKS cluster. The Azure Machine Learning control plane is deployed across paired regions and deploys inference pods on the AKS cluster. Without access to the API server, the inference pods cannot be deployed. Use the [IP ranges](https://www.microsoft.com/download/details.aspx?id=56519) for both the [paired regions](/azure/reliability/cross-region-replication-azure) when enabling the IP ranges in an AKS cluster.
 
     Authorized IP ranges only works with Standard Load Balancer.
 

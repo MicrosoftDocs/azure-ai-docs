@@ -2,14 +2,13 @@
 title: Entities
 titleSuffix: Azure AI services
 description: Entities concepts
-#services: cognitive-services
-ms.author: aahi
-author: aahill
+ms.author: jboback
+author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: conceptual
-ms.date: 01/19/2024
+ms.date: 11/06/2024
 ---
 
 # Entity types
@@ -23,10 +22,10 @@ An entity is an item or an element that is relevant to the user's intent. Entiti
 | Utterance | Intent predicted | Entities extracted | Explanation |
 |--|--|--|--|
 | Hello, how are you? | Greeting | - | Nothing to extract. |
-| I want to order a small pizza | orderPizza | 'small' | 'Size' entity is extracted as 'small'. |
-| Turn off bedroom light | turnOff | 'bedroom' | 'Room' entity is extracted as 'bedroom'. |
-| Check balance in my savings account ending in 4406 | checkBalance | 'savings', '4406' | 'accountType' entity is extracted as 'savings' and 'accountNumber' entity is extracted as '4406'. |
-| Buy 3 tickets to New York | buyTickets | '3', 'New York' | 'ticketsCount' entity is extracted as '3' and 'Destination' entity is extracted as 'New York". |
+| I want to order a small pizza | orderPizza | 'small' | 'Size' entity is extracted as 'small.' |
+| Turn-off bedroom light | turnOff | 'bedroom' | 'Room' entity is extracted as 'bedroom.' |
+| Check balance in my savings account ending in 4406 | checkBalance | 'savings', '4406' | 'accountType' entity is extracted as 'savings' and 'accountNumber' entity is extracted as '4406.' |
+| Buy 3 tickets to New York | buyTickets | '3', 'New York' | 'ticketsCount' entity is extracted as '3' and 'Destination' entity is extracted as 'New York." |
 
 Entities are optional but recommended. You don't need to create entities for every concept in your app, only when:
 

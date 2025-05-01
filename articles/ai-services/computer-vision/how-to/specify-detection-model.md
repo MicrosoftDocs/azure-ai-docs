@@ -2,26 +2,25 @@
 title: How to specify a detection model - Face
 titleSuffix: Azure AI services
 description: This article shows you how to choose which face detection model to use with your Azure AI Face application.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.topic: how-to
-ms.date: 06/10/2024
+ms.date: 01/22/2025
 ms.author: pafarley
 ms.devlang: csharp
 ms.custom: devx-track-csharp
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
+#customer intent: As a developer, I want to specify the face detection model so that I can choose the best model for my use case.
 ---
 
 # Specify a face detection model
 
 This guide shows you how to specify a face detection model for the Azure AI Face service.
 
-The Face service uses machine learning models to perform operations on human faces in images. We continue to improve the accuracy of our models based on customer feedback and advances in research, and we deliver these improvements as model updates. Developers can specify which version of the face detection model they'd like to use; they can choose the model that best fits their use case.
-
-Read on to learn how to specify the face detection model in certain face operations. The Face service uses face detection whenever it converts an image of a face into some other form of data.
+The Face service uses machine learning models to perform operations on human faces in images. We continue to improve the accuracy of our models based on customer feedback and advances in research, and we deliver these improvements as model updates. Developers can specify which version of the face detection model they'd like to use; they can choose the model that best fits their use case. Read on to learn how to specify the face detection model in certain face operations. The Face service uses face detection whenever it converts an image of a face into some other form of data.
 
 If you aren't sure whether you should use the latest model, skip to the [Evaluate different models](#evaluate-different-models) section to evaluate the new model and compare results using your current data set.
 
@@ -47,9 +46,9 @@ Attributes are a set of features that can optionally be detected if they're spec
 
 | Model | accessories | blur | exposure | glasses | headPose | mask | noise | occlusion | qualityForRecognition |
 |-------|:-----------:|:----:|:--------:|:-------:|:--------:|:----:|:-----:|:---------:|:---------------------:|
-|**detection_01** | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | | ✔️ | ✔️ | ✔️ (for recognition_03 or 04) |
+|**detection_01** | ✅ | ✅ | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ (for recognition_03 or 04) |
 |**detection_02** | | | | | | | | | |
-|**detection_03** | | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | | ✔️ | ✔️ (for recognition_03 or 04) |
+|**detection_03** | | ✅ | ✅ | ✅ | ✅ | ✅ | | ✅ | ✅ (for recognition_03 or 04) |
 
 The best way to compare the performances of the detection models is to use them on a sample dataset. We recommend calling the [Detect] API on a variety of images, especially images of many faces or of faces that are difficult to see, using each detection model. Pay attention to the number of faces that each model returns.
 
@@ -138,15 +137,12 @@ This code creates a **FaceList** called `My face collection` and adds a Face to 
 > [!NOTE]
 > You don't need to use the same detection model for all faces in a **FaceList** object, and you don't need to use the same detection model when detecting new faces to compare with a **FaceList** object.
 
-
-## Next steps
+## Next step
 
 In this article, you learned how to specify the detection model to use with different Face APIs. Next, follow a quickstart to get started with face detection and analysis.
 
-* [Face .NET SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-csharp%253fpivots%253dprogramming-language-csharp)
-* [Face Python SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-python%253fpivots%253dprogramming-language-python)
-* [Face Java SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-java%253fpivots%253dprogramming-language-java)
-* [Face JavaScript SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-javascript%253fpivots%253dprogramming-language-javascript)
+> [!div class="nextstepaction"]
+> [Face quickstart](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-csharp)
 
 [Detect]: /rest/api/face/face-detection-operations/detect
 [Identify From Person Group]: /rest/api/face/face-recognition-operations/identify-from-person-group

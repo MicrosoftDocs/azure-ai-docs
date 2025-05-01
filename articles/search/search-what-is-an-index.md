@@ -7,11 +7,11 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 08/19/2024
+ms.date: 04/14/2025
 ---
 
 # Search indexes in Azure AI Search
@@ -28,7 +28,7 @@ Prefer to be hands-on right away? See [Create a search index](search-how-to-crea
 
 ## Schema of a search index
 
-In Azure AI Search, indexes contain *search documents*. Conceptually, a document is a single unit of searchable data in your index. For example, a retailer might have a document for each product, a news organization might have a document for each article, a travel site might have a document for each hotel and destination, and so forth. Mapping these concepts to more familiar database equivalents: a *search index* equates to a *table*, and *documents* are roughly equivalent to *rows* in a table.
+In Azure AI Search, indexes contain *search documents*. Conceptually, a document is a single unit of searchable data in your index. For example, a retailer might have a document for each product, a university might have a document for each class, a travel site might have a document for each hotel and destination, and so forth. Mapping these concepts to more familiar database equivalents: a *search index* equates to a *table*, and *documents* are roughly equivalent to *rows* in a table.
 
 The structure of a document is determined by the *index schema*, as illustrated in the following example. The "fields" collection is typically the largest part of an index, where each field is named, assigned a [data type](/rest/api/searchservice/Supported-data-types), and attributed with allowable behaviors that determine how it's used.
 
@@ -80,7 +80,7 @@ Other elements are collapsed for brevity, but the following links provide detail
 
 ### Field definitions
 
-A search document is defined by the "fields" collection in the body of [Create Index request](/rest/api/searchservice/create-index). You need fields for document identification (keys), storing searchable text, and fields for supporting filters, facets, and sorting. You might also need fields for data that a user never sees. For example, you might want fields for profit margins or marketing promotions that you can use in a scoring profile to boost a search score.
+A search document is defined by the "fields" collection in the body of [Create Index request](/rest/api/searchservice/indexes/create). You need fields for document identification (keys), storing searchable text, and fields for supporting filters, facets, and sorting. You might also need fields for data that a user never sees. For example, you might want fields for profit margins or marketing promotions that you can use in a scoring profile to boost a search score.
 
 If incoming data is hierarchical in nature, you can represent it within an index as a [complex type](search-howto-complex-data-types.md), used for nested structures. The built-in sample data set, Hotels, illustrates complex types using an Address (contains multiple subfields) that has a one-to-one relationship with each hotel, and a Rooms complex collection, where multiple rooms are associated with each hotel. 
 
@@ -97,22 +97,22 @@ String fields are often marked as "searchable" and "retrievable". Fields used to
 |"searchable" |Full-text or vector searchable. Text fields are subject to lexical analysis such as word-breaking during indexing. If you set a searchable field to a value like "sunny day", internally it's split into the individual tokens "sunny" and "day". For details, see [How full text search works](search-lucene-query-architecture.md).|  
 |"filterable" |Referenced in $filter queries. Filterable fields of type `Edm.String` or `Collection(Edm.String)` don't undergo word-breaking, so comparisons are for exact matches only. For example, if you set such a field f to "sunny day", `$filter=f eq 'sunny'` finds no matches, but `$filter=f eq 'sunny day'` will. |  
 |"sortable" |By default the system sorts results by score, but you can configure sort based on fields in the documents. Fields of type `Collection(Edm.String)` can't be "sortable". |  
-|"facetable" |Typically used in a presentation of search results that includes a hit count by category (for example, hotels in a specific city). This option can't be used with fields of type `Edm.GeographyPoint`. Fields of type `Edm.String` that are filterable, "sortable", or "facetable" can be at most 32 kilobytes in length. For details, see [Create Index (REST API)](/rest/api/searchservice/create-index).|  
+|"facetable" |Typically used in a presentation of search results that includes a hit count by category (for example, hotels in a specific city). This option can't be used with fields of type `Edm.GeographyPoint`. Fields of type `Edm.String` that are filterable, "sortable", or "facetable" can be at most 32 kilobytes in length. For details, see [Create Index (REST API)](/rest/api/searchservice/indexes/create).|  
 |"key" |Unique identifier for documents within the index. Exactly one field must be chosen as the key field and it must be of type `Edm.String`.|  
 |"retrievable" |Determines whether the field can be returned in a search result. This is useful when you want to use a field (such as *profit margin*) as a filter, sorting, or scoring mechanism, but don't want the field to be visible to the end user. This attribute must be `true` for `key` fields.|  
 
-Although you can add new fields at any time, existing field definitions are locked in for the lifetime of the index. For this reason, developers typically use the portal for creating simple indexes, testing ideas, or using the portal pages to look up a setting. Frequent iteration over an index design is more efficient if you follow a code-based approach so that you can rebuild the index easily.
+Although you can add new fields at any time, existing field definitions are locked in for the lifetime of the index. For this reason, developers typically use the Azure portal for creating simple indexes, testing ideas, or using the Azure portal pages to look up a setting. Frequent iteration over an index design is more efficient if you follow a code-based approach so that you can rebuild the index easily.
 
 > [!NOTE]
-> The APIs you use to build an index have varying default behaviors. For the [REST APIs](/rest/api/searchservice/Create-Index), most attributes are enabled by default (for example, "searchable" and "retrievable" are true for string fields) and you often only need to set them if you want to turn them off. For the .NET SDK, the opposite is true. On any property you do not explicitly set, the default is to disable the corresponding search behavior unless you specifically enable it.
+> The APIs you use to build an index have varying default behaviors. For the [REST APIs](/rest/api/searchservice/indexes/create), most attributes are enabled by default (for example, "searchable" and "retrievable" are true for string fields) and you often only need to set them if you want to turn them off. For the .NET SDK, the opposite is true. On any property you do not explicitly set, the default is to disable the corresponding search behavior unless you specifically enable it.
 
 <a name="index-size"></a>
 
 ## Physical structure and size
 
-In Azure AI Search, the physical structure of an index is largely an internal implementation. You can access its schema, query its content, monitor its size, and manage capacity, but the clusters themselves (indexes, [shards](index-similarity-and-scoring.md#sharding-effects-on-query-results), and other files and folders) are managed internally by Microsoft.
+In Azure AI Search, the physical structure of an index is largely an internal implementation. You can access its schema, query its content, monitor its size, and manage capacity, but the clusters themselves (inverted indexes, vector indexes, [shards](index-similarity-and-scoring.md#sharding-effects-on-query-results), and other files and folders) are managed internally by Microsoft.
 
-You can monitor index size in the Indexes tab in the Azure portal, or by issuing a [GET INDEX request](/rest/api/searchservice/get-index) against your search service. You can also issue a [Service Statistics request](/rest/api/searchservice/get-service-statistics) and check the value of storage size.
+You can monitor index size in the **Search management > Indexes** page in the Azure portal, or by issuing a [GET INDEX request](/rest/api/searchservice/indexes/get) against your search service. You can also issue a [Service Statistics request](/rest/api/searchservice/get-service-statistics/get-service-statistics) and check the value of storage size.
 
 The size of an index is determined by:
 
@@ -178,6 +178,7 @@ All indexing and query requests target an index. Endpoints are usually one of th
 
    + [Quickstart: REST](search-get-started-rest.md)
    + [Quickstart: Azure SDKs](search-get-started-text.md)
+   + [Quickstart: RAG (using Visual Studio Code and a Jupyter notebook)](search-get-started-rag.md)
 
 ## Next steps
 

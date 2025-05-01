@@ -1,17 +1,18 @@
 ---
-title: Custom Translator for beginners
+title: Azure AI Custom Translator for beginners
 titleSuffix: Azure AI services
 description: A user guide for understanding the end-to-end customized machine translation process.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.author: lajanuar
-ms.date: 07/08/2024
+ms.date: 04/14/2025
 ms.topic: overview
 ---
-# Custom Translator for beginners
 
- [Custom Translator](overview.md) enables you to a build translation system that reflects your business, industry, and domain-specific terminology and style. Training and deploying a custom system is easy and doesn't require any programming skills. The customized translation system seamlessly integrates into your existing applications, workflows, and websites and is available on Azure through the same cloud-based [Microsoft Text Translation API](../reference/v3-0-translate.md?tabs=curl) service that powers billions of translations every day.
+# Azure AI Custom Translator for beginners
+
+ [Azure AI Custom Translator](overview.md) enables you to a build translation system that reflects your business, industry, and domain-specific terminology and style. Training and deploying a custom system is easy and doesn't require any programming skills. The customized translation system seamlessly integrates into your existing applications, workflows, and websites and is available on Azure through the same cloud-based [Microsoft Text translation API](../text-translation/reference/v3/translate.md?tabs=curl) service that powers billions of translations every day.
 
 The platform enables users to build and publish custom translation systems to and from English. The Custom Translator supports more than 60 languages that map directly to the languages available for Neural machine translation (NMT). For a complete list, *see* [Translator language support](../language-support.md).
 
@@ -19,7 +20,7 @@ The platform enables users to build and publish custom translation systems to an
 
 A well-trained custom translation model provides more accurate domain-specific translations because it relies on previously translated in-domain documents to learn preferred translations. Translator uses these terms and phrases in context to produce fluent translations in the target language while respecting context-dependent grammar.
 
-Training a full custom translation model requires a substantial amount of data. If you don't have at least 10,000 sentences of previously trained documents, you can't train a full-language translation model. However, you can either train a dictionary-only model or use the high-quality, out-of-the-box translations available with the Text Translation API.
+Training a full custom translation model requires a substantial amount of data. If you don't have at least 10,000 sentences of previously trained documents, you can't train a full-language translation model. However, you can either train a dictionary-only model or use the high-quality, out-of-the-box translations available with the Text translation API.
 
 :::image type="content" source="media/how-to/for-beginners.png" alt-text="Screenshot illustrating the difference between custom and general models.":::
 
@@ -51,7 +52,7 @@ Having clarity on your use-case and what success looks like is the first step to
 
 ## How should I source my data?
 
-Finding in-domain quality data is often a challenging task that varies based on user classification. Here are some questions you can ask yourself as you evaluate what data may be available to you:
+Finding in-domain quality data is often a challenging task that varies based on user classification. Here are some questions you can ask yourself as you evaluate what data is available to you:
 
 * Does your company have previous translation data available that you can use? Enterprises often have a wealth of translation data accumulated over many years of using human translation.
 
@@ -71,7 +72,7 @@ Finding in-domain quality data is often a challenging task that varies based on 
 
 ## What is a BLEU score?
 
-BLEU (Bilingual Evaluation Understudy) is an algorithm for evaluating the precision or accuracy of text that is machine translated from one language to another. Custom Translator uses the BLEU metric as one way of conveying translation accuracy.
+BLEU (Bilingual Evaluation Understudy) is an algorithm for evaluating the precision or accuracy of text that is machine translated from one language to another. Azure AI Custom Translator uses the BLEU metric as one way of conveying translation accuracy.
 
 A BLEU score is a number between zero and 100. A score of zero indicates a low quality translation where nothing in the translation matched the reference. A score of 100 indicates a perfect translation that is identical to the reference. It's not necessary to attain a score of 100 - a BLEU score between 40 and 60 indicates a high-quality translation.
 
@@ -79,7 +80,7 @@ A BLEU score is a number between zero and 100. A score of zero indicates a low q
 
 ## What happens if I don't submit tuning or testing data?
 
-Tuning and test sentences are optimally representative of what you plan to translate in the future. If you don't submit any tuning or testing data, Custom Translator automatically excludes sentences from your training documents to use as tuning and test data.
+Tuning and test sentences are optimally representative of what you plan to translate in the future. If you don't submit any tuning or testing data, Azure AI Custom Translator automatically excludes sentences from your training documents to use as tuning and test data.
 
 | System-generated | Manual-selection |
 |---|---|
@@ -88,15 +89,15 @@ Tuning and test sentences are optimally representative of what you plan to trans
 | Easy to redo when you grow or shrink the domain. | Allows for more data and better domain coverage.|
 |Changes each training run.| Remains static over repeated training runs|
 
-## How is training material processed by Custom Translator?
+## How is training material processed by Azure AI Custom Translator?
 
-To prepare for training, documents undergo a series of processing and filtering steps. Knowledge of the filtering process may help with understanding the sentence count displayed as well as the steps you can take to prepare training documents for training with Custom Translator. The filtering steps are as follows:
+To prepare for training, documents undergo a series of processing and filtering steps. Knowledge of the filtering process can help with understanding the sentence count displayed as well as the steps you can take to prepare training documents for training with Azure AI Custom Translator. The filtering steps are as follows:
 
 * ### Sentence alignment
 
-  If your document isn't in `XLIFF`, `XLSX`, `TMX`, or `ALIGN` format, Custom Translator aligns the sentences of your source and target documents to each other, sentence-by-sentence. Translator doesn't perform document alignment—it follows your naming convention for the documents to find a matching document in the other language. Within the source text, Custom Translator tries to find the corresponding sentence in the target language. It uses document markup like embedded HTML tags to help with the alignment.
+  If your document isn't in `XLIFF`, `XLSX`, `TMX`, or `ALIGN` format, Azure AI Custom Translator aligns the sentences of your source and target documents to each other, sentence-by-sentence. Translator doesn't perform document alignment—it follows your naming convention for the documents to find a matching document in the other language. Within the source text, Azure AI Custom Translator tries to find the corresponding sentence in the target language. It uses document markup like embedded HTML tags to help with the alignment.
 
-  If you see a large discrepancy between the number of sentences in the source and target documents, your source document may not be parallel, or couldn't be aligned. The document pairs with a large difference (>10%) of sentences on each side warrant a second look to make sure they're indeed parallel.
+  If you see a large discrepancy between the number of sentences in the source and target documents, your source document can't be parallel, or couldn't be aligned. The document pairs with a large difference (>10%) of sentences on each side warrant a second look to make sure they're indeed parallel.
 
 * ### Tuning and testing data extraction
 
@@ -134,7 +135,7 @@ To prepare for training, documents undergo a series of processing and filtering 
 
 * ### Invalid characters
 
-  Custom Translator removes sentences that contain Unicode character U+FFFD. The character U+FFFD indicates a failed encoding conversion.
+  Azure AI Custom Translator removes sentences that contain Unicode character U+FFFD. The character U+FFFD indicates a failed encoding conversion.
 
 ## What steps should I take before uploading data?
 

@@ -1,11 +1,11 @@
 ---
-title: "Use Document Intelligence (formerly Form Recognizer) SDK for JavaScript (REST API v2.1)"
+title: "Use Document Intelligence SDK for JavaScript (REST API v2.1)"
 description: Use the Document Intelligence SDK for JavaScript (REST API v2.1) to create a forms processing app that extracts key data from documents.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 05/23/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ms.custom: devx-track-js
 ---
@@ -30,7 +30,7 @@ ms.custom: devx-track-js
 - The key and endpoint from the resource you create to connect your application to the Azure Document Intelligence service.
 
   1. After your resource deploys, select **Go to resource**.
-  1. In the left navigation menu, select **Keys and Endpoint**.
+  1. In the left pane, select **Keys and Endpoint**.
   1. Copy one of the keys and the **Endpoint** for use later in this article.
 
   :::image type="content" source="../../../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
@@ -119,7 +119,7 @@ Use the sample from and receipt images included in the samples. These images are
 
 ## Analyze layout
 
-You can use Document Intelligence to analyze tables, lines, and words in documents, without needing to train a model. For more information about layout extraction, see the [Document Intelligence layout model](../../../concept-layout.md). To analyze the content of a file at a given URI, use the `beginRecognizeContentFromUrl` method.
+You can use Document Intelligence to analyze tables, lines, and words in documents, without needing to train a model. For more information about layout extraction, see the [Document Intelligence layout model](../../../prebuilt/layout.md). To analyze the content of a file at a given URI, use the `beginRecognizeContentFromUrl` method.
 
 [!code-javascript[](~/cognitive-services-quickstart-code/javascript/FormRecognizer/FormRecognizerQuickstart.js?name=snippet_getcontent)]
 
@@ -142,7 +142,7 @@ cell [1,5] has text PT
 
 ## Analyze receipts
 
-This section demonstrates how to analyze and extract common fields from US receipts, using a pretrained receipt model. For more information about receipt analysis, see the [Document Intelligence receipt model](../../../concept-receipt.md).
+This section demonstrates how to analyze and extract common fields from US receipts, using a pretrained receipt model. For more information about receipt analysis, see the [Document Intelligence receipt model](../../../prebuilt/receipt.md).
 
 To analyze receipts from a URI, use the `beginRecognizeReceiptsFromUrl` method. The following code processes a receipt at the given URI and prints the major fields and values to the console.
 
@@ -177,7 +177,7 @@ To analyze business cards from a URL, use the `beginRecognizeBusinessCardsFromUR
 
 ## Analyze invoices
 
-This section demonstrates how to analyze and extract common fields from sales invoices, using a pretrained model. For more information about invoice analysis, see the [Document Intelligence invoice model](../../../concept-invoice.md).
+This section demonstrates how to analyze and extract common fields from sales invoices, using a pretrained model. For more information about invoice analysis, see the [Document Intelligence invoice model](../../../prebuilt/invoice.md).
 
 To analyze invoices from a URL, use the `beginRecognizeInvoicesFromUrl` method.
 
@@ -188,7 +188,7 @@ To analyze invoices from a URL, use the `beginRecognizeInvoicesFromUrl` method.
 
 ## Analyze ID documents
 
-This section demonstrates how to analyze and extract key information from government-issued identification documents, including worldwide passports and U.S. driver's licenses, by using the Document Intelligence prebuilt ID model. For more information about ID document analysis, see the [Document Intelligence ID document model](../../../concept-id-document.md).
+This section demonstrates how to analyze and extract key information from government-issued identification documents, including worldwide passports and U.S. driver's licenses, by using the Document Intelligence prebuilt ID model. For more information about ID document analysis, see the [Document Intelligence ID document model](../../../prebuilt/id-document.md).
 
 To analyze ID documents from a URL, use the `beginRecognizeIdDocumentsFromUrl` method.
 

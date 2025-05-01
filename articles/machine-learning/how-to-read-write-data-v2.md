@@ -186,7 +186,7 @@ environment: azureml://registries/azureml/environments/sklearn-1.1/versions/4
 inputs:
   input_data:
     mode: ro_mount
-    path: azureml:wasbs://data@azuremlexampledata.blob.core.windows.net/titanic.csv
+    path: wasbs://data@azuremlexampledata.blob.core.windows.net/titanic.csv
     type: uri_file
 ```
 
@@ -321,7 +321,7 @@ environment: azureml://registries/azureml/environments/sklearn-1.1/versions/4
 inputs:
   input_data:
     mode: ro_mount
-    path: azureml:wasbs://data@azuremlexampledata.blob.core.windows.net/titanic.csv
+    path: wasbs://data@azuremlexampledata.blob.core.windows.net/titanic.csv
     type: uri_file
 outputs:
   output_data:
@@ -516,7 +516,7 @@ You can tune the mount settings with these environment variables in your job:
 | `DATASET_MOUNT_ATTRIBUTE_CACHE_TTL`             | u64 | Not set (cache never expires) | Time, in milliseconds, needed to keep the `getattr` call results in cache, and to avoid subsequent requests of this info from storage again.                                                                                                                                                                                                                          |
 | `DATASET_RESERVED_FREE_DISK_SPACE`              | u64 | 150 MB | Intended for a system configuration, to keep compute healthy. No matter what values the other settings have, Azure Machine Learning data runtime doesn't use the last `RESERVED_FREE_DISK_SPACE` bytes of disk space.                                                                                                                                                              |
 |`DATASET_MOUNT_CACHE_SIZE`                      | usize | Unlimited | Controls how much disk space mount can use. A positive value sets absolute value in bytes. Negative value sets how much of a disk space to leave free. This table provides more disk cache options. Supports `KB`, `MB` and `GB` modifiers for convenience. |
-| `DATASET_MOUNT_FILE_CACHE_PRUNE_THRESHOLD`      | f64 | 1.0 | Volume mount starts cache pruning when cache is filled up to `AVAILABLE_CACHE_SIZE * DATASET_MOUNT_FILE_CACHE_PRUNE_THRESHOLD`. Should be between 0 and 1. Setting it < 1 triggers background cache pruning earlier.                                                                                                                               |
+| `DATASET_MOUNT_FILE_CACHE_PRUNE_THRESHOLD`      | f64 | 1.0 | Volume mount starts cache pruning when cache is filled up to `AVAILABLE_CACHE_SIZE * DATASET_MOUNT_FILE_CACHE_PRUNE_THRESHOLD`. Should be between 0 and 1. Setting it < 1 triggers background cache pruning earlier. `AVAILABLE_CACHE_SIZE` is not an environment variable you can modify or view directly. In this context, it refers to the "number of bytes the system calculates as available for caching." This value depends on factors such as disk size, the amount of disk space required for system health, and configurations set in environment variables (like `DATASET_RESERVED_FREE_DISK_SPACE` and `DATASET_MOUNT_CACHE_SIZE`).                                                                                                                             |
 | `DATASET_MOUNT_FILE_CACHE_PRUNE_TARGET`         | f64 | 0.7 | Pruning cache tries to free at least (`1-DATASET_MOUNT_FILE_CACHE_PRUNE_TARGET`) of a cache space.                                                                                                                                                                                                                                                      |
 | `DATASET_MOUNT_READ_BLOCK_SIZE`                 | usize | 2 MB | Streaming read block size. When file is large enough, request at least `DATASET_MOUNT_READ_BLOCK_SIZE` of data from storage, and cache even when fuse requested read operation was for less.                                                                                                                                                       |
 | `DATASET_MOUNT_READ_BUFFER_BLOCK_COUNT`         | usize | 32 | Number of blocks to prefetch (reading block *k* triggers background prefetching of blocks *k+1*, ..., *k.+`DATASET_MOUNT_READ_BUFFER_BLOCK_COUNT`*)                                                                                                                                                                                               |
@@ -967,7 +967,7 @@ Files are usually read in *blocks* of 1-4 MB in size. Files smaller than a block
 
 For small files, the latency interval mostly involves handling the requests to storage, instead of data transfers. Therefore, we offer these recommendations to increase the file size:
 
-- For unstructured data (images, text, video, etc.), archive (zip/tar) small files together, to store them as a larger file that can be read in multiple chunks. These larger archived files can be opened in the compute resource, and [PyTorch Archive DataPipes](https://pytorch.org/data/main/torchdata.datapipes.iter.html#archive-datapipes) can extract the smaller files.
+- For unstructured data (images, text, video, etc.), archive (zip/tar) small files together, to store them as a larger file that can be read in multiple chunks. These larger archived files can be opened in the compute resource, and [PyTorch Archive DataPipes](https://pytorch.org/data/0.9/dp_tutorial.html) can extract the smaller files.
 - For structured data (CSV, parquet, etc.), examine your ETL process, to make sure that it coalesces files to increase size. Spark has `repartition()` and `coalesce()` methods to help increase file sizes.
 
 If you can't increase your file sizes, explore your [Azure Storage options](#azure-storage-options).

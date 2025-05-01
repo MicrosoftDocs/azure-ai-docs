@@ -2,15 +2,17 @@
 title: How to specify a recognition model - Face
 titleSuffix: Azure AI services
 description: This article shows you how to choose which recognition model to use with your Azure AI Face application.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
+ms.subservice: azure-ai-face
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 01/22/2025
 ms.author: pafarley
 ms.devlang: csharp
 ms.custom: devx-track-csharp
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
+#customer intent: As a developer, I want to specify a recognition model so that I can choose the best model for my use case.
 ---
 
 # Specify a face recognition model
@@ -21,19 +23,6 @@ This guide shows you how to specify a face recognition model for face detection,
 
 The Face service uses machine learning models to perform operations on visible human faces in images. We continue to improve the accuracy of our models based on customer feedback and advances in research, and we deliver these improvements as model updates. Developers can specify which version of the face recognition model they'd like to use, choosing the model that best fits their use case.
 
-## Model compatibility
-
-The Azure AI Face service has four recognition models available. The models _recognition_01_ (published 2017), _recognition_02_ (published 2019), and _recognition_03_ (published 2020) are continually supported to ensure backwards compatibility for customers using **FaceList**s or **PersonGroup**s created with these models. A **FaceList** or **PersonGroup** always uses the recognition model it was created with, and new faces become associated with this model when they're added. This can't be changed after creation and customers need to use the corresponding recognition model with the corresponding **FaceList** or **PersonGroup**.
-
-You can move to later recognition models at your own convenience; however, you'll need to create new FaceLists and PersonGroups with the recognition model of your choice.
-
-## Recommended model
-
-The _recognition_04_ model (published 2021) is the most accurate model currently available. If you're a new customer, we recommend using this model. _Recognition_04_ provides improved accuracy for both similarity comparisons and person-matching comparisons. _Recognition_04_ improves recognition for enrolled users wearing face covers (surgical masks, N95 masks, cloth masks). Now you can build safe and seamless user experiences that use the latest _detection_03_ model to detect whether an enrolled user is wearing a face cover. Then you can use the latest _recognition_04_ model to recognize their identity. Each model operates independently of the others, and a confidence threshold set for one model isn't meant to be compared across the other recognition models.
-
-Read on to learn how to specify a selected model in different Face operations while avoiding model conflicts. If you're an advanced user and would like to determine whether you should switch to the latest model, skip to the [Evaluate different models](#evaluate-different-models) section. You can evaluate the new model and compare results using your current data set.
-
-
 ## Prerequisites
 
 You should be familiar with the concepts of AI face detection and identification. If you aren't, see these guides first:
@@ -41,6 +30,19 @@ You should be familiar with the concepts of AI face detection and identification
 * [Face detection concepts](../concept-face-detection.md)
 * [Face recognition concepts](../concept-face-recognition.md)
 * [Call the detect API](identity-detect-faces.md)
+
+## Model compatibility
+
+The Azure AI Face service has four recognition models available. The models `recognition_01` (published 2017), `recognition_02` (published 2019), and `recognition_03` (published 2020) are continually supported to ensure backwards compatibility for customers using **FaceList**s or **PersonGroup**s created with these models. A **FaceList** or **PersonGroup** always uses the recognition model it was created with, and new faces become associated with this model when they're added. This can't be changed after creation and customers need to use the corresponding recognition model with the corresponding **FaceList** or **PersonGroup**.
+
+You can move to later recognition models at your own convenience; however, you'll need to create new FaceLists and PersonGroups with the recognition model of your choice.
+
+## Model recommendations
+
+The _recognition_04_ model (published 2021) is the most accurate model currently available. If you're a new customer, we recommend using this model. _Recognition_04_ provides improved accuracy for both similarity comparisons and person-matching comparisons. _Recognition_04_ improves recognition for enrolled users wearing face covers (surgical masks, N95 masks, cloth masks). Now you can build safe and seamless user experiences that use the latest _detection_03_ model to detect whether an enrolled user is wearing a face cover. Then you can use the latest _recognition_04_ model to recognize their identity. Each model operates independently of the others, and a confidence threshold set for one model isn't meant to be compared across the other recognition models.
+
+Read on to learn how to specify a selected model in different Face operations while avoiding model conflicts. If you're an advanced user and would like to determine whether you should switch to the latest model, skip to the [Evaluate different models](#evaluate-different-models) section. You can evaluate the new model and compare results using your current data set.
+
 
 ## Detect faces with specified model
 
@@ -124,16 +126,14 @@ If you'd like to compare the performances of different recognition models on you
 1. Train your **PersonGroup**s using the [Train Person Group] API.
 1. Test with [Identify From Person Group] on all four **PersonGroup**s and compare the results.
 
-If you normally specify a confidence threshold (a value between zero and one that determines how confident the model must be to identify a face), you may need to use different thresholds for different models. A threshold for one model isn't meant to be shared to another and won't necessarily produce the same results.
+If you normally specify a confidence threshold (a value between zero and one that determines how confident the model must be to identify a face), you might need to use different thresholds for different models. A threshold for one model isn't meant to be shared to another and won't necessarily produce the same results.
 
-## Next steps
+## Next step
 
 In this article, you learned how to specify the recognition model to use with different Face service APIs. Next, follow a quickstart to get started with face detection.
 
-* [Face .NET SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-csharp%253fpivots%253dprogramming-language-csharp)
-* [Face Python SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-python%253fpivots%253dprogramming-language-python)
-* [Face Java SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-java%253fpivots%253dprogramming-language-java)
-* [Face JavaScript SDK](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-javascript%253fpivots%253dprogramming-language-javascript)
+> [!div class="nextstepaction"]
+> [Face quickstart](../quickstarts-sdk/identity-client-library.md?pivots=programming-language-csharp)
 
 [Detect]: /rest/api/face/face-detection-operations/detect
 [Verify Face To Face]: /rest/api/face/face-recognition-operations/verify-face-to-face

@@ -32,8 +32,6 @@ West US 2: 'https://datasetencode.blob.core.windows.net/dataset'
 
 West Central US: 'https://datasetencode-secondary.blob.core.windows.net/dataset'
 
-[SAS Token](/azure/storage/common/storage-sas-overview): ?sv=2019-10-10&si=prod&sr=c&sig=9qSQZo4ggrCNpybBExU8SypuUZV33igI11xw0P7rB3c%3D
-
 ## Use Terms
 
 External data users may freely download, analyze, and publish results based on any ENCODE data without restrictions, regardless of type or size, and includes no grace period for ENCODE data producers, either as individual members or as part of the Consortium. Researchers using unpublished ENCODE data are encouraged to contact the data producers to discuss possible publications. The Consortium will continue to publish the results of its own analysis efforts in independent publications.

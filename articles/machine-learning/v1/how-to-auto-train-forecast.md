@@ -18,6 +18,7 @@ show_latex: true
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 In this article, you learn how to set up AutoML training for time-series forecasting models with Azure Machine Learning automated ML in the [Azure Machine Learning Python SDK](/python/api/overview/azure/ml/).
 
@@ -69,7 +70,7 @@ automl_config = AutoMLConfig(task='forecasting',
 ```
 
 
-You can also bring your own validation data, learn more in [Configure data splits and cross-validation in AutoML](how-to-configure-cross-validation-data-splits.md#provide-validation-data).
+You can also bring your own validation data, learn more in [Configure data splits and cross-validation in AutoML](how-to-configure-cross-validation-data-splits.md#provide-validation-dataset).
 
 Learn more about how AutoML applies cross validation to [prevent over-fitting models](../concept-manage-ml-pitfalls.md#prevent-overfitting).
 
@@ -295,7 +296,7 @@ Next, let's examine the image, which plots the original series in first differen
 
 AutoML Machine learning models cannot inherently deal with stochastic trends, or other well-known problems associated with non-stationary time series. As a result, their out of sample forecast accuracy is "poor" if such trends are present.
 
-AutoML automatically analyzes time series dataset to check whether it's stationary or not. When non-stationary time series are detected, AutoML applies a differencing transform automatically to mitigate the affect of non-stationary time series.
+AutoML automatically analyzes time series dataset to check whether it's stationary or not. When non-stationary time series are detected, AutoML applies a differencing transform automatically to mitigate the effect of non-stationary time series.
 
 ## Run the experiment 
 
@@ -412,7 +413,7 @@ mm_paramters = ManyModelsTrainParameters(automl_settings=automl_settings, partit
 
 ### Hierarchical time series forecasting
 
-In most applications, customers have a need to understand their forecasts at a macro and micro level of the business. Forcasts can be predicting sales of products at different geographic locations, or understanding the expected workforce demand for different organizations at a company. The ability to train a machine learning model to intelligently forecast on hierarchy data is essential. 
+In most applications, customers have a need to understand their forecasts at a macro and micro level of the business. Forecasts can be predicting sales of products at different geographic locations, or understanding the expected workforce demand for different organizations at a company. The ability to train a machine learning model to intelligently forecast on hierarchy data is essential. 
 
 A hierarchical time series is a structure in which each of the unique series is arranged into a hierarchy based on dimensions such as, geography or product type. The following example shows data with unique attributes that form a hierarchy. Our hierarchy is defined by: the product type such as headphones or tablets, the product category, which splits product types into accessories and devices, and the region the products are sold in. 
 

@@ -16,6 +16,8 @@ ms.custom: UpdateFrequency5, sdkv1
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 Learn more about how to use distributed GPU training code in Azure Machine Learning (ML). This article will not teach you about distributed training.  It will help you run your existing distributed training code on Azure Machine Learning. It offers tips and examples for you to follow for each framework:
 
 * Message Passing Interface (MPI)
@@ -192,7 +194,7 @@ run = Experiment(ws, 'experiment_name').submit(run_config)
 > arguments=['--epochs', 50, '--local_rank', $LOCAL_RANK]
 > ```
 
-### Pytorch per-process-launch example
+### PyTorch per-process-launch example
 
 - [azureml-examples: Distributed training with PyTorch on CIFAR-10](https://github.com/Azure/azureml-examples/tree/v1-archive/v1/python-sdk/workflows/train/pytorch/cifar-distributed)
 

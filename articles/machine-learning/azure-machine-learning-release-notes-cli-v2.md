@@ -10,7 +10,7 @@ ms.topic: reference
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: hancwang
-ms.date: 11/08/2022
+ms.date: 12/17/2024
 ---
 
 # Azure Machine Learning CLI (v2) release notes
@@ -24,14 +24,101 @@ In this article, learn about Azure Machine Learning CLI (v2) releases.
 __RSS feed__: Get notified when this page is updated by copying and pasting the following URL into your feed reader:
 `https://learn.microsoft.com/api/search/rss?search=%22Azure+machine+learning+release+notes-v2%22&locale=en-us`
 
+## 2025-03-14
+
+## Azure Machine Learning CLI (v2) v 2.36.0
+- `az ml compute update`
+  - Fix updating compute when ssh is enabled.
+ 
+## 2025-01-08
+
+## Azure Machine Learning CLI (v2) v 2.34.0
+- `az ml workspace update --network-acls`
+  - Added `--network-acls` property to allow user to specify IPs or IP ranges in CIDR notation for workspace access.
+- `az ml capability-host`
+  - Added create operation.
+  - Added get operation.
+  - Added delete operation.
+
+## 2024-12-17
+
+## Azure Machine Learning CLI (v2) v 2.33.0
+- `az ml workspace create --provision-network-now`
+  - Added `--provision-network-now` property to trigger the provisioning of the managed network when creating a workspace with the managed network enabled, or else it does nothing.
+
+## 2024-09-18
+
+### Azure Machine Learning CLI (v2) v2.30.0
+
+- `az ml workspace outbound-rule set`
+  - Added support of Optional `--fqdns` property for private_endpoint outbound rule creation in a workspace managed network. Related to support of Application Gateway PE target.
+  - Added support of Optional `--address-prefixes` property for service_tag outbound rule creation in workspace managed network.
+  
+## 2024-08-14
+
+### Azure Machine Learning CLI (v2) v2.29.0
+
+- `az ml compute enable-sso`
+  - Added enable-sso to allow user to enable sso setting of a compute instance without any write permission set on compute.
+
+## 2024-06-21
+
+### Azure Machine Learning CLI (v2) v2.27.0
+
+- `az ml workspace create --system-datastores-auth-mode`
+  - Added `--system-datastores-auth-mode` to create for Azure Machine Learning workspace.
+  
+- `az ml workspace update --system-datastores-auth-mode`
+  - Added `--system-datastores-auth-mode` to update for Azure Machine Learning workspace.
+  
+- `az ml workspace create --allow-roleassignment-on-rg`
+  - Added `--allow-roleassignment-on-rg` to create for Azure Machine Learning workspace with allow/disallow role assignment on the resource group level.
+  
+- `az ml workspace update --allow-roleassignment-on-rg`
+  - Added `--allow-roleassignment-on-rg` to update for Azure Machine Learning workspace with allow/disallow role assignment on the resource group level.
+
 ## 2023-10-18
 
 ### Azure Machine Learning CLI (v2) v2.21.1
 
- - pydash dependency version was upgraded to >=6.0.0 to patch [security vulnerability in versions below 6.0.0](https://github.com/advisories/GHSA-8mjr-6c96-39w8)
+ - pydash dependency version was upgraded to >=6.0.0 to patch [security vulnerability in versions before 6.0.0](https://github.com/advisories/GHSA-8mjr-6c96-39w8)
 
+## 2023-09-11
+
+### Azure Machine Learning CLI (v2) v2.20.0
+
+- `az ml feature-store provision-network`
+  - [Public review] Added this command to allow user to provision managed network for feature store
+
+- `az ml feature-store create`
+  - Added `--not-grant-permissions` to allow user to not grant materialization identity access to feature store
+
+- `az ml feature-store update`
+  - Added `--not-grant-permissions` to allow user to not grant materialization identity access to feature store
+
+- `az ml feature-set`
+  - Added `--feature-store-name` and deprecated `--workspace-name`, backward compatibility will be removed in 6 month
+
+- `az ml feature-store-entity`
+  - Added `--feature-store-name` and deprecated `--workspace-name`, backward compatibility will be removed in 6 months
+
+- `az configure`
+  - Added `--defaults feature-store=<name>` to allow user to configure default feature store
+
+- `az ml job connect-ssh`
+  - Added `--ssh-args/-c` to allow specifying ssh options + commands. For example, to send signals to running processes or to attach to an interactive terminal
 
 ## 2023-05-09
+
+### Azure Machine Learning CLI (v2) v2.17.0
+
+- `az ml online-deployment create`
+  - Added `--local-enable-gpu` to allow gpu access to local deployment.
+
+- `az ml online-deployment update`
+  - Added `--local-enable-gpu` to allow gpu access to local deployment.
+
+## 2023-05-01
 
 ### Azure Machine Learning CLI (v2) v2.16.0
 
@@ -122,7 +209,7 @@ __RSS feed__: Get notified when this page is updated by copying and pasting the 
 
 ### Azure Machine Learning CLI (v2) v2.12.0
 
-- Improved error message for `az ml` commands that are registry enabled, when neither workspace nor registry name is passed.
+- Improved error message for `az ml` commands that are registry enabled, when no workspace or registry name is passed.
 - `az ml compute`
   - Fixed issue caused by no-wait parameter.
 
@@ -242,7 +329,7 @@ __RSS feed__: Get notified when this page is updated by copying and pasting the 
 ### Azure Machine Learning CLI (v2) v2.2.1
 
 - `az ml job`
-  - For all job types, flattened the `code` section of the YAML schema. Instead of `code.local_path` to specify the path to the source code directory, it's now just `code`
+  - For all job types, flattened the `code` section of the YAML schema. Instead of `code.local_path` to specify the path to the source code directory, use `code`
   - For all job types, changed the schema for defining data inputs to the job in the job YAML. Instead of specifying the data path using either the `file` or `folder` fields, use the `path` field to specify either a local path, a URI to a cloud path containing the data, or a reference to an existing registered Azure Machine Learning data asset via `path: azureml:<data_name>:<data_version>`. Also specify the `type` field to clarify whether the data source is a single file (`uri_file`) or a folder (`uri_folder`). If `type` field is omitted, it defaults to `type: uri_folder`. For more information, see the section of any of the [job YAML references](reference-yaml-job-command.md) that discuss the schema for specifying input data.
   - In the [sweep job YAML schema](reference-yaml-job-sweep.md), changed the `sampling_algorithm` field from a string to an object in order to support more configurations for the random sampling algorithm type
   - Removed the component job YAML schema. With this release, if you want to run a command job inside a pipeline that uses a component, just specify the component to the `component` field of the command job YAML definition. 
@@ -260,16 +347,16 @@ __RSS feed__: Get notified when this page is updated by copying and pasting the 
   - For `az ml model create`, `--model-uri` and `--local-path` arguments removed and consolidated to one `--path` argument that can take either a local path or a cloud path URI 
   - Added the `az ml model download` command to download a model's artifact files
 - `az ml online-deployment`
-  - In the [online deployment YAML schema](reference-yaml-deployment-managed-online.md), flattened the `code` section of the `code_configuration` field. Instead of `code_configuration.code.local_path` to specify the path to the source code directory containing the scoring files, it's now just `code_configuration.code`
+  - In the [online deployment YAML schema](reference-yaml-deployment-managed-online.md), flattened the `code` section of the `code_configuration` field. Instead of `code_configuration.code.local_path` to specify the path to the source code directory containing the scoring files, use `code_configuration.code`
   - Added an `environment_variables` field to the online deployment YAML schema to support configuring environment variables for an online deployment
 - `az ml batch-deployment`
-  - In the [batch deployment YAML schema](reference-yaml-deployment-batch.md), flattened the `code` section of the `code_configuration` field. Instead of `code_configuration.code.local_path` to specify the path to the source code directory containing the scoring files, it's now just `code_configuration.code`
+  - In the [batch deployment YAML schema](reference-yaml-deployment-batch.md), flattened the `code` section of the `code_configuration` field. Instead of `code_configuration.code.local_path` to specify the path to the source code directory containing the scoring files, use `code_configuration.code`
 - `az ml component`
-  - Flattened the `code` section of the [command component YAML schema](reference-yaml-component-command.md). Instead of `code.local_path` to specify the path to the source code directory, it's now just `code`
+  - Flattened the `code` section of the [command component YAML schema](reference-yaml-component-command.md). Instead of `code.local_path` to specify the path to the source code directory, use `code`
   -  Added support for referencing the latest version of a registered environment to use in the component YAML configuration. When referencing a registered environment, you can alias by latest version rather than having to explicitly specify the version. For example: `environment: azureml:AzureML-Minimal@latest`
   -  Renamed the component input and output type value from `path` to `uri_folder` for the `type` field when defining a component input or output
 - Removed the `delete` commands for assets (model, component, data, environment). The existing delete functionality is only a soft delete, so the `delete` commands will be reintroduced in a later release once hard delete is supported
-- Added support for archiving and restoring assets (model, component, data, environment) and jobs, for example, `az ml model archive` and `az ml model restore`. You can now archive assets and jobs, which will hide the archived entity from list queries (for example, `az ml model list`).
+- Added support for archiving and restoring assets (model, component, data, environment) and jobs, for example, `az ml model archive` and `az ml model restore`. You can now archive assets and jobs, which hides the archived entity from list queries (for example, `az ml model list`).
 
 ## 2021-10-04
 
@@ -317,7 +404,7 @@ __RSS feed__: Get notified when this page is updated by copying and pasting the 
   - Updated [batch endpoint YAML schema](reference-yaml-endpoint-batch.md)
   - Removed `traffic` property; replaced with a configurable default deployment property
   - Added support for input data URIs for `az ml batch-endpoint invoke`
-  - Added support for VNet ingress (private link)
+  - Added support for virtual network ingress (private link)
 - `az ml batch-deployment`
   - `az ml deployment` subgroup split into two separate groups: `az ml online-deployment` and `az ml batch-deployment`
   - Updated [batch deployment YAML schema](reference-yaml-deployment-batch.md)

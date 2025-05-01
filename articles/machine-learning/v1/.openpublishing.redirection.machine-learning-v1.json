@@ -186,6 +186,36 @@
         "redirect_document_id": false
     },
     {
+        "source_path_from_root": "/articles/machine-learning/v1/migrate-execute-r-script.md",
+        "redirect_url": "/azure/machine-learning/overview-what-is-azure-machine-learning",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/v1/migrate-overview.md",
+        "redirect_url": "/azure/machine-learning/overview-what-is-azure-machine-learning",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/v1/migrate-rebuild-experiment.md",
+        "redirect_url": "/azure/machine-learning/overview-what-is-azure-machine-learning",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/v1/migrate-rebuild-integrate-with-client-app.md",
+        "redirect_url": "/azure/machine-learning/overview-what-is-azure-machine-learning",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/v1/migrate-rebuild-web-service.md",
+        "redirect_url": "/azure/machine-learning/overview-what-is-azure-machine-learning",
+        "redirect_document_id": false
+    },
+    {
+        "source_path_from_root": "/articles/machine-learning/v1/migrate-register-dataset.md",
+        "redirect_url": "/azure/machine-learning/overview-what-is-azure-machine-learning",
+        "redirect_document_id": false
+    },
+    {
         "source_path_from_root": "/articles/machine-learning/v-fake/how-to-auto-train-models-v1.md",
         "redirect_url": "/azure/machine-learning/how-to-auto-train-models-v1",
         "redirect_document_id": true

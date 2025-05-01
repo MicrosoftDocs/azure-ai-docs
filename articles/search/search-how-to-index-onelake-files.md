@@ -5,26 +5,24 @@ description: Set up a OneLake indexer to automate indexing of content and metada
 author: gmndrg
 ms.author: gimondra
 manager: nitinme
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - build-2024
+  - ignite-2024
 ms.topic: how-to
-ms.date: 06/12/2024
+ms.date: 02/12/2025
 ---
 
 # Index data from OneLake files and shortcuts
   
 In this article, learn how to configure a OneLake files indexer for extracting searchable data and metadata data from a [lakehouse](/fabric/onelake/create-lakehouse-onelake) on top of [OneLake](/fabric/onelake/onelake-overview). 
 
-Use this indexer for the following tasks:
-  
-+ **Data indexing and incremental indexing:** The indexer can index files and associated metadata from data paths within a lakehouse. It detects new and updated files and metadata through built-in change detection. You can configure data refresh on a schedule or on demand. 
-+ **Deletion detection:** The indexer can [detect deletions via custom metadata](#detect-deletions-via-custom-metadata) for most files and shortcuts. This requires adding metadata to files to signify that they have been "soft deleted", enabling their removal from the search index. Currently, it's not possible to detect deletions in Google Cloud Storage or Amazon S3 shortcut files because custom metadata isn't supported for those data sources.
-+ **Applied AI through skillsets:** [Skillsets](cognitive-search-concept-intro.md) are fully supported by the OneLake files indexer. This includes key features like [integrated vectorization](vector-search-integrated-vectorization.md) that adds data chunking and embedding steps.
-+ **Parsing modes:** The indexer supports [JSON parsing modes](search-howto-index-json-blobs.md) if you want to parse JSON arrays or lines into individual search documents.
-+ **Compatibility with other features:** The OneLake indexer is designed to work seamlessly with other indexer features, such as [debug sessions](cognitive-search-debug-session.md), [indexer cache for incremental enrichments](search-howto-incremental-index.md), and [knowledge store](knowledge-store-concept-intro.md). 
+To configure and run the indexer, you can use:
 
-Use the [2024-05-01-preview REST API](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2024-05-01-preview&tabs=HTTP&preserve-view=true), a beta Azure SDK package, or [Import and vectorize data](search-get-started-portal-import-vectors.md) in the Azure portal to index from OneLake.
++ [2024-05-01-preview REST API](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2024-05-01-preview&tabs=HTTP&preserve-view=true) or a newer preview REST API.
++ An Azure SDK beta package that provides the feature.
++ [Import data](search-get-started-portal.md) wizard in the Azure portal.
++ [Import and vectorize data](search-get-started-portal-import-vectors.md) wizard in the Azure portal.
 
 This article uses the REST APIs to illustrate each step.
   
@@ -47,7 +45,17 @@ This article uses the REST APIs to illustrate each step.
 + A Contributor role assignment in the Microsoft Fabric workspace where the lakehouse is located. Steps are outlined in the [Grant permissions](#assign-service-permissions) section of this article.
 
 + [A REST client](search-get-started-rest.md) to formulate REST calls similar to the ones shown in this article.
+
+## Supported tasks
+
+You can use this indexer for the following tasks:
   
++ **Data indexing and incremental indexing:** The indexer can index files and associated metadata from data paths within a lakehouse. It detects new and updated files and metadata through built-in change detection. You can configure data refresh on a schedule or on demand. 
++ **Deletion detection:** The indexer can [detect deletions via custom metadata](#detect-deletions-via-custom-metadata) for most files and shortcuts. This requires adding metadata to files to signify that they have been "soft deleted", enabling their removal from the search index. Currently, it's not possible to detect deletions in Google Cloud Storage or Amazon S3 shortcut files because custom metadata isn't supported for those data sources.
++ **Applied AI through skillsets:** [Skillsets](cognitive-search-concept-intro.md) are fully supported by the OneLake files indexer. This includes key features like [integrated vectorization](vector-search-integrated-vectorization.md) that adds data chunking and embedding steps.
++ **Parsing modes:** The indexer supports [JSON parsing modes](search-howto-index-json-blobs.md) if you want to parse JSON arrays or lines into individual search documents. It also supports [Markdown parsing mode](search-how-to-index-markdown-blobs.md).
++ **Compatibility with other features:** The OneLake indexer is designed to work seamlessly with other indexer features, such as [debug sessions](cognitive-search-debug-session.md), [indexer cache for incremental enrichments](search-howto-incremental-index.md), and [knowledge store](knowledge-store-concept-intro.md).
+
 <a name="SupportedFormats"></a>
 
 ## Supported document formats  
@@ -69,7 +77,7 @@ The following OneLake shortcuts are supported by the OneLake files indexer:
 + [Google Cloud Storage shortcut](/fabric/onelake/create-gcs-shortcut)
 
 ## Limitations in this preview
- 
+
 + Parquet (including delta parquet) file types aren't currently supported.
 
 + File deletion isn't supported for Amazon S3 and Google Cloud Storage shortcuts.
@@ -148,7 +156,7 @@ The minimum role assignment for your search service identity is Contributor.
 
    :::image type="content" source="media/search-how-to-index-onelake-files/add-system-managed-identity.png" alt-text="Screenshot showing a Contributor role assignment for a search service system identity in the Azure portal." lightbox="media/search-how-to-index-onelake-files/add-system-managed-identity.png" :::
 
-   This screenshot shows a Contributor role assignment using a system managed identity:
+   This screenshot shows a Contributor role assignment using a user-assigned managed identity:
 
    :::image type="content" source="media/search-how-to-index-onelake-files/add-user-assigned-managed-identity.png" alt-text="Screenshot showing a Contributor role assignment for a search service user-assigned managed identity in the Azure portal." lightbox="media/search-how-to-index-onelake-files/add-user-assigned-managed-identity.png":::
 
@@ -222,7 +230,7 @@ A data source is defined as an independent resource so that it can be used by mu
       "description": "description",  
       "type": "onelake",  
       "credentials": {  
-        "connectionString": "ResourceId=00000000-0000-0000-0000-000000000000"  
+        "connectionString": "ResourceId=a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"  
       },  
       "container": {  
         "name": "11111111-1111-1111-1111-111111111111",  
@@ -260,7 +268,7 @@ A data source is defined as an independent resource so that it can be used by mu
       "description": "description",  
       "type": "onelake",  
       "credentials": {  
-        "connectionString": "ResourceId=00000000-0000-0000-0000-000000000000"  
+        "connectionString": "ResourceId=a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"  
       },  
       "container": {  
         "name": "11111111-1111-1111-1111-111111111111",  
@@ -327,7 +335,7 @@ Some key points include:
 
 In a [search index](search-what-is-an-index.md), add fields to accept the content and metadata of your OneLake data lake files.
 
-1. [Create or update an index](/rest/api/searchservice/create-index) to define search fields that store file content and metadata:
+1. [Create or update an index](/rest/api/searchservice/indexes/create) to define search fields that store file content and metadata:
 
     ```http
     {
@@ -360,7 +368,7 @@ In a [search index](search-what-is-an-index.md), add fields to accept the conten
 
 Once the index and data source are created, you're ready to create the indexer. Indexer configuration specifies the inputs, parameters, and properties controlling run time behaviors. You can also specify which parts of a blob to index.
 
-1. [Create or update an indexer](/rest/api/searchservice/create-indexer) by giving it a name and referencing the data source and target index:
+1. [Create or update an indexer](/rest/api/searchservice/indexers/create) by giving it a name and referencing the data source and target index:
 
     ```json
     {
@@ -404,7 +412,7 @@ Once the index and data source are created, you're ready to create the indexer. 
 
    In file indexing, you can often omit field mappings because the indexer has built-in support for mapping the "content" and metadata properties to similarly named and typed fields in an index. For metadata properties, the indexer automatically replaces hyphens `-` with underscores in the search index.
 
-For more information about other properties, [Create an indexer](search-howto-create-indexers.md). For the full list of parameter descriptions, see [Blob configuration parameters](/rest/api/searchservice/create-indexer#blob-configuration-parameters) in the REST API. The parameters are the same for OneLake.
+For more information about other properties, [Create an indexer](search-howto-create-indexers.md). For the full list of parameter descriptions, see [Create Indexer (REST)](/rest/api/searchservice/indexers/create#definitions) in the REST API. The parameters are the same for OneLake.
 
 By default, an indexer runs automatically when you create it. You can change this behavior by setting "disabled" to true. To control indexer execution, [run an indexer on demand](search-howto-run-reset-indexers.md) or [put it on a schedule](search-howto-schedule-indexers.md).
 

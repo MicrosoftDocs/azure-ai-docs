@@ -1,12 +1,12 @@
 ---
-title: "Quickstart: Image classification with Custom Vision client library or REST API"
+title: "Quickstart: Image classification with Custom Vision SDK"
 titleSuffix: Azure AI services
-description: "Quickstart: Create an image classification project, add tags, upload images, train your project, and make a prediction using the Custom Vision client library or the REST API"
+description: Learn how to create an image classification project, add tags, train your project, and make predictions using the Custom Vision client library or the REST API.
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-custom-vision
 ms.topic: quickstart
-ms.date: 01/21/2024
+ms.date: 11/08/2024
 ms.devlang: csharp
 # ms.devlang: csharp, golang, java, javascript, python
 ms.custom: devx-track-python, devx-track-js, devx-track-csharp, mode-api, devx-track-extended-java, devx-track-go
@@ -14,7 +14,7 @@ keywords: custom vision, image recognition, image recognition app, image analysi
 zone_pivot_groups: programming-languages-set-cusvis
 ---
 
-# Quickstart: Create an image classification project with the Custom Vision client library or REST API
+# Quickstart: Create an image classification project with the Custom Vision SDK or REST API
 
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C# quickstart](../includes/quickstarts/csharp-tutorial.md)]

@@ -2,7 +2,7 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 02/08/2024
+ms.date: 9/5/2024
 ms.author: eur
 ---
 
@@ -20,7 +20,7 @@ The Speech SDK is available as a [NuGet package](https://www.nuget.org/packages/
 
 ### Set environment variables
 
-This example requires environment variables named `OPEN_AI_KEY`, `OPEN_AI_ENDPOINT`, `OPEN_AI_DEPLOYMENT_NAME`, `SPEECH_KEY`, and `SPEECH_REGION`.
+This example requires environment variables named `AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_ENDPOINT`, `AZURE_OPENAI_CHAT_DEPLOYMENT`, `SPEECH_KEY`, and `SPEECH_REGION`.
 
 [!INCLUDE [Environment variables](../../common/environment-variables-openai.md)]
 
@@ -57,16 +57,16 @@ Follow these steps to create a new console application.
     using Azure;
     using Azure.AI.OpenAI;
 
-    // This example requires environment variables named "OPEN_AI_KEY", "OPEN_AI_ENDPOINT" and "OPEN_AI_DEPLOYMENT_NAME"
+    // This example requires environment variables named "AZURE_OPENAI_API_KEY", "AZURE_OPENAI_ENDPOINT" and "AZURE_OPENAI_CHAT_DEPLOYMENT"
     // Your endpoint should look like the following https://YOUR_OPEN_AI_RESOURCE_NAME.openai.azure.com/
-    string openAIKey = Environment.GetEnvironmentVariable("OPEN_AI_KEY") ??
-                       throw new ArgumentException("Missing OPEN_AI_KEY");
-    string openAIEndpoint = Environment.GetEnvironmentVariable("OPEN_AI_ENDPOINT") ??
-                            throw new ArgumentException("Missing OPEN_AI_ENDPOINT");
+    string openAIKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY") ??
+                       throw new ArgumentException("Missing AZURE_OPENAI_API_KEY");
+    string openAIEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT") ??
+                            throw new ArgumentException("Missing AZURE_OPENAI_ENDPOINT");
 
     // Enter the deployment name you chose when you deployed the model.
-    string engine = Environment.GetEnvironmentVariable("OPEN_AI_DEPLOYMENT_NAME") ??
-                    throw new ArgumentException("Missing OPEN_AI_DEPLOYMENT_NAME");
+    string engine = Environment.GetEnvironmentVariable("AZURE_OPENAI_CHAT_DEPLOYMENT") ??
+                    throw new ArgumentException("Missing AZURE_OPENAI_CHAT_DEPLOYMENT");
 
     // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
     string speechKey = Environment.GetEnvironmentVariable("SPEECH_KEY") ??
@@ -79,7 +79,7 @@ Follow these steps to create a new console application.
 
     try
     {
-        await ChatWithOpenAI();
+        await ChatWithAzureOpenAI();
     }
     catch (Exception ex)
     {
@@ -87,7 +87,7 @@ Follow these steps to create a new console application.
     }
 
     // Prompts Azure OpenAI with a request and synthesizes the response.
-    async Task AskOpenAI(string prompt)
+    async Task AskAzureOpenAI(string prompt)
     {
         object consoleLock = new();
         var speechConfig = SpeechConfig.FromSubscription(speechKey, speechRegion);
@@ -147,7 +147,7 @@ Follow these steps to create a new console application.
     }
 
     // Continuously listens for speech input to recognize and send as text to Azure OpenAI
-    async Task ChatWithOpenAI()
+    async Task ChatWithAzureOpenAI()
     {
         // Should be the locale for the speaker's language.
         var speechConfig = SpeechConfig.FromSubscription(speechKey, speechRegion);
@@ -175,7 +175,7 @@ Follow these steps to create a new console application.
                     else
                     {
                         Console.WriteLine($"Recognized speech: {speechRecognitionResult.Text}");
-                        await AskOpenAI(speechRecognitionResult.Text);
+                        await AskAzureOpenAI(speechRecognitionResult.Text);
                     }
 
                     break;
@@ -205,7 +205,7 @@ Follow these steps to create a new console application.
     ```
 
 > [!IMPORTANT]
-> Make sure that you set the `OPEN_AI_KEY`, `OPEN_AI_ENDPOINT`, `OPEN_AI_DEPLOYMENT_NAME`, `SPEECH_KEY` and `SPEECH_REGION` [environment variables](#set-environment-variables) as described. If you don't set these variables, the sample will fail with an error message.
+> Make sure that you set the `AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_ENDPOINT`, `AZURE_OPENAI_CHAT_DEPLOYMENT`, `SPEECH_KEY` and `SPEECH_REGION` [environment variables](#set-environment-variables) as described. If you don't set these variables, the sample will fail with an error message.
 
 Speak into your microphone when prompted. The console output includes the prompt for you to begin speaking, then your request as text, and then the response from Azure OpenAI as text. The response from Azure OpenAI should be converted from text to speech and then output to the default speaker.
 
@@ -228,11 +228,10 @@ PS C:\dev\openai\csharp>
 
 Here are some more considerations:
 
-- To change the speech recognition language, replace `en-US` with another [supported language](~/articles/ai-services/speech-service/language-support.md). For example, `es-ES` for Spanish (Spain). The default language is `en-US`. For details about how to identify one of multiple languages that might be spoken, see [language identification](~/articles/ai-services/speech-service/language-identification.md).
-- To change the voice that you hear, replace `en-US-JennyMultilingualNeural` with another [supported voice](~/articles/ai-services/speech-service/language-support.md#prebuilt-neural-voices). If the voice doesn't speak the language of the text returned from Azure OpenAI, the Speech service doesn't output synthesized audio.
+- To change the speech recognition language, replace `en-US` with another [supported language](~/articles/ai-services/speech-service/language-support.md?tabs=tts). For example, `es-ES` for Spanish (Spain). The default language is `en-US`. For details about how to identify one of multiple languages that might be spoken, see [language identification](~/articles/ai-services/speech-service/language-identification.md).
+- To change the voice that you hear, replace `en-US-JennyMultilingualNeural` with another [supported voice](~/articles/ai-services/speech-service/language-support.md?tabs=tts#prebuilt-neural-voices). If the voice doesn't speak the language of the text returned from Azure OpenAI, the Speech service doesn't output synthesized audio.
 - To reduce latency for text to speech output, use the text streaming feature, which enables real-time text processing for fast audio generation and minimizes latency, enhancing the fluidity and responsiveness of real-time audio outputs. Refer to [how to use text streaming](~/articles/ai-services/speech-service/how-to-lower-speech-synthesis-latency.md#input-text-streaming).
 - To enable [TTS Avatar](~/articles/ai-services/speech-service/text-to-speech-avatar/what-is-text-to-speech-avatar.md) as a visual experience of speech output, refer to [real-time synthesis for text to speech avatar](~/articles/ai-services/speech-service/text-to-speech-avatar/real-time-synthesis-avatar.md) and [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar#chat-sample) for chat scenario with avatar.
-- To use a different [model](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability), replace `gpt-35-turbo-instruct` with the ID of another [deployment](/azure/ai-services/openai/how-to/create-resource?pivots=web-portal#deploy-a-model). The deployment ID isn't necessarily the same as the model name. You named your deployment when you created it in [Azure OpenAI Studio](https://oai.azure.com/).
 - Azure OpenAI also performs content moderation on the prompt inputs and generated outputs. The prompts or responses might be filtered if harmful content is detected. For more information, see the [content filtering](/azure/ai-services/openai/concepts/content-filter) article.
 
 ## Clean up resources

@@ -45,16 +45,6 @@ The Azure Machine Learning workspace uses a __managed identity__ to communicate 
 Once a workspace is created with SAI identity type, it can be updated to SAI+UAI, but not back from SAI+UAI to SAI. You may assign multiple user-assigned identities to the same workspace. 
 
 
-## Azure Container Registry and identity types
-
-This table lists the support matrix when authenticating to __Azure Container Registry__, depending on the authentication method and the __Azure Container Registry's__ [public network access configuration](/azure/container-registry/container-registry-access-selected-networks).
-
-| Authentication method | Public network access</br>disabled | Azure Container Registry</br>Public network access enabled |
-| ---- | :----: | :----: |
-| Admin user | ✓ | ✓ |
-| Workspace system-assigned managed identity | ✓ | ✓ |
-| Workspace user-assigned managed identity</br>with the ACRPull role assigned to the identity |  | ✓ |
-
 ## User-assigned managed identity
 
 ### Workspace
@@ -180,7 +170,7 @@ To delete one or more existing UAIs, you can put the UAI IDs which needs to be p
 
 ### Add a user-assigned managed identity to a workspace in addition to a system-assigned identity
 
-In some scenarios, you may need to use a user-assigned managed identity in addition to the default system-assigned workspace identity. To add a user-assigned managed identity, without changing the existing workspace identity, use the following steps:
+In some scenarios, you might need to use a user-assigned managed identity in addition to the default system-assigned workspace identity. To add a user-assigned managed identity, without changing the existing workspace identity, use the following steps:
 
 1. [Create a user-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities). Save the ID for the managed identity that you create.
 1. To attach the managed identity to your workspace, you need a YAML file that specifies the identity. The following is an example of the YAML file contents. Replace the `<TENANT_ID>`, `<RESOURCE_GROUP>`, and `<USER_MANAGED_ID>` with your values.
@@ -283,6 +273,38 @@ except Exception:
 # [Studio](#tab/azure-studio)
 
 During cluster creation or when editing compute cluster details, in the **Advanced settings**, toggle **Assign a managed identity** and specify a system-assigned identity or user-assigned identity.
+
+---
+
+### Kubernetes Cluster Compute
+
+> [!NOTE]
+> Azure Machine Learning kubernetes clusters support only **one system-assigned identity** or **one user-assigned identities**, not both concurrently.
+
+The **default managed identity** is the system-assigned managed identity or the first user-assigned managed identity.
+
+
+During a run, there are two applications of an identity:
+
+- The system uses an identity to set up the user's storage mounts, container registry, and datastores.
+
+    * In this case, the system will use the default-managed identity.
+
+- You apply an identity to access resources from within the code for a submitted job:
+
+    * In the case of kubernetes cluster compute, the ManagedIdentityCredential object should be provided **without any client_id**.
+
+    For example, to retrieve a token for a datastore with the default-managed identity:
+
+    ```python
+    credential = ManagedIdentityCredential()
+    token = credential.get_token('https://storage.azure.com/')
+    ```
+
+To configure a kubernetes cluster compute, make sure that it has the [necessary AML extension deployed in it](how-to-deploy-kubernetes-extension.md?view=azureml-api-2&preserve-view=true&tabs=deploy-extension-with-cli) and follow the documentation on [how to attach the kubernetes cluster compute to your AML workspace](how-to-attach-kubernetes-to-workspace.md?view=azureml-api-2&preserve-view=true&tabs=cli).
+
+> [!IMPORTANT] 
+> For Training purposes (Machine Learning Jobs), the identity that is used is the one assigned to the Kubernetes Cluster Compute. However, in the case of inferencing (Managed Online Endpoints), the identity that is used is the one assigned to the endpoint. For more information see [How to Access Azure Resources from an Online Endpoint](how-to-access-resources-from-endpoints-managed-identities.md?view=azureml-api-2&preserve-view=true&tabs=system-identity-cli).
 
 ---
 
@@ -421,7 +443,8 @@ The following steps outline how to set up data access with user identity for tra
     ```
 
 > [!IMPORTANT] 
-> During job submission with authentication with user identity enabled, the code snapshots are protected against tampering by checksum validation. If you have existing pipeline components and intend to use them with authentication with user identity enabled, you may need to re-upload them. Otherwise the job may fail during checksum validation. 
+> During job submission with authentication with user identity enabled, the code snapshots are protected against tampering by checksum validation. If you have existing pipeline components and intend to use them with authentication with user identity enabled, you might need to re-upload them. Otherwise the job may fail during checksum validation. 
+
 
 ### Work with virtual networks
 

@@ -33,7 +33,7 @@ Before you get started, you will need:
 
 VS Code has multiple extensions that can help you achieve your machine learning goals. Use the Azure extension to connect and work with your Azure subscription. Use the Azure Machine Learning extension to view, update and create workspace assets like computes, data, environments, jobs and more.
 
-When you use [VS Code for the Web](how-to-launch-vs-code-remote.md?tabs=vscode-web#use-vs-code-as-your-workspace-ide), the latest versions of these extensions are automatically available to you. If you use the [desktop application](how-to-launch-vs-code-remote.md?tabs=vscode-desktop#use-vs-code-as-your-workspace-ide), you may need to install them.
+When you use [VS Code for the Web](how-to-launch-vs-code-remote.md?tabs=vscode-web#use-vs-code-as-your-workspace-ide), the latest versions of these extensions are automatically available to you. If you use the [desktop application](how-to-launch-vs-code-remote.md?tabs=vscode-desktop#use-vs-code-as-your-workspace-ide), you might need to install them.
 
 When you [launch VS Code connected to a compute instance](how-to-launch-vs-code-remote.md) for the first time, make sure you follow these steps and take a few moments to orient yourself to the tools in your integrated development environment.
 
@@ -78,7 +78,7 @@ While there are a few ways to connect and manage kernels in VS Code, connecting 
 
 ## Transition between Azure Machine Learning and VS Code
 
-We recommend not trying to work on the same files in both applications at the same time as you may have conflicts you need to resolve. We'll save your current file in the studio before navigating to VS Code. You can execute many of the actions provided in the Azure Machine Learning studio in VS Code instead, using a YAML-first approach. You may find you prefer to do certain actions (for example, editing and debugging files) in VS Code, and other actions (for example, Creating a training job) in the Azure Machine Learning studio. You should find you can seamlessly navigate back and forth between the two.
+We recommend not trying to work on the same files in both applications at the same time as you might have conflicts you need to resolve. We'll save your current file in the studio before navigating to VS Code. You can execute many of the actions provided in the Azure Machine Learning studio in VS Code instead, using a YAML-first approach. You may find you prefer to do certain actions (for example, editing and debugging files) in VS Code, and other actions (for example, Creating a training job) in the Azure Machine Learning studio. You should find you can seamlessly navigate back and forth between the two.
 
 ## Next step
 

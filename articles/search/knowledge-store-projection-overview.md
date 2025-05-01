@@ -6,11 +6,11 @@ description: Introduces projection concepts and best practices. If you are creat
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 01/18/2024
+ms.date: 12/10/2024
 ---
 
 # Knowledge store "projections" in Azure AI Search
@@ -164,7 +164,7 @@ Recall that projections are exclusive to knowledge stores, and aren't used to st
 
    1. From the skills array, determine which skill outputs should be referenced in the `source` of each projection. All projections have a source. The source can be the output of an upstream skill, but is often the output of a Shaper skill. The composition of your projection is determined through shapes. 
 
-1. If you're adding projections to an existing skillset, [update the skillset](/rest/api/searchservice/update-skillset) and [run the indexer](/rest/api/searchservice/run-indexer).
+1. If you're adding projections to an existing skillset, [update the skillset](/rest/api/searchservice/skillsets/create-or-update) and [run the indexer](/rest/api/searchservice/indexers/run).
 
 1. Check your results in Azure Storage. On subsequent runs, avoid naming collisions by deleting objects in Azure Storage or changing project names in the skillset.
 

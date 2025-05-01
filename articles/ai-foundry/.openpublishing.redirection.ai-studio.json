@@ -1,0 +1,1142 @@
+{
+    "redirections": [
+        {
+          "source_path_from_root": "/articles/ai-foundry/azure-openai-in-ai-foundry.md",
+          "redirect_url": "/azure/ai-foundry/azure-openai-in-azure-ai-foundry",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/what-is-ai-foundry.md",
+          "redirect_url": "/azure/ai-foundry/what-is-azure-ai-foundry",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/whats-new-ai-foundry.md",
+          "redirect_url": "/azure/ai-foundry/whats-new-azure-ai-foundry",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/concepts/rbac-ai-foundry.md",
+          "redirect_url": "/azure/ai-foundry/concepts/rbac-azure-ai-foundry",
+          "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/access-on-premises-resources.md",
+            "redirect_url": "/azure/ai-foundry/how-to/access-on-premises-resources",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/autoscale.md",
+            "redirect_url": "/azure/ai-foundry/how-to/autoscale",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/azure-policy.md",
+            "redirect_url": "/azure/ai-foundry/how-to/azure-policy",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/benchmark-model-in-catalog.md",
+            "redirect_url": "/azure/ai-foundry/how-to/benchmark-model-in-catalog",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/built-in-policy-model-deployment.md",
+            "redirect_url": "/azure/ai-foundry/how-to/built-in-policy-model-deployment",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/concept-data-privacy.md",
+            "redirect_url": "/azure/ai-foundry/how-to/concept-data-privacy",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/configure-managed-network.md",
+            "redirect_url": "/azure/ai-foundry/how-to/configure-managed-network",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/configure-private-link.md",
+            "redirect_url": "/azure/ai-foundry/how-to/configure-private-link",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/connections-add.md",
+            "redirect_url": "/azure/ai-foundry/how-to/connections-add",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/costs-plan-manage.md",
+            "redirect_url": "/azure/ai-foundry/how-to/costs-plan-manage",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/create-azure-ai-hub-template.md",
+            "redirect_url": "/azure/ai-foundry/how-to/create-azure-ai-hub-template",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/create-azure-ai-resource.md",
+            "redirect_url": "/azure/ai-foundry/how-to/create-azure-ai-resource",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/create-hub-terraform.md",
+            "redirect_url": "/azure/ai-foundry/how-to/create-hub-terraform",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/create-manage-compute-session.md",
+            "redirect_url": "/azure/ai-foundry/how-to/create-manage-compute-session",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/create-manage-compute.md",
+            "redirect_url": "/azure/ai-foundry/how-to/create-manage-compute",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/create-projects.md",
+            "redirect_url": "/azure/ai-foundry/how-to/create-projects",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/create-secure-ai-hub.md",
+            "redirect_url": "/azure/ai-foundry/how-to/create-secure-ai-hub",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/data-add.md",
+            "redirect_url": "/azure/ai-foundry/how-to/data-add",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/model-inference/reference/api-version-updates.md",
+            "redirect_url": "/rest/api/aifoundry/modelinference",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-cohere-command.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-cohere-command",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-cohere-command.md",
+            "redirect_url": "/azure/ai-foundry/concepts/models-featured#cohere",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-cohere-embed.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-cohere-embed",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-cohere-embed.md",
+            "redirect_url": "/azure/ai-foundry/concepts/models-featured#cohere",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-cohere-rerank.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-cohere-rerank",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-cohere-rerank.md",
+            "redirect_url": "/azure/ai-foundry/concepts/models-featured#cohere-rerank",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-deepseek.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-deepseek",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-deepseek.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/tutorials/get-started-deepseek-r1?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-gretel-navigator.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-gretel-navigator",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-jais.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-jais",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-jais.md",
+            "redirect_url": "/azure/ai-foundry/concepts/models-featured#core42",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-jamba.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-jamba",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-jamba.md",
+            "redirect_url": "/azure/ai-foundry/concepts/models-featured#ai21-labs",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-llama.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-llama",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-llama.md",
+            "redirect_url": "/azure/ai-foundry/concepts/models-featured#meta",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-managed.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-managed",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-mistral-codestral.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-mistral-codestral",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-mistral-codestral.md",
+            "redirect_url": "/azure/ai-foundry/concepts/models-featured#mistral-ai",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-mistral-nemo.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-mistral-nemo",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-mistral-nemo.md",
+            "redirect_url": "/azure/ai-foundry/concepts/models-featured#mistral-ai",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-mistral-open.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-mistral-open",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-mistral.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-mistral",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-mistral.md",
+            "redirect_url": "/azure/ai-foundry/concepts/models-featured#mistral-ai",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-openai.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-openai",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-phi-3-5-vision.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-phi-3-5-vision",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-phi-3-5-vision.md",
+            "redirect_url": "/azure/ai-foundry/concepts/models-featured#microsoft",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-phi-3-vision.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-phi-3-vision",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-phi-3-vision.md",
+            "redirect_url": "/azure/ai-foundry/concepts/models-featured#microsoft",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-phi-3.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-phi-3",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-phi-3.md",
+            "redirect_url": "/azure/ai-foundry/concepts/models-featured#microsoft",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-phi-4.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-phi-4",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-phi-4.md",
+            "redirect_url": "/azure/ai-foundry/concepts/models-featured#microsoft",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-serverless-availability.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-serverless-availability",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-serverless-connect.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-serverless-connect",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-serverless.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-serverless",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-timegen-1.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-timegen-1",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-timegen-1.md",
+            "redirect_url": "/azure/ai-foundry/concepts/models-featured#nixtla",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-tsuzumi.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-tsuzumi",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-tsuzumi.md",
+            "redirect_url": "/azure/ai-foundry/concepts/models-featured#ntt-data",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-stability-models.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-stability-models",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/how-to/deploy-stability-models.md",
+            "redirect_url": "/azure/ai-foundry/concepts/models-featured#stability-ai",
+            "redirect_document_id": false
+          },          
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/disable-local-auth.md",
+            "redirect_url": "/azure/ai-foundry/how-to/disable-local-auth",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/disaster-recovery.md",
+            "redirect_url": "/azure/ai-foundry/how-to/disaster-recovery",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/evaluate-generative-ai-app.md",
+            "redirect_url": "/azure/ai-foundry/how-to/evaluate-generative-ai-app",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/evaluate-prompts-playground.md",
+            "redirect_url": "/azure/ai-foundry/how-to/evaluate-prompts-playground",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/evaluate-results.md",
+            "redirect_url": "/azure/ai-foundry/how-to/evaluate-results",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/fine-tune-managed-compute.md",
+            "redirect_url": "/azure/ai-foundry/how-to/fine-tune-managed-compute",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/fine-tune-serverless.md",
+            "redirect_url": "/azure/ai-foundry/how-to/fine-tune-serverless",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/flow-bulk-test-evaluation.md",
+            "redirect_url": "/azure/ai-foundry/how-to/flow-bulk-test-evaluation",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/flow-deploy.md",
+            "redirect_url": "/azure/ai-foundry/how-to/flow-deploy",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/flow-develop-evaluation.md",
+            "redirect_url": "/azure/ai-foundry/how-to/flow-develop-evaluation",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/flow-develop.md",
+            "redirect_url": "/azure/ai-foundry/how-to/flow-develop",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/flow-process-image.md",
+            "redirect_url": "/azure/ai-foundry/how-to/flow-process-image",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/flow-tune-prompts-using-variants.md",
+            "redirect_url": "/azure/ai-foundry/how-to/flow-tune-prompts-using-variants",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/index-add.md",
+            "redirect_url": "/azure/ai-foundry/how-to/index-add",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/model-catalog-overview.md",
+            "redirect_url": "/azure/ai-foundry/how-to/model-catalog-overview",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/monitor-applications.md",
+            "redirect_url": "/azure/ai-foundry/how-to/monitor-applications",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/monitor-quality-safety.md",
+            "redirect_url": "/azure/ai-foundry/how-to/monitor-quality-safety",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/online-evaluation.md",
+            "redirect_url": "/azure/ai-foundry/how-to/online-evaluation",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/prompt-flow-troubleshoot.md",
+            "redirect_url": "/azure/ai-foundry/how-to/prompt-flow-troubleshoot",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/prompt-flow.md",
+            "redirect_url": "/azure/ai-foundry/how-to/prompt-flow",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/quota.md",
+            "redirect_url": "/azure/ai-foundry/how-to/quota",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/secure-data-playground.md",
+            "redirect_url": "/azure/ai-foundry/how-to/secure-data-playground",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/troubleshoot-deploy-and-monitor.md",
+            "redirect_url": "/azure/ai-foundry/how-to/troubleshoot-deploy-and-monitor",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/troubleshoot-secure-connection-project.md",
+            "redirect_url": "/azure/ai-foundry/how-to/troubleshoot-secure-connection-project",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/use-blocklists.md",
+            "redirect_url": "/azure/ai-foundry/how-to/use-blocklists",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/ai-template-get-started.md",
+            "redirect_url": "/azure/ai-foundry/how-to/develop/ai-template-get-started",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/cloud-evaluation.md",
+            "redirect_url": "/azure/ai-foundry/how-to/develop/cloud-evaluation",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/connections-add-sdk.md",
+            "redirect_url": "/azure/ai-foundry/how-to/develop/connections-add-sdk",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/create-hub-project-sdk.md",
+            "redirect_url": "/azure/ai-foundry/how-to/develop/create-hub-project-sdk",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/evaluate-sdk.md",
+            "redirect_url": "/azure/ai-foundry/how-to/develop/evaluate-sdk",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/langchain.md",
+            "redirect_url": "/azure/ai-foundry/how-to/develop/langchain",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/llama-index.md",
+            "redirect_url": "/azure/ai-foundry/how-to/develop/llama-index",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/sdk-overview.md",
+            "redirect_url": "/azure/ai-foundry/how-to/develop/sdk-overview",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/semantic-kernel.md",
+            "redirect_url": "/azure/ai-foundry/how-to/develop/semantic-kernel",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/simulator-interaction-data.md",
+            "redirect_url": "/azure/ai-foundry/how-to/develop/simulator-interaction-data",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/trace-local-sdk.md",
+            "redirect_url": "/azure/ai-foundry/how-to/develop/trace-local-sdk",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/trace-production-sdk.md",
+            "redirect_url": "/azure/ai-foundry/how-to/develop/trace-production-sdk",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/visualize-traces.md",
+            "redirect_url": "/azure/ai-foundry/how-to/develop/visualize-traces",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/vscode.md",
+            "redirect_url": "/azure/ai-foundry/how-to/develop/vscode",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/healthcare-ai/deploy-cxrreportgen.md",
+            "redirect_url": "/azure/ai-foundry/how-to/healthcare-ai/deploy-cxrreportgen",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/healthcare-ai/deploy-medimageinsight.md",
+            "redirect_url": "/azure/ai-foundry/how-to/healthcare-ai/deploy-medimageinsight",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/healthcare-ai/deploy-medimageparse.md",
+            "redirect_url": "/azure/ai-foundry/how-to/healthcare-ai/deploy-medimageparse",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/healthcare-ai/healthcare-ai-models.md",
+            "redirect_url": "/azure/ai-foundry/how-to/healthcare-ai/healthcare-ai-models",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/prompt-flow-tools/azure-open-ai-gpt-4v-tool.md",
+            "redirect_url": "/azure/ai-foundry/how-to/prompt-flow-tools/azure-open-ai-gpt-4v-tool",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/prompt-flow-tools/content-safety-tool.md",
+            "redirect_url": "/azure/ai-foundry/how-to/prompt-flow-tools/content-safety-tool",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/prompt-flow-tools/embedding-tool.md",
+            "redirect_url": "/azure/ai-foundry/how-to/prompt-flow-tools/embedding-tool",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/prompt-flow-tools/index-lookup-tool.md",
+            "redirect_url": "/azure/ai-foundry/how-to/prompt-flow-tools/index-lookup-tool",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/prompt-flow-tools/llm-tool.md",
+            "redirect_url": "/azure/ai-foundry/how-to/prompt-flow-tools/llm-tool",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/prompt-flow-tools/prompt-flow-tools-overview.md",
+            "redirect_url": "/azure/ai-foundry/how-to/prompt-flow-tools/prompt-flow-tools-overview",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/prompt-flow-tools/prompt-tool.md",
+            "redirect_url": "/azure/ai-foundry/how-to/prompt-flow-tools/prompt-tool",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/prompt-flow-tools/python-tool.md",
+            "redirect_url": "/azure/ai-foundry/how-to/prompt-flow-tools/python-tool",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/prompt-flow-tools/rerank-tool.md",
+            "redirect_url": "/azure/ai-foundry/how-to/prompt-flow-tools/rerank-tool",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/prompt-flow-tools/serp-api-tool.md",
+            "redirect_url": "/azure/ai-foundry/how-to/prompt-flow-tools/serp-api-tool",
+            "redirect_document_id": true
+          },
+
+
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/a-b-experimentation.md",
+            "redirect_url": "/azure/ai-foundry/concepts/a-b-experimentation",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/ai-resources.md",
+            "redirect_url": "/azure/ai-foundry/concepts/ai-resources",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/architecture.md",
+            "redirect_url": "/azure/ai-foundry/concepts/architecture",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/concept-model-distillation.md",
+            "redirect_url": "/azure/ai-foundry/concepts/concept-model-distillation",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/concept-synthetic-data.md",
+            "redirect_url": "/azure/ai-foundry/concepts/concept-synthetic-data",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/connections.md",
+            "redirect_url": "/azure/ai-foundry/concepts/connections",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/content-filtering.md",
+            "redirect_url": "/azure/ai-foundry/concepts/content-filtering",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/deployments-overview.md",
+            "redirect_url": "/azure/ai-foundry/concepts/deployments-overview",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/encryption-keys-portal.md",
+            "redirect_url": "/azure/ai-foundry/concepts/encryption-keys-portal",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/evaluation-approach-gen-ai.md",
+            "redirect_url": "/azure/ai-foundry/concepts/evaluation-approach-gen-ai",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/evaluation-metrics-built-in.md",
+            "redirect_url": "/azure/ai-foundry/concepts/evaluation-metrics-built-in",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/fine-tuning-overview.md",
+            "redirect_url": "/azure/ai-foundry/concepts/fine-tuning-overview",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/management-center.md",
+            "redirect_url": "/azure/ai-foundry/concepts/management-center",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/model-benchmarks.md",
+            "redirect_url": "/azure/ai-foundry/concepts/model-benchmarks",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/model-catalog-content-safety.md",
+            "redirect_url": "/azure/ai-foundry/concepts/model-catalog-content-safety",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/model-lifecycle-retirement.md",
+            "redirect_url": "/azure/ai-foundry/concepts/model-lifecycle-retirement",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/rbac-ai-studio.md",
+            "redirect_url": "/azure/ai-foundry/concepts/rbac-azure-ai-foundry",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/retrieval-augmented-generation.md",
+            "redirect_url": "/azure/ai-foundry/concepts/retrieval-augmented-generation",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/safety-evaluations-transparency-note.md",
+            "redirect_url": "/azure/ai-foundry/concepts/safety-evaluations-transparency-note",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/trace.md",
+            "redirect_url": "/azure/ai-foundry/concepts/trace",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/vulnerability-management.md",
+            "redirect_url": "/azure/ai-foundry/concepts/vulnerability-management",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/azure-openai-in-ai-studio.md",
+            "redirect_url": "/azure/ai-foundry/azure-openai-in-azure-ai-foundry",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/ai-services/content-safety-overview.md",
+            "redirect_url": "/azure/ai-foundry/ai-services/content-safety-overview",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/ai-services/how-to/connect-ai-services.md",
+            "redirect_url": "/azure/ai-services/connect-services-ai-foundry-portal",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/ai-services/how-to/connect-azure-openai.md",
+            "redirect_url": "/azure/ai-foundry/ai-services/how-to/connect-azure-openai",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/tutorials/copilot-sdk-build-rag.md",
+            "redirect_url": "/azure/ai-foundry/tutorials/copilot-sdk-build-rag",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/tutorials/copilot-sdk-create-resources.md",
+            "redirect_url": "/azure/ai-foundry/tutorials/copilot-sdk-create-resources",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/tutorials/copilot-sdk-evaluate.md",
+            "redirect_url": "/azure/ai-foundry/tutorials/copilot-sdk-evaluate",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/tutorials/deploy-chat-web-app.md",
+            "redirect_url": "/azure/ai-foundry/tutorials/deploy-chat-web-app",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/tutorials/screen-reader.md",
+            "redirect_url": "/azure/ai-foundry/tutorials/screen-reader",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/reference/region-support.md",
+            "redirect_url": "/azure/ai-foundry/reference/region-support",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/index.yml",
+            "redirect_url": "/azure/ai-foundry/",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/faq.yml",
+            "redirect_url": "/azure/ai-foundry/faq/",
+            "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-studio/context/context.yml",
+          "redirect_url": "/azure/ai-foundry/context/context.json",
+          "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/responsible-use-of-ai-overview.md",
+            "redirect_url": "/azure/ai-foundry/responsible-use-of-ai-overview",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/what-is-ai-studio.md",
+            "redirect_url": "/azure/ai-foundry/what-is-azure-ai-foundry",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/whats-new-ai-studio.md",
+            "redirect_url": "/azure/ai-foundry/whats-new-azure-ai-foundry",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/quickstarts/get-started-code.md",
+            "redirect_url": "/azure/ai-foundry/quickstarts/get-started-code",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/quickstarts/get-started-playground.md",
+            "redirect_url": "/azure/ai-foundry/quickstarts/get-started-playground",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/quickstarts/hear-speak-playground.md",
+            "redirect_url": "/azure/ai-foundry/quickstarts/hear-speak-playground",
+            "redirect_document_id": true
+        },
+
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/create-manage-runtime.md",
+            "redirect_url": "/azure/ai-studio/how-to/create-manage-compute-session",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/vscode-web.md",
+            "redirect_url": "/azure/ai-studio/how-to/develop/vscode",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/index-build-consume-sdk.md",
+            "redirect_url": "/azure/ai-studio/tutorials/copilot-sdk-create-resources",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/fine-tune-phi-3.md",
+            "redirect_url": "/azure/ai-studio/how-to/fine-tune-serverless",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/fine-tune-model-llama.md",
+            "redirect_url": "/azure/ai-studio/how-to/fine-tune-serverless",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/fine-tune-models-tsuzumi.md",
+            "redirect_url": "/azure/ai-studio/how-to/fine-tune-serverless",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models.md",
+            "redirect_url": "/azure/ai-studio/concepts/deployments-overview",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-jais-models.md",
+            "redirect_url": "/azure/ai-studio/how-to/deploy-models-jais",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/quickstarts/playground-completions.md",
+            "redirect_url": "/azure/ai-studio/quickstarts/assistants",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-phi-3-5-moe.md",
+            "redirect_url": "/azure/ai-studio/how-to/deploy-models-phi-3",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/cli-install.md",
+            "redirect_url": "/azure/ai-studio/how-to/develop/sdk-overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/generate-data-qa.md",
+            "redirect_url": "/azure/ai-studio/how-to/data-add",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/simulator-interaction-data.md",
+            "redirect_url": "/azure/ai-studio/how-to/data-add",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/tutorials/deploy-copilot-sdk.md",
+            "redirect_url": "/azure/ai-studio/tutorials/copilot-sdk-build-rag",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/tutorials/copilot-sdk-evaluate-deploy.md",
+            "redirect_url": "/azure/ai-studio/tutorials/copilot-sdk-evaluate",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/tutorials/deploy-copilot-ai-studio.md",
+            "redirect_url": "/azure/ai-studio/tutorials/copilot-sdk-build-rag",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/sdk-install.md",
+            "redirect_url": "/azure/ai-studio/how-to/develop/sdk-overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/sdk-generative-overview.md",
+            "redirect_url": "/azure/ai-studio/how-to/develop/sdk-overview",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/models-foundation-azure-ai.md",
+            "redirect_url": "/azure/ai-services/connect-services-ai-foundry-portal",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop-in-vscode.md",
+            "redirect_url": "/azure/ai-studio/how-to/develop/vscode",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/quickstarts/assistants.md",
+            "redirect_url": "/azure/ai-services/openai/assistants-quickstart",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/prompt-flow-tools/vector-db-lookup-tool.md",
+            "redirect_url": "/azure/ai-studio/how-to/prompt-flow-tools/index-lookup-tool",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/prompt-flow-tools/vector-index-lookup-tool.md",
+            "redirect_url": "/azure/ai-studio/how-to/prompt-flow-tools/index-lookup-tool",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/prompt-flow-tools/faiss-index-lookup-tool.md",
+            "redirect_url": "/azure/ai-studio/how-to/prompt-flow-tools/index-lookup-tool",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/model-catalog.md",
+            "redirect_url": "/azure/ai-studio/how-to/model-catalog-overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/model-benchmarks.md",
+            "redirect_url": "/azure/ai-studio/concepts/model-benchmarks",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/model-lifecycle-and-retirement.md",
+            "redirect_url": "/azure/ai-studio/concepts/model-lifecycle-retirement",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/llmops-azure-devops-prompt-flow.md",
+            "redirect_url": "/azure/machine-learning/prompt-flow/how-to-end-to-end-llmops-with-prompt-flow",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/llmops-github-prompt-flow.md",
+            "redirect_url": "/azure/machine-learning/prompt-flow/how-to-end-to-end-llmops-with-prompt-flow",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/whats-new.md",
+            "redirect_url": "/azure/ai-studio/faq",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-open.md",
+            "redirect_url": "/azure/ai-studio/how-to/deploy-models-managed",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/ai-studio/how-to/commitment-tier.md",
+            "redirect_url": "/azure/ai-services/commitment-tier.md",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/flow-evaluate-sdk.md",
+            "redirect_url": "/azure/ai-studio/how-to/develop/evaluate-sdk",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/evaluate-flow-results.md",
+            "redirect_url": "/azure/ai-studio/how-to/evaluate-results",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/ai-services/get-started.md",
+            "redirect_url": "/azure/ai-services/connect-services-ai-foundry-portal",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/ai-services/where-to-use-ai-services.md",
+            "redirect_url": "/azure/ai-services/connect-services-ai-foundry-portal",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/ai-services/connect-ai-services.md",
+            "redirect_url": "/azure/ai-services/connect-services-ai-foundry-portal",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/ai-services/connect-azure-openai.md",
+            "redirect_url": "/azure/ai-studio/ai-services/how-to/connect-azure-openai",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/groundedness.md",
+            "redirect_url": "/azure/ai-studio/concepts/content-filtering",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/how-to/prompt-shields.md",
+            "redirect_url": "/azure/ai-studio/concepts/content-filtering",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/reference/reference-model-inference-completions.md",
+            "redirect_url": "/azure/ai-studio/reference/reference-model-inference-chat-completions",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/concepts/evaluation-improvement-strategies.md",
+            "redirect_url": "/azure/ai-studio/concepts/evaluation-approach-gen-ai",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/quickstarts/content-safety.md",
+            "redirect_url": "/azure/ai-studio/concepts/content-filtering",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-studio/ai-services/model-inference.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/overview",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/ai-services/how-to/quickstart-github-models.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/how-to/quickstart-github-models",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/ai-services/how-to/create-model-deployments.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/how-to/create-model-deployments",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/custom-policy-model-deployment.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/how-to/configure-deployment-policies",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/ai-services/how-to/content-safety.md",
+            "redirect_url": "/azure/ai-services/content-safety/how-to/foundry",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/ai-services/concepts/quotas-limits.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/quotas-limits",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/ai-services/concepts/endpoints.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/concepts/endpoints",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/ai-services/concepts/deployment-types.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/concepts/deployment-types",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/ai-services/faq.yml",
+            "redirect_url": "/azure/ai-foundry/model-inference/faq",
+            "redirect_document_id": false
+          },
+          {
+              "source_path_from_root": "/articles/ai-studio/how-to/data-image-add.md",
+              "redirect_url": "/azure/ai-studio/quickstarts/multimodal-vision",
+              "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/quickstarts/multimodal-vision.md",
+            "redirect_url": "/azure/ai-services/openai/gpt-v-quickstart",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/reference/reference-model-inference-api.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/reference/reference-model-inference-api",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/reference/reference-model-inference-info.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/reference/reference-model-inference-info",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/reference/reference-model-inference-embeddings.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/reference/reference-model-inference-embeddings",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/reference/reference-model-inference-chat-completions.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/reference/reference-model-inference-chat-completions",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/reference/reference-model-inference-images-embeddings.md",
+            "redirect_url": "/azure/ai-foundry/model-inference/reference/reference-model-inference-images-embeddings",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/concepts/about-capabilities.md",
+            "redirect_url": "/azure/ai-studio/concepts/what-are-ai-services",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/concepts/related-content.md",
+            "redirect_url": "/azure/ai-studio/concepts/what-are-ai-services",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/evaluate-sdk.md#cloud-evaluation-preview-on-test-datasets",
+            "redirect_url": "/azure/ai-studio/how-to/develop/cloud-evaluation",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-studio/how-to/develop/evaluate-sdk.md#cloud-evaluation-on-test-datasets",
+            "redirect_url": "/azure/ai-studio/how-to/develop/cloud-evaluation",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/model-inference/reference/reference-model-inference-api.md",
+            "redirect_url": "/rest/api/aifoundry/modelinference",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/model-inference/reference/reference-model-inference-info.md",
+            "redirect_url": "/rest/api/aifoundry/model-inference/get-model-info/get-model-info",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/model-inference/reference/reference-model-inference-embeddings.md",
+            "redirect_url": "/rest/api/aifoundry/model-inference/get-embeddings/get-embeddings",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/model-inference/reference/reference-model-inference-chat-completions.md",
+            "redirect_url": "/rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/model-inference/reference/reference-model-inference-images-embeddings.md",
+            "redirect_url": "/rest/api/aifoundry/model-inference/get-image-embeddings/get-image-embeddings",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/how-to/prompt-flow.md",
+            "redirect_url": "/azure/ai-foundry/concepts/prompt-flow",
+            "redirect_document_id": true
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/ai-services/how-to/connect-ai-services.md",
+          "redirect_url": "/azure/ai-services/connect-services-ai-foundry-portal",
+          "redirect_document_id": false
+        }
+    ]
+}

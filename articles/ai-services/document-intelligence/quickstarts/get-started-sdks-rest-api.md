@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Document Intelligence (formerly Form Recognizer) client libraries | REST API "
+title: "Quickstart: Document Intelligence client libraries | REST API "
 titleSuffix: Azure AI services
 description: Use a Document Intelligence SDK or the REST API to create a forms processing app that extracts key data and structure elements from your documents.
 author: laujan
@@ -10,9 +10,8 @@ ms.custom:
   - devx-track-extended-java
   - devx-track-js
   - devx-track-python
-  - ignite-2023
 ms.topic: quickstart
-ms.date: 08/19/2024
+ms.date: 04/11/2025
 ms.author: lajanuar
 zone_pivot_groups: programming-languages-set-formre
 ---
@@ -28,9 +27,9 @@ zone_pivot_groups: programming-languages-set-formre
 
 :::moniker range="doc-intel-4.0.0"
 
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (preview)** **Earlier versions:** ![blue-checkmark](../media/blue-yes-icon.png) [v3.1 (GA)](?view=doc-intel-3.1.0&preserve-view=true) ![blue-checkmark](../media/blue-yes-icon.png) [v3.0 (GA)](?view=doc-intel-3.0.0&preserve-view=true)
+**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (GA)** **Earlier versions:** ![blue-checkmark](../media/blue-yes-icon.png) [v3.1 (GA)](?view=doc-intel-3.1.0&preserve-view=true) ![blue-checkmark](../media/blue-yes-icon.png) [v3.0 (GA)](?view=doc-intel-3.0.0&preserve-view=true)
 
-* Get started with Azure AI Document Intelligence latest preview version (2024-07-31-preview).
+* Get started with Azure AI Document Intelligence latest stable version v4.0 `2024-11-30` (GA).
 
 :::moniker-end
 
@@ -54,7 +53,7 @@ zone_pivot_groups: programming-languages-set-formre
 
 * You can easily integrate document processing models into your workflows and applications by using a programming language SDK or calling the REST API.
 
-* For this quickstart, we recommend that you use the free service while you're learning the technology. Remember that the number of free pages is limited to 500 per month.
+* We recommend that you use the free service while you're learning the technology for this quickstart. Remember that the number of free pages is limited to 500 per month.
 
 To learn more about the API features and development options, visit our [Overview](../overview.md) page.
 
@@ -77,7 +76,7 @@ To learn more about the API features and development options, visit our [Overvie
 ::: zone pivot="programming-language-javascript"
 
 ::: moniker range="doc-intel-4.0.0 || doc-intel-3.1.0 || doc-intel-3.0.0"
-[!INCLUDE [NodeJS SDK](includes/javascript-sdk.md)]
+[!INCLUDE [Node.js SDK](includes/javascript-sdk.md)]
 ::: moniker-end
 
 ::: zone-end
@@ -151,7 +150,7 @@ To learn more about Document Intelligence features and development options, visi
 ::: zone pivot="programming-language-javascript"
 
 ::: moniker range="doc-intel-2.1.0"
-[!INCLUDE [NodeJS SDK](includes/v2-1/javascript.md)]
+[!INCLUDE [Node.js SDK](includes/v2-1/javascript.md)]
 ::: moniker-end
 
 ::: zone-end

@@ -1,11 +1,11 @@
 ---
-title: "What are parallel documents? - Custom Translator"
+title: "What are parallel documents? - Azure AI Custom Translator"
 titleSuffix: Azure AI services
 description: Parallel documents are pairs of documents where one is the translation of the other. One document in the pair contains sentences in the source language and the other document contains these sentences translated into the target language.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 07/10/2024
+ms.date: 01/28/2025
 ms.author: lajanuar
 ms.topic: conceptual
 #Customer intent: As a Custom Translator, I want to understand how to use parallel documents to build a custom translation model.

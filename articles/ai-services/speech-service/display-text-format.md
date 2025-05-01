@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: conceptual
-ms.date: 1/18/2024
+ms.date: 3/10/2025
 ms.author: eur
 zone_pivot_groups: programming-languages-speech-sdk-cli
 ---
@@ -172,8 +172,7 @@ spx recognize --file caption.this.mp4 --format any --profanity masked --output v
 
 Profanity filter is applied to the result `Text` and `MaskedNormalizedForm` properties. Profanity filter isn't applied to the result `LexicalForm` and `NormalizedForm` properties. Neither is the filter applied to the word level results.
 
-
-## Next steps
+## Related content
 
 * [Speech to text quickstart](get-started-speech-to-text.md)
 * [Get speech recognition results](get-speech-recognition-results.md)

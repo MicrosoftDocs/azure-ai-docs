@@ -5,11 +5,11 @@ description: Learn how to designate a compute resource or environment to train o
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: compute
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: vijetaj
-ms.date: 01/23/2024
+ms.date: 10/17/2024
 ms.custom:
   - cliv2
   - build-2023
@@ -34,7 +34,45 @@ The compute resources you use for your compute targets are attached to a [worksp
 
 As you scale up your training on larger datasets or perform [distributed training](how-to-train-distributed-gpu.md), use Azure Machine Learning compute to create a single- or multi-node cluster that autoscales each time you submit a job. You can also attach your own compute resource, although support for different scenarios might vary.
 
-[!INCLUDE [aml-compute-target-train](includes/aml-compute-target-train.md)]
+**Compute targets can be reused from one training job to the next.** For example, after you attach a remote VM to your workspace, you can reuse it for multiple jobs.
+:::moniker range="azureml-api-1"
+For machine learning pipelines, use the appropriate [pipeline step](/python/api/azureml-pipeline-steps/azureml.pipeline.steps) for each compute target.
+:::moniker-end
+
+You can use any of the following resources for a training compute target for most jobs. Not all resources can be used for automated machine learning, machine learning pipelines, or designer. Azure Databricks can be used as a training resource for local runs and machine learning pipelines, but not as a remote target for other training.
+
+:::moniker range="azureml-api-2"
+|Training &nbsp;targets|[Automated machine learning](~/articles/machine-learning/concept-automated-ml.md) | [Machine learning pipelines](~/articles/machine-learning/concept-ml-pipelines.md) | [Azure Machine Learning designer](~/articles/machine-learning/concept-designer.md)
+|----|:----:|:----:|:----:|
+|[Azure Machine Learning compute cluster](~/articles/machine-learning/how-to-create-attach-compute-cluster.md)| Yes | Yes | Yes |
+|[Azure Machine Learning serverless compute](~/articles/machine-learning/how-to-use-serverless-compute.md)| Yes | Yes | Yes |
+|[Azure Machine Learning compute instance](~/articles/machine-learning/how-to-create-compute-instance.md) | Yes (through SDK)  | Yes | Yes |
+|[Azure Machine Learning Kubernetes](~/articles/machine-learning/how-to-attach-kubernetes-anywhere.md) | | Yes | Yes |
+|[Remote VM](~/articles/machine-learning/v1/how-to-train-model.md#remote-virtual-machines) | Yes  | Yes | &nbsp; |
+|[Apache Spark pools (preview)](~/articles/machine-learning/how-to-manage-synapse-spark-pool.md)| Yes (SDK local mode only) | Yes | &nbsp; |
+|[Azure&nbsp;Databricks](~/articles/machine-learning/how-to-create-attach-compute-studio.md#other-compute-targets) | Yes (SDK local mode only) | Yes | &nbsp; |
+|[Azure Data Lake Analytics](~/articles/machine-learning/how-to-create-attach-compute-studio.md#other-compute-targets) | &nbsp; | Yes | &nbsp; |
+|[Azure HDInsight](~/articles/machine-learning/how-to-create-attach-compute-studio.md#other-compute-targets) | &nbsp; | Yes | &nbsp; |
+|[Azure Batch](~/articles/machine-learning/how-to-create-attach-compute-studio.md#other-compute-targets) | &nbsp; | Yes | &nbsp; |
+:::moniker-end
+:::moniker range="azureml-api-1"
+|Training &nbsp;targets|[Automated machine learning](~/articles/machine-learning/concept-automated-ml.md) | [Machine learning pipelines](~/articles/machine-learning/concept-ml-pipelines.md) | [Azure Machine Learning designer](~/articles/machine-learning/concept-designer.md)
+|----|:----:|:----:|:----:|
+|[Local computer](~/articles/machine-learning/v1/how-to-train-model.md#local-computer)| Yes | &nbsp; | &nbsp; |
+|[Azure Machine Learning compute cluster](~/articles/machine-learning/how-to-create-attach-compute-cluster.md)| Yes | Yes | Yes |
+|[Azure Machine Learning compute instance](~/articles/machine-learning/how-to-create-compute-instance.md) | Yes (through SDK)  | Yes | Yes |
+|[Azure Machine Learning Kubernetes](~/articles/machine-learning/v1/how-to-create-attach-kubernetes.md) | | Yes | Yes |
+|[Remote VM](~/articles/machine-learning/v1/how-to-train-model.md#remote-virtual-machines) | Yes  | Yes | &nbsp; |
+|[Apache Spark pools (preview)](~/articles/machine-learning/v1/how-to-train-model.md#synapse)| Yes (SDK local mode only) | Yes | &nbsp; |
+|[Azure&nbsp;Databricks](~/articles/machine-learning/v1/how-to-train-model.md#azure-databricks)| Yes (SDK local mode only) | Yes | &nbsp; |
+|[Azure Data Lake Analytics](~/articles/machine-learning/v1/how-to-train-model.md#azure-data-lake-analytics) | &nbsp; | Yes | &nbsp; |
+|[Azure HDInsight](~/articles/machine-learning/v1/how-to-train-model.md#azure-hdinsight) | &nbsp; | Yes | &nbsp; |
+|[Azure Batch](~/articles/machine-learning/v1/how-to-train-model.md#azbatch) | &nbsp; | Yes | &nbsp; |
+:::moniker-end
+
+> [!TIP]
+> The compute instance has 120GB OS disk. If you run out of disk space, [use the terminal](~/articles/machine-learning/how-to-access-terminal.md) to clear at least 1-2 GB before you [stop or restart](~/articles/machine-learning/how-to-manage-compute-instance.md#manage) the compute instance.
+
 
 ## Compute targets for inference
 
@@ -92,7 +130,7 @@ When created, these compute resources are automatically part of your workspace, 
 > [!NOTE]
 > To avoid charges when the compute is idle:
 > * For a compute *cluster*, make sure the minimum number of nodes is set to 0, or use [serverless compute](./how-to-use-serverless-compute.md).
-> * For a compute *instance*, [enable idle shutdown](how-to-create-compute-instance.md#configure-idle-shutdown).
+> * For a compute *instance*, [enable idle shutdown](how-to-create-compute-instance.md#configure-idle-shutdown). While stopping the compute instance stops the billing for compute hours, you'll still be billed for disk, public IP, and standard load balancer.
 
 ### Supported VM series and sizes
 
@@ -104,6 +142,7 @@ There are a few exceptions and limitations to choosing a VM size:
 
 * Some VM series aren't supported in Azure Machine Learning.
 * Some VM series, such as GPUs and other special SKUs, might not initially appear in your list of available VMs.  But you can still use them, once you request a quota change. For more information about requesting quotas, see [Request quota and limit increases](how-to-manage-quotas.md#request-quota-and-limit-increases).
+
 See the following table to learn more about supported series.
 
 | **Supported VM series** | **Category** | **Supported by** |
@@ -163,8 +202,8 @@ If you use the GPU-enabled compute targets, it's important to ensure that the co
 
 In addition to ensuring the CUDA version and hardware are compatible, also ensure that the CUDA version is compatible with the version of the machine learning framework you're using:
 
-- For PyTorch, you can check the compatibility by visiting [Pytorch's previous versions page](https://pytorch.org/get-started/previous-versions/).
-- For Tensorflow, you can check the compatibility by visiting [Tensorflow's build from source page](https://www.tensorflow.org/install/source#gpu).
+- For PyTorch, you can check the compatibility by visiting [PyTorch's previous versions page](https://pytorch.org/get-started/previous-versions/).
+- For TensorFlow, you can check the compatibility by visiting [TensorFlow's build from source page](https://www.tensorflow.org/install/source#gpu).
 
 ### Compute isolation
 
@@ -199,7 +238,7 @@ Azure Machine Learning supports the following unmanaged compute types:
 
 For more information, see [Manage compute resources](how-to-create-attach-compute-studio.md).
 
-## Next step
+## Related content
 
 :::moniker range="azureml-api-2"
 * [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md)

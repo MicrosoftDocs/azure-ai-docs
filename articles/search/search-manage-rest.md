@@ -1,81 +1,73 @@
 ---
-title: Manage with REST
+title: Manage using REST
 titleSuffix: Azure AI Search
 description: Create and configure an Azure AI Search service with the Management REST API. The Management REST API is comprehensive in scope, with access to generally available and preview features.
-author: HeidiSteen
-ms.author: heidist
-ms.service: cognitive-search
+author: haileytap
+ms.author: haileytapia
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 03/13/2024
+ms.date: 03/26/2025
 ---
 
-# Manage your Azure AI Search service with REST APIs
+# Manage your Azure AI Search service using REST APIs
 
-> [!div class="op_single_selector"]
-> * [Portal](search-manage.md)
-> * [PowerShell](search-manage-powershell.md)
-> * [Azure CLI](search-manage-azure-cli.md)
-> * [REST API](search-manage-rest.md)
-
-In this article, learn how to create and configure an Azure AI Search service using the [Management REST APIs](/rest/api/searchmanagement/). Only the Management REST APIs are guaranteed to provide early access to [preview features](/rest/api/searchmanagement/management-api-versions). 
+Learn how to create and configure an Azure AI Search service using the [Management REST APIs](/rest/api/searchmanagement/). Only the Management REST APIs are guaranteed to provide early access to [preview features](/rest/api/searchmanagement/management-api-versions).
 
 The Management REST API is available in stable and preview versions. Be sure to set a preview API version if you're accessing preview features.
 
 > [!div class="checklist"]
 > * [Create or update a service](#create-or-update-a-service)
+> * [Upgrade a service](#upgrade-a-service)
+> * [Change pricing tiers](#change-pricing-tiers)
 > * [Enable Azure role-based access control for data plane](#enable-rbac)
 > * [Enforce a customer-managed key policy](#enforce-cmk)
-> * [Disable semantic ranking](#disable-semantic-search)
+> * [Disable semantic ranker](#disable-semantic-ranker)
 > * [Disable workloads that push data to external resources](#disable-external-access)
 > * [Create a query key](#create-query-api-keys)
 > * [Regenerate an admin key](#regenerate-admin-api-keys)
 > * [List private endpoint connections](#list-private-endpoint-connections)
 > * [List search operations](#list-search-operations)
-> * [Delete a search services](#delete-a-search-service)
+> * [Delete a search service](#delete-a-search-service)
 
 All of the Management REST APIs have examples. If a task isn't covered in this article, see the [API reference](/rest/api/searchmanagement/) instead.
 
 ## Prerequisites
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-search/).
+* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
 * [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
-* [Azure CLI](/cli/azure/install-azure-cli) used to get an access token. You must be an owner or administrator in your Azure subscription.
+* [Azure CLI](/cli/azure/install-azure-cli) to get an access token, as described in the following steps. You must be an owner or administrator in your Azure subscription.
 
-## Get an access token
+   Management REST API calls are authenticated through Microsoft Entra ID. You must provide an access token on the request and permissions to create and configure a resource. In addition to the Azure CLI, you can use [Azure PowerShell to create an access token](/azure/azure-resource-manager/management/manage-resources-rest).
 
-Management REST API calls are authenticated through Microsoft Entra ID. You need to provide an access token on the request, along with permissions to create and configure a resource.
+   1. Open a command shell for Azure CLI.
 
-You can use the [Azure CLI or Azure PowerShell to create an access token](/azure/azure-resource-manager/management/manage-resources-rest).
+   1. Sign in to your Azure subscription. If you have multiple tenants or subscriptions, make sure you select the correct one.
 
-1. Open a command shell for Azure CLI.
+       ```azurecli
+       az login
+       ```
 
-1. Sign in to your Azure subscription.
+   1. Get the tenant ID and subscription ID.
 
-   ```azurecli
-   az login
-   ```
+      ```azurecli
+      az account show
+      ```
 
-1. Get the tenant ID and subscription ID. If you have multiple tenants or subscriptions, make sure you use the correct one.
+   1. Get an access token.
 
-   ```azurecli
-   az account show
-   ````
+      ```azurecli
+      az account get-access-token --query accessToken --output tsv
+      ```
 
-1. Get an access token.
-
-   ```azurecli
-   az account get-access-token --query accessToken --output tsv
-   ```
-
-You should have a tenant ID, subscription ID, and bearer token. You'll paste these values into the `.rest` or `.http` file that you create in the next step.
+      You should have a tenant ID, subscription ID, and bearer token. You'll paste these values into the `.rest` or `.http` file that you create in the next step.
 
 ## Set up Visual Studio Code
 
-If you're not familiar with the REST client for Visual Studio Code, this section includes setup so that you can complete the tasks in this quickstart.
+If you're not familiar with the REST client for Visual Studio Code, this section includes setup so that you can complete the tasks in this article.
 
 1. Start Visual Studio Code and select the **Extensions** tile.
 
@@ -129,7 +121,7 @@ If you're not familiar with the REST client for Visual Studio Code, this section
 
 ## Create or update a service
 
-Creates or updates a search service under the current subscription. This example uses variables for the search service name and region, which haven't been defined yet. Either provide the names directly, or add new variables to the collection.
+Creates or updates a search service under the current subscription. This example uses variables for the search service name and region, which haven't been defined yet. Either provide the names directly or add new variables to the collection.
 
 ```http
 ### Create a search service (provide an existing resource group)
@@ -150,6 +142,38 @@ PUT https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups
             "hostingMode": "default"
         }
       }
+```
+
+## Upgrade a service
+
+Some Azure AI Search capabilities are only available to new services. To avoid service recreation and bring these capabilities to an existing service, you can [upgrade your service](search-how-to-upgrade.md).
+
+```http
+### Upgrade a search service
+@resource-group = my-rg
+@search-service-name = my-search
+POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}/upgrade?api-version=2025-02-01-preview  HTTP/1.1
+     Content-type: application/json
+     Authorization: Bearer {{token}}
+```
+
+## Change pricing tiers
+
+If you need more <!-- or less-->capacity, you can [switch to a higher pricing tier](search-capacity-planning.md#change-your-pricing-tier). Currently, you can only move up between Basic and Standard (S1, S2, and S3) tiers. Use the `sku` property to specify the higher <!-- your new -->tier.
+
+```http
+### Change pricing tiers
+@resource-group = my-rg
+@search-service-name = my-search
+PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2025-02-01-preview HTTP/1.1
+     Content-type: application/json
+     Authorization: Bearer {{token}}
+
+    {
+        "sku": {
+            "name": "standard2"
+        }
+    }
 ```
 
 ## Create an S3HD service
@@ -182,7 +206,7 @@ PUT https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups
 
 **Applies to:** Search Index Data Contributor, Search Index Data Reader, Search Service Contributor
 
-In this step, configure your search service to recognize an **authorization** header on data requests that provide an OAuth2 access token.
+Configure your search service to recognize an **authorization** header on data requests that provide an OAuth2 access token.
 
 To use role-based access control for data plane operations, set `authOptions` to `aadOrApiKey` and then send the request.
 
@@ -221,21 +245,18 @@ PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegrou
      {
         "properties": {
             "encryptionWithCmk": {
-            "enforcement": "Disabled",
-            "encryptionComplianceStatus": "Compliant"
-            },
+                "enforcement": "Enabled"
+            }
         }
     }
 ```
 
-<a name="disable-semantic-search"></a>
+## Disable semantic ranker
 
-## Disable semantic ranking
-
-Although [semantic ranking isn't enabled](semantic-how-to-enable-disable.md) by default, you could lock down the feature at the service level.
+[Semantic ranker is enabled](semantic-how-to-enable-disable.md) by default at the free plan that allows up to 1,000 requests per month at no charge. You can lock down the feature at the service level to prevent usage.
 
 ```http
-### disable semantic ranking
+### Disable semantic ranker
 PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2023-11-01 HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
@@ -254,7 +275,7 @@ PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegrou
 Azure AI Search [writes to external data sources](search-indexer-securing-resources.md) when updating a knowledge store, saving debug session state, or caching enrichments. The following example disables these workloads at the service level.
 
 ```http
-### disable-external-access
+### Disable external access
 PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2023-11-01 HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
@@ -269,7 +290,7 @@ PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegrou
 ## Delete a search service
 
 ```http
-### delete a search service
+### Delete a search service
 DELETE https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2023-11-01 HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
@@ -324,7 +345,7 @@ GET https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups
 
 ## Next steps
 
-After a search service is configured, next steps include [create an index](search-how-to-create-search-index.md) or [query an index](search-query-overview.md) using the portal, REST APIs, or an Azure SDK.
+After a search service is configured, your next steps include [creating an index](search-how-to-create-search-index.md) or [querying an index](search-query-overview.md) using the Azure portal, REST APIs, or an Azure SDK.
 
 * [Create an Azure AI Search index in the Azure portal](search-get-started-portal.md)
 * [Set up an indexer to load data from other services](search-indexer-overview.md)

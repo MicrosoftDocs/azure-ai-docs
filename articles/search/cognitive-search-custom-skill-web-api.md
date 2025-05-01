@@ -4,11 +4,11 @@ titleSuffix: Azure AI Search
 description: Extend capabilities of Azure AI Search skillsets by calling out to Web APIs. Use the Custom Web API skill to integrate your custom code.
 author: gmndrg
 ms.author: gimondra
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 07/25/2024
+ms.topic: reference
+ms.date: 04/14/2025
 ---
 
 # Custom Web API skill in an Azure AI Search enrichment pipeline
@@ -92,7 +92,7 @@ It always follows these constraints:
 
   * A `recordId` property that is a **unique** string, used to identify that record.
 
-  * A `data` property that is a JSON object. The fields of the `data` property corresponds to the "names" specified in the `inputs` section of the skill definition. The values of those fields are from the `source` of those fields (which could be from a field in the document, or potentially from another skill).
+  * A `data` property that is a JSON object. The fields of the `data` property correspond to the "names" specified in the `inputs` section of the skill definition. The values of those fields are from the `source` of those fields (which could be from a field in the document, or potentially from another skill).
 
 ```json
 {

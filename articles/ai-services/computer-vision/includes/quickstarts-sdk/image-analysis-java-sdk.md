@@ -1,41 +1,38 @@
 ---
 title: "Quickstart: Image Analysis client library for Java"
 description: In this quickstart, get started with the Image Analysis client library for Java.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: include
-ms.date: 12/15/2020
+ms.date: 12/30/2024
 ms.custom: devx-track-java
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
 <a name="HOLTop"></a>
 
-Use the Image Analysis client library to analyze a remote image for tags, text description, faces, adult content, and more.
+Use the Image Analysis client library for Java to analyze a remote image for tags, text description, faces, adult content, and more.
 
 > [!TIP]
-> You can also analyze a local image. See the [ComputerVision](/java/api/com.microsoft.azure.cognitiveservices.vision.computervision.computervision) methods, such as **AnalyzeImage**. Or, see the sample code on [GitHub](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/java/ComputerVision/src/main/java/ImageAnalysisQuickstart.java) for scenarios involving local images.
+> You can also analyze a local image. See the [ComputerVision](/java/api/com.microsoft.azure.cognitiveservices.vision.computervision.computervision) methods, such as `AnalyzeImage`. Or, see the [sample code on GitHub](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/java/ComputerVision/src/main/java/ImageAnalysisQuickstart.java) for scenarios involving local images.
 
 > [!TIP]
-> The Analyze API can do many different operations other than generate image tags. See the [Image Analysis how-to guide](../../how-to/call-analyze-image.md) for examples that showcase all of the available features.
+> The Analyze Image API can do many different operations other than generate image tags. See the [Image Analysis how-to guide](../../how-to/call-analyze-image.md) for examples that showcase all of the available features.
 
-[Reference documentation](/java/api/overview/azure/cognitiveservices/client/computervision) | [Library source code](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/cognitiveservices/ms-azure-cs-computervision) |[Artifact (Maven)](https://search.maven.org/artifact/com.microsoft.azure.cognitiveservices/azure-cognitiveservices-computervision) | [Samples](/samples/browse/?products=azure&terms=computer-vision)
+[Reference documentation](/java/api/overview/azure/cognitiveservices/client/computervision) | [Library source code](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cognitiveservices/ms-azure-cs-computervision) |[Artifact (Maven)](https://search.maven.org/artifact/com.microsoft.azure.cognitiveservices/azure-cognitiveservices-computervision) | [Samples](/samples/browse/?products=azure&terms=computer-vision)
 
 ## Prerequisites
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
-* The current version of the [Java Development Kit (JDK)](https://www.microsoft.com/openjdk)
+* An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=ai-services).
+* The current version of the [Java Development Kit (JDK)](https://www.microsoft.com/openjdk).
 * The [Gradle build tool](https://gradle.org/install/), or another dependency manager.
-* Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision"  title="create a Vision resource"  target="_blank">create a Vision resource</a> in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**.
+* Once you have your Azure subscription, create a [Computer Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision) in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**.
     * You need the key and endpoint from the resource you create to connect your application to the Azure AI Vision service.
     * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
-
-
 [!INCLUDE [create environment variables](../environment-variables.md)]
-
 
 ## Analyze image
 
@@ -47,7 +44,7 @@ Use the Image Analysis client library to analyze a remote image for tags, text d
     mkdir myapp && cd myapp
     ```
     
-    Run the `gradle init` command from your working directory. This command will create essential build files for Gradle, including *build.gradle.kts*, which is used at runtime to create and configure your application.
+    Run the `gradle init` command from your working directory. This command creates essential build files for Gradle, including *build.gradle.kts*, which is used at runtime to create and configure your application.
     
     ```console
     gradle init --type basic
@@ -59,7 +56,7 @@ Use the Image Analysis client library to analyze a remote image for tags, text d
 
     This quickstart uses the Gradle dependency manager. You can find the client library and information for other dependency managers on the [Maven Central Repository](https://search.maven.org/artifact/com.microsoft.azure.cognitiveservices/azure-cognitiveservices-computervision).
 
-    Locate *build.gradle.kts* and open it with your preferred IDE or text editor. Then copy in the following build configuration. This configuration defines the project as a Java application whose entry point is the class **ImageAnalysisQuickstart**. It imports the Azure AI Vision library.
+    Locate *build.gradle.kts* and open it with your preferred IDE or text editor. Then copy and paste the following build configuration into the file. This configuration defines the project as a Java application whose entry point is the class `ImageAnalysisQuickstart`. It imports the Azure AI Vision library.
 
     ```kotlin
     plugins {
@@ -93,21 +90,21 @@ Use the Image Analysis client library to analyze a remote image for tags, text d
    [!code-java[](~/cognitive-services-quickstart-code/java/ComputerVision/src/main/java/ImageAnalysisQuickstart-single.java?name=snippet_single)]
 
 
-1. Navigate back to the project root folder, and build the app with:
+1. Navigate back to the project root folder, then build the app with:
 
    ```console
    gradle build
    ```
-   
-   Then, run it with the `gradle run` command:
-   
+
+   Run it with the following command:
+
    ```console
    gradle run
    ```
 
-
-
 ## Output
+
+The output of the operation should look like the following example.
 
 ```console
 Azure AI Vision - Java Quickstart Sample
@@ -146,12 +143,12 @@ If you want to clean up and remove an Azure AI services subscription, you can de
 * [Azure portal](../../../multi-service-resource.md?pivots=azportal#clean-up-resources)
 * [Azure CLI](../../../multi-service-resource.md?pivots=azcli#clean-up-resources)
 
-## Next steps
+## Next step
 
-In this quickstart, you learned how to install the Image Analysis client library and make basic image analysis calls. Next, learn more about the Analyze API features.
+In this quickstart, you learned how to install the Image Analysis client library and make basic image analysis calls. Next, learn more about the Analyze Image API features.
 
 > [!div class="nextstepaction"]
->[Call the Analyze API](../../how-to/call-analyze-image.md)
+>[Call the Analyze Image API](../../how-to/call-analyze-image.md)
 
-* [Image Analysis overview](../../overview-image-analysis.md)
-* The source code for this sample can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/java/ComputerVision/src/main/java/ImageAnalysisQuickstart.java).
+* [What is Image Analysis?](../../overview-image-analysis.md)
+* [Source code for this sample on GitHub](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/java/ComputerVision/src/main/java/ImageAnalysisQuickstart.java)

@@ -2,7 +2,6 @@
 title: Use URL tool to get answer from knowledge base - QnA Maker
 titleSuffix: Azure AI services
 description: This article walks you through getting an answer from your knowledge base using a URL test tool such as cURL or the Visual Studio Code REST Client extension..
-#services: cognitive-services
 manager: nitinme
 ms.author: jboback
 author: jboback
@@ -14,9 +13,6 @@ ms.date: 01/19/2024
 ---
 
 # Get an answer from a QNA Maker knowledge base
-
-> [!NOTE]
-> [Azure OpenAI On Your Data](../../openai/concepts/use-your-data.md) utilizes large language models (LLMs) to produce similar results to QnA Maker. If you wish to migrate your QnA Maker project to Azure OpenAI On Your Data, please check out our [guide](../How-To/migrate-to-openai.md).
 
 [!INCLUDE [Custom question answering](../includes/new-version.md)]
 

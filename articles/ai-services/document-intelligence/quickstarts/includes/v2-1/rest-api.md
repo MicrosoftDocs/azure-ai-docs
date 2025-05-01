@@ -1,13 +1,11 @@
 ---
-title: "Get started: Azure AI Document Intelligence (formerly Form Recognizer) REST API v2.1"
+title: "Get started: Azure AI Document Intelligence REST API v2.1"
 description: Use the Document Intelligence REST API v2.1 to create a forms processing app that extracts key/value pairs and table data from your custom documents.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 ms.topic: include
-ms.date: 05/23/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD001 -->
@@ -83,7 +81,7 @@ https://cognitiveservice/formrecognizer/v2/layout/analyzeResults/54f0b076-4e38-4
 
 ### Get layout results
 
-After you've called the **[Analyze Layout](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)** API, you call the **[Get Analyze Layout Result](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)** API to get the status of the operation and the extracted data. Before you run the command, make these changes:
+After you call the **[`Analyze Layout`](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)** API, you call the **[Get Analyze Layout Result](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)** API to get the status of the operation and the extracted data. Before you run the command, make these changes:
 
 1. Replace `{endpoint}` with the endpoint that you obtained with your Document Intelligence subscription.
 1. Replace `{key}` with the key you copied from the previous step.
@@ -120,11 +118,11 @@ You can view the [full sample output on GitHub](https://github.com/Azure-Samples
 
 ### Choose a prebuilt model
 
-You aren't limited to invoices—there are several prebuilt models to choose from, each of which has its own set of supported fields. The model to use for the analyze operation depends on the type of document to be analyzed. Here are the prebuilt models currently supported by the Document Intelligence service:
+You aren't limited to invoices—there are several prebuilt models to choose from, each of which has its own set of supported fields. The model to use for the `analyze` operation depends on the type of document to be analyzed. Here are the prebuilt models currently supported by the Document Intelligence service:
 
-* [**Invoice**](../../../concept-invoice.md): extracts text, selection marks, tables, fields, and key information from invoices.
-* [**Receipt**](../../../concept-receipt.md): extracts text and key information from receipts.
-* [**ID document**](../../../concept-id-document.md): extracts text and key information from driver licenses and international passports.
+* [**Invoice**](../../../prebuilt/invoice.md): extracts text, selection marks, tables, fields, and key information from invoices.
+* [**Receipt**](../../../prebuilt/receipt.md): extracts text and key information from receipts.
+* [**ID document**](../../../prebuilt/id-document.md): extracts text and key information from driver licenses and international passports.
 * [**Business-card**](../../../concept-business-card.md): extracts text and key information from business cards.
 
 Before you run the command, make these changes:
@@ -157,7 +155,7 @@ https://cognitiveservice/formrecognizer/v2.1/prebuilt/invoice/analyzeResults/54f
 
 ### Get invoice results
 
-After you've called the **Analyze Invoice** API, you call the **[Get Analyze Invoice Result](/rest/api/aiservices/operation-groups?view=rest-aiservices-v2.1&preserve-view=true)** API to get the status of the operation and the extracted data. Before you run the command, make these changes:
+After you call the **`Analyze Invoice`** API, you call the **[Get Analyze Invoice Result](/rest/api/aiservices/operation-groups?view=rest-aiservices-v2.1&preserve-view=true)** API to get the status of the operation and the extracted data. Before you run the command, make these changes:
 
 1. Replace `{endpoint}` with the endpoint that you obtained with your Document Intelligence key. You can find it on your Document Intelligence resource **Overview** tab.
 1. Replace `{resultId}` with the result ID from the previous step.

@@ -1,13 +1,13 @@
 ---
-title: "Use Document Intelligence (formerly Form Recognizer) SDK for JavaScript / .NET (REST API v3.0)"
+title: "Use Document Intelligence SDK for JavaScript / .NET (REST API v3.0)"
 description: 'Use the Document Intelligence SDK for JavaScript (REST API v3.0) to create a forms processing app that extracts key data from documents.'
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 05/23/2024
+ms.date: 02/10/2025
 ms.author: lajanuar
-ms.custom: devx-track-csharp, ignite-2023, linux-related-content
+ms.custom: devx-track-csharp, linux-related-content
 ---
 
 <!-- markdownlint-disable MD001 -->
@@ -15,7 +15,7 @@ ms.custom: devx-track-csharp, ignite-2023, linux-related-content
 <!-- markdownlint-disable MD033 -->
 <!-- markdownlint-disable MD034 -->
 
-[Client library](/javascript/api/overview/azure/ai-document-intelligence-rest-readme?view=azure-node-preview&preserve-view=true) | [REST API reference](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2024-02-29-preview&preserve-view=true&tabs=HTTP) | [Package (npm)](https://www.npmjs.com/package/@azure-rest/ai-document-intelligence/v/1.0.0-beta.2) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/documentintelligence/ai-document-intelligence-rest/samples/v1-beta/javascript) |[Supported REST API version](../../../sdk-overview-v4-0.md)
+[Client library](/javascript/api/%40azure-rest/ai-document-intelligence/?view=azure-node-latest&preserve-view=true) | [REST API reference](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) | [Package (npm)](https://www.npmjs.com/package/@azure-rest/ai-document-intelligence/v/1.0.0) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/documentintelligence/ai-document-intelligence-rest/samples/v1/javascript) |[Supported REST API version](../../../sdk-overview-v4-0.md)
 
 ## Prerequisites
 
@@ -31,7 +31,7 @@ ms.custom: devx-track-csharp, ignite-2023, linux-related-content
 - The key and endpoint from the resource you create to connect your application to the Azure Document Intelligence service.
 
   1. After your resource deploys, select **Go to resource**.
-  1. In the left navigation menu, select **Keys and Endpoint**.
+  1. In the left pane, select **Keys and Endpoint**.
   1. Copy one of the keys and the **Endpoint** for use later in this article.
 
   :::image type="content" source="../../../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
@@ -77,7 +77,7 @@ Create a Node.js Express application.
 1. Install the `ai-document-intelligence` client library and `azure/identity` npm packages:
 
     ```console
-    npm i @azure-rest/ai-document-intelligence@1.0.0-beta.2 @azure/identity
+    npm i @azure-rest/ai-document-intelligence@1.0.0 @azure/identity
     ```
 
   Your app's *package.json* file is updated with the dependencies.

@@ -2,92 +2,194 @@
 title: 'Quickstart: Use Azure OpenAI Service with the JavaScript SDK to generate images'
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first image generation call with the JavaScript SDK. 
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 08/24/2023
+ms.date: 10/23/2024
 ---
 
 Use this guide to get started generating images with the Azure OpenAI SDK for JavaScript.
 
-[Library source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai) | [Package (npm)](https://www.npmjs.com/package/@azure/openai) | [Samples](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/openai/Azure.AI.OpenAI/tests/Samples)
+[Reference documentation](https://platform.openai.com/docs/api-reference/images/create) | [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
 
 ## Prerequisites
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
+### Microsoft Entra ID prerequisites
 
-## Setup
+For the recommended keyless authentication with Microsoft Entra ID, you need to:
+- Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
+- Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
-[!INCLUDE [get-key-endpoint](get-key-endpoint.md)]
+## Set up
+ 
+1. Create a new folder `image-quickstart` and go to the quickstart folder with the following command:
 
-[!INCLUDE [environment-variables](environment-variables.md)]
+    ```shell
+    mkdir image-quickstart && cd image-quickstart
+    ```
 
+1. Create the `package.json` with the following command:
 
-## Create a Node application
+    ```shell
+    npm init -y
+    ```   
 
-In a console window (such as cmd, PowerShell, or Bash), create a new directory for your app, and navigate to it. Then run the `npm init` command to create a node application with a _package.json_ file.
+1. Install the OpenAI client library for JavaScript with:
 
-```console
-npm init
-```
+    ```console
+    npm install openai
+    ```
 
-## Install the client library
+1. For the **recommended** passwordless authentication:
 
-Install the Azure OpenAI client library for JavaScript with npm:
+    ```console
+    npm install @azure/identity
+    ```
 
-```console
-npm install @azure/openai
-```
+## Retrieve resource information
 
-Your app's _package.json_ file will be updated with the dependencies.
+[!INCLUDE [resource authentication](resource-authentication.md)]
+
+> [!CAUTION]
+> To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
 
 ## Generate images with DALL-E
 
-Create a new file named _ImageGeneration.js_ and open it in your preferred code editor. Copy the following code into the _ImageGeneration.js_ file:
+#### [Microsoft Entra ID](#tab/keyless)
 
-```javascript
-const { OpenAIClient, AzureKeyCredential } = require("@azure/openai");
+1. Create the `index.js` file with the following code:
 
-// You will need to set these environment variables or edit the following values
-const endpoint = process.env["AZURE_OPENAI_ENDPOINT"] ;
-const azureApiKey = process.env["AZURE_OPENAI_API_KEY"] ;
-
-// The prompt to generate images from
-const prompt = "a monkey eating a banana";
-const size = "256x256";
-
-// The number of images to generate
-const n = 2;
-
-async function main() {
-    console.log("== Batch Image Generation ==");
-  
-    const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
-    const deploymentName = "dall-e";
-    const results = await client.getImages(deploymentName, prompt, { n, size });
-  
-    for (const image of results.data) {
-      console.log(`Image generation result URL: ${image.url}`);
+    ```javascript
+    const { AzureOpenAI } = require("openai");
+    const { 
+        DefaultAzureCredential, 
+        getBearerTokenProvider 
+    } = require("@azure/identity");
+    
+    // You will need to set these environment variables or edit the following values
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
+    
+    // Required Azure OpenAI deployment name and API version
+    const apiVersion = process.env.OPENAI_API_VERSION || "2024-07-01";
+    const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "dall-e-3";
+    
+    // The prompt to generate images from
+    const prompt = "a monkey eating a banana";
+    const numberOfImagesToGenerate = 1;
+    
+    // keyless authentication    
+    const credential = new DefaultAzureCredential();
+    const scope = "https://cognitiveservices.azure.com/.default";
+    const azureADTokenProvider = getBearerTokenProvider(credential, scope);
+    
+    function getClient(): AzureOpenAI {
+      return new AzureOpenAI({
+        endpoint,
+        azureADTokenProvider,
+        apiVersion,
+        deployment: deploymentName,
+      });
     }
-    //console.log(`Image generation result URL: ${results.result.status}`);
-}
+    async function main() {
+      console.log("== Image Generation ==");
+    
+      const client = getClient();
+    
+      const results = await client.images.generate({
+        prompt,
+        size: "1024x1024",
+        n: numberOfImagesToGenerate,
+        model: "",
+        style: "vivid", // or "natural"
+      });
+    
+      for (const image of results.data) {
+        console.log(`Image generation result URL: ${image.url}`);
+      }
+    }
+    
+    main().catch((err) => {
+      console.error("The sample encountered an error:", err);
+    });
+    ```
 
-main().catch((err) => {
-console.error("The sample encountered an error:", err);
-});
-```
+1. Sign in to Azure with the following command:
 
-Run the script with the following command:
+    ```shell
+    az login
+    ```
 
-```console
-node _ImageGeneration.js
-```
+1. Run the JavaScript file.
+
+    ```shell
+    node index.js
+    ```
+
+
+## [API key](#tab/api-key)
+
+1. Create the `index.js` file with the following code:
+    
+    ```javascript
+    const { AzureOpenAI } = require("openai");
+    
+    // You will need to set these environment variables or edit the following values
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
+    const apiKey = process.env.AZURE_OPENAI_API_KEY || "Your API key";
+    
+    // Required Azure OpenAI deployment name and API version
+    const apiVersion = process.env.OPENAI_API_VERSION || "2024-07-01";
+    const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "dall-e-3";
+    
+    // The prompt to generate images from
+    const prompt = "a monkey eating a banana";
+    const numberOfImagesToGenerate = 1;
+    
+    function getClient() {
+      return new AzureOpenAI({
+        endpoint,
+        apiKey,
+        apiVersion,
+        deployment: deploymentName,
+      });
+    }
+    async function main() {
+      console.log("== Image Generation ==");
+    
+      const client = getClient();
+    
+      const results = await client.images.generate({
+        prompt,
+        size: "1024x1024",
+        n: numberOfImagesToGenerate,
+        model: "",
+        style: "vivid", // or "natural"
+      });
+    
+      for (const image of results.data) {
+        console.log(`Image generation result URL: ${image.url}`);
+      }
+    }
+    
+    main().catch((err) => {
+      console.error("The sample encountered an error:", err);
+    });
+    ```
+    
+1. Run the JavaScript file.
+
+    ```shell
+    node index.js
+    ```
+
+---
 
 ## Output
 
@@ -95,12 +197,12 @@ The URL of the generated image is printed to the console.
 
 ```console
 == Batch Image Generation ==
-Image generation result URL: https://dalleproduse.blob.core.windows.net/private/images/5e7536a9-a0b5-4260-8769-2d54106f2913/generated_00.png?se=2023-08-29T19%3A12%3A57Z&sig=655GkWajOZ9ALjFykZF%2FBMZRPQALRhf4UPDImWCQoGI%3D&ske=2023-09-02T18%3A53%3A23Z&skoid=09ba021e-c417-441c-b203-c81e5dcd7b7f&sks=b&skt=2023-08-26T18%3A53%3A23Z&sktid=33e01921-4d64-4f8c-a055-5bdaffd5e33d&skv=2020-10-02&sp=r&spr=https&sr=b&sv=2020-10-02
-Image generation result URL: https://dalleproduse.blob.core.windows.net/private/images/5e7536a9-a0b5-4260-8769-2d54106f2913/generated_01.png?se=2023-08-29T19%3A12%3A57Z&sig=B24ymPLSZ3HfG23uojOD9VlRFGxjvgcNmvFo4yPUbEc%3D&ske=2023-09-02T18%3A53%3A23Z&skoid=09ba021e-c417-441c-b203-c81e5dcd7b7f&sks=b&skt=2023-08-26T18%3A53%3A23Z&sktid=33e01921-4d64-4f8c-a055-5bdaffd5e33d&skv=2020-10-02&sp=r&spr=https&sr=b&sv=2020-10-02
+Image generation result URL: <SAS URL>
+Image generation result URL: <SAS URL>
 ```
 
 > [!NOTE]
-> The image generation APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it won't return a generated image. For more information, see the [content filter](../concepts/content-filter.md) article.
+> The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it won't return a generated image. For more information, see the [content filter](../concepts/content-filter.md) article.
 
 ## Clean up resources
 
@@ -111,5 +213,5 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 
 ## Next steps
 
-* Explore the image generation APIs in more depth with the [DALL-E how-to guide](../how-to/dall-e.md).
+* Explore the Image APIs in more depth with the [Image API how-to guide](../how-to/dall-e.md).
 * For more examples check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure/openai-samples).

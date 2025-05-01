@@ -97,7 +97,7 @@ The primary objective of the business continuity plan is to create a resilient k
 
 The high-level idea as represented above is as follows:
 
-1. Set up two parallel [QnA Maker services](set-up-qnamaker-service-azure.md) in [Azure paired regions](/azure/availability-zones/cross-region-replication-azure).
+1. Set up two parallel [QnA Maker services](set-up-qnamaker-service-azure.md) in [Azure paired regions](/azure/reliability/cross-region-replication-azure).
 
 1. [Backup](/azure/app-service/manage-backup) your primary QnA Maker App service and [restore](/azure/app-service/manage-backup) it in the secondary setup. This will ensure that both setups work with the same hostname and keys.
 

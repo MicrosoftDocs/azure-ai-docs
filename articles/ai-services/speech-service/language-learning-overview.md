@@ -1,13 +1,14 @@
 ---
 title: Language learning with Azure AI Speech
 titleSuffix: Azure AI services
-description: Azure AI services for Speech can be used to learn languages.
-author: sally-baolian
+description: Learn about how Azure AI Speech can be used to learn languages.
+author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 1/21/2024
+ms.date: 3/10/2025
 ms.author: eur
+#Customer intent: As a language learner, I want to learn how to use Azure AI Speech to improve my language skills.
 ---
 
 # Language learning with Azure AI Speech
@@ -16,7 +17,7 @@ One of the most important aspects of learning a new language is speaking and lis
 
 ## Pronunciation assessment
 
-The [pronunciation assessment](pronunciation-assessment-tool.md) feature provides comprehensive feedback to users on the accuracy, fluency, prosody, vocabulary usage, grammar correctness, and topic understanding of their speech. Language learners can apply the assessment results to speak and present in a new language with confidence. For information about availability of pronunciation assessment, see [supported languages](language-support.md?tabs=pronunciation-assessment) and [available regions](regions.md#speech-service).
+The [pronunciation assessment](pronunciation-assessment-tool.md) feature provides comprehensive feedback to users on the accuracy, fluency, prosody, vocabulary usage, grammar correctness, and topic understanding of their speech. Language learners can apply the assessment results to speak and present in a new language with confidence. For information about availability of pronunciation assessment, see [supported languages](language-support.md?tabs=pronunciation-assessment) and [available regions](regions.md#regions).
 
 The Pronunciation Assessment feature offers several benefits for educators, service providers, and students. 
 - For educators, it provides instant feedback, eliminates the need for time-consuming oral language assessments, and offers consistent and comprehensive assessments. 
@@ -25,7 +26,7 @@ The Pronunciation Assessment feature offers several benefits for educators, serv
 
 ## Speech to text 
 
-Azure [Speech to text](speech-to-text.md) supports real-time language identification for multilingual language learning scenarios, help human-human interaction with better understanding and readable context.
+[Speech to text](speech-to-text.md) supports real-time language identification for multilingual language learning scenarios, help human-human interaction with better understanding and readable context.
 
 ##  Text to speech
 
@@ -36,6 +37,6 @@ Azure [Speech to text](speech-to-text.md) supports real-time language identifica
 ## Next steps
 
 * [How to use pronunciation assessment](how-to-pronunciation-assessment.md)
-* [What is Speech to text](speech-to-text.md)
-* [What is Text to speech](text-to-speech.md)
+* [What is speech to text](speech-to-text.md)
+* [What is text to speech](text-to-speech.md)
 * [What is custom neural voice](custom-neural-voice.md)

@@ -2,21 +2,20 @@
 title: 'How to use the Codex models to work with code'
 titleSuffix: Azure OpenAI Service
 description: Learn how to use the Codex models on Azure OpenAI to handle a variety of coding tasks.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 02/15/2024
+ms.date: 03/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 ---
 
-# Codex models and Azure OpenAI Service
+# Completion models and code with Azure OpenAI Service
 
-> [!NOTE]
-> This article was authored and tested against the [legacy code generation models](/azure/ai-services/openai/concepts/legacy-models). These models use the completions API, and its prompt/completion style of interaction. If you wish to test the techniques described in this article verbatim we recommend using the `gpt-35-turbo-instruct` model which allows access to the completions API. However, for code generation the chat completions API and the latest GPT-4 models will generally yield the best results, but the prompts would need to be converted to the conversational style specific to interacting with those models.
+> [!IMPORTANT]
+> This article was authored and tested against the [legacy code generation models](/azure/ai-services/openai/concepts/legacy-models). These models use the completions API, and its prompt/completion style of interaction. If you wish to test the techniques described in this article verbatim we recommend using the `gpt-35-turbo-instruct` model which allows access to the completions API. However, for code generation the chat completions API and the latest GPT-4o and o-series models will yield the best results. To use these newer models these prompts would need to be converted to the conversational style specific to interacting with those models.
 
-The Codex model series is a descendant of our GPT-3 series that's been trained on both natural language and billions of lines of code. It's most capable in Python and proficient in over a dozen languages including C#, JavaScript, Go, Perl, PHP, Ruby, Swift, TypeScript, SQL, and even Shell.
+The Codex model series was a descendant of our GPT-3 series that's been trained on both natural language and billions of lines of code. It's most capable in Python and proficient in over a dozen languages including C#, JavaScript, Go, Perl, PHP, Ruby, Swift, TypeScript, SQL, and even Shell.
 
 You can use Codex for a variety of tasks including:
 
@@ -26,9 +25,9 @@ You can use Codex for a variety of tasks including:
 - Add comments
 - Rewrite code for efficiency
 
-## How to use the Codex models
+## How to use completions models with code
 
-Here are a few examples of using Codex that can be tested in [Azure OpenAI Studio's](https://oai.azure.com) playground with a deployment of a Codex series model, such as `code-davinci-002`.
+Here are a few examples of using completion models that can be tested in the [Azure AI Foundry](https://ai.azure.com) playground with a deployment of `gpt-35-turbo-instruct`.
 
 ### Saying "Hello" (Python)
 

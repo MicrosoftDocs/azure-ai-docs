@@ -1,20 +1,20 @@
 ---
 title: Improve recognition accuracy with phrase list
 description: Phrase lists can be used to customize speech recognition results based on context. 
-author: ut-karsh
-ms.author: umaheshwari
+author: eric-urban
+ms.author: eur
+ms.reviewer: umaheshwari
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 1/21/2024
+ms.date: 3/10/2025
 zone_pivot_groups: programming-languages-set-two-with-js-spx
+#Customer intent: As a developer using speech to text, I want to learn how to improve recognition accuracy with phrase list.
 ---
 
 # Improve recognition accuracy with phrase list
 
 A phrase list is a list of words or phrases provided ahead of time to help improve their recognition. Adding a phrase to a phrase list increases its importance, thus making it more likely to be recognized.
-
-For supported phrase list locales, see [Language and voice support for the Speech service](language-support.md?tabs=phraselist).
 
 Examples of phrases include:
 * Names
@@ -25,6 +25,8 @@ Examples of phrases include:
 Phrase lists are simple and lightweight:
 - **Just-in-time**: A phrase list is provided just before starting the speech recognition, eliminating the need to train a custom model. 
 - **Lightweight**: You don't need a large data set. Provide a word or phrase to boost its recognition.
+
+For supported phrase list locales, see [Language and voice support for the Speech service](language-support.md?tabs=phraselist).
 
 You can use phrase lists with the [Speech Studio](speech-studio-overview.md), [Speech SDK](quickstarts/setup-platform.md), or [Speech Command Line Interface (CLI)](spx-overview.md). The [Batch transcription API](batch-transcription.md) doesn't support phrase lists.
 

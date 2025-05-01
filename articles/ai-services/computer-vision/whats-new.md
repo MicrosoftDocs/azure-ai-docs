@@ -2,7 +2,6 @@
 title: What's new in Azure AI Vision?
 titleSuffix: Azure AI services
 description: Stay up to date on recent releases and updates to Azure AI Vision.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
@@ -11,12 +10,63 @@ ms.custom:
   - ignite-2023
 ms.topic: whats-new
 ms.date: 03/11/2024
+ms.collection: ce-skilling-fresh-tier2
 ms.author: pafarley
 ---
 
 # What's new in Azure AI Vision
 
 Learn what's new in Azure AI Vision. Check this page to stay up to date with new features, enhancements, fixes, and documentation updates. 
+
+## February 2025
+
+### Face liveness client-side SDK 1.1.0 release
+
+Liveness client-side SDK released [1.1.0](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases/tag/1.1.0)
+
+This update includes a few improvements:
+
+* Increased timeout for the head-turn scenario to provide end-users more time to complete the flow.
+* Fixes to iOS and Android SDKs to resolve compatibility issues with Microsoft Intune Mobile Application Management SDKs.
+* Security related fixes/improvements.
+
+For more information, see the [SDK release notes](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases/tag/1.1.0).
+
+## January 2025
+
+### Face liveness detection GA
+
+The Face liveness detection feature is now generally available (GA).
+
+* Server-side API: [Face API v1.2](/rest/api/face/operation-groups?view=rest-face-v1.2)
+* Client-side SDK: [Azure AI Vision SDK 1.0.0](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases/tag/1.0.0)
+
+This SDK allows developers to utilize face liveness checks on both native-mobile applications and web-browsers applications for identity-verification scenarios.
+
+The new SDK supports both Passive and Passive-Active modes. The hybrid Passive-Active mode is designed to require Active motion only in poor lighting conditions, while using the speed and efficiency of Passive liveness checks in optimal lighting. 
+
+For more information, see the [SDK release notes](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases/tag/1.0.0).
+
+
+### Image Analysis 4.0 Preview API deprecation
+
+On March 31, 2025, the Image Analysis 4.0 Preview APIs will be retired. Before that date, you'll need to migrate your Azure Image Analysis workloads to the [Image Analysis 4.0 GA ](/rest/api/computervision/operation-groups?view=rest-computervision-v4.0%20(2024-02-01))API.
+
+We encourage you to make the transition sooner to gain access to improvements such as multimodal embedding, synchronous OCR, people detection, image tagging, smart cropping, caption, dense caption, and image object detection.
+These Image Analysis 4.0 preview APIs will be retired on March 31, 2025:
+- `2022-07-31-preview`
+- `2022-10-12-preview`
+- `2023-02-01-preview`
+- `2023-04-01-preview`
+- `2023-07-01-preview`
+- `v4.0-preview.1`
+
+The following features will no longer be available upon retirement of the preview API versions, and they are removed from the Studio experience as of January 10, 2025:
+- Model customization
+- Background removal
+- Product recognition
+
+To maintain a smooth operation of your models, transition to [Azure AI Custom Vision](/azure/ai-services/Custom-Vision-Service/overview), which is now generally available. Custom Vision offers similar functionality to these retiring features.
 
 ## August 2024
 

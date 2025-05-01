@@ -12,7 +12,7 @@ ms.topic: conceptual
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: deeikele
-ms.date: 09/12/2023
+ms.date: 02/05/2025
 monikerRange: 'azureml-api-2 || azureml-api-1'
 ---
 # Use customer-managed keys with Azure Machine Learning
@@ -137,6 +137,10 @@ For more information on customer-managed keys with Azure Cosmos DB, see [Configu
 
 > [!IMPORTANT]
 > Deploying to Azure Container Instances is not available in SDK or CLI v2. Only through SDK & CLI v1.
+
+[!INCLUDE [v1 deprecation](includes/sdk-v1-deprecation.md)]
+
+[!INCLUDE [v1 cli deprecation](includes/machine-learning-cli-v1-deprecation.md)]
 
 When __deploying__ a trained model to an Azure Container instance (ACI), you can encrypt the deployed resource using a customer-managed key. For information on generating a key, see [Encrypt data with a customer-managed key](/azure/container-instances/container-instances-encrypt-data#generate-a-new-key).
 

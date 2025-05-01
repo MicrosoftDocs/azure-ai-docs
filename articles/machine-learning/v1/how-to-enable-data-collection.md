@@ -16,6 +16,8 @@ ms.custom: UpdateFrequency5, data4ml, sdkv1
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 This article shows how to collect data from an Azure Machine Learning model deployed on an Azure Kubernetes Service (AKS) cluster. The collected data is then stored in Azure Blob storage.
 
 Once collection is enabled, the data you collect helps you:
@@ -39,7 +41,6 @@ Once collection is enabled, the data you collect helps you:
 > The MDC feature is incompatible with any other image than Ubuntu 18.04, which is no available after the Ubuntu 18.04 image is deprecated.
 >
 > mMore information you can refer to:
-> * [openmpi3.1.2-ubuntu18.04 release-notes](https://github.com/Azure/AzureML-Containers/blob/master/base/cpu/openmpi3.1.2-ubuntu18.04/release-notes.md)
 > * [data science virtual machine release notes](../data-science-virtual-machine/release-notes.md#september-20-2022)
 
 >[!NOTE]
@@ -161,7 +162,7 @@ You can choose a tool of your preference to analyze the data collected in your B
 
 1. Select **Storage**.
 
-    [![Select the Storage option](./media/how-to-enable-data-collection/StorageLocation.png)](././media/how-to-enable-data-collection/StorageLocation.png#lightbox)
+    :::image type="content" source="./media/how-to-enable-data-collection/StorageLocation.png" alt-text="Screenshot showing selection of the storage option." lightbox="./media/how-to-enable-data-collection/StorageLocation.png":::
 
 1. Follow the path to the blob's output data with this syntax:
 
@@ -176,13 +177,13 @@ You can choose a tool of your preference to analyze the data collected in your B
 
 1. Select **Get Data** and select [**Azure Blob Storage**](/power-bi/desktop-data-sources).
 
-    [![Power BI blob setup](./media/how-to-enable-data-collection/PBIBlob.png)](././media/how-to-enable-data-collection/PBIBlob.png#lightbox)
+    :::image type="content" source="./media/how-to-enable-data-collection/power-bi-blob.png" alt-text="Screenshot showing the Power BI blob setup." lightbox="./media/how-to-enable-data-collection/power-bi-blob.png":::
 
 1. Add your storage account name and enter your storage key. You can find this information by selecting **Settings** > **Access keys** in your blob.
 
 1. Select the **model data** container and select **Edit**.
 
-    [![Power BI Navigator](./media/how-to-enable-data-collection/pbiNavigator.png)](././media/how-to-enable-data-collection/pbiNavigator.png#lightbox)
+    :::image type="content" source="./media/how-to-enable-data-collection/power-bi-navigator.png" alt-text="Screenshot showing the Power BI Navigator." lightbox="./media/how-to-enable-data-collection/power-bi-navigator.png":::
 
 1. In the query editor, click under the **Name** column and add your storage account.
 
@@ -194,11 +195,11 @@ You can choose a tool of your preference to analyze the data collected in your B
 
 1. Select the downward double arrows next to the **Content** column heading to combine the files.
 
-    [![Power BI Content](./media/how-to-enable-data-collection/pbiContent.png)](././media/how-to-enable-data-collection/pbiContent.png#lightbox)
+    :::image type="content" source="./media/how-to-enable-data-collection/power-bi-content.png" alt-text="Screenshot showing the Power BI Content." lightbox="./media/how-to-enable-data-collection/power-bi-content.png":::
 
 1. Select **OK**. The data preloads.
 
-    [![Power BI Combine Files](./media/how-to-enable-data-collection/pbiCombine.png)](././media/how-to-enable-data-collection/pbiCombine.png#lightbox)
+    :::image type="content" source="./media/how-to-enable-data-collection/power-bi-combine.png" alt-text="Screenshot showing the Power BI Combine Files." lightbox="./media/how-to-enable-data-collection/power-bi-combine.png":::
 
 1. Select **Close and Apply**.
 
@@ -214,20 +215,20 @@ You can choose a tool of your preference to analyze the data collected in your B
 
 1. In your Databricks workspace, select **Upload Data**.
 
-    [![Selecting Databricks Upload Data option](./media/how-to-enable-data-collection/dbupload.png)](././media/how-to-enable-data-collection/dbupload.png#lightbox)
+    :::image type="content" source="./media/how-to-enable-data-collection/databricks-upload.png" alt-text="Screenshot showing selection of Databricks Upload Data option." lightbox="./media/how-to-enable-data-collection/databricks-upload.png":::
 
 1. Select **Create New Table** and select **Other Data Sources** > **Azure Blob Storage** > **Create Table in Notebook**.
 
-    [![Databricks table creation](./media/how-to-enable-data-collection/dbtable.PNG)](././media/how-to-enable-data-collection/dbtable.PNG#lightbox)
+    :::image type="content" source="./media/how-to-enable-data-collection/databricks-table.png" alt-text="Screenshot showing Databricks table creation." lightbox="./media/how-to-enable-data-collection/databricks-table.png":::
 
 1. Update the location of your data. Here is an example:
 
     ```
-    file_location = "wasbs://mycontainer@storageaccountname.blob.core.windows.net/modeldata/1a2b3c4d-5e6f-7g8h-9i10-j11k12l13m14/myresourcegrp/myWorkspace/aks-w-collv9/best_model/10/inputs/2018/*/*/data.csv" 
+    file_location = "wasbs://mycontainer@storageaccountname.blob.core.windows.net/*/*/data.csv" 
     file_type = "csv"
     ```
-
-    [![Databricks setup](./media/how-to-enable-data-collection/dbsetup.png)](././media/how-to-enable-data-collection/dbsetup.png#lightbox)
+    
+    :::image type="content" source="./media/how-to-enable-data-collection/databricks-setup.png" alt-text="Screenshot showing the Databricks setup." lightbox="./media/how-to-enable-data-collection/databricks-setup.png":::
 
 1. Follow the steps on the template to view and analyze your data.
 

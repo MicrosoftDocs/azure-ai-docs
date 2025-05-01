@@ -6,18 +6,18 @@ description: Monitor query metrics for performance and throughput. Collect and a
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 02/21/2024
+ms.date: 01/27/2025
 ---
 
 # Monitor query requests in Azure AI Search
 
 This article explains how to measure query performance and volume using built-in metrics and resource logging. It also explains how to get the query strings entered by application users.
 
-The Azure portal shows basic metrics about query latency, query load (QPS), and throttling. Historical data that feeds into these metrics can be accessed in the portal for 30 days. For longer retention, or to report on operational data and query strings, you must [add a diagnostic setting](/azure/azure-monitor/essentials/create-diagnostic-settings) that specifies a storage option for persisting logged operations and metrics. We recommend **Log Analytics workspace** as a destination for logged operations. Kusto queries and data exploration target a Log Analytics workspace.
+The Azure portal shows basic metrics about query latency, query load (QPS), and throttling. Historical data that feeds into these metrics can be accessed in the Azure portal for 30 days. For longer retention, or to report on operational data and query strings, you must [add a diagnostic setting](/azure/azure-monitor/essentials/create-diagnostic-settings) that specifies a storage option for persisting logged operations and metrics. We recommend **Log Analytics workspace** as a destination for logged operations. Kusto queries and data exploration target a Log Analytics workspace.
 
 Conditions that maximize the integrity of data measurement include:
 
@@ -54,7 +54,7 @@ In the following screenshot, the first number is the count (or number of metrics
 
 ![Throttled aggregations](./media/search-monitor-usage/metrics-throttle.png "Throttled aggregations")
 
-## Explore metrics in the portal
+## Explore metrics in the Azure portal
 
 For a quick look at the current numbers, the **Monitoring** tab on the service Overview page shows three metrics (**Search latency**, **Search queries per second (per search unit)**, **Throttled Search Queries Percentage**) over fixed intervals measured in hours, days, and weeks, with the option of changing the aggregation type.
 

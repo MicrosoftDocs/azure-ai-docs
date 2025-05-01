@@ -9,7 +9,7 @@
 - name: Tutorial
   items:
   - name: Regression with automated machine learning
-    href: ../machine-learning/tutorial-auto-train-models.md?bc=%2fazure%2fopen-datasets%2fbreadcrumb%2ftoc.json&toc=%2fazure%2fopen-datasets%2ftoc.json
+    href: /azure/machine-learning/how-to-auto-train-models-v1?bc=%2fazure%2fopen-datasets%2fbreadcrumb%2ftoc.json&toc=%2fazure%2fopen-datasets%2ftoc.json
   - name: Enrich an image classification model
     href: ../machine-learning/tutorial-train-models-with-aml.md?bc=%2fazure%2fopen-datasets%2fbreadcrumb%2ftoc.json&toc=%2fazure%2fopen-datasets%2ftoc.json
 - name: How-to guides
@@ -44,12 +44,8 @@
         href: dataset-ecdc-covid-cases.md
       - name: Oxford COVID-19 Government Response Tracker
         href: dataset-oxford-covid-government-response-tracker.md
-    - name: COVID-19 Open Research
-      href: dataset-covid-19-open-research.md
     - name: Genomics Data lake
       items: 
-      - name: Genomics data lake
-        href: dataset-genomics-data-lake.md
       - name: Illumina Platinum Genomes
         href: dataset-illumina-platinum-genomes.md
       - name: Human Reference Genomes

@@ -1,0 +1,73 @@
+### YamlMime:Landing
+
+title: Azure AI Content Understanding documentation
+summary: Content Understanding is a solution that analyzes and comprehends various media content—such as audio, video, text, and images—transforming it into structured, organized, and searchable data.
+metadata:
+  title: Azure AI Content Understanding documentation
+  description: Content Understanding is a solution that analyzes and comprehends various media content—such as audio, video, text, and images—transforming it into structured, organized, and searchable data.
+  ms.service: azure-ai-content-understanding
+  ms.topic: landing-page
+  author: laujan
+  ms.author: lajanuar
+  ms.date: 04/14/2025
+
+landingContent:
+
+  - title: About Azure AI Content Understanding
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: What is Azure AI Content Understanding?
+            url: overview.md
+          - text: Azure AI Content Understanding REST API
+            url: /rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true
+          - text: FAQ
+            url: faq.yml
+
+  - title: Capabilities
+    linkLists:
+      - linkListType: concept
+        links:
+        - text: Audio
+          url: audio/overview.md
+        - text: Video
+          url: video/overview.md
+        - text: Image
+          url: image/overview.md
+        - text: Document
+          url: document/overview.md
+
+  - title: Get started
+    linkLists:
+      - linkListType: quickstart
+        links:
+        - text: Try Content Understanding REST API
+          url: quickstart/use-rest-api.md
+        - text: Try Azure AI Foundry portal
+          url: quickstart/use-ai-foundry.md
+
+  - title: How-to guides
+    linkLists:
+      - linkListType: how-to-guide
+        links:
+        - text: Create a multi-service resource
+          url: how-to/create-multi-service-resource.md
+
+  - title: "What's new?"
+    linkLists:
+      - linkListType: whats-new
+        links:
+        - text: "What's new in Azure AI Content Understanding?"
+          url: whats-new.md
+
+  - title: Reference
+    linkLists:
+        - linkListType: reference
+          links:
+          - text: Service limits
+            url: service-limits.md
+          - text: Language and region support
+            url: language-region-support.md
+
+
+

@@ -9,7 +9,7 @@ metadata:
   manager: nitinme
   ms.service: azure-ai-speech
   ms.topic: landing-page
-  ms.date: 8/20/2024
+  ms.date: 3/10/2025
   ms.author: eur
 
 landingContent:
@@ -29,18 +29,20 @@ landingContent:
   linkLists:
     - linkListType: how-to-guide
       links:
-        - text: Improve synthesis with SSML
-          url: speech-synthesis-markup.md
         - text: Batch synthesis for long-form text
           url: batch-synthesis.md
-    - linkListType: concept
-      links:
-        - text: What is custom neural voice?
-          url: custom-neural-voice.md
         - text: Get started with custom voice
           url: professional-voice-create-project.md
         - text: Create and use custom voice models
           url: professional-voice-train-voice.md
+        - text: Create audio content in Speech Studio
+          url: how-to-audio-content-creation.md
+    - linkListType: concept
+      links:
+        - text: What is custom neural voice?
+          url: custom-neural-voice.md
+        - text: Improve synthesis with SSML
+          url: speech-synthesis-markup.md
 - title: Reference
   linkLists:
     - linkListType: reference

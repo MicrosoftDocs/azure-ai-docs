@@ -2,12 +2,14 @@
 title: How to get speech to text session ID and transcription ID
 titleSuffix: Azure AI services
 description: Learn how to get speech to text session ID and transcription ID
-author: alexeyo26
+author: eric-urban
+ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/21/2024
-ms.author: alexeyo 
+ms.date: 3/10/2025
+ms.reviewer: alexeyo
+#Customer intent: As a developer, I need to know how to get the session ID and transcription ID for speech to text so that I can debug issues with my application.
 ---
 
 # How to get speech to text session ID and transcription ID
@@ -39,10 +41,10 @@ Enable logging for your application as described in [this article](how-to-use-lo
 
 ### Get Session ID from the log
 
-Open the log file your application produced and look for `SessionId:`. The number that would follow is the Session ID you need. In the following log excerpt example, `0b734c41faf8430380d493127bd44631` is the Session ID.
+Open the log file your application produced and look for `SessionId:`. The number that would follow is the Session ID you need. In the following log excerpt example, `0b734c41faf8430380d493127bd44632` is the Session ID.
 
 ```
-[874193]: 218ms SPX_DBG_TRACE_VERBOSE:  audio_stream_session.cpp:1238 [0000023981752A40]CSpxAudioStreamSession::FireSessionStartedEvent: Firing SessionStarted event: SessionId: 0b734c41faf8430380d493127bd44631
+[874193]: 218ms SPX_DBG_TRACE_VERBOSE:  audio_stream_session.cpp:1238 [0000023981752A40]CSpxAudioStreamSession::FireSessionStartedEvent: Firing SessionStarted event: SessionId: 0b734c41faf8430380d493127bd44632
 ```
 ### Get Session ID using JavaScript
 
@@ -68,7 +70,7 @@ spx help translate log
 
 Unlike Speech SDK, [Speech to text REST API for short audio](rest-speech-to-text-short.md) doesn't automatically generate a Session ID. You need to generate it yourself and provide it within the REST request.
 
-Generate a GUID inside your code or using any standard tool. Use the GUID value *without dashes or other dividers*. As an example we'll use `9f4ffa5113a846eba289aa98b28e766f`.
+Generate a GUID inside your code or using any standard tool. Use the GUID value *without dashes or other dividers*. As an example we use `9f4ffa5113a846eba289aa98b28e766f`.
 
 As a part of your REST request use `X-ConnectionId=<GUID>` expression. For our example, a sample request looks like this:
 ```http

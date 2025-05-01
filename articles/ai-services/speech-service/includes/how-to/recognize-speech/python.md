@@ -2,7 +2,7 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 08/13/2024
+ms.date: 10/17/2024
 ms.author: eur
 ---
 
@@ -14,7 +14,7 @@ ms.author: eur
 
 To call the Speech service by using the Speech SDK, you need to create a [`SpeechConfig`](/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.speechconfig) instance. This class includes information about your subscription, like your speech key and associated region, endpoint, host, or authorization token.
 
-1. Create a Speech resource in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices). Get the Speech resource key and region.
+1. Create an AI Services resource for Speech in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices). Get the Speech resource key and region.
 1. Create a `SpeechConfig` instance by using the following code. Replace `YourSpeechKey` and `YourSpeechRegion` with your Speech resource key and region.
 
 ```Python
@@ -118,7 +118,7 @@ Now, create a callback to stop continuous recognition when `evt` is received. Ke
 def stop_cb(evt):
     print('CLOSING on {}'.format(evt))
     speech_recognizer.stop_continuous_recognition()
-    nonlocal done
+    global done
     done = True
 ```
 
@@ -180,3 +180,24 @@ speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config)
 Speech containers provide websocket-based query endpoint APIs that are accessed through the Speech SDK and Speech CLI. By default, the Speech SDK and Speech CLI use the public Speech service. To use the container, you need to change the initialization method. Use a container host URL instead of key and region.
 
 For more information about containers, see Host URLs in [Install and run Speech containers with Docker](../../../speech-container-howto.md#host-urls).
+
+
+## Semantic segmentation
+
+Semantic segmentation is a speech recognition segmentation strategy that's designed to mitigate issues associated with silence-based segmentation: 
+- Under-segmentation: When users speak for a long time without pauses, they can see a long sequence of text without breaks ("wall of text"), which severely degrades their readability experience. 
+- Over-segmentation: When a user pauses for a short time, the silence detection mechanism can segment incorrectly. 
+
+Instead of only relying on silence timeouts, semantic segmentation mostly segments and returns final results when it detects sentence-ending punctuation (such as '.' or '?'). This improves the user experience with higher-quality, semantically complete segments and prevents long intermediate results. 
+
+To use semantic segmentation, you need to set the following property on the `SpeechConfig` instance used to create a `SpeechRecognizer`:
+
+```python
+speech_config.set_property(speechsdk.PropertyId.Speech_SegmentationStrategy, "Semantic") 
+```
+
+Some of the limitations of semantic segmentation are as follows:
+- You need the Speech SDK version 1.41 or later to use semantic segmentation.
+- Semantic segmentation is only intended for use in [continuous recognition](#use-continuous-recognition). This includes scenarios such as dictation and captioning. It shouldn't be used in the single recognition mode or interactive scenarios. 
+- Semantic segmentation isn't available for all languages and locales. 
+- Semantic segmentation doesn't yet support confidence scores and NBest lists. As such, we don't recommend semantic segmentation if you're using confidence scores or NBest lists.

@@ -3,7 +3,7 @@ title: Troubleshoot automated ML experiments
 titleSuffix: Azure Machine Learning
 description: Learn how to troubleshoot and resolve issues in your automated machine learning experiments.
 author: manashgoswami
-ms.author: manashg
+ms.author: ssalgado
 ms.reviewer: ssalgado
 services: machine-learning
 ms.service: azure-machine-learning
@@ -17,6 +17,8 @@ monikerRange: 'azureml-api-1'
 # Troubleshoot automated ML experiments in Python
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 In this guide, learn how to identify and resolve known issues in your automated machine learning experiments with the [Azure Machine Learning SDK](/python/api/overview/azure/ml/intro).
 
@@ -113,7 +115,7 @@ As of version 1.5.0 of the SDK, automated machine learning does not install Tens
   run_config.environment.python.conda_dependencies = CondaDependencies.create(conda_packages=['tensorflow==1.12.0'])
 ```
 
-## Numpy failures
+## NumPy failures
 
 * **`import numpy` fails in Windows**: Some Windows environments see an error loading numpy with the latest Python version 3.6.8. If you see this issue, try with Python version 3.6.7.
 
@@ -211,7 +213,7 @@ If you have over 100 automated ML experiments, this may cause new automated ML e
 If you are under virtual networks (VNets), you may run into model download failures when using AutoML NLP. This is because network traffic is blocked from downloading the models and tokenizers from Azure CDN. To unblock this, please allow list the below URLs in the "Application rules" setting of the VNet firewall policy:
 
 * ```aka.ms ```
-* ```https://automlresources-prod.azureedge.net ```
+* ```https://automlresources-prod-d0eaehh7g8andvav.b02.azurefd.net```
 
 Please follow the instructions [here to configure the firewall settings.](../how-to-access-azureml-behind-firewall.md)
 

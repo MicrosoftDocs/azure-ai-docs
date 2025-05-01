@@ -19,9 +19,11 @@ ms.custom: UpdateFrequency5, sdkv1
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 MLflow is an open-source library for managing the life cycle of machine learning experiments. MLflow integration with Azure Machine Learning lets you extend the management capabilities beyond model training to the deployment phase of production models. In this article, you deploy an [MLflow](https://www.mlflow.org/) model as an Azure web service and apply Azure Machine Learning model management and data drift detection features to your production models.
 
-The following diagram demonstrates how the MLflow deploy API integrates with Azure Machine Learning to deploy models. You create models as Azure web services by using popular frameworks like PyTorch, Tensorflow, or scikit-learn, and manage the services in your workspace:
+The following diagram demonstrates how the MLflow deploy API integrates with Azure Machine Learning to deploy models. You create models as Azure web services by using popular frameworks like PyTorch, TensorFlow, or scikit-learn, and manage the services in your workspace:
 
 :::image type="content" source="./media/how-to-deploy-mlflow-models/mlflow-diagram-deploy.png" border="false" alt-text="Diagram that illustrates how the MLflow deploy API integrates with Azure Machine Learning to deploy models." lightbox="./media/how-to-deploy-mlflow-models/mlflow-diagram-deploy.png":::
 

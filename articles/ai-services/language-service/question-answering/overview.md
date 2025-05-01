@@ -6,15 +6,12 @@ author: jboback
 ms.author: jboback
 recommendations: false
 ms.topic: overview
-ms.date: 12/19/2023
+ms.date: 03/24/2025
 keywords: "qna maker, low code chat bots, multi-turn conversations"
 ms.custom: language-service-question-answering
 ---
 
 # What is custom question answering?
-
-> [!NOTE]
-> [Azure OpenAI On Your Data](../../openai/concepts/use-your-data.md) utilizes large language models (LLMs) to produce similar results to Custom Question Answering. If you wish to connect an existing Custom Question Answering project to Azure OpenAI On Your Data, please check out our [guide]( how-to/azure-openai-integration.md).
 
 Custom question answering provides cloud-based Natural Language Processing (NLP) that allows you to create a natural conversational layer over your data. It is used to find appropriate answers from customer input or from a project.
 

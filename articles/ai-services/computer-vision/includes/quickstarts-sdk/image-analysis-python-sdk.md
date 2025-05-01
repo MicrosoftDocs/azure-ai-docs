@@ -1,12 +1,12 @@
 ---
 title: "Quickstart: Image Analysis client library for Python"
 description: Get started with the Image Analysis client library for Python with this quickstart.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: include
-ms.date: 12/15/2020
+ms.date: 09/30/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
@@ -15,24 +15,21 @@ ms.author: pafarley
 Use the Image Analysis client library for Python to analyze a remote image for content tags.
 
 > [!TIP]
-> You can also analyze a local image. See the [ComputerVisionClientOperationsMixin](/python/api/azure-cognitiveservices-vision-computervision/azure.cognitiveservices.vision.computervision.operations.computervisionclientoperationsmixin) methods, such as **analyze_image_in_stream**. Or, see the sample code on [GitHub](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/python/ComputerVision/ImageAnalysisQuickstart.py) for scenarios involving local images.
+> You can also analyze a local image. See the [ComputerVisionClientOperationsMixin](/python/api/azure-cognitiveservices-vision-computervision/azure.cognitiveservices.vision.computervision.operations.computervisionclientoperationsmixin) methods, such as `analyze_image_in_stream`. Or, see the [sample code on GitHub](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/python/ComputerVision/ImageAnalysisQuickstart.py) for scenarios involving local images.
 
 > [!TIP]
-> The Analyze API can do many different operations other than generate image tags. See the [Image Analysis how-to guide](../../how-to/call-analyze-image.md) for examples that showcase all of the available features.
+> The Analyze Image API can do many different operations other than generate image tags. See the [Image Analysis how-to guide](../../how-to/call-analyze-image.md) for examples that showcase all of the available features.
 
-[Reference documentation](/python/api/azure-cognitiveservices-vision-computervision/azure.cognitiveservices.vision.computervision) | [Library source code](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/cognitiveservices/azure-cognitiveservices-vision-computervision) | [Package (PiPy)](https://pypi.org/project/azure-cognitiveservices-vision-computervision/) | [Samples](/samples/browse/?products=azure&terms=computer-vision)
+[Reference documentation](/python/api/azure-cognitiveservices-vision-computervision/azure.cognitiveservices.vision.computervision) | [Library source code](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/cognitiveservices/azure-cognitiveservices-vision-computervision) | [Package (PiPy)](https://pypi.org/project/azure-cognitiveservices-vision-computervision/) | [Samples](/samples/browse/?products=azure&terms=computer-vision)
 
 ## Prerequisites
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
-* [Python 3.x](https://www.python.org/)
+* An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=ai-services).
+* [Python 3.x](https://www.python.org/).
   * Your Python installation should include [pip](https://pip.pypa.io/en/stable/). You can check if you have pip installed by running `pip --version` on the command line. Get pip by installing the latest version of Python.
-* Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision"  title="create a Vision resource"  target="_blank">create a Vision resource</a> in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**.
-
+* Once you have your Azure subscription, create a [Computer Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision) in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**.
     * You need the key and endpoint from the resource you create to connect your application to the Azure AI Vision service.
     * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
-
-
 
 [!INCLUDE [create environment variables](../environment-variables.md)]
 
@@ -54,21 +51,21 @@ Use the Image Analysis client library for Python to analyze a remote image for c
 
 1. Create a new Python application.
 
-    Create a new Python file&mdash;*quickstart-file.py*, for example. 
+    Create a new Python file. You can name it *quickstart-file.py*, for example.
 
 1. Open *quickstart-file.py* in a text editor or IDE and paste in the following code.
 
    [!code-python[](~/cognitive-services-quickstart-code/python/ComputerVision/ImageAnalysisQuickstart-single.py?name=snippet_single)]
 
-1. Run the application with the `python` command on your quickstart file.
+1. Run the application by using the `python` command on your quickstart file.
 
    ```console
    python quickstart-file.py
    ```
 
-
-
 ## Output
+
+The output of the operation should look like the following example.
 
 ```console
 ===== Tag an image - remote =====
@@ -92,8 +89,6 @@ Tags in the remote image:
 End of Azure AI Vision quickstart.
 ```
 
-
-
 ## Clean up resources
 
 If you want to clean up and remove an Azure AI services subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
@@ -102,12 +97,12 @@ If you want to clean up and remove an Azure AI services subscription, you can de
 * [Azure CLI](../../../multi-service-resource.md?pivots=azcli#clean-up-resources)
 
 
-## Next steps
+## Next step
 
-In this quickstart, you learned how to install the Image Analysis client library and make basic image analysis calls. Next, learn more about the Analyze API features.
+In this quickstart, you learned how to install the Image Analysis client library and make basic image analysis calls. Next, learn more about the Analyze Image API features.
 
 > [!div class="nextstepaction"]
->[Call the Analyze API](../../how-to/call-analyze-image.md)
+>[Call the Analyze Image API](../../how-to/call-analyze-image.md)
 
-* [Image Analysis overview](../../overview-image-analysis.md)
-* The source code for this sample can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/python/ComputerVision/ImageAnalysisQuickstart.py).
+* [What is Image Analysis?](../../overview-image-analysis.md)
+* [Source code for this sample on GitHub](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/python/ComputerVision/ImageAnalysisQuickstart.py)

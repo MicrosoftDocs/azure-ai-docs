@@ -2,31 +2,33 @@
 title: Create a custom Image Analysis model
 titleSuffix: Azure AI services
 description: Learn how to create and train a custom model to do image classification and object detection that's specific to your use case.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 02/27/2024
+ms.date: 09/25/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ms.custom: devx-track-python
 ---
 
-# Create a custom Image Analysis model (preview)
+# Create a custom Image Analysis model
 
-Image Analysis 4.0 allows you to train a custom model using your own training images. By manually labeling your images, you can train a model to apply custom tags to the images (image classification) or detect custom objects (object detection). Image Analysis 4.0 models are especially effective at few-shot learning, so you can get accurate models with less training data.
+[!INCLUDE [model-customization-deprecation](../includes/model-customization-deprecation.md)]
+
+Image Analysis 4.0 allows you to train a custom model using your own training images. By manually labeling your images, you can train a model to apply custom tags to the images (image classification) or detect custom objects (object detection). Image Analysis 4.0 models are especially effective at *few-shot* learning, so you can get accurate models with less training data.
 
 This guide shows you how to create and train a custom image classification model. The few differences between training an image classification model and object detection model are noted.
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
-* Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision"  title="Create a Vision resource"  target="_blank">create a Vision resource </a> in the Azure portal to get your key and endpoint. If you're following this guide using Vision Studio, you must create your resource in the East US region. After it deploys, select **Go to resource**. Copy the key and endpoint to a temporary location to use later on.
-* An Azure Storage resource - [Create one](/azure/storage/common/storage-account-create?tabs=azure-portal)
+* An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/cognitive-services).
+* Once you have your Azure subscription, create a [Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision) in the Azure portal to get your key and endpoint. If you're following this guide using Vision Studio, you must create your resource in the East US region. After it deploys, select **Go to resource**. Copy the key and endpoint to a temporary location for later use.
+* An Azure Storage resource. Create a [Storage resource](/azure/storage/common/storage-account-create?tabs=azure-portal).
 * A set of images with which to train your classification model. You can use the set of [sample images on GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/tree/master/CustomVision/ImageClassification/Images). Or, you can use your own images. You only need about 3-5 images per class.
 
 > [!NOTE]
-> We do not recommend you use custom models for business critical environments due to potential high latency. When customers train custom models in Vision Studio, those custom models belong to the Vision resource that they were trained under and the customer is able to make calls to those models using the **Analyze Image** API. When they make these calls, the custom model is loaded in memory and the prediction infrastructure is initialized. While this happens, customers might experience longer than expected latency to receive prediction results.
+> We don't recommend you use custom models for business critical environments due to potential high latency. When customers train custom models in Vision Studio, those custom models belong to the Vision resource that they were trained under and the customer is able to make calls to those models using the *Analyze Image* API. When they make these calls, the custom model is loaded in memory and the prediction infrastructure is initialized. While this happens, customers might experience longer than expected latency to receive prediction results.
 
 <!-- 
 #### [Python](#tab/python)
@@ -247,7 +249,6 @@ Begin by going to [Vision Studio](https://portal.vision.cognitive.azure.com/) an
 
 Then, sign in with your Azure account and select your Vision resource. If you don't have one, you can create one from this screen.
 
-
 :::image type="content" source="../media/customization/select-resource.png" alt-text="Screenshot of the select resource screen.":::
 
 ## Prepare training images
@@ -260,7 +261,7 @@ To train a custom model, you need to associate it with a **Dataset** where you p
 
 To create a new dataset, select **add new dataset**. In the popup window, enter a name and select a dataset type for your use case. **Image classification** models apply content labels to the entire image, while **Object detection** models apply object labels to specific locations in the image. **Product recognition** models are a subcategory of object detection models that are optimized for detecting retail products.
 
-![Choose Blob Storage]( ../media/customization/create-dataset.png)
+:::image type="content" source="../media/customization/create-dataset.png" alt-text="Screenshot of dialog box to Create new dataset.":::
 
 Then, select the container from the Azure Blob Storage account where you stored the training images. Check the box to allow Vision Studio to read and write to the blob storage container. This is a necessary step to import labeled data. Create the dataset.
 
@@ -270,68 +271,65 @@ You need a COCO file to convey the labeling information. An easy way to generate
 
 In the dataset details page, select **Add a new Data Labeling project**. Name it and select **Create a new workspace**. That opens a new Azure portal tab where you can create the Azure Machine Learning project.
 
-![Choose Azure Machine Learning]( ../media/customization/dataset-details.png)
+:::image type="content" source="../media/customization/dataset-details.png" alt-text="Screenshot of Create Azure Machine Learning Data Labeling project.":::
 
 Once the Azure Machine Learning project is created, return to the Vision Studio tab and select it under **Workspace**. The Azure Machine Learning portal will then open in a new browser tab.
 
-## Azure Machine Learning: Create labels
+## Create labels
 
 To start labeling, follow the **Please add label classes** prompt to add label classes.
 
-![Label classes]( ../media/customization/azure-machine-learning-home-page.png)
+:::image type="content" source="../media/customization/azure-machine-learning-home-page.png" alt-text="Screenshot showing button to Add label classes.":::
 
-![Add class labels]( ../media/customization/azure-machine-learning-label-categories.png)
+:::image type="content" source="../media/customization/azure-machine-learning-label-categories.png" alt-text="Screenshot showing button to Add label categories.":::
 
-Once you've added all the class labels, save them, select **start** on the project, and then select **Label data** at the top.
+After you add all the class labels, save them, select **Start** on the project, and then select **Label data** at the top.
 
-![Start labeling]( ../media/customization/azure-machine-learning-start.png)
+:::image type="content" source="../media/customization/azure-machine-learning-start.png" alt-text="Screenshot showing button to Start labeling data.":::
 
-
-### Azure Machine Learning: Manually label training data
+### Manually label training data
 
 Choose **Start labeling** and follow the prompts to label all of your images. When you're finished, return to the Vision Studio tab in your browser.
 
 Now select **Add COCO file**, then select **Import COCO file from an Azure ML Data Labeling project**. This imports the labeled data from Azure Machine Learning.
 
-The COCO file you just created is now stored in the Azure Storage container that you linked to this project. You can now import it into the model customization workflow. Select it from the drop-down list. Once the COCO file is imported into the dataset, the dataset can be used for training a model.
+The COCO file you created is now stored in the Azure Storage container that you linked to this project. You can now import it into the model customization workflow. Select it from the drop-down list. Once the COCO file is imported into the dataset, the dataset can be used for training a model.
 
 > [!NOTE]
-> ## Import COCO files from elsewhere
+> If you have a ready-made COCO file you want to import, go to the **Datasets** tab and select **Add COCO files to this dataset**. You can choose to add a specific COCO file from a blob storage account or import from the Azure Machine Learning labeling project.
 >
-> If you have a ready-made COCO file you want to import, go to the **Datasets** tab and select `Add COCO files to this dataset`. You can choose to add a specific COCO file from a Blob storage account or import from the Azure Machine Learning labeling project. 
+> Currently, Microsoft is addressing an issue that causes COCO file import to fail with large datasets when initiated in Vision Studio. To train using a large dataset, it's recommended to use the REST API instead.
 >
-> Currently, Microsoft is addressing an issue which causes COCO file import to fail with large datasets when initiated in Vision Studio. To train using a large dataset, it's recommended to use the REST API instead.
->
-> ![Choose COCO]( ../media/customization/import-coco.png)
->
-> [!INCLUDE [coco-files](../includes/coco-files.md)]
+> ![Screenshot of Import COCO file dialog box.](../media/customization/import-coco.png)
+
+[!INCLUDE [coco-files](../includes/coco-files.md)]
 
 ## Train the custom model
 
 To start training a model with your COCO file, go to the **Custom models** tab and select **Add a new model**. Enter a name for the model and select `Image classification` or `Object detection` as the model type.
 
-![Create custom model]( ../media/customization/start-model-training.png)
+:::image type="content" source="../media/customization/start-model-training.png" alt-text="Screenshot of dialog box to Train a new model.":::
 
 Select your dataset, which is now associated with the COCO file containing the labeling information.
 
 Then select a time budget and train the model. For small examples, you can use a `1 hour` budget.
 
-![Review training details]( ../media/customization/train-model.png)
+:::image type="content" source="../media/customization/train-model.png" alt-text="Screenshot showing training details to review.":::
 
-It may take some time for the training to complete. Image Analysis 4.0 models can be accurate with only a small set of training data, but they take longer to train than previous models.
+It might take some time for the training to complete. Image Analysis 4.0 models can be accurate with only a small set of training data, but they take longer to train than previous models.
 
 ## Evaluate the trained model
 
-After training has completed, you can view the model's performance evaluation. The following metrics are used:
+After training is complete, you can view the model's performance evaluation. The following metrics are used:
 
 - Image classification: Average Precision, Accuracy Top 1, Accuracy Top 5
 - Object detection: Mean Average Precision @ 30, Mean Average Precision @ 50, Mean Average Precision @ 75
 
 If an evaluation set isn't provided when training the model, the reported performance is estimated based on part of the training set. We strongly recommend you use an evaluation dataset (using the same process as above) to have a reliable estimation of your model performance.
 
-![Screenshot of evaluation]( ../media/customization/training-result.png)
+:::image type="content" source="../media/customization/training-result.png" alt-text="Screenshot showing evaluation results.":::
 
-## Test custom model in Vision Studio
+## Test the custom model in Vision Studio
 
 Once you've built a custom model, you can test by selecting the **Try it out** button on the model evaluation screen.
 
@@ -339,7 +337,7 @@ Once you've built a custom model, you can test by selecting the **Try it out** b
 
 This takes you to the **Extract common tags from images** page. Choose your custom model from the drop-down menu and upload a test image.
 
-![Screenshot of selecing test model in Vision Studio.]( ../media/customization/quick-test.png)
+:::image type="content" source="../media/customization/quick-test.png" alt-text="Screenshot of selecting test model in Vision Studio.":::
 
 The prediction results appear in the right column.
 
@@ -347,7 +345,7 @@ The prediction results appear in the right column.
 
 ## Prepare training data
 
-The first thing you need to do is create a COCO file from your training data. You can create a COCO file by converting an old Custom Vision project using the [migration script](migrate-from-custom-vision.md). Or, you can create a COCO file from scratch using some other labeling tool. See the following specification:
+The first thing you need to do is create a COCO file from your training data. See the following specification.
 
 [!INCLUDE [coco-files](../includes/coco-files.md)]
 
@@ -357,13 +355,13 @@ Upload your COCO file to a blob storage container, ideally the same blob contain
 
 ## Create your training dataset
 
-The `datasets/<dataset-name>` API lets you create a new dataset object that references the training data. Make the following changes to the cURL command below:
+The `datasets/<dataset-name>` API lets you create a new dataset object that references the training data. Make the following changes to the cURL command:
 
 1. Replace `<endpoint>` with your Azure AI Vision endpoint.
 1. Replace `<dataset-name>` with a name for your dataset.
 1. Replace `<subscription-key>` with your Azure AI Vision key.
 1. In the request body, set `"annotationKind"` to either `"imageClassification"` or `"imageObjectDetection"`, depending on your project.
-1. In the request body, set the `"annotationFileUris"` array to an array of string(s) that show the URI location(s) of your COCO file(s) in blob storage.
+1. In the request body, set the `"annotationFileUris"` array to an array of strings that show the URI locations of your COCO files in blob storage.
 
 ```bash
 curl.exe -v -X PUT "<endpoint>/computervision/datasets/<dataset-name>?api-version=2023-02-01-preview" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <subscription-key>" --data-ascii "
@@ -375,7 +373,7 @@ curl.exe -v -X PUT "<endpoint>/computervision/datasets/<dataset-name>?api-versio
 
 ## Create and train a model
 
-The `models/<model-name>` API lets you create a new custom model and associate it with an existing dataset. It also starts the training process. Make the following changes to the cURL command below:
+The `models/<model-name>` API lets you create a new custom model and associate it with an existing dataset. It also starts the training process. Make the following changes to the cURL command:
 
 1. Replace `<endpoint>` with your Azure AI Vision endpoint.
 1. Replace `<model-name>` with a name for your model.
@@ -396,7 +394,7 @@ curl.exe -v -X PUT "<endpoint>/computervision/models/<model-name>?api-version=20
 
 ## Evaluate the model's performance on a dataset
 
-The `models/<model-name>/evaluations/<eval-name>` API evaluates the performance of an existing model. Make the following changes to the cURL command below:
+The `models/<model-name>/evaluations/<eval-name>` API evaluates the performance of an existing model. Make the following changes to the cURL command:
 
 1. Replace `<endpoint>` with your Azure AI Vision endpoint.
 1. Replace `<model-name>` with the name of your model.
@@ -420,7 +418,7 @@ The API call returns a **ModelPerformance** JSON object, which lists the model's
 
 ## Test the custom model on an image
 
-The `imageanalysis:analyze` API does ordinary Image Analysis operations. By specifying some parameters, you can use this API to query your own custom model instead of the prebuilt Image Analysis models. Make the following changes to the cURL command below:
+The `imageanalysis:analyze` API does ordinary Image Analysis operations. By specifying some parameters, you can use this API to query your own custom model instead of the prebuilt Image Analysis models. Make the following changes to the cURL command:
 
 1. Replace `<endpoint>` with your Azure AI Vision endpoint.
 1. Replace `<model-name>` with the name of your model.
@@ -464,9 +462,9 @@ The API call returns an **ImageAnalysisResult** JSON object, which contains all 
 ---
 
 
-## Next steps
+## Related content
 
-In this guide, you created and trained a custom image classification model using Image Analysis. Next, learn more about the Analyze Image 4.0 API, so you can call your custom model from an application using REST or library SDKs.
+In this guide, you created and trained a custom image classification model using Image Analysis. Next, learn more about the Analyze Image 4.0 API, so you can call your custom model from an application using REST.
 
-* See the [Model customization concepts](../concept-model-customization.md) guide for a broad overview of this feature and a list of frequently asked questions.
-* [Call the Analyze Image API](./call-analyze-image-40.md). <!--Note the sections [Set model name when using a custom model](./call-analyze-image-40.md#set-model-name-when-using-a-custom-model) and [Get results using custom model](./call-analyze-image-40.md#get-results-using-custom-model).-->
+* [Model customization concepts](../concept-model-customization.md)
+* [Call the Analyze Image API](./call-analyze-image-40.md) <!--Note the sections [Set model name when using a custom model](./call-analyze-image-40.md#set-model-name-when-using-a-custom-model) and [Get results using custom model](./call-analyze-image-40.md#get-results-using-custom-model).-->

@@ -16,6 +16,8 @@ ms.custom: UpdateFrequency5, deploy, sdkv1, build-2023
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 This article describes how to use your local computer as a target for training or deploying models created in Azure Machine Learning. Azure Machine Learning is flexible enough to work with most Python machine learning frameworks. Machine learning solutions generally have complex dependencies that can be difficult to duplicate. This article will show you how to balance total control with ease of use.
 
 Scenarios for local deployment include:
@@ -246,8 +248,6 @@ model = Model.register(model_path="sklearn_regression_model.pkl",
 You can then find your newly registered model on the Azure Machine Learning **Model** tab:
 
 :::image type="content" source="media/how-to-deploy-local/registered-model.png" alt-text="Screenshot of Azure Machine Learning Model tab, showing an uploaded model." lightbox="media/how-to-deploy-local/registered-model.png":::
-
-For more information on uploading and updating models and environments, see [Register model and deploy locally with advanced usages](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/deployment/deploy-to-local/register-model-deploy-local-advanced.ipynb).
 
 ## Next steps
 

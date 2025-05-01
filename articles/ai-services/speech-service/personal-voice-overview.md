@@ -6,9 +6,10 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 2/7/2024
+ms.date: 3/10/2025
 ms.author: eur
 ms.custom: references_regions, build-2024
+#Customer intent: As a developer, I want to learn about personal voice for text to speech.
 ---
 
 # What is personal voice for text to speech? 
@@ -16,7 +17,7 @@ ms.custom: references_regions, build-2024
 With personal voice, you can enable your users to get AI generated replication of their own voices in a few seconds. With a verbal statement and a short speech sample as the audio prompt, you can create a personal voice for your users and allow them to generate speech in any of the more than 90 languages supported across more than 100 locales.
 
 > [!NOTE]
-> Personal voice is available in these regions: West Europe, East US, and South East Asia. 
+> Personal voice is available in these regions: West Europe, East US, West US 2, South East Asia and East Asia. 
 > For supported locales, see [personal voice language support](./language-support.md?tabs=tts#personal-voice).
 
 The following table summarizes the difference between personal voice and professional custom neural voice.  
@@ -34,7 +35,7 @@ The following table summarizes the difference between personal voice and profess
 | Pricing | Check the pricing details [here](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/)<sup>1</sup>. | Check the pricing details [here](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). |
 | Responsible AI requirements | Speaker's verbal statement required. No unapproved use case allowed. | Speaker's verbal statement required. No unapproved use case allowed. |
 
-<sup>1</sup> Note that personal voice pricing will only be visible for service regions where the feature is available, including West Europe, East US, and South East Asia. 
+<sup>1</sup> Note that personal voice pricing will only be visible for service regions where the feature is available, including West Europe, East US, West US 2, South East Asia and East Asia. 
 
 ## Try the demo
 

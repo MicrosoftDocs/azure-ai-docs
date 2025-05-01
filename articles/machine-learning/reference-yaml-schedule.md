@@ -77,7 +77,7 @@ Customer can directly use `create_job: azureml:<job_name>` or can use the follow
 | Key | Type | Description | Allowed values |
 | --- | ---- | ----------- | -------------- |
 |`type`| string | **Required.** Specifies the job type. Only pipeline job is supported.|`pipeline`|
-|`job`| string | **Required.** Define how to reference a job, it can be `azureml:<job_name>` or a local pipeline job yaml such as `file:hello-pipeline.yml`.| |
+|`job`| string | **Required.** Define how to reference a job, it can be `azureml:<job_name>` or a local pipeline job yaml such as `.\hello-pipeline.yml`.| |
 | `experiment_name` | string | Experiment name to organize the job under. Each job's run record will be organized under the corresponding experiment in the studio's "Experiments" tab. If omitted, we'll take schedule name as default value. | |
 |`inputs`| object | Dictionary of inputs to the job. The key is a name for the input within the context of the job and the value is the input value.| |
 |`outputs`|object | Dictionary of output configurations of the job. The key is a name for the output within the context of the job and the value is the output configuration.| |

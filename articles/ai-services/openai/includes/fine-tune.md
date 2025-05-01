@@ -6,7 +6,7 @@ author: mrbullwinkle
 ms.author: mbullwin 
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 09/01/2023
+ms.date: 03/26/2025
 manager: nitinme
 keywords: ChatGPT
 
@@ -22,4 +22,4 @@ keywords: ChatGPT
 > As described in [Azure OpenAI Service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/),
 > each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether completions
 > or chat completions calls are being made to the model. To learn more about planning and managing costs with Azure OpenAI,
-> refer to the guidance in [Plan to manage costs for Azure OpenAI Service](../how-to/manage-costs.md#base-series-and-codex-series-fine-tuned-models).
+> refer to the guidance in [Plan to manage costs for Azure OpenAI Service](../how-to/manage-costs.md#fine-tuned-models).

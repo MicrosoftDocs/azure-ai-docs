@@ -2,14 +2,13 @@
 title: Language Detection language support
 titleSuffix: Azure AI services
 description: This article explains which natural languages are supported by the Language Detection API.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 12/19/2023
+ms.date: 11/21/2024
 ms.author: jboback
-ms.custom: language-service-language-detection
+ms.custom: language-service-language-detection, ignite-2024
 ---
 
 # Language support for Language Detection
@@ -35,11 +34,16 @@ If you have content expressed in a less frequently used language, you can try La
 | Basque              | `eu`          | `Latn`                |
 | Belarusian          | `be`          | `Cyrl`                |
 | Bengali             | `bn`          | `Beng`, `Latn`        |
+| Bhojpuri            | `bho`         | `Deva`                |
+| Bodo                | `brx`         | `Deva`                |
 | Bosnian             | `bs`          | `Latn`                |
 | Bulgarian           | `bg`          | `Cyrl`                |
 | Burmese             | `my`          | `Mymr`                |
 | Catalan             | `ca`          | `Latn`                |
 | Central Khmer       | `km`          | `Khmr`                |
+| Checheni            | `ce`          | `Cyrl`                |
+| Chhattisgarhi       | `hne`         | `Deva`                |
+| Chinese Literal     | `lzh`         | `Hani`                |
 | Chinese Simplified  | `zh_chs`      | `Hans`                |
 | Chinese Traditional | `zh_cht`      | `Hant`                |
 | Chuvash             | `cv`          | `Cyrl`                |
@@ -49,6 +53,7 @@ If you have content expressed in a less frequently used language, you can try La
 | Danish              | `da`          | `Latn`                |
 | Dari                | `prs`         | `Arab`                |
 | Divehi              | `dv`          | `Thaa`                |
+| Dogri               | `dgo`         | `Deva`                |
 | Dutch               | `nl`          | `Latn`                |
 | English             | `en`          | `Latn`                |
 | Esperanto           | `eo`          | `Latn`                |
@@ -72,29 +77,36 @@ If you have content expressed in a less frequently used language, you can try La
 | Igbo                | `ig`          | `Latn`                |
 | Indonesian          | `id`          | `Latn`                |
 | Inuktitut           | `iu`          | `Cans`, `Latn`        |
+| Inuinnaqtun         | `ikt`         | `Latn`                |
 | Irish               | `ga`          | `Latn`                |
 | Italian             | `it`          | `Latn`                |
 | Japanese            | `ja`          | `Jpan`                |
 | Javanese            | `jv`          | `Latn`                |
 | Kannada             | `kn`          | `Knda`, `Latn`        |
+| Kashmiri            | `ks`          | `Arab`, `Deva`, `Shrd`|
 | Kazakh              | `kk`          | `Cyrl`                |
 | Kinyarwanda         | `rw`          | `Latn`                |
 | Kirghiz             | `ky`          | `Cyrl`                |
+| Konkani             | `gom`         | `Deva`                |
 | Korean              | `ko`          | `Hang`                |
 | Kurdish             | `ku`          | `Arab`                |
+| Kurdish (Northern)  | `kmr`         | `Latn`                |
 | Lao                 | `lo`          | `Laoo`                |
 | Latin               | `la`          | `Latn`                |
 | Latvian             | `lv`          | `Latn`                |
 | Lithuanian          | `lt`          | `Latn`                |
+| Lower Siberian      | `dsb`         | `Latn`                |
 | Luxembourgish       | `lb`          | `Latn`                |
 | Macedonian          | `mk`          | `Cyrl`                |
+| Maithili            | `mai`         | `Deva`                |
 | Malagasy            | `mg`          | `Latn`                |
 | Malay               | `ms`          | `Latn`                |
 | Malayalam           | `ml`          | `Mlym`, `Latn`        |
 | Maltese             | `mt`          | `Latn`                |
 | Maori               | `mi`          | `Latn`                |
 | Marathi             | `mr`          | `Deva`, `Latn`        |
-| Mongolian           | `mn`          | `Cyrl`                |
+| Meitei              | `mni`         | `Mtei`                |
+| Mongolian           | `mn`          | `Cyrl`, `Mong`        |
 | Nepali              | `ne`          | `Deva`                |
 | Norwegian           | `no`          | `Latn`                |
 | Norwegian Nynorsk   | `nn`          | `Latn`                |
@@ -108,6 +120,8 @@ If you have content expressed in a less frequently used language, you can try La
 | Romanian            | `ro`          | `Latn`                |
 | Russian             | `ru`          | `Cyrl`                |
 | Samoan              | `sm`          | `Latn`                |
+| Sanscrit            | `sa`          | `Deva`                |
+| Santali             | `sat`         | `Olck`                |
 | Serbian             | `sr`          | `Latn`, `Cyrl`        |
 | Shona               | `sn`          | `Latn`                |
 | Sindhi              | `sd`          | `Arab`                |
@@ -172,7 +186,7 @@ If you have content expressed in a less frequently used language, you can try La
 | Kannada                               | `kn`        | `Latn`, `Knda` |
 | Malayalam                             | `ml`        | `Latn`, `Mlym` |
 | Marathi	                            | `mr`        | `Latn`, `Deva` |
-| Oriya                                 | `or`        | `Latn`, `Orya` |
+| Odia                                  | `or`        | `Latn`, `Orya` |
 | Punjabi                               | `pa`        | `Latn`, `Guru` |
 | Tamil                                 | `ta`        | `Latn`, `Taml` |
 | Telugu                                | `te`        | `Latn`, `Telu` |

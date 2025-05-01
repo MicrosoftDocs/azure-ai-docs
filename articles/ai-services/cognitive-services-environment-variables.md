@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 8/11/2024
+ms.date: 2/7/2025
 ms.author: eur
 ---
 
@@ -14,7 +14,7 @@ ms.author: eur
 
 This guide shows you how to set and retrieve environment variables for your Azure AI services credentials when you test applications.
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 ## Set an environment variable
 

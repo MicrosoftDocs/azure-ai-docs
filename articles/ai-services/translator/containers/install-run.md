@@ -2,12 +2,11 @@
 title: Install and run Translator container using Docker API
 titleSuffix: Azure AI services
 description: Use the Translator container and API to translate text and documents.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 06/27/2024
+ms.date: 04/14/2025
 ms.author: lajanuar
 recommendations: false
 keywords: on-premises, Docker, container, identify
@@ -24,7 +23,7 @@ Containers enable you to host the Azure AI Translator API on your own infrastruc
 
 In this article, learn how to install and run the Translator container online with Docker API. The Azure AI Translator container supports the following operations:
 
-* **Text Translation**. Translate the contextual meaning of words or phrases from supported `source` to supported `target` language in real time. For more information, *see* [**Container: translate text**](translator-container-supported-parameters.md).
+* **Text translation**. Translate the contextual meaning of words or phrases from supported `source` to supported `target` language in real time. For more information, *see* [**Container: translate text**](translator-container-supported-parameters.md).
 
 * **🆕 Text Transliteration**. Convert text from one language script or writing system to another language script or writing system in real time. For more information, *see* [Container: transliterate text](transliterate-text-parameters.md).
 
@@ -36,11 +35,22 @@ To get started, you need the following resources, gated access approval, and too
 
 ##### Azure resources
 
+> [!IMPORTANT]
+>
+> Your translator resource must meet the following requirements:
+>
+> * Your Translator instance must be a **Translator** resource (**not** a multi-service Azure AI services resource).
+>
+> * Your Translator instance must be a **regional** resource (**not** a global Azure AI Translator resource) within am available Azure geographic region. For more information, *see* [Azure AI Translator region pricing options](https://azure.microsoft.com/pricing/details/cognitive-services/translator/#overview).
+
 * An active [**Azure subscription**](https://portal.azure.com/). If you don't have one, you can [**create a free 12-month account**](https://azure.microsoft.com/free/).
 
 * An approved access request to either a [Translator connected container](https://aka.ms/csgate-translator) or [Translator disconnected container](https://aka.ms/csdisconnectedcontainers).
 
-* An [**Azure AI Translator resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (**not** a multi-service Azure AI services resource) created under the approved subscription ID. You need the API key and endpoint URI associated with your resource. Both values are required to start the container and can be found on the resource overview page in the Azure portal.
+* An [**Azure AI Translator *regional* resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) created under your approved subscription ID.
+
+   * You need the API key and endpoint URI associated with your resource.
+   * Both values are required to start the container and can be found on the resource overview page in the Azure portal.
 
   * For Translator **connected** containers, select the `S1` pricing tier.
 
@@ -87,7 +97,7 @@ The following table describes the minimum and recommended specifications and the
   |Text transliteration| 4 Core, 2-GB memory ||
    |Document translation | 4 Core, 6-GB memory|The number of documents that can be processed concurrently can be  calculated with the following formula: [minimum of (`n-2`), (`m-6)/4`)]. <br>&bullet; `n` is number of CPU cores.<br>&bullet; `m` is GB of memory.<br>&bullet;  **Example**: 8 Core, 32-GB memory can process six(6) concurrent documents [minimum of (`8-2`), `(36-6)/4)`].|
 
-* Each core must be at least 2.6 gigahertz (GHz) or faster.
+* For each core, you must have at least 2.6 gigahertz (GHz) or faster.
 
 * For every language pair, 2 GB of memory is recommended.
 
@@ -115,7 +125,7 @@ All Azure AI containers require the following input values:
 
 > [!IMPORTANT]
 >
-> * Keys are used to access your Azure AI resource. Do not share your keys. Store them securely, for example, using Azure Key Vault.
+> * Keys are used to access your Azure AI resource. Don't share your keys. Store them securely, for example, using Azure Key Vault.
 >
 > * We also recommend regenerating these keys regularly. Only one key is necessary to make an API call. When regenerating the first key, you can use the second key for continued access to the service.
 
@@ -145,7 +155,7 @@ All Azure AI containers require the following input values:
 
 The Azure AI services container images can be found in the [**Microsoft Artifact Registry**](https://mcr.microsoft.com/catalog?page=3) catalog. Azure AI Translator container resides within the azure-cognitive-services/translator repository and is named `text-translation`. The fully qualified container image name is `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`.
 
-To use the latest version of the container, use the latest tag. You can view the full list of [Azure AI services Text Translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.
+To use the latest version of the container, use the latest tag. You can view the full list of [Azure AI services Text translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.
 
 ## Use containers
 
@@ -161,8 +171,8 @@ The [docker run](https://docs.docker.com/engine/reference/commandline/run/) comm
 
 > [!IMPORTANT]
 >
-> * The docker commands in the following sections use the back slash, `\`, as a line continuation character. Replace or remove this based on your host operating system's requirements.
-> * The `EULA`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container won't start.
+> * The docker commands in the following sections use the backslash, `\`, as a line continuation character. Replace or remove the backslash based on your host operating system's requirements.
+> * The `EULA`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container can't start.
 > * If you're translating documents, be sure to use the document translation endpoint.
 
 ```bash
@@ -186,13 +196,13 @@ The Docker command:
 * Automatically removes the container after it exits. The container image is still available on the host computer.
 
 > [!TIP]
-> Additional Docker command:
+> Other Docker command:
 >
 > * `docker ps` lists running containers.
 > * `docker pause {your-container name}` pauses a running container.
 > * `docker unpause {your-container-name}` unpauses a paused container.
 > * `docker restart {your-container-name}` restarts a running container.
-> * `docker exec` enables you to execute commands lto *detach* or *set environment variables* in a running container.
+> * `docker exec` enables you to execute commands to *detach* or *set environment variables* in a running container.
 >
 > For more information, *see* [docker CLI reference](https://docs.docker.com/engine/reference/commandline/docker/).
 
@@ -212,9 +222,9 @@ The container provides a REST-based Translator endpoint API. Here's an example r
 
 > [!NOTE]
 >
-> * Source language detection requires an additional container. For more information, *see* [Supporting containers](#use-cases-for-supporting-containers)
+> * Source language detection requires another container. For more information, *see* [Supporting containers](#use-cases-for-supporting-containers)
 >
-> * If the cURL POST request returns a `Service is temporarily unavailable` response the container isn't ready. Wait a few minutes, then try again.
+> * If the cURL POST request returns a `Service is temporarily unavailable` response, the container isn't ready. Wait a few minutes, then try again.
 
 ### [**Disconnected (offline) containers**](#tab/disconnected)
 
@@ -244,9 +254,9 @@ Disconnected containers enable you to use the Azure AI Translator API by exporti
 
 ### End a commitment plan
 
-* If you decide that you don't want to continue purchasing a commitment plan, you can set your resource's autorenewal to **Do not auto-renew**. 
+* If you decide that you don't want to continue purchasing a commitment plan, you can set your resource's autorenewal to **Do not auto-renew**.
 
-* Your commitment plan expires on the displayed commitment end date. After this date, you won't be charged for the commitment plan. You're still able to continue using the Azure resource to make API calls, charged at pay-as-you-go pricing. 
+* Your commitment plan expires on the displayed commitment end date. After this date, you won't be charged for the commitment plan. You're still able to continue using the Azure resource to make API calls, charged at pay-as-you-go pricing.
 
 * You have until midnight (UTC) on the last day of the year to end a commitment plan for disconnected containers. If you do so, you avoid charges for the following year.
 
@@ -265,9 +275,9 @@ Both the endpoint URL and API key are needed when you first run the container to
   :::image type="content" source="media/keys-endpoint-container.png" alt-text="Screenshot of Azure portal keys and endpoint page.":::
 
 > [!IMPORTANT]
-> You will only use your key and endpoint to configure the container to run in a disconnected.
+> You only use your key and endpoint to configure the container to run in a disconnected.
 > If you're translating **documents**, be sure to use the document translation endpoint.
-> environment. After you configure the container, you won't need the key and endpoint values to send API requests. Store them securely, for example, using Azure Key Vault. Only one key is necessary for this process.
+> After you configure the container, you don't need the key and endpoint values to send API requests. Store them securely, for example, using Azure Key Vault. Only one key is necessary for this process.
 
 ## Pull and load the Translator container image
 
@@ -304,7 +314,7 @@ Now that you downloaded your container, you can execute the `docker run` command
 * **`Languages={language list}`**. You must include this parameter to download model files for the [languages](../language-support.md) you want to translate.
 
 > [!IMPORTANT]
-> The `docker run` command will generate a template that you can use to run the container. The template contains parameters you'll need for the downloaded models and configuration file. Make sure you save this template.
+> The `docker run` command generates a template that you can use to run the container. The template contains parameters you need for the downloaded models and configuration file. Make sure you save this template.
 
 The following example shows the formatting for the `docker run` command with placeholder values. Replace these placeholder values with your own values.
 
@@ -314,7 +324,7 @@ The following example shows the formatting for the `docker run` command with pla
 | `{LICENSE_MOUNT}` | The path where the license is downloaded, and mounted.  | `/host/license:/path/to/license/directory` |
 | `{MODEL_MOUNT_PATH}`| The path where the machine translation models are downloaded, and mounted. Your directory structure must be formatted as **/usr/local/models** | `/host/translator/models:/usr/local/models`|
 | `{ENDPOINT_URI}` | The endpoint for authenticating your service request. You can find it on your resource's **Key and endpoint** page, in the Azure portal. | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
-| `{API_KEY}` | The key for your Text Translation resource. You can find it on your resource's **Key and endpoint** page, in the Azure portal. |`{string}`|
+| `{API_KEY}` | The key for your Text translation resource. You can find it on your resource's **Key and endpoint** page, in the Azure portal. |`{string}`|
 | `{LANGUAGES_LIST}` | List of language codes separated by commas. It's mandatory to have English (en) language as part of the list.| `en`, `fr`, `it`, `zu`, `uk` |
 | `{CONTAINER_LICENSE_DIRECTORY}` | Location of the license folder on the container's local filesystem.  | `/path/to/license/directory` |
 
@@ -436,10 +446,10 @@ The following table lists the required supporting containers for your text and d
 
 |Operation|Request query|Document type|Supporting containers|
 |-----|-----|-----|-----|
-|&bullet; Text translation<br>&bullet; Document Translation |`from` specified. |Office documents| None|
-|&bullet; Text translation<br>&bullet; Document Translation|`from` not specified. Requires automatic language detection to determine the source language. |Office documents |✔️ [**Text analytics:language**](../../language-service/language-detection/how-to/use-containers.md) container|
-|&bullet; Text translation<br>&bullet; Document Translation |`from` specified. |Scanned PDF documents| ✔️ [**Vision:read**](../../computer-vision/computer-vision-how-to-install-containers.md) container|
-|&bullet; Text translation<br>&bullet; Document Translation|`from` not specified requiring automatic language detection to determine source language.|Scanned PDF documents| ✔️ [**Text analytics:language**](../../language-service/language-detection/how-to/use-containers.md) container<br><br>✔️ [**Vision:read**](../../computer-vision/computer-vision-how-to-install-containers.md) container|
+|&bullet; Text translation<br>&bullet; Document translation |`from` specified. |Office documents| None|
+|&bullet; Text translation<br>&bullet; Document translation|`from` not specified. Requires automatic language detection to determine the source language. |Office documents |✔️ [**Text analytics:language**](../../language-service/language-detection/how-to/use-containers.md) container|
+|&bullet; Text translation<br>&bullet; Document translation |`from` specified. |Scanned PDF documents| ✔️ [**Vision:read**](../../computer-vision/computer-vision-how-to-install-containers.md) container|
+|&bullet; Text translation<br>&bullet; Document translation|`from` not specified requiring automatic language detection to determine source language.|Scanned PDF documents| ✔️ [**Text analytics:language**](../../language-service/language-detection/how-to/use-containers.md) container<br><br>✔️ [**Vision:read**](../../computer-vision/computer-vision-how-to-install-containers.md) container|
 
 ## Operate supporting containers with `docker compose`
 
@@ -463,7 +473,7 @@ If you installed Docker Desktop CLI, it includes Docker compose and its prerequi
     services:
       azure-ai-translator:
         container_name: azure-ai-translator
-        image: mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation:latest
+        image: mcr.microsoft.com/azure-cognitive-services/translator/text-translation::latest
         environment:
             - EULA=accept
             - billing={TRANSLATOR_ENDPOINT_URI}
@@ -472,6 +482,8 @@ If you installed Docker Desktop CLI, it includes Docker compose and its prerequi
             - VISIONURL=http://azure-ai-read:5000
         ports:
               - "5000:5000"
+        volumes:
+              - {your local folder}:/usr/local/models
         azure-ai-language:
           container_name: azure-ai-language
           image:  mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest
@@ -479,6 +491,8 @@ If you installed Docker Desktop CLI, it includes Docker compose and its prerequi
               - EULA=accept
               - billing={LANGUAGE_RESOURCE_ENDPOINT_URI}
               - apiKey={LANGUAGE_RESOURCE_KEY}
+              - Languages=en,es
+              - LADINCLUSTER=true
         azure-ai-read:
           container_name: azure-ai-read
           image:  mcr.microsoft.com/azure-cognitive-services/vision/read:latest
@@ -506,7 +520,7 @@ If you installed Docker Desktop CLI, it includes Docker compose and its prerequi
    > * `docker compose pause` pauses running containers.
    > * `docker compose unpause {your-container-name}` unpauses paused containers.
    > * `docker compose restart` restarts all stopped and running container with all its previous changes intact. If you make changes to your `compose.yaml` configuration, these changes aren't updated with the `docker compose restart` command. You have to use the `docker compose up` command to reflect updates and changes in the `compose.yaml` file.
-   > * `docker compose ps -a` lists all containers, including those that are stopped.
+   > * `docker compose ps -a` lists all containers, including containers that are stopped.
    > * `docker compose exec` enables you to execute commands to *detach* or *set environment variables* in a running container.
    >
    > For more information, *see* [docker CLI reference](https://docs.docker.com/engine/reference/commandline/docker/).
@@ -517,7 +531,7 @@ The Azure AI services container images can be found in the [**Microsoft Artifact
 
 |Container|Image location|Notes|
 |--------|-------------|---------------|
-|Translator: Text and document translation| `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`| You can view the full list of [Azure AI services Text Translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.|
+|Translator: Text and document translation| `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`| You can view the full list of [Azure AI services Text translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.|
 |Text analytics: language|`mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest` |You can view the full list of [Azure AI services Text Analytics Language](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/language/tags) version tags on MCR.|
 |Vision: read|`mcr.microsoft.com/azure-cognitive-services/vision/read:latest`|You can view the full list of [Azure AI services Computer Vision Read `OCR`](https://mcr.microsoft.com/product/azure-cognitive-services/vision/read/tags) version tags on MCR.|
 
@@ -629,11 +643,12 @@ Usage charges are calculated based upon the `quantity` value.
       }
    ```
 
-The aggregated value of `billedUnit` for the following meters is counted  towards the characters you licensed for your disconnected container usage:
+The aggregated value of `billedUnit` for the following meters is counted towards the `quantity` you licensed for your disconnected container usage:
 
-* `CognitiveServices.TextTranslation.Container.OneDocumentTranslatedCharacters`
-
-* `CognitiveServices.TextTranslation.Container.TranslatedCharacters`
+|Operation|Meter name|Billed unit|
+|---|---|---|
+|Text translation|`CognitiveServices.TextTranslation.Container.TranslatedCharacters`|`quantity`:  **1 character equals 1** `billedUnit`|
+|Document translation|`CognitiveServices.TextTranslation.Container.OneDocumentTranslatedCharacters`|`quantity`: **1 character equals 1.5** `billedUnit`|
 
 ---
 

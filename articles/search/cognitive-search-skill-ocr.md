@@ -3,10 +3,10 @@ title: OCR skill
 titleSuffix: Azure AI Search
 description: Extract text from image files using optical character recognition (OCR) in an enrichment pipeline in Azure AI Search.
 
-author: careyjmac
-ms.author: chalton
+author: gmndrg
+ms.author: gimondra
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
@@ -22,13 +22,15 @@ An OCR skill uses the machine learning models provided by [Azure AI Vision](/azu
 
 + For Greek and Serbian Cyrillic, the legacy [OCR in version 3.2](https://github.com/Azure/azure-rest-api-specs/tree/master/specification/cognitiveservices/data-plane/ComputerVision/stable/v3.2) API is used.
 
-The **OCR** skill extracts text from image files. Supported file formats include:
+The **OCR** skill extracts text from image files and embedded images. Supported file formats include:
 
 + .JPEG
 + .JPG
 + .PNG
 + .BMP
 + .TIFF
+
+Supported data sources for OCR and image analysis are blobs in Azure Blob Storage and Azure Data Lake Storage (ADLS) Gen2, and image content in OneLake. Images can be standalone files or embedded images in a PDF or other files.
 
 > [!NOTE]
 > This skill is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services pay-as-you go price](https://azure.microsoft.com/pricing/details/cognitive-services/).
@@ -218,4 +220,4 @@ The above skillset example assumes that a normalized-images field exists. To gen
 + [TextMerger skill](cognitive-search-skill-textmerger.md)
 + [How to define a skillset](cognitive-search-defining-skillset.md)
 + [Extract text and information from images](cognitive-search-concept-image-scenarios.md)
-+ [Create Indexer (REST)](/rest/api/searchservice/create-indexer)
++ [Create Indexer (REST)](/rest/api/searchservice/indexers/create)

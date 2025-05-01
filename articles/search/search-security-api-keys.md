@@ -2,24 +2,29 @@
 title: Connect using API keys
 titleSuffix: Azure AI Search
 description: Learn how to use an admin or query API key for inbound access to an Azure AI Search service endpoint.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 06/28/2024
+ms.date: 01/31/2025
+#customer intent: I want to learn how to connect to Azure AI Search using API keys so that I can authenticate inbound requests to my search service.
 ---
 
 # Connect to Azure AI Search using keys
 
-Azure AI Search offers key-based authentication for connections to your search service. An API key is a unique string composed of 52 randomly generated numbers and letters. In your source code, you can specify it as an [environment variable](/azure/ai-services/cognitive-services-environment-variables) or as an app setting in your project, and then reference the variable on the request. A request made to a search service endpoint is accepted if both the request and the API key are valid.
+Azure AI Search supports both keyless and key-based authentication for connections to your search service. An API key is a unique string composed of 52 randomly generated numbers and letters. In your source code, you can specify it as an [environment variable](/azure/ai-services/cognitive-services-environment-variables) or as an app setting in your project, and then reference the variable on the request.
 
-Key-based authentication is the default. 
+> [!IMPORTANT]
+> When you create a search service, key-based authentication is the default, but it's not the most secure option. We recommend that you replace it with [role-based access](search-security-enable-roles.md).
 
-You can replace it with [role-based access](search-security-enable-roles.md), which eliminates the need for hardcoded keys in your codebase.
+## Enabled by default
+
+Key-based authentication is the default on new search services. A request made to a search service endpoint is accepted if both the request and the API key are valid, and your search service is configured to allow API keys on a request. In the Azure portal, authentication is specified on the **Keys** page under **Settings**. Either **API keys** or **Both** provide key support.
+
+:::image type="content" source="media/search-security-overview/api-keys-enabled.png" alt-text="Screenshot of the Keys page in the Azure portal.":::
 
 ## Types of API keys
 
@@ -27,20 +32,20 @@ There are two kinds of keys used for authenticating a request:
 
 | Type | Permission level | Maximum | How created|
 |------|------------------|---------|---------|
-| Admin | Full access (read-write) for all content operations | 2 <sup>1</sup>| Two admin keys, referred to as *primary* and *secondary* keys in the portal, are generated when the service is created and can be individually regenerated on demand. |
+| Admin | Full access (read-write) for all content operations | 2 <sup>1</sup>| Two admin keys, referred to as *primary* and *secondary* keys in the Azure portal, are generated when the service is created and can be individually regenerated on demand. |
 | Query | Read-only access, scoped to the documents collection of a search index | 50 | One query key is generated with the service. More can be created on demand by a search service administrator. |
 
 <sup>1</sup> Having two allows you to roll over one key while using the second key for continued access to the service.
 
-Visually, there's no distinction between an admin key or query key. Both keys are strings composed of 52 randomly generated alpha-numeric characters. If you lose track of what type of key is specified in your application, you can [check the key values in the portal](#find-existing-keys).
+Visually, there's no distinction between an admin key or query key. Both keys are strings composed of 52 randomly generated alpha-numeric characters. If you lose track of what type of key is specified in your application, you can [check the key values in the Azure portal](#find-existing-keys).
 
 ## Use API keys on connections
 
-API keys are used for data plane (content) requests, such as creating or accessing an index or, any other request that's represented in the [Search REST APIs](/rest/api/searchservice/). Upon service creation, an API key is the only authentication mechanism for data plane operations, but you can replace or supplement key authentication with [Azure roles](search-security-rbac.md) if you can't use hard-coded keys in your code.
+API keys are used for data plane (content) requests, such as creating or accessing an index or, any other request that's represented in the [Search REST APIs](/rest/api/searchservice/). 
 
-Admin keys are used for creating, modifying, or deleting objects. Admin keys are also used to GET object definitions and system information.
-
-Query keys are typically distributed to client applications that issue queries.
+You can use either an API key or [Azure roles](search-security-rbac.md) for control plane (service) requests. When you use an API key:
+- Admin keys are used for creating, modifying, or deleting objects. Admin keys are also used to GET object definitions and system information.
+- Query keys are typically distributed to client applications that issue queries.
 
 ### [**REST API**](#tab/rest-use)
 
@@ -96,7 +101,7 @@ A script example showing API key usage for various operations can be found at [Q
 
 **How API keys are used in the Azure portal**:
 
-+ Key authentication is built in. By default, the portal tries API keys first. However, if you [disable API keys](search-security-enable-roles.md#disable-api-key-authentication) and set up role assignments, the portal uses role assignments instead.
+Key authentication applies to data plane operations such as indexing and queries. It's enabled by default. However, if you [disable API keys](search-security-enable-roles.md#disable-api-key-authentication) and set up role assignments, the Azure portal uses role assignments instead.
 
 ---
 
@@ -221,7 +226,7 @@ Two admin keys are created for each service so that you can rotate a primary key
 
 If you inadvertently regenerate both keys at the same time, all client requests using those keys will fail with HTTP 403 Forbidden. However, content isn't deleted and you aren't locked out permanently. 
 
-You can still access the service through the portal or programmatically. Management functions are operative through a subscription ID not a service API key, and are thus still available even if your API keys aren't. 
+You can still access the service through the Azure portal or programmatically. Management functions are operative through a subscription ID not a service API key, and are thus still available even if your API keys aren't. 
 
 After you create new keys via portal or management layer, access is restored to your content (indexes, indexers, data sources, synonym maps) once you provide those keys on requests.
 
@@ -233,7 +238,7 @@ It's not possible to use [customer-managed key encryption](search-security-manag
 
 1. Navigate to your search service page in Azure portal.
 
-1. On the left navigation pane, select **Access control (IAM)**, and then select the **Role assignments** tab.
+1. On the left pane, select **Access control (IAM)**, and then select the **Role assignments** tab.
 
 1. In the **Role** filter, select the roles that have permission to view or manage keys (Owner, Contributor, Search Service Contributor). The resulting security principals assigned to those roles have key permissions on your search service.
 
@@ -241,11 +246,13 @@ It's not possible to use [customer-managed key encryption](search-security-manag
 
 ## Best practices
 
++ For production workloads, switch to [Microsoft Entra ID and role-based access](keyless-connections.md). Or, if you want to continue using API keys, be sure to always monitor [who has access to your API keys](#secure-api-keys) and [regenerate API keys](#regenerate-admin-keys) on a regular cadence.
+
 + Only use API keys if data disclosure isn't a risk (for example, when using sample data) and if you're operating behind a firewall. Exposure of API keys is a risk to both data and to unauthorized use of your search service. 
 
-+ Always check code, samples, and training material before publishing to make sure you didn't leave valid API keys behind.
++ If you use an API key, store it securely somewhere else, such as in [Azure Key Vault](/azure/key-vault/general/overview). Don't include the API key directly in your code, and never post it publicly.
 
-+ For production workloads, switch to [Microsoft Entra ID and role-based access](search-security-rbac.md). Or, if you want to continue using API keys, be sure to always monitor [who has access to your API keys](#secure-api-keys) and [regenerate API keys](#regenerate-admin-keys) on a regular cadence.
++ Always check code, samples, and training material before publishing to make sure you don't inadvertently expose an API key.
 
 ## See also
 

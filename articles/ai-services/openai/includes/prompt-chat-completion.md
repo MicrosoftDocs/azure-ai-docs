@@ -6,7 +6,7 @@ author: mrbullwinkle
 ms.author: mbullwin 
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 02/16/2024
+ms.date: 03/26/2025
 manager: nitinme
 keywords: ChatGPT
 
@@ -15,33 +15,9 @@ keywords: ChatGPT
 This guide doesn't go in-depth into the mechanics behind the message structure for Chat Completions. If you aren't familiar with interacting with Chat Completions models programmatically, we recommend reading our [how-to guide on the Chat Completion API first](../how-to/chatgpt.md).  
 
 > [!NOTE]
-> All of the examples in this section of the guide were tested against a base GPT-4 model in English. If you are reading a localized version of this article in another language, these responses represent a localized translation of the English results. To learn more about potential limitations depending on what language you are using to prompt a model, please consult our [Responsible AI transparency note](/legal/cognitive-services/openai/transparency-note?context=/azure/ai-services/openai/context/context#limitations).  
+> All of the examples in this section of the guide were tested against a base GPT-4 model in English. Some techniques may produce different results with newer models like gpt-4o, and gpt 4.5. If you are reading a localized version of this article in another language, these responses represent a localized translation of the English results. To learn more about potential limitations depending on what language you are using to prompt a model, please consult our [Responsible AI transparency note](/legal/cognitive-services/openai/transparency-note?context=/azure/ai-services/openai/context/context#limitations).  
 
-## System message
 
-The system message is included at the beginning of the prompt and is used to prime the model with context, instructions, or other information relevant to your use case. You can use the system message to describe the assistant’s personality, define what the model should and shouldn’t answer, and define the format of model responses.
-
-The example below, shows a sample system message and the resulting model response:
-
-| System message |User     | Assistant  |
-|----------------|---------|------------|
-| You're an AI assistant that helps people find information and responds in rhyme. If the user asks you a question you don't know the answer to, say so. | What can you tell about me, John Doe? | Dear John, I'm sorry to say,<br>But I don't have info on you today.<br>I'm just an AI with knowledge in my brain,<br>But without your input, I can't explain.<br>So please tell me more about what you seek,<br>And I'll do my best to give you an answer unique.|
-
-Some other examples of system messages are:
--	“Assistant is a large language model trained by OpenAI.”
--	“Assistant is an intelligent chatbot designed to help users answer technical questions about Azure OpenAI Service. Only answer questions using the context below and if you're not sure of an answer, you can say "I don't know".
--	“Assistant is an intelligent chatbot designed to help users answer their tax related questions.”
--	“You're an assistant designed to extract entities from text. Users will paste in a string of text and you'll respond with entities you've extracted from the text as a JSON object. Here's an example of your output format:
-
-```json
-{  
-   "name": "",
-   "company": "",
-   "phone_number": ""
-}
-```
-
-An important detail to understand is that even if you instruct a model in the system message to answer **I don't know** when unsure of an answer this doesn't guarantee that the request will be honored. A well designed system message can increase the likelihood of a certain outcome, but it's still possible that an incorrect response could be generated that contradicts the intent of the instruction in the system message.
 
 ## Few-shot learning
 
@@ -162,8 +138,3 @@ Here's an example where the system is provided a [recent blog describing the lau
 
 <sup>1</sup> Text from [Azure OpenAI GPT-4 launch blog](https://azure.microsoft.com/blog/introducing-gpt4-in-azure-openai-service/).
 
-## Next steps
-
-* [Learn more about Azure OpenAI](../overview.md).
-* [Learn more about the Chat Completions API](../how-to/chatgpt.md).
-* [Azure OpenAI Samples](https://github.com/Azure-Samples/azureai-samples/tree/main).

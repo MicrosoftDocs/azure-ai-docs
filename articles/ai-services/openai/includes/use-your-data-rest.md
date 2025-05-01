@@ -1,11 +1,10 @@
 ---
-#services: cognitive-services
 manager: nitinme
 author: aahill
 ms.author: aahi
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 03/07/2024
+ms.date: 01/10/2025
 ---
 
 [!INCLUDE [Set up required variables](./use-your-data-common-variables.md)]
@@ -20,7 +19,7 @@ To trigger a response from the model, you should end with a user message indicat
 > There are several parameters you can use to change the model's response, such as `temperature` or `top_p`. See the [reference documentation](../reference.md#completions-extensions) for more information.
 
 ```bash
-curl -i -X POST $AZURE_OPENAI_ENDPOINT/openai/deployments/$AZURE_OPENAI_DEPLOYMENT_ID/chat/completions?api-version=2024-02-15-preview \
+curl -i -X POST $AZURE_OPENAI_ENDPOINT/openai/deployments/$AZURE_OPENAI_DEPLOYMENT_NAME/chat/completions?api-version=2024-10-21 \
 -H "Content-Type: application/json" \
 -H "api-key: $AZURE_OPENAI_API_KEY" \
 -d \
@@ -28,11 +27,14 @@ curl -i -X POST $AZURE_OPENAI_ENDPOINT/openai/deployments/$AZURE_OPENAI_DEPLOYME
 {
     "data_sources": [
         {
-            "type": "AzureCognitiveSearch",
+            "type": "azure_search",
             "parameters": {
                 "endpoint": "'$AZURE_AI_SEARCH_ENDPOINT'",
-                "key": "'$AZURE_AI_SEARCH_API_KEY'",
-                "index_name": "'$AZURE_AI_SEARCH_INDEX'"
+                "index_name": "'$AZURE_AI_SEARCH_INDEX'",
+                "authentication": {
+                    "type": "api_key",
+                    "key": "'$AZURE_AI_SEARCH_API_KEY'"
+                }
             }
         }
     ],
@@ -81,13 +83,11 @@ curl -i -X POST $AZURE_OPENAI_ENDPOINT/openai/deployments/$AZURE_OPENAI_DEPLOYME
         "prompt_tokens": 3779,
         "completion_tokens": 105,
         "total_tokens": 3884
-    }
+    },
+    "system_fingerprint": "fp_65792305e4"
 }
 ```
 
-> [!div class="nextstepaction"]
-> [I ran into an issue with sending the request.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=REST&Pillar=AOAI&Product=ownData&Page=quickstart&Section=Send-request)
-
 ## Chat with your model using a web app
 
-To start chatting with the Azure OpenAI model that uses your data, you can deploy a web app using [Azure OpenAI studio](../concepts/use-your-data.md#deploy-to-a-copilot-preview-teams-app-preview-or-web-app) or example code we [provide on GitHub](https://go.microsoft.com/fwlink/?linkid=2244395). This app deploys using Azure app service, and provides a user interface for sending queries. This app can be used with Azure OpenAI models that use your data, or models that don't use your data. See the readme file in the repo for instructions on requirements, setup, and deployment. You can optionally customize the [frontend and backend logic](../how-to/use-web-app.md#customizing-the-application-using-environment-variables) of the web app by making changes to the source code.
+To start chatting with the Azure OpenAI model that uses your data, you can deploy a web app using [Azure AI Foundry portal](../concepts/use-your-data.md#deploy-to-a-copilot-preview-teams-app-preview-or-web-app) or example code we [provide on GitHub](https://go.microsoft.com/fwlink/?linkid=2244395). This app deploys using Azure app service, and provides a user interface for sending queries. This app can be used with Azure OpenAI models that use your data, or models that don't use your data. See the readme file in the repo for instructions on requirements, setup, and deployment. You can optionally customize the [frontend and backend logic](../how-to/use-web-app.md#customizing-the-application-using-environment-variables) of the web app by making changes to the source code.

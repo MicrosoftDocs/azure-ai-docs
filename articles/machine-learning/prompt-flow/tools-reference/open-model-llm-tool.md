@@ -51,9 +51,9 @@ In order for prompt flow to use your deployed model, you need to connect to it. 
 
 ### Endpoint connections
 
-Once your flow is associated to an Azure Machine Learning or Azure AI Studio workspace, the Open Model LLM tool can use the endpoints on that workspace.
+Once your flow is associated to an Azure Machine Learning or Azure AI Foundry workspace, the Open Model LLM tool can use the endpoints on that workspace.
 
-- **Using Azure Machine Learning or Azure AI Studio workspaces**: If you're using prompt flow in one of the web page based browsers workspaces, the online endpoints available on that workspace who up automatically.
+- **Using Azure Machine Learning or Azure AI Foundry workspaces**: If you're using prompt flow in one of the web page based browsers workspaces, the online endpoints available on that workspace who up automatically.
 
 - **Using VS Code or code first**: If you're using prompt flow in VS Code or one of the Code First offerings, you need to connect to the workspace. The Open Model LLM tool uses the azure.identity DefaultAzureCredential client for authorization. One way is through [setting environment credential values](/python/api/azure-identity/azure.identity.environmentcredential).
 

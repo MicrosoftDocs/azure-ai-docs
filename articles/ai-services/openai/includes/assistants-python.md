@@ -3,8 +3,8 @@ title: 'Quickstart: Use the OpenAI Service via the Python SDK'
 titleSuffix: Azure OpenAI Service
 description: Walkthrough on how to get started with Azure OpenAI and make your first Assistants call with the Python SDK. 
 manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+author: aahill
+ms.author: aahi
 ms.service: azure-ai-openai
 ms.topic: include
 ms.date: 05/22/2024
@@ -24,7 +24,7 @@ ms.date: 05/22/2024
 
 ## Passwordless authentication is recommended
 
-For passwordless authentication, you need to 
+For passwordless authentication, you need to:
 
 1. Use the [azure-identity](https://pypi.org/project/azure-identity/) package.
 2. Assign the `Cognitive Services User` role to your user account. This can be done in the Azure portal under **Access control (IAM)** > **Add role assignment**.
@@ -44,8 +44,6 @@ pip install openai
 pip install azure-identity
 ```
 
-[!INCLUDE [Assistants v2 note](./assistants-v2-note.md)]
-
 > [!NOTE]
 > This library is maintained by OpenAI. Refer to the [release history](https://github.com/openai/openai-python/releases) to track the latest updates to the library.
 
@@ -55,9 +53,9 @@ To successfully make a call against the Azure OpenAI service, you'll need the fo
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys and Endpoint** section when examining your resource from the Azure portal. Alternatively, you can find the value in **Azure OpenAI Studio** > **Playground** > **View code**. An example endpoint is: `https://docs-test-001.openai.azure.com/`.|
+| `ENDPOINT`               | This value can be found in the **Keys and Endpoint** section when examining your resource from the Azure portal. You can also find the endpoint via the **Deployments** page in Azure AI Foundry portal. An example endpoint is: `https://docs-test-001.openai.azure.com/`.|
 | `API-KEY` | This value can be found in the **Keys and Endpoint** section when examining your resource from the Azure portal. You can use either `KEY1` or `KEY2`.|
-| `DEPLOYMENT-NAME` | This value will correspond to the custom name you chose for your deployment when you deployed a model. This value can be found under **Resource Management** > **Model Deployments** in the Azure portal or alternatively under **Management** > **Deployments** in Azure OpenAI Studio.|
+| `DEPLOYMENT-NAME` | This value will correspond to the custom name you chose for your deployment when you deployed a model. This value can be found under **Resource Management** > **Model Deployments** in the Azure portal or via the **Deployments** page in Azure AI Foundry portal.|
 
 Go to your resource in the Azure portal. The **Keys and Endpoint** can be found in the **Resource Management** section. Copy your endpoint and access key as you'll need both for authenticating your API calls. You can use either `KEY1` or `KEY2`. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption.
 

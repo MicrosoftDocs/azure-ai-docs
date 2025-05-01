@@ -9,7 +9,7 @@ ms.custom: build-2023
 author: Blackmist
 ms.author: larryfr
 ms.reviewer: kritifaujdar
-ms.date: 04/29/2024
+ms.date: 04/04/2025
 ms.topic: how-to
 ---
 
@@ -35,18 +35,18 @@ Using network isolation with private endpoints prevents the network traffic from
 
 
 > [!NOTE]
-> For simplicity, we will be referring to workspace, it's associated resources and the virtual network they are part of as secure workspace configuration. We will explore how to add Azure machine Learning registries as part of the existing configuration.
+> For simplicity, this article refers to a workspace, associated resources, and the virtual network they're part of as secure workspace configuration. It explores how to add Azure Machine Learning registries as part of the existing configuration.
 
-The following diagram shows a basic network configuration and how the Azure Machine Learning registry fits in. If you're already using Azure Machine Learning workspace and have a secure workspace configuration where all the resources are part of virtual network, you can create a private endpoint from the existing virtual network to Azure Machine Learning registry and it's associated resources (storage and ACR).
+The following diagram shows a basic network configuration and how the Azure Machine Learning registry fits in. If you're already using Azure Machine Learning workspace and have a secure workspace configuration where all the resources are part of virtual network, you can create a private endpoint from the existing virtual network to Azure Machine Learning registry and associated resources (storage and ACR).
 
-If you don't have a secure workspace configuration, you can create it using the [Create a secure workspace in Azure portal](tutorial-create-secure-workspace.md) or [Create a secure workspace with a template](tutorial-create-secure-workspace-template.md) articles.
+If you don't have a secure workspace configuration, you can create it using the [Create a secure workspace in Azure portal](tutorial-create-secure-workspace.md) article, [Bicep template](/samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/), or [Terraform template](https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure).
 
 
 :::image type="content" source="./media/how-to-registry-network-isolation/basic-network-isolation-registry.png" alt-text="Diagram of registry connected to Virtual network containing workspace and associated resources using private endpoint.":::
 
 ## Limitations
 
-If you are using an Azure Machine Learning registry with network isolation, you can view *model* assets in Azure Machine Learning studio. You won't be able to view other types of assets. You won't be able to perform any operations on Azure Machine Learning registry or assets under it using studio. Please use the Azure Machine Learning CLI or SDK instead.
+If you use an Azure Machine Learning registry with network isolation, you can view *model* assets in Azure Machine Learning studio. You aren't able to view other types of assets. You aren't able to perform any operations on Azure Machine Learning registry or assets under it using studio. Use the Azure Machine Learning CLI or SDK instead.
 
 ## Scenario: workspace configuration is secure and Azure Machine Learning registry is public
 
@@ -58,7 +58,7 @@ The identity (for example, a Data Scientist's Microsoft Entra user identity) use
 
 ### Share assets from workspace to registry 
 > [!NOTE]
-> Sharing a component from Azure Machine Learning workspace to Azure Machine Learning registry is not supported currently.
+> Sharing a component from Azure Machine Learning workspace to Azure Machine Learning registry isn't supported currently.
 
 Due to data exfiltration protection, it isn't possible to share an asset from secure workspace to a public registry if the storage account containing the asset has public access disabled. To enable asset sharing from workspace to registry:
 * Go to the **Networking** section of the storage account attached to the workspace (from where you would like to allow sharing of assets to registry)
@@ -93,11 +93,11 @@ __Outbound network configuration to access any Azure Machine Learning registry__
 
 This section describes the scenarios and required network configuration if you have a secure workspace configuration with Azure Machine Learning registries connected using private endpoint to a virtual network. 
 
-Azure Machine Learning registry has associated storage/ACR service instances. These service instances can also be connected to the VNet using private endpoints to secure the configuration. For more information, see the [How to create a private endpoint](#how-to-create-a-private-endpoint) section.
+Azure Machine Learning registry uses associated storage/ACR service instances. These service instances can also be connected to the VNet using private endpoints to secure the configuration. For more information, see the [How to create a private endpoint](#how-to-create-a-private-endpoint) section.
 
 ### How to find the Azure Storage Account and Azure Container Registry used by your registry
 
-The storage account and ACR used by your Azure Machine Learning registry are created under a managed resource group in your Azure subscription. The name of the managed resource group follows the pattern of `azureml-rg-<name-of-your-registry>_<GUID>`. The GUID is a randomly generated string. For example, if the name of your registry is "contosoreg", the name of the managed resource group would be `azureml-rg-contosoreg_<GUID>`.
+The storage account and ACR used by your Azure Machine Learning registry are created under a managed resource group in your Azure subscription. The name of the managed resource group follows the pattern of `azureml-rg-<name-of-your-registry>_<GUID>`. The GUID is a randomly generated string. For example, if the name of your registry is "contosoreg," the name of the managed resource group would be `azureml-rg-contosoreg_<GUID>`.
 
 In the Azure portal, you can find this resource group by searching for `azureml_rg-<name-of-your-registry>`. All the storage and ACR resources for your registry are available under this resource group.
 
@@ -105,13 +105,13 @@ In the Azure portal, you can find this resource group by searching for `azureml_
 
  
 > [!NOTE]
-> Creating an environment asset is not supported in a private registry where associated ACR has public access disabled. As a workaround, you can create an environment in Azure Machine Learning workspace and share it to Azure Machine Learning registry.
+> Creating an environment asset isn't supported in a private registry where associated ACR has public access disabled. As a workaround, you can create an environment in Azure Machine Learning workspace and share it to Azure Machine Learning registry.
 
 Clients need to be connected to the VNet to which the registry is connected with a private endpoint.
 
 ### Securely connect to your registry 
 
-To connect to a registry that's secured behind a VNet, use one of the following methods: 
+To connect to a registry secured behind a VNet, use one of the following methods: 
 
 * [Azure VPN gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways) - Connects on-premises networks to the VNet over a private connection. Connection is made over the public internet. There are two types of VPN gateways that you might use: 
 
@@ -125,7 +125,7 @@ To connect to a registry that's secured behind a VNet, use one of the following 
 
 ### Share assets from workspace to registry 
 > [!NOTE]
-> Sharing a component from Azure Machine Learning workspace to Azure Machine Learning registry is not supported currently.
+> Sharing a component from Azure Machine Learning workspace to Azure Machine Learning registry isn't supported currently.
 
 Due to data exfiltration protection, it isn't possible to share an asset from secure workspace to a private registry if the storage account containing the asset has public access disabled. To enable asset sharing from workspace to registry:
 * Go to the **Networking** section of the storage account attached to the workspace (from where you would like to allow sharing of assets to registry)
@@ -140,7 +140,7 @@ Example operations:
 * Use a component from registry in a pipeline.
 * Use an environment from registry in a component.
 
-Create a private endpoint to the registry, storage and ACR from the VNet of the workspace. If you're trying to connect to multiple registries, create private endpoint for each registry and associated storage and ACRs. For more information, see the [How to create a private endpoint](#how-to-create-a-private-endpoint) section.
+Create a private endpoint to the registry, storage, and ACR in the **same subnet** as the private endpoint of the AML workspace. If you're trying to connect to multiple registries, create private endpoint for each registry and associated storage and ACRs. For more information, see the [How to create a private endpoint](#how-to-create-a-private-endpoint) section.
 
 ### Deploy a model from registry to workspace 
 
@@ -178,7 +178,7 @@ Use the tabs to view instructions to either add a private endpoint to an __exist
 
 ### How to find the Azure Storage Account and Azure Container Registry used by your registry
 
-The storage account and ACR used by your Azure Machine Learning registry are created under a managed resource group in your Azure subscription. The name of the managed resource group follows the pattern of `azureml-rg-<name-of-your-registry>_<GUID>`. The GUID is a randomly generated string. For example, if the name of your registry is "contosoreg", the name of the managed resource group would be `azureml-rg-contosoreg_<GUID>`.
+The storage account and ACR used by your Azure Machine Learning registry are created under a managed resource group in your Azure subscription. The name of the managed resource group follows the pattern of `azureml-rg-<name-of-your-registry>_<GUID>`. The GUID is a randomly generated string. For example, if the name of your registry is "contosoreg," the name of the managed resource group would be `azureml-rg-contosoreg_<GUID>`.
 
 In the Azure portal, you can find this resource group by searching for `azureml_rg-<name-of-your-registry>`. All the storage and ACR resources for your registry are available under this resource group.
 
@@ -205,7 +205,7 @@ For a system registry, we recommend creating a Service Endpoint Policy for the S
 ## How to find the registry's fully qualified domain name
 
 > [!NOTE]
-> Make sure your DNS is able to resolve the registry private FQDN which is in this format: `<registry-guid>.registry.<region>.privatelink.api.azureml.ms` as there is no public resource specific FQDN  which is recursively resolved by Azure DNS.
+> Make sure your DNS is able to resolve the registry private FQDN which is in this format: `<registry-guid>.registry.<region>.privatelink.api.azureml.ms` as there's no public resource specific FQDN  which is recursively resolved by Azure DNS.
 
 The following examples show how to use the discovery URL to get the fully qualified domain name (FQDN) of your registry. When calling the discovery URL, you must provide an Azure access token in the request header. The following examples show how to get an access token and call the discovery URL:
 

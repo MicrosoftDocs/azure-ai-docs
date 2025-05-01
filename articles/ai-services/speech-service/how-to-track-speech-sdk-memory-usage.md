@@ -7,10 +7,11 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/21/2024
+ms.date: 3/10/2025
 ms.reviewer: rhurey
 ms.custom: devx-track-csharp, devx-track-extended-java, devx-track-python
-zone_pivot_groups: programming-languages-set-two
+zone_pivot_groups: programming-languages-set-two-objective-c
+#Customer intent: As a developer, I want to learn how to track memory usage in the Speech SDK so that I can manage resources effectively.
 ---
 
 # How to track Speech SDK memory usage
@@ -69,7 +70,7 @@ speech_config.set_property_by_name("SPEECH-ObjectCountWarnThreshold", "10000")?
 
 ::: zone-end
 
-::: zone pivot="programming-language-more"
+::: zone pivot="programming-language-objectivec"
 
 ```ObjectiveC
 [config setPropertyTo:@"10000" byName:"SPEECH-ObjectCountWarnThreshold"];
@@ -130,7 +131,7 @@ speech_config.set_property_by_name("SPEECH-ObjectCountErrorThreshold", "10000")?
 
 ::: zone-end
 
-::: zone pivot="programming-language-more"
+::: zone pivot="programming-language-objectivec"
 
 ```objc
 [config setPropertyTo:@"10000" byName:"SPEECH-ObjectCountErrorThreshold"];

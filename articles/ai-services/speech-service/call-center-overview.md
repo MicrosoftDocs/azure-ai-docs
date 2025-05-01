@@ -2,14 +2,15 @@
 title: Azure AI services for Call Center Overview
 titleSuffix: Azure AI services
 description: Azure AI services for Language and Speech can help you realize partial or full automation of telephony-based customer interactions, and provide accessibility across multiple channels.
-author: goergenj
-ms.author: jagoerge
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 1/18/2024
+ms.date: 3/10/2025
+author: eric-urban
+ms.author: eur
+ms.reviewer: jagoerge
 ---
 
-# Call Center Overview
+# Call center overview
 
 Azure AI Language and Azure AI Speech can help you realize partial or full automation of telephony-based customer interactions, and provide accessibility across multiple channels. With the Language and Speech services, you can further analyze call center transcriptions, extract and redact conversation   (PII), summarize the transcription, and detect the sentiment.
 

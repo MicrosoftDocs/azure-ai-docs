@@ -1,53 +1,135 @@
 ---
-title: Summarize text with the extractive summarization API
+title: Summarize native documents with the extractive summarization API
 titleSuffix: Azure AI services
-description: This article shows you how to summarize text with the extractive summarization API.
-#services: cognitive-services
-author: jboback
+description: This article shows you how to summarize native documents with the extractive summarization API.
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 12/19/2023
-ms.author: jboback
+ms.date: 03/05/2025
+ms.author: lajanuar
 ms.custom:
   - language-service-summarization
-  - ignite-2023
-  - build-2024
 ---
 
-# How to use text summarization
+# How to use native document summarization (preview)
 
-Text summarization is designed to shorten content that users consider too long to read. Both extractive and abstractive summarization condense articles, papers, or documents to key sentences.
+> [!IMPORTANT]
+>
+> * Azure AI Language public preview releases provide early access to features that are in active development.
+> * Features, approaches, and processes may change, before General Availability (GA), based on user feedback.
 
-**Extractive summarization**: Produces a summary by extracting sentences that collectively represent the most important or relevant information within the original content.
+Azure AI Language is a cloud-based service that applies Natural Language Processing (NLP) features to text-based data. Document summarization uses natural language processing to generate extractive (salient sentence extraction) or abstractive (contextual word extraction) summaries for documents. Both `AbstractiveSummarization` and `ExtractiveSummarization` APIs support native document processing. A native document refers to the file format used to create the original document such as Microsoft Word (docx) or a portable document file (pdf). Native document support eliminates the need for text preprocessing before using Azure AI Language resource capabilities. The native document support capability enables you to send API requests asynchronously, using an HTTP POST request body to send your data and HTTP GET request query string to retrieve the status results. Your processed documents are located in your Azure Blob Storage target container.
 
-**Abstractive summarization**: Produces a summary by generating summarized sentences from the document that capture the main idea.
+## Supported document formats
 
-**Query-focused summarization**: Allows you to use a query when summarizing.
+ Applications use native file formats to create, save, or open native documents. Currently **PII** and **Document summarization** capabilities supports the following native document formats:
 
-Each of these capabilities are able to summarize around specific items of interest when specified.
+|File type|File extension|Description|
+|---------|--------------|-----------|
+|Text| `.txt`|An unformatted text document.|
+|Adobe PDF| `.pdf`|A portable document file formatted document.|
+|Microsoft Word| `.docx`|A Microsoft Word document file.|
 
-The AI models used by the API are provided by the service, you just have to send content for analysis.
+## Input guidelines
 
-For easier navigation, here are links to the corresponding sections for each service:
+***Supported file formats***
 
-|Aspect       |Section                                                            |
-|-------------|-------------------------------------------------------------------|
-|Extractive   |[Extractive Summarization](#try-text-extractive-summarization) |
-|Abstractive  |[Abstractive Summarization](#try-text-abstractive-summarization)|
-|Query-focused|[Query-focused Summarization](#query-based-summarization)          |
+|Type|support and limitations|
+|---|---|
+|**PDFs**| Fully scanned PDFs aren't supported.|
+|**Text within images**| Digital images with embedded text aren't supported.|
+|**Digital tables**| Tables in scanned documents aren't supported.|
 
+***Document Size***
 
-## Features
+|Attribute|Input limit|
+|---|---|
+|**Total number of documents per request** |**≤ 20**|
+|**Total content size per request**| **≤ 10 MB**|
 
-> [!TIP]
-> If you want to start using these features, you can follow the [quickstart article](../quickstart.md) to get started. You can also make example requests using [Language Studio](../../language-studio.md) without needing to write code.
+## Include native documents with an HTTP request
+
+***Let's get started:***
+
+* For this project, we use the cURL command line tool to make REST API calls.
+
+    > [!NOTE]
+    > The cURL package is preinstalled on most Windows 10 and Windows 11 and most macOS and Linux distributions. You can check the package version with the following commands:
+    > Windows: `curl.exe -V`
+    > macOS `curl -V`
+    > Linux: `curl --version`
+
+* If cURL isn't installed, here are installation links for your platform:
+
+  * [Windows](https://curl.haxx.se/windows/).
+  * [Mac or Linux](https://learn2torials.com/thread/how-to-install-curl-on-mac-or-linux-(ubuntu)-or-windows).
+
+* An active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [**create a free account**](https://azure.microsoft.com/free/).
+
+* An [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). You also need to [create containers](#create-azure-blob-storage-containers) in your Azure Blob Storage account for your source and target files:
+
+  * **Source container**. This container is where you upload your native files for analysis (required).
+  * **Target container**. This container is where your analyzed files are stored (required).
+
+* A [**single-service Language resource**](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) (**not** a multi-service Azure AI services resource):
+
+  **Complete the Language resource project and instance details fields as follows:**
+
+  1. **Subscription**. Select one of your available Azure subscriptions.
+
+  1. **Resource Group**. You can create a new resource group or add your resource to a preexisting resource group that shares the same lifecycle, permissions, and policies.
+
+  1. **Resource Region**. Choose **Global** unless your business or application requires a specific region. If you're planning on using a [system-assigned managed identity](../../concepts/role-based-access-control.md) for authentication, choose a **geographic** region like **West US**.
+
+  1. **Name**. Enter the name you chose for your resource. The name you choose must be unique within Azure.
+
+  1. **Pricing tier**. You can use the free pricing tier (`Free F0`) to try the service, and upgrade later to a paid tier for production.
+
+  1. Select **Review + Create**.
+
+  1. Review the service terms and select **Create** to deploy your resource.
+
+  1. After your resource successfully deploys, select **Go to resource**.
+
+### Retrieve your key and language service endpoint
+
+Requests to the Language service require a read-only key and custom endpoint to authenticate access.
+
+1. If you created a new resource, after it deploys, select **Go to resource**. If you have an existing language service resource, navigate directly to your resource page.
+
+1. In the left rail, under *Resource Management*, select **Keys and Endpoint**.
+
+1. You can copy and paste your **`key`** and your **`language service instance endpoint`** into the code samples to authenticate your request to the Language service. Only one key is necessary to make an API call.
+
+## Create Azure Blob Storage containers
+
+[**Create containers**](/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container) in your [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM) for source and target files.
+
+* **Source container**. This container is where you upload your native files for analysis (required).
+* **Target container**. This container is where your analyzed files are stored (required).
+
+### **Authentication**
+
+Your Language resource needs granted access to your storage account before it can create, read, or delete blobs. There are two primary methods you can use to grant access to your storage data:
+
+* [**Shared access signature (SAS) tokens**](../../native-document-support/shared-access-signatures.md). User delegation SAS tokens are secured with Microsoft Entra credentials. SAS tokens provide secure, delegated access to resources in your Azure storage account.
+
+* [**Managed identity role-based access control (RBAC)**](../../native-document-support/managed-identities.md). Managed identities for Azure resources are service principals that create a Microsoft Entra identity and specific permissions for Azure managed resources.
+
+For this project, we authenticate access to the `source location` and `target location` URLs with Shared Access Signature (SAS) tokens appended as query strings. Each token is assigned to a specific blob (file).
+
+:::image type="content" source="../../native-document-support/media/sas-url-token.png" alt-text="Screenshot of a storage url with SAS token appended.":::
+
+* Your **source** container or blob must designate **read** and **list** access.
+* Your **target** container or blob must designate **write** and **list** access.
 
 The extractive summarization API uses natural language processing techniques to locate key sentences in an unstructured text document. These sentences collectively convey the main idea of the document.
 
 Extractive summarization returns a rank score as a part of the system response along with extracted sentences and their position in the original documents. A rank score is an indicator of how relevant a sentence is determined to be, to the main idea of a document. The model gives a score between 0 and 1 (inclusive) to each sentence and returns the highest scored sentences per request. For example, if you request a three-sentence summary, the service returns the three highest scored sentences.
 
-There's another feature in Azure AI Language, [key phrase extraction](./../../key-phrase-extraction/how-to/call-api.md), that can extract key information. When deciding between key phrase extraction and extractive summarization, consider the following:
+There's another feature in Azure AI Language, [key phrase extraction](./../../key-phrase-extraction/how-to/call-api.md), that can extract key information. To decide between key phrase extraction and extractive summarization, here are helpful considerations:
+
 * Key phrase extraction returns phrases while extractive summarization returns sentences.
 * Extractive summarization returns sentences together with a rank score, and top ranked sentences are returned per request.
 * Extractive summarization also returns the following positional information:
@@ -66,13 +148,13 @@ When you use this feature, the API results are available for 24 hours from the t
 
 When you get results from language detection, you can stream the results to an application or save the output to a file on the local system.
 
-The following is an example of content you might submit for summarization, which is extracted using the Microsoft blog article [A holistic representation toward integrative AI](https://www.microsoft.com/research/blog/a-holistic-representation-toward-integrative-ai/). This article is only an example, the API can accept longer input text. See the data limits section for more information.
+Here's an example of content you might submit for summarization, which is extracted using the Microsoft blog article [A holistic representation toward integrative AI](https://www.microsoft.com/research/blog/a-holistic-representation-toward-integrative-ai/). This article is only an example. The API can accept longer input text. For more information, *see* [data and service limits](../overview.md#input-requirements-and-service-limits).
  
-*"At Microsoft, we have been on a quest to advance AI beyond existing techniques, by taking a more holistic, human-centric approach to learning and understanding. As Chief Technology Officer of Azure AI services, I have been working with a team of amazing scientists and engineers to turn this quest into a reality. In my role, I enjoy a unique perspective in viewing the relationship among three attributes of human cognition: monolingual text (X), audio or visual sensory signals, (Y) and multilingual (Z). At the intersection of all three, there’s magic—what we call XYZ-code as illustrated in Figure 1—a joint representation to create more powerful AI that can speak, hear, see, and understand humans better. We believe XYZ-code enables us to fulfill our long-term vision: cross-domain transfer learning, spanning modalities and languages. The goal is to have pretrained models that can jointly learn representations to support a broad range of downstream AI tasks, much in the way humans do today. Over the past five years, we have achieved human performance on benchmarks in conversational speech recognition, machine translation, conversational question answering, machine reading comprehension, and image captioning. These five breakthroughs provided us with strong signals toward our more ambitious aspiration to produce a leap in AI capabilities, achieving multi-sensory and multilingual learning that is closer in line with how humans learn and understand. I believe the joint XYZ-code is a foundational component of this aspiration, if grounded with external knowledge sources in the downstream AI tasks."*
+*"At Microsoft, we have been on a quest to advance AI beyond existing techniques, by taking a more holistic, human-centric approach to learning and understanding. As Chief Technology Officer of Azure AI services, I have been working with a team of amazing scientists and engineers to turn this quest into a reality. In my role, I enjoy a unique perspective in viewing the relationship among three attributes of human cognition: monolingual text (X), audio or visual sensory signals, (Y) and multilingual (Z). At the intersection of all three, there's magic—what we call XYZ-code as illustrated in Figure 1—a joint representation to create more powerful AI that can speak, hear, see, and understand humans better. We believe XYZ-code enables us to fulfill our long-term vision: cross-domain transfer learning, spanning modalities and languages. The goal is to have pretrained models that can jointly learn representations to support a broad range of downstream AI tasks, much in the way humans do today. Over the past five years, we have achieved human performance on benchmarks in conversational speech recognition, machine translation, conversational question answering, machine reading comprehension, and image captioning. These five breakthroughs provided us with strong signals toward our more ambitious aspiration to produce a leap in AI capabilities, achieving multi-sensory and multilingual learning that is closer in line with how humans learn and understand. I believe the joint XYZ-code is a foundational component of this aspiration, if grounded with external knowledge sources in the downstream AI tasks."*
 
-The text summarization API request is processed upon receipt of the request by creating a job for the API backend. If the job succeeded, the output of the API is returned. The output is available for retrieval for 24 hours. After this time, the output is purged. Due to multilingual and emoji support, the response might contain text offsets. See [how to process offsets](../../concepts/multilingual-emoji-support.md) for more information.
+The text summarization API request is processed upon receipt of the request by creating a job for the API backend. If the job succeeded, the output of the API is returned. The output is available for retrieval for 24 hours. After this time, the output is purged. Due to multilingual and emoji support, the response might contain text offsets. For more information, *see* [how to process offsets](../../concepts/multilingual-emoji-support.md).
 
-When you use the above example, the API might return the following summarized sentences:
+When you use the preceding example, the API might return these summarized sentences:
 
 **Extractive summarization**:
 - "At Microsoft, we have been on a quest to advance AI beyond existing techniques, by taking a more holistic, human-centric approach to learning and understanding."
@@ -99,7 +181,7 @@ You can also use the `sortby` parameter to specify in what order the extracted s
 
 The following example gets you started with text abstractive summarization:
 
-1. Copy the command below into a text editor. The BASH example uses the `\` line continuation character. If your console or terminal uses a different line continuation character, use that character instead.
+1. Copy the following command into a text editor. The BASH example uses the `\` line continuation character. If your console or terminal uses a different line continuation character, use that character instead.
 
 ```bash
 curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-text/jobs?api-version=2023-04-01 \
@@ -114,7 +196,7 @@ curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-text/
       {
         "id": "1",
         "language": "en",
-        "text": "At Microsoft, we have been on a quest to advance AI beyond existing techniques, by taking a more holistic, human-centric approach to learning and understanding. As Chief Technology Officer of Azure AI services, I have been working with a team of amazing scientists and engineers to turn this quest into a reality. In my role, I enjoy a unique perspective in viewing the relationship among three attributes of human cognition: monolingual text (X), audio or visual sensory signals, (Y) and multilingual (Z). At the intersection of all three, there’s magic—what we call XYZ-code as illustrated in Figure 1—a joint representation to create more powerful AI that can speak, hear, see, and understand humans better. We believe XYZ-code enables us to fulfill our long-term vision: cross-domain transfer learning, spanning modalities and languages. The goal is to have pretrained models that can jointly learn representations to support a broad range of downstream AI tasks, much in the way humans do today. Over the past five years, we have achieved human performance on benchmarks in conversational speech recognition, machine translation, conversational question answering, machine reading comprehension, and image captioning. These five breakthroughs provided us with strong signals toward our more ambitious aspiration to produce a leap in AI capabilities, achieving multi-sensory and multilingual learning that is closer in line with how humans learn and understand. I believe the joint XYZ-code is a foundational component of this aspiration, if grounded with external knowledge sources in the downstream AI tasks."
+        "text": "At Microsoft, we have been on a quest to advance AI beyond existing techniques, by taking a more holistic, human-centric approach to learning and understanding. As Chief Technology Officer of Azure AI services, I have been working with a team of amazing scientists and engineers to turn this quest into a reality. In my role, I enjoy a unique perspective in viewing the relationship among three attributes of human cognition: monolingual text (X), audio or visual sensory signals, (Y) and multilingual (Z). At the intersection of all three, there's magic—what we call XYZ-code as illustrated in Figure 1—a joint representation to create more powerful AI that can speak, hear, see, and understand humans better. We believe XYZ-code enables us to fulfill our long-term vision: cross-domain transfer learning, spanning modalities and languages. The goal is to have pretrained models that can jointly learn representations to support a broad range of downstream AI tasks, much in the way humans do today. Over the past five years, we have achieved human performance on benchmarks in conversational speech recognition, machine translation, conversational question answering, machine reading comprehension, and image captioning. These five breakthroughs provided us with strong signals toward our more ambitious aspiration to produce a leap in AI capabilities, achieving multi-sensory and multilingual learning that is closer in line with how humans learn and understand. I believe the joint XYZ-code is a foundational component of this aspiration, if grounded with external knowledge sources in the downstream AI tasks."
       }
     ]
   },
@@ -122,22 +204,11 @@ curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-text/
     {
       "kind": "AbstractiveSummarization",
       "taskName": "Text Abstractive Summarization Task 1",
-      "parameters": {
-        "summaryLength": "short"
-      }
     }
   ]
 }
 '
 ```
-If you don't specify `summaryLength`, the model determines the summary length.
-
-### Using the summaryLength parameter
-For the `summaryLength` parameter, three values are accepted:
-* oneSentence: Generates a summary of mostly 1 sentence, with around 80 tokens.
-* short: Generates a summary of mostly 2-3 sentences, with around 120 tokens.
-* medium: Generates a summary of mostly 4-6 sentences, with around 170 tokens.
-* long: Generates a summary of mostly over 7 sentences, with around 210 tokens.
 
 2. Make the following changes in the command where needed:
     - Replace the value `your-language-resource-key` with your key.
@@ -211,68 +282,180 @@ curl -X GET https://<your-language-resource-endpoint>/language/analyze-text/jobs
 
 |parameter  |Description  |
 |---------|---------|
-|`-X POST <endpoint>`     | Specifies your endpoint for accessing the API.        |
-|`-H Content-Type: application/json`     | The content type for sending JSON data.          |
-|`-H "Ocp-Apim-Subscription-Key:<key>`    | Specifies the key for accessing the API.        |
-|`-d <documents>`     | The JSON containing the documents you want to send.         |
+|`-X POST <endpoint>`     | Specifies your Language resource endpoint for accessing the API.        |
+|`--header Content-Type: application/json`     | The content type for sending JSON data.          |
+|`--header "Ocp-Apim-Subscription-Key:<key>`    | Specifies the Language resource key for accessing the API.        |
+|`-data`     | The JSON file containing the data you want to pass with your request.         |
 
-The following cURL commands are executed from a BASH shell. Edit these commands with your own resource name, resource key, and JSON values.
+The following cURL commands are executed from a BASH shell. Edit these commands with your own resource name, resource key, and JSON values. Try analyzing native documents by selecting the `Personally Identifiable Information (PII)` or `Document Summarization` code sample project:
 
-## Query based summarization
+### Summarization sample document
 
-The query-based text summarization API is an extension to the existing text summarization API.
+For this project, you need a **source document** uploaded to your **source container**. You can download our [Microsoft Word sample document](https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/Language/native-document-summarization.docx) or [Adobe PDF](https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/Language/native-document-summarization.pdf) for this quickstart. The source language is English.
 
-The biggest difference is a new `query` field in the request body (under `tasks` > `parameters` > `query`). Additionally, there's a new way to specify the preferred `summaryLength` in "buckets" of short/medium/long, which we recommend using instead of `sentenceCount`, especially when using abstractive. Below is an example request:
+### Build the POST request
 
-```bash
-curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-text/jobs?api-version=2023-11-15-preview \
--H "Content-Type: application/json" \
--H "Ocp-Apim-Subscription-Key: <your-language-resource-key>" \
--d \
-' 
-{
-  "displayName": "Text Extractive Summarization Task Example",
+1. Using your preferred editor or IDE, create a new directory for your app named `native-document`.
+1. Create a new json file called **document-summarization.json** in your **native-document** directory.
+
+1. Copy and paste the Document Summarization **request sample** into your `document-summarization.json` file. Replace **`{your-source-container-SAS-URL}`** and **`{your-target-container-SAS-URL}`** with values from your Azure portal Storage account containers instance:
+
+  ***Request sample***
+
+```json
+  {
+  "tasks": [
+    {
+      "kind": "ExtractiveSummarization",
+      "parameters": {
+        "sentenceCount": 6
+      }
+    }
+  ],
   "analysisInput": {
     "documents": [
       {
-        "id": "1",
-        "language": "en",
-        "text": "At Microsoft, we have been on a quest to advance AI beyond existing techniques, by taking a more holistic, human-centric approach to learning and understanding. As Chief Technology Officer of Azure AI services, I have been working with a team of amazing scientists and engineers to turn this quest into a reality. In my role, I enjoy a unique perspective in viewing the relationship among three attributes of human cognition: monolingual text (X), audio or visual sensory signals, (Y) and multilingual (Z). At the intersection of all three, there’s magic—what we call XYZ-code as illustrated in Figure 1—a joint representation to create more powerful AI that can speak, hear, see, and understand humans better. We believe XYZ-code enables us to fulfill our long-term vision: cross-domain transfer learning, spanning modalities and languages. The goal is to have pretrained models that can jointly learn representations to support a broad range of downstream AI tasks, much in the way humans do today. Over the past five years, we have achieved human performance on benchmarks in conversational speech recognition, machine translation, conversational question answering, machine reading comprehension, and image captioning. These five breakthroughs provided us with strong signals toward our more ambitious aspiration to produce a leap in AI capabilities, achieving multi-sensory and multilingual learning that is closer in line with how humans learn and understand. I believe the joint XYZ-code is a foundational component of this aspiration, if grounded with external knowledge sources in the downstream AI tasks."
+        "source": {
+          "location": "{your-source-blob-SAS-URL}"
+        },
+        "targets": {
+          "location": "{your-target-container-SAS-URL}"
+        }
       }
     ]
-  },
-"tasks": [
-    {
-      "kind": "AbstractiveSummarization",
-      "taskName": "Query-based Abstractive Summarization",
-      "parameters": {
-          "query": "XYZ-code",
-          "summaryLength": "short"
-      }
-    },    {
-      "kind": "ExtractiveSummarization",
-      "taskName": "Query_based Extractive Summarization",
-      "parameters": {
-          "query": "XYZ-code",
-          "sentenceCount": 3
-      }
-    }
-  ]
+  }
 }
-'
+
 ```
 
-### Using the summaryLength parameter
-For the `summaryLength` parameter, three values are accepted:
-* oneSentence: Generates a summary of mostly 1 sentence, with around 80 tokens.
-* short: Generates a summary of mostly 2-3 sentences, with around 120 tokens.
-* medium: Generates a summary of mostly 4-6 sentences, with around 170 tokens.
-* long: Generates a summary of mostly over 7 sentences, with around 210 tokens.
+### Run the POST request
 
-## Service and data limits
+Before you run the **POST** request, replace `{your-language-resource-endpoint}` and `{your-key}` with the endpoint value from your Azure portal Language resource instance.
 
-[!INCLUDE [service limits article](../../includes/service-limits-link.md)]
+  > [!IMPORTANT]
+  > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, *see* Azure AI services [security](/azure/ai-services/security-features).
 
-## See also
+  ***PowerShell***
 
-* [Summarization overview](../overview.md)
+  ```powershell
+   cmd /c curl "{your-language-resource-endpoint}/language/analyze-documents/jobs?api-version=2024-11-15-preview" -i -X POST --header "Content-Type: application/json" --header "Ocp-Apim-Subscription-Key: {your-key}" --data "@document-summarization.json"
+  ```
+
+  ***command prompt / terminal***
+
+  ```bash
+  curl -v -X POST "{your-language-resource-endpoint}/language/analyze-documents/jobs?api-version=2024-11-15-preview" --header "Content-Type: application/json" --header "Ocp-Apim-Subscription-Key: {your-key}" --data "@document-summarization.json"
+  ```
+
+#### Sample response:
+
+   ```http
+   HTTP/1.1 202 Accepted
+   Content-Length: 0
+   operation-location: https://{your-language-resource-endpoint}/language/analyze-documents/jobs/f1cc29ff-9738-42ea-afa5-98d2d3cabf94?api-version=2024-11-15-preview
+   apim-request-id: e7d6fa0c-0efd-416a-8b1e-1cd9287f5f81
+   x-ms-region: West US 2
+   Date: Thu, 25 Jan 2024 15:12:32 GMT
+   ```
+
+### POST response (jobId)
+
+You receive a 202 (Success) response that includes a read-only Operation-Location header. The value of this header contains a jobId that can be queried to get the status of the asynchronous operation and retrieve the results using a GET request:
+
+  :::image type="content" source="../../native-document-support/media/operation-location-result-id.png" alt-text="Screenshot showing the operation-location value in the POST response.":::
+
+## Get analyze results (GET request)
+
+1. After your successful **POST** request, poll the operation-location header returned in the POST request to view the processed data.
+
+1. Here's the structure of the **GET** request:
+
+   ```bash
+   GET {cognitive-service-endpoint}/language/analyze-documents/jobs/{jobId}?api-version=2024-11-15-preview
+   ```
+
+1. Before you run the command, make these changes:
+
+    * Replace {**jobId**} with the Operation-Location header from the POST response.
+
+    * Replace {**your-language-resource-endpoint**} and {**your-key**} with the values from your Language service instance in the Azure portal.
+
+## Get request
+
+```powershell
+    cmd /c curl "{your-language-resource-endpoint}/language/analyze-documents/jobs/{jobId}?api-version=2024-11-15-preview" -i -X GET --header "Content-Type: application/json" --header "Ocp-Apim-Subscription-Key: {your-key}"
+```
+
+```bash
+    curl -v -X GET "{your-language-resource-endpoint}/language/analyze-documents/jobs/{jobId}?api-version=2024-11-15-preview" --header "Content-Type: application/json" --header "Ocp-Apim-Subscription-Key: {your-key}"
+```
+
+#### Examine the response
+
+You receive a 200 (Success) response with JSON output. The **status** field indicates the result of the operation. If the operation isn't complete, the value of **status** is "running" or "notStarted", and you should call the API again, either manually or through a script. We recommend an interval of one second or more between calls.
+
+#### Sample response
+
+```json
+{
+  "jobId": "f1cc29ff-9738-42ea-afa5-98d2d3cabf94",
+  "lastUpdatedDateTime": "2024-01-24T13:17:58Z",
+  "createdDateTime": "2024-01-24T13:17:47Z",
+  "expirationDateTime": "2024-01-25T13:17:47Z",
+  "status": "succeeded",
+  "errors": [],
+  "tasks": {
+    "completed": 1,
+    "failed": 0,
+    "inProgress": 0,
+    "total": 1,
+    "items": [
+      {
+        "kind": "ExtractiveSummarizationLROResults",
+        "lastUpdateDateTime": "2024-01-24T13:17:58.33934Z",
+        "status": "succeeded",
+        "results": {
+          "documents": [
+            {
+              "id": "doc_0",
+              "source": {
+                "kind": "AzureBlob",
+                "location": "https://myaccount.blob.core.windows.net/sample-input/input.pdf"
+              },
+              "targets": [
+                {
+                  "kind": "AzureBlob",
+                  "location": "https://myaccount.blob.core.windows.net/sample-output/df6611a3-fe74-44f8-b8d4-58ac7491cb13/ExtractiveSummarization-0001/input.result.json"
+                }
+              ],
+              "warnings": []
+            }
+          ],
+          "errors": [],
+          "modelVersion": "2023-02-01-preview"
+        }
+      }
+    ]
+  }
+}
+```
+
+***Upon successful completion***:
+
+* The analyzed documents can be found in your target container.
+* The successful POST method returns a `202 Accepted` response code indicating that the service created the batch request.
+* The POST request also returned response headers including `Operation-Location` that provides a value used in subsequent GET requests.
+
+## Clean up resources
+
+If you want to clean up and remove an Azure AI services subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
+
+* [Azure portal](../../../multi-service-resource.md?pivots=azportal#clean-up-resources)
+* [Azure CLI](../../../multi-service-resource.md?pivots=azcli#clean-up-resources)
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Document summarization overview](../overview.md "Learn more about native document summarization.")
+
+

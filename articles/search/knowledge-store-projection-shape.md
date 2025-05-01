@@ -4,11 +4,11 @@ titleSuffix: Azure AI Search
 description: Define the data structures in a knowledge store by creating data shapes and passing them to a projection.
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 03/18/2024
+ms.date: 12/10/2024
 ---
 
 # Shaping data for projection into a knowledge store

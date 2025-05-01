@@ -4,11 +4,11 @@ titleSuffix: Azure AI Search
 description: Enable Okapi BM25 ranking to upgrade the search ranking and relevance behavior on older Azure Search services.
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 07/22/2024
+ms.date: 02/24/2025
 ---
 
 # Configure BM25 relevance scoring
@@ -39,7 +39,7 @@ For older services, classic similarity remains the default algorithm. Older serv
 
 BM25 ranking provides two parameters for tuning the relevance score calculation. 
 
-1. Use a [Create or Update Index](/rest/api/searchservice/create-index) request to set BM25 parameters:
+1. Use a [Create or Update Index](/rest/api/searchservice/indexes/create) request to set BM25 parameters:
 
     ```http
     PUT [service-name].search.windows.net/indexes/[index-name]?api-version=2024-07-01&allowIndexDowntime=true
@@ -80,7 +80,7 @@ The following links describe the Similarity property in the Azure SDKs.
 
 ### REST example
 
-You can also use the [REST API](/rest/api/searchservice/create-index). The following example creates a new index with the "similarity" property set to BM25:
+You can also use the [REST API](/rest/api/searchservice/indexes/create). The following example creates a new index with the "similarity" property set to BM25:
 
 ```http
 PUT [service-name].search.windows.net/indexes/[index name]?api-version=2024-07-01
@@ -111,5 +111,5 @@ PUT [service-name].search.windows.net/indexes/[index name]?api-version=2024-07-0
 + [Relevance and scoring in Azure AI Search](index-similarity-and-scoring.md)
 + [REST API Reference](/rest/api/searchservice/)
 + [Add scoring profiles to your index](index-add-scoring-profiles.md)
-+ [Create Index API](/rest/api/searchservice/create-index)
++ [Create Index API](/rest/api/searchservice/indexes/create)
 + [Azure AI Search .NET SDK](/dotnet/api/overview/azure/search)

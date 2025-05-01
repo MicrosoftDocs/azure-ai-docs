@@ -9,10 +9,12 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: lagayhar
-ms.date: 03/07/2024
+ms.date: 09/30/2024
 ---
 
 # How to select algorithms for Azure Machine Learning
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 If you're wondering which machine learning algorithm to use, the answer depends primarily on two aspects of your data science scenario:
 
@@ -54,7 +56,7 @@ The following table summarizes some of the most important characteristics of alg
 | --- |:---:|:---:|:---:|:---:| --- |
 | **Classification family** | | | | | |
 | [Two-class logistic regression](../algorithm-module-reference/two-class-logistic-regression.md?WT.mc_id=docs-article-lazzeri) |Good  |Fast |Yes |4 | |
-| [Two-class decision forest](../algorithm-module-reference/two-class-decision-forest.md?WT.mc_id=docs-article-lazzeri) |Excellent |Moderate |No |5 |Shows slower scoring times. We suggest not working with One-vs-All Multiclass, because of slower scoring times caused by tread locking in accumulating tree predictions |
+| [Two-class decision forest](../algorithm-module-reference/two-class-decision-forest.md?WT.mc_id=docs-article-lazzeri) |Excellent |Moderate |No |5 |Shows slower scoring times. We suggest not working with One-vs-All Multiclass, because of slower scoring times caused by thread locking in accumulating tree predictions |
 | [Two-class boosted decision tree](../algorithm-module-reference/two-class-boosted-decision-tree.md?WT.mc_id=docs-article-lazzeri) |Excellent |Moderate |No |6 |Large memory footprint |
 | [Two-class neural network](../algorithm-module-reference/two-class-neural-network.md?WT.mc_id=docs-article-lazzeri) |Good |Moderate |No |8 | |
 | [Two-class averaged perceptron](../algorithm-module-reference/two-class-averaged-perceptron.md?WT.mc_id=docs-article-lazzeri) |Good |Moderate |Yes |4 | |

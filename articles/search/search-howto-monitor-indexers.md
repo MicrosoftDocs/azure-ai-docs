@@ -6,12 +6,12 @@ description: Monitor the status, progress, and results of Azure AI Search indexe
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - devx-track-dotnet
   - ignite-2023
 ms.topic: conceptual
-ms.date: 06/25/2024
+ms.date: 01/17/2025
 ---
 
 # Monitor indexer status and results in Azure AI Search
@@ -26,7 +26,7 @@ You can see the current status of all of your indexers in your search service Ov
 
 | Status | Description |
 |--------|-------------|
-| **In Progress** | Indicates active execution. The portal will report on partial information. As indexing progresses, you can watch the **Docs Succeeded** value grow in response. Indexers that process large volumes of data can take a long time to run. For example, indexers that handle millions of source documents can run for 24 hours, and then restart almost immediately to pick up where it left off. As such, the status for high-volume indexers might always say **In Progress** in the portal. Even when an indexer is running, details are available about ongoing progress and previous runs. |
+| **In Progress** | Indicates active execution. the Azure portal will report on partial information. As indexing progresses, you can watch the **Docs Succeeded** value grow in response. Indexers that process large volumes of data can take a long time to run. For example, indexers that handle millions of source documents can run for 24 hours, and then restart almost immediately to pick up where it left off. As such, the status for high-volume indexers might always say **In Progress** in the Azure portal. Even when an indexer is running, details are available about ongoing progress and previous runs. |
 | **Success** | Indicates the run was successful. An indexer run can be successful even if individual documents have errors, if the number of errors is less than the indexer's **Max failed items** setting. |
 | **Failed** | The number of errors exceeded **Max failed items** and indexing has stopped. |
 | **Reset** | The indexer's internal change tracking state was reset. The indexer will run in full, refreshing all documents, and not just those with newer timestamps. |

@@ -1,5 +1,4 @@
 ---
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
@@ -13,5 +12,5 @@ To use entity linking, you submit raw unstructured text for analysis and handle 
 
 |Development option  |Description  |
 |---------|---------|
-|Language studio     | Language Studio is a web-based platform that lets you try entity linking with text examples without an Azure account, and your own data when you sign up. For more information, see the [Language Studio website](https://language.cognitive.azure.com/tryout/linkedEntities) or [language studio quickstart](../../language-studio.md).         |
+|Language studio     | Language Studio is a web-based platform that lets you try entity linking with text examples without an Azure account, and your own data when you sign up. For more information, see the [Language Studio website](https://language.cognitive.azure.com/tryout/linkedEntities).         |
 |REST API or Client library (Azure SDK)      | Integrate entity linking into your applications using the REST API, or the client library available in a variety of languages. For more information, see the [entity linking quickstart](../quickstart.md).        |

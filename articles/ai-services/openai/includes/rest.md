@@ -2,11 +2,10 @@
 title: 'Quickstart: Use the OpenAI Service to make your first completions call with the REST API'
 titleSuffix: Azure OpenAI Service
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the REST API. 
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 02/02/2023
+ms.date: 03/26/2025
 ---
 
 ## Prerequisites
@@ -24,9 +23,9 @@ To successfully make a call against Azure OpenAI, you'll need the following:
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively, you can find the value in **Azure OpenAI Studio** > **Playground** > **Code View**. An example endpoint is: `https://docs-test-001.openai.azure.com/`.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can also find the endpoint via the **Deployments** page in Azure AI Foundry portal. An example endpoint is: `https://docs-test-001.openai.azure.com/`.|
 | `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either `KEY1` or `KEY2`.|
-| `DEPLOYMENT-NAME` | This value will correspond to the custom name you chose for your deployment when you deployed a model. This value can be found under **Resource Management** > **Deployments** in the Azure portal or alternatively under **Management** > **Deployments** in Azure OpenAI Studio.|
+| `DEPLOYMENT-NAME` | This value will correspond to the custom name you chose for your deployment when you deployed a model. This value can be found under **Resource Management** > **Deployments** in the Azure portal or via the **Deployments** page in Azure AI Foundry portal.|
 
 Go to your resource in the Azure portal. The **Endpoint and Keys** can be found in the **Resource Management** section. Copy your endpoint and access key as you'll need both for authenticating your API calls. You can use either `KEY1` or `KEY2`. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption.
 
@@ -34,22 +33,32 @@ Go to your resource in the Azure portal. The **Endpoint and Keys** can be found 
 
 [!INCLUDE [environment-variables](environment-variables.md)]
 
-> [!div class="nextstepaction"]
-> [I ran into an issue with the setup.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=REST&Pillar=AOAI&Product=gpt&Page=quickstart&Section=Set-up)
-
 
 ## REST API
 
 In a bash shell, run the following command. You will need to replace `gpt-35-turbo-instruct` with the deployment name you chose when you deployed the `gpt-35-turbo-instruct` model. Entering the model name will result in an error unless you chose a deployment name that is identical to the underlying model name.
 
+# [Microsoft Entra ID](#tab/entra)
+
 ```bash
-curl $AZURE_OPENAI_ENDPOINT/openai/deployments/gpt-35-turbo-instruct/completions?api-version=2024-02-01 \
+curl $AZURE_OPENAI_ENDPOINT/openai/deployments/gpt-35-turbo-instruct/completions?api-version=2024-10-21 \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d "{\"prompt\": \"Once upon a time\"}"
+```
+
+# [API Key](#tab/key)
+
+```bash
+curl $AZURE_OPENAI_ENDPOINT/openai/deployments/gpt-35-turbo-instruct/completions?api-version=2024-10-21 \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d "{\"prompt\": \"Once upon a time\"}"
 ```
 
-The format of your first line of the command with an example endpoint would appear as follows `curl https://docs-test-001.openai.azure.com/openai/deployments/{YOUR-DEPLOYMENT_NAME_HERE}/completions?api-version=2024-02-01 \`. If you encounter an error double check to make sure that you don't have a doubling of the `/` at the separation between your endpoint and `/openai/deployments`.
+---
+
+The format of your first line of the command with an example endpoint would appear as follows `curl https://docs-test-001.openai.azure.com/openai/deployments/{YOUR-DEPLOYMENT_NAME_HERE}/completions?api-version=2024-10-21 \`. If you encounter an error double check to make sure that you don't have a doubling of the `/` at the separation between your endpoint and `/openai/deployments`.
 
 If you want to run this command in a normal Windows command prompt you would need to alter the text to remove the `\` and line breaks.
 
@@ -82,8 +91,6 @@ The output from the completions API will look as follows.
 }
 ```
 
-> [!div class="nextstepaction"]
-> [I ran into an issue when running the code sample.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=REST&Pillar=AOAI&Product=gpt&Page=quickstart&Section=Create-sample-code)
 
 The Azure OpenAI Service also performs content moderation on the prompt inputs and generated outputs. The prompts or responses may be filtered if harmful content is detected. For more information, see the [content filter](../concepts/content-filter.md) article.
 
@@ -97,4 +104,4 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 ## Next steps
 
 * Learn more about how to generate the best completion in our [How-to guide on completions](../how-to/completions.md).
-* For more examples check out the [Azure OpenAI Samples GitHub repository](https://aka.ms/AOAICodeSamples).
+* For more examples check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai).

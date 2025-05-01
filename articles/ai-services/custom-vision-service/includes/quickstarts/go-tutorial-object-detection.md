@@ -11,14 +11,6 @@ This guide provides instructions and sample code to help you get started using t
 > [!NOTE]
 > If you want to build and train an object detection model _without_ writing code, see the [browser-based guidance](../../get-started-build-detector.md) instead.
 
-Use the Custom Vision client library for Go to:
-
-* Create a new Custom Vision project
-* Add tags to the project
-* Upload and tag images
-* Train the project
-* Publish the current iteration
-* Test the prediction endpoint
 
 Reference documentation [(training)](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/services/cognitiveservices/v2.1/customvision/training) [(prediction)](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/services/cognitiveservices/v1.1/customvision/prediction) 
 

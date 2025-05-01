@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 ms.topic: include
 ms.date: 12/19/2023
 ms.author: jboback
-ms.custom: devx-track-js
+ms.custom: devx-track-js, ignite-2024
 ---
 
 [Reference documentation](/javascript/api/overview/azure/ai-language-text-readme) | [More samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/cognitivelanguage/ai-language-text/samples/v1) | [Package (npm)](https://www.npmjs.com/package/@azure/ai-language-text) | [Library source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/cognitivelanguage/ai-language-text) 
@@ -15,19 +15,10 @@ Use this quickstart to create a Personally Identifiable Information (PII) detect
 ## Prerequisites
 
 * Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Once you have your Azure subscription, [create an AI services resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal#create-a-new-azure-ai-services-resource).
 * [Node.js](https://nodejs.org/) v14 LTS or later
 
-
 ## Setting up
-
-
-[!INCLUDE [Create an Azure resource](../../../includes/create-resource.md)]
-
-
-
-[!INCLUDE [Get your key and endpoint](../../../includes/get-key-endpoint.md)]
-
-
 
 [!INCLUDE [Create environment variables](../../../includes/environment-variables.md)]
 

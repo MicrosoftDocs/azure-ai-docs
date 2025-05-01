@@ -2,15 +2,16 @@
 title: Audio processing - Speech service
 titleSuffix: Azure AI services
 description: An overview of audio processing and capabilities of the Microsoft Audio Stack.
-author: hasyashah
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 8/20/2024
-ms.author: hasshah
+ms.date: 3/10/2025
+author: eric-urban
+ms.author: eur
+ms.reviewer: hasshah
 ---
 
-# Audio processing
+# Audio processing with the Microsoft Audio Stack
 
 The Microsoft Audio Stack is a set of enhancements optimized for speech processing scenarios. This includes examples like keyword recognition and speech recognition. It consists of various enhancements/components that operate on the input audio signal:
 

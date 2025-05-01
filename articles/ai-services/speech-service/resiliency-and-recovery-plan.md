@@ -7,7 +7,8 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/21/2024
+ms.date: 3/10/2025
+#Customer intent: As a developer, I want to learn how to back up and recover speech customer resources.
 ---
 
 # Back up and recover speech customer resources
@@ -37,7 +38,7 @@ These assets are backed up regularly and automatically by the repositories thems
 
 ## How to monitor service availability
 
-If you use the default endpoints, you should configure your client code to monitor for errors. If errors persist, be prepared to redirect to another region where you have a Speech resource.
+If you use the default endpoints, you should configure your client code to monitor for errors. If errors persist, be prepared to redirect to another region where you have an AI Services resource for Speech.
 
 Follow these steps to configure your client to monitor for errors:
 
@@ -114,6 +115,6 @@ Check the [public voices available](language-support.md?tabs=tts). You can also 
 
 ### Speaker recognition
 
-Speaker recognition uses [Azure paired regions](/azure/availability-zones/cross-region-replication-azure) to automatically fail over operations. Speaker enrollments and voice signatures are backed up regularly to prevent data loss and to be used if there's an outage.
+Speaker recognition uses [Azure paired regions](/azure/reliability/cross-region-replication-azure) to automatically fail over operations. Speaker enrollments and voice signatures are backed up regularly to prevent data loss and to be used if there's an outage.
 
 During an outage, the speaker recognition service automatically fails over to a paired region and use the backed-up data to continue processing requests until the main region is back online.

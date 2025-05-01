@@ -6,11 +6,11 @@ description: Implement a fuzzy search query for a "did you mean" search experien
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 02/16/2024
+ms.date: 04/14/2025
 ---
 # Fuzzy search to correct misspellings and typos
 

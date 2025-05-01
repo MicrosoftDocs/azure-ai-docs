@@ -10,7 +10,7 @@ ms.service: azure-machine-learning
 ms.subservice: core
 ms.custom: devx-track-arm-template
 ms.topic: reference
-ms.date: 06/06/2022
+ms.date: 02/10/2025
 ---
 
 # Reference for configuring Kubernetes cluster for Azure Machine Learning
@@ -75,7 +75,7 @@ Excluding your own deployments/pods, the **total minimum system resources requir
 > * For **higher network bandwidth and better disk I/O performance**, we recommend a larger SKU. 
 >     * Take [DV2/DSv2](/azure/virtual-machines/dv2-dsv2-series#dsv2-series) as example, using the large SKU can reduce the time of pulling image for better network/storage performance. 
 >     * More information about AKS reservation can be found in [AKS reservation](/azure/aks/concepts-clusters-workloads#resource-reservations).
-> * If you're using AKS cluster, you may need to consider about the **size limit on a container image** in AKS, more information you can found in [AKS container image size limit](/azure/aks/faq#whats-the-size-limit-on-a-container-image-in-aks).
+> * If you're using AKS cluster, you might need to consider about the **size limit on a container image** in AKS, more information you can found in [AKS container image size limit](/azure/aks/faq#whats-the-size-limit-on-a-container-image-in-aks).
 
 ## Prerequisites for ARO or OCP clusters
 ### Disable Security Enhanced Linux (SELinux) 
@@ -397,6 +397,10 @@ More information about how to use ARM template can be found from [ARM template d
 
 | Date | Version |Version description |
 |---|---|---|
+|Apr 6, 2025 | 1.1.76|  Fix vulnerable image. Updated nginx-ingress-controller to v1.12.1 |
+|Jan 28, 2025 | 1.1.71|  Fix vulnerable image. |
+|Jan 20, 2025 | 1.1.70|  Fix compatible issue with AKS autoscale for AKS 1.30. |
+|Sep 26, 2024 | 1.1.64|  Fixed vulnerabilities. |
 |Nov 21, 2023 | 1.1.39|  Fixed vulnerabilities. Refined error message. Increased stability for relayserver API. |
 |Nov 1, 2023 | 1.1.37|  Update data plane envoy version. |
 |Oct 11, 2023 | 1.1.35|  Fix vulnerable image. Bug fixes. |

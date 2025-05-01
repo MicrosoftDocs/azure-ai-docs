@@ -6,11 +6,11 @@ description: Describes the composition of a semantic answer and how to obtain an
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 02/08/2024
+ms.date: 02/18/2025
 ---
 
 # Return a semantic answer in Azure AI Search
@@ -32,7 +32,7 @@ All prerequisites that apply to [semantic queries](semantic-how-to-query-request
 + Search documents in the index must contain text having the characteristics of an answer, and that text must exist in one of the fields listed in the [semantic configuration](semantic-how-to-configure.md). For example, given a query "what is a hash table", if none of the fields in the semantic configuration contain passages that include "A hash table is ...", then it's unlikely an answer is returned.
 
 > [!NOTE]
-> Starting in 2021-04-30-Preview, in [Create or Update Index (Preview)](/rest/api/searchservice/preview-api/create-or-update-index) requests, a `"semanticConfiguration"` is required for specifying input fields for semantic ranking.
+> Starting in 2021-04-30-Preview, [Create or Update Index](/rest/api/searchservice/indexes/create-or-update) requests began enfording a `"semanticConfiguration"` requirement for specifying input fields used in semantic ranking.
 
 ## What is a semantic answer?
 
@@ -47,7 +47,6 @@ Answers are returned as an independent, top-level object in the query response p
 ## Formulate a REST query for "answers"
 
 To return a semantic answer, the query must have the semantic `"queryType"`, `"queryLanguage"`, `"semanticConfiguration"`, and the `"answers"` parameters. Specifying these parameters doesn't guarantee an answer, but the request must include them for answer processing to occur.
-
 
 ```json
 {
@@ -65,7 +64,7 @@ To return a semantic answer, the query must have the semantic `"queryType"`, `"q
 
 + `"queryType"` must be set to "semantic.
 
-+ `"queryLanguage"` must be one of the values from the [supported languages list (REST API)](/rest/api/searchservice/preview-api/search-documents#queryLanguage).
++ `"queryLanguage"` must be one of the values from the [supported languages list (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&preserve-view=true#querylanguage).
 
 + A `"semanticConfiguration"` determines which string fields provide tokens to the extraction model. The same fields that produce captions also produce answers. See [Create a semantic configuration](semantic-how-to-configure.md) for details.
 
@@ -81,7 +80,7 @@ Answers are provided in the `"@search.answers"` array, which appears first in th
 
 If an answer is indeterminate, the response shows up as `"@search.answers": []`. The answers array is followed by the value array, which is the standard response in a semantic query.
 
-Given the query "how do clouds form", the following example illustrates an answer:
+Given the query "how do clouds form" which can be directed at an index built on [content from the NASA Earth Book](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book), the following example illustrates a verbatim answer (found on page 38):
 
 ```json
 {
@@ -120,7 +119,7 @@ When designing a search results page that includes answers, be sure to handle ca
 
 Within @search.answers:
 
-+ **"key"** is the document key or ID of the match. Given a document key, you can use [Lookup Document](/rest/api/searchservice/lookup-document) API to retrieve any or all parts of the search document to include on the search page or a detail page.
++ **"key"** is the document key or ID of the match. Given a document key, you can use [Lookup Document](/rest/api/searchservice/documents/get) API to retrieve any or all parts of the search document to include on the search page or a detail page.
 
 + **"text"** and **"highlights"** provide identical content, in both plain text and with highlights. 
 
@@ -128,7 +127,7 @@ Within @search.answers:
 
 + **"score"** is a confidence score that reflects the strength of the answer. If there are multiple answers in the response, this score is used to determine the order. Top answers and top captions can be derived from different search documents, where the top answer originates from one document, and the top caption from another, but in general the same documents appear in the top positions within each array.
 
-Answers are followed by the **"value"** array, which always includes scores, captions, and any fields that are retrievable by default. If you specified the select parameter, the "value" array is limited to the fields that you specified. See [Configure semantic ranking](semantic-how-to-configure.md) for details.
+Answers are followed by the **"value"** array, which always includes scores, captions, and any fields that are retrievable by default. If you specified the select parameter, the "value" array is limited to the fields that you specified. See [Configure semantic ranker](semantic-how-to-configure.md) for details.
 
 ## Tips for producing high-quality answers
 
@@ -144,4 +143,4 @@ For best results, return semantic answers on a document corpus having the follow
 
 + [Semantic ranking overview](semantic-search-overview.md)
 + [Configure BM25 ranking](index-ranking-similarity.md)
-+ [Configure semantic ranking](semantic-how-to-configure.md)
++ [Configure semantic ranker](semantic-how-to-configure.md)

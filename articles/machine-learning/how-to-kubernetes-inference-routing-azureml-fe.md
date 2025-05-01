@@ -121,7 +121,7 @@ AKS cluster is deployed with one of the following two network models:
 
 For Kubenet networking, the network is created and configured properly for Azure Machine Learning service. For the CNI networking, you need to understand the connectivity requirements and ensure DNS resolution and outbound connectivity for AKS inferencing. For example, you may require additional steps if you are using a firewall to block network traffic.
 
-The following diagram shows the connectivity requirements for AKS inferencing. Black arrows represent actual communication, and blue arrows represent the domain names. You may need to add entries for these hosts to your firewall or to your custom DNS server.
+The following diagram shows the connectivity requirements for AKS inferencing. Black arrows represent actual communication, and blue arrows represent the domain names. You might need to add entries for these hosts to your firewall or to your custom DNS server.
 
 ![Diagram of the connectivity requirements for inferencing with Azure Kubernetes Services.](./media/how-to-attach-kubernetes-to-workspace/azureml-kubernetes-network.png)
 

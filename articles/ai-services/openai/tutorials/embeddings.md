@@ -2,11 +2,10 @@
 title: Azure OpenAI Service embeddings tutorial
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI's embeddings API for document search with the BillSum dataset
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: tutorial
-ms.date: 11/25/2023
+ms.date: 03/26/2025
 author: mrbullwinkle #noabenefraim
 ms.author: mbullwin
 zone_pivot_groups: "openai-embeddings"
@@ -24,7 +23,7 @@ In this tutorial, you learn how to:
 > * Install Azure OpenAI.
 > * Download a sample dataset and prepare it for analysis.
 > * Create environment variables for your resources endpoint and API key.
-> * Use the **text-embedding-ada-002 (Version 2)** model
+> * Use one of the following models: text-embedding-ada-002 (Version 2), text-embedding-3-large, text-embedding-3-small  models.
 > * Use [cosine similarity](../concepts/understand-embeddings.md) to rank search results.
  
 ::: zone pivot="programming-language-python"

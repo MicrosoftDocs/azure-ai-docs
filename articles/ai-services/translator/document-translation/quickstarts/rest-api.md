@@ -1,20 +1,20 @@
 ---
-title: "Quickstart: Document Translation REST API"
+title: "Quickstart: Document translation REST API"
 titleSuffix: Azure AI services
-description: Use the Document Translator REST APIs for batch and single document translations.
+description: Use the Document translation REST APIs for batch and single document translations.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 06/19/2024
+ms.date: 04/14/2025
 ---
 
-# Get started: Document Translation REST APIs
+# Get started: Document translation REST APIs
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD001 -->
 
-Document Translation is a cloud-based feature of the [Azure AI Translator](../../translator-overview.md) service that asynchronously translates whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#batch-supported-document-formats). In this quickstart, learn to use Document Translation with a programming language of your choice to translate a source document into a target language while preserving structure and text formatting.
+Document translation is a cloud-based feature of the [Azure AI Translator](../../translator-overview.md) service that asynchronously translates whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#batch-supported-document-formats). In this quickstart, learn to use Document translation with a programming language of your choice to translate a source document into a target language while preserving structure and text formatting.
 
 The Document translation API supports two translation processes:
 
@@ -28,23 +28,23 @@ The Document translation API supports two translation processes:
 
 You need an active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
 
-* Once you have your Azure subscription, create a [Translator resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in the Azure portal.
+* Once you have your Azure subscription, create an [Azure AI Translator resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in the Azure portal.
 
     > [!NOTE]
     >
-    > * For this quickstart we recommend that you use a Translator text single-service global resource unless your business or application requires a specific region. If you're planning on using a [system-assigned managed identity](../how-to-guides/create-use-managed-identities.md) for authentication, choose a **geographic** region like **West US**.
-    > * With a single-service global resource you'll include one authorization header (**Ocp-Apim-Subscription-key**) with the REST API request. The value for `Ocp-Apim-Subscription-key` is your Azure secret key for your Translator Text subscription.
+    > * For this quickstart, we recommend that you use an Azure AI Translator text single-service global resource unless your business or application requires a specific region. If you're planning on using a [system-assigned managed identity](../how-to-guides/create-use-managed-identities.md) for authentication, choose a **geographic** region like **West US**.
+    > * With a single-service global resource, you include one authorization header (**Ocp-Apim-Subscription-key**) with the REST API request. The value for `Ocp-Apim-Subscription-key` is your Azure secret key for your Azure AI Translator Text subscription.
 
 * After your resource deploys, select **Go to resource** and retrieve your key and endpoint.
 
-  * You need the key and endpoint from the resource to connect your application to the Translator service. You paste your key and endpoint into the code later in the quickstart. You can find these values on the Azure portal **Keys and Endpoint** page.
+  * You need the key and endpoint from the resource to connect your application to the Azure AI Translator service. You paste your key and endpoint into the code later in the quickstart. You can find these values on the Azure portal **Keys and Endpoint** page.
 
     :::image type="content" source="../media/document-translation-key-endpoint.png" alt-text="Screenshot to document translation key and endpoint location in the Azure portal.":::
 
 * For this project, we use the cURL command line tool to make REST API calls.
 
     > [!NOTE]
-    > The cURL package is pre-installed on most Windows 10 and Windows 11 and most macOS and Linux distributions. You can check the package version with the following commands:
+    > The cURL package is preinstalled on most Windows 10 and Windows 11 and most macOS and Linux distributions. You can check the package version with the following commands:
     > Windows: `curl.exe -V`
     > macOS `curl -V`
     > Linux: `curl --version`
@@ -84,7 +84,7 @@ You need an active Azure subscription. If you don't have an Azure subscription, 
 
 ### Build and run the POST request
 
-Before you run the **POST** request, replace `{your-document-translator-endpoint}` and `{your-key}` with the values from your Azure portal Translator instance.
+Before you run the **POST** request, replace `{your-document-translator-endpoint}` and `{your-key}` with the values from your Azure portal Azure AI Translator instance.
 
 > [!IMPORTANT]
 > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, *see* Azure AI services [security](../../../security-features.md).
@@ -117,10 +117,10 @@ To call the synchronous translation feature via the [REST API](../reference/sync
 |Query parameter&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|Description| Condition|
 |---------|---------|----|
 |`-X` or `--request` `POST`|The -X flag specifies the request method to access the API.|***Required*** |
-|`{endpoint}`  |The URL for your Document Translation resource endpoint|***Required*** |
+|`{endpoint}`  |The URL for your Document translation resource endpoint|***Required*** |
 |`targetLanguage`|Specifies the language of the output document. The target language must be one of the supported languages included in the translation scope.|***Required*** |
 |`sourceLanguage`|Specifies the language of the input document. If the `sourceLanguage` parameter isn't specified, automatic language detection is applied to determine the source language. |***Optional***|
-|`-H` or `--header` `"Ocp-Apim-Subscription-Key:{KEY}`    | Request header that specifies the Document Translation resource key authorizing access to the API.|***Required***|
+|`-H` or `--header` `"Ocp-Apim-Subscription-Key:{KEY}`    | Request header that specifies the Document translation resource key authorizing access to the API.|***Required***|
 |`-F` or `--form` |The filepath to the document that you want to include with your request. Only one source document is allowed.|***Required***|
 |&bull; `document=`<br> &bull; `type={contentType}/fileExtension` |&bull; Path to the file location for your source document.</br> &bull; Content type and file extension.</br></br> Ex: **"document=@C:\Test\test-file.md;type=text/markdown**|***Required***|
 |`-o` or `--output`|The filepath to the response results.|***Required***|
@@ -133,7 +133,7 @@ To call the synchronous translation feature via the [REST API](../reference/sync
 
 1. For this project, you need a **sample document**. You can download our [Microsoft Word sample document](https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/Translator/document-translation-sample.docx) for this quickstart. The source language is English.
 
-1. Before you run the **POST** request, replace `{your-document-translation-endpoint}` and `{your-key}` with the values from your Azure portal Translator service instance.
+1. Before you run the **POST** request, replace `{your-document-translation-endpoint}` and `{your-key}` with the values from your Azure portal Azure AI Translator service instance.
 
     > [!IMPORTANT]
     > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, *see* Azure AI services [security](/azure/ai-services/security-features).
@@ -164,4 +164,4 @@ That's it, congratulations! You just learned to translate documents using the Az
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Document Translation REST API guide](../reference/rest-api-guide.md)
+> [Document translation REST API guide](../reference/rest-api-guide.md)

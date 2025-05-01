@@ -5,11 +5,11 @@ description: Describes the moreLikeThis (preview) feature, which is available in
 
 author: bevloh
 ms.author: beloh
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: reference
-ms.date: 02/16/2024
+ms.topic: concept-article
+ms.date: 02/20/2025
 ---
 
 # moreLikeThis (preview) in Azure AI Search
@@ -17,7 +17,7 @@ ms.date: 02/16/2024
 > [!IMPORTANT] 
 > This feature is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [preview REST API](/rest/api/searchservice/index-preview) supports this feature.
 
-`moreLikeThis=[key]` is a query parameter in the [Search Documents API](/rest/api/searchservice/search-documents) that finds documents similar to the document specified by the document key. When a search request is made with `moreLikeThis`, a query is generated with search terms extracted from the given document that describe that document best. The generated query is then used to make the search request. The `moreLikeThis` parameter can't be used with the search parameter, `search=[string]`.
+`moreLikeThis=[key]` is a query parameter in the [Search Documents API](/rest/api/searchservice/documents/search-post) that finds documents similar to the document specified by the document key. When a search request is made with `moreLikeThis`, a query is generated with search terms extracted from the given document that describe that document best. The generated query is then used to make the search request. The `moreLikeThis` parameter can't be used with the search parameter, `search=[string]`.
 
 By default, the contents of all top-level searchable fields are considered. If you want to specify particular fields instead, you can use the `searchFields` parameter. 
 

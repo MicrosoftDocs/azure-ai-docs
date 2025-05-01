@@ -1,23 +1,24 @@
 ---
-title: "Use Azure AI Document Intelligence (formerly Form Recognizer) REST API v3.0"
+title: "Use Azure AI Document Intelligence REST API v3.0"
 description: Use the Document Intelligence REST API v3.0 to create a forms processing app that extracts key data from documents.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom: ignite-2023, linux-related-content
+ms.custom: linux-related-content
 ms.topic: include
-ms.date: 05/23/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 monikerRange: 'doc-intel-3.1.0 || doc-intel-3.0.0'
 ---
 
+<!-- markdownlint-disable MD033 -->
 
 :::moniker range="doc-intel-3.1.0"
-| [Document Intelligence REST API](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP) | [Supported Azure SDKS](../../../sdk-overview-v3-1.md) | 
+| [Document Intelligence REST API](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP) | [Supported Azure SDKS](../../../sdk-overview-v3-1.md) |
 :::moniker-end
 
 :::moniker range="doc-intel-3.0.0"
-| [Document Intelligence REST API](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP) | [Supported Azure SDKS](../../../sdk-overview-v3-0.md) | 
+| [Document Intelligence REST API](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP) | [Supported Azure SDKS](../../../sdk-overview-v3-0.md) |
 :::moniker-end
 
 > [!NOTE]
@@ -42,7 +43,7 @@ monikerRange: 'doc-intel-3.1.0 || doc-intel-3.0.0'
 - The key and endpoint from the resource you create to connect your application to the Azure Document Intelligence service.
 
   1. After your resource deploys, select **Go to resource**.
-  1. In the left navigation menu, select **Keys and Endpoint**.
+  1. In the left pane, select **Keys and Endpoint**.
   1. Copy one of the keys and the **Endpoint** for use later in this article.
 
   :::image type="content" source="../../../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
@@ -72,7 +73,7 @@ Open a console window and run the following cURL command. The commands include t
 curl -i -X POST "%FR_ENDPOINT%formrecognizer/documentModels/<modelId>:analyze?api-version=2023-07-31" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: %FR_KEY%" --data-ascii "{'urlSource': '<document-url>'}"
 ```
 
-To enable add-on capabilities, use the `features` query parameter in the POST request. There are four add-on capabilities available with the `2023-07-31` (GA) release: *ocr.highResolution*, *ocr.formula*, *ocr.font*, and *queryFields.premium*. To learn more about each of the capabilities, see [Custom models](../../../concept-accuracy-confidence.md).
+To enable add-on capabilities, use the `features` query parameter in the POST request. There are four add-on capabilities available with the `2023-07-31` (GA) release: *ocr.highResolution*, *ocr.formula*, *ocr.font*, and *queryFields.premium*. To learn more about each of the capabilities, see [Custom models](../../../concept/accuracy-confidence.md).
 
 You can only call the *highResolution*, *formula*, and *font* capabilities for the Read and Layout model, and the *queryFields* capability for the General Documents model. The following example shows how to call the *highResolution*, *formula*, and *font* capabilities for the Layout model.
 
@@ -91,12 +92,13 @@ You receive a `202 (Success)` response that includes an `Operation-location` hea
 After you call the [`Analyze document`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP) API, call the [`Get analyze` result}(/rest/api/aiservices/document-models/get-analyze-result?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP) API to get the status of the operation and the extracted data.
 
 <!-- markdownlint-disable MD024 -->
+<!-- markdownlint-disable MD051 -->
 
 The cURL command line tool doesn't format API responses that contain JSON content, which can make the content difficult to read. To format the JSON response, include the pipe character followed by a JSON formatting tool with your GET request.
 
 #### [Windows](#tab/windows)
 
-Use the NodeJS *json tool* as a JSON formatter for cURL. If you don't have [Node.js](https://nodejs.org/) installed, download and install the latest version.
+Use the Node.js *json tool* as a JSON formatter for cURL. If you don't have [Node.js](https://nodejs.org/) installed, download and install the latest version.
 
 1. Open a console window and install the json tool by using the following command:
 

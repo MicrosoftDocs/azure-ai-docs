@@ -7,7 +7,7 @@ manager: nitinme
 keywords: Azure AI services, cognitive
 ms.service: azure-ai-services
 ms.topic: overview
-ms.date: 8/20/2024
+ms.date: 2/7/2025
 ms.author: eur
 ms.custom:
   - build-2023
@@ -25,6 +25,8 @@ When building AI applications, use the following Azure AI services:
 
 | Service | Description |
 | --- | --- |
+| ![Azure icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure.svg) [Azure AI Agent Service](./agents/index.yml) | Combine the power of generative AI models with tools that allow agents to access and interact with real-world data sources. |
+| ![Azure AI Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Azure AI Model Inference](../ai-foundry/model-inference/index.yml) | Performs model inference for flagship models in the Azure AI model catalog. | 
 | ![Azure AI Search icon](~/reusable-content/ce-skilling/azure/media/ai-services/search.svg) [Azure AI Search](/azure/search/) | Bring AI-powered cloud search to your mobile and web apps. |
 | ![Azure OpenAI Service icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](./openai/index.yml) | Perform a wide variety of natural language tasks. |
 | ![Bot service icon](~/reusable-content/ce-skilling/azure/media/ai-services/bot-services.svg) [Bot Service](/composer/) | Create bots and connect them across channels. |
@@ -75,10 +77,9 @@ Let's take a look at the different ways that you can work with the Azure AI serv
 
 Azure AI services client libraries and REST APIs provide direct access to your service. These tools provide programmatic access to the Azure AI services, their baseline models, and in many cases allow you to programmatically customize your models and solutions.
 
-* **Target user(s)**: Developers and data scientists
-* **Benefits**: Provides the greatest flexibility to call the services from any language and environment
-* **UI**: N/A - Code only
-* **Subscription(s)**: Azure account + Azure AI services resources
+* **Target user(s)**: Developers and data scientists.
+* **Benefits**: Provides the greatest flexibility to call the services from any language and environment.
+* **Subscription(s)**: Azure account + Azure AI services resources.
 
 If you want to learn more about available client libraries and REST APIs, use our [Azure AI services overview](index.yml) to pick a service and get started with one of our quickstarts.
 
@@ -86,10 +87,9 @@ If you want to learn more about available client libraries and REST APIs, use ou
 
 You can use Azure DevOps and GitHub Actions to manage your deployments. In the [following section](#continuous-integration-and-delivery-with-devops-and-github-actions), we have two examples of CI/CD integrations to train and deploy custom models for Speech and the Language Understanding (LUIS) service.
 
-* **Target user(s)**: Developers, data scientists, and data engineers
-* **Benefits**: Allows you to continuously adjust, update, and deploy applications and models programmatically. There's significant benefit when regularly using your data to improve and update models for Speech, Vision, Language, and Decision
-* **UI tools**: N/A - Code only
-* **Subscription(s)**: Azure account + Azure AI services resource + GitHub account
+* **Target user(s)**: Developers, data scientists, and data engineers.
+* **Benefits**: Allows you to continuously adjust, update, and deploy applications and models programmatically. There's significant benefit when regularly using your data to improve and update models for Speech, Vision, Language, and Decision.
+* **Subscription(s)**: Azure account + Azure AI services resource + GitHub account.
 
 ### Continuous integration and delivery with DevOps and GitHub Actions
 
@@ -115,13 +115,9 @@ With Azure and Azure AI services, you have access to a broad ecosystem, such as:
 * Azure AI services Docker containers for secure access.
 * Tools like Apache Spark, Azure Databricks, Azure Synapse Analytics, and Azure Kubernetes Service for big data scenarios.
 
-To learn more, see [Azure AI services ecosystem](ai-services-and-ecosystem.md).
-
 ## Regional availability
 
 The APIs in Azure AI services are hosted on a growing network of Microsoft-managed data centers. You can find the regional availability for each API in [Azure region list](https://azure.microsoft.com/regions "Azure region list").
-
-Looking for a region we don't support yet? Let us know by filing a feature request on our [UserVoice forum](https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858).
 
 ## Language support
 
@@ -141,8 +137,8 @@ To understand privacy and data management, go to the [Trust Center](https://serv
 
 Azure AI services provide several support options to help you move forward with creating intelligent applications. Azure AI services also have a strong community of developers that can help answer your specific questions. For a full list of support options available to you, see [Azure AI services support and help options](cognitive-services-support-options.md).
 
-## Next steps
+## Related content
 
 * Learn how to [get started with Azure](https://azure.microsoft.com/get-started/)
-* [Try Azure AI services and more in Azure AI Studio](../ai-studio/what-is-ai-studio.md)
+* [Try Azure AI services and more in the Azure AI Foundry portal](../ai-foundry/what-is-azure-ai-foundry.md)
 * [Plan and manage costs for Azure AI services](plan-manage-costs.md)

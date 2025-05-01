@@ -29,6 +29,9 @@ Install a version of [Python from 3.7 or later](https://www.python.org/downloads
 
 ## Recognize speech from a microphone
 
+> [!TIP]
+> Try out the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
+
 Follow these steps to create a console application.
 
 1. Open a command prompt window in the folder where you want the new project. Create a new file named *speech_recognition.py*.

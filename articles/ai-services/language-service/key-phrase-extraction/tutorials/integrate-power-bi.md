@@ -2,12 +2,11 @@
 title: 'Tutorial: Integrate Power BI with key phrase extraction'
 titleSuffix: Azure AI services
 description: Learn how to use the key phrase extraction feature to get text stored in Power BI.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 12/19/2023
+ms.date: 11/21/2024
 ms.author: jboback
 ms.custom: language-service-key-phrase, cogserv-non-critical-language
 ---
@@ -56,7 +55,7 @@ To see the loaded data, click the **Data View** button on the left edge of the P
 
 ## Prepare the data
 
-You may need to transform your data in Power BI Desktop before it's ready to be processed by Key Phrase Extraction.
+You might need to transform your data in Power BI Desktop before it's ready to be processed by Key Phrase Extraction.
 
 The sample data contains a `subject` column and a `comment` column. With the Merge Columns function in Power BI Desktop, you can extract key phrases from the data in both these columns, rather than just the `comment` column.
 
@@ -66,7 +65,7 @@ In Power BI Desktop, select the **Home** ribbon. In the **External data** group,
 
 Select `FabrikamComments` in the **Queries** list at the left side of the window if it isn't already selected.
 
-Now select both the `subject` and `comment` columns in the table. You may need to scroll horizontally to see these columns. First click the `subject` column header, then hold down the Control key and click the `comment` column header.
+Now select both the `subject` and `comment` columns in the table. You might need to scroll horizontally to see these columns. First click the `subject` column header, then hold down the Control key and click the `comment` column header.
 
 ![Selecting fields to be merged](../media/tutorials/power-bi/select-columns.png)
 
@@ -140,7 +139,7 @@ A new field appears in the dialog, **text (optional)**. This field is asking whi
 
 Finally, select **OK.**
 
-If everything is ready, Power BI calls your custom function once for each row in the table. It sends the queries to the Key Phrases API and adds a new column to the table to store the results. But before that happens, you may need to specify authentication and privacy settings.
+If everything is ready, Power BI calls your custom function once for each row in the table. It sends the queries to the Key Phrases API and adds a new column to the table to store the results. But before that happens, you might need to specify authentication and privacy settings.
 
 ## Authentication and privacy
 
@@ -156,7 +155,7 @@ Select **Edit Credentials,** make sure `Anonymous` is selected in the dialog, th
 > [!div class="mx-imgBorder"]
 > ![setting authentication to anonymous](../media/tutorials/power-bi/access-web-content.png)
 
-If you see the Edit Credentials banner even after choosing anonymous access, you may have forgotten to paste your Language resource key into the code in the `KeyPhrases` [custom function](#create-a-custom-function).
+If you see the Edit Credentials banner even after choosing anonymous access, you might have forgotten to paste your Language resource key into the code in the `KeyPhrases` [custom function](#create-a-custom-function).
 
 Next, a banner may appear asking you to provide information about your data sources' privacy. 
 

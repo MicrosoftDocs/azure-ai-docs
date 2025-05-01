@@ -33,8 +33,6 @@ This dataset is stored in the West US 2 Azure region. Allocating compute resourc
 
 West US 2: `https://datasetopentargets.blob.core.windows.net/dataset`
 
-[SAS Token](/azure/storage/common/storage-sas-overview): sv=2019-10-10&si=prod&sr=c&sig=9nzcxaQn0NprMPlSh4RhFQHcXedLQIcFgbERiooHEqM%3D
-
 
 ## Use terms
 

@@ -2,12 +2,12 @@
 title: OCR for images - Azure AI Vision
 titleSuffix: Azure AI services
 description: Extract text from in-the-wild and non-document images with a fast and synchronous Azure AI Vision Image Analysis 4.0 API.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: conceptual
 ms.date: 08/21/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
@@ -15,7 +15,7 @@ ms.author: pafarley
 
 > [!NOTE]
 >
-> If you want to extract text from PDFs, Office files, or HTML documents and document images, use the [Document Intelligence Read OCR model](../../ai-services/document-intelligence/concept-read.md). It's optimized for text-heavy digital and scanned documents and uses an asynchronous API that makes it easy to power your intelligent document processing scenarios.
+> If you want to extract text from PDFs, Office files, or HTML documents and document images, use the [Document Intelligence Read OCR model](../document-intelligence/prebuilt/read.md). It's optimized for text-heavy digital and scanned documents and uses an asynchronous API that makes it easy to power your intelligent document processing scenarios.
 
 OCR is a machine-learning-based technique for extracting text from in-the-wild and non-document images like product labels, user-generated images, screenshots, street signs, and posters. The Azure AI Vision OCR service provides a fast, synchronous API for lightweight scenarios where images aren't text-heavy. This allows OCR to be embedded in near real-time user experiences to enrich content understanding and follow-up user actions with fast turn-around times.
 
@@ -23,8 +23,6 @@ OCR is a machine-learning-based technique for extracting text from in-the-wild a
 
 The new Azure AI Vision Image Analysis 4.0 REST API offers the ability to extract printed or handwritten text from images in a unified performance-enhanced synchronous API that makes it easy to get all image insights including OCR results in a single API operation. The Read OCR engine is built on top of multiple deep learning models supported by universal script-based models for [global language support](./language-support.md).
 
-> [!TIP]
-> You can also use the OCR feature in conjunction with the [Azure OpenAI](/azure/ai-services/openai/overview) service. The **GPT-4 Turbo with Vision** model lets you chat with an AI assistant that can analyze the images you share, and the Vision Enhancement option uses Image Analysis to give the AI assistant more details (readable text and object locations) about the image. For more information, see the [GPT-4 Turbo with Vision quickstart](/azure/ai-services/openai/gpt-v-quickstart).
 
 ## Text extraction example
 

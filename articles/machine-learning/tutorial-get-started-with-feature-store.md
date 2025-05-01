@@ -8,7 +8,7 @@ ms.subservice: core
 ms.topic: tutorial
 author: fbsolo-ms1
 ms.author: franksolomon
-ms.date: 11/28/2023
+ms.date: 11/21/2024
 ms.reviewer: seramasu
 ms.custom: sdkv2, build-2023, ignite-2023, update-code2
 #Customer intent: As a professional data scientist, I want to know how to build and deploy a model with Azure Machine Learning by using Python in a Jupyter Notebook.
@@ -18,7 +18,7 @@ ms.custom: sdkv2, build-2023, ignite-2023, update-code2
 
 This tutorial series shows how features seamlessly integrate all phases of the machine learning lifecycle: prototyping, training, and operationalization.
 
-You can use Azure Machine Learning managed feature store to discover, create, and operationalize features. The machine learning lifecycle includes a prototyping phase, where you experiment with various features. It also involves an operationalization phase, where models are deployed and inference steps look up feature data. Features serve as the connective tissue in the machine learning lifecycle. To learn more about basic concepts for managed feature store, see [What is managed feature store?](./concept-what-is-managed-feature-store.md) and [Understanding top-level entities in managed feature store](./concept-top-level-entities-in-managed-feature-store.md).
+You can use Azure Machine Learning managed feature store to discover, create, and operationalize features. The machine learning lifecycle includes a prototyping phase, where you experiment with various features. It also involves an operationalization phase, where models are deployed and inference steps look up feature data. Features serve as the connective tissue in the machine learning lifecycle. To learn more about basic concepts for managed feature store, visit the [What is managed feature store?](./concept-what-is-managed-feature-store.md) and [Understanding top-level entities in managed feature store](./concept-top-level-entities-in-managed-feature-store.md) resources.
 
 This tutorial describes how to create a feature set specification with custom transformations. It then uses that feature set to generate training data, enable materialization, and perform a backfill. Materialization computes the feature values for a feature window, and then stores those values in a materialization store. All feature queries can then use those values from the materialization store.
 
@@ -43,9 +43,9 @@ This tutorial series has two tracks:
 
 Before you proceed with this tutorial, be sure to cover these prerequisites:
 
-* An Azure Machine Learning workspace. For more information about workspace creation, see [Quickstart: Create workspace resources](./quickstart-create-resources.md).
+* An Azure Machine Learning workspace. For more information about workspace creation, visit [Quickstart: Create workspace resources](./quickstart-create-resources.md).
 
-* On your user account, the Owner role for the resource group where the feature store is created.
+* On your user account, you need the Owner role for the resource group where the feature store is created.
 
    If you choose to use a new resource group for this tutorial, you can easily delete all the resources by deleting the resource group.
 
@@ -271,17 +271,17 @@ This tutorial doesn't need explicit installation of these resources, because the
       print(fs_poller.result()) 
    ```    
 
-2. Initialize a feature store core SDK client for Azure Machine Learning.
+1. Initialize a feature store core SDK client for Azure Machine Learning.
 
    As explained earlier in this tutorial, the feature store core SDK client is used to develop and consume features.
 
    [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=init-fs-core-sdk)]
 
-3. Grant the "Azure Machine Learning Data Scientist" role on the feature store to your user identity. Obtain your Microsoft Entra object ID value from the Azure portal, as described in [Find the user object ID](/partner-center/find-ids-and-domain-names#find-the-user-object-id).
+1. Grant the "Azure Machine Learning Data Scientist" role on the feature store to your user identity. Obtain your Microsoft Entra object ID value from the Azure portal, as described in [Find the user object ID](/partner-center/find-ids-and-domain-names#find-the-user-object-id).
 
    Assign the **AzureML Data Scientist** role to your user identity, so that it can create resources in feature store workspace. The permissions might need some time to propagate.
 
-   For more information more about access control, see [Manage access control for managed feature store](./how-to-setup-access-control-feature-store.md).
+   For more information more about access control, visit the [Manage access control for managed feature store](./how-to-setup-access-control-feature-store.md) resource.
 
    [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_and_cli/1.Develop-feature-set-and-register.ipynb?name=assign-aad-ds-role-cli)]  
 
@@ -300,15 +300,15 @@ In these steps, you build a feature set named `transactions` that has rolling wi
    A feature set specification is a self-contained definition of a feature set that you can locally develop and test. Here, you create these rolling window aggregate features:
 
    * `transactions three-day count`
-   * `transactions amount three-day sum`
    * `transactions amount three-day avg`
+   * `transactions amount three-day sum`
    * `transactions seven-day count`
-   * `transactions amount seven-day sum`
    * `transactions amount seven-day avg`
+   * `transactions amount seven-day sum`
 
    Review the feature transformation code file: *featurestore/featuresets/transactions/transformation_code/transaction_transform.py*. Note the rolling aggregation defined for the features. This is a Spark transformer.
 
-   To learn more about the feature set and transformations, see [What is managed feature store?](./concept-what-is-managed-feature-store.md).
+   To learn more about the feature set and transformations, visit the [What is managed feature store?](./concept-what-is-managed-feature-store.md) resource.
 
    [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=develop-txn-fset-locally)]
 
@@ -316,29 +316,29 @@ In these steps, you build a feature set named `transactions` that has rolling wi
 
    To register the feature set specification with the feature store, you must save that specification in a specific format.
 
-   Review the generated `transactions` feature set specification. Open this file from the file tree to see the specification: *featurestore/featuresets/accounts/spec/FeaturesetSpec.yaml*.
+   Review the generated `transactions` feature set specification. Open this file from the file tree to see the *featurestore/featuresets/accounts/spec/FeaturesetSpec.yaml* specification.
 
    The specification contains these elements:
 
-   * `source`: A reference to a storage resource. In this case, it's a Parquet file in a blob storage resource.
+   * `source`: A reference to a storage resource. In this case, it's a parquet file in a blob storage resource.
    * `features`: A list of features and their datatypes. If you provide transformation code, the code must return a DataFrame that maps to the features and datatypes.
    * `index_columns`: The join keys required to access values from the feature set.
 
-   To learn more about the specification, see [Understanding top-level entities in managed feature store](./concept-top-level-entities-in-managed-feature-store.md) and [CLI (v2) feature set YAML schema](./reference-yaml-feature-set.md).
+   To learn more about the specification, visit the [Understanding top-level entities in managed feature store](./concept-top-level-entities-in-managed-feature-store.md) and [CLI (v2) feature set YAML schema](./reference-yaml-feature-set.md) resources.
 
-   Persisting the feature set specification offers another benefit: the feature set specification can be source controlled.
+   Persisting the feature set specification offers another benefit: the feature set specification supports source control.
 
    [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/1.Develop-feature-set-and-register.ipynb?name=dump-transactions-fs-spec)]
 
 ## Register a feature store entity
 
-As a best practice, entities help enforce use of the same join key definition across feature sets that use the same logical entities. Examples of entities include accounts and customers. Entities are typically created once and then reused across feature sets. To learn more, see [Understanding top-level entities in managed feature store](./concept-top-level-entities-in-managed-feature-store.md).
+As a best practice, entities help enforce use of the same join key definition, across feature sets that use the same logical entities. Examples of entities include accounts and customers. Entities are typically created once and then reused across feature sets. To learn more, visit the [Understanding top-level entities in managed feature store](./concept-top-level-entities-in-managed-feature-store.md).
 
 ### [SDK track](#tab/SDK-track)
 
 1. Initialize the feature store CRUD client.
 
-   As explained earlier in this tutorial, `MLClient` is used for creating, reading, updating, and deleting a feature store asset. The notebook code cell sample shown here searches for the feature store that you created in an earlier step. Here, you can't reuse the same `ml_client` value that you used earlier in this tutorial, because it's scoped at the resource group level. Proper scoping is a prerequisite for feature store creation.
+   As explained earlier in this tutorial, `MLClient` is used to create, read, update, and delete a feature store asset. The notebook code cell sample shown here searches for the feature store that you created in an earlier step. Here, you can't reuse the same `ml_client` value that you used earlier in this tutorial, because that value is scoped at the resource group level. Proper scoping is a prerequisite for feature store creation.
 
    In this code sample, the client is scoped at feature store level.
 
@@ -392,7 +392,7 @@ The Storage Blob Data Reader role must be assigned to your user account on the o
 
    :::image type="content" source="media/tutorial-get-started-with-feature-store/offline-store-information.png" lightbox="media/tutorial-get-started-with-feature-store/offline-store-information.png" alt-text="Screenshot that shows offline store account information on feature store Overview page.":::
 
-   For more information about access control, see [Manage access control for managed feature store](./how-to-setup-access-control-feature-store.md).
+   For more information about access control, visit the [Manage access control for managed feature store](./how-to-setup-access-control-feature-store.md) resource.
 
    Execute this code cell for role assignment. The permissions might need some time to propagate.
 
@@ -404,7 +404,7 @@ The Storage Blob Data Reader role must be assigned to your user account on the o
 
    :::image type="content" source="media/tutorial-get-started-with-feature-store/offline-store-information.png" lightbox="media/tutorial-get-started-with-feature-store/offline-store-information.png" alt-text="Screenshot that shows offline store account information on feature store Overview page.":::
 
-   For more information about access control, see [Manage access control for managed feature store](./how-to-setup-access-control-feature-store.md).
+   For more information about access control, visit the [Manage access control for managed feature store](./how-to-setup-access-control-feature-store.md) resource.
 
    Execute this code cell for role assignment. The permissions might need some time to propagate.
 
@@ -436,7 +436,7 @@ The Storage Blob Data Reader role must be assigned to your user account on the o
 
 ## Enable offline materialization on the `transactions` feature set
 
-   After feature set materialization is enabled, you can perform a backfill. You can also schedule recurrent materialization jobs. For more information, see [the third tutorial in the series](./tutorial-enable-recurrent-materialization-run-batch-inference.md).
+   After feature set materialization is enabled, you can perform a backfill. You can also schedule recurrent materialization jobs. For more information, visit the [third tutorial in the series](./tutorial-enable-recurrent-materialization-run-batch-inference.md) resource.
 
 ### [SDK track](#tab/SDK-track)
 

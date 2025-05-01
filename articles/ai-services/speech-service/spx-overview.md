@@ -6,8 +6,9 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 1/22/2024
+ms.date: 3/10/2025
 ms.author: eur
+#Customer intent: As a developer, I want to learn about the Speech CLI, a command-line tool for using Speech service without having to write any code.
 ---
 
 # What is the Speech CLI?

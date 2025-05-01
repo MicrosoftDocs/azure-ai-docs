@@ -1,21 +1,21 @@
 ---
 title: "Export a model programmatically"
 titleSuffix: Azure AI services
-description: Use the Custom Vision client library to export a trained model.
-#services: cognitive-services
+description: Learn how to use the Custom Vision client library to export a trained model programmatically, enabling automation of model retraining and updates.
+#customer intent: As a developer, I want to export a trained model programmatically so that I can automate the process of retraining and updating the model.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-custom-vision
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 01/29/2025
 ms.author: pafarley
 ms.devlang: python
 ---
 
 # Export a model programmatically
 
-All of the export options available on the [Custom Vision website](https://www.customvision.ai/) are also available programmatically through the client libraries. You may want to use client libraries so you can fully automate the process of retraining and updating the model iteration you use on a local device.
+All of the export options available on the [Custom Vision website](https://www.customvision.ai/) are also available programmatically through the client libraries. You might want to use client libraries so you can fully automate the process of retraining and updating the model iteration you use on a local device.
 
 This guide shows you how to export your model to an ONNX file with the Python SDK.
 
@@ -32,13 +32,13 @@ trainer = CustomVisionTrainingClient(ENDPOINT, credentials)
 ```
 
 > [!IMPORTANT]
-> Remember to remove the keys from your code when youre done, and never post them publicly. For production, consider using a secure way of storing and accessing your credentials. For more information, see the Azure AI services [security](../security-features.md) article.
+> Remember to remove the keys from your code when you're done, and never post them publicly. For production, consider using a secure way of storing and accessing your credentials. For more information, see the Azure AI services [security](../security-features.md) article.
 
 ## Call the export method
 
 Call the **export_iteration** method.
-* Provide the project ID, iteration ID of the model you want to export. 
-* The *platform* parameter specifies the platform to export to: allowed values are `CoreML`, `TensorFlow`, `DockerFile`, `ONNX`, `VAIDK`, and `OpenVino`. 
+* Provide the project ID, iteration ID of the model you want to export.
+* The *platform* parameter specifies the platform to export to: allowed values are `CoreML`, `TensorFlow`, `DockerFile`, `ONNX`, `VAIDK`, and `OpenVino`.
 * The *flavor* parameter specifies the format of the exported model: allowed values are `Linux`, `Windows`, `ONNX10`, `ONNX12`, `ARM`, `TensorFlowNormal`, and `TensorFlowLite`.
 * The *raw* parameter gives you the option to retrieve the raw JSON response along with the object model response.
 
@@ -84,13 +84,12 @@ if export.status == "Done":
         file.write(export_file.content)
 ```
 
-## Next steps
+## Related content
 
 Integrate your exported model into an application by exploring one of the following articles or samples:
 
-* [Use your Tensorflow model with Python](export-model-python.md)
+* [Use your TensorFlow model with Python](export-model-python.md)
 * [Use your ONNX model with Windows Machine Learning](custom-vision-onnx-windows-ml.md)
 * See the sample for [CoreML model in an iOS application](https://go.microsoft.com/fwlink/?linkid=857726) for real-time image classification with Swift.
-* See the sample for [Tensorflow model in an Android application](https://github.com/Azure-Samples/cognitive-services-android-customvision-sample) for real-time image classification on Android.
-* See the sample for [CoreML model with Xamarin](https://github.com/xamarin/ios-samples/tree/master/ios11/CoreMLAzureModel) for real-time image classification in a Xamarin iOS app.
+* See the sample for [TensorFlow model in an Android application](https://github.com/Azure-Samples/cognitive-services-android-customvision-sample) for real-time image classification on Android.
 * See the sample for how to use the exported model [(VAIDK/OpenVino)](https://github.com/Azure-Samples/customvision-export-samples)

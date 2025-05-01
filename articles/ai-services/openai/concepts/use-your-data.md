@@ -2,15 +2,14 @@
 title: 'Using your data with Azure OpenAI Service'
 titleSuffix: Azure OpenAI
 description: Use this article to learn about using your data for better text generation in Azure OpenAI.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: quickstart
 author: aahill
 ms.author: aahi
-ms.date: 04/08/2024
+ms.date: 02/13/2025
 recommendations: false
-ms.custom: references_regions 
+ms.custom: references_regions, ignite-2024
 ---
 
 # Azure OpenAI On Your Data 
@@ -19,18 +18,31 @@ Use this article to learn about Azure OpenAI On Your Data, which makes it easier
 
 ## What is Azure OpenAI On Your Data
 
-Azure OpenAI On Your Data enables you to run advanced AI models such as GPT-35-Turbo and GPT-4 on your own enterprise data without needing to train or fine-tune models. You can chat on top of and analyze your data with greater accuracy. You can specify sources to support the responses based on the latest information available in your designated data sources. You can access Azure OpenAI On Your Data using a REST API, via the SDK or the web-based interface in the [Azure OpenAI Studio](https://oai.azure.com/). You can also create a web app that connects to your data to enable an enhanced chat solution or deploy it directly as a copilot in the Copilot Studio (preview).
+Azure OpenAI On Your Data enables you to run advanced AI models such as GPT-35-Turbo and GPT-4 on your own enterprise data without needing to train or fine-tune models. You can chat on top of and analyze your data with greater accuracy. You can specify sources to support the responses based on the latest information available in your designated data sources. You can access Azure OpenAI On Your Data using a REST API, via the SDK or the web-based interface in the [Azure AI Foundry portal](https://ai.azure.com/). You can also create a web app that connects to your data to enable an enhanced chat solution or deploy it directly as a copilot in the Copilot Studio (preview).
 
-## Get started
+## Developing with Azure OpenAI On Your Data
 
-To get started, [connect your data source](../use-your-data-quickstart.md) using Azure OpenAI Studio and start asking questions and chatting on your data.
+:::image type="content" source="../media/use-your-data/workflow-diagram.png" alt-text="A diagram showing an example workflow.":::
 
-> [!NOTE]
-> To get started, you need to already have been approved for [Azure OpenAI access](../overview.md#how-do-i-get-access-to-azure-openai) and have an [Azure OpenAI Service resource](../how-to/create-resource.md) deployed in a [supported region](#regional-availability-and-model-support) with either the gpt-35-turbo or the gpt-4 models.
+Typically, the development process you'd use with Azure OpenAI On Your Data is:
+1. **Ingest**: Upload files using either [Azure AI Foundry portal](https://ai.azure.com/) or the ingestion API. This enables your data to be cracked, chunked and embedded into an Azure AI Search instance that can be used by Azure OpenAI models. If you have an existing [supported data source](#supported-data-sources), you can also connect it directly.
+
+1. **Develop**: After trying Azure OpenAI On Your Data, begin developing your application using the available REST API and SDKs, which are available in several languages. It will create prompts and search intents to pass to the Azure OpenAI service.
+
+1. **Inference**: After your application is deployed in your preferred environment, it will send prompts to Azure OpenAI, which will perform several steps before returning a response:
+    1. **Intent generation**: The service will determine the intent of the user's prompt to determine a proper response.
+
+    1. **Retrieval**: The service retrieves relevant chunks of available data from the connected data source by querying it. For example by using a semantic or vector search. [Parameters](#runtime-parameters) such as strictness and number of documents to retrieve are utilized to influence the retrieval.
+    
+    1. **Filtration and reranking**: Search results from the retrieval step are improved by ranking and filtering data to refine relevance.    
+    
+    1. **Response generation**: The resulting data is submitted along with other information like the system message to the Large Language Model (LLM) and the response is sent back to the application.
+
+To get started, [connect your data source](../use-your-data-quickstart.md) using [Azure AI Foundry portal](https://ai.azure.com/) and start asking questions and chatting on your data.
 
 ## Azure Role-based access controls (Azure RBAC) for adding data sources
 
-To use Azure OpenAI On Your Data fully, you need to set one or more Azure RBAC roles. See [Use Azure OpenAI On Your Data securely](../how-to/use-your-data-securely.md#role-assignments) for more information.
+To use Azure OpenAI On Your Data fully, you need to set one or more Azure RBAC roles. See [Azure OpenAI On Your Data configuration](../how-to/on-your-data-configuration.md#role-assignments) for more information.
 
 ## Data formats and file types
 
@@ -58,6 +70,9 @@ There's an [upload limit](../quotas-limits.md), and there are some caveats about
 
 You need to connect to a data source to upload your data. When you want to use your data to chat with an Azure OpenAI model, your data is chunked in a search index so that relevant data can be found based on user queries.
 
+> [!NOTE]
+> Your data should be unstructured text for best results. If you have non-textual semi-structured or structured data consider converting it to text. If your files have special formatting, such as tables and columns, or bullet points, prepare your data with the data preparation script available on [GitHub](https://github.com/microsoft/sample-app-aoai-chatGPT/tree/main/scripts#optional-crack-pdfs-to-text).
+
 The [Integrated Vector Database in vCore-based Azure Cosmos DB for MongoDB](/azure/cosmos-db/mongodb/vcore/vector-search) natively supports integration with Azure OpenAI On Your Data.
 
 For some data sources such as uploading files from your local machine (preview) or data contained in a blob storage account (preview), Azure AI Search is used. When you choose the following data sources, your data is ingested into an Azure AI Search index.
@@ -68,6 +83,7 @@ For some data sources such as uploading files from your local machine (preview) 
 |Upload files (preview)      | Upload files from your local machine to be stored in an Azure Blob Storage database, and ingested into Azure AI Search.         |
 |URL/Web address (preview)        | Web content from the URLs is stored in Azure Blob Storage.         |
 |Azure Blob Storage (preview) | Upload files from Azure Blob Storage to be ingested into an Azure AI Search index.         |
+
 
 :::image type="content" source="../media/use-your-data/azure-databases-and-ai-search.png" lightbox="../media/use-your-data/azure-databases-and-ai-search.png" alt-text="Diagram of vector indexing services.":::
 
@@ -80,7 +96,7 @@ You might want to consider using an Azure AI Search index when you either want t
 > [!NOTE]
 > * To use an existing index, it must have at least one searchable field.
 > * Set the CORS **Allow Origin Type** option to `all` and the **Allowed origins** option to `*`. 
-
+> * You cannot have complex fields in your search index. 
 
 ### Search types
 
@@ -118,14 +134,14 @@ Azure OpenAI On Your Data has intelligent search enabled for your data. Semantic
 > [!NOTE] 
 > Document-level access control is supported when you select Azure AI Search as your data source.
 
-Azure OpenAI On Your Data lets you restrict the documents that can be used in responses for different users with Azure AI Search [security filters](/azure/search/search-security-trimming-for-azure-search-with-aad). When you enable document level access, the search results returned from Azure AI Search and used to generate a response are trimmed based on user Microsoft Entra group membership. You can only enable document-level access on existing Azure AI Search indexes See [Use Azure OpenAI On Your Data securely](../how-to/use-your-data-securely.md#document-level-access-control) for more information.
+Azure OpenAI On Your Data lets you restrict the documents that can be used in responses for different users with Azure AI Search [security filters](/azure/search/search-security-trimming-for-azure-search-with-aad). When you enable document level access, the search results returned from Azure AI Search and used to generate a response are trimmed based on user Microsoft Entra group membership. You can only enable document-level access on existing Azure AI Search indexes. See [Azure OpenAI On Your Data network and access configuration](../how-to/on-your-data-configuration.md#document-level-access-control) for more information.
 
 
 ### Index field mapping 
 
-If you're using your own index, you'll be prompted in the Azure OpenAI Studio to define which fields you want to map for answering questions when you add your data source. You can provide multiple fields for *Content data*, and should include all fields that have text pertaining to your use case. 
+If you're using your own index, you'll be prompted in the [Azure AI Foundry portal](https://ai.azure.com/) to define which fields you want to map for answering questions when you add your data source. You can provide multiple fields for *Content data*, and should include all fields that have text pertaining to your use case. 
 
-:::image type="content" source="../media/use-your-data/index-data-mapping.png" alt-text="A screenshot showing the index field mapping options in Azure OpenAI Studio." lightbox="../media/use-your-data/index-data-mapping.png":::
+:::image type="content" source="../media/use-your-data/index-data-mapping.png" alt-text="A screenshot showing the index field mapping options in Azure AI Foundry portal." lightbox="../media/use-your-data/index-data-mapping.png":::
 
 In this example, the fields mapped to **Content data** and **Title** provide information to the model to answer questions. **Title** is also used to title citation text. The field mapped to **File name** generates the citation names in the response. 
 
@@ -176,15 +192,14 @@ You might want to use Azure Blob Storage as a data source if you want to connect
 
 To keep your Azure AI Search index up-to-date with your latest data, you can schedule an automatic index refresh rather than manually updating it every time your data is updated. Automatic index refresh is only available when you choose **Azure Blob Storage** as the data source. To enable an automatic index refresh:
 
-1. [Add a data source](../quickstart.md) using Azure OpenAI studio.
+1. [Add a data source](../quickstart.md) using [Azure AI Foundry portal](https://ai.azure.com/).
 1. Under **Select or add data source** select **Indexer schedule** and choose the refresh cadence you would like to apply.
 
-    :::image type="content" source="../media/use-your-data/indexer-schedule.png" alt-text="A screenshot of the indexer schedule in Azure OpenAI Studio." lightbox="../media/use-your-data/indexer-schedule.png":::
+    :::image type="content" source="../media/use-your-data/indexer-schedule.png" alt-text="A screenshot of the indexer schedule in Azure AI Foundry portal." lightbox="../media/use-your-data/indexer-schedule.png":::
 
 After the data ingestion is set to a cadence other than once, Azure AI Search indexers will be created with a schedule equivalent to `0.5 * the cadence specified`. This means that at the specified cadence, the indexers will pull, reprocess, and index the documents that were added or modified from the storage container. This process ensures that the updated data gets preprocessed and indexed in the final index at the desired cadence automatically. To update your data, you only need to upload the additional documents from the Azure portal. From the portal, select **Storage Account** > **Containers**. Select the name of the original container, then **Upload**. The index will pick up the files automatically after the scheduled refresh period. The intermediate assets created in the Azure AI Search resource won't be cleaned up after ingestion to allow for future runs. These assets are:
    - `{Index Name}-index`
    - `{Index Name}-indexer`
-   - `{Index Name}-indexer-chunk`
    - `{Index Name}-datasource`
    - `{Index Name}-skillset`
 
@@ -209,9 +224,9 @@ To modify the schedule, you can use the [Azure portal](https://portal.azure.com/
 
 # [Upload files (preview)](#tab/file-upload)
 
-Using Azure OpenAI Studio, you can upload files from your machine to try Azure OpenAI On Your Data. You also have the option to create a new Azure Blob Storage account and Azure AI Search resource. The service then stores the files to an Azure storage container and performs ingestion from the container. You can use the [quickstart](../use-your-data-quickstart.md) article to learn how to use this data source option.
+Using [Azure AI Foundry portal](https://ai.azure.com/), you can upload files from your machine to try Azure OpenAI On Your Data. You also have the option to create a new Azure Blob Storage account and Azure AI Search resource. The service then stores the files to an Azure storage container and performs ingestion from the container. You can use the [quickstart](../use-your-data-quickstart.md) article to learn how to use this data source option.
 
-:::image type="content" source="../media/quickstarts/add-your-data-source.png" alt-text="A screenshot showing options for selecting a data source in Azure OpenAI Studio." lightbox="../media/quickstarts/add-your-data-source.png":::
+:::image type="content" source="../media/quickstarts/add-your-data-source.png" alt-text="A screenshot showing options for selecting a data source in Azure AI Foundry portal." lightbox="../media/quickstarts/add-your-data-source.png":::
 
 [!INCLUDE [ai-search-ingestion](../includes/ai-search-ingestion.md)]
 
@@ -293,21 +308,70 @@ Mapping these fields correctly helps ensure the model has better response and ci
 
 ### Use Elasticsearch as a data source via API  
 
-Along with using Elasticsearch databases in Azure OpenAI Studio, you can also use your Elasticsearch database using the [API](../references/elasticsearch.md). 
+Along with using Elasticsearch databases in [Azure AI Foundry portal](https://ai.azure.com/), you can also use your Elasticsearch database using the [API](../references/elasticsearch.md). 
+
+# [MongoDB Atlas (preview)](#tab/mongo-db-atlas)
+
+You can connect your MongoDB Atlas vector index with Azure OpenAI On Your Data for inferencing. You can use it through the [Azure AI Foundry portal](https://ai.azure.com/), API and SDK.
+
+### Prerequisites 
+
+* A [MongoDB Atlas account](https://account.mongodb.com/account/register)
+* An [Azure OpenAI ada002 embedding model](./models.md#embeddings)
+    * To achieve good retrieval quality, make sure your vector index is created with Azure OpenAI ada002 embedding model.
+
+We recommend using one of the following models for MongoDB Atlas
+* gpt-4 (0613)
+* gpt-4 (turbo-2024-04-09) 
+* gpt-4o (2024-05-13) 
+* gpt-35-turbo (1106) 
+
+### Configuration  
+
+Only public network access is supported. Please make sure the database allows public access 
+:::image type="content" source="../media/use-your-data/mongo-db-network-access.png" alt-text="A screenshot showing the network access screen for Mongo DB.":::
+
+### Data preparation
+
+If you want to create a new vector search index with your documents, you can use the [available script on GitHub](https://github.com/microsoft/sample-app-aoai-chatGPT/blob/rawan/mongodbdataprep/scripts/mongo_vector_db_data_preparation.py) to prepare your data for use with Azure OpenAI On Your Data. 
+
+### Connection to MongoDB account
+
+To add your data source, you first need to create a connection to MongoDB Atlas. This connection includes information such as authentication (username and password). Enter the endpoint of your MongoDB Atlas connection string using the following format: `mongodb+srv://{user_name}:{password}@{endpoint}/?appName={application_name}`. See the [MongoDB documentation](https://aka.ms/mongodb-connection-string) for more information about connection string methods.
+
+:::image type="content" source="../media/use-your-data/mongo-db-atlas-connection.png" alt-text="A screenshot showing the connection screen for Mongo DB." lightbox="../media/use-your-data/mongo-db-atlas-connection.png":::
+
+### Source index
+
+Once you have created a connection or chosen an existing connection, you can enter the information to connect to a specific vector index within this connected account. You need to input the name of your database, collection and vector index. Make sure you have entered the information correctly to successfully build the connection.
+
+:::image type="content" source="../media/use-your-data/mongo-db-atlas-source-index.png" alt-text="A screenshot showing the field required information for Mongo DB Atlas." lightbox="../media/use-your-data/mongo-db-atlas-source-index.png":::
+
+To use MongoDB Atlas, you'll need an Azure OpenAI ada002 embedding model. This model will be created for you if you don't already have one, which will incur [usage](https://go.microsoft.com/fwlink/?linkid=2264246) on your account.
+
+### Index field mapping
+
+When you add your MongoDB Atlas data source, you can specify data fields to properly map your data for retrieval.
+
+* Content data (required): This is the main text content of each document. For multiple fields, separate the values with commas, with no spaces.
+* Vector field (required): The field name in your MongoDB Atlas search index that contains the vectors.
+* File name/title/URL: Used to display more information when a document is referenced in the chat.
+
+:::image type="content" source="../media/use-your-data/mongo-db-atlas-field-mapping.png" alt-text="A screenshot showing the field mapping options for Mongo DB Atlas." lightbox="../media/use-your-data/mongo-db-atlas-field-mapping.png":::
 
 ---
 
 ## Deploy to a copilot (preview), Teams app (preview), or web app 
 
-After you connect Azure OpenAI to your data, you can deploy it using the **Deploy to** button in Azure OpenAI Studio.
+After you connect Azure OpenAI to your data, you can deploy it using the **Deploy to** button in [Azure AI Foundry portal](https://ai.azure.com/).
 
-:::image type="content" source="../media/use-your-data/deploy-model.png" alt-text="A screenshot showing the model deployment button in Azure OpenAI Studio." lightbox="../media/use-your-data/deploy-model.png":::
+:::image type="content" source="../media/use-your-data/deploy-model.png" alt-text="A screenshot showing the model deployment button in Azure AI Foundry portal." lightbox="../media/use-your-data/deploy-model.png":::
 
 This gives you multiple options for deploying your solution.
 
 #### [Copilot (preview)](#tab/copilot)
 
-You can deploy to a copilot in [Copilot Studio](/microsoft-copilot-studio/fundamentals-what-is-copilot-studio) (preview) directly from Azure OpenAI Studio, enabling you to bring conversational experiences to various channels such as: Microsoft Teams, websites, Dynamics 365, and other [Azure Bot Service channels](/microsoft-copilot-studio/publication-connect-bot-to-azure-bot-service-channels). The tenant used in the Azure OpenAI service and Copilot Studio (preview) should be the same. For more information, see [Use a connection to Azure OpenAI On Your Data](/microsoft-copilot-studio/nlu-generative-answers-azure-openai).
+You can deploy to a copilot in [Copilot Studio](/microsoft-copilot-studio/fundamentals-what-is-copilot-studio) (preview) directly from [Azure AI Foundry portal](https://ai.azure.com/), enabling you to bring conversational experiences to various channels such as: Microsoft Teams, websites, Dynamics 365, and other [Azure Bot Service channels](/microsoft-copilot-studio/publication-connect-bot-to-azure-bot-service-channels). The tenant used in the Azure OpenAI service and Copilot Studio (preview) should be the same. For more information, see [Use a connection to Azure OpenAI On Your Data](/microsoft-copilot-studio/nlu-generative-answers-azure-openai).
 
 > [!NOTE]
 > Deploying to a copilot in Copilot Studio (preview) is only available in US regions.
@@ -326,10 +390,10 @@ A Teams app lets you bring conversational experience to your users in Teams to i
 - Sign in to your [Microsoft 365 developer account](/microsoftteams/platform/concepts/build-and-test/prepare-your-o365-tenant) (using this link to get a test account: [Developer program](https://developer.microsoft.com/microsoft-365/dev-program)).
     - Enable **custom Teams apps** and turn on **custom app uploading** in your account (instructions [here](/microsoftteams/platform/concepts/build-and-test/prepare-your-o365-tenant#enable-custom-teams-apps-and-turn-on-custom-app-uploading))
 - [Azure command-line interface (CLI)](/cli/azure/install-azure-cli) installed. This is a cross-platform command-line tool to connect to Azure and execute administrative commands on Azure resources. For more information on setting up environment variables, see the [Azure SDK documentation](https://github.com/Azure/azure-sdk-for-go/wiki/Set-up-Your-Environment-for-Authentication).
-- Your Azure account has been assigned **Cognitive Services OpenAI user** or **Cognitive Services OpenAI Contributor** role of the Azure OpenAI resource you're using, allowing your account to make Azure OpenAI API calls. For more information, see [Using your data with Azure OpenAI securely](/azure/ai-services/openai/how-to/use-your-data-securely#using-the-api) and [Add role assignment to an Azure OpenAI resource](/azure/ai-services/openai/how-to/role-based-access-control#add-role-assignment-to-an-azure-openai-resource) for instructions on setting this role in the Azure portal. 
+- Your Azure account has been assigned **Cognitive Services OpenAI user** or **Cognitive Services OpenAI Contributor** role of the Azure OpenAI resource you're using, allowing your account to make Azure OpenAI API calls. For more information, see [Azure OpenAI On Your data configuration](../how-to/on-your-data-configuration.md#using-the-api) and [Add role assignment to an Azure OpenAI resource](/azure/ai-services/openai/how-to/role-based-access-control#add-role-assignment-to-an-azure-openai-resource) for instructions on setting this role in the Azure portal. 
 
 
-You can deploy to a standalone Teams app directly from Azure OpenAI Studio. Follow the steps below: 
+You can deploy to a standalone Teams app directly from [Azure AI Foundry portal](https://ai.azure.com/). Follow the steps below: 
 
 1. After you've added your data to the chat model, select **Deploy** and then **a new Teams app (preview)**. 
 
@@ -337,7 +401,7 @@ You can deploy to a standalone Teams app directly from Azure OpenAI Studio. Foll
 
 1. Extract the .zip file and open the folder in Visual Studio Code.
 
-1. If you chose **API key** in the data connection step, manually copy and paste your Azure AI Search key into the `src\prompts\chat\config.json` file. Your Azure AI Search Key can be found in Azure OpenAI Studio Playground by selecting the **View code** button with the key located under Azure Search Resource Key. If you chose **System assigned managed identity**, you can skip this step. Learn more about different data connection options in the [Data connection](/azure/ai-services/openai/concepts/use-your-data?tabs=ai-search#data-connection) section.
+1. If you chose **API key** in the data connection step, manually copy and paste your Azure AI Search key into the `src\prompts\chat\config.json` file. Your Azure AI Search Key can be found in [Azure AI Foundry portal](https://ai.azure.com/) Playground by selecting the **View code** button with the key located under Azure Search Resource Key. If you chose **System assigned managed identity**, you can skip this step. Learn more about different data connection options in the [Data connection](/azure/ai-services/openai/concepts/use-your-data?tabs=ai-search#data-connection) section.
 
 1. Open the Visual Studio Code terminal and log into Azure CLI, selecting the account that you assigned **Cognitive Service OpenAI User** role to. Use the `az login` command in the terminal to log in.
 
@@ -372,9 +436,9 @@ Deploying to a standalone web app lets you and your users to interact with chat 
 
 ---
 
-## Use Azure OpenAI On Your Data securely
+## Configure access and networking for Azure OpenAI On Your Data
 
-You can use Azure OpenAI On Your Data securely by protecting data and resources with Microsoft Entra ID role-based access control, virtual networks, and private endpoints. You can also restrict the documents that can be used in responses for different users with Azure AI Search security filters. See [Securely use Azure OpenAI On Your Data](../how-to/use-your-data-securely.md).
+You can use Azure OpenAI On Your Data and protect data and resources with Microsoft Entra ID role-based access control, virtual networks, and private endpoints. You can also restrict the documents that can be used in responses for different users with Azure AI Search security filters. See [Azure OpenAI On Your Data access and network configuration](../how-to/on-your-data-configuration.md).
 
 ## Best practices
 
@@ -403,7 +467,7 @@ A small chunk size like 256 produces more granular chunks. This size also means 
 
 ### Runtime parameters
 
-You can modify the following additional settings in the **Data parameters** section in Azure OpenAI Studio and [the API](../references/on-your-data.md). You don't need to reingest your data when you update these parameters. 
+You can modify the following additional settings in the **Data parameters** section in [Azure AI Foundry portal](https://ai.azure.com/) and [the API](../references/on-your-data.md). You don't need to reingest your data when you update these parameters. 
 
 
 |Parameter name  | Description  |
@@ -420,9 +484,9 @@ It's possible for the model to return `"TYPE":"UNCITED_REFERENCE"` instead of `"
 
 You can define a system message to steer the model's reply when using Azure OpenAI On Your Data. This message allows you to customize your replies on top of the retrieval augmented generation (RAG) pattern that Azure OpenAI On Your Data uses. The system message is used in addition to an internal base prompt to provide the experience. To support this, we truncate the system message after a specific [number of tokens](#token-usage-estimation-for-azure-openai-on-your-data) to ensure the model can answer questions using your data. If you are defining extra behavior on top of the default experience, ensure that your system prompt is detailed and explains the exact expected customization. 
 
-Once you select add your dataset, you can use the **System message** section in the Azure OpenAI Studio, or the `role_information` [parameter in the API](../references/on-your-data.md).
+Once you select add your dataset, you can use the **System message** section in the [Azure AI Foundry portal](https://ai.azure.com/), or the `role_information` [parameter in the API](../references/on-your-data.md).
 
-:::image type="content" source="../media/use-your-data/system-message.png" alt-text="A screenshot showing the system message option in Azure OpenAI Studio." lightbox="../media/use-your-data/system-message.png":::
+:::image type="content" source="../media/use-your-data/system-message.png" alt-text="A screenshot showing the system message option in Azure AI Foundry portal." lightbox="../media/use-your-data/system-message.png":::
 
 #### Potential usage patterns
 
@@ -454,11 +518,6 @@ There are many tricks in prompt engineering that you can try to improve the outp
 > The system message is only guidance. The model might not adhere to every instruction specified because it has been primed with certain behaviors such as objectivity, and avoiding controversial statements. Unexpected behavior might occur if the system message contradicts with these behaviors. 
 
 
-
-### Maximum response 
-
-Set a limit on the number of tokens per model response. The upper limit for Azure OpenAI On Your Data is 1500. This is equivalent to setting the `max_tokens` parameter in the API. 
-
 ### Limit responses to your data 
 
 This option encourages the model to respond using your data only, and is selected by default. If you unselect this option, the model might more readily apply its internal knowledge to respond. Determine the correct selection based on your use case and scenario. 
@@ -478,7 +537,7 @@ Use the following practices for best results when chatting with the model.
 
 * If you aren't satisfied with the model response for a specific question, try either making the question more specific or more generic to see how the model responds, and reframe your question accordingly. 
 
-* [Chain-of-thought prompting](advanced-prompt-engineering.md?pivots=programming-language-chat-completions#chain-of-thought-prompting) has been shown to be effective in getting the model to produce desired outputs for complex questions/tasks.
+* [Chain-of-thought prompting](prompt-engineering.md?pivots=programming-language-chat-completions#chain-of-thought-prompting) has been shown to be effective in getting the model to produce desired outputs for complex questions/tasks.
 
 **Question length**
 
@@ -503,7 +562,7 @@ You can send a streaming request using the `stream` parameter, allowing data to 
 ```json
 {
     "stream": true,
-    "dataSources": [
+    "data_sources": [
         {
             "type": "AzureCognitiveSearch",
             "parameters": {
@@ -620,7 +679,7 @@ token_output = TokenEstimator.estimate_tokens(input_text)
 
 ## Troubleshooting 
 
-To troubleshoot failed operations, always look out for errors or warnings specified either in the API response or Azure OpenAI Studio. Here are some of the common errors and warnings: 
+To troubleshoot failed operations, always look out for errors or warnings specified either in the API response or [Azure AI Foundry portal](https://ai.azure.com/). Here are some of the common errors and warnings: 
 
 ### Failed ingestion jobs
 
@@ -658,6 +717,11 @@ Each user message can translate to multiple search queries, all of which get sen
 
 ## Regional availability and model support
 
+> [!NOTE]
+> The following models are not supported by Azure OpenAI On Your Data:
+> * o1 models
+> * o3 models
+
 | Region | `gpt-35-turbo-16k (0613)` | `gpt-35-turbo (1106)` | `gpt-4-32k (0613)` | `gpt-4 (1106-preview)` | `gpt-4 (0125-preview)` | `gpt-4 (0613)`  | `gpt-4o`\*\* | `gpt-4 (turbo-2024-04-09)` |
 |------|---|---|---|---|---|----|----|----|
 | Australia East | ✅ | ✅ | ✅ |✅ |   | ✅ | | | 
@@ -682,6 +746,6 @@ If your Azure OpenAI resource is in another region, you won't be able to use Azu
 ## Next steps
 * [Get started using your data with Azure OpenAI](../use-your-data-quickstart.md)
 
-* [Securely use Azure OpenAI On Your Data](../how-to/use-your-data-securely.md)
+* [Azure OpenAI On Your Data network and access configuration](../how-to/on-your-data-configuration.md)
 
 * [Introduction to prompt engineering](./prompt-engineering.md)

@@ -2,33 +2,33 @@
 title: Object detection - Azure AI Vision
 titleSuffix: Azure AI services
 description: Learn concepts related to the object detection feature of the Azure AI Vision API - usage and limits.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 01/17/2024
+ms.date: 03/26/2025
 ms.author: pafarley
 ---
 
 # Object detection
 
-Object detection is similar to [tagging](concept-tag-images-40.md), but the API returns the bounding box coordinates (in pixels) for each object found in the image. For example, if an image contains a dog, cat, and person, the object detection operation lists those objects with their coordinates in the image. You can use this functionality to process the relationships between the objects in an image. It also lets you determine whether there are multiple instances of the same object in an image.
+This article explains the object detection feature. Object detection is similar to [tagging](concept-tag-images-40.md), but the API returns the bounding box coordinates (in pixels) for each object found in the image. For example, if an image contains a dog, cat, and person, the object detection operation lists those objects with their coordinates in the image. 
 
-The object detection function applies tags based on the objects or living things identified in the image. There's no formal relationship between the tagging taxonomy and the object detection taxonomy. At a conceptual level, the object detection function only finds objects and living things, while the tag function can also include contextual terms like "indoor," which can't be localized with bounding boxes.
+You can use this functionality to process the relationships between the objects in an image. It also lets you determine whether there are multiple instances of the same object in an image.
 
-Try out the capabilities of object detection quickly and easily in your browser using Vision Studio.
+There's no formal relationship between the tagging taxonomy and the object detection taxonomy. At a conceptual level, the object detection function only finds objects and living things, while the tag function can also include contextual terms like *indoor*, which can't be localized with bounding boxes.
+
+Try out the capabilities of object detection quickly and easily in your browser by using Azure AI Vision Studio.
 
 > [!div class="nextstepaction"]
 > [Try Vision Studio](https://portal.vision.cognitive.azure.com/)
 
 ## Object detection example
 
-The following JSON response illustrates what the Analyze Image API returns when detecting objects in the example image.
+The following JSON response shows what the Analyze Image API returns when it detects objects in the example image.
 
-![A woman using a Microsoft Surface device in a kitchen](./Images/windows-kitchen.jpg)
-
+:::image type="content" source="images/windows-kitchen.jpg" alt-text="Photograph showing a woman using a Microsoft Surface device in a kitchen.":::
 
 ```json
 {
@@ -99,7 +99,6 @@ It's important to note the limitations of object detection so you can avoid or m
 
 ## Use the API
 
-The object detection feature is part of the [Analyze Image](/rest/api/computervision/analyze-image/analyze-image?view=rest-computervision-v3.2&tabs=HTTP) API. You can call this API through a native SDK or through REST calls. Include `Objects` in the **visualFeatures** query parameter. Then, when you get the full JSON response, parse the string for the contents of the `"objects"` section.
+The object detection feature is part of the [Analyze Image](/rest/api/computervision/analyze-image/analyze-image) API. You can call this API through a native SDK or through REST calls. Include `Objects` in the `visualFeatures` query parameter. Then, when you get the full JSON response, parse the string for the contents of the **objects** section.
 
-
-* [Quickstart: Vision REST API or client libraries](./quickstarts-sdk/image-analysis-client-library.md?pivots=programming-language-csharp)
+* [Quickstart: Image Analysis](./quickstarts-sdk/image-analysis-client-library.md?pivots=programming-language-csharp)

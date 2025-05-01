@@ -8,9 +8,10 @@ ms.author: larryfr
 ms.reviewer: meyetman
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.date: 01/05/2024
+ms.date: 01/21/2025
 ms.topic: how-to
 ms.custom: has-adal-ref, subject-rbac-steps, cliv2, sdkv2
+# Customer intent: As a data scientist, I want to learn how to set up authentication for Azure Machine Learning resources and workflows so that I can access the resources I need.
 ---
 
 # Set up authentication for Azure Machine Learning resources and workflows
@@ -55,7 +56,7 @@ Once you create the Microsoft Entra accounts, see [Manage access to Azure Machin
 
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
-Interactive authentication uses the [Azure Identity package for Python](/python/api/overview/azure/identity-readme). Most examples use `DefaultAzureCredential` to access your credentials. When a token is needed, it requests one using multiple identities (`EnvironmentCredential`, `ManagedIdentityCredential`, `SharedTokenCacheCredential`, `VisualStudioCodeCredential`, `AzureCliCredential`, `AzurePowerShellCredential`) in turn, stopping when one provides a token. For more information, see the [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential) class reference.
+Interactive authentication uses the [Azure Identity package for Python](/python/api/overview/azure/identity-readme). There are multiple ways to interactively authenticate, however most examples use `DefaultAzureCredential` since it handles most authentication scenarios. The `DefaultAzureCredential` class uses multiple approaches (`EnvironmentCredential`, `ManagedIdentityCredential`, `SharedTokenCacheCredential`, `VisualStudioCodeCredential`, `AzureCliCredential`, `AzurePowerShellCredential`) in turn, stopping when one provides a token. For more information, see the [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential) class reference.
 
 The following code is an example of using `DefaultAzureCredential` to authenticate. If authentication using `DefaultAzureCredential` fails, a fallback of authenticating through your web browser is used instead.
 
@@ -131,7 +132,7 @@ The easiest way to create an SP and grant access to your workspace is by using t
 
     For other methods of authenticating, see [Sign in with Azure CLI](/cli/azure/authenticate-azure-cli).
 
-1. Create the service principal. In the following example, an SP named **ml-auth** is created:
+1. Create the service principal. In the following example, an SP named __ml-auth__ is created:
 
     ```azurecli-interactive
     az ad sp create-for-rbac --json-auth --name ml-auth --role Contributor --scopes /subscriptions/<subscription id>
@@ -328,7 +329,7 @@ can require two-factor authentication, or allow sign in only from managed device
 | Application ID | Name | Note |
 | ----- | ----- | ----- |
 | d7304df8-741f-47d3-9bc2-df0e24e2071f | Azure Machine Learning Workbench Web App | Azure Machine Learning studio |
-| cb2ff863-7f30-4ced-ab89-a00194bcf6d9 | Azure AI Studio App | Azure AI Studio |
+| cb2ff863-7f30-4ced-ab89-a00194bcf6d9 | Azure AI Foundry App | Azure AI Foundry |
 
 ### Check for service principal
 

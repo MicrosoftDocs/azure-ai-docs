@@ -23,31 +23,39 @@ items:
       href: ./supported-languages.md
     - name: Azure OpenAI FAQ
       href: faq.yml
+    - name: Azure OpenAI in Azure Government
+      href: azure-government.md
 - name: Quickstarts
   items:
     - name: Assistants (preview)
       href: assistants-quickstart.md
-    - name: Completions
-      href: quickstart.md
+    - name: Audio generation
+      href: audio-completions-quickstart.md
     - name: Chat
       href: chatgpt-quickstart.md  
       displayName: ChatGPT, chatgpt
-    - name: GPT-4 Turbo with Vision
+    - name: Vision-enabled chats
       href: gpt-v-quickstart.md
-    - name: DALL-E
+    - name: Image generation
       href: dall-e-quickstart.md
     - name: Use your data
       href: use-your-data-quickstart.md
-    - name: Whisper model
+    - name: Realtime API for speech and audio (preview)
+      href: realtime-audio-quickstart.md
+    - name: Speech to text with Whisper
       href: whisper-quickstart.md
     - name: Text to speech (preview)
       href: text-to-speech-quickstart.md
+    - name: Completions (legacy)
+      href: quickstart.md
 - name: Concepts
   items:
     - name: Assistants
       href: ./concepts/assistants.md
     - name: Abuse monitoring
       href: ./concepts/abuse-monitoring.md
+    - name: Audio
+      href: ./concepts/audio.md
     - name: Content filtering
       href: ./concepts/content-filter.md
     - name: Default safety policies
@@ -60,27 +68,28 @@ items:
       href: ./concepts/understand-embeddings.md
     - name: Fine-tuning
       href: ./concepts/fine-tuning-considerations.md
-    - name: GPT-4 Turbo with Vision
+    - name: Vision-enabled models
       href: ./concepts/gpt-with-vision.md
     - name: Red teaming large language models (LLMs)
       href: ./concepts/red-teaming.md
     - name: Content credentials
       href: ./concepts/content-credentials.md
-    - name: Intro to prompt engineering
-      href: ./concepts/prompt-engineering.md
-    - name: Prompt engineering techniques
-      href: ./concepts/advanced-prompt-engineering.md
-    - name: Image prompt engineering techniques
-      href: ./concepts/gpt-4-v-prompt-engineering.md
+    - name: Prompt engineering
+      items:
+      - name: Prompt engineering techniques
+        href: ./concepts/prompt-engineering.md
+      - name: Image prompt engineering techniques
+        href: ./concepts/gpt-4-v-prompt-engineering.md
+    - name: System messages
+      items:
+      - name: System message design
+        href: ./concepts/advanced-prompt-engineering.md
+      - name: Safety system messages
+        href: ./concepts/system-message.md
+      - name: Safety system message templates
+        href: ./concepts/safety-system-message-templates.md
     - name: Model versions
       href: ./concepts/model-versions.md
-    - name: Provisioned throughput units (PTU)
-      href: ./concepts/provisioned-throughput.md
-      displayName: PTU, provisioned, provisioned throughput units
-    - name: Azure OpenAI PTU update
-      href: ./concepts/provisioned-migration.md
-    - name: System message templates
-      href: ./concepts/system-message.md
     - name: Legacy models
       href: ./concepts/legacy-models.md
 - name: How-to 
@@ -103,29 +112,48 @@ items:
           href: ./how-to/assistants-logic-apps.md
       - name: File search
         href: ./how-to/file-search.md
+  - name: Audio
+    items:
+      - name: Realtime API for speech and audio (preview)
+        href: ./how-to/realtime-audio.md
+      - name: Realtime API via WebRTC (preview)
+        href: ./how-to/realtime-audio-webrtc.md
+      - name: Realtime API via WebSockets (preview)
+        href: ./how-to/realtime-audio-websockets.md
   - name: Batch
     href: ./how-to/batch.md
-  - name: Completions & chat completions
+  - name: Responses & chat completions
     items:
+    - name: Responses API
+      href: ./how-to/responses.md
+    - name: Reasoning models
+      href: ./how-to/reasoning.md
     - name: GPT-35-Turbo & GPT-4 
       href: ./how-to/chatgpt.md
       displayName: ChatGPT, chatgpt
-    - name: GPT-4 Turbo with Vision
+    - name: Computer Use
+      href: ./how-to/computer-use.md
+      displayName: cua, computer using model
+    - name: Vision-enabled chats
       href: ./how-to/gpt-with-vision.md
-    - name: DALL-E
+    - name: Image generation
       href: ./how-to/dall-e.md
     - name: Function calling
       href: ./how-to/function-calling.md
-    - name: Completions
+    - name: Completions (legacy)
       href: ./how-to/completions.md
     - name: JSON mode
       href: ./how-to/json-mode.md
+    - name: Predicted outputs
+      href: ./how-to/predicted-outputs.md
+    - name: Prompt caching
+      href: ./how-to/prompt-caching.md
     - name: Reproducible output
       href: ./how-to/reproducible-output.md
+    - name: Structured outputs
+      href: ./how-to/structured-outputs.md
     - name: Work with code
       href: ./how-to/work-with-code.md
-    - name: Use with large datasets
-      href: ./how-to/integrate-synapseml.md
     - name: Deploy and use web apps
       href: ./how-to/use-web-app.md
     - name: Legacy
@@ -144,22 +172,43 @@ items:
       href: ./how-to/embeddings.md
     - name: Getting started with embeddings
       href: ./tutorials/embeddings.md
+  - name: Evaluation
+    href: ./how-to/evaluations.md
   - name: Fine-tuning
     items:
       - name: Fine-tuning your model
         href: ./how-to/fine-tuning.md
-        displayName: finetuning 
-      - name: Function calling
+        displayName: finetuning, fine-tuning 
+      - name: Deploy your fine-tuned model
+        href: ./how-to/fine-tuning-deploy.md 
+        displayName: finetuning, fine-tuning  
+      - name: Vision fine-tuning
+        href: ./how-to/fine-tuning-vision.md
+        displayName: finetuning, fine-tuning  
+      - name: Preference fine-tuning
+        href: ./how-to/fine-tuning-direct-preference-optimization.md
+        displayName: finetuning, fine-tuning  
+      - name: Safety evaluation
+        href: ./how-to/fine-tuning-safety-evaluation.md
+        displayName: finetuning, fine-tuning  
+      - name: Tool calling
         href: ./how-to/fine-tuning-functions.md
-        displayName: fine-tuning, finetuning
+        displayName: fine-tuning, finetuning, function calling
+      - name: Weights & Biases integration (preview)
+        href: ./how-to/weights-and-biases-integration.md
+        displayName: finetuning, fine-tuning  
+      - name: Troubleshooting guidance
+        href: ./how-to/fine-tuning-troubleshoot.md
+        displayName: finetuning, fine-tuning
+  - name: Stored completions
+    href: ./how-to/stored-completions.md
   - name: Use your data
     items:
       - name: Text data
         href: ./concepts/use-your-data.md
-      - name: Image data (preview)
-        href: ./concepts/use-your-image-data.md
-      - name: Use Azure OpenAI On Your Data securely
-        href: ./how-to/use-your-data-securely.md
+        displayName: use your data, on your data
+      - name: Network and access configuration
+        href: ./how-to/on-your-data-configuration.md
       - name: Deploy and use web apps
         href: ./how-to/use-web-app.md
       - name: Use the Azure Developer CLI
@@ -170,6 +219,8 @@ items:
     href: ./how-to/migration.md
   - name: Migrate to OpenAI JavaScript v4.x
     href: ./how-to/migration-javascript.md
+  - name: Migrate to Azure OpenAI .NET v2.0
+    href: ./how-to/dotnet-migration.md
   - name: Models
     items:
       - name: Manage models
@@ -178,12 +229,12 @@ items:
     items:
       - name: Use virtual networks
         href: ../cognitive-services-virtual-networks.md?context=/azure/ai-services/openai/context/context
+      - name: Virtual networks with private endpoints
+        href: ./how-to/network.md        
       - name: Encryption of data at rest
         href: encrypt-data-at-rest.md
       - name: Managed identity
         href: ./how-to/managed-identity.md
-      - name: Use Azure OpenAI on your data securely
-        href: ./how-to/use-your-data-securely.md
   - name: Service management
     items:
       - name: Resource creation & model deployment
@@ -196,12 +247,21 @@ items:
         href: ./how-to/dynamic-quota.md
       - name: Monitor Azure OpenAI
         href: ./how-to/monitor-openai.md
-      - name: Onboarding to Provisioned Throughput Units (PTU)
-        href: ./how-to/provisioned-throughput-onboarding.md
-        displayName: PTU, provisioned, provisioned throughput units
-      - name: Get started with Provisioned Deployments
-        href: ./how-to/provisioned-get-started.md
-        displayName: PTU, provisioned, provisioned throughput units
+      - name: Provisioned throughput units (PTU)
+        items:
+        - name: What is the Provisioned Managed offering (PTU)?
+          href: ./concepts/provisioned-throughput.md
+          displayName: PTU, provisioned, provisioned throughput units
+        - name: Understanding and calculating PTU costs 
+          href: ./how-to/provisioned-throughput-onboarding.md
+          displayName: PTU, provisioned, provisioned throughput units
+        - name: Get started with Provisioned Deployments
+          href: ./how-to/provisioned-get-started.md
+          displayName: PTU, provisioned, provisioned throughput units
+        - name: Provisioned spillover
+          href: ./how-to/spillover-traffic-management.md
+        - name: Azure OpenAI PTU updates
+          href: ./concepts/provisioned-migration.md
       - name: Plan and manage costs
         href: ./how-to/manage-costs.md
       - name: Performance & latency
@@ -214,10 +274,26 @@ items:
   items:
     - name: Embeddings
       href: ./tutorials/embeddings.md
-    - name: Fine-tuning GPT-3.5-Turbo
+    - name: Fine-tuning GPT-4o mini
       href: ./tutorials/fine-tune.md
-    - name: Speech to speech chat
-      href: ../speech-service/openai-speech.md?context=%2fazure%2fcognitive-services%2fopenai%2fcontext%2fcontext
+- name: Security & Governance
+  items:
+    - name: Data, privacy, and security
+      href: /legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context
+    - name: Use virtual networks
+      href: ../cognitive-services-virtual-networks.md?context=/azure/ai-services/openai/context/context
+    - name: Encryption of data at rest
+      href: encrypt-data-at-rest.md
+    - name: Managed identity
+      href: ./how-to/managed-identity.md
+    - name: Role-based access control (Azure RBAC)
+      href: ./how-to/role-based-access-control.md
+    - name: Business continuity & disaster recovery (BCDR)
+      href: ./how-to/business-continuity-disaster-recovery.md
+    - name: Use your data
+      items:
+      - name: Network and access configuration
+        href: ./how-to/on-your-data-configuration.md
 - name: Responsible AI
   items:
     - name: Overview
@@ -227,7 +303,7 @@ items:
     - name: Limited access
       href: /legal/cognitive-services/openai/limited-access?context=/azure/ai-services/openai/context/context
     - name: Code of conduct
-      href: /legal/cognitive-services/openai/code-of-conduct?context=/azure/ai-services/openai/context/context
+      href: /legal/ai-code-of-conduct?context=/azure/ai-services/openai/context/context
     - name: Data, privacy, and security
       href: /legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context
     - name: Customer Copyright Commitment
@@ -240,16 +316,16 @@ items:
       href: reference-preview.md
     - name: Assistants API Reference
       items:
-        - name: Python/REST
+        - name: REST
           items:
           - name: Assistants
-            href: ./assistants-reference.md
+            href: reference-preview.md#list---assistants
           - name: Threads
-            href: ./assistants-reference-threads.md
+            href: reference-preview.md#create---thread
           - name: Messages
-            href: ./assistants-reference-messages.md
+            href: reference-preview.md#list---messages
           - name: Runs
-            href: ./assistants-reference-runs.md 
+            href: reference-preview.md#create---thread-and-run
         - name: SDK 
           items:
           - name: C#
@@ -260,6 +336,8 @@ items:
             href: /java/api/overview/azure/ai-openai-assistants-readme?context=/azure/ai-services/openai/context/context
           - name: JavaScript
             href: /javascript/api/overview/azure/openai-assistants-readme?context=/azure/ai-services/openai/context/context
+          - name: Python
+            href: https://platform.openai.com/docs/api-reference/assistants
           
     - name: Azure OpenAI On Your Data API Reference
       items:
@@ -269,12 +347,12 @@ items:
           href: ./references/azure-search.md
         - name: Data source - Azure Cosmos DB for MongoDB vCore
           href: ./references/cosmos-db.md
-        - name: Data source - Azure Machine Learning index (preview)
-          href: ./references/azure-machine-learning.md
         - name: Data source - Elasticsearch (preview)
           href: ./references/elasticsearch.md
         - name: Data source - Pinecone (preview)
           href: ./references/pinecone.md
+        - name: Data source - Mongo DB (preview)
+          href: ./references/mongo-db.md
         - name: Ingestion API (preview)
           href: /rest/api/azureopenai/ingestion-jobs?context=/azure/ai-services/openai/context/context
     - name: Azure Resource Manager/Bicep/Terraform
@@ -287,7 +365,7 @@ items:
     - name: Java
       href: /java/api/com.azure.ai.openai?view=azure-java-preview&preserve-view=true
     - name: JavaScript
-      href: /javascript/api/@azure/openai/?view=azure-node-preview&preserve-view=true
+      href: /azure/ai-services/openai/supported-languages?tabs=dotnet-secure%2Csecure%2Cpython-secure%2Ccommand&pivots=programming-language-javascript
     - name: .NET 
       href: /dotnet/api/azure.ai.openai?view=azure-dotnet-preview&preserve-view=true
     - name: REST API (fine-tuning)
@@ -313,6 +391,8 @@ items:
               displayName: RAG, rag
     - name: Azure OpenAI monitoring data reference
       href: monitor-openai-reference.md
+    - name: Realtime API (preview) events reference
+      href: realtime-audio-reference.md
 - name: Resources
   items: 
     - name: Support and help options
@@ -320,7 +400,7 @@ items:
     - name: Intro to Azure OpenAI training
       href: /training/modules/explore-azure-openai/
     - name: Azure OpenAI Samples
-      href: https://aka.ms/AOAICodeSamples
+      href: https://github.com/Azure-Samples/openai
     - name: Region support
       href: https://azure.microsoft.com/global-infrastructure/services/?products=cognitive-services
     - name: Terms of use

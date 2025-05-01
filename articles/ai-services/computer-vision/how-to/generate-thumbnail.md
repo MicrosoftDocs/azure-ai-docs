@@ -2,13 +2,13 @@
 title: "Generate a smart-cropped thumbnail - Image Analysis 3.2"
 titleSuffix: Azure AI services
 description: Use the Image Analysis 3.2 REST API to generate a thumbnail with smart cropping.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 02/21/2025
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
@@ -39,8 +39,9 @@ To call the API, do the following steps:
 
 A successful response writes the thumbnail image to the file specified in `<thumbnailFile>`. If the request fails, the response contains an error code and a message to help determine what went wrong. If the request seems to succeed but the created thumbnail isn't a valid image file, it's possible that your key is not valid.
 
-## Next steps
+## Next step
 
 If you'd like to call Image Analysis APIs using a native SDK in the language of your choice, follow the quickstart to get set up.
 
-- [Quickstart (Image Analysis)](../quickstarts-sdk/image-analysis-client-library.md)
+> [!div class=nextstepaction]
+> [Quickstart (Image Analysis)](../quickstarts-sdk/image-analysis-client-library.md)

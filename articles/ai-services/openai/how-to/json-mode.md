@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 12/05/2023
+ms.date: 03/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -16,6 +16,12 @@ recommendations: false
 # Learn how to use JSON mode
 
 JSON mode allows you to set the models response format to return a valid JSON object as part of a chat completion. While generating valid JSON was possible previously, there could be issues with response consistency that would lead to invalid JSON objects being generated.
+
+> [!NOTE]
+> While JSON mode is still supported, when possible we recommend using [structured outputs](./structured-outputs.md). Like JSON mode structured outputs generates valid JSON, but with the added benefit that you can constrain the model to use a specific JSON schema.
+
+>[!NOTE]
+> Currently Structured outputs is not supported on [bring your own data](../concepts/use-your-data.md) scenario.
 
 ## JSON mode support
 
@@ -27,6 +33,8 @@ JSON mode is only currently supported with the following models:
 * `gpt-35-turbo` (0125)
 * `gpt-4` (1106-Preview)
 * `gpt-4` (0125-Preview)
+* `gpt-4o`
+* `gpt-4o-mini`
 
 ### API support
 
@@ -43,11 +51,11 @@ from openai import AzureOpenAI
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-03-01-preview"
+  api_version="2025-03-01-preview"
 )
 
 response = client.chat.completions.create(
-  model="gpt-4-0125-Preview", # Model = should match the deployment name you chose for your 0125-Preview model deployment
+  model="YOUR-MODEL_DEPLOYMENT_NAME", # Model = should match the deployment name you chose for your model deployment
   response_format={ "type": "json_object" },
   messages=[
     {"role": "system", "content": "You are a helpful assistant designed to output JSON."},

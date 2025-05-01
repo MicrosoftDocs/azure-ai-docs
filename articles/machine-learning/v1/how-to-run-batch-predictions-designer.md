@@ -15,6 +15,8 @@ ms.custom: UpdateFrequency5, designer
 
 # Run batch predictions using Azure Machine Learning designer
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, you learn how to use the designer to create a batch prediction pipeline. Batch prediction lets you continuously score large datasets on-demand using a web service that can be triggered from any HTTP library.
 
 In this how-to, you learn to do the following tasks:
@@ -153,7 +155,7 @@ You can also set a new default pipeline in the **Published pipelines** tab of yo
 
 ## Update pipeline endpoint
 
-If you make some modifications in your training pipeline, you may want to update the newly trained model to the pipeline endpoint.
+If you make some modifications in your training pipeline, you might want to update the newly trained model to the pipeline endpoint.
 
 1. After your modified training pipeline completes successfully, go to the job detail page.
 

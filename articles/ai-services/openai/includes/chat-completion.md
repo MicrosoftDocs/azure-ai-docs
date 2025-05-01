@@ -6,20 +6,16 @@ author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 04/25/2024
+ms.date: 08/29/2024
 manager: nitinme
 keywords: ChatGPT
 
 ---
 
-## Work with the GPT-3.5-Turbo and GPT-4 models
+## Work with chat completion models
 
-The following code snippet shows the most basic way to use the GPT-3.5-Turbo and GPT-4 models with the Chat Completion API. If this is your first time using these models programmatically, we recommend that you start with the [GPT-3.5-Turbo and GPT-4 quickstart](../chatgpt-quickstart.md).
+The following code snippet shows the most basic way to interact with models that use the Chat Completion API. If this is your first time using these models programmatically, we recommend that you start with the [chat completions quickstart](../chatgpt-quickstart.md).
 
-> [!NOTE]  
-> In the Azure OpenAI documentation, we refer to GPT-3.5-Turbo and GPT-35-Turbo interchangeably. The official name of the model on OpenAI is `gpt-3.5-turbo`. For Azure OpenAI, because of Azure-specific character constraints, the underlying model name is `gpt-35-turbo`.
-
-# [OpenAI Python 1.x](#tab/python-new)
 
 ```python
 import os
@@ -27,12 +23,12 @@ from openai import AzureOpenAI
 
 client = AzureOpenAI(
   api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version = "2024-02-01",
+  api_version = "2024-10-21",
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
 )
 
 response = client.chat.completions.create(
-    model="gpt-35-turbo", # model = "deployment_name".
+    model="gpt-4o", # model = "deployment_name".
     messages=[
         {"role": "system", "content": "Assistant is a large language model trained by OpenAI."},
         {"role": "user", "content": "Who were the founders of Microsoft?"}
@@ -77,7 +73,7 @@ print(response.choices[0].message.content)
     }
   ],
   "created": 1698892410,
-  "model": "gpt-35-turbo",
+  "model": "gpt-4o",
   "object": "chat.completion",
   "usage": {
     "completion_tokens": 73,
@@ -111,66 +107,6 @@ print(response.choices[0].message.content)
 Microsoft was founded by Bill Gates and Paul Allen. They established the company on April 4, 1975. Bill Gates served as the CEO of Microsoft until 2000 and later as Chairman and Chief Software Architect until his retirement in 2008, while Paul Allen left the company in 1983 but remained on the board of directors until 2000.
 ```
 
-# [OpenAI Python 0.28.1](#tab/python)
-
-[!INCLUDE [Deprecation](../includes/deprecation.md)]
-
-```python
-import os
-import openai
-openai.api_type = "azure"
-openai.api_version = "2024-02-01" 
-openai.api_base = os.getenv("AZURE_OPENAI_ENDPOINT")  # Your Azure OpenAI resource's endpoint value.
-openai.api_key = os.getenv("AZURE_OPENAI_API_KEY")
-
-response = openai.ChatCompletion.create(
-    engine="gpt-35-turbo", # The deployment name you chose when you deployed the GPT-3.5-Turbo or GPT-4 model.
-    messages=[
-        {"role": "system", "content": "Assistant is a large language model trained by OpenAI."},
-        {"role": "user", "content": "Who were the founders of Microsoft?"}
-    ]
-)
-
-print(response)
-
-# To print only the response content text:
-# print(response['choices'][0]['message']['content'])
-```
-
-### Output
-
-JSON formatting added artificially for ease of reading.
-
-```json
-{
-  "choices": [
-    {
-      "finish_reason": "stop",
-      "index": 0,
-      "message": {
-        "content": "The founders of Microsoft are Bill Gates and Paul Allen. They co-founded the company in 1975.",
-        "role": "assistant"
-      }
-    }
-  ],
-  "created": 1679014551,
-  "id": "chatcmpl-6usfn2yyjkbmESe3G4jaQR6bsScO1",
-  "model": "gpt-3.5-turbo-0301",
-  "object": "chat.completion",
-  "usage": {
-    "completion_tokens": 86,
-    "prompt_tokens": 37,
-    "total_tokens": 123
-  }
-}
-
-```
-
----
-
-> [!NOTE]  
-> The following parameters aren't available with the new GPT-35-Turbo and GPT-4 models: `logprobs`, `best_of`, and `echo`. If you set any of these parameters, you get an error.
-
 Every response includes `finish_reason`. The possible values for `finish_reason` are:
 
 * **stop**: API returned complete model output.
@@ -178,20 +114,11 @@ Every response includes `finish_reason`. The possible values for `finish_reason`
 * **content_filter**: Omitted content because of a flag from our content filters.
 * **null**: API response still in progress or incomplete.
 
-Consider setting `max_tokens` to a slightly higher value than normal, such as 300 or 500. A higher value ensures that the model doesn't stop generating text before it reaches the end of the message.
-
-## Model versioning
-
-> [!NOTE]  
-> The version `gpt-35-turbo` is equivalent to the `gpt-3.5-turbo` model from OpenAI.
-
-Unlike previous GPT-3 and GPT-3.5 models, the `gpt-35-turbo` model and the `gpt-4` and `gpt-4-32k` models will continue to be updated. When you create a [deployment](../how-to/create-resource.md#deploy-a-model) of these models, you also need to specify a model version.
-
-You can find the model retirement dates for these models on the [models](../concepts/models.md) page.
+Consider setting `max_tokens` to a slightly higher value than normal. A higher value ensures that the model doesn't stop generating text before it reaches the end of the message.
 
 ## Work with the Chat Completion API
 
-OpenAI trained the GPT-35-Turbo and GPT-4 models to accept input formatted as a conversation. The messages parameter takes an array of message objects with a conversation organized by role. When you use the Python API, a list of dictionaries is used.
+OpenAI trained chat completion models to accept input formatted as a conversation. The messages parameter takes an array of message objects with a conversation organized by role. When you use the Python API, a list of dictionaries is used.
 
 The format of a basic chat completion is:
 
@@ -232,11 +159,11 @@ To trigger a response from the model, end with a user message to indicate that i
 
 ### Message prompt examples
 
-The following section shows examples of different styles of prompts that you can use with the GPT-35-Turbo and GPT-4 models. These examples are only a starting point. You can experiment with different prompts to customize the behavior for your own use cases.
+The following section shows examples of different styles of prompts that you can use with chat completions models. These examples are only a starting point. You can experiment with different prompts to customize the behavior for your own use cases.
 
 #### Basic example
 
-If you want the GPT-35-Turbo model to behave similarly to [chat.openai.com](https://chat.openai.com/), you can use a basic system message like `Assistant is a large language model trained by OpenAI.`
+If you want you chat completions model to behave similarly to [chatgpt.com](https://chatgpt.com/), you can use a basic system message like `Assistant is a large language model trained by OpenAI.`
 
 ```
 {"role": "system", "content": "Assistant is a large language model trained by OpenAI."},
@@ -260,7 +187,7 @@ Instructions:
 You can also include relevant data or information in the system message to give the model extra context for the conversation. If you need to include only a small amount of information, you can hard code it in the system message. If you have a large amount of data that the model should be aware of, you can use [embeddings](../tutorials/embeddings.md?tabs=command-line) or a product like [Azure AI Search](https://techcommunity.microsoft.com/t5/ai-applied-ai-blog/revolutionize-your-enterprise-data-with-chatgpt-next-gen-apps-w/ba-p/3762087) to retrieve the most relevant information at query time.
 
 ```
-{"role": "system", "content": "Assistant is an intelligent chatbot designed to help users answer technical questions about Azure OpenAI Serivce. Only answer questions using the context below and if you're not sure of an answer, you can say 'I don't know'.
+{"role": "system", "content": "Assistant is an intelligent chatbot designed to help users answer technical questions about Azure OpenAI Service. Only answer questions using the context below and if you're not sure of an answer, you can say 'I don't know'.
 
 Context:
 - Azure OpenAI Service provides REST API access to OpenAI's powerful language models including the GPT-3, Codex and Embeddings model series.
@@ -309,15 +236,13 @@ The examples so far show the basic mechanics of interacting with the Chat Comple
 
 Every time a new question is asked, a running transcript of the conversation so far is sent along with the latest question. Because the model has no memory, you need to send an updated transcript with each new question or the model will lose the context of the previous questions and answers.
 
-# [OpenAI Python 1.x](#tab/python-new)
-
 ```python
 import os
 from openai import AzureOpenAI
 
 client = AzureOpenAI(
   api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version = "2024-02-01",
+  api_version = "2024-10-21",
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")  # Your Azure OpenAI resource's endpoint value.
 )
 
@@ -328,7 +253,7 @@ while True:
     conversation.append({"role": "user", "content": user_input})
 
     response = client.chat.completions.create(
-        model="gpt-35-turbo", # model = "deployment_name".
+        model="gpt-4o", # model = "deployment_name".
         messages=conversation
     )
 
@@ -336,40 +261,13 @@ while True:
     print("\n" + response.choices[0].message.content + "\n")
 ```
 
-# [OpenAI Python 0.28.1](#tab/python)
-
-```python
-import os
-import openai
-openai.api_type = "azure"
-openai.api_version = "2024-02-01" 
-openai.api_base = os.getenv("AZURE_OPENAI_ENDPOINT")  # Your Azure OpenAI resource's endpoint value.
-openai.api_key = os.getenv("AZURE_OPENAI_API_KEY")
-
-conversation=[{"role": "system", "content": "You are a helpful assistant."}]
-
-while True:
-    user_input = input()      
-    conversation.append({"role": "user", "content": user_input})
-
-    response = openai.ChatCompletion.create(
-        engine="gpt-35-turbo", # The deployment name you chose when you deployed the GPT-35-turbo or GPT-4 model.
-        messages=conversation
-    )
-
-    conversation.append({"role": "assistant", "content": response["choices"][0]["message"]["content"]})
-    print("\n" + response['choices'][0]['message']['content'] + "\n")
-```
-
----
-
 When you run the preceding code, you get a blank console window. Enter your first question in the window and then select the `Enter` key. After the response is returned, you can repeat the process and keep asking questions.
 
 ## Manage conversations
 
-The previous example runs until you hit the model's token limit. With each question asked, and answer received, the `messages` list grows in size. The token limit for `gpt-35-turbo` is 4,096 tokens. The token limits for `gpt-4` and `gpt-4-32k` are 8,192 and 32,768, respectively. These limits include the token count from both the message list sent and the model response. The number of tokens in the messages list combined with the value of the `max_tokens` parameter must stay under these limits or you receive an error.
+The previous example runs until you hit the model's token limit. With each question asked, and answer received, the `messages` list grows in size. The token limit for chat completions models varies across models and versions The token limits for `gpt-4` and `gpt-4-32k` are 8,192 and 32,768, respectively. These limits include the token count from both the message list sent and the model response. The number of tokens in the messages list combined with the value of the `max_tokens` parameter must stay under these limits or you receive an error. Consult the [models page](../concepts/models.md) for each models token limits/context windows.
 
-It's your responsibility to ensure that the prompt and completion fall within the token limit. For longer conversations, you need to keep track of the token count and only send the model a prompt that falls within the limit.
+It's your responsibility to ensure that the prompt and completion fall within the token limit. For longer conversations, you need to keep track of the token count and only send the model a prompt that falls within the limit. Alternatively, with the [responses API](../how-to/responses.md) you can have the API handle truncation/management of the conversation history for you.
 
 > [!NOTE]  
 > We strongly recommend that you stay within the [documented input token limit](../concepts/models.md) for all models, even if you discover that you can exceed that limit.
@@ -378,8 +276,6 @@ The following code sample shows a simple chat loop example with a technique for 
 
 The code uses tiktoken `0.5.1`. If you have an older version, run `pip install tiktoken --upgrade`.
 
-# [OpenAI Python 1.x](#tab/python-new)
-
 ```python
 import tiktoken
 import os
@@ -387,7 +283,7 @@ from openai import AzureOpenAI
 
 client = AzureOpenAI(
   api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version = "2024-02-01",
+  api_version = "2024-10-21",
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")  # Your Azure OpenAI resource's endpoint value.
 )
 
@@ -457,86 +353,6 @@ while True:
     print("\n" + response.choices[0].message.content + "\n")
 ```
 
-# [OpenAI Python 0.28.1](#tab/python)
-
-```python
-import tiktoken
-import openai
-import os
-
-openai.api_type = "azure"
-openai.api_version = "2024-02-01" 
-openai.api_base = os.getenv("AZURE_OPENAI_ENDPOINT")  # Your Azure OpenAI resource's endpoint value.
-openai.api_key = os.getenv("AZURE_OPENAI_API_KEY")
-
-system_message = {"role": "system", "content": "You are a helpful assistant."}
-max_response_tokens = 250
-token_limit = 4096
-conversation = []
-conversation.append(system_message)
-
-def num_tokens_from_messages(messages, model="gpt-3.5-turbo-0613"):
-    """Return the number of tokens used by a list of messages."""
-    try:
-        encoding = tiktoken.encoding_for_model(model)
-    except KeyError:
-        print("Warning: model not found. Using cl100k_base encoding.")
-        encoding = tiktoken.get_encoding("cl100k_base")
-    if model in {
-        "gpt-3.5-turbo-0613",
-        "gpt-3.5-turbo-16k-0613",
-        "gpt-4-0314",
-        "gpt-4-32k-0314",
-        "gpt-4-0613",
-        "gpt-4-32k-0613",
-        }:
-        tokens_per_message = 3
-        tokens_per_name = 1
-    elif model == "gpt-3.5-turbo-0301":
-        tokens_per_message = 4  # every message follows <|start|>{role/name}\n{content}<|end|>\n
-        tokens_per_name = -1  # if there's a name, the role is omitted
-    elif "gpt-3.5-turbo" in model:
-        print("Warning: gpt-3.5-turbo may update over time. Returning num tokens assuming gpt-3.5-turbo-0613.")
-        return num_tokens_from_messages(messages, model="gpt-3.5-turbo-0613")
-    elif "gpt-4" in model:
-        print("Warning: gpt-4 may update over time. Returning num tokens assuming gpt-4-0613.")
-        return num_tokens_from_messages(messages, model="gpt-4-0613")
-    else:
-        raise NotImplementedError(
-            f"""num_tokens_from_messages() is not implemented for model {model}."""
-        )
-    num_tokens = 0
-    for message in messages:
-        num_tokens += tokens_per_message
-        for key, value in message.items():
-            num_tokens += len(encoding.encode(value))
-            if key == "name":
-                num_tokens += tokens_per_name
-    num_tokens += 3  # every reply is primed with <|start|>assistant<|message|>
-    return num_tokens
-
-while True:
-    user_input = input("")     
-    conversation.append({"role": "user", "content": user_input})
-    conv_history_tokens = num_tokens_from_messages(conversation)
-
-    while conv_history_tokens + max_response_tokens >= token_limit:
-        del conversation[1] 
-        conv_history_tokens = num_tokens_from_messages(conversation)
-
-    response = openai.ChatCompletion.create(
-        engine="gpt-35-turbo", # The deployment name you chose when you deployed the GPT-35-Turbo or GPT-4 model.
-        messages=conversation,
-        temperature=0.7,
-        max_tokens=max_response_tokens,
-    )
-
-    conversation.append({"role": "assistant", "content": response['choices'][0]['message']['content']})
-    print("\n" + response['choices'][0]['message']['content'] + "\n")
-```
-
----
-
 In this example, after the token count is reached, the oldest messages in the conversation transcript are removed. For efficiency, `del` is used instead of `pop()`. We start at index 1 to always preserve the system message and only remove user or assistant messages. Over time, this method of managing the conversation can cause the conversation quality to degrade as the model gradually loses the context of the earlier portions of the conversation.
 
 An alternative approach is to limit the conversation duration to the maximum token length or a specific number of turns. After the maximum token limit is reached, the model would lose context if you were to allow the conversation to continue. You can prompt the user to begin a new conversation and clear the messages list to start a new conversation with the full token limit available.
@@ -544,8 +360,6 @@ An alternative approach is to limit the conversation duration to the maximum tok
 The token counting portion of the code demonstrated previously is a simplified version of one of [OpenAI's cookbook examples](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_format_inputs_to_ChatGPT_models.ipynb).
 
 ## Troubleshooting
-
-Here's a troubleshooting tip.
 
 ### Don't use ChatML syntax or special tokens with the chat completion endpoint
 
@@ -564,5 +378,5 @@ Some customers try to use the [legacy ChatML syntax](../how-to/chat-markup-langu
 ## Next steps
 
 * [Learn more about Azure OpenAI](../overview.md).
-* Get started with the GPT-35-Turbo model with [the GPT-35-Turbo quickstart](../chatgpt-quickstart.md).
-* For more examples, see the [Azure OpenAI Samples GitHub repository](https://aka.ms/AOAICodeSamples).
+* Get started with chat completions models with [the chat completion quickstart](../chatgpt-quickstart.md).
+* For more examples, see the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai).

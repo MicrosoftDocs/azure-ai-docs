@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.reviewer: None
 ms.author: larryfr
 author: Blackmist
-ms.date: 03/06/2024
+ms.date: 03/04/2025
 ms.custom: tracking-python, security
 monikerRange: 'azureml-api-2 || azureml-api-1'
 ---
@@ -61,7 +61,7 @@ In this article, you learn how to:
 * An existing [Azure storage account added your virtual network](v1/how-to-secure-workspace-vnet.md#secure-azure-storage-accounts).
 :::moniker-end
 
-* To learn how to create a secure workspace, see [Tutorial: Create a secure workspace](tutorial-create-secure-workspace.md) or [Tutorial: Create a secure workspace using a template](tutorial-create-secure-workspace-template.md).
+* To learn how to create a secure workspace, see [Tutorial: Create a secure workspace](tutorial-create-secure-workspace.md), [Bicep template](/samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/), or [Terraform template](https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure).
 
 ## Limitations
 

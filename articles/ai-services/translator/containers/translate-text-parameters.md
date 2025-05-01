@@ -7,7 +7,7 @@ manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 08/14/2024
+ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 
@@ -58,7 +58,7 @@ Request parameters passed on the query string are:
 | from |Specifies the language of the input text.|*Required parameter*|
 | to  |Specifies the language of the output text. For example, use `to=de` to translate to German.<br>It's possible to translate to multiple languages simultaneously by repeating the parameter in the query string. For example, use `to=de&to=it` to translate to German and Italian. |*Required parameter*|
 
-* You can query the service for `translation` scope [supported languages](../reference/v3-0-languages.md).
+* You can query the service for `translation` scope [supported languages](../text-translation/reference/v3/languages.md).
 * *See also* [Language support for transliteration](../language-support.md#translation).
 
 ### Optional parameters
@@ -72,7 +72,7 @@ Request parameters passed on the query string are:
 
 | Headers | Description |Condition|
 | --- | --- |---|
-| Authentication headers |*See* [available options for authentication](../reference/v3-0-reference.md#authentication). |*Required request header*|
+| Authentication headers |*See* [available options for authentication](../text-translation/reference/v3/reference.md#authentication). |*Required request header*|
 | Content-Type |Specifies the content type of the payload.  <br>Accepted value is `application/json; charset=UTF-8`. |*Required request header*|
 | Content-Length |The length of the request body. |*Optional*|
 | X-ClientTraceId | A client-generated GUID to uniquely identify the request. You can omit this header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |*Optional*|
@@ -121,7 +121,7 @@ A successful response is a JSON array with one result for each string in the inp
 
 ## Response status codes
 
-If an error occurs, the request returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [v3 Translator reference page](../reference/v3-0-reference.md#errors).
+If an error occurs, the request returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [v3 Translator reference page](../text-translation/reference/v3/reference.md#errors).
 
 ## Code samples: translate text
 
@@ -129,7 +129,7 @@ If an error occurs, the request returns a JSON error response. The error code is
 >
 > * Each sample runs on the `localhost` that you specified with the `docker run` command.
 > * While your container is running, `localhost` points to the container itself.
-> * You don't have to use `localhost:5000`. You can use any port that is not already in use in your host environment.
+> * You don't have to use `localhost:5000`. You can use any port that isn't already in use in your host environment.
 
 
 ### Translate a single input
@@ -164,7 +164,7 @@ Here's an example cURL HTTP request using localhost:5000 that you specified with
 ```
 
 > [!NOTE]
-> If you attempt the cURL POST request before the container is ready, you'll end up getting a *Service is temporarily unavailable* response. Wait until the container is ready, then try again.
+> If you attempt the cURL POST request before the container is ready, you receive a *Service is temporarily unavailable* response. Wait until the container is ready, then try again.
 
 ### Translate text using Swagger API
 
@@ -388,7 +388,7 @@ The following table lists array element and character limits for the Translator 
 |:----|:----|:----|:----|
 | translate | 10,000 | 100 | 50,000 |
 
-## Use docker compose: Translator with supporting containers
+## Use the docker compose command for supporting containers
 
 Docker compose is a tool enables you to configure multi-container applications using a single YAML file typically named `compose.yaml`. Use the `docker compose up` command to start your container application and the `docker compose down` command to stop and remove your containers.
 
@@ -398,10 +398,10 @@ The following table lists the required supporting containers for your text and d
 
 |Operation|Request query|Document type|Supporting containers|
 |-----|-----|-----|-----|
-|&bullet; Text translation<br>&bullet; Document Translation |`from` specified. |Office documents| None|
-|&bullet; Text translation<br>&bullet; Document Translation|`from` not specified. Requires automatic language detection to determine the source language. |Office documents |✔️ [**Text analytics:language**](../../language-service/language-detection/how-to/use-containers.md) container|
-|&bullet; Text translation<br>&bullet; Document Translation |`from` specified. |Scanned PDF documents| ✔️ [**Vision:read**](../../computer-vision/computer-vision-how-to-install-containers.md) container|
-|&bullet; Text translation<br>&bullet; Document Translation|`from` not specified requiring automatic language detection to determine source language.|Scanned PDF documents| ✔️ [**Text analytics:language**](../../language-service/language-detection/how-to/use-containers.md) container<br><br>✔️ [**Vision:read**](../../computer-vision/computer-vision-how-to-install-containers.md) container|
+|&bullet; Text translation<br>&bullet; Document translation |`from` specified. |Office documents| None|
+|&bullet; Text translation<br>&bullet; Document translation|`from` not specified. Requires automatic language detection to determine the source language. |Office documents |✔️ [**Text analytics:language**](../../language-service/language-detection/how-to/use-containers.md) container|
+|&bullet; Text translation<br>&bullet; Document translation |`from` specified. |Scanned PDF documents| ✔️ [**Vision:read**](../../computer-vision/computer-vision-how-to-install-containers.md) container|
+|&bullet; Text translation<br>&bullet; Document translation|`from` not specified requiring automatic language detection to determine source language.|Scanned PDF documents| ✔️ [**Text analytics:language**](../../language-service/language-detection/how-to/use-containers.md) container<br><br>✔️ [**Vision:read**](../../computer-vision/computer-vision-how-to-install-containers.md) container|
 
 ##### Container images and tags
 
@@ -409,7 +409,7 @@ The Azure AI services container images can be found in the [**Microsoft Artifact
 
 |Container|Image location|Notes|
 |--------|-------------|---------------|
-|Translator: Text translation| `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`| You can view the full list of [Azure AI services Text Translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.|
+|Translator: Text translation| `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`| You can view the full list of [Azure AI services Text translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.|
 |Translator: Document translation|**TODO**| **TODO**|
 |Text analytics: language|`mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest` |You can view the full list of [Azure AI services Text Analytics Language](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/language/tags) version tags on MCR.|
 |Vision: read|`mcr.microsoft.com/azure-cognitive-services/vision/read:latest`|You can view the full list of [Azure AI services Computer Vision Read `OCR`](https://mcr.microsoft.com/product/azure-cognitive-services/vision/read/tags) version tags on MCR.|
@@ -469,7 +469,7 @@ The Azure AI services container images can be found in the [**Microsoft Artifact
    > * `docker compose pause` pauses running containers.
    > * `docker compose unpause {your-container-name}` unpauses paused containers.
    > * `docker compose restart` restarts all stopped and running container with all its previous changes intact. If you make changes to your `compose.yaml` configuration, these changes aren't updated with the `docker compose restart` command. You have to use the `docker compose up` command to reflect updates and changes in the `compose.yaml` file.
-   > * `docker compose ps -a` lists all containers, including those that are stopped.
+   > * `docker compose ps -a` lists all containers, including ones that are stopped.
    > * `docker compose exec` enables you to execute commands to *detach* or *set environment variables* in a running container.
    >
    > For more information, *see* [docker CLI reference](https://docs.docker.com/engine/reference/commandline/docker/).

@@ -34,7 +34,7 @@ In this tutorial, you accomplish the following tasks:
 > * Connect to the jump box and use the Azure Machine Learning studio.
 
 > [!TIP]
-> If you're looking for a template (Microsoft Bicep or Hashicorp Terraform) that demonstrates how to create a secure workspace, see [Tutorial - Create a secure workspace using a template](tutorial-create-secure-workspace-template.md).
+> If you're looking for a template that demonstrates how to create a secure workspace, see [Bicep template](/samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/), or [Terraform template](https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure).
 
 After completing this tutorial, you'll have the following architecture:
 
@@ -206,6 +206,10 @@ To create a virtual network, use the following steps:
 
 1. Select __Review + create__. Verify that the information is correct, and then select __Create__.
 
+1. Once the key vault is created, select **Go to resource**.
+
+1. From the left navigation, select __Networking__ the __Firewalls and virtual networks__ tab and then enable the checkbox for __Allow trusted Microsoft services to bypass this firewall__ and __Apply__.
+
 ## Create a container registry
 
 1. In the [Azure portal](https://portal.azure.com), select the portal menu in the upper left corner. From the menu, select __+ Create a resource__ and then enter __Container Registry__. Select the __Container Registry__ entry, and then select __Create__.
@@ -366,7 +370,7 @@ There are several ways that you can connect to the secured workspace. The steps 
 Use the following steps to create an Azure Virtual Machine to use as a jump box. Azure Bastion enables you to connect to the VM desktop through your browser. From the VM desktop, you can then use the browser on the VM to connect to resources inside the virtual network, such as Azure Machine Learning studio. Or you can install development tools on the VM. 
 
 > [!TIP]
-> The following steps create a Windows 11 enterprise VM. Depending on your requirements, you may want to select a different VM image. The Windows 11 (or 10) enterprise image is useful if you need to join the VM to your organization's domain.
+> The following steps create a Windows 11 enterprise VM. Depending on your requirements, you might want to select a different VM image. The Windows 11 (or 10) enterprise image is useful if you need to join the VM to your organization's domain.
 
 1. In the [Azure portal](https://portal.azure.com), select the portal menu in the upper left corner. From the menu, select __+ Create a resource__ and then enter __Virtual Machine__. Select the __Virtual Machine__ entry, and then select __Create__.
 
@@ -401,6 +405,9 @@ Use the following steps to create an Azure Virtual Machine to use as a jump box.
 
 1. Once the virtual machine is created, select __Go to resource__.
 1. From the top of the page, select __Connect__ and then __Connect via Bastion__.
+
+    > [!TIP]
+    > Azure Bastion uses port 443 for inbound communication. If you have a firewall that restricts outbound traffic, ensure that it allows traffic on port 443 to the Azure Bastion service. For more information, see [Working with NSGs and Azure Bastion](/azure/bastion/bastion-nsg).
 
     :::image type="content" source="./media/tutorial-create-secure-workspace-vnet/virtual-machine-connect.png" alt-text="Screenshot of the 'connect' list, with 'Bastion' selected.":::
 

@@ -5,26 +5,19 @@ description: Lists data source connectors for importing into an Azure AI Search 
 author: HeidiSteen
 ms.author: heidist
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-layout: LandingPage
-ms.date: 06/18/2024
+ms.date: 04/14/2025
 ---
 
 # Data sources gallery
 
-Find a data connector from Microsoft or a partner that works with [an indexer](search-indexer-overview.md) to simplify data ingestion into a search index. This article has the following sections:
-
-+ [Generally available data sources by Azure AI Search](#ga)
-+ [Preview data sources by Azure AI Search](#preview)
-+ [Data sources from our Partners](#partners)
-
+Find a data connector from Microsoft or a partner that works with [an indexer](search-indexer-overview.md) to simplify data ingestion into a search index. 
 
 > [!NOTE]
-> The connectors mentioned in this article don't represent the only methods for indexing data from data sources to AI Search, but low/no-code options to accomplish this task. You have the option to develop your own connector utilizing the [Push REST API/SDK](search-what-is-data-import.md#pushing-data-to-an-index). This implies that provided you can programmatically extract data from a source, you can also employ the corresponding programmatic Push method to index your data.
-
+> The connectors mentioned in this article represent one method for indexing data in Azure AI Search. You also have the option of developing your own connector using the [Push REST API or An Azure SDK](search-what-is-data-import.md#pushing-data-to-an-index).
 
 <a name="ga"></a>
 
@@ -73,7 +66,7 @@ By [Azure AI Search](search-what-is-azure-search.md)
 
 Extract field values from a single table or view, serialized into JSON documents, and imported into a search index as search documents. Configure change tracking to refresh the search index with the latest changes in your database.
 
-[More details](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
+[More details](search-how-to-index-sql-database.md)
 
 :::image type="icon" source="media/search-data-sources-gallery/azuresqlconnectorlogo_medium.png":::
 
@@ -153,7 +146,7 @@ By [Azure AI Search](search-how-to-index-onelake-files.md)
 
 Connect to a OneLake lakehouse to extract supported files content from a hierarchy of directories and nested subdirectories.
 
-[More details](search-howto-index-cosmosdb.md)
+[More details](search-how-to-index-onelake-files.md)
 
 :::image type="icon" source="media/search-data-sources-gallery/fabric_onelake_logo.png":::
 
@@ -161,7 +154,6 @@ Connect to a OneLake lakehouse to extract supported files content from a hierarc
 :::column span="":::
 
 ---
-
 
 ### Azure Cosmos DB for Apache Gremlin
 
@@ -189,6 +181,17 @@ Connect to Azure Cosmos DB for MongoDB to extract items from a container, serial
 :::image type="icon" source="media/search-data-sources-gallery/azure_cosmos_db_logo_small.png":::
 
 :::column-end:::
+:::row-end:::
+:::row:::
+:::column span="":::
+
+   :::column-end:::
+   :::column span="":::
+   :::column-end:::
+
+:::row-end:::
+
+:::row:::
 :::column span="":::
 
 ---
@@ -204,17 +207,6 @@ Connect to a SharePoint site and index documents from one or more document libra
 :::image type="icon" source="media/search-data-sources-gallery/sharepoint_online_logo.png":::
 
 :::column-end:::
-:::row-end:::
-:::row:::
-:::column span="":::
-
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
-
-:::row-end:::
-
-:::row:::
 :::column span="":::
 
 ---
@@ -245,11 +237,6 @@ Connect to Azure Storage through Azure Files share to extract content serialized
 :::image type="icon" source="media/search-data-sources-gallery/azure_storage.png":::
 
 :::column-end:::
-:::column span="":::
-
----
-
-:::column-end:::
 :::row-end:::
 :::row:::
 :::column span="":::
@@ -259,6 +246,9 @@ Connect to Azure Storage through Azure Files share to extract content serialized
    :::column-end:::
 
 :::row-end:::
+
+<!-- :::row:::
+:::column span=""::: -->
 
 ---
 
@@ -288,19 +278,6 @@ The Aderant connector honors the security of the source system and provides both
 
 ### Adobe AEM
 
-By [Accenture](https://www.accenture.com)
-
-Allows your company to crawl content from the Adobe Experience Manager server, providing connection throttling and expected values or patterns filtering.
-
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/AEM+Connector)
-
-:::column-end:::
-:::column span="":::
-
----
-
-### Adobe AEM
-
 By [BA Insight](https://www.bainsight.com/)
 
 The Adobe Experience Manager connector enables indexing of content managed by the Adobe Experience Manager (AEM) platform and supports both Full and Incremental crawling to ensure index freshness.
@@ -308,17 +285,6 @@ The Adobe Experience Manager connector enables indexing of content managed by th
 [More details](https://www.bainsight.com/connectors/adobe-em-connector-for-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
-:::row-end:::
-:::row:::
-:::column span="":::
-
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
-
-:::row-end:::
-
-:::row:::
 :::column span="":::
 
 ---
@@ -332,6 +298,17 @@ Secure enterprise search connector for reliably indexing content from the Adobe 
 [More details](https://www.raytion.com/connectors/adobe-experience-manager-aem)
 
 :::column-end:::
+:::row-end:::
+:::row:::
+:::column span="":::
+
+   :::column-end:::
+   :::column span="":::
+   :::column-end:::
+
+:::row-end:::
+
+:::row:::
 :::column span="":::
 
 ---
@@ -358,17 +335,6 @@ Secure enterprise search connector for reliably indexing content from Alfresco O
 [More details](https://www.raytion.com/connectors/raytion-alfresco-connector)
 
 :::column-end:::
-:::row-end:::
-:::row:::
-:::column span="":::
-
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
-
-:::row-end:::
-
-:::row:::
 :::column span="":::
 
 ---
@@ -382,6 +348,17 @@ The Amazon Aurora Connector is built upon industry standard database access meth
 [More details](https://www.bainsight.com/connectors/amazon-aurora-connector-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
+:::row-end:::
+:::row:::
+:::column span="":::
+
+   :::column-end:::
+   :::column span="":::
+   :::column-end:::
+
+:::row-end:::
+
+:::row:::
 :::column span="":::
 
 ---
@@ -408,6 +385,19 @@ The Amazon S3 Connector works with all content stored in S3. Your organization c
 [More details](https://www.bainsight.com/connectors/amazon-s3-connector-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
+:::column span="":::
+
+---
+
+### Atlassian Confluence
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing Atlassian Confluence Server and Data Center. Reliably indexes spaces, personal spaces, wiki pages, blog posts, attachments, and labels. Comes with full metadata sets, advanced processing pipelines, and full support for Atlassian Confluence's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/confluence.php)
+
+:::column-end:::
 :::row-end:::
 :::row:::
 :::column span="":::
@@ -419,19 +409,6 @@ The Amazon S3 Connector works with all content stored in S3. Your organization c
 :::row-end:::
 
 :::row:::
-:::column span="":::
-
----
-
-### Aspider
-
-By [Accenture](https://www.accenture.com)
-
-The Aspider connector allows crawling of content from web sites, using HTTP Authentication, incremental crawls, connection throttling, distributed and HTTPS crawling, among other features.
-
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Aspider+Web+Crawler)
-
-:::column-end:::
 :::column span="":::
 
 ---
@@ -449,15 +426,26 @@ Our Confluence (Cloud Version) Connector is an enterprise grade indexing connect
 
 ---
 
-<a name='azure-ad'></a>
+### Atlassian Confluence (Cloud)
 
-### Microsoft Entra ID
+By [RheinInsights](https://www.rheininsights.com/)
 
-By [BA Insight](https://www.bainsight.com)
+Azure AI Search and secure vector search connector for indexing Atlassian Confluence Cloud. Reliably indexes spaces, personal spaces, wiki pages, blog posts, attachments, and labels. Comes with full metadata sets, advanced processing pipelines, and full support for Atlassian Confluence Cloud's permission model.
 
-The BA Insight Microsoft Entra Connector makes it possible to surface content from your Microsoft Entra tenancy into a single consolidated search index, along with content from other repositories, making searches such as employee look-up or expertise locator a reality.
+[More details](https://www.rheininsights.com/en/connectors/confluence-cloud.php)
 
-[More details](https://www.bainsight.com/connectors/azure-active-directory-connector-for-sharepoint-azure-elasticsearch/)
+:::column-end:::
+:::column span="":::
+
+---
+
+### Microsoft Active Directory Domain Services
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing Microsoft Active Directory Domain Services. Can serve as profile search or as source for early-binding security trimming. Comes with full sets of profile metadata and indexes all user-group relationships.
+
+[More details](https://www.rheininsights.com/en/connectors/ldap.php)
 
 :::column-end:::
 :::row-end:::
@@ -471,6 +459,21 @@ The BA Insight Microsoft Entra Connector makes it possible to surface content fr
 :::row-end:::
 
 :::row:::
+:::column span="":::
+
+---
+
+<a name='azure-ad'></a>
+
+### Microsoft Entra ID
+
+By [BA Insight](https://www.bainsight.com)
+
+The BA Insight Microsoft Entra Connector makes it possible to surface content from your Microsoft Entra tenancy into a single consolidated search index, along with content from other repositories, making searches such as employee look-up or expertise locator a reality.
+
+[More details](https://www.bainsight.com/connectors/azure-active-directory-connector-for-sharepoint-azure-elasticsearch/)
+
+:::column-end:::
 :::column span="":::
 
 ---
@@ -490,26 +493,13 @@ Secure enterprise search connector for reliably indexing content from Microsoft 
 
 ---
 
-### Azure blobs
+### Microsoft Entra ID
 
-By [Accenture](https://www.accenture.com)
+By [RheinInsights](https://www.rheininsights.com/)
 
-Provides the ability to crawl content from an Azure Blob container, allowing incremental crawling, document level security, and access to folders and subfolders.
+Enterprise search connector for indexing Entra ID. Can serve as profile search, also for Azure B2C profiles, or as source for early-binding security trimming. Comes with full sets of profile metadata and indexes all user-group relationships.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Azure+Blob+Storage+Connector)
-
-:::column-end:::
-:::column span="":::
-
----
-
-### Azure Data Lake
-
-By [Accenture](https://www.accenture.com)
-
-The Azure Data Lake connector crawls content from the Azure Data Lake Store cloud at either root or specified paths, with incremental crawling, fetching objects ACLs, OAuth 2 authentication and more.
-
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Azure+Data+Lake+Connector)
+[More details](https://www.rheininsights.com/en/connectors/entra-id.php)
 
 :::column-end:::
 :::row-end:::
@@ -523,19 +513,6 @@ The Azure Data Lake connector crawls content from the Azure Data Lake Store clou
 :::row-end:::
 
 :::row:::
-:::column span="":::
-
----
-
-### Azure Events Hub
-
-By [Accenture](https://www.accenture.com)
-
-Crawls content from an Azure event hub, allowing incremental crawling and retrieval of any type of event or attributes.
-
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Azure+Events+Hub+Connector)
-
-:::column-end:::
 :::column span="":::
 
 ---
@@ -562,30 +539,6 @@ The BAI Bentley AssetWise Connector makes it possible to surface content from As
 [More details](https://www.bainsight.com/connectors/bentley-connector-for-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
-:::row-end:::
-:::row:::
-:::column span="":::
-
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
-
-:::row-end:::
-
-:::row:::
-:::column span="":::
-
----
-
-### Box
-
-By [Accenture](https://www.accenture.com)
-
-The Box connector crawls content from a Box repository. The connector retrieves the supported elements via the REST API, providing full or incremental crawling, metadata extraction, fetching ACLs, and more.
-
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Box++Connector)
-
-:::column-end:::
 :::column span="":::
 
 ---
@@ -599,19 +552,6 @@ The Box connector makes it possible to surface content from Box in SharePoint an
 [More details](https://www.bainsight.com/connectors/box-connector-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
-:::column span="":::
-
----
-
-### Box
-
-By [Raytion](https://www.raytion.com/contact)
-
-Secure enterprise search connector for reliably indexing content from Box and intelligently searching it with Azure AI Search. It robustly indexes files, folders, comments, users, groups, and tasks from Box in near real time. The connector fully supports Box’ built-in user and group management.
-
-[More details](https://www.raytion.com/connectors/raytion-box-connector)
-
-:::column-end:::
 :::row-end:::
 :::row:::
 :::column span="":::
@@ -627,13 +567,13 @@ Secure enterprise search connector for reliably indexing content from Box and in
 
 ---
 
-### Confluence
+### Box
 
-By [Accenture](https://www.accenture.com)
+By [Raytion](https://www.raytion.com/contact)
 
-The Confluence connector crawls content from any Confluence content repository. The connector retrieves spaces, pages, blogs, attachments, and comments through a REST API, allowing incremental crawling, fetching ACLs, support for HTTP and HTTPS, and more.
+Secure enterprise search connector for reliably indexing content from Box and intelligently searching it with Azure AI Search. It robustly indexes files, folders, comments, users, groups, and tasks from Box in near real time. The connector fully supports Box’ built-in user and group management.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Atlassian+Confluence+Connector)
+[More details](https://www.raytion.com/connectors/raytion-box-connector)
 
 :::column-end:::
 :::column span="":::
@@ -703,13 +643,13 @@ The CuadraSTAR Connector crawls content in CuadraSTAR and creates a single index
 
 ---
 
-### Database
+### Deltek
 
-By [Accenture](https://www.accenture.com)
+By [BA Insight](https://www.bainsight.com/)
 
-The Database Server connector crawls content from a Relational Database server, scanning all databases on the server and extracting rows and table information.
+The Deltek Vision Connector honors the security of the source system and provides both full and incremental crawls, so users always have the latest information available to them. It indexes content from Deltek Vision into Azure, SharePoint in Microsoft 365, or SharePoint 2016/2013, surfacing it through BA Insight's SmartHub to provide users with integrated search results.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Database+Server+Connector)
+[More details](https://www.bainsight.com/connectors/deltek-connector-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
 :::row-end:::
@@ -723,32 +663,6 @@ The Database Server connector crawls content from a Relational Database server, 
 :::row-end:::
 
 :::row:::
-:::column span="":::
-
----
-
-### Deltek
-
-By [BA Insight](https://www.bainsight.com/)
-
-The Deltek Vision Connector honors the security of the source system and provides both full and incremental crawls, so users always have the latest information available to them. It indexes content from Deltek Vision into Azure, SharePoint in Microsoft 365, or SharePoint 2016/2013, surfacing it through BA Insight's SmartHub to provide users with integrated search results.
-
-[More details](https://www.bainsight.com/connectors/deltek-connector-sharepoint-azure-elasticsearch/)
-
-:::column-end:::
-:::column span="":::
-
----
-
-### Documentum
-
-By [Accenture](https://www.accenture.com)
-
-The Aspire Documentum DQL connector crawls content from Documentum, allowing crawls based on user-defined DQL SELECT statements, incremental crawling, fetching of ACLs, group expansion of nested permissions, and more.
-
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Documentum+DQL+Connector)
-
-:::column-end:::
 :::column span="":::
 
 ---
@@ -762,17 +676,6 @@ BA Insight's Documentum Connector securely indexes both the full text and metada
 [More details](https://www.bainsight.com/connectors/documentum-connector-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
-:::row-end:::
-:::row:::
-:::column span="":::
-
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
-
-:::row-end:::
-
-:::row:::
 :::column span="":::
 
 ---
@@ -799,19 +702,6 @@ Raytion's Drupal Connector indexes content from Drupal into Azure AI Search to b
 [More details](https://www.raytion.com/connectors/raytion-drupal-connector)
 
 :::column-end:::
-:::column span="":::
-
----
-
-### Egnyte
-
-By [BA Insight](https://www.bainsight.com/)
-
-The Egnyte Connector supports both full and incremental crawls and indexes with high throughput.
-
-[More details](https://www.bainsight.com/connectors/egnyte-connector-for-sharepoint-azure-elasticsearch/)
-
-:::column-end:::
 :::row-end:::
 :::row:::
 :::column span="":::
@@ -827,13 +717,13 @@ The Egnyte Connector supports both full and incremental crawls and indexes with 
 
 ---
 
-### Elasticsearch
+### Egnyte
 
-By [Accenture](https://www.accenture.com)
+By [BA Insight](https://www.bainsight.com/)
 
-The Elasticsearch connector crawls content from an Elasticsearch index, allowing crawling of multiple indexes, Slice support, use of Get of MGet methods for fetching content, and connection throttling.
+The Egnyte Connector supports both full and incremental crawls and indexes with high throughput.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Elasticsearch+Connector)
+[More details](https://www.bainsight.com/connectors/egnyte-connector-for-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
 :::column span="":::
@@ -900,6 +790,7 @@ Secure enterprise search connector for reliably indexing content from Facebook W
 
 :::column-end:::
 :::column span="":::
+
 ---
 
 ### File Share
@@ -926,13 +817,13 @@ The File Share Connector makes it possible to surface content from File Shares (
 
 ---
 
-### File System
+### File Share and Network Shares
 
-By [Accenture](https://www.accenture.com)
+By [RheinInsights](https://www.rheininsights.com/)
 
-The File System connector crawls content from a file system location, allowing incremental crawling, metadata extraction, filtering of documents by path, supporting Windows/Linux/macOS file systems.
+Azure AI Search and secure vector search connector for indexing file shares. Reliably indexes all files from the given file share. Comes with full metadata sets, advanced processing pipelines, supporting UI features, and full support for the respective file share's permission model.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/File+System+Connector)
+[More details](https://www.rheininsights.com/en/connectors/file-share.php)
 
 :::column-end:::
 :::column span="":::
@@ -959,6 +850,56 @@ By [Raytion](https://www.raytion.com/contact)
 Secure enterprise search connector for reliably indexing content from e-Spirit FirstSpirit and intelligently searching it with Azure AI Search. It robustly indexes pages, attachments and other generated document types from FirstSpirit in near real time. The connector fully supports e-Spirit FirstSpirit’s built-in user, group and permission management, and FirstSpirit installations based on Microsoft Entra ID and other directory services.
 
 [More details](https://www.raytion.com/connectors/raytion-firstspirit-connector)
+
+:::column-end:::
+:::row-end:::
+:::row:::
+:::column span="":::
+
+   :::column-end:::
+   :::column span="":::
+   :::column-end:::
+
+:::row-end:::
+
+:::row:::
+:::column span="":::
+
+---
+
+### Git
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search connector for indexing Git repositories. Reliably indexes branches from remote GIT repositories, versioned files and commit messages. Comes with full metadata sets, and advanced processing pipelines.
+
+[More details](https://www.rheininsights.com/en/connectors/git.php)
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### GitHub Enterprise Cloud
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing GitHub Enterprise Cloud. Reliably indexes all repositories, versioned files, wikis, issues or discussions. Comes with full metadata sets, advanced processing pipelines and full support for GitHub Enterprise Cloud's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/github-enterprise-cloud.php)
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### GitHub Enterprise Server
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing GitHub Enterprise Server. Reliably indexes all repositories, versioned files, wikis, issues or discussions. Comes with full metadata sets, advanced processing pipelines and full support for GitHub Enterprise Server's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/github-enterprise-server.php)
 
 :::column-end:::
 :::row-end:::
@@ -1039,27 +980,26 @@ Secure enterprise search connector for reliably indexing content from Google Dri
 
 ---
 
-### Happeo 
+### Google Drive
 
-By [Raytion](https://www.raytion.com/contact)
+By [RheinInsights](https://www.rheininsights.com/)
 
-Raytion's Happeo Connector indexes content from Happeo into Azure AI Search and keeps track of all changes, whether for your company-wide enterprise search platform or in vibrant social collaboration environments. It guarantees an updated Azure Cognitive index and advances knowledge sharing.
+Azure AI Search and secure vector search connector for indexing Google Drive. Reliably indexes all Google Drive documents from personal and shared drives in your organization. Comes with full metadata sets, advanced processing pipelines and full support for Google Drive's permission model.
 
-[More details](https://www.raytion.com/connectors/raytion-happeo-connector)
+[More details](https://www.rheininsights.com/en/connectors/google-drive.php)
 
 :::column-end:::
 :::column span="":::
 
 ---
 
+### Google Mail
 
-### HP Consolidated Archive (EAS)
+By [RheinInsights](https://www.rheininsights.com/)
 
-By [BA Insight](https://www.bainsight.com/)
+Azure AI Search and secure vector search connector for indexing Google Mail (GMail). Reliably indexes all Mails and their attachments. Comes with full metadata sets, advanced processing pipelines and support for the Google Mail permission model.
 
-BA Insight's HP Consolidated Archive Connector securely indexes both the full text and metadata of documents in archives into various search engines, including SharePoint Search and Azure Search. This enables a single searchable result set across content from multiple repositories. It allows organizations to tap into the wealth of information accessible within Consolidated Archive, SharePoint and other repositories, making that data instantly actionable to users through search.
-
-[More details](https://www.bainsight.com/connectors/hp-consolidated-archive-connector-sharepoint-azure-elasticsearch/)
+[More details](https://www.rheininsights.com/en/connectors/google-mail.php)
 
 :::column-end:::
 :::row-end:::
@@ -1077,13 +1017,26 @@ BA Insight's HP Consolidated Archive Connector securely indexes both the full te
 
 ---
 
-### IBM Connections
+### Happeo 
 
-By [Accenture](https://www.accenture.com)
+By [Raytion](https://www.raytion.com/contact)
 
-The IBM Connections connector crawls content from IBM Connections server, featuring incremental crawling, metadata extraction, fetching of ACLs, filtering documents by regex patterns, and more.
+Raytion's Happeo Connector indexes content from Happeo into Azure AI Search and keeps track of all changes, whether for your company-wide enterprise search platform or in vibrant social collaboration environments. It guarantees an updated Azure Cognitive index and advances knowledge sharing.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/IBM+Connections+Connector)
+[More details](https://www.raytion.com/connectors/raytion-happeo-connector)
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### HP Consolidated Archive (EAS)
+
+By [BA Insight](https://www.bainsight.com/)
+
+BA Insight's HP Consolidated Archive Connector securely indexes both the full text and metadata of documents in archives into various search engines, including SharePoint Search and Azure Search. This enables a single searchable result set across content from multiple repositories. It allows organizations to tap into the wealth of information accessible within Consolidated Archive, SharePoint and other repositories, making that data instantly actionable to users through search.
+
+[More details](https://www.bainsight.com/connectors/hp-consolidated-archive-connector-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
 :::column span="":::
@@ -1099,6 +1052,17 @@ The IBM Connections Connector was developed for IBM Connections, establishing a 
 [More details](https://www.bainsight.com/connectors/ibm-connections-connector-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
+:::row-end:::
+:::row:::
+:::column span="":::
+
+   :::column-end:::
+   :::column span="":::
+   :::column-end:::
+
+:::row-end:::
+
+:::row:::
 :::column span="":::
 
 ---
@@ -1112,17 +1076,6 @@ Secure enterprise search connector for reliably indexing content from IBM Connec
 [More details](https://www.raytion.com/connectors/raytion-ibm-connections-connector)
 
 :::column-end:::
-:::row-end:::
-:::row:::
-:::column span="":::
-
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
-
-:::row-end:::
-
-:::row:::
 :::column span="":::
 
 ---
@@ -1149,6 +1102,17 @@ The IBM Content Manager Connector honors the security of source applications and
 [More details](https://www.bainsight.com/connectors/ibm-content-manager-connector-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
+:::row-end:::
+:::row:::
+:::column span="":::
+
+   :::column-end:::
+   :::column span="":::
+   :::column-end:::
+
+:::row-end:::
+
+:::row:::
 :::column span="":::
 
 ---
@@ -1162,17 +1126,6 @@ The Db2 Connector allows organizations to tap into the wealth of data stored wit
 [More details](https://www.bainsight.com/connectors/ibm-db2-connector-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
-:::row-end:::
-:::row:::
-:::column span="":::
-
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
-
-:::row-end:::
-
-:::row:::
 :::column span="":::
 
 ---
@@ -1199,6 +1152,17 @@ With BA Insight's IBM Notes Email Connector, users have the ability to search Lo
 [More details](https://www.bainsight.com/connectors/lotus-notes-connector-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
+:::row-end:::
+:::row:::
+:::column span="":::
+
+   :::column-end:::
+   :::column span="":::
+   :::column-end:::
+
+:::row-end:::
+
+:::row:::
 :::column span="":::
 
 ---
@@ -1212,17 +1176,6 @@ BA Insight's WebSphere Connector securely indexes both the full text and metadat
 [More details](https://www.bainsight.com/connectors/ibm-websphere-connector-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
-:::row-end:::
-:::row:::
-:::column span="":::
-
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
-
-:::row-end:::
-
-:::row:::
 :::column span="":::
 
 ---
@@ -1249,19 +1202,6 @@ The iManage Work Connector provides full security and operates at high throughpu
 [More details](https://www.bainsight.com/connectors/imanage-work-connector-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
-:::column span="":::
-
----
-
-### Jira
-
-By [BA Insight](https://www.bainsight.com/)
-
-The Jira Connector enables users to perform searches against all Jira objects, eliminating the need to go to Jira directly.
-
-[More details](https://www.bainsight.com/connectors/jira-connector-for-sharepoint-azure-elasticsearch/)
-
-:::column-end:::
 :::row-end:::
 :::row:::
 :::column span="":::
@@ -1279,6 +1219,19 @@ The Jira Connector enables users to perform searches against all Jira objects, e
 
 ### Jira
 
+By [BA Insight](https://www.bainsight.com/)
+
+The Jira Connector enables users to perform searches against all Jira objects, eliminating the need to go to Jira directly.
+
+[More details](https://www.bainsight.com/connectors/jira-connector-for-sharepoint-azure-elasticsearch/)
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### Jira
+
 By [Raytion](https://www.raytion.com/contact)
 
 Secure enterprise search connector for reliably indexing content from Atlassian Jira and intelligently searching it with Azure AI Search. It robustly indexes projects, issues, attachments, comments, work logs, issue histories, links, and profiles from on-premises Jira instances in near real time. The connector fully supports Atlassian Jira’s built-in user and group management, and Jira installations based on Microsoft Entra ID and other directory services.
@@ -1286,6 +1239,30 @@ Secure enterprise search connector for reliably indexing content from Atlassian 
 [More details](https://www.raytion.com/connectors/raytion-jira-connector)
 
 :::column-end:::
+:::column span="":::
+
+---
+
+### Jira
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing Atlassian Jira Server and Data Center. Reliably indexes projects, issues, issue comments, and attachments. Comes with full metadata sets, advanced processing pipelines, and full support for Atlassian Jira's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/jira.php)
+
+:::column-end:::
+:::row-end:::
+:::row:::
+:::column span="":::
+
+   :::column-end:::
+   :::column span="":::
+   :::column-end:::
+
+:::row-end:::
+
+:::row:::
 :::column span="":::
 
 ---
@@ -1310,6 +1287,19 @@ By [Raytion](https://www.raytion.com/contact)
 Secure enterprise search connector for reliably indexing content from Atlassian Jira Cloud and intelligently searching it with Azure AI Search. It robustly indexes projects, issues, attachments, comments, work logs, issue histories, links and profiles from Jira Cloud in near real time. The connector fully supports Atlassian Jira Cloud’s built-in user and group management.
 
 [More details](https://www.raytion.com/connectors/raytion-jira-cloud-connector)
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### Jira Cloud
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing Atlassian Jira Cloud. Reliably indexes projects, issues, issue comments, and attachments. Comes with full metadata sets, advanced processing pipelines, and full support for Atlassian Jira Cloud's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/jira-cloud.php)
 
 :::column-end:::
 :::row-end:::
@@ -1403,13 +1393,13 @@ Secure enterprise search connector for reliably indexing content from directory 
 
 ---
 
-### LegalKEY
+### LDAP Directory Services
 
-By [BA Insight](https://www.bainsight.com/) 
+By [RheinInsights](https://www.rheininsights.com/)
 
-BA Insight's OpenText LegalKEY Connector securely indexes both the full text and metadata of client and matter records in LegalKEY into the Microsoft search engine, enabling a single searchable result set across content from multiple repositories. This connector allows organizations to tap into the wealth of information accessible within LegalKEY, SharePoint, and other repositories, making that data instantly actionable to users through search.
+Azure AI Search and secure vector search connector for indexing LDAP-based directory services. Can serve as profile search or as source for early-binding security trimming. Comes with full sets of profile metadata and indexes all user-group relationships.
 
-[More details](https://www.bainsight.com/connectors/legalkey-connector-sharepoint-azure-elasticsearch/)
+[More details](https://www.rheininsights.com/en/connectors/ldap.php)
 
 :::column-end:::
 :::row-end:::
@@ -1423,6 +1413,19 @@ BA Insight's OpenText LegalKEY Connector securely indexes both the full text and
 :::row-end:::
 
 :::row:::
+:::column span="":::
+
+---
+
+### LegalKEY
+
+By [BA Insight](https://www.bainsight.com/) 
+
+BA Insight's OpenText LegalKEY Connector securely indexes both the full text and metadata of client and matter records in LegalKEY into the Microsoft search engine, enabling a single searchable result set across content from multiple repositories. This connector allows organizations to tap into the wealth of information accessible within LegalKEY, SharePoint, and other repositories, making that data instantly actionable to users through search.
+
+[More details](https://www.bainsight.com/connectors/legalkey-connector-sharepoint-azure-elasticsearch/)
+
+:::column-end:::
 :::column span="":::
 
 ---
@@ -1449,6 +1452,17 @@ With the IBM Notes Database Connector, users have the ability to find content st
 [More details](https://www.bainsight.com/connectors/ibm-lotus-notes-connector-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
+:::row-end:::
+:::row:::
+:::column span="":::
+
+   :::column-end:::
+   :::column span="":::
+   :::column-end:::
+
+:::row-end:::
+
+:::row:::
 :::column span="":::
 
 ---
@@ -1462,17 +1476,6 @@ The M-Files connector enables indexing of content managed by the M-Files platfor
 [More details](https://www.bainsight.com/connectors/m-files-connector-for-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
-:::row-end:::
-:::row:::
-:::column span="":::
-
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
-
-:::row-end:::
-
-:::row:::
 :::column span="":::
 
 ---
@@ -1499,19 +1502,6 @@ Secure enterprise search connector for reliably indexing content from MediaWiki 
 [More details](https://www.raytion.com/connectors/raytion-mediawiki-connector)
 
 :::column-end:::
-:::column span="":::
-
----
-
-### Micro Focus Content Manager (HPE Records Manager/HP TRIM)
-
-By [BA Insight](https://www.bainsight.com/)
-
-The HP TRIM Connector was developed for HP Records Manager, establishing a secure connection to the TRIM application and mapping the content, including metadata and attachments, from the TRIM schema to the search engine schema. It then extracts content and feeds it to the search engine in a process called crawling.
-
-[More details](https://www.bainsight.com/connectors/hp-trim-connector-sharepoint-azure-elasticsearch/)
-
-:::column-end:::
 :::row-end:::
 :::row:::
 :::column span="":::
@@ -1527,6 +1517,19 @@ The HP TRIM Connector was developed for HP Records Manager, establishing a secur
 
 ---
 
+### Micro Focus Content Manager (HPE Records Manager/HP TRIM)
+
+By [BA Insight](https://www.bainsight.com/)
+
+The HP TRIM Connector was developed for HP Records Manager, establishing a secure connection to the TRIM application and mapping the content, including metadata and attachments, from the TRIM schema to the search engine schema. It then extracts content and feeds it to the search engine in a process called crawling.
+
+[More details](https://www.bainsight.com/connectors/hp-trim-connector-sharepoint-azure-elasticsearch/)
+
+:::column-end:::
+:::column span="":::
+
+---
+
 ### Microsoft Dynamics 365
 
 By [BA Insight](https://www.bainsight.com/)
@@ -1536,6 +1539,30 @@ Our Microsoft Dynamics 365 CRM connector supports both on-premises CRM installat
 [More details](https://www.bainsight.com/connectors/microsoft-dynamics-crm-connector-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
+:::column span="":::
+
+---
+
+### Microsoft Dynamics 365
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing Microsoft Dynamics 365. Reliably indexes all knowledge articles, cases, posts, notes, contacts, accounts, sales orders, opportunities and more. Comes with full metadata sets, advanced processing pipelines and full support for Microsoft Dynamics 365's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/dynamics-365.php)
+
+:::column-end:::
+:::row-end:::
+:::row:::
+:::column span="":::
+
+   :::column-end:::
+   :::column span="":::
+   :::column-end:::
+
+:::row-end:::
+
+:::row:::
 :::column span="":::
 
 ---
@@ -1562,17 +1589,6 @@ Using the BA Insight Microsoft Exchange Online Connector, users can retrieve con
 [More details](https://www.bainsight.com/connectors/microsoft-exchange-online-connector-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
-:::row-end:::
-:::row:::
-:::column span="":::
-
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
-
-:::row-end:::
-
-:::row:::
 :::column span="":::
 
 ---
@@ -1586,6 +1602,17 @@ Using the BAI Microsoft Exchange Public Folders Connector, users can retrieve co
 [More details](https://www.bainsight.com/connectors/microsoft-exchange-connector-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
+:::row-end:::
+:::row:::
+:::column span="":::
+
+   :::column-end:::
+   :::column span="":::
+   :::column-end:::
+
+:::row-end:::
+
+:::row:::
 :::column span="":::
 
 ---
@@ -1610,6 +1637,19 @@ By [BA Insight](https://www.bainsight.com/)
 The database connector is built upon industry standard database access methods, so it can equally support databases from other systems such as Oracle, MySQL, and IBM DB2. It honors the security of the source database and provides both full and incremental crawls, so users always have the latest information available to them.
 
 [More details](https://www.bainsight.com/connectors/sql-connector-sharepoint-azure-elasticsearch/)
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### Microsoft SQL Server
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing Microsoft SQL databases. Reliably indexes all records based on tables, views and advanced SQL queries. Supports content crawling, as well as, interpreting data structures as user-group relationships for secure search. Comes with full metadata sets, advanced processing pipelines, and support for custom permission models.
+
+[More details](https://www.rheininsights.com/en/connectors/sql.php)
 
 :::column-end:::
 :::row-end:::
@@ -1727,6 +1767,19 @@ Secure enterprise search connector for reliably indexing content from IBM Notes 
 
 ---
 
+### Notion
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing Notion. Reliably indexes databases, pages, attachments, and files. Comes with full metadata sets, advanced processing pipelines and connector-based support for Notion's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/notion.php)
+
+:::column-end:::
+:::column span="":::
+
+---
+
 ### Nuxeo
 
 By [BA Insight](https://www.bainsight.com/)
@@ -1749,19 +1802,6 @@ The Objective Connector was developed for Objective, establishing a secure conne
 [More details](https://www.bainsight.com/connectors/objective-connector-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
-:::column span="":::
-
----
-
-### OneDrive
-
-By [Accenture](https://www.accenture.com)
-
-The OneDrive connector crawls content from Microsoft OneDrive, allowing incremental crawling, including and excluding items based on regex patterns, metadata extraction, retrieving several types of documents.
-
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/OneDrive+Connector)
-
-:::column-end:::
 :::row-end:::
 :::row:::
 :::column span="":::
@@ -1777,6 +1817,32 @@ The OneDrive connector crawls content from Microsoft OneDrive, allowing incremen
 
 ---
 
+### Odata via REST
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for flexibly indexing custom data via OData over REST. Easily provide your own data via SAP API Management, Google Apigee Management or Azure API Management. Comes with full metadata sets of the provided documents, advanced processing pipelines, and support for custom permission models, also provided via an API endpoint.
+
+[More details](https://www.rheininsights.com/en/connectors/odata.php)
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### OneDrive
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing Microsoft OneDrive for Business. Reliably indexes files from all OneDrives in a tenant. Comes with full metadata sets, advanced processing pipelines, document preview integrations, and full support for Microsoft OneDrive's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/onedrive.php)
+
+:::column-end:::
+:::column span="":::
+
+---
+
 ### OneDrive for work or school
 
 By [BA Insight](https://www.bainsight.com/)
@@ -1786,8 +1852,18 @@ The BA Insight OneDrive Connector makes it possible to index content from OneDri
 [More details](https://www.bainsight.com/connectors/onedrive-business-connector-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
+:::row-end:::
+:::row:::
 :::column span="":::
 
+   :::column-end:::
+   :::column span="":::
+   :::column-end:::
+
+:::row-end:::
+
+:::row:::
+:::column span="":::
 ---
 
 ### OpenText Content Server
@@ -1812,17 +1888,6 @@ Secure enterprise search connector for reliably indexing content from OpenText C
 [More details](https://www.raytion.com/connectors/raytion-opentext-content-server-connector)
 
 :::column-end:::
-:::row-end:::
-:::row:::
-:::column span="":::
-
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
-
-:::row-end:::
-
-:::row:::
 :::column span="":::
 
 ---
@@ -1836,6 +1901,17 @@ BA Insight's OpenText Documentum Cloud Connector securely indexes both the full 
 [More details](https://www.bainsight.com/connectors/connector-for-documentum-cloud/)
 
 :::column-end:::
+:::row-end:::
+:::row:::
+:::column span="":::
+
+   :::column-end:::
+   :::column span="":::
+   :::column-end:::
+
+:::row-end:::
+
+:::row:::
 :::column span="":::
 
 ---
@@ -1862,6 +1938,19 @@ Users of the OpenText eDOCS DM Connector can search for content housed in eDOCS 
 [More details](https://www.bainsight.com/connectors/edocs-dm-connector-sharepoint-azure-elasticsearch/)
 
 :::column-end:::
+:::column span="":::
+
+---
+
+### Oracle Database
+
+By [BA Insight](https://www.bainsight.com/)
+
+The Oracle Database Connector is built upon industry standard database access methods, so it can equally support databases from other systems such as Microsoft SQL Server, MySQL, and IBM DB2.
+
+[More details](https://www.bainsight.com/connectors/oracle-database-connector-sharepoint-azure-elasticsearch/)
+
+:::column-end:::
 :::row-end:::
 :::row:::
 :::column span="":::
@@ -1879,11 +1968,11 @@ Users of the OpenText eDOCS DM Connector can search for content housed in eDOCS 
 
 ### Oracle Database
 
-By [BA Insight](https://www.bainsight.com/)
+By [RheinInsights](https://www.rheininsights.com/)
 
-The Oracle Database Connector is built upon industry standard database access methods, so it can equally support databases from other systems such as Microsoft SQL Server, MySQL, and IBM DB2.
+Azure AI Search and secure vector search connector for indexing Oracle Databases. Reliably indexes all records based on tables, views and advanced SQL queries. Supports content crawling, as well as, interpreting data structures as user-group relationships for secure search. Comes with full metadata sets, advanced processing pipelines, and support for custom permission models.
 
-[More details](https://www.bainsight.com/connectors/oracle-database-connector-sharepoint-azure-elasticsearch/)
+[More details](https://www.rheininsights.com/en/connectors/sql.php)
 
 :::column-end:::
 :::column span="":::
@@ -1977,6 +2066,18 @@ BA Insight's PostgreSQL Connector honors the security of the source database and
 
 ---
 
+### PostgreSQL
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing PostgreSQL databases. Reliably indexes all records based on tables, views and advanced SQL queries. Supports content crawling, as well as, interpreting data structures as user-group relationships for secure search. Comes with full metadata sets, advanced processing pipelines, and support for custom permission models.
+
+[More details](https://www.rheininsights.com/en/connectors/sql.php)
+
+:::column-end:::
+:::column span="":::
+
+---
 
 ### Practical Law
 
@@ -1998,67 +2099,6 @@ By [BA Insight](https://www.bainsight.com/)
 The BA Insight Connector for Pro Law connects any portal to ProLaw, enabling information from ProLaw to be surfaced while respecting the user privileges within ProLaw.
 
 [More details](https://www.bainsight.com/connectors/prolaw-connector-sharepoint-azure-elasticsearch/)
-
-:::column-end:::
-:::column span="":::
-
-### RDB via Snapshots
-
-By [Accenture](https://www.accenture.com)
-
-The RDB via Snapshots connector crawls content from any relational database that can be accessed using JDBC and performs incremental crawls using a snapshot database. It extracts data directly based on SQL statements.
-
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/RDB+via+Snapshots+Connector)
-
-:::column-end:::
-:::row-end:::
-:::row:::
-:::column span="":::
-
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
-
-:::row-end:::
-
-:::row:::
-:::column span="":::
-
----
-
-### RDB via Tables
-
-By [Accenture](https://www.accenture.com)
-
-The RDB via Tables connector crawls content from any relational database that can be accessed using JDBC and performs incremental crawls fetching updates using tables that hold identifiers of updated content. It extracts data directly based on SQL statements.
-
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/RDB+via+Table+Connector)
-
-:::column-end:::
-:::column span="":::
-
----
-
-### S3
-
-By [Accenture](https://www.accenture.com)
-
-The Amazon S3 connector crawls content from any Amazon Simple Storage Service. It performs incremental crawls, fetch object ACLs for S3 document level security and includes documents stored in buckets, folders and subfolders.
-
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Amazon+S3+Connector)
-
-:::column-end:::
-:::column span="":::
-
----
-
-### Salesforce
-
-By [Accenture](https://www.accenture.com)
-
-The Salesforce connector crawls content from a Salesforce repository. The connector supports Salesforce Knowledge Base and Chatter, metadata and custom metadata retrieval, performs full or incremental crawls, fetches ACLs, selectable element types and group expansion.
-
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Salesforce+Connector)
 
 :::column-end:::
 :::row-end:::
@@ -2145,7 +2185,7 @@ By [BA Insight](https://www.bainsight.com/)
 
 The SAP HANA Connector honors the security of the source database and provides both full and incremental crawls, so users always have the latest information available to them. It indexes content from SAP HANA into Azure AI Search, surfacing it through BA Insight's SmartHub to provide users with integrated search results.
 
-[More details](https://www.bainsight.com/connectors/sap-hana-connector-sharepoint-azure-elasticsearch/)
+[More details](https://www.bainsight.com/connectors/connector-sap-hana-cloud-version/)
 
 :::column-end:::
 :::column span="":::
@@ -2176,7 +2216,6 @@ The SAP HANA (Cloud Version) Connector honors the security of the source databas
 
 ---
 
-
 ### SAP NetWeaver Portal
 
 By [Raytion](https://www.raytion.com/contact)
@@ -2203,13 +2242,13 @@ Secure enterprise search connector for reliably indexing content from SAP PLM DM
 
 ---
 
-### Selenium
+### ServiceNow
 
-By [Accenture](https://www.accenture.com)
+By [BA Insight](https://www.bainsight.com/)
 
-The Selenium connector crawls content from websites using an internet browser to retrieve several types of documents like web pages, sitemaps, binary documents, and more. It avoids compatibility issues with frameworks like Angular and React.
+ ServiceNow Connector honors the security of the source system and provides both full and incremental crawls, so users always have the latest information available to them.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Selenium+Crawler)
+[More details](https://www.bainsight.com/connectors/servicenow-connector-sharepoint-azure-elasticsearch)
 
 :::column-end:::
 :::row-end:::
@@ -2223,32 +2262,6 @@ The Selenium connector crawls content from websites using an internet browser to
 :::row-end:::
 
 :::row:::
-:::column span="":::
-
----
-
-### ServiceNow
-
-By [Accenture](https://www.accenture.com)
-
-The ServiceNow connector retrieves several types of documents from a ServiceNow Repository, like Knowledge Articles, Catalog Items and Attachments. It also retrieves security ACLs and performs group expansion.
-
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/ServiceNow+Connector)
-
-:::column-end:::
-:::column span="":::
-
----
-
-### ServiceNow
-
-By [BA Insight](https://www.bainsight.com/)
-
- ServiceNow Connector honors the security of the source system and provides both full and incremental crawls, so users always have the latest information available to them.
-
-[More details](https://www.bainsight.com/connectors/servicenow-connector-sharepoint-azure-elasticsearch)
-
-:::column-end:::
 :::column span="":::
 
 ---
@@ -2262,17 +2275,6 @@ Secure enterprise search connector for reliably indexing content from ServiceNow
 [More details](https://www.raytion.com/connectors/raytion-servicenow-connector)
 
 :::column-end:::
-:::row-end:::
-:::row:::
-:::column span="":::
-
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
-
-:::row-end:::
-
-:::row:::
 :::column span="":::
 
 ---
@@ -2297,19 +2299,6 @@ By [BA Insight](https://www.bainsight.com/)
 BA Insight's SharePoint 2010 Connector allows you to connect to SharePoint 2010, fetch data from any site, document library, or list, and index this content securely.
 
 [More details](https://www.bainsight.com/connectors/sharepoint-2010-connector/)
-
-:::column-end:::
-:::column span="":::
-
----
-
-### SharePoint 2013
-
-By [Accenture](https://www.accenture.com)
-
-The SharePoint 2013 connector crawls content from any SharePoint 2013 site collection URL. It performs incremental crawls using SharePoint's change log timestamp or a snapshot database, fetches ACLs, supports NTLM and HTTPS, BCS external lists, and runs without installing anything on SharePoint.
-
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/SharePoint+2013+Connector)
 
 :::column-end:::
 :::row-end:::
@@ -2340,13 +2329,13 @@ BA Insight's SharePoint 2013 Connector allows you to connect to SharePoint 2013,
 
 ---
 
-### SharePoint 2016
+### SharePoint 2013
 
-By [Accenture](https://www.accenture.com)
+By [RheinInsights](https://www.rheininsights.com/)
 
-The SharePoint 2016 connector crawls content from any SharePoint 2016 site collection URL. It performs incremental crawls using SharePoint's change log timestamp or a snapshot database, fetches ACLs, supports NTLM and HTTPS, BCS external lists, and runs without installing anything on SharePoint.
+Azure AI Search and secure vector search connector for indexing SharePoint 2013. Reliably indexes all SharePoint sites, pages, lists, list items and documents. Comes with full metadata sets, advanced processing pipelines and full support for SharePoint 2013's permission model.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/SharePoint+2016+Connector)
+[More details](https://www.rheininsights.com/en/connectors/sharepoint-server.php)
 
 :::column-end:::
 :::column span="":::
@@ -2376,6 +2365,18 @@ BA Insight's SharePoint Connector allows you to connect to SharePoint 2016, fetc
 :::column span="":::
 
 ---
+### SharePoint 2016
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing SharePoint 2016. Reliably indexes all SharePoint sites, pages, lists, list items and documents. Comes with full metadata sets, advanced processing pipelines and full support for SharePoint 2016's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/sharepoint-server.php)
+
+:::column-end:::
+:::column span="":::
+
+---
 
 ### SharePoint 2019
 
@@ -2390,15 +2391,26 @@ BA Insight's SharePoint Connector allows you to connect to SharePoint 2019, fetc
 
 ---
 
-### SharePoint in Microsoft 365
+### SharePoint 2019
 
-By [Accenture](https://www.accenture.com)
+By [RheinInsights](https://www.rheininsights.com/)
 
-The SharePoint connector crawls content from any SharePoint site collection URL. The connector retrieves Sites, Lists, Folders, List Items and Attachments, and other pages (in .aspx format). Supports SharePoint running in the Microsoft 365 offering.
+Azure AI Search and secure vector search connector for indexing SharePoint 2019. Reliably indexes all SharePoint sites, pages, lists, list items and documents. Comes with full metadata sets, advanced processing pipelines and full support for SharePoint 2019's permission model.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/SharePoint+Online+Connector)
+[More details](https://www.rheininsights.com/en/connectors/sharepoint-server.php)
 
 :::column-end:::
+:::row-end:::
+:::row:::
+:::column span="":::
+
+   :::column-end:::
+   :::column span="":::
+   :::column-end:::
+
+:::row-end:::
+
+:::row:::
 :::column span="":::
 
 ---
@@ -2410,6 +2422,32 @@ By [BA Insight](https://www.bainsight.com/)
 BA Insight's SharePoint Connector allows you to connect to SharePoint in Microsoft 365, fetch data from any site, document library, or list; and index this content securely.
 
 [More details](https://www.bainsight.com/connectors/sharepoint-online-connector/)
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### SharePoint in Microsoft 365
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing SharePoint in Microsoft 365. Reliably indexes all SharePoint sites, pages, lists, list items and documents also in multi-geo scenarios. Comes with full metadata sets, advanced processing pipelines, document preview integrations, and full support for SharePoint in Microsoft 365's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/sharepoint-online.php)
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### SharePoint Server Subscription
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing SharePoint Server Subscription. Reliably indexes all SharePoint sites, pages, lists, list items and documents. Comes with full metadata sets, advanced processing pipelines and full support for SharePoint Server Subscription's permission model.
+
+[More details](https://www.rheininsights.com/en/connectors/sharepoint-server.php)
 
 :::column-end:::
 :::row-end:::
@@ -2477,14 +2515,13 @@ Secure enterprise search connector for reliably indexing content from Slack and 
 
 ---
 
+### Slack
 
-### SMB
+By [RheinInsights](https://www.rheininsights.com/)
 
-By [Accenture](https://www.accenture.com)
+Azure AI Search and secure vector search connector for indexing Slack. Reliably indexes public and private channels, messages, threads and attached files. Comes with full metadata sets, advanced processing pipelines, and full support for Slack's permission model.
 
-The SMB connector retrieves files and directories across shared drives. It has Distributed File System support, security information retrieval, and it can access documents for indexing without changing the last accessed date.
-
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/SMB+Connector)
+[More details](https://www.rheininsights.com/en/connectors/slack.php)
 
 :::column-end:::
 :::column span="":::
@@ -2554,13 +2591,13 @@ Secure enterprise search connector for reliably indexing content from Symantec E
 
 ---
 
-### Twitter
+### Trello
 
-By [Accenture](https://www.accenture.com)
+By [RheinInsights](https://www.rheininsights.com/)
 
-The Twitter connector crawls content from any X account. It performs full and incremental crawls, supports authentication using X user, consumer key and consumer secret key.
+Azure AI Search and secure vector search connector for indexing Trello. Reliably indexes Trello boards, cards, comments, and attachments. Comes with full metadata sets, advanced processing pipelines, and full support for Trello's permission model.
 
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Twitter+Connector)
+[More details](https://www.rheininsights.com/en/connectors/trello.php)
 
 :::column-end:::
 :::row-end:::
@@ -2577,7 +2614,6 @@ The Twitter connector crawls content from any X account. It performs full and in
 :::column span="":::
 
 ---
-
 
 ### Veeva Vault
 
@@ -2640,6 +2676,19 @@ The BA Insight Website Crawler Connector makes it possible to surface content fr
 
 ---
 
+### Website Pages
+
+By [RheinInsights](https://www.rheininsights.com/)
+
+Azure AI Search and secure vector search connector for indexing web pages and attached documents. Reliably and easily indexes web pages from a given site. Comes with full metadata sets, advanced processing pipelines, and support for custom permission models.
+
+[More details](https://www.rheininsights.com/en/connectors/web-pages.php)
+
+:::column-end:::
+:::column span="":::
+
+---
+
 ### West km
 
 By [BA Insight](https://www.bainsight.com/)
@@ -2647,19 +2696,6 @@ By [BA Insight](https://www.bainsight.com/)
 The BA Insight West km Connector supports search across transaction and litigation documents, including the creation of custom search results pages.
 
 [More details](https://www.bainsight.com/connectors/westkm-connector-sharepoint-azure-elasticsearch/)
-
-:::column-end:::
-:::column span="":::
-
----
-
-### windream ECM-System
-
-By [Raytion](https://www.raytion.com/contact)
-
-Secure enterprise search connector for reliably indexing content from windream ECM-System and intelligently searching it with Azure AI Search. It robustly indexes files and folders including the comprehensive sets of metadata associated by windream ECM-System in near real time. The connector fully supports windream ECM-System’s permission model and the user and group management in the associated Microsoft Entra ID tenant.
-
-[More details](https://www.raytion.com/connectors/raytion-windream-ecm-system-connector)
 
 :::column-end:::
 :::row-end:::
@@ -2673,6 +2709,19 @@ Secure enterprise search connector for reliably indexing content from windream E
 :::row-end:::
 
 :::row:::
+:::column span="":::
+
+---
+
+### windream ECM-System
+
+By [Raytion](https://www.raytion.com/contact)
+
+Secure enterprise search connector for reliably indexing content from windream ECM-System and intelligently searching it with Azure AI Search. It robustly indexes files and folders including the comprehensive sets of metadata associated by windream ECM-System in near real time. The connector fully supports windream ECM-System’s permission model and the user and group management in the associated Microsoft Entra ID tenant.
+
+[More details](https://www.raytion.com/connectors/raytion-windream-ecm-system-connector)
+
+:::column-end:::
 :::column span="":::
 
 ---
@@ -2697,19 +2746,6 @@ By [Raytion](https://www.raytion.com/contact)
 Secure enterprise search connector for reliably indexing content from Xerox DocuShare and intelligently searching it with Azure AI Search. It robustly indexes data repositories, folders, profiles, groups, and files from DocuShare in near real time. The connector fully supports Xerox DocuShare’s built-in user and group management.
 
 [More details](https://www.raytion.com/connectors/raytion-xerox-docushare-connector)
-
-:::column-end:::
-:::column span="":::
-
----
-
-### Yammer
-
-By [Accenture](https://www.accenture.com)
-
-The Yammer connector crawls content from Yammer messages. It retrieves messages by Group, Thread or Topic and gets User, Group and Thread details.
-
-[More details](https://contentanalytics.digital.accenture.com/display/aspire40/Yammer+Connector)
 
 :::column-end:::
 :::row-end:::
@@ -2753,7 +2789,7 @@ Secure enterprise search connector for reliably indexing content from Microsoft 
 
 ---
 
-### Zendesk Guide 
+### Zendesk Guide
 
 By [Raytion](https://www.raytion.com/contact)
 

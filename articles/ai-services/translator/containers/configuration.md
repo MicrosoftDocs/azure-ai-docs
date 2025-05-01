@@ -1,22 +1,21 @@
 ---
-title: Configure containers - Translator
+title: Configure containers - Azure AI Translator
 titleSuffix: Azure AI services
-description: The Translator container runtime environment is configured using the `docker run` command arguments. There are both required and optional settings.
-#services: cognitive-services
+description: The Azure AI Translator container runtime environment is configured using the `docker run` command arguments. There are both required and optional settings.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 04/08/2024
+ms.date: 01/28/2025
 ms.author: lajanuar
 recommendations: false
 ---
 
-# Configure Translator Docker containers
+# Configure Azure AI Translator Docker containers
 
 Azure AI services provide each container with a common configuration framework. You can easily configure your Translator containers to build Translator application architecture optimized for robust cloud capabilities and edge locality.
 
-The **Translator** container runtime environment is configured using the `docker run` command arguments. This container has both required and optional settings. The required container-specific settings are the billing settings.
+The **Azure AI Translator** container runtime environment is configured using the `docker run` command arguments. This container has both required and optional settings. The required container-specific settings are the billing settings.
 
 ## Configuration settings
 
@@ -34,7 +33,7 @@ The container has the following configuration settings:
 |Yes|[Mounts](#mount-settings)|Reads and writes data from the host computer to the container and from the container back to the host computer.|
 
  > [!IMPORTANT]
-> The [**ApiKey**](#apikey-configuration-setting), [**Billing**](#billing-configuration-setting), and [**EULA**](#eula-setting) settings are used together, and you must provide valid values for all three of them; otherwise your container won't start. For more information about using these configuration settings to instantiate a container.
+ > The [**ApiKey**](#apikey-configuration-setting), [**Billing**](#billing-configuration-setting), and [**EULA**](#eula-setting) settings are used together, and you must provide valid values for all three of them; otherwise your container can't start. For more information about using these configuration settings to instantiate a container, *see* [Install and run Azure AI Translator container](install-run.md).
 
 ## ApiKey configuration setting
 

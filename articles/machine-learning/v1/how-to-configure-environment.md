@@ -15,6 +15,10 @@ ms.custom: UpdateFrequency5, devx-track-python, devx-track-azurecli, sdkv1, buil
 
 # Set up a Python development environment for Azure Machine Learning (v1)
 
+[!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 Learn how to configure a Python development environment for Azure Machine Learning.
 
 The following table shows each development environment covered in this article, along with pros and cons.
@@ -218,5 +222,5 @@ For more information, see [Data Science Virtual Machines](https://azure.microsof
 
 ## Next steps
 
-- [Train and deploy a model](../tutorial-train-deploy-notebook.md) on Azure Machine Learning with the MNIST dataset.
+- [Train and deploy a model](tutorial-train-deploy-notebook.md) on Azure Machine Learning with the MNIST dataset.
 - See the [Azure Machine Learning SDK for Python reference](/python/api/overview/azure/ml/intro).

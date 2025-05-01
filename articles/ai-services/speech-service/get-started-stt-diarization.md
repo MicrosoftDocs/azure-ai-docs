@@ -7,11 +7,11 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: quickstart
-ms.date: 01/30/2024
+ms.date: 3/10/2025
 ms.author: eur
 zone_pivot_groups: programming-languages-speech-services
 keywords: speech to text, speech to text software
-#customer intent: As a developer, I want to create speech to text applications that use diarization to improve readability of multiple person conversations.
+#customer intent: As a developer, I want to create speech to text applications that use diarization to identify speakers in multiple person conversations.
 ---
 
 # Quickstart: Create real-time diarization

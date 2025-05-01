@@ -6,20 +6,21 @@ description: Populate and upload data to an index in Azure AI Search from extern
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 01/17/2024
+ms.topic: concept-article
+ms.date: 03/11/2025
 ---
+
 # Data import in Azure AI Search
 
-In Azure AI Search, queries execute over user-owned content that's loaded into a [search index](search-what-is-an-index.md). This article describes the two basic workflows for populating an index: *push* your data into the index programmatically, or *pull* in the data using a [search indexer](search-indexer-overview.md).
+In Azure AI Search, queries execute over your content that's loaded into a [search index](search-what-is-an-index.md). This article describes the two basic workflows for populating an index: *push* your data into the index programmatically, or *pull* in the data using a [search indexer](search-indexer-overview.md).
 
 Both approaches load documents from an external data source. Although you can create an empty index, it's not queryable until you add the content.
 
 > [!NOTE]
-> If [AI enrichment](cognitive-search-concept-intro.md) is a solution requirement, you must use the pull model (indexers) to load an index. Skillsets are attached to an indexer and don't run independently.
+> If [AI enrichment](cognitive-search-concept-intro.md) or [integrated vectorization](vector-search-integrated-vectorization.md) are solution requirements, you must use the pull model (indexers) to load an index. Skillsets are attached to indexers and don't run independently.
 
 ## Pushing data to an index
 
@@ -37,7 +38,7 @@ Key benefits include:
 
 Use the following APIs to load single or multiple documents into an index:
 
-+ [Add, Update, or Delete Documents (REST API)](/rest/api/searchservice/AddUpdate-or-Delete-Documents)
++ [Index Documents (REST API)](/rest/api/searchservice/documents)
 + [IndexDocumentsAsync (Azure SDK for .NET)](/dotnet/api/azure.search.documents.searchclient.indexdocumentsasync) or [SearchIndexingBufferedSender](/dotnet/api/azure.search.documents.searchindexingbufferedsender-1)
 + [IndexDocumentsBatch (Azure SDK for Python)](/python/api/azure-search-documents/azure.search.documents.indexdocumentsbatch) or [SearchIndexingBufferedSender](/python/api/azure-search-documents/azure.search.documents.searchindexingbufferedsender)
 + [IndexDocumentsBatch (Azure SDK for Java)](/java/api/com.azure.search.documents.indexes.models.indexdocumentsbatch) or [SearchIndexingBufferedSender](/java/api/com.azure.search.documents.searchindexingbufferedasyncsender)
@@ -76,8 +77,9 @@ The pull model uses *indexers* connecting to a supported data source, automatica
 + [Azure Data Lake Storage Gen2](search-howto-index-azure-data-lake-storage.md)
 + [Azure Files (preview)](search-file-storage-integration.md)
 + [Azure Cosmos DB](search-howto-index-cosmosdb.md)
-+ [Azure SQL Database, SQL Managed Instance, and SQL Server on Azure VMs](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
-+ [SharePoint in Microsoft 365 (preview)](search-howto-index-sharepoint-online.md)
++ [Azure SQL Database, SQL Managed Instance, and SQL Server on Azure VMs](search-how-to-index-sql-database.md)
++ [OneLake files and shortcuts](search-how-to-index-onelake-files.md)
++ [SharePoint Online (preview)](search-howto-index-sharepoint-online.md)
 
 You can use third-party connectors, developed and maintained by Microsoft partners. For more information and links, see [Data source gallery](search-data-sources-gallery.md).
 
@@ -87,24 +89,24 @@ Indexers connect an index to a data source (usually a table, view, or equivalent
 
 Use the following tools and APIs for indexer-based indexing:
 
-+ [Import data wizard in the Azure portal](search-import-data-portal.md)
++ [Import data wizard or Import and vectorize data wizard](search-import-data-portal.md)
 + REST APIs: [Create Indexer (REST)](/rest/api/searchservice/indexers/create), [Create Data Source (REST)](/rest/api/searchservice/data-sources/create), [Create Index (REST)](/rest/api/searchservice/indexes/create)
 + Azure SDK for .NET: [SearchIndexer](/dotnet/api/azure.search.documents.indexes.models.searchindexer), [SearchIndexerDataSourceConnection](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourceconnection), [SearchIndex](/dotnet/api/azure.search.documents.indexes.models.searchindex),
 + Azure SDK for Python: [SearchIndexer](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchindexer), [SearchIndexerDataSourceConnection](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchindexerdatasourceconnection), [SearchIndex](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchindex),
 + Azure SDK for Java: [SearchIndexer](/java/api/com.azure.search.documents.indexes.models.searchindexer), [SearchIndexerDataSourceConnection](/java/api/com.azure.search.documents.indexes.models.searchindexerdatasourceconnection), [SearchIndex](/java/api/com.azure.search.documents.indexes.models.searchindex),
 + Azure SDK for JavaScript: [SearchIndexer](/javascript/api/@azure/search-documents/searchindexer), [SearchIndexerDataSourceConnection](/javascript/api/@azure/search-documents/searchindexerdatasourceconnection), [SearchIndex](/javascript/api/@azure/search-documents/searchindex),
 
-Indexer functionality is exposed in the [Azure portal], the [REST API](/rest/api/searchservice/create-indexer), and the [.NET SDK](/dotnet/api/azure.search.documents.indexes.searchindexerclient).
+Indexer functionality is exposed in the [Azure portal], the [REST API](/rest/api/searchservice/indexers/create), and the [.NET SDK](/dotnet/api/azure.search.documents.indexes.searchindexerclient).
 
-An advantage to using the portal is that Azure AI Search can usually generate a default index schema by reading the metadata of the source dataset. 
+An advantage to using the Azure portal is that Azure AI Search can usually generate a default index schema by reading the metadata of the source dataset. 
 
 ## Verify data import with Search explorer
 
-A quick way to perform a preliminary check on the document upload is to use [**Search explorer**](search-explorer.md) in the portal.
+A quick way to perform a preliminary check on the document upload is to use [**Search explorer**](search-explorer.md) in the Azure portal.
 
 :::image type="content" source="media/search-explorer/search-explorer-cmd2.png" alt-text="Screenshot of Search Explorer command in the Azure portal." border="true":::
 
-The explorer lets you query an index without having to write any code. The search experience is based on default settings, such as the [simple syntax](/rest/api/searchservice/simple-query-syntax-in-azure-search) and default [searchMode query parameter](/rest/api/searchservice/search-documents). Results are returned in JSON so that you can inspect the entire document.
+The explorer lets you query an index without having to write any code. The search experience is based on default settings, such as the [simple syntax](/rest/api/searchservice/simple-query-syntax-in-azure-search) and default [searchMode query parameter](/rest/api/searchservice/documents/search-post). Results are returned in JSON so that you can inspect the entire document.
 
 Here's an example query that you can run in Search Explorer in JSON view. The "HotelId" is the document key of the hotels-sample-index. The filter provides the document ID of a specific document:
 

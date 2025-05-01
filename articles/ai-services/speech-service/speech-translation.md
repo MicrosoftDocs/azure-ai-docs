@@ -6,9 +6,10 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 4/22/2024
+ms.date: 3/10/2025
 ms.author: eur
 ms.custom: devx-track-csharp
+#Customer intent: As a developer, I want to learn about the benefits and capabilities of speech translation with Azure AI Speech.
 ---
 
 # What is speech translation?
@@ -28,7 +29,7 @@ The core features of speech translation include:
 
 - [Speech to text translation](#speech-to-text-translation)
 - [Speech to speech translation](#speech-to-speech-translation)
-- [Multi-lingual speech translation](#multi-lingual-speech-translation-preview)
+- [Multi-lingual speech translation](#multi-lingual-speech-translation)
 - [Multiple target languages translation](#multiple-target-languages-translation)
 
 ## Speech to text translation
@@ -39,7 +40,7 @@ The standard feature offered by the Speech service is the ability to take in an 
 
 As a supplement to the above feature, the Speech service also offers the option to read aloud the translated text using our large database of pretrained voices, allowing for a natural output of the input speech. 
 
-## Multi-lingual speech translation (Preview)
+## Multi-lingual speech translation
 
 Multi-lingual speech translation implements a new level of speech translation technology that unlocks various capabilities, including having no specified input language, handling language switches within the same session, and supporting live streaming translations into English. These features enable a new level of speech translation powers that can be implemented into your products. 
 
@@ -52,9 +53,7 @@ Some use cases for multi-lingual speech translation include:
 - Travel Interpreter. When traveling abroad, multi-lingual speech translation offers the ability to create a solution that allows customers to translate any input audio to and from the local language. This allows them to communicate with the locals and better understand their surroundings. 
 - Business Meeting. In a meeting with people who speak different languages, multi-lingual speech translation allows the members of the meeting to all communicate with each other naturally as if there was no language barrier. 
 
-For multi-lingual speech translation, these are the languages the Speech service can automatically detect and switch between from the input: Arabic (ar), Basque (eu), Bosnian (bs), Bulgarian (bg), Chinese Simplified (zh), Chinese Traditional (zhh), Czech (cs), Danish (da), Dutch (nl), English (en), Estonian (et), Finnish (fi), French (fr), Galician (gl), German (de), Greek (el), Hindi (hi), Hungarian (hu), Indonesian (id), Italian (it), Japanese (ja), Korean (ko), Latvian (lv), Lithuanian (lt), Macedonian (mk), Norwegian (nb), Polish (pl), Portuguese (pt), Romanian (ro), Russian (ru), Serbian (sr), Slovak (sk), Slovenian (sl), Spanish (es), Swedish (sv), Thai (th), Turkish (tr), Ukrainian (uk), Vietnamese (vi), and Welsh (cy).
-
-For a list of the supported output (target) languages, see the *Translate to text language* table in the [language and voice support documentation](language-support.md?tabs=speech-translation).
+For a list of the supported input (source) languages, see the [speech to text languages documentation](language-support.md?tabs=stt). For a list of the supported output (target) languages, see the *Translate to text language* table in the [speech translation languages documentation](language-support.md?tabs=speech-translation).
 
 For more information on multi-lingual speech translation, see [the speech translation how to guide](./how-to-translate-speech.md#multi-lingual-speech-translation-without-source-language-candidates) and [speech translation samples on GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/translation_samples.cs#L472).
 

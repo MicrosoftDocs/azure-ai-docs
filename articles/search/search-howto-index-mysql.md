@@ -7,22 +7,22 @@ ms.author: gimondra
 manager: nitinme
 
 ms.devlang: rest-api
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
 ms.custom:
   - kr2b-contr-experiment
   - ignite-2023
-ms.date: 06/25/2024
+ms.date: 12/10/2024
 ---
 
-# Index data from Azure Database for MySQL flexible server
+# Index data from Azure Database for MySQL Flexible Server
 
 > [!IMPORTANT]
 > MySQL support is currently in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). You can use 2020-06-30-preview or later to index your content. We recommend the latest preview API. There is currently no portal support.
 
 In this article, learn how to configure an [**indexer**](search-indexer-overview.md) that imports content from Azure Database for MySQL and makes it searchable in Azure AI Search. Inputs to the indexer are your row, in a single table or view. Output is a search index with searchable content in individual fields.
 
-This article supplements [**Create an indexer**](search-howto-create-indexers.md) with information that's specific to indexing from Azure Database for MySQL flexible server. It uses the REST APIs to demonstrate a three-part workflow common to all indexers: create a data source, create an index, create an indexer. Data extraction occurs when you submit the Create Indexer request.
+This article supplements [**Create an indexer**](search-howto-create-indexers.md) with information that's specific to indexing from Azure Database for MySQL Flexible Server. It uses the REST APIs to demonstrate a three-part workflow common to all indexers: create a data source, create an index, create an indexer. Data extraction occurs when you submit the Create Indexer request.
 
 When configured to include a high water mark and soft deletion, the indexer takes all changes, uploads, and deletes for your MySQL database. It reflects these changes in your search index. Data extraction occurs when you submit the Create Indexer request.
 
@@ -30,13 +30,13 @@ When configured to include a high water mark and soft deletion, the indexer take
 
 - [Register for the preview](https://aka.ms/azure-cognitive-search/indexer-preview) to provide scenario feedback. You can access the feature automatically after form submission.
 
-- [Azure Database for MySQL flexible server](/azure/mysql/flexible-server/overview) and sample data. Data must reside in a table or view. A primary key is required. If you're using a view, it must have a [high water mark column](#DataChangeDetectionPolicy). 
+- [Azure Database for MySQL Flexible Server](/azure/mysql/flexible-server/overview) and sample data. Data must reside in a table or view. A primary key is required. If you're using a view, it must have a [high water mark column](#DataChangeDetectionPolicy). 
 
 - Read permissions. A *full access* connection string includes a key that grants access to the content, but if you're using Azure roles, make sure the [search service managed identity](search-howto-managed-identities-data-sources.md) has **Reader** permissions on MySQL.
 
 - A [REST client](search-get-started-rest.md) to create the data source, index, and indexer.
 
-  You can also use the [Azure SDK for .NET](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourcetype.mysql). You can't use the portal for indexer creation, but you can manage indexers and data sources once they're created.
+  You can also use the [Azure SDK for .NET](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourcetype.mysql). You can't use the Azure portal for indexer creation, but you can manage indexers and data sources once they're created.
 
 ## Preview limitations
 
@@ -44,7 +44,7 @@ Currently, change tracking and deletion detection aren't working if the date or 
 
 The preview doesn’t support geometry types and blobs.
 
-As noted, there’s no portal support for indexer creation, but a MySQL indexer and data source can be managed in the portal once they exist. For example, you can edit the definitions, and reset, run, or schedule the indexer.
+As noted, there’s no portal support for indexer creation, but a MySQL indexer and data source can be managed in the Azure portal once they exist. For example, you can edit the definitions, and reset, run, or schedule the indexer.
 
 ## Define the data source
 
@@ -82,6 +82,9 @@ The data source definition specifies the data to index, credentials, and policie
 - Set [`dataChangeDetectionPolicy`](#DataChangeDetectionPolicy) if data is volatile and you want the indexer to pick up just the new and updated items on subsequent runs.
 
 - Set [`dataDeletionDetectionPolicy`](#DataDeletionDetectionPolicy) if you want to remove search documents from a search index when the source item is deleted.
+
+> [!NOTE]
+> For the container name property, the value is restricted to only allow letters, numbers, underscores (_), dots (.), single dashes (-), and square brackets ([])
 
 ## Create an index
 

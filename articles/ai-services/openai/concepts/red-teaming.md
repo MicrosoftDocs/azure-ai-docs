@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI Service
 description: Learn about how red teaming and adversarial testing are an essential practice in the responsible development of systems and features using large language models (LLMs)
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 11/03/2023
+ms.date: 03/27/2025
 manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin
@@ -65,7 +65,7 @@ It can be helpful to provide red teamers with:
 
 ### Plan: What to test
 
-Because an application is developed using a base model, you may need to test at several different layers:
+Because an application is developed using a base model, you might need to test at several different layers:
 
 - The LLM base model with its safety system in place to identify any gaps that may need to be addressed in the context of your application system. (Testing is usually done through an API endpoint.)
 

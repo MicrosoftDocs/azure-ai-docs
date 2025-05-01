@@ -7,9 +7,9 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: references_regions
 ms.topic: how-to
-ms.date: 05/20/2024
-author: mrbullwinkle
-ms.author: mbullwin
+ms.date: 04/29/2025
+author: aahill
+ms.author: aahi
 recommendations: false
 
 ---
@@ -18,18 +18,11 @@ recommendations: false
 
 Azure OpenAI Assistants (Preview) allows you to create AI assistants tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, and custom functions. In this article, we provide an in-depth walkthrough of getting started with the Assistants API.
 
-[!INCLUDE [Assistants v2 note](../includes/assistants-v2-note.md)]
-
 ## Assistants support
 
-### Region and model support
+### Region, model, and API support
 
-Code interpreter is available in all regions supported by Azure OpenAI Assistants. The [models page](../concepts/models.md#assistants-preview) contains the most up-to-date information on regions/models where Assistants are currently supported.
-
-### API Versions
-
-- `2024-02-15-preview`
-- `2024-05-01-preview`
+The [models page](../concepts/models.md#assistants-preview) contains the most up-to-date information on regions/models where Assistants are currently supported. Assistants can be used in version `2024-02-15-preview` and later of the Azure OpenAI inference [preview API](../reference-preview.md#api-specs). A full list of previous API versions can be found on [GitHub](https://github.com/Azure/azure-rest-api-specs/tree/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview).
 
 ### Supported file types
 
@@ -72,7 +65,7 @@ An individual assistant can access up to 128 tools including [code interpreter](
 
 ### Files
 
-Files can be uploaded via Studio, or programmatically. The `file_ids` parameter is required to give tools like `code_interpreter` access to files. When using the File upload endpoint, you must have the `purpose` set to assistants to be used with the Assistants API.
+Files can be uploaded via Studio, or programmatically. The `file_ids` parameter is required to give tools like `code_interpreter` access to files. When using the File upload endpoint, you must have the `purpose` set to `assistants` to be used with the Assistants API.
 
 ## Assistants playground
 
@@ -101,7 +94,7 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-05-01-preview",
+    api_version="2024-08-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
@@ -125,7 +118,7 @@ assistant = client.beta.assistants.create(
 There are a few details you should note from the configuration above:
 
 - We enable this assistant to access code interpreter with the line `tools=[{"type": "code_interpreter"}],`. This gives the model access to a sand-boxed python environment to run and execute code to help formulating responses to a user's question.
-- In the instructions we remind the model that it can execute code. Sometimes the model needs help guiding it towards the right tool to solve a given query. If you know you want to use a particular library to generate a certain response that you know is part of code interpreter, it can help to provide guidance by saying something like "Use Matplotlib to do x."
+- In the instructions we remind the model that it can execute code. Sometimes the model needs help with guiding it towards the right tool to solve a given query. If you know you want to use a particular library to generate a certain response that you know is part of code interpreter, it can help to provide guidance by saying something like "Use Matplotlib to do x."
 - Since this is Azure OpenAI the value you enter for `model=` **must match the deployment name**.
 
 Next we're going to print the contents of assistant that we just created to confirm that creation was successful:

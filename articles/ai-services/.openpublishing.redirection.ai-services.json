@@ -31,6 +31,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/luis/luis-concept-data-conversion.md",
+      "redirect_url": "/azure/ai-services/language-service/conversational-language-understanding/how-to/migrate-from-luis",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/custom-vision-service/update-application-to-3.0-sdk.md",
       "redirect_url": "/azure/ai-services/custom-vision-service/overview",
       "redirect_document_id": false
@@ -38,6 +43,11 @@
     {
       "source_path_from_root": "/articles/ai-services/custom-vision-service/release-notes.md",
       "redirect_url": "/azure/ai-services/custom-vision-service/whats-new",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/custom-vision-service/concepts/compare-alternatives.md",
+      "redirect_url": "/azure/ai-services/custom-vision-service/overview",
       "redirect_document_id": false
     },
     {
@@ -97,7 +107,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/cognitive-services-development-options.md",
-      "redirect_url": "/azure/ai-services/ai-services-and-ecosystem",
+      "redirect_url": "/azure/ai-services/what-are-ai-services",
       "redirect_document_id": false
     },
     {
@@ -126,6 +136,11 @@
       "redirect_document_id": true
     },
     {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/audio-real-time.md",
+      "redirect_url": "/azure/ai-services/openai/realtime-audio-quickstart",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/content-safety/concepts/incident-response.md",
       "redirect_url": "/azure/ai-services/content-safety/concepts/custom-categories-rapid",
       "redirect_document_id": true
@@ -139,6 +154,21 @@
       "source_path_from_root": "/articles/ai-services/content-safety/concepts/custom-categories-rapid.md",
       "redirect_url": "/azure/ai-services/content-safety/concepts/custom-categories",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/content-safety/how-to/custom-categories.md",
+      "redirect_url": "/azure/ai-services/content-safety/quickstart-custom-categories",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/content-safety/how-to/foundry.md",
+      "redirect_url": "/azure/ai-foundry/ai-services/content-safety-overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/content-safety/studio-quickstart.md",
+      "redirect_url": "/azure/ai-foundry/ai-services/content-safety-overview?context=/azure/ai-services/content-safety/context/context",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-voice-create-voice.md",
@@ -167,12 +197,12 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/plan-manage-costs.md",
-      "redirect_url": "/azure/ai-studio/how-to/costs-plan-manage",
-      "redirect_document_id": true
+      "redirect_url": "/azure/ai-foundry/how-to/costs-plan-manage",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/cognitive-services-and-machine-learning.md",
-      "redirect_url": "/azure/ai-services/ai-services-and-ecosystem",
+      "redirect_url": "/azure/ai-services/what-are-ai-services",
       "redirect_document_id": true
     },
     {
@@ -218,7 +248,7 @@
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-insurance-card.md",
       "redirect_url": "/azure/ai-services/document-intelligence/concept-health-insurance-card",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-w2.md",
@@ -233,7 +263,7 @@
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/language-support.md",
       "redirect_url": "/azure/ai-services/document-intelligence/language-support-ocr",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/quickstarts/includes/v3-csharp-sdk.md",
@@ -316,6 +346,76 @@
       "redirect_document_id": true
     },
     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/migrate-from-custom-vision.md",
+      "redirect_url": "/azure/ai-services/computer-vision/how-to/model-customization",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/deploy-computer-vision-on-premises.md",
+      "redirect_url": "/azure/ai-services/computer-vision/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/spatial-analysis-web-app.md",
+      "redirect_url": "/azure/ai-services/computer-vision/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/tutorials/storage-lab-tutorial.md",
+      "redirect_url": "/azure/ai-services/computer-vision/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/custom-vision-service/iot-visual-alerts-tutorial.md",
+      "redirect_url": "/azure/ai-services/computer-vision/",
+      "redirect_document_id": false
+    },
+    {
+     "source_path_from_root": "/articles/ai-services/computer-vision/spatial-analysis-logging.md",
+      "redirect_url": "/azure/ai-services/computer-vision/spatial-analysis-container",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/spatial-analysis-container.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/spatial-analysis-local.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/spatial-analysis-operations.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/spatial-analysis-zone-line-placement.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/vehicle-analysis.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/spatial-analysis-camera-placement.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/use-case-dwell-time.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/use-case-queue-time.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+    {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-document-intelligence-studio.md",
       "redirect_url": "/azure/ai-services/document-intelligence/studio-overview",
       "redirect_document_id": true
@@ -393,6 +493,661 @@
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-configure-rhel-centos-7.md",
       "redirect_url": "/azure/ai-services/speech-service/quickstarts/setup-platform",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/devices-sdk-release-notes.md",
+      "redirect_url": "/azure/ai-services/speech-service/release-notes",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/get-started-speaker-recognition.md",
+      "redirect_url": "/azure/ai-services/speech-service/speaker-recognition-overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to-recognize-intents-from-speech-csharp.md",
+      "redirect_url": "/azure/ai-services/speech-service/intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-speech-continuous-integration-continuous-deployment.md",
+      "redirect_url": "/azure/ai-services/speech-service/how-to-custom-speech-model-and-endpoint-lifecycle",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/custom-speech-ai-foundry-portal.md",
+      "redirect_url": "/azure/ai-services/speech-service/how-to-custom-speech-create-project",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/anomaly-detector/how-to/postman.md",
+      "redirect_url": "/azure/ai-services/anomaly-detector/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/anomaly-detector//tutorials/multivariate-anomaly-detection-synapse.md",
+      "redirect_url": "/azure/ai-services/anomaly-detector/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/summarization/custom/how-to/data-formats.md",
+      "redirect_url": "/azure/ai-services//language-service/summarization/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/summarization/custom/how-to/deploy-model.md",
+      "redirect_url": "/azure/ai-services//language-service/summarization/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/summarization/custom/how-to/test-evaluate.md",
+      "redirect_url": "/azure/ai-services//language-service/summarization/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/summarization/custom/quickstart.md",
+      "redirect_url": "/azure/ai-services//language-service/summarization/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-accuracy-confidence.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/concept/accuracy-confidence",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-analyze-document-response.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/concept/analyze-document-response",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/label-tool.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/v21/label-tool",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/sdk-overview-v2-1.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/v21/sdk-overview-v2-1",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/quickstarts/try-sample-label-tool.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/v21/try-sample-label-tool",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/deploy-label-tool.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/v21/deploy-label-tool",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/supervised-table-tags.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/v21/supervised-table-tags",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-bank-statement.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/bank-statement",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-bank-check.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/bank-check",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-credit-card.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/credit-card",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-marriage-certificate.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/marriage-certificate",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-mortgage-documents.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/mortgage-documents",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-pay-stub.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/pay-stub",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-batch-analysis.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/batch-analysis",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-custom-generative.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/train/custom-generative-extraction",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-incremental-classifier.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/concept/incremental-classifier",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-model-overview.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/model-overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-read.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/read",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-layout.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/layout",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/choose-model-feature.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/concept/choose-model-feature",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/create-document-intelligence-resource.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/how-to-guides/create-document-intelligence-resource",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/managed-identities.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/authentication/managed-identities",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/create-sas-tokens.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/authentication/create-sas-tokens",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/managed-identities-secured-access.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/authentication/managed-identities-secured-access",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-contract.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/contract",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-general-document.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/general-document",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-health-insurance-card.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/health-insurance-card",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-id-document.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/id-document",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-invoice.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/invoice",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-receipt.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/receipt",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-retrieval-augmented-generation.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/concept/retrieval-augmented-generation",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-tax-document.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/tax-document",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-add-on-capabilities.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/concept/add-on-capabilities",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-business-card.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/prebuilt/business-card",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-composed-models.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/train/composed-models",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-custom-classifier.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/train/custom-classifier",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-custom-label-tips.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/train/custom-label-tips",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-custom-label.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/train/custom-labels",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-custom-lifecycle.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/train/custom-lifecycle",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-custom-neural.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/train/custom-neural",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-custom-template.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/train/custom-template",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-custom.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/train/custom-model",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/concept-query-fields.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/concept/query-fields",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/language-support-ocr.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/language-support/ocr",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/language-support-prebuilt.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/language-support/prebuilt",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/language-support-custom.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/language-support/custom",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/encrypt-data-at-rest.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/authentication/encrypt-data-at-rest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/sdk-overview-v3-0.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/versioning/sdk-overview-v3-0",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/sdk-overview-v3-1.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/versioning/sdk-overview-v3-1",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/sdk-overview-v4-0.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/versioning/sdk-overview-v4-0",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/v3-1-migration-guide.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/versioning/v3-1-migration-guide",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/v3-error-guide.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/how-to-guides/resolve-errors",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/changelog-release-history.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/versioning/changelog-release-history",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/tutorial-azure-function.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/tutorial/azure-function",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/tutorial-logic-apps.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/tutorial/logic-apps",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/disaster-recovery.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/how-to-guides/disaster-recovery",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/video-translation-studio.md",
+      "redirect_url": "/azure/ai-services/speech-service/video-translation-get-started",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/custom-speech-ai-studio.md",
+      "redirect_url": "/azure/ai-services/speech-service/how-to-custom-speech-create-project",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/windows-voice-assistants-overview.md",
+      "redirect_url": "/windows/apps/design/input/speech-interactions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to-windows-voice-assistants-get-started.md",
+      "redirect_url": "/windows/apps/design/input/speech-interactions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/windows-voice-assistants-implementation-guide.md",
+      "redirect_url": "/windows/apps/design/input/speech-interactions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/windows-voice-assistants-automatic-enablement-guidelines.md",
+      "redirect_url": "/windows/apps/design/input/speech-interactions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/windows-voice-assistants-best-practices.md",
+      "redirect_url": "/windows/apps/design/input/speech-interactions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/windows-voice-assistants-faq.yml",
+      "redirect_url": "/windows/apps/design/input/speech-interactions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/direct-line-speech.md",
+      "redirect_url": "/azure/ai-services/speech-service/voice-assistants",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/voice-assistants.md",
+      "redirect_url": "/azure/ai-services/speech-service/voice-assistants",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/tutorial-voice-enable-your-bot-speech-sdk.md",
+      "redirect_url": "/azure/ai-services/speech-service/voice-assistants",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/qnamaker/how-to/migrate-to-openai.md",
+      "redirect_url": "/azure/ai-services/qnamaker/overview/overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/how-to/azure-openai-integration.md",
+      "redirect_url": "/azure/ai-services/language-service/question-answering/overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/quickstarts/try-document-intelligence-studio.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/quickstarts/studio-custom-project",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/train/custom-generative-extraction.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/train/custom-model",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/document-intelligence/how-to-guides/build-train-custom-generative-model.md",
+      "redirect_url": "/azure/ai-services/document-intelligence/how-to-guides/build-a-custom-model",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/integrate-synapseml.md",
+      "redirect_url": "/azure/ai-services/openai/overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/ai-services-and-ecosystem.md",
+      "redirect_url": "/azure/ai-services/what-are-ai-services",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/text-translation-overview.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/overview",
+      "redirect_document_id": true
+    }, 
+    {
+      "source_path_from_root": "/articles/ai-services/translator/translator-overview.md",
+      "redirect_url": "/azure/ai-services/translator/overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/create-translator-resource.md",
+      "redirect_url": "/azure/ai-services/translator/how-to/create-translator-resource",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/dynamic-dictionary.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/how-to/use-dynamic-dictionary",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/encrypt-data-at-rest.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/concepts/encrypt-data-at-rest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/quickstart-text-rest-api.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/quickstart/rest-api",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/quickstart-text-sdk.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/quickstart/client-library-sdk",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/text-sdk-overview.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/sdk-overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/translator-text-apis.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/how-to/use-rest-api",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/firewalls.md",
+      "redirect_url": "/azure/ai-services/translator/how-to/use-firewalls",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/modifications-deprecations.md",
+      "redirect_url": "/azure/ai-services/translator/reference/release-history",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/neural-dictionary.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/how-to/use-neural-dictionary",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/prevent-translation.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/how-to/prevent-translation",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/profanity-filtering.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/how-to/use-profanity-filtering",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/translator-pro/faq.yml",
+      "redirect_url": "/azure/ai-services/translator/solutions/translator-pro/faq",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/translator-pro/language-support.md",
+      "redirect_url": "/azure/ai-services/translator/solutions/translator-pro/language-support",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/translator-pro/overview.md",
+      "redirect_url": "/azure/ai-services/translator/solutions/translator-pro/overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/solutions-overview.md",
+      "redirect_url": "/azure/ai-services/translator/solutions/overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/translator-faq.md",
+      "redirect_url": "/azure/ai-services/translator/faq",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/word-alignment.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/how-to/word-alignment",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/migrate-to-v3.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/how-to/migrate-to-v3",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/known-issues.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/known-issues",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/reference/rest-api-guide.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/rest-api-guide",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-break-sentence.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/break-sentence",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-detect.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/detect",
+      "redirect_document_id": true
+    },
+     {
+      "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-dictionary-examples.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/dictionary-examples",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-dictionary-lookup.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/dictionary-lookup",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-languages.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/languages",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-reference.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/reference",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-translate.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/translate",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-transliterate.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/transliterate",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/connector/document-translation-flow.md",
+      "redirect_url": "/azure/ai-services/translator/solutions/connector/document-translation-flow",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/connector/text-translator-flow.md",
+      "redirect_url": "/azure/ai-services/translator/solutions/connector/text-translator-flow",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/personally-identifiable-information/how-to-call.md",
+      "redirect_url": "/azure/ai-services/language-service/personally-identifiable-information/how-to/redact-text-pii",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/personally-identifiable-information/how-to-call-for-conversations.md",
+      "redirect_url": "/azure/ai-services/language-service/personally-identifiable-information/how-to/redact-conversation-pii",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/native-document-support/use-native-documents.md",
+      "redirect_url": "/azure/ai-services/language-service/native-document-support/overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/text-translation/reference/known-issues.md",
+      "redirect_url": "/azure/ai-services/translator/reference/known-issues",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/release-history.md",
+      "redirect_url": "/azure/ai-services/translator/reference/release-history",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/sovereign-clouds.md",
+      "redirect_url": "/azure/ai-services/translator/reference/sovereign-clouds",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/assistants-reference-messages.md",
+      "redirect_url": "/azure/ai-services/openai/reference-preview#list---messages",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/assistants-reference-runs.md",
+      "redirect_url": "/azure/ai-services/openai/reference-preview#create---thread-and-run",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/assistants-reference-threads.md",
+      "redirect_url": "/azure/ai-services/openai/reference-preview#create---thread",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/assistants-reference.md",
+      "redirect_url": "/azure/ai-services/openai/reference-preview#list---assistants",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/meeting-transcription.md",
+      "redirect_url": "/azure/ai-services/speech-service/multi-device-conversation",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to-use-meeting-transcription.md",
+      "redirect_url": "/azure/ai-services/speech-service/multi-device-conversation",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to-async-meeting-transcription.md",
+      "redirect_url": "/azure/ai-services/speech-service/multi-device-conversation",
       "redirect_document_id": false
     }
   ]

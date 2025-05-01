@@ -1,16 +1,15 @@
 ---
-title: Use keyless connections with Azure AI Search
-description: Use keyless connections with an Azure Identity library for authentication and authorization with Azure AI Search.
+title: Use keyless connections in search apps
+description: Use keyless connections with an Azure Identity library for Microsoft Entra ID authentication and authorization with Azure AI Search.
 ms.topic: how-to
-ms.date: 06/05/2024
+ms.date: 10/30/2024
 author: HeidiSteen
 ms.author: heidist
-ms.reviewer: scaddie
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-python, Keyless-dotnet, Keyless-java, Keyless-js, Keyless-python, build-2024-intelligent-apps
 #customer intent: As a developer, I want to use keyless connections so that I don't leak secrets.
 ---
 
-# Use Azure AI Search without keys 
+# Connect your app to Azure AI Search using identities
 
 In your application code, you can set up a keyless connection to Azure AI Search that uses Microsoft Entra ID and roles for authentication and authorization. Application requests to most Azure services must be authenticated with keys or keyless connections. Developers must be diligent to never expose the keys in an unsecure location. Anyone who gains access to the key is able to authenticate to the service. Keyless authentication offers improved management and security benefits over the account key because there's no key (or connection string) to store.
 
@@ -34,7 +33,7 @@ Before continuing with this article, you need an Azure AI Search resource to wor
 
 ### Install Azure Identity client library
 
-Before working locally without keyless, update your AI Search enabled code with the Azure Identity client library.
+To use a keyless approach, update your AI Search enabled code with the Azure Identity client library.
 
 #### [.NET](#tab/csharp)
 
@@ -54,9 +53,7 @@ Install the [Azure Identity client library for Java](https://mvnrepository.com/a
         <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-identity</artifactId>
-            <version>1.10.0</version>
-            <type>pom</type>
-            <scope>import</scope>
+            <version>1.15.1</version>
         </dependency>
     </dependencies>
 </dependencyManagement>
@@ -199,7 +196,7 @@ credential = DefaultAzureCredential(authority=authority)
 
 search_client = SearchClient(
     endpoint=service_endpoint, 
-    index=index_name, 
+    index_name=index_name, 
     credential=credential, 
     audience=audience)
 
@@ -211,22 +208,20 @@ search_index_client = SearchIndexClient(
 
 ---
 
-
 ## Local development
 
-Local development without keyless includes these steps:
+Local development using roles includes these steps:
 
-- Assign your personal identity with RBAC roles on the specific resource.
-- Use a tool to authenticate with Azure.
+- Assign your personal identity to RBAC roles on the specific resource.
+- Use a tool like the Azure CLI or Azure PowerShell to authenticate with Azure.
 - Establish environment variables for your resource.
 
 ### Roles for local development
 
-As a local developer, your Azure identity needs full control of your service. This control is provided with RBAC roles. To manage your resource during development, these are the suggested roles:
+As a local developer, your Azure identity needs full control over data plane operations. These are the suggested roles:
 
-- Search Service Contributor
-- Search Index Data Contributor
-- Search Index Data Reader
+- Search Service Contributor, create and manage objects
+- Search Index Data Contributor, load and query an index
 
 Find your personal identity with one of the following tools. Use that identity as the `<identity-id>` value.
 
@@ -253,7 +248,7 @@ Find your personal identity with one of the following tools. Use that identity a
         --assignee "<identity-id>" \
         --scope "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>"
     ```
-    
+
 #### [Azure PowerShell](#tab/azure-powershell)
 
 1. Sign in with PowerShell.
@@ -277,13 +272,12 @@ Find your personal identity with one of the following tools. Use that identity a
 #### [Azure portal](#tab/portal)
 
 1. Use the steps found here: [find the user object ID](/partner-center/find-ids-and-domain-names#find-the-user-object-id) in the Azure portal.
-    
-2. Use the steps found at [open the Add role assignment page](search-security-rbac.md) in the Azure portal.
-    
----
-    
-Where applicable, replace `<identity-id>`, `<subscription-id>`, and `<resource-group-name>` with your actual values. 
 
+1. Use the steps found at [open the Add role assignment page](search-security-rbac.md) in the Azure portal.
+
+---
+
+Where applicable, replace `<identity-id>`, `<subscription-id>`, and `<resource-group-name>` with your actual values. 
 
 ### Authentication for local development
 

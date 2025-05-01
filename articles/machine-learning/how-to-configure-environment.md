@@ -8,12 +8,14 @@ ms.author: larryfr
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.reviewer: roastala
-ms.date: 04/08/2024
+ms.date: 04/03/2025
 ms.topic: how-to
 ms.custom: devx-track-python, devx-track-azurecli, py-fresh-zinc
 ---
 
 # Set up a Python development environment for Azure Machine Learning
+
+[!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
 Learn how to configure a Python development environment for Azure Machine Learning.
 
@@ -22,10 +24,10 @@ The following table shows each development environment covered in this article, 
 | Environment | Pros | Cons |
 | --- | --- | --- |
 | [Local environment](#local-computer-or-remote-vm-environment) | Full control of your development environment and dependencies. Run with any build tool, environment, or IDE of your choice. | Takes longer to get started. Necessary SDK packages must be installed, and an environment must also be installed if you don't already have one. |
-| [The Data Science Virtual Machine (DSVM)](#data-science-virtual-machine) | Similar to the cloud-based compute instance (Python is pre-installed), but with additional popular data science and machine learning tools pre-installed. Easy to scale and combine with other custom tools and workflows. | A slower getting started experience compared to the cloud-based compute instance. |
-| [Azure Machine Learning compute instance](#azure-machine-learning-compute-instance) | Easiest way to get started. The SDK is already installed in your workspace VM, and notebook tutorials are pre-cloned and ready to run. | Lack of control over your development environment and dependencies. Additional cost incurred for Linux VM (VM can be stopped when not in use to avoid charges). See [pricing details](https://azure.microsoft.com/pricing/details/virtual-machines/linux/). |
+| [Azure Machine Learning compute instance](#azure-machine-learning-compute-instance) | Easiest way to get started. The SDK is already installed in your workspace VM, and notebook tutorials are pre-cloned and ready to run. | Lack of control over your development environment and dependencies. Cost is incurred for Linux VM (VM can be stopped when not in use to avoid charges). See [pricing details](https://azure.microsoft.com/pricing/details/virtual-machines/linux/). |
+| [The Data Science Virtual Machine (DSVM)](#data-science-virtual-machine) | Similar to the cloud-based compute instance (Python is pre-installed), but with other popular data science and machine learning tools preinstalled. Easy to scale and combine with other custom tools and workflows. | A slower getting started experience compared to the cloud-based compute instance. |
 
-This article also provides additional usage tips for the following tools:
+This article also provides other usage tips for the following tools:
 
 * Jupyter Notebooks: If you're already using Jupyter Notebooks, the SDK has some extras that you should install.
 
@@ -91,7 +93,7 @@ To configure a local development environment or remote VM:
 1. Create a Python virtual environment (virtualenv, conda).
 
     > [!NOTE]
-    > Although not required, it's recommended you use [Anaconda](https://www.anaconda.com/download/) or [Miniconda](https://www.anaconda.com/download/) to manage Python virtual environments and install packages.
+    > Although not required, we recommend that you use [Anaconda](https://www.anaconda.com/download/) or [Miniconda](https://www.anaconda.com/download/) to manage Python virtual environments and install packages.
 
     > [!IMPORTANT]
     > If you're on Linux or macOS and use a shell other than bash (for example, zsh) you might receive errors when you run some commands. To work around this problem, use the `bash` command to start a new bash shell and run the commands there.
@@ -104,7 +106,7 @@ Now that you have your local environment set up, you're ready to start working w
 
 ### Jupyter Notebooks
 
-When running a local Jupyter Notebook server, it's recommended that you create an IPython kernel for your Python virtual environment. This helps ensure the expected kernel and package import behavior.
+When running a local Jupyter Notebook server, we recommend that you create an IPython kernel for your Python virtual environment. This helps ensure the expected kernel and package import behavior.
 
 1. Enable environment-specific IPython kernels
 

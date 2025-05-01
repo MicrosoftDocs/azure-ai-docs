@@ -2,21 +2,83 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 8/7/2024
+ms.date: 4/28/2025
 ms.author: eur
 ---
+
+### 2025-March release
+
+Add support for the latest model versions:
+- Neural text to speech 3.9.0
+- Speech to text 5.0.1 (Preview)
+- Custom speech to text 5.0.1 (Preview)
+
+For speech to text and custom speech to text, the following features are included:
+- Support for new speech to text models
+- Operating system change to Azure Linux 3.0
+- Support for new locales: ar-dz, as-in, es-gq or-in, pa-in and ur-in
+- Decoder update
+- Ability to use newer custom models (2023+) in container
+
+For text to speech, added support for new neural voices: `en-GB-OliviaNeural`, `en-US-ChristopherNeural` and `nl-NL-FennaNeural`.
+
+### 2025-February release
+
+Add support for the latest model versions:
+- Speech language identification 1.18.0
+- Neural text to speech 3.7.0
+- Speech to text 4.12.0
+- Custom speech to text 4.12.0
+
+Here are the highlights of the releases:
+
+| Feature update | Speech to text | Custom speech to text | Neural text to speech | Speech language identification |
+|------|------|------|--------|------|
+| Vulnerability fixes | ✅ | ✅ | ✅ | ✅ |
+| Migrated OS from Ubuntu 20.04 to Ubuntu 22.04 | ✅ | ✅ | ✅ | ✅ |
+| New Locales: ar-ly, fr-be, nl-be and uz-uz | ✅ | ✅ |  |  |
+| Updated nuget packages, Go version | ✅ | ✅ |  |  |
+| Added model download parallelization to decrease model download time | ✅ | ✅ | ✅ |  |
+
+### 2024-October release
+
+Add support for the latest model versions:
+- Speech language identification 1.16.0
+- Neural text to speech 3.5.0
+    - Make `en-us-ariacpuneural` an alias to `en-us-jessacpuneural`
+    - Update the text to speech backend engine version
+- Speech to text 4.10.0
+    - Restore support for locale `uk-UA`
+    - Fix silence settings to work with long periods of silence in the audio
+    - Replace deprecated models: `cs-CZ`, `da-DK`, `en-GB`, `fr-CA`, `hu-HU`, `it-CH`, `tr-TR`, `zh-CN-sichuan`
+- Custom speech to text 4.10.0
+
+### 2024-September release
+
+Add support for the latest model versions:
+- Speech language identification 1.15.0
+    - Mitigate Vulnerabilities
+- Neural text to speech 3.4.0
+    - New voices: `en-us-andrewmultilingualneural`, `en-us-jessaneural`, `es-us-alonsoneural`, `es-us-palomaneural`, `it-it-isabellamultilingualneural`
+    - Mitigate Vulnerabilities
+- Speech to text 4.9.0
+    - New Locales: `ar-YE`, `af-ZA`, `am-ET`, `ar-MA`, `ar-TN`, `sw-KE`, `sw-TZ`, `zu-ZA`
+    - Mitigate Vulnerabilities
+    - Update Deprecated Models
+- Custom speech to text 4.9.0
+    - Mitigate Vulnerabilities
 
 ### 2024-August release
 
 Add support for the latest model versions:
 - Speech language identification 1.14.0
-    - Upgrade .Net 8.0
+    - Upgrade .NET 8.0
     - Mitigate Vulnerabilities
 - Neural text to speech 3.3.0
-    - Upgrade .Net 8.0
+    - Upgrade .NET 8.0
     - Mitigate Vulnerabilities
-- Speech to text 4.18.0    
-    - Upgrade .Net 8.0
+- Speech to text 4.8.0    
+    - Upgrade .NET 8.0
     - Mitigate Vulnerabilities
     - Upgrade Recognition Engine
     - Fix the issue where `PropertyId.Speech_SegmentationSilenceTimeoutMs` was being ignored.
@@ -80,7 +142,7 @@ Add support for the latest model versions:
 
 Fix the issue of running speech to text container via `docker` mount options with local custom model files.
 
-Fix the issue that in some cases the `RECOGNIZING` event does not show up in response through the Speech SDK.
+Fix the issue that in some cases the `RECOGNIZING` event doesn't show up in response through the Speech SDK.
 
 Fix vulnerability issues.
 
@@ -241,7 +303,7 @@ Regular monthly updates including security upgrades and vulnerability fixes.
 
 Regular monthly updates including security upgrades and vulnerability fixes.
 
-#### Neural Neural text to speech v2.5.0
+#### Neural text to speech v2.5.0
 
 Add support for these [prebuilt neural voices](../../language-support.md?tabs=tts):
    * `az-az-babekneural`
@@ -279,7 +341,7 @@ Add support for using containers in [disconnected environments](../../../contain
 Regular monthly updates including security upgrades and vulnerability fixes.
 
 #### Neural-Neural text to speech Container v1.12.0
-Add support for these prebuilt neural voices: `am-et-amehaneural`, `am-et-mekdesneural`, `so-so-muuseneural` and `so-so-ubaxneural`.
+Add support for these prebuilt neural voices: `am-et-amehaneural`, `am-et-mekdesneural`, `so-so-muuseneural`, and `so-so-ubaxneural`.
 
 Regular monthly updates including security upgrades and vulnerability fixes.
 

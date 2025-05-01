@@ -2,9 +2,96 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 7/12/2024
+ms.date: 3/28/2025
 ms.author: eur
+ms.custom: references_regions
 ---
+
+### March 2025 release
+
+## Conversation transcription multichannel diarization (retired)
+
+Conversation transcription multichannel diarization is retiring on March 28, 2025. 
+
+To continue using speech to text with diarization, use the following features instead:
+
+- [Real-time speech to text with diarization](../../get-started-stt-diarization.md)
+- [Fast transcription with diarization](../../fast-transcription-create.md)
+- [Batch transcription with diarization](../../batch-transcription.md)
+
+These speech to text features only support diarization for single-channel audio. Multichannel audio that you used with conversation transcription multichannel diarization isn't supported. 
+
+### January 2025 release
+
+#### New Feature - Semantic Segmentation
+Announcing the release of a new feature: Semantic Segmentation. This feature integrates a punctuation module inside decoder that segments audio based on semantic information, resulting in more logical and precise segmentation boundaries.
+Key Benefits:
+- Improved Segmentation Accuracy: By using semantic information, this feature significantly reduces instances of long segments caused by the absence of pauses in the input audio.
+- Reduce latency caused by under-segmentation: The overall latency for speech recognition is reduced, with a 40%-60% reduction in the length of the longest 5% of segments.
+- Over-Segmentation Mitigation: This feature also helps prevent over-segmentation by delaying segmentation when a better sentence can be formed.
+
+Supported Locales:
+- English (en-US, en-GB)
+- Chinese (zh-CN, zh-HK)
+- Japanese (ja-JP)
+- Korean (ko-KR)
+- German (de-DE)
+- French (fr-FR)
+- Italian (it-IT)
+- Spanish (es-ES, es-MX)
+- Hindi (hi-IN)
+- Portuguese (pt-BR, pt-PT)
+- Turkish (tr-TR)
+- Russian (ru-RU)
+- Thai (th-TH)
+- Indonesian (id-ID)
+
+For implementation details, please refer to the documentation: [How to Recognize Speech](/azure/ai-services/speech-service/how-to-recognize-speech?pivots=programming-language-csharp) in the "Semantic Segmentation" section.
+
+#### Real-time speech to text - New English model release
+
+Announcing the release of the latest English speech model (en-US, en-CA), which brings substantial improvements across various performance metrics. Below are the key highlights of this release:
+- Accessibility Enhancements: Achieved a 36% reduction in Word Error Rate (WER) on Microsoft internal accessibility test sets, making speech recognition more accurate and reliable for recognizing speech from individuals with speech disabilities.
+- Ghost Word Reduction: A remarkable 90% reduction in ghost words on the ghost word development set and reductions range from 63% to 100% across other ghost word datasets, significantly enhancing the clarity and accuracy of transcriptions.
+
+The new model also improved the overall performance, including entity recognition and better recognition of spelled-out letters.
+
+These advancements are expected to provide a more accurate, efficient, and satisfying experience for all users. The new model is available through the API and Azure AI Foundry playground. Feedback is encouraged to further refine its capabilities.
+
+### November 2024 release
+
+#### Speech to text REST API version 2024-11-15
+
+The speech to text REST API version 2024-11-15 is released for general availability. For more information, see the [speech to text REST API reference documentation](https://go.microsoft.com/fwlink/?linkid=2296107) and the [Speech to text REST API guide](../../rest-speech-to-text.md).
+
+> [!NOTE]
+> The speech to text REST API version 2024-05-15-preview is deprecated.
+
+#### Fast transcription (GA)
+
+Fast transcription is now generally available via [speech to text REST API version 2024-11-15](https://go.microsoft.com/fwlink/?linkid=2296107). Fast transcription allows you to transcribe audio file to text accurately and synchronously, with a high speed factor. It can transcribe audio faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
+
+### October 2024 release
+
+#### Real-time speech to text (bilingual)
+
+Significant improvements have been made the recognition quality of short Spanish terms via the `es-US` bilingual models. The model is bilingual and also supports English. The quality of English recognition is also improved.
+
+#### Video translation (Preview)
+
+The video translation API is now available in public preview. For more information, see the [How to use video translation](../../video-translation-get-started.md?pivots=rest-api).
+
+### September 2024 release
+
+#### Real-time speech to text 
+
+[Real-time speech to text](../../how-to-recognize-speech.md) has released new models, with better quality, for the following languages. 
+
+fi-FI/id-ID/zh-TW/pl-PL/pt-PT 
+es-SV/es-EC/es-BO/es-PY/es-AR/es-DO/es-UY/es-CR/es-VE/es-NI/es-HN/es-PR/es-CO/es-CL/es-CU/es-PE/es-PA/es-GT/es-GQ
+
+#### Fast transcription (Preview)
+Fast transcription now supports diarization to recognize and separate multiple speakers on mono channel audio file. For more information, see [fast transcription API guide](../../fast-transcription-create.md#use-the-fast-transcription-api).
 
 ### August 2024 release
 
@@ -14,7 +101,7 @@ Language learning is now available in public preview. Interactive language learn
 
 #### Pronunciation assessment
 
-Speech [pronunciation assessment](../../how-to-pronunciation-assessment.md) now supports 33 languages generally available, and each language is available on all Speech to text [regions](../../regions.md#speech-service). For more information, see the full [language list for Pronunciation assessment](../../language-support.md?tabs=pronunciation-assessment).
+Speech [pronunciation assessment](../../how-to-pronunciation-assessment.md) now supports 33 languages generally available, and each language is available on all Speech to text [regions](../../regions.md#regions). For more information, see the full [language list for Pronunciation assessment](../../language-support.md?tabs=pronunciation-assessment).
 
 | Language | Locale (BCP-47) | 
 |--|--|
@@ -57,10 +144,10 @@ Speech [pronunciation assessment](../../how-to-pronunciation-assessment.md) now
 
 #### Fast Transcription API (Preview)
 
-Fast transcription is now available in public preview. Fast transcription allows you to transcribe audio file to text accurately and synchronously, with a high speed factor. It can transcribe a 30-minutes audio in less than 1 minute. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
+Fast transcription is now available in public preview. Fast transcription allows you to transcribe audio file to text accurately and synchronously, with a high speed factor. It can transcribe audio faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
 
 > [!TIP]
-> Try out fast transcription in [Azure AI Studio](https://aka.ms/fasttranscription/studio).
+> Try out fast transcription in the [Azure AI Foundry portal](https://aka.ms/fasttranscription/studio).
 
 ### June 2024 release
 
@@ -69,7 +156,7 @@ Fast transcription is now available in public preview. Fast transcription allows
 The Speech to text REST API version 3.2 is now generally available. For more information about speech to text REST API v3.2, see the [Speech to text REST API v3.2 reference documentation](/rest/api/speechtotext/operation-groups?view=rest-speechtotext-v3.2&preserve-view=true) and the [Speech to text REST API guide](../../rest-speech-to-text.md). 
 
 > [!NOTE]
-> Preview versions *3.2-preview.1* and *3.2-preview.2* will be removed in September 2024.
+> Preview versions *3.2-preview.1* and *3.2-preview.2* are retired as of September 2024.
 
 [Speech to text REST API](../../rest-speech-to-text.md) v3.1 will be retired on a date to be announced. Speech to text REST API v3.0 will be retired on April 1st, 2026. For more information about upgrading, see the Speech to text REST API [v3.0 to v3.1](../../migrate-v3-0-to-v3-1.md) and [v3.1 to v3.2](../../migrate-v3-1-to-v3-2.md) migration guides.
 
@@ -160,7 +247,7 @@ Highlights:
 - Advanced entity recognition: Entity recognition receives a substantial upgrade, resulting in more accurate and nuanced results.
 
 Potential impacts: Despite these advancements, it's crucial to be mindful of potential impacts:
-- Custom Silence Timeout Feature: Users employing custom silence timeout, especially with low settings, might encounter over-segmentation and potential omissions of single-word phrases.
+- Custom Silences Time-out Feature: Users employing custom silence time-out, especially with low settings, might encounter over-segmentation and potential omissions of single-word phrases.
 - The new model might exhibit compatibility issues with the Keyword prefix feature, and users are advised to assess its performance in their specific applications.
 - Reduced disfluency words or phrases: Users might notice a reduction in disfluency words or phrases like "um" or "uh" in the speech output.
 - Inaccuracies in word timestamp duration: Some disfluency words might display inaccuracies in timestamp duration, requiring attention in applications dependent on precise timing.

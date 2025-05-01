@@ -2,7 +2,7 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 1/18/2024
+ms.date: 3/10/2025
 ms.author: eur
 ---
 
@@ -41,7 +41,7 @@ KeywordRecognitionResult result = await keywordRecognizer.RecognizeOnceAsync(key
 
 > [!NOTE]
 > The example shown here uses local keyword recognition, since it does not require a `SpeechConfig` 
-object for authentication context, and does not contact the back-end. However, you can run both keyword recognition and verification [utilizing a direct back-end connection](../../../tutorial-voice-enable-your-bot-speech-sdk.md#view-the-source-code-that-enables-keyword-detection).
+object for authentication context, and does not contact the back-end. 
 
 ### Continuous recognition
 

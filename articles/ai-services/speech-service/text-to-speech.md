@@ -6,8 +6,9 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 8/20/2024
+ms.date: 3/10/2025
 ms.author: eur
+#Customer intent: As a developer, I want to learn about the benefits and capabilities of the text to speech feature of the Speech service.
 ---
 
 # What is text to speech?
@@ -43,7 +44,7 @@ Here's more information about neural text to speech features in the Speech servi
   - Convert digital texts such as e-books into audiobooks.
   - Enhance in-car navigation systems.
 
-  For a full list of platform neural voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
+  For a full list of prebuilt Azure AI Speech neural voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
 
 * **Improve text to speech output with SSML**: Speech Synthesis Markup Language (SSML) is an XML-based markup language used to customize text to speech outputs. With SSML, you can adjust pitch, add pauses, improve pronunciation, change speaking rate, adjust volume, and attribute multiple voices to a single document.
 
@@ -54,9 +55,12 @@ Here's more information about neural text to speech features in the Speech servi
   By using viseme events in Speech SDK, you can generate facial animation data. This data can be used to animate faces in lip-reading communication, education, entertainment, and customer service. Viseme is currently supported only for the `en-US` (US English) [neural voices](language-support.md?tabs=tts).
 
 > [!NOTE]
-> We plan to retire the traditional/standard voices and non-neural custom voice in 2024. After that, we'll no longer support them. 
+> In addition to Azure AI Speech neural (non HD) voices, you can also use [Azure AI Speech high definition (HD) voices](high-definition-voices.md) and [Azure OpenAI neural (HD and non HD) voices](openai-voices.md). The HD voices provide a higher quality for more versatile scenarios.
 > 
-> If your applications, tools, or products are using any of the standard voices and custom voices, you must migrate to the neural version. For more information, see [Migrate to neural voices](migration-overview-neural-voice.md).
+> Some voices don't support all [Speech Synthesis Markup Language (SSML)](speech-synthesis-markup-structure.md) tags. This includes neural text to speech HD voices, personal voices, and embedded voices. 
+- For Azure AI Speech high definition (HD) voices, check the SSML support [here](high-definition-voices.md#supported-and-unsupported-ssml-elements-for-azure-ai-speech-hd-voices). 
+- For personal voice, you can find the SSML support [here](personal-voice-how-to-use.md#supported-and-unsupported-ssml-elements-for-personal-voice). 
+- For embedded voices, check the SSML support [here](embedded-speech.md#embedded-voices-capabilities).
 
 ## Get started
 
@@ -103,16 +107,20 @@ Custom neural voice (CNV) endpoint hosting is measured by the actual time (hour)
 
 When you use the personal voice feature, you're billed for both profile storage and synthesis.
 
-*  **Profile storage**: After a personal voice profile is created, it will be billed until it is removed from the system. The billing unit is per voice per day. If voice storage lasts for a period of less than 24 hours, it will be billed as one full day.
+*  **Profile storage**: After a personal voice profile is created, it will be billed until it's removed from the system. The billing unit is per voice per day. If voice storage lasts for less than 24 hours, it's still billed as one full day.
 *  **Synthesis**: Billed per character. For details on billable characters, see the above [billable characters](#billable-characters).
 
 ### Text to speech avatar
 
-When using the text-to-speech avatar feature, charges will be incurred based on the length of video output and will be billed per second. However, for the real-time avatar, charges are based on the time when the avatar is active, regardless of whether it is speaking or remaining silent, and will also be billed per second. To optimize costs for real-time avatar usage, refer to the tips provided in the [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar#chat-sample) (search "Use Local Video for Idle"). Avatar hosting is billed per second per endpoint. You can suspend your endpoint to save costs. If you want to suspend your endpoint, you can delete it directly. To use it again, simply redeploy the endpoint.
+When you use the text-to-speech avatar feature, charges are billed per second based on the length of video output. However, for the real-time avatar, charges are billed per second based on the time when the avatar is active, regardless of whether it's speaking or remaining silent. To optimize costs for real-time avatar usage, refer to the "Use Local Video for Idle" tips provided in the [avatar chat sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar#chat-sample). 
+
+Custom text to speech avatar training is time is measured by "compute hour" (machine running time) and billed per second. Training duration varies depending on how much data you use. It normally takes 20-40 compute hours on average to train a custom avatar. The avatar training time is billed with a cap of 96 compute hours. So in the case that an avatar model is trained in 98 compute hours, you're only charged for 96 compute hours.
+
+Avatar hosting is billed per second per endpoint. You can suspend your endpoint to save costs. If you want to suspend your endpoint, you can delete it directly. To use it again, redeploy the endpoint.
 
 ## Monitor Azure text to speech metrics
 
-Monitoring key metrics associated with text to speech services is crucial for managing resource usage and controlling costs. This section will guide you on how to find usage information in the Azure portal and provide detailed definitions of the key metrics. For more details on Azure monitor metrics, refer to [Azure Monitor Metrics overview](/azure/azure-monitor/essentials/data-platform-metrics).
+Monitoring key metrics associated with text to speech services is crucial for managing resource usage and controlling costs. This section guides you on how to find usage information in the Azure portal and provide detailed definitions of the key metrics. For more information on Azure monitor metrics, see [Azure Monitor Metrics overview](/azure/azure-monitor/essentials/data-platform-metrics).
 
 ### How to find usage information in the Azure portal
 
@@ -136,7 +144,7 @@ To effectively manage your Azure resources, it's essential to access and review 
 
 ### Definition of metrics
 
-Below is a table summarizing the key metrics for Azure text to speech services. 
+Here's a table summarizing the key metrics for Azure text to speech. 
 
 | **Metric name**                  | **Description** |
 |----------------------------------|-----------------|

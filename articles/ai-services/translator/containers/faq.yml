@@ -6,7 +6,7 @@ metadata:
    manager: nitinme
    ms.service: azure-ai-translator
    ms.topic: faq
-   ms.date: 06/27/2024
+   ms.date: 01/28/2025
    ms.author: lajanuar
 title: Azure AI Translator container FAQ
 summary:  |
@@ -32,7 +32,7 @@ sections:
          - "**Data residency**: You can keep your data within your own environment."
 
       - question:  |
-         How do I access and use the Translator gated release container?
+         How do I access and use the Azure AI Translator gated release container?
         answer: |
 
           To access a gated release container, you must have a valid Azure subscription and request access. You can run a gated release container if your Translator resource was created with the approved Azure subscription ID. You can't run the container until your Azure subscription is approved for [connected](https://aka.ms/csgate-translator) or [disconnected](https://aka.ms/csdisconnectedcontainers) container access.

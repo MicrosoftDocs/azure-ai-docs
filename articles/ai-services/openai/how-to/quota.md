@@ -2,12 +2,11 @@
 title: Manage Azure OpenAI Service quota
 titleSuffix: Azure AI services
 description: Learn how to use Azure OpenAI to control your deployments rate limits.
-#services: cognitive-services
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 06/18/2024
+ms.date: 04/30/2025
 ms.author: mbullwin
 ---
 
@@ -18,22 +17,22 @@ Quota provides the flexibility to actively manage the allocation of rate limits 
 ## Prerequisites
 
 > [!IMPORTANT]
-> Viewing quota and deploying models requires the **Cognitive Services Usages Reader** role. This role provides the minimal access necessary to view quota usage across an Azure subscription. To learn more about this role and the other roles you will need to access Azure OpenAI, consult our [Azure role-based access (Azure RBAC) guide](./role-based-access-control.md).
+> For any task that requires viewing available quota we recommend using the **Cognitive Services Usages Reader** role. This role provides the minimal access necessary to view quota usage across an Azure subscription. To learn more about this role and the other roles you will need to access Azure OpenAI, consult our [Azure role-based access control guide](./role-based-access-control.md). 
 >
-> This role can be found in the Azure portal under **Subscriptions** > **Access control (IAM)** > **Add role assignment** > search for **Cognitive Services Usages Reader**.This role **must be applied at the subscription level**, it does not exist at the resource level.
+> This role can be found in the Azure portal under **Subscriptions** > **Access control (IAM)** > **Add role assignment** > search for **Cognitive Services Usages Reader**. This role **must be applied at the subscription level**, it does not exist at the resource level.
 >
 > If you do not wish to use this role, the subscription **Reader** role will provide equivalent access, but it will also grant read access beyond the scope of what is needed for viewing quota and model deployment.
 
 ## Introduction to quota
 
-Azure OpenAI's quota feature enables assignment of rate limits to your deployments, up-to a global limit called your “quota.”  Quota is assigned to your subscription on a per-region, per-model basis in units of **Tokens-per-Minute (TPM)**. When you onboard a subscription to Azure OpenAI, you'll receive default quota for most available models. Then, you'll assign TPM to each deployment as it is created, and the available quota for that model will be reduced by that amount. You can continue to create deployments and assign them TPM until you reach your quota limit. Once that happens, you can only create new deployments of that model by reducing the TPM assigned to other deployments of the same model (thus freeing TPM for use), or by requesting and being approved for a model quota increase in the desired region.
+Azure OpenAI's quota feature enables assignment of rate limits to your deployments, up-to a global limit called your *quota*. Quota is assigned to your subscription on a per-region, per-model basis in units of **Tokens-per-Minute (TPM)**. When you onboard a subscription to Azure OpenAI, you'll receive default quota for most available models. Then, you'll assign TPM to each deployment as it is created, and the available quota for that model will be reduced by that amount. You can continue to create deployments and assign them TPM until you reach your quota limit. Once that happens, you can only create new deployments of that model by reducing the TPM assigned to other deployments of the same model (thus freeing TPM for use), or by requesting and being approved for a model quota increase in the desired region.
 
 > [!NOTE]
-> With a quota of 240,000 TPM for GPT-35-Turbo in East US, a customer can create a single deployment of 240K TPM, 2 deployments of 120K TPM each, or any number of deployments in one or multiple Azure OpenAI resources as long as their TPM adds up to less than 240K total in that region.
+> With a quota of 240,000 TPM for GPT-4o in East US, a customer can create a single deployment of 240 K TPM, 2 deployments of 120 K TPM each, or any number of deployments in one or multiple Azure OpenAI resources as long as their TPM adds up to less than 240 K total in that region.
 
 When a deployment is created, the assigned TPM will directly map to the tokens-per-minute rate limit enforced on its inferencing requests. A **Requests-Per-Minute (RPM)** rate limit will also be enforced whose value is set proportionally to the TPM assignment using the following ratio:
 
-6 RPM per 1000 TPM.
+6 RPM per 1000 TPM. (This ratio can vary by model for more information, see [quota, and limits](../quotas-limits.md#o-series-rate-limits).)
 
 The flexibility to distribute TPM globally within a subscription and region has allowed Azure OpenAI Service to loosen other restrictions:
 
@@ -44,16 +43,18 @@ The flexibility to distribute TPM globally within a subscription and region has 
 
 When you create a model deployment, you have the option to assign Tokens-Per-Minute (TPM) to that deployment. TPM can be modified in increments of 1,000, and will map to the TPM and RPM rate limits enforced on your deployment, as discussed above.
 
-To create a new deployment from within the Azure AI Studio under **Management** select **Deployments** > **Create new deployment**.
+To create a new deployment from within the [Azure AI Foundry portal](https://ai.azure.com/) select **Deployments** > **Deploy model** > **Deploy base model** > **Select Model** > **Confirm**.
 
-The option to set the TPM is under the **Advanced options** drop-down:
+:::image type="content" source="../media/quota/deployment-new.png" alt-text="Screenshot of the deployment UI of Azure AI Foundry" lightbox="../media/quota/deployment-new.png":::
 
-:::image type="content" source="../media/quota/deployment.png" alt-text="Screenshot of the deployment UI of Azure AI Studio" lightbox="../media/quota/deployment.png":::
-
-Post deployment you can adjust your TPM allocation by selecting **Edit deployment** under **Management** > **Deployments** in Azure AI Studio. You can also modify this selection within the new quota management experience under **Management** > **Quotas**.
+Post deployment you can adjust your TPM allocation by selecting and editing your model from the **Deployments** page in [Azure AI Foundry portal](https://ai.azure.com/). You can also modify this setting from the **Management** > **Model quota** page.
 
 > [!IMPORTANT]
 > Quotas and limits are subject to change, for the most up-date-information consult our [quotas and limits article](../quotas-limits.md).
+
+## Request more quota
+
+Quota increase requests can be submitted via the [quota increase request form](https://aka.ms/oai/stuquotarequest). Due to high demand, quota increase requests are being accepted and will be filled in the order they're received. Priority is given to customers who generate traffic that consumes the existing quota allocation, and your request might be denied if this condition isn't met.
 
 ## Model specific settings
 
@@ -66,14 +67,14 @@ All other model classes have a common max TPM value.
 
 ## View and request quota
 
-For an all up view of your quota allocations across deployments in a given region, select **Management** > **Quota** in Azure AI Studio:
+For an all up view of your quota allocations across deployments in a given region, select **Management** > **Quota** in [Azure AI Foundry portal](https://ai.azure.com/):
 
-:::image type="content" source="../media/quota/quota.png" alt-text="Screenshot of the quota UI of Azure AI Studio" lightbox="../media/quota/quota.png":::
+:::image type="content" source="../media/quota/quota-new.png" alt-text="Screenshot of the quota UI of Azure AI Foundry" lightbox="../media/quota/quota-new.png":::
 
-- **Quota Name**: There's one quota value per region for each model type. The quota covers all versions of that model.  The quota name can be expanded in the UI to show the deployments that are using the quota.
 - **Deployment**: Model deployments divided by model class.
-- **Usage/Limit**: For the quota name, this shows how much quota is used by deployments and the total quota approved for this subscription and region. This amount of quota used is also represented in the bar graph.
-- **Request Quota**: The icon in this field navigates to a form where requests to increase quota can be submitted.
+- **Quota type**: There's one quota value per region for each model type. The quota covers all versions of that model.  
+- **Quota allocation**: For the quota name, this shows how much quota is used by deployments and the total quota approved for this subscription and region. This amount of quota used is also represented in the bar graph.
+- **Request Quota**: The icon navigates to [this form](https://aka.ms/oai/stuquotarequest) where requests to increase quota can be submitted.
 
 ## Migrating existing deployments
 
@@ -94,7 +95,7 @@ As requests come into the deployment endpoint, the estimated max-processed-token
 > [!IMPORTANT]
 > The token count used in the rate limit calculation is an estimate based in part on the character count of the API request. The rate limit token estimate is not the same as the token calculation that is used for billing/determining that a request is below a model's input token limit. Due to the approximate nature of the rate limit token calculation, it is expected behavior that a rate limit can be triggered prior to what might be expected in comparison to an exact token count measurement for each request.  
 
-RPM rate limits are based on the number of requests received over time. The rate limit expects that requests be evenly distributed over a one-minute period. If this average flow isn't maintained, then requests may receive a 429 response even though the limit isn't met when measured over the course of a minute. To implement this behavior, Azure OpenAI Service evaluates the rate of incoming requests over a small period of time, typically 1 or 10 seconds. If the number of requests received during that time exceeds what would be expected at the set RPM limit, then new requests will receive a 429 response code until the next evaluation period. For example, if Azure OpenAI is monitoring request rate on 1-second intervals, then rate limiting will occur for a 600-RPM deployment if more than 10 requests are received during each 1-second period (600 requests per minute = 10 requests per second).
+RPM rate limits are based on the number of requests received over time. The rate limit expects that requests be evenly distributed over a one-minute period. If this average flow isn't maintained, then requests might receive a 429 response even though the limit isn't met when measured over the course of a minute. To implement this behavior, Azure OpenAI Service evaluates the rate of incoming requests over a small period of time, typically 1 or 10 seconds. If the number of requests received during that time exceeds what would be expected at the set RPM limit, then new requests will receive a 429 response code until the next evaluation period. For example, if Azure OpenAI is monitoring request rate on 1-second intervals, then rate limiting will occur for a 600-RPM deployment if more than 10 requests are received during each 1-second period (600 requests per minute = 10 requests per second).
 
 ### Rate limit best practices
 
@@ -108,7 +109,7 @@ To minimize issues related to rate limits, it's a good idea to use the following
 
 ## Automate deployment
 
-This section contains brief example templates to help get you started programmatically creating deployments that use quota to set TPM rate limits. With the introduction of quota you must use API version `2023-05-01` for resource management related activities. This API version is only for managing your resources, and does not impact the API version used for inferencing calls like completions, chat completions, embedding, image generation etc.
+This section contains brief example templates to help get you started programmatically creating deployments that use quota to set TPM rate limits. With the introduction of quota you must use API version `2023-05-01` for resource management related activities. This API version is only for managing your resources, and does not impact the API version used for inferencing calls like completions, chat completions, embedding, image generation, etc.
 
 # [REST](#tab/rest)
 
@@ -144,16 +145,16 @@ This is only a subset of the available request body parameters. For the full lis
 #### Example request
 
 ```Bash
-curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-temp/providers/Microsoft.CognitiveServices/accounts/docs-openai-test-001/deployments/gpt-35-turbo-test-deployment?api-version=2023-05-01 \
+curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-temp/providers/Microsoft.CognitiveServices/accounts/docs-openai-test-001/deployments/gpt-4o-test-deployment?api-version=2023-05-01 \
   -H "Content-Type: application/json" \
   -H 'Authorization: Bearer YOUR_AUTH_TOKEN' \
-  -d '{"sku":{"name":"Standard","capacity":10},"properties": {"model": {"format": "OpenAI","name": "gpt-35-turbo","version": "0613"}}}'
+  -d '{"sku":{"name":"Standard","capacity":10},"properties": {"model": {"format": "OpenAI","name": "gpt-4o","version": "2024-11-20"}}}'
 ```
 
 > [!NOTE]
 > There are multiple ways to generate an authorization token. The easiest method for initial testing is to launch the Cloud Shell from the [Azure portal](https://portal.azure.com). Then run [`az account get-access-token`](/cli/azure/account?view=azure-cli-latest#az-account-get-access-token&preserve-view=true). You can use this token as your temporary authorization token for API testing.
 
-For more information, refer to the REST API reference documentation for [usages](/rest/api/aiservices/accountmanagement/usages/list?branch=main&tabs=HTTP) and [deployment](/rest/api/aiservices/accountmanagement/deployments/create-or-update).
+For more information, see the REST API reference documentation for [usages](/rest/api/aiservices/accountmanagement/usages/list?branch=main&tabs=HTTP) and [deployment](/rest/api/aiservices/accountmanagement/deployments/create-or-update).
 
 ### Usage
 
@@ -203,7 +204,7 @@ az cognitiveservices account deployment create --model-format
                                                [--sku]
 ```
 
-To sign into your local installation of the CLI, run the [az login](/cli/azure/reference-index#az-login) command:
+To sign into your local installation of the CLI, run the [`az login`](/cli/azure/reference-index#az-login) command:
 
 ```azurecli
 az login
@@ -214,7 +215,7 @@ az login
 By setting sku-capacity to 10 in the command below this deployment will be set with a 10K TPM limit.
 
 ```azurecli
-az cognitiveservices account deployment create -g test-resource-group -n test-resource-name --deployment-name test-deployment-name --model-name gpt-35-turbo --model-version "0613" --model-format OpenAI --sku-capacity 10 --sku-name "Standard"
+az cognitiveservices account deployment create -g test-resource-group -n test-resource-name --deployment-name test-deployment-name --model-name gpt-4o --model-version "2024-11-20" --model-format OpenAI --sku-capacity 10 --sku-name "Standard"
 ```
 
 ### Usage
@@ -233,7 +234,74 @@ az cognitiveservices usage list -l eastus
 
 This command runs in the context of the currently active subscription for Azure CLI. Use `az-account-set --subscription` to [modify the active subscription](/cli/azure/manage-azure-subscriptions-azure-cli#change-the-active-subscription).
 
-For more details on `az cognitiveservices account` and `az cognitivesservices usage` consult the [Azure CLI reference documentation](/cli/azure/cognitiveservices/account/deployment?view=azure-cli-latest&preserve-view=true)
+For more information, see the [Azure CLI reference documentation](/cli/azure/cognitiveservices/account/deployment?view=azure-cli-latest&preserve-view=true)
+
+# [Azure PowerShell](#tab/powershell)
+
+Install the latest version of the [Az PowerShell module](/powershell/azure/install-azure-powershell). If you already have the Az PowerShell module installed locally, run `Update-Module -Name Az` to update to the latest version.
+
+To check which version of the Az PowerShell module you are running, use `Get-InstalledModule -Name Az`. Azure Cloud Shell is currently running a version of Azure PowerShell that can take advantage of the latest Azure OpenAI features.
+
+### Deployment
+
+```azurepowershell
+New-AzCognitiveServicesAccountDeployment
+   [-ResourceGroupName] <String>
+   [-AccountName] <String>
+   [-Name] <String>
+   [-Properties] <DeploymentProperties>
+   [-Sku] <Sku>
+   [-DefaultProfile <IAzureContextContainer>]
+   [-WhatIf]
+   [-Confirm]
+   [<CommonParameters>]
+```
+
+To sign into your local installation of Azure PowerShell, run the [Connect-AzAccount](/powershell/module/az.accounts/connect-azaccount) command:
+
+```azurepowershell
+Connect-AzAccount
+```
+
+By setting Sku Capacity to 10 in the command below, this deployment is set to a 10K TPM limit.
+
+```azurepowershell-interactive
+$cognitiveServicesDeploymentParams = @{
+    ResourceGroupName = 'test-resource-group'
+    AccountName = 'test-resource-name'
+    Name = 'test-deployment-name'
+    Properties = @{
+        Model = @{
+            Name = 'gpt-4o'
+            Version = '2024-11-20'
+            Format  = 'OpenAI'
+        }
+    }
+    Sku = @{
+        Name = 'Standard'
+        Capacity = '10'
+    }
+}
+New-AzCognitiveServicesAccountDeployment @cognitiveServicesDeploymentParams
+```
+
+### Usage
+
+To [query your quota usage](/powershell/module/az.cognitiveservices/get-azcognitiveservicesusage) in a given region for a specific subscription:
+
+```azurepowershell
+Get-AzCognitiveServicesUsage -Location <location>
+```
+
+### Example
+
+```azurepowershell-interactive
+Get-AzCognitiveServicesUsage -Location eastus
+```
+
+This command runs in the context of the currently active subscription for Azure PowerShell. Use `Set-AzContext` to [modify the active subscription](/powershell/azure/manage-subscriptions-azureps#change-the-active-subscription).
+
+For more information on `New-AzCognitiveServicesAccountDeployment` and `Get-AzCognitiveServicesUsage`, see [Azure PowerShell reference documentation](/powershell/module/az.cognitiveservices/).
 
 # [Azure Resource Manager](#tab/arm)
 
@@ -256,14 +324,14 @@ For more details on `az cognitiveservices account` and `az cognitivesservices us
     "properties": {
         "model": {
             "format": "OpenAI",
-            "name": "gpt-35-turbo",
-            "version": "0613"        // Version 0613 of gpt-35-turbo will be used
+            "name": "gpt-4o",
+            "version": "2024-11-20"       
         }
     }
 }
 ```
 
-For more details, consult the [full Azure Resource Manager reference documentation](/azure/templates/microsoft.cognitiveservices/accounts/deployments?pivots=deployment-language-arm-template).
+For more information, see the [full Azure Resource Manager reference documentation](/azure/templates/microsoft.cognitiveservices/accounts/deployments?pivots=deployment-language-arm-template).
 
 # [Bicep](#tab/bicep)
 
@@ -282,14 +350,14 @@ resource arm_je_std_deployment 'Microsoft.CognitiveServices/accounts/deployments
   properties: {
     model: {
       format: 'OpenAI'
-      name: 'gpt-35-turbo'
-      version: '0613'           // gpt-35-turbo version 0613 will be used
+      name: 'gpt-4o'
+      version: '2024-11-20'          
     }
   }
 }
 ```
 
-For more details consult the [full Bicep reference documentation](/azure/templates/microsoft.cognitiveservices/accounts/deployments?pivots=deployment-language-bicep).
+For more information, see the [full Bicep reference documentation](/azure/templates/microsoft.cognitiveservices/accounts/deployments?pivots=deployment-language-bicep).
 
 # [Terraform](#tab/terraform)
 
@@ -357,15 +425,15 @@ resource "azapi_resource" "TERRAFORM-AOAI-STD-DEPLOYMENT" {
     properties = {
         model = {
             format = "OpenAI",
-            name = "gpt-35-turbo",
-            version = "0613"           # Deploy gpt-35-turbo version 0613
+            name = "gpt-4o",
+            version = "2024-11-20"           
         }
     }
   })
 }
 ```
 
-For more details consult the [full Terraform reference documentation](/azure/templates/microsoft.cognitiveservices/accounts/deployments?pivots=deployment-language-terraform).
+For more information, see the [full Terraform reference documentation](/azure/templates/microsoft.cognitiveservices/accounts/deployments?pivots=deployment-language-terraform).
 
 ---
 

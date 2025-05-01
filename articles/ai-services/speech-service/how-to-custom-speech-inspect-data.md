@@ -6,20 +6,42 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 7/15/2024
+ms.date: 2/25/2025
 ms.author: eur
-zone_pivot_groups: speech-studio-cli-rest
+zone_pivot_groups: foundry-speech-studio-cli-rest
+#Customer intent: As a developer, I want to test the recognition quality of a custom speech model so that I can determine if the provided recognition result is correct.
 ---
 
 # Test recognition quality of a custom speech model
 
-You can inspect the recognition quality of a custom speech model in the [Speech Studio](https://aka.ms/speechstudio/customspeech). You can play back uploaded audio and determine if the provided recognition result is correct. After a test is successfully created, you can see how a model transcribed the audio dataset, or compare results from two models side by side.
+You can inspect the recognition quality of a custom speech model. You can play back uploaded audio and determine if the provided recognition result is correct. After a test is successfully created, you can see how a model transcribed the audio dataset, or compare results from two models side by side.
 
 Side-by-side model testing is useful to validate which speech recognition model is best for an application. For an objective measure of accuracy, which requires transcription datasets input, see [Test model quantitatively](how-to-custom-speech-evaluate-data.md).
 
 [!INCLUDE [service-pricing-advisory](includes/service-pricing-advisory.md)]
 
 ## Create a test
+
+::: zone pivot="ai-foundry-portal"
+
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Select **Fine-tuning** from the left pane.
+1. Select **AI Service fine-tuning**.
+1. Select the custom model that you want to manage from the **Model name** column.
+1. After the model is trained, select **Test models** from the left menu. Then select **+ Create test**.
+
+    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-test-model.png" alt-text="Screenshot of the page with an option to test your custom speech model." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-test-model.png":::
+
+1. In the **Create a new test** wizard, select the test type. For a quality test, select **Inspect quality (Audio-only data)**. Then select **Next**.
+1. Select the data that you want to use for testing. Then select **Next**.
+1. Select up to two models to evaluate and compare accuracy. In this example, we select the model that we trained and the base model. Then select **Next**.
+
+    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-test-model-select-models.png" alt-text="Screenshot of the page with an option to select up to two models to evaluate and compare accuracy." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-test-model-select-models.png":::
+
+1. Enter a name and description for the test. Then select **Next**.
+1. Review the settings and select **Create test**. You're taken back to the **Test models** page. The status of the data is **Processing**.
+
+::: zone-end
 
 ::: zone pivot="speech-studio"
 
@@ -43,12 +65,12 @@ Follow these instructions to create a test:
 
 To create a test, use the `spx csr evaluation create` command. Construct the request parameters according to the following instructions:
 
-- Set the `project` parameter to the ID of an existing project. This parameter is recommended so that you can also view the test in Speech Studio. You can run the `spx csr project list` command to get available projects.
-- Set the required `model1` parameter to the ID of a model that you want to test.
-- Set the required `model2` parameter to the ID of another model that you want to test. If you don't want to compare two models, use the same model for both `model1` and `model2`.
-- Set the required `dataset` parameter to the ID of a dataset that you want to use for the test.
-- Set the `language` parameter, otherwise the Speech CLI sets "en-US" by default. This parameter should be the locale of the dataset contents. The locale can't be changed later. The Speech CLI `language` parameter corresponds to the `locale` property in the JSON request and response.
-- Set the required `name` parameter. This parameter is the name that is displayed in the Speech Studio. The Speech CLI `name` parameter corresponds to the `displayName` property in the JSON request and response.
+- Set the `project` property to the ID of an existing project. This property is recommended so that you can also view the test in the [Azure AI Foundry portal](https://ai.azure.com). You can run the `spx csr project list` command to get available projects.
+- Set the required `model1` property to the ID of a model that you want to test.
+- Set the required `model2` property to the ID of another model that you want to test. If you don't want to compare two models, use the same model for both `model1` and `model2`.
+- Set the required `dataset` property to the ID of a dataset that you want to use for the test.
+- Set the `language` property, otherwise the Speech CLI sets "en-US" by default. This parameter should be the locale of the dataset contents. The locale can't be changed later. The Speech CLI `language` property corresponds to the `locale` property in the JSON request and response.
+- Set the required `name` property. This parameter is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com). The Speech CLI `name` property corresponds to the `displayName` property in the JSON request and response.
 
 Here's an example Speech CLI command that creates a test:
 
@@ -123,12 +145,12 @@ spx help csr evaluation
 
 To create a test, use the [Evaluations_Create](/rest/api/speechtotext/evaluations/create) operation of the [Speech to text REST API](rest-speech-to-text.md). Construct the request body according to the following instructions:
 
-- Set the `project` property to the URI of an existing project. This property is recommended so that you can also view the test in Speech Studio. You can make a [Projects_List](/rest/api/speechtotext/projects/list) request to get available projects.
+- Set the `project` property to the URI of an existing project. This property is recommended so that you can also view the test in the [Azure AI Foundry portal](https://ai.azure.com). You can make a [Projects_List](/rest/api/speechtotext/projects/list) request to get available projects.
 - Set the required `model1` property to the URI of a model that you want to test. 
 - Set the required `model2` property to the URI of another model that you want to test. If you don't want to compare two models, use the same model for both `model1` and `model2`.
 - Set the required `dataset` property to the URI of a dataset that you want to use for the test.
 - Set the required `locale` property. This property should be the locale of the dataset contents. The locale can't be changed later.
-- Set the required `displayName` property. This property is the name that is displayed in the Speech Studio.
+- Set the required `displayName` property. This property is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com).
 
 Make an HTTP POST request using the URI as shown in the following example. Replace `YourSubscriptionKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
 
@@ -214,6 +236,12 @@ The top-level `self` property in the response body is the evaluation's URI. Use 
 
 You should get the test results and [inspect](#compare-transcription-with-audio) the audio datasets compared to transcription results for each model.
 
+::: zone pivot="ai-foundry-portal"
+
+When the test status is **Succeeded**, you can view the results. Select the test to view the results.
+
+::: zone-end
+
 ::: zone pivot="speech-studio"
 
 Follow these steps to get test results:
@@ -231,7 +259,7 @@ This page lists all the utterances in your dataset and the recognition results, 
 
 To get test results, use the `spx csr evaluation status` command. Construct the request parameters according to the following instructions:
 
-- Set the required `evaluation` parameter to the ID of the evaluation that you want to get test results.
+- Set the required `evaluation` property to the ID of the evaluation that you want to get test results.
 
 Here's an example Speech CLI command that gets test results:
 
@@ -484,6 +512,10 @@ You should receive a response body in the following format:
 ## Compare transcription with audio
 
 You can inspect the transcription output by each model tested, against the audio input dataset. If you included two models in the test, you can compare their transcription quality side by side. 
+
+::: zone pivot="ai-foundry-portal"
+
+::: zone-end
 
 ::: zone pivot="speech-studio"
 

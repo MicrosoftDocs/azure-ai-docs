@@ -2,21 +2,21 @@
 title: Image descriptions - Azure AI Vision
 titleSuffix: Azure AI services
 description: Concepts related to the image description feature of the Azure AI Vision API.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 04/30/2024
+ms.date: 09/25/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
 # Image descriptions
 
-Azure AI Vision can analyze an image and generate a human-readable phrase that describes its contents. The algorithm returns several descriptions based on different visual features, and each description is given a confidence score. The final output is a list of descriptions ordered from highest to lowest confidence.
+Azure AI Vision can analyze an image and generate a human-readable phrase that describes its contents. The service returns several descriptions based on different visual features, and each description is given a confidence score. The final output is a list of descriptions ordered from highest to lowest confidence.
 
-At this time, English is the only supported language for image description.
+English is the only supported language for image descriptions.
 
 Try out the image captioning features quickly and easily in your browser using Vision Studio.
 
@@ -25,7 +25,7 @@ Try out the image captioning features quickly and easily in your browser using V
 
 ## Image description example
 
-The following JSON response illustrates what the Analyze API returns when describing the example image based on its visual features.
+The following JSON response illustrates what the Analyze Image API returns when describing the example image based on its visual features.
 
 ![A black and white picture of buildings in Manhattan](./Images/bw_buildings.png)
 

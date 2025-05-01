@@ -7,7 +7,7 @@ ms.author: larryfr
 ms.reviewer: bozhlin
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 08/31/2022
+ms.date: 02/06/2025
 ms.topic: how-to
 ms.custom: build-spring-2022, cliv2, sdkv2
 # Customer intent: I would like to have machine learning with all private IP only
@@ -15,7 +15,7 @@ ms.custom: build-spring-2022, cliv2, sdkv2
 
 # Secure Azure Kubernetes Service inferencing environment
 
-If you have an Azure Kubernetes (AKS) cluster behind of VNet, you would need to secure Azure Machine Learning workspace resources and a compute environment using the same or peered VNet. In this article, you'll learn: 
+If you have an Azure Kubernetes (AKS) cluster behind of VNet, you would need to secure Azure Machine Learning workspace resources and a compute environment using the same or peered VNet. In this article, you learn: 
   * What is a secure AKS inferencing environment
   * How to configure a secure AKS inferencing environment
 
@@ -53,7 +53,7 @@ After you have VNet information for AKS cluster and if you already have workspac
   * If you have other storage that is used by your Azure Machine Learning workloads, add a new private endpoint for that storage. The private endpoint should be in the same or peered VNet as AKS cluster and have private DNS zone integration enabled.
   * Add a new private endpoint to your workspace. This private endpoint should be in the same or peered VNet as your AKS cluster and have private DNS zone integration enabled.
 
-If you have AKS cluster ready but don't have workspace created yet, you can use AKS cluster VNet when creating the workspace. Use the AKS cluster VNet information when following the [create secure workspace](./tutorial-create-secure-workspace.md) tutorial. Once the workspace has been created, add a new private endpoint to your workspace as the last step. For all the above steps, it's important to ensure that all private endpoints should exist in the same AKS cluster VNet and have private DNS zone integration enabled.
+If you have AKS cluster ready but don't have workspace created yet, you can use AKS cluster VNet when creating the workspace. Use the AKS cluster VNet information when following the [create secure workspace](./tutorial-create-secure-workspace.md) tutorial. Once the workspace is created, add a new private endpoint to your workspace as the last step. For all the above steps, it's important to ensure that all private endpoints should exist in the same AKS cluster VNet and have private DNS zone integration enabled.
 
 Special notes for configuring a secure AKS inferencing environment:
   * Use system-assigned managed identity when creating workspace, as storage account with private endpoint only allows access with system-assigned managed identity.
@@ -62,7 +62,7 @@ Special notes for configuring a secure AKS inferencing environment:
   * If your workspace is also behind a VNet, follow the instructions in [securely connect to your workspace](./how-to-secure-workspace-vnet.md#securely-connect-to-your-workspace) to access the workspace.
   * For storage account private endpoint, make sure to enable `Allow Azure services on the trusted services list to access this storage account`.
 
->[!Note]
+> [!NOTE]
 >
 > If your AKS that is behind a VNet has been stopped and **restarted**, you need to:
 > 1. First, follow the steps in [Stop and start an Azure Kubernetes Service (AKS) cluster](/azure/aks/start-stop-cluster) to delete and recreate a private endpoint linked to this cluster. 
@@ -70,7 +70,7 @@ Special notes for configuring a secure AKS inferencing environment:
 >
 > Otherwise, the creation, update, and deletion of endpoints/deployments to this AKS cluster will fail.
 
-## Next steps
+## Related content
 
 This article is part of a series on securing an Azure Machine Learning workflow. See the other articles in this series:
 
@@ -81,5 +81,6 @@ This article is part of a series on securing an Azure Machine Learning workflow.
 * [Use custom DNS](how-to-custom-dns.md)
 * [Use a firewall](how-to-access-azureml-behind-firewall.md)
 * [Tutorial: Create a secure workspace](tutorial-create-secure-workspace.md)
-* [Tutorial: Create a secure workspace using a template](tutorial-create-secure-workspace-template.md)
+* [Bicep template](/samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/)
+* [Terraform template](https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure).
 * [API platform network isolation](how-to-configure-network-isolation-with-v2.md)

@@ -1,7 +1,6 @@
 ---
 title: "Quickstart: Analyze image content"
 description: In this quickstart, get started using Azure AI Content Safety to analyze image content for objectionable material.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
@@ -27,7 +26,7 @@ The following section walks through a sample image moderation request with cURL.
 
 Choose a sample image to analyze, and download it to your device. 
 
-We support JPEG, PNG, GIF, BMP, TIFF, or WEBP image formats. The maximum size for image submissions is 4 MB, and image dimensions must be between 50 x 50 pixels and 7,200 x 7,200 pixels. If your format is animated, we'll extract the first frame to do the detection.
+See [Input requirements](../../overview.md#input-requirements) for the image limitations. If your format is animated, the service will extract the first frame to do the analysis.
 
 You can input your image by one of two methods: **local filestream** or **blob storage URL**.
 - **Local filestream** (recommended): Encode your image to base64. You can use a website like [codebeautify](https://codebeautify.org/image-to-base64-converter) to do the encoding. Then save the encoded string to a temporary location. 
@@ -39,12 +38,12 @@ You can input your image by one of two methods: **local filestream** or **blob s
 
 Paste the command below into a text editor, and make the following changes.
 
-1. Substitute the `<endpoint>` with your resource endpoint URL.
+1. Replace `<endpoint>` with your resource endpoint URL.
 1. Replace `<your_subscription_key>` with your key.
 1. Populate the `"image"` field in the body with either a `"content"` field or a `"blobUrl"` field. For example: `{"image": {"content": "<base_64_string>"}` or `{"image": {"blobUrl": "<your_storage_url>"}`.
 
 ```shell
-curl --location --request POST '<endpoint>/contentsafety/image:analyze?api-version=2023-10-01' \
+curl --location --request POST '<endpoint>/contentsafety/image:analyze?api-version=2024-09-01' \
 --header 'Ocp-Apim-Subscription-Key: <your_subscription_key>' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -57,7 +56,7 @@ curl --location --request POST '<endpoint>/contentsafety/image:analyze?api-versi
 ```
 
 > [!NOTE]
-> If you're using a blob storage URL, the request body will look like this:
+> If you're using a blob storage URL, the request body should look like this:
 >
 > ```
 > {
@@ -67,13 +66,11 @@ curl --location --request POST '<endpoint>/contentsafety/image:analyze?api-versi
 > }
 > ```
 
-Open a command prompt window and run the cURL command.
-
 The below fields must be included in the URL:
 
 | Name      |Required?  |  Description | Type   |
 | :------- |-------- |:--------------- | ------ |
-| **API Version** |Required |This is the API version to be checked. Current version is: `api-version=2023-10-01`. Example: `<endpoint>/contentsafety/image:analyze?api-version=2023-10-01` | String |
+| **API Version** |Required |This is the API version to be checked. Current version is: `api-version=2024-09-01`. Example: `<endpoint>/contentsafety/image:analyze?api-version=2024-09-01` | String |
 
 The parameters in the request body are defined in this table:
 
@@ -82,6 +79,9 @@ The parameters in the request body are defined in this table:
 | **content**    | Required | 	The content or blob URL of the image. I can be either base64-encoded bytes or a blob URL. If both are given, the request is refused. The maximum allowed size of the image is 7,200 x 7,200 pixels, and the maximum file size is 4 MB. The minimum size of the image is 50 pixels x 50 pixels. | String  |
 | **categories** | Optional | This is assumed to be an array of category names. See the [Harm categories guide](../../concepts/harm-categories.md) for a list of available category names. If no categories are specified, all four categories are used. We use multiple categories to get scores in a single request. | String  |
 | **outputType** | Optional | Image moderation API only supports `"FourSeverityLevels"`. Output severities in four levels. The value can be `0,2,4,6` | String|
+
+Open a command prompt window and run the cURL command.
+
 
 ### Output
 

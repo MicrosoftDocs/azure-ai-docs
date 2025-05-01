@@ -5,9 +5,9 @@ description: How to troubleshoot when you get errors running a machine learning 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.author: zhanxia
-author: xiaoharper
-ms.date: 11/04/2022
+ms.author: lagayhar
+author: lgayhardt
+ms.date: 03/31/2025
 ms.topic: troubleshooting
 ms.custom: UpdateFrequency5, troubleshooting, sdkv1
 #Customer intent: As a data scientist, I want to figure out why my pipeline doesn't run so that I can fix it.
@@ -16,6 +16,8 @@ ms.custom: UpdateFrequency5, troubleshooting, sdkv1
 # Troubleshooting machine learning pipelines
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 In this article, you learn how to troubleshoot when you get errors running a [machine learning pipeline](../concept-ml-pipelines.md) in the [Azure Machine Learning SDK](/python/api/overview/azure/ml/intro) and [Azure Machine Learning designer](concept-designer.md). 
 
@@ -168,7 +170,7 @@ One of the most common failures in a pipeline is that the domain script doesn't 
 Pipelines themselves can't be run locally. But running the scripts in isolation on your local machine allows you to debug faster because you don't have to wait for the compute and environment build process. Some development work is required to do this:
 
 * If your data is in a cloud datastore, you need to download data and make it available to your script. Using a small sample of your data is a good way to cut down on runtime and quickly get feedback on script behavior
-* If you're attempting to simulate an intermediate pipeline step, you may need to manually build the object types that the particular script is expecting from the prior step
+* If you're attempting to simulate an intermediate pipeline step, you might need to manually build the object types that the particular script is expecting from the prior step
 * You need to define your own environment, and replicate the dependencies defined in your remote compute environment
 
 Once you have a script setup to run on your local environment, it's easier to do debugging tasks like:
@@ -258,7 +260,7 @@ You can also find the log files for specific runs in the pipeline run detail pag
 
 ## Interactive debugging with Visual Studio Code
 
-In some cases, you may need to interactively debug the Python code used in your ML pipeline. By using Visual Studio Code (VS Code) and debugpy, you can attach to the code as it runs in the training environment. For more information, visit the [interactive debugging in VS Code guide](how-to-debug-visual-studio-code.md#debug-and-troubleshoot-machine-learning-pipelines).
+In some cases, you might need to interactively debug the Python code used in your ML pipeline. By using Visual Studio Code (VS Code) and debugpy, you can attach to the code as it runs in the training environment. For more information, visit the [interactive debugging in VS Code guide](how-to-debug-visual-studio-code.md#debug-and-troubleshoot-machine-learning-pipelines).
 
 ## HyperdriveStep and AutoMLStep fail with network isolation
 

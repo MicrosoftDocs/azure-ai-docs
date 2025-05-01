@@ -389,5 +389,3 @@ Prompt created 1 generated response(s).
 Generated response from "assistant": The available health plans in the Contoso Electronics plan and benefit packages are the Northwind Health Plus and Northwind Standard plans.
 ```
 
-> [!div class="nextstepaction"]
-> [I ran into an issue when running the code samples.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=SPRING&Pillar=AOAI&Product=ownData&Page=quickstart&Section=Create-spring-application)

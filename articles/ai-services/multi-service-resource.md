@@ -6,9 +6,9 @@ keywords: Cognitive
 author: eric-urban
 manager: nitinme
 ms.service: azure-ai-services
-ms.custom: devx-track-azurecli, devx-track-azurepowershell, build-2024
+ms.custom: devx-track-azurecli, devx-track-azurepowershell, build-2024, ignite-2024
 ms.topic: quickstart
-ms.date: 8/20/2024
+ms.date: 2/7/2025
 ms.author: eur
 zone_pivot_groups: programming-languages-portal-cli-ps
 ---
@@ -37,6 +37,8 @@ The multi-service resource enables access to the following Azure AI services wit
 
 | Service | Description | Kind (via API) |
 | --- | --- | --- |
+| ![Azure icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure.svg) [Azure AI Agent Service](./agents/index.yml) | Combine the power of generative AI models with tools that allow agents to access and interact with real-world data sources. | `AIServices` |
+| ![Azure AI Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Azure AI Model Inference](../ai-foundry/model-inference/index.yml) | Performs model inference for flagship models in the Azure AI model catalog. | `AIServices` |
 | ![Azure OpenAI Service icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](./openai/index.yml) | Perform a wide variety of natural language tasks. | `AIServices`<br/>`OpenAI` |
 | ![Content Safety icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-safety.svg) [Content Safety](./content-safety/index.yml) | An AI service that detects unwanted contents. | `AIServices`<br/>`ContentSafety` |
 | ![Custom Vision icon](~/reusable-content/ce-skilling/azure/media/ai-services/custom-vision.svg) [Custom Vision](./custom-vision-service/index.yml) | Customize image recognition for your business. | `CustomVision.Prediction` (Prediction only)<br/>`CustomVision.Training` (Training only) |
@@ -65,11 +67,40 @@ The multi-service resource enables access to the following Azure AI services wit
 
 ::: zone-end
 
+## Azure AI services resource for Azure AI Search skills
+
+Azure AI Search skills don't support the multi-service resource as described previously in this article. You must create a different kind of Azure AI services resource for Azure AI Search skills. 
+
+The multi-service resource that you can use with Azure AI Search skills is listed under **Azure AI services** > **Azure AI services multi-service account** in the portal. Look for the logo as shown here:
+
+:::image type="content" source="./media/cognitive-services-resource-portal.png" alt-text="Screenshot of the Azure AI services multi-service account in the Azure portal." lightbox="./media/cognitive-services-resource-portal.png":::
+
+> [!IMPORTANT]
+> Azure provides more than one resource kinds named Azure AI services. Be sure to select the one that is listed under **Azure AI services** > **Azure AI services multi-service account** with the logo as shown previously.
+
+To create an Azure AI services resource follow these instructions:
+1. Select this link to create an **Azure AI services multi-service account** resource: [https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne)
+
+1. On the **Create** page, provide the following information:
+
+    |Project details| Description   |
+    |--|--|
+    | **Subscription** | Select one of your available Azure subscriptions. |
+    | **Resource group** | The Azure resource group that will contain your Azure AI services multi-service account resource. You can create a new group or add it to a preexisting group. |
+    | **Region** | The location of your Azure AI services multi-service account instance. Different locations may introduce latency, but have no impact on the runtime availability of your resource. |
+    | **Name** | A descriptive name for your Azure AI services multi-service account resource. For example, *MyCognitiveServicesResource*. |
+    | **Pricing tier** | The cost of your Azure AI services multi-service account depends on the options you choose and your usage. For more information, see the API [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/). |
+
+1. Configure other settings for your resource as needed, read and accept the conditions (as applicable), and then select **Review + create**.
+
+> [!TIP]
+> If your subscription doesn't allow you to create an Azure AI services resource, you might need to enable the privilege of that [Azure resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) using the [Azure portal](/azure/azure-resource-manager/management/resource-providers-and-types#azure-portal), [PowerShell command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-powershell) or an [Azure CLI command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-cli). If you are not the subscription owner, ask someone with the role of *Owner* or *Admin* to complete the registration for you or ask for the **/register/action** privileges to be granted to your account.
+
 ## Pricing
 
 [!INCLUDE [SKUs and pricing](./includes/quickstarts/sku-pricing.md)]
 
 ## Related content
 
-- Go to the [Azure AI services hub](../ai-services/index.yml).
-- Try AI services in the [Azure AI Studio](../ai-studio/ai-services/connect-ai-services.md).
+- Go to the [Azure AI services hub page](../ai-services/index.yml).
+- Try AI services in the [Azure AI Foundry portal](../ai-services/connect-services-ai-foundry-portal.md).

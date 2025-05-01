@@ -7,7 +7,8 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/21/2024
+ms.date: 3/10/2025
+#Customer intent: As a low-code developer, I want to learn how to use Power Automate to transcribe audio files from an Azure Storage container.
 ---
 
 # Power automate batch transcription
@@ -35,14 +36,22 @@ Follow these steps to create a new storage account and container.
 1. In the **Data storage** group in the left pane, select **Containers**.
 1. Select **+ Container**.
 1. Enter a name for the new container such as "batchtranscription" and select **Create**.
-1. Get the **Access key** for the storage account. Select **Access keys** in the **Security + networking** group in the left pane. View and take note of the **key1** (or **key2**) value. You need the access key later when you [configure the connector](#create-a-power-automate-flow). 
+1. Select **Access keys** in the **Security + networking** group in the left pane. View and take note of the **key1** (or **key2**) value. You need the access key later when you [configure the connector](#create-a-power-automate-flow). 
 
 Later you'll [upload files to the container](#upload-files-to-the-container) after the connector is configured, since the events of adding and modifying files kick off the transcription process.
 
 ## Create a Power Automate flow
 
+The steps to create your power automate flow are:
+1. [Create a new flow](#create-a-new-flow)
+1. [Configure the flow trigger](#configure-the-flow-trigger)
+1. [Create SAS URI by path](#create-sas-uri-by-path)
+1. [Create transcription](#create-transcription)
+1. [Test the flow](#test-the-flow)
+
 ### Create a new flow
 
+To create a new flow, follow these steps:
 1. [Sign in to power automate](https://make.powerautomate.com/)
 1. From the collapsible menu on the left, select **Create**. 
 1. Select **Automated cloud flow** to start from a blank flow that can be triggered by a designated event.
@@ -54,15 +63,17 @@ Later you'll [upload files to the container](#upload-files-to-the-container) aft
 
 ### Configure the flow trigger
 
+To configure the flow trigger, follow these steps:
+1. Select **Add a trigger** to configure the event that starts the flow.
 1. Choose a trigger from the [Azure Blob Storage connector](/connectors/azureblob/). For this example, enter "blob" in the search connectors and triggers box to narrow the results. 
 1. Under the **Azure Blob Storage** connector, select the **When a blob is added or modified** trigger.
 
-    :::image type="content" source="./media/power-platform/flow-search-blob.png" alt-text="A screenshot of the search connectors and triggers dialog." lightbox="./media/power-platform/flow-search-blob.png":::
-    
+    :::image type="content" source="./media/power-platform/add-trigger-search-blob.png" alt-text="A screenshot of the search connectors and triggers dialog." lightbox="./media/power-platform/add-trigger-search-blob.png":::
+
 1. Configure the Azure Blob Storage connection. 
     1. From the **Authentication type** drop-down list, select **Access Key**.
     1. Enter the account name and access key of the Azure Storage account that you [created previously](#create-the-azure-blob-storage-container).
-    1. Select **Create** to continue.
+    1. Select **Create new** to continue.
 1. Configure the **When a blob is added or modified** trigger. 
 
     :::image type="content" source="./media/power-platform/flow-connection-settings-blob.png" alt-text="A screenshot of the dialog to configure the blob trigger." lightbox="./media/power-platform/flow-connection-settings-blob.png":::
@@ -76,6 +87,8 @@ To transcribe an audio file that's in your [Azure Blob Storage container](#creat
 
 The [Azure Blob Storage connector](/connectors/azureblob/) supports SAS URIs for individual blobs, but not for entire containers.
 
+To create a SAS URI for a blob, follow these steps:
+
 1. Select **+ New step** to begin adding a new operation for the Azure Blob Storage connector.
 1. Enter "blob" in the search connectors and actions box to narrow the results. 
 1. Under the **Azure Blob Storage** connector, select the **Create SAS URI by path** trigger.
@@ -88,7 +101,8 @@ By now, you should have a flow that looks like this:
 
 ### Create transcription
 
-1. Select **+ New step** to begin adding a new operation for the [Azure AI services for Batch Speech to text connector](/connectors/cognitiveservicesspe/). 
+To create a transcription, follow these steps:
+1. Select **+ New step** to begin adding a new operation for the [batch speech to text connector](/connectors/cognitiveservicesspe/). 
 1. Enter "batch speech to text" in the search connectors and actions box to narrow the results. 
 1. Select the **Azure AI services for Batch Speech to text** connector.
 1. Select the **Create transcription** action.
@@ -112,6 +126,7 @@ By now, you should have a flow that looks like this:
 
 ### Test the flow
 
+To test the flow, follow these steps:
 1. From the top navigation menu, select **Flow checker**. In the side panel that appears, you shouldn't see any errors or warnings. If you do, then you should fix them before continuing.
 1. From the top navigation menu, save the flow and select **Test the flow**. In the window that appears, select **Test**.
 1. In the side panel that appears, select **Manually** and then select **Test**.
@@ -145,6 +160,6 @@ You can select and expand the **Create transcription** to see detailed input and
 
 ## Next steps
 
-- [Azure AI services for Batch Speech to text connector](/connectors/cognitiveservicesspe/)
+- [Batch speech to text connector](/connectors/cognitiveservicesspe/)
 - [Azure Blob Storage connector](/connectors/azureblob/)
 - [Power Platform](/power-platform/)

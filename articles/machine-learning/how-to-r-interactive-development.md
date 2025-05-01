@@ -4,12 +4,13 @@ titleSuffix: Azure Machine Learning
 description: 'Learn how to work with R interactively on Azure Machine Learning'
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 06/01/2023
+ms.date: 03/21/2025
 ms.topic: how-to
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: mavaisma
 ms.devlang: r
+# customer intent: As a data scientist, I want to use R interactively in Azure Machine Learning so that I can develop and test my models.
 ---
 
 # Interactive R development
@@ -159,6 +160,7 @@ Using the same filestore object, you can read an RDS file, but you need to decom
    })
    print(r_object)
    ```
+
     
 ## Install R packages
 
@@ -204,7 +206,3 @@ Beyond the issues described earlier, use R as you would in any other environment
 > [!NOTE]
 > - From an interactive R session, you can only write to the workspace file system.
 > - From an interactive R session, you cannot interact with MLflow (such as log model or query registry).
-
-## Next steps
-
-* [Adapt your R script to run in production](how-to-r-modify-script-for-production.md)

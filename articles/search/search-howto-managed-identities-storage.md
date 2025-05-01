@@ -4,11 +4,11 @@ titleSuffix: Azure AI Search
 description: Learn how to set up an indexer connection to an Azure Storage account using a managed identity.
 author: gmndrg
 ms.author: gimondra
-manager: nitinme
+manager: vinodva
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/03/2024
+ms.date: 02/18/2025
 ms.custom:
   - subject-rbac-steps
   - ignite-2023
@@ -41,11 +41,11 @@ You can use a system-assigned managed identity or a user-assigned managed identi
    |------|-----------------|
    | Blob indexing using an indexer | Add **Storage Blob Data Reader** |
    | ADLS Gen2 indexing using an indexer | Add **Storage Blob Data Reader** |
-   | Table indexing using an indexer | Add **Reader and Data Access** |
+   | Table indexing using an indexer | Add **Storage Table Data Reader** |
    | File indexing using an indexer | Add **Reader and Data Access** |
-   | Write to a knowledge store | Add **Storage Blob DataContributor** for object and file projections, and **Reader and Data Access** for table projections. |
-   | Write to an enrichment cache | Add **Storage Blob Data Contributor**  |
-   | Save debug session state | Add **Storage Blob Data Contributor**  |
+   | Write to a [knowledge store](knowledge-store-concept-intro.md) | Add **Storage Blob Data Contributor** for object and file projections, and **Reader and Data Access** for table projections. |
+   | Write to an [enrichment cache](cognitive-search-incremental-indexing-conceptual.md) | Add **Storage Blob Data Contributor** and **Storage Table Data Reader** |
+   | Save [debug session state](cognitive-search-debug-session.md) | Add **Storage Blob Data Contributor**  |
 
 1. Select **Next**.
 
@@ -59,7 +59,7 @@ You can use a system-assigned managed identity or a user-assigned managed identi
 
 Once you have a role assignment, you can set up a connection to Azure Storage that operates under that role.
 
-Indexers use a data source object for connections to an external data source. This section explains how to specify a system-assigned managed identity or a user-assigned managed identity on a data source connection string. You can find more [connection string examples](search-howto-managed-identities-data-sources.md#connection-string-examples) in the managed identity article.
+[Indexers](search-indexer-overview.md) use a data source object for connections to an external data source. This section explains how to specify a system-assigned managed identity or a user-assigned managed identity on a data source connection string. You can find more [connection string examples](search-howto-managed-identities-data-sources.md#connection-string-examples) in the managed identity article.
 
 > [!TIP]
 > You can create a data source connection to Azure Storage in the Azure portal, specifying either a system or user-assigned managed identity, and then view the JSON definition to see how the connection string is formulated.
@@ -68,9 +68,9 @@ Indexers use a data source object for connections to an external data source. Th
 
 You must have a [system-assigned managed identity already configured](search-howto-managed-identities-data-sources.md), and it must have a role-assignment on Azure Storage. 
 
-For connections made using a system-assigned managed identity, the only change to the [data source definition](/rest/api/searchservice/create-data-source) is the format of the `credentials` property. 
+For connections made using a system-assigned managed identity, the only change to the [data source definition](/rest/api/searchservice/data-sources/create) is the format of the `credentials` property. 
 
-Provide a `ResourceId` that has no account key or password. The `ResourceId` must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name.
+Provide a connection string that contains a `ResourceId`, with no account key or password. The `ResourceId` must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name.
 
 ```http
 POST https://[service name].search.windows.net/datasources?api-version=2024-07-01
@@ -91,11 +91,11 @@ POST https://[service name].search.windows.net/datasources?api-version=2024-07-0
 
 You must have a [user-assigned managed identity already configured](search-howto-managed-identities-data-sources.md) and associated with your search service, and the identity must have a role-assignment on Azure Storage. 
 
-Connections made through user-assigned managed identities use the same credentials as a system-assigned managed identity, plus an extra identity property that contains the collection of user-assigned managed identities. Only one user-assigned managed identity should be provided when creating the data source. Set `userAssignedIdentity` to the user-assigned managed identity.
+Connections made through user-assigned managed identities use the same credentials as a system-assigned managed identity, plus an extra identity property that contains the collection of user-assigned managed identities. Only one user-assigned managed identity should be provided when creating the data source. 
 
-Provide a `ResourceId` that has no account key or password. The `ResourceId` must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name.
+Provide a connection string that contains a `ResourceId`, with no account key or password. The `ResourceId` must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name.
 
-Provide an `identity` using the syntax shown in the following example.
+Provide an `identity` using the syntax shown in the following example. Set `userAssignedIdentity` to the user-assigned managed identity.
 
 ```http
 POST https://[service name].search.windows.net/datasources?api-version=2024-07-01

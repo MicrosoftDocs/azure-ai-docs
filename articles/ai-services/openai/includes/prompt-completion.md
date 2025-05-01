@@ -6,7 +6,7 @@ author: mrbullwinkle
 ms.author: mbullwin 
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 02/16/2024
+ms.date: 03/26/2025
 manager: nitinme
 keywords: ChatGPT
 ---
@@ -149,8 +149,3 @@ In the next example we test two model responses at different temperature setting
 
 Top_probability is another parameter and is similar to temperature in that it also controls the randomness of the model response, but it does so in a different way. Experiment with different model responses by varying temperature and Top_P, but not both at once.
 
-## Next steps
-
-* [Learn more about Azure OpenAI](../overview.md).
-* Get started with the ChatGPT model with [the ChatGPT quickstart](../chatgpt-quickstart.md).
-* For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure/openai-samples)

@@ -2,12 +2,11 @@
 title: Summarization language support
 titleSuffix: Azure AI services
 description: Learn about which languages are supported by document summarization.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 12/19/2023
+ms.date: 11/21/2024
 ms.author: jboback
 ms.custom: language-service-summarization, ignite-2023, build-2024
 ---
@@ -80,14 +79,6 @@ Conversation summarization supports the following languages:
 |Czech|	`cs`||	
 |Hungarian|	`hu`||	
 |Thai|	`th`||	
-
-## Custom summarization
-
-Custom summarization supports the following languages:
-
-| Language              | Language code |      Notes          |
-|-----------------------|---------------|---------------------|
-| English               | `en`          |                     |
 
 ## Next steps
 

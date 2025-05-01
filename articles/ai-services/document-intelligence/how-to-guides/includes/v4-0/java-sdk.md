@@ -1,13 +1,13 @@
 ---
-title: "Use Document Intelligence (formerly Form Recognizer) SDK for Java (REST API v3.0)"
+title: "Use Document Intelligence SDK for Java (REST API v3.0)"
 description: 'Use the Document Intelligence SDK for Java (REST API v3.0) to create a forms processing app that extracts key data from documents.'
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 05/23/2024
+ms.date: 02/10/2025
 ms.author: lajanuar
-ms.custom: devx-track-csharp, ignite-2023, linux-related-content
+ms.custom: devx-track-csharp, linux-related-content
 ---
 
 <!-- markdownlint-disable MD001 -->
@@ -15,7 +15,7 @@ ms.custom: devx-track-csharp, ignite-2023, linux-related-content
 <!-- markdownlint-disable MD033 -->
 <!-- markdownlint-disable MD034 -->
 
-[Client library](/java/api/overview/azure/ai-documentintelligence-readme?view=azure-java-preview&preserve-view=true) | [SDK reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-ai-documentintelligence/1.0.0-beta.2/index.html) | [REST API reference](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true) | [Package (Maven)](https://central.sonatype.com/artifact/com.azure/azure-ai-documentintelligence/1.0.0-beta.2) | [Samples]( https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-documentintelligence_1.0.0-beta.2/sdk/documentintelligence/azure-ai-documentintelligence/src/samples/README.md) |[Supported REST API version](../../../sdk-overview-v4-0.md)
+[Client library](/java/api/com.azure.ai.documentintelligence?view=azure-java-stable&preserve-view=true) | [REST API reference](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) | [Package (Maven)](https://central.sonatype.com/artifact/com.azure/azure-ai-documentintelligence/1.0.0) | [Samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-documentintelligence_1.0.0/sdk/documentintelligence/azure-ai-documentintelligence/src/samples/README.md) |[Supported REST API version](../../../sdk-overview-v4-0.md)
 
 ## Prerequisites
 
@@ -38,7 +38,7 @@ ms.custom: devx-track-csharp, ignite-2023, linux-related-content
 - The key and endpoint from the resource you create to connect your application to the Azure Document Intelligence service.
 
   1. After your resource deploys, select **Go to resource**.
-  1. In the left navigation menu, select **Keys and Endpoint**.
+  1. In the left pane, select **Keys and Endpoint**.
   1. Copy one of the keys and the **Endpoint** for use later in this article.
 
   :::image type="content" source="../../../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
@@ -97,7 +97,7 @@ This article uses the Gradle dependency manager. You can find the client library
        mavenCentral()
    }
    dependencies {
-       implementation group: 'com.azure', name: 'azure-ai-documentintelligence', version: '1.0.0-beta.2'
+       implementation group: 'com.azure', name: 'azure-ai-documentintelligence', version: '1.0.0'
    }
    ```
 
@@ -120,7 +120,6 @@ To interact with the Document Intelligence service, create an instance of the `D
    > [!TIP]
    >
    > You can create a new file by using PowerShell. Open a PowerShell window in your project directory by holding down the **Shift** key and right-clicking the folder, then type the following command: *New-Item DocIntelligence.java*.
-
 
 1. Open the *DocIntelligence.java* file and select one of the following code samples AND copy/paste into your application:
 
@@ -178,7 +177,7 @@ String documentUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-
 String modelId = "prebuilt-read";
 
 SyncPoller < OperationResult, AnalyzeResult > analyzeLayoutResultPoller =
-  client.beginAnalyzeDocument(modelId, invoiceUrl);;
+  client.beginAnalyzeDocument(modelId, invoiceUrl);
 
 AnalyzeResult analyzeLayoutResult = analyzeLayoutResultPoller.getFinalResult().getAnalyzeResult();
 
@@ -193,7 +192,7 @@ analyzeLayoutResult.getPages().forEach(documentPage -> {
   documentPage.getLines().forEach(documentLine ->
     System.out.printf("Line %s is within a bounding polygon %s.%n",
       documentLine.getContent(),
-      documentLine.getBoundingPolygon().toString()));
+      documentLine.getPolygon().toString()));
 
   // words
   documentPage.getWords().forEach(documentWord ->
@@ -259,7 +258,7 @@ analyzeLayoutResult.getPages().forEach(documentPage -> {
   documentPage.getLines().forEach(documentLine ->
     System.out.printf("Line %s is within a bounding polygon %s.%n",
       documentLine.getContent(),
-      documentLine.getBoundingPolygon().toString()));
+      documentLine.getPolygon().toString()));
 
   // words
   documentPage.getWords().forEach(documentWord ->
@@ -271,7 +270,7 @@ analyzeLayoutResult.getPages().forEach(documentPage -> {
   documentPage.getSelectionMarks().forEach(documentSelectionMark ->
     System.out.printf("Selection mark is '%s' and is within a bounding polygon %s with confidence %.2f.%n",
       documentSelectionMark.getSelectionMarkState().toString(),
-      getBoundingCoordinates(documentSelectionMark.getBoundingPolygon()),
+      getBoundingCoordinates(documentSelectionMark.getPolygon()),
       documentSelectionMark.getConfidence()));
 });
 
@@ -291,8 +290,8 @@ for (int i = 0; i < tables.size(); i++) {
 }
 
 // Utility function to get the bounding polygon coordinates.
-private static String getBoundingCoordinates(List < Point > boundingPolygon) {
-  return boundingPolygon.stream().map(point -> String.format("[%.2f, %.2f]", point.getX(),
+private static String getBoundingCoordinates(List < Point > Polygon) {
+  return Polygon.stream().map(point -> String.format("[%.2f, %.2f]", point.getX(),
     point.getY())).collect(Collectors.joining(", "));
 }
 
@@ -339,7 +338,7 @@ String modelId = "prebuilt-document";
 SyncPoller < OperationResult, AnalyzeResult > analyzeDocumentPoller =
   client.beginAnalyzeDocument(modelId, generalDocumentUrl);
 
-AnalyzeResult analyzeResult = analyzeDocumentPoller.getFinalResult().getAnalyzeResult();;
+AnalyzeResult analyzeResult = analyzeDocumentPoller.getFinalResult().getAnalyzeResult();
 
 // pages
 analyzeResult.getPages().forEach(documentPage -> {
@@ -352,7 +351,7 @@ analyzeResult.getPages().forEach(documentPage -> {
   documentPage.getLines().forEach(documentLine ->
     System.out.printf("Line %s is within a bounding polygon %s.%n",
       documentLine.getContent(),
-      documentLine.getBoundingPolygon().toString()));
+      documentLine.getPolygon().toString()));
 
   // words
   documentPage.getWords().forEach(documentWord ->

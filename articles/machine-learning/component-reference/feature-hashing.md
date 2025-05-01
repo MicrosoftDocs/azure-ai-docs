@@ -1,7 +1,7 @@
 ---
 title: "Feature Hashing component reference"
 titleSuffix: Azure Machine Learning
-description: Learn how to use the Feature Hashing component in the Azure Machine Learning designer to featurize text data.
+description: "[Deprecated] Learn how to use the Feature Hashing component in the Azure Machine Learning designer to featurize text data."
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
@@ -12,6 +12,10 @@ ms.author: keli19
 ms.date: 02/22/2020
 ---
 # Feature Hashing component reference
+
+> [!WARNING]
+>  This component **HAS BEEN DEPRECATED** because its dependency, the [NimbusML](https://github.com/microsoft/NimbusML) project, is no longer actively maintained. As a result, this component will not receive future updates or security patches.
+> We plan to remove this component in upcoming releases. Users are recommended to migrate to alternative solutions to ensure continued support and security.
 
 This article describes a component included in Azure Machine Learning designer.
 

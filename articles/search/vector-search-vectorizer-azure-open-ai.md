@@ -2,13 +2,14 @@
 title: Azure OpenAI vectorizer
 titleSuffix: Azure AI Search
 description: Connects to a deployed model on your Azure OpenAI resource at query time.
-author: careyjmac
-ms.author: chalton
-ms.service: cognitive-search
+author: HeidiSteen
+ms.author: heidist
+ms.reviewer: chalton
+ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: reference
-ms.date: 08/05/2024
+ms.date: 10/16/2024
 ---
 
 # Azure OpenAI vectorizer
@@ -23,7 +24,12 @@ Vectorizers are used at query time, but specified in index definitions, and refe
 
 > [!NOTE]
 > This vectorizer is bound to Azure OpenAI and is charged at the existing [Azure OpenAI pay-as-you go price](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing).
->
+
+## Prerequisites
+
+Your Azure OpenAI Service must have an associated [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains). If the service was created through the Azure portal, this subdomain is automatically generated as part of your service setup. Ensure that your service includes a custom subdomain before using it with the Azure AI Search integration.
+
+Azure OpenAI Service resources (with access to embedding models) that were created in Azure AI Foundry portal aren't supported. Only the Azure OpenAI Service resources created in the Azure portal are compatible with the **Azure OpenAI Embedding** skill integration. 
 
 ## Vectorizer parameters
 

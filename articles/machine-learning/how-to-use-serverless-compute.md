@@ -11,8 +11,8 @@ ms.custom:
 ms.topic: how-to
 ms.author: sgilley
 author: sdgilley
-ms.reviewer: vijetaj
-ms.date: 10/23/2023
+ms.reviewer: bijuv
+ms.date: 10/02/2024
 ---
 
 # Model training on serverless compute
@@ -102,7 +102,7 @@ When you [view your usage and quota in the Azure portal](how-to-manage-quotas.md
     )
     job = command(
         command="echo 'hello world'",
-        environment="AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest",
+        environment="azureml://registries/azureml/environments/sklearn-1.5/labels/latest",
             identity=UserIdentityConfiguration(),
     )
     # submit the command job
@@ -111,14 +111,24 @@ When you [view your usage and quota in the Azure portal](how-to-manage-quotas.md
 
     # [Azure CLI](#tab/cli)
 
+    Create a file named hello.yaml with the following content:
+
     ```yml
     $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
     command: echo "hello world"
     environment:
-      image: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest
+      image: library/python:latest
     identity:
       type: user_identity
     ```
+
+    Submit the job with the following command:
+
+    ```bash
+    az ml job create --file hello.yaml --resource-group my-resource-group --workspace-name my-workspace
+    ```
+
+    The rest of the CLI examples show variations of the hello.yaml file.  Run each of them in the same way.
 
     ---
 
@@ -143,7 +153,7 @@ When you [view your usage and quota in the Azure portal](how-to-manage-quotas.md
     )
     job = command(
         command="echo 'hello world'",
-        environment="AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest",
+        environment="azureml://registries/azureml/environments/sklearn-1.5/labels/latest",
             identity= ManagedIdentityConfiguration(),
     )
     # submit the command job
@@ -157,7 +167,7 @@ When you [view your usage and quota in the Azure portal](how-to-manage-quotas.md
     $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
     command: echo "hello world"
     environment:
-      image: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest
+      image: library/python:latest
     identity:
       type: managed
     ````
@@ -189,7 +199,7 @@ ml_client = MLClient(
 )
 job = command(
     command="echo 'hello world'",
-    environment="AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest",
+    environment="azureml://registries/azureml/environments/sklearn-1.5/labels/latest",
 )
 # submit the command job
 ml_client.create_or_update(job)
@@ -235,7 +245,7 @@ You can override these defaults.  If you want to specify the VM type or number o
     )
     job = command(
         command="echo 'hello world'",
-        environment="AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest",
+        environment="azureml://registries/azureml/environments/sklearn-1.5/labels/latest",
         resources = JobResourceConfiguration(instance_type="Standard_NC24", instance_count=4)
     )
     # submit the command job
@@ -274,7 +284,7 @@ You can override these defaults.  If you want to specify the VM type or number o
     )
     job = command(
         command="echo 'hello world'",
-        environment="AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest",
+        environment="azureml://registries/azureml/environments/sklearn-1.5/labels/latest",
         queue_settings={
           "job_tier": "spot"  
         }
@@ -315,7 +325,7 @@ ml_client = MLClient(
 )
 job = command(
     command="echo 'hello world'",
-    environment="AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest",
+    environment="azureml://registries/azureml/environments/sklearn-1.5/labels/latest",
          identity=UserIdentityConfiguration(),
     queue_settings={
       "job_tier": "Standard"  
@@ -331,7 +341,7 @@ ml_client.create_or_update(job)
 $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
 command: echo "hello world"
 environment:
-  image: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest
+  image: library/python:latest
 queue_settings:
    job_tier: Standard #Possible Values are Standard, Spot. Default is Standard.
 identity:

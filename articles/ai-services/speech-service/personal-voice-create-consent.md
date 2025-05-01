@@ -8,8 +8,9 @@ ms.service: azure-ai-speech
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 2/7/2024
+ms.date: 3/10/2025
 ms.author: eur
+#Customer intent: As a developer, I want to learn how to add user consent to the personal voice project.
 ---
 
 # Add user consent to the personal voice project
@@ -25,8 +26,17 @@ You need an audio recording of the user speaking the consent statement.
 You can get the consent statement text for each locale from the text to speech GitHub repository. See [verbal-statement-all-locales.txt](https://github.com/Azure-Samples/Cognitive-Speech-TTS/blob/master/CustomVoice/script/verbal-statement-all-locales.txt) for the consent statement. Below is a sample for the `en-US` locale:
 
 ```
-"I  [state your first and last name] am aware that recordings of my voice will be used by [state the name of the company] to create and use a synthetic version of my voice."
+"I [state your first and last name] am aware that recordings of my voice will be used by [state the name of the company] to create and use a synthetic version of my voice."
 ```
+
+### Supported audio formats for consent audio
+
+See the table below for the supported formats for consent audio files:
+
+| Format | Sample rate                  | Bit rate                    | Bit depth|
+|------------|--------------------------|-------------------------|----------|
+| mp3  | 16 kHz, 24 kHz, 44.1 kHz, 48 kHz       | 128 kbps, 192 kbps, 256 kbps, 320 kbps              | /                          |
+| wav    | 16 kHz, 24 kHz, 44.1 kHz, 48 kHz       | /                                               | 16-bit, 24-bit, 32-bit      |
 
 ## Add consent from a file
 
@@ -60,8 +70,8 @@ You should receive a response body in the following format:
   "companyName": "Contoso",
   "locale": "en-US",
   "status": "NotStarted",
-  "createdDateTime": "2023-04-01T05:30:00.000Z",
-  "lastActionDateTime": "2023-04-02T10:15:30.000Z"
+  "createdDateTime": "2024-09-01T05:30:00.000Z",
+  "lastActionDateTime": "2024-09-02T10:15:30.000Z"
 }
 ```
 
@@ -111,8 +121,8 @@ You should receive a response body in the following format:
   "companyName": "Contoso",
   "locale": "en-US",
   "status": "NotStarted",
-  "createdDateTime": "2023-04-01T05:30:00.000Z",
-  "lastActionDateTime": "2023-04-02T10:15:30.000Z"
+  "createdDateTime": "2024-09-01T05:30:00.000Z",
+  "lastActionDateTime": "2024-09-02T10:15:30.000Z"
 }
 ```
 

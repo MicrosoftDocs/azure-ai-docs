@@ -1,11 +1,11 @@
 ---
-title: "Use Azure AI Document Intelligence (formerly Form Recognizer) REST API v2.1"
+title: "Use Azure AI Document Intelligence REST API v2.1"
 description: Use the Document Intelligence REST API v2.1 to create a forms processing app that extracts key data from documents.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 05/23/2024
+ms.date: 03/25/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD001 -->
@@ -39,7 +39,7 @@ ms.author: lajanuar
 - The key and endpoint from the resource you create to connect your application to the Azure Document Intelligence service.
 
   1. After your resource deploys, select **Go to resource**.
-  1. In the left navigation menu, select **Keys and Endpoint**.
+  1. In the left pane, select **Keys and Endpoint**.
   1. Copy one of the keys and the **Endpoint** for use later in this article.
 
   :::image type="content" source="../../../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
@@ -51,7 +51,7 @@ ms.author: lajanuar
 
 ## Analyze layout
 
-You can use Document Intelligence to analyze and extract tables, selection marks, text, and structure in documents, without needing to train a model. For more information about layout extraction, see the [Document Intelligence layout model](../../../concept-layout.md).
+You can use Document Intelligence to analyze and extract tables, selection marks, text, and structure in documents, without needing to train a model. For more information about layout extraction, see the [Document Intelligence layout model](../../../prebuilt/layout.md).
 
 Before you run the command, make these changes:
 
@@ -221,7 +221,7 @@ This response body output has been shortened for simplicity. See the [full sampl
 
 ## Analyze receipts
 
-This section demonstrates how to analyze and extract common fields from US receipts, using a pretrained receipt model. For more information about receipt analysis, see the [Document Intelligence receipt model](../../../concept-receipt.md). To start analyzing a receipt, call the [Analyze Receipt](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true) API using the cURL command. Before you run the command, make these changes:
+This section demonstrates how to analyze and extract common fields from US receipts, using a pretrained receipt model. For more information about receipt analysis, see the [Document Intelligence receipt model](../../../prebuilt/receipt.md). To start analyzing a receipt, call the [Analyze Receipt](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true) API using the cURL command. Before you run the command, make these changes:
 
 1. Replace *\<endpoint>* with the endpoint that you obtained with your Document Intelligence subscription.
 1. Replace *\<your receipt URL>* with the URL address of a receipt image.
@@ -749,7 +749,7 @@ The script prints responses to the console until the Analyze Business Card opera
 
 ## Analyze invoices
 
-You can use Document Intelligence to extract field text and semantic values from a given invoice document. To start analyzing an invoice, use the cURL command. For more information about invoice analysis, see the [Invoice conceptual guide](../../../concept-invoice.md). To start analyzing an invoice, call the [Analyze Invoice](/rest/api/aiservices/operation-groups?view=rest-aiservices-v2.1&preserve-view=true) API using the cURL command.
+You can use Document Intelligence to extract field text and semantic values from a given invoice document. To start analyzing an invoice, use the cURL command. For more information about invoice analysis, see the [Invoice conceptual guide](../../../prebuilt/invoice.md). To start analyzing an invoice, call the [Analyze Invoice](/rest/api/aiservices/operation-groups?view=rest-aiservices-v2.1&preserve-view=true) API using the cURL command.
 
 Before you run the command, make these changes:
 
@@ -758,7 +758,7 @@ Before you run the command, make these changes:
 1. Replace *\<key>* with your key.
 
 ```console
-curl -v -i POST https://<endpoint>/formrecognizer/v2.1/prebuilt/invoice/analyze" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <key>" --data-ascii "{​​​​​​​'source': '<your invoice URL>'}​​​​​​​​"
+curl -v -i POST https://<endpoint>/formrecognizer/v2.1/prebuilt/invoice/analyze" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <key>" --data-ascii "{​​​​​​​'urlSource': '<your invoice URL>'}​​​​​​​​"
 ```
 
 You receive a `202 (Success)` response that includes an `Operation-Location` header. The value of this header contains a result ID that you can use to query the status of the asynchronous operation and get the results:
@@ -953,7 +953,7 @@ This response body JSON content has been shortened for readability. See the [ful
 
 ## Analyze identity documents
 
-To start analyzing an identification (ID) document, use the cURL command. For more information about ID document analysis, see the [Document Intelligence ID document model](../../../concept-id-document.md). To start analyzing an ID document, you call the [Analyze ID Document](/rest/api/aiservices/operation-groups?view=rest-aiservices-v2.1&preserve-view=true) API using the cURL command.
+To start analyzing an identification (ID) document, use the cURL command. For more information about ID document analysis, see the [Document Intelligence ID document model](../../../prebuilt/id-document.md). To start analyzing an ID document, you call the [Analyze ID Document](/rest/api/aiservices/operation-groups?view=rest-aiservices-v2.1&preserve-view=true) API using the cURL command.
 
 Before you run the command, make these changes:
 

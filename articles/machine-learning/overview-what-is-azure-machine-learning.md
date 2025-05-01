@@ -8,12 +8,13 @@ ms.topic: overview
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: saoh
-ms.date: 01/29/2024
+ms.date: 09/18/2024
 ms.custom:
   - build-2023
   - build-2023-dataai
   - ignite-2023
 adobe-target: true
+# Customer intent: Learn about Azure Machine Learning
 ---
 
 # What is Azure Machine Learning?
@@ -60,7 +61,8 @@ As you're refining the model and collaborating with others throughout the rest o
 
 [Machine Learning studio](https://ml.azure.com) offers multiple authoring experiences depending on the type of project and the level of your past ML experience, without having to install anything.
 
-* **Notebooks**: Write and run your own code in managed Jupyter Notebook servers that are directly integrated in the studio.
+* **Notebooks**: Write and run your own code in managed Jupyter Notebook servers that are directly integrated in the studio. Or, open the notebooks in [VS Code](how-to-work-in-vs-code-remote.md), on the web or on your desktop.
+
 * **Visualize run metrics**: Analyze and optimize your experiments with visualization.
 
     :::image type="content" source="media/how-to-log-view-metrics/metrics.png" alt-text="Screenshot that shows metrics for a training run.":::
@@ -68,6 +70,20 @@ As you're refining the model and collaborating with others throughout the rest o
 * **Azure Machine Learning designer**: Use the designer to train and deploy ML models without writing any code. Drag and drop datasets and components to create ML pipelines.
 * **Automated machine learning UI**: Learn how to create [automated ML experiments](tutorial-first-experiment-automated-ml.md) with an easy-to-use interface.
 * **Data labeling**: Use Machine Learning data labeling to efficiently coordinate [image labeling](how-to-create-image-labeling-projects.md) or [text labeling](how-to-create-text-labeling-projects.md) projects.
+
+## Work with LLMs and Generative AI
+
+Azure Machine Learning includes tools to help you build Generative AI applications powered by Large Language Models (LLMs). The solution includes a model catalog, prompt flow, and a suite of tools to streamline the development cycle of AI applications.
+
+Both Azure Machine Learning studio and Azure AI Foundry allow you to work with LLMs.  Use this guide to determine [which studio you should use](/ai/ai-studio-experiences-overview?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json).
+
+### Model catalog
+
+The model catalog in Azure Machine Learning studio is the hub to discover and use a wide range of models that enable you to build Generative AI applications. The model catalog features hundreds of models from model providers such as Azure OpenAI service, Mistral, Meta, Cohere, NVIDIA, Hugging Face, including models trained by Microsoft. Models from providers other than Microsoft are Non-Microsoft Products, as defined in [Microsoft's Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), and subject to the terms provided with the model.
+
+### Prompt flow
+
+Azure Machine Learning prompt flow is a development tool designed to streamline the entire development cycle of AI applications powered by Large Language Models (LLMs). Prompt flow provides a comprehensive solution that simplifies the process of prototyping, experimenting, iterating, and deploying your AI applications.
 
 ## Enterprise-readiness and security
 
@@ -207,7 +223,7 @@ Machine Learning also includes features for monitoring and auditing:
 
 If you use Apache Airflow, the [airflow-provider-azure-machinelearning](https://github.com/Azure/airflow-provider-azure-machinelearning) package is a provider that enables you to submit workflows to Azure Machine Learning from Apache AirFlow.
 
-## Next steps
+## Related content
 
 Start using Azure Machine Learning:
 

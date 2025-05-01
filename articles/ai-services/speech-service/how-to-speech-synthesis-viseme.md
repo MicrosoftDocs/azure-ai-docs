@@ -7,10 +7,11 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/21/2024
+ms.date: 3/10/2025
 ms.reviewer: yulili
 ms.custom: references_regions, devx-track-extended-java, devx-track-js, devx-track-python
 zone_pivot_groups: programming-languages-speech-services-nomore-variant
+#Customer intent: As a developer, I want to learn how to get facial position with viseme so that I can animate my avatar to match the speech.
 ---
 
 # Get facial position with viseme
@@ -187,7 +188,7 @@ result = speech_synthesizer.speak_ssml_async(ssml).get()
 
 ::: zone pivot="programming-language-javascript"
 
-```Javascript
+```JavaScript
 var synthesizer = new SpeechSDK.SpeechSynthesizer(speechConfig, audioConfig);
 
 // Subscribes to viseme received event

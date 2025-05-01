@@ -8,44 +8,140 @@ metadata:
 
   ms.service: azure-ai-content-safety
   ms.topic: faq
-  ms.date: 04/30/2024
+  ms.date: 02/21/2025
   ms.author: pafarley
   ms.custom:
-title: Azure AI Content Safety API Frequently Asked Questions
+title: Azure AI Content Safety Frequently Asked Questions
 summary: |
   > [!TIP]
-  > If you can't find answers to your questions in this FAQ, ask the Cognitive Services API community on [StackOverflow](https://stackoverflow.com/questions/tagged/project-oxford+or+microsoft-cognitive) or contact Help and Support on [UserVoice](https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858)
+  > If you can't find answers to your questions in this FAQ, ask the Cognitive Services API community on [Stack Overflow](https://stackoverflow.com/questions/tagged/project-oxford+or+microsoft-cognitive) or contact Help and Support on [UserVoice](https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858)
 
 
 sections:
-  - name: Azure AI Content Safety API frequently asked questions
+  - name: General information
     questions:
       - question: |
-          What is the difference between the Azure Content Moderator and Azure AI Content Safety services?
+          How do I get started with Content Safety? What are the first steps?
         answer: |
-          The main differences between the two services are:
+          For references on how to start submitting text and images to Azure AI Content Safety, and view model responses and results, visit the [Azure AI Foundry portal](https://ai.azure.com/explore/contentsafety) page. You can use the sidebar to navigate to the Safety+Security page. 
 
-          - Azure Content Moderator uses binary classification for each content type (such as `profanity` or `adult`), while Azure AI Content Safety uses multiple classes (such as `sexual`, `violent`, `hate`, and `self-harm`) with different severity levels.
-          - Azure AI Content Safety supports multilingual content moderation in English, German, Japanese, Spanish, French, Italian, Portuguese, and Chinese, while Azure Content Moderator's AI classifiers only support English.
-          - Azure Content Moderator has a built-in term list and a custom term list feature, while Azure AI Content Safety does not have a built-in term list but relies on advanced language and vision models to detect harmful content. It also provides a custom term list feature for customization.
-          - Azure AI Content Safety has an interactive studio for exploring and testing the service capabilities, while Azure Content Moderator does not.
+      - question: |
+          What types of media can Azure AI Content Safety classify/moderate? 
+        answer: |
+          Our content harm classification models currently support the moderation of text, images, and multimodal content (images with text + OCR). The protected material, prompt shields, and groundedness detection models work with text content only. 
+ 
+      - question: |
+          How are Azure AI Content Safety's models priced?
+        answer: |
+          A: We generally charge by volume. For example, the Image API is priced based on the number of images submitted. The Text API is billed for the number of text records submitted to the service. However, each model has its own corresponding rate. See the Azure [pricing page](https://aka.ms/content-safety-pricing) for more information about pricing tiers. 
+        
       - question: |
           Why should I migrate from Azure Content Moderator to Azure AI Content Safety?
         answer: |
-          Microsoft recommends that customers who are using Azure Content Moderator migrate to Azure AI Content Safety because:
+          Azure Content Moderator is deprecated as of March 2024. Microsoft recommends that  Azure Content Moderator users migrate to Azure AI Content Safety because: 
+          - Azure AI Content Safety offers more accurate and granular detection of harmful content in text and images using state-of-the-art AI models. 
+          - Azure AI Content Safety supports multilingual content moderation (see [Language support](/azure/ai-services/content-safety/language-support)). 
+          - Azure AI Content Safety enables responsible AI practices by monitoring both user-generated and AI-generated content. 
+      - question: |
+          What are the differences between Azure Content Moderator and Azure AI Content Safety? 
+        answer: |
+          The main differences between the two services are: 
+          - Azure Content Moderator uses a binary classification for each content flag (such as profanity or adult), while Azure AI Content Safety uses multiple severity levels with the different classes (sexual, violent, hate, and self-harm). 
+          - Azure AI Content Safety supports multilingual content moderation (see [Language support](/azure/ai-services/content-safety/language-support)), while Azure Content Moderator's AI classifiers only support English. 
+          - Azure Content Moderator has a built-in term list and a custom term list feature, while Azure AI Content Safety doesn't have a built-in term list but relies on advanced language and vision models to detect harmful content. It also provides a custom term list feature for customization. 
+          - Azure AI Content Safety has an interactive studio for exploring and testing the service capabilities, while Azure Content Moderator does not. 
+      - question: |
+          Does Azure AI Content Safety remove content or ban users from the platform?
+        answer: |
+          No. The Azure AI Content Safety API returns classification metadata based on model outputs. Our results tell users whether material across various classes (sexual, violence, hate, self-harm) is present in input content, through either a returned severity level (such as in the Text API) or binary result (such as in Prompt Shields API).  
+          
+          As a user, you use those results to inform appropriate enforcement actions—such as automatically tagging or removing certain content—based on your own policies and practices.
+      - question: |
+          What happens if I exceed the transaction limit on my free tier for Azure AI Content Safety? 
+        answer: |
+          Service usage is throttled if you reach the transaction limit on the Free tier.
+      - question: |
+          Should I submit our content to the Content Safety API synchronously or asynchronously?
+        answer: |
+          The Content Safety API is optimized for real-time (synchronous) moderation needs. Our model results are returned directly in the API response message.
+      - question: |
+          What is the current RPS (Requests Per Second) limit for each API? If I want to increase the RPS, what steps should I take?
+        answer: |
+          Refer to the [overview](./overview.md) for the current RPS limits for each API. To request an increase in RPS, [email us](mailto:contentsafetysupport@microsoft.com) with justification and an estimated traffic forecast.
+      - question: |
+          What severity level thresholds do you recommend for moderation? 
+        answer: |
+          To decide whether to filter at severity level 0, 2, 4 or 6, we strongly encourage you to consult the descriptive examples of each severity level listed in [Harm Categories](/azure/ai-services/content-safety/concepts/harm-categories?tabs=warning). Generally, text that scores at severity level 0 might reference a sensitive topic but may be benign. Deciding whether to moderate at level 2 or 4 will depend on your community guidelines and sensitivity around controversial topics.  
+          
+          Overall, it depends on your datasets and your own policies and risk tolerance. We recommend starting a severity level of 4 for new projects. You can then adjust your severity level based on model performance.  
+          
+          We're also available to run evaluations with your data in order to recommend thresholds, and you can use our [Content Safety Studio batch evaluation](https://contentsafety.cognitive.azure.com/) for more information on best practices.
+      - question: |
+          How is data retained and what customer controls are available?
+        answer: |
+          No input texts or images are stored by the model during detection (except for customer-supplied blocklists), and user inputs are not used to train, retrain, or improve the Azure AI Content Safety models. 
+          
+          To learn more about Microsoft's privacy and security commitments visit [Data, privacy, and security for Azure AI Content Safety](/legal/cognitive-services/content-safety/data-privacy?context=%2Fazure%2Fai-services%2Fcontent-safety%2Fcontext%2Fcontext).
+      - question: |
+          Is customer data processed by Azure AI Content Safety transmitted outside of the Azure AI Content Safety service or the selected region? 
+        answer: |
+          No. Microsoft hosts the Azure AI Content Safety models within our Azure infrastructure. All customer data sent to Azure AI Content Safety remains within Azure AI Content Safety during processing and in the region you chose and is not transmitted to other regions.
+      - question: |
+          Does Content Safety support batch processing? 
+        answer: |
+          Content Safety APIs don't support batch processing. Currently, Content Safety APIs achieve high concurrency in processing with generous default rate limits of 1000 per minute, depending on the model. While this is sufficient for most users, we're happy to increase rate limits for users that process or are looking to process higher volumes. 
+      - question: |
+          Can I access multiple models with a single API call? 
+        answer: | 
+          We have developed an API to combine several classifications into a single API endpoint, enabling users to access both model outputs with a single task, but this API is in preview. [Email us](mailto:contentsafetysupport@microsoft.com) to apply for access.
+  - name: Dissatisfied cases
+    questions:
+      - question: |
+          How can we report false positives and false negatives or give other feedback? 
+        answer: |
+          In our standard DSAT process, users need to create a ticket to submit cases to us, as emails won't initiate the triage process. Users can submit cases through the Azure portal, and customer support engineer can assist them in creating an ICM ticket.  
+          
+          [Create a support request](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest) to submit a ticket to us: 
+          - For Issue type, select Technical.
+          - For Subscription, select your subscription.
+          - For Service, select All services, then select **Content Safety**.
+          - For Summary, add a description of your issue.
+      - question: |
+          How I can mitigate false positives and false negatives quickly? 
 
-          - Azure AI Content Safety offers more accurate and granular detection of harmful content in text and images using state-of-the-art AI models.
-          - Azure AI Content Safety supports multilingual content moderation in English, Japanese, German, Spanish, French, Portuguese, Italian, and Chinese.
-          - Azure AI Content Safety enables responsible AI practices by monitoring both user-generated and AI-generated content.
-      - question: |
-          Can I detect harmful content in custom categories that I define myself?
         answer: |
-          Yes, you can use the Azure AI Content Safety custom categories API to create categories, upload examples, and train the service to detect similar content. Custom categories are available for both text and image moderation.
+          The model requires time to iterate and retrain. If you create a support ticket through the Azure portal, a customer support engineer will assist you in tracking the status and updating you on progress. However, the product team encourages you to mitigate issues more quickly on your own using our recommended tools, such as the blocklist. Refer to [Mitigate false results in Azure AI Content Safety](/azure/ai-services/content-safety/how-to/improve-performance?tabs=standalone-api).
+
+  - name: Text moderation API
+    questions:
       - question: |
-          How does billing work for the Azure AI Content Safety service?
+          Can I increase the character limit for text moderation? 
         answer: |
-          In the S tier, there are two types of APIs. For the Text API, the service is billed for the amount of text records submitted to the service. For the Image API, the service is billed for the number of images submitted to the service.
+          No. Currently, text moderation tasks are limited to 10k-character submissions. You can, however, split longer text content into segments (for example, based on punctuation or spacing) and submit each segment as related tasks to the Content Safety API. 
+  - name: Custom categories
+    questions:
       - question: |
-          What happens if I exceed the transaction limit on my free tier for Azure AI Content Safety?
+          Can I detect harmful content in custom categories that I define myself? 
         answer: |
-          Usage is throttled if the transaction limit is reached on the Free tier. Customers cannot accrue overages on the free tier.
+          Yes, you can use the Azure AI Content Safety custom categories (standard) API to create categories, upload examples, and train the service to detect similar content. Custom categories are available for both text and image moderation. 
+      - question: |
+          How is the training of custom categories handled to ensure data security? 
+ 
+        answer: |
+          The training process for custom categories begins with uploading data to your dedicated blob storage container. You then grant blob access to the Azure AI Content Safety resource. When training starts, your data is temporarily stored under strict control and is automatically  deleted 48 hours later.   
+      - question: |
+          Where are the trained models stored, and what security measures are in place? 
+
+        answer: |
+          Trained models are secured to remain exclusive to your organization and the selected region, ensuring that they are not shared with other organizations, thus maintaining confidentiality and data integrity. Models are stored in Microsoft’s storage with multi-layer encryption. Customer-managed keys (CMK) are employed to enhance security. 
+      - question: |
+          What is being done about access control and authorization for custom categories, especially if the goal is to offer custom categories to different departments or end users?
+        answer: |
+          To improve security and control over access, especially with concerns around API key usage, you could take a multi-layered approach such as disabling local authentication for key-based access: Disabling local authentication methods that rely on API keys can prevent unauthorized access and reduce the risk of credential exposure. This ensures that users and applications authenticate through more secure, managed identity solutions like Microsoft Entra ID. 
+          
+          You can also explore more granular access controls to support departmental or user-specific configurations, allowing customized permissions and secure access for different groups within the organization. This would ensure that each department or user group can securely manage and access their custom categories without compromising overall security. 
+      - question: |
+          I'm running into the limitation of three custom categories per service deployment. Are there any plans or options to increase that quota? 
+        answer: |
+          Yes, users can request an increase in their custom categories quota for specific service deployments. [Email us](mailto:contentsafetysupport@microsoft.com) with the desired quota amount, and our team will review your request to accommodate your needs where possible.
+      

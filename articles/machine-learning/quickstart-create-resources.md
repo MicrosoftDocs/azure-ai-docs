@@ -79,7 +79,7 @@ You'll use the *compute instance* to run Jupyter notebooks and Python scripts in
     :::image type="content" source="media/quickstart-create-resources/create-compute.png" alt-text="Screenshot shows create compute in the New list.":::
 
 1. Supply a name.
-1. Keep the default values for the rest of the page.
+1. Keep the default values for the rest of the page, unless your organization policy requires you to change other settings.
 1. Select **Review + Create**.
 1. Select **Create**.
 

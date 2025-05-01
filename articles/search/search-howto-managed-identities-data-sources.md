@@ -6,22 +6,22 @@ description: Create a managed identity for your search service and use Microsoft
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-ms.date: 07/25/2024
+ms.date: 11/22/2024
 ---
 
 # Configure a search service to connect using a managed identity in Azure AI Search
 
 > [!IMPORTANT]
-> User-assigned managed identity assignment is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [Management preview REST API](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2024-03-01-preview&preserve-view=true#identity) provides user-assigned managed identity assignment for Azure AI Search. Support for a system-assigned managed identity is generally available.
+> User-assigned managed identity assignment is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [Management preview REST API](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true#identity) provides user-assigned managed identity assignment for Azure AI Search. Support for a *system-assigned* managed identity is generally available.
 
-You can use Microsoft Entra ID and role assignments for outbound connections from Azure AI Search to resources providing data, applied AI, or vectorization during indexing or queries. 
+You can use Microsoft Entra ID and role assignments for outbound connections from Azure AI Search to resources providing data, applied AI, or vectorization during indexing or queries.
 
-To use roles on an outbound connection, first configure your search service to use either a [system-assigned or user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) as the security principle for your search service in a Microsoft Entra tenant. Once you have a managed identity, you can assign roles for authorized access. Managed identities and role assignments eliminate the need for passing secrets and credentials in a connection string or code.
+To use roles on an outbound connection, first configure your search service to use either a [system-assigned or user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) as the security principal for your search service in a Microsoft Entra tenant. Once you have a managed identity, you can assign roles for authorized access. Managed identities and role assignments eliminate the need for passing secrets and credentials in a connection string or code.
 
 ## Prerequisites
 
@@ -48,13 +48,13 @@ A search service uses Azure Storage as an indexer data source and as a data sink
 | [Debug sessions (hosted in Azure Storage)](cognitive-search-debug-session.md)	<sup>1</sup> | Yes | No |
 | [Enrichment cache (hosted in Azure Storage)](search-howto-incremental-index.md) <sup>1,</sup> <sup>2</sup> | Yes | Yes |
 | [Knowledge Store (hosted in Azure Storage)](knowledge-store-create-rest.md) <sup>1</sup>| Yes | Yes |
-| Connections to Azure OpenAI or Azure AI <sup>3</sup> | Yes | Yes |
+| Connections to Azure OpenAI, Azure AI Foundry and Azure Functions via skills/vectorizers <sup>3</sup> | Yes | Yes |
 
 <sup>1</sup> For connectivity between search and storage, your network security configuration imposes constraints on which type of managed identity you can use. Only a system managed identity can be used for a same-region connection to storage via the trusted service exception or resource instance rule. See [Access to a network-protected storage account](search-indexer-securing-resources.md#access-to-a-network-protected-storage-account) for details.
 
 <sup>2</sup> AI search service currently can't connect to tables on a storage account that has [shared key access turned off](/azure/storage/common/shared-key-authorization-prevent).
 
-<sup>3</sup> Connections to Azure OpenAI or Azure AI include: [Custom skill](cognitive-search-custom-skill-interface.md), [Custom vectorizer](vector-search-vectorizer-custom-web-api.md), [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md), [Azure OpenAI vectorizer](vector-search-how-to-configure-vectorizer.md), [AML skill](cognitive-search-aml-skill.md), [Azure AI Studio model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md), [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), [Azure AI Vision vectorizer](vector-search-vectorizer-ai-services-vision.md).
+<sup>3</sup> Connections to Azure OpenAI,  Azure AI Foundry and Azure Functions via skills/vectorizers include: [Custom skill](cognitive-search-custom-skill-interface.md), [Custom vectorizer](vector-search-vectorizer-custom-web-api.md), [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md), [Azure OpenAI vectorizer](vector-search-how-to-configure-vectorizer.md), [AML skill](cognitive-search-aml-skill.md) and [Azure AI Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md).
 
 ## Create a system managed identity
 
@@ -64,7 +64,7 @@ A system-assigned managed identity is unique to your search service and bound to
 
 ### [**Azure portal**](#tab/portal-sys)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Storage%2storageAccounts/).
+1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
 1. Under **Settings**, select **Identity**.
 
@@ -131,7 +131,7 @@ For more information, see [Create or Update Service (Management REST API)](/rest
 ## Create a user-assigned managed identity
 
 > [!IMPORTANT]
-> Part of this scenario is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [Management preview REST API](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2024-03-01-preview&preserve-view=true#identity) provides user-assigned managed identity configuration for Azure AI Search.
+> Part of this scenario is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [Management preview REST API](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true#identity) provides user-assigned managed identity configuration for Azure AI Search.
 
 A user-assigned managed identity is a resource on Azure. You can create multiple user-assigned managed identities if you want more granularity in role assignments. For example, you might want separate identities for different applications and scenarios.
 
@@ -170,12 +170,12 @@ Associating a user-assigned managed identity is supported in the Azure portal, i
 
 ### [**REST API**](#tab/rest-user)
 
-You can use a preview Management REST API instead of the portal to assign a user-assigned managed identity. Use API versions `2021-04-01-preview` or later. This example uses `2024-06-01-preview`.
+You can use a preview Management REST API instead of the Azure portal to assign a user-assigned managed identity. Use API versions `2021-04-01-preview` or later. This example uses `2025-05-01-preview`.
 
-1. Formulate a request to [UPDATE](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2024-06-01-preview&preserve-view=true#identity) a search service.
+1. Formulate a request to [UPDATE](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2025-05-01-preview&preserve-view=true#identity) a search service.
 
     ```http
-    PUT https://management.azure.com/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Search/searchServices/mysearchservice?api-version=2024-06-01-preview
+    PUT https://management.azure.com/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Search/searchServices/mysearchservice?api-version=2025-05-01-preview
     {
       "location": "[region]",
       "sku": {
@@ -201,7 +201,6 @@ You can use a preview Management REST API instead of the portal to assign a user
 
    + "userAssignedIdentities" includes the details of the user assigned managed identity. This identity [must already exist](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities) before you can specify it in the Update Service request.
   
-
 ---
 
 ## Assign a role
@@ -276,7 +275,7 @@ A knowledge store definition includes a connection string to Azure Storage. The 
 
 [**Enrichment cache:**](search-howto-incremental-index.md)
 
-An indexer creates, uses, and remembers the container used for the cached enrichments. It's not necessary to include the container in the cache connection string. You can find the object ID on the **Identity** page of your search service in the portal.
+An indexer creates, uses, and remembers the container used for the cached enrichments. It's not necessary to include the container in the cache connection string. You can find the object ID on the **Identity** page of your search service in the Azure portal.
 
 ```json
 "cache": {
@@ -287,7 +286,7 @@ An indexer creates, uses, and remembers the container used for the cached enrich
 
 [**Debug session:**](cognitive-search-debug-session.md)
 
-A debug session runs in the portal and takes a connection string when you start the session. You can paste a string similar to the following example.
+A debug session runs in the Azure portal and takes a connection string when you start the session. You can paste a string similar to the following example.
 
 ```json
 "ResourceId=/subscriptions/{subscription-ID}/resourceGroups/{resource-group-name}/providers/Microsoft.Storage/storageAccounts/{storage-account-name}/{container-name};",
@@ -295,7 +294,11 @@ A debug session runs in the portal and takes a connection string when you start 
 
 [**Custom skill:**](cognitive-search-custom-skill-interface.md)
 
-A custom skill targets the endpoint of an Azure function or app hosting custom code. The endpoint is specified in the [custom skill definition](cognitive-search-custom-skill-web-api.md). The presence of the "authResourceId" tells the search service to connect using a managed identity, passing the application ID of the target function or app in the property.
+A [custom skill](cognitive-search-custom-skill-web-api.md) targets the endpoint of an Azure function or app hosting custom code. 
+
++ `uri` is the endpoint of the function or app. 
+
++ `authResourceId` tells the search service to connect using a managed identity, passing the application ID of the target function or app in the property.
 
 ```json
 {
@@ -312,7 +315,9 @@ A custom skill targets the endpoint of an Azure function or app hosting custom c
 
 [**Azure OpenAI embedding skill**](cognitive-search-skill-azure-openai-embedding.md) and [**Azure OpenAI vectorizer:**](vector-search-how-to-configure-vectorizer.md)
 
- An Azure OpenAI embedding skill and vectorizer in AI Search target the endpoint of an Azure OpenAI service hosting an embedding model. The endpoint is specified in the [Azure OpenAI embedding skill definition](cognitive-search-skill-azure-openai-embedding.md) and/or in the [Azure OpenAI vectorizer definition](vector-search-how-to-configure-vectorizer.md). The system-managed identity is used if configured and if the "apikey" and "authIdentity" are empty. The "authIdentity" property is used for user-assigned managed identity only.
+ An Azure OpenAI embedding skill and vectorizer in AI Search target the endpoint of an Azure OpenAI service hosting an embedding model. The endpoint is specified in the [Azure OpenAI embedding skill definition](cognitive-search-skill-azure-openai-embedding.md) and/or in the [Azure OpenAI vectorizer definition](vector-search-how-to-configure-vectorizer.md). 
+
+The system-managed identity is used automatically if `"apikey"` and `"authIdentity"` are empty, as demonstrated in the following example. The `"authIdentity"` property is used for user-assigned managed identity only.
 
 **System-managed identity example:**
  
@@ -337,6 +342,8 @@ A custom skill targets the endpoint of an Azure function or app hosting custom c
 }
 ```
 
+Here's a [vectorizer example](vector-search-how-to-configure-vectorizer.md) configured for a system-assigned managed identity. A vectorizer is specified in a search index.
+
 ```json
  "vectorizers": [
     {
@@ -352,6 +359,8 @@ A custom skill targets the endpoint of an Azure function or app hosting custom c
 ```
 
 **User-assigned managed identity example:**
+
+A user-assigned managed identity is used if `"apiKey"` is empty and a valid `"authIdentity"` is provided.
 
 ```json
 {
@@ -378,6 +387,8 @@ A custom skill targets the endpoint of an Azure function or app hosting custom c
 }
 ```
 
+Here's a [vectorizer example](vector-search-how-to-configure-vectorizer.md) configured for a user-assigned managed identity. A vectorizer is specified in a search index.
+
 ```json
  "vectorizers": [
     {
@@ -398,11 +409,11 @@ A custom skill targets the endpoint of an Azure function or app hosting custom c
 
 ## Check for firewall access
 
-If your Azure resource is behind a firewall, make sure there's an inbound rule that admits requests from your search service. 
+If your Azure resource is behind a firewall, make sure there's an inbound rule that admits requests from your search service and from the Azure portal.
 
 + For same-region connections to Azure Blob Storage or Azure Data Lake Storage Gen2, use a system managed identity and the [trusted service exception](search-indexer-howto-access-trusted-service-exception.md). Optionally, you can configure a [resource instance rule](/azure/storage/common/storage-network-security#grant-access-from-azure-resource-instances) to admit requests.
 
-+ For all other resources and connections, [configure an IP firewall rule](search-indexer-howto-access-ip-restricted.md) that admits requests from Search. See [Indexer access to content protected by Azure network security features](search-indexer-securing-resources.md) for details.
++ For all other resources and connections, [configure an IP firewall rule](search-indexer-howto-access-ip-restricted.md) that admits requests from Azure AI Search. See [Indexer access to content protected by Azure network security features](search-indexer-securing-resources.md) for details.
 
 ## See also
 

@@ -728,7 +728,7 @@ The __Test__ tab of the deployment's detail page supports scoring for endpoints 
 
 ## Log and monitor traffic
 
-To enable traffic logging in the diagnostics settings for the endpoint, follow the steps in [How to enable/disable logs](how-to-monitor-online-endpoints.md#how-to-enabledisable-logs).
+To enable traffic logging in the diagnostics settings for the endpoint, follow the steps in [Turn on logs](how-to-monitor-online-endpoints.md#turn-on-logs).
 
 If the diagnostic setting is enabled, you can check the `AmlOnlineEndpointTrafficLogs` table to see the auth mode and user identity.
 

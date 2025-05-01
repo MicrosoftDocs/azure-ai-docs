@@ -7,8 +7,10 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/21/2024
+ms.date: 3/10/2025
+zone_pivot_groups: programming-languages-set-two-objective-c
 ms.custom: devx-track-csharp, devx-track-extended-java, devx-track-python
+#Customer intent: As a developer, I want to learn how to enable logging in the Speech SDK so that I can get additional information and diagnostics from the Speech SDK's core components.
 ---
 
 # Enable logging in the Speech SDK
@@ -169,6 +171,29 @@ void DisableSpeechSdkLogging()
 	EnableSpeechSdkLogging("");
 }
 ```
+
+
+## Logging with file logger, Memory logger and event logger
+
+::: zone pivot="programming-language-csharp"
+[!INCLUDE [C# include](includes/how-to/diagnostics/csharp.md)]
+::: zone-end
+
+::: zone pivot="programming-language-cpp"
+[!INCLUDE [C++ include](includes/how-to/diagnostics/cpp.md)]
+::: zone-end
+
+::: zone pivot="programming-language-java"
+[!INCLUDE [Java include](includes/how-to/diagnostics/java.md)]
+::: zone-end
+
+::: zone pivot="programming-language-objectivec"
+[!INCLUDE [ObjectiveC include](includes/how-to/diagnostics/objectivec.md)]
+::: zone-end
+
+::: zone pivot="programming-language-python"
+[!INCLUDE [Python include](./includes/how-to/diagnostics/python.md)]
+::: zone-end
 
 ## Next steps
 

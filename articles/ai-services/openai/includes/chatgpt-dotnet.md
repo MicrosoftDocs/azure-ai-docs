@@ -7,7 +7,7 @@ ms.service: azure-ai-openai
 ms.topic: include
 author: mrbullwinkle
 ms.author: mbullwin
-ms.date: 11/15/2023
+ms.date: 3/11/2025
 ---
 
 [Source code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/openai/Azure.AI.OpenAI/src) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.OpenAI/) | [Samples](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/openai/Azure.AI.OpenAI/tests/Samples)| [Retrieval Augmented Generation (RAG) enterprise chat template](/dotnet/ai/get-started-app-chat-template) |
@@ -16,113 +16,178 @@ ms.date: 11/15/2023
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - The [.NET 7 SDK](https://dotnet.microsoft.com/download/dotnet/7.0)
-- An Azure OpenAI Service resource with either the `gpt-35-turbo` or the `gpt-4` models deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- An Azure OpenAI Service resource with the `gpt-4o` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
+### Microsoft Entra ID prerequisites
 
-> [!div class="nextstepaction"]
-> [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=DOTNET&Pillar=AOAI&Product=Chatgpt&Page=quickstart&Section=Prerequisites)
+For the recommended keyless authentication with Microsoft Entra ID, you need to:
+- Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
+- Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
 ## Set up
 
-[!INCLUDE [Create a new .NET application](./dotnet-new-application.md)]
+1. Create a new folder `chat-quickstart` and go to the quickstart folder with the following command:
 
-[!INCLUDE [get-key-endpoint](get-key-endpoint.md)]
+    ```shell
+    mkdir chat-quickstart && cd chat-quickstart
+    ```
 
-[!INCLUDE [environment-variables](environment-variables.md)]
+1. Create a new console application with the following command:
 
+    ```shell
+    dotnet new console
+    ```
 
-> [!div class="nextstepaction"]
-> [I ran into an issue with the setup.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=DOTNET&Pillar=AOAI&Product=Chatgpt&Page=quickstart&Section=Set-up)
+3. Install the [OpenAI .NET client library](https://www.nuget.org/packages/Azure.AI.OpenAI/) with the [dotnet add package](/dotnet/core/tools/dotnet-add-package) command:
 
-## Create a sample application
+    ```console
+    dotnet add package Azure.AI.OpenAI --prerelease
+    ```
 
-From the project directory, open the *program.cs* file and replace with the following code:
+1. For the **recommended** keyless authentication with Microsoft Entra ID, install the [Azure.Identity](https://www.nuget.org/packages/Azure.Identity) package with:
+
+    ```console
+    dotnet add package Azure.Identity
+    ```
+
+1. For the **recommended** keyless authentication with Microsoft Entra ID, sign in to Azure with the following command:
+
+    ```console
+    az login
+    ```
+
+## Retrieve resource information
+
+[!INCLUDE [resource authentication](resource-authentication.md)]
+
+## Run the quickstart
+
+The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with an `AzureKeyCredential` object. 
+
+#### [Microsoft Entra ID](#tab/keyless)
+
+```csharp
+AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new DefaultAzureCredential()); 
+```
+
+#### [API key](#tab/api-key)
+
+```csharp
+AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new AzureKeyCredential(key));
+```
+---
+
+You can use streaming or non-streaming to get the chat completion. The following code examples show how to use both methods. The first example shows how to use the non-streaming method, and the second example shows how to use the streaming method.
 
 ### Without response streaming
 
-```csharp
-using Azure;
-using Azure.AI.OpenAI;
-using static System.Environment;
+To run the quickstart, follow these steps:
 
-string endpoint = GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
-string key = GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
+1. Replace the contents of `Program.cs` with the following code and update the placeholder values with your own.
 
-AzureOpenAIClient azureClient = new(
-    new Uri(endpoint),
-    new AzureKeyCredential(key));
+    ```csharp
+    using Azure;
+    using Azure.Identity;
+    using OpenAI.Assistants;
+    using Azure.AI.OpenAI;
+    using OpenAI.Chat;
+    using static System.Environment;
+    
+    string endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT") ?? "https://<your-resource-name>.openai.azure.com/";
+    string key = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY") ?? "<your-key>";
+    
+    // Use the recommended keyless credential instead of the AzureKeyCredential credential.
+    AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new DefaultAzureCredential()); 
+    //AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new AzureKeyCredential(key));
+    
+    // This must match the custom deployment name you chose for your model
+    ChatClient chatClient = openAIClient.GetChatClient("gpt-4o");
+    
+    ChatCompletion completion = chatClient.CompleteChat(
+        [
+            new SystemChatMessage("You are a helpful assistant that talks like a pirate."),
+            new UserChatMessage("Does Azure OpenAI support customer managed keys?"),
+            new AssistantChatMessage("Yes, customer managed keys are supported by Azure OpenAI"),
+            new UserChatMessage("Do other Azure AI services support this too?")
+        ]);
+    
+    Console.WriteLine($"{completion.Role}: {completion.Content[0].Text}");
+    ```
 
-// This must match the custom deployment name you chose for your model
-ChatClient chatClient = azureClient.GetChatClient("gpt-35-turbo");
+1. Run the application with the following command:
 
-ChatCompletion completion = chatClient.CompleteChat(
-    [
-        new SystemChatMessage("You are a helpful assistant that talks like a pirate."),
-        new UserChatMessage("Does Azure OpenAI support customer managed keys?"),
-        new AssistantChatMessage("Yes, customer managed keys are supported by Azure OpenAI"),
-        new UserChatMessage("Do other Azure AI services support this too?")
-    ]);
+    ```shell
+    dotnet run
+    ```
 
-Console.WriteLine($"{completion.Role}: {completion.Content[0].Text}");
-```
 
-> [!IMPORTANT]
-> For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
-
-```cmd
-dotnet run program.cs
-```
-
-## Output
+#### Output
 
 ```output
-Assistant : Yes, many other Azure AI services also support customer managed keys, including Azure Cognitive Services, Azure Machine Learning, and Azure Databricks. By using customer managed keys, you can retain complete control over your encryption keys and provide an additional layer of security for your AI assets.
+Assistant: Arrr, ye be askin’ a fine question, matey! Aye, several Azure AI services support customer-managed keys (CMK)! This lets ye take the wheel and secure yer data with encryption keys stored in Azure Key Vault. Services such as Azure Machine Learning, Azure Cognitive Search, and others also offer CMK fer data protection. Always check the specific service's documentation fer the latest updates, as features tend to shift swifter than the tides, aye!
 ```
 
-This will wait until the model has generated its entire response before printing the results. Alternatively, if you want to asynchronously stream the response and print the results, you can replace the contents of *program.cs* with the code in the next example.
+This will wait until the model has generated its entire response before printing the results. Alternatively, if you want to asynchronously stream the response and print the results, you can replace the contents of *Program.cs* with the code in the next example.
 
 ### Async with streaming
 
-```csharp
-using Azure;
-using Azure.AI.OpenAI;
-using OpenAI.Chat;
-using static System.Environment;
+To run the quickstart, follow these steps:
 
-string endpoint = GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
-string key = GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
+1. Replace the contents of `Program.cs` with the following code and update the placeholder values with your own.
 
-AzureOpenAIClient azureClient = new(
-    new Uri(endpoint),
-    new AzureKeyCredential(key));
-
-// This must match the custom deployment name you chose for your model
-ChatClient chatClient = azureClient.GetChatClient("gpt-35-turbo");
-
-var chatUpdates = chatClient.CompleteChatStreamingAsync(
-    [
-        new SystemChatMessage("You are a helpful assistant that talks like a pirate."),
-        new UserChatMessage("Does Azure OpenAI support customer managed keys?"),
-        new AssistantChatMessage("Yes, customer managed keys are supported by Azure OpenAI"),
-        new UserChatMessage("Do other Azure AI services support this too?")
-    ]);
-
-await foreach(var chatUpdate in chatUpdates)
-{
-    if (chatUpdate.Role.HasValue)
-    {
-        Console.Write($"{chatUpdate.Role} : ");
-    }
+    ```csharp
+    using Azure;
+    using Azure.Identity;
+    using OpenAI.Assistants;
+    using Azure.AI.OpenAI;
+    using OpenAI.Chat;
+    using static System.Environment;
     
-    foreach(var contentPart in chatUpdate.ContentUpdate)
+    string endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT") ?? "https://<your-resource-name>.openai.azure.com/";
+    string key = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY") ?? "<your-key>";
+    
+    // Use the recommended keyless credential instead of the AzureKeyCredential credential.
+    AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new DefaultAzureCredential()); 
+    //AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new AzureKeyCredential(key));
+    
+    // This must match the custom deployment name you chose for your model
+    ChatClient chatClient = openAIClient.GetChatClient("gpt-4o");
+    
+    var chatUpdates = chatClient.CompleteChatStreamingAsync(
+        [
+            new SystemChatMessage("You are a helpful assistant that talks like a pirate."),
+            new UserChatMessage("Does Azure OpenAI support customer managed keys?"),
+            new AssistantChatMessage("Yes, customer managed keys are supported by Azure OpenAI"),
+            new UserChatMessage("Do other Azure AI services support this too?")
+        ]);
+    
+    await foreach(var chatUpdate in chatUpdates)
     {
-        Console.Write(contentPart.Text);
+        if (chatUpdate.Role.HasValue)
+        {
+            Console.Write($"{chatUpdate.Role} : ");
+        }
+        
+        foreach(var contentPart in chatUpdate.ContentUpdate)
+        {
+            Console.Write(contentPart.Text);
+        }
     }
-}
+    ```
+
+1. Run the application with the following command:
+
+    ```shell
+    dotnet run
+    ```
+
+
+#### Output
+
+```output
+Assistant: Arrr, ye be askin’ a fine question, matey! Aye, several Azure AI services support customer-managed keys (CMK)! This lets ye take the wheel and secure yer data with encryption keys stored in Azure Key Vault. Services such as Azure Machine Learning, Azure Cognitive Search, and others also offer CMK fer data protection. Always check the specific service's documentation fer the latest updates, as features tend to shift swifter than the tides, aye!
 ```
 
-> [!div class="nextstepaction"]
-> [I ran into an issue when running the code samples.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=DOTNET&Pillar=AOAI&Product=Chatgpt&Page=quickstart&Section=Create-dotnet-application)
 
 ## Clean up resources
 
@@ -133,4 +198,5 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 
 ## Next steps
 
-* For more examples, check out the [Azure OpenAI Samples GitHub repository](https://aka.ms/AOAICodeSamples)
+* [Get started with the chat using your own data sample for .NET](/dotnet/ai/get-started-app-chat-template?toc=/azure/ai-services/openai/toc.json&bc=/azure/ai-services/openai/breadcrumb/toc.json&tabs=github-codespaces)
+* For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai)

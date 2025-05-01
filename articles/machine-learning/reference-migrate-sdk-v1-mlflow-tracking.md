@@ -1,7 +1,7 @@
 ---
 title: Migrate logging from SDK v1 to MLflow
 titleSuffix: Azure Machine Learning
-description: Comparison of SDK v1 logging APIs and MLflow tracking
+description: Comparison of Azure Machine Learning SDK v1 logging APIs and MLflow tracking in Azure Machine Learning SDK v2.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
@@ -10,7 +10,7 @@ ms.custom: cliv2
 
 author: Blackmist
 ms.author: larryfr
-ms.date: 01/16/2024
+ms.date: 02/05/2025
 ms.reviewer: kritifaujdar
 ---
 
@@ -18,7 +18,7 @@ ms.reviewer: kritifaujdar
 
 Azure Machine Learning uses MLflow Tracking for metric logging and artifact storage for your experiments, whether you created the experiments via the Azure Machine Learning Python SDK, the Azure Machine Learning CLI, or Azure Machine Learning studio. We recommend using MLflow for tracking experiments. 
 
-If you're migrating from SDK v1 to SDK v2, use the information in this section to understand the MLflow equivalents of SDK v1 logging APIs.
+If you're upgrading from SDK v1 to SDK v2, use the information in this section to understand the MLflow equivalents of SDK v1 logging APIs.
 
 ## Why MLflow?
 
@@ -134,7 +134,7 @@ __SDK v2 with MLflow__
 mlflow.log_artifact("Azure.png")
 ```
 
-The image is logged as an artifact and it appears in the __Images__ tab in Azure Machine Learning Studio.
+The image is logged as an artifact and it appears in the __Images__ tab in Azure Machine Learning studio.
 
 ### Log a matplotlib.pyplot
 
@@ -158,7 +158,7 @@ ax.plot([0, 1], [2, 3])
 mlflow.log_figure(fig, "sample_pyplot.png")
 ```
 
-* The image is logged as an artifact and it appears in the __Images__ tab in Azure Machine Learning Studio.
+* The image is logged as an artifact and it appears in the __Images__ tab in Azure Machine Learning studio.
 
 ### Log a list of metrics
 
@@ -363,7 +363,7 @@ params = finished_mlflow_run.data.params
 ```
 
 > [!NOTE]
-> The `metrics` will only have the most recently logged value for a given metric. For example, if you log in order a value of `1`, then `2`, `3`, and finally `4` to a metric named `sample_metric`, only `4` will be present in the `metrics` dictionary. To get all metrics logged for a specific named metric, use [MlFlowClient.get_metric_history](https://mlflow.org/docs/latest/python_api/mlflow.tracking.html#mlflow.tracking.MlflowClient.get_metric_history):
+> The `metrics` will only have the most recently logged value for a given metric. For example, if you log in order a value of `1`, then `2`, `3`, and finally `4` to a metric named `sample_metric`, only `4` will be present in the `metrics` dictionary. To get all metrics logged for a specific named metric, use [MlFlowClient.get_metric_history](https://mlflow.org/docs/latest/python_api/mlflow.client.html?highlight=get_metric_history#mlflow.client.MlflowClient.get_metric_history):
 >
 > ```python
 > with mlflow.start_run() as multiple_metrics_run:
@@ -376,7 +376,7 @@ params = finished_mlflow_run.data.params
 > print(client.get_metric_history(multiple_metrics_run.info.run_id, "sample_metric"))
 > ```
 > 
-> For more information, see the [MlFlowClient](https://mlflow.org/docs/latest/python_api/mlflow.tracking.html#mlflow.tracking.MlflowClient) reference.
+> For more information, see the [MlFlowClient](https://mlflow.org/docs/latest/python_api/mlflow.client.html?highlight=get_metric_history#module-mlflow.client) reference.
 
 The `info` field provides general information about the run, such as start time, run ID, experiment ID, etc.:
 
@@ -388,13 +388,13 @@ run_id = finished_mlflow_run.info.run_id
 
 ## View run artifacts
 
-To view the artifacts of a run, use [MlFlowClient.list_artifacts](https://mlflow.org/docs/latest/python_api/mlflow.tracking.html#mlflow.tracking.MlflowClient.list_artifacts):
+To view the artifacts of a run, use [MlFlowClient.list_artifacts](https://mlflow.org/docs/latest/python_api/mlflow.artifacts.html#mlflow.artifacts.list_artifacts):
 
 ```python
 client.list_artifacts(finished_mlflow_run.info.run_id)
 ```
 
-To download an artifact, use [mlflow.artifacts.download_artifacts](https://www.mlflow.org/docs/latest/python_api/mlflow.tracking.html#mlflow.tracking.MlflowClient.download_artifacts):
+To download an artifact, use [mlflow.artifacts.download_artifacts](https://mlflow.org/docs/latest/python_api/mlflow.artifacts.html#mlflow.artifacts.download_artifacts):
 
 ```python
 mlflow.artifacts.download_artifacts(run_id=finished_mlflow_run.info.run_id, artifact_path="Azure.png")

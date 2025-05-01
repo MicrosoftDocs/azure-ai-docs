@@ -8,15 +8,21 @@ ms.subservice: mldata
 ms.reviewer: franksolomon
 ms.author: xunwan
 author: SturgeonMi
-ms.date: 08/08/2023
+ms.date: 02/04/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, data4ml, sdkv1
 #Customer intent: As a data scientist, I want to detect data drift in my datasets and set alerts for when drift is large.
 ---
 
-# Detect data drift (preview) on datasets
+# Data drift (preview) will be retired, and replaced by Model Monitor
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
+Data drift(preview) will be retired at 09/01/2025, and you can start to use [Model Monitor](../how-to-monitor-model-performance.md) for your data drift tasks.
+Please check the content below to understand the replacement, feature gaps and manual change steps.
+
 
 Learn how to monitor data drift and set alerts when drift is high.
 
@@ -49,6 +55,9 @@ To create and work with dataset monitors, you need:
 * The [Azure Machine Learning SDK for Python installed](/python/api/overview/azure/ml/install), which includes the azureml-datasets package.
 * Structured (tabular) data with a timestamp specified in the file path, file name, or column in the data.
 
+## Prerequisites (Migrate to Model Monitor)
+When you migrate to Model Monitor, please check the prerequisites as mentioned in this article [Prerequisites of Azure Machine Learning model monitoring](../how-to-monitor-model-performance.md#prerequisites).
+
 ## What is data drift?
 
 Model accuracy degrades over time, largely because of data drift. For machine learning models, data drift is the change in model input data that leads to model performance degradation. Monitoring data drift helps detect these model performance issues.
@@ -66,7 +75,7 @@ This top down approach makes it easy to monitor data instead of traditional rule
 
 In Azure Machine Learning, you use dataset monitors to detect and alert for data drift.
 
-### Dataset monitors
+## Dataset monitors
 
 With a dataset monitor you can:
 
@@ -82,7 +91,7 @@ Conceptually, there are three primary scenarios for setting up dataset monitors 
 
 Scenario | Description
 ---|---
-Monitor a model's serving data for drift from the training data | Results from this scenario can be interpreted as monitoring a proxy for the model's accuracy, since model accuracy degrades when the serving data drifts from the training data.
+Monitor serving data of a model for drift from the training data | Results from this scenario can be interpreted as monitoring a proxy for the model's accuracy, since model accuracy degrades when the serving data drifts from the training data.
 Monitor a time series dataset for drift from a previous time period. | This scenario is more general, and can be used to monitor datasets involved upstream or downstream of model building. The target dataset must have a timestamp column. The baseline dataset can be any tabular dataset that has features in common with the target dataset.
 Perform analysis on past data. | This scenario can be used to understand historical data and inform decisions in settings for dataset monitors.
 
@@ -102,6 +111,11 @@ You monitor [Azure Machine Learning datasets](how-to-create-register-datasets.md
 * Target dataset - usually model input data - is compared over time to your baseline dataset. This comparison means that your target dataset must have a timestamp column specified.
 
 The monitor compares the baseline and target datasets.
+
+### Migrate to Model Monitor
+In Model Monitor, you can find corresponding concepts as following, and you can find more details in this article [Set up model monitoring by bringing in your production data to Azure Machine Learning](../how-to-monitor-model-performance.md#set-up-out-of-box-model-monitoring):
+*	Reference dataset: similar to your baseline dataset for data drift detection, it is set as the recent past production inference dataset.
+*	Production inference data: similar to your target dataset in data drift detection, the production inference data can be collected automatically from models deployed in production. It can also be inference data you store.
 
 ## Create target dataset
 
@@ -143,7 +157,6 @@ dset = dset.register(ws, 'target')
 > For a full example of using the `timeseries` trait of datasets, see the [example notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/work-with-data/datasets-tutorial/timeseries-datasets/tabular-timeseries-dataset-filtering.ipynb) or the [datasets SDK documentation](/python/api/azureml-core/azureml.data.tabulardataset#with-timestamp-columns-timestamp-none--partition-timestamp-none--validate-false----kwargs-).
 
 # [Studio](#tab/azure-studio)
-
 <a name="studio-dataset"></a>
 
 If you create your dataset using Azure Machine Learning studio, ensure the path to your data contains timestamp information, include all subfolders with data, and set the partition format.
@@ -160,6 +173,12 @@ If your data is already partitioned by date or time, as is the case here, you ca
 
 :::image type="content" source="media/how-to-monitor-datasets/timeseries-partitiontimestamp.png" alt-text="Partition timestamp":::
 
+
+# [Azure CLI](#tab/azure-cli)
+<a name="cli-dataset"></a>
+
+Not supported.
+
 ---
 
 ## Create dataset monitor
@@ -174,6 +193,9 @@ As described later, a dataset monitor runs at a set frequency (daily, weekly, mo
 
 The **backfill** function runs a backfill job, for a specified start and end date range. A backfill job fills in expected missing data points in a data set, as a way to ensure data accuracy and completeness.
 
+> [!NOTE]
+> Azure Machine Learning model monitoring doesn't support manual **backfill** function, if you want to redo the model monitor for a specif time range, you can create another model monitor for that specific time range.
+
 # [Python SDK](#tab/python)
 <a name="sdk-monitor"></a>
 
@@ -181,7 +203,7 @@ The **backfill** function runs a backfill job, for a specified start and end dat
 
 See the [Python SDK reference documentation on data drift](/python/api/azureml-datadrift/azureml.datadrift) for full details.
 
-The following example shows how to create a dataset monitor using the Python SDK
+The following example shows how to create a dataset monitor using the Python SDK:
 
 ```python
 from azureml.core import Workspace, Dataset
@@ -228,8 +250,7 @@ monitor = monitor.enable_schedule()
 ```
 
 > [!TIP]
-> For a full example of setting up a `timeseries` dataset and data drift detector, see our [example notebook](https://aka.ms/datadrift-notebook).
-
+> For a full example of setting up a `timeseries` dataset and data drift detector, see our [example notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/work-with-data/datasets-tutorial/train-with-datasets/train-with-datasets.ipynb).
 
 # [Studio](#tab/azure-studio)
 <a name="studio-monitor"></a>
@@ -243,11 +264,11 @@ monitor = monitor.enable_schedule()
 
 :::image type="content" source="media/how-to-monitor-datasets/wizard.png" alt-text="Create a monitor wizard":::
 
-* **Select target dataset**. The target dataset is a tabular dataset with timestamp column specified which to analyze for data drift. The target dataset must have features in common with the baseline dataset, and should be a `timeseries` dataset, which new data is appended to. Historical data in the target dataset can be analyzed, or new data can be monitored.
+1. **Select target dataset**. The target dataset is a tabular dataset with a timestamp column specified which to analyze for data drift. The target dataset must have features in common with the baseline dataset, and should be a `timeseries` dataset, which new data is appended to. Historical data in the target dataset can be analyzed, or new data can be monitored.
 
-* **Select baseline dataset.**  Select the tabular dataset to be used as the baseline for comparison of the target dataset over time. The baseline dataset must have features in common with the target dataset. Select a time range to use a slice of the target dataset, or specify a separate dataset to use as the baseline.
+1. **Select baseline dataset.**  Select the tabular dataset to be used as the baseline for comparison of the target dataset over time. The baseline dataset must have features in common with the target dataset. Select a time range to use a slice of the target dataset, or specify a separate dataset to use as the baseline.
 
-* **Monitor settings**. These settings are for the scheduled dataset monitor pipeline to create.
+1. **Monitor settings**. These settings are for the scheduled dataset monitor pipeline to create.
 
     | Setting | Description | Tips | Mutable |
     | ------- | ----------- | ---- | ------- |
@@ -262,7 +283,156 @@ monitor = monitor.enable_schedule()
 
 After completion of the wizard, the resulting dataset monitor will appear in the list. Select it to go to that monitor's details page.
 
+# [Azure CLI](#tab/azure-cli)
+<a name="cli-monitor"></a>
+
+Not supported
+
 ---
+
+## Create Model Monitor (Migrate to Model Monitor)
+When you migrate to Model Monitor, if you have deployed your model to production in an Azure Machine Learning online endpoint and enabled [data collection](../how-to-collect-production-data.md) at deployment time, Azure Machine Learning collects production inference data, and automatically stores it in Microsoft Azure Blob Storage. You can then use Azure Machine Learning model monitoring to continuously monitor this production inference data, and you can directly choose the model to create target dataset (production inference data in Model Monitor).
+
+When you migrate to Model Monitor, if you didn't deploy your model to production in an Azure Machine Learning online endpoint, or you don't want to use [data collection](../how-to-collect-production-data.md), you can also [set up model monitoring with custom signals and metrics](../how-to-monitor-model-performance.md#set-up-model-monitoring-with-custom-signals-and-metrics).
+
+Following sections contain more details on how to migrate to Model Monitor.
+
+## Create Model Monitor via automatically collected production data (Migrate to Model Monitor)
+
+If you have deployed your model to production in an Azure Machine Learning online endpoint and enabled [data collection](../how-to-collect-production-data.md) at deployment time.
+
+# [Python SDK](#tab/python)
+<a name="sdk-model-monitor"></a>
+
+You can use the following code to set up the out-of-box model monitoring:
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.ai.ml import MLClient
+from azure.ai.ml.entities import (
+    AlertNotification,
+    MonitoringTarget,
+    MonitorDefinition,
+    MonitorSchedule,
+    RecurrencePattern,
+    RecurrenceTrigger,
+    ServerlessSparkCompute
+)
+
+# get a handle to the workspace
+ml_client = MLClient(
+    DefaultAzureCredential(),
+    subscription_id="subscription_id",
+    resource_group_name="resource_group_name",
+    workspace_name="workspace_name",
+)
+
+# create the compute
+spark_compute = ServerlessSparkCompute(
+    instance_type="standard_e4s_v3",
+    runtime_version="3.3"
+)
+
+# specify your online endpoint deployment
+monitoring_target = MonitoringTarget(
+    ml_task="classification",
+    endpoint_deployment_id="azureml:credit-default:main"
+)
+
+
+# create alert notification object
+alert_notification = AlertNotification(
+    emails=['abc@example.com', 'def@example.com']
+)
+
+# create the monitor definition
+monitor_definition = MonitorDefinition(
+    compute=spark_compute,
+    monitoring_target=monitoring_target,
+    alert_notification=alert_notification
+)
+
+# specify the schedule frequency
+recurrence_trigger = RecurrenceTrigger(
+    frequency="day",
+    interval=1,
+    schedule=RecurrencePattern(hours=3, minutes=15)
+)
+
+# create the monitor
+model_monitor = MonitorSchedule(
+    name="credit_default_monitor_basic",
+    trigger=recurrence_trigger,
+    create_monitor=monitor_definition
+)
+
+poller = ml_client.schedules.begin_create_or_update(model_monitor)
+created_monitor = poller.result()
+```
+
+# [Studio](#tab/azure-studio)
+<a name="studio-model-monitor"></a>
+
+1. Navigate to [Azure Machine Learning studio](https://ml.azure.com).
+1. Go to your workspace.
+1. Select **Monitoring** from the **Manage** section
+1. Select **Add**.
+
+   :::image type="content" source="../media/how-to-monitor-models/add-model-monitoring.png" alt-text="Screenshot showing how to add model monitoring." lightbox="../media/how-to-monitor-models/add-model-monitoring.png":::
+
+1. On the **Basic settings** page, use **(Optional) Select model** to choose the model to monitor.
+1. The **(Optional) Select deployment with data collection enabled** dropdown list should be automatically populated if the model is deployed to an Azure Machine Learning online endpoint. Select the deployment from the dropdown list.
+1. Select the training data to use as the comparison reference in the **(Optional) Select training data** box.
+1. Enter a name for the monitoring in **Monitor name** or keep the default name.
+1. Notice that the virtual machine size is already selected for you.
+1. Select your **Time zone**. 
+1. Select **Recurrence** or **Cron expression** scheduling.
+1. For **Recurrence** scheduling, specify the repeat frequency, day, and time. For **Cron expression** scheduling, enter a cron expression for monitoring run.
+
+   :::image type="content" source="../media/how-to-monitor-models/model-monitoring-basic-setup.png" alt-text="Screenshot of basic settings page for model monitoring." lightbox="../media/how-to-monitor-models/model-monitoring-basic-setup.png":::
+
+1. Select **Next** to go to the **Advanced settings** section. 
+1. Select **Next** on the **Configure data asset** page to keep the default datasets.
+1. Select **Next** to go to the **Select monitoring signals** page.
+1. Select **Next** to go to the **Notifications** page. Add your email to receive email notifications.
+1. Review your monitoring details and select **Create** to create the monitor.
+
+# [Azure CLI](#tab/azure-cli)
+<a name="cli-model-monitor"></a>
+
+Azure Machine Learning model monitoring uses `az ml schedule` to schedule a monitoring job. You can create the out-of-box model monitor with the following CLI command and YAML definition:
+
+```azurecli
+az ml schedule create -f ./out-of-box-monitoring.yaml
+```
+
+The following YAML contains the definition for the out-of-box model monitoring.
+
+:::code language="yaml" source="~/azureml-examples-main/cli/monitoring/out-of-box-monitoring.yaml":::
+
+---
+
+## Create Model Monitor via custom data preprocessing component (Migrate to Model Monitor)
+When you migrate to Model Monitor, if you didn't deploy your model to production in an Azure Machine Learning online endpoint, or you don't want to use [data collection](../how-to-collect-production-data.md), you can also [set up model monitoring with custom signals and metrics](../how-to-monitor-model-performance.md#set-up-model-monitoring-with-custom-signals-and-metrics).
+
+If you don't have a deployment, but you have production data, you can use the data to perform continuous model monitoring. To monitor these models, you must be able to:
+
+* Collect production inference data from models deployed in production.
+* Register the production inference data as an Azure Machine Learning data asset, and ensure continuous updates of the data.
+* Provide a custom data preprocessing component and register it as an Azure Machine Learning component. 
+
+You must provide a custom data preprocessing component if your data isn't collected with the [data collector](../how-to-collect-production-data.md). Without this custom data preprocessing component, the Azure Machine Learning model monitoring system won't know how to process your data into tabular form with support for time windowing.
+
+Your custom preprocessing component must have these input and output signatures:
+
+  | Input/Output | Signature name | Type | Description | Example value |
+  |---|---|---|---|---|
+  | input | `data_window_start` | literal, string | data window start-time in ISO8601 format. | 2023-05-01T04:31:57.012Z |
+  | input | `data_window_end` | literal, string | data window end-time in ISO8601 format. | 2023-05-01T04:31:57.012Z |
+  | input | `input_data` | uri_folder | The collected production inference data, which is registered as an Azure Machine Learning data asset. | azureml:myproduction_inference_data:1 |
+  | output | `preprocessed_data` | mltable | A tabular dataset, which matches a subset of the reference data schema. | |
+
+For an example of a custom data preprocessing component, see [custom_preprocessing in the azuremml-examples GitHub repo](https://github.com/Azure/azureml-examples/tree/main/cli/monitoring/components/custom_preprocessing).
 
 ## Understand data drift results
 
@@ -271,7 +441,6 @@ This section shows you the results of monitoring a dataset, found in the **Datas
 Start with the top-level insights into the magnitude of data drift and a highlight of features to be further investigated.
 
 :::image type="content" source="media/how-to-monitor-datasets/drift-overview.png" alt-text="Drift overview":::
-
 
 | Metric | Description |
 | ------ | ----------- |
@@ -318,7 +487,7 @@ Metrics in the chart depend on the type of feature.
 
     | Metric | Description |
     | ------ | ----------- |
-    | Euclidian distance     |  Computed for categorical columns. Euclidean distance is computed on two vectors, generated from empirical distribution of the same categorical column from two datasets. 0 indicates no difference in the empirical distributions.  The more it deviates from 0, the more this column has drifted. Trends can be observed from a time series plot of this metric and can be helpful in uncovering a drifting feature.  |
+    | Euclidian distance   | Computed for categorical columns. Euclidean distance is computed on two vectors, generated from empirical distribution of the same categorical column from two datasets. 0 indicates no difference in the empirical distributions.  The more it deviates from 0, the more this column has drifted. Trends can be observed from a time series plot of this metric and can be helpful in uncovering a drifting feature.  |
     | Unique values | Number of unique values (cardinality) of the feature. |
 
 On this chart, select a single date to compare the feature distribution between the target and this date for the displayed feature. For numeric features, this shows two probability distributions. If the feature is numeric, a bar chart is shown.
@@ -327,7 +496,7 @@ On this chart, select a single date to compare the feature distribution between 
 
 ## Metrics, alerts, and events
 
-Metrics can be queried in the [Azure Application Insights](/azure/azure-monitor/app/app-insights-overview) resource associated with your machine learning workspace. You have access to all features of Application Insights including set up for custom alert rules and action groups to trigger an action such as, an Email/SMS/Push/Voice or Azure Function. Refer to the complete Application Insights documentation for details.
+Metrics can be queried in the [Azure Application Insights](/azure/azure-monitor/app/app-insights-overview) resource associated with your machine learning workspace. You have access to all features of Application Insights including set up for custom alert rules and action groups to trigger an action such as an Email/SMS/Push/Voice or Azure Function. Refer to the complete Application Insights documentation for details.
 
 To get started, navigate to the [Azure portal](https://portal.azure.com) and select your workspace's **Overview** page. The associated Application Insights resource is on the far right:
 
@@ -373,6 +542,10 @@ Limitations and known issues for data drift monitors:
 
 * If the SDK `backfill()` function doesn't generate the expected output, it may be due to an authentication issue. When you create the compute to pass into this function, don't use `Run.get_context().experiment.workspace.compute_targets`. Instead, use [ServicePrincipalAuthentication](/python/api/azureml-core/azureml.core.authentication.serviceprincipalauthentication) such as the following to create the compute that you pass into that `backfill()` function:
 
+> [!NOTE]
+> Do not hard code the service principal password in your code. Instead, retrieve it from the Python environment, key store, or other secure method of accessing secrets.
+> 
+
   ```python
    auth = ServicePrincipalAuthentication(
           tenant_id=tenant_id,
@@ -392,6 +565,6 @@ Limitations and known issues for data drift monitors:
 
 ## Next steps
 
-* Head to the [Azure Machine Learning studio](https://ml.azure.com) or the [Python notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/work-with-data/datadrift-tutorial/datadrift-tutorial.ipynb) to set up a dataset monitor.
+* Head to the [Azure Machine Learning studio](https://ml.azure.com) or the [Python notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/work-with-data/datasets-tutorial/train-with-datasets/train-with-datasets.ipynb) to set up a dataset monitor.
 * See how to set up data drift on [models deployed to Azure Kubernetes Service](how-to-enable-data-collection.md).
 * Set up dataset drift monitors with [Azure Event Grid](../how-to-use-event-grid.md).

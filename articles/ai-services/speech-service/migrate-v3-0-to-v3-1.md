@@ -2,24 +2,28 @@
 title: Migrate from v3.0 to v3.1 REST API - Speech service
 titleSuffix: Azure AI services
 description: This document helps developers migrate code from v3.0 to v3.1 of the Speech to text REST API.
-author: heikora
-manager: dongli
+author: eric-urban
+ms.author: eur
+manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 6/6/2024
-ms.author: heikora
+ms.date: 3/10/2025
+ms.reviewer: heikora
 ms.devlang: csharp
 ms.custom: devx-track-csharp
+#Customer intent: As a developer, I want to migrate code from v3.0 to v3.1 of the Speech to text REST API.
 ---
 
 # Migrate code from v3.0 to v3.1 of the REST API
 
-The Speech to text REST API is used for [Batch transcription](batch-transcription.md) and [custom speech](custom-speech-overview.md). Changes from version 3.0 to 3.1 are described in the sections below.
+The Speech to text REST API is used for [fast transcription](./fast-transcription-create.md), [batch transcription](batch-transcription.md), and [custom speech](custom-speech-overview.md). Changes from version 3.0 to 3.1 are described in the sections below.
 
 > [!IMPORTANT]
-> Speech to text REST API v3.2 is the latest version that's generally available. Preview versions *3.2-preview.1* and *3*.2-preview.2* will be removed in September 2024.
-> [Speech to text REST API](rest-speech-to-text.md) v3.1 will be retired on a date to be announced.
-> Speech to text REST API v3.0 will be retired on April 1st, 2026. 
+> Speech to text REST API version `2024-11-15` is the latest version that's generally available. 
+> - [Speech to text REST API](rest-speech-to-text.md) version `2024-05-15-preview` will be retired on a date to be announced. 
+> - Speech to text REST API `v3.0`, `v3.1`, `v3.2`, `3.2-preview.1`, and `3.2-preview.2` will be retired on April 1st, 2026. 
+> 
+> For more information about upgrading, see the Speech to text REST API [v3.0 to v3.1](migrate-v3-0-to-v3-1.md), [v3.1 to v3.2](migrate-v3-1-to-v3-2.md), and [v3.2 to 2024-11-15](migrate-2024-11-15.md) migration guides.
 
 ## Base path
 
@@ -40,7 +44,7 @@ For more information, see [Operation IDs](#operation-ids) later in this guide.
 In the [Transcriptions_Create](/rest/api/speechtotext/transcriptions/create) operation the following three properties are added:
 - The `displayFormWordLevelTimestampsEnabled` property can be used to enable the reporting of word-level timestamps on the display form of the transcription results. The results are returned in the `displayWords` property of the transcription file.
 - The `diarization` property can be used to specify hints for the minimum and maximum number of speaker labels to generate when performing optional diarization (speaker separation). With this feature, the service is now able to generate speaker labels for more than two speakers. To use this property, you must also set the `diarizationEnabled` property to `true`. With the v3.1 API, we have increased the number of speakers that can be identified through diarization from the two speakers supported by the v3.0 API. It's recommended to keep the number of speakers under 30 for better performance.
-- The `languageIdentification` property can be used specify settings for language identification on the input prior to transcription. Up to 10 candidate locales are supported for language identification. The returned transcription includes a new `locale` property for the recognized language or the locale that you provided. 
+- The `languageIdentification` property can be used to specify settings for language identification on the input prior to transcription. Up to 10 candidate locales are supported for language identification. The returned transcription includes a new `locale` property for the recognized language or the locale that you provided. 
 
 The `filter` property is added to the [Transcriptions_List](/rest/api/speechtotext/transcriptions/list), [Transcriptions_ListFiles](/rest/api/speechtotext/transcriptions/list-files), and [Projects_ListTranscriptions](/rest/api/speechtotext/projects/list-transcriptions) operations. The `filter` expression can be used to select a subset of the available resources. You can filter by `displayName`, `description`, `createdDateTime`, `lastActionDateTime`, `status`, and `locale`. For example: `filter=createdDateTime gt 2022-02-01T11:00:00Z`
 

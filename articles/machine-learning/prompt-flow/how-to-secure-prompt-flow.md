@@ -38,8 +38,10 @@ Here is table to illustrate the options in different network set up for prompt f
 
 |Ingress|Egress |Compute type in authoring               |Compute type in inference                                |Network options for workspace|
 |-------|-------|----------------------------------------|---------------------------------------------------------|-----------------------------|
-|Public |Public |Serverless (recommend), Compute instance| Managed online endpoint (recommend), K8s online endpoint|Managed (recommend) /Bring you own|
-|Private|Public |Serverless (recommend), Compute instance| Managed online endpoint (recommend), K8s online endpoint|Managed (recommend) /Bring you own|
+|Public |Public |Serverless (recommend), Compute instance| Managed online endpoint (recommend)|Managed (recommend)|
+|Public |Public |Serverless (recommend), Compute instance|  K8s online endpoint| Bring you own|
+|Private|Public |Serverless (recommend), Compute instance| Managed online endpoint (recommend)|Managed (recommend)|
+|Private|Public |Serverless (recommend), Compute instance|  K8s online endpoint|Bring you own|
 |Public |Private|Serverless (recommend), Compute instance| Managed online endpoint                                 |Managed|
 |Private|Private|Serverless (recommend), Compute instance| Managed online endpoint                                 |Managed|
 
@@ -117,7 +119,7 @@ Workspace managed virtual network is the recommended way to support network isol
 
 ## Known limitations
 
-- AI studio don't support bring your own virtual network, it only support workspace managed virtual network.
+- Azure AI Foundry doesn't support bring your own virtual network, it only supports workspace managed virtual network.
 - Managed online endpoint with selected egress only supports workspace with managed virtual network. If you want to use your own virtual network, you might need one workspace for prompt flow authoring with your virtual network and another workspace for prompt flow deployment using managed online endpoint with workspace managed virtual network.
 
 ## Next steps

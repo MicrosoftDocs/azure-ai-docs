@@ -2,14 +2,16 @@
 title: How to log audio and transcriptions for speech recognition
 titleSuffix: Azure AI services
 description: Learn how to use audio and transcription logging for speech to text and speech translation.
-author: alexeyo26
+author: eric-urban
+ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 1/21/2024
-ms.author: alexeyo 
+ms.date: 3/10/2025
+ms.reviewer: alexeyo 
 zone_pivot_groups: programming-languages-speech-services-nomore-variant
+#Customer intent: As a developer using speech to text, I want to learn how to log audio and transcriptions for speech recognition.
 ---
 
 # How to log audio and transcriptions for speech recognition
@@ -294,35 +296,35 @@ curl -v -X PATCH -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey" -H "Content
   "properties": {
     "contentLoggingEnabled": false
   },
-}'  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.1/endpoints/YourEndpointId"
+}'  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/YourEndpointId"
 ```
 
 You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/endpoints/4ef91f9b-7ac9-4c3b-a238-581ef0f8b7e2",
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/models/71b46720-995d-4038-a331-0317e9e7a02f"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd"
   },
   "links": {
-    "logs": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/endpoints/4ef91f9b-7ac9-4c3b-a238-581ef0f8b7e2/files/logs",
-    "restInteractive": "https://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=4ef91f9b-7ac9-4c3b-a238-581ef0f8b7e2",
-    "restConversation": "https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=4ef91f9b-7ac9-4c3b-a238-581ef0f8b7e2",
-    "restDictation": "https://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=4ef91f9b-7ac9-4c3b-a238-581ef0f8b7e2",
-    "webSocketInteractive": "wss://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=4ef91f9b-7ac9-4c3b-a238-581ef0f8b7e2",
-    "webSocketConversation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=4ef91f9b-7ac9-4c3b-a238-581ef0f8b7e2",
-    "webSocketDictation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=4ef91f9b-7ac9-4c3b-a238-581ef0f8b7e2"
+    "logs": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37/files/logs",
+    "restInteractive": "https://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
+    "restConversation": "https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
+    "restDictation": "https://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
+    "webSocketInteractive": "wss://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
+    "webSocketConversation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
+    "webSocketDictation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/projects/122fd2f7-1d3a-4404-885d-2b24a2a187e8"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
   },
   "properties": {
     "loggingEnabled": false
   },
-  "lastActionDateTime": "2023-03-28T23:03:15Z",
+  "lastActionDateTime": "2024-07-15T16:30:12Z",
   "status": "Succeeded",
-  "createdDateTime": "2023-03-28T23:02:40Z",
+  "createdDateTime": "2024-07-15T16:29:36Z",
   "locale": "en-US",
   "displayName": "My Endpoint",
   "description": "My Endpoint Description"
@@ -373,25 +375,25 @@ Here's a sample output of [Endpoints_ListLogs](/rest/api/speechtotext/endpoints/
 {
   "values": [
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/endpoints/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/files/logs/2023-03-13_163715__0420c53d-e6ac-4857-bce0-f39c3f9f5ff9_v2_json",
+      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/files/logs/2023-03-13_163715__0420c53d-e6ac-4857-bce0-f39c3f9f5ff9_v2_json",
       "name": "163715__0420c53d-e6ac-4857-bce0-f39c3f9f5ff9.v2.json",
       "kind": "Transcription",
       "properties": {
         "size": 79920
       },
-      "createdDateTime": "2023-03-13T16:37:15Z",
+      "createdDateTime": "2024-07-15T16:29:36Z",
       "links": {
         "contentUrl": "<Link to download log file>"
       }
     },
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/endpoints/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/files/logs/2023-03-13_163715__0420c53d-e6ac-4857-bce0-f39c3f9f5ff9_wav",
+      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/files/logs/2023-03-13_163715__0420c53d-e6ac-4857-bce0-f39c3f9f5ff9_wav",
       "name": "163715__0420c53d-e6ac-4857-bce0-f39c3f9f5ff9.wav",
       "kind": "Audio",
       "properties": {
         "size": 932966
       },
-      "createdDateTime": "2023-03-13T16:37:15Z",
+      "createdDateTime": "2024-07-15T16:29:36Z",
       "links": {
         "contentUrl": "<Link to download log file>"
       }
@@ -405,7 +407,7 @@ The locations of each audio and transcription log file are returned in the respo
 The log ID for each log file is the last part of the URL in the `"self"` element value. The log ID in the following example is `2023-03-13_163715__0420c53d-e6ac-4857-bce0-f39c3f9f5ff9_v2_json`. 
 
 ```json
-"self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/endpoints/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/files/logs/2023-03-13_163715__0420c53d-e6ac-4857-bce0-f39c3f9f5ff9_v2_json"
+"self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/files/logs/2023-03-13_163715__0420c53d-e6ac-4857-bce0-f39c3f9f5ff9_v2_json"
 ```
 
 ## Delete audio and transcription logs

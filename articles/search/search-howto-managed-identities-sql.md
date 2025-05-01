@@ -8,9 +8,9 @@ manager: nitinme
 ms.custom:
   - subject-rbac-steps
   - ignite-2023
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 02/22/2024
+ms.date: 12/10/2024
 ---
 
 # Set up an indexer connection to Azure SQL using a managed identity
@@ -25,7 +25,7 @@ You can use a system-assigned managed identity or a user-assigned managed identi
 
 * [Assign an Azure admin role on SQL](/azure/azure-sql/database/authentication-aad-configure). The identity used on the indexer connection needs read permissions. You must be a Microsoft Entra admin with a server in SQL Database or SQL Managed Instance to grant read permissions on a database.
 
-* You should be familiar with [indexer concepts](search-indexer-overview.md) and [configuration](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md). 
+* You should be familiar with [indexer concepts](search-indexer-overview.md) and [configuration](search-how-to-index-sql-database.md). 
 
 ## 1 - Assign permissions to read the database
 
@@ -90,11 +90,11 @@ Create the data source and provide either a system-assigned managed identity or 
 
 ### System-assigned managed identity
 
-The [REST API](/rest/api/searchservice/create-data-source), Azure portal, and the [.NET SDK](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourceconnection) support system-assigned managed identity. 
+The [REST API](/rest/api/searchservice/data-sources/create), Azure portal, and the [.NET SDK](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourceconnection) support system-assigned managed identity. 
 
 When you're connecting with a system-assigned managed identity, the only change to the data source definition is the format of the "credentials" property. You'll provide an Initial Catalog or Database name and a ResourceId that has no account key or password. The ResourceId must include the subscription ID of Azure SQL Database, the resource group of SQL Database, and the name of the SQL database.
 
-Here's an example of how to create a data source to index data from a storage account using the [Create Data Source](/rest/api/searchservice/create-data-source) REST API and a managed identity connection string. The managed identity connection string format is the same for the REST API, .NET SDK, and the Azure portal.
+Here's an example of how to create a data source to index data from a storage account using the [Create Data Source](/rest/api/searchservice/data-sources/create) REST API and a managed identity connection string. The managed identity connection string format is the same for the REST API, .NET SDK, and the Azure portal.
 
 ```http
 POST https://[service name].search.windows.net/datasources?api-version=2024-07-01
@@ -186,4 +186,4 @@ If you get an error when the indexer tries to connect to the data source that sa
 
 ## See also
 
-[Azure SQL indexer](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
+[Azure SQL indexer](search-how-to-index-sql-database.md)

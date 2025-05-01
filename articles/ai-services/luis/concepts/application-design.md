@@ -2,7 +2,6 @@
 title: Application Design
 titleSuffix: Azure AI services
 description: Application design concepts
-#services: cognitive-services
 ms.author: aahi
 author: aahill
 manager: nitinme
@@ -34,7 +33,7 @@ A LUIS app learns and performs most efficiently when you iteratively develop it.
 
 ## Identify your domain
 
-A LUIS app is centered around a subject domain. For example, you may have a travel app that handles booking of tickets, flights, hotels, and rental cars. Another app may provide content related to exercising, tracking fitness efforts and setting goals. Identifying the domain helps you find words or phrases that are relevant to your domain.
+A LUIS app is centered around a subject domain. For example, you might have a travel app that handles booking of tickets, flights, hotels, and rental cars. Another app may provide content related to exercising, tracking fitness efforts and setting goals. Identifying the domain helps you find words or phrases that are relevant to your domain.
 
 > [!TIP]
 > LUIS offers [prebuilt domains](../howto-add-prebuilt-models.md) for many common scenarios. Check to see if you can use a prebuilt domain as a starting point for your app.
@@ -135,7 +134,7 @@ Each authoring cycle should be contained within a new [version](../concepts/appl
 Publishing your app too quickly and without proper planning may lead to several issues such as:
 
 * Your app will not work in your actual scenario at an acceptable level of performance.
-* The schema (intents and entities) might not be appropriate, and if you have developed client app logic following the schema, you may need to redo it. This might cause unexpected delays and extra costs to the project you are working on.
+* The schema (intents and entities) might not be appropriate, and if you have developed client app logic following the schema, you might need to redo it. This might cause unexpected delays and extra costs to the project you are working on.
 * Utterances you add to the model might cause biases towards example utterances that are hard to debug and identify. It will also make removing ambiguity difficult after you have committed to a certain schema.
 
 ### Do monitor the performance of your app

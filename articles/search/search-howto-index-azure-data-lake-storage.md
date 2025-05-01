@@ -5,11 +5,11 @@ description: Set up an Azure Data Lake Storage (ADLS) Gen2 indexer to automate i
 author: gmndrg
 ms.author: gimondra
 manager: vinodva
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 08/23/2024
+ms.date: 12/10/2024
 ---
 
 # Index data from Azure Data Lake Storage Gen2
@@ -96,7 +96,7 @@ It's important to point out that you don't need to define fields for all of the 
 
 The data source definition specifies the data to index, credentials, and policies for identifying changes in the data. A data source is defined as an independent resource so that it can be used by multiple indexers.
 
-1. [Create or update a data source](/rest/api/searchservice/create-data-source) to set its definition: 
+1. [Create or update a data source](/rest/api/searchservice/data-sources/create-or-update) to set its definition: 
 
     ```json
     {
@@ -124,7 +124,7 @@ Indexers can connect to a blob container using the following connections.
 | Full access storage account connection string |
 |-----------------------------------------------|
 |`{ "connectionString" : "DefaultEndpointsProtocol=https;AccountName=<your storage account>;AccountKey=<your account key>;" }` |
-| You can get the connection string from the Storage account page in Azure portal by selecting **Access keys** in the left navigation pane. Make sure to select a full connection string and not just a key. |
+| You can get the connection string from the Storage account page in Azure portal by selecting **Access keys** in the left pane. Make sure to select a full connection string and not just a key. |
 
 | Managed identity connection string |
 |------------------------------------|
@@ -143,7 +143,7 @@ Indexers can connect to a blob container using the following connections.
 
 In a [search index](search-what-is-an-index.md), add fields to accept the content and metadata of your Azure blobs.
 
-1. [Create or update an index](/rest/api/searchservice/create-index) to define search fields that will store blob content and metadata:
+1. [Create or update an index](/rest/api/searchservice/indexes/create) to define search fields that will store blob content and metadata:
 
     ```http
     {
@@ -178,7 +178,7 @@ In a [search index](search-what-is-an-index.md), add fields to accept the conten
 
 Once the index and data source have been created, you're ready to create the indexer. Indexer configuration specifies the inputs, parameters, and properties controlling run time behaviors. You can also specify which parts of a blob to index.
 
-1. [Create or update an indexer](/rest/api/searchservice/create-indexer) by giving it a name and referencing the data source and target index:
+1. [Create or update an indexer](/rest/api/searchservice/indexers/create) by giving it a name and referencing the data source and target index:
 
     ```http
     {
@@ -221,13 +221,13 @@ Once the index and data source have been created, you're ready to create the ind
 
    In blob indexing, you can often omit field mappings because the indexer has built-in support for mapping the "content" and metadata properties to similarly named and typed fields in an index. For metadata properties, the indexer will automatically replace hyphens `-` with underscores in the search index.
 
-1. See [Create an indexer](search-howto-create-indexers.md) for more information about other properties. For the full list of parameter descriptions, see [Blob configuration parameters](/rest/api/searchservice/create-indexer#blob-configuration-parameters) in the REST API.
+1. See [Create an indexer](search-howto-create-indexers.md) for more information about other properties. For the full list of parameter descriptions, see [Create Indexer (REST)](/rest/api/searchservice/indexers/create#definitions) in the REST API.
 
 An indexer runs automatically when it's created. You can prevent this by setting "disabled" to true. To control indexer execution, [run an indexer on demand](search-howto-run-reset-indexers.md) or [put it on a schedule](search-howto-schedule-indexers.md).
 
 ## Check indexer status
 
-To monitor the indexer status and execution history, send a [Get Indexer Status](/rest/api/searchservice/get-indexer-status) request:
+To monitor the indexer status and execution history, send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status) request:
 
 ```http
 GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2024-07-01

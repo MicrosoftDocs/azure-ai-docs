@@ -2,13 +2,13 @@
 title: "Quickstart: Image Analysis 4.0 REST API"
 titleSuffix: "Azure AI services"
 description: In this quickstart, get started with the Image Analysis 4.0 REST API.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 01/24/2023
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
@@ -53,7 +53,7 @@ A successful response is returned in JSON, similar to the following example:
 
 ```json
 {
-    "modelVersion": "2024-02-01",
+    "modelVersion": "2023-10-01",
     "captionResult":
     {
         "text": "a man pointing at a screen",

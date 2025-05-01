@@ -10,13 +10,14 @@ ms.author: ssalgado
 author: ssalgadodev
 ms.reviewer: timanghn
 ms.custom: references_regions, build-2024
-ms.date: 05/02/2024
+ms.collection: ce-skilling-ai-copilot 
+ms.date: 12/11/2024
 #Customer intent: As a data scientist, I want to learn about models available in the model catalog.
 ---
 
 # Model Catalog and Collections
 
-The model catalog in Azure Machine Learning studio is the hub to discover and use a wide range of models that enable you to build Generative AI applications. The model catalog features hundreds of models from model providers such as Azure OpenAI service, Mistral, Meta, Cohere, Nvidia, Hugging Face, including models trained by Microsoft. Models from providers other than Microsoft are Non-Microsoft Products, as defined in [Microsoft's Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), and subject to the terms provided with the model.   
+The model catalog in Azure Machine Learning studio is the hub to discover and use a wide range of models that enable you to build Generative AI applications. The model catalog features hundreds of models from model providers such as Azure OpenAI service, Mistral, Meta, Cohere, NVIDIA, Hugging Face, including models trained by Microsoft. Models from providers other than Microsoft are Non-Microsoft Products, as defined in [Microsoft's Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), and subject to the terms provided with the model.   
 
 ## Model Collections 
 
@@ -55,11 +56,11 @@ Network isolation | Managed Virtual Network with Online Endpoints. [Learn more.]
 
 Model | Managed compute | Serverless API (pay-as-you-go)
 --|--|--
-Llama family models  | Llama-2-7b <br> Llama-2-7b-chat <br> Llama-2-13b <br> Llama-2-13b-chat <br> Llama-2-70b <br> Llama-2-70b-chat <br> Llama-3-8B-Instruct <br> Llama-3-70B-Instruct <br> Llama-3-8B <br> Llama-3-70B | Llama-3-70B-Instruct <br> Llama-3-8B-Instruct <br> Llama-2-7b <br> Llama-2-7b-chat <br> Llama-2-13b <br> Llama-2-13b-chat <br> Llama-2-70b <br> Llama-2-70b-chat 
-Mistral family models | mistralai-Mixtral-8x22B-v0-1 <br> mistralai-Mixtral-8x22B-Instruct-v0-1 <br> mistral-community-Mixtral-8x22B-v0-1 <br> mistralai-Mixtral-8x7B-v01 <br> mistralai-Mistral-7B-Instruct-v0-2 <br> mistralai-Mistral-7B-v01 <br> mistralai-Mixtral-8x7B-Instruct-v01 <br> mistralai-Mistral-7B-Instruct-v01 | Mistral-large (2402) <br> Mistral-large (2407) <br> Mistral-small <br> Mistral-Nemo
-Cohere family models | Not available | Cohere-command-r-plus <br> Cohere-command-r <br> Cohere-embed-v3-english <br> Cohere-embed-v3-multilingual <br> Cohere-rerank-3-english <br> Cohere-rerank-3-multilingual
+Llama family models  | Llama-3.3-70B-Instruct<BR> Llama-2-7b <br> Llama-2-7b-chat <br> Llama-2-13b <br> Llama-2-13b-chat <br> Llama-2-70b <br> Llama-2-70b-chat <br> Llama-3-8B-Instruct <br> Llama-3-70B-Instruct <br> Llama-3-8B <br> Llama-3-70B | Llama-3.3-70B-Instruct<BR> Llama-3-70B-Instruct <br> Llama-3-8B-Instruct <br> Llama-2-7b <br> Llama-2-7b-chat <br> Llama-2-13b <br> Llama-2-13b-chat <br> Llama-2-70b <br> Llama-2-70b-chat 
+Mistral family models | mistralai-Mixtral-8x22B-v0-1 <br> mistralai-Mixtral-8x22B-Instruct-v0-1 <br> mistral-community-Mixtral-8x22B-v0-1 <br> mistralai-Mixtral-8x7B-v01 <br> mistralai-Mistral-7B-Instruct-v0-2 <br> mistralai-Mistral-7B-v01 <br> mistralai-Mixtral-8x7B-Instruct-v01 <br> mistralai-Mistral-7B-Instruct-v01 | Mistral-large (2402) <br> Mistral-large (2407) <br> Mistral-small <br> Ministral-3B <br> Mistral-Nemo
+Cohere family models | Not available | Cohere-command-r-plus-08-2024 <br> Cohere-command-r-08-2024 <br> Cohere-command-r-plus <br> Cohere-command-r <br> Cohere-embed-v3-english <br> Cohere-embed-v3-multilingual <br> Cohere-rerank-v3-english <br> Cohere-rerank-v3-multilingual
 JAIS | Not available | jais-30b-chat
-Phi-3 family models | Phi-3-mini-4k-Instruct <br> Phi-3-mini-128k-Instruct <br> Phi-3-small-8k-Instruct <br> Phi-3-small-128k-Instruct <br> Phi-3-medium-4k-instruct <br> Phi-3-medium-128k-instruct <br> Phi-3-vision-128k-Instruct <br> Phi-3.5-mini-Instruct <br> Phi-3.5-vision-Instruct <br> Phi-3.5-MoE-Instruct | Phi-3-mini-4k-Instruct <br> Phi-3-mini-128k-Instruct <br> Phi-3-small-8k-Instruct <br> Phi-3-small-128k-Instruct <br> Phi-3-medium-4k-instruct <br> Phi-3-medium-128k-instruct <br> <br> Phi-3.5-mini-Instruct  
+Phi-3 family models | Phi-3-mini-4k-Instruct <br> Phi-3-mini-128k-Instruct <br> Phi-3-small-8k-Instruct <br> Phi-3-small-128k-Instruct <br> Phi-3-medium-4k-instruct <br> Phi-3-medium-128k-instruct <br> Phi-3-vision-128k-Instruct <br> Phi-3.5-mini-Instruct <br> Phi-3.5-vision-Instruct <br> Phi-3.5-MoE-Instruct | Phi-3-mini-4k-Instruct <br> Phi-3-mini-128k-Instruct <br> Phi-3-small-8k-Instruct <br> Phi-3-small-128k-Instruct <br> Phi-3-medium-4k-instruct <br> Phi-3-medium-128k-instruct <br> <br> Phi-3.5-mini-Instruct <br> Phi-3.5-vision-Instruct <br> Phi-3.5-MoE-Instruct  
 Nixtla | Not available | TimeGEN-1
 Other models | Available | Not available
 
@@ -67,7 +68,7 @@ Other models | Available | Not available
 
 ## Managed compute
 
-The capability to deploy models with managed compute builds on platform capabilities of Azure Machine Learning to enable seamless integration, across the entire LLMOps lifecycle, of the wide collection of models in the model catalog. 
+The capability to deploy models with managed compute builds on platform capabilities of Azure Machine Learning to enable seamless integration, across the entire GenAIOps (sometimes called LLMOps) lifecycle, of the wide collection of models in the model catalog. 
 
 :::image type="content" source="media/concept-model-catalog/llm-ops-life-cycle.png" alt-text="A diagram showing the LLMops life cycle." lightbox="media/concept-model-catalog/llm-ops-life-cycle.png":::
 
@@ -117,7 +118,7 @@ Models that are available for deployment as serverless APIs with pay-as-you-go b
 
 ### Pay for model usage in MaaS    
 
-The discovery, subscription, and consumption experience for models deployed via MaaS is in the Azure AI Studio and Azure Machine Learning studio. Users accept license terms for use of the models, and pricing information for consumption is provided during deployment. Models from third party providers are billed through Azure Marketplace, in accordance with the [Commercial Marketplace Terms of Use](/legal/marketplace/marketplace-terms); models from Microsoft are billed using Azure meters as First Party Consumption Services. As described in the [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), First Party Consumption Services are purchased using Azure meters but aren't subject to Azure service terms; use of these models is subject to the license terms provided. 
+The discovery, subscription, and consumption experience for models deployed via MaaS is in the [Azure AI Foundry portal](https://ai.azure.com/) and Azure Machine Learning studio. Users accept license terms for use of the models, and pricing information for consumption is provided during deployment. Models from third party providers are billed through Azure Marketplace, in accordance with the [Commercial Marketplace Terms of Use](/legal/marketplace/marketplace-terms); models from Microsoft are billed using Azure meters as First Party Consumption Services. As described in the [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), First Party Consumption Services are purchased using Azure meters but aren't subject to Azure service terms; use of these models is subject to the license terms provided. 
 
 ### Deploy models for inference through MaaS 
 
@@ -125,15 +126,15 @@ Deploying a model through MaaS allows users to get access to ready to use infere
 
 ### Fine-tune models through MaaS with Pay-as-you-go 
 
-For models that are available through MaaS and support fine-tuning, users can take advantage of hosted fine-tuning with pay-as-you-go billing to tailor the models using data they provide. For more information, see [fine-tune a Llama 2 model](/azure/ai-studio/how-to/fine-tune-model-llama) in Azure AI Studio. 
+For models that are available through MaaS and support fine-tuning, users can take advantage of hosted fine-tuning with pay-as-you-go billing to tailor the models using data they provide. For more information, see [fine-tune a Llama 2 model](/azure/ai-services/openai/how-to/fine-tuning) in [Azure AI Foundry portal](https://ai.azure.com/). 
 
 ### RAG with models deployed through MaaS 
 
-Azure AI Studio enables users to make use of Vector Indexes and Retrieval Augmented Generation. Models that can be deployed as serverless APIs can be used to generate embeddings and inferencing based on custom data to generate answers specific to their use case. For more information, see [Retrieval augmented generation and indexes](concept-retrieval-augmented-generation.md). 
+Azure AI Foundry enables users to make use of Vector Indexes and Retrieval Augmented Generation. Models that can be deployed as serverless APIs can be used to generate embeddings and inferencing based on custom data to generate answers specific to their use case. For more information, see [Retrieval augmented generation and indexes](concept-retrieval-augmented-generation.md). 
 
 ### Regional availability of offers and models 
 
-PPay-as-you-go billing is available only to users whose Azure subscription belongs to a billing account in a country where the model provider has made the offer available. If the offer is available in the relevant region, the user then must have a Hub/Project in the Azure region where the model is available for deployment or fine-tuning, as applicable. See [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md) for detailed information.
+PPay-as-you-go billing is available only to users whose Azure subscription belongs to a billing account in a country/region where the model provider has made the offer available. If the offer is available in the relevant region, the user then must have a Hub/Project in the Azure region where the model is available for deployment or fine-tuning, as applicable. See [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md) for detailed information.
 
 
 
@@ -141,7 +142,7 @@ PPay-as-you-go billing is available only to users whose Azure subscription belon
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
-[!INCLUDE [content-safety-serverless-models](../ai-studio/includes/content-safety-serverless-models.md)]
+[!INCLUDE [content-safety-serverless-models](../ai-foundry/includes/content-safety-serverless-models.md)]
 
 ### Network isolation for models deployed via Serverless APIs
 
@@ -151,7 +152,7 @@ To set the PNA flag for the workspace:
 
 * Go to the [Azure portal](https://ms.portal.azure.com/).
 * Search for _Azure Machine Learning_, and select your workspace from the list of workspaces.
-* On the Overview page, use the left navigation pane to go to **Settings** > **Networking**.
+* On the Overview page, use the left pane to go to **Settings** > **Networking**.
 * Under the **Public access** tab, you can configure settings for the public network access flag.
 * Save your changes. Your changes might take up to five minutes to propagate.
 
@@ -164,6 +165,5 @@ To set the PNA flag for the workspace:
 
 ## Learn more
 
-* Learn [how to use foundation Models in Azure Machine Learning](./how-to-use-foundation-models.md) for fine-tuning, evaluation, and deployment using Azure Machine Learning studio UI or code based methods.
-* Explore the [Model Catalog in Azure Machine Learning studio](https://ml.azure.com/model/catalog). You need an [Azure Machine Learning workspace](./quickstart-create-resources.md) to explore the catalog.
-* [Evaluate, finetune, and deploy models](./how-to-use-foundation-models.md) curated by Azure Machine Learning.
+- [Model deprecation and retirement in Azure AI model catalog](concept-model-lifecycle-and-retirement.md)
+- [How to use Open Source foundation models curated by Azure Machine Learning](how-to-use-foundation-models.md)

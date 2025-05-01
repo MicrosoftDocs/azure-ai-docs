@@ -6,16 +6,16 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/21/2024
+ms.date: 3/10/2025
 ms.author: eur
+#Customer intent: As a developer, I want to migrate code from v3 text to speech REST API to custom voice REST API in the Speech service.
 ---
 
 # Migrate to custom voice REST API (Preview)
 
-The custom voice REST API is a new version of the text to speech REST API. You can deploy and use custom neural voice models with the API. 
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-> [!NOTE]
-> The custom voice REST API is currently in preview. 
+The custom voice REST API is a new version of the text to speech REST API. You can deploy and use custom neural voice models with the API. 
 
 In this article, you learn how to migrate code from the v3 text to speech REST API to the custom voice REST API.
 

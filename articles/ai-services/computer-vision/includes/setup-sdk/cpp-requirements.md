@@ -4,6 +4,7 @@ ms.service: azure-ai-vision
 ms.custom: linux-related-content
 ms.topic: include
 ms.date: 08/01/2023
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 

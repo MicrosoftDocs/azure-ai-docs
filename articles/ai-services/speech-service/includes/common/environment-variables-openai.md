@@ -6,24 +6,24 @@ ms.date: 8/11/2024
 ms.author: eur
 ---
 
-Your application must be authenticated to access Azure AI services resources. For production, use a secure way of storing and accessing your credentials. For example, after you get a key for your Speech resource, write it to a new environment variable on the local machine running the application.
+Your application must be authenticated to access Azure AI services resources. This article shows you how to use environment variables to store your credentials. You can then access the environment variables from your code to authenticate your application. For production, use a more secure way to store and access your credentials. 
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 To set the environment variables, open a console window, and follow the instructions for your operating system and development environment.
 
-- To set the `OPEN_AI_KEY` environment variable, replace `your-openai-key` with one of the keys for your resource.
-- To set the `OPEN_AI_ENDPOINT` environment variable, replace `your-openai-endpoint` with one of the regions for your resource.
-- To set the `OPEN_AI_DEPLOYMENT_NAME` environment variable, replace `your-openai-deployment-name` with one of the regions for your resource.
+- To set the `AZURE_OPENAI_API_KEY` environment variable, replace `your-openai-key` with one of the keys for your resource.
+- To set the `AZURE_OPENAI_ENDPOINT` environment variable, replace `your-openai-endpoint` with one of the regions for your resource.
+- To set the `AZURE_OPENAI_CHAT_DEPLOYMENT` environment variable, replace `your-openai-deployment-name` with one of the regions for your resource.
 - To set the `SPEECH_KEY` environment variable, replace `your-speech-key` with one of the keys for your resource.
 - To set the `SPEECH_REGION` environment variable, replace `your-speech-region` with one of the regions for your resource.
 
 #### [Windows](#tab/windows)
 
 ```console
-setx OPEN_AI_KEY your-openai-key
-setx OPEN_AI_ENDPOINT your-openai-endpoint
-setx OPEN_AI_DEPLOYMENT_NAME your-openai-deployment-name
+setx AZURE_OPENAI_API_KEY your-openai-key
+setx AZURE_OPENAI_ENDPOINT your-openai-endpoint
+setx AZURE_OPENAI_CHAT_DEPLOYMENT your-openai-deployment-name
 setx SPEECH_KEY your-speech-key
 setx SPEECH_REGION your-speech-region
 ```
@@ -36,9 +36,9 @@ After you add the environment variables, you might need to restart any running p
 #### [Linux](#tab/linux)
 
 ```bash
-export OPEN_AI_KEY=your-openai-key
-export OPEN_AI_ENDPOINT=your-openai-endpoint
-export OPEN_AI_DEPLOYMENT_NAME=your-openai-deployment-name
+export AZURE_OPENAI_API_KEY=your-openai-key
+export AZURE_OPENAI_ENDPOINT=your-openai-endpoint
+export AZURE_OPENAI_CHAT_DEPLOYMENT=your-openai-deployment-name
 export SPEECH_KEY=your-speech-key
 export SPEECH_REGION=your-speech-region
 ```
@@ -51,9 +51,9 @@ After you add the environment variables, run `source ~/.bashrc` from your consol
 Edit your *.bash_profile*, and add the environment variables:
 
 ```bash
-export OPEN_AI_KEY=your-openai-key
-export OPEN_AI_ENDPOINT=your-openai-endpoint
-export OPEN_AI_DEPLOYMENT_NAME=your-openai-deployment-name
+export AZURE_OPENAI_API_KEY=your-openai-key
+export AZURE_OPENAI_ENDPOINT=your-openai-endpoint
+export AZURE_OPENAI_CHAT_DEPLOYMENT=your-openai-deployment-name # For example, "gpt-4o-mini"
 export SPEECH_KEY=your-speech-key
 export SPEECH_REGION=your-speech-region
 ```

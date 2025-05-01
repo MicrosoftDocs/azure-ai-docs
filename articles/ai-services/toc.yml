@@ -7,6 +7,8 @@ items:
   - name: What are Azure AI services?
     href: what-are-ai-services.md
     displayName: applied, cognitive, form
+  - name: What's new in Azure AI services?
+    href: whats-new-ai-services.md    
   - name: Language support
     href: language-support.md
   - name: Pricing
@@ -19,27 +21,23 @@ items:
   - name: Create an Azure AI services resource using Bicep
     href: create-account-bicep.md
   - name: Create an Azure AI services resource using an ARM template
-    href: create-account-resource-manager-template.md  
+    href: create-account-resource-manager-template.md
   - name: Create an Azure AI services resource using Terraform
     href: create-account-terraform.md
-- name: Concepts
-  items:
-  - name: Azure AI services and the ecosystem
-    href: ai-services-and-ecosystem.md 
-  - name: Custom subdomains for Azure AI services
-    href: cognitive-services-custom-subdomains.md
 - name: How-to
   items:
   - name: Plan and manage costs
-    href: ../ai-studio/how-to/costs-plan-manage.md?context=/azure/ai-services/context/context
+    href: ../ai-foundry/how-to/costs-plan-manage.md?context=/azure/ai-services/context/context
   - name: Increase rate limit
     href: autoscale.md
-  - name: Use commitment tier pricing 
+  - name: Use commitment tier pricing
     href: commitment-tier.md
   - name: Diagnostic logging
     href: diagnostic-logging.md
   - name: Recover or purge deleted resources
     href: recover-purge-resources.md
+  - name: Custom subdomains for Azure AI services
+    href: cognitive-services-custom-subdomains.md
   - name: Deploy containers
     items:
     - name: Azure AI containers overview
@@ -119,7 +117,7 @@ items:
   - name: Azure CLI
     href: /cli/azure/cognitiveservices
   - name: Azure PowerShell
-    href: /powershell/module/azurerm.cognitiveservices/
+    href: /powershell/module/az.cognitiveservices/
   - name: Azure Policy built-ins
     displayName: samples, policies, definitions
     href: ./policy-reference.md

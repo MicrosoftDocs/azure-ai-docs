@@ -9,7 +9,7 @@ ms.subservice: core
 ms.topic: tutorial
 author: fbsolo-ms1
 ms.author: franksolomon
-ms.date: 11/28/2023
+ms.date: 11/21/2024
 ms.reviewer: yogipandey
 ms.custom: sdkv2, ignite-2023
 #Customer intent: As a professional data scientist, I want to know how to build and deploy a model with Azure Machine Learning by using Python in a Jupyter Notebook.
@@ -17,24 +17,24 @@ ms.custom: sdkv2, ignite-2023
 
 # Tutorial 4: Enable online materialization and run online inference
 
-An Azure Machine Learning managed feature store lets you discover, create, and operationalize features. Features serve as the connective tissue in the machine learning lifecycle, starting from the prototyping phase, where you experiment with various features. That lifecycle continues to the operationalization phase, where you deploy your models, and inference steps look up the feature data. For more information about feature stores, see [feature store concepts](./concept-what-is-managed-feature-store.md).
+An Azure Machine Learning managed feature store lets you discover, create, and operationalize features. Features serve as the connective tissue in the machine learning lifecycle, starting from the prototyping phase, where you experiment with various features. That lifecycle continues to the operationalization phase, where you deploy your models, and inference steps look up the feature data. For more information about feature stores, visit the [feature store concepts](./concept-what-is-managed-feature-store.md) resource.
 
 Part 1 of this tutorial series showed how to create a feature set specification with custom transformations, and use that feature set to generate training data. Part 2 of the series showed how to enable materialization, and perform a backfill. Additionally, Part 2 showed how to experiment with features, as a way to improve model performance. Part 3 showed how a feature store increases agility in the experimentation and training flows. Part 3 also described how to run batch inference.
 
-In this tutorial, you'll
+In this tutorial, you
 
 > [!div class="checklist"]
-> * Set up an Azure Cache for Redis.
-> * Attach a cache to a feature store as the online materialization store, and grant the necessary permissions.
-> * Materialize a feature set to the online store.
-> * Test an online deployment with mock data.
+> * Set up an Azure Cache for Redis
+> * Attach a cache to a feature store as the online materialization store, and grant the necessary permissions
+> * Materialize a feature set to the online store
+> * Test an online deployment with mock data
 
 ## Prerequisites
 
 > [!NOTE]
-> This tutorial uses Azure Machine Learning notebook with **Serverless Spark Compute**.
+> This tutorial uses a Azure Machine Learning notebook with **Serverless Spark Compute**.
 
-* Make sure you complete parts 1 through 4 of this tutorial series. This tutorial reuses the feature store and other resources created in the earlier tutorials.
+* Be sure to complete parts 1 through 4 of this tutorial series. This tutorial reuses the feature store and other resources created in those earlier tutorials.
 
 ## Set up
 
@@ -48,34 +48,34 @@ You don't need to explicitly install these resources for this tutorial, because 
 
    1. In the **Compute** dropdown list in the top nav, select **Serverless Spark Compute**.
 
-   2. Configure the session:
+   1. Configure the session:
 
-      1. Download *azureml-examples/sdk/python/featurestore-sample/project/env/online.yml* file to your local machine.
-      2. In **configure session** in the top nav, select **Python packages**
-      3. Select **Upload Conda file**
-      4. Upload the *online.yml* file from your local machine, with the same steps as described in [uploading *conda.yml* file in the first tutorial](./tutorial-get-started-with-feature-store.md#prepare-the-notebook-environment).
-      5. Optionally, increase the session time-out (idle time) to avoid frequent prerequisite reruns.
+      1. Download the *azureml-examples/sdk/python/featurestore-sample/project/env/online.yml* file to your local machine
+      1. In **configure session** in the top nav, select **Python packages**
+      1. Select **Upload Conda file**
+      1. Upload the *online.yml* file from your local machine, with the same steps as described in [uploading *conda.yml* file in the first tutorial](./tutorial-get-started-with-feature-store.md#prepare-the-notebook-environment)
+      1. Optionally, increase the session time-out (idle time) to avoid frequent prerequisite reruns
 
-2. This code cell starts the Spark session. It needs about 10 minutes to install all dependencies and start the Spark session.
+1. This code cell starts the Spark session. It needs about 10 minutes to install all dependencies and start the Spark session.
 
       [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/4.Enable-online-store-run-inference.ipynb?name=start-spark-session)]
 
-3. Set up the root directory for the samples
+1. Set up the root directory for the samples
 
       [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/4.Enable-online-store-run-inference.ipynb?name=root-dir)]
 
-4. Initialize the `MLClient` for the project workspace, where the tutorial notebook runs. The `MLClient` is used for the create, read, update, and delete (CRUD) operations.
+1. Initialize the `MLClient` for the project workspace where the tutorial notebook runs. The `MLClient` is used for the create, read, update, and delete (CRUD) operations.
 
       [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/4.Enable-online-store-run-inference.ipynb?name=init-prj-ws-client)]
 
-5. Initialize the `MLClient` for the feature store workspace, for the create, read, update, and delete (CRUD) operations on the feature store workspace.
+1. Initialize the `MLClient` for the feature store workspace, for the create, read, update, and delete (CRUD) operations on the feature store workspace.
 
       [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/4.Enable-online-store-run-inference.ipynb?name=init-fs-ws-client)]
 
    > [!NOTE]
    > A **feature store workspace** supports feature reuse across projects. A **project workspace** - the current workspace in use - leverages features from a specific feature store, to train and inference models. Many project workspaces can share and reuse the same feature store workspace.
 
-6. As mentioned earlier, this tutorial uses the Python feature store core SDK (`azureml-featurestore`). This initialized SDK client is used for create, read, update, and delete (CRUD) operations, on feature stores, feature sets, and feature store entities.
+1. As mentioned earlier, this tutorial uses the Python feature store core SDK (`azureml-featurestore`). This initialized SDK client is used for create, read, update, and delete (CRUD) operations, on feature stores, feature sets, and feature store entities.
 
       [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/4.Enable-online-store-run-inference.ipynb?name=init-fs-core-sdk)]
 
@@ -87,7 +87,7 @@ This tutorial uses Azure Cache for Redis as the online materialization store. Yo
 
       [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/4.Enable-online-store-run-inference.ipynb?name=redis-settings)]
 
-1. You can create a new Redis instance. You would select the Redis Cache tier (basic, standard, premium, or enterprise). Choose an SKU family available for the cache tier you select. For more information about tiers and cache performance, see [this resource](/azure/azure-cache-for-redis/cache-best-practices-performance). For more information about SKU tiers and Azure cache families, see [this resource](https://azure.microsoft.com/pricing/details/cache/).
+1. You can create a new Redis instance. You would select the appropriate Redis Cache tier (basic, standard, premium, or enterprise). Choose an SKU family available for the cache tier you select. For more information about tiers and cache performance, visit [this resource](/azure/azure-cache-for-redis/cache-best-practices-performance). For more information about SKU tiers and Azure cache families, visit [this resource](https://azure.microsoft.com/pricing/details/cache/).
 
    Execute this code cell to create an Azure Cache for Redis with premium tier, SKU family `P`, and cache capacity 2. It might take between 5 and 10 minutes to prepare the Redis instance.
 
@@ -106,26 +106,28 @@ The feature store needs the Azure Cache for Redis as an attached resource, for u
 > [!NOTE]
 > During a feature store update, setting `grant_materiaization_permissions=True` alone will not grant the required RBAC permissions to the UAI. The role assignments to UAI will happen only when one of the following is updated:
 > - Materialization identity
-> - Online store target
 > - Offline store target
+> - Online store target
+
+For an example that shows how to do this with the SDK, visit the [Tutorial: Different Approaches for Provisioning a Managed Feature Store](https://github.com/Azure/azureml-examples/blob/main/sdk/python/featurestore_sample/notebooks/sdk_and_cli/4.Provision-feature-store.ipynb) resource.
 
 ## Materialize the `accounts` feature set data to online store
 
 ### Enable materialization on the `accounts` feature set
 
-Earlier in this tutorial series, you did **not** materialize the accounts feature set because it had precomputed features, and only batch inference scenarios used it. This code cell enables online materialization so that the features become available in the online store, with low latency access. For consistency, it also enables offline materialization. Enabling offline materialization is optional.
+Earlier in this tutorial series, you did **not** materialize the accounts feature set, because it had precomputed features, and only batch inference scenarios used it. This code cell enables online materialization so that the features become available in the online store, with low latency access. For consistency, it also enables offline materialization. Enabling offline materialization is optional.
 
    [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/4.Enable-online-store-run-inference.ipynb?name=enable-accounts-material)]
 
 ### Backfill the `account` feature set
 
-The `begin_backfill` function backfills data to all the materialization stores enabled for this feature set. Here offline and online materialization are both enabled. This code cell backfills the data to both online and offline materialization stores.
+The `begin_backfill` function backfills data to all the materialization stores enabled for this feature set. Here, offline and online materialization are both enabled. This code cell backfills the data to both online and offline materialization stores.
 
    [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/4.Enable-online-store-run-inference.ipynb?name=start-accounts-backfill)]
 
    > [!TIP]
-   > - The `feature_window_start_time` and `feature_window_end_time` granularily is limited to seconds. Any milliseconds provided in the `datetime` object will be ignored.
-   > - A materialization job will only be submitted if there is data in the feature window matching the `data_status` defined while submitting the backfill job.
+   > - The `feature_window_start_time` and `feature_window_end_time` granularily is limited to seconds. Any millisecond value provided in the `datetime` object will be ignored.
+   > - A materialization job will only be submitted if there is data in the feature window that matches the `data_status` defined while submitting the backfill job.
 
 This code cell tracks completion of the backfill job. With the Azure Cache for Redis premium tier provisioned earlier, this step might need approximately 10 minutes to complete.
 
@@ -150,10 +152,10 @@ Earlier in this tutorial series, you materialized `transactions` feature set dat
 ## Further explore online feature materialization
 You can explore the feature materialization status for a feature set from the **Materialization jobs** UI.
 
-1. Open the [Azure Machine Learning global landing page](https://ml.azure.com/home).
-1. Select **Feature stores** in the left pane.
-1. From the list of accessible feature stores, select the feature store for which you performed the backfill.
-1. Select the **Materialization jobs** tab.
+1. Open the [Azure Machine Learning global landing page](https://ml.azure.com/home)
+1. Select **Feature stores** in the left pane
+1. From the list of accessible feature stores, select the feature store for which you performed the backfill
+1. Select the **Materialization jobs** tab
 
    :::image type="content" source="media/tutorial-online-materialization-inference/feature-set-materialization-ui.png" lightbox="media/tutorial-online-materialization-inference/feature-set-materialization-ui.png" alt-text="Screenshot that shows the feature set Materialization jobs UI.":::
 
@@ -166,12 +168,12 @@ You can explore the feature materialization status for a feature set from the **
 - Your data can have a maximum of 2,000 *data intervals*. If your data contains more than 2,000 *data intervals*, create a new feature set version.
 - You can provide a list of more than one data statuses (for example, `["None", "Incomplete"]`) in a single backfill job.
 - During backfill, a new materialization job is submitted for each *data interval* that falls in the defined feature window.
-- A new job is not submitted for a *data interval* if a materialization job is already pending, or is running for a *data interval* that hasn't yet been backfilled.
+- A new job isn't submitted for a *data interval* if a materialization job is already pending, or if it's running for a *data interval* that hasn't yet been backfilled.
 
 ### Updating online materialization store
-- If an online materialization store is to be updated at the feature store level, then all feature sets in the feature store should have online materialization disabled.
-- If online materialization is disabled on a feature set, the materialization status of the already-materialized data in the online materialization store will be reset. This renders the already-materialized data unusable. You must resubmit your materialization jobs after you enable online materialization.
-- If only offline materialization was initially enabled for a feature set, and online materialization is enabled later:
+- To update an online materialization store at the feature store level, all feature sets in the feature store should have online materialization disabled.
+- If online materialization is disabled on a feature set, the materialization status of the already-materialized data in the online materialization store is reset. This renders the already-materialized data unusable. You must resubmit your materialization jobs after you enable online materialization.
+- If only offline materialization was initially enabled for a feature set, and online materialization is then enabled later:
   - The default data materialization status of the data in the online store will be `None`.
   - When the first online materialization job is submitted, the data already materialized in the offline store, if available, is used to calculate online features.
   - If the *data interval* for online materialization partially overlaps the *data interval* of already materialized data located in the offline store, separate materialization jobs are submitted for the overlapping and nonoverlapping parts of the *data interval*.
@@ -190,18 +192,18 @@ Now, use your development environment to look up features from the online materi
 
 Prepare some observation data for testing, and use that data to look up features from the online materialization store. During the online look-up, the keys (`accountID`) defined in the observation sample data might not exist in the Redis (due to `TTL`). In this case:
 
-1. Open the Azure portal.
-1. Navigate to the Redis instance.
-1. Open the console for the Redis instance, and check for existing keys with the `KEYS *` command.
-1. Replace the `accountID` values in the sample observation data with the existing keys.
+1. Open the Azure portal
+1. Navigate to the Redis instance
+1. Open the console for the Redis instance, and check for existing keys with the `KEYS *` command
+1. Replace the `accountID` values in the sample observation data with the existing keys
 
       [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/4.Enable-online-store-run-inference.ipynb?name=online-feat-loockup)]
 
-These steps looked up features from the online store. In the next step, you'll test online features using an Azure Machine Learning managed online endpoint.
+These steps looked up features from the online store. In the next step, you'll test online features, with an Azure Machine Learning managed online endpoint.
 
 ## Test online features from Azure Machine Learning managed online endpoint
 
-A managed online endpoint deploys and scores models for online/realtime inference. You can use any available inference technology - like Kubernetes, for example.
+A managed online endpoint deploys and scores models for online/realtime inference. You can use any available inference technology - for example, Kubernetes.
 
 This step involves these actions:
 
@@ -262,7 +264,7 @@ Deploy the model to online endpoint with this code cell. The deployment might ne
 
 ### Test online deployment with mock data
 
-Execute this code cell to test the online deployment with the mock data. You should see `0` or `1` as the output of this cell.
+Execute this code cell to test the online deployment with the mock data. The cell should show `0` or `1` as its output.
 
    [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_only/4.Enable-online-store-run-inference.ipynb?name=test-online-deployment)]
 

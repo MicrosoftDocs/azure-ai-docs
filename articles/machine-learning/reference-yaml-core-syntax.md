@@ -10,7 +10,7 @@ ms.custom: cliv2, update-code7
 
 author: Blackmist
 ms.author: larryfr
-ms.date: 11/16/2022
+ms.date: 02/10/2025
 ms.reviewer: balapv
 ---
 
@@ -39,7 +39,7 @@ There are two options for referencing an Azure Machine Learning asset (environme
   ```
 * Reference the latest version of an asset:
 
-  In some scenarios you may want to reference the latest version of an asset without having to explicitly look up and specify the actual version string itself. The latest    version is defined as the latest (also known as most recently) created version of an asset under a given name. 
+  In some scenarios you might want to reference the latest version of an asset without having to explicitly look up and specify the actual version string itself. The latest    version is defined as the latest (also known as most recently) created version of an asset under a given name. 
 
   You can reference the latest version using the following syntax: `azureml:<asset_name>@latest`. Azure Machine Learning will resolve the reference to an explicit asset version in the workspace.
 

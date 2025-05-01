@@ -12,7 +12,7 @@ metadata:
   manager: nitinme
   ms.service: azure-ai-speech
   ms.topic: hub-page
-  ms.date: 8/20/2024
+  ms.date: 3/10/2025
   ms.author: eur
 
 highlightedContent:
@@ -83,14 +83,6 @@ conceptualContent:
         - itemType: overview
           text: About Speech CLI
           url: spx-overview.md    
-    - title: Speaker Recognition
-      links:
-        - itemType: quickstart
-          text: Get started with Speaker Recognition          
-          url: ./get-started-speaker-recognition.md
-        - itemType: how-to-guide
-          text: Speaker Recognition API reference
-          url: /rest/api/speakerrecognition/  
     - title: Speech translation
       links:
       - itemType: overview
@@ -124,8 +116,8 @@ conceptualContent:
           text: Migrate to neural voice
           url: migration-overview-neural-voice.md
         - itemType: how-to-guide
-          text: Migrate to the v3.2 REST API
-          url: migrate-v3-1-to-v3-2.md
+          text: Migrate to speech to text REST API version 2024-11-15
+          url: migrate-2024-11-15.md
         - itemType: how-to-guide
           text: Migrate to Batch synthesis REST API
           url: migrate-to-batch-synthesis.md

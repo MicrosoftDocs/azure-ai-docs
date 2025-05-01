@@ -8,7 +8,7 @@ ms.subservice: mlops
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: alehughes
-ms.date: 11/04/2022
+ms.date: 03/10/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, devx-track-python, data4ml, sdkv1
 ---
@@ -16,6 +16,8 @@ ms.custom: UpdateFrequency5, devx-track-python, data4ml, sdkv1
 # Monitor and collect data from ML web service endpoints
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 In this article, you learn how to collect data from models deployed to web service endpoints in Azure Kubernetes Service (AKS) or Azure Container Instances (ACI). Use [Azure Application Insights](/azure/azure-monitor/app/app-insights-overview) to collect the following data from an endpoint:
 * Output data
@@ -172,7 +174,7 @@ service = Webservice(name="service-name", workspace=ws)
 logs = service.get_logs()
 ```
 
-If you have multiple Tenants, you may need to add the following authenticate code before `ws = Workspace.from_config()`
+If you have multiple Tenants, you might need to add the following authenticate code before `ws = Workspace.from_config()`
 
 ```python
 from azureml.core.authentication import InteractiveLoginAuthentication
@@ -212,15 +214,6 @@ For more information on how to use Azure Application Insights, see [What is Appl
 > Azure Application Insights only logs payloads of up to 64kb. If this limit is reached then you may see errors such as out of memory, or no information may be logged.
 
 To log web service request information, add `print` statements to your score.py file. Each `print` statement results in one entry in the Application Insights trace table under the message `STDOUT`. Application Insights stores the `print` statement outputs in  `customDimensions` and in the `Contents` trace table. Printing JSON strings produces a hierarchical data structure in the trace output under `Contents`.
-
-## Export data for retention and processing
-
->[!Important]
-> Azure Application Insights only supports exports to blob storage. For more information on the limits of this implementation, see [Export telemetry from App Insights](/previous-versions/azure/azure-monitor/app/export-telemetry#continuous-export-advanced-storage-configuration).
-
-Use Application Insights' [continuous export](/previous-versions/azure/azure-monitor/app/export-telemetry) to export data to a blob storage account where you can define retention settings. Application Insights exports the data in JSON format. 
-
-:::image type="content" source="media/how-to-enable-app-insights/continuous-export-setup.png" alt-text="Continuous export":::
 
 ## Next steps
 

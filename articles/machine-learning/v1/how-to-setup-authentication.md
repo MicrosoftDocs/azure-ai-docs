@@ -16,7 +16,8 @@ ms.custom: UpdateFrequency5, has-adal-ref, subject-rbac-steps, sdkv1
 # Set up authentication for Azure Machine Learning resources and workflows using SDK v1
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
-    
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 Learn how to set up authentication to your Azure Machine Learning workspace. Authentication to your Azure Machine Learning workspace is based on __Microsoft Entra ID__ for most things. In general, there are four authentication workflows that you can use when connecting to the workspace:
 
@@ -181,7 +182,7 @@ Most examples in the documentation and samples use interactive authentication. F
     ```
 
 > [!TIP]
-> If you have access to multiple tenants, you may need to import the class and explicitly define what tenant you are targeting. Calling the constructor for `InteractiveLoginAuthentication` will also prompt you to login similar to the calls above.
+> If you have access to multiple tenants, you might need to import the class and explicitly define what tenant you are targeting. Calling the constructor for `InteractiveLoginAuthentication` will also prompt you to login similar to the calls above.
 >
 > ```python
 > from azureml.core.authentication import InteractiveLoginAuthentication

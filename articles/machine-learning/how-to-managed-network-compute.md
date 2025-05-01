@@ -8,7 +8,7 @@ ms.subservice: enterprise-readiness
 ms.reviewer: None
 ms.author: larryfr
 author: Blackmist
-ms.date: 08/16/2024
+ms.date: 01/30/2025
 ms.topic: how-to
 ---
 
@@ -34,7 +34,7 @@ Before following the steps in this article, make sure you have the following pre
 * The [Azure CLI](/cli/azure/) and the `ml` extension to the Azure CLI. For more information, see [Install, set up, and use the CLI (v2)](how-to-configure-cli.md).
 
     >[!TIP]
-    > Azure Machine Learning managed virtual network was introduced on May 23rd, 2023. If you have an older version of the ml extension, you may need to update it for the examples in this article work. To update the extension, use the following Azure CLI command:
+    > Azure Machine Learning managed virtual network was introduced on May 23rd, 2023. If you have an older version of the ml extension, you might need to update it for the examples in this article work. To update the extension, use the following Azure CLI command:
     >
     > ```azurecli
     > az extension update -n ml
@@ -51,7 +51,7 @@ Before following the steps in this article, make sure you have the following pre
 * The Azure Machine Learning Python SDK v2. For more information on the SDK, see [Install the Python SDK v2 for Azure Machine Learning](/python/api/overview/azure/ai-ml-readme).
 
     > [!TIP]
-    > Azure Machine learning managed virtual network was introduced on May 23rd, 2023. If you have an older version of the SDK installed, you may need to update it for the examples in this article to work. To update the SDK, use the following command:
+    > Azure Machine Learning managed virtual network was introduced on May 23rd, 2023. If you have an older version of the SDK installed, you might need to update it for the examples in this article to work. To update the SDK, use the following command:
     >
     > ```bash
     > pip install --upgrade azure-ai-ml azure-identity
@@ -145,7 +145,7 @@ ml_client.begin_create_or_update(compute_instance)
 You can't create a compute cluster or compute instance from the Azure portal. Instead, use the following steps to create these computes from Azure Machine Learning [studio](https://ml.azure.com):
 
 1. From [studio](https://ml.azure.com), select your workspace.
-1. Select the __Compute__ page from the left navigation bar.
+1. Select the __Compute__ page from the left pane.
 1. Select the __+ New__ from the navigation bar of _compute instance_ or _compute cluster_.
 1. Configure the VM size and configuration you need, then select __Next__ until you arrive at the following pages:
 
@@ -164,7 +164,15 @@ You can't create a compute cluster or compute instance from the Azure portal. In
 ## Limitations
 
 * Creating a compute cluster in a different region than the workspace isn't supported when using a managed virtual network.
-* If the compute is in a managed network and also configured for no public IP, use the `az ml compute connect-ssh` command to connect to the compute instance over SSH.
+* If the compute is in a private network and also configured for no public IP, use the `az ml compute connect-ssh` command to connect to the compute instance over SSH.
+
+    By default, SSH access is routed over the public IP. To ensure that it uses the private connection, use the following steps:
+
+    1. Create a [private endpoint for the workspace](how-to-configure-private-link.md).
+    1. Create a private DNS zone for `instances.azureml.ms`.
+    1. Create a DNS record set for the compute, such as `<compute-instance-name>-22.<region-of-workspace>.instances.azureml.ms`.
+    
+    For more information, see [Use a custom DNS server](how-to-custom-dns.md).
 
 ### Migration of compute resources
 

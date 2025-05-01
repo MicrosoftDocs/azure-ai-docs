@@ -30,7 +30,7 @@ The Azure Key Vault allows you to securely store and retrieve secrets. In this a
 Before following the steps in this article, make sure you have the following prerequisites:
 
 > [!TIP]
-> Many of the prerequisites in this section require __Contributor__, __Owner__, or equivalent access to your Azure subscription, or the Azure Resource Group that contains the resources. You may need to contact your Azure administrator and have them perform these actions.
+> Many of the prerequisites in this section require __Contributor__, __Owner__, or equivalent access to your Azure subscription, or the Azure Resource Group that contains the resources. You might need to contact your Azure administrator and have them perform these actions.
 
 * An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
  
@@ -51,7 +51,7 @@ Before following the steps in this article, make sure you have the following pre
 * A stored secret value in the key vault. This value can then be retrieved using a key. For more information, see [Quickstart: Set and retrieve a secret from Azure Key Vault](/azure/key-vault/secrets/quick-create-python).
 
     > [!TIP]
-    > The quickstart link is to the steps for using the Azure Key Vault Python SDK. In the table of contents in the left navigation area are links to other ways to set a key.
+    > The quickstart link is to the steps for using the Azure Key Vault Python SDK. In the table of contents in the left pane are links to other ways to set a key.
 
 ## Get secrets
 

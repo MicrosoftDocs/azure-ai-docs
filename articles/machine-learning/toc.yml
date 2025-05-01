@@ -1,3 +1,4 @@
+items:
 - name: Azure Machine Learning Documentation
   href: index.yml
 - name: Overview
@@ -5,6 +6,8 @@
     - name: What is Azure Machine Learning?
       displayName: AML, services, overview, introduction
       href: overview-what-is-azure-machine-learning.md
+    - name: "Azure AI Foundry or Azure Machine Learning studio: Which should I choose?"
+      href: /ai/ai-studio-experiences-overview?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
     - name: Azure Machine Learning CLI and Python SDK
       href: concept-v2.md
     # v1
@@ -236,17 +239,7 @@
                   - name: Deploy and run MLflow models in Spark jobs
                     href: how-to-deploy-mlflow-model-spark-jobs.md
       - name: Use R with Azure Machine Learning
-        items:
-          - name: Bring R workloads
-            href: how-to-r-overview-r-capabilities.md
-          - name: Interactive R development
-            href: how-to-r-interactive-development.md
-          - name: Adapt R scripts for production
-            href: how-to-r-modify-script-for-production.md
-          - name: Train R model
-            href: how-to-r-train-model.md
-          - name: Deploy R model
-            href: how-to-r-deploy-r-model.md
+        href: how-to-r-interactive-development.md
       - name: Work with Microsoft Fabric
         items:
           - name: Access and use batch deployments from Fabric
@@ -260,6 +253,9 @@
     - name: Create Azure Machine Learning Datastores
       displayName: Create datastores
       href: how-to-datastore.md
+    - name: Create a Datastore with the User Interface
+      displayName: Create a datastore with the UI
+      href: create-datastore-with-user-interface.md
     - name: Setup storage authentication
       displayName: Data administration and authentication
       href: how-to-administrate-data-authentication.md
@@ -581,66 +577,58 @@
     href: how-to-interactive-jobs.md
   - name: Schedule jobs
     href: how-to-schedule-pipeline-job.md
-- name: Work with foundation models
+- name: Explore AI model capabilities
   items:
-    - name: Model Catalog Overview
+    - name: Model catalog overview
       href: concept-model-catalog.md
     - name: Data, privacy, and security for Model Catalog
       href: concept-data-privacy.md
+    - name: Model lifecycle and retirement
+      href: ../ai-foundry/concepts/model-lifecycle-retirement.md?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
     - name: Open source models curated by Azure Machine Learning
       href: how-to-use-foundation-models.md
     - name: Hugging Face Hub community partner models
       href: how-to-deploy-models-from-huggingface.md
-    - name: Phi-3 family models
+    - name: Work with models from the model catalog
       items:
-        - name: Phi-3 family chat models
-          href: how-to-deploy-models-phi-3.md
-        - name: Phi-3.5 MoE chat model
-          href: how-to-deploy-models-phi-3-5-moe.md
-        - name: Phi-3 chat model with vision
-          href: how-to-deploy-models-phi-3-vision.md
-        - name: Phi-3.5 chat model with vision
-          href: how-to-deploy-models-phi-3-5-vision.md
-    - name: How to deploy TimeGEN-1 model
-      href: how-to-deploy-models-timegen-1.md
-    - name: How to deploy Mistral family models
-      href: how-to-deploy-models-mistral.md
-    - name: Deploy Cohere models
-      items:
-        - name: How to deploy Cohere Command models
-          href: how-to-deploy-models-cohere-command.md
-        - name: How to deploy Cohere Embed models
-          href: how-to-deploy-models-cohere-embed.md
-        - name: How to deploy Cohere Rerank models
-          href: how-to-deploy-models-cohere-rerank.md
-    - name: Deploy Meta Llama models
-      items:
-        - name: How to deploy Meta Llama family models
-          href: how-to-deploy-models-llama.md
-    - name: How to deploy JAIS models
-      href: deploy-jais-models.md
-    - name: How to deploy Jamba Instruct model
-      href: how-to-deploy-models-jamba.md
-    - name: Regulate deployments using policy
-      href: how-to-regulate-registry-deployments.md
+      - name: Featured models in the model catalog
+        href: concept-models-featured.md
+      - name: Other featured models
+        items:
+        - name: Healthcare AI models
+          items:
+          - name: Foundational AI models for healthcare
+            href: /azure/ai-studio/how-to/healthcare-ai/healthcare-ai-models?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
+          - name: MedImageInsight - embedding model
+            href: /azure/ai-studio/how-to/healthcare-ai/deploy-medimageinsight?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
+          - name: CXRReportGen - text generation model
+            href: /azure/ai-studio/how-to/healthcare-ai/deploy-cxrreportgen?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
+          - name: MedImageParse - prompted segmentation model
+            href: /azure/ai-studio/how-to/healthcare-ai/deploy-medimageparse?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
+        - name: Gretel Navigator model
+          href: /azure/ai-studio/how-to/deploy-models-gretel-navigator?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
+        - name: Mistral-7B and Mixtral models
+          href: /azure/ai-studio/how-to/deploy-models-mistral-open?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
+      - name: Work with embedding models
+        items:
+          - name: Work with text embedding models
+            href: ../ai-foundry/model-inference/how-to/use-embeddings.md?context=/azure/machine-learning/context/context
+          - name: Work with image embedding models
+            href: ../ai-foundry/model-inference/how-to/use-image-embeddings.md?context=/azure/machine-learning/context/context
+      - name: Work with chat models
+        items:
+          - name: Work with chat completion models
+            href: ../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/machine-learning/context/context
+          - name: Work with reasoning models
+            href: ../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/machine-learning/context/context
+          - name: Work with multimodal models
+            href: ../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/machine-learning/context/context
+    - name: Built-in policy to allow specific models
+      href: how-to-built-in-policy-model-deployment.md
+    - name: Custom policy to allow specific models
+      href: how-to-custom-policy-model-deployment.md
     - name: Use Model Catalog collections with virtual network
       href: how-to-network-isolation-model-catalog.md
-    - name: Azure AI Model Inference API
-      items:
-        - name: What's the Azure AI Model Inference API?
-          href: reference-model-inference-api.md
-        - name: Reference
-          items:
-            - name: Get Info
-              href: reference-model-inference-info.md
-            - name: Embeddings
-              href: reference-model-inference-embeddings.md
-            - name: Completions
-              href: reference-model-inference-completions.md
-            - name: Chat Completions
-              href: reference-model-inference-chat-completions.md
-            - name: Images Embeddings
-              href: reference-model-inference-images-embeddings.md
 - name: Use Generative AI
   items:
     - name: Build AI solutions with prompt flow
@@ -705,9 +693,11 @@
               href: ./prompt-flow/how-to-enable-trace-feedback-for-deployment.md
             - name: How to use streaming endpoints deployed from prompt flow
               href: ./prompt-flow/how-to-enable-streaming-mode.md
-            - name: Set up end-to-end LLMOps with prompt flow and GitHub 
+            - name: Set up end-to-end GenAIOps with prompt flow and GitHub
+              displayName: LLMOps, DevOps
               href: ./prompt-flow/how-to-end-to-end-llmops-with-prompt-flow.md
-            - name: Set up end-to-end LLMOps with prompt flow and Azure DevOps
+            - name: Set up end-to-end GenAIOps with prompt flow and Azure DevOps
+              displayName: LLMOps, DevOps
               href: ./prompt-flow/how-to-end-to-end-azure-devops-with-prompt-flow.md
             - name: Custom tool package creation and usage
               href: ./prompt-flow/how-to-custom-tool-package-creation-and-usage.md
@@ -735,6 +725,8 @@
               href: ./prompt-flow/tools-reference/content-safety-text-tool.md
             - name: Index Lookup tool
               href: ./prompt-flow/tools-reference/index-lookup-tool.md
+            - name: Rerank tool 
+              href: ./prompt-flow/tools-reference/rerank-tool.md
             - name: SERP API tool
               href: ./prompt-flow/tools-reference/serp-api-tool.md
             - name: Open Model LLM tool
@@ -772,14 +764,6 @@
       - name: Fairness in Machine Learning
         displayName: fairness, bias, model performance, disparity metrics, unfairness
         href: concept-fairness-ml.md
-    # v1
-      - name: Interpret ML models
-        href: ./v1/how-to-machine-learning-interpretability-aml.md
-      - name: Explain automated ML models
-        href: ./v1/how-to-machine-learning-interpretability-automl.md
-      - name: Fairness in Machine Learning
-        href: ./v1/how-to-machine-learning-fairness-aml.md
-    # end v1
       - name: Causal analysis
         href: concept-causal-inference.md
       - name: Assess errors in ML models
@@ -887,7 +871,7 @@
         href: ./v1/how-to-create-machine-learning-pipelines.md
       - name: Moving data into and between ML pipeline steps (Python)
         href: ./v1/how-to-move-data-in-out-of-pipelines.md
-      - name: Use automated ML in ML pipelines (Python)
+      - name: Use AutoML in machine learning pipelines (Python)
         displayName: machine learning automl
         href: ./v1/how-to-use-automlstep-in-pipelines.md
       - name: Deploy ML pipelines (Python)
@@ -920,7 +904,7 @@
           href: concept-endpoints-online.md
         - name: Model specification for online deployment
           href: concept-online-deployment-model-specification.md
-        - name: Deploy an ML model with an online endpoint
+        - name: Deploy a model to an online endpoint
           href: how-to-deploy-online-endpoints.md
         - name: Deploy models with safe rollout strategy
           href: how-to-safely-rollout-online-endpoints.md
@@ -932,11 +916,11 @@
           href: reference-managed-online-endpoints-vm-sku-list.md
         - name: Viewing managed online endpoint costs
           href: how-to-view-online-endpoints-costs.md
-        - name: Monitoring online endpoints
+        - name: Monitor online endpoints
           href: how-to-monitor-online-endpoints.md
         - name: Debug online endpoints locally VS Code
           href: how-to-debug-managed-online-endpoints-visual-studio-code.md
-        - name: Debug scoring script with inference HTTP server
+        - name: Debug scoring scripts with inference HTTP server
           href: how-to-inference-server-http.md
         - name: Troubleshoot online endpoints
           href: how-to-troubleshoot-online-endpoints.md
@@ -991,7 +975,7 @@
               href: how-to-image-processing-batch.md
             - name: Deploy language models with batch model deployments
               href: how-to-nlp-processing-batch.md
-            - name: Run OpenAI models in batch endpoints to compute embeddings
+            - name: Run Azure OpenAI models in batch endpoints to compute embeddings
               href: how-to-use-batch-model-openai-embeddings.md
         - name: Deploy pipeline components
           items:
@@ -1072,7 +1056,7 @@
     - name: Consume web service
       displayName: create client consume request response synchronous
       href: ./v1/how-to-consume-web-service.md
-    - name: Advanced entry script authoring
+    - name: Author advanced entry scripts
       displayName: swagger inference schema binary cors
       href: ./v1/how-to-deploy-advanced-entry-script.md
     - name: Prebuilt Docker images
@@ -1157,7 +1141,8 @@
         href: how-to-setup-mlops-azureml.md
       - name: Set up MLOps with GitHub Actions
         href: how-to-setup-mlops-github-azure-ml.md
-      - name: Set up LLMOps with prompt flow and GitHub 
+      - name: Set up GenAIOps with prompt flow and GitHub
+        displayName: LLMOps, DevOps
         href: ./prompt-flow/how-to-end-to-end-llmops-with-prompt-flow.md
 - name: Monitor your models
   items:
@@ -1178,17 +1163,21 @@
         - name: "Tutorial: Create a secure workspace in Azure portal"
           displayName: managed virtual network
           href: tutorial-create-secure-workspace.md
-        - name: "Tutorial: Create a secure workspace with templates"
-          href: tutorial-create-secure-workspace-template.md
+        - name: "Create a secure workspace using a Bicep template"
+          href: /samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/
+        - name: "Create a secure workspace using a Terraform template"
+          href: https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure
     - name: Security overview
       items:
         - name: Enterprise security overview
           displayName: authorization authentication encryption aad azure active directory
           href: concept-enterprise-security.md
+        - name: Network isolation configurations
+          href: concept-network-isolation-configurations.md
         - name: Secured workspace traffic flow
           href: concept-secure-network-traffic-flow.md
         - name: Security baseline
-          href: /security/benchmark/azure/baselines/machine-learning-security-baseline?context=/azure/machine-learning/context/ml-context
+          href: /security/benchmark/azure/baselines/machine-learning-security-baseline?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
         - name: Security controls by Azure Policy
           href: ./security-controls-policy.md
         - name: Data encryption
@@ -1228,6 +1217,8 @@
         - name: Use private endpoint
           displayName: private endpoint
           href: how-to-configure-private-link.md
+        - name: Securely use on-premises resources
+          href: how-to-access-on-premises-resources.md
         - name: Use custom DNS
           href: how-to-custom-dns.md
         - name: Use Azure Virtual Network
@@ -1288,6 +1279,8 @@
           href: ./v1/how-to-high-availability-machine-learning.md
         - name: Regenerate storage access keys
           href: how-to-change-storage-access-key.md
+        - name: Disable shared key access to storage
+          href: how-to-disable-local-auth-storage.md
     # end v1
     - name: Create & manage workspaces
       items:
@@ -1667,6 +1660,8 @@
           items:
             - name: Registry
               href: reference-yaml-registry.md
+    - name: Azure AI Model Inference API
+      href: /rest/api/aifoundry/modelinference
     - name: Azure PowerShell
       href: /powershell/module/az.machinelearningservices/
     - name: Service limits
@@ -1762,6 +1757,9 @@
         - name: "Pipelines"
           displayName: migration, v1, v2
           href: migrate-to-v2-execution-pipeline.md
+        - name: "Logging"
+          displayName: migration, v1, v2
+          href: reference-migrate-sdk-v1-mlflow-tracking.md
     - name: Upgrade endpoints
       items:
         - name: "Online endpoints"
@@ -1802,7 +1800,7 @@
     - name: Stack Overflow
       href: https://stackoverflow.com/questions/tagged/azure-machine-learning-service
     - name: Compare our ML products
-      href: /azure/architecture/data-guide/technology-choices/data-science-and-machine-learning?context=azure/machine-learning/context/ml-context
+      href: /azure/architecture/data-guide/technology-choices/data-science-and-machine-learning?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json
     - name: Designer accessibility features
       displayName: accessibility, designer, visual interface, screen reader, keyboard shortcuts
       href: designer-accessibility.md

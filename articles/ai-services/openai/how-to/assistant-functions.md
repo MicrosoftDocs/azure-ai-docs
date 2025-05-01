@@ -6,9 +6,9 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 05/22/2024
-author: mrbullwinkle
-ms.author: mbullwin
+ms.date: 03/31/2025
+author: aahill
+ms.author: aahi
 recommendations: false
 
 ---
@@ -16,8 +16,6 @@ recommendations: false
 # Azure OpenAI Assistants function calling
 
 The Assistants API supports function calling, which allows you to describe the structure of functions to an Assistant and then return the functions that need to be called along with their arguments.
-
-[!INCLUDE [Assistants v2 note](../includes/assistants-v2-note.md)]
 
 ## Function calling support
 
@@ -29,8 +27,7 @@ To use all features of function calling including parallel functions, you need t
 
 ### API Versions
 
-- `2024-02-15-preview`
-- `2024-05-01-preview`
+API versions starting with `2024-02-15-preview`.
 
 ## Example function definition
 
@@ -46,40 +43,27 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-02-15-preview",
+    api_version="2024-07-01-preview",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
 assistant = client.beta.assistants.create(
+  name="Weather Bot",
   instructions="You are a weather bot. Use the provided functions to answer questions.",
-  model="gpt-4-1106-preview", #Replace with model deployment name
+  model="gpt-4", #Replace with model deployment name
   tools=[{
       "type": "function",
     "function": {
-      "name": "getCurrentWeather",
+      "name": "get_weather",
       "description": "Get the weather in location",
       "parameters": {
         "type": "object",
         "properties": {
-          "location": {"type": "string", "description": "The city and state e.g. San Francisco, CA"},
-          "unit": {"type": "string", "enum": ["c", "f"]}
+          "location": {"type": "string", "description": "The city name, for example San Francisco"}
         },
         "required": ["location"]
       }
     }
-  }, {
-    "type": "function",
-    "function": {
-      "name": "getNickname",
-      "description": "Get the nickname of a city",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "location": {"type": "string", "description": "The city and state e.g. San Francisco, CA"},
-        },
-        "required": ["location"]
-      }
-    } 
   }]
 )
 ```
@@ -90,40 +74,25 @@ assistant = client.beta.assistants.create(
 > With Azure OpenAI the `model` parameter requires model deployment name. If your model deployment name is different than the underlying model name then you would adjust your code to ` "model": "{your-custom-model-deployment-name}"`.
 
 ```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants?api-version=2024-02-15-preview \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/assistants?api-version=2024-07-01-preview \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "instructions": "You are a weather bot. Use the provided functions to answer questions.",
-    "tools": [{
+    tools=[{
       "type": "function",
-      "function": {
-        "name": "getCurrentWeather",
-        "description": "Get the weather in location",
-        "parameters": {
-          "type": "object",
-          "properties": {
-            "location": {"type": "string", "description": "The city and state e.g. San Francisco, CA"},
-            "unit": {"type": "string", "enum": ["c", "f"]}
-          },
-          "required": ["location"]
-        }
-      }	
-    },
-    {
-      "type": "function",
-      "function": {
-        "name": "getNickname",
-        "description": "Get the nickname of a city",
-        "parameters": {
-          "type": "object",
-          "properties": {
-            "location": {"type": "string", "description": "The city and state e.g. San Francisco, CA"}
-          },
-          "required": ["location"]
-        }
-      }	
-    }],
+    "function": {
+      "name": "get_weather",
+      "description": "Get the weather in location",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "location": {"type": "string", "description": "The city name, for example San Francisco"}
+        },
+        "required": ["location"]
+      }
+    }
+  }],
     "model": "gpt-4-1106-preview"
   }'
 ```
@@ -149,18 +118,10 @@ When you initiate a **Run** with a user Message that triggers the function, the 
           "id": "call_abc123",
           "type": "function",
           "function": {
-            "name": "getCurrentWeather",
-            "arguments": "{\"location\":\"San Francisco\"}"
+            "name": "get_weather",
+            "arguments": "{\"location\":\"Seattle\"}"
           }
         },
-        {
-          "id": "call_abc456",
-          "type": "function",
-          "function": {
-            "name": "getNickname",
-            "arguments": "{\"location\":\"Los Angeles\"}"
-          }
-        }
       ]
     }
   },
@@ -169,50 +130,66 @@ When you initiate a **Run** with a user Message that triggers the function, the 
 
 ## Submitting function outputs
 
-You can then complete the **Run** by submitting the tool output from the function(s) you call. Pass the `tool_call_id` referenced in the `required_action` object above to match output to each function call.
+You can then complete the **Run** by submitting the tool output from the function(s) you call. Pass the `tool_call_id` referenced in the `required_action` object to match output to each function call.
 
 
 # [Python 1.x](#tab/python)
 
 ```python
-from openai import AzureOpenAI
-    
-client = AzureOpenAI(
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-02-15-preview",
-    azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+
+# Example function
+def get_weather():
+    return "It's 80 degrees F and slightly cloudy."
+
+# Define the list to store tool outputs
+tool_outputs = []
+ 
+# Loop through each tool in the required action section
+for tool in run.required_action.submit_tool_outputs.tool_calls:
+  # get data from the weather function
+  if tool.function.name == "get_weather":
+    weather = get_weather()
+    tool_outputs.append({
+      "tool_call_id": tool.id,
+      "output": weather
+    })
+ 
+# Submit all tool outputs at once after collecting them in a list
+if tool_outputs:
+  try:
+    run = client.beta.threads.runs.submit_tool_outputs_and_poll(
+      thread_id=thread.id,
+      run_id=run.id,
+      tool_outputs=tool_outputs
     )
+    print("Tool outputs submitted successfully.")
+  except Exception as e:
+    print("Failed to submit tool outputs:", e)
+else:
+  print("No tool outputs to submit.")
+ 
+if run.status == 'completed':
+  print("run status: ", run.status)
+  messages = client.beta.threads.messages.list(thread_id=thread.id)
+  print(messages.to_json(indent=2))
 
-
-run = client.beta.threads.runs.submit_tool_outputs(
-  thread_id=thread.id,
-  run_id=run.id,
-  tool_outputs=[
-      {
-        "tool_call_id": call_ids[0],
-        "output": "22C",
-      },
-      {
-        "tool_call_id": call_ids[1],
-        "output": "LA",
-      },
-    ]
-)
+else:
+  print("run status: ", run.status)
+  print (run.last_error.message)
 ```
 
 # [REST](#tab/rest)
 
+In the following example, replace `output` with the output of the function you want to use.
+ 
 ```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/thread_abc123/runs/run_123/submit_tool_outputs?api-version=2024-02-15-preview \
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/thread_abc123/runs/run_123/submit_tool_outputs?api-version=2024-07-01-preview \
   -H "Content-Type: application/json" \
-  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -H "api-key: 851c6e0b83744d8c8fc2a07eab098376" \
   -d '{
     "tool_outputs": [{
-      "tool_call_id": "call_abc123",
-      "output": "{"temperature": "22", "unit": "celsius"}"
-    }, {
-      "tool_call_id": "call_abc456",
-      "output": "{"nickname": "LA"}"
+      "tool_call_id": "call_123",
+      "output": "{\"60 degrees F and raining\"}"
     }]
   }'
 ```

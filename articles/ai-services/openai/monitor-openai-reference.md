@@ -1,7 +1,7 @@
 ---
 title: Monitoring data reference for Azure OpenAI
 description: This article contains important reference material you need when you monitor Azure OpenAI Service by using Azure Monitor.
-ms.date: 08/20/2024
+ms.date: 02/20/2025
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: reference
 author: mrbullwinkle
@@ -19,7 +19,7 @@ See [Monitor Azure OpenAI](./how-to/monitor-openai.md) for details on the data y
 
 ### Supported metrics for Microsoft.CognitiveServices/accounts
 
-Here are the most important metrics we think you should monitor for Azure OpenAI. Later in this article is a longer list of all available OpenAI metrics, which contains more details on metrics in this shorter list.
+Here are the most important metrics we think you should monitor for Azure OpenAI. Later in this article is a longer list of all available Azure AI services metrics which contains more details on metrics in this shorter list. _Please see below list for most up to date information. We're working on refreshing the tables in the following sections._
 
 - Azure OpenAI Requests
 - Active Tokens
@@ -30,9 +30,21 @@ Here are the most important metrics we think you should monitor for Azure OpenAI
 - Provisioned-managed Utilization V2
 - Prompt Token Cache Match Rate
 - Time to Response
+- Time Between Tokens
+- Time to Last Byte
+- Normalized Time to First Byte
+- Tokens per Second
+
+You can also monitor Content Safety metrics that are used by other Azure AI services. 
+- Blocked Volume
+- Harmful Volume Detected
+- Potential Abusive User Count
+- Safety System Event
+- Total Volume Sent for Safety Check 
 
 > [!NOTE]
 > The **Provisioned-managed Utilization** metric is now deprecated and is no longer recommended. This metric has been replaced by the **Provisioned-managed Utilization V2** metric.
+> Tokens per Second, Time to Response, Time Between Tokens are currently not available for pay-as-you-go (Standard) deployments. 
 
 Cognitive Services metrics have the category **Cognitive Services - HTTP Requests** in the following table. These metrics are legacy metrics that are common to all Azure AI Services resources. Microsoft no longer recommends that you use these metrics with Azure OpenAI.
 

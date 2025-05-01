@@ -2,12 +2,11 @@
 title: Run Language Detection container in Kubernetes Service
 titleSuffix: Azure AI services
 description: Deploy the language detection container, with a running sample, to the Azure Kubernetes Service, and test it in a web browser.
-#services: cognitive-services
 author: aahill
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 02/26/2024
+ms.date: 01/31/2025
 ms.author: aahi
 ms.custom: devx-track-azurecli
 ms.devlang: azurecli
@@ -74,7 +73,7 @@ To deploy the container to the Azure Kubernetes Service, the container images ne
     az acr create --resource-group cogserv-container-rg --name pattyregistry --sku Basic
     ```
 
-    Save the results to get the **loginServer** property. This will be part of the hosted container's address, used later in the `language.yml` file.
+    Save the results to get the **loginServer** property. This is part of the hosted container's address, used later in the `language.yml` file.
 
     ```azurecli-interactive
     az acr create --resource-group cogserv-container-rg --name pattyregistry --sku Basic
@@ -101,7 +100,7 @@ To deploy the container to the Azure Kubernetes Service, the container images ne
     }
     ```
 
-1. Sign in to your container registry. You need to login before you can push images to your registry.
+1. Sign in to your container registry. You need to log in before you can push images to your registry.
 
     ```azurecli-interactive
     az acr login --name pattyregistry
@@ -125,13 +124,13 @@ To deploy the container to the Azure Kubernetes Service, the container images ne
 
     To track the version on your container registry, add the tag with a version format, such as `v1`.
 
-1. Push the image to your container registry. This may take a few minutes.
+1. Push the image to your container registry. This can take a few minutes.
 
     ```console
     docker push pattyregistry.azurecr.io/language-frontend:v1
     ```
 
-    If you get an `unauthorized: authentication required` error, login with the `az acr login --name <your-container-registry-name>` command. 
+    If you get an `unauthorized: authentication required` error, sign in with the `az acr login --name <your-container-registry-name>` command. 
 
     When the process is done, the results should be similar to:
 
@@ -148,7 +147,7 @@ To deploy the container to the Azure Kubernetes Service, the container images ne
 
 ## Get language detection Docker image
 
-1. Pull the latest version of the Docker image to the local machine. This may take a few minutes. If there is a newer version of this container, change the value from `1.1.006770001-amd64-preview` to the newer version.
+1. Pull the latest version of the Docker image to the local machine. This can take a few minutes. If there is a newer version of this container, change the value from `1.1.006770001-amd64-preview` to the newer version.
 
     ```console
     docker pull mcr.microsoft.com/azure-cognitive-services/language:1.1.006770001-amd64-preview
@@ -160,7 +159,7 @@ To deploy the container to the Azure Kubernetes Service, the container images ne
     docker tag mcr.microsoft.com/azure-cognitive-services/language pattiyregistry.azurecr.io/language:1.1.006770001-amd64-preview
     ```
 
-1. Push the image to your container registry. This may take a few minutes.
+1. Push the image to your container registry. This can take a few minutes.
 
     ```console
     docker push pattyregistry.azurecr.io/language:1.1.006770001-amd64-preview
@@ -216,7 +215,7 @@ The following steps are needed to get the required information to connect your c
     az aks create --resource-group cogserv-container-rg --name patty-kube --node-count 2  --service-principal <appId>  --client-secret <client-secret>  --generate-ssh-keys
     ```
 
-    This step may take a few minutes. The result is:
+    This step can take a few minutes. The result is:
 
     ```output
     {
@@ -310,14 +309,14 @@ This section uses the **kubectl** CLI to talk with the Azure Kubernetes Service.
     Language-frontend deployment settings|Purpose|
     |--|--|
     |Line 32<br> `image` property|Image location for the frontend image in your Container Registry<br>`<container-registry-name>.azurecr.io/language-frontend:v1`|
-    |Line 44<br> `name` property|Container Registry secret for the image, referred to as `<client-secret>` in a previous section.|
+    |Line 44<br> `name` property|Container Registry secret for the image. Referred to as `<client-secret>` in a previous section.|
 
 1. Change the language deployment lines of `language.yml` based on the following table to add your own container registry image names, client secret, and Language service settings.
 
     |Language deployment settings|Purpose|
     |--|--|
     |Line 78<br> `image` property|Image location for the language image in your Container Registry<br>`<container-registry-name>.azurecr.io/language:1.1.006770001-amd64-preview`|
-    |Line 95<br> `name` property|Container Registry secret for the image, referred to as `<client-secret>` in a previous section.|
+    |Line 95<br> `name` property|Container Registry secret for the image. Referred to as `<client-secret>` in a previous section.|
     |Line 91<br> `apiKey` property|Your Language service resource key|
     |Line 92<br> `billing` property|The billing endpoint for your Language service resource.<br>`https://westus.api.cognitive.microsoft.com/text/analytics/v2.1`|
 

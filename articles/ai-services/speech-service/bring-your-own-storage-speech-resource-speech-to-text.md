@@ -2,12 +2,13 @@
 title: Use Bring your own storage (BYOS) Speech resource for Speech to text
 titleSuffix: Azure AI services
 description: Learn how to use Bring your own storage (BYOS) Speech resource with Speech to text.
-author: alexeyo26
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 4/15/2024
-ms.author: alexeyo 
+ms.date: 3/10/2025
+author: eric-urban
+ms.author: eur
+ms.reviewer: alexeyo
 ---
 
 # Use the Bring your own storage (BYOS) Speech resource for speech to text
@@ -18,9 +19,9 @@ Bring your own storage (BYOS) can be used in the following speech to text scenar
 - Real-time transcription with audio and transcription results logging enabled
 - Custom speech
 
-One Speech resource to storage account pairing can be used for all scenarios simultaneously.
+One pair of an AI Services resource for Speech and storage account can be used for all scenarios simultaneously.
 
-This article explains in depth how to use a BYOS-enabled Speech resource in all speech to text scenarios. The article implies, that you have [a fully configured BYOS-enabled Speech resource and associated Storage account](bring-your-own-storage-speech-resource.md).
+This article explains in depth how to use a BYOS-enabled Speech resource in all speech to text scenarios. The article implies that you have [a fully configured BYOS-enabled Speech resource and associated Storage account](bring-your-own-storage-speech-resource.md).
 
 ## Data storage
 
@@ -64,7 +65,7 @@ Speech service uses `customspeech-artifacts` Blob container in the BYOS-associat
 >
 > Failure to do so very likely will result in hard to debug 4xx and 5xx Service errors.
 >
-> Use standard tools to interact with Batch transcription. See details in [Batch transcription section](batch-transcription.md).
+> Also don't build solutions that directly use files and folders of `customspeech-artifacts` container. Use standard tools to interact with Batch transcription. See details in [Batch transcription section](batch-transcription.md).
 
 ### Get Batch transcription results via REST API
 
@@ -137,7 +138,7 @@ The Blob container structure is provided for your information only and subject t
 >
 > Failure to do so very likely will result in hard to debug errors and may lead to the necessity of custom model retraining.
 >
-> Use standard tools, like REST API and Speech Studio to interact with the custom speech related data. See details in [custom speech section](custom-speech-overview.md).
+> Also don't build solutions that directly use files and folders of `customspeech-artifacts` container. Use standard tools, like REST API and Speech Studio to interact with the custom speech related data. See details in [custom speech section](custom-speech-overview.md).
 
 ### Use of REST API with custom speech
 

@@ -9,13 +9,15 @@ ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
 ms.custom: UpdateFrequency5, data4ml, sdkv1
-ms.date: 08/17/2022
+ms.date: 03/10/2025
 #Customer intent: As an experienced Python developer, I need to export my data labels and use them for machine learning tasks.
 ---
 
 # Create and explore Azure Machine Learning dataset with labels
 
-In this article, you'll learn how to export the data labels from an Azure Machine Learning data labeling project and load them into popular formats such as, a pandas dataframe for data exploration. 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
+In this article, you learn how to export the data labels from an Azure Machine Learning data labeling project and load them into popular formats, such as a pandas dataframe for data exploration. 
 
 ## What are datasets with labels 
 
@@ -41,7 +43,7 @@ Use the **Export** button on the **Project details** page of your labeling proje
  The COCO file is created in the default blob store of the Azure Machine Learning workspace in a folder within *export/coco*. 
  
 >[!NOTE]
->In object detection projects, the exported "bbox": [x,y,width,height]" values in COCO file are normalized. They are scaled to 1. Example : a bounding box at (10, 10) location, with 30 pixels width , 60 pixels height, in a 640x480 pixel image will be annotated as (0.015625. 0.02083, 0.046875, 0.125). Since the coordintes are normalized, it will show as '0.0' as "width" and "height" for all images. The actual width and height can be obtained using Python library like OpenCV  or Pillow(PIL).
+>In object detection projects, the exported `bbox: [x,y,width,height]` values in COCO file are normalized. They're scaled to 1. For example, a bounding box at (10, 10) location, with 30 pixels width, 60 pixels height, in a 640x480 pixel image is annotated as (0.015625. 0.02083, 0.046875, 0.125). Since the coordinates are normalized, it shows as '0.0' as "width" and "height" for all images. The actual width and height can be obtained using Python library like OpenCV  or Pillow(PIL).
 
 ### Azure Machine Learning dataset
 
@@ -50,11 +52,11 @@ You can access the exported Azure Machine Learning dataset in the **Datasets** s
 ![Exported dataset](../media/how-to-create-labeling-projects/exported-dataset.png)
 
 > [!TIP]
-> Once you have exported your labeled data to an Azure Machine Learning dataset, you can use AutoML to build computer vision models trained on your labeled data. Learn more at [Set up AutoML to train computer vision models with Python](../how-to-auto-train-image-models.md)
+> Once you export your labeled data to an Azure Machine Learning dataset, you can use AutoML to build computer vision models trained on your labeled data. Learn more at [Set up AutoML to train computer vision models with Python](../how-to-auto-train-image-models.md)
 
 ## Explore labeled datasets via pandas dataframe
 
-Load your labeled datasets into a pandas dataframe to leverage popular open-source libraries for data exploration with the [`to_pandas_dataframe()`](/python/api/azureml-core/azureml.data.tabulardataset#to-pandas-dataframe-on-error--null---out-of-range-datetime--null--) method from the `azureml-dataprep` class. 
+Load your labeled datasets into a pandas dataframe to use popular open-source libraries for data exploration with the [`to_pandas_dataframe()`](/python/api/azureml-core/azureml.data.tabulardataset#to-pandas-dataframe-on-error--null---out-of-range-datetime--null--) method from the `azureml-dataprep` class. 
 
 Install the class with the following shell command: 
 
@@ -75,12 +77,6 @@ from azureml.core import Dataset, Workspace
 animal_labels = Dataset.get_by_name(workspace, 'animal_labels')
 animal_pd = animal_labels.to_pandas_dataframe()
 
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
-
-#read images from dataset
-img = mpimg.imread(animal_pd['image_url'].iloc(0).open())
-imgplot = plt.imshow(img)
 ```
 
 ## Next steps

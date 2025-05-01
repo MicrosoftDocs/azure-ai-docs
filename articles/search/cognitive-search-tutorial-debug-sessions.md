@@ -1,16 +1,16 @@
 ---
-title: 'Tutorial: Debug skillsets'
+title: 'Tutorial: Debug Skillsets'
 titleSuffix: Azure AI Search
 description: Practice creating and completing a debug session on an Azure AI Search skillset. This tutorial provides a buggy sample skillset that you resolve in a debug session.
 
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 08/20/2024
+ms.date: 03/31/2025
 ---
 
 # Tutorial: Fix a skillset using Debug Sessions
@@ -19,15 +19,15 @@ In Azure AI Search, a skillset coordinates the actions of skills that analyze, t
 
 **Debug Sessions** is an Azure portal tool that provides a holistic visualization of a skillset that executes on Azure AI Search. Using this tool, you can drill down to specific steps to easily see where an action might be falling down.
 
-In this article, use **Debug Sessions** to find and fix missing inputs and outputs. The tutorial is all-inclusive. It provides sample data, a REST file that creates objects, and instructions for debugging problems in the skillset.
-
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+In this tutorial, you use **Debug Sessions** to find and fix missing inputs and outputs. The tutorial is all-inclusive. It provides sample data, a REST file that creates objects, and instructions for debugging problems in the skillset.
 
 ## Prerequisites
 
-+ Azure AI Search. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) under your current subscription. You can use a free service for this tutorial. The free tier doesn't provide managed identity support for an Azure AI Search service. You must use keys for connections to Azure Storage.
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-+ Azure Storage account with [Blob storage](/azure/storage/blobs/), used for hosting sample data, and for persisting cached data created during a debug session. If you're using a free search service, the storage account must have shared access keys enabled and it must allow public network access.
++ Azure AI Search. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. You can use a free service for this tutorial. The Free tier doesn't provide managed identity support for an Azure AI Search service. You must use keys for connections to Azure Storage.
+
++ Azure Storage account with [Blob storage](/azure/storage/blobs/), used for hosting sample data and for persisting cached data created during a debug session. If you're using a free search service, the storage account must have shared access keys enabled and it must allow public network access.
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
@@ -44,29 +44,29 @@ This section creates the sample data set in Azure Blob Storage so that the index
 
 1. [Download sample data (clinical-trials-pdf-19)](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/_ARCHIVE/clinical-trials/clinical-trials-pdf-19), consisting of 19 files.
 
-1. [Create an Azure Storage account](/azure/storage/common/storage-account-create?tabs=azure-portal) or [find an existing account](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Storage%2storageAccounts/). 
+1. [Create an Azure Storage account](/azure/storage/common/storage-account-create?tabs=azure-portal) or [find an existing account](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Storage%2storageAccounts/).
 
    + Choose the same region as Azure AI Search to avoid bandwidth charges.
 
    + Choose the StorageV2 (general purpose V2) account type.
 
-1. Navigate to the Azure Storage services pages in the portal and create a Blob container. Best practice is to specify the access level "private". Name your container `clinicaltrialdataset`.
+1. Go to the Azure Storage services pages in the Azure portal and create a Blob container. Best practice is to specify the access level "private". Name your container `clinicaltrialdataset`.
 
 1. In container, select **Upload** to upload the sample files you downloaded and unzipped in the first step.
 
-1. While in the portal, copy the connection string for Azure Storage. You can get the connection string from **Settings** > **Access Keys** in the portal.
+1. In the Azure portal, select **Settings** > **Access Keys** and copy the connection string for Azure Storage.
 
 ## Copy a key and URL
 
 This tutorial uses API keys for authentication and authorization. You need the search service endpoint and an API key, which you can get from the Azure portal.
 
-1. Sign in to the [Azure portal](https://portal.azure.com), navigate to the **Overview** page, and copy the URL. An example endpoint might look like `https://mydemo.search.windows.net`.
+1. Sign in to the [Azure portal](https://portal.azure.com), go to the **Overview** page, and copy the URL. An example endpoint might look like `https://mydemo.search.windows.net`.
 
 1. Under **Settings** > **Keys**, copy an admin key. Admin keys are used to add, modify, and delete objects. There are two interchangeable admin keys. Copy either one.
 
    :::image type="content" source="media/search-get-started-rest/get-url-key.png" alt-text="Screenshot of the URL and API keys in the Azure portal.":::
 
-A valid API key establishes trust, on a per request basis, between the application sending the request and the search service handling it.
+A valid API key establishes trust, on a per-request basis, between the application sending the request and the search service handling it.
 
 ## Create data source, skillset, index, and indexer
 
@@ -80,11 +80,11 @@ In this section, create a "buggy" workflow that you can fix in this tutorial.
 
 1. Close the file.
 
-## Check results in the portal
+## Check results in the Azure portal
 
-The sample code intentionally creates a buggy index as a consequence of problems that occurred during skillset execution. The problem is that the index is missing data. 
+The sample code intentionally creates a buggy index as a consequence of problems that occurred during skillset execution. The problem is that the index is missing data.
 
-1. In Azure portal, on the search service **Overview** page, select the **Indexes** tab. 
+1. In Azure portal, on the search service **Overview** page, select the **Indexes** tab.
 
 1. Select *clinical-trials*.
 
@@ -98,15 +98,15 @@ The sample code intentionally creates a buggy index as a consequence of problems
 
 1. Run the query. You should see empty values for `organizations` and `locations`.
 
-    These fields should have been populated through the skillset's [Entity Recognition skill](cognitive-search-skill-entity-recognition-v3.md), used to detect organizations and locations anywhere within the blob's content. In the next exercise, you'll debug the skillset to determine what went wrong.
+    These fields should have been populated through the skillset's [Entity Recognition skill](cognitive-search-skill-entity-recognition-v3.md), used to detect organizations and locations anywhere within the blob's content. In the next exercise, you debug the skillset to determine what went wrong.
 
 Another way to investigate errors and warnings is through the Azure portal.
 
-1. Open the **Indexers** tab and select *clinical-trials-idxr*.
+1. On the **Indexers** tab, select *clinical-trials-idxr*.
 
    Notice that while the indexer job succeeded overall, there were warnings.
 
-1. Select **Success** to view the warnings (if there were mostly errors, the detail link would be **Failed**). You'll see a long list of every warning emitted by the indexer.
+1. Select **Success** to view the warnings. If there are mostly errors, the detail link is **Failed**. You should see a long list of every warning emitted by the indexer.
 
    :::image type="content" source="media/cognitive-search-debug/portal-indexer-errors-warnings.png" alt-text="Screenshot of view warnings." :::
 
@@ -116,19 +116,19 @@ Another way to investigate errors and warnings is through the Azure portal.
 
 1. Select **+ Add Debug Session**.
 
-1. Give the session a name. 
+1. Give the session a name.
 
 1. In Indexer template, provide the indexer name. The indexer has references to the data source, the skillset, and index.
 
 1. Select the storage account.
 
-1. **Save** the session. 
+1. **Save** the session.
 
    :::image type="content" source="media/cognitive-search-debug/debug-tutorial-create-session.png" lightbox="media/cognitive-search-debug/debug-tutorial-create-session.png" alt-text="Screenshot of Debug session definition page." :::
   
 1. A debug session opens to the settings page. You can make modifications to the initial configuration and override any defaults. A debug session only works with a single document. The default is to accept the first document in the collection as the basis of your debug sessions. You can [choose a specific document to debug](cognitive-search-how-to-debug-skillset.md#create-a-debug-session) by providing its URI in Azure Storage.
 
-1. When the debug session has finished initializing, you should see a skills workflow with mappings and a search index. The enriched document data structure appears in a details pane on the side. We excluded it from the following screenshot so that you could see more of the workflow.
+1. When the debug session finishes initializing, you should see a skills workflow with mappings and a search index. The enriched document data structure appears in a details pane on the side. We excluded it from the following screenshot so that you could see more of the workflow.
 
    :::image type="content" source="media/cognitive-search-debug/debug-execution-complete1.png" lightbox="media/cognitive-search-debug/debug-execution-complete1.png" alt-text="Screenshot of Debug Session visual editor." :::
 
@@ -136,7 +136,7 @@ Another way to investigate errors and warnings is through the Azure portal.
 
 Any issues reported by the indexer are indicated as **Errors** and **Warnings**.
 
-Notice that the number of errors and warning is a much smaller list than the one displayed earlier because this list is only detailing the errors for a single document. Like the list displayed by the indexer, you can select on a warning message and see the details of this warning.
+Notice that the number of errors and warnings is a smaller list than the one displayed earlier because this list is only detailing the errors for a single document. Like the list displayed by the indexer, you can select on a warning message and see the details of this warning.
 
 Select **Warnings** to review the notifications. You should see four:
 
@@ -163,7 +163,7 @@ Because all four notifications are about this skill, your next step is to debug 
 
    :::image type="content" source="media/cognitive-search-debug/debug-tutorial-skill-detail.png" alt-text="Screenshot of the skill details pane.":::
 
-1. Hover over each input (or select an input) to show the values in the **Expression evaluator**. Notice that the displayed result for this input doesn’t look like a text input. It looks like a series of new line characters `\n \n\n\n\n` instead of text. The lack of text means that no entities can be identified, so either this document fails to meet the prerequisites of the skill, or there's another input that should be used instead.
+1. Hover over each input (or select an input) to show the values in the **Expression evaluator**. Notice that the displayed result for this input doesn’t look like a text input. It looks like a series of new line characters `\n \n\n\n\n` instead of text. The lack of text means that no entities can be identified. Either this document doesn't meet the prerequisites of the skill, or there's another input that should be used instead.
 
    :::image type="content" source="media/cognitive-search-debug/debug-tutorial-skill-input-null.png" alt-text="Screenshot of skill input showing null values.":::
 
@@ -177,7 +177,7 @@ Because all four notifications are about this skill, your next step is to debug 
 
    :::image type="content" source="media/cognitive-search-debug/debug-tutorial-edit-skill.png" alt-text="Screenshot of Expression Evaluator for fixed merged_content input." :::
 
-1. Select **Run** in the session's window menu. This kicks off another execution of the skillset using the document. 
+1. Select **Run** in the session's window menu. This kicks off another execution of the skillset using the document.
 
 1. Once the debug session execution completes, notice that the warnings count has reduced by one. Warnings show that the error for text input is gone, but the other warnings remain. The next step is to address the warning about the missing or empty value `/document/languageCode`.
 
@@ -221,11 +221,11 @@ The messages say to check the 'outputFieldMappings' property of your indexer, so
 
 1. Select **Run**.
 
-All of the errors have been resolved.
+All of the errors are resolved.
 
 ## Commit changes to the skillset
 
-When the debug session was initiated, the search service created a copy of the skillset. This was done to protect the original skillset on your search service. Now that you have finished debugging your skillset, the fixes can be committed (overwrite the original skillset). 
+When the debug session was initiated, the search service created a copy of the skillset. This was done to protect the original skillset on your search service. Now that you debugged your skillset, the fixes can be committed (overwrite the original skillset).
 
 Alternatively, if you aren't ready to commit changes, you can save the debug session and reopen it later.
 
@@ -233,7 +233,7 @@ Alternatively, if you aren't ready to commit changes, you can save the debug ses
 
 1. Select **OK** to confirm that you wish to update your skillset.
 
-1. Close Debug session and open **Indexers** from the left navigation pane.
+1. Close Debug session and open **Indexers** from the left pane.
 
 1. Select 'clinical-trials-idxr'.
 
@@ -243,9 +243,9 @@ Alternatively, if you aren't ready to commit changes, you can save the debug ses
 
 1. Select **Refresh** to show the status of the reset and run commands.
 
-When the indexer has finished running, there should be a green checkmark and the word Success next to the time stamp for the latest run in the **Execution history** tab. To ensure that the changes have been applied:
+When the indexer finishes running, there should be a green checkmark and the word Success next to the time stamp for the latest run in the **Execution history** tab. To ensure that the changes are applied:
 
-1. In the left navigation pane, open **Indexes**.
+1. In the left pane, open **Indexes**.
 
 1. Select 'clinical-trials' index and in the Search explorer tab, enter this query string: `$select=metadata_storage_path, organizations, locations&$count=true` to return fields for specific documents (identified by the unique `metadata_storage_path` field).
 
@@ -257,13 +257,13 @@ The results should show that organizations and locations are now populated with 
 
 When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
+You can find and manage resources in the Azure portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
 
-The free service is limited to three indexes, indexers, and data sources. You can delete individual items in the portal to stay under the limit. 
+The free service is limited to three indexes, indexers, and data sources. You can delete individual items in the Azure portal to stay under the limit. 
 
 ## Next steps
 
-This tutorial touched on various aspects of skillset definition and processing. To learn more about concepts and workflows, refer to the following articles:
+This tutorial touched on various aspects of skillset definition and processing. To learn more about concepts and workflows, see the following articles:
 
 + [How to map skillset output fields to fields in a search index](cognitive-search-output-field-mapping.md)
 

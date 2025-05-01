@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 08/22/2024
+ms.date: 03/21/2025
 ms.custom: template-concept, devx-track-python
 manager: nitinme
 ---
@@ -14,15 +14,18 @@ manager: nitinme
 # Content filtering
 
 > [!IMPORTANT]
-> The content filtering system isn't applied to prompts and completions processed by the Whisper model in Azure OpenAI Service. Learn more about the [Whisper model in Azure OpenAI](models.md#whisper).
+> The content filtering system isn't applied to prompts and completions processed by the audio models such as Whisper in Azure OpenAI Service. Learn more about the [Audio models in Azure OpenAI](models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint).
 
-Azure OpenAI Service includes a content filtering system that works alongside core models, including DALL-E image generation models. This system works by running both the prompt and completion through an ensemble of classification models designed to detect and prevent the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Variations in API configurations and application design might affect completions and thus filtering behavior.
+Azure OpenAI Service includes a content filtering system that works alongside core models, including image generation models. This system works by running both the prompt and completion through an ensemble of classification models designed to detect and prevent the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Variations in API configurations and application design might affect completions and thus filtering behavior.
 
 The text content filtering models for the hate, sexual, violence, and self-harm categories have been specifically trained and tested on the following languages: English, German, Japanese, Spanish, French, Italian, Portuguese, and Chinese. However, the service can work in many other languages, but the quality might vary. In all cases, you should do your own testing to ensure that it works for your application.
 
 In addition to the content filtering system, Azure OpenAI Service performs monitoring to detect content and/or behaviors that suggest use of the service in a manner that might violate applicable product terms. For more information about understanding and mitigating risks associated with your application, see the [Transparency Note for Azure OpenAI](/legal/cognitive-services/openai/transparency-note?tabs=text). For more information about how data is processed for content filtering and abuse monitoring, see [Data, privacy, and security for Azure OpenAI Service](/legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context#preventing-abuse-and-harmful-content-generation).  
 
 The following sections provide information about the content filtering categories, the filtering severity levels and their configurability, and API scenarios to be considered in application design and implementation. 
+
+> [!NOTE]
+> No prompts or completions are stored for the purposes of content filtering. No prompts or completions are used to train, retrain, or improve the content filtering system without your consent. For more information, see [Data, privacy, and security](/legal/cognitive-services/openai/data-privacy?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=azure-portal).
 
 ## Content filter types
 
@@ -43,13 +46,15 @@ Text and image models support Drugs as an additional classification. This catego
 | Sexual  | Sexual describes language related to anatomical organs and genitals, romantic relationships and sexual acts, acts portrayed in erotic or affectionate terms, including those portrayed as an assault or a forced sexual violent act against one’s will. <br><br> This includes but is not limited to:<ul><li>Vulgar content</li><li>Prostitution</li><li>Nudity and Pornography</li><li>Abuse</li><li>Child exploitation, child abuse, child grooming</li></ul>   |
 | Violence  | Violence describes language related to physical actions intended to hurt, injure, damage, or kill someone or something; describes weapons, guns and related entities. <br><br>This includes, but isn't limited to:  <ul><li>Weapons</li><li>Bullying and intimidation</li><li>Terrorist and violent extremism</li><li>Stalking</li></ul>  |
 | Self-Harm  | Self-harm describes language related to physical actions intended to purposely hurt, injure, damage one’s body or kill oneself. <br><br> This includes, but isn't limited to: <ul><li>Eating Disorders</li><li>Bullying and intimidation</li></ul>  |
-| Protected Material for Text<sup>*</sup> | Protected material text describes known text content (for example, song lyrics, articles, recipes, and selected web content) that can be outputted by large language models.
+| Protected Material for Text<sup>1</sup> | Protected material text describes known text content (for example, song lyrics, articles, recipes, and selected web content) that can be outputted by large language models.
 | Protected Material for Code | Protected material code describes source code that matches a set of source code from public repositories, which can be outputted by large language models without proper citation of source repositories.
 |User Prompt Attacks |User prompt attacks are User Prompts designed to provoke the Generative AI model into exhibiting behaviors it was trained to avoid or to break the rules set in the System Message. Such attacks can vary from intricate roleplay to subtle subversion of the safety objective. |
 |Indirect Attacks |Indirect Attacks, also referred to as Indirect Prompt Attacks or Cross-Domain Prompt Injection Attacks, are a potential vulnerability where third parties place malicious instructions inside of documents that the Generative AI system can access and process. Requires [document embedding and formatting](#embedding-documents-in-your-prompt). |
+| Groundedness<sup>2</sup> | Groundedness detection flags whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users. Ungrounded material refers to instances where the LLMs produce information that is non-factual or inaccurate from what was present in the source materials. Requires [document embedding and formatting](#embedding-documents-in-your-prompt). |
 
-<sup>*</sup> If you're an owner of text material and want to submit text content for protection, [file a request](https://aka.ms/protectedmaterialsform).
+<sup>1</sup> If you're an owner of text material and want to submit text content for protection, [file a request](https://aka.ms/protectedmaterialsform).
 
+<sup>2</sup> Not available in non-streaming scenarios; only available for streaming scenarios. The following regions support Groundedness Detection: Central US, East US, France Central, and Canada East 
 
 [!INCLUDE [severity-levels text, four-level](../../content-safety/includes/severity-levels-text-four.md)]
 
@@ -79,32 +84,9 @@ Detecting indirect attacks requires using document delimiters when constructing 
 
 ---
 
-## Configurability (preview)
+## Configurability
 
-The default content filtering configuration for the GPT model series is set to filter at the medium severity threshold for all four content harm categories (hate, violence, sexual, and self-harm) and applies to both prompts (text, multi-modal text/image) and completions (text). This means that content that is detected at severity level medium or high is filtered, while content detected at severity level low isn't filtered by the content filters. For DALL-E, the default severity threshold is set to low for both prompts (text) and completions (images), so content detected at severity levels low, medium, or high is filtered. The configurability feature is available in preview and allows customers to adjust the settings, separately for prompts and completions, to filter content for each content category at different severity levels as described in the table below:
-
-| Severity filtered | Configurable for prompts | Configurable for completions | Descriptions |
-|-------------------|--------------------------|------------------------------|--------------|
-| Low, medium, high | Yes | Yes | Strictest filtering configuration. Content detected at severity levels low, medium, and high is filtered.|
-| Medium, high      | Yes | Yes | Content detected at severity level low isn't filtered, content at medium and high is filtered.|
-| High              | Yes| Yes | Content detected at severity levels low and medium isn't filtered. Only content at severity level high is filtered. Requires approval<sup>1</sup>.|
-| No filters | If approved<sup>1</sup>| If approved<sup>1</sup>| No content is filtered regardless of severity level detected. Requires approval<sup>1</sup>.|
-
-<sup>1</sup> For Azure OpenAI models, only customers who have been approved for modified content filtering have full content filtering control and can off turn content filters. Apply for modified content filters via this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR) For Azure Government customers, please apply for modified content filters via this form: [Azure Government - Request Modified Content Filtering for Azure OpenAI Service](https://aka.ms/AOAIGovModifyContentFilter).
-
-Configurable content filters for inputs (prompts) and outputs (completions) are available for the following Azure OpenAI models:
-
-* GPT model series
-* GPT-4 Turbo Vision GA<sup>*</sup> (turbo-2024-04-09)
-* GPT-4o
-* GPT-4o mini
-* DALL-E 2 and 3
-
-<sup>*</sup>Only available for GPT-4 Turbo Vision GA, does not apply to GPT-4 Turbo Vision preview 
-
-Content filtering configurations are created within a Resource in Azure AI Studio, and can be associated with Deployments. [Learn more about configurability here](../how-to/content-filters.md).  
-
-Customers are responsible for ensuring that applications integrating Azure OpenAI comply with the [Code of Conduct](/legal/cognitive-services/openai/code-of-conduct?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext). 
+[!INCLUDE [content-filter-configurability](../includes/content-filter-configurability.md)]
 
 ## Scenario details
 
@@ -351,24 +333,27 @@ When annotations are enabled as shown in the code snippets below, the following 
 |indirect attacks|detected (true or false), </br>filtered (true or false)|
 |protected material text|detected (true or false), </br>filtered (true or false)|
 |protected material code|detected (true or false), </br>filtered (true or false), </br>Example citation of public GitHub repository where code snippet was found, </br>The license of the repository|
+|Groundedness | detected (true or false)</br>filtered (true or false) </br>details (`completion_end_offset`, `completion_start_offset`) |
 
 When displaying code in your application, we strongly recommend that the application also displays the example citation from the annotations. Compliance with the cited license may also be required for Customer Copyright Commitment coverage.
 
 See the following table for the annotation availability in each API version:
 
-|Category |2024-02-01 GA| 2024-04-01-preview | 2023-10-01-preview | 2023-06-01-preview| 
+|Category |2024-10-01-preview|2024-02-01 GA| 2024-04-01-preview | 2023-10-01-preview | 2023-06-01-preview| 
 |--|--|--|--|
-| Hate | ✅ |✅ |✅ |✅ |
-| Violence | ✅ |✅ |✅ |✅ |
-| Sexual |✅ |✅ |✅ |✅ |
-| Self-harm |✅ |✅ |✅ |✅ |
-| Prompt Shield for user prompt attacks|✅ |✅ |✅ |✅ |
-|Prompt Shield for indirect attacks|  | ✅ | | |
-|Protected material text|✅ |✅ |✅ |✅ |
-|Protected material code|✅ |✅ |✅ |✅ |
-|Profanity blocklist|✅ |✅ |✅ |✅ |
-|Custom blocklist| | ✅ |✅ |✅ |
+| Hate | ✅|✅ |✅ |✅ |✅ |
+| Violence | ✅|✅ |✅ |✅ |✅ |
+| Sexual |✅ |✅|✅ |✅ |✅ |
+| Self-harm |✅|✅|✅ |✅ |✅ |
+| Prompt Shield for user prompt attacks|✅|✅|✅ |✅ |✅ |
+|Prompt Shield for indirect attacks|   | | ✅ | | |
+|Protected material text|✅|✅ |✅ |✅ |✅ |
+|Protected material code|✅|✅ |✅ |✅ |✅ |
+|Profanity blocklist|✅|✅ |✅ |✅ |✅ |
+|Custom blocklist|✅| | ✅ |✅ |✅ |
+|Groundedness<sup>1</sup>|✅| |  | |  |
 
+<sup>1</sup> Not available in non-streaming scenarios; only available for streaming scenarios. The following regions support Groundedness Detection: Central US, East US, France Central, and Canada East 
 
 # [OpenAI Python 1.x](#tab/python-new)
 
@@ -635,8 +620,8 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 // You will need to set these environment variables or edit the following values
-const endpoint = process.env["ENDPOINT"] || "<endpoint>";
-const azureApiKey = process.env["AZURE_API_KEY"] || "<api key>";
+const endpoint = process.env["ENDPOINT"] || "Your endpoint";
+const azureApiKey = process.env["AZURE_API_KEY"] || "Your API key";
 
 const messages = [
   { role: "system", content: "You are a helpful assistant. You will talk like a pirate." },
@@ -733,6 +718,39 @@ violence  : @{filtered=False; severity=safe}
 
 For details on the inference REST API endpoints for Azure OpenAI and how to create Chat and Completions, follow [Azure OpenAI Service REST API reference guidance](../reference.md). Annotations are returned for all scenarios when using any preview API version starting from `2023-06-01-preview`, as well as the GA API version `2024-02-01`.
 
+### Groundedness
+
+#### Annotate only 
+
+Returns offsets referencing the ungrounded completion content. 
+
+```json
+{ 
+  "ungrounded_material": { 
+    "details": [ 
+       { 
+         "completion_end_offset": 127, 
+         "completion_start_offset": 27 
+       } 
+   ], 
+    "detected": true, 
+    "filtered": false 
+ } 
+} 
+```
+
+#### Annotate and filter 
+
+Blocks completion content when ungrounded completion content was detected. 
+
+```json
+{ "ungrounded_material": { 
+    "detected": true, 
+    "filtered": true 
+  } 
+} 
+```
+
 ### Example scenario: An input prompt containing content that is classified at a filtered category and severity level is sent to the completions API
 
 ```json
@@ -802,9 +820,7 @@ This is an example message array:
 In addition to detection on last user content, Azure OpenAI also supports the detection of specific risks inside context documents via Prompt Shields – Indirect Prompt Attack Detection. You should identify parts of the input that are a document (for example, retrieved website, email, etc.) with the following document delimiter.  
 
 ```
-<documents> 
-*insert your document content here* 
-</documents>
+\"\"\" <documents> *insert your document content here* </documents> \"\"\" 
 ```
 
 When you do so, the following options are available for detection on tagged documents: 
@@ -814,9 +830,9 @@ When you do so, the following options are available for detection on tagged docu
 Here's an example chat completion messages array: 
 
 ```json
-{"role": "system", "content": "Provide some context and/or instructions to the model, including document context. \"\"\" <documents>\n*insert your document content here*\n<\\documents> \"\"\""}, 
+{"role": "system", "content": "Provide some context and/or instructions to the model.}, 
 
-{"role": "user", "content": "First question/message for the model to actually respond to."} 
+{"role": "user", "content": "First question/message for the model to actually respond to, including document context.  \"\"\" <documents>\n*insert your document content here*\n</documents> \"\"\"""}
 ```
 
 #### JSON escaping 
@@ -840,7 +856,7 @@ Hello Jos\u00E9,\nI hope this email finds you well today.
 The escaped text in a chat completion context would read: 
 
 ```json
-{"role": "system", "content": "Provide some context and/or instructions to the model, including document context. \"\"\" <documents>\n Hello Jos\\u00E9,\\nI hope this email finds you well today. \n<\\documents> \"\"\""}, 
+{"role": "system", "content": "Provide some context and/or instructions to the model, including document context. \"\"\" <documents>\n Hello Jos\\u00E9,\\nI hope this email finds you well today. \n</documents> \"\"\""}, 
 
 {"role": "user", "content": "First question/message for the model to actually respond to."}
 ```
@@ -865,7 +881,7 @@ Customers must understand that while the feature improves latency, it's a trade-
 
 **Customer Copyright Commitment**: Content that is retroactively flagged as protected material may not be eligible for Customer Copyright Commitment coverage. 
 
-To enable Asynchronous Filter in Azure OpenAI Studio, follow the [Content filter how-to guide](/azure/ai-services/openai/how-to/content-filters) to create a new content filtering configuration, and select **Asynchronous Filter** in the Streaming section.
+To enable Asynchronous Filter in [Azure AI Foundry portal](https://ai.azure.com/), follow the [Content filter how-to guide](/azure/ai-services/openai/how-to/content-filters) to create a new content filtering configuration, and select **Asynchronous Filter** in the Streaming section.
 
 ### Comparison of content filtering modes
 
@@ -873,7 +889,7 @@ To enable Asynchronous Filter in Azure OpenAI Studio, follow the [Content filter
 |---|---|---|
 |Status |GA |Public Preview |
 | Eligibility |All customers |Customers approved for modified content filtering |
-| How to enable | Enabled by default, no action needed |Customers approved for modified content filtering can configure it directly in Azure OpenAI Studio (as part of a content filtering configuration, applied at the deployment level) |
+| How to enable | Enabled by default, no action needed |Customers approved for modified content filtering can configure it directly in [Azure AI Foundry portal](https://ai.azure.com/) (as part of a content filtering configuration, applied at the deployment level) |
 |Modality and availability |Text; all GPT models |Text; all GPT models |
 |Streaming experience |Content is buffered and returned in chunks |Zero latency (no buffering, filters run asynchronously) |
 |Content filtering signal |Immediate filtering signal |Delayed filtering signal (in up to ~1,000-character increments) |

@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 02/08/2024
+ms.date: 3/10/2025
 ms.author: eur
 zone_pivot_groups: programming-languages-speech-services-nomore-variant
 #customer intent: As an application developer, I want to use language recognition or translations in order to make my apps work seamlessly for more customers.
@@ -32,9 +32,6 @@ Whether you use language identification with [speech to text](#use-speech-to-tex
 - Decide whether to use [at-start or continuous](#at-start-and-continuous-language-identification) language identification.
 
 Then you make a [recognize once or continuous recognition](#recognize-once-or-continuous) request to the Speech service.
-
-> [!IMPORTANT]
-> Language Identification APIs are simplified with the Speech SDK version 1.25 and later. The `SpeechServiceConnection_SingleLanguageIdPriority` and `SpeechServiceConnection_ContinuousLanguageIdPriority` properties have been removed. A single property `SpeechServiceConnection_LanguageIdMode` replaces them. You no longer need to prioritize between low latency and high accuracy. For continuous speech recognition or translation, you only need to select whether to run at-start or continuous Language Identification.
 
 This article provides code snippets to describe the concepts. Links to complete samples for each use case are provided.
 
@@ -206,7 +203,7 @@ You use Speech to text recognition when you need to identify the language in an 
 > [!NOTE]
 > Speech to text recognition with at-start language identification is supported with Speech SDKs in C#, C++, Python, Java, JavaScript, and Objective-C. Speech to text recognition with continuous language identification is only supported with Speech SDKs in C#, C++, Java, JavaScript, and Python.
 >
-> Currently for speech to text recognition with continuous language identification, you must create a SpeechConfig from the `wss://{region}.stt.speech.microsoft.com/speech/universal/v2` endpoint string, as shown in code examples. In a future SDK release you won't need to set it.
+> Currently for speech to text recognition with continuous language identification, you must create a SpeechConfig from  endpoint, as shown in code examples.
 
 ::: zone pivot="programming-language-csharp"
 
@@ -218,7 +215,7 @@ See more examples of speech to text recognition with language identification on 
 using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
 
-var speechConfig = SpeechConfig.FromSubscription("YourSubscriptionKey","YourServiceRegion");
+var speechConfig = SpeechConfig.FromEndpoint(new Uri("YourSpeechEndpoint"), "YourSpeechKey");
 
 var autoDetectSourceLanguageConfig =
     AutoDetectSourceLanguageConfig.FromLanguages(
@@ -243,12 +240,7 @@ using (var recognizer = new SpeechRecognizer(
 using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
 
-var region = "YourServiceRegion";
-// Currently the v2 endpoint is required. In a future SDK release you won't need to set it.
-var endpointString = $"wss://{region}.stt.speech.microsoft.com/speech/universal/v2";
-var endpointUrl = new Uri(endpointString);
-
-var config = SpeechConfig.FromEndpoint(endpointUrl, "YourSubscriptionKey");
+var config = SpeechConfig.FromEndpoint(new Uri("YourSpeechEndpoint"), "YourSpeechKey");
 
 // Set the LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
 config.SetProperty(PropertyId.SpeechServiceConnection_LanguageIdMode, "Continuous");
@@ -293,7 +285,7 @@ using (var audioInput = AudioConfig.FromWavFileInput(@"en-us_zh-cn.wav"))
             {
                 Console.WriteLine($"CANCELED: ErrorCode={e.ErrorCode}");
                 Console.WriteLine($"CANCELED: ErrorDetails={e.ErrorDetails}");
-                Console.WriteLine($"CANCELED: Did you set the speech resource key and region values?");
+                Console.WriteLine($"CANCELED: Did you set the speech resource key and endpoint values?");
             }
 
             stopRecognition.TrySetResult(0);
@@ -338,7 +330,7 @@ using namespace std;
 using namespace Microsoft::CognitiveServices::Speech;
 using namespace Microsoft::CognitiveServices::Speech::Audio;
 
-auto speechConfig = SpeechConfig::FromSubscription("YourSubscriptionKey","YourServiceRegion");
+auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSubscriptionKey");
 
 auto autoDetectSourceLanguageConfig =
     AutoDetectSourceLanguageConfig::FromLanguages({ "en-US", "de-DE", "zh-CN" });
@@ -423,11 +415,9 @@ import azure.cognitiveservices.speech as speechsdk
 import time
 import json
 
-speech_key, service_region = "YourSubscriptionKey","YourServiceRegion"
+speech_key, endpoint_string = "YourSubscriptionKey","YourServiceEndpoint"
 weatherfilename="en-us_zh-cn.wav"
 
-# Currently the v2 endpoint is required. In a future SDK release you won't need to set it. 
-endpoint_string = "wss://{}.stt.speech.microsoft.com/speech/universal/v2".format(service_region)
 speech_config = speechsdk.SpeechConfig(subscription=speech_key, endpoint=endpoint_string)
 audio_config = speechsdk.audio.AudioConfig(filename=weatherfilename)
 
@@ -599,7 +589,7 @@ Use Speech translation when you need to identify the language in an audio source
 
 > [!NOTE]
 > Speech translation with language identification is only supported with Speech SDKs in C#, C++, JavaScript, and Python.
-> Currently for speech translation with language identification, you must create a SpeechConfig from the `wss://{region}.stt.speech.microsoft.com/speech/universal/v2` endpoint string, as shown in code examples. In a future SDK release you won't need to set it.
+
 ::: zone pivot="programming-language-csharp"
 
 See more examples of speech translation with language identification on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/translation_samples.cs).
@@ -613,10 +603,7 @@ using Microsoft.CognitiveServices.Speech.Translation;
 
 public static async Task RecognizeOnceSpeechTranslationAsync()
 {
-    var region = "YourServiceRegion";
-    // Currently the v2 endpoint is required. In a future SDK release you won't need to set it.
-    var endpointString = $"wss://{region}.stt.speech.microsoft.com/speech/universal/v2";
-    var endpointUrl = new Uri(endpointString);
+    var endpointUrl = new Uri("YourSubscriptionEndpoint");
     
     var config = SpeechTranslationConfig.FromEndpoint(endpointUrl, "YourSubscriptionKey");
 
@@ -663,10 +650,7 @@ using Microsoft.CognitiveServices.Speech.Translation;
 
 public static async Task MultiLingualTranslation()
 {
-    var region = "YourServiceRegion";
-    // Currently the v2 endpoint is required. In a future SDK release you won't need to set it.
-    var endpointString = $"wss://{region}.stt.speech.microsoft.com/speech/universal/v2";
-    var endpointUrl = new Uri(endpointString);
+    var endpointUrl = new Uri("YourSubscriptionEndpoint");
     
     var config = SpeechTranslationConfig.FromEndpoint(endpointUrl, "YourSubscriptionKey");
 
@@ -727,7 +711,7 @@ public static async Task MultiLingualTranslation()
                 {
                     Console.WriteLine($"CANCELED: ErrorCode={e.ErrorCode}");
                     Console.WriteLine($"CANCELED: ErrorDetails={e.ErrorDetails}");
-                    Console.WriteLine($"CANCELED: Did you set the speech resource key and region values?");
+                    Console.WriteLine($"CANCELED: Did you set the speech resource key and endpoint values?");
                 }
 
                 stopTranslation.TrySetResult(0);
@@ -773,9 +757,7 @@ See more examples of speech translation with language identification on [GitHub]
 ### [Recognize once](#tab/once)
 
 ```cpp
-auto region = "YourServiceRegion";
-// Currently the v2 endpoint is required. In a future SDK release you won't need to set it.
-auto endpointString = std::format("wss://{}.stt.speech.microsoft.com/speech/universal/v2", region);
+auto endpointString = "YourSubscriptionEndpoint";
 auto config = SpeechTranslationConfig::FromEndpoint(endpointString, "YourSubscriptionKey");
 
 auto autoDetectSourceLanguageConfig = AutoDetectSourceLanguageConfig::FromLanguages({ "en-US", "de-DE" });
@@ -828,7 +810,7 @@ else if (result->Reason == ResultReason::Canceled)
     {
         cout << "CANCELED: ErrorCode=" << (int)cancellation->ErrorCode << std::endl;
         cout << "CANCELED: ErrorDetails=" << cancellation->ErrorDetails << std::endl;
-        cout << "CANCELED: Did you set the speech resource key and region values?" << std::endl;
+        cout << "CANCELED: Did you set the speech resource key and endpoint values?" << std::endl;
     }
 }
 ```
@@ -843,10 +825,7 @@ using namespace Microsoft::CognitiveServices::Speech::Translation;
 
 void MultiLingualTranslation()
 {
-    auto region = "YourServiceRegion";
-    // Currently the v2 endpoint is required. In a future SDK release you won't need to set it.
-    auto endpointString = std::format("wss://{}.stt.speech.microsoft.com/speech/universal/v2", region);
-    auto config = SpeechTranslationConfig::FromEndpoint(endpointString, "YourSubscriptionKey");
+    auto config = SpeechTranslationConfig::FromEndpoint("YourSubscriptionEndpoint", "YourSubscriptionKey");
 
     // Set the LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
     speechConfig->SetProperty(PropertyId::SpeechServiceConnection_LanguageIdMode, "Continuous");
@@ -902,7 +881,7 @@ void MultiLingualTranslation()
             {
                 cout << "CANCELED: ErrorCode=" << (int)e.ErrorCode << std::endl;
                 cout << "CANCELED: ErrorDetails=" << e.ErrorDetails << std::endl;
-                cout << "CANCELED: Did you set the speech resource key and region values?" << std::endl;
+                cout << "CANCELED: Did you set the speech resource key and endpoint values?" << std::endl;
 
                 recognitionEnd.set_value();
             }
@@ -943,15 +922,13 @@ import azure.cognitiveservices.speech as speechsdk
 import time
 import json
 
-speech_key, service_region = "YourSubscriptionKey","YourServiceRegion"
+speech_key, service_endpoint = "YourSubscriptionKey","YourServiceEndpoint"
 weatherfilename="en-us_zh-cn.wav"
 
 # set up translation parameters: source language and target languages
-# Currently the v2 endpoint is required. In a future SDK release you won't need to set it. 
-endpoint_string = "wss://{}.stt.speech.microsoft.com/speech/universal/v2".format(service_region)
 translation_config = speechsdk.translation.SpeechTranslationConfig(
     subscription=speech_key,
-    endpoint=endpoint_string,
+    endpoint=service_endpoint,
     speech_recognition_language='en-US',
     target_languages=('de', 'fr'))
 audio_config = speechsdk.audio.AudioConfig(filename=weatherfilename)
@@ -998,14 +975,13 @@ import azure.cognitiveservices.speech as speechsdk
 import time
 import json
 
-speech_key, service_region = "YourSubscriptionKey","YourServiceRegion"
+speech_key, service_endpoint = "YourSubscriptionKey","YourServiceEndpoint"
 weatherfilename="en-us_zh-cn.wav"
 
 # Currently the v2 endpoint is required. In a future SDK release you won't need to set it. 
-endpoint_string = "wss://{}.stt.speech.microsoft.com/speech/universal/v2".format(service_region)
 translation_config = speechsdk.translation.SpeechTranslationConfig(
     subscription=speech_key,
-    endpoint=endpoint_string,
+    endpoint=service_endpoint,
     speech_recognition_language='en-US',
     target_languages=('de', 'fr'))
 audio_config = speechsdk.audio.AudioConfig(filename=weatherfilename)
@@ -1091,7 +1067,7 @@ recognizer.stop_continuous_recognition()
 
 ## Run and use a container
 
-Speech containers provide websocket-based query endpoint APIs that are accessed through the Speech SDK and Speech CLI. By default, the Speech SDK and Speech CLI use the public Speech service. To use the container, you need to change the initialization method. Use a container host URL instead of key and region.
+Speech containers provide websocket-based query endpoint APIs that are accessed through the Speech SDK and Speech CLI. By default, the Speech SDK and Speech CLI use the public Speech service. To use the container, you need to change the initialization method. Use a container host URL instead of key and endpoint.
 
 When you run language ID in a container, use the `SourceLanguageRecognizer` object instead of `SpeechRecognizer` or `TranslationRecognizer`.
 

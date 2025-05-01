@@ -1,7 +1,6 @@
 ---
 title: include file
 description: include file
-#services: cognitive-services
 manager: nitinme
 ms.author: jacodel
 author: jcodella
@@ -17,7 +16,7 @@ ms.date: 01/19/2024
 * Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
 * The current version of [.NET Core](https://dotnet.microsoft.com/download/dotnet-core).
 * Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesPersonalizer"  title="Create a Personalizer resource"  target="_blank">create a Personalizer resource </a> in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**.
-   * You'll need the key and endpoint from the resource you create to connect your application to the Personalizer API. You'll paste your key and endpoint into the code below later in the quickstart.
+   * You need the key and endpoint from the resource you create to connect your application to the Personalizer API. You paste your key and endpoint into the code below later in the quickstart.
    * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
 ## Model configuration
@@ -66,7 +65,7 @@ dotnet add package Microsoft.Azure.CognitiveServices.Personalizer --version 1.0.
 
 ## Code block 1: Generate sample data
 
-Personalizer is meant to run on applications that receive and interpret real-time data. In this quickstart, you'll use sample code to generate imaginary customer actions on a grocery website. The following code block defines three key methods: **GetActions**, **GetContext** and **GetRewardScore**.
+Personalizer is meant to run on applications that receive and interpret real-time data. In this quickstart, you use sample code to generate imaginary customer actions on a grocery website. The following code block defines three key methods: **GetActions**, **GetContext** and **GetRewardScore**.
 
 - **GetActions** returns a list of the choices that the grocery website needs to rank. In this example, the actions are meal products. Each action choice has details (features) that may affect user behavior later on. Actions are used as input for the Rank API
 
@@ -90,8 +89,7 @@ Personalizer is meant to run on applications that receive and interpret real-tim
 
 1. Paste your key and endpoint into the code where indicated. Your endpoint has the form `https://<your_resource_name>.cognitiveservices.azure.com/`.
 
-    > [!IMPORTANT]
-    > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). See the Azure AI services [security](../../security-features.md) article for more information.
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 ## Code block 2: Iterate the learning loop
 
@@ -110,7 +108,7 @@ Run the application with the dotnet `dotnet run` command from your application d
 dotnet run
 ```
 
-On the first iteration, Personalizer will recommend a random action, because it hasn't done any training yet. You can optionally run more iterations. After about 10 minutes, the service will start to show improvements in its recommendations.
+On the first iteration, Personalizer recommends a random action, because it hasn't done any training yet. You can optionally run more iterations. After about 10 minutes, the service will start to show improvements in its recommendations.
 
 ![The quickstart program asks a couple of questions to gather user preferences, known as features, then provides the top action.](../media/csharp-quickstart-commandline-feedback-loop/quickstart-program-feedback-loop-example.png)
 

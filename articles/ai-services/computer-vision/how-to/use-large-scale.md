@@ -2,19 +2,20 @@
 title: "Scale to handle more enrolled users - Face"
 titleSuffix: Azure AI services
 description: This guide is an article on how to scale up from existing PersonGroup and FaceList objects to LargePersonGroup and LargeFaceList objects.
-#services: cognitive-services
 author: nitinme
 manager: nitinme
+#customer intent: As a developer, I want to scale up from existing PersonGroup and FaceList objects to LargePersonGroup and LargeFaceList objects so that I can handle more enrolled users.
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.topic: how-to
-ms.date: 02/14/2024
+ms.date: 01/29/2025
 ms.author: nitinme
 ms.devlang: csharp
 ms.custom:
   - devx-track-csharp
   - ignite-2023
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Scale to handle more enrolled users
@@ -24,7 +25,7 @@ ms.custom:
 This guide shows you how to scale up from existing **PersonGroup** and **FaceList** objects to **LargePersonGroup** and **LargeFaceList** objects, respectively. **PersonGroups** can hold up to 1000 persons in the free tier and 10,000 in the paid tier, while **LargePersonGroups** can hold up to one million persons in the paid tier.
 
 > [!IMPORTANT]
-> The newer data structure **PersonDirectory** is recommended for new development. It can hold up to 75 million identities and does not require manual training. For more information, see the [PersonDirectory guide](./use-persondirectory.md).
+> The newer data structure **PersonDirectory** is recommended for new development. It can hold up to 20 million identities and does not require manual training. For more information, see the [PersonDirectory guide](./use-persondirectory.md).
 
 This guide demonstrates the migration process. It assumes a basic familiarity with **PersonGroup** and **FaceList** objects, the **Train** operation, and the face recognition functions. To learn more about these subjects, see the [face recognition](../concept-face-recognition.md) conceptual guide.
 
@@ -37,7 +38,7 @@ The samples are written in C#.
 
 ## Step 1: Code migration
 
-This section focuses on how to migrate **PersonGroup** or **FaceList** implementation to **LargePersonGroup** or **LargeFaceList**. Although **LargePersonGroup** or **LargeFaceList** differs from **PersonGroup** or **FaceList** in design and internal implementation, the API interfaces are similar for backward compatibility.
+This section focuses on how to migrate **PersonGroup** or **FaceList** implementation to **LargePersonGroup** or **LargeFaceList**. Although **LargePersonGroup** and **LargeFaceList** differ from **PersonGroup** and **FaceList** in design and internal implementation, the API interfaces are similar for backward compatibility.
 
 Data migration isn't supported. You re-create the **LargePersonGroup** or **LargeFaceList** instead.
 
@@ -289,7 +290,7 @@ In this guide, you learned how to migrate the existing **PersonGroup** or **Face
 - **LargePersonGroup** and **LargeFaceList** work similar to **PersonGroup** or **FaceList**, except that the **Train** operation is required by **LargeFaceList**.
 - Take the proper **Train** strategy to dynamic data update for large-scale data sets.
 
-## Next steps
+## Related content
 
 Follow a how-to guide to learn how to add faces to a **PersonGroup** or write a script to do the **Identify** operation on a **PersonGroup**.
 

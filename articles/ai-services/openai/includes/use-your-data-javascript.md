@@ -1,103 +1,228 @@
 ---
-#services: cognitive-services
 manager: nitinme
 author: glharper
 ms.author: glharper
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 03/04/2024
+ms.date: 01/10/2025
 ---
 
 [!INCLUDE [Set up required variables](./use-your-data-common-variables.md)]
 
+## Set up
+ 
+1. Create a new folder `use-data-quickstart` and go to the quickstart folder with the following command:
 
-## Create a Node application
+    ```shell
+    mkdir use-data-quickstart && cd use-data-quickstart
+    ```
+    
+1. Create the `package.json` with the following command:
 
-In a console window (such as cmd, PowerShell, or Bash), create a new directory for your app, and navigate to it. Then run the `npm init` command to create a node application with a _package.json_ file.
+    ```shell
+    npm init -y
+    ```   
 
-```console
-npm init
-```
+1. Install the OpenAI client library for JavaScript with:
 
-## Install the client library
+    ```console
+    npm install openai
+    ```
 
-Install the Azure OpenAI client and Azure Identity libraries for JavaScript with npm:
+1. For the **recommended** passwordless authentication:
 
-```console
-npm install @azure/openai @azure/identity
-```
+    ```console
+    npm install @azure/identity
+    ```
 
-Your app's _package.json_ file will be updated with the dependencies.
+## Add the JavaScript code
 
-## Create a sample application
+#### [Microsoft Entra ID](#tab/keyless)
 
-Open a command prompt where you want the new project, and create a new file named ChatWithOwnData.js. Copy the following code into the ChatWithOwnData.js file.
+1. Create the `index.js` file with the following code: 
+    
+    ```javascript
+    const { DefaultAzureCredential, getBearerTokenProvider } = require("@azure/identity");
+    const { AzureOpenAI } = require("openai");
+    
+    // Set the Azure and AI Search values from environment variables
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
+    const searchEndpoint = process.env.AZURE_AI_SEARCH_ENDPOINT || "Your search endpoint";
+    const searchIndex = process.env.AZURE_AI_SEARCH_INDEX || "Your search index";
 
+    // keyless authentication    
+    const credential = new DefaultAzureCredential();
+    const scope = "https://cognitiveservices.azure.com/.default";
+    const azureADTokenProvider = getBearerTokenProvider(credential, scope);
 
-
-```javascript
-const { OpenAIClient, AzureKeyCredential } = require("@azure/openai");
-
-// Set the Azure and AI Search values from environment variables
-const endpoint = process.env["AZURE_OPENAI_ENDPOINT"];
-const azureApiKey = process.env["AZURE_OPENAI_API_KEY"];
-const deploymentId = process.env["AZURE_OPENAI_DEPLOYMENT_ID"];
-const searchEndpoint = process.env["AZURE_AI_SEARCH_ENDPOINT"];
-const searchKey = process.env["AZURE_AI_SEARCH_API_KEY"];
-const searchIndex = process.env["AZURE_AI_SEARCH_INDEX"];
-
-
-async function main(){
-  const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
-
-  const messages = [
-    { role: "user", content: "What are my available health plans?" },
-  ];
-
-  console.log(`Message: ${messages.map((m) => m.content).join("\n")}`);
-
-  const events = await client.streamChatCompletions(deploymentId, messages, { 
-    maxTokens: 128,
-    azureExtensionOptions: {
-      extensions: [
-        {
-          type: "AzureCognitiveSearch",
-          endpoint: searchEndpoint,
-          key: searchKey,
-          indexName: searchIndex,
-        },
-      ],
-    },
-  });
-  let response = "";
-  for await (const event of events) {
-    for (const choice of event.choices) {
-      const newText = choice.delta?.content;
-      if (!!newText) {
-        response += newText;
-        // To see streaming results as they arrive, uncomment line below
-        // console.log(newText);
-      }
+    // Required Azure OpenAI deployment name and API version
+    const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4";
+    const apiVersion = process.env.OPENAI_API_VERSION || "2024-10-21";
+    
+    function getClient() {
+      return new AzureOpenAI({
+        endpoint,
+        azureADTokenProvider,
+        deployment: deploymentName,
+        apiVersion,
+      });
     }
-  }
-  console.log(response);
-}
+    
+    async function main() {
+      const client = getClient();
+    
+      const messages = [
+        { role: "user", content: "What are my available health plans?" },
+      ];
+    
+      console.log(`Message: ${messages.map((m) => m.content).join("\n")}`);
+    
+      const events = await client.chat.completions.create({
+        stream: true,
+        messages: [
+          {
+            role: "user",
+            content:
+              "What's the most common feedback we received from our customers about the product?",
+          },
+        ],
+        max_tokens: 128,
+        model: "",
+        data_sources: [
+          {
+            type: "azure_search",
+            parameters: {
+              endpoint: searchEndpoint,
+              index_name: searchIndex,
+              authentication: {
+                type: "api_key",
+                key: searchKey,
+              },
+            },
+          },
+        ],
+      });
+    
+      let response = "";
+      for await (const event of events) {
+        for (const choice of event.choices) {
+          const newText = choice.delta?.content;
+          if (newText) {
+            response += newText;
+            // To see streaming results as they arrive, uncomment line below
+            // console.log(newText);
+          }
+        }
+      }
+      console.log(response);
+    }
+    
+    main().catch((err) => {
+      console.error("The sample encountered an error:", err);
+    });
+    ```
 
-main().catch((err) => {
-  console.error("The sample encountered an error:", err);
-});
+1. Sign in to Azure with the following command:
 
+    ```shell
+    az login
+    ```
 
+1. Run the JavaScript file.
 
-module.exports = { main };
-```
+    ```shell
+    node index.js
+    ```
 
-> [!IMPORTANT]
-> For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
+## [API key](#tab/api-key)
 
-```cmd
-node.exe ChatWithOwnData.js
-```
+1. Create the `index.js` file with the following code: 
+    
+    ```javascript
+    const { AzureOpenAI } = require("openai");
+    
+    // Set the Azure and AI Search values from environment variables
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
+    const apiKey = process.env.AZURE_OPENAI_API_KEY || "Your API key";
+    const searchEndpoint = process.env.AZURE_AI_SEARCH_ENDPOINT || "Your search endpoint";
+    const searchKey = process.env.AZURE_AI_SEARCH_API_KEY || "Your search key";
+    const searchIndex = process.env.AZURE_AI_SEARCH_INDEX || "Your search index";
+    
+    // Required Azure OpenAI deployment name and API version
+    const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4";
+    const apiVersion = process.env.OPENAI_API_VERSION || "2024-10-21";
+    
+    function getClient() {
+      return new AzureOpenAI({
+        endpoint,
+        apiKey,
+        deployment: deploymentName,
+        apiVersion,
+      });
+    }
+    
+    async function main() {
+      const client = getClient();
+    
+      const messages = [
+        { role: "user", content: "What are my available health plans?" },
+      ];
+    
+      console.log(`Message: ${messages.map((m) => m.content).join("\n")}`);
+    
+      const events = await client.chat.completions.create({
+        stream: true,
+        messages: [
+          {
+            role: "user",
+            content:
+              "What's the most common feedback we received from our customers about the product?",
+          },
+        ],
+        max_tokens: 128,
+        model: "",
+        data_sources: [
+          {
+            type: "azure_search",
+            parameters: {
+              endpoint: searchEndpoint,
+              index_name: searchIndex,
+              authentication: {
+                type: "api_key",
+                key: searchKey,
+              },
+            },
+          },
+        ],
+      });
+    
+      let response = "";
+      for await (const event of events) {
+        for (const choice of event.choices) {
+          const newText = choice.delta?.content;
+          if (newText) {
+            response += newText;
+            // To see streaming results as they arrive, uncomment line below
+            // console.log(newText);
+          }
+        }
+      }
+      console.log(response);
+    }
+    
+    main().catch((err) => {
+      console.error("The sample encountered an error:", err);
+    });
+    ```
+
+1. Run the JavaScript file.
+
+    ```shell
+    node index.js
+    ```
+
+---
+
 
 ## Output
 
@@ -107,5 +232,3 @@ The available health plans in the Contoso Electronics plan and benefit packages 
 
 ```
 
-> [!div class="nextstepaction"]
-> [I ran into an issue when running the code sample.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=JAVASCRIPT&Pillar=AOAI&Product=ownData&Page=quickstart&Section=Create-application)

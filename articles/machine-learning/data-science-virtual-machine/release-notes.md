@@ -2,7 +2,7 @@
 title: What's new on the Data Science Virtual Machine
 titleSuffix: Azure Data Science Virtual Machine
 description: Release notes for the Azure Data Science Virtual Machine
-ms.service: data-science-vm
+ms.service: azure-data-science-virtual-machines
 ms.custom: linux-related-content
 author: fbsolo-ms1 
 ms.author: franksolomon 
@@ -21,6 +21,76 @@ Azure portal users can find the latest image available for provisioning the Data
 
 Visit the [list of known issues](reference-known-issues.md) to learn about known bugs and workarounds.
 
+## February 18, 2025
+
+[Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+
+Version `25.02.13`
+
+- SDK `1.59.0`
+- NVDIA `535.183.01`
+- Cuda `cuda_12.2.r12`
+- Python `3.10.8`
+  
+## February 7, 2025
+
+[Data Science Virtual Machine - Windows 2022](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2022?tab=Overview)
+
+Version  `25.02.03`
+
+- SDK `1.59.0`
+  
+## February 4, 2025
+
+[Data Science Virtual Machine - Windows 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
+
+Version  `25.01.31`
+
+- SDK `1.59.0`
+
+## January 22, 2025
+
+[Data Science VM – Ubuntu 22.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+
+Version  `25.01.20`
+
+- SDK `1.59.0`
+
+## October 21, 2024
+
+[Data Science Virtual Machine – Ubuntu 22.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2204?tab=Overview)
+
+#### Description:
+
+DSVM-Ubuntu-22.04 image is a tailored Data Science Virtual Machine built on the robust Ubuntu 22.04 platform. It comes pre-installed with a comprehensive suite of popular data science and AI tools, including deep learning frameworks, Jupyter notebooks, and visualization libraries. Optimized for seamless development and deployment, this image offers enhanced compatibility with modern hardware, enabling data scientists, machine learning engineers, and AI researchers to accelerate their workflows efficiently. Whether you're building models, running simulations, or analyzing large datasets, DSVM-Ubuntu-22.04 empowers you with the tools and performance needed to drive innovation.
+ 
+- OS: `Ubuntu-22.04`
+- ImageVersion: `24.10.02`
+- SDK-version: `1.57.0`
+- Python Version: `3.10.8`
+ 
+DSVM 22.04 has all the latest packages that we had installed and shipped with 20.04
+
+## October 18, 2024
+
+[Data Science Virtual Machine – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+
+Version  `24.10.01`
+- SDK `1.57.0`
+- NVIDIA  `535.183.01`
+- Cuda  `cuda_12.2.r12` 
+- Python Version `3.10.8`
+
+[Data Science Virtual Machine - Windows 2022](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2022?tab=Overview)
+
+Version  `24.09.26`
+- SDK `1.57.0`
+
+[Data Science Virtual Machine - Windows 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
+
+Version  `24.10.07`
+- SDK `1.57.0`
+  
 ## June 17, 2024
 
 [Data Science Virtual Machine - Windows 2022](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2022?tab=Overview)
@@ -436,7 +506,7 @@ Primary changes:
 - Changed Intellijidea to version 2021.2.3
 - Changed NVIDIA Drivers to version 470.103.01
 - Changed NVIDIA SMI to version 470.103.01
-- Changed Nodejs to version v16.13.0
+- Changed Node.js to version v16.13.0
 - Changed Pycharm to version 2021.2.3
 - Changed VS Code to version 1.61.2
 - Conda
@@ -467,7 +537,7 @@ Primary changes:
 - Changed pytorch to version 1.9.1
 - Changed Docker to version 20.10.9
 - Changed Intellijidea to version 2021.2.2
-- Changed Nodejs to version v14.18.0
+- Changed Node.js to version v14.18.0
 - Changed Pycharm to version 2021.2.2
 - Changed VS Code to version 1.60.2
 - Fixed AutoML environment (azureml_py36_automl)
@@ -483,7 +553,7 @@ Version: `21.08.11`
 Primary changes:
 
 - Windows Security update
-- Update of Nvidia CuDNN to 8.1.0
+- Update of NVIDIA CuDNN to 8.1.0
 - Update of Jupyter Lab -to 3.0.16
 - Added MLFLow for experiment tracking
 - Improvement of stability and minor bug fixes
@@ -543,7 +613,7 @@ Selected version updates include:
 - Julia 1.0.5
 - Jupyter Lab 2.2.6
 - Microsoft Edge browser
-- NodeJS 16.2.0
+- Node.js 16.2.0
 - Power BI Desktop 2.93.641.0 64-bit (May 2021)
 - PyCharm Community Edition 2021.1.1
 - Python 3.8

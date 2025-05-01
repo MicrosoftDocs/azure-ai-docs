@@ -9,7 +9,7 @@ ms.topic: quickstart
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sgilley
-ms.date: 10/20/2023
+ms.date: 12/19/2024
 ms.custom:
   - sdkv2
   - build-2023
@@ -22,13 +22,13 @@ ms.custom:
 
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
-This tutorial is an introduction to some of the most used features of the Azure Machine Learning service.  In it, you will create, register and deploy a model. This tutorial will help you become familiar with the core concepts of Azure Machine Learning and their most common usage.
+This tutorial is an introduction to some of the most used features of the Azure Machine Learning service. In it, you create, register, and deploy a model. This tutorial helps you become familiar with the core concepts of Azure Machine Learning and their most common usage.
 
-You'll learn how to run a training job on a scalable compute resource, then deploy it, and finally test the deployment.
+You learn how to run a training job on a scalable compute resource, then deploy it, and finally test the deployment.
 
-You'll create a training script to handle the data preparation, train and register a model. Once you train the model, you'll *deploy* it as an *endpoint*, then call the endpoint for *inferencing*.
+You create a training script to handle the data preparation, train, and register a model. Once you train the model, you deploy it as an *endpoint*, then call the endpoint for *inferencing*.
 
-The steps you'll take are:
+The steps you take are:
 
 > [!div class="checklist"]
 > * Set up a handle to your Azure Machine Learning workspace
@@ -55,19 +55,19 @@ Watch this video for an overview of the steps in this quickstart.
 
 [!INCLUDE [notebook set kernel](includes/prereq-set-kernel.md)] 
 
-<!-- nbstart https://raw.githubusercontent.com/Azure/azureml-examples/sdg-serverless/tutorials/get-started-notebooks/quickstart.ipynb -->
+<!-- nbstart https://raw.githubusercontent.com/Azure/azureml-examples/main/tutorials/get-started-notebooks/quickstart.ipynb -->
 
 ## Create handle to workspace
 
 Before we dive in the code, you need a way to reference your workspace. The workspace is the top-level resource for Azure Machine Learning, providing a centralized place to work with all the artifacts you create when you use Azure Machine Learning.
 
-You'll create `ml_client` for a handle to the workspace.  You'll then use `ml_client` to manage resources and jobs.
+You create `ml_client` for a handle to the workspace. You then use `ml_client` to manage resources and jobs.
 
 In the next cell, enter your Subscription ID, Resource Group name and Workspace name. To find these values:
 
 1. In the upper right Azure Machine Learning studio toolbar, select your workspace name.
-1. Copy the value for workspace, resource group and subscription ID into the code.  
-1. You'll need to copy one value, close the area and paste, then come back for the next one.
+1. Copy the value for workspace, resource group and subscription ID into the code. 
+1. You need to copy one value, close the area and paste, then come back for the next one.
 
 :::image type="content" source="media/tutorial-azure-ml-in-a-day/find-credentials.png" alt-text="Screenshot: find the credentials for your code in the upper right of the toolbar.":::
 
@@ -78,9 +78,9 @@ from azure.identity import DefaultAzureCredential
 # authenticate
 credential = DefaultAzureCredential()
 
-SUBSCRIPTION="<SUBSCRIPTION_ID>"
-RESOURCE_GROUP="<RESOURCE_GROUP>"
-WS_NAME="<AML_WORKSPACE_NAME>"
+SUBSCRIPTION = "<SUBSCRIPTION_ID>"
+RESOURCE_GROUP = "<RESOURCE_GROUP>"
+WS_NAME = "<AML_WORKSPACE_NAME>"
 # Get a handle to the workspace
 ml_client = MLClient(
     credential=credential,
@@ -95,10 +95,10 @@ ml_client = MLClient(
 
 
 ```python
-# Verify that the handle works correctly.  
+# Verify that the handle works correctly.
 # If you ge an error here, modify your SUBSCRIPTION, RESOURCE_GROUP, and WS_NAME in the previous cell.
 ws = ml_client.workspaces.get(WS_NAME)
-print(ws.location,":", ws.resource_group)
+print(ws.location, ":", ws.resource_group)
 ```
 
 ## Create training script
@@ -117,7 +117,7 @@ os.makedirs(train_src_dir, exist_ok=True)
 
 This script handles the preprocessing of the data, splitting it into test and train data. It then consumes this data to train a tree based model and return the output model. 
 
-[MLFlow](how-to-log-mlflow-models.md) will be used to log the parameters and metrics during our pipeline run. 
+[MLFlow](how-to-log-mlflow-models.md) is used to log the parameters and metrics during our pipeline run. 
 
 The cell below uses IPython magic to write the training script into the directory you just created.
 
@@ -205,10 +205,32 @@ def main():
     ##########################
     # Registering the model to the workspace
     print("Registering the model via MLFlow")
+
+    # pin numpy
+    conda_env = {
+        'name': 'mlflow-env',
+        'channels': ['conda-forge'],
+        'dependencies': [
+            'python=3.10.15',
+            'pip<=21.3.1',
+            {
+                'pip': [
+                    'mlflow==2.17.0',
+                    'cloudpickle==2.2.1',
+                    'pandas==1.5.3',
+                    'psutil==5.8.0',
+                    'scikit-learn==1.5.2',
+                    'numpy==1.26.4',
+                ]
+            }
+        ],
+    }
+
     mlflow.sklearn.log_model(
         sk_model=clf,
         registered_model_name=args.registered_model_name,
         artifact_path=args.registered_model_name,
+        conda_env=conda_env,
     )
 
     # Saving the model to a file
@@ -231,18 +253,18 @@ As you can see in this script, once the model is trained, the model file is save
 
 You might need to select **Refresh** to see the new folder and script in your **Files**.
 
+
 :::image type="content" source="media/tutorial-azure-ml-in-a-day/refresh.png" alt-text="Screenshot shows the refresh icon.":::
 
 ## Configure the command
 
-Now that you have a script that can perform the desired tasks, and a compute cluster to run the script, you'll use a general purpose **command** that can run command line actions. This command line action can directly call system commands or run a script. 
+Now that you have a script that can perform the desired tasks, and a compute cluster to run the script, you use a general purpose **command** that can run command line actions. This command line action can directly call system commands or run a script. 
 
-Here, you'll create input variables to specify the input data, split ratio, learning rate and registered model name.  The command script will:
-
-* Use an *environment* that defines software and runtime libraries needed for the training script. Azure Machine Learning provides many curated or ready-made environments, which are useful for common training and inference scenarios. You'll use one of those environments here.  In [Tutorial: Train a model in Azure Machine Learning](tutorial-train-model.md), you'll learn how to create a custom environment.
+Here, you create input variables to specify the input data, split ratio, learning rate and registered model name. The command script will:
+* Use an *environment* that defines software and runtime libraries needed for the training script. Azure Machine Learning provides many curated or ready-made environments, which are useful for common training and inference scenarios. You use one of those environments here. In [Tutorial: Train a model in Azure Machine Learning](tutorial-train-model.md), you learn how to create a custom environment.
 * Configure the command line action itself - `python main.py` in this case. The inputs/outputs are accessible in the command via the `${{ ... }}` notation.
 * In this sample, we access the data from a file on the internet. 
-* Since a compute resource was not specified, the script will be run on a [serverless compute cluster](how-to-use-serverless-compute.md) that is automatically created.
+* Since a compute resource wasn't specified, the script is run on a [serverless compute cluster](how-to-use-serverless-compute.md) that is automatically created.
 
 
 ```python
@@ -263,14 +285,14 @@ job = command(
     ),
     code="./src/",  # location of source code
     command="python main.py --data ${{inputs.data}} --test_train_ratio ${{inputs.test_train_ratio}} --learning_rate ${{inputs.learning_rate}} --registered_model_name ${{inputs.registered_model_name}}",
-    environment="AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest",
+    environment="azureml://registries/azureml/environments/sklearn-1.5/labels/latest",
     display_name="credit_default_prediction",
 )
 ```
 
 ## Submit the job 
 
-It's now time to submit the job to run in Azure Machine Learning. This time you'll use `create_or_update`  on `ml_client`.
+It's now time to submit the job to run in Azure Machine Learning. This time you use `create_or_update`  on `ml_client`.
 
 
 ```python
@@ -281,7 +303,7 @@ ml_client.create_or_update(job)
 
 View the job in Azure Machine Learning studio by selecting the link in the output of the previous cell. 
 
-The output of this job will look like this in the Azure Machine Learning studio. Explore the tabs for various details like metrics, outputs etc. Once completed, the job will register a model in your workspace as a result of training. 
+The output of this job looks like this in the Azure Machine Learning studio. Explore the tabs for various details like metrics, outputs etc. Once completed, the job registers a model in your workspace as a result of training. 
 
 :::image type="content" source="media/tutorial-azure-ml-in-a-day/view-job.gif" alt-text="Screenshot shows the overview page for the job.":::
 
@@ -292,11 +314,11 @@ The output of this job will look like this in the Azure Machine Learning studio.
 
 Now deploy your machine learning model as a web service in the Azure cloud, an [`online endpoint`](concept-endpoints.md).
 
-To deploy a machine learning service, you'll use the model you registered.
+To deploy a machine learning service, you use the model you registered.
 
 ## Create a new online endpoint
 
-Now that you have a registered model, it's time to create your online endpoint. The endpoint name needs to be unique in the entire Azure region. For this tutorial, you'll create a unique name using [`UUID`](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+Now that you have a registered model, it's time to create your online endpoint. The endpoint name needs to be unique in the entire Azure region. For this tutorial, you create a unique name using [`UUID`](https://en.wikipedia.org/wiki/Universally_unique_identifier).
 
 
 ```python
@@ -350,9 +372,9 @@ print(
 
 ## Deploy the model to the endpoint
 
-Once the endpoint is created, deploy the model with the entry script. Each endpoint can have multiple deployments. Direct traffic to these deployments can be specified using rules. Here you'll create a single deployment that handles 100% of the incoming traffic. We have chosen a color name for the deployment, for example, *blue*, *green*, *red* deployments, which is arbitrary.
+Once the endpoint is created, deploy the model with the entry script. Each endpoint can have multiple deployments. Direct traffic to these deployments can be specified using rules. Here you create a single deployment that handles 100% of the incoming traffic. We chose a color name for the deployment, for example, *blue*, *green*, *red* deployments, which is arbitrary.
 
-You can check the **Models** page on Azure Machine Learning studio, to identify the latest version of your registered model. Alternatively, the code below will retrieve the latest version number for you to use.
+You can check the **Models** page on Azure Machine Learning studio, to identify the latest version of your registered model. Alternatively, the code below retrieves the latest version number for you to use.
 
 
 ```python
@@ -363,7 +385,7 @@ latest_model_version = max(
 print(f'Latest model is version "{latest_model_version}" ')
 ```
 
-Deploy the latest version of the model.  
+Deploy the latest version of the model. 
 
 
 ```python
@@ -429,7 +451,7 @@ ml_client.online_endpoints.invoke(
 
 ## Clean up resources
 
-If you're not going to use the endpoint, delete it to stop using the resource.  Make sure no other deployments are using an endpoint before you delete it.
+If you're not going to use the endpoint, delete it to stop using the resource. Make sure no other deployments are using an endpoint before you delete it.
 
 
 > [!NOTE]
@@ -447,7 +469,7 @@ ml_client.online_endpoints.begin_delete(name=online_endpoint_name)
 
 If you're not going to use it now, stop the compute instance:
 
-1. In the studio, in the left navigation area, select **Compute**.
+1. In the studio, in the left pane, select **Compute**.
 1. In the top tabs, select **Compute instances**
 1. Select the compute instance in the list.
 1. On the top toolbar, select **Stop**.
@@ -462,7 +484,7 @@ Now that you have an idea of what's involved in training and deploying a model, 
 
 |Tutorial  |Description  |
 |---------|---------|
-| [Upload, access and explore your data in Azure Machine Learning](tutorial-explore-data.md)     |  Store large data in the cloud and retrieve it from notebooks and scripts |
+| [Upload, access, and explore your data in Azure Machine Learning](tutorial-explore-data.md)     |  Store large data in the cloud and retrieve it from notebooks and scripts |
 | [Model development on a cloud workstation](tutorial-cloud-workstation.md) | Start prototyping and developing machine learning models |
 | [Train a model in Azure Machine Learning](tutorial-train-model.md) |    Dive in to the details of training a model     |
 | [Deploy a model as an online endpoint](tutorial-deploy-model.md)  |   Dive in to the details of deploying a model      |

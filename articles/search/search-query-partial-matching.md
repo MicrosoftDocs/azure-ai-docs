@@ -6,18 +6,18 @@ description: Use wildcard, regex, and prefix queries to match on whole or partia
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 02/22/2024
+ms.date: 04/14/2025
 ---
 
 # Partial term search and patterns with special characters (hyphens, wildcard, regex, patterns)
 
 A *partial term search* refers to queries consisting of term fragments, where instead of a whole term, you might have just the beginning, middle, or end of term (sometimes referred to as prefix, infix, or suffix queries). A partial term search might include a combination of fragments, often with special characters such as hyphens, dashes, or slashes that are part of the query string. Common use-cases include parts of a phone number, URL, codes, or hyphenated compound words.
 
-Partial terms and special characters can be problematic if the index doesn't have a token that represents the text fragment you want to search for. During the [lexical analysis phase](search-lucene-query-architecture.md#stage-2-lexical-analysis) of indexing (assuming the default standard analyzer), special characters are discarded, compound words are split up, and whitespace is deleted. If you're searching for a text fragment that was modified during lexical analysis, the query fails because no match is found. Consider this example: a phone number like `+1 (425) 703-6214` (tokenized as `"1"`, `"425"`, `"703"`, `"6214"`) won't show up in a `"3-62"` query because that content doesn't actually exist in the index. 
+Partial terms and special characters can be problematic if the index doesn't have a token representing the text fragment you want to search for. During the [lexical analysis phase](search-lucene-query-architecture.md#stage-2-lexical-analysis) of keyword indexing (assuming the default standard analyzer), special characters are discarded, compound words are split up, and whitespace is deleted. If you're searching for a text fragment that was modified during lexical analysis, the query fails because no match is found. Consider this example: a phone number like `+1 (425) 703-6214` (tokenized as `"1"`, `"425"`, `"703"`, `"6214"`) won't show up in a `"3-62"` query because that content doesn't actually exist in the index. 
 
 The solution is to invoke an analyzer during indexing that preserves a complete string, including spaces and special characters if necessary, so that you can include the spaces and characters in your query string. Having a whole, untokenized string enables pattern matching for "starts with" or "ends with" queries, where the pattern you provide can be evaluated against a term that isn't transformed by lexical analysis. 
 
@@ -31,7 +31,7 @@ Partial terms are specified using these techniques:
 
 + [Regular expression queries](query-lucene-syntax.md#bkmk_regex) can be any regular expression that is valid under Apache Lucene. 
 
-+ [Wildcard operators with prefix matching](query-simple-syntax.md#prefix-search) refers to a generally recognized pattern that includes the beginning of a term, followed by `*` or `?` suffix operators, such as `search=cap*` matching on "Cap'n Jack's Waterfront Inn" or "Gacc Capital". Prefixing matching is supported in both simple and full Lucene query syntax.
++ [Wildcard operators with prefix matching](query-simple-syntax.md#prefix-search) refers to a generally recognized pattern that includes the beginning of a term, followed by `*` or `?` suffix operators, such as `search=cap*` matching on "Cap'n Jack's Waterfront Inn" or "Highline Capital". Prefixing matching is supported in both simple and full Lucene query syntax.
 
 + [Wildcard with infix and suffix matching](query-lucene-syntax.md#bkmk_wildcard) places the `*` and `?` operators inside or at the beginning of a term, and requires regular expression syntax (where the expression is enclosed with forward slashes). For example, the query string (`search=/.*numeric.*/`) returns results on "alphanumeric" and "alphanumerical" as suffix and infix matches.
 
@@ -85,7 +85,7 @@ When choosing an analyzer that produces whole-term tokens, the following analyze
 | [whitespace](https://lucene.apache.org/core/6_6_1/analyzers-common/org/apache/lucene/analysis/core/WhitespaceAnalyzer.html) | Separates on white spaces only. Terms that include dashes or other characters are treated as a single token. |
 | [custom analyzer](index-add-custom-analyzers.md) | (recommended) Creating a custom analyzer lets you specify both the tokenizer and token filter. The previous analyzers must be used as-is. A custom analyzer lets you pick which tokenizers and token filters to use. <br><br>A recommended combination is the [keyword tokenizer](https://lucene.apache.org/core/6_6_1/analyzers-common/org/apache/lucene/analysis/core/KeywordTokenizer.html) with a [lower-case token filter](https://lucene.apache.org/core/6_6_1/analyzers-common/org/apache/lucene/analysis/core/LowerCaseFilter.html). By itself, the built-in [keyword analyzer](https://lucene.apache.org/core/6_6_1/analyzers-common/org/apache/lucene/analysis/core/KeywordAnalyzer.html) doesn't lower-case any upper-case text, which can cause queries to fail. A custom analyzer gives you a mechanism for adding the lower-case token filter. |
 
-Using a REST client, you can add the [Test Analyzer REST call](/rest/api/searchservice/test-analyzer) to inspect tokenized output.
+Using a REST client, you can add the [Test Analyzer REST call](/rest/api/searchservice/indexes/analyze) to inspect tokenized output.
 
 The index must exist on the search service, but it can be empty. Given an existing index and a field containing dashes or partial terms, you can try various analyzers over specific terms to see what tokens are emitted.  
 
@@ -227,15 +227,15 @@ Use a REST client to query partial terms and special characters described in thi
 
 The previous sections explained the logic. This section steps through each API you should call when testing your solution. 
 
-+ [Delete Index](/rest/api/searchservice/delete-index) removes an existing index of the same name so that you can recreate it.
++ [Delete Index](/rest/api/searchservice/indexes/delete) removes an existing index of the same name so that you can recreate it.
 
-+ [Create Index](/rest/api/searchservice/create-index) creates the index structure on your search service, including analyzer definitions and fields with an analyzer specification.
++ [Create Index](/rest/api/searchservice/indexes/create) creates the index structure on your search service, including analyzer definitions and fields with an analyzer specification.
 
-+ [Load Documents](/rest/api/searchservice/addupdate-or-delete-documents) imports documents having the same structure as your index, as well as searchable content. After this step, your index is ready to query or test.
++ [Load Documents](/rest/api/searchservice/documents) imports documents having the same structure as your index, as well as searchable content. After this step, your index is ready to query or test.
 
-+ [Test Analyzer](/rest/api/searchservice/test-analyzer) was introduced in [Set an analyzer](#set-an-analyzer). Test some of the strings in your index using various analyzers to understand how terms are tokenized.
++ [Test Analyzer](/rest/api/searchservice/indexes/analyze) was introduced in [Set an analyzer](#set-an-analyzer). Test some of the strings in your index using various analyzers to understand how terms are tokenized.
 
-+ [Search Documents](/rest/api/searchservice/search-documents) explains how to construct a query request, using either [simple syntax](query-simple-syntax.md) or [full Lucene syntax](query-lucene-syntax.md) for wildcard and regular expressions.
++ [Search Documents](/rest/api/searchservice/documents/search-post) explains how to construct a query request, using either [simple syntax](query-simple-syntax.md) or [full Lucene syntax](query-lucene-syntax.md) for wildcard and regular expressions.
 
   For partial term queries, such as querying "3-6214" to find a match on "+1 (425) 703-6214", you can use the simple syntax: `search=3-6214&queryType=simple`.
 

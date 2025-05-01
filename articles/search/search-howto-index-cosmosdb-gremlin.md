@@ -7,11 +7,11 @@ author: mgottein
 ms.author: magottei
 manager: nitinme
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 02/28/2024
+ms.date: 12/10/2024
 ---
 
 # Index data from Azure Cosmos DB for Apache Gremlin for queries in Azure AI Search
@@ -91,7 +91,7 @@ Avoid port numbers in the endpoint URL. If you include the port number, the conn
 | Full access connection string |
 |-----------------------------------------------|
 |`{ "connectionString" : "AccountEndpoint=https://<Cosmos DB account name>.documents.azure.com;AccountKey=<Cosmos DB auth key>;Database=<Cosmos DB database id>;ApiKind=MongoDb" }` |
-| You can get the connection string from the Azure Cosmos DB account page in Azure portal by selecting **Keys** in the left navigation pane. Make sure to select a full connection string and not just a key.  |
+| You can get the connection string from the Azure Cosmos DB account page in Azure portal by selecting **Keys** in the left pane. Make sure to select a full connection string and not just a key.  |
 
 | Managed identity connection string |
 |------------------------------------|

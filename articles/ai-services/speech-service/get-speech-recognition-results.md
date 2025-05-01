@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 2/16/2024
+ms.date: 3/10/2025
 ms.author: eur
 ms.devlang: cpp
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python

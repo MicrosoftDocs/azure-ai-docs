@@ -21,6 +21,10 @@ monikerRange: 'azureml-api-1 || azureml-api-2'
 :::moniker-end
 :::moniker range="azureml-api-1"
 [!INCLUDE [dev v1](includes/machine-learning-dev-v1.md)]
+
+[!INCLUDE [v1 deprecation](includes/sdk-v1-deprecation.md)]
+
+[!INCLUDE [cli v1 deprecation](./includes/machine-learning-cli-v1-deprecation.md)]
 :::moniker-end
 
 In this article, learn how to troubleshoot common problems you may encounter with environment image builds and learn about AzureML environment vulnerabilities.
@@ -51,7 +55,7 @@ Any Python packages present in the base image aren't available in the isolated c
 
 ### Create and manage environments
 
-You can create and manage environments from clients like Azure Machine Learning Python SDK, Azure Machine Learning CLI, Azure Machine Learning Studio UI, Visual Studio Code extension. 
+You can create and manage environments from clients like Azure Machine Learning Python SDK, Azure Machine Learning CLI, Azure Machine Learning studio UI, Visual Studio Code extension. 
 
 "Anonymous" environments are automatically registered in your workspace when you submit an experiment without registering or referencing an already existing environment.
 They aren't listed but you can retrieve them by version or label.
@@ -119,7 +123,7 @@ System vulnerabilities in an environment are usually introduced from the base im
 - Microsoft Artifact Registry (MAR) aka Microsoft Container Registry (mcr.microsoft.com). 
     - Images can be listed from MAR homepage, calling _catalog API, or [/tags/list](https://mcr.microsoft.com/v2/azureml/openmpi4.1.0-ubuntu20.04/tags/list)_
     - Source and release notes for training base images from AzureML can be found in [Azure/AzureML-Containers](https://github.com/Azure/AzureML-Containers)
-- Nvidia (nvcr.io, or [nvidia's Profile](https://hub.docker.com/u/nvidia/#!))
+- NVIDIA (nvcr.io, or [nvidia's Profile](https://hub.docker.com/u/nvidia/#!))
 
 If the latest version of your base image does not resolve your vulnerabilities, base image vulnerabilities can be addressed by installing versions recommended by a vulnerability scan:
 
@@ -733,6 +737,7 @@ The following base images are deprecated:
 * `azureml/openmpi3.1.2-ubuntu18.04`
 * `azureml/openmpi4.1.0-cuda11.0.3-cudnn8-ubuntu18.04`
 * `azureml/openmpi4.1.0-cuda11.1-cudnn8-ubuntu18.04`
+* `azureml/openmpi4.1.0-ubuntu20.04`
 
 **Affected areas (symptoms):**
 * Failure in registering your environment
@@ -741,7 +746,7 @@ The following base images are deprecated:
 **Troubleshooting steps**
 
 Upgrade your base image to a latest version of supported images
-* See available [base images](https://github.com/Azure/AzureML-Containers/tree/master/base)
+* See available [base images](https://github.com/Azure/AzureML-Containers/tree/master/images)
 
 ### No tag or digest
 <!--issueDescription-->

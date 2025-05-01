@@ -1,11 +1,11 @@
 ---
-title: "Quickstart: Document Translation Python SDK"
-description: 'Document Translation processing using the Python SDK'
+title: "Quickstart: Document translation Python SDK"
+description: 'Document translation processing using the Python SDK'
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: include
-ms.date: 06/19/2024
+ms.date: 04/14/2025
 ms.author: lajanuar
 recommendations: false
 ---
@@ -18,10 +18,10 @@ Make sure that the latest version of [Python](https://www.python.org/downloads/)
 
 ### Install the client library
 
-Install the latest version of the Document Translation client library:
+Install the latest version of the Document translation client library:
 
 ```console
-  pip install azure-ai-translation-document==1.1.0b1
+  pip install azure-ai-translation-document==1.0.0
 ```
 
 ### Translate batch files
@@ -81,7 +81,7 @@ targetUri = '<your-container-targetUrl>'
 targetLanguage = '<target-language-code>'
 
 
-# initialize a new instance of the DocumentTranslationClient object to interact with the asynchronous Document Translation feature
+# initialize a new instance of the DocumentTranslationClient object to interact with the asynchronous Document translation feature
 client = DocumentTranslationClient(endpoint, AzureKeyCredential(key))
 
 # include source and target locations and target language code for the begin translation operation
@@ -148,18 +148,18 @@ def sample_single_document_translation():
     endpoint = "<your-document-translation-endpoint>"
     target_language = "{target-language-code}"
 
-    # initialize a new instance of the SingleDocumentTranslationClient object to interact with the synchronous Document Translation feature
+    # initialize a new instance of the SingleDocumentTranslationClient object to interact with the synchronous Document translation feature
     client = SingleDocumentTranslationClient(endpoint, AzureKeyCredential(key))
 
     # absolute path to your document
     file_path = "C:/{your-file-path}/document-translation-sample.docx"
-    file_name = os.path.path.basename(file_path)
+    file_name = os.path.basename(file_path)
     file_type = (
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     )
     print(f"File for translation: {file_name}")
 
-    with open(file_name, "r") as file:
+    with open(file_path, "rb") as file:
         file_contents = file.read()
 
     document_content = (file_name, file_contents, file_type)
@@ -168,8 +168,12 @@ def sample_single_document_translation():
     response_stream = client.document_translate(
         body=document_translate_content, target_language=target_language
     )
-    translated_response = response_stream.decode("utf-8-sig")  # type: ignore[attr-defined]
-    print(f"Translated response: {translated_response}")
+    # Save the response_stream to a file
+    output_file_path = "./translated-document.docx"
+    with open(output_file_path, "wb") as output_file:
+        output_file.write(response_stream)
+    
+    print(f"Translated document saved to: {output_file_path}")
 
 
 if __name__ == "__main__":

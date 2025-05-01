@@ -7,11 +7,11 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: build-2023, build-2023-dataai, devx-track-python
 ms.topic: how-to
-ms.date: 02/08/2024
+ms.date: 3/10/2025
 ms.author: eur
 zone_pivot_groups: programming-languages-csharp-python
 keywords: speech to text, openai
-#customer intent: As a developer, I want to create a voice-based chat system to talk to the OpenAI application I host through Azure to simplify AI interactions.
+#customer intent: As a developer, I want to create a voice-based chat system to talk to the Azure OpenAI application I host through Azure to simplify AI interactions.
 ---
 
 # Azure OpenAI speech to speech chat

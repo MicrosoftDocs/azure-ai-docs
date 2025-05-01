@@ -7,7 +7,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 8/14/2024
+ms.date: 3/10/2025
 zone_pivot_groups: speech-cli-rest
 ms.custom: devx-track-csharp
 # Customer intent: As a user who implements audio transcription, I want create transcriptions in bulk so that I don't have to submit audio content repeatedly.
@@ -180,7 +180,7 @@ Here are some property options to configure a transcription when you call the [T
 |`contentContainerUrl`| You can submit individual audio files or a whole storage container.<br/><br/>You must specify the audio data location by using either the `contentContainerUrl` or `contentUrls` property. For more information about Azure blob storage for batch transcription, see [Locate audio files for batch transcription](batch-transcription-audio-data.md).<br/><br/>This property isn't returned in the response.|
 |`contentUrls`| You can submit individual audio files or a whole storage container.<br/><br/>You must specify the audio data location by using either the `contentContainerUrl` or `contentUrls` property. For more information, see [Locate audio files for batch transcription](batch-transcription-audio-data.md).<br/><br/>This property isn't returned in the response.|
 |`destinationContainerUrl`|The result can be stored in an Azure container. If you don't specify a container, the Speech service stores the results in a container managed by Microsoft. When the transcription job is deleted, the transcription result data is also deleted. For more information, such as the supported security scenarios, see [Specify a destination container URL](#specify-a-destination-container-url).|
-|`diarization`|Indicates that the Speech service should attempt diarization analysis on the input, which is expected to be a mono channel that contains multiple voices. The feature isn't available with stereo recordings.<br/><br/>Diarization is the process of separating speakers in audio data. The batch pipeline can recognize and separate multiple speakers on mono channel recordings.<br/><br/>Specify the minimum and maximum number of people who might be speaking. You must also set the `diarizationEnabled` property to `true`. The [transcription file](batch-transcription-get.md#transcription-result-file) contains a `speaker` entry for each transcribed phrase.<br/><br/>You need to use this property when you expect three or more speakers. For two speakers, setting `diarizationEnabled` property to `true` is enough. For an example of the property usage, see [Transcriptions_Create](/rest/api/speechtotext/transcriptions/create).<br/><br/>The maximum number of speakers for diarization must be less than 36 and more or equal to the `minSpeakers` property. For an example, see [Transcriptions_Create](/rest/api/speechtotext/transcriptions/create).<br/><br/>When this property is selected, source audio length can't exceed 240 minutes per file.<br/><br/>**Note**: This property is only available with Speech to text REST API version 3.1 and later. If you set this property with any previous version, such as version 3.0, it's ignored and only two speakers are identified.|
+|`diarization`|Indicates that the Speech service should attempt diarization analysis on the input, which is expected to be a mono channel that contains multiple voices. The feature isn't available with stereo recordings.<br/><br/>Diarization is the process of separating speakers in audio data. The batch pipeline can recognize and separate multiple speakers on mono channel recordings.<br/><br/>Specify the minimum and maximum number of people who might be speaking. You must also set the `diarizationEnabled` property to `true`. The [transcription file](batch-transcription-get.md#transcription-result-file) contains a `speaker` entry for each transcribed phrase.<br/><br/>You need to use this property when you expect three or more speakers. For two speakers, setting `diarizationEnabled` property to `true` is enough. For an example of the property usage, see [Transcriptions_Create](/rest/api/speechtotext/transcriptions/create).<br/><br/>The maximum number of speakers for diarization must be less than 36 and more or equal to the `minCount` property. For an example, see [Transcriptions_Create](/rest/api/speechtotext/transcriptions/create).<br/><br/>When this property is selected, source audio length can't exceed 240 minutes per file.<br/><br/>**Note**: This property is only available with Speech to text REST API version 3.1 and later. If you set this property with any previous version, such as version 3.0, it's ignored and only two speakers are identified.|
 |`diarizationEnabled`|Specifies that the Speech service should attempt diarization analysis on the input, which is expected to be a mono channel that contains two voices. The default value is `false`.<br/><br/>For three or more voices you also need to use property `diarization`. Use only with Speech to text REST API version 3.1 and later.<br/><br/>When this property is selected, source audio length can't exceed 240 minutes per file.|
 |`displayName`|The name of the batch transcription. Choose a name that you can refer to later. The display name doesn't have to be unique.<br/><br/>This property is required.|
 |`displayFormWordLevelTimestampsEnabled`|Specifies whether to include word-level timestamps on the display form of the transcription results. The results are returned in the `displayWords` property of the transcription file. The default value is `false`.<br/><br/>**Note**: This property is only available with Speech to text REST API version 3.1 and later.|
@@ -227,7 +227,7 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey" -H "Content-
   },
   "properties": {
     "wordLevelTimestampsEnabled": true,
-  },
+  }
 }'  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions"
 ```
 
@@ -246,7 +246,7 @@ To use a custom speech model for batch transcription, you need the model's URI. 
 > [!TIP]
 > A [hosted deployment endpoint](how-to-custom-speech-deploy-model.md) isn't required to use custom speech with the batch transcription service. You can conserve resources if you use the [custom speech model](how-to-custom-speech-train-model.md) only for batch transcription.
 
-Batch transcription requests for expired models fail with a 4xx error. Set the `model` property to a base model or custom model that isn't expired. Otherwise don't include the `model` property to always use the latest base model. For more information, see [Choose a model](how-to-custom-speech-create-project.md#choose-your-model) and [Custom speech model lifecycle](how-to-custom-speech-model-and-endpoint-lifecycle.md).
+Batch transcription requests for expired models fail with a 4xx error. Set the `model` property to a base model or custom model that isn't expired. Otherwise don't include the `model` property to always use the latest base model. For more information, see [Choose a model](./custom-speech-overview.md#choose-your-model) and [Custom speech model lifecycle](how-to-custom-speech-model-and-endpoint-lifecycle.md).
 
 ## Use a Whisper model
 
@@ -258,9 +258,7 @@ Azure AI Speech supports OpenAI's Whisper model by using the batch transcription
 To use a Whisper model for batch transcription, you need to set the `model` property. Whisper is a display-only model, so the lexical field isn't populated in the response.
 
 > [!IMPORTANT]
-> For Whisper models, you should always use [version 3.2](./migrate-v3-1-to-v3-2.md) of the speech to text API.
-
-Batch transcription using Whisper models is supported in the Australia East, Central US, East US, North Central US, South Central US, Southeast Asia, and West Europe regions.
+> Batch transcription using Whisper models is available in the following regions: Australia East, East US, Japan East, North Central US, South Central US, Southeast Asia, UK South, and West Europe.
 
 ::: zone pivot="rest-api"
 You can make a [Models_ListBaseModels](/rest/api/speechtotext/models/list-base-models) request to get available base models for all locales.
@@ -280,7 +278,7 @@ curl -v -X GET "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/mod
 ::: zone-end
 
 ::: zone pivot="speech-cli"
-Make sure that you set the [configuration variables](spx-basics.md#create-a-resource-configuration) for a Speech resource in one of the supported regions. You can run the `spx csr list --base` command to get available base models for all locales.
+Make sure that you set the [configuration variables](spx-basics.md#create-a-resource-configuration) for an AI Services resource for Speech in one of the supported regions. You can run the `spx csr list --base` command to get available base models for all locales.
 
 ```azurecli
 spx csr list --base --api-version v3.2

@@ -2,12 +2,11 @@
 title: What's new in Custom Vision?
 titleSuffix: Azure AI services
 description: This article contains news about Custom Vision.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-custom-vision
 ms.topic: whats-new
-ms.date: 01/22/2024
+ms.date: 01/22/2025
 ms.author: pafarley
 ---
 
@@ -18,6 +17,7 @@ Learn what's new in the service. These items may be release notes, videos, blog 
 ## May 2022
 
 ### Estimated Minimum Budget
+
 - In Custom Vision Portal, users can now view the minimum estimated budget needed to train their project. This estimate (shown in hours) is calculated based on volume of images uploaded by user and domain selected by user.
 
 ## October 2020 
@@ -38,11 +38,11 @@ Learn what's new in the service. These items may be release notes, videos, blog 
 
 ### Azure role-based access control
 
-* Custom Vision supports Azure role-based access control (Azure RBAC), an authorization system for managing individual access to Azure resources. To learn how to manage access to your Custom Vision projects, see [Azure role-based access control](./role-based-access-control.md).
+* Custom Vision supports Azure role-based access control (RBAC), an authorization system for managing individual access to Azure resources. To learn how to manage access to your Custom Vision projects, see [Azure role-based access control](./role-based-access-control.md).
 
 ### Subset training
 
-* When training an object detection project, you can optionally train on only a subset of your applied tags. You may want to do this if you haven't applied enough of certain tags yet, but you do have enough of others. Follow the [Client library quickstart](./quickstarts/object-detection.md) for C# or Python to learn more.
+* When training an object detection project, you can optionally train on only a subset of your applied tags. You might want to do this if you haven't applied enough of certain tags yet, but you do have enough of others. Follow the [Client library quickstart](./quickstarts/object-detection.md) for C# or Python to learn more.
 
 ### Azure storage notifications
 
@@ -66,7 +66,7 @@ Learn what's new in the service. These items may be release notes, videos, blog 
 ## April 2019 
 
 - Increased limit on number of bounding boxes per image to 200. 
-- Bugfixes, including substantial performance update for models exported to TensorFlow. 
+- Bug fixes, including substantial performance update for models exported to TensorFlow. 
 - Added Object Detection export for the Vision AI Dev Kit.
 - UI tweaks, including project search.
 
@@ -76,14 +76,14 @@ Learn what's new in the service. These items may be release notes, videos, blog 
 - Added Advanced Training feature with a new machine learning backend for improved performance, especially on challenging datasets and fine-grained classification. With advanced training, you can specify a compute time budget for training and Custom Vision will experimentally identify the best training and augmentation settings. For quick iterations, you can continue to use the existing fast training.
 - Introduced 3.0 APIs. Announced coming deprecation of pre-3.0 APIs on October 1, 2019. See the documentation [quickstarts](./quickstarts/image-classification.md) for examples on how to get started.
 - Replaced "Default Iterations" with Publish/Unpublish in the 3.0 APIs.
-- New model export targets have been added. Dockerfile export has been upgraded to support ARM for Raspberry Pi 3. Export support has been added to the Vision AI Dev Kit.
+- New model export targets have been added. Dockerfile export has been upgraded to support ARM architecture for Raspberry Pi 3. Export support has been added to the Vision AI Dev Kit.
 - Increased limit of Tags per project to 500 for S0 tier. Increased limit of Images per project to 100,000 for S0 tier.
 - Removed Adult domain. General domain is recommended instead.
 - Announced [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/custom-vision-service/) for General Availability.  
 
 ## February 2019
 
-- Announced the end of Limited Trial projects (projects not associated with an Azure resource), as Custom Vision nears completion of its move to Azure public preview. Beginning March 25, 2019, the CustomVision.ai site will only support viewing projects associated with an Azure resource, such as the free Custom Vision resource. Through October 1, 2019, you'll still be able to access your existing limited trial projects via the Custom Vision APIs. This will give you time to update API keys for any apps you've written with Custom Vision. After October 1, 2019, any limited trial projects you haven't moved to Azure will be deleted.
+- Announced the end of Limited Trial projects (projects not associated with an Azure resource), as Custom Vision nears completion of its move to Azure public preview. Beginning March 25, 2019, the CustomVision.ai site will only support viewing projects associated with an Azure resource, such as the free Custom Vision resource. Through October 1, 2019, you'll still be able to access your existing limited trial projects via the Custom Vision APIs. This gives you time to update API keys for any apps you've written with Custom Vision. After October 1, 2019, any limited trial projects you haven't moved to Azure will be deleted.
 
 ## January 2019
 
@@ -92,7 +92,7 @@ Learn what's new in the service. These items may be release notes, videos, blog 
 ## December 2018
 
 - Support export for Object Detection models (introduced Object Detection Compact Domain).
-- Fixed a number of accessibility issues for improved screen reader and keyboard navigation support.
+- Fixed many accessibility issues for improved screen reader and keyboard navigation support.
 - UX updates for image viewer and improved object detection tagging experience for faster tagging.  
 - Updated base model for Object Detection Domain for better quality object detection.
 - Bug fixes.
@@ -119,7 +119,7 @@ Bug fixes, including for ONNX export with special characters.
 - Improvements to the machine learning pipeline to benefit multilabel projects with a large number of tags.
 - Fixed bug in TensorFlow export. Enabled exported model versioning, so iterations can be exported more than once.
 - Bug fixes & backend improvements.
-- Enabled multiclass classification, for projects where images have exactly one label. In Predictions for multiclass mode, probabilities will sum to one (all images are classified among your specified Tags).
+- Enabled multiclass classification, for projects where images have exactly one label. In Predictions for multiclass mode, probabilities sum to one (all images are classified among your specified Tags).
 
 ## May 2018
 
@@ -134,7 +134,7 @@ Bug fixes, including for ONNX export with special characters.
 ## March 2018
 
 - Entered paid preview and onboarded onto the Azure portal. Projects can now be attached to Azure resources with an F0 (Free) or S0 (Standard) tier. Introduced S0 tier projects, which allow up to 100 tags and 25,000 images.
-- Backend changes to the machine learning pipeline/normalization parameter. This will give customers better control of precision-recall tradeoffs when adjusting the Probability Threshold. As a part of these changes, the default Probability Threshold in the CustomVision.ai portal was set to be 50%.
+- Backend changes to the machine learning pipeline/normalization parameter. This gives customers better control of precision-recall tradeoffs when adjusting the Probability Threshold. As a part of these changes, the default Probability Threshold in the CustomVision.ai portal was set to be 50%.
 
 ## December 2017
 

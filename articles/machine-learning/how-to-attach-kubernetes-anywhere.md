@@ -1,117 +1,128 @@
 ---
-title: Introduction to Kubernetes compute target in Azure Machine Learning
+title: Introduction to Kubernetes compute target
 titleSuffix: Azure Machine Learning
-description: Learn how Azure Machine Learning Kubernetes compute enable Azure Machine Learning across different infrastructures in cloud and on-premises
+description: Learn how Azure Machine Learning Kubernetes compute target enables Machine Learning across different infrastructures in the cloud and on-premises.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.topic: conceptual
+ms.topic: concept-article
 author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: bozhlin
 ms.custom: devplatv2
-ms.date: 12/22/2023
-#Customer intent: As part of ML Professionals focusing on ML infratrasture setup using self-managed compute, I want to understand what Kubernetes compute target is used for and what benefits it proves.
+ms.date: 10/04/2024
+#Customer intent: As an machine learning professional focusing on machine learning infrastructure setup with a self-managed compute, I want to understand what Kubernetes compute target is used for and the benefits.
 ---
 
 # Introduction to Kubernetes compute target in Azure Machine Learning
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-With Azure Machine Learning CLI/Python SDK v2, Azure Machine Learning introduced a new compute target - Kubernetes compute target. You can easily enable an existing **Azure Kubernetes Service (AKS)** cluster or **Azure Arc-enabled Kubernetes (Arc Kubernetes)** cluster to become a Kubernetes compute target in Azure Machine Learning, and use it to train or deploy models. 
+The Azure Machine Learning CLI and Python SDK v2 provide support for a Kubernetes compute target. You can enable an existing Azure Kubernetes Service (AKS) cluster or Azure Arc-enabled Kubernetes (Arc Kubernetes) cluster as a Kubernetes compute target. Use the compute in Machine Learning to train or deploy models. 
 
 :::image type="content" source="./media/how-to-attach-kubernetes-to-workspace/machine-learning-anywhere-overview.png" alt-text="Diagram illustrating how Azure Machine Learning connects to Kubernetes." lightbox="./media/how-to-attach-kubernetes-to-workspace/machine-learning-anywhere-overview.png":::
  
-In this article, you learn about:
-> [!div class="checklist"]
-> * How it works
-> * Usage scenarios
-> * Recommended best practices
-> * KubernetesCompute and legacy AksCompute
+This article describes how you can use the Kubernetes compute target in Machine Learning, including usage scenarios, recommended best practices, and a comparison of the `KubernetesCompute` and legacy `AksCompute` targets.
 
-## How it works
+## How the Kubernetes compute target works
 
-Azure Machine Learning Kubernetes compute supports two kinds of Kubernetes cluster:
-* **[AKS cluster](https://azure.microsoft.com/services/kubernetes-service/)** in Azure. With your self-managed AKS cluster in Azure, you can gain security and controls to meet compliance requirement and flexibility to manage teams' ML workload.
-* **[Arc Kubernetes cluster](/azure/azure-arc/kubernetes/overview)** outside of Azure. With Arc Kubernetes cluster, you can train or deploy models in any infrastructure on-premises, across multicloud, or the edge. 
+Azure Machine Learning Kubernetes compute supports two kinds of Kubernetes cluster.
 
-With a simple cluster extension deployment on AKS or Arc Kubernetes cluster, Kubernetes cluster is seamlessly supported in Azure Machine Learning to run training or inference workload. It's easy to enable and use an existing Kubernetes cluster for Azure Machine Learning workload with the following simple steps:
+| Compute | Location | Description |
+| --- | --- | --- |
+| **[AKS cluster](https://azure.microsoft.com/products/kubernetes-service/)** | Within Azure | With your self-managed AKS cluster in Azure, you can gain security and controls to meet compliance requirement and flexibility to manage your team's machine learning workload. |
+| **[Arc Kubernetes cluster](/azure/azure-arc/kubernetes/overview)** | Outside Azure | With Arc Kubernetes cluster, you can train or deploy models in any on-premises or multicloud infrastructure, or the edge. |
 
-1. Prepare an [Azure Kubernetes Service cluster](/azure/aks/learn/quick-kubernetes-deploy-cli) or [Arc Kubernetes cluster](/azure/azure-arc/kubernetes/quickstart-connect-cluster).
-1. [Deploy the Azure Machine Learning extension](how-to-deploy-kubernetes-extension.md).
-1. [Attach Kubernetes cluster to your Azure Machine Learning workspace](how-to-attach-kubernetes-to-workspace.md).
-1. Use the Kubernetes compute target from CLI v2, SDK v2, and the Studio UI.
+With a simple cluster extension deployment on AKS or Arc Kubernetes cluster, Kubernetes cluster is seamlessly supported in Machine Learning to run training or inference workload. It's easy to enable and use an existing Kubernetes cluster for Machine Learning workload with the following process:
 
-**IT-operation team**. The IT-operation team is responsible for the first three steps: prepare an AKS or Arc Kubernetes cluster, deploy Azure Machine Learning cluster extension, and attach Kubernetes cluster to Azure Machine Learning workspace. In addition to these essential compute setup steps, IT-operation team also uses familiar tools such as Azure CLI or kubectl to take care of the following tasks for the data-science team:
+- Step 1: Prepare an [Azure Kubernetes Service cluster](/azure/aks/learn/quick-kubernetes-deploy-cli) or [Arc Kubernetes cluster](/azure/azure-arc/kubernetes/quickstart-connect-cluster).
 
-- Network and security configurations, such as outbound proxy server connection or Azure firewall configuration, inference router (azureml-fe) setup, SSL/TLS termination, and virtual network configuration.
-- Create and manage instance types for different ML workload scenarios and gain efficient compute resource utilization.
-- Trouble shooting workload issues related to Kubernetes cluster.
+- Step 2: [Deploy the Azure Machine Learning cluster extension](how-to-deploy-kubernetes-extension.md).
 
-**Data-science team**. Once the IT-operations team finishes compute setup and compute target(s) creation, the data-science team can discover a list of available compute targets and instance types in Azure Machine Learning workspace. These compute resources can be used for training or inference workload. Data science specifies compute target name and instance type name using their preferred tools or APIs. For example, these names could be Azure Machine Learning CLI v2, Python SDK v2, or Studio UI.
+- Step 3: [Attach the Kubernetes cluster to your Azure Machine Learning workspace](how-to-attach-kubernetes-to-workspace.md).
+
+- Step 4: Use the Kubernetes compute target from the CLI v2, SDK v2, or the Azure Machine Learning studio UI.
+
+Here are the primary responsibilities in this process:
+
+- The **IT-operation team** is responsible for Steps 1, 2, and 3. This team prepares an AKS or Arc Kubernetes cluster, deploys the Machine Learning cluster extension, and attaches the Kubernetes cluster to the Machine Learning workspace. In addition to these essential compute setup steps, the IT-operation team also uses familiar tools, such as the Azure CLI or kubectl, to complete the following tasks for the Data-science team:
+
+   - Configure network and security options, such as outbound proxy server connection or Azure firewall, inference router (azureml-fe) setup, SSL/TLS termination, and virtual network setup.
+
+   - Create and manage instance types for different machine learning workload scenarios and gain efficient compute resource utilization.
+
+   - Troubleshoot workload issues related to Kubernetes cluster.
+
+- The **Data-science team** begins their tasks after the IT-operations team finishes compute setup and creation of the compute targets. This team discovers a list of available compute targets and instance types in the Machine Learning workspace. The compute resources can be used for training or inference workload. The Data-science team specifies the compute target name and instance type name by using their preferred tools or APIs. They can use the Azure Machine Learning CLI v2, Python SDK v2, or the Machine Learning studio UI.
 
 ## Kubernetes usage scenarios
 
-With Arc Kubernetes cluster, you can build, train, and deploy models in any infrastructure on-premises and across multicloud using Kubernetes. This opens some new use patterns previously not possible in cloud setting environment. The following table provides a summary of the new use patterns enabled by Azure Machine Learning Kubernetes compute:
+With Arc Kubernetes cluster, you can build, train, and deploy models in any on-premises and multicloud infrastructure by using Kubernetes. This strategy opens some new use patterns previously not possible in a cloud setting environment. The following table provides a summary of the new use patterns enabled when you work with Azure Machine Learning Kubernetes compute:
 
-| Usage pattern | Location of data | Motivation | Infra setup & Azure Machine Learning implementation |
-| ----- | ----- | ----- | ----- |
-Train model in cloud, deploy model on-premises | Cloud | Make use of cloud compute. Either because of elastic compute needs or special hardware such as a GPU.<br/>Model must be deployed on-premises because of security, compliance, or latency requirements | 1. Azure managed compute in cloud.<br/>2. Customer managed Kubernetes on-premises.<br/>3. Fully automated MLOps in hybrid mode, including training and model deployment steps transitioning seamlessly from cloud to on-premises and vice versa.<br/>4. Repeatable, with all assets tracked properly. Model retrained when necessary, and model deployment updated automatically after retraining. |
-| Train model on-premises and cloud, deploy to both cloud and on-premises | Cloud | Organizations wanting to combine on-premises investments with cloud scalability. Bring cloud and on-premises compute under single pane of glass. Single source of truth for data is located in cloud, can be replicated to on-premises (that is, lazily on usage or proactively). Cloud compute primary usage is when on-premises resources aren't available (in use, maintenance) or don't have specific hardware requirements (GPU). | 1. Azure managed compute in cloud.<br />2. Customer managed Kubernetes on-premises.<br />3. Fully automated MLOps in hybrid mode, including training and model deployment steps transitioning seamlessly from cloud to on-premises and vice versa.<br />4. Repeatable, with all assets tracked properly. Model retrained when necessary, and model deployment updated automatically after retraining.|
-| Train model on-premises, deploy model in cloud | On-premises | Data must remain on-premises due to data-residency requirements.<br/>Deploy model in the cloud for global service access or for compute elasticity for scale and throughput. | 1. Azure managed compute in cloud.<br/>2. Customer managed Kubernetes on-premises.<br/>3. Fully automated MLOps in hybrid mode, including training and model deployment steps transitioning seamlessly from cloud to on-premises and vice versa.<br/>4. Repeatable, with all assets tracked properly. Model retrained when necessary, and model deployment updated automatically after retraining. |
-| Bring your own AKS in Azure | Cloud | More security and controls.<br/>All private IP machine learning to prevent data exfiltration. | 1. AKS cluster behind an Azure virtual network.<br/>2. Create private endpoints in the same virtual network for Azure Machine Learning workspace and its associated resources.<br/>3. Fully automated MLOps. |
-| Full ML lifecycle on-premises | On-premises | Secure sensitive data or proprietary IP, such as ML models and code/scripts. | 1. Outbound proxy server connection on-premises.<br/>2. Azure ExpressRoute and Azure Arc private link to Azure resources.<br/>3. Customer managed Kubernetes on-premises.<br/>4. Fully automated MLOps. |
+| Usage pattern | Location of data | Goals and requirements | Scenario configuration |
+| --- | --- | --- | --- |
+| Train model in cloud, deploy model on-premises | Cloud | _Use cloud compute to support elastic compute needs or special hardware such as a GPU._ <br><br> _Model deployment must be on-premises for security, compliance, or latency requirements._ | - Azure-managed compute in cloud <br> - Customer-managed Kubernetes on-premises <br> - Fully automated machine learning operations in hybrid mode, including training and model deployment steps that transition seamlessly between cloud and on-premises <br> - Repeatable, all assets properly tracked, model retrained as needed, deployment updated automatically after retraining |
+| Train model on-premises and cloud, deploy to both cloud and on-premises | Cloud | _Combine on-premises investments with cloud scalability._ <br><br> _Bring cloud and on-premises compute under single pane of glass._ <br><br> _Access single source of truth for data in cloud and replicate on-premises (lazily on usage or proactively)._ <br><br> _Enable cloud compute primary usage when on-premises resources aren't available (in use or in maintenance) or don't meet specific hardware requirements (GPU)._ | - Azure-managed compute in cloud. <br> Customer-managed Kubernetes on-premises <br> - Fully automated machine learning operations in hybrid mode, including training and model deployment steps that transition seamlessly between cloud and on-premises <br> - Repeatable, all assets properly tracked, model retrained as needed, deployment updated automatically after retraining |
+| Train model on-premises, deploy model in cloud | On-premises | _Store data on-premises to meet data-residency requirements._ <br><br> _Deploy model in the cloud for global-service access or to enable compute elasticity for scale and throughput._ | - Azure-managed compute in cloud <br> - Customer-managed Kubernetes on-premises <br> - Fully automated machine learning operations in hybrid mode, including training and model deployment steps that transition seamlessly between cloud and on-premises <br> - Repeatable, all assets properly tracked, model retrained as needed, deployment updated automatically after retraining |
+| Bring your own AKS in Azure | Cloud | _Gain more security and controls._ <br><br> _Establish all private IP machine learning to prevent data exfiltration._ | - AKS cluster behind an Azure virtual network <br> - Private endpoints in the same virtual network for Azure Machine Learning workspace and associated resources <br> Fully automated machine learning operations |
+| Full machine learning lifecycle on-premises | On-premises | _Secure sensitive data or proprietary IP, such as machine learning models, code, and scripts._ | - Outbound proxy server connection on-premises <br> - Azure ExpressRoute and Azure Arc private link to Azure resources <br> - Customer-managed Kubernetes on-premises <br> - Fully automated machine learning operations |
 
-### Limitations
+### Limitations for Kubernetes compute target
 
-`KubernetesCompute` target in Azure Machine Learning workloads (training and model inference) has the following limitations:
-* The availability of **Preview features** in Azure Machine Learning isn't guaranteed.
-    * Identified limitation: Models (including the foundational model) from the **Model Catalog** and **Registry** aren't supported on Kubernetes online endpoints.
+A `KubernetesCompute` target in Azure Machine Learning workloads (training and model inference) has the following limitations:
+
+- The availability of **Preview features** in Azure Machine Learning isn't guaranteed.
+- Models (including the foundational model) from the **Model Catalog** and **Registry** aren't supported on Kubernetes online endpoints.
+- The process of creating a model inference deployment inside the cluster has a timeout limit of **20 minutes**. This includes downloading the image, downloading the model, and initializing the user scripts.
+- Azure Machine Learning extension supports Kubernetes Baseline Pod Security Standard. 
+- Training on Kubernetes compute doesn't support auto scale nodes.
 
 ## Recommended best practices
 
-**Separation of responsibilities between the IT-operations team and data-science team**. As we mentioned in the previous section, managing your own compute and infrastructure for ML workload is a complex task. It's best to be done by IT-operations team so data-science team can focus on ML models for organizational efficiency.
+This section summarizes recommended best practices for working with a Kubernetes compute.
 
-**Create and manage instance types for different ML workload scenarios**. Each ML workload uses different amounts of compute resources such as CPU/GPU and memory. Azure Machine Learning implements instance type as Kubernetes custom resource definition (CRD) with properties of nodeSelector and resource request/limit. With a carefully curated list of instance types, IT-operations can target ML workload on specific node(s) and manage compute resource utilization efficiently.
+**Separation of responsibilities between the IT-operations team and Data-science team**. As described earlier, managing your own compute and infrastructure for machine learning workload is a complex task. The best approach is to have the IT-operations team handle the task, so the Data-science team can focus on machine learning models for organizational efficiency.
 
-**Multiple Azure Machine Learning workspaces share the same Kubernetes cluster**. You can attach Kubernetes cluster multiple times to the same Azure Machine Learning workspace or different Azure Machine Learning workspaces, creating multiple compute targets in one workspace or multiple workspaces. Since many customers organize data science projects around Azure Machine Learning workspace, multiple data science projects can now share the same Kubernetes cluster. This significantly reduces ML infrastructure management overheads and IT cost saving.
+**Create and manage instance types for different machine learning workload scenarios**. Each machine learning workload uses different amounts of compute resources, such as CPU/GPU and memory. Azure Machine Learning implements the instance type as a Kubernetes custom resource definition (CRD) with properties of `nodeSelector` and `resource request/limit`. With a carefully curated list of instance types, IT-operations can target machine learning workload on specific nodes and manage compute resource utilization efficiently.
 
-**Team/project workload isolation using Kubernetes namespace**. When you attach Kubernetes cluster to Azure Machine Learning workspace, you can specify a Kubernetes namespace for the compute target. All workloads run by the compute target are placed under the specified namespace.
+**Multiple Azure Machine Learning workspaces share the same Kubernetes cluster**. You can attach a Kubernetes cluster multiple times to the same Machine Learning workspace or different workspaces. This process creates multiple compute targets in a single workspace or multiple workspaces. Because many customers organize data science projects around Machine Learning workspace, multiple data science projects can now share the same Kubernetes cluster. This approach significantly reduces machine learning infrastructure management overheads and enhances IT cost saving.
 
-## KubernetesCompute and legacy AksCompute
+**Team/project workload isolation using Kubernetes namespace**. When you attach a Kubernetes cluster to a Machine Learning workspace, you can specify a Kubernetes namespace for the compute target. All workloads run by the compute target are placed under the specified namespace.
 
-With Azure Machine Learning CLI/Python SDK v1, you can deploy models on AKS using AksCompute target. Both KubernetesCompute target and AksCompute target support AKS integration, however they support it differently. The following table shows their key differences:
+## Comparison of KubernetesCompute and legacy AksCompute targets
 
-|Capabilities  |AKS integration with AksCompute (legacy)  |AKS integration with KubernetesCompute|
-|--|--|--|
-|CLI/SDK v1 | Yes | No|
-|CLI/SDK v2 | No | Yes|
-|Training | No | Yes|
-|Real-time inference | Yes | Yes |
-|Batch inference | No | Yes |
-|Real-time inference new features | No new features development | Active roadmap |
+With the Azure Machine Learning CLI/Python SDK v1, you can deploy models on AKS by using the legacy `AksCompute` target. Both the `KubernetesCompute` and `AksCompute` targets support AKS integration, but the support approach is different. The following table summarizes the key differences:
 
-With these key differences and overall Azure Machine Learning evolution to use SDK/CLI v2, Azure Machine Learning recommends you to use Kubernetes compute target to deploy models if you decide to use AKS for model deployment.
+| Capability | AksCompute (legacy) | KubernetesCompute |
+| --- | :---: | :---: |
+| **Use the CLI/SDK v1**                          | Yes | No|
+| **Use the CLI/SDK v2**                          | No  | Yes|
+| **Set up training**                             | No  | Yes|
+| **Apply real-time inference**                   | Yes | Yes |
+| **Apply batch inference**                       | No  | Yes |
+| **Access new features for real-time inference** | No new features development | Active roadmap available |
 
-### Other resources
+In consideration of these differences, and the overall Machine Learning evolution to use the CLI/SDK v2, the recommended approach is to use Kubernetes compute target (`KubernetesCompute`) for AKS model deployment.
 
-- [Kubernetes version and region availability](./reference-kubernetes.md#supported-kubernetes-version-and-region)
-- [Work with custom data storage](./reference-kubernetes.md#azure-machine-learning-jobs-connect-with-custom-data-storage)
+For more information, explore the following articles:
 
+- [Review supported Kubernetes versions and regions](./reference-kubernetes.md#supported-kubernetes-version-and-region)
+- [Connect Machine Learning jobs with custom data storage](./reference-kubernetes.md#azure-machine-learning-jobs-connect-with-custom-data-storage)
 
-### Examples
+## Machine learning examples
 
-All Azure Machine Learning examples can be found in [https://github.com/Azure/azureml-examples.git](https://github.com/Azure/azureml-examples).
+Machine learning examples are available in the [Azure Machine Learning (azureml-examples)](https://github.com/Azure/azureml-examples) repository on GitHub. In any example, replace the compute target name with your Kubernetes compute target, and run the sample.
 
-For any Azure Machine Learning example, you only need to update the compute target name to your Kubernetes compute target, then you're all done. 
-* Explore training job samples with CLI v2 - [https://github.com/Azure/azureml-examples/tree/main/cli/jobs](https://github.com/Azure/azureml-examples/tree/main/cli/jobs)
-* Explore model deployment with online endpoint samples with CLI v2 - [https://github.com/Azure/azureml-examples/tree/main/cli/endpoints/online/kubernetes](https://github.com/Azure/azureml-examples/tree/main/cli/endpoints/online/kubernetes)
-* Explore batch endpoint samples with CLI v2 - [https://github.com/Azure/azureml-examples/tree/main/cli/endpoints/batch](https://github.com/Azure/azureml-examples/tree/main/cli/endpoints/batch)
-* Explore training job samples with SDK v2 -[https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs)
-* Explore model deployment with online endpoint samples with SDK v2 -[https://github.com/Azure/azureml-examples/tree/main/sdk/python/endpoints/online/kubernetes](https://github.com/Azure/azureml-examples/tree/main/sdk/python/endpoints/online/kubernetes)
+Here are several options:
 
-## Next steps
+- [Training job samples with the CLI v2](https://github.com/Azure/azureml-examples/tree/main/cli/jobs)
+- [Training job samples with the SDK v2](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs)
+- [Model deployment with online endpoint samples and the CLI v2](https://github.com/Azure/azureml-examples/tree/main/cli/endpoints/online/kubernetes)
+- [Model deployment with online endpoint samples and the SDK v2](https://github.com/Azure/azureml-examples/tree/main/sdk/python/endpoints/online/kubernetes)
+- [Batch endpoint samples with the CLI v2](https://github.com/Azure/azureml-examples/tree/main/cli/endpoints/batch)
 
-- [Step 1: Deploy Azure Machine Learning extension](how-to-deploy-kubernetes-extension.md)
-- [Step 2: Attach Kubernetes cluster to workspace](how-to-attach-kubernetes-to-workspace.md)
+## Related content
+
+- [Deploy Azure Machine Learning extension](how-to-deploy-kubernetes-extension.md)
+- [Attach Kubernetes cluster to workspace](how-to-attach-kubernetes-to-workspace.md)
 - [Create and manage instance types](how-to-manage-kubernetes-instance-types.md)

@@ -2,14 +2,16 @@
 title: Migrate to Batch synthesis API - Speech service
 titleSuffix: Azure AI services
 description: This document helps developers migrate code from Long Audio REST API to Batch synthesis REST API.
-author: heikora
-manager: dongli
+author: eric-urban
+ms.author: eur
+manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: reference
-ms.date: 1/21/2024
-ms.author: heikora
+ms.topic: concept-article
+ms.date: 3/10/2025
+ms.reviewer: heikora
 ms.devlang: csharp
 ms.custom: devx-track-csharp
+#Customer intent: As a developer, I want to migrate code from Long Audio REST API to Batch synthesis REST API in the Speech service.
 ---
 
 # Migrate code from Long Audio API to Batch synthesis API
@@ -17,7 +19,7 @@ ms.custom: devx-track-csharp
 The [Batch synthesis API](batch-synthesis.md) provides asynchronous synthesis of long-form text to speech. This article describes the benefits of upgrading from Long Audio API to Batch synthesis API, and details about how to do so.
 
 > [!IMPORTANT]
-> [Batch synthesis API](batch-synthesis.md) is generally available. the Long Audio API will be retired on April 1st, 2027.
+> [Batch synthesis API](batch-synthesis.md) is generally available. the Long Audio API is retiring on April 1st, 2027.
 
 ## Base path and version
 

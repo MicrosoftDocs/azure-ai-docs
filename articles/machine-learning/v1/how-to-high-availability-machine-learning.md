@@ -16,6 +16,8 @@ monikerRange: 'azureml-api-1'
 
 # Failover for business continuity and disaster recovery
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 To maximize your uptime, plan ahead to maintain business continuity and prepare for disaster recovery with Azure Machine Learning. 
 
 Microsoft strives to ensure that Azure services are always available. However, unplanned service outages may occur. We recommend having a disaster recovery plan in place for handling regional service outages. In this article, you'll learn how to:
@@ -73,7 +75,7 @@ The rest of this article describes the actions you need to take to make each of 
 A multi-regional deployment relies on creation of Azure Machine Learning and other resources (infrastructure) in two Azure regions. If a regional outage occurs, you can switch to the other region. When planning on where to deploy your resources, consider:
 
 * __Regional availability__: Use regions that are close to your users. To check regional availability for Azure Machine Learning, see [Azure products by region](https://azure.microsoft.com/global-infrastructure/services/).
-* __Azure paired regions__: Paired regions coordinate platform updates and prioritize recovery efforts where needed. For more information, see [Azure paired regions](/azure/availability-zones/cross-region-replication-azure).
+* __Azure paired regions__: Paired regions coordinate platform updates and prioritize recovery efforts where needed. For more information, see [Azure paired regions](/azure/reliability/cross-region-replication-azure).
 * __Service availability__: Decide whether the resources used by your solution should be hot/hot, hot/warm, or hot/cold.
     
     * __Hot/hot__: Both regions are active at the same time, with one region ready to begin use immediately.
@@ -81,7 +83,7 @@ A multi-regional deployment relies on creation of Azure Machine Learning and oth
     * __Hot/cold__: Primary region active, secondary region has Azure Machine Learning and other resources deployed, along with needed data. Resources such as models, model deployments, or pipelines would need to be manually deployed.
 
 > [!TIP]
-> Depending on your business requirements, you may decide to treat different Azure Machine Learning resources differently. For example, you may want to use hot/hot for deployed models (inference), and hot/cold for experiments (training).
+> Depending on your business requirements, you may decide to treat different Azure Machine Learning resources differently. For example, you might want to use hot/hot for deployed models (inference), and hot/cold for experiments (training).
 
 Azure Machine Learning builds on top of other services. Some services can be configured to replicate to other regions. Others you must manually create in multiple regions. The following table provides a list of services, who is responsible for replication, and an overview of the configuration:
 
@@ -104,11 +106,11 @@ To enable fast recovery and restart in the secondary region, we recommend the fo
 
 ### Compute and data services
 
-Depending on your needs, you may have more compute or data services that are used by Azure Machine Learning. For example, you may use Azure Kubernetes Services or Azure SQL Database. Use the following information to learn how to configure these services for high availability.
+Depending on your needs, you might have more compute or data services that are used by Azure Machine Learning. For example, you may use Azure Kubernetes Services or Azure SQL Database. Use the following information to learn how to configure these services for high availability.
 
 __Compute resources__
 
-* **Azure Kubernetes Service**: See [Best practices for business continuity and disaster recovery in Azure Kubernetes Service (AKS)](/azure/aks/operator-best-practices-multi-region) and [Create an Azure Kubernetes Service (AKS) cluster that uses availability zones](/azure/aks/availability-zones). If the AKS cluster was created by using the Azure Machine Learning Studio, SDK, or CLI, cross-region high availability is not supported.
+* **Azure Kubernetes Service**: See [Best practices for business continuity and disaster recovery in Azure Kubernetes Service (AKS)](/azure/aks/operator-best-practices-multi-region) and [Create an Azure Kubernetes Service (AKS) cluster that uses availability zones](/azure/aks/availability-zones). If the AKS cluster was created by using the Azure Machine Learning studio, SDK, or CLI, cross-region high availability is not supported.
 * **Azure Databricks**: See [Regional disaster recovery for Azure Databricks clusters](/azure/databricks/scenarios/howto-regional-disaster-recovery).
 * **Container Instances**: An orchestrator is responsible for failover. See [Azure Container Instances and container orchestrators](/azure/container-instances/container-instances-orchestrator-relationship).
 * **HDInsight**: See [High availability services supported by Azure HDInsight](/azure/hdinsight/hdinsight-high-availability-components).
@@ -129,7 +131,7 @@ __Data services__
 
 ### Deploy critical components to multiple regions
 
-Determine the level of business continuity that you are aiming for. The level may differ between the components of your solution. For example, you may want to have a hot/hot configuration for production pipelines or model deployments, and hot/cold for experimentation.
+Determine the level of business continuity that you are aiming for. The level may differ between the components of your solution. For example, you might want to have a hot/hot configuration for production pipelines or model deployments, and hot/cold for experimentation.
 
 ### Manage training data on isolated storage
 
@@ -176,7 +178,7 @@ Azure Machine Learning cannot sync or recover artifacts or metadata between work
 
 ### Moving artifacts between workspaces
 
-Depending on your recovery approach, you may need to copy artifacts such as dataset and model objects between the workspaces to continue your work. Currently, the portability of artifacts between workspaces is limited. We recommend managing artifacts as code where possible so that they can be recreated in the failover instance.
+Depending on your recovery approach, you might need to copy artifacts such as dataset and model objects between the workspaces to continue your work. Currently, the portability of artifacts between workspaces is limited. We recommend managing artifacts as code where possible so that they can be recreated in the failover instance.
 
 The following artifacts can be exported and imported between workspaces by using the [Azure CLI extension for machine learning](reference-azure-machine-learning-cli.md):
 
@@ -205,4 +207,4 @@ Even if your workspace cannot be recovered, you may still be able to retrieve yo
 
 ## Next steps
 
-To learn about repeatable infrastructure deployments with Azure Machine Learning, use an [Azure Resource Manager template](../tutorial-create-secure-workspace-template.md).
+To learn about repeatable infrastructure deployments with Azure Machine Learning, use a [Bicep](/samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/) or [Terraform](https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure) template.

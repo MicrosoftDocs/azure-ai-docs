@@ -7,13 +7,13 @@ metadata:
   manager: nitinme
   ms.service: azure-ai-custom-vision
   ms.topic: faq
-  ms.date: 01/22/2024
+  ms.date: 01/22/2025
   ms.author: pafarley
   
 title: Custom Vision frequently asked questions
 summary: |
   > [!TIP]
-  > If you can't find answers to your questions in this FAQ, ask the Azure AI Vision API community on [StackOverflow](https://stackoverflow.com/questions/tagged/project-oxford+or+microsoft-cognitive) or contact Help and Support on [UserVoice](https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858).
+  > If you can't find answers to your questions in this FAQ, ask the Azure AI Vision API community on [Stack Overflow](https://stackoverflow.com/questions/tagged/project-oxford+or+microsoft-cognitive) or contact Help and Support on [UserVoice](https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858).
   
   
 sections:
@@ -38,7 +38,7 @@ sections:
       - question: |
           What is the difference between the free and standard pricing tiers?
         answer: |
-          See the [Limits and quotas](./limits-and-quotas.md) page for pricing information.
+          See the [Limits and quotas](./limits-and-quotas.md) page for pricing tier information.
       - question: |
           Do I have to relabel images if I change domains in a project?
         answer: |

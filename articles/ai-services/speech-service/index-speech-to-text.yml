@@ -9,7 +9,7 @@ metadata:
   manager: nitinme
   ms.service: azure-ai-speech
   ms.topic: landing-page
-  ms.date: 8/20/2024
+  ms.date: 3/10/2025
   ms.author: eur
 
 landingContent:
@@ -29,26 +29,28 @@ landingContent:
       links:
         - text: Get started with speech to text
           url: get-started-speech-to-text.md
+        - text: Try real-time diarization
+          url: get-started-stt-diarization.md
 - title: Develop with speech to text
   linkLists:
     - linkListType: how-to-guide
       links:
-        - text: Choose speech recognition mode
-          url: ./get-started-speech-to-text.md
-        - text: Improve accuracy with custom speech
-          url: ./custom-speech-overview.md
-        - text: Use compressed audio input formats
-          url: how-to-use-codec-compressed-audio-input-streams.md
-        - text: Migrate from v3.0 to v3.1
-          url: migrate-v3-0-to-v3-1.md
-    - linkListType: concept
-      links:
-        - text: Training and testing datasets
-          url: how-to-custom-speech-test-and-train.md
+        - text: Use the fast transcription API
+          url: fast-transcription-create.md
+        - text: Create a custom speech project
+          url: ./how-to-custom-speech-create-project.md
         - text: Train a model for custom speech
           url: how-to-custom-speech-train-model.md
-        - text: Create human-labeled transcriptions
-          url: how-to-custom-speech-human-labeled-transcriptions.md
+        - text: Use compressed audio input formats
+          url: how-to-use-codec-compressed-audio-input-streams.md
+    - linkListType: concept
+      links:
+        - text: Whisper model from OpenAI
+          url: whisper-overview.md
+        - text: Improve accuracy with custom speech
+          url: ./custom-speech-overview.md
+        - text: Display text formatting
+          url: display-text-format.md
 - title: Reference
   linkLists:
     - linkListType: reference

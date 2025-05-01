@@ -78,7 +78,7 @@ In the table, $n_{\text{input}} = n_{\text{features}} + 1$, the number of predic
 
 ## TCNForecaster in AutoML
 
-TCNForecaster is an optional model in AutoML. To learn how to use it, see [enable deep learning](./how-to-auto-train-forecast.md#enable-deep-learning).
+TCNForecaster is an optional model in AutoML. To learn how to use it, see [enable deep learning](./how-to-auto-train-forecast.md#enable-learning-for-deep-neural-networks).
 
 In this section, we describe how AutoML builds TCNForecaster models with your data, including explanations of data preprocessing, training, and model search. 
 
@@ -90,9 +90,9 @@ AutoML executes several preprocessing steps on your data to prepare for model tr
 |--|--|
 Fill missing data|[Impute missing values and observation gaps](./concept-automl-forecasting-methods.md#missing-data-handling) and optionally [pad or drop short time series](./how-to-auto-train-forecast.md#short-series-handling)|
 |Create calendar features|Augment the input data with [features derived from the calendar](./concept-automl-forecasting-calendar-features.md) like day of the week and, optionally, holidays for a specific country/region.|
-|Encode categorical data|[Label encode](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html) strings and other categorical types; this includes all [time series ID columns](./how-to-auto-train-forecast.md#forecasting-job-settings).|
+|Encode categorical data|[Label encode](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html) strings and other categorical types; this includes all [time series ID columns](./how-to-auto-train-forecast.md#forecast-job-settings).|
 |Target transform|Optionally apply the natural logarithm function to the target depending on the results of certain statistical tests.|
-|Normalization|[Z-score normalize](https://en.wikipedia.org/wiki/Standard_score) all numeric data; normalization is performed per feature and per time series group, as defined by the [time series ID columns](./how-to-auto-train-forecast.md#forecasting-job-settings).
+|Normalization|[Z-score normalize](https://en.wikipedia.org/wiki/Standard_score) all numeric data; normalization is performed per feature and per time series group, as defined by the [time series ID columns](./how-to-auto-train-forecast.md#forecast-job-settings).
 
 These steps are included in AutoML's transform pipelines, so they're automatically applied when needed at inference time. In some cases, the inverse operation to a step is included in the inference pipeline. For example, if AutoML applied a $\log$ transform to the target during training, the raw forecasts are exponentiated in the inference pipeline.  
 
@@ -104,7 +104,7 @@ The following table lists and describes input settings and parameters for TCNFor
 
 |Training input|Description|Value|
 |--|--|--|
-|Validation data|A portion of data that is held out from training to guide the network optimization and mitigate over fitting.| [Provided by the user](./how-to-auto-train-forecast.md#training-and-validation-data) or automatically created from training data if not provided.|
+|Validation data|A portion of data that is held out from training to guide the network optimization and mitigate over fitting.| [Provided by the user](./how-to-auto-train-forecast.md#prepare-training-and-validation-data) or automatically created from training data if not provided.|
 |Primary metric|Metric computed from median-value forecasts on the validation data at the end of each training epoch; used for early stopping and model selection.|[Chosen by the user](./how-to-auto-train-forecast.md#configure-experiment); normalized root mean squared error or normalized mean absolute error.|
 |Training epochs|Maximum number of epochs to run for network weight optimization.|100; automated early stopping logic may terminate training at a smaller number of epochs. 
 |Early stopping patience|Number of epochs to wait for primary metric improvement before training is stopped.|20|

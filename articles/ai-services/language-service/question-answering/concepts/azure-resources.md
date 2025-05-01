@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 ms.topic: conceptual
 author: jboback
 ms.author: jboback
-ms.date: 12/19/2023
+ms.date: 11/21/2024
 ms.custom: language-service-question-answering
 ---
 
@@ -34,7 +34,7 @@ Typically there are three parameters you need to consider:
 
     * The throughput for custom question answering is currently capped at 10 text records per second for both management APIs and prediction APIs.
 
-    * This should also influence your **Azure AI Search** SKU selection, see more details [here](/azure/search/search-sku-tier). Additionally, you may need to adjust Azure AI Search [capacity](/azure/search/search-capacity-planning) with replicas.
+    * This should also influence your **Azure AI Search** SKU selection, see more details [here](/azure/search/search-sku-tier). Additionally, you might need to adjust Azure AI Search [capacity](/azure/search/search-capacity-planning) with replicas.
 
 * **Size and the number of projects**: Choose the appropriate [Azure search SKU](https://azure.microsoft.com/pricing/details/search/) for your scenario. Typically, you decide the number of projects you need based on number of different subject domains. One subject domain (for a single language) should be in one project.
 

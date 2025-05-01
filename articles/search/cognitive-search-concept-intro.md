@@ -6,18 +6,18 @@ description: Content extraction, natural language processing (NLP), and image pr
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 01/30/2024
+ms.date: 02/24/2025
 ---
 
 # AI enrichment in Azure AI Search
 
 In Azure AI Search, *AI enrichment* refers to integration with [Azure AI services](/azure/ai-services/what-are-ai-services) to process content that isn't searchable in its raw form. Through enrichment, analysis and inference are used to create searchable content and structure where none previously existed. 
 
-Because Azure AI Search is a text and vector search solution, the purpose of AI enrichment is to improve the utility of your content in search-related scenarios. Source content must be textual (you can't enrich vectors), but the content created by an enrichment pipeline can be vectorized and indexed in a vector index using skills like [Text Split skill](cognitive-search-skill-textsplit.md) for chunking and [AzureOpenAIEmbedding skill](cognitive-search-skill-azure-openai-embedding.md) for encoding. 
+Because Azure AI Search is used for text and vector queries, the purpose of AI enrichment is to improve the utility of your content in search-related scenarios. Raw content must be text or images (you can't enrich vectors), but the output of an enrichment pipeline can be vectorized and indexed in a search index using skills like [Text Split skill](cognitive-search-skill-textsplit.md) for chunking and [AzureOpenAIEmbedding skill](cognitive-search-skill-azure-openai-embedding.md) for vector encoding. For more information about using skills in vector scenarios, see [Integrated data chunking and embedding](vector-search-integrated-vectorization.md).
 
 AI enrichment is based on [*skills*](cognitive-search-working-with-skillsets.md).
 
@@ -106,7 +106,7 @@ In Azure Storage, a [knowledge store](knowledge-store-concept-intro.md) can assu
 
 ## Availability and pricing
 
-Enrichment is available in regions that have Azure AI services. You can check the availability of enrichment on the [Azure products available by region](https://azure.microsoft.com/global-infrastructure/services/?products=search) page. 
+Enrichment is available in regions that have Azure AI services. You can check the availability of enrichment on the [regions list](search-region-support.md) page. 
 
 Billing follows a pay-as-you-go pricing model. The costs of using built-in skills are passed on when a multi-region Azure AI services key is specified in the skillset. There are also costs associated with image extraction, as metered by Azure AI Search. Text extraction and utility skills, however, aren't billable. For more information, see [How you're charged for Azure AI Search](search-sku-manage-costs.md#how-youre-charged-for-azure-ai-search).
 
@@ -116,9 +116,9 @@ An enrichment pipeline consists of [*indexers*](search-indexer-overview.md) that
 
 Start with a subset of data in a [supported data source](search-indexer-overview.md#supported-data-sources). Indexer and skillset design is an iterative process. The work goes faster with a small representative data set.
 
-1. Create a [data source](/rest/api/searchservice/create-data-source) that specifies a connection to your data.
+1. Create a [data source](/rest/api/searchservice/data-sources/create) that specifies a connection to your data.
 
-1. [Create a skillset](cognitive-search-defining-skillset.md). Unless your project is small, you should [attach an Azure AI multi-service resource](cognitive-search-attach-cognitive-services.md). If you're [creating a knowledge store](knowledge-store-create-rest.md), define it within the skillset.
+1. [Create a skillset](cognitive-search-defining-skillset.md). Unless your project is small, you should [attach an Azure AI services multi-service resource](cognitive-search-attach-cognitive-services.md). If you're [creating a knowledge store](knowledge-store-create-rest.md), define it within the skillset.
 
 1. [Create an index schema](search-how-to-create-search-index.md) that defines a search index.
 
@@ -134,7 +134,7 @@ To repeat any of the above steps, [reset the indexer](search-howto-reindex.md) b
 
 ## Next steps
 
-+ [Quickstart: Create a skillset for AI enrichment](cognitive-search-quickstart-blob.md)
++ [Quickstart: Create a skillset for AI enrichment](search-get-started-skillset.md)
 + [Tutorial: Learn about the AI enrichment REST APIs](cognitive-search-tutorial-blob.md)
 + [Skillset concepts](cognitive-search-working-with-skillsets.md)
 + [Knowledge store concepts](knowledge-store-concept-intro.md)

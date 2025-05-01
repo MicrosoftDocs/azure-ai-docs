@@ -9,7 +9,7 @@ ms.topic: tutorial
 author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: swatig
-ms.date: 11/07/2023
+ms.date: 01/20/2025
 ms.custom: devx-track-python, automl, devx-track-azurecli, update-code, build-2023
 ---
 

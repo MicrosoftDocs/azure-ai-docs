@@ -121,7 +121,7 @@ trace.set_tracer_provider(TracerProvider())
 # The example below assumes JSON formatting which may be updated
 # depending on the format your endpoint expects.
 # More information can be found here:
-# https://docs.microsoft.com/azure/machine-learning/how-to-deploy-advanced-entry-script
+# https://learn.microsoft.com/azure/machine-learning/how-to-deploy-advanced-entry-script
 data = {
     "question": "hello",
     "chat_history": []
@@ -178,7 +178,7 @@ You can view the trace of the request along with feedback in Application Insight
 
 ## Advanced usage: Export trace to custom OpenTelemetry collector service
 
-In some cases, you may want to export the trace data to your deployed OTel collector service, enabled by setting "OTEL_EXPORTER_OTLP_ENDPOINT". Use this exporter when you want to customize our own span processing logic and your own trace persistent target.
+In some cases, you might want to export the trace data to your deployed OTel collector service, enabled by setting "OTEL_EXPORTER_OTLP_ENDPOINT". Use this exporter when you want to customize our own span processing logic and your own trace persistent target.
 
 ## Next steps
 

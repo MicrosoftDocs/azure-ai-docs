@@ -34,7 +34,7 @@ Typically there are three parameters you need to consider:
 
 * **The throughput you need from the service**:
     * Select the appropriate [App Plan](https://azure.microsoft.com/pricing/details/app-service/plans/) for your App service based on your needs. You can [scale up](/azure/app-service/manage-scale-up) or down the App.
-    * This should also influence your Azure **Cognitive Search** SKU selection, see more details [here](/azure/search/search-sku-tier). Additionally, you may need to adjust Cognitive Search [capacity](/azure/search/search-capacity-planning) with replicas.
+    * This should also influence your Azure **Cognitive Search** SKU selection, see more details [here](/azure/search/search-sku-tier). Additionally, you might need to adjust Cognitive Search [capacity](/azure/search/search-capacity-planning) with replicas.
 
 * **Size and the number of knowledge bases**: Choose the appropriate [Azure search SKU](https://azure.microsoft.com/pricing/details/search/) for your scenario. Typically, you decide number of knowledge bases you need based on number of different subject domains. Once subject domain (for a single language) should be in one knowledge base.
 

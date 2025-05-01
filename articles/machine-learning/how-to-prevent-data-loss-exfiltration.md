@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: meerakurup
-ms.date: 01/31/2024
+ms.date: 02/05/2025
 ms.custom: engagement-fy23, build-2023
 monikerRange: 'azureml-api-2 || azureml-api-1'
 ---
@@ -29,7 +29,7 @@ Azure Machine Learning has several inbound and outbound dependencies. Some of th
     * __AzureFrontDoor.frontend outbound__: Azure Front Door is used by the Azure Machine Learning studio UI and AutoML. Instead of allowing outbound to the service tag (AzureFrontDoor.frontend), switch to the following fully qualified domain names (FQDN). Switching to these FQDNs removes unnecessary outbound traffic included in the service tag and allows only what is needed for Azure Machine Learning studio UI and AutoML.
 
         - `ml.azure.com`
-        - `automlresources-prod.azureedge.net`
+        - `automlresources-prod-d0eaehh7g8andvav.b02.azurefd.net`
 
 > [!TIP]
 > The information in this article is primarily about using an Azure Virtual Network. Azure Machine Learning can also use a **managed virtual networks**. With a managed virtual network, Azure Machine Learning handles the job of network isolation for your workspace and managed computes. 
@@ -159,7 +159,7 @@ Use the following steps to enable a storage endpoint for the subnet that contain
 When using Azure Machine Learning curated environments, make sure to use the latest environment version. The container registry for the environment must also be `mcr.microsoft.com`. To check the container registry, use the following steps:
 
 1. From [Azure Machine Learning studio](https://ml.azure.com), select your workspace and then select __Environments__.
-1. Verify that the __Azure container registry__ begins with a value of `mcr.microsoft.com`.
+1. Verify that the __Azure Container Registry__ begins with a value of `mcr.microsoft.com`.
 
     > [!IMPORTANT]
     > If the container registry is `viennaglobal.azurecr.io` you cannot use the curated environment with the data exfiltration. Try upgrading to the latest version of the curated environment.

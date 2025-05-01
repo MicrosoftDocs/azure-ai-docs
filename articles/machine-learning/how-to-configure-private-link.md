@@ -6,11 +6,12 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
-ms.custom: devx-track-azurecli, sdkv2
+ms.custom: devx-track-azurecli, sdkv2, FY25Q1-Linter, ignite-2024
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: meerakurup
-ms.date: 01/02/2024
+ms.date: 09/05/2024
+# Customer Intent: As an admin, I want to understand how to use private links to secure communications between my Azure Machine Learning workspace and my virtual network.
 ---
 
 # Configure a private endpoint for an Azure Machine Learning workspace
@@ -20,7 +21,7 @@ ms.date: 01/02/2024
 
 In this document, you learn how to configure a private endpoint for your Azure Machine Learning workspace. For information on creating a virtual network for Azure Machine Learning, see [Virtual network isolation and privacy overview](how-to-network-security-overview.md).
 
-Azure Private Link enables you to connect to your workspace using a private endpoint. The private endpoint is a set of private IP addresses within your virtual network. You can then limit access to your workspace to only occur over the private IP addresses. A private endpoint helps reduce the risk of data exfiltration. To learn more about private endpoints, see the [Azure Private Link](/azure/private-link/private-link-overview) article.
+Azure Private Link enables you to restrict connections to your workspace to an Azure Virtual Network. You restrict a workspace to only accept connections from a virtual network by creating a private endpoint. The private endpoint is a set of private IP addresses within your virtual network. You can then limit access to your workspace to only occur over the private IP addresses. A private endpoint helps reduce the risk of data exfiltration. To learn more about private endpoints, see the [Azure Private Link](/azure/private-link/private-link-overview) article.
 
 > [!WARNING]
 > Securing a workspace with private endpoints does not ensure end-to-end security by itself. You must secure all of the individual components of your solution. For example, if you use a private endpoint for the workspace, but your Azure Storage Account is not behind the VNet, traffic between the workspace and storage does not use the VNet for security.
@@ -45,18 +46,18 @@ Azure Private Link enables you to connect to your workspace using a private endp
 
 ## Limitations
 
-* If you enable public access for a workspace secured with private endpoint and use Azure Machine Learning studio over the public internet, some features such as the designer may fail to access your data. This problem happens when the data is stored on a service that is secured behind the VNet. For example, an Azure Storage Account.
-* You may encounter problems trying to access the private endpoint for your workspace if you're using Mozilla Firefox. This problem may be related to DNS over HTTPS in Mozilla Firefox. We recommend using Microsoft Edge or Google Chrome.
+* If you enable public access for a workspace secured with private endpoint and use Azure Machine Learning studio over the public internet, some features such as the designer might fail to access your data. This problem happens when the data is stored on a service that is secured behind the virtual network. For example, an Azure Storage Account.
+* If you're using Mozilla Firefox, you might encounter problems trying to access the private endpoint for your workspace. This problem might be related to DNS over HTTPS in Mozilla Firefox. We recommend using Microsoft Edge or Google Chrome.
 * Using a private endpoint doesn't affect Azure control plane (management operations) such as deleting the workspace or managing compute resources. For example, creating, updating, or deleting a compute target. These operations are performed over the public Internet as normal. Data plane operations, such as using Azure Machine Learning studio, APIs (including published pipelines), or the SDK use the private endpoint.
-* When creating a compute instance or compute cluster in a workspace with a private endpoint, the compute instance and compute cluster must be in the same Azure region as the workspace.
-* When attaching an Azure Kubernetes Service cluster to a workspace with a private endpoint, the cluster must be in the same region as the workspace.
-* When using a workspace with multiple private endpoints, one of the private endpoints must be in the same VNet as the following dependency services:
+* When you create a compute instance or compute cluster in a workspace with a private endpoint, the compute instance and compute cluster must be in the same Azure region as the workspace.
+* When you attach an Azure Kubernetes Service cluster to a workspace with a private endpoint, the cluster must be in the same region as the workspace.
+* When you use a workspace with multiple private endpoints, one of the private endpoints must be in the same virtual network as the following dependency services:
 
     * Azure Storage Account that provides the default storage for the workspace
     * Azure Key Vault for the workspace
     * Azure Container Registry for the workspace.
 
-    For example, one VNet ('services' VNet) would contain a private endpoint for the dependency services and the workspace. This configuration allows the workspace to communicate with the services. Another VNet ('clients') might only contain a private endpoint for the workspace, and be used only for communication between client development machines and the workspace.
+    For example, one virtual network ('services') would contain a private endpoint for the dependency services and the workspace. This configuration allows the workspace to communicate with the services. Another virtual network ('clients') might only contain a private endpoint for the workspace, and be used only for communication between client development machines and the workspace.
 
 ## Create a workspace that uses a private endpoint
 
@@ -66,12 +67,13 @@ Use one of the following methods to create a workspace with a private endpoint. 
 > If you'd like to create a workspace, private endpoint, and virtual network at the same time, see [Use an Azure Resource Manager template to create a workspace for Azure Machine Learning](how-to-create-workspace-template.md).
 
 # [Azure CLI](#tab/cli)
-[!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
+[!INCLUDE [CLI v2](includes/machine-learning-cli-v2.md)]
 
-When using the Azure CLI [extension 2.0 CLI for machine learning](how-to-configure-cli.md), a YAML document is used to configure the workspace. The following example demonstrates creating a new workspace using a YAML configuration:
+When you use the Azure CLI [extension 2.0 CLI for machine learning](how-to-configure-cli.md), a YAML document is used to configure the workspace. The following example demonstrates creating a new workspace using a YAML configuration:
 
 > [!TIP]
-> When using private link, your workspace cannot use Azure Container Registry tasks compute for image building. The `image_build_compute` property in this configuration specifies a CPU compute cluster name to use for Docker image environment building. You can also specify whether the private link workspace should be accessible over the internet using the `public_network_access` property.
+> When you use a private link, your workspace cannot use Azure Container Registry tasks compute for image building. Instead, the workspace defaults to using a [serverless compute cluster](how-to-use-serverless-compute.md) to build images. This works only when the workspace-deependent resources such as the storage account and container registry are not under any network restrictions (private endpoint). If your workspace dependencies are under network restrictions, use the `image_build_compute` property to specify a compute cluster to use for image building.
+> The `image_build_compute` property in this configuration specifies a CPU compute cluster name to use for Docker image environment building. You can also specify whether the private link workspace should be accessible over the internet using the `public_network_access` property.
 >
 > In this example, the compute referenced by `image_build_compute` will need to be created before building images.
 
@@ -152,7 +154,7 @@ Use one of the following methods to add a private endpoint to an existing worksp
 > If you have any existing compute targets associated with this workspace, and they are not behind the same virtual network that the private endpoint is created in, they will not work.
 
 # [Azure CLI](#tab/cli)
-[!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
+[!INCLUDE [CLI v2](includes/machine-learning-cli-v2.md)]
 
 When using the Azure CLI [extension 2.0 CLI for machine learning](how-to-configure-cli.md), use the [Azure networking CLI commands](/cli/azure/network/private-endpoint#az-network-private-endpoint-create) to create a private link endpoint for the workspace.
 
@@ -210,19 +212,19 @@ az network private-endpoint dns-zone-group add \
 
 # [Portal](#tab/azure-portal)
 
-From the Azure Machine Learning workspace in the portal, select __Private endpoint connections__ and then select __+ Private endpoint__. Use the fields to create a new private endpoint.
+From the Azure Machine Learning workspace in the portal, select __Settings__, __Networking__, __Private endpoint connections__ and then select __+ Private endpoint__. Use the fields to create a new private endpoint.
 
 * When selecting the __Region__, select the same region as your virtual network. 
-* When selecting __Resource type__, use __Microsoft.MachineLearningServices/workspaces__. 
-* Set the __Resource__ to your workspace name.
+* When selecting the __Virtual network__, select the virtual network you want to connect to.
+* When selecting the __Subnet__, select the subnet in the virtual network that the private endpoint IP addresses are assigned from.
 
-Finally, select __Create__ to create the private endpoint.
+You can leave other fields at the default value or modify as needed for your environment. Finally, select __Create__ to create the private endpoint.
 
 ---
 
 ## Remove a private endpoint
 
-You can remove one or all private endpoints for a workspace. Removing a private endpoint removes the workspace from the VNet that the endpoint was associated with. Removing the private endpoint may prevent the workspace from accessing resources in that VNet, or resources in the VNet from accessing the workspace. For example, if the VNet doesn't allow access to or from the public internet.
+You can remove one or all private endpoints for a workspace. Removing a private endpoint removes the workspace from the virtual network that the endpoint was associated with. Removing the private endpoint might prevent the workspace from accessing resources in that virtual network, or resources in the virtual network from accessing the workspace. For example, if the virtual network doesn't allow access to or from the public internet.
 
 > [!WARNING]
 > Removing the private endpoints for a workspace __doesn't make it publicly accessible__. To make the workspace publicly accessible, use the steps in the [Enable public access](#enable-public-access) section.
@@ -230,7 +232,7 @@ You can remove one or all private endpoints for a workspace. Removing a private 
 To remove a private endpoint, use the following information:
 
 # [Azure CLI](#tab/cli)
-[!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
+[!INCLUDE [CLI v2](includes/machine-learning-cli-v2.md)]
 
 
 When using the Azure CLI [extension 2.0 CLI for machine learning](how-to-configure-cli.md), use the following command to remove the private endpoint:
@@ -253,7 +255,7 @@ az network private-endpoint delete \
 
 ## Enable public access
 
-In some situations, you may want to allow someone to connect to your secured workspace over a public endpoint, instead of through the VNet. Or you may want to remove the workspace from the VNet and re-enable public access.
+In some situations, you might want to allow someone to connect to your secured workspace over a public endpoint, instead of through the virtual network. Or you might want to remove the workspace from the virtual network and re-enable public access.
 
 > [!IMPORTANT]
 > Enabling public access doesn't remove any private endpoints that exist. All communications between components behind the VNet that the private endpoint(s) connect to are still secured. It enables public access only to the workspace, in addition to the private access through any private endpoints.
@@ -274,7 +276,7 @@ To enable public access, use the following steps:
 > Microsoft recommends using `public_network_access` to enable or disable public access to a workspace.
 
 # [Azure CLI](#tab/cli)
-[!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
+[!INCLUDE [CLI v2](includes/machine-learning-cli-v2.md)]
 
 
 When using the Azure CLI [extension 2.0 CLI for machine learning](how-to-configure-cli.md), use the `az ml update` command to enable `public_network_access` for the workspace:
@@ -298,19 +300,35 @@ You can also enable public network access by using a YAML file. For more informa
 
 ---
 
-## Enable Public Access only from internet IP ranges (preview)
+## Enable Public Access only from internet IP ranges
 
 You can use IP network rules to allow access to your workspace and endpoint from specific public internet IP address ranges by creating IP network rules. Each Azure Machine Learning workspace supports up to 200 rules. These rules grant access to specific internet-based services and on-premises networks and block general internet traffic.
 
 > [!WARNING]
 > * Enable your endpoint's [public network access flag](concept-secure-online-endpoint.md#secure-inbound-scoring-requests) if you want to allow access to your endpoint from specific public internet IP address ranges.
-> * When you enable this feature, this has an impact to all existing public endpoints associated with your workspace. This may limit access to new or existing endpoints. If you access any endpoints from a non-allowed IP, you get a 403 error.
 > * You can only use IPv4 addresses.
 > * To use this feature with Azure Machine Learning managed virtual network, see [Azure Machine Learning managed virtual network](how-to-managed-network.md#scenario-enable-access-from-selected-ip-addresses).
 
 # [Azure CLI](#tab/cli)
-[!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
-Azure CLI does not support this.
+[!INCLUDE [CLI v2](includes/machine-learning-cli-v2.md)]
+
+Use the `az ml workspace network-rule` Azure CLI command to manage public access from an IP address or address range:
+
+> [!TIP]
+> The configurations for the selected IP addresses are stored in the workspace's properties, under `network_acls`:
+> ```yml
+> properties:
+>   # ...
+>   network_acls:
+>     description: "The network ACLS for this workspace, enforced when public_network_access is set to Enabled."
+>     $ref: "3/defintions/networkAcls"
+> ```
+
+- __List IP network rules__: `az ml workspace network-rule list --resource-group "myresourcegroup" --workspace-name "myWS" --query ipRules`
+- __Add a rule for a single IP address__: `az ml workspace network-rule add --resource-group "myresourcegroup" --workspace-name "myWS" --ip-address "16.17.18.19"`
+- __Add a rule for an IP address range__: `az ml workspace network-rule add --resource-group "myresourcegroup" --workspace-name "myWS" --ip-address "16.17.18.0/24"`
+- __Remove a rule for a single IP address__: `az ml workspace network-rule remove --resource-group "myresourcegroup" --workspace-name "myWS" --ip-address "16.17.18.19"`
+- __Remove a rule for an IP address range__: `az ml workspace network-rule remove --resource-group "myresourcegroup" --workspace-name "myWS" --ip-address "16.17.18.0/24"`
 
 # [Portal](#tab/azure-portal)
 
@@ -322,11 +340,19 @@ Azure CLI does not support this.
 
 ---
 
+You can also use the [Workspace](/python/api/azure-ai-ml/azure.ai.ml.entities.workspace) class from the Azure Machine Learning [Python SDK](/python/api/overview/azure/ai-ml-readme) to define which IP addresses are allowed inbound access:
+
+```python
+Workspace( 
+  public_network_access = "Enabled", 
+  network_rule_set = NetworkRuleSet(default_action = "Allow", bypass = "AzureServices", resource_access_rules = None, ip_rules = yourIPAddress,)
+```
+
 ### Restrictions for IP network rules
 
 The following restrictions apply to IP address ranges:
 
-- IP network rules are allowed only for *public internet* IP addresses.
+- IP network rules are allowed only for _public internet_ IP addresses.
 
   [Reserved IP address ranges](https://en.wikipedia.org/wiki/Reserved_IP_addresses) aren't allowed in IP rules such as private addresses that start with 10, 172.16 to 172.31, and 192.168.
 
@@ -334,7 +360,9 @@ The following restrictions apply to IP address ranges:
 
 - Only IPv4 addresses are supported for configuration of storage firewall rules.
 
-- When this feature is enabled, you can test public endpoints using any client tool such as Curl, but the Endpoint Test tool in the portal is not supported.
+- When this feature is enabled, you can test public endpoints using any client tool such as Curl, but the Endpoint Test tool in the portal isn't supported.
+
+- You can only set the IP addresses for the workspace after the workspace has been created.
 
 ## Securely connect to your workspace
 
@@ -344,9 +372,9 @@ The following restrictions apply to IP address ranges:
 
 Azure Machine Learning supports multiple private endpoints for a workspace. Multiple private endpoints are often used when you want to keep different environments separate. The following are some scenarios that are enabled by using multiple private endpoints:
 
-* Client development environments in a separate VNet.
-* An Azure Kubernetes Service (AKS) cluster in a separate VNet.
-* Other Azure services in a separate VNet. For example, Azure Synapse and Azure Data Factory can use a Microsoft managed virtual network. In either case, a private endpoint for the workspace can be added to the managed VNet used by those services. For more information on using a managed virtual network with these services, see the following articles:
+* Client development environments in a separate virtual network.
+* An Azure Kubernetes Service (AKS) cluster in a separate virtual network.
+* Other Azure services in a separate virtual network. For example, Azure Synapse and Azure Data Factory can use a Microsoft managed virtual network. In either case, a private endpoint for the workspace can be added to the managed virtual network used by those services. For more information on using a managed virtual network with these services, see the following articles:
 
     * [Synapse managed private endpoints](/azure/synapse-analytics/security/synapse-workspace-managed-private-endpoints)
     * [Azure Data Factory managed virtual network](/azure/data-factory/managed-virtual-network-private-endpoint).
@@ -366,13 +394,13 @@ If you want to isolate the development clients, so they don't have direct access
 > [!NOTE]
 > These steps assume that you have an existing workspace, Azure Storage Account, Azure Key Vault, and Azure Container Registry. Each of these services has a private endpoints in an existing VNet.
 
-1. Create another VNet for the clients. This VNet might contain Azure Virtual Machines that act as your clients, or it may contain a VPN Gateway used by on-premises clients to connect to the VNet.
-1. Add a new private endpoint for the Azure Storage Account, Azure Key Vault, and Azure Container Registry used by your workspace. These private endpoints should exist in the client VNet.
-1. If you have another storage that is used by your workspace, add a new private endpoint for that storage. The private endpoint should exist in the client VNet and have private DNS zone integration enabled.
-1. Add a new private endpoint to your workspace. This private endpoint should exist in the client VNet and have private DNS zone integration enabled.
-1. Use the steps in the [Use studio in a virtual network](how-to-enable-studio-virtual-network.md#datastore-azure-storage-account) article to enable studio to access the storage account(s).
+1. Create another virtual network for the clients. This virtual network might contain Azure Virtual Machines that act as your clients, or it might contain a VPN Gateway used by on-premises clients to connect to the virtual network.
+1. Add a new private endpoint for the Azure Storage Account, Azure Key Vault, and Azure Container Registry used by your workspace. These private endpoints should exist in the client virtual network.
+1. If you have another storage that is used by your workspace, add a new private endpoint for that storage. The private endpoint should exist in the client virtual network and have private DNS zone integration enabled.
+1. Add a new private endpoint to your workspace. This private endpoint should exist in the client virtual network and have private DNS zone integration enabled.
+1. To enable Azure Machine Learning studio to access the storage accounts, visit the [studio in a virtual network](how-to-enable-studio-virtual-network.md#datastore-azure-storage-account) article.
 
-The following diagram illustrates this configuration. The __Workload__ VNet contains computes created by the workspace for training & deployment. The __Client__ VNet contains clients or client ExpressRoute/VPN connections. Both VNets contain private endpoints for the workspace, Azure Storage Account, Azure Key Vault, and Azure Container Registry.
+The following diagram illustrates this configuration. The __Workload__ virtual network contains compute resources created by the workspace for training & deployment. The __Client__ virtual network contains clients or client ExpressRoute/VPN connections. Both VNets contain private endpoints for the workspace, Azure Storage Account, Azure Key Vault, and Azure Container Registry.
 
 :::image type="content" source="./media/how-to-configure-private-link/multiple-private-endpoint-workspace-client.png" alt-text="Diagram of isolated client VNet":::
 
@@ -383,18 +411,38 @@ If you want to create an isolated Azure Kubernetes Service used by the workspace
 > [!NOTE]
 > These steps assume that you have an existing workspace, Azure Storage Account, Azure Key Vault, and Azure Container Registry. Each of these services has a private endpoints in an existing VNet.
 
-1. Create an Azure Kubernetes Service instance. During creation, AKS creates a VNet that contains the AKS cluster.
-1. Add a new private endpoint for the Azure Storage Account, Azure Key Vault, and Azure Container Registry used by your workspace. These private endpoints should exist in the client VNet.
-1. If you have other storage that is used by your workspace, add a new private endpoint for that storage. The private endpoint should exist in the client VNet and have private DNS zone integration enabled.
-1. Add a new private endpoint to your workspace. This private endpoint should exist in the client VNet and have private DNS zone integration enabled.
+1. Create an Azure Kubernetes Service instance. During creation, AKS creates a virtual network that contains the AKS cluster.
+1. Add a new private endpoint for the Azure Storage Account, Azure Key Vault, and Azure Container Registry used by your workspace. These private endpoints should exist in the client virtual network.
+1. If you have other storage that is used by your workspace, add a new private endpoint for that storage. The private endpoint should exist in the client virtual network and have private DNS zone integration enabled.
+1. Add a new private endpoint to your workspace. This private endpoint should exist in the client virtual network and have private DNS zone integration enabled.
 1. Attach the AKS cluster to the Azure Machine Learning workspace. For more information, see [Create and attach an Azure Kubernetes Service cluster](how-to-create-attach-kubernetes.md#attach-an-existing-aks-cluster).
 
 :::image type="content" source="./media/how-to-configure-private-link/multiple-private-endpoint-workspace-aks.png" alt-text="Diagram of isolated AKS VNet":::
 
-## Next step
+### Scenario: Managed online endpoints with access from selected IP addresses
 
-* For more information on securing your Azure Machine Learning workspace, see the [Virtual network isolation and privacy overview](how-to-network-security-overview.md) article.
+Enabling inbound access from selected IP addresses is affected by the ingress setting on your managed online endpoints. If public ingress is enabled on your managed online endpoint, then you can't enable selected IP addresses on our workspace.
 
-* If you plan on using a custom DNS solution in your virtual network, see [how to use a workspace with a custom DNS server](how-to-custom-dns.md).
+The following table shows the possible configurations for your workspace and managed online endpoint network configurations, and how it affects both. For more information, see [Network isolation with managed online endpoints](concept-secure-online-endpoint.md).
+
+| Workspace</br>public network access | Managed online endpoint</br>public network access | Does the workspace</br>respect the selected IPs? | Does the online endpoint</br>respect the selected IPs? |
+| --- | --- | --- | --- |
+| Disabled | Disabled | No (all public traffic rejected) | No |
+| Disabled | Enabled | No (all public traffic rejected) | Not supported |
+| Enabled from selected IPs | Disabled | Yes | No |
+| Enabled from selected IPs | Enabled | Yes | Yes |
+
+> [!NOTE]
+> If the workspace public network access configuration is changed from selected IPs to disabled, the managed online enedpoints will continue to respect the selected IPs. If you do not want thee selected IPs applied to your online endpoints, remove the addresses before selecting __Disabled__ for the workspace in the Azure portal. The Python SDK and Azure CLI support this change after or before.
+
+### Scenario: Batch endpoints with access from selected IP addresses
+
+The selected IP's configuration isn't supported for batch endpoints. There's no public network access flag on batch endpoints. If the Azure Machine Learning workspace is disabled, and private link enabled, the batch endpoint is private as well. If the workspace's public network access is changed from disabled to enabled, the batch endpoints stay private and don't become public. For more information, see [Securing batch endpoints](/azure/machine-learning/how-to-secure-batch-endpoint#securing-batch-endpoints).
+
+## Related content
+
+* [Virtual network isolation and privacy overview](how-to-network-security-overview.md)
+
+* [How to use a workspace with a custom DNS server](how-to-custom-dns.md)
 
 * [API platform network isolation](how-to-configure-network-isolation-with-v2.md)

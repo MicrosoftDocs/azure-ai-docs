@@ -12,7 +12,7 @@
 In this article, you learn how to train a custom neural voice through the Speech Studio portal.
 
 > [!IMPORTANT]
-> Custom neural voice training is currently only available in some regions. After your voice model is trained in a supported region, you can [copy](#copy-your-voice-model-to-another-project) it to a Speech resource in another region as needed. For more information, see the footnotes in the [Speech service table](../../../../regions.md#speech-service).
+> Custom neural voice training is currently only available in some regions. After your voice model is trained in a supported region, you can [copy](#copy-your-voice-model-to-another-project) it to an AI Services resource for Speech in another region as needed. For more information, see the footnotes in the [Speech service table](../../../../regions.md#regions).
 
 Training duration varies depending on how much data you use. It takes about 40 compute hours on average to train a custom neural voice. Standard subscription (S0) users can train four voices simultaneously. If you reach the limit, wait until at least one of your voice models finishes training, and then try again.
 
@@ -208,7 +208,7 @@ It was Janet Maslin.
 
 Each paragraph of the utterance results in a separate audio. If you want to combine all sentences into one audio, make them a single paragraph.
 
->[!NOTE]
+> [!NOTE]
 > The generated audio files are a combination of the automatic test scripts and custom test scripts.
 
 ### Update engine version for your voice model
@@ -252,7 +252,7 @@ To learn more about the capabilities and limits of this feature, and the best pr
 You can copy your voice model to another project for the same region or another region. For example, you can copy a neural voice model that was trained in one region, to a project for another region.
 
 > [!NOTE]
-> Custom neural voice training is currently only available in some regions. You can copy a neural voice model from those regions to other regions. For more information, see the [regions for custom neural voice](../../../../regions.md#speech-service).
+> Custom neural voice training is currently only available in some regions. You can copy a neural voice model from those regions to other regions. For more information, see the [regions for custom neural voice](../../../../regions.md#regions).
 
 To copy your custom neural voice model to another project:
 

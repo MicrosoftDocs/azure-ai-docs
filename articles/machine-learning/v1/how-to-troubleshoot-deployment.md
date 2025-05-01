@@ -5,7 +5,7 @@ description: Learn how to work around, solve, and troubleshoot some common Docke
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-ms.date: 11/16/2022
+ms.date: 03/10/2025
 author: Blackmist
 ms.author: larryfr
 ms.reviewer: sehan
@@ -16,15 +16,19 @@ ms.custom: UpdateFrequency5, deploy, cliv1, sdkv1
 
 # Troubleshooting remote model deployment 
 
-Learn how to troubleshoot and solve, or work around, common errors you may encounter when deploying a model to Azure Container Instances (ACI) and Azure Kubernetes Service (AKS) using Azure Machine Learning.
+[!INCLUDE [cli v1 deprecation](../includes/machine-learning-cli-v1-deprecation.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
+Learn how to troubleshoot and solve, or work around, common errors you might encounter when deploying a model to Azure Container Instances (ACI) and Azure Kubernetes Service (AKS) using Azure Machine Learning.
 
 > [!NOTE]
-> If you are deploying a model to Azure Kubernetes Service (AKS), we advise you enable [Azure Monitor](/azure/azure-monitor/containers/container-insights-enable-existing-clusters) for that cluster. This will help you understand overall cluster health and resource usage. You might also find the following resources useful:
+> If you're deploying a model to Azure Kubernetes Service (AKS), we recommend enabling [Azure Monitor](/azure/azure-monitor/containers/container-insights-enable-existing-clusters) for that cluster. This helps you understand overall cluster health and resource usage. You might also find the following resources useful:
 >
 > * [Check for Resource Health events impacting your AKS cluster](/azure/aks/aks-resource-health)
 > * [Azure Kubernetes Service Diagnostics](/azure/aks/concepts-diagnostics)
 >
-> If you are trying to deploy a model to an unhealthy or overloaded cluster, it is expected to experience issues. If you need help troubleshooting AKS cluster problems please contact AKS Support.
+> If you're trying to deploy a model to an unhealthy or overloaded cluster, it's expected to experience issues. If you need help troubleshooting AKS cluster problems, contact AKS Support.
 
 ## Prerequisites
 
@@ -32,8 +36,6 @@ Learn how to troubleshoot and solve, or work around, common errors you may encou
 * The [Azure Machine Learning SDK](/python/api/overview/azure/ml/install).
 * The [Azure CLI](/cli/azure/install-azure-cli).
 * The [CLI extension v1 for Azure Machine Learning](reference-azure-machine-learning-cli.md).
-
-    [!INCLUDE [cli v1 deprecation](../includes/machine-learning-cli-v1-deprecation.md)]
 
 ## Steps for Docker deployment of machine learning models
 
@@ -109,7 +111,7 @@ The local inference server allows you to quickly debug your entry script (`score
     curl -p 127.0.0.1:5001/score
     ```
 > [!NOTE]
-> [**Learn frequently asked questions**](../how-to-inference-server-http.md#frequently-asked-questions) about Azure machine learning Inference HTTP server.
+> [**Learn frequently asked questions**](../how-to-inference-server-http.md#frequently-asked-questions) about Azure Machine Learning Inference HTTP server.
 
 ## Container can't be scheduled
 
@@ -142,9 +144,9 @@ logging.basicConfig(level=logging.DEBUG)
 print(Model.get_model_path(model_name='my-best-model'))
 ```
 
-This example prints the local path (relative to `/var/azureml-app`) in the container where your scoring script is expecting to find the model file or folder. Then you can verify if the file or folder is indeed where it's expected to be.
+This example prints the local path (relative to `/var/azureml-app`) in the container where your scoring script is expecting to find the model file or folder. Then you can verify if the file or folder is where you expect it.
 
-Setting the logging level to DEBUG may cause additional information to be logged, which may be useful in identifying the failure.
+Setting the logging level to DEBUG might cause additional information to be logged, which might be useful in identifying the failure.
 
 ## Function fails: run(input_data)
 
@@ -171,7 +173,7 @@ A 502 status code indicates that the service has thrown an exception or crashed 
 
 ## HTTP status code 503
 
-Azure Kubernetes Service deployments support autoscaling, which allows replicas to be added to support extra load. The autoscaler is designed to handle **gradual** changes in load. If you receive large spikes in requests per second, clients may receive an HTTP status code 503. Even though the autoscaler reacts quickly, it takes AKS a significant amount of time to create more containers.
+Azure Kubernetes Service deployments support autoscaling, which allows replicas to be added to support extra load. The autoscaler is designed to handle **gradual** changes in load. If you receive large spikes in requests per second, clients might receive an HTTP status code 503. Even though the autoscaler reacts quickly, it takes AKS a significant amount of time to create more containers.
 
 Decisions to scale up/down is based off of utilization of the current container replicas. The number of replicas that are busy (processing a request) divided by the total number of current replicas is the current utilization. If this number exceeds `autoscale_target_utilization`, then more replicas are created. If it's lower, then replicas are reduced. Decisions to add replicas are eager and fast (around 1 second). Decisions to remove replicas are conservative (around 1 minute). By default, autoscaling target utilization is set to **70%**, which means that the service can handle spikes in requests per second (RPS) of **up to 30%**.
 
@@ -183,7 +185,7 @@ There are two things that can help prevent 503 status codes:
 * Change the utilization level at which autoscaling creates new replicas. You can adjust the utilization target by setting the `autoscale_target_utilization` to a lower value.
 
     > [!IMPORTANT]
-    > This change does not cause replicas to be created *faster*. Instead, they are created at a lower utilization threshold. Instead of waiting until the service is 70% utilized, changing the value to 30% causes replicas to be created when 30% utilization occurs.
+    > This change doesn't cause replicas to be created *faster*. Instead, they're created at a lower utilization threshold. Instead of waiting until the service is 70% utilized, changing the value to 30% causes replicas to be created when 30% utilization occurs.
     
     If the web service is already using the current max replicas and you're still seeing 503 status codes, increase the `autoscale_max_replicas` value to increase the maximum number of replicas.
 
@@ -209,7 +211,7 @@ There are two things that can help prevent 503 status codes:
     ```
 
     > [!NOTE]
-    > If you receive request spikes larger than the new minimum replicas can handle, you may receive 503s again. For example, as traffic to your service increases, you may need to increase the minimum replicas.
+    > If you receive request spikes larger than the new minimum replicas can handle, you might receive 503s again. For example, as traffic to your service increases, you might need to increase the minimum replicas.
 
 For more information on setting `autoscale_target_utilization`, `autoscale_max_replicas`, and `autoscale_min_replicas` for, see the [AksWebservice](/python/api/azureml-core/azureml.core.webservice.akswebservice) module reference.
 
@@ -217,7 +219,7 @@ For more information on setting `autoscale_target_utilization`, `autoscale_max_r
 
 A 504 status code indicates that the request has timed out. The default timeout is 1 minute.
 
-You can increase the timeout or try to speed up the service by modifying the score.py to remove unnecessary calls. If these actions don't correct the problem, use the information in this article to debug the score.py file. The code may be in a non-responsive state or an infinite loop.
+You can increase the timeout or try to speed up the service by modifying the score.py to remove unnecessary calls. If these actions don't correct the problem, use the information in this article to debug the score.py file. The code might be in a non-responsive state or an infinite loop.
 
 ## Other error messages
 
@@ -233,7 +235,7 @@ Take these actions for the following errors:
 
 ## Advanced debugging
 
-You may need to interactively debug the Python code contained in your model deployment. For example, if the entry script is failing and the reason can't be determined with extra logging. By using Visual Studio Code and the debugpy, you can attach to the code running inside the Docker container.
+You might need to interactively debug the Python code contained in your model deployment. For example, if the entry script is failing and the reason can't be determined with extra logging. By using Visual Studio Code and the debugpy, you can attach to the code running inside the Docker container.
 
 For more information, visit the [interactive debugging in VS Code guide](how-to-debug-visual-studio-code.md#debug-and-troubleshoot-deployments).
 

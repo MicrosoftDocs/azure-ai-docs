@@ -9,7 +9,7 @@ ms.topic: conceptual
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: lagayhar
-ms.date: 01/31/2024
+ms.date: 09/13/2024
 monikerRange: 'azureml-api-2 || azureml-api-1'
 ---
 
@@ -17,6 +17,10 @@ monikerRange: 'azureml-api-2 || azureml-api-1'
 
 :::moniker range="azureml-api-1"
 [!INCLUDE [dev v1](includes/machine-learning-dev-v1.md)]
+
+[!INCLUDE [v1 deprecation](includes/sdk-v1-deprecation.md)]
+
+[!INCLUDE [cli v1 deprecation](./includes/machine-learning-cli-v1-deprecation.md)]
 :::moniker-end
 :::moniker range="azureml-api-2"
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]

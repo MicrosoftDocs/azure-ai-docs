@@ -11,7 +11,7 @@ ms.topic: reference
 
 author: Blackmist
 ms.author: larryfr
-ms.date: 08/21/2024
+ms.date: 08/29/2024
 ms.reviewer: ambadal
 ---
 
@@ -32,7 +32,7 @@ ms.reviewer: ambadal
 | `type` | string | **Required.** The connection type. | `azure_ai_services` | `azure_ai_services` |
 | `is_shared` | boolean | `true` if the connection is shared across other projects in the hub; otherwise, `false`. | | `true` |
 | `endpoint` | string | **Required.** The URL of the endpoint. | | |
-| `api_key` | string | **Required.** The API key used to authenticate the connection. If not provided, a Microsoft Entra ID (credential-less authentication) connection is created. | | |
+| `api_key` | string | The API key used to authenticate the connection. If not provided, the connection is authenticated via Microsoft Entra ID (credential-less authentication). | | |
 | `ai_services_resource_id` | string | **Required.** The fully qualified Azure resource ID of the Azure AI Services resource. | | |
 
 
@@ -45,7 +45,7 @@ There are two ways to create connections to Azure AI Services:
 
 The schema described in this article is for **one connection for all Azure AI Services except Azure AI Search**.
 
-While the `az ml connection` commands can be used to manage both Azure Machine Learning and Azure AI Studio connections, the Azure AI Services connection is specific to Azure AI Studio.
+While the `az ml connection` commands can be used to manage both Azure Machine Learning and Azure AI Foundry connections, the Azure AI Services connection is specific to Azure AI Foundry.
 
 ## Examples
 
@@ -63,7 +63,7 @@ api_key: XXXXXXXXXXXXXXX
 ```
 
 
-### YAML: credential-less
+### YAML: Microsoft Entra ID
 
 ```yml
 #AzureAIServiceConnection.yml

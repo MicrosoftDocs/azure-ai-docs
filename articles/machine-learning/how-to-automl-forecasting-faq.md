@@ -10,7 +10,7 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: faq
 ms.custom: automl, sdkv2
-ms.date: 08/01/2023
+ms.date: 03/08/2025
 ---
 
 # Frequently asked questions about forecasting in AutoML
@@ -59,7 +59,7 @@ AutoML forecasting supports four basic configurations:
 |Configuration|Scenario|Pros|Cons|
 |--|--|--|--|
 |**Default AutoML**|Recommended if the dataset has a small number of time series that have roughly similar historical behavior.|- Simple to configure from code/SDK or Azure Machine Learning studio. <br><br> - AutoML can learn across different time series because the regression models pool all series together in training. For more information, see [Model grouping](./concept-automl-forecasting-methods.md#model-grouping).|- Regression models might be less accurate if the time series in the training data have divergent behavior. <br> <br> - Time series models might take a long time to train if the training data has a large number of series. For more information, see the [Why is AutoML slow on my data?](#why-is-automl-slow-on-my-data) answer.|
-|**AutoML with deep learning**|Recommended for datasets with more than 1,000 observations and, potentially, numerous time series that exhibit complex patterns. When it's enabled, AutoML will sweep over [temporal convolutional neural network (TCN) models](./concept-automl-forecasting-deep-learning.md#introduction-to-tcnforecaster) during training. For more information, see [Enable deep learning](./how-to-auto-train-forecast.md#enable-deep-learning).|- Simple to configure from code/SDK or Azure Machine Learning studio. <br> <br> - Cross-learning opportunities, because the TCN pools data over all series. <br> <br> - Potentially higher accuracy because of the large capacity of deep neural network (DNN) models. For more information, see [Forecasting models in AutoML](./concept-automl-forecasting-methods.md#forecasting-models-in-automl).|- Training can take much longer because of the complexity of DNN models. <br> <br> - Series with small amounts of history are unlikely to benefit from these models.|
+|**AutoML with deep learning**|Recommended for datasets with more than 1,000 observations and, potentially, numerous time series that exhibit complex patterns. When it's enabled, AutoML will sweep over [temporal convolutional neural network (TCN) models](./concept-automl-forecasting-deep-learning.md#introduction-to-tcnforecaster) during training. For more information, see [Enable deep learning](./how-to-auto-train-forecast.md#enable-learning-for-deep-neural-networks).|- Simple to configure from code/SDK or Azure Machine Learning studio. <br> <br> - Cross-learning opportunities, because the TCN pools data over all series. <br> <br> - Potentially higher accuracy because of the large capacity of deep neural network (DNN) models. For more information, see [Forecasting models in AutoML](./concept-automl-forecasting-methods.md#forecasting-models-in-automl).|- Training can take much longer because of the complexity of DNN models. <br> <br> - Series with small amounts of history are unlikely to benefit from these models.|
 |**Many Models**|Recommended if you need to train and manage a large number of forecasting models in a scalable way. For more information, see the [many models](concept-automl-forecasting-at-scale.md#many-models) article section.|- Scalable. <br> <br> - Potentially higher accuracy when time series have divergent behavior from one another.|- No learning across time series. <br> <br> - You can't configure or run Many Models jobs from Azure Machine Learning studio. Only the code/SDK experience is currently available.|
 |**Hierarchical time series (HTS)**|Recommended if the series in your data have a nested, hierarchical structure, and you need to train or make forecasts at aggregated levels of the hierarchy. For more information, see the [hierarchical time series forecasting](concept-automl-forecasting-at-scale.md#hierarchical-time-series-forecasting) article section.|- Training at aggregated levels can reduce noise in the leaf-node time series and potentially lead to higher-accuracy models. <br> <br> - You can retrieve forecasts for any level of the hierarchy by aggregating or disaggregating forecasts from the training level.|- You need to provide the aggregation level for training. AutoML doesn't currently have an algorithm to find an optimal level.|
 
@@ -77,7 +77,7 @@ AutoML uses machine learning best practices, such as cross-validated model selec
 - **The training data uses features that are not known into the future, up to the forecast horizon**. AutoML's regression models currently assume that all features are known to the forecast horizon. We advise you to explore your data prior to training and remove any feature columns that are known only historically.
 - **There are significant structural differences (regime changes) between the training, validation, or test portions of the data**. For example, consider the effect of the COVID-19 pandemic on demand for almost any good during 2020 and 2021. This is a classic example of a regime change. Overfitting due to regime change is the most challenging problem to address because it's highly scenario dependent and can require deep knowledge to identify.
 
-  As a first line of defense, try to reserve 10 to 20 percent of the total history for validation data or cross-validation data. It isn't always possible to reserve this amount of validation data if the training history is short, but it's a best practice. For more information, see [Training and validation data](./how-to-auto-train-forecast.md#training-and-validation-data).
+  As a first line of defense, try to reserve 10 to 20 percent of the total history for validation data or cross-validation data. It isn't always possible to reserve this amount of validation data if the training history is short, but it's a best practice. For more information, see [Training and validation data](./how-to-auto-train-forecast.md#prepare-training-and-validation-data).
 
 ## What does it mean if my training job achieves perfect validation scores?
 
@@ -91,7 +91,7 @@ AutoML's forecasting models all require that training data has regularly spaced 
 
 - **The data has a well-defined frequency, but missing observations are creating gaps in the series**. In this case, AutoML will try to detect the frequency, fill in new observations for the gaps, and impute missing target and feature values. Optionally, the user can configure the imputation methods via SDK settings or through the Web UI. For more information, see [Custom featurization](./how-to-auto-train-forecast.md#custom-featurization).
 
-- **The data doesn't have a well-defined frequency**. That is, the duration between observations doesn't have a discernible pattern. Transactional data, like that from a point-of-sales system, is one example. In this case, you can set AutoML to aggregate your data to a chosen frequency. You can choose a regular frequency that best suits the data and the modeling objectives. For more information, see [Data aggregation](./how-to-auto-train-forecast.md#frequency--target-data-aggregation).
+- **The data doesn't have a well-defined frequency**. That is, the duration between observations doesn't have a discernible pattern. Transactional data, like that from a point-of-sales system, is one example. In this case, you can set AutoML to aggregate your data to a chosen frequency. You can choose a regular frequency that best suits the data and the modeling objectives. For more information, see [Data aggregation](./how-to-auto-train-forecast.md#frequency-and-target-data-aggregation).
 
 ## How do I choose the primary metric?
 
@@ -110,13 +110,13 @@ To choose between them, note that NRMSE penalizes outliers in the training data 
 - Ensure that you're configuring AutoML the best way for your data. For more information, see the [What modeling configuration should I use?](#what-modeling-configuration-should-i-use) answer.
 - Check out the [forecasting recipes notebook](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/forecasting-recipes-univariate/auto-ml-forecasting-univariate-recipe-experiment-settings.ipynb) for step-by-step guides on how to build and improve forecast models.  
 - Evaluate the model by using back tests over several forecasting cycles. This procedure gives a more robust estimate of forecasting error and gives you a baseline to measure improvements against. For an example, see the [back-testing notebook](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/forecasting-backtest-single-model/auto-ml-forecasting-backtest-single-model.ipynb).
-- If the data is noisy, consider aggregating it to a coarser frequency to increase the signal-to-noise ratio. For more information, see [Frequency and target data aggregation](./how-to-auto-train-forecast.md#frequency--target-data-aggregation).
+- If the data is noisy, consider aggregating it to a coarser frequency to increase the signal-to-noise ratio. For more information, see [Frequency and target data aggregation](./how-to-auto-train-forecast.md#frequency-and-target-data-aggregation).
 - Add new features that can help predict the target. Subject matter expertise can help greatly when you're selecting training data.
 - Compare validation and test metric values, and determine if the selected model is underfitting or overfitting the data. This knowledge can guide you to a better training configuration. For example, you might determine that you need to use more cross-validation folds in response to overfitting.
 
 ## Will AutoML always select the same best model from the same training data and configuration?
 
-[AutoML's model search process](./concept-automl-forecasting-sweeping.md#model-sweeping) is not deterministic, so it doesn't always select the same model from the same data and configuration.  
+[AutoML's model search process](./concept-automl-forecasting-sweeping.md#model-sweeping-in-automl) is not deterministic, so it doesn't always select the same model from the same data and configuration.  
 
 ## How do I fix an out-of-memory error?
 

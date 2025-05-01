@@ -1,12 +1,12 @@
 ---
 title: Container requirements and recommendations
 titleSuffix: Azure AI services
-#services: cognitive-services
 author: aahill
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 04/09/2021
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: aahi
 ---
 

@@ -2,7 +2,6 @@
 title: 'Quickstart: Use Azure OpenAI Service with the Java SDK'
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the Java SDK. 
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
@@ -21,8 +20,6 @@ ms.date: 07/26/2023
 * The [Gradle build tool](https://gradle.org/install/), or another dependency manager.
 - An Azure OpenAI Service resource with the `gpt-35-turbo-instruct` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
-> [!div class="nextstepaction"]
-> [I ran into an issue with the prerequisites.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=JAVA&Pillar=AOAI&&Product=gpt&Page=quickstart&Section=Prerequisites)
 
 ## Set up
 
@@ -30,8 +27,6 @@ ms.date: 07/26/2023
 
 [!INCLUDE [environment-variables](environment-variables.md)]
 
-> [!div class="nextstepaction"]
-> [I ran into an issue with the setup.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=JAVA&Pillar=AOAI&&Product=gpt&Page=quickstart&Section=Set-up-the-environment)
 
 ## Create a new Java application
 
@@ -107,8 +102,8 @@ dependencies {
     public class GetCompletionsSample {
     
         public static void main(String[] args) {
-            String azureOpenaiKey = System.getenv("AZURE_OPENAI_API_KEY");;
-            String endpoint = System.getenv("AZURE_OPENAI_ENDPOINT");;
+            String azureOpenaiKey = System.getenv("AZURE_OPENAI_API_KEY");
+            String endpoint = System.getenv("AZURE_OPENAI_ENDPOINT");
             String deploymentOrModelId = "gpt-35-turbo-instruct";
     
             OpenAIClient client = new OpenAIClientBuilder()
@@ -159,8 +154,6 @@ Microsoft was founded on April 4, 1975..
 Usage: number of prompt token is 5, number of completion token is 11, and number of total tokens in request and response is 16.
 ```
 
-> [!div class="nextstepaction"]
-> [I ran into an issue when running the code sample.](https://microsoft.qualtrics.com/jfe/form/SV_0Cl5zkG3CnDjq6O?PLanguage=JAVA&Pillar=AOAI&&Product=gpt&Page=quickstart&Section=Create-application)
 
 ## Clean up resources
 
@@ -171,4 +164,4 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 
 ## Next steps
 
-* For more examples, check out the [Azure OpenAI Samples GitHub repository](https://aka.ms/AOAICodeSamples)
+* For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai)

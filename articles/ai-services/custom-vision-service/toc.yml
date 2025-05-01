@@ -74,22 +74,12 @@ items:
       href: ../cognitive-services-virtual-networks.md?context=/azure/ai-services/custom-vision-service/context/context
     - name: Use customer-managed keys
       href: encrypt-data-at-rest.md
-- name: Concepts
-  items:
-  - name: Compare alternatives
-    href: ./concepts/compare-alternatives.md
-- name: Tutorials
-  items:
-  - name: Report visual states on IoT device
-    href: iot-visual-alerts-tutorial.md
-  - name: Recognize logos on mobile
-    href: logo-detector-mobile.md
 - name: Reference
   items:
-  - name: Custom Vision Training API  
-    href: /rest/api/customvision/training/operation-groups?view=rest-customvision-training-v3.3
-  - name: Custom Vision Prediction API 
-    href: /rest/api/customvision/prediction/operation-groups?view=rest-customvision-prediction-v3.1
+  - name: Custom Vision Training API
+    href: /rest/api/customvision/operation-groups
+  - name: Custom Vision Prediction API
+    href: /rest/api/customvision/operation-groups
   - name: SDKs
     items:
     - name: .NET
@@ -120,4 +110,3 @@ items:
     href: /samples/browse/?products=azure&term=vision
   - name: Azure roadmap
     href: https://azure.microsoft.com/updates/?product=cognitive-services
-

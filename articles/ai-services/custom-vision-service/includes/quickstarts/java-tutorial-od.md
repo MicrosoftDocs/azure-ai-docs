@@ -12,15 +12,6 @@ Get started using the Custom Vision client library for Java to build an object d
 > [!NOTE]
 > If you want to build and train an object detection model _without_ writing code, see the [browser-based guidance](../../get-started-build-detector.md) instead.
 
-Use the Custom Vision client library for Java to:
-
-* Create a new Custom Vision project
-* Add tags to the project
-* Upload and tag images
-* Train the project
-* Publish the current iteration
-* Test the prediction endpoint
-
 [Reference documentation](/java/api/overview/azure/cognitiveservices/client/customvision) | 
 Library source code [(training)](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/cognitiveservices/ms-azure-cs-customvision-training) [(prediction)](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/cognitiveservices/ms-azure-cs-customvision-prediction)| 
 Artifact (Maven) [(training)](https://search.maven.org/artifact/com.azure/azure-cognitiveservices-customvision-training/1.1.0-preview.2/jar) [(prediction)](https://search.maven.org/artifact/com.azure/azure-cognitiveservices-customvision-prediction/1.1.0-preview.2/jar) | 

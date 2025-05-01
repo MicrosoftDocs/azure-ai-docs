@@ -1,24 +1,24 @@
 ---
-title: Speaker recognition overview - Speech service
+title: Speaker recognition overview
 titleSuffix: Azure AI services
-description: Speaker recognition provides algorithms that verify and identify speakers by their unique voice characteristics, by using voice biometry. Speaker recognition is used to answer the question “who is speaking?”. This article is an overview of the benefits and capabilities of the speaker recognition feature.
+description: Speaker recognition provides algorithms that verify and identify speakers by their unique voice characteristics, by using voice biometry. 
 author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 1/21/2024
+ms.date: 3/10/2025
 ms.author: eur
 keywords: speaker recognition, voice biometry
+#customer intent: As a developer, I want to learn about speaker recognition in Azure AI Speech to verify and identify speakers by their unique voice characteristics.
 ---
 
 # What is speaker recognition?
 
-Speaker recognition can help determine who is speaking in an audio clip. The service can verify and identify speakers by their unique voice characteristics, by using voice biometry. 
+[!INCLUDE [deprecation notice](./includes/retire-speaker-recognition.md)]
+
+Speaker recognition can help determine who is speaking in an audio clip. The service can verify and identify speakers by their unique voice characteristics, by using voice biometrics. 
 
 You provide audio training data for a single speaker, which creates an enrollment profile based on the unique characteristics of the speaker's voice. You can then cross-check audio voice samples against this profile to verify that the speaker is the same person (speaker verification). You can also cross-check audio voice samples against a *group* of enrolled speaker profiles to see if it matches any profile in the group (speaker identification).
-
-> [!IMPORTANT]
-> Microsoft limits access to Speaker Recognition. We have paused all new registrations for the Speaker Recognition Limited Access program at this time.
 
 ## Speaker verification
 
@@ -64,10 +64,10 @@ As with all of the Azure AI services resources, developers who use the speaker r
 | What situations am I most likely to use speaker recognition? | Good examples include call center customer verification, voice-based patient check-in, meeting transcription, and multi-user device personalization.|
 | What's the difference between identification and verification? | Identification is the process of detecting which member from a group of speakers is speaking. Verification is the act of confirming that a speaker matches a known, *enrolled* voice.|
 | What languages are supported? | See [Speaker recognition language support](language-support.md?tabs=speaker-recognition). |
-| What Azure regions are supported? | See [Speaker recognition region support](regions.md#speech-service).|
+| What Azure regions are supported? | See [Speaker recognition region support](regions.md#regions).|
 | What audio formats are supported? | Mono 16 bit, 16 kHz PCM-encoded WAV. |
 | Can you enroll one speaker multiple times? | Yes, for text-dependent verification, you can enroll a speaker up to 50 times. For text-independent verification or speaker identification, you can enroll with up to 300 seconds of audio. |
-| What data is stored in Azure? | Enrollment audio is stored in the service until the voice profile is [deleted](./get-started-speaker-recognition.md#delete-voice-profile-enrollments). Recognition audio samples aren't retained or stored. |
+| What data is stored in Azure? | Enrollment audio is stored in the service until the voice profile is deleted. Recognition audio samples aren't retained or stored. |
 
 ## Responsible AI 
 
@@ -79,7 +79,8 @@ An AI system includes not only the technology, but also the people who use it, t
 * [General guidelines](/legal/cognitive-services/speech-service/speaker-recognition/guidance-integration-responsible-use-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
 * [Data, privacy, and security](/legal/cognitive-services/speech-service/speaker-recognition/data-privacy-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
 
-## Next steps
+## Related content
 
-> [!div class="nextstepaction"]
-> [Speaker recognition quickstart](./get-started-speaker-recognition.md) 
+- [Speech service overview](./overview.md)
+- [Speech to text overview](./speech-to-text.md)
+

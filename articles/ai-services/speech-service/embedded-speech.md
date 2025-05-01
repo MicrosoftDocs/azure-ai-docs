@@ -7,12 +7,12 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java
 ms.topic: how-to
-ms.date: 1/18/2024
+ms.date: 3/10/2025
 ms.author: eur
 zone_pivot_groups: programming-languages-set-thirteen
 ---
 
-# Embedded Speech
+# What is embedded speech?
 
 Embedded Speech is designed for on-device [speech to text](speech-to-text.md) and [text to speech](text-to-speech.md) scenarios where cloud connectivity is intermittent or unavailable. For example, you can use embedded speech in industrial equipment, a voice enabled air conditioning unit, or a car that might travel out of range. You can also develop hybrid cloud and offline solutions. For scenarios where your devices must be in a secure environment like a bank or government entity, you should first consider [disconnected containers](../containers/disconnected-containers.md).
 
@@ -129,7 +129,7 @@ Follow these steps to install the Speech SDK for Java using Apache Maven:
             <dependency>
             <groupId>com.microsoft.cognitiveservices.speech</groupId>
             <artifactId>client-sdk-embedded</artifactId>
-            <version>1.40.0</version>
+            <version>1.43.0</version>
             </dependency>
         </dependencies>
     </project>
@@ -150,7 +150,7 @@ Be sure to use the `@aar` suffix when the dependency is specified in `build.grad
 
 ```
 dependencies {
-    implementation 'com.microsoft.cognitiveservices.speech:client-sdk-embedded:1.40.0@aar'
+    implementation 'com.microsoft.cognitiveservices.speech:client-sdk-embedded:1.43.0@aar'
 }
 ```
 ::: zone-end
@@ -166,7 +166,7 @@ All text to speech locales [here](language-support.md?tabs=tts) (except fa-IR, P
 
 ## Embedded speech configuration
 
-For cloud connected applications, as shown in most Speech SDK samples, you use the `SpeechConfig` object with a Speech resource key and region. For embedded speech, you don't use a Speech resource. Instead of a cloud resource, you use the [models and voices](#models-and-voices) that you download to your local device.
+For cloud connected applications, as shown in most Speech SDK samples, you use the `SpeechConfig` object with an API key and endpoint. For embedded speech, you don't use an AI Services resource for Speech. Instead of a cloud resource, you use the [models and voices](#models-and-voices) that you download to your local device.
 
 Use the `EmbeddedSpeechConfig` object to set the location of the models or voices. If your application is used for both speech to text and text to speech, you can use the same `EmbeddedSpeechConfig` object to set the location of the models and voices.
 
@@ -280,10 +280,10 @@ For cloud speech, you use the `SpeechConfig` object, as shown in the [speech to 
 
 ## Embedded voices capabilities
 
-For embedded voices, it's essential to note that certain SSML tags might not be currently supported due to differences in the model structure. For detailed information regarding the unsupported SSML tags, refer to the following table.
+For embedded voices, it's essential to note that certain [Speech synthesis markup language (SSML)](./speech-synthesis-markup.md) tags might not be currently supported due to differences in the model structure. For detailed information regarding the unsupported SSML tags, refer to the following table.
 
-| Level 1            | Level 2        | Sub values                                           | Support in embedded NTTS |
-|-----------------|-----------|-------------------------------------------------------|--------------------------|
+| Level 1 | Level 2 | Sub values | Support in embedded NTTS |
+|---------|---------|---------|---------|
 | audio           | src       |                                                       | No                       |
 | bookmark        |           |                                                       | Yes                      |
 | break           | strength  |                                                       | Yes                       |
@@ -299,7 +299,7 @@ For embedded voices, it's essential to note that certain SSML tags might not be 
 |                 | volume    |                                                       | No                       |
 |                 | fadein    |                                                       | No                       |
 |                 | fadeout   |                                                       | No                       |
-| msttsexpress-as | style     |                                                       | No                       |
+| msttsexpress-as | style     |                                                       | Yes<sup>1</sup>          |
 |                 | styledegree |                                                     | No                       |
 |                 | role      |                                                       | No                       |
 | msttssilence    |           |                                                       | No                       |
@@ -320,10 +320,9 @@ For embedded voices, it's essential to note that certain SSML tags might not be 
 | speak           |           |                                                       | Yes                      |
 | voice           |           |                                                       | No                       |
 
+<sup>1</sup> The [`msttsexpress-as`](./speech-synthesis-markup-voice.md#use-speaking-styles-and-roles) style is supported only for the `en-US-JennyNeural` voice.
 
-
-
-## Next steps
+## Related content
 
 - [Read about text to speech on devices for disconnected and hybrid scenarios](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/azure-neural-tts-now-available-on-devices-for-disconnected-and/ba-p/3716797)
 - [Limited Access to embedded Speech](/legal/cognitive-services/speech-service/embedded-speech/limited-access-embedded-speech?context=/azure/ai-services/speech-service/context/context)

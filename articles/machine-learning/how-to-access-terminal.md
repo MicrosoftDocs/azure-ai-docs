@@ -1,7 +1,7 @@
 ---
 title: How to access a compute instance terminal in your workspace
 titleSuffix: Azure Machine Learning
-description: Use the terminal on a compute instance for Git operations, to install packages, and add kernels.
+description: Learn how to use the terminal on a compute instance for Git operations, to install packages, and add kernels.
 services: machine-learning
 author: sdgilley
 ms.author: sgilley
@@ -9,7 +9,9 @@ ms.reviewer: kritifaujdar
 ms.service: azure-machine-learning
 ms.subservice: compute
 ms.topic: how-to
-ms.date: 01/10/2024
+ms.date: 09/20/2024
+ms.custom: FY25Q1-Linter
+
 #Customer intent: As a data scientist, I want to use Git, install packages and add kernels to a compute instance in my workspace in Azure Machine Learning studio.
 ---
 
@@ -42,16 +44,19 @@ To access the terminal:
 
 In addition to the previous steps, you can also access the terminal from:
 
+* In VS Code: Select the **Terminal > New Terminal** from the menu.  The entry may be hidden behind **...** in  menu.  To learn more about connecting to your workspace from VS Code, see [Work in VS Code remotely connected to a compute instance](how-to-work-in-vs-code-remote.md).
 * RStudio or Posit Workbench (formerly RStudio Workbench) (See [Add custom applications such as RStudio or Posit Workbench)](how-to-create-compute-instance.md?tabs=python#add-custom-applications-such-as-rstudio-or-posit-workbench)): Select the **Terminal** tab on top left.
 * Jupyter Lab:  Select the **Terminal** tile under the **Other** heading in the Launcher tab.
 * Jupyter:  Select **New>Terminal** on top right in the Files tab.
 * SSH to the machine, if you enabled SSH access when the compute instance was created. If the compute instance is in a managed virtual network and doesn't have a public IP address, use the `az ml compute connect-ssh` command to connect to the compute instance.
 
-## Copy and paste in the terminal
+## Copy and paste in the terminal 
 
-> * Windows: `Ctrl-Insert` to copy and use `Ctrl-Shift-v` or `Shift-Insert` to paste.
+In the **Notebooks** section, you can copy and paste text between the terminal and the notebook cells.
+
+> * Windows: `Ctrl-c` to copy and use `Ctrl-v` or `Ctrl-Shift-v` or `Shift-Insert` to paste.
 > * Mac OS: `Cmd-c` to copy and `Cmd-v` to paste.
-> * FireFox and Internet Explorer may not support clipboard permissions properly.
+> * Firefox and Internet Explorer may not support clipboard permissions properly.
 
 ## <a name=git></a> Use files from Git and version files
 
@@ -144,7 +149,7 @@ For more information about conda, see [Using R language with Anaconda](https://d
 > [!WARNING]
 > While customizing the compute instance, make sure you do not delete conda environments or jupyter kernels that you didn't create.
 
-To remove an added Jupyter kernel from the compute instance, you must remove the kernelspec, and (optionally) the conda environment. You can also choose to keep the conda environment. You must remove the kernelspec, or your kernel is still selectable and cause unexpected behavior.
+To remove an added Jupyter kernel from the compute instance, you must remove the kernelspec, and (optionally) the conda environment. You can also choose to keep the conda environment. You must remove the kernelspec, or your kernel is still selectable and could cause unexpected behavior.
 
 To remove the kernelspec:
 
@@ -186,3 +191,9 @@ Learn more about how to manage sessions running on your compute at [Managing not
 
 > [!WARNING]
 > Make sure you close any sessions you no longer need to preserve your compute instance's resources and optimize your performance.
+
+## Related content
+
+* [Managing notebook and terminal sessions](how-to-manage-compute-sessions.md)
+* [Git integration for Azure Machine Learning](concept-train-model-git-integration.md)
+* [Work in VS Code remotely connected to a compute instance](how-to-work-in-vs-code-remote.md)

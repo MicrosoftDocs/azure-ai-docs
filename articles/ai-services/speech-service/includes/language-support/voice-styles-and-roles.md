@@ -1,37 +1,46 @@
 ---
 author: eric-urban
 ms.service: azure-ai-speech
-ms.date: 02/01/2023
+ms.date: 2/13/2025
 ms.topic: include
 ms.author: eur
 ---
 
 | Voice | Styles |Roles |
 | ----- | ----- | ----- |
-|de-DE-ConradNeural|`cheerful`|Not supported|
-|en-GB-RyanNeural|`chat`, `cheerful`|Not supported|
+|de-DE-ConradNeural|`cheerful`, `sad`|Not supported|
+|en-GB-RyanNeural|`chat`, `cheerful`, `sad`, `whispering`|Not supported|
 |en-GB-SoniaNeural|`cheerful`, `sad`|Not supported|
-|en-IN-NeerjaNeural<sup>1</sup>|`cheerful`, `empathetic`, `newscast`|Not supported|
-|en-US-AndrewMultilingualNeural| `empathetic`, `relieved`|Not supported|
+|en-IN-NeerjaNeural|`cheerful`, `empathetic`, `newscast`|Not supported|
+|en-US-AndrewMultilingualNeural|`empathetic`, `relieved`|Not supported|
 |en-US-AriaNeural|`angry`, `chat`, `cheerful`, `customerservice`, `empathetic`, `excited`, `friendly`, `hopeful`, `narration-professional`, `newscast-casual`, `newscast-formal`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
+|en-US-DavisMultilingualNeural<sup>1</sup>|`empathetic`, `funny`, `relieved`|Not supported|
 |en-US-DavisNeural|`angry`, `chat`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
+|en-US-DerekMultilingualNeural<sup>1</sup>|`empathetic`, `excited`, `relieved`, `shy`|Not supported|
 |en-US-GuyNeural|`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `newscast`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
 |en-US-JaneNeural|`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
 |en-US-JasonNeural|`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
 |en-US-JennyNeural|`angry`, `assistant`, `chat`, `cheerful`, `customerservice`, `excited`, `friendly`, `hopeful`, `newscast`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
-|en-US-KaiNeural<sup>1</sup>|`conversation`|Not supported|
-|en-US-LunaNeural<sup>1</sup>|`conversation`|Not supported|
+|en-US-KaiNeural|`conversation`|Not supported|
+|en-US-LunaNeural|`conversation`|Not supported|
+|en-US-NancyMultilingualNeural<sup>1</sup>|`excited`, `friendly`, `funny`, `relieved`, `shy`|Not supported|
 |en-US-NancyNeural|`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
+|en-US-PhoebeMultilingualNeural<sup>1</sup>|`empathetic`, `sad`, `serious`|Not supported|
 |en-US-SaraNeural|`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
-|en-US-SerenaMultilingualNeural<sup>1</sup>| `empathetic`, `excited`, `friendly`, `shy`, `serious`, `relieved`, `sad`  |Not supported|
+|en-US-SerenaMultilingualNeural<sup>1</sup>|`empathetic`, `excited`, `friendly`, `relieved`, `sad`, `serious`, `shy`|Not supported|
 |en-US-TonyNeural|`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
-|es-MX-JorgeNeural|`chat`, `cheerful`|Not supported|
-|fr-FR-DeniseNeural|`cheerful`, `sad`|Not supported|
-|fr-FR-HenriNeural|`cheerful`, `sad`|Not supported|
-|hi-IN-SwaraNeural<sup>1</sup>|`cheerful`, `empathetic`, `newscast`|Not supported|
-|it-IT-IsabellaNeural|`chat`, `cheerful`|Not supported|
+|es-ES-AlvaroNeural|`cheerful`, `sad`|Not supported|
+|es-MX-DaliaNeural|`cheerful`, `sad`, `whispering`|Not supported|
+|es-MX-JorgeNeural|`chat`, `cheerful`, `excited`, `sad`, `whispering`|Not supported|
+|fr-FR-DeniseNeural|`cheerful`, `excited`, `sad`, `whispering`|Not supported|
+|fr-FR-HenriNeural|`cheerful`, `excited`, `sad`, `whispering`|Not supported|
+|hi-IN-SwaraNeural|`cheerful`, `empathetic`, `newscast`|Not supported|
+|it-IT-DiegoNeural|`cheerful`, `excited`, `sad`|Not supported|
+|it-IT-IsabellaNeural|`chat`, `cheerful`, `excited`, `sad`, `whispering`|Not supported|
 |ja-JP-NanamiNeural|`chat`, `cheerful`, `customerservice`|Not supported|
+|ko-KR-InJoonNeural|`sad`|Not supported|
 |pt-BR-FranciscaNeural|`calm`|Not supported|
+|pt-PT-RaquelNeural|`sad`, `whispering`|Not supported|
 |zh-CN-XiaochenNeural|`livecommercial`|Not supported|
 |zh-CN-XiaohanNeural|`affectionate`, `angry`, `calm`, `cheerful`, `disgruntled`, `embarrassed`, `fearful`, `gentle`, `sad`, `serious`|Not supported|
 |zh-CN-XiaomengNeural|`chat`|Not supported|

@@ -6,8 +6,9 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/19/2024
+ms.date: 2/25/2025
 ms.author: eur
+#Customer intent: As a developer, I need to understand how to use the online transcription editor for custom speech so that I can create or edit audio + human-labeled transcriptions for custom speech.
 ---
 
 # How to use the online transcription editor

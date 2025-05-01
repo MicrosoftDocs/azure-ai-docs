@@ -8,25 +8,24 @@ ms.author: sgilley
 ms.reviewer: vijetaj
 ms.service: azure-machine-learning
 ms.subservice: compute
-ms.date: 03/04/2024
+ms.date: 09/17/2024
 ms.topic: how-to
-ms.custom: build-2023
+ms.custom: build-2023, FY25Q1-Linter
+# customer intent: As a professional data scientist, I want to manage compute resources for model training and deployment in Azure Machine Learning studio.
 ---
 
 # Manage compute resources for model training and deployment in studio
 
-In this article, learn how to manage the compute resources you use for model training and deployment in Azure Machine studio.  
+In this article, learn how to manage the compute resources you use for model training and deployment in Azure Machine studio. 
+
+With Azure Machine Learning, you can train your model on various resources or environments, collectively referred to as _compute targets_). A compute target can be a local machine or a cloud resource, such as an Azure Machine Learning Compute, Azure HDInsight, or a remote virtual machine. 
+
+You can also use [serverless compute](./how-to-use-serverless-compute.md) as a compute target. There's nothing for you to manage when you use serverless compute.
 
 ## Prerequisites
 
 * If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today
 * An [Azure Machine Learning workspace](quickstart-create-resources.md)
-
-## What's a compute target?
-
-With Azure Machine Learning, you can train your model on a variety of resources or environments, collectively referred to as _compute targets_). A compute target can be a local machine or a cloud resource, such as an Azure Machine Learning Compute, Azure HDInsight, or a remote virtual machine. 
-
-You can also use [serverless compute](./how-to-use-serverless-compute.md) as a compute target.  There's nothing for you to manage when you use serverless compute.
 
 ## View compute targets
 
@@ -40,9 +39,7 @@ To see all compute targets for your workspace, use the following steps:
 
     :::image type="content" source="media/how-to-create-attach-studio/compute-targets.png" alt-text="Screenshot of view list of compute targets." lightbox="media/how-to-create-attach-studio/compute-targets.png":::
 
-[!INCLUDE [retiring vms](./includes/retiring-vms.md)]
-
-## Compute instance and clusters
+## Create compute instance and clusters
 
 You can create compute instances and compute clusters in your workspace, using the Azure Machine Learning SDK, CLI, or studio:
 
@@ -51,19 +48,19 @@ You can create compute instances and compute clusters in your workspace, using t
 
 In addition, you can use the [VS Code extension](how-to-manage-resources-vscode.md#compute-clusters) to create compute instances and compute clusters in your workspace.
 
-## Kubernetes clusters
+## Attach Kubernetes clusters
 
 For information on configuring and attaching a Kubernetes cluster to your workspace, see [Configure Kubernetes cluster for Azure Machine Learning](how-to-attach-kubernetes-anywhere.md).
 
-## Other compute targets
+## <a name="other-compute-targets"></a>Attach other compute targets
 
-To use VMs created outside the Azure Machine Learning workspace, you must first attach them to your workspace. Attaching the compute resource makes it available to your workspace.  
+To use VMs created outside the Azure Machine Learning workspace, you must first attach them to your workspace. Attaching the compute resource makes it available to your workspace. 
 
 1. Navigate to [Azure Machine Learning studio](https://ml.azure.com).
  
 1. Under __Manage__, select __Compute__.
 
-1. In the tabs at the top, select **Attached compute** to attach a compute target for **training**.  
+1. In the tabs at the top, select **Attached compute** to attach a compute target for **training**. 
 
 1. Select +New, then select the type of compute to attach. Not all compute types can be attached from Azure Machine Learning studio.
 
@@ -78,7 +75,7 @@ To use VMs created outside the Azure Machine Learning workspace, you must first 
 1. Select __Attach__.
 
 
-To detach your compute use the following steps:
+Detach your compute with the following steps:
 
 1. In Azure Machine Learning studio, select __Compute__, __Attached compute__, and the compute you wish to remove.
 1. Use the __Detach__ link to detach your compute.
@@ -87,9 +84,8 @@ To detach your compute use the following steps:
 
 [!INCLUDE [ssh-access](includes/machine-learning-ssh-access.md)]
 
-## Next steps
+## Related content
 
 * Use the compute resource to [submit a training run](how-to-train-model.md).
-* Learn how to [efficiently tune hyperparameters](how-to-tune-hyperparameters.md) to build better models.
 * Once you have a trained model, learn [how and where to deploy models](how-to-deploy-online-endpoints.md).
 * [Use Azure Machine Learning with Azure Virtual Networks](./how-to-network-security-overview.md)

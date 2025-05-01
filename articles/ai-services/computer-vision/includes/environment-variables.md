@@ -3,6 +3,7 @@ author: PatrickFarley
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 08/07/2023
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
@@ -17,7 +18,7 @@ To set the environment variable for your key and endpoint, open a console window
 - To set the `VISION_KEY` environment variable, replace `<your_key>` with one of the keys for your resource.
 - To set the `VISION_ENDPOINT` environment variable, replace `<your_endpoint>` with the endpoint for your resource.
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 #### [Windows](#tab/windows)
 
@@ -29,7 +30,7 @@ setx VISION_KEY <your_key>
 setx VISION_ENDPOINT <your_endpoint>
 ```
 
-After you add the environment variables, you may need to restart any running programs that will read the environment variables, including the console window.
+After you add the environment variables, you might need to restart any running programs that will read the environment variables, including the console window.
 
 #### [Linux](#tab/linux)
 

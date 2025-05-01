@@ -6,16 +6,13 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 05/21/2024
+ms.date: 04/29/2025
 author: aahill
 ms.author: aahi
 recommendations: false
 ---
 
 # Call Azure Logic apps as functions using Azure OpenAI Assistants 
-
-> [!NOTE]
-> This functionality is currently only available in Azure OpenAI Studio.
 
 [Azure Logic Apps](https://azure.microsoft.com/products/logic-apps) is an integration platform in Azure that allows you to build applications and automation workflows with low code tools enabling developer productivity and faster time to market. By using the visual designer and selecting from hundreds of prebuilt connectors, you can quickly build a workflow that integrates and manages your apps, data, services, and systems.
 
@@ -31,7 +28,7 @@ The Assistants playground enumerates and lists all the workflows in your subscri
 * [Request trigger](/azure/connectors/connectors-native-reqres?tabs=consumption): Function calling requires a REST-based API. Logic Apps with a request trigger provides a REST endpoint. Therefore only workflows with a request trigger are supported for function calling.
 * Schema: The workflows you want to use for function calling should have a JSON schema describing the inputs and expected outputs. Using Logic Apps you can streamline and provide schema in the trigger, which would be automatically imported as a function definition.
 
-If you already have workflows with above three requirements, you should be able to use them in Azure OpenAI Studio  and invoke them via user prompts.
+If you already have workflows with above three requirements, you should be able to use them in Azure AI Foundry and invoke them via user prompts.
 If you do not have existing workflows, you can follow the steps in this article to create them. There are two primary steps:
 1. [Create a Logic App on Azure portal](#create-logic-apps-workflows-for-function-calling).
 2. [Import your Logic Apps workflows as a function in the Assistants Playground](#import-your-logic-apps-workflows-as-functions).
@@ -50,10 +47,10 @@ Here are the steps to create a new Logic Apps workflow for function calling.
 1. After Azure successfully deploys your logic app resource, select **Go to resource**. Or, find and select your logic app resource by typing the name in the Azure search box.
 1. Open the Logic Apps workflow in designer. Select Development Tools + Logic app designer. This opens your empty workflow in designer. Or you select Blank Logic App from templates
 1. Now you're ready to add one more step in the workflow. A workflow always starts with a single trigger, which specifies the condition to meet before running any subsequent actions in the workflow.
-1. Your workflow is required to have a Request trigger to generate a REST endpoint, and a response action to return the response to Azure OpenAI Studio  when this workflow is invoked.
+1. Your workflow is required to have a Request trigger to generate a REST endpoint, and a response action to return the response to Azure AI Foundry when this workflow is invoked.
 1. Add a trigger [(Request)](/azure/connectors/connectors-native-reqres?tabs=consumption)
 
-    Select **Add a trigger** and then search for request trigger. Select the **When a HTTP request is received** operation.
+    Select **Add a trigger** and then search for request trigger. Select the **When an HTTP request is received** operation.
 
     :::image type="content" source="..\media\how-to\assistants\logic-apps\create-logic-app-1.png" alt-text="A screenshot showing the Logic Apps designer." lightbox="..\media\how-to\assistants\logic-apps\create-logic-app-1.png":::
 
@@ -61,7 +58,7 @@ Here are the steps to create a new Logic Apps workflow for function calling.
 
     :::image type="content" source="..\media\how-to\assistants\logic-apps\create-logic-app-2.png" alt-text="A screenshot showing the option to provide a JSON schema." lightbox="..\media\how-to\assistants\logic-apps\create-logic-app-2.png":::
 
-    Here is an example of the request schema. You can add a description for your workflow in the comment box. This is imported by Azure OpenAI Studio  as the function description.
+    Here is an example of the request schema. You can add a description for your workflow in the comment box. This is imported by Azure AI Foundry as the function description.
     
     :::image type="content" source="..\media\how-to\assistants\logic-apps\create-logic-app-3.png" alt-text="A screenshot showing an example request schema." lightbox="..\media\how-to\assistants\logic-apps\create-logic-app-3.png":::
 
@@ -77,7 +74,7 @@ Here are the steps to create a new Logic Apps workflow for function calling.
 
     :::image type="content" source="..\media\how-to\assistants\logic-apps\create-logic-app-6.png" alt-text="A screenshot showing the location property." lightbox="..\media\how-to\assistants\logic-apps\create-logic-app-6.png":::
 
-1. Configure the [response](/azure/connectors/connectors-native-reqres#add-a-response-action). The workflow needs to return the response back to Azure OpenAI Studio. This is done using Response action.
+1. Configure the [response](/azure/connectors/connectors-native-reqres#add-a-response-action). The workflow needs to return the response back to Azure AI Foundry. This is done using Response action.
 
     :::image type="content" source="..\media\how-to\assistants\logic-apps\create-logic-app-7.png" alt-text="A screenshot showing the response action." lightbox="..\media\how-to\assistants\logic-apps\create-logic-app-7.png":::
 
@@ -85,14 +82,14 @@ Here are the steps to create a new Logic Apps workflow for function calling.
     
     :::image type="content" source="..\media\how-to\assistants\logic-apps\create-logic-app-7.png" alt-text="A screenshot showing the comment box to specify a JSON schema." lightbox="..\media\how-to\assistants\logic-apps\create-logic-app-7.png":::
 
-1. The workflow is now ready. In Azure OpenAI Studio, you can import this function using the **Add function** feature in the Assistants playground.
+1. The workflow is now ready. In Azure AI Foundry, you can import this function using the **Add function** feature in the Assistants playground.
 
 
 ## Import your Logic Apps workflows as functions
 
-Here are the steps to import your Logic Apps workflows as function in the Assistants playground in Azure OpenAI Studio:
+Here are the steps to import your Logic Apps workflows as function in the Assistants playground in Azure AI Foundry:
 
-1. In Azure OpenAI Studio, select **Assistants**. Select an existing Assistant or create a new one. After you have configured the assistant with a name and instructions, you are ready to add a function. Select **+ Add function**. 
+1. In Azure AI Foundry, select **Playgrounds** from the left pane, and then **Assistants playground**. Select an existing Assistant or create a new one. After you have configured the assistant with a name and instructions, you are ready to add a function. Select **+ Add function**. 
 
     :::image type="content" source="..\media\how-to\assistants\logic-apps\assistants-playground-add-function.png" alt-text="A screenshot showing the Assistant playground with the add function button." lightbox="..\media\how-to\assistants\logic-apps\assistants-playground-add-function.png":::
 
@@ -123,11 +120,11 @@ You can confirm the invocation by looking at the logs as well as your [workflow 
 
 Azure Logic Apps has connectors to hundreds of line-of-business (LOB) applications and databases including but not limited to: SAP, Salesforce, Oracle, SQL, and more. You can also connect to SaaS applications or your in-house applications hosted in virtual networks. These out of box connectors provide operations to send and receive data in multiple formats. Leveraging these capabilities with Azure OpenAI assistants, you should be able to quickly bring your data for Intelligent Insights powered by Azure OpenAI.
 
-**What happens when a Logic Apps is imported in Azure OpenAI Studio  and invoked**
+**What happens when a Logic Apps is imported in Azure AI Foundry  and invoked**
 
-The Logic Apps swagger file is used to populate function definitions. Azure Logic App publishes an OpenAPI 2.0 definition (swagger) for workflows with a request trigger based on [annotations on the workflow](/rest/api/logic/workflows/list-swagger). Users are able to modify the content of this swagger by updating their workflow. Azure OpenAI Studio  uses this to generate the function definitions that the Assistant requires.  
+The Logic Apps swagger file is used to populate function definitions. Azure Logic App publishes an OpenAPI 2.0 definition (swagger) for workflows with a request trigger based on [annotations on the workflow](/rest/api/logic/workflows/list-swagger). Users are able to modify the content of this swagger by updating their workflow. Azure AI Foundry uses this to generate the function definitions that the Assistant requires.  
 
-**How does authentication from Azure OpenAI Studio  to Logic Apps work?**
+**How does authentication from Azure AI Foundry to Logic Apps work?**
 
 Logic Apps supports two primary types of authentications to invoke a request trigger.
 
@@ -139,7 +136,7 @@ Logic Apps supports two primary types of authentications to invoke a request tri
 
     Logic Apps also supports authentication trigger invocations with Microsoft Entra ID OAuth, where you can specify authentication policies to be used in validating OAuth tokens. For more information, see the [Logic Apps documentation](/azure/logic-apps/logic-apps-securing-a-logic-app#generate-shared-access-signatures-sas).
 
-When Azure OpenAI Assistants require invoking a Logic App as part of function calling, Azure OpenAI Studio  will retrieve the callback URL with the SAS to invoke the workflow. 
+When Azure OpenAI Assistants require invoking a Logic App as part of function calling, Azure AI Foundry will retrieve the callback URL with the SAS to invoke the workflow. 
 
 ## See also
 

@@ -102,7 +102,7 @@ The above call will result in a compacted JSON response of the form:
 {
     "value": [
         {
-            "id": "/subscriptions/12345abc-abbc-1b2b-1234-57ab575a5a5a/resourceGroups/RG1",
+            "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/RG1",
             "name": "RG1",
             "type": "Microsoft.Resources/resourceGroups",
             "location": "westus2",
@@ -111,7 +111,7 @@ The above call will result in a compacted JSON response of the form:
             }
         },
         {
-            "id": "/subscriptions/12345abc-abbc-1b2b-1234-57ab575a5a5a/resourceGroups/RG2",
+            "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/RG2",
             "name": "RG2",
             "type": "Microsoft.Resources/resourceGroups",
             "location": "eastus",
@@ -137,7 +137,7 @@ Again you'll receive a JSON list, this time containing a list, each item of whic
 
 ```json
 {
-    "id": "/subscriptions/12345abc-abbc-1b2b-1234-57ab575a5a5a/resourceGroups/DeepLearningResourceGroup/providers/Microsoft.MachineLearningServices/workspaces/my-workspace",
+    "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/DeepLearningResourceGroup/providers/Microsoft.MachineLearningServices/workspaces/my-workspace",
     "name": "my-workspace",
     "type": "Microsoft.MachineLearningServices/workspaces",
     "location": "centralus",
@@ -147,10 +147,10 @@ Again you'll receive a JSON list, this time containing a list, each item of whic
         "friendlyName": "",
         "description": "",
         "creationTime": "2023-01-03T19:56:09.7588299+00:00",
-        "storageAccount": "/subscriptions/12345abc-abbc-1b2b-1234-57ab575a5a5a/resourcegroups/DeepLearningResourceGroup/providers/microsoft.storage/storageaccounts/myworkspace0275623111",
+        "storageAccount": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/DeepLearningResourceGroup/providers/microsoft.storage/storageaccounts/myworkspace0275623111",
         "containerRegistry": null,
-        "keyVault": "/subscriptions/12345abc-abbc-1b2b-1234-57ab575a5a5a/resourcegroups/DeepLearningResourceGroup/providers/microsoft.keyvault/vaults/myworkspace2525649324",
-        "applicationInsights": "/subscriptions/12345abc-abbc-1b2b-1234-57ab575a5a5a/resourcegroups/DeepLearningResourceGroup/providers/microsoft.insights/components/myworkspace2053523719",
+        "keyVault": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/DeepLearningResourceGroup/providers/microsoft.keyvault/vaults/myworkspace2525649324",
+        "applicationInsights": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/DeepLearningResourceGroup/providers/microsoft.insights/components/myworkspace2053523719",
         "hbiWorkspace": false,
         "workspaceId": "cba12345-abab-abab-abab-ababab123456",
         "subscriptionState": null,
@@ -263,7 +263,7 @@ curl -X PUT \
 ```
 
 > [!NOTE]
-> In Windows terminals you may have to escape the double-quote symbols when sending JSON data. That is, text such as `"location"` becomes `\"location\"`. 
+> In Windows terminals you might have to escape the double-quote symbols when sending JSON data. That is, text such as `"location"` becomes `\"location\"`. 
 
 A successful request will get a `201 Created` response, but note that this response simply means that the provisioning process has begun. You'll need to poll (or use the portal) to confirm its successful completion.
 

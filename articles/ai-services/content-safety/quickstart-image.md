@@ -2,13 +2,12 @@
 title: "Quickstart: Analyze image content"
 titleSuffix: Azure AI services
 description: Get started using Azure AI Content Safety to analyze image content for objectionable material.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: build-2023, devx-track-python, devx-track-dotnet, devx-track-extended-java, devx-track-js
 ms.topic: quickstart
-ms.date: 03/06/2024
+ms.date: 01/22/2025
 ms.author: pafarley
 zone_pivot_groups: programming-languages-content-safety
 ---
@@ -19,9 +18,15 @@ Get started with the Content Studio, REST API, or client SDKs to do basic image 
 
 For more information on image moderation, see the [Harm categories concept page](./concepts/harm-categories.md). For API input limits, see the [Input requirements](./overview.md#input-requirements) section of the Overview. 
 
-> [!NOTE]
+> [!CAUTION]
 > 
 > The sample data and code may contain offensive content. User discretion is advised.
+
+::: zone pivot="programming-language-foundry-portal"
+
+[!INCLUDE [Foundry portal quickstart](./includes/quickstarts/foundry-quickstart-image.md)]
+
+::: zone-end
 
 ::: zone pivot="programming-language-rest"
 

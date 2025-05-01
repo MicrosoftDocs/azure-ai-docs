@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 06/03/2024
+ms.date: 03/31/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -19,9 +19,6 @@ File Search augments the Assistant with knowledge from outside its model, such a
 > [!IMPORTANT]
 > * File search has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token based fees for Azure OpenAI usage.
 
-
-[!INCLUDE [Assistants v2 note](../includes/assistants-v2-note.md)]
-
 ## File search support
 
 ### Supported regions
@@ -30,7 +27,7 @@ File search is available in [regions](../concepts/models.md#assistants-preview) 
 
 ### API Version
 
-* 2024-05-01-preview
+* Starting in 2024-05-01-preview
 
 ### Supported file types
 

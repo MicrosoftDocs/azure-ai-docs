@@ -1,7 +1,6 @@
 ---
 title: Anomaly Detector .NET client library quickstart
 titleSuffix: Azure AI services
-#services: cognitive-services
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
@@ -10,7 +9,7 @@ ms.date: 01/18/2024
 ms.author: mbullwin
 ---
 
-<a href="https://aka.ms/anomaly-detector-dotnet-ref" target="_blank">Library reference documentation</a> |<a href="https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/anomalydetector" target="_blank">Library source code</a> | <a href="https://www.nuget.org/packages/Azure.AI.AnomalyDetector/3.0.0-preview.5" target="_blank">Package (NuGet)</a> |<a href="https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/anomalydetector/Azure.AI.AnomalyDetector/samples" target="_blank">Find the sample code on GitHub</a>
+<a href="/dotnet/api/overview/azure/ai.anomalydetector-readme" target="_blank">Library reference documentation</a> |<a href="https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/anomalydetector" target="_blank">Library source code</a> | <a href="https://www.nuget.org/packages/Azure.AI.AnomalyDetector/3.0.0-preview.5" target="_blank">Package (NuGet)</a> |<a href="https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/anomalydetector/Azure.AI.AnomalyDetector/samples" target="_blank">Find the sample code on GitHub</a>
 
 Get started with the Anomaly Detector client library for C#. Follow these steps to install the package start using the algorithms provided by the service. The Anomaly Detector service enables you to find abnormalities in your time series data by automatically using the best-fitting models on it, regardless of industry, scenario, or data volume.
 
@@ -76,7 +75,7 @@ Go to your resource in the Azure portal. The **Endpoint and Keys** can be found 
 
 Create and assign persistent environment variables for your key and endpoint.
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 # [Command Line](#tab/command-line)
 

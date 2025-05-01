@@ -5,9 +5,9 @@ description: Learn how to use Document Intelligence client libraries or REST API
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-python, ignite-2023, linux-related-content
+ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-python, linux-related-content
 ms.topic: how-to
-ms.date: 07/18/2024
+ms.date: 02/07/2025
 ms.author: lajanuar
 zone_pivot_groups: programming-languages-set-formre
 ---
@@ -17,7 +17,7 @@ zone_pivot_groups: programming-languages-set-formre
 # Use Document Intelligence models
 
 ::: moniker range="doc-intel-4.0.0"
-[!INCLUDE [applies to v4.0 (preview)](../includes/applies-to-v40.md)]
+[!INCLUDE [applies to v4.0 (GA)](../includes/applies-to-v40.md)]
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0"
@@ -42,24 +42,25 @@ Choose from the following Document Intelligence models and analyze and extract d
 
 > [!div class="checklist"]
 >
-> - The [prebuilt-read](../concept-read.md) model is at the core of all Document Intelligence models and can detect lines, words, locations, and languages. Layout, general document, prebuilt, and custom models all use the `read` model as a foundation for extracting texts from documents.
+> - The [prebuilt-read](../prebuilt/read.md) model is at the core of all Document Intelligence models and can detect lines, words, locations, and languages. Layout, general document, prebuilt, and custom models all use the `read` model as a foundation for extracting texts from documents.
 >
-> - The [prebuilt-layout](../concept-layout.md) model extracts text and text locations, tables, selection marks, and structure information from documents and images. You can extract key/value pairs using the layout model with the optional query string parameter **`features=keyValuePairs`** enabled.
+> - The [prebuilt-layout](../prebuilt/layout.md) model extracts text and text locations, tables, selection marks, and structure information from documents and images. You can extract key/value pairs using the layout model with the optional query string parameter **`features=keyValuePairs`** enabled.
 >
-> - The [prebuilt-contract](../concept-contract.md) model extracts key information from contractual agreements.
+> - The [prebuilt-contract](../prebuilt/contract.md) model extracts key information from contractual agreements.
 >
-> - The [prebuilt-healthInsuranceCard.us](../concept-health-insurance-card.md) model extracts key information from US health insurance cards.
+> - The [prebuilt-healthInsuranceCard.us](../prebuilt/health-insurance-card.md) model extracts key information from US health insurance cards.
 >
-> - The [prebuilt tax document models](../concept-tax-document.md) model extracts information reported on US tax forms.
+> - The [prebuilt tax document models](../prebuilt/tax-document.md) model extracts information reported on US tax forms.
 >
-> - The [prebuilt-invoice](../concept-invoice.md) model extracts key fields and line items from sales invoices in various formats and quality. Fields include phone-captured images, scanned documents, and digital PDFs.
+> - The [prebuilt-invoice](../prebuilt/invoice.md) model extracts key fields and line items from sales invoices in various formats and quality. Fields include phone-captured images, scanned documents, and digital PDFs.
 >
-> - The [prebuilt-receipt](../concept-receipt.md) model extracts key information from printed and handwritten sales receipts.
+> - The [prebuilt-receipt](../prebuilt/receipt.md) model extracts key information from printed and handwritten sales receipts.
 >
-> - The [prebuilt-idDocument](../concept-id-document.md) model extracts key information from US drivers licenses, international passport biographical pages, US state IDs, social security cards, and permanent resident cards.
+> - The [prebuilt-idDocument](../prebuilt/id-document.md) model extracts key information from US drivers licenses, international passport biographical pages, US state IDs, social security cards, and permanent resident cards.
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
+
 > [!div class="checklist"]
 >
 > - The [prebuilt-businessCard](../concept-business-card.md) model extracts key information and contact details from business card images.
@@ -72,6 +73,7 @@ Choose from the following Document Intelligence models and analyze and extract d
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
+
 [!INCLUDE [C# SDK quickstart](includes/v3-0/csharp-sdk.md)]
 ::: moniker-end
 
@@ -92,11 +94,12 @@ Choose from the following Document Intelligence models and analyze and extract d
 ::: zone pivot="programming-language-javascript"
 
 ::: moniker range="doc-intel-4.0.0"
-[!INCLUDE [NodeJS SDK quickstart](includes/v4-0/javascript-sdk.md)]
+[!INCLUDE [Node.js SDK quickstart](includes/v4-0/javascript-sdk.md)]
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
-[!INCLUDE [NodeJS SDK quickstart](includes/v3-0/javascript-sdk.md)]
+
+[!INCLUDE [Node.js SDK quickstart](includes/v3-0/javascript-sdk.md)]
 ::: moniker-end
 
 ::: zone-end
@@ -108,6 +111,7 @@ Choose from the following Document Intelligence models and analyze and extract d
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
+
 [!INCLUDE [Python SDK quickstart](includes/v3-0/python-sdk.md)]
 ::: moniker-end
 
@@ -120,6 +124,7 @@ Choose from the following Document Intelligence models and analyze and extract d
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
+
 [!INCLUDE [REST API quickstart](includes/v3-0/rest-api.md)]
 ::: moniker-end
 
@@ -171,7 +176,7 @@ You use the following APIs to extract structured data from forms and documents:
 ::: zone pivot="programming-language-javascript"
 
 ::: moniker range="doc-intel-2.1.0"
-[!INCLUDE [NodeJS SDK quickstart](includes/v2-1/javascript-sdk.md)]
+[!INCLUDE [Node.js SDK quickstart](includes/v2-1/javascript-sdk.md)]
 ::: moniker-end
 
 ::: zone-end

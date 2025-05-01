@@ -10,7 +10,8 @@ ms.topic: how-to
 ms.reviewer: None
 author: ssalgadodev
 ms.author: ssalgado
-ms.date: 12/15/2023
+ms.date: 12/11/2024
+ms.collection: ce-skilling-ai-copilot
 ---
 
 # Deploy models from HuggingFace hub to Azure Machine Learning online endpoints for real-time inference 
@@ -24,7 +25,6 @@ Microsoft has partnered with Hugging Face to bring open-source models from Huggi
 ## Benefits of using online endpoints for real-time inference
 
 Managed online endpoints in Azure Machine Learning help you deploy models to powerful CPU and GPU machines in Azure in a turnkey manner. Managed online endpoints take care of serving, scaling, securing, and monitoring your models, freeing you from the overhead of setting up and managing the underlying infrastructure. The virtual machines are provisioned on your behalf when you deploy models. You can have multiple deployments behind and [split traffic or mirror traffic](./how-to-safely-rollout-online-endpoints.md) to those deployments. Mirror traffic helps you to test new versions of models on production traffic without releasing them production environments. Splitting traffic lets you gradually increase production traffic to new model versions while observing performance. [Auto scale](./how-to-autoscale-endpoints.md) lets you dynamically ramp up or ramp down resources based on workloads. You can configure scaling based on utilization metrics, a specific schedule or a combination of both. An example of scaling based on utilization metrics is to add nodes if CPU utilization goes higher than 70%. An example of schedule-based scaling is to add nodes based on peak business hours. 
-
 
 ## Deploy HuggingFace hub models using Studio 
 
@@ -88,7 +88,7 @@ ml_client.begin_create_or_update(endpoint).result()
 
 ### Test the deployed model
 
-Create a file with inputs that can be submitted to the online endpoint for scoring. Below code sample input for the `fill-mask` type since we deployed the `bert-base-uncased` model. You can find input format, parameters and sample inputs on the [Hugging Face hub inference API documentation](https://huggingface.co/docs/api-inference/detailed_parameters).
+Create a file with inputs that can be submitted to the online endpoint for scoring. The code sample in this section allows an input for the `fill-mask` type since we deployed the `bert-base-uncased` model. You can find input format, parameters and sample inputs on the [Hugging Face hub inference API documentation](https://huggingface.co/docs/api-inference/detailed_parameters).
 
 ```python
 import json

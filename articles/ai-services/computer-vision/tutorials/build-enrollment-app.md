@@ -4,19 +4,20 @@ titleSuffix: Azure AI services
 description: Learn how to set up your development environment and deploy a Face app to get consent from customers.
 author: PatrickFarley
 manager: nitinme
-
+#customer intent: As a developer, I want to build a React Native app to add users to a Face service so that I can obtain meaningful consent and high-quality face data.
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 02/14/2024
+ms.date: 01/29/2025
 ms.author: pafarley
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Build a React Native app to add users to a Face service
 
-This guide will show you how to get started with a sample Face enrollment application. The app demonstrates best practices for obtaining meaningful consent to add users into a face recognition service and acquire high-quality face data. An integrated system could use an app like this to provide touchless access control, identification, attendance tracking, or personalization kiosk, based on their face data.
+In this tutorial, you'll get started with a sample Face enrollment application. The app demonstrates best practices for obtaining meaningful consent to add users into a face recognition service and acquire high-quality face data. An integrated system could use an app like this to provide touchless access control, identification, attendance tracking, or personalization kiosk, based on their face data.
 
 When users launch the app, it shows a detailed consent screen. If the user gives consent, the app prompts them for a username and password and then captures a high-quality face image using the device's camera.
 
@@ -32,8 +33,8 @@ The sample app is written using JavaScript and the React Native framework. It ca
 > [!IMPORTANT]
 > **Security considerations**
 >
-> * For local development and initial limited testing, it is acceptable (although not best practice) to use environment variables to hold the API key and endpoint. For pilot and final deployments, the API key should be stored securely - which likely involves using an intermediate service to validate a user token generated during login. 
-> * Never store the API key or endpoint in code or commit them to a version control system (e.g. Git). If that happens by mistake, you should immediately generate a new API key/endpoint and revoke the previous ones.
+> * For local development and initial limited testing, it's acceptable (but not the best practice) to use environment variables to hold the API key and endpoint. For pilot and final deployments, the API key should be stored securely, which likely involves using an intermediate service to validate a user token generated during sign-in. 
+> * Never store the API key or endpoint in code or commit them to a version control system (for example, git). If that happens by mistake, you should immediately generate a new API key/endpoint and revoke the previous ones.
 > * As a best practice, consider having separate API keys for development and production.
 
 ## Set up the development environment
@@ -54,7 +55,7 @@ The sample app is written using JavaScript and the React Native framework. It ca
 
 1. Clone the git repository for the [sample app](https://github.com/azure-samples/cognitive-services-FaceAPIEnrollmentSample).
 1. To set up your development environment, follow the <a href="https://reactnative.dev/docs/environment-setup"  title="React Native documentation"  target="_blank">React Native documentation <span class="docon docon-navigate-external x-hidden-focus"></span></a>. Select **React Native CLI Quickstart**. Select **macOS** as your development OS and **iOS** as the target OS. Complete the section **Installing dependencies**.
-1. Download your preferred text editor such as [Visual Studio Code](https://code.visualstudio.com/). You will also need to download Xcode. 
+1. Download your preferred text editor such as [Visual Studio Code](https://code.visualstudio.com/). You'll also need to download Xcode. 
 1. Retrieve your FaceAPI endpoint and key in the Azure portal under the **Overview** tab of your resource.
 
    > [!WARNING]
@@ -68,7 +69,7 @@ The sample app is written using JavaScript and the React Native framework. It ca
 
 Now that you've set up the sample app, you can tailor it to your own needs.
 
-For example, you may want to add situation-specific information on your consent page:
+For example, you might want to add situation-specific information on your consent page:
 
 > [!div class="mx-imgBorder"]
 > ![app consent page](../media/enrollment-app/1-consent-1.jpg)
@@ -82,7 +83,7 @@ For example, you may want to add situation-specific information on your consent 
     * Occlusion (partially hidden or obstructed faces), including accessories like hats or thick-rimmed glasses
     * Blur (such as by rapid face movement when the photograph was taken). 
 
-    The service provides image quality checks to help you make the choice of whether the image is of sufficient quality based on the above factors to add the customer or attempt face recognition. This app demonstrates how to access frames from the device's camera, detect quality and show user interface messages to the user to help them capture a higher quality image, select the highest-quality frames, and add the detected face into the Face API service. 
+    The service provides image quality checks to help you make the choice of whether the image is of sufficient quality based on the above factors to add the customer or attempt face recognition. This app demonstrates how to access frames from the device's camera, detect quality, show user interface messages to the user to help them capture a higher quality image, select the highest-quality frames, and add the detected face into the Face API service. 
 
 
     > [!div class="mx-imgBorder"]
@@ -93,7 +94,7 @@ For example, you may want to add situation-specific information on your consent 
     > [!div class="mx-imgBorder"]
     > ![profile management page](../media/enrollment-app/10-manage-2.jpg)
         
-    To extend the app's functionality to cover the full experience, read the [overview](../enrollment-overview.md) for additional features to implement and best practices.
+    To extend the app's functionality to cover the full experience, read the [overview](../enrollment-overview.md) for other features to implement and best practices.
 
 1. Configure your database to map each person with their ID
 
@@ -122,6 +123,6 @@ When you're ready to release your app for production, you'll build an archive of
 
 ---
 
-## Next steps  
+## Related content
 
 In this guide, you learned how to set up your development environment and get started with the sample app. If you're new to React Native, you can read their [getting started docs](https://reactnative.dev/docs/getting-started) to learn more background information. It also may be helpful to familiarize yourself with [Face API](../overview-identity.md). Read the other sections on adding users before you begin development.

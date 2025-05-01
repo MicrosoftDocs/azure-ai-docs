@@ -2,15 +2,16 @@
 title: "Use limited access tokens - Face"
 titleSuffix: Azure AI services
 description: Learn how ISVs can manage the Face API usage of their clients by issuing access tokens that grant access to Face features which are normally gated.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
+#customer intent: As an ISV, I want to manage Face API usage for my clients so that they can use Face features without formal approval.
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.topic: how-to
-ms.date: 03/07/2024
+ms.date: 01/29/2025
 ms.author: pafarley
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Use limited access tokens for Face
@@ -19,7 +20,16 @@ Independent software vendors (ISVs) can manage the Face API usage of their clien
 
 This guide shows you how to generate the access tokens, if you're an approved ISV, and how to use the tokens if you're a client. 
 
-The limited access token feature is a part of the existing Azure AI Services token service. We have added a new operation for the purpose of bypassing the Limited Access gate for approved scenarios. Only ISVs that pass the gating requirements will be given access to this feature.
+The limited access token feature is a part of the existing Azure AI Services token service. We have added a new operation for the purpose of bypassing the Limited Access gate for approved scenarios. 
+
+> [!IMPORTANT]
+> Only ISVs that pass the gating requirements will be given access to this feature. To request approval, contact [azureface@microsoft.com](mailto:azureface@microsoft.com).
+
+## Prerequisites
+
+* [cURL](https://curl.se/) installed (or another tool that can make HTTP requests).
+* The ISV needs to have either an [Azure AI Face](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/Face) resource or an [Azure AI services multi-service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/AllInOne) resource.
+* The client needs to have an [Azure AI Face](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/Face) resource.
 
 ## Example use case
 
@@ -31,11 +41,6 @@ The token-issuing ISV is responsible for ensuring that the tokens are used only 
 
 If the ISV learns that a client is using the LimitedAccessToken for non-approved purposes, the ISV should stop generating tokens for that customer. Microsoft can track the issuance and usage of LimitedAccessTokens, and we reserve the right to revoke an ISV's access to the **issueLimitedAccessToken** API if abuse is not addressed.
 
-## Prerequisites
-
-* [cURL](https://curl.se/) installed (or another tool that can make HTTP requests).
-* The ISV needs to have either an [Azure AI Face](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/Face) resource or an [Azure AI services multi-service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/AllInOne) resource.
-* The client needs to have an [Azure AI Face](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/Face) resource.
 
 ## Step 1: ISV obtains client's Face resource ID
 
@@ -47,7 +52,7 @@ The Face resource ID has the following format:
 
 For example:
 
-`/subscriptions/dc4d27d9-ea49-4921-938f-7782a774e151/resourceGroups/client-rg/providers/Microsoft.CognitiveServices/accounts/client-face-api`
+`/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/client-rg/providers/Microsoft.CognitiveServices/accounts/client-face-api`
 
 ## Step 2: ISV generates a token
 
@@ -57,10 +62,10 @@ To call the **issueLimitedAccessToken** API, copy the following cURL command to 
 
 ```bash
 curl -X POST 'https://<isv-endpoint>/sts/v1.0/issueLimitedAccessToken?expiredTime=3600' \  
--H 'Ocp-Apim-Subscription-Key: <client-face-key>' \  
+-H 'Ocp-Apim-Subscription-Key: <isv-face-key>' \  
 -H 'Content-Type: application/json' \  
 -d '{  
-    "resourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.CognitiveServices/accounts/<face-resource-name>",  
+    "targetAzureResourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.CognitiveServices/accounts/<face-resource-name>",  
     "featureFlags": ["Face.Identification", "Face.Verification"]  
 }' 
 ```
@@ -68,7 +73,7 @@ curl -X POST 'https://<isv-endpoint>/sts/v1.0/issueLimitedAccessToken?expiredTim
 Then, make the following changes:
 1. Replace `<isv-endpoint>` with the endpoint of the ISV's resource. For example, **westus.api.cognitive.microsoft.com**.
 1. Optionally set the `expiredTime` parameter to set the expiration time of the token in seconds. It must be between 60 and 86400. The default value is 3600 (one hour).
-1. Replace `<client-face-key>` with the key of the client's Face resource.
+1. Replace `<isv-face-key>` with the key of the ISV's Face resource.
 1. Replace `<subscription-id>` with the subscription ID of the client's Azure subscription.
 1. Replace `<resource-group-name>` with the name of the client's resource group.
 1. Replace `<face-resource-name>` with the name of the client's Face resource.
@@ -161,5 +166,3 @@ static void Main(string[] args)
 }
 ```
 ---
-
-

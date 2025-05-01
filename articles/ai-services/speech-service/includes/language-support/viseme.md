@@ -1,5 +1,5 @@
 ---
-author: sally-baolian
+author: eric-urban
 ms.service: azure-ai-speech
 ms.date: 07/06/2023
 ms.topic: include
@@ -109,8 +109,7 @@ ms.author: Zoubaolian
 | vi-VN           | Vietnamese (Vietnam) |Viseme ID|
 | zh-CN           | Chinese (Mandarin, Simplified)  |Viseme ID <br> Blend shapes|
 | zh-HK           | Chinese (Cantonese, Traditional)|Viseme ID|
-| zh-TW           | Chinese (Taiwanese Mandarin, Traditional)|Viseme ID|
-
+| zh-HK           | Chinese (Taiwanese Mandarin, Traditional)|Viseme ID (except `zh-TW-HsiaoYuNeural`)|
 
 
 

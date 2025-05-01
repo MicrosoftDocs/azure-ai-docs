@@ -6,20 +6,26 @@ author: gmndrg
 ms.author: gimondra
 manager: vinodva
 
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
+  - ignite-2024
 ms.topic: how-to
-ms.date: 08/23/2024
+ms.date: 11/19/2024
 ---
 
 # Index data from Azure Blob Storage
 
 In this article, learn how to configure an [**indexer**](search-indexer-overview.md) that imports content from Azure Blob Storage and makes it searchable in Azure AI Search. Inputs to the indexer are your blobs, in a single container. Output is a search index with searchable content and metadata stored in individual fields.
 
-This article supplements [**Create an indexer**](search-howto-create-indexers.md) with information that's specific to Blob Storage. It uses the REST APIs to demonstrate a three-part workflow common to all indexers: create a data source, create an index, create an indexer. Data extraction occurs when you submit the Create Indexer request.
+To configure and run the indexer, you can use:
 
-Blob indexers are frequently used for both [AI enrichment](cognitive-search-concept-intro.md) and text-based processing. This article focuses on indexers for text-based indexing, where just the textual content and metadata are ingested for full text search scenarios. 
++ [Search Service REST API](/rest/api/searchservice), any version.
++ An Azure SDK package, any version.
++ [Import data](search-get-started-portal.md) wizard in the Azure portal.
++ [Import and vectorize data](search-get-started-portal-import-vectors.md) wizard in the Azure portal.
+
+This article uses the REST APIs to illustrate each step.
 
 ## Prerequisites
 
@@ -34,6 +40,16 @@ Blob indexers are frequently used for both [AI enrichment](cognitive-search-conc
   By default, both search and storage accept requests from public IP addresses. If network security isn't an immediate concern, you can index blob data using just the connection string and read permissions. When you're ready to add network protections, see [Indexer access to content protected by Azure network security features](search-indexer-securing-resources.md) for guidance about data access.
 
 + Use a [REST client](search-get-started-rest.md) to formulate REST calls similar to the ones shown in this article.
+
+## Supported tasks
+
+You can use this indexer for the following tasks:
+
++ **Data indexing and incremental indexing:** The indexer can index files and associated metadata from blob containers and folders. It detects new and updated files and metadata through built-in change detection. You can configure data refresh on a schedule or on demand. 
++ **Deletion detection:** The indexer can [detect deletions through native soft delete or through custom metadata](search-howto-index-changed-deleted-blobs.md).
++ **Applied AI through skillsets:** [Skillsets](cognitive-search-concept-intro.md) are fully supported by the indexer. This includes key features like [integrated vectorization](vector-search-integrated-vectorization.md) that adds data chunking and embedding steps.
++ **Parsing modes:** The indexer supports [JSON parsing modes](search-howto-index-json-blobs.md) if you want to parse JSON arrays or lines into individual search documents. It also supports [Markdown parsing mode](search-how-to-index-markdown-blobs.md).
++ **Compatibility with other features:** The indexer is designed to work seamlessly with other indexer features, such as [debug sessions](cognitive-search-debug-session.md), [indexer cache for incremental enrichments](search-howto-incremental-index.md), and [knowledge store](knowledge-store-concept-intro.md).
 
 <a name="SupportedFormats"></a>
 
@@ -131,7 +147,7 @@ Indexers can connect to a blob container using the following connections.
 | Full access storage account connection string |
 |-----------------------------------------------|
 |`{ "connectionString" : "DefaultEndpointsProtocol=https;AccountName=<your storage account>;AccountKey=<your account key>;" }` |
-| You can get the connection string from the Storage account page in Azure portal by selecting **Access keys** in the left navigation pane. Make sure to select a full connection string and not just a key. |
+| You can get the connection string from the Storage account page in Azure portal by selecting **Access keys** in the left pane. Make sure to select a full connection string and not just a key. |
 
 | Managed identity connection string |
 |------------------------------------|

@@ -5,11 +5,12 @@ description: Set up an Azure Files indexer to automate indexing of file shares i
 manager: vinodva
 author: mattgotteiner
 ms.author: magottei
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
+  - ignite-2024
 ms.topic: how-to
-ms.date: 08/23/2024
+ms.date: 11/19/2024
 ---
 
 # Index data from Azure Files
@@ -19,7 +20,12 @@ ms.date: 08/23/2024
 
 In this article, learn how to configure an [**indexer**](search-indexer-overview.md) that imports content from Azure Files and makes it searchable in Azure AI Search. Inputs to the indexer are your files in a single share. Output is a search index with searchable content and metadata stored in individual fields.
 
-This article supplements [**Create an indexer**](search-howto-create-indexers.md) with information that's specific to indexing files in Azure Storage. It uses the REST APIs to demonstrate a three-part workflow common to all indexers: create a data source, create an index, create an indexer. Data extraction occurs when you submit the Create Indexer request.
+To configure and run the indexer, you can use:
+
++ [Search Service preview REST APIs](/rest/api/searchservice), any preview version.
++ An Azure SDK package, any version.
++ [Import data](search-get-started-portal.md) wizard in the Azure portal.
++ [Import and vectorize data](search-get-started-portal-import-vectors.md) wizard in the Azure portal.
 
 ## Prerequisites
 
@@ -32,6 +38,16 @@ This article supplements [**Create an indexer**](search-howto-create-indexers.md
 + Read permissions on Azure Storage. A "full access" connection string includes a key that grants access to the content.
 
 + Use a [REST client](search-get-started-rest.md) to formulate REST calls similar to the ones shown in this article.
+
+## Supported tasks
+
+You can use this indexer for the following tasks:
+
++ **Data indexing and incremental indexing:** The indexer can index files and associated metadata from tables. It detects new and updated files and metadata through built-in change detection. You can configure data refresh on a schedule or on demand.
++ **Deletion detection:** The indexer can [detect deletions through custom metadata](search-howto-index-changed-deleted-blobs.md).
++ **Applied AI through skillsets:** [Skillsets](cognitive-search-concept-intro.md) are fully supported by the indexer. This includes key features like [integrated vectorization](vector-search-integrated-vectorization.md) that adds data chunking and embedding steps.
++ **Parsing modes:** The indexer supports [JSON parsing modes](search-howto-index-json-blobs.md) if you want to parse JSON arrays or lines into individual search documents. It also supports [Markdown parsing mode](search-how-to-index-markdown-blobs.md).
++ **Compatibility with other features:** The indexer is designed to work seamlessly with other indexer features, such as [debug sessions](cognitive-search-debug-session.md), [indexer cache for incremental enrichments](search-howto-incremental-index.md), and [knowledge store](knowledge-store-concept-intro.md).
 
 ## Supported document formats
 
@@ -82,7 +98,7 @@ Indexers can connect to a file share using the following connections.
 | Full access storage account connection string |
 |-----------------------------------------------|
 |`{ "connectionString" : "DefaultEndpointsProtocol=https;AccountName=<your storage account>;AccountKey=<your account key>;" }` |
-| You can get the connection string from the Storage account page in Azure portal by selecting **Access keys** in the left navigation pane. Make sure to select a full connection string and not just a key. |
+| You can get the connection string from the Storage account page in Azure portal by selecting **Access keys** in the left pane. Make sure to select a full connection string and not just a key. |
 
 ## Add search fields to an index
 

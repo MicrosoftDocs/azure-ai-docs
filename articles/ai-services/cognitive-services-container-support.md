@@ -2,12 +2,11 @@
 title: Use Azure AI containers on-premises
 titleSuffix: Azure AI services
 description: Learn how to use Docker containers to use Azure AI services on-premises.
-#services: cognitive-services
 author: aahill
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: overview
-ms.date: 08/23/2024
+ms.date: 03/31/2025
 ms.author: aahi
 keywords: on-premises, Docker, container, Kubernetes
 #Customer intent: As a potential customer, I want to know more about how Azure AI services provides and supports Docker containers for each service.
@@ -15,7 +14,7 @@ keywords: on-premises, Docker, container, Kubernetes
 
 # What are Azure AI containers?
 
-Azure AI services provides several [Docker containers](https://www.docker.com/what-container) that let you use the same APIs that are available in Azure, on-premises. Using these containers gives you the flexibility to bring Azure AI services closer to your data for compliance, security or other operational reasons. Container support is currently available for a subset of Azure AI services.
+Azure AI services provide several [Docker containers](https://www.docker.com/what-container) that let you use the same APIs that are available in Azure, on-premises. Using these containers gives you the flexibility to bring Azure AI services closer to your data for compliance, security or other operational reasons. Container support is currently available for a subset of Azure AI services.
 
 > [!VIDEO https://www.youtube.com/embed/hdfbn4Q8jbo]
 
@@ -48,13 +47,15 @@ Azure AI containers provide the following set of Docker containers, each of whic
 | Service |  Container | Description | Availability |
 |--|--|--|--|
 | [LUIS][lu-containers] |  **LUIS** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/language/luis/about)) | Loads a trained or published Language Understanding model, also known as a LUIS app, into a docker container and provides access to the query predictions from the container's API endpoints. You can collect query logs from the container and upload these back to the [LUIS portal](https://www.luis.ai) to improve the app's prediction accuracy. | Generally available. <br> This container can also [run in disconnected environments](containers/disconnected-containers.md). |
-| [Language service][ta-containers-keyphrase] | **Key Phrase Extraction** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/keyphrase/about)) | Extracts key phrases to identify the main points. For example, for the input text "The food was delicious and there were wonderful staff", the API returns the main talking points: "food" and "wonderful staff". | Generally available. <br> This container can also [run in disconnected environments](containers/disconnected-containers.md). |
+| [Language service][ta-containers-keyphrase] | **Key Phrase Extraction** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/keyphrase/about)) | Extracts key phrases to identify the main points. For example, for the input text "The food was delicious and there were wonderful staff," the API returns the main talking points: "food" and "wonderful staff". | Generally available. <br> This container can also [run in disconnected environments](containers/disconnected-containers.md). |
 | [Language service][ta-containers-language] |  **Text Language Detection** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/language/about)) | For up to 120 languages, detects which language the input text is written in and report a single language code for every document submitted on the request. The language code is paired with a score indicating the strength of the score. | Generally available. <br> This container can also [run in disconnected environments](containers/disconnected-containers.md). |
 | [Language service][ta-containers-sentiment] | **Sentiment Analysis** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/sentiment/about)) | Analyzes raw text for clues about positive or negative sentiment. This version of sentiment analysis returns sentiment labels (for example *positive* or *negative*) for each document and sentence within it. |  Generally available. <br> This container can also [run in disconnected environments](containers/disconnected-containers.md). |
 | [Language service][ta-containers-health] |  **Text Analytics for health** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/healthcare/about))| Extract and label medical information from unstructured clinical text. | Generally available |
 | [Language service][ta-containers-ner] | **Named Entity Recognition** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/ner/about))| Extract named entities from text. | Generally available. <br>This container can also [run in disconnected environments](containers/disconnected-containers.md). |
+| [Language service][ta-containers-pii] | **Personally Identifiable Information (PII) detection** ([image](https://mcr.microsoft.com/en-us/product/azure-cognitive-services/textanalytics/pii/tags))| Detect and redact personally identifiable information entities from text. | Generally available. <br>This container can also [run in disconnected environments](containers/disconnected-containers.md). |
 | [Language service][ta-containers-cner] |  **Custom Named Entity Recognition** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/customner/about))| Extract named entities from text, using a custom model you create using your data. | Generally available |
 | [Language service][ta-containers-summarization] | **Summarization** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/summarization/about))| Summarize text from various sources. | Public preview. <br>This container can also [run in disconnected environments](containers/disconnected-containers.md). |
+| [Language service][ta-containers-clu] | **Conversational Language Understanding** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/language/clu/about)| Interpret conversational language. | Generally Available. <br>This container can also [run in disconnected environments](containers/disconnected-containers.md). |
 | [Translator][tr-containers] | **Translator** ([image](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about))| Translate text in several languages and dialects. | Generally available. Gated - [request access](https://aka.ms/csgate-translator). <br>This container can also [run in disconnected environments](containers/disconnected-containers.md). |
 
 ### Speech containers
@@ -131,5 +132,7 @@ Install and explore the functionality provided by containers in Azure AI service
 [ta-containers-cner]: language-service/custom-named-entity-recognition/how-to/use-containers.md
 [ta-containers-summarization]: language-service/summarization/how-to/use-containers.md
 [ta-containers-ner]: language-service/named-entity-recognition/how-to/use-containers.md
+[ta-containers-pii]: language-service/personally-identifiable-information/how-to/use-containers.md
+[ta-contatiners-clu]: language-service/conversational-language-understanding/how-to/use-containers.md
 [tr-containers]: translator/containers/translator-how-to-install-container.md
 [request-access]: https://aka.ms/csgate

@@ -2,19 +2,103 @@
 title: Personally Identifiable Information (PII) detection language support
 titleSuffix: Azure AI services
 description: This article explains which natural languages are supported by the PII detection feature of Azure AI Language.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 12/19/2023
+ms.date: 11/21/2024
 ms.author: jboback
 ms.custom: language-service-pii, build-2024
 ---
 
 # Personally Identifiable Information (PII) detection language support 
 
-Use this article to learn which natural languages are supported by the PII and conversation PII features of Azure AI Language.
+Use this article to learn which natural languages are supported by the text PII, document PII, and conversation PII features of Azure AI Language.
+# [Text PII](#tab/text)
+
+## Text PII language support
+
+|Language             |Language code|Notes             |
+|---------------------|-------------|------------------|
+|Afrikaans            |`af`         |                  |
+|Albanian             |`sq`         |                  |
+|Amharic              |`am`         |                  |
+|Arabic               |`ar`         |                  |
+|Armenian             |`hy`         |                  |
+|Assamese             |`as`         |                  |
+|Azerbaijani          |`az`         |                  |
+|Basque               |`eu`         |                  |
+|Bengali              |`bn`         |                  |
+|Bosnian              |`bs`         |                  |
+|Bulgarian            |`bg`         |                  |
+|Burmese              |`my`         |                  |
+|Catalan              |`ca`         |                  |
+|Chinese-Simplified   |`zh-hans`    |`zh` also accepted|
+|Chinese-Traditional  |`zh-hant`    |                  |
+|Croatian             |`hr`         |                  |
+|Czech                |`cs`         |                  |
+|Danish               |`da`         |                  |
+|Dutch                |`nl`         |                  |
+|English              |`en`         |                  |
+|Estonian             |`et`         |                  |
+|Finnish              |`fi`         |                  |
+|French               |`fr`         |                  |
+|Galician             |`gl`         |                  |
+|Georgian             |`ka`         |                  |
+|German               |`de`         |                  |
+|Greek                |`el`         |                  |
+|Gujarati             |`gu`         |                  |
+|Hebrew               |`he`         |                  |
+|Hindi                |`hi`         |                  |
+|Hungarian            |`hu`         |                  |
+|Indonesian           |`id`         |                  |
+|Irish                |`ga`         |                  |
+|Italian              |`it`         |                  |
+|Japanese             |`ja`         |                  |
+|Kannada              |`kn`         |                  |
+|Kazakh               |`kk`         |                  |
+|Khmer                |`km`         |                  |
+|Korean               |`ko`         |                  |
+|Kurdish(Kurmanji)    |`ku`         |                  |
+|Kyrgyz               |`ky`         |                  |
+|Lao                  |`lo`         |                  |
+|Latvian              |`lv`         |                  |
+|Lithuanian           |`lt`         |                  |
+|Macedonian           |`mk`         |                  |
+|Malagasy             |`mg`         |                  |
+|Malay                |`ms`         |                  |
+|Malayalam            |`ml`         |                  |
+|Marathi              |`mr`         |                  |
+|Mongolian            |`mn`         |                  |
+|Nepali               |`ne`         |                  |
+|Norwegian  (Bokmål)  |`no`         |`nb` also accepted|
+|Odia                 |`or`         |                  |
+|Pashto               |`ps`         |                  |
+|Persian              |`fa`         |                  |
+|Polish               |`pl`         |                  |
+|Portuguese (Brazil)  |`pt-BR`      |                  |
+|Portuguese (Portugal)|`pt-PT`      |`pt` also accepted|
+|Punjabi              |`pa`         |                  |
+|Romanian             |`ro`         |                  |
+|Russian              |`ru`         |                  |
+|Serbian              |`sr`         |                  |
+|Slovak               |`sk`         |                  |
+|Slovenian            |`sl`         |                  |
+|Somali               |`so`         |                  |
+|Spanish              |`es`         |                  |
+|Swahili              |`sw`         |                  |
+|Swazi                |`ss`         |                  |
+|Swedish              |`sv`         |                  |
+|Tamil                |`ta`         |                  |
+|Telugu               |`te`         |                  |
+|Thai                 |`th`         |                  |
+|Turkish              |`tr`         |                  |
+|Ukrainian            |`uk`         |                  |
+|Urdu                 |`ur`         |                  |
+|Uyghur               |`ug`         |                  |
+|Uzbek                |`uz`         |                  |
+|Vietnamese           |`vi`         |                  |
+|Welsh                |`cy`         |                  |
 
 # [PII for documents](#tab/documents)
 
@@ -106,12 +190,8 @@ Use this article to learn which natural languages are supported by the PII and c
 
 ## PII language support
 
-| Language              | Language code | Notes              |
-|-----------------------|---------------|--------------------|
-|German                 |`de`           |                    |
-|English                |`en`           |                    |
-|Spanish                |`es`           |                    |
-|French                 |`fr`           |                    |
+The Generally Available Conversational PII service currently supports English. Preview model version `2023-04-15-preview` supports English, German, Spanish, and French. 
+
 
 ---
 

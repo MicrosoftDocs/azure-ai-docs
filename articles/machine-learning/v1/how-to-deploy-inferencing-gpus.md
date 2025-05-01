@@ -1,14 +1,14 @@
 ---
 title: Deploy a model for inference with GPU
 titleSuffix: Azure Machine Learning
-description: This article teaches you how to use Azure Machine Learning to deploy a GPU-enabled Tensorflow deep learning model as a web service.service and score inference requests.
+description: This article teaches you how to use Azure Machine Learning to deploy a GPU-enabled TensorFlow deep learning model as a web service.service and score inference requests.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: vaidyas
-ms.date: 11/16/2022
+ms.date: 03/07/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, deploy, sdkv1
 ---
@@ -16,6 +16,8 @@ ms.custom: UpdateFrequency5, deploy, sdkv1
 # Deploy a deep learning model for inference with GPU
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 This article teaches you how to use Azure Machine Learning to deploy a GPU-enabled model as a web service. The information in this article is based on deploying a model on Azure Kubernetes Service (AKS). The AKS cluster provides a GPU resource that is used by the model for inference.
 
@@ -25,7 +27,7 @@ Inference, or model scoring, is the phase where the deployed model is used to ma
 
 > [!IMPORTANT]
 > When using the Azure Machine Learning __SDK v1__, GPU inference is only supported on Azure Kubernetes Service. When using the Azure Machine Learning __SDK v2__ or __CLI v2__, you can use an online endpoint for GPU inference. For more information, see [Deploy and score a machine learning model with an online endpoint](../how-to-deploy-online-endpoints.md).
-
+>
 > For inference using a __machine learning pipeline__, GPUs are only supported on Azure Machine Learning Compute. For more information on using ML pipelines, see [Tutorial: Build an Azure Machine Learning pipeline for batch scoring](../tutorial-pipeline-batch-scoring-classification.md). 
 
 > [!TIP]
@@ -44,7 +46,7 @@ Inference, or model scoring, is the phase where the deployed model is used to ma
 
     * To learn how to register models, see [Deploy Models](../how-to-deploy-online-endpoints.md).
 
-    * To create and register the Tensorflow model used to create this document, see [How to Train a TensorFlow Model](../how-to-train-tensorflow.md).
+    * To create and register the TensorFlow model used to create this document, see [How to Train a TensorFlow Model](../how-to-train-tensorflow.md).
 
 * A general understanding of [How and where to deploy models](../how-to-deploy-online-endpoints.md).
 
@@ -93,13 +95,13 @@ except ComputeTargetException:
 ```
 
 > [!IMPORTANT]
-> Azure will bill you as long as the AKS cluster exists. Make sure to delete your AKS cluster when you're done with it.
+> Azure bills you as long as the AKS cluster exists. Make sure to delete your AKS cluster when you're done with it.
 
 For more information on using AKS with Azure Machine Learning, see [How to deploy to Azure Kubernetes Service](how-to-deploy-azure-kubernetes-service.md).
 
 ## Write the entry script
 
-The entry script receives data submitted to the web service, passes it to the model, and returns the scoring results. The following script loads the Tensorflow model on startup, and then uses the model to score data.
+The entry script receives data submitted to the web service, passes it to the model, and returns the scoring results. The following script loads the TensorFlow model on startup, and then uses the model to score data.
 
 > [!TIP]
 > The entry script is specific to your model. For example, the script must know the framework to use with your model, data formats, etc.
@@ -140,7 +142,7 @@ This file is named `score.py`. For more information on entry scripts, see [How a
 
 ## Define the conda environment
 
-The conda environment file specifies the dependencies for the service. It includes dependencies required by both the model and the entry script. Please note that you must indicate azureml-defaults with verion >= 1.0.45 as a pip dependency, because it contains the functionality needed to host the model as a web service. The following YAML defines the environment for a Tensorflow model. It specifies `tensorflow-gpu`, which will make use of the GPU used in this deployment:
+The conda environment file specifies the dependencies for the service. It includes dependencies required by both the model and the entry script. Note that you must indicate azureml-defaults with verion >= 1.0.45 as a pip dependency, because it contains the functionality needed to host the model as a web service. The following YAML defines the environment for a TensorFlow model. It specifies `tensorflow-gpu`, which will make use of the GPU used in this deployment:
 
 ```yaml
 name: project_environment
@@ -163,7 +165,7 @@ For this example, the file is saved as `myenv.yml`.
 ## Define the deployment configuration
 
 > [!IMPORTANT]
-> AKS does not allow pods to share GPUs, you can have only as many replicas of a GPU-enabled web service as there are GPUs in the cluster.
+> AKS doesn't allow pods to share GPUs. You can have only as many replicas of a GPU-enabled web service as there are GPUs in the cluster.
 
 The deployment configuration defines the Azure Kubernetes Service environment used to run the web service:
 
@@ -180,7 +182,7 @@ For more information, see the reference documentation for [AksService.deploy_con
 
 ## Define the inference configuration
 
-The inference configuration points to the entry script and an environment object, which uses a docker image with GPU support. Please note that the YAML file used for environment definition must list azureml-defaults with version >= 1.0.45 as a pip dependency, because it contains the functionality needed to host the model as a web service.
+The inference configuration points to the entry script and an environment object, which uses a docker image with GPU support. Note that the YAML file used for environment definition must list azureml-defaults with version >= 1.0.45 as a pip dependency, because it contains the functionality needed to host the model as a web service.
 
 ```python
 from azureml.core.model import InferenceConfig
@@ -281,7 +283,7 @@ For more information on creating a client application, see [Create client to con
 If you created the AKS cluster specifically for this example, delete your resources after you're done.
 
 > [!IMPORTANT]
-> Azure bills you based on how long the AKS cluster is deployed. Make sure to clean it up after you are done with it.
+> Azure bills you based on how long the AKS cluster is deployed. Make sure to clean it up after you're done with it.
 
 ```python
 aks_service.delete()

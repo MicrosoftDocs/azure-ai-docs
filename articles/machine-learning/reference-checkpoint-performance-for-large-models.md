@@ -53,7 +53,7 @@ With Nebula you can:
 
   This example shows the checkpoint and end-to-end training time reduction for four checkpoints saving of Hugging Face GPT2, GPT2-Large, and GPT-XL training jobs. For the medium-sized Hugging Face GPT2-XL checkpoint saves (20.6 GB), Nebula achieved a 96.9% time reduction for one checkpoint.
   
-  The checkpoint speed gain can still increase with model size and GPU numbers. For example, testing a training point checkpoint save of 97 GB on 128 A100 Nvidia GPUs can shrink from 20 minutes to 1 second.
+  The checkpoint speed gain can still increase with model size and GPU numbers. For example, testing a training point checkpoint save of 97 GB on 128 A100 NVIDIA GPUs can shrink from 20 minutes to 1 second.
 
 * **Reduce end-to-end training time and computation costs for large models** by minimizing checkpoint overhead and reducing the number of GPU hours wasted on job recovery. Nebula saves checkpoints asynchronously, and unblocks the training process, to shrink the end-to-end training time. It also allows for more frequent checkpoint saves. This way, you can resume your training from the latest checkpoint after any interruption, and save time and money wasted on job recovery and GPU training hours.
 

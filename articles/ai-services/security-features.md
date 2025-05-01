@@ -1,19 +1,19 @@
 ---
-title: Azure AI services security
+title: Security for Azure AI services
 titleSuffix: Azure AI services
-description: Learn about the security considerations for Azure AI services usage.
-author: eric-urban
+description: Learn about the security considerations and features available for securely using Azure AI services, ensuring your applications are protected.
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: conceptual
-ms.date: 8/11/2024
-ms.author: eur
+ms.date: 10/16/2024
+ms.author: pafarley
 ms.custom: devx-track-csharp
 ---
 
-# Azure AI services security
+# Security for Azure AI services
 
-Security should be considered a top priority in the development of all applications, and with the growth of artificial intelligence enabled applications, security is even more important. This article outlines various security features available for Azure AI services. Each feature addresses a specific liability, so multiple features can be used in the same workflow.
+Security should be considered a top priority in the development of all applications, and with the growth of artificial-intelligence-enabled applications, security is even more important. This article outlines various security features available for Azure AI services. Each feature addresses a specific liability, so multiple features can be used in the same workflow.
 
 For a comprehensive list of Azure service security recommendations, see the [Azure AI services security baseline](/security/benchmark/azure/baselines/cognitive-services-security-baseline?toc=%2Fazure%2Fcognitive-services%2FTOC.json) article.
 
@@ -26,7 +26,7 @@ For a comprehensive list of Azure service security recommendations, see the [Azu
 | [Key rotation](./authentication.md)| Each Azure AI services resource has two API keys to enable secret rotation. This is a security precaution that lets you regularly change the keys that can access your service, protecting the privacy of your service if a key gets leaked. To learn about this and other authentication options, see [Rotate keys](./rotate-keys.md). |
 | [Environment variables](cognitive-services-environment-variables.md) | Environment variables are name-value pairs that are stored within a specific development environment. Environment variables are more secure than using hardcoded values in your code. For instructions on how to use environment variables in your code, see the [Environment variables guide](cognitive-services-environment-variables.md).<br/><br/>However, if your environment is compromised, the environment variables are compromised as well, so this isn't the most secure approach. The most secure authentication method is to use managed roles in Microsoft Entra ID. To learn about this and other authentication options, see [Authenticate requests to Azure AI services](./authentication.md).|
 | [Customer-managed keys (CMK)](./encryption/cognitive-services-encryption-keys-portal.md) | This feature is for services that store customer data at rest (longer than 48 hours). While this data is already double-encrypted on Azure servers, users can get extra security by adding another layer of encryption, with keys they manage themselves. You can link your service to Azure Key Vault and manage your data encryption keys there.<br/><br/>Check to see if CMK is supported by the service that you want to use in the [Customer-managed keys](./encryption/cognitive-services-encryption-keys-portal.md) documentation.|
-| [Virtual networks](./cognitive-services-virtual-networks.md) | Virtual networks allow you to specify which endpoints can make API calls to your resource. The Azure service will reject API calls from devices outside of your network. You can set a formula-based definition of the allowed network, or you can define an exhaustive list of endpoints to allow. This is another layer of security that can be used in combination with others. |
+| [Virtual networks](./cognitive-services-virtual-networks.md) | Virtual networks allow you to specify which endpoints can make API calls to your resource. The Azure service rejects API calls from devices outside of your network. You can set a formula-based definition of the allowed network, or you can define an exhaustive list of endpoints to allow. This is another layer of security that can be used in combination with others. |
 | [Data loss prevention](./cognitive-services-data-loss-prevention.md) | The data loss prevention feature lets an administrator decide what types of URIs their Azure resource can take as inputs (for those API calls that take URIs as input). This can be done to prevent the possible exfiltration of sensitive company data: If a company stores sensitive information (such as a customer's private data) in URL parameters, a bad actor inside that company could submit the sensitive URLs to an Azure service, which surfaces that data outside the company. Data loss prevention lets you configure the service to reject certain URI forms on arrival.|
 | [Customer Lockbox](/azure/security/fundamentals/customer-lockbox-overview) |The Customer Lockbox feature provides an interface for customers to review and approve or reject data access requests. It's used in cases where a Microsoft engineer needs to access customer data during a support request. For information on how Customer Lockbox requests are initiated, tracked, and stored for later reviews and audits, see the [Customer Lockbox guide](/azure/security/fundamentals/customer-lockbox-overview).<br/><br/>Customer Lockbox is available for the following services:<ul><li>Azure OpenAI</li><li>Translator</li><li>Conversational language understanding</li><li>Custom text classification</li><li>Custom named entity recognition</li><li>Orchestration workflow</li></ul>|
 | [Bring your own storage (BYOS)](./speech-service/speech-encryption-of-data-at-rest.md)| The Speech service doesn't currently support Customer Lockbox. However, you can arrange for your service-specific data to be stored in your own storage resource using bring-your-own-storage (BYOS). BYOS allows you to achieve similar data controls to Customer Lockbox. Keep in mind that Speech service data stays and is processed in the Azure region where the Speech resource was created. This applies to any data at rest and data in transit. For customization features like Custom Speech and Custom Voice, all customer data is transferred, stored, and processed in the same region where the Speech service resource and BYOS resource (if used) reside.<br/><br/>To use BYOS with Speech, follow the [Speech encryption of data at rest](./speech-service/speech-encryption-of-data-at-rest.md) guide.<br/><br/>Microsoft doesn't use customer data to improve its Speech models. Additionally, if endpoint logging is disabled and no customizations are used, then no customer data is stored by Speech. |

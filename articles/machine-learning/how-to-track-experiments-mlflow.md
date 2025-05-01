@@ -164,7 +164,7 @@ By default, experiments are in descending order by `start_time`, which is the ti
     ```
 
     > [!WARNING]
-    > Using `order_by` with expressions containing `metrics.*`, `params.*`, or `tags.*` in the parameter `order_by` isn't currently supported. Instead, use the `order_values` method from Pandas as shown in the example.
+    > Using `order_by` with expressions containing `metrics.*`, `params.*`, or `tags.*` in the parameter `order_by` isn't currently supported. Instead, use the `sort_values` method from Pandas as shown in the example.
 
 ### Filter runs
 

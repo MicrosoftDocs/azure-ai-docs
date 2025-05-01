@@ -6,8 +6,9 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 8/20/2024
+ms.date: 3/10/2025
 ms.author: eur
+#Customer intent: As a developer, I want to learn about the benefits and capabilities of the speech to text feature of the Speech service.
 ---
 
 # What is speech to text?
@@ -18,7 +19,7 @@ Azure AI Speech service offers advanced speech to text capabilities. This featur
 
 The speech to text service offers the following core features: 
 - [Real-time](#real-time-speech-to-text) transcription: Instant transcription with intermediate results for live audio inputs. 
-- [Fast transcription](#fast-transcription-preview): Fastest synchronous output for situations with predictable latency. 
+- [Fast transcription](#fast-transcription): Fastest synchronous output for situations with predictable latency. 
 - [Batch transcription](#batch-transcription-api): Efficient processing for large volumes of prerecorded audio. 
 - [Custom speech](#custom-speech): Models with enhanced accuracy for specific domains and conditions. 
 
@@ -33,19 +34,16 @@ Real-time speech to text transcribes audio as it's recognized from a microphone 
 - **Voice agents**: Enabling interactive voice response systems to transcribe user queries and commands. 
 
 Real-time speech to text can be accessed via the Speech SDK, Speech CLI, and REST API, allowing integration into various applications and workflows. 
-Real-time speech to text is available via the [Speech SDK](speech-sdk.md), the [Speech CLI](spx-overview.md), and REST APIs such as the [Fast transcription API](fast-transcription-create.md). 
+Real-time speech to text is available via the [Speech SDK](speech-sdk.md), the [Speech CLI](spx-overview.md), and [Speech to text REST API for short audio](rest-speech-to-text-short.md). 
 
-## Fast transcription (Preview)
+## Fast transcription
 
 Fast transcription API is used to transcribe audio files with returning results synchronously and faster than real-time audio. Use fast transcription in the scenarios that you need the transcript of an audio recording as quickly as possible with predictable latency, such as: 
 
 - **Quick audio or video transcription and subtitles**: Quickly get a transcription of an entire video or audio file in one go.
 - **Video translation**: Immediately get new subtitles for a video if you have audio in different languages. 
 
-> [!NOTE]
-> Fast transcription API is only available via the speech to text REST API version 2024-05-15-preview and later. 
-
-To get started with fast transcription, see [use the fast transcription API (preview)](fast-transcription-create.md).
+To get started with fast transcription, see [use the fast transcription API](fast-transcription-create.md).
 
 ## Batch transcription API
 

@@ -1,5 +1,5 @@
 ---
-title: Create and use managed identities for Document Translation
+title: Create and use managed identities
 titleSuffix: Azure AI services
 description: Understand how to create and use managed identities in the Azure portal.
 author: laujan
@@ -7,11 +7,11 @@ manager: nitinme
 ms.service: azure-ai-translator
 ms.custom: build-2023
 ms.topic: how-to
-ms.date: 06/06/2024
+ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 
-# Managed identities for Document Translation
+# Managed identities for Azure AI Document translation
 
 Managed identities for Azure resources are service principals that create a Microsoft Entra identity and specific permissions for Azure managed resources. Managed identities are a safer way to grant access to storage data and replace the requirement for you to include shared access signature tokens (SAS) with your [source and target URLs](#post-request-body).
 
@@ -25,11 +25,11 @@ Managed identities for Azure resources are service principals that create a Micr
 
 > [!IMPORTANT]
 >
-> * When using managed identities, don't include a SAS token URL with your HTTP requests—your requests will fail. Using managed identities replaces the requirement for you to include shared access signature tokens (SAS) with your [source and target URLs](#post-request-body).
+> * When using managed identities, don't include a SAS token URL with your HTTP requests. Using managed identities replaces the requirement for you to include shared access signature tokens (SAS) with your [source and target URLs](#post-request-body).
 >
-> * To use managed identities for Document Translation operations, you must [create your Translator resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in a specific geographic Azure region such as **East US**. If your Translator resource region is set to **Global**, then you can't use managed identity for Document Translation. You can still use [Shared Access Signature (SAS) tokens](create-sas-tokens.md) for Document Translation.
+> * To use managed identities for Azure AI Document translation operations, you must [create your Translator resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in a specific geographic Azure region such as **East US**. If your Translator resource region is set to **Global**, then you can't use managed identity for Azure AI Document translation. You can still use [Shared Access Signature (SAS) tokens](create-sas-tokens.md) for Azure AI Document translation.
 >
-> * Document Translation is is supported in the S1 Standard Service Plan (Pay-as-you-go) and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
+> * Azure AI Document translation is supported in the S1 Standard Service Plan (Pay-as-you-go) and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
 >
 
 ## Prerequisites
@@ -55,20 +55,20 @@ To get started, you need:
     1. Deselect all check boxes.
     1. Make sure **Microsoft network routing** is selected.
     1. Under the **Resource instances** section, select **Microsoft.CognitiveServices/accounts** as the resource type and select your Translator resource as the instance name.
-    1. Make certain that the **Allow Azure services on the trusted services list to access this storage account** box is checked. For more information about managing exceptions, _see_ [Configure Azure Storage firewalls and virtual networks](/azure/storage/common/storage-network-security?tabs=azure-portal#manage-exceptions).
+    1. Make certain that the **`Allow Azure services on the trusted services list to access this storage account`** box is checked. For more information about managing exceptions, _see_ [Configure Azure Storage firewalls and virtual networks](/azure/storage/common/storage-network-security?tabs=azure-portal#manage-exceptions).
 
         :::image type="content" source="../../media/managed-identities/allow-trusted-services-checkbox-portal-view.png" alt-text="Screenshot: allow trusted services checkbox, portal view.":::
 
     1. Select **Save**.
 
         > [!NOTE]
-        > It may take up to 5 min for the network changes to propagate.
+        > It can take up to 5 min for the network changes to propagate.
 
     Although network access is now permitted, your Translator resource is still unable to access the data in your Storage account. You need to [create a managed identity](#managed-identity-assignments) for and [assign a specific access role](#grant-storage-account-access-for-your-translator-resource) to your Translator resource.
 
 ## Managed identity assignments
 
-There are two types of managed identities: **system-assigned** and **user-assigned**. Currently, Document Translation supports **system-assigned managed identity**:
+There are two types of managed identities: **system-assigned** and **user-assigned**. Currently, Azure AI Document translation supports **system-assigned managed identity**:
 
 * A system-assigned managed identity is **enabled** directly on a service instance. It isn't enabled by default; you must go to your resource and update the identity setting.
 
@@ -88,7 +88,7 @@ You must grant the Translator resource access to your storage account before it 
     :::image type="content" source="../../media/managed-identities/resource-management-identity-tab.png" alt-text="Screenshot: resource management identity tab in the Azure portal.":::
 
     > [!IMPORTANT]
-    > User assigned managed identity won't meet requirements for the batch transcription storage account scenario. Be sure to enable system assigned managed identity.
+    > User assigned managed identity doesn't meet the requirements for batch transcription storage account scenarios. Be sure to enable system assigned managed identity.
 
 1. Select **Save**.
 
@@ -108,7 +108,7 @@ You must grant the Translator resource access to your storage account before it 
 
     :::image type="content" source="../../media/managed-identities/azure-role-assignments-page-portal.png" alt-text="Screenshot: Azure role assignments page in the Azure portal.":::
 
-1. Next, assign a **Storage Blob Data Contributor** role to your Translator service resource. The **Storage Blob Data Contributor** role gives Translator (represented by the system-assigned managed identity) read, write, and delete access to the blob container and data. In the **Add role assignment** pop-up window, complete the fields as follows and select **Save**:
+1. Next, assign a **Storage Blob Data Contributor** role to your Translator service resource. The **Storage Blob Data Contributor** role gives Translator (represented by the system-assigned managed identity) read, write, and delete access to the blob container and data. In the **`Add role assignment`** pop-up window, complete the fields as follows and select **Save**:
 
     | Field | Value|
     |------|--------|
@@ -139,7 +139,7 @@ You must grant the Translator resource access to your storage account before it 
 
 ### Headers
 
-The following headers are included with each Document Translation API request:
+The following headers are included with each Azure AI Document translation API request:
 
 |HTTP header|Description|
 |---|--|
@@ -156,7 +156,7 @@ The following headers are included with each Document Translation API request:
 * The `targetUrl` for each target language must be unique.
 
 > [!IMPORTANT]
-> If a file with the same name already exists in the destination, the job will fail. When using managed identities, don't include a SAS token URL with your HTTP requests. If you do so, your requests will fail.
+> If a file with the same name already exists in the destination, the job fails. When using managed identities, don't include a SAS token URL with your HTTP requests. If you do so, your requests fail.
 
 <!-- markdownlint-disable MD024 -->
 ### Translate all documents in a container
@@ -251,7 +251,7 @@ Great! You just learned how to enable and use a system-assigned managed identity
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Quickstart: Get started with Document Translation](../how-to-guides/use-rest-api-programmatically.md)
+> [Quickstart: Get started with Azure AI Document translation](../how-to-guides/use-rest-api-programmatically.md)
 
 > [!div class="nextstepaction"]
 > [Tutorial: Access Azure Storage from a web app using managed identities](/azure/app-service/scenario-secure-app-access-storage?bc=%2fazure%2fcognitive-services%2ftranslator%2fbreadcrumb%2ftoc.json&toc=%2fazure%2fcognitive-services%2ftranslator%2ftoc.json)

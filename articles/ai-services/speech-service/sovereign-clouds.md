@@ -2,13 +2,15 @@
 title: Sovereign Clouds - Speech service
 titleSuffix: Azure AI services
 description: Learn how to use Sovereign Clouds
-author: alexeyo26
+author: eric-urban
+ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 1/21/2024
-ms.author: alexeyo
+ms.date: 3/10/2025
+ms.reviewer: alexeyo
+#Customer intent: As a developer, I want to learn how to use Speech service in sovereign clouds.
 ---
 
 # Speech service in sovereign clouds
@@ -64,48 +66,40 @@ Replace `<REGION_IDENTIFIER>` with the identifier matching the region of your su
 
 #### Speech SDK
 
-For [Speech SDK](speech-sdk.md) in sovereign clouds, you need to use "from host / with host" instantiation of `SpeechConfig` class or `--host` option of [Speech CLI](spx-overview.md). (You can also use "from endpoint / with endpoint" instantiation and `--endpoint` Speech CLI option).
+For [Speech SDK](speech-sdk.md) in sovereign clouds, you need to use "from endpoint / with endpoint" instantiation of `SpeechConfig` class or `--endpoint` option of [Speech CLI](spx-overview.md). 
 
 `SpeechConfig` class should be instantiated like this:
 
 # [C#](#tab/c-sharp)
 ```csharp
-var config = SpeechConfig.FromHost(usGovHost, subscriptionKey);
+var config = SpeechConfig.Endpoint(new Uri(usGovEndpoint), subscriptionKey);
 ```
 # [C++](#tab/cpp)
 ```cpp
-auto config = SpeechConfig::FromHost(usGovHost, subscriptionKey);
+auto config = SpeechConfig::FromEndpoint(usGovEndpoint, subscriptionKey);
 ```
 # [Java](#tab/java)
 ```java
-SpeechConfig config = SpeechConfig.fromHost(usGovHost, subscriptionKey);
+SpeechConfig config = SpeechConfig.fromEndpoint(new java.net.URI(usGovEndpoint), subscriptionKey);
 ```
 # [Python](#tab/python)
 ```python
 import azure.cognitiveservices.speech as speechsdk
-speech_config = speechsdk.SpeechConfig(host=usGovHost, subscription=subscriptionKey)
+speech_config = speechsdk.SpeechConfig(endpoint=usGovEndpoint, subscription=subscriptionKey)
 ```
 # [Objective-C](#tab/objective-c)
 ```objectivec
-SPXSpeechConfiguration *speechConfig = [[SPXSpeechConfiguration alloc] initWithHost:usGovHost subscription:subscriptionKey];
+SPXSpeechConfiguration *speechConfig = [[SPXSpeechConfiguration alloc] initWithEndpoint:usGovEndpoint subscription:subscriptionKey];
 ```
 ***
 
-Speech CLI should be used like this (note the `--host` option):
+Speech CLI should be used like this (note the `--endpoint` option):
 ```dos
-spx recognize --host "usGovHost" --file myaudio.wav
+spx recognize --endpoint "usGovEndpoint" --file myaudio.wav
 ```
-Replace `subscriptionKey` with your Speech resource key. Replace `usGovHost` with the expression matching the required service offering and the region of your subscription from this table:
 
-|  Region / Service offering | Host expression |
-|--|--|
-| **US Gov Arizona** | |
-| Speech to text | `wss://usgovarizona.stt.speech.azure.us` |
-| Text to speech | `https://usgovarizona.tts.speech.azure.us` |
-| **US Gov Virginia** | |
-| Speech to text | `wss://usgovvirginia.stt.speech.azure.us` |
-| Text to speech | `https://usgovvirginia.tts.speech.azure.us` |
-
+Replace `subscriptionKey` with your Speech resource key.
+Replace `usGovEndpoint` with the endpoint from the Azure Portal.
 
 ## Microsoft Azure operated by 21Vianet
 
@@ -161,47 +155,36 @@ Replace `<REGION_IDENTIFIER>` with the identifier matching the region of your su
 
 #### Speech SDK
 
-For [Speech SDK](speech-sdk.md) in sovereign clouds you need to use "from host / with host" instantiation of `SpeechConfig` class or `--host` option of [Speech CLI](spx-overview.md). (You can also use "from endpoint / with endpoint" instantiation and `--endpoint` Speech CLI option).
+For [Speech SDK](speech-sdk.md) in sovereign clouds, you need to use "from endpoint / with endpoint" instantiation of `SpeechConfig` class or `--endpoint` option of [Speech CLI](spx-overview.md). 
 
 `SpeechConfig` class should be instantiated like this:
 
 # [C#](#tab/c-sharp)
 ```csharp
-var config = SpeechConfig.FromHost("azCnHost", subscriptionKey);
+var config = SpeechConfig.Endpoint(new Uri(azCnEndpoint), subscriptionKey);
 ```
 # [C++](#tab/cpp)
 ```cpp
-auto config = SpeechConfig::FromHost("azCnHost", subscriptionKey);
+auto config = SpeechConfig::FromEndpoint(azCnEndpoint, subscriptionKey);
 ```
 # [Java](#tab/java)
 ```java
-SpeechConfig config = SpeechConfig.fromHost("azCnHost", subscriptionKey);
+SpeechConfig config = SpeechConfig.fromEndpoint(new java.net.URI(azCnEndpoint), subscriptionKey);
 ```
 # [Python](#tab/python)
 ```python
 import azure.cognitiveservices.speech as speechsdk
-speech_config = speechsdk.SpeechConfig(host="azCnHost", subscription=subscriptionKey)
+speech_config = speechsdk.SpeechConfig(endpoint=azCnEndpoint, subscription=subscriptionKey)
 ```
 # [Objective-C](#tab/objective-c)
 ```objectivec
-SPXSpeechConfiguration *speechConfig = [[SPXSpeechConfiguration alloc] initWithHost:"azCnHost" subscription:subscriptionKey];
+SPXSpeechConfiguration *speechConfig = [[SPXSpeechConfiguration alloc] initWithEndpoint:azCnEndpoint subscription:subscriptionKey];
 ```
 ***
 
-Speech CLI should be used like this (note the `--host` option):
+Speech CLI should be used like this (note the `--endpoint` option):
 ```dos
-spx recognize --host "azCnHost" --file myaudio.wav
+spx recognize --endpoint "azCnEndpoint" --file myaudio.wav
 ```
-Replace `subscriptionKey` with your Speech resource key. Replace `azCnHost` with the expression matching the required service offering and the region of your subscription from this table:
 
-|  Region / Service offering | Host expression |
-|--|--|
-| **China East 2** | |
-| Speech to text | `wss://chinaeast2.stt.speech.azure.cn` |
-| Text to speech | `https://chinaeast2.tts.speech.azure.cn` |
-| **China North 2** | |
-| Speech to text | `wss://chinanorth2.stt.speech.azure.cn` |
-| Text to speech | `https://chinanorth2.tts.speech.azure.cn` |
-| **China North 3** | |
-| Speech to text | `wss://chinanorth3.stt.speech.azure.cn` |
-| Text to speech | `https://chinanorth3.tts.speech.azure.cn` |
+Replace `subscriptionKey` with your Speech resource key. Replace `azCnEndpoint` with the endpoint from the Azure Portal.

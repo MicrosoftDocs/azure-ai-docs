@@ -1,7 +1,6 @@
 ---
 title: "Face Java client library quickstart"
 description: Use the Face client library for Java to detect faces and identify faces (facial recognition search).
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
@@ -51,19 +50,7 @@ Get started with facial recognition using the Face client library for Java. Foll
         <dependency>
           <groupId>com.azure</groupId>
           <artifactId>azure-ai-vision-face</artifactId>
-          <version>1.0.0-beta.1</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
-        <dependency>
-          <groupId>org.apache.httpcomponents</groupId>
-          <artifactId>httpclient</artifactId>
-          <version>4.5.13</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-        <dependency>
-          <groupId>com.google.code.gson</groupId>
-          <artifactId>gson</artifactId>
-          <version>2.11.0</version>
+          <version>1.0.0-beta.2</version>
         </dependency>
       </dependencies>
     </project>

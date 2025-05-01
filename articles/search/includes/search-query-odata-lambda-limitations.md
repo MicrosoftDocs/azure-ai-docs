@@ -1,6 +1,6 @@
 ---
 author: brjohnstmsft
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: include
 ms.date: 06/13/2018    
 ms.author: brjohnst

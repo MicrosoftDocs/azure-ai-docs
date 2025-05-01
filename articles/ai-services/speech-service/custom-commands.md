@@ -6,7 +6,7 @@ author: trrwilson
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 1/18/2024
+ms.date: 3/10/2025
 ms.author: travisw
 ms.custom: cogserv-non-critical-speech
 ---
@@ -29,7 +29,7 @@ Good candidates for Custom Commands have a fixed vocabulary with well-defined se
 
 ## Getting started with Custom Commands
 
-Our goal with Custom Commands is to reduce your cognitive load to learn all the different technologies and focus building your voice commanding app. First step for using Custom Commands to <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices" target="_blank">create a Speech resource</a>. You can author your Custom Commands app on the Speech Studio and publish it, after which an on-device application can communicate with it using the Speech SDK.
+Our goal with Custom Commands is to reduce your cognitive load to learn all the different technologies and focus building your voice commanding app. First step for using Custom Commands to <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices" target="_blank">create an AI Services resource for Speech</a>. You can author your Custom Commands app on the Speech Studio and publish it, after which an on-device application can communicate with it using the Speech SDK.
 
 #### Authoring flow for Custom Commands
    ![Authoring flow for Custom Commands](media/voice-assistants/custom-commands-flow.png "The Custom Commands authoring flow")

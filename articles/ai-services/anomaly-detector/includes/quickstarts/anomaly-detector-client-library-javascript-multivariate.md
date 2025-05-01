@@ -1,7 +1,6 @@
 ---
 title: Anomaly Detector multivariate JavaScript client library quickstart 
 titleSuffix: Azure AI services
-#services: cognitive-services
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
@@ -25,7 +24,7 @@ Use the Anomaly Detector multivariate client library for JavaScript to:
 * Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
 * The current version of [Node.js](https://nodejs.org/)
 * Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAnomalyDetector"  title="Create an Anomaly Detector resource"  target="_blank">create an Anomaly Detector resource </a> in the Azure portal to get your key and endpoint. Wait for it to deploy and select the **Go to resource** button.
-    * You'll need the key and endpoint from the resource you create to connect your application to the Anomaly Detector API. You'll paste your key and endpoint into the code below later in the quickstart.
+    * You need the key and endpoint from the resource you create to connect your application to the Anomaly Detector API. You paste your key and endpoint into the code below later in the quickstart.
     You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
 ## Setting up
@@ -58,7 +57,7 @@ const { AzureKeyCredential } = require('@azure/core-auth');
 Create variables your resource's Azure endpoint and key. Create another variable for the example data file.
 
 > [!NOTE]
-> You will always have the option of using one of two keys. This is to allow secure key rotation. For the purposes of this quickstart use the first key. 
+> You'll always have the option of using one of two keys. This is to allow secure key rotation. For the purposes of this quickstart, use the first key. 
    
 
 ```javascript
@@ -66,9 +65,7 @@ const apiKey = "YOUR_API_KEY";
 const endpoint = "YOUR_ENDPOINT";
 const data_source = "YOUR_SAMPLE_ZIP_FILE_LOCATED_IN_AZURE_BLOB_STORAGE_WITH_SAS";
 ```
-
-> [!IMPORTANT]
-> Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). See the Azure AI services [security](../../../security-features.md) article for more information.
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 To use the Anomaly Detector multivariate APIs, you need to first train your own models. Training data is a set of multiple time series that meet the following requirements:
 

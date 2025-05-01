@@ -2,16 +2,18 @@
 title: "Example: Add faces to a PersonGroup - Face"
 titleSuffix: Azure AI services
 description: This guide demonstrates how to add a large number of persons and faces to a PersonGroup object with the Azure AI Face service.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.topic: how-to
-ms.date: 02/14/2024
+ms.date: 01/22/2025
 ms.author: pafarley
 ms.devlang: csharp
 ms.custom: devx-track-csharp
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
+#customer intent: As a developer, I want to add a large number of persons and faces to a PersonGroup object so that I can manage and recognize faces efficiently.
+
 ---
 
 # Add faces to a PersonGroup
@@ -20,7 +22,7 @@ ms.custom: devx-track-csharp
 
 This guide demonstrates how to add a large number of persons and faces to a **PersonGroup** object. The same strategy also applies to **LargePersonGroup**, **FaceList**, and **LargeFaceList** objects. This sample is written in C#.
 
-## Initialization
+## Setup
 
 The following code declares several variables and implements a helper function to schedule the **face add** requests:
 
@@ -123,15 +125,16 @@ Parallel.For(0, PersonCount, async i =>
 
 ## Summary
 
-In this guide, you learned the process of creating a PersonGroup with a massive number of persons and faces. Several reminders:
+In this guide, you learned the process of creating a PersonGroup with a massive number of persons and faces. Key points:
 
 - This strategy also applies to **FaceLists** and **LargePersonGroups**.
-- Adding or deleting faces to different **FaceLists** or persons in **LargePersonGroups** are processed concurrently.
-- Adding or deleting faces to one specific **FaceList** or persons in a **LargePersonGroup** is done sequentially.
+- Adding or deleting faces in different **FaceLists** or persons in **LargePersonGroups** are processed concurrently.
+- Adding or deleting faces in one specific **FaceList** or persons in a **LargePersonGroup** is done sequentially.
 
 
-## Next steps
+## Next step
 
 Next, learn how to use the enhanced data structure **PersonDirectory** to do more with your face data.
 
-- [Use the PersonDirectory structure (preview)](use-persondirectory.md)
+> [!div class="nextstepaction"]
+> [Use the PersonDirectory structure (preview)](use-persondirectory.md)

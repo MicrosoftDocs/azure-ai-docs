@@ -22,10 +22,6 @@ items:
     href: use-case-alt-text.md
   - name: Verify a user
     href: use-case-identity-verification.md
-  - name: Monitor customer dwell time
-    href: use-case-dwell-time.md
-  - name: Measure queue wait time
-    href: use-case-queue-time.md
 - name: Optical character recognition (OCR)
   items:
   - name: OCR overview
@@ -62,9 +58,9 @@ items:
       - name: Migrate to v3.x of the Read OCR container
         href: read-container-migration-guide.md
         displayName: docker, container, billing, apikey, pull, logging, on-premises
-      - name: Use with Kubernetes and Helm
-        href: deploy-computer-vision-on-premises.md
-        displayName: kubectl, docker, helm, kubernetes, K8s, tiller, container, image, on-prem, on-premises
+      #- name: Use with Kubernetes and Helm
+      #  href: deploy-computer-vision-on-premises.md
+      #  displayName: kubectl, docker, helm, kubernetes, K8s, tiller, container, image, on-prem, on-premises
       - name: Use container instances
         maintainContext: true
         href: ../containers/azure-container-instance-recipe.md
@@ -97,7 +93,7 @@ items:
     - name: Azure CLI
       href: /cli/azure/cognitiveservices#az_cognitiveservices_list
     - name: Azure PowerShell
-      href: /powershell/module/azurerm.cognitiveservices/
+      href: /powershell/module/az.cognitiveservices/
 - name: Image Analysis
   items:
   - name: Image Analysis overview
@@ -156,8 +152,6 @@ items:
         items:
         - name: Create a custom model (preview)
           href: how-to/model-customization.md
-        - name: Migrate a Custom Vision project to Image Analysis (preview)
-          href: how-to/migrate-from-custom-vision.md
         - name: Verify a custom model COCO file (preview)
           href: how-to/coco-verification.md
       - name: Product Recognition (preview)
@@ -234,10 +228,10 @@ items:
         href: concept-detecting-adult-content.md
       - name: Smart-cropped thumbnails
         href: concept-generating-thumbnails.md
-  - name: Tutorials
-    items:
-    - name: Generate metadata for images
-      href: Tutorials/storage-lab-tutorial.md
+  #- name: Tutorials
+  #  items:
+  #  - name: Generate metadata for images
+  #    href: Tutorials/storage-lab-tutorial.md
   - name: Reference
     items:
     - name: Version 4.0
@@ -277,7 +271,7 @@ items:
     - name: Azure CLI
       href: /cli/azure/cognitiveservices#az_cognitiveservices_list
     - name: Azure PowerShell
-      href: /powershell/module/azurerm.cognitiveservices/
+      href: /powershell/module/az.cognitiveservices/
 - name: Face
   items:
   - name: Face overview
@@ -297,6 +291,8 @@ items:
       href: concept-face-recognition.md
     - name: Face recognition data structures
       href: concept-face-recognition-data-structures.md
+    - name: Face liveness detection
+      href: concept-face-liveness-detection.md
     - name: Face liveness abuse monitoring
       href: concept-liveness-abuse-monitoring.md
   
@@ -352,11 +348,13 @@ items:
     - name: Best practices for enrolling users
       href: enrollment-overview.md
     - name: Code of conduct
-      href: /legal/cognitive-services/face/code-of-conduct?context=/azure/ai-services/computer-vision/context/context
+      href: /legal/ai-code-of-conduct?context=/azure/ai-services/computer-vision/context/context
     - name: Data privacy and security
       href: /legal/cognitive-services/face/data-privacy-security?context=/azure/ai-services/computer-vision/context/context
     - name: Limited Access features
       href: /legal/cognitive-services/computer-vision/limited-access-identity?context=/azure/ai-services/computer-vision/context/context
+    - name: Shared responsibility for face liveness detection
+      href: liveness-detection-shared-responsibility.md
 
   - name: Reference
     items:
@@ -382,6 +380,8 @@ items:
         href: https://aka.ms/azure-ai-vision-face-liveness-client-sdk-ios-api-reference
       - name: JavaScript (Web)
         href: https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-api-reference
+      - name: Understand the liveness versions
+        href: sdk/understand-the-liveness-sdk-versions.md
 - name: Video Analysis
   items:
   - name: Video Analysis overview
@@ -404,26 +404,6 @@ items:
     items:
     - name: Call the Video Retrieval APIs
       href: how-to/video-retrieval.md
-    - name: Use the Spatial Analysis container
-      items:
-      - name: Set up the host machine and run the container
-        href: spatial-analysis-container.md
-      - name: Configure operations
-        href: spatial-analysis-operations.md
-      - name: Configure vehicle analysis
-        href: vehicle-analysis.md
-      - name: Use a local video file
-        href: spatial-analysis-local.md
-      - name: Deploy a people counting web app
-        href: Spatial-analysis-web-app.md
-      - name: Logging and troubleshooting
-        href: spatial-analysis-logging.md
-      - name: Zone and line placement
-        href: spatial-analysis-zone-line-placement.md
-      - name: Camera placement
-        href: spatial-analysis-camera-placement.md
-      - name: All Azure AI containers
-        href: ../cognitive-services-container-support.md?context=%2fazure%2fai-services%2fcomputer-vision%2fcontext%2fcontext
   - name: Reference
     items:
     - name: Video Retrieval REST API

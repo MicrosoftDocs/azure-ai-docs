@@ -1,21 +1,21 @@
 ---
-title: Create and use a glossary with Document Translation
-description: How to create and use a glossary with Document Translation.
+title: Create and use a glossary with Azure AI Translator Document translation
+description: How to create and use a glossary with Document translation.
 ms.topic: how-to
 ms.service: azure-ai-translator
 manager: nitinme
 ms.author: lajanuar
 author: laujan
-ms.date: 07/09/2024
+ms.date: 04/14/2025
 ---
 
-# Use glossaries with Document Translation
+# Use glossaries with Document translation
 
-A glossary is a list of terms with definitions that you create for the Document Translation service to use during the translation process. Currently, the glossary feature supports one-to-one source-to-target language translation. Common use cases for glossaries include:
+A glossary is a list of terms with definitions that you create for the Document translation service to use during the translation process. Currently, the glossary feature supports one-to-one source-to-target language translation. Common use cases for glossaries include:
 
 * **Context-specific terminology**. Create a glossary that designates specific meanings for your unique context.
 
-* **No translation**. For example, you can restrict Document Translation from translating product name brands by using a glossary with the same source and target text.
+* **No translation**. For example, you can restrict Document translation from translating product name brands by using a glossary with the same source and target text.
 
 * **Specified translations for ambiguous words**. Choose a specific translation for poly&#8203;semantic words.
 
@@ -27,7 +27,7 @@ A glossary is a list of terms with definitions that you create for the Document 
 
     The following English-source glossary contains words that can have different meanings depending upon the context. The glossary provides the expected translation for each word in the file to help ensure accuracy.
 
-   For instance, when the word `Bank` appears in a financial document, it should be translated to reflect its financial meaning. If the word `Bank` appears in a geographical document, it may refer to shore to reflect its topographical meaning. Similarly, the word `Crane` can refer to either a bird or machine.
+   For instance, when the word `Bank` appears in a financial document, it should be translated to reflect its financial meaning. If the word `Bank` appears in a geographical document, it can refer to shore to reflect its topographical meaning. Similarly, the word `Crane` can refer to either a bird or machine.
 
    ***Example glossary .tsv file: English-to-French***
 
@@ -47,19 +47,19 @@ A glossary is a list of terms with definitions that you create for the Document 
       :::code language="json" source="../../../../../cognitive-services-rest-samples/curl/Translator/translate-with-glossary.json" range="1-23" highlight="13-14":::
 
    > [!NOTE]
-   > The example used an enabled [**system-assigned managed identity**](create-use-managed-identities.md#enable-a-system-assigned-managed-identity) with a [**Storage Blob Data Contributor**](create-use-managed-identities.md#grant-storage-account-access-for-your-translator-resource) role assignment for authorization. For more information, *see* [**Managed identities for Document Translation**](./create-use-managed-identities.md).
+   > The example used an enabled [**system-assigned managed identity**](create-use-managed-identities.md#enable-a-system-assigned-managed-identity) with a [**Storage Blob Data Contributor**](create-use-managed-identities.md#grant-storage-account-access-for-your-translator-resource) role assignment for authorization. For more information, *see* [**Managed identities for Document translation**](./create-use-managed-identities.md).
 
 ### Case sensitivity
 
 By default, Azure AI Translator service API is **case-sensitive**, meaning that it matches terms in the source text based on case.
 
-* **Partial sentence application**. When your glossary is applied to **part of a sentence**, the Document Translation API checks whether the glossary term matches the case in the source text. If the casing doesn't match, the glossary isn't applied.
+* **Partial sentence application**. When your glossary is applied to **part of a sentence**, the Document translation API checks whether the glossary term matches the case in the source text. If the casing doesn't match, the glossary isn't applied.
 
-* **Complete sentence application**. When your glossary is applied to a **complete sentence**, the service becomes **case-insensitive**. It matches the glossary term regardless of its case in the source text. This provision applies the correct results for use cases involving idioms and quotes.
+* **Complete sentence application**. When your glossary is applied to a **complete sentence**, the service becomes **case-insensitive**. It matches the glossary term, regardless of its case, in the source text. This attribute aids in returning the correct results for use cases involving idioms and quotes.
 
 ## Next steps
 
-Try the Document Translation how-to guide to asynchronously translate whole documents using a programming language of your choice:
+Try the Document translation how-to guide to asynchronously translate whole documents using a programming language of your choice:
 
 > [!div class="nextstepaction"]
-> [Use Document Translation REST APIs](use-rest-api-programmatically.md)
+> [Use Document translation REST APIs](use-rest-api-programmatically.md)

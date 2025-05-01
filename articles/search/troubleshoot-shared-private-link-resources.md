@@ -6,18 +6,18 @@ description: Troubleshooting guide for common problems when managing shared priv
 manager: nitinme
 author: arv100kri
 ms.author: arjagann
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 02/20/2024
+ms.date: 12/10/2024
 ---
 
 # Troubleshoot issues with Shared Private Links in Azure AI Search
 
 A shared private link allows Azure AI Search to make secure outbound connections over a private endpoint when accessing customer resources in a virtual network. This article can help you resolve errors that might occur.
 
-Creating a shared private link is a search service control plane operation. You can [create a shared private link](search-indexer-howto-access-private.md) using either the portal or a [Management REST API](/rest/api/searchmanagement/shared-private-link-resources/create-or-update). During provisioning, the state of the request is "Updating". After the operation completes successfully, status is "Succeeded". A private endpoint to the resource, along with any DNS zones and mappings, is created. This endpoint is used exclusively by your search service instance and is managed through Azure AI Search.
+Creating a shared private link is a search service control plane operation. You can [create a shared private link](search-indexer-howto-access-private.md) using either the Azure portal or a [Management REST API](/rest/api/searchmanagement/shared-private-link-resources/create-or-update). During provisioning, the state of the request is "Updating". After the operation completes successfully, status is "Succeeded". A private endpoint to the resource, along with any DNS zones and mappings, is created. This endpoint is used exclusively by your search service instance and is managed through Azure AI Search.
 
 ![Steps involved in creating shared private link resources ](media\troubleshoot-shared-private-link-resources\shared-private-link-states.png)
 
@@ -65,7 +65,7 @@ Some common errors that occur during the creation phase are listed below.
 
 ## Deployment failures
 
-A search service initiates the request to create a shared private link, but Azure Resource Manager performs the actual work. You can [check the deployment's status](search-indexer-howto-access-private.md#1---create-a-shared-private-link) in the portal or by query, and address any errors that might occur.
+A search service initiates the request to create a shared private link, but Azure Resource Manager performs the actual work. You can [check the deployment's status](search-indexer-howto-access-private.md#1---create-a-shared-private-link) in the Azure portal or by query, and address any errors that might occur.
 
 Shared private link resources that have failed Azure Resource Manager deployment will show up in [List](/rest/api/searchmanagement/shared-private-link-resources/list-by-service) and [Get](/rest/api/searchmanagement/shared-private-link-resources/get) API calls, but will have a "Provisioning State" of `Failed`. Once the reason of the Azure Resource Manager deployment failure has been ascertained, delete the `Failed` resource and re-create it after applying the appropriate resolution from the following table.
 

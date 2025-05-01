@@ -1,26 +1,25 @@
 ---
 title: 'Quickstart: Generate images with Azure OpenAI Service'
 titleSuffix: Azure OpenAI
-description: Learn how to get started generating images with Azure OpenAI Service by using the Python SDK, the REST APIs, or Azure OpenAI Studio.
-#services: cognitive-services
+description: Learn how to get started generating images with Azure OpenAI Service by using the Python SDK, the REST APIs, or Azure AI Foundry portal.
 manager: nitinme
 ms.service: azure-ai-openai
-ms.custom: devx-track-python, devx-track-dotnet, devx-track-extended-java, devx-track-go, devx-track-js
+ms.custom: devx-track-python, devx-track-dotnet, devx-track-extended-java, devx-track-go, devx-track-js, devx-track-ts
 ms.topic: quickstart
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 08/21/2024
+ms.date: 02/20/2025
 zone_pivot_groups: openai-quickstart-dall-e
 ---
 
 # Quickstart: Generate images with Azure OpenAI Service
 
 > [!NOTE]
-> The image generation API creates an image from a text prompt. It does not edit or create variations from existing images.
+> The image generation API creates an image from a text prompt. It doesn't edit or create variations from existing images.
 
 ::: zone pivot="programming-language-studio"
 
-[!INCLUDE [Studio quickstart](includes/dall-e-studio.md)]
+[!INCLUDE [Portal quickstart](includes/dall-e-studio.md)]
 
 ::: zone-end
 
@@ -51,6 +50,12 @@ zone_pivot_groups: openai-quickstart-dall-e
 ::: zone pivot="programming-language-javascript"
 
 [!INCLUDE [JavaScript SDK quickstart](includes/dall-e-javascript.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-typescript"
+
+[!INCLUDE [TypeScript SDK quickstart](includes/dall-e-typescript.md)]
 
 ::: zone-end
 

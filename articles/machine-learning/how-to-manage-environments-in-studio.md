@@ -1,16 +1,17 @@
 ---
 title: Manage environments in the studio
 titleSuffix: Azure Machine Learning
-description: Learn how to create and manage environments in the Azure Machine Learning studio.
+description: Learn how to create and manage environments in the Azure Machine Learning studio. Environments are used for training and inference.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 author: Blackmist
 ms.author: larryfr
 ms.reviewer: osiotugo
-ms.date: 03/05/2024
+ms.date: 04/14/2025
 ms.topic: how-to
 ms.custom:
+# Customer Intent: As a Data Scientist, I want to understand how to manage environments for training and inference in Azure Machine Learning studio.
 ---
 
 # Manage software environments in Azure Machine Learning studio
@@ -34,6 +35,9 @@ For a high-level overview of environments, see [What are Azure Machine Learning 
 ## Browse curated environments
 
 Curated environments contain collections of Python packages and are available in your workspace by default. These environments are backed by cached Docker images, which reduce the job preparation cost and support training and inferencing scenarios.
+
+> [!TIP]
+> When you work with curated environments in the CLI or SDK, the curated environment names begin with `AzureML-`. When you use the Azure Machine Learning studio, the curated environments don't have this prefix. The reason for this difference is that the studio UI displays curated and custom environments on separate tabs, so the prefix isn't necessary. The CLI and SDK don't have this separation, so the prefix is used to differentiate between curated and custom environments.
 
 Select an environment to see detailed information about its contents. For more information, see [Azure Machine Learning curated environments](resource-curated-environments.md).
 
@@ -59,13 +63,19 @@ If a new environment is given the same name as an existing environment in the wo
 
 ## View and edit environment details
 
-Once an environment has been created, view its details by selecting the name. Use the dropdown menu to select different versions of the environment. Here you can view metadata and the contents of the environment through its various dependencies.
+1. Once an environment has been created, view its details by selecting the __Name__ from the __Custom environments__ tab.
 
-Select the pencil icons to edit tags, descriptions, configuration files under the **Context** tab.
+    :::image type="content" source="media/how-to-manage-environments-in-studio/select-existing-environment.png" alt-text="Screenshot of the custom environments page." lightbox="media/how-to-manage-environments-in-studio/select-existing-environment.png":::
 
-Keep in mind that any changes to the Docker or Conda sections create a new version of the environment.
+1. Use the __Version__ dropdown menu to select different versions of the environment. From the __Details__ tab, you can view metadata and the contents of the environment through its various dependencies. Select the pencil icons to edit fields such as __Description__ and __Tags__.
 
-:::image type="content" source="media/how-to-manage-environments-in-studio/details-page.png" alt-text="Screenshot of the environment details page.":::
+    :::image type="content" source="media/how-to-manage-environments-in-studio/environment-details.png" alt-text="Screenshot of the environment details tab." lightbox="media/how-to-manage-environments-in-studio/environment-details.png":::
+
+3. Select the __Context__ tab to upload additional files or edit the existing Dockerfile. Use __Save and Build__ to save any changes and rebuild the context.
+
+    Keep in mind that any changes to the Docker or Conda sections create a new version of the environment.
+
+    :::image type="content" source="media/how-to-manage-environments-in-studio/environment-context.png" alt-text="Screenshot of the environment context tab." lightbox="media/how-to-manage-environments-in-studio/environment-context.png":::
 
 ## View logs
 

@@ -2,19 +2,19 @@
 title: Image categorization - Azure AI Vision
 titleSuffix: Azure AI services
 description: Learn concepts related to the image categorization feature of the Image Analysis API.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 01/19/2024
+ms.date: 02/21/2025
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
 # Image categorization
 
-In addition to tags and a description, Image Analysis 3.2 can return the taxonomy-based categories detected in an image. Unlike tags, categories are organized in a parent/child hierarchy, and there are fewer of them (86, as opposed to thousands of tags). All category names are in English. Categorization can be done by itself or alongside the newer tags model.
+In addition to tags and a description, Image Analysis 3.2 can return the taxonomy-based categories detected in an image. Unlike tags, categories are organized in a parent/child hierarchy, and there are fewer of them (86, as opposed to thousands of tags). All category names are in English. Categorization can be done by itself or in the same API call as the newer tags model.
 
 ## The 86-category taxonomy
 
@@ -60,6 +60,6 @@ The categorization feature is part of the [Analyze Image 3.2](/rest/api/computer
 
 * [Quickstart: Vision REST API or client libraries](./quickstarts-sdk/image-analysis-client-library.md?pivots=programming-language-csharp)
 
-## Next steps
+## Related content
 
 Learn the related concepts of [tagging images](concept-tagging-images.md) and [describing images](concept-describing-images.md).

@@ -6,8 +6,9 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/21/2024
+ms.date: 3/10/2025
 ms.author: eur
+#Customer intent: As a developer, I want to learn how to use the batch processing kit to scale Speech container requests.
 ---
 
 # Batch processing kit for Speech containers
@@ -16,7 +17,7 @@ Use the batch processing kit to complement and scale out workloads on Speech con
 
 :::image type="content" source="media/containers/general-diagram.png" alt-text="A diagram showing an example batch-kit container workflow.":::
 
-The batch kit container is available for free on [GitHub](https://github.com/microsoft/batch-processing-kit) and   [Docker hub](https://hub.docker.com/r/batchkit/speech-batch-kit/tags). You're only [billed](speech-container-overview.md#billing) for the Speech containers you use.
+The batch kit container is available for free on [GitHub](https://github.com/microsoft/batch-processing-kit) and [Docker hub](https://hub.docker.com/r/batchkit/speech-batch-kit/tags). You're only [billed](speech-container-overview.md#billing) for the Speech containers you use.
 
 | Feature  | Description  |
 |---------|---------|
@@ -24,7 +25,7 @@ The batch kit container is available for free on [GitHub](https://github.com/mic
 | Speech SDK integration | Pass common flags to the Speech SDK, including: n-best hypotheses, diarization, language, profanity masking.  |
 |Run modes     | Run the batch client once, continuously in the background, or create HTTP endpoints for audio files.         |
 | Fault tolerance | Automatically retry and continue transcription without losing progress, and differentiate between which errors can, and can't be retried on. |
-| Endpoint availability detection | If an endpoint becomes unavailable, the batch client continues transcribing, using other container endpoints. When the client is available it automatically begins using the endpoint.   |
+| Endpoint availability detection | If an endpoint becomes unavailable, the batch client continues transcribing, using other container endpoints. When the client is available, it automatically begins using the endpoint.   |
 | Endpoint hot-swapping | Add, remove, or modify Speech container endpoints during runtime without interrupting the batch progress. Updates are immediate. |
 | Real-time logging | Real-time logging of attempted requests, timestamps, and failure reasons, with Speech SDK log files for each audio file. |
 
@@ -40,7 +41,7 @@ docker pull docker.io/batchkit/speech-batch-kit:latest
 
 ## Endpoint configuration
 
-The batch client takes a yaml configuration file that specifies the on-premises container endpoints. The following example can be written to `/mnt/my_nfs/config.yaml`, which is used in the examples below.
+The batch client takes a yaml configuration file that specifies the on-premises container endpoints. The following example can be written to `/mnt/my_nfs/config.yaml`, which is used in the following examples.
 
 ```yaml
 MyContainer1:
@@ -62,7 +63,7 @@ MyContainer3:
 
 This yaml example specifies three speech containers on three hosts. The first host is specified by a IPv4 address, the second is running on the same VM as the batch-client, and the third container is specified by the DNS hostname of another VM. The `concurrency` value specifies the maximum concurrent file transcriptions that can run on the same container. The `rtf` (Real-Time Factor) value is optional and can be used to tune performance.
 
-The batch client can dynamically detect if an endpoint becomes unavailable (for example, due to a container restart or networking issue), and when it becomes available again. Transcription requests won't be sent to containers that are unavailable, and the client continues using other available containers. You can add, remove, or edit endpoints at any time without interrupting the progress of your batch.
+The batch client can dynamically detect if an endpoint becomes unavailable (for example, due to a container restart or networking issue), and when it becomes available again. Transcription requests aren't sent to containers that are unavailable, and the client continues using other available containers. You can add, remove, or edit endpoints at any time without interrupting the progress of your batch.
 
 ## Run the batch processing container
   
@@ -95,11 +96,11 @@ The client starts running. If an audio file was transcribed in a previous run, t
 
 The batch processing kit offers three modes, using the `--run-mode` parameter.
 
-#### [Oneshot](#tab/oneshot)
+#### [One-shot](#tab/oneshot)
 
 `ONESHOT` mode transcribes a single batch of audio files (from an input directory and optional file list) to an output folder.
 
-:::image type="content" source="media/containers/batch-oneshot-mode.png" alt-text="A diagram showing the batch-kit container processing files in oneshot mode.":::
+:::image type="content" source="media/containers/batch-oneshot-mode.png" alt-text="A diagram showing the batch-kit container processing files in one-shot mode.":::
 
 1. Define the Speech container endpoints that the batch client uses in the `config.yaml` file. 
 2. Place audio files for transcription in an input directory.  

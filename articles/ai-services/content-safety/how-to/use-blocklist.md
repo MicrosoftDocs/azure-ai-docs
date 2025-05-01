@@ -2,14 +2,14 @@
 title: "Use blocklists for text moderation"
 titleSuffix: Azure AI services
 description: Learn how to customize text moderation in Azure AI Content Safety by using your own list of blocklistItems.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: build-2023
 ms.topic: how-to
-ms.date: 06/01/2024
+ms.date: 01/22/2025
 ms.author: pafarley
+#customer intent: As a developer, I want to use blocklists for text moderation so that I can customize content filtering.
 ---
 
 
@@ -53,7 +53,7 @@ Copy the cURL command below to a text editor and make the following changes:
 
 
 ```shell
-curl --location --request PATCH '<endpoint>/contentsafety/text/blocklists/<your_list_name>?api-version=2023-10-01' \
+curl --location --request PATCH '<endpoint>/contentsafety/text/blocklists/<your_list_name>?api-version=2024-09-01' \
 --header 'Ocp-Apim-Subscription-Key: <enter_your_key_here>' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -245,13 +245,13 @@ Copy the cURL command below to a text editor and make the following changes:
 1. Replace the value of the `"text"` field with the item you'd like to add to your blocklist. The maximum length of a blocklistItem is 128 characters.
 
 ```shell
-curl --location --request POST '<endpoint>/contentsafety/text/blocklists/<your_list_name>:addOrUpdateBlocklistItems?api-version=2023-10-01' \
+curl --location --request POST '<endpoint>/contentsafety/text/blocklists/<your_list_name>:addOrUpdateBlocklistItems?api-version=2024-09-01' \
 --header 'Ocp-Apim-Subscription-Key: <enter_your_key_here>' \
 --header 'Content-Type: application/json' \
---data-raw '"blocklistItems": [{
+--data-raw '{"blocklistItems": [{
     "description": "string",
     "text": "bleed"
-}]'
+}]}'
 ```
 
 > [!TIP]
@@ -378,7 +378,7 @@ blocklist_item_text_2 = "<block_item_text_2>"
 blocklist_items = [TextBlocklistItem(text=blocklist_item_text_1), TextBlocklistItem(text=blocklist_item_text_2)]
 try:
     result = client.add_or_update_blocklist_items(
-        blocklist_name=blocklist_name, options=AddOrUpdateTextBlocklistItemsOptions(blocklist_items=blocklist_items)
+        blocklist_name=blocklist_name, options=AddOrUpdateTextBlocklistItemsOptions(blocklist_items=blocklist_items))
     for blocklist_item in result.blocklist_items:
         print(
             f"BlocklistItemId: {blocklist_item.blocklist_item_id}, Text: {blocklist_item.text}, Description: {blocklist_item.description}"
@@ -487,7 +487,7 @@ Copy the cURL command below to a text editor and make the following changes:
 1. Optionally change the value of the `"text"` field to whatever text you want to analyze. 
 
 ```shell
-curl --location --request POST '<endpoint>/contentsafety/text:analyze?api-version=2023-10-01&' \
+curl --location --request POST '<endpoint>/contentsafety/text:analyze?api-version=2024-09-01&' \
 --header 'Ocp-Apim-Subscription-Key: <enter_your_key_here>' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -727,7 +727,7 @@ Copy the cURL command below to a text editor and make the following changes:
 1. Replace `<your_list_name>` (in the request URL) with the name you used in the list creation step.
 
 ```shell
-curl --location --request GET '<endpoint>/contentsafety/text/blocklists/<your_list_name>/blocklistItems?api-version=2023-10-01' \
+curl --location --request GET '<endpoint>/contentsafety/text/blocklists/<your_list_name>/blocklistItems?api-version=2024-09-01' \
 --header 'Ocp-Apim-Subscription-Key: <enter_your_key_here>' \
 --header 'Content-Type: application/json'
 ```
@@ -900,7 +900,7 @@ Copy the cURL command below to a text editor and make the following changes:
 
 
 ```shell
-curl --location --request GET '<endpoint>/contentsafety/text/blocklists?api-version=2023-10-01' \
+curl --location --request GET '<endpoint>/contentsafety/text/blocklists?api-version=2024-09-01' \
 --header 'Ocp-Apim-Subscription-Key: <enter_your_key_here>' \
 --header 'Content-Type: application/json'
 ```
@@ -1048,7 +1048,7 @@ Copy the cURL command below to a text editor and make the following changes:
 1. Replace `<your_list_name>` (in the request URL) with the name you used in the list creation step.
 
 ```shell
-cURL --location '<endpoint>contentsafety/text/blocklists/<your_list_name>?api-version=2023-10-01' \
+cURL --location '<endpoint>contentsafety/text/blocklists/<your_list_name>?api-version=2024-09-01' \
 --header 'Ocp-Apim-Subscription-Key: <enter_your_key_here>' \
 --data ''
 ```
@@ -1199,7 +1199,7 @@ Copy the cURL command below to a text editor and make the following changes:
 
 
 ```shell
-cURL --location '<endpoint>contentsafety/text/blocklists/<your_list_name>/blocklistItems/<your_item_id>?api-version=2023-10-01' \
+cURL --location '<endpoint>contentsafety/text/blocklists/<your_list_name>/blocklistItems/<your_item_id>?api-version=2024-09-01' \
 --header 'Ocp-Apim-Subscription-Key: <enter_your_key_here>' \
 --data ''
 ```
@@ -1387,12 +1387,12 @@ Copy the cURL command below to a text editor and make the following changes:
 
 
 ```shell
-curl --location --request DELETE '<endpoint>/contentsafety/text/blocklists/<your_list_name>:removeBlocklistItems?api-version=2023-10-01' \
+curl --location --request POST '<endpoint>/contentsafety/text/blocklists/<your_list_name>:removeBlocklistItems?api-version=2024-09-01' \
 --header 'Ocp-Apim-Subscription-Key: <enter_your_key_here>' \
 --header 'Content-Type: application/json'
---data-raw '"blocklistItemIds":[
+--data-raw '{"blocklistItemIds":[
     "<item_id>"
-]'
+]}'
 ```
 
 > [!TIP]
@@ -1573,7 +1573,7 @@ Copy the cURL command below to a text editor and make the following changes:
 1. Replace `<your_list_name>` (in the request URL) with the name you used in the list creation step.
 
 ```shell
-curl --location --request DELETE '<endpoint>/contentsafety/text/blocklists/<your_list_name>?api-version=2023-10-01' \
+curl --location --request DELETE '<endpoint>/contentsafety/text/blocklists/<your_list_name>?api-version=2024-09-01' \
 --header 'Ocp-Apim-Subscription-Key: <enter_your_key_here>' \
 --header 'Content-Type: application/json' \
 ```

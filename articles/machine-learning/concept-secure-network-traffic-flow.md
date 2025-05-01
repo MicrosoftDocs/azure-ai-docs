@@ -9,7 +9,7 @@ ms.topic: conceptual
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: meerakurup
-ms.date: 01/16/2024
+ms.date: 02/06/2025
 monikerRange: 'azureml-api-2 || azureml-api-1'
 ---
 
@@ -46,7 +46,7 @@ This article assumes the following configuration:
 
 ## Inbound and outbound requirements
 
-| Scenario | Required inbound | Required outbound | Additional configuration |
+| Scenario | Required inbound | Required outbound | Extra configuration |
 | ----- | ----- | ----- | ----- |
 | [Access a workspace from the studio](#scenario-access-a-workspace-from-the-studio) | Not applicable | <ul><li>Microsoft Entra ID</li><li>Azure Front Door</li><li>Azure Machine Learning</li></ul> | You might need to use a custom DNS server. For more information, see [Use your workspace with a custom DNS server](how-to-custom-dns.md). |
 | [Use AutoML, the designer, the dataset, and the datastore from the studio](#scenario-use-automl-the-designer-the-dataset-and-the-datastore-from-the-studio) | Not applicable | Not applicable | <ul><li>Configure the workspace service principal</li><li>Allow access from trusted Azure services</li></ul>For more information, see [Secure an Azure Machine Learning workspace with virtual networks](how-to-secure-workspace-vnet.md#secure-azure-storage-accounts). |
@@ -153,7 +153,7 @@ The [legacy network isolation method for securing outbound communication](concep
 For information on the required outbound configuration for Azure Kubernetes Service, see [Secure an Azure Machine Learning inferencing environment with virtual networks](how-to-secure-inferencing-vnet.md).
 
 > [!NOTE]
-> The Azure Kubernetes Service load balancer is not the same as the load balancer that Azure Machine Learning creates. If you want to host your model as a secured application that's available only on the virtual network, use the internal load balancer that Azure Machine Learning creates. If you want to allow public access, use the public load balancer that Azure Machine Learning creates.
+> The Azure Kubernetes Service load balancer isn't the same as the load balancer that Azure Machine Learning creates. If you want to host your model as a secured application that's available only on the virtual network, use the internal load balancer that Azure Machine Learning creates. If you want to allow public access, use the public load balancer that Azure Machine Learning creates.
 
 If your model requires extra inbound or outbound connectivity, such as to an external data source, use a network security group or your firewall to allow the traffic.
 
@@ -170,6 +170,6 @@ If you provide your own Docker images, such as on a container registry that you 
 
 ## Next steps
 
-Now that you've learned how network traffic flows in a secured configuration, learn more about securing Azure Machine Learning in a virtual network by reading the [overview article about virtual network isolation and privacy](how-to-network-security-overview.md).
+Now that you understand how network traffic flows in a secured configuration, learn more about securing Azure Machine Learning in a virtual network by reading the [overview article about virtual network isolation and privacy](how-to-network-security-overview.md).
 
 For information on best practices, see the [Azure Machine Learning best practices for enterprise security](/azure/cloud-adoption-framework/ready/azure-best-practices/ai-machine-learning-enterprise-security) article.

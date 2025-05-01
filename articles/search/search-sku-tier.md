@@ -6,40 +6,41 @@ description: 'Learn about the service tiers (or SKUs) for Azure AI Search. A sea
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 08/22/2024
+ms.date: 03/21/2025
 
 ---
 
 # Choose a service tier for Azure AI Search
 
-Part of [creating a search service](search-create-service-portal.md) is choosing a pricing tier (or SKU) that's fixed for the lifetime of the service. In the portal, tier is specified in the **Select Pricing Tier** page when you create the service. In PowerShell or Azure CLI, the tier is specified through the **`-Sku`** parameter.
+Part of [creating a search service](search-create-service-portal.md) is choosing a pricing tier (or SKU). In the Azure portal, tier is specified in the **Select Pricing Tier** page when you create the service. In PowerShell or Azure CLI, the tier is specified through the `-Sku` parameter.
 
-The tier determines:
+The tier determines the:
 
-+ Maximum number of indexes and other objects allowed on the service
-+ Size and speed of partitions (physical storage)
-+ Billable rate as a fixed monthly cost, but also an incremental cost if you add capacity
++ Maximum number of indexes and other objects allowed on the service.
++ Size and speed of partitions (physical storage).
++ Billable rate as a fixed monthly cost, but also an incremental cost if you add capacity.
++ Workload characteristics. Some tiers are optimized for specific workloads.
 
-In a few instances, the tier you choose determines the availability of [premium features](#premium-features).
+In a few instances, the tier you choose determines the availability of [premium features](#feature-availability-by-tier).
 
-Billing rates are shown in the portal's **Select Pricing Tier** page. You can check the [pricing page](https://azure.microsoft.com/pricing/details/search/) for regional rates and review [Plan and manage costs](search-sku-manage-costs.md) to learn more about the billing model.
+Billing rates are shown in the Azure portal's **Select Pricing Tier** page. You can check the [pricing page](https://azure.microsoft.com/pricing/details/search/) for regional rates and review [Plan and manage costs](search-sku-manage-costs.md) to learn more about the billing model.
 
 > [!NOTE]
-> Search services created after April 3, 2024 have larger partitions and higher vector quotas at almost every tier. For more information, see [service limits](search-limits-quotas-capacity.md#after-april-3-2024).
+> Search services created after April 3, 2024 have larger partitions and higher vector quotas at almost every tier. For more information, see [Service limits](search-limits-quotas-capacity.md#service-limits).
 
 ## Tier descriptions
 
-Tiers include **Free**, **Basic**, **Standard**, and **Storage Optimized**. Standard and Storage Optimized are available with several configurations and capacities. The following screenshot from Azure portal shows the available tiers, minus pricing (which you can find in the portal and on the [pricing page](https://azure.microsoft.com/pricing/details/search/)). 
+Tiers include **Free**, **Basic**, **Standard**, and **Storage Optimized**. Standard and Storage Optimized are available with several configurations and capacities. The following screenshot from Azure portal shows the available tiers, minus pricing (which you can find in the Azure portal and on the [pricing page](https://azure.microsoft.com/pricing/details/search/)).
 
-:::image type="content" source="media/search-sku-tier/tiers.png" alt-text="Pricing tier chart" border="true":::
+:::image type="content" source="media/search-sku-tier/tiers.png" lightbox="media/search-sku-tier/tiers.png" alt-text="Pricing tier chart" border="true":::
 
-**Free** creates a [limited search service](search-limits-quotas-capacity.md#subscription-limits) for smaller projects, like running tutorials and code samples. Internally, system resources are shared among multiple subscribers. You can't scale a free service, run significant workloads, and some premium features aren't available. You can only have one free search service per Azure subscription.
+**Free** creates a [limited search service](search-limits-quotas-capacity.md#subscription-limits) for smaller projects, like running tutorials and code samples. Internally, system resources are shared among multiple subscribers. You can't scale a free service, run significant workloads, and some premium features aren't available. You can only have one free search service per Azure subscription. If the service is inactive for an extended period of time, it might be deleted to free up capacity, especially if the region is under capacity constraints.
 
 The most commonly used billable tiers include:
 
-+ **Basic** has the ability to meet SLA with its support for three replicas. 
++ **Basic** has the ability to meet SLA with its support for three replicas.
 
 + **Standard (S1, S2, S3)** is the default. It gives you more flexibility in scaling for workloads. You can scale both partitions and replicas. With dedicated resources under your control, you can deploy larger projects, optimize performance, and increase capacity.
 
@@ -47,39 +48,33 @@ Some tiers are designed for certain types of work:
 
 + **Standard 3 High Density (S3 HD)** is a *hosting mode* for S3, where the underlying hardware is optimized for a large number of smaller indexes and is intended for multitenancy scenarios. S3 HD has the same per-unit charge as S3, but the hardware is optimized for fast file reads on a large number of smaller indexes.
 
-+ **Storage Optimized (L1, L2)** tiers offer larger storage capacity at a lower price per TB than the Standard tiers. These tiers are designed for large indexes that don't change very often. The primary tradeoff is higher query latency, which you should validate for your specific application requirements. 
++ **Storage Optimized (L1, L2)** tiers offer larger storage capacity at a lower price per TB than the Standard tiers. These tiers are designed for large indexes that don't change very often. The primary tradeoff is higher query latency, which you should validate for your specific application requirements.
 
-You can find out more about the various tiers on the [pricing page](https://azure.microsoft.com/pricing/details/search/), in the [Service limits in Azure AI Search](search-limits-quotas-capacity.md) article, and on the portal page when you're provisioning a service.
+You can find out more about the various tiers on the [pricing page](https://azure.microsoft.com/pricing/details/search/), in the [Service limits in Azure AI Search](search-limits-quotas-capacity.md) article, and on the Azure portal page when you're provisioning a service.
 
 ## Region availability by tier
 
-Currently, several regions are at capacity for Basic and Standard (S1) tiers and can't be used for new search services. If you use the Azure portal to create a search service, the portal excludes any region-tier combinations that aren't available.
+The supported [regions list](search-region-support.md) provides the locations where Azure AI Search is offered.
 
-| Region | Disabled tier (SKU) due to over-capacity |
-|--------|------------------------------------------|
-| Japan East | Basic, Standard (S1) |
-| Qatar Central | Basic, Standard (S1) |
-| North Europe | Basic, Standard (S1) |
-| West Europe | All tiers |
-| Central US | Basic, Standard (S1) |
-| South Central US | Basic, Standard (S1) |
-| West US 2 | Basic, Standard (S1) |
-| West US 3| Basic, Standard (S1) |
+Currently, several regions are capacity-constrained for specific tiers and can't be used for new search services. If you use the Azure portal to create a search service, the Azure portal excludes any region-tier combinations that aren't available.
 
-<a name="premium-features"></a>
+| Region | Disabled tier (SKU) due to over-capacity | Suggested alternative |
+|--------|------------------------------------------|-----------------------|
+| North Europe | S2, S3, L1, L2 | Sweden Central, West Europe|
 
 ## Feature availability by tier
 
-Most features are available on all tiers, including the free tier. In a few cases, the tier determines the availability of a feature. The following table describes the constraints.
+Most features are available on all tiers, including the Free tier. In a few cases, the tier determines the availability of a feature. The following table describes the constraints.
 
-| Feature | Limitations |
-|---------|-------------|
+| Feature | Tier considerations |
+|---------|---------------------|
 | [indexers](search-indexer-overview.md) | Indexers aren't available on S3 HD. Indexers have [more limitations](search-limits-quotas-capacity.md#indexer-limits) on the free tier. |
+| [indexer `executionEnvironment` configuration parameter](search-how-to-create-indexers.md?tabs=indexer-rest#create-an-indexer) | The ability to pin all indexer processing to just the search clusters allocated to your search service requires S2 and higher. |
 | [AI enrichment](cognitive-search-concept-intro.md) | Runs on the Free tier but not recommended. |
 | [Managed or trusted identities for outbound (indexer) access](search-howto-managed-identities-data-sources.md) | Not available on the Free tier.|
 | [Customer-managed encryption keys](search-security-manage-encryption-keys.md) | Not available on the Free tier. |
 | [IP firewall access](service-configure-firewall.md) | Not available on the Free tier. |
-| [Private endpoint (integration with Azure Private Link)](service-create-private-endpoint.md) | For inbound connections to a search service, not available on the Free tier. <br>For outbound connections by indexers to other Azure resources, not available on Free or S3 HD. <br>For indexers that use skillsets, not available on Free, Basic, S1, or S3 HD.| 
+| [Private endpoint (integration with Azure Private Link)](service-create-private-endpoint.md) | For inbound connections to a search service, not available on the Free tier. <br>For outbound connections by indexers to other Azure resources, not available on Free or S3 HD. <br>For indexers that use skillsets, not available on Free, Basic, S1, or S3 HD.|
 | [Availability Zones](search-reliability.md) | Not available on the Free or Basic tier. |
 | [Semantic ranker](semantic-search-overview.md) | Not available on the Free tier. |
 
@@ -87,14 +82,14 @@ Resource-intensive features might not work well unless you give it sufficient ca
 
 ## Upper limits
 
-Tiers determine the  maximum storage of the service itself, plus the maximum number of indexes, indexers, data sources, skillsets, and synonym maps that you can create. For a full break out of all limits, see [Service limits in Azure AI Search](search-limits-quotas-capacity.md). 
+Tiers determine the  maximum storage of the service itself, plus the maximum number of indexes, indexers, data sources, skillsets, and synonym maps that you can create. For a full break out of all limits, see [Service limits in Azure AI Search](search-limits-quotas-capacity.md).
 
 ## Partition size and speed
 
 Tier pricing includes details about per-partition storage that ranges from 15 GB for Basic, up to 2 TB for Storage Optimized (L2) tiers. Other hardware characteristics, such as speed of operations, latency, and transfer rates, aren't published, but tiers that are designed for specific solution architectures are built on hardware that has the features to support those scenarios. For more information about partitions, see [Estimate and manage capacity](search-capacity-planning.md) and [Reliability in Azure AI Search](search-reliability.md).
 
 > [!NOTE]
-> Higher capacity partitions became available in selected regions starting in April 2024. A second wave of higher capacity partitions released in May 2024. If you're using an older search service, consider creating a new search service to benefit from more capacity at the same billing rate. For more information, see [Service limits](search-limits-quotas-capacity.md#service-limits)
+> Higher capacity partitions became available in select regions in April 2024. A second wave of higher capacity partitions was released in May 2024. If you have an older search service, you might be able to [upgrade your service](search-how-to-upgrade.md) to benefit from more capacity at the same billing rate.
 
 ## Billing rates
 
@@ -108,22 +103,30 @@ The following example provides an illustration. Assume a hypothetical billing ra
 
 This billing model is based on the concept of applying the billing rate to the number *search units* (SU) used by a search service. All services are initially provisioned at one SU, but you can increase the SUs by adding either partitions or replicas to handle larger workloads. For more information, see [How to estimate costs of a search service](search-sku-manage-costs.md).
 
-## Tier upgrade or downgrade
+## Tier changes
 
-There is no built-in support to upgrade or downgrade tiers. If you want to switch to a different tier, the approach is:
+Services can be switched between Basic and Standard (S1, S2, and S3) tiers. Currently, you can only switch from a lower tier to a higher tier, such as going from Basic to S1. Your region also can't have capacity constraints on the higher tier. For more information, see [Change your pricing tier](search-capacity-planning.md#change-your-pricing-tier).
 
-+ Create a new search service at the new tier.
+If you want to switch to a lower tier or to a different tier than those previously listed, the approach is:
 
-+ Deploy your search content onto the new service. [Follow this checklist](search-howto-move-across-regions.md#prepare-and-move) to make sure you have all of the content.
+1. Create a new search service at the new tier.
 
-+ Delete the old search service once you're sure it's no longer needed.
+1. Deploy your search content onto the new service. [Follow this checklist](search-howto-move-across-regions.md#prepare-and-move) to make sure you have all of the content.
 
-For large indexes that you don't want to rebuild from scratch, consider using the [backup and restore sample](https://github.com/Azure-Samples/azure-search-dotnet-utilities/blob/main/index-backup-restore/README.md) to move them.
+1. Delete the old search service when you're sure it's no longer needed.
+
+For large indexes that you don't want to rebuild from scratch, consider using one of the backup and restore samples to move them:
+
++ [Backup and restore sample (C#)](https://github.com/Azure-Samples/azure-search-dotnet-utilities/blob/main/index-backup-restore/README.md)
++ [Backup and restore sample (Python)](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/utilities/index-backup-restore/azure-search-backup-and-restore.ipynb)
++ [Largest index backup and restore (Python)](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/utilities/resumable-index-backup-restore/backup-and-restore.ipynb)
 
 ## Next steps
 
-The best way to choose a pricing tier is to start with a least-cost tier, and then allow experience and testing inform your decision to keep the service or create a new one at a higher tier. For next steps, we recommend that you create a search service at a tier that can accommodate the level of testing you propose to do, and then review the following guidance for recommendations on estimating cost and capacity.
+The best way to choose a pricing tier is to start with a least-cost tier, and then allow experience and testing to inform your decision to keep the service or switch to a higher tier.
+
+For next steps, we recommend that you create a search service at a tier that can accommodate the level of testing you propose to do, and then review the following guidance on estimating cost and capacity:
 
 + [Create a search service](search-create-service-portal.md)
 + [Estimate costs](search-sku-manage-costs.md)
-+ [Estimate capacity](search-sku-manage-costs.md)
++ [Estimate capacity](search-capacity-planning.md)

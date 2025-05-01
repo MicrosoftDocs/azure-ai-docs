@@ -1,18 +1,22 @@
 ---
 title: Overview of Responsible use of AI
 titleSuffix: Azure AI services
-description: Azure AI services provides information and guidelines on how to responsibly use our AI services in applications. Below are the links to articles that provide this guidance for the different services within the Azure AI services suite.
+description: Learn how to responsibly use Azure AI services with guidelines and links to articles for different services within the Azure AI suite.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: conceptual
-ms.date: 01/20/2024
+ms.date: 10/16/2024
 ms.author: pafarley
 ---
 
 # Responsible use of AI with Azure AI services
 
-Azure AI services provides information and guidelines on how to responsibly use artificial intelligence in applications. Below are the links to articles that provide this guidance for the different services within the Azure AI services suite. 
+Azure AI services provides information and guidelines on how to responsibly use artificial intelligence in applications. Below are the links to articles that provide this guidance for the specific services within the Azure AI services suite. 
+
+## Generative AI
+- [Azure OpenAI](/legal/cognitive-services/openai/transparency-note?context=/azure/ai-services/openai/context/context)
+- [Azure AI Content Safety](/legal/cognitive-services/content-safety/transparency-note?context=%2Fazure%2Fai-services%2Fcontent-safety%2Fcontext%2Fcontext)
 
 ## Vision
 - [Azure AI Vision - Image Analysis](/legal/cognitive-services/computer-vision/imageanalysis-transparency-note?context=/azure/ai-services/computer-vision/context/context)
@@ -48,8 +52,6 @@ Azure AI services provides information and guidelines on how to responsibly use 
 - [Azure AI Search](/legal/search/transparency-note?context=%2Fazure%2Fsearch%2Fcontext%2Fcontext&tabs=enrichment)
 
 ## Other
-- [Azure OpenAI](/legal/cognitive-services/openai/transparency-note?context=/azure/ai-services/openai/context/context)
-- [Azure AI Content Safety](/legal/cognitive-services/content-safety/transparency-note?context=%2Fazure%2Fai-services%2Fcontent-safety%2Fcontext%2Fcontext)
 - [Azure AI Document Intelligence](/legal/cognitive-services/document-intelligence/transparency-note?toc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Ftoc.json&bc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Fbreadcrumb%2Ftoc.json)
 - [Anomaly Detector](/legal/cognitive-services/anomaly-detector/ad-transparency-note?context=/azure/ai-services/anomaly-detector/context/context)
 - [Personalizer](./personalizer/responsible-use-cases.md)

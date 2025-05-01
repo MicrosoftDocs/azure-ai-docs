@@ -17,6 +17,8 @@ ms.custom: UpdateFrequency5, devx-track-python, automl, sdkv1
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this guide, learn how to set up an automated machine learning, AutoML, training run with the [Azure Machine Learning Python SDK](/python/api/overview/azure/ml/intro) using Azure Machine Learning automated ML. Automated ML picks an algorithm and hyperparameters for you and generates a model ready for deployment. This guide provides details of the various options that you can use to configure automated ML experiments.
 
 For an end to end example, see [Tutorial: AutoML- train regression model](how-to-auto-train-models-v1.md).
@@ -109,7 +111,7 @@ If you do not explicitly specify a `validation_data` or `n_cross_validation` par
 > [!TIP] 
 > You can upload **test data (preview)** to evaluate models that automated ML generated for you. These features are  [experimental](/python/api/overview/azure/ml/#stable-vs-experimental) preview capabilities, and may change at any time.
 > Learn how to: 
-> * [Pass in test data to your AutoMLConfig object](how-to-configure-cross-validation-data-splits.md#provide-test-data-preview). 
+> * [Pass in test data to your AutoMLConfig object](how-to-configure-cross-validation-data-splits.md#provide-test-dataset-preview). 
 > * [Test the models automated ML generated for your experiment](#test-models-preview).
 >  
 > If you prefer a no-code experience, see [step 12 in Set up AutoML with the studio UI](../how-to-use-automated-ml-for-ml-models.md#create-and-run-experiment)
@@ -316,7 +318,7 @@ To alter the default ensemble behavior, there are multiple default arguments tha
 
 > [!IMPORTANT]
 >  The following parameters aren't explicit parameters of the AutoMLConfig class. 
-* `ensemble_download_models_timeout_sec`: During **VotingEnsemble** and **StackEnsemble** model generation, multiple fitted models from the previous child runs are downloaded. If you encounter this error: `AutoMLEnsembleException: Could not find any models for running ensembling`, then you may need to provide more time for the models to be downloaded. The default value is 300 seconds for downloading these models in parallel and there is no maximum timeout limit. Configure this parameter with a higher value than 300 secs, if more time is needed. 
+* `ensemble_download_models_timeout_sec`: During **VotingEnsemble** and **StackEnsemble** model generation, multiple fitted models from the previous child runs are downloaded. If you encounter this error: `AutoMLEnsembleException: Could not find any models for running ensembling`, then you might need to provide more time for the models to be downloaded. The default value is 300 seconds for downloading these models in parallel and there is no maximum timeout limit. Configure this parameter with a higher value than 300 secs, if more time is needed. 
 
   > [!NOTE]
   >  If the timeout is reached and there are models downloaded, then the ensembling proceeds with as many models it has downloaded. It's not required that all the models need to be downloaded to finish within that timeout.
@@ -446,10 +448,10 @@ RunDetails(run).show()
 > This feature is not available for the following automated ML scenarios
 >  * [Computer vision tasks](../how-to-auto-train-image-models.md)
 >  * [Many models and hiearchical time series forecasting training (preview)](../how-to-auto-train-forecast.md)
->  * [Forecasting tasks where deep learning neural networks (DNN) are enabled](../how-to-auto-train-forecast.md#enable-deep-learning)
+>  * [Forecasting tasks where deep learning neural networks (DNN) are enabled](../how-to-auto-train-forecast.md#enable-learning-for-deep-neural-networks)
 >  * [Automated ML runs from local computes or Azure Databricks clusters](../how-to-configure-auto-train.md#compute-to-run-experiment)
 
-Passing the `test_data` or `test_size` parameters into the `AutoMLConfig`, automatically triggers a remote test run that uses the provided test data to evaluate the best model that automated ML recommends upon completion of the experiment. This remote test run is done at the end of the experiment, once the best model is determined. See how to [pass test data into your `AutoMLConfig`](how-to-configure-cross-validation-data-splits.md#provide-test-data-preview). 
+Passing the `test_data` or `test_size` parameters into the `AutoMLConfig`, automatically triggers a remote test run that uses the provided test data to evaluate the best model that automated ML recommends upon completion of the experiment. This remote test run is done at the end of the experiment, once the best model is determined. See how to [pass test data into your `AutoMLConfig`](how-to-configure-cross-validation-data-splits.md#provide-test-dataset-preview). 
 
 ### Get test job results 
 

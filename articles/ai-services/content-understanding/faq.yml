@@ -1,0 +1,69 @@
+### YamlMime:FAQ
+metadata:
+  title: Azure AI Content Understanding FAQ
+  description: Get answers to frequently asked questions about the Document Intelligence service.
+  author: laujan
+  manager: nitinme
+  ms.service: azure-ai-content-understanding
+  ms.topic: faq
+  ms.date: 04/14/2025
+  ms.author: lajanuar
+title: Frequently asked questions
+summary: |
+
+ Find answers to commonly asked questions about Azure AI Content Understanding
+sections:
+  - name: Overview
+    questions:
+      - question: |
+         What is Content Understanding
+        answer: |
+          Content Understanding is a new Azure AI Service designed to generate structured insights from unstructured content using artificial intelligence. It provides consistent experience to extract content or a structured schema from audio, video, images, documents, or text inputs.
+      - question: |
+         How does Content Understanding work?
+        answer: |
+          Content Understanding utilizes Generative AI models to analyze and interpret various forms of unstructured content. It integrates data from different modalities (for example, text, images, audio) to generate a cohesive and structured output. The service uses machine learning models trained on diverse datasets and generative AI models to ensure high accuracy and relevance in the insights provided.
+      - question: |
+         What types of unstructured content can Content Understanding process?
+        answer: |
+          Content Understanding can process a wide range of unstructured content, including but not limited to:
+          * Audio recordings
+          * Video content
+          * Documents
+          * Text content
+          * Images
+      - question: |
+         What are the key benefits of using Content Understanding?
+        answer: |
+          The key benefits of using Content Understanding include:
+          * Confidence scores: Ensure the accuracy of extracted values while minimizing the cost of human review.
+          * Defined schema: Define a schema to ensure the extracted values align with intended use.
+          * Quality improvements over time: The service provides capabilities to improve the quality of the schema extracted.
+          * Improved decision-making: Structured insights help organizations make informed decisions quickly and effectively.
+          * Increased efficiency: Automating the analysis of unstructured content saves time and reduces the manual effort required.
+          * Scalability: The service can handle large volumes of data, making it suitable for organizations of all sizes.
+      - question: |
+         How can businesses use Content Understanding?
+        answer: |
+          Businesses can use Content Understanding in various ways, such as:
+          * Automation: Automate processing of content to extract a defined schema. Call center, documents, and other similar scenarios.
+          * Content cataloging: managing a large corpus of digital assets.
+          * Customer sentiment analysis: Understanding customer feedback from reviews, social media, and support interactions.
+          * Market research: Analyzing trends and patterns from diverse data sources to inform business strategies.
+          * Operational insights: Gain insights from internal documents, emails, and other unstructured data to improve operations.
+      - question: |
+         Is Content Understanding easy to integrate with existing systems?
+        answer: |
+          Yes, Content Understanding easily integrates with existing systems and workflows. The service offers a set of easy-to-use APIs that can be integrated into any application.
+      - question: |
+         What security measures are in place to protect data processed by Content Understanding?
+        answer: |
+         Azure AI Services, including Content Understanding, adheres to strict security and compliance standards to ensure data protection. These measures include data encryption, secure access controls, and compliance with industry regulations such as GDPR and HIPAA. The service also adheres to Microsoft’s responsible use of AI.
+      - question: |
+         What base models does Azure AI Content Understanding use?
+        answer: |
+          Content Understanding uses various models and capabilities from Azure OpenAI, Azure AI Speech, Vision, and Language to support single- modality and multi-modal scenarios. The service determines the selection of base models appropriate for each scenario.
+      - question: |
+         What are the pricing tier options for Content Understanding
+        answer: |
+          Content Understanding only supports Standard S0 pricing tier. See more details on the [**Content Understanding pricing page**](https://azure.microsoft.com/pricing/details/content-understanding/).

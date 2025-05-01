@@ -7,7 +7,7 @@ metadata:
   author: mrbullwinkle
   ms.author: mbullwin
   manager: nitinme
-  ms.date: 02/16/2024
+  ms.date: 03/27/2025
   ms.service: azure-ai-openai
   ms.topic: how-to
   ms.custom:
@@ -55,7 +55,7 @@ procedureSection:
           
       client = AzureOpenAI(
           api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-          api_version="2023-12-01-preview",
+          api_version="2024-07-01-preview",
           azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT")
       )
       ```
@@ -103,7 +103,7 @@ procedureSection:
           DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
       )
 
-      api_version = "2023-12-01-preview"
+      api_version = "2024-07-01-preview"
       endpoint = "https://my-resource.openai.azure.com"
 
       client = AzureOpenAI(
@@ -139,12 +139,12 @@ procedureSection:
       )
 
       chat_completion = client.chat.completions.create(
-          model="gpt-4",
+          model="gpt-4o",
           messages="<messages>"
       )
 
       embedding = client.embeddings.create(
-          model="text-embedding-ada-002",
+          model="text-embedding-3-large",
           input="<input>"
       )
       ```
@@ -159,12 +159,12 @@ procedureSection:
       )
 
       chat_completion = client.chat.completions.create(
-          model="gpt-35-turbo", # model = "deployment_name".
+          model="gpt-4o", # model = "deployment_name".
           messages="<messages>"
       )
 
       embedding = client.embeddings.create(
-          model="text-embedding-ada-002", # model = "deployment_name".
+          model="text-embedding-3-large", # model = "deployment_name".
           input="<input>"
       )
       ```
@@ -190,7 +190,7 @@ procedureSection:
 
       embedding = client.embeddings.create(
           input=inputs,
-          model="text-embedding-ada-002"
+          model="text-embedding-3-large"
       )
 
 
@@ -204,7 +204,7 @@ procedureSection:
 
       embedding = client.embeddings.create(
           input=inputs,
-          model="text-embedding-ada-002" # This must match the custom deployment name you chose for your model.
+          model="text-embedding-3-large" # This must match the custom deployment name you chose for your model.
           # engine="text-embedding-ada-002"
       )
 
@@ -215,11 +215,11 @@ procedureSection:
       </table>
 
 relatedContent:
-  - text: Learn more about how to work with GPT-35-Turbo and the GPT-4 models with our how-to guide
+  - text: Learn more about how to work with chat completions models with our how-to guide
     url: ../how-to/chatgpt.md
   - text: For more examples, check out the Azure OpenAI Samples GitHub repository
-    url: https://aka.ms/AOAICodeSamples
+    url: https://github.com/Azure-Samples/openai
 
 
 # Learn more about how to work with GPT-35-Turbo and the GPT-4 models with [our how-to guide](../how-to/chatgpt.md).
-# For more examples, check out the [Azure OpenAI Samples GitHub repository](https://aka.ms/AOAICodeSamples)
+# For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai)

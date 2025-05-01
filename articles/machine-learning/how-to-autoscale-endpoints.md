@@ -455,7 +455,10 @@ The following steps continue the rule configuration on the __Custom autoscale__ 
 
 ## Find IDs for supported metrics
 
-If you want to use other metrics in code to set up autoscale rules by using the Azure CLI or the SDK, see the table in [Available metrics](how-to-monitor-online-endpoints.md#available-metrics).
+You can use other metrics when you use the Azure CLI or the SDK to set up autoscale rules.
+
+- For the names of endpoint metrics to use in code, see the values in the __Name in REST API__ column in the table in [Supported metrics for Microsoft.MachineLearningServices/workspaces/onlineEndpoints](monitor-azure-machine-learning-reference.md#supported-metrics-for-microsoftmachinelearningservicesworkspacesonlineendpoints).
+- For the names of deployment metrics to use in code, see the values in the __Name in REST API__ column in the tables in [Supported metrics for Microsoft.MachineLearningServices/workspaces/onlineEndpoints/deployments](monitor-azure-machine-learning-reference.md#supported-metrics-for-microsoftmachinelearningservicesworkspacesonlineendpointsdeployments).
 
 ## Create scale rule based on schedule
 

@@ -61,7 +61,7 @@ sections:
           * Bugs in the features sent - such as sending non-aggregated feature data such as timestamps to Rank API
           * Bugs with loop processing - such as not sending reward data to Reward API for events
           
-          To address these issues, you may need to make adjustments by either changing the features sent to the loop, or ensuring that the reward score is accurately capturing the value of the action returned by the Rank API call.
+          To address these issues, you might need to make adjustments by either changing the features sent to the loop, or ensuring that the reward score is accurately capturing the value of the action returned by the Rank API call.
           
       - question: |
           The learning loop doesn't seem to learn effectively or quickly. How do I fix this?

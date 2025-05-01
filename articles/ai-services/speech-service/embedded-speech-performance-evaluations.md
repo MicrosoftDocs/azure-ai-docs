@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/18/2024
+ms.date: 3/10/2025
 ms.author: eur
 ---
 
@@ -80,3 +80,9 @@ Running the sample yields performance metrics outputted to the console. The full
 |--------|-------------|-------|
 | RealTimeFactor | Measures how much faster than real-time the embedded speech engine is processing audio. Includes audio loading time. | Values greater than `1` indicate that the engine is processing audio slower than real-time. Values less than `1` indicate the engine is processing audio faster than real-time. This value should only be analyzed in file-based input mode. It shouldn't be analyzed in streaming input mode. |
 | StreamingRealTimeFactor | Measures how much faster than real-time the engine is processing audio. Excludes audio loading time.  | Values greater than `1` indicate that the engine is processing audio slower than real-time. Values less than `1` indicate the engine is processing audio faster than real-time. |
+
+
+## Related content
+
+- [Read about text to speech on devices for disconnected and hybrid scenarios](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/azure-neural-tts-now-available-on-devices-for-disconnected-and/ba-p/3716797)
+- [Limited Access to embedded Speech](/legal/cognitive-services/speech-service/embedded-speech/limited-access-embedded-speech?context=/azure/ai-services/speech-service/context/context)

@@ -6,19 +6,21 @@ description: Apply filter criteria to include or exclude content before text que
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
-ms.topic: conceptual
-ms.date: 02/22/2024
+ms.service: azure-ai-search
+ms.topic: concept-article
+ms.date: 03/11/2025
 ms.custom:
   - devx-track-csharp
   - ignite-2023
 ---
 
-# Filters in text queries
+# Filters in keyword search
 
-A *filter* provides value-based criteria for including or excluding content before query execution. For example, including or excluding documents based on dates, locations, or language. Filters are specified on individual fields. A field definition must be attributed as "filterable" if you want to use it in filter expressions.
+A *filter* provides value-based criteria for including or excluding content before query execution for keyword search, or before or after query execution for vector search. Filters are applied to nonvector fields, but can be used in vector search if documents include nonvector fields. For example, for indexes organized around chunked content, you might have parent-level fields or metadata fields that can be filtered.
 
-A filter is specified using [OData filter expression syntax](search-query-odata-filter.md). In contrast with full text search, a filter succeeds only if the match is exact.
+This article explains filtering for keyword search. For more information about vectors, see [Add a filter in a vector query](vector-search-filters.md).
+
+A filter is specified using [OData filter expression syntax](search-query-odata-filter.md). In contrast with keyword and vector search, a filter succeeds only if the match is exact.
 
 ## When to use a filter
 
@@ -42,7 +44,9 @@ At query time, a filter parser accepts criteria as input, converts the expressio
 
 Filtering occurs in tandem with search, qualifying which documents to include in downstream processing for document retrieval and relevance scoring. When paired with a search string, the filter effectively reduces the recall set of the subsequent search operation. When used alone (for example, when the query string is empty where `search=*`), the filter criteria is the sole input. 
 
-## Defining filters
+## How filters are defined
+
+Filters apply to text and numeric (nonvector) content on fields that are attributed as `filterable`.
 
 Filters are OData expressions, articulated in the [filter syntax](search-query-odata-filter.md) supported by Azure AI Search.
 
@@ -110,9 +114,9 @@ The following examples illustrate several usage patterns for filter scenarios. F
 
 ## Field requirements for filtering
 
-In the REST API, filterable is *on* by default for simple fields. Filterable fields increase index size; be sure to set `"filterable": false` for fields that you don't plan to actually use in a filter. For more information about settings for field definitions, see [Create Index](/rest/api/searchservice/create-index).
+In the REST API, filterable is *on* by default for simple fields. Filterable fields increase index size; be sure to set `"filterable": false` for fields that you don't plan to actually use in a filter. For more information about settings for field definitions, see [Create Index](/rest/api/searchservice/indexes/create).
 
-In the .NET SDK, the filterable is *off* by default. You can make a field filterable by setting the [IsFilterable property](/dotnet/api/azure.search.documents.indexes.models.searchfield.isfilterable) of the corresponding [SearchField](/dotnet/api/azure.search.documents.indexes.models.searchfield) object to `true`. In the next example, the attribute is set on the `Rating` property of a model class that maps to the index definition.
+In the Azure SDKs, filterable is *off* by default. You can make a field filterable by setting the [IsFilterable property](/dotnet/api/azure.search.documents.indexes.models.searchfield.isfilterable) of the corresponding [SearchField](/dotnet/api/azure.search.documents.indexes.models.searchfield) object to `true`. In the next example, the attribute is set on the `Rating` property of a model class that maps to the index definition.
 
 ```csharp
 [SearchField(IsFilterable = true, IsSortable = true, IsFacetable = true)]
@@ -147,7 +151,7 @@ Documents that contain numeric fields (price, size, SKU, ID) provide those value
 
 ## Next steps
 
-First, try **Search explorer** in the portal to submit queries with **$filter** parameters. The [real-estate-sample index](search-get-started-portal.md) provides interesting results for the following filtered queries when you paste them into the search bar:
+First, try **Search explorer** in the Azure portal to submit queries with **$filter** parameters. The [real-estate-sample index](search-get-started-portal.md) provides interesting results for the following filtered queries when you paste them into the search bar:
 
 ```http
 # Geo-filter returning documents within 5 kilometers of Redmond, Washington state
@@ -175,7 +179,7 @@ To work with more examples, see [OData Filter Expression Syntax > Examples](./se
 ## See also
 
 + [How full text search works in Azure AI Search](search-lucene-query-architecture.md)
-+ [Search Documents REST API](/rest/api/searchservice/search-documents)
++ [Search Documents REST API](/rest/api/searchservice/documents/search-post)
 + [Simple query syntax](/rest/api/searchservice/simple-query-syntax-in-azure-search)
 + [Lucene query syntax](/rest/api/searchservice/lucene-query-syntax-in-azure-search)
 + [Supported data types](/rest/api/searchservice/supported-data-types)

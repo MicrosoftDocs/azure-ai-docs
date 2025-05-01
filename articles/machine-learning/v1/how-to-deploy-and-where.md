@@ -1,14 +1,14 @@
 ---
 title: Deploy machine learning models
 titleSuffix: Azure Machine Learning
-description: 'Learn how and where to deploy machine learning models. Deploy to Azure Container Instances, Azure Kubernetes Service, and FPGA.'
+description: 'Learn how and where to deploy machine learning models. Deploy to Azure Container Instances, and Azure Kubernetes Service.'
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.reviewer: None
 author: Blackmist
 ms.author: larryfr
-ms.date: 11/16/2022
+ms.date: 03/06/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, deploy, devx-track-azurecli, mktng-kw-nov2021, cliv1, sdkv1
 adobe-target: true
@@ -18,6 +18,8 @@ adobe-target: true
 # Deploy machine learning models to Azure
 
 [!INCLUDE [sdk & cli v1](../includes/machine-learning-dev-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 Learn how to deploy your machine learning or deep learning model as a web service in the Azure cloud.
 
@@ -46,13 +48,13 @@ For more information on the concepts involved in the machine learning deployment
 [!INCLUDE [cli10-only](../includes/machine-learning-cli-v1-deprecation.md)]
 
 - An Azure Machine Learning workspace. For more information, see [Create workspace resources](../quickstart-create-resources.md).
-- A model. The examples in this article use a pre-trained model.
+- A model. The examples in this article use a pretrained model.
 - A machine that can run Docker, such as a [compute instance](../how-to-create-compute-instance.md).
 
 # [Python SDK](#tab/python)
 
 - An Azure Machine Learning workspace. For more information, see [Create workspace resources](../quickstart-create-resources.md).
-- A model. The examples in this article use a pre-trained model.
+- A model. The examples in this article use a pretrained model.
 - The [Azure Machine Learning software development kit (SDK) for Python](/python/api/overview/azure/ml/intro).
 - A machine that can run Docker, such as a [compute instance](../how-to-create-compute-instance.md).
 ---
@@ -92,16 +94,16 @@ For more information on using the SDK to connect to a workspace, see the [Azure 
 A typical situation for a deployed machine learning service is that you need the following components:
     
 + Resources representing the specific model that you want deployed (for example: a pytorch model file).
-+ Code that you will be running in the service that executes the model on a given input.
++ Code that runs in the service and executes the model on a given input.
 
-Azure Machine Learnings allows you to separate the deployment into two separate components, so that you can keep the same code, but merely update the model. We define the mechanism by which you upload a model _separately_ from your code as "registering the model".
+Azure Machine Learnings allows you to separate the deployment into two separate components, so that you can keep the same code, but merely update the model. We define the mechanism by which you upload a model _separately_ from your code as "registering the model."
 
 When you register a model, we upload the model to the cloud (in your workspace's default storage account) and then mount it to the same compute where your webservice is running.
 
 The following examples demonstrate how to register a model.
 
 > [!IMPORTANT]
-> You should use only models that you create or obtain from a trusted source. You should treat serialized models as code, because security vulnerabilities have been discovered in a number of popular formats. Also, models might be intentionally trained with malicious intent to provide biased or inaccurate output.
+> You should use only models that you create or obtain from a trusted source. You should treat serialized models as code, because security vulnerabilities have been discovered in many popular formats. Also, models might be intentionally trained with malicious intent to provide biased or inaccurate output.
 
 # [Azure CLI](#tab/azcli)
 
@@ -176,11 +178,11 @@ For more information, see the documentation for the [Model class](/python/api/az
     print(run.model_id)
     ```
 
-    In this example, the `metric` and `iteration` parameters aren't specified, so the iteration with the best primary metric will be registered. The `model_id` value returned from the run is used instead of a model name.
+    In this example, the `metric` and `iteration` parameters aren't specified, so the iteration with the best primary metric is registered. The `model_id` value returned from the run is used instead of a model name.
 
     For more information, see the [AutoMLRun.register_model](/python/api/azureml-train-automl-client/azureml.train.automl.run.automlrun#register-model-model-name-none--description-none--tags-none--iteration-none--metric-none-) documentation.
 
-    To deploy a registered model from an `AutoMLRun`, we recommend doing so via the [one-click deploy button in Azure Machine Learning studio](../how-to-use-automated-ml-for-ml-models.md#deploy-your-model). 
+    To deploy a registered model from an `AutoMLRun`, we recommend doing so via the [one-select deploy button in Azure Machine Learning studio](../how-to-use-automated-ml-for-ml-models.md#deploy-your-model). 
 
 ---
 
@@ -189,10 +191,10 @@ For more information, see the documentation for the [Model class](/python/api/az
 > You can also register a model from a local file via the Workspace UI portal.
 >
 > Currently, there are two options to upload a local model file in the UI:
-> - **From local files**, which will register a v2 model.
-> - **From local files (based on framework)**, which will register a v1 model.
+> - **From local files**, which registers a v2 model.
+> - **From local files (based on framework)**, which registers a v1 model.
 >
->Note that only models registered via the **From local files (based on framework)** entrance (which are known as v1 models) can be deployed as webservices using SDKv1/CLIv1.
+>Only models registered via the **From local files (based on framework)** entrance (which are known as v1 models) can be deployed as webservices using SDKv1/CLIv1.
 
 ## Define a dummy entry script
 
@@ -207,18 +209,18 @@ For your initial deployment, use a dummy entry script that prints the data it re
 
 :::code language="python" source="~/azureml-examples-archive/v1/python-sdk/tutorials/deploy-local/source_dir/echo_score.py":::
 
-Save this file as `echo_score.py` inside of a directory called `source_dir`. This dummy script returns the data you send to it, so it doesn't use the model. But it is useful for testing that the scoring script is running.
+Save this file as `echo_score.py` inside of a directory called `source_dir`. This dummy script returns the data you send to it, so it doesn't use the model. But it's useful for testing that the scoring script is running.
 
 ## Define an inference configuration
 
-An inference configuration describes the Docker container and files to use when initializing your web service. All of the files within your source directory, including subdirectories, will be zipped up and uploaded to the cloud when you deploy your web service.
+An inference configuration describes the Docker container and files to use when initializing your web service. All of the files within your source directory, including subdirectories, is zipped up and uploaded to the cloud when you deploy your web service.
 
-The inference configuration below specifies that the machine learning deployment will use the file `echo_score.py` in the `./source_dir` directory to process incoming requests and that it will use the Docker image with the Python packages specified in the `project_environment` environment.
+The following inference configuration specifies that the machine learning deployment uses the file `echo_score.py` in the `./source_dir` directory to process incoming requests and that it uses the Docker image with the Python packages specified in the `project_environment` environment.
 
-You can use any [Azure Machine Learning inference curated environments](../concept-prebuilt-docker-images-inference.md#list-of-prebuilt-docker-images-for-inference) as the base Docker image when creating your project environment. We will install the required dependencies on top and store the resulting Docker image into the repository that is associated with your workspace.
+You can use any [Azure Machine Learning inference curated environments](../concept-prebuilt-docker-images-inference.md#list-of-prebuilt-docker-images-for-inference) as the base Docker image when creating your project environment. The required dependencies are installed on top. The resulting Docker image is stored into the repository that is associated with your workspace.
 
 > [!NOTE]
-> Azure machine learning [inference source directory](/python/api/azureml-core/azureml.core.model.inferenceconfig?view=azure-ml-py#constructor&preserve-view=true) upload does not respect **.gitignore** or **.amlignore**
+> Azure Machine Learning [inference source directory](/python/api/azureml-core/azureml.core.model.inferenceconfig?view=azure-ml-py#constructor&preserve-view=true) upload doesn't respect **.gitignore** or **.amlignore**
 
 # [Azure CLI](#tab/azcli)
 
@@ -235,7 +237,7 @@ Save this file with the name `dummyinferenceconfig.json`.
 
 # [Python SDK](#tab/python)
 
-The following example demonstrates how to create a minimal environment with no pip dependencies, using the dummy scoring script you defined above.
+The following example demonstrates how to create a minimal environment with no pip dependencies, using the dummy scoring script you defined previously.
 
 [!Notebook-python[] (~/azureml-examples-archive/v1/python-sdk/tutorials/deploy-local/1.deploy-local.ipynb?name=inference-configuration-code)]
 
@@ -248,9 +250,9 @@ For more information on inference configuration, see the [InferenceConfig](/pyth
 
 ## Define a deployment configuration
 
-A deployment configuration specifies the amount of memory and cores your webservice needs in order to run. It also provides configuration details of the underlying webservice. For example, a deployment configuration lets you specify that your service needs 2 gigabytes of memory, 2 CPU cores, 1 GPU core, and that you want to enable autoscaling.
+A deployment configuration specifies the amount of memory and cores your webservice needs in order to run. It also provides configuration details of the underlying webservice. For example, a deployment configuration lets you specify that your service needs 2 gigabytes of memory, 2 CPU cores, 1 GPU core, and enables autoscaling.
 
-The options available for a deployment configuration differ depending on the compute target you choose. In a local deployment, all you can specify is which port your webservice will be served on.
+The options available for a deployment configuration differ depending on the compute target you choose. In a local deployment, all you can specify is which port your webservice is served on.
 
 # [Azure CLI](#tab/azcli)
 
@@ -282,7 +284,7 @@ The following Python demonstrates how to create a local deployment configuration
 
 ## Deploy your machine learning model
 
-You are now ready to deploy your model. 
+You're now ready to deploy your model. 
 
 # [Azure CLI](#tab/azcli)
 
@@ -313,7 +315,7 @@ For more information, see the documentation for [Model.deploy()](/python/api/azu
 
 ## Call into your model
 
-Let's check that your echo model deployed successfully. You should be able to do a simple liveness request, as well as a scoring request:
+Let's check that your echo model deployed successfully. You should be able to do a liveness request, and a scoring request:
 
 # [Azure CLI](#tab/azcli)
 
@@ -417,7 +419,7 @@ curl -v -X POST -H "content-type:application/json" \
 
 ## Choose a compute target
 
-The compute target you use to host your model will affect the cost and availability of your deployed endpoint. Use this table to choose an appropriate compute target.
+The compute target you use to host your model affects the cost and availability of your deployed endpoint. Use this table to choose an appropriate compute target.
 
 | Compute target | Used for | GPU support | Description |
 | ----- | ----- | ----- | ----- | 
@@ -432,7 +434,7 @@ The compute target you use to host your model will affect the cost and availabil
 
 ## Deploy to cloud
 
-Once you've confirmed your service works locally and chosen a remote compute target, you are ready to deploy to the cloud. 
+Once you've confirmed your service works locally and chosen a remote compute target, you're ready to deploy to the cloud. 
 
 Change your deploy configuration to correspond to the compute target you've chosen, in this case Azure Container Instances:
 
@@ -495,7 +497,7 @@ For more information, see the documentation for [Model.deploy()](/python/api/azu
 
 ## Call your remote webservice
 
-When you deploy remotely, you may have key authentication enabled. The example below shows how to get your service key with Python in order to make an inference request.
+When you deploy remotely, you might have key authentication enabled. The example below shows how to get your service key with Python in order to make an inference request.
 
 [!Notebook-python[] (~/azureml-examples-archive/v1/python-sdk/tutorials/deploy-local/1.deploy-local.ipynb?name=call-remote-web-service-code)]
 
@@ -517,7 +519,7 @@ The following table describes the different service states:
 | ----- | ----- | ----- |
 | Transitioning | The service is in the process of deployment. | No |
 | Unhealthy | The service has deployed but is currently unreachable.  | No |
-| Unschedulable | The service cannot be deployed at this time due to lack of resources. | No |
+| Unschedulable | The service can't be deployed at this time due to lack of resources. | No |
 | Failed | The service has failed to deploy due to an error or crash. | Yes |
 | Healthy | The service is healthy and the endpoint is available. | Yes |
 
@@ -525,12 +527,12 @@ The following table describes the different service states:
 > When deploying, Docker images for compute targets are built and loaded from Azure Container Registry (ACR). By default, Azure Machine Learning creates an ACR that uses the *basic* service tier. Changing the ACR for your workspace to standard or premium tier may reduce the time it takes to build and deploy images to your compute targets. For more information, see [Azure Container Registry service tiers](/azure/container-registry/container-registry-skus).
 
 > [!NOTE]
-> If you are deploying a model to Azure Kubernetes Service (AKS), we advise you enable [Azure Monitor](/azure/azure-monitor/containers/container-insights-enable-existing-clusters) for that cluster. This will help you understand overall cluster health and resource usage. You might also find the following resources useful:
+> If you're deploying a model to Azure Kubernetes Service (AKS), we advise you enable [Azure Monitor](/azure/azure-monitor/containers/container-insights-enable-existing-clusters) for that cluster. This helps you understand overall cluster health and resource usage. You might also find the following resources useful:
 >
 > * [Check for Resource Health events impacting your AKS cluster](/azure/aks/aks-resource-health)
 > * [Azure Kubernetes Service Diagnostics](/azure/aks/concepts-diagnostics)
 >
-> If you are trying to deploy a model to an unhealthy or overloaded cluster, it is expected to experience issues. If you need help troubleshooting AKS cluster problems please contact AKS Support.
+> If you're trying to deploy a model to an unhealthy or overloaded cluster, it's expected to experience issues. If you need help troubleshooting AKS cluster problems contact AKS Support.
 
 ## Delete resources
 
@@ -568,7 +570,7 @@ For more information, see the documentation for [WebService.delete()](/python/ap
 
 * [Troubleshoot a failed deployment](how-to-troubleshoot-deployment.md)
 * [Update web service](../how-to-deploy-update-web-service.md)
-* [One click deployment for automated ML runs in the Azure Machine Learning studio](../how-to-use-automated-ml-for-ml-models.md#deploy-your-model)
+* [One select deployment for automated ML runs in the Azure Machine Learning studio](../how-to-use-automated-ml-for-ml-models.md#deploy-your-model)
 * [Use TLS to secure a web service through Azure Machine Learning](../how-to-secure-web-service.md)
 * [Monitor your Azure Machine Learning models with Application Insights](../how-to-enable-app-insights.md)
 * [Create event alerts and triggers for model deployments](../how-to-use-event-grid.md)

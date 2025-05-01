@@ -1,11 +1,10 @@
 ---
 title: Azure OpenAI Service fine-tuning considerations
 description: Learn more about what you should take into consideration before fine-tuning with Azure OpenAI Service 
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 10/23/2023
+ms.date: 03/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -66,9 +65,9 @@ Here’s an example: A customer wanted to use GPT-3.5-Turbo to turn natural lang
 **If you are ready for fine-tuning you:**
 
 - Have clear examples on how you have approached the challenges in alternate approaches and what’s been tested as possible resolutions to improve performance.
-- You've identified shortcomings using a base model, such as inconsistent performance on edge cases, inability to fit enough few shot prompts in the context window to steer the model, high latency, etc.
+- Identified shortcomings using a base model, such as inconsistent performance on edge cases, inability to fit enough few shot prompts in the context window to steer the model, high latency, etc.
 
-**Common signs you might not be ready for fine-tuning yet:**
+**Common signs you might not be ready for fine-tuning include:**
 
 - Insufficient knowledge from the model or data source.
 - Inability to find the right data to serve the model.
@@ -79,16 +78,16 @@ Even with a great use case, fine-tuning is only as good as the quality of the da
 
 Another important point is even with high quality data if your data isn't in the necessary format for fine-tuning you'll need to commit engineering resources in order to properly format the data.
 
-| Data  | Babbage-002 & Davinci-002 | GPT-3.5-Turbo |
-|---|---|---|
-| Volume | Thousands of Examples | Thousands of Examples |
-| Format | Prompt/Completion | Conversational Chat |
+| Data   | GPT-3.5-Turbo <br> GPT-4o & GPT-4o mini <br> GPT-4 |
+|---|---|
+| Volume  | Thousands of Examples |
+| Format | Conversational Chat |
 
 **If you are ready for fine-tuning you:**
 
-- Have identified a dataset for fine-tuning.
-- The dataset is in the appropriate format for training.
-- Some level of curation has been employed to ensure dataset quality.
+- Identified a dataset for fine-tuning.
+- Formatted the dataset appropriately for training.
+- Curated the dataset to ensure quality.
 
 **Common signs you might not be ready for fine-tuning yet:**
 

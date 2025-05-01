@@ -2,12 +2,14 @@
 title: Keyword recognition recommendations and guidelines - Speech service
 titleSuffix: Azure AI services
 description: An overview of recommendations and guidelines when using keyword recognition.
-author: hasyashah
+author: eric-urban
+ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 1/21/2024
-ms.author: hasshah
+ms.date: 3/10/2025
+ms.reviewer: hasshah
+#Customer intent: As a developer, I want to learn about recommendations and guidelines for keyword recognition with the Speech service.
 ---
 
 # Recommendations and guidelines for keyword recognition

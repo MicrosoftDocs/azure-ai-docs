@@ -16,6 +16,8 @@ ms.custom: UpdateFrequency5, cliv1, sdkv1
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 This article shows you how to secure a web service that's deployed through Azure Machine Learning.
 
 You use [HTTPS](https://en.wikipedia.org/wiki/HTTPS) to restrict access to web services and secure the data that clients submit. HTTPS helps secure communications between a client and a web service by encrypting communications between the two. Encryption uses [Transport Layer Security (TLS)](https://en.wikipedia.org/wiki/Transport_Layer_Security). TLS is sometimes still referred to as *Secure Sockets Layer (SSL)*, which was the predecessor of TLS.

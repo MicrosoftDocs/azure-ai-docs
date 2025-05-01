@@ -9,7 +9,7 @@ ms.topic: conceptual
 author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan
-ms.custom: devplatv2, moe-wsvnet
+ms.custom: devplatv2, moe-wsvnet, ignite-2024
 ms.date: 02/29/2024
 ---
 
@@ -64,9 +64,9 @@ endpoint = ManagedOnlineEndpoint(name='my-online-endpoint',
 # [Studio](#tab/azure-studio)
 
 1. Go to the [Azure Machine Learning studio](https://ml.azure.com).
-1. Select the **Workspaces** page from the left navigation bar.
+1. Select the **Workspaces** page from the left pane.
 1. Enter a workspace by clicking its name.
-1. Select the **Endpoints** page from the left navigation bar.
+1. Select the **Endpoints** page from the left pane.
 1. Select **+ Create** to open the **Create deployment** setup wizard.
 1. Disable the **Public network access** flag at the **Create endpoint** step.
 
@@ -77,6 +77,10 @@ endpoint = ManagedOnlineEndpoint(name='my-online-endpoint',
 When `public_network_access` is `disabled`, inbound scoring requests are received using the workspace's private endpoint, and the endpoint can't be reached from public networks.
 
 Alternatively, if you set the `public_network_access` to `enabled`, the endpoint can receive inbound scoring requests from the internet.
+
+### Secure inbound scoring with public network access from specific IP addresses
+
+Azure Machine Learning workspace supports enabling public network access from specific IP addresses or address ranges. This feature has some interactions with the managed online endpoint's `public_network_access` flag that you should be aware of when using it with managed online endpoints. For more information, see [Scenario: Managed online endpoints with access from specific IP addresses](how-to-configure-private-link.md#scenario-managed-online-endpoints-with-access-from-selected-ip-addresses).
 
 ## Secure outbound access with workspace managed virtual network
 

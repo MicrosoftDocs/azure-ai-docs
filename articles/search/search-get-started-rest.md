@@ -1,31 +1,31 @@
 ---
-title: 'Quickstart: Search index (REST)'
+title: 'Quickstart: Keyword Search Using REST APIs'
 titleSuffix: Azure AI Search
-description: In this quickstart, learn how to call the Azure AI Search REST APIs to create, load, and query a search index.
+description: Learn how to call the Azure AI Search REST APIs to create, load, and query a search index.
 zone_pivot_groups: URL-test-interface-rest-apis
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
-ms.service: cognitive-search
+author: haileytap
+ms.author: haileytapia
+ms.service: azure-ai-search
 ms.topic: quickstart
 ms.devlang: rest-api
-ms.date: 06/27/2024
+ms.date: 03/04/2025
 ms.custom:
   - mode-api
   - ignite-2023
 ---
 
-# Quickstart: Keyword search by using REST
+# Quickstart: Keyword search using REST
 
-The REST APIs in Azure AI Search provide programmatic access to all of its capabilities, including preview features, and they're an easy way to learn how features work. In this quickstart, learn how to call the [Search REST APIs](/rest/api/searchservice) to create, load, and query a search index in Azure AI Search.
-
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+In this quickstart, you call the [Search REST APIs](/rest/api/searchservice) to create, load, and query a search index. The REST APIs in Azure AI Search provide programmatic access to all of its capabilities, including preview features, and are an easy way to learn how features work.
 
 ## Prerequisites
 
-- [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-- [Azure AI Search](search-what-is-azure-search.md). [Create](search-create-service-portal.md) or [find an existing Azure AI Search resource](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) under your current subscription. You can use a free service for this quickstart.
+- An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. For this quickstart, you can use a free service.
+
+- [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 ## Download files
 
@@ -116,7 +116,7 @@ If you're not familiar with the REST client for Visual Studio Code, this section
 
 1. Open or create a new file named with either a `.rest` or `.http` file extension.
 
-1. Paste in the following example if you're using API keys. Replace the `@baseUrl` and `@apiKey` placeholders with the values you copied earlier.
+1. Paste in the following example if you're using API keys. Replace the `@baseUrl` and `@apiKey` placeholders with the values you copied earlier, without quotes.
 
    ```http
    @baseUrl = PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE
@@ -128,7 +128,7 @@ If you're not familiar with the REST client for Visual Studio Code, this section
       api-key: {{apiKey}}
     ```
 
-1. Or, paste in this example if your using roles. Replace the `@baseUrl` and `@token` placeholders with the values you copied earlier.
+1. Or, paste in this example if you're using roles. Replace the `@baseUrl` and `@token` placeholders with the values you copied earlier, without quotes.
 
    ```http
    @baseUrl = PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE
@@ -144,6 +144,8 @@ If you're not familiar with the REST client for Visual Studio Code, this section
 
    :::image type="content" source="media/search-get-started-rest/rest-client-request-setup.png" lightbox="media/search-get-started-rest/rest-client-request-setup.png" alt-text="Screenshot that shows a REST client configured for a search service request.":::
 
+    If you get `WWW-Authenticate: Bearer realm="Azure Cognitive Search" error="invalid_token" error_description="Authentication token failed validation."`, remove the quotes around the token, save the file, and retry your request.
+
     Key points:
   
     - Parameters are specified by using an `@` prefix.
@@ -152,7 +154,7 @@ If you're not familiar with the REST client for Visual Studio Code, this section
 
 ## Create an index
 
-Add a second request to your `.rest` file. [Create Index (REST)](/rest/api/searchservice/create-index) creates a search index and sets up the physical data structures on your search service.
+Add a second request to your `.rest` file. [Create Index (REST)](/rest/api/searchservice/indexes/create) creates a search index and sets up the physical data structures on your search service.
 
 1. Paste in the following example to create the `hotels-quickstart` index on your search service.
 
@@ -198,7 +200,7 @@ Add a second request to your `.rest` file. [Create Index (REST)](/rest/api/searc
 
 Within the index schema, the fields collection defines document structure. Each document that you upload must have these fields. Each field must be assigned to an [Entity Data Model (EDM) data type](/rest/api/searchservice/supported-data-types). String fields are used in full text search. If you want numeric data to be searchable, make sure the data type is `Edm.String`. Other data types such as `Edm.Int32` are filterable, sortable, facetable, and retrievable but not full-text searchable.
 
-Attributes on the field determine allowed actions. The REST APIs allow [many actions by default](/rest/api/searchservice/create-index#request-body). For example, all strings are searchable and retrievable by default. For REST APIs, you might only have attributes if you need to turn off a behavior.
+Attributes on the field determine allowed actions. The REST APIs allow [many actions by default](/rest/api/searchservice/indexes/create#request-body). For example, all strings are searchable and retrievable by default. For REST APIs, you might only have attributes if you need to turn off a behavior.
 
 ```json
 {
@@ -244,7 +246,7 @@ The URI is extended to include the `docs` collections and `index` operation.
             {
             "@search.action": "upload",
             "HotelId": "1",
-            "HotelName": "Secret Point Motel",
+            "HotelName": "Stay-Kay City Hotel",
             "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
             "Category": "Boutique",
             "Tags": [ "pool", "air conditioning", "concierge" ],
@@ -263,7 +265,7 @@ The URI is extended to include the `docs` collections and `index` operation.
             {
             "@search.action": "upload",
             "HotelId": "2",
-            "HotelName": "Twin Dome Motel",
+            "HotelName": "Old Century Hotel",
             "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
             "Category": "Boutique",
             "Tags": [ "pool", "free wifi", "concierge" ],
@@ -282,7 +284,7 @@ The URI is extended to include the `docs` collections and `index` operation.
             {
             "@search.action": "upload",
             "HotelId": "3",
-            "HotelName": "Triple Landscape Hotel",
+            "HotelName": "Gastronomic Landscape Hotel",
             "Description": "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
             "Category": "Resort and Spa",
             "Tags": [ "air conditioning", "bar", "continental breakfast" ],
@@ -301,8 +303,8 @@ The URI is extended to include the `docs` collections and `index` operation.
             {
             "@search.action": "upload",
             "HotelId": "4",
-            "HotelName": "Sublime Cliff Hotel",
-            "Description": "Sublime Cliff Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 1800 palace.",
+            "HotelName": "Sublime Palace Hotel",
+            "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.",
             "Category": "Boutique",
             "Tags": [ "concierge", "view", "24-hour front desk service" ],
             "ParkingIncluded": true,
@@ -357,8 +359,8 @@ The URI is extended to include a query expression, which is specified by using t
         {
           "@search.score": 0.6189728,
           "HotelId": "4",
-          "HotelName": "Sublime Cliff Hotel",
-          "Description": "Sublime Cliff Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 1800 palace.",
+          "HotelName": "Sublime Palace Hotel",
+          "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.",
           "Tags": [
             "concierge",
             "view",
@@ -397,7 +399,7 @@ You can also use [Get Statistics](/rest/api/searchservice/indexes/get-statistics
 
 When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal by using the **All resources** or **Resource groups** link in the leftmost pane.
+You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
 
 You can also try this `DELETE` command:
 
@@ -410,7 +412,7 @@ DELETE  {{baseUrl}}/indexes/hotels-quickstart?api-version=2024-07-01 HTTP/1.1
 
 ## Next step
 
-Now that you're familiar with the REST client and making REST calls to Azure AI Search, try another quickstart that demonstrates vector support.
+Now that you're familiar with the REST client and making REST calls to Azure AI Search, try another quickstart that demonstrates vector support:
 
 > [!div class="nextstepaction"]
 > [Quickstart: Vector search using REST](search-get-started-vector.md)

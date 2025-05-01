@@ -1,17 +1,17 @@
 ### YamlMime:Landing
 
 title: Azure OpenAI Service documentation # < 60 chars
-summary: Azure OpenAI Service provides access to OpenAI's models including the GPT-4, GPT-4 Turbo with Vision, GPT-3.5-Turbo, DALLE-3 and Embeddings model series with the security and enterprise capabilities of Azure. 
+summary: Azure OpenAI Service provides access to OpenAI's models including o-series, GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, GPT-3.5-Turbo, GPT-image-1 and Embeddings model series with the security and enterprise capabilities of Azure. 
   
 metadata:
   title: Azure OpenAI Service documentation - Quickstarts, Tutorials, API Reference - Azure AI services | Microsoft Docs
-  description: Learn how to use Azure OpenAI's powerful models including the GPT-4, GPT-4 Turbo with Vision, GPT-3.5-Turbo, DALL-E 3 and Embeddings model series
+  description: Learn how to use Azure OpenAI's powerful models including o-series, GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, GPT-3.5-Turbo, GPT-image-1, and Embeddings model series
   ms.service: azure-ai-openai
   ms.custom:
   ms.topic: landing-page
   author: mrbullwinkle
   ms.author: mbullwin
-  ms.date: 01/26/2024
+  ms.date: 03/27/2025
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 # Limits: https://review.learn.microsoft.com/help/contribute/contribute-how-to-write-landing-page?branch=main#limits
@@ -40,13 +40,13 @@ landingContent:
         links:
            - text: Chat completions
              url: chatgpt-quickstart.md
-           - text: GPT-4 Turbo with Vision
+           - text: Vision-enabled models
              url: gpt-v-quickstart.md  
-           - text: DALL-E
+           - text: Image generation
              url: dall-e-quickstart.md
            - text: Use your data (preview)
              url: use-your-data-quickstart.md
-           - text: Whisper
+           - text: Speech to text with Whisper
              url: whisper-quickstart.md
            - text: Text to speech (preview)
              url: text-to-speech-quickstart.md
@@ -56,7 +56,7 @@ landingContent:
         links:
          - text: Embeddings
            url: ./tutorials/embeddings.md
-         - text: Fine-tuning GPT-3.5 Turbo
+         - text: Fine-tuning GPT-4o mini
            url: ./tutorials/fine-tune.md
 
 #Card 2
@@ -64,6 +64,8 @@ landingContent:
      linkLists:
       - linkListType: concept
         links:
+          - text: Deployment Types
+            url: ./how-to/deployment-types.md
           - text: Quota
             url: ./how-to/quota.md
           - text: Dynamic quota
@@ -84,22 +86,24 @@ landingContent:
      linkLists:
          - linkListType: get-started
            links:
-             - text: Migrate to OpenAI Python 1.x
-               url: ./how-to/migration.md
-             - text: Manage models
-               url: ./how-to/working-with-models.md
+             - text: Responses API & computer-use-preview
+               url: ./how-to/responses.md
+             - text: Reasoning models
+               url: ./how-to/reasoning.md
              - text: OpenAI versus Azure OpenAI (Python)
                url: ./how-to/switching-endpoints.yml
-             - text: Role-based access control (Azure RBAC)
-               url: ./how-to/role-based-access-control.md 
-             - text: GPT-3.5 Turbo & GPT-4
+             - text: Global batch
+               url: ./how-to/batch.md
+             - text: Structured outputs
+               url: ./how-to/structured-outputs.md
+             - text: Chat completion models
                url:  ./how-to/chatgpt.md
-             - text: GPT-4 Turbo with Vision
+             - text: Vision-enabled models
                url:  ./how-to/gpt-with-vision.md
              - text: Provisioned Throughput Units (PTU) 
                url: ./how-to/provisioned-throughput-onboarding.md
-             - text: Securing Azure OpenAI on your data
-               url: ./how-to/use-your-data-securely.md
+             - text: Network and access configuration for Azure OpenAI on your data
+               url: ./how-to/on-your-data-configuration.md
              - text: Resource creation & deployment
                url: ./how-to/create-resource.md 
 
@@ -129,7 +133,7 @@ landingContent:
         - text: Limited access
           url: /legal/cognitive-services/openai/limited-access?context=/azure/ai-services/openai/context/context
         - text: Code of conduct
-          url: /legal/cognitive-services/openai/code-of-conduct?context=/azure/ai-services/openai/context/context
+          url: /legal/ai-code-of-conduct?context=/azure/ai-services/openai/context/context
         - text: Data, privacy, and security
           url: /legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context
         - text: Customer Copyright Commitment
@@ -140,7 +144,7 @@ landingContent:
             url: ./concepts/content-filter.md#asynchronous-filter
           - text: Red teaming large language models (LLMs)
             url: ./concepts/red-teaming.md
-          - text: System message templates
+          - text: Safety system messages
             url: ./concepts/system-message.md
           - text: Abuse monitoring
             url: ./concepts/abuse-monitoring.md

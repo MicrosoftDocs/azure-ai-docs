@@ -5,11 +5,11 @@ description: Learn how to schedule Azure AI Search indexers to index content at 
 author: HeidiSteen
 manager: nitinme
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 01/17/2024
+ms.date: 03/11/2025
 ---
 
 # Schedule an indexer in Azure AI Search
@@ -28,7 +28,7 @@ Once an indexer is on a schedule, it remains on the schedule until you clear the
 
 + A valid indexer configured with a data source and index.
 
-+ [Change detection](search-howto-create-indexers.md#change-detection-and-internal-state) in the data source. Azure Storage and SharePoint have built-in change detection. Other data sources, such as [Azure SQL](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md) and [Azure Cosmos DB](search-howto-index-cosmosdb.md) must be enabled manually.
++ [Change detection](search-howto-create-indexers.md#change-detection-and-internal-state) in the data source. Azure Storage and SharePoint have built-in change detection. Other data sources, such as [Azure SQL](search-how-to-index-sql-database.md) and [Azure Cosmos DB](search-howto-index-cosmosdb.md) must be enabled manually.
 
 ## Schedule definition
 
@@ -56,7 +56,7 @@ Schedules are specified in an indexer definition. To set up a schedule, you can 
 ### [**Azure portal**](#tab/portal)
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and open the search service page.
-1. On the left navigation pane, select **Indexers**.
+1. On the left pane, select **Indexers**.
 1. Open an indexer.
 1. Select **Settings**.
 1. Scroll down to **Schedule**, and then choose Hourly, Daily, or Custom to set a specific date, time, or custom interval.
@@ -103,24 +103,36 @@ await indexerClient.CreateOrUpdateIndexerAsync(indexer);
 
 ---
 
-## Scheduling behavior
+## Scheduling behavior FAQ
 
-For text-based indexing, the scheduler can kick off as many indexer jobs as the search service supports, which is determined by the number of search units. For example, if the service has three replicas and four partitions, you can have 12 indexer jobs in active execution, whether initiated on demand or on a schedule.
+**Can I run multiple indexer jobs in parallel?**
 
-Skills-based indexers run in a different [execution environment](search-howto-run-reset-indexers.md#indexer-execution). For this reason, the number of service units has no bearing on the number of skills-based indexer jobs you can run. Multiple skills-based indexers can run in parallel, but doing so depends on node availability within the execution environment.
+You can run multiple indexers simultaneously, but each indexer is single instance. You can't run two copies of the same indexer concurrently. 
 
-Although multiple indexers can run simultaneously, a given indexer is single instance. You can't run two copies of the same indexer concurrently. If an indexer happens to still be running when its next scheduled execution is set to start, the pending execution is postponed until the next scheduled occurrence, allowing the current job to finish.
+For text-based indexing, the scheduler can kick off as many indexer jobs as the search service supports, which is determined by the number of [search units](search-capacity-planning.md#concepts-search-units-replicas-partitions). For example, if the service has three replicas and four partitions, you can have 12 indexer jobs in active execution, whether initiated on demand or on a schedule.
+
+For skills-based indexing, indexers run in a specific [execution environment](search-howto-run-reset-indexers.md#indexer-execution-environment). For this reason, the number of service units has no bearing on the number of skills-based indexer jobs you can run. Multiple skills-based indexers can run in parallel, but doing so depends on content processor availability within the execution environment.
+
+**Do scheduled jobs always start at the designated time?**
+
+Indexer processes can be queued up and might not start exactly at the time posted, depending on the processing workload and other factors. For example, if an indexer happens to still be running when its next scheduled execution is set to start, the pending execution is postponed until the next scheduled occurrence, allowing the current job to finish.
 
 Let’s consider an example to make this more concrete. Suppose we configure an indexer schedule with an interval of hourly and a start time of January 1, 2024 at 8:00:00 AM UTC. Here's what could happen when an indexer run takes longer than an hour:
 
-+ The first indexer execution starts at or around January 1, 2024 at 8:00 AM UTC. Assume this execution takes 20 minutes (or any amount of time that's less than 1 hour).
+1. The first indexer execution starts at or around January 1, 2024 at 8:00 AM UTC. Assume this execution takes 20 minutes (or any amount of time that's less than 1 hour).
 
-+ The second execution starts at or around January 1, 2022 9:00 AM UTC. Suppose that this execution takes 70 minutes - more than an hour – and it will not complete until 10:10 AM UTC.
+1. The second execution starts at or around January 1, 2024 9:00 AM UTC. Suppose that this execution takes 70 minutes - more than an hour – and it will not complete until 10:10 AM UTC.
 
-+ The third execution is scheduled to start at 10:00 AM UTC, but at that time the previous execution is still running. This scheduled execution is then skipped. The next execution of the indexer won't start until 11:00 AM UTC.
+1. The third execution is scheduled to start at 10:00 AM UTC, but at that time the previous execution is still running. This scheduled execution is then skipped. The next execution of the indexer won't start until 11:00 AM UTC.
 
 > [!NOTE]
-> If an indexer is set to a certain schedule but repeatedly fails on the same document each time, the indexer will begin running on a less frequent interval (up to the maximum interval of at least once every 2 hours or 24 hours, depending on different implementation factors) until it successfully makes progress again. If you believe you have fixed whatever the underlying issue, you can [run the indexer manually](search-howto-run-reset-indexers.md), and if indexing succeeds, the indexer will return to its regular schedule.
+> If you have strict indexer execution requirements that are time-sensitive, you should consider using the [push API model](search-what-is-data-import.md#pushing-data-to-an-index) so you can control the indexing pipeline directly.
+
+<!-- + Although multiple indexers can run simultaneously, a given indexer is single instance. You can't run two copies of the same indexer concurrently. If an indexer happens to still be running when its next scheduled execution is set to start, the pending execution is postponed until the next scheduled occurrence, allowing the current job to finish. -->
+
+**What happens if indexing fails repeatedly on the same document?**
+
+If an indexer is set to a certain schedule but repeatedly fails on the same document each time, the indexer will begin running on a less frequent interval (up to the maximum interval of at least once every 2 hours or 24 hours, depending on different implementation factors) until it successfully makes progress again. If you believe you have fixed the underlying issue, you can [run the indexer manually](search-howto-run-reset-indexers.md), and if indexing succeeds, the indexer will return to its regular schedule.
 
 ## Next steps
 

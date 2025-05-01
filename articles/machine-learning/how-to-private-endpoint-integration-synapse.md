@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: meerakurup
-ms.date: 03/12/2024
+ms.date: 03/10/2025
 
 ---
 
@@ -30,7 +30,7 @@ In this article, learn how to securely integrate with Azure Machine Learning fro
     * Azure Key Vault
     * Azure Container Registry
 
-    A quick and easy way to build this configuration is to use a [Microsoft Bicep or HashiCorp Terraform template](tutorial-create-secure-workspace-template.md).
+    A quick and easy way to build this configuration is to use a [Bicep template](/samples/azure/azure-quickstart-templates/machine-learning-end-to-end-secure/) or [Terraform template](https://github.com/Azure/terraform/tree/master/quickstart/201-machine-learning-moderately-secure).
 
 * An Azure Synapse workspace in a __managed__ virtual network, using a __managed__ private endpoint. For more information, see [Azure Synapse Analytics Managed Virtual Network](/azure/synapse-analytics/security/synapse-workspace-managed-vnet).
 

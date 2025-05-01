@@ -1,12 +1,13 @@
 ---
 title: Interactive language learning with pronunciation assessment
 description: Interactive language learning with pronunciation assessment gives you instant feedback on pronunciation, fluency, prosody, grammar, and vocabulary through interactive chats.
-author: sally-baolian
+author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 8/1/2024
-ms.author: v-baolianzou
+ms.date: 3/10/2025
+ms.author: eur
+#Customer intent: As a language learner, I want to learn how to use Azure AI Speech to improve my language skills.
 ---
 
 # Interactive language learning with pronunciation assessment
@@ -16,7 +17,7 @@ ms.author: v-baolianzou
 Learning a new language is an exciting journey. Interactive language learning can make your learning experience more engaging and effective. By using pronunciation assessment effectively, you get instant feedback on pronunciation accuracy, fluency, prosody, grammar, and vocabulary through your interactive language learning experience.
  
 > [!NOTE]
-> The language learning feature currently supports only `en-US`. For available regions, refer to [available regions for pronunciation assessment](regions.md#speech-service). If you turn on the **Avatar** button to interact with a text to speech avatar, refer to the available [regions](regions.md#speech-service) for text to speech avatar. 
+> The language learning feature currently supports only `en-US`. For available regions, refer to [available regions for pronunciation assessment](regions.md#regions). If you turn on the **Avatar** button to interact with a text to speech avatar, refer to the available [regions](regions.md#regions) for text to speech avatar. 
 >
 > If you have any feedback on the language learning feature, fill out [this form](https://aka.ms/speechpa/intake). 
 

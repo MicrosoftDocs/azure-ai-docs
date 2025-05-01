@@ -1,36 +1,36 @@
 ---
-title: Use Document Intelligence (formerly Form Recognizer) containers in disconnected environments
+title: Use Document Intelligence containers in disconnected environments
 titleSuffix: Azure AI services
 description: Learn how to run Cognitive Services Docker containers disconnected from the internet.
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 author: laujan
 manager: nitinme
 ms.topic: reference
-ms.date: 05/23/2024
+ms.date: 11/19/2024
 ms.author: lajanuar
 ---
 
 
 # Containers in disconnected (offline) environments
 
-:::moniker range="doc-intel-2.1.0 || doc-intel-4.0.0"
+:::moniker range="doc-intel-2.1.0"
 
-Support for containers is currently available with Document Intelligence version `2022-08-31 (GA)` for all models and `2023-07-31 (GA)` for Read, Layout, Invoice, Receipt and ID Document models:
+Support for containers is currently available with Document Intelligence version `2022-08-31 (GA)` for all models and `2023-07-31 (GA)` for Read, Layout, Invoice, Receipt, and ID Document models, and `2024-11-30 (GA)` for Layout model:
 
 * [REST API `2022-08-31 (GA)`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)
 * [REST API `2023-07-31 (GA)`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.1%20(2023-07-31)&tabs=HTTP&preserve-view=true)
-* [SDKs targeting `REST API 2022-08-31 (GA)`](../sdk-overview-v3-0.md)
-* [SDKs targeting `REST API 2023-07-31 (GA)`](../sdk-overview-v3-1.md)
+* [REST API `v4.0: 2024-11-30 (GA)`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v4.0%20(2024-11-30)&tabs=HTTP&preserve-view=true)
+* [Client libraries targeting `REST API 2022-08-31 (GA)`](../sdk-overview-v3-0.md)
+* [Client libraries targeting `REST API 2023-07-31 (GA)`](../sdk-overview-v3-1.md)
+* [Client libraries targeting `REST API v4.0: 2024-11-30 (GA)`](../sdk-overview-v4-0.md)
 
-✔️ See [**Document Intelligence v3.0 containers in disconnected environments**](?view=doc-intel-3.0.0&preserve-view=true) for supported container documentation.
+✔️ See [**Document Intelligence v3.0 containers in disconnected environments**](?view=doc-intel-3.0.0&preserve-view=true) or [**Document Intelligence v3.1 containers in disconnected environments**](?view=doc-intel-3.1.0&preserve-view=true) or [**Document Intelligence v4.0 containers in disconnected environments**](?view=doc-intel-4.0.0&preserve-view=true) for supported versions of container documentation.
 
 :::moniker-end
 
-:::moniker range="doc-intel-3.0.0 || doc-intel-3.1.0"
+:::moniker range=">=doc-intel-3.0.0"
 
-**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.0 (GA)** ![checkmark](../media/yes-icon.png) **v3.1 (GA)**
+**This content applies to:** ![checkmark](../media/yes-icon.png) **v3.0 (GA)** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** ![checkmark](../media/yes-icon.png) **v4.0 (GA)**
 
 ## What are disconnected containers?
 
@@ -56,13 +56,13 @@ Before you can use Document Intelligence containers in disconnected environments
 Start by provisioning a new resource in the portal.
 
 * Ensure you select the `Commitment tier disconnected containers DC0` option for Pricing tier
-* Select the appropriate pricing tier from at least one of custom, read or prebuilt commitment tiers
+* Select the appropriate pricing tier from at least one of custom, read, or prebuilt commitment tiers
 
   :::image type="content" source="../media/containers/disconnected.png" alt-text="Screenshot of disconnected tier configuration in the Azure portal.":::
 
 | Container | Minimum | Recommended | Commitment plan |
 |-----------|---------|-------------|-------------|
-| `Read` | `8` cores, 10-GB memory | `8` cores, 24-GB memory| OCR (Read) |
+| `Read` | `8` cores, 10-GB memory | `8` cores, 24-GB memory| `OCR` (Read) |
 | `Layout` | `8` cores, 16-GB memory | `8` cores, 24-GB memory | Prebuilt |
 | `Business Card` | `8` cores, 16-GB memory | `8` cores, 24-GB memory | Prebuilt |
 | `General Document` | `8` cores, 12-GB memory | `8` cores, 24-GB memory| Prebuilt |
@@ -206,14 +206,14 @@ services:
     apikey: ${FORM_RECOGNIZER_KEY}
     billing: ${FORM_RECOGNIZER_ENDPOINT_URI}
     Logging:Console:LogLevel:Default: Information
-    SharedRootFolder: /shared
-    Mounts:Shared: /shared
+    SharedRootFolder: /share
+    Mounts:Shared: /share
     Mounts:Output: /logs
     Mounts:License: /license
   volumes:
     - type: bind
       source: ${SHARED_MOUNT_PATH}
-      target: /shared
+      target: /share
     - type: bind
       source: ${OUTPUT_MOUNT_PATH}
       target: /logs
@@ -235,14 +235,14 @@ services:
     apikey: ${FORM_RECOGNIZER_KEY}
     billing: ${FORM_RECOGNIZER_ENDPOINT_URI}
     Logging:Console:LogLevel:Default: Information
-    SharedRootFolder: /shared
-    Mounts:Shared: /shared
+    SharedRootFolder: /share
+    Mounts:Shared: /share
     Mounts:Output: /logs
     Mounts:License: /license
   volumes:
     - type: bind
       source: ${SHARED_MOUNT_PATH}
-      target: /shared
+      target: /share
     - type: bind
       source: ${OUTPUT_MOUNT_PATH}
       target: /logs

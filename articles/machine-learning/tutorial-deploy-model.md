@@ -9,7 +9,7 @@ ms.topic: tutorial
 author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan
-ms.date: 03/04/2024
+ms.date: 09/13/2024
 ms.custom: mlops, devx-track-python #add more custom tags
 #Customer intent: This tutorial is intended to show users what is needed for deployment and present a high-level overview of how Azure Machine Learning handles deployment. Deployment isn't typically done by a data scientist, so the tutorial won't use Azure CLI examples. We will link to existing articles that use Azure CLI as needed. The code in the tutorial will use SDK v2. The tutorial will continue where the "Create reusable pipelines" tutorial stops.
 ---
@@ -96,7 +96,7 @@ If you already completed the earlier training tutorial, [Train a model](tutorial
 
 If you didn't complete the training tutorial, you need to register the model. Registering your model before deployment is a recommended best practice.
 
-The following code specifies the `path` (where to upload files from) inline. If you [cloned the tutorials folder](quickstart-create-resources.md#learn-from-sample-notebooks), then run the following code as-is. Otherwise, [download the files and metadata for the model to deploy](https://azuremlexampledata.blob.core.windows.net/datasets/credit_defaults_model.zip) and unzip the files. Update the path to the location of the unzipped files on your local computer.
+The following code specifies the `path` (where to upload files from) inline. If you [cloned the tutorials folder](quickstart-create-resources.md#learn-from-sample-notebooks), then run the following code as-is. Otherwise, download the files and metadata for the model from the [credit_defaults_model folder](https://github.com/Azure/azureml-examples/tree/main/tutorials/get-started-notebooks/deploy/credit_defaults_model). Save the files you downloaded into a local version of the *credit_defaults_model* folder on your computer and update the path in the following code to the location of the downloaded files.
 
 The SDK automatically uploads the files and registers the model. 
 
@@ -451,7 +451,7 @@ If you open the metrics for the online endpoint, you can set up the page to see 
 
 :::image type="content" source="media/tutorial-deploy-model/view-endpoint-metrics-in-azure-portal.png" alt-text="Screenshot showing online endpoint metrics in the Azure portal." lightbox="media/tutorial-deploy-model/view-endpoint-metrics-in-azure-portal.png":::
 
-For more information on how to view online endpoint metrics, see [Monitor online endpoints](how-to-monitor-online-endpoints.md#metrics).
+For more information on how to view online endpoint metrics, see [Monitor online endpoints](how-to-monitor-online-endpoints.md#use-metrics).
 
 ## Send all traffic to the new deployment
 Once you're fully satisfied with your `green` deployment, switch all traffic to it.

@@ -1,16 +1,17 @@
 ---
-title: "Find similar faces"
+title: "Find similar faces using Azure AI services"
 titleSuffix: Azure AI services
-description: Use the Face service to find similar faces (face search by image).
-#services: cognitive-services
+description: Learn how to use the Azure Face service to find similar faces in a set of images, performing face search by image for various applications.
+#customer intent: As a developer, I want to find similar faces in images so that I can perform face recognition tasks.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.topic: how-to
-ms.date: 02/14/2024
+ms.date: 01/22/2025
 ms.author: pafarley
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Find similar faces
@@ -21,13 +22,6 @@ The [Find Similar](/rest/api/face/face-recognition-operations/find-similar) oper
 
 This guide demonstrates how to use the Find Similar feature in the different language SDKs. The following sample code assumes you have already authenticated a Face client object. For details on how to do this, follow a [quickstart](../quickstarts-sdk/identity-client-library.md).
 
-## Set up sample URL
-
-This guide uses remote images that are accessed by URL. Save a reference to the following URL string. All of the images accessed in this guide are located at this URL path.
-
-```
-https://raw.githubusercontent.com/Azure-Samples/cognitive-services-sample-data-files/master/Face/images/
-```
 
 ## Detect faces for comparison
 
@@ -37,13 +31,19 @@ You need to detect faces in images before you can compare them. In this guide, t
 
 #### [C#](#tab/csharp)
 
+This guide uses remote images that are accessed by URL. Save a reference to the base URL string. All of the images accessed in this guide are located at that URL path.
+
+```csharp
+string baseUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-sample-data-files/master/Face/images/";
+```
+
 The following face detection method is optimized for comparison operations. It doesn't extract detailed face attributes, and it uses an optimized recognition model.
 
-[!code-csharp[](~/cognitive-services-quickstart-code/dotnet/Face/FindSimilar.cs?name=snippet_face_detect_recognize)]
+[!Code-csharp[](~/cognitive-services-quickstart-code/dotnet/Face/FindSimilar.cs?name=snippet_face_detect_recognize)]
 
 The following code uses the above method to get face data from a series of images.
 
-[!code-csharp[](~/cognitive-services-quickstart-code/dotnet/Face/FindSimilar.cs?name=snippet_loadfaces)]
+[!Code-csharp[](~/cognitive-services-quickstart-code/dotnet/Face/FindSimilar.cs?name=snippet_loadfaces)]
 
 
 #### [REST API](#tab/rest)
@@ -72,11 +72,11 @@ In this guide, the face detected in the *Family1-Dad1.jpg* image should be retur
 
 The following code calls the Find Similar API on the saved list of faces.
 
-[!code-csharp[](~/cognitive-services-quickstart-code/dotnet/Face/FindSimilar.cs?name=snippet_find_similar)]
+[!Code-csharp[](~/cognitive-services-quickstart-code/dotnet/Face/FindSimilar.cs?name=snippet_find_similar)]
 
 The following code prints the match details to the console:
 
-[!code-csharp[](~/cognitive-services-quickstart-code/dotnet/Face/FindSimilar.cs?name=snippet_find_similar_print)]
+[!Code-csharp[](~/cognitive-services-quickstart-code/dotnet/Face/FindSimilar.cs?name=snippet_find_similar_print)]
 
 
 #### [REST API](#tab/rest)
@@ -95,8 +95,9 @@ Run the command, and the returned JSON should show the correct face ID as a simi
 
 ---
 
-## Next steps
+## Next step
 
 In this guide, you learned how to call the Find Similar API to do a face search by similarity in a larger group of faces. Next, learn more about the different recognition models available for face comparison operations.
 
-* [Specify a face recognition model](specify-recognition-model.md)
+> [!div class="nextstepaction"]
+> [Specify a face recognition model](./specify-recognition-model.md)

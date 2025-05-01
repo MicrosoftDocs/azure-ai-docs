@@ -5,11 +5,11 @@ description: Learn how to build queries for vector search.
 
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 08/19/2024
+ms.date: 04/30/2025
 ---
 
 # Create a vector query in Azure AI Search
@@ -98,8 +98,11 @@ This section shows you the basic structure of a vector query. You can use the Az
 + `vectorQueries` is the construct for vector search.
 + `vectorQueries.kind` set to `vector` for a vector array, or set to `text` if the input is a string and [you have a vectorizer](#query-with-integrated-vectorization).
 + `vectorQueries.vector` is query (a vector representation of text or an image).
++ `vectorQueries.exhaustive` (optional) invokes exhaustive KNN at query time, even if the field is indexed for HNSW.
++ `vectorQueries.fields` (optional) targets specific fields for query execution (up to 10 per query).
 + `vectorQueries.weight` (optional) specifies the relative weight of each vector query included in search operations (see [Vector weighting](#vector-weighting)).
-+ `exhaustive` (optional) invokes exhaustive KNN at query time, even if the field is indexed for HNSW.
++ `vectorQueries.k` is the number of matches to return.
+
 
 In the following example, the vector is a representation of this string: "what Azure services support full text search". The query targets the `contentVector` field. The query returns `k` results. The actual vector has 1536 embeddings, so it's trimmed in this example for readability.
 
@@ -136,7 +139,7 @@ api-key: {{admin-api-key}}
 This preview adds:
 
 + [`threshold`](#set-thresholds-to-exclude-low-scoring-results-preview) for excluding low scoring results.
-+ [`Hybridsearch.MaxTextRecallSize`](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode-preview) for more control over the inputs to a [hybrid query](hybrid-search-how-to-query.md).
++ [`Hybridsearch.MaxTextRecallSize`](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode) for more control over the inputs to a [hybrid query](hybrid-search-how-to-query.md).
 
 In the following example, the vector is a representation of this string: "what Azure services support full text search". The query targets the `contentVector` field. The query returns `k` results. The actual vector has 1536 embeddings, so it's trimmed in this example for readability.
 
@@ -180,7 +183,7 @@ Use Search Explorer to formulate a vector query. Search Explorer has a **Query v
 
 Otherwise, if you don't have a vectorizer, you must use **JSON view** and formulate the vector query in JSON, pasting in a vector array as the query input.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and find your search service.
+1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
 1. Under **Search management** and **Indexes**, select the index.
 
@@ -257,7 +260,9 @@ If you do want vector fields in the result, here's an example of the response st
 
 ## Multiple vector fields
 
-You can set the "vectorQueries.fields" property to multiple vector fields. The vector query executes against each vector field that you provide in the `fields` list. When querying multiple vector fields, make sure each one contains embeddings from the same embedding model, and that the query is also generated from the same embedding model.
+You can set the "vectorQueries.fields" property to multiple vector fields. The vector query executes against each vector field that you provide in the `fields` list. You can specify up to 10 fields.
+
+When querying multiple vector fields, make sure each one contains embeddings from the same embedding model, and that the query is also generated from the same embedding model.
 
 ```http
 POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2024-07-01
@@ -400,17 +405,19 @@ api-key: {{admin-api-key}}
             "kind": "text",
             "text": "mystery novel set in London",
             "fields": "descriptionVector, synopsisVector",
-            "k": 5
+            "k": 50
         },
         {
             "kind": "text"
             "text": "living english author",
             "fields": "authorBioVector",
-            "k": 5
+            "k": 50
         }
     ]
 }
 ```
+
+Whenever you use semantic ranking with vectors, make sure `k` is set to 50. Semantic ranker uses up to 50 matches as input. Specifying less than 50 deprives the semantic ranking models of necessary inputs.
 
 The scored results from all four queries are fused using [RRF ranking](hybrid-search-ranking.md). Secondary [semantic ranking](semantic-search-overview.md) is invoked over the fused search results, but on the `searchFields` only, boosting results that are the most semantically aligned to `"search":"mystery novel set in London"`.
 
@@ -463,8 +470,6 @@ Weights are used when calculating the [reciprocal rank fusion](hybrid-search-ran
 
 The following example is a hybrid query with two vector query strings and one text string. Weights are assigned to the vector queries. The first query is 0.5 or half the weight, reducing its importance in the request. The second vector query is twice as important. 
 
-Text queries have no weight parameters, but you can increase or decrease their importance by setting [maxTextRecallSize](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode-preview).
-
 ```http
 POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?api-version=2024-07-01
 
@@ -489,13 +494,15 @@ POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?
     } 
 ```
 
+Vector weighting applies to vectors only. The text query in this example ("hello world") has an implicit weight of 1.0 or neutral weight. However, in a hybrid query, you can increase or decrease the importance of text fields by setting [maxTextRecallSize](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode).
+
 ## Set thresholds to exclude low-scoring results (preview)
 
 Because nearest neighbor search always returns the requested `k` neighbors, it's possible to get multiple low scoring matches as part of meeting the `k` number requirement on search results. To exclude low-scoring search result, you can add a `threshold` query parameter that filters out results based on a minimum score. Filtering occurs before [fusing results](hybrid-search-ranking.md) from different recall sets. 
 
 This parameter is still in preview. We recommend preview REST API version [2024-05-01-preview](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&preserve-view=true).
 
-In this example, all matches that score below 0.8 are excluded from vector search results, even if the number of results fall below `k`.
+In this example, all matches that score below 0.8 are excluded from vector search results, even if the number of results falls below `k`.
 
 ```http
 POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?api-version=2024-05-01-preview 
@@ -520,13 +527,13 @@ POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?
  <!-- Keep H2 as-is. Direct link from a blog post. Bulk of maxtextsizerecall has moved to hybrid query doc-->
 ## MaxTextSizeRecall for hybrid search (preview)
 
-Vector queries are often used in hybrid constructs that include nonvector fields. If you discover that BM25-ranked results are over or under represented in a hybrid query results, you can [set `maxTextRecallSize`](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode-preview) to increase or decrease the BM25-ranked results provided for hybrid ranking.
+Vector queries are often used in hybrid constructs that include nonvector fields. If you discover that BM25-ranked results are over or under represented in a hybrid query results, you can [set `maxTextRecallSize`](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode) to increase or decrease the BM25-ranked results provided for hybrid ranking.
 
 You can only set this property in hybrid requests that include both "search" and "vectorQueries" components.
 
 This parameter is still in preview. We recommend preview REST API version [2024-05-01-preview](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&preserve-view=true).
 
-For more information, see [Set maxTextRecallSize - Create a hybrid query](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode-preview).
+For more information, see [Set maxTextRecallSize - Create a hybrid query](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode).
 
 ## Next steps
 

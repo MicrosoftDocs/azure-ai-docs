@@ -19,7 +19,7 @@ Learn what's new in Azure AI Personalizer. These items may include release notes
 
 ### September 2022
 * Personalizer Inference Explainabiltiy is now available as a Public Preview. Enabling inference explainability returns feature scores on every Rank API call, providing insight into how influential each feature is to the actions chosen by your Personalizer model. [Learn more about Inference Explainability](how-to-inference-explainability.md).
-* Personalizer SDK now available in [Java](https://search.maven.org/artifact/com.azure/azure-ai-personalizer/1.0.0-beta.1/jar) and [Javascript](https://www.npmjs.com/package/@azure-rest/ai-personalizer).
+* Personalizer SDK now available in [Java](https://search.maven.org/artifact/com.azure/azure-ai-personalizer/1.0.0-beta.1/jar) and [JavaScript](https://www.npmjs.com/package/@azure-rest/ai-personalizer).
 
 ### April 2022
 * Local inference SDK (Preview): Personalizer now supports near-realtime (sub-10ms) inference without the need to wait for network API calls. Your Personalizer models can be used locally for lightning fast Rank calls using the [C# SDK (Preview)](https://www.nuget.org/packages/Azure.AI.Personalizer/2.0.0-beta.2), empowering your applications to personalize quickly and efficiently. Your model continues to train in Azure while your local model is seamlessly updated. 

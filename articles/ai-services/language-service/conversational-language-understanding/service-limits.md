@@ -2,12 +2,11 @@
 title: Conversational Language Understanding limits
 titleSuffix: Azure AI services
 description: Learn about the data, region, and throughput limits for Conversational Language Understanding
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 12/19/2023
+ms.date: 11/21/2024
 ms.author: jboback
 ms.custom: language-service-clu, references_regions
 ---
@@ -59,7 +58,7 @@ The following limits are observed for the conversational language understanding.
 
 |Item|Lower Limit| Upper Limit |
 | --- | --- | --- |
-|Number of utterances per project | 1 | 25,000|
+|Number of utterances per project | 1 | 50,000|
 |Utterance length in characters (authoring) | 1 | 500 |
 |Utterance length in characters (prediction) | 1 | 1000 |
 |Number of intents per project | 1 | 500|

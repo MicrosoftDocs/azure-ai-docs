@@ -1,6 +1,36 @@
 {
     "redirections": [
         {
+            "source_path_from_root": "/articles/search/search-security-network-security-perimiter.md",
+            "redirect_url": "/azure/search/search-security-network-security-perimeter",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/cognitive-search-quickstart-blob.md",
+            "redirect_url": "/azure/search/search-get-started-skillset",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md",
+            "redirect_url": "/azure/search/search-how-to-index-sql-database",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-connecting-azure-sql-mi-to-azure-search-using-indexers.md",
+            "redirect_url": "/azure/search/search-how-to-index-sql-managed-instance",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md",
+            "redirect_url": "/azure/search/search-how-to-index-sql-server",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/index-projections-concept-intro.md",
+            "redirect_url": "/azure/search/search-how-to-define-index-projections",
+            "redirect_document_id": true
+        },
+        {
             "source_path_from_root": "/articles/search/tutorial-javascript-overview.md",
             "redirect_url": "/azure/search/tutorial-csharp-overview",
             "redirect_document_id": false
@@ -352,4 +382,4 @@
             "redirect_document_id": false
         }
     ]
-}
+  }

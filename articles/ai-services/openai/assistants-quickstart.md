@@ -6,9 +6,9 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: devx-track-python, devx-track-dotnet, devx-track-extended-java, devx-track-js
 ms.topic: quickstart
-author: mrbullwinkle
-ms.author: mbullwin
-ms.date: 07/18/2024
+author: aahill
+ms.author: aahi
+ms.date: 3/10/2025
 zone_pivot_groups: openai-quickstart-assistants
 recommendations: false
 ---
@@ -16,17 +16,11 @@ recommendations: false
 
 # Quickstart: Get started using Azure OpenAI Assistants (Preview)
 
-Azure OpenAI Assistants (Preview) allows you to create AI assistants tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, and custom functions.
+Azure OpenAI Assistants (Preview) allows you to create AI assistants tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, file search, and custom functions.
 
-::: zone pivot="programming-language-studio"
+::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Azure OpenAI Studio quickstart](includes/assistants-studio.md)]
-
-::: zone-end
-
-::: zone pivot="programming-language-ai-studio"
-
-[!INCLUDE [AI Studio (Preview)](includes/assistants-ai-studio.md)]
+[!INCLUDE [Azure AI Foundry portal](includes/assistants-ai-studio.md)]
 
 ::: zone-end
 
@@ -45,6 +39,12 @@ Azure OpenAI Assistants (Preview) allows you to create AI assistants tailored to
 ::: zone pivot="programming-language-javascript"
 
 [!INCLUDE [JavaScript quickstart](includes/assistants-javascript.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-typescript"
+
+[!INCLUDE [TypeScript quickstart](includes/assistants-typescript.md)]
 
 ::: zone-end
 

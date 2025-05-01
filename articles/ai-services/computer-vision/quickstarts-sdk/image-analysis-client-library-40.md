@@ -2,12 +2,12 @@
 title: "Quickstart: Image Analysis 4.0"
 titleSuffix: Azure AI services
 description: Learn how to read text from images in your application using Image Analysis 4.0 through a native client SDK in the language of your choice.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: quickstart
 ms.date: 08/21/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ms.custom: devx-track-python, devx-track-csharp, mode-api, devx-track-dotnet, devx-track-extended-java, devx-track-js
 zone_pivot_groups: programming-languages-computer-vision-40

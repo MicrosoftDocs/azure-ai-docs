@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 07/19/2024
+ms.date: 03/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -15,7 +15,7 @@ recommendations: false
 
 # Learn how to use reproducible output (preview)
 
-By default if you ask an Azure OpenAI Chat Completion model the same question multiple times you're likely to get a different response. The responses are therefore considered to be non-deterministic. Reproducible output is a new  preview feature that allows you to selectively change the default behavior to help product more deterministic outputs.
+By default if you ask an Azure OpenAI Chat Completion model the same question multiple times you're likely to get a different response. The responses are therefore considered to be nondeterministic. Reproducible output is a new  preview feature that allows you to selectively change the default behavior to help product more deterministic outputs.
 
 ## Reproducible output support
 
@@ -28,6 +28,7 @@ Reproducible output is only currently supported with the following:
 * `gpt-4` (1106-Preview)
 * `gpt-4` (0125-Preview)
 * `gpt-4` (turbo-2024-04-09)
+* `gpt-4o-mini` (2024-07-18)
 * `gpt-4o` (2024-05-13)
 
 Consult the [models page](../concepts/models.md) for the latest information on model regional availability.
@@ -49,7 +50,7 @@ from openai import AzureOpenAI
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-02-01"
+  api_version="2024-10-21"
 )
 
 for i in range(3):
@@ -78,7 +79,7 @@ for i in range(3):
 $openai = @{
    api_key     = $Env:AZURE_OPENAI_API_KEY
    api_base    = $Env:AZURE_OPENAI_ENDPOINT # like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
-   api_version = '2024-02-01' # may change in the future
+   api_version = '2024-10-21' # may change in the future
    name        = 'YOUR-DEPLOYMENT-NAME-HERE' # name you chose for your deployment
 }
 
@@ -144,7 +145,7 @@ from openai import AzureOpenAI
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-02-01"
+  api_version="2024-10-21"
 )
 
 for i in range(3):
@@ -173,7 +174,7 @@ for i in range(3):
 $openai = @{
    api_key     = $Env:AZURE_OPENAI_API_KEY
    api_base    = $Env:AZURE_OPENAI_ENDPOINT # like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
-   api_version = '2024-02-01' # may change in the future
+   api_version = '2024-10-21' # may change in the future
    name        = 'YOUR-DEPLOYMENT-NAME-HERE' # name you chose for your deployment
 }
 

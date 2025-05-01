@@ -7,7 +7,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 7/16/2024
+ms.date: 3/10/2025
 zone_pivot_groups: speech-cli-rest
 ms.custom: devx-track-csharp
 ---

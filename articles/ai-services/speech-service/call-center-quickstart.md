@@ -2,12 +2,13 @@
 title: "Post-call transcription and analytics quickstart - Speech service"
 titleSuffix: Azure AI services
 description: In this quickstart, you perform sentiment analysis and conversation summarization of call center transcriptions.
-author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: quickstart
-ms.date: 1/18/2024
+ms.date: 3/10/2025
+author: eric-urban
 ms.author: eur
+ms.reviewer: jagoerge
 ms.devlang: csharp
 ---
 

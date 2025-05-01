@@ -5,7 +5,6 @@ ms.service: azure-ai-speech
 ms.date: 11/15/2021
 ms.topic: include
 ms.author: chschrae
-zone_pivot_groups: programming-languages-set-two
 ---
 
 ## Create a project
@@ -51,7 +50,7 @@ Now create an `IntentRecognizer`. Insert this code right below your Speech confi
 ## Add some intents
 
 You need to associate some patterns with a `PatternMatchingModel` and apply it to the `IntentRecognizer`.
-We will start by creating a `PatternMatchingModel` and adding a few intents to it. A PatternMatchingIntent is a struct so we will just use the in-line syntax.
+We'll start by creating a `PatternMatchingModel` and adding a few intents to it. A PatternMatchingIntent is a struct so we just use the in-line syntax.
 
 > [!Note]
 > We can add multiple patterns to a `PatternMatchingIntent`.
@@ -65,7 +64,7 @@ model->Intents.push_back({"{action} the door."}, "OpenCloseDoor");
 
 ## Add some custom entities
 
-To take full advantage of the pattern matcher you can customize your entities. We will make "floorName" a list of the available floors.
+To take full advantage of the pattern matcher, you can customize your entities. We'll make "floorName" a list of the available floors.
 
 ```cpp
 model->Entities.push_back({ "floorName" , Intent::EntityType::List, Intent::EntityMatchMode::Strict, {"one", "1", "two", "2", "lobby", "ground floor"} });
@@ -73,7 +72,7 @@ model->Entities.push_back({ "floorName" , Intent::EntityType::List, Intent::Enti
 
 ## Apply our model to the Recognizer
 
-Now it is necessary to apply the model to the `IntentRecognizer`. It is possible to use multiple models at once so the API takes a collection of models.
+Now it's necessary to apply the model to the `IntentRecognizer`. It's possible to use multiple models at once so the API takes a collection of models.
 
 ```cpp
 std::vector<std::shared_ptr<LanguageUnderstandingModel>> collection;
@@ -95,7 +94,7 @@ auto result = intentRecognizer->RecognizeOnceAsync().get();
 
 ## Display the recognition results (or errors)
 
-When the recognition result is returned by the Speech service, we will print the result.
+When the Speech service returns the recognition result, we print the result.
 
 Insert this code below `auto result = intentRecognizer->RecognizeOnceAsync().get();`:
 
@@ -251,7 +250,7 @@ Now you're ready to build your app and test our speech recognition using the Spe
 
 1. **Compile the code** - From the menu bar of Visual Studio, choose **Build** > **Build Solution**.
 2. **Start your app** - From the menu bar, choose **Debug** > **Start Debugging** or press <kbd>F5</kbd>.
-3. **Start recognition** - It will prompt you to say something. The default language is English. Your speech is sent to the Speech service, transcribed as text, and rendered in the console.
+3. **Start recognition** - It prompts you to say something. The default language is English. Your speech is sent to the Speech service, transcribed as text, and rendered in the console.
 
 For example if you say "Take me to floor 2", this should be the output:
 
@@ -270,4 +269,4 @@ RECOGNIZED: Text = Take me to floor 7.
 NO INTENT RECOGNIZED!
 ```
 
-The Intent ID is empty because 7 was not in our list.
+The Intent ID is empty because 7 wasn't in our list.

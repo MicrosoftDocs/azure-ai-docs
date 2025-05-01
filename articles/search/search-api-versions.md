@@ -6,7 +6,7 @@ description: Version policy for Azure AI Search REST APIs and the client library
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - devx-track-dotnet
   - devx-track-extended-java
@@ -14,7 +14,7 @@ ms.custom:
   - devx-track-python
   - ignite-2023
 ms.topic: conceptual
-ms.date: 06/24/2024
+ms.date: 02/18/2025
 ---
 
 # API versions in Azure AI Search
@@ -35,7 +35,7 @@ This was the first REST API that offered vector search support. Newer API versio
 
 ## Discontinued versions
 
-Some API versions are discontinued and are rejected by a search service:
+Some API versions are discontinued and are no longer documented or supported:
 
 + **2015-02-28**
 + **2015-02-28-Preview**
@@ -57,33 +57,31 @@ Support for the above-listed versions ended on October 15, 2020. If you have cod
 
 The following  table provides links to more recent SDK versions. 
 
-| SDK version | Status | Description |
-|-------------|--------|------------------------------|
-| [Azure.Search.Documents 11](/dotnet/api/overview/azure/search.documents-readme) | Active | New client library from the Azure .NET SDK team, initially released July 2020. See the [Change Log](https://github.com/Azure/azure-sdk-for-net/blob/Azure.Search.Documents_11.3.0/sdk/search/Azure.Search.Documents/CHANGELOG.md) for information about minor releases. |
-| [Microsoft.Azure.Search 10](https://www.nuget.org/packages/Microsoft.Azure.Search/) | Retired | Released May 2019. This is the last version of the Microsoft.Azure.Search package and it's now deprecated. It's succeeded by Azure.Search.Documents. |
-| [Microsoft.Azure.Management.Search 4.0.0](https://www.nuget.org/packages/Microsoft.Azure.Management.Search/4.0.0) | Active | Targets the Management REST api-version=2020-08-01. |
-| [Microsoft.Azure.Management.Search 3.0.0](https://www.nuget.org/packages/Microsoft.Azure.Management.Search/3.0.0) | Retired | Targets the Management REST api-version=2015-08-19.  |
+| SDK version | Status | Change log | Description |
+|-------------|--------|------------ |-----------------|
+| [Azure.Search.Documents 11](/dotnet/api/overview/azure/search.documents-readme) | Active | [Change Log](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | APIs for data plane operations on a service, such as read-write operations on content and objects. |
+| [Azure.ResourceManager.Search](https://www.nuget.org/packages/Microsoft.Azure.Management.Search/4.0.0) | Active | [Change Log](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.ResourceManager.Search/CHANGELOG.md) | APIs for control plane operations on the search service. |
 
 ## Azure SDK for Java
 
-| SDK version | Status | Description  |
-|-------------|--------|------------------------------|
-| [Java azure-search-documents 11](/java/api/overview/azure/search-documents-readme) | Active | Use the `azure-search-documents` client library for data plane operations. |
-| [Java Management Client 1.35.0](/java/api/overview/azure/search/management) | Active | Use the `azure-mgmt-search` client library for control plane operations. |
+| SDK version | Status | Change log | Description |
+|-------------|--------|------------|-----------------|
+| [azure-search-documents 11](/java/api/overview/azure/search-documents-readme) | Active | [Change Log](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) Use the `azure-search-documents` client library for data plane operations. |
+| [azure-resourcemanager-search 2](/java/api/overview/azure/resourcemanager-search-readme) | Active | [Change Log](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/resourcemanager/azure-resourcemanager-search/CHANGELOG.md) | Use the `azure-resourcemanager-search` client library for control plane operations. |
 
 ## Azure SDK for JavaScript
 
-| SDK version | Status | Description  |
-|-------------|--------|------------------------------|
-| [JavaScript @azure/search-documents 11.0](/javascript/api/overview/azure/search-documents-readme) | Active | Use the `@azure/search-documents` client library for data plane operations. |
-| [JavaScript @azure/arm-search](https://www.npmjs.com/package/@azure/arm-search) | Active | Use the `@azure/arm-search` client library for control plane operations. |
+| SDK version | Status | Change log | Description |
+|-------------|--------|------------|------------------|
+| [@azure/search-documents 12](/javascript/api/overview/azure/search-documents-readme) | Active | [Change Log](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | Use the `@azure/search-documents` client library for data plane operations. |
+| [@azure/arm-search 4](/javascript/api/overview/azure/arm-search-readme) | Active | [Change Log](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/arm-search/CHANGELOG.md) | Use the `@azure/arm-search` package for control plane operations. |
 
 ## Azure SDK for Python
 
-| SDK version | Status | Description  |
-|-------------|--------|------------------------------|
-| [Python azure-search-documents 11.0](/python/api/azure-search-documents) | Active | Use the `azure-search-documents` client library for data plane operations. |
-| [Python azure-mgmt-search 8.0](https://pypi.org/project/azure-mgmt-search/) | Active | Use the `azure-mgmt-search` client library for control plane operations. |
+| SDK version | Status | Change log | Description |
+|-------------|--------|------------|------------------|
+| [azure-search-documents 11](/python/api/overview/azure/search-documents-readme) | Active | [Change Log](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | Use the `azure-search-documents` client library for data plane operations. |
+| [azure-mgmt-search 9](https://pypi.org/project/azure-mgmt-search/) | Active | [Change Log](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-mgmt-search/CHANGELOG.md) | Use the `azure-mgmt-search` client library for control plane operations. |
 
 ## All Azure SDKs
 

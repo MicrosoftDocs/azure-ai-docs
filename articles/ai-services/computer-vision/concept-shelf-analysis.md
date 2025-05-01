@@ -2,18 +2,20 @@
 title: Product Recognition - Image Analysis 4.0
 titleSuffix: Azure AI services
 description: Learn concepts related to the Product Recognition feature set of Image Analysis 4.0 - usage and limits.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 02/14/2024
+ms.date: 10/16/2024
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ms.custom: build-2023, build-2023-dataai
 ---
 
 # Product Recognition (version 4.0 preview)
+
+[!INCLUDE [model-customization-deprecation](includes/model-customization-deprecation.md)]
 
 The Product Recognition APIs let you analyze photos of shelves in a retail store. You can detect the presence of products and get their bounding box coordinates. Use it in combination with model customization to train a model to identify your specific products. You can also compare Product Recognition results to your store's planogram document.
 

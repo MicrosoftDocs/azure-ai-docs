@@ -8,7 +8,7 @@ ms.reviewer: vkann
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
-ms.date: 02/01/2024
+ms.date: 09/24/2024
 ms.custom: data4ml
 monikerRange: 'azureml-api-1 || azureml-api-2'
 # Customer intent: As a project manager, I want to set up a project to label images in the project. I want to enable machine learning-assisted labeling to help with the task.
@@ -28,7 +28,7 @@ You can also use the data labeling tool in Azure Machine Learning to [create a t
 
 Azure Machine Learning data labeling is a tool you can use to create, manage, and monitor data labeling projects. Use it to:
 
-- Coordinate data, labels, and team members to efficiently manage labeling tasks.
+- Coordinate data, labels, and team members to efficiently manage the labeling tasks.
 - Track progress and maintain the queue of incomplete labeling tasks.
 - Start and stop the project, and control the labeling progress.
 - Review and export the labeled data as an Azure Machine Learning dataset.
@@ -38,20 +38,20 @@ Azure Machine Learning data labeling is a tool you can use to create, manage, an
 
 Image data can be any file that has one of these file extensions:
 
-- *.jpg*
-- *.jpeg*
-- *.png*
-- *.jpe*
-- *.jfif*
-- *.bmp*
-- *.tif*
-- *.tiff*
-- *.dcm*
-- *.dicom*
+- `.jpg`
+- `.jpeg`
+- `.png`
+- `.jpe`
+- `.jfif`
+- `.bmp`
+- `.tif`
+- `.tiff`
+- `.dcm`
+- `.dicom`
 
 Each file is an item to be labeled.
 
-You can also use an MLTable data asset as input to an image labeling project, as long as the images in the table are one of the above formats. For more information, see [How to use MLTable data assets](./how-to-mltable.md).
+You can also use an `MLTable` data asset as input to an image labeling project, as long as the images in the table are one of the above formats. For more information, see [How to use `MLTable` data assets](./how-to-mltable.md).
 
 ## Prerequisites
 
@@ -76,10 +76,10 @@ You use these items to set up image labeling in Azure Machine Learning:
     * To apply only a *single label* to an image from a set of labels, select **Image Classification Multi-class**.
     * To apply *one or more* labels to an image from a set of labels, select **Image Classification Multi-label**. For example, a photo of a dog might be labeled with both *dog* and *daytime*.
     * To assign a label to each object within an image and add bounding boxes, select **Object Identification (Bounding Box)**.
-    * To assign a label to each object within an image and draw a polygon around each object, select **Instance Segmentation (Polygon)**.
+    * To assign a label to each object within an image and draw a polygon around each object, select **Polygon (Instance Segmentation)**.
     * To draw masks on an image and assign a label class at the pixel level, select **Semantic Segmentation (Preview)**.
 
-    :::image type="content" source="media/how-to-create-labeling-projects/labeling-creation-wizard.png" alt-text="Screenshot that shows creating a labeling project to manage labeling.":::
+    :::image type="content" source="media/how-to-create-labeling-projects/labeling-creation-wizard.png" alt-text="Screenshot that shows creating a labeling project to manage the labeling task.":::
 
 1. Select **Next** to continue.
 
@@ -98,7 +98,7 @@ You can also select **Create a dataset** to use an existing Azure datastore or t
 
 ### Data column mapping (preview)
 
-If you select an MLTable data asset, an additional **Data Column Mapping** step appears for you to specify the column that contains the image URLs.  
+If you select an MLTable data asset, another **Data Column Mapping** step appears for you to specify the column that contains the image URLs.  
 
 [!INCLUDE [mapping](includes/machine-learning-data-labeling-mapping.md)]
 
@@ -169,7 +169,7 @@ For bounding boxes, important questions include:
 * How should labelers handle an object that isn't the object class of interest but has visual similarities to a relevant object type?
 
 > [!NOTE]
-> Labelers can select the first nine labels by using number keys 1 through 9.
+> Labelers can select the first nine labels by using number keys 1 through 9. You might want to include this information in your instructions.
 
 ## Quality control (preview)
 
@@ -180,7 +180,7 @@ For bounding boxes, important questions include:
 
 ## Use ML-assisted data labeling
 
-To accelerate labeling tasks, on the **ML assisted labeling** page, you can trigger automatic machine learning models. Medical images (files that have a *.dcm* extension) aren't included in assisted labeling.  If the project type is **Semantic Segmentation (Preview)**, ML-assisted labeling isn't available.
+To accelerate labeling tasks, on the **ML assisted labeling** page, you can trigger automatic machine learning models. Medical images (files that have a `.dcm` extension) aren't included in assisted labeling. If the project type is **Semantic Segmentation (Preview)**, ML-assisted labeling isn't available.
 
 At the start of your labeling project, the items are shuffled into a random order to reduce potential bias. However, the trained model reflects any biases that are present in the dataset. For example, if 80 percent of your items are of a single class, then approximately 80 percent of the data used to train the model lands in that class.
 
@@ -189,9 +189,9 @@ To enable assisted labeling, select **Enable ML assisted labeling** and specify 
 ML-assisted labeling consists of two phases:
 
 * Clustering
-* Pre-labeling
+* Prelabeling
 
-The labeled data item count that's required to start assisted labeling isn't a fixed number. This number can vary significantly from one labeling project to another. For some projects, it's sometimes possible to see pre-label or cluster tasks after 300 items have been manually labeled. ML-assisted labeling uses a technique called *transfer learning*. Transfer learning uses a pre-trained model to jump-start the training process. If the classes of your dataset resemble the classes in the pre-trained model, pre-labels might become available after only a few hundred manually labeled items. If your dataset significantly differs from the data that's used to pre-train the model, the process might take more time.
+The labeled data item count that's needed to start assisted labeling isn't a fixed number. This number can vary significantly from one labeling project to another. For some projects, it's sometimes possible to see prelabel or cluster tasks after 300 items are manually labeled. ML-assisted labeling uses a technique called *transfer learning*. Transfer learning uses a pretrained model to jump-start the training process. If the classes of your dataset resemble the classes in the pretrained model, prelabels might become available after only a few hundred manually labeled items. If your dataset significantly differs from the data that's used to pretrain the model, the process might take more time.
 
 When you use consensus labeling, the consensus label is used for training.
 
@@ -208,11 +208,11 @@ After a machine learning model is trained on your manually labeled data, the mod
 
 The clustering phase doesn't appear for object detection models or text classification.
 
-### Pre-labeling
+### Prelabeling
 
-After you submit enough labels for training, either a classification model predicts tags or an object detection model predicts bounding boxes. The labeler now sees pages that contain predicted labels already present on each item. For object detection, predicted boxes are also shown. The task involves reviewing these predictions and correcting any incorrectly labeled images before page submission.
+After you submit enough labels for training, either a classification model predicts tags, or an object detection model predicts bounding boxes. The labeler now sees pages that contain predicted labels already present on each item. For object detection, predicted boxes are also shown. The task involves reviewing these predictions and correcting any incorrectly labeled images before page submission.
 
-After a machine learning model is trained on your manually labeled data, the model is evaluated on a test set of manually labeled items. The evaluation helps determine the model's accuracy at different confidence thresholds. The evaluation process sets a confidence threshold beyond which the model is accurate enough to show pre-labels. The model is then evaluated against unlabeled data. Items with predictions that are more confident than the threshold are used for pre-labeling.
+After a machine learning model is trained on your manually labeled data, the model is evaluated on a test set of manually labeled items. The evaluation helps determine the model's accuracy at different confidence thresholds. The evaluation process sets a confidence threshold beyond which the model is accurate enough to show prelabels. The model is then evaluated against unlabeled data. Items with predictions that are more confident than the threshold are used for prelabeling.
 
 ## Initialize the image labeling project
 
@@ -224,8 +224,7 @@ After a machine learning model is trained on your manually labeled data, the mod
 [!INCLUDE [troubleshoot](includes/machine-learning-data-labeling-troubleshoot.md)]
 
 
-## Next steps
+## Related content
 
-<!-- * [Tutorial: Create your first image classification labeling project](tutorial-labeling.md). -->
 * [Manage labeling projects](how-to-manage-labeling-projects.md)
 * [How to tag images](how-to-label-data.md)

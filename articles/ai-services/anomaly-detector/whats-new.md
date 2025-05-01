@@ -84,7 +84,7 @@ We have also added links to some user-generated content. Those items will be mar
 
 ### April 2021
 
-* [IoT Edge module](https://azuremarketplace.microsoft.com/marketplace/apps/azure-cognitive-service.edge-anomaly-detector) (univariate) published.
+* IoT Edge module (univariate) published.
 * Anomaly Detector (univariate) available in Microsoft Azure operated by 21Vianet (China East 2).
 * Multivariate anomaly detector APIs preview in selected regions (West US 2, West Europe).
 

@@ -6,11 +6,11 @@ description: This article provides information and solutions to common errors an
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 03/27/2024
+ms.topic: concept-article
+ms.date: 02/19/2025
 ---
 
 # Troubleshooting common indexer errors and warnings in Azure AI Search
@@ -19,10 +19,10 @@ This article provides information and solutions to common errors and warnings yo
 
 Indexing stops when the error count exceeds ['maxFailedItems'](cognitive-search-concept-troubleshooting.md#tip-2-see-what-works-even-if-there-are-some-failures). 
 
-If you want indexers to ignore these errors (and skip over "failed documents"), consider updating the `maxFailedItems` and `maxFailedItemsPerBatch` as described [here](/rest/api/searchservice/create-indexer#general-parameters-for-all-indexers).
+If you want indexers to ignore these errors (and skip over "failed documents"), consider updating the `maxFailedItems` and `maxFailedItemsPerBatch` as described [here](/rest/api/searchservice/indexers/create#indexingparameters).
 
 > [!NOTE]
-> Each failed document along with its document key (when available) will show up as an error in the indexer execution status. You can utilize the [index api](/rest/api/searchservice/addupdate-or-delete-documents) to manually upload the documents at a later point if you have set the indexer to tolerate failures.
+> Each failed document along with its document key (when available) will show up as an error in the indexer execution status. You can utilize the [index api](/rest/api/searchservice/documents) to manually upload the documents at a later point if you have set the indexer to tolerate failures.
 
 The error information in this article can help you resolve errors, allowing indexing to continue.
 
@@ -32,29 +32,28 @@ Warnings don't stop indexing, but they do indicate conditions that could result 
 
 To verify an indexer status and identify errors in the Azure portal, follow the steps below:
 
-1. Navigate to the Azure portal and locate your AI Search service.
-1. Once you're in the AI Search service, click on the 'Indexers' tab.
-1. From the list of indexers, identify the specific indexer you wish to verify.
-1. Under the 'Execution History' column, click on the 'Status' hyperlink associated with the selected indexer.
-1. If there's an error, hover over the error message. A pane will appear on the right side of your screen displaying detailed information about the error.
+1. Sign in to the [Azure portal](https://portal.azure.com/) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-## Transient errors 
+1. On the left, expand **Search Management** > **Indexers** and select an indexer.
+
+1. Under **Execution History**, select the status. All statuses, including Success, have details about the execution.
+
+1. If there's an error, hover over the error message. A pane appears on the right side of your screen displaying detailed information about the error.
+
+## Transient errors
 
 For various reasons, such as transient network communication interruptions, timeouts from long-running processes, or specific document nuances, it's common to encounter transient errors or warnings during indexer runs. However, these errors are temporary and should be resolved in subsequent indexer runs. 
 
-To manage these errors effectively, it is recommended [putting your indexer on a schedule](search-howto-schedule-indexers.md), for instance, to run every five minutes. This means the next run will commence five minutes after the completion of the first run, adhering to the [maximum runtime limit](search-limits-quotas-capacity.md#indexer-limits). Regularly scheduled runs help to rectify any transient errors or warnings swiftly. 
+To manage these errors effectively, we recommend [putting your indexer on a schedule](search-howto-schedule-indexers.md), for instance, to run every five minutes, where the next run commences five minutes after completing the first run, adhering to the [maximum runtime limit](search-limits-quotas-capacity.md#indexer-limits) on your service. Regularly scheduled runs help rectify transient errors or warnings. 
 
-If you notice an error persisting over multiple indexer runs, it's likely not a transient issue. In such cases, refer to the list below for potential solutions. Please note, always ensure your indexing schedule aligns with the limitations outlined in our indexer limits guide.
-
+If an error persists over multiple indexer runs, it's likely not a transient issue. In such cases, refer to the list below for potential solutions.
 
 ## Error properties
 
-Beginning with API version `2019-05-06`, item-level Indexer errors and warnings are structured to provide increased clarity around causes and next steps. They contain the following properties:
-
 | Property | Description | Example |
 | --- | --- | --- |
-| Key | The document ID of the document impacted by the error or warning. | `https://<storageaccount>.blob.core.windows.net/jfk-1k/docid-32112954.pdf`|
-| Name | The operation name describing where the error or warning occurred. This is generated by the following structure: `[category]`.`[subcategory]`.`[resourceType]`.`[resourceName]` | `DocumentExtraction.azureblob.myBlobContainerName` `Enrichment.WebApiSkill.mySkillName` `Projection.SearchIndex.OutputFieldMapping.myOutputFieldName` `Projection.SearchIndex.MergeOrUpload.myIndexName` `Projection.KnowledgeStore.Table.myTableName` |
+| Key | The ID of the document impacted by the error or warning. | Azure Storage example, where the default ID is the metadata storage path: `https://<storageaccount>.blob.core.windows.net/jfk-1k/docid-32112954.pdf`|
+| Name | The operation causing the error or warning. This is generated by the following structure: `[category]`.`[subcategory]`.`[resourceType]`.`[resourceName]` | `DocumentExtraction.azureblob.myBlobContainerName` `Enrichment.WebApiSkill.mySkillName` `Projection.SearchIndex.OutputFieldMapping.myOutputFieldName` `Projection.SearchIndex.MergeOrUpload.myIndexName` `Projection.KnowledgeStore.Table.myTableName` |
 | Message | A high-level description of the error or warning. | `Could not execute skill because the Web Api request failed.` |
 | Details | Specific information that might be helpful in diagnosing the issue, such as the WebApi response if executing a custom skill failed. | `link-cryptonyms-list - Error processing the request record : System.ArgumentNullException: Value cannot be null. Parameter name: source at System.Linq.Enumerable.All[TSource](IEnumerable 1 source, Func 2 predicate) at Microsoft.CognitiveSearch.WebApiSkills.JfkWebApiSkills. ...rest of stack trace...` |
 | DocumentationLink | A link to relevant documentation with detailed information to debug and resolve the issue. This link will often point to one of the below sections on this page. | `https://go.microsoft.com/fwlink/?linkid=2106475` |
@@ -92,11 +91,11 @@ Indexer read the document from the data source, but there was an issue convertin
 
 | Reason | Details/Example | Resolution |
 | --- | --- | --- |
-| The document key is missing | `Document key cannot be missing or empty` | Ensure all documents have valid document keys. The document key is determined by setting the 'key' property as part of the [index definition](/rest/api/searchservice/create-index#request-body). Indexers emit this error when the property flagged as the 'key' can't be found on a particular document. |
+| The document key is missing | `Document key cannot be missing or empty` | Ensure all documents have valid document keys. The document key is determined by setting the 'key' property as part of the [index definition](/rest/api/searchservice/indexes/create#request-body). Indexers emit this error when the property flagged as the 'key' can't be found on a particular document. |
 | The document key is invalid | `Invalid document key. Keys can only contain letters, digits, underscore (_), dash (-), or equal sign (=). ` | Ensure all documents have valid document keys. Review [Indexing Blob Storage](search-howto-indexing-azure-blob-storage.md) for more details. If you're using the blob indexer, and your document key is the `metadata_storage_path` field, make sure that the indexer definition has a [base64Encode mapping function](search-indexer-field-mappings.md?tabs=rest#base64encode-function) with `parameters` equal to `null`, instead of the path in plain text. |
 | The document key is invalid | `Document key cannot be longer than 1024 characters` | Modify the document key to meet the validation requirements. |
-| Could not apply field mapping to a field | `Could not apply mapping function 'functionName' to field 'fieldName'. Array cannot be null. Parameter name: bytes` | Double check the [field mappings](search-indexer-field-mappings.md) defined on the indexer, and compare with the data of the specified field of the failed document. It might be necessary to modify the field mappings or the document data. |
-| Could not read field value | `Could not read the value of column 'fieldName' at index 'fieldIndex'. A transport-level error has occurred when receiving results from the server. (provider: TCP Provider, error: 0 - An existing connection was forcibly closed by the remote host.)` | These errors are typically due to unexpected connectivity issues with the data source's underlying service. Try running the document through your indexer again later. |
+| Couldn't apply field mapping to a field | `Could not apply mapping function 'functionName' to field 'fieldName'. Array cannot be null. Parameter name: bytes` | Double check the [field mappings](search-indexer-field-mappings.md) defined on the indexer, and compare with the data of the specified field of the failed document. It might be necessary to modify the field mappings or the document data. |
+| Couldn't read field value | `Could not read the value of column 'fieldName' at index 'fieldIndex'. A transport-level error has occurred when receiving results from the server. (provider: TCP Provider, error: 0 - An existing connection was forcibly closed by the remote host.)` | These errors are typically due to unexpected connectivity issues with the data source's underlying service. Try running the document through your indexer again later. |
 
 <a name="Could not map output field '`xyz`' to search index due to deserialization problem while applying mapping function '`abc`'"></a>
 
@@ -189,7 +188,7 @@ The document was read and processed, but the indexer couldn't add it to the sear
 | Trouble connecting to the target index (that persists after retries) because the service is under other load, such as querying or indexing. | Failed to establish connection to update index. Search service is under heavy load. | [Scale up your search service](search-capacity-planning.md)
 | Search service is being patched for service update, or is in the middle of a topology reconfiguration. | Failed to establish connection to update index. Search service is currently down/Search service is undergoing a transition. | Configure service with at least three replicas for 99.9% availability per [SLA documentation](https://azure.microsoft.com/support/legal/sla/search/v1_0/)
 | Failure in the underlying compute/networking resource (rare) | Failed to establish connection to update index. An unknown failure occurred. | Configure indexers to [run on a schedule](search-howto-schedule-indexers.md) to pick up from a failed state.
-| An indexing request made to the target index wasn't acknowledged within a timeout period due to network issues. | Could not establish connection to the search index in a timely manner. | Configure indexers to [run on a schedule](search-howto-schedule-indexers.md) to pick up from a failed state. Additionally, try lowering the indexer [batch size](/rest/api/searchservice/create-indexer#parameters) if this error condition persists.
+| An indexing request made to the target index wasn't acknowledged within a timeout period due to network issues. | Couldn't establish connection to the search index in a timely manner. | Configure indexers to [run on a schedule](search-howto-schedule-indexers.md) to pick up from a failed state. Additionally, try lowering the indexer [batch size](/rest/api/searchservice/indexers/create#indexingparameters) if this error condition persists.
 
 <a name="could-not-index-document-because-the-indexer-data-to-index-was-invalid"></a>
 
@@ -225,9 +224,9 @@ This error occurs when the indexer is attempting to [project data into a knowled
 
 | Reason | Details/Example | Resolution |
 | --- | --- | --- |
-| Could not update projection blob `'blobUri'` in container `'containerName'` |The specified container doesn't exist. | The indexer checks if the specified container has been previously created and will create it if necessary, but it only performs this check once per indexer run. This error means that something deleted the container after this step.  To resolve this error, try this: leave your storage account information alone, wait for the indexer to finish, and then rerun the indexer. |
-| Could not update projection blob `'blobUri'` in container `'containerName'` |Unable to write data to the transport connection: An existing connection was forcibly closed by the remote host. | This is expected to be a transient failure with Azure Storage and thus should be resolved by rerunning the indexer. If you encounter this error consistently, file a [support ticket](https://portal.azure.com/#create/Microsoft.Support) so it can be investigated further.  |
-| Could not update row `'projectionRow'` in table `'tableName'` | The server is busy. | This is expected to be a transient failure with Azure Storage and thus should be resolved by rerunning the indexer. If you encounter this error consistently, file a [support ticket](https://portal.azure.com/#create/Microsoft.Support) so it can be investigated further.  |
+| Couldn't update projection blob `'blobUri'` in container `'containerName'` |The specified container doesn't exist. | The indexer checks if the specified container has been previously created and will create it if necessary, but it only performs this check once per indexer run. This error means that something deleted the container after this step.  To resolve this error, try this: leave your storage account information alone, wait for the indexer to finish, and then rerun the indexer. |
+| Couldn't update projection blob `'blobUri'` in container `'containerName'` |Unable to write data to the transport connection: An existing connection was forcibly closed by the remote host. | This is expected to be a transient failure with Azure Storage and thus should be resolved by rerunning the indexer. If you encounter this error consistently, file a [support ticket](https://portal.azure.com/#create/Microsoft.Support) so it can be investigated further.  |
+| Couldn't update row `'projectionRow'` in table `'tableName'` | The server is busy. | This is expected to be a transient failure with Azure Storage and thus should be resolved by rerunning the indexer. If you encounter this error consistently, file a [support ticket](https://portal.azure.com/#create/Microsoft.Support) so it can be investigated further.  |
 
 <a name="skill-throttled"></a>
 
@@ -237,7 +236,7 @@ Skill execution failed because the call to Azure AI services was throttled. Typi
 
 ## `Error: Expected IndexAction metadata`
 
-An 'Expected IndexAction metadata' error means when the indexer attempted to read the document to identify what action should be taken, it did not find any corresponding metadata on the document. Typically, this error occurs when the indexer has an annotation cache added or removed without resetting the indexer. To address this, you should [reset and rerun the indexer](search-howto-run-reset-indexers.md).  
+An 'Expected IndexAction metadata' error means when the indexer attempted to read the document to identify what action should be taken, it didn't find any corresponding metadata on the document. Typically, this error occurs when the indexer has an annotation cache added or removed without resetting the indexer. To address this, you should [reset and rerun the indexer](search-howto-run-reset-indexers.md).  
 
 <a name="could-not-execute-skill-because-a-skill-input-was-invalid"></a>
 
@@ -379,18 +378,18 @@ Output field mappings that reference non-existent/null data will produce warning
 
 | Reason | Details/Example | Resolution |
 | --- | --- | --- |
-| Cannot iterate over non-array | "Cannot iterate over non-array `/document/normalized_images/0/imageCelebrities/0/detail/celebrities`." | This error occurs when the output isn't an array. If you think the output should be an array, check the indicated output source field path for errors. For example, you might have a missing or extra `*` in the source field name. It's also possible that the input to this skill is null, resulting in an empty array. Find similar details in [Skill Input was Invalid](cognitive-search-common-errors-warnings.md#warning-skill-input-was-invalid) section.    |
+| Can't iterate over non-array | "Cannot iterate over non-array `/document/normalized_images/0/imageCelebrities/0/detail/celebrities`." | This error occurs when the output isn't an array. If you think the output should be an array, check the indicated output source field path for errors. For example, you might have a missing or extra `*` in the source field name. It's also possible that the input to this skill is null, resulting in an empty array. Find similar details in [Skill Input was Invalid](cognitive-search-common-errors-warnings.md#warning-skill-input-was-invalid) section.    |
 | Unable to select `0` in non-array | "Unable to select `0` in non-array `/document/pages`." | This could happen if the skills output doesn't produce an array and the output source field name has array index or `*` in its path. Double check the paths provided in the output source field names and the field value for the indicated field name. Find similar details in [Skill Input was Invalid](cognitive-search-common-errors-warnings.md#warning-skill-input-was-invalid) section.  |
 
 <a name="the-data-change-detection-policy-is-configured-to-use-key-column-x"></a>
 
 ## `Warning: The data change detection policy is configured to use key column 'X'`
-[Data change detection policies](/rest/api/searchservice/create-data-source#data-change-detection-policies) have specific requirements for the columns they use to detect change. One of these requirements is that this column is updated every time the source item is changed. Another requirement is that the new value for this column is greater than the previous value. Key columns don't fulfill this requirement because they don't change on every update. To work around this issue, select a different column for the change detection policy.
+[Data change detection policies](/rest/api/searchservice/data-sources/create#request-body) have specific requirements for the columns they use to detect change. One of these requirements is that this column is updated every time the source item is changed. Another requirement is that the new value for this column is greater than the previous value. Key columns don't fulfill this requirement because they don't change on every update. To work around this issue, select a different column for the change detection policy.
 
 <a name="document-text-appears-to-be-utf-16-encoded-but-is-missing-a-byte-order-mark"></a>
 
 ## `Warning: Document text appears to be UTF-16 encoded, but is missing a byte order mark`
-The [indexer parsing modes](/rest/api/searchservice/create-indexer#blob-configuration-parameters) need to know how text is encoded before parsing it. The two most common ways of encoding text are UTF-16 and UTF-8. UTF-8 is a variable-length encoding where each character is between 1 byte and 4 bytes long. UTF-16 is a fixed-length encoding where each character is 2 bytes long. UTF-16 has two different variants, `big endian` and `little endian`. Text encoding is determined by a `byte order mark`, a series of bytes before the text.
+The [indexer parsing modes](/rest/api/searchservice/indexers/create#blobindexerparsingmode) need to know how text is encoded before parsing it. The two most common ways of encoding text are UTF-16 and UTF-8. UTF-8 is a variable-length encoding where each character is between 1 byte and 4 bytes long. UTF-16 is a fixed-length encoding where each character is 2 bytes long. UTF-16 has two different variants, `big endian` and `little endian`. Text encoding is determined by a `byte order mark`, a series of bytes before the text.
 
 | Encoding | Byte Order Mark |
 | --- | --- |

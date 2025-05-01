@@ -6,18 +6,18 @@ description: Reference for the full Lucene query syntax, as used in Azure AI Sea
 manager: nitinme
 author: bevloh
 ms.author: beloh
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 02/22/2024
+ms.topic: concept-article
+ms.date: 12/11/2024
 ---
 
 # Lucene query syntax in Azure AI Search
 
-When creating queries in Azure AI Search, you can opt for the full [Lucene Query Parser](https://lucene.apache.org/core/6_6_1/queryparser/org/apache/lucene/queryparser/classic/package-summary.html) syntax for specialized query forms: wildcard, fuzzy search, proximity search, regular expressions. Much of the Lucene Query Parser syntax is [implemented intact in Azure AI Search](search-lucene-query-architecture.md), except for *range searches, which are constructed through **`$filter`** expressions. 
+When creating queries in Azure AI Search, you can opt for the full [Lucene Query Parser](https://lucene.apache.org/core/6_6_1/queryparser/org/apache/lucene/queryparser/classic/package-summary.html) syntax for specialized query forms: wildcard, fuzzy search, proximity search, regular expressions. Much of the Lucene Query Parser syntax is [implemented intact in Azure AI Search](search-lucene-query-architecture.md), except for *range searches*, which are constructed through **`$filter`** expressions. 
 
-To use full Lucene syntax, set the queryType to `full` and pass in a query expression patterned for wildcard, fuzzy search, or one of the other query forms supported by the full syntax. In REST, query expressions are provided in the **`search`** parameter of a [Search Documents (REST API)](/rest/api/searchservice/search-documents) request.
+To use full Lucene syntax, set the queryType to `full` and pass in a query expression patterned for wildcard, fuzzy search, or one of the other query forms supported by the full syntax. In REST, query expressions are provided in the **`search`** parameter of a [Search Documents (REST API)](/rest/api/searchservice/documents/search-post) request.
 
 ## Example (full syntax)
 
@@ -34,7 +34,7 @@ POST /indexes/hotels-sample-index/docs/search?api-version=2024-07-01
 
 While not specific to any query type, the **`searchMode`** parameter is relevant in this example. Whenever operators are on the query, you should generally set `searchMode=all` to ensure that *all* of the criteria are matched.  
 
-For more examples, see [Lucene query syntax examples](search-query-lucene-examples.md). For details about the query request and parameters, including searchMode, see [Search Documents (REST API)](/rest/api/searchservice/Search-Documents).
+For more examples, see [Lucene query syntax examples](search-query-lucene-examples.md). For details about the query request and parameters, including searchMode, see [Search Documents (REST API)](/rest/api/searchservice/documents/search-post).
 
 ## <a name="bkmk_syntax"></a> Syntax fundamentals  
 
@@ -109,7 +109,7 @@ You can define a fielded search operation with the `fieldName:searchExpression` 
 
 Be sure to put multiple strings within quotation marks if you want both strings to be evaluated as a single entity, in this case searching for two distinct artists in the `artists` field.  
 
-The field specified in `fieldName:searchExpression` must be a `searchable` field.  See [Create Index](/rest/api/searchservice/create-index) for details on how index attributes are used in field definitions.  
+The field specified in `fieldName:searchExpression` must be a `searchable` field.  See [Create Index](/rest/api/searchservice/indexes/create) for details on how index attributes are used in field definitions.  
 
 > [!NOTE]
 > When using fielded search expressions, you do not need to use the `searchFields` parameter because each fielded search expression has a field name explicitly specified. However, you can still use the `searchFields` parameter if you want to run a query where some parts are scoped to a specific field, and the rest could apply to several fields. For example, the query `search=genre:jazz NOT history&searchFields=description` would match `jazz` only to the `genre` field, while it would match `NOT history` with the `description` field. The field name provided in `fieldName:searchExpression` always takes precedence over the `searchFields` parameter, which is why in this example, we do not need to include `genre` in the `searchFields` parameter.
@@ -130,15 +130,20 @@ Proximity searches are used to find terms that are near each other in a document
 
 Term boosting refers to ranking a document higher if it contains the boosted term, relative to documents that don't contain the term. This differs from scoring profiles in that scoring profiles boost certain fields, rather than specific terms.  
 
-The following example helps illustrate the differences. Suppose that there's a scoring profile that boosts matches in a certain field, say *genre* in the  [musicstoreindex example](index-add-scoring-profiles.md#bkmk_ex). Term boosting could be used to further boost certain search terms higher than others. For example, `rock^2 electronic` boosts documents that contain the search terms in the genre field higher than other searchable fields in the index. Further, documents that contain the search term *rock* are ranked higher than the other search term *electronic* as a result of the term boost value (2).  
+The following example helps illustrate the differences. Suppose that there's a scoring profile that boosts matches in a certain field, say *genre* in the  [musicstoreindex example](index-add-scoring-profiles.md#extended-example-for-keyword-search). Term boosting could be used to further boost certain search terms higher than others. For example, `rock^2 electronic` boosts documents that contain the search terms in the genre field higher than other searchable fields in the index. Further, documents that contain the search term *rock* are ranked higher than the other search term *electronic* as a result of the term boost value (2).  
 
  To boost a term, use the caret, `^`, symbol with a boost factor (a number) at the end of the term you're searching. You can also boost phrases. The higher the boost factor, the more relevant the term is relative to other search terms. By default, the boost factor is 1. Although the boost factor must be positive, it can be less than 1 (for example, 0.20).  
 
 ##  <a name="bkmk_regex"></a> Regular expression search
  
- A regular expression search finds a match based on patterns that are valid under Apache Lucene, as documented in the [RegExp class](https://lucene.apache.org/core/6_6_1/core/org/apache/lucene/util/automaton/RegExp.html). In Azure AI Search, a regular expression is enclosed between forward slashes `/`.
+A regular expression search finds a match based on patterns that are valid under Apache Lucene, as documented in the [RegExp class](https://lucene.apache.org/core/6_6_1/core/org/apache/lucene/util/automaton/RegExp.html). 
 
- For example, to find documents containing `motel` or `hotel`, specify `/[mh]otel/`. Regular expression searches are matched against single words.
+In Azure AI Search, a regular expression is:
+
+* Enclosed between forward slashes `/`
+* Lower-case only
+
+For example, to find documents containing `motel` or `hotel`, specify `/[mh]otel/`. Regular expression searches are matched against single words.
 
 Some tools and languages impose extra escape character requirements beyond the [escape rules](#escaping-special-characters) imposed by Azure AI Search. For JSON, strings that include a forward slash are escaped with a backward slash: `microsoft.com/azure/` becomes `search=/.*microsoft.com\/azure\/.*/` where `search=/.* <string-placeholder>.*/` sets up the regular expression, and `microsoft.com\/azure\/` is the string with an escaped forward slash. 
 
@@ -170,7 +175,7 @@ Suffix matching requires the regular expression forward slash `/` delimiters. Ge
 
 During query parsing, queries that are formulated as prefix, suffix, wildcard, or regular expressions are passed as-is to the query tree, bypassing [lexical analysis](search-lucene-query-architecture.md#stage-2-lexical-analysis). Matches will only be found if the index contains the strings in the format your query specifies. In most cases, you need an analyzer during indexing that preserves string integrity so that partial term and pattern matching succeeds. For more information, see [Partial term search in Azure AI Search queries](search-query-partial-matching.md).
 
-Consider a situation where you may want the search query `terminal*` to return results that contain terms such as `terminate`, `termination`, and `terminates`.
+Consider a situation where you might want the search query `terminal*` to return results that contain terms such as `terminate`, `termination`, and `terminates`.
 
 If you were to use the en.lucene (English Lucene) analyzer, it would apply aggressive stemming of each term. For example, `terminate`, `termination`, `terminates` will all be tokenized down to the token `termi` in your index. On the other side, terms in queries using wildcards or fuzzy search aren't analyzed at all, so there would be no results that would match the `terminat*` query.
 
@@ -182,9 +187,9 @@ Azure AI Search uses frequency-based scoring ([BM25](https://en.wikipedia.org/wi
 
 ## Special characters
 
-In some circumstances, you may want to search for a special character, like an '❤' emoji or the '€' sign. In such cases, make sure that the analyzer you use doesn't filter those characters out. The standard analyzer bypasses many special characters, excluding them from your index.
+In some circumstances, you might want to search for a special character, like an '❤' emoji or the '€' sign. In such cases, make sure that the analyzer you use doesn't filter those characters out. The standard analyzer bypasses many special characters, excluding them from your index.
 
-Analyzers that tokenize special characters include the whitespace analyzer, which takes into consideration any character sequences separated by whitespaces as tokens (so the `❤` string would be considered a token). Also, a language analyzer like the Microsoft English analyzer ("en.microsoft"), would take the "€" string as a token. You can [test an analyzer](/rest/api/searchservice/test-analyzer) to see what tokens it generates for a given query.
+Analyzers that tokenize special characters include the whitespace analyzer, which takes into consideration any character sequences separated by whitespaces as tokens (so the `❤` string would be considered a token). Also, a language analyzer like the Microsoft English analyzer ("en.microsoft"), would take the "€" string as a token. You can [test an analyzer](/rest/api/searchservice/indexes/analyze) to see what tokens it generates for a given query.
 
 When using Unicode characters, make sure symbols are properly escaped in the query url (for instance for `❤` would use the escape sequence `%E2%9D%A4+`). Some REST clients do this translation automatically.  
 
@@ -204,6 +209,6 @@ For more information on query limits, see [API request limits](search-limits-quo
 
 + [Query examples for simple search](search-query-simple-examples.md)
 + [Query examples for full Lucene search](search-query-lucene-examples.md)
-+ [Search Documents](/rest/api/searchservice/Search-Documents)
++ [Search Documents](/rest/api/searchservice/documents/search-post)
 + [OData expression syntax for filters and sorting](query-odata-filter-orderby-syntax.md)   
 + [Simple query syntax in Azure AI Search](query-simple-syntax.md)

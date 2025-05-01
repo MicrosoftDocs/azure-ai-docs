@@ -2,13 +2,13 @@
 title: Configure your blob storage container for image retrieval
 titleSuffix: Azure AI services
 description: Configure your Azure storage account to get started with the **Search photos image retrieval** experience in Vision Studio.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 02/21/2025
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 
 ---
@@ -21,6 +21,9 @@ To get started with the **Search photos with image retrieval** scenario in Visio
 > You need to create your storage account on the same Azure subscription as the Vision resource you're using in the **Search photos with image retrieval** scenario.
 >
 > :::image type="content" source="../media/storage-instructions/subscription.png" alt-text="Screenshot of resource selection.":::
+
+> [!IMPORTANT]
+> Image retrieval APIs are only available in certain geographic regions. See [Region availability](../overview-image-analysis.md#region-availability).
 
 
 ## Create a new storage account

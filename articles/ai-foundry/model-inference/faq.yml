@@ -1,0 +1,125 @@
+### YamlMime:FAQ
+metadata:
+  title: Azure AI model inference frequently asked questions
+  titleSuffix: Azure AI Foundry
+  description: Get answers to the most popular questions about Azure AI model inference
+  #services: cognitive-services
+  manager: nitinme
+  ms.service: azure-ai-model-inference
+  ms.topic: faq
+  ms.date: 1/21/2025
+  ms.author: fasantia
+  author: santiagxf
+title: Azure AI model inference frequently asked questions
+summary: |
+  If you can't find answers to your questions in this document, and still need help check the [Azure AI services support options guide](../../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context).
+sections:
+  - name: General
+    questions:
+      - question: |
+          What's the difference between Azure OpenAI service and Azure AI model inference?
+        answer: |
+          Azure OpenAI Service gives customers access to advanced language models from OpenAI. Azure AI model inference extends such capability giving customers access to all the flagship models in Azure AI under the same service, endpoint, and credentials. It includes Azure OpenAI, Cohere, Mistral AI, Meta Llama, AI21 labs, etc. Customers can seamlessly switch between models without changing their code.
+
+          Both Azure OpenAI Service and Azure AI model inference are part of the Azure AI services family and build on top of the same security and enterprise promise of Azure.
+
+          While Azure AI model inference focus on inference, Azure OpenAI Service can be used with more advanced APIs like batch, fine-tuning, assistants, and files.
+      - question: |
+          What's the difference between Azure AI services and Azure AI Foundry?
+        answer: |
+          Azure AI services are a suite of AI services that provide prebuilt APIs for common AI scenarios. Azure AI Services is part of the Azure AI Foundry platform. Azure AI services can be used in Azure AI Foundry portal to enhance your models with prebuilt AI capabilities.
+      - question: |
+          What's the difference between Serverless API Endpoints and Azure AI model inference?
+        answer: |
+          Both features allow you to deploy Models-as-a-Service models in Azure AI Foundry. However, there are some differences between them:
+          - *Resource involved*: Serverless API Endpoints are deployed within an AI project resource, while Azure AI model inference is part of the Azure AI services resource.
+          - *Deployment options*: Serverless API Endpoints allow regional deployments, while Azure AI model inference allows deployments under a global capacity.
+          - *Models*: Azure AI model inference also supports deploying Azure OpenAI models.
+          - *Endpoint*: Serverless API Endpoints creates one endpoint and credential per deployment, while Azure AI model inference creates one endpoint and credential per resource.
+          - *Model router*: Azure AI model inference allows you to switch between models without changing your code using a model router.
+  - name: Models
+    questions:
+      - question: |
+          Why aren't all the models in the Azure AI model catalog supported in Azure AI services?
+        answer: |
+          Azure AI model inference in AI services supports all the models in the Azure AI catalog having pay-as-you-go billing. For more information, see [the Models article](concepts/models.md).
+
+          The Azure AI model catalog contains a wider list of models, however, those models require compute quota from your subscription. They also need to have a project or AI hub where to host the deployment. For more information, see [deployment options in Azure AI Foundry](../../ai-studio/concepts/deployments-overview.md).
+      - question: |
+          My company hasn't approved specific models for use. How can I prevent users from deploying them?
+        answer: |
+          You can restrict the models available for deployment in Azure AI services by using the Azure policies. Models are listed in the catalog but any attempt to deploy them is blocked. Read [Control AI model deployment with custom policies](how-to/configure-deployment-policies.md).
+  - name: SDKs and programming languages
+    questions:
+      - question: |
+          Which are the supported SDKs and programming languages for Azure AI model inference?
+        answer: |
+          You can use Azure Inference SDK with any model supported by Azure AI model inference in Azure AI services, the `AzureOpenAI` class in OpenAI SDK, or the Azure OpenAI SDK.
+
+          Cohere SDK, Mistral SDK, and model provider-specific SDKs aren't supported when connected to Azure AI services.
+
+          For more information, see [supported SDKs and programming languages](supported-languages.md).
+      - question: |
+          Does Azure AI model inference work with the latest Python library released by OpenAI (version>=1.0)?
+        answer: |
+          Azure AI services support the latest release of the [OpenAI Python library (version>=1.0)](https://pypi.org/project/openai/). 
+      - question: |
+          I'm making a request for a model that supports Azure AI model inference, but I'm getting a 404 error. What should I do?
+        answer: |
+          Ensure you created a deployment for the given model and that the deployment name matches **exactly** the value you're passing in `model` parameter. Although routing isn't case sensitive, ensure there's no special punctuation or spaces as these are common mistakes.
+      - question: |
+          I'm using the `azure-ai-inference` package for Python and I get a 401 error when I try to authenticate using keys. What should I do?
+        answer: |
+          Azure AI Services resource requires the version `azure-ai-inference>=1.0.0b5` for Python. Ensure you're using that version.
+      - question: |
+          I'm using OpenAI SDK and indicated the Azure OpenAI inference endpoint as base URL (https://<resource-name>.openai.azure.com). However, I get a 404 error. What should I do?
+        answer: |
+          Ensure you're using the correct endpoint for the Azure OpenAI service and the right set of credentials. Also, ensure that you're using the class `AzureOpenAI` from the OpenAI SDK as the authentication mechanism and URLs used are different.
+      - question: |
+          Does Azure AI model inference support custom API headers? We append custom headers to our API requests and are seeing HTTP 431 failure errors.
+        answer: |
+          Our current APIs allow up to 10 custom headers, which are passed through the pipeline, and returned. We noticed some customers now exceed this header count resulting in HTTP 431 errors. There's no solution for this error, other than to reduce header volume. In future API versions, we no longer pass through custom headers. We recommend that you don't depend on custom headers in future system architectures. 
+  - name: Pricing and Billing
+    questions:
+      - question: |
+          How is Azure AI model inference billed?
+        answer: |
+          You're billed for inputs and outputs to the APIs, typically in tokens. There are no cost associated with the resource itself or the deployments.
+
+          The token price varies per each model and you're billed per 1,000 tokens. You can see the pricing details before deploying a given model. For more information about billing, see [Manage cost](how-to/manage-costs.md).
+      - question: |
+          Where can I see the bill details?
+        answer: |
+          Billing and costs are displayed in [Azure Cost Management + Billing](/azure/cost-management-billing/understand/download-azure-daily-usage). You can see the usage details in the [Azure portal](https://portal.azure.com).
+
+          Billing isn't shown in Azure AI Foundry portal.
+      - question: |
+          How can I place a spending limit to my bill?
+        answer: |
+          You can set up a spending limit in the [Azure portal](https://portal.azure.com) under **Azure Cost Management + Billing**. This limit prevents you from spending more than the limit you set. Once spending limit is reached, the subscription will be disabled and you won't be able to use the endpoint until the next billing cycle.
+  - name: Data and Privacy
+    questions:
+      - question: |
+          How are third-party models available? 
+        answer: |
+          Third-party models available for deployment in Azure AI Services with pay-as-you-go billing (for example, Meta AI models or Mistral models) are offered by the model provider but hosted in Microsoft-managed Azure infrastructure and accessed via API in the Azure AI model inference endpoint. Model providers define the license terms and set the price for use of their models, while Azure AI Services service manages the hosting infrastructure, makes the inference APIs available, and acts as the data processor for prompts submitted and content output by models deployed. Read about [Data privacy, and security for third-party models](../../ai-studio/how-to/concept-data-privacy.md).
+      - question: |
+          How is data processed by the Global-Standard deployment type?
+        answer: |
+          For model deployments under Azure AI Services resources, prompts and outputs are processed using Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request. Global standard provides the highest default quota and eliminates the need to load balance across multiple resources. Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure location. Learn more about [data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
+      - question: |
+          Do you use my company data to train any of the models? 
+        answer: |
+          Azure AI model inference doesn't use customer data to retrain models, and customer data is never shared with model providers.
+      - question: |
+          Is data shared with model providers?
+        answer: |
+          Microsoft acts as the data processor for prompts and outputs sent to, and generated by, a model deployment under Azure AI services resources. Microsoft doesn't share these prompts and outputs with the model provider. Also, Microsoft doesn't use these prompts and outputs to train or improve Microsoft models, the model provider's models, or any third party's models.
+          As explained during the deployment process for Models-as-a-Service models, Microsoft might share customer contact information and transaction details (including the usage volume associated with the offering) with the model publisher so that the publisher can contact customers regarding the model. Learn more about information available to model publishers in [Access insights for the Microsoft commercial marketplace in Partner Center](/partner-center/analytics).
+  - name: Customer Copyright Commitment
+    questions:
+      - question: |
+          How do I obtain coverage under the Customer Copyright Commitment? 
+        answer:
+          The Customer Copyright Commitment is a provision to be included in the December 1, 2023, Microsoft Product Terms that describes Microsoft’s obligation to defend customers against certain non-Microsoft intellectual property claims relating to Output Content. If the subject of the claim is Output Content generated from the Azure OpenAI Service (or any other Covered Product that allows customers to configure the safety systems), then to receive coverage, customers must have implemented all mitigations required by the Azure OpenAI Service documentation in the offering that delivered the Output Content. The required mitigations are documented [here](/legal/cognitive-services/openai/customer-copyright-commitment?context=/azure/ai-services/openai/context/context) and updated on an ongoing basis. For new services, features, models, or use cases, new CCC requirements will be posted and take effect at or following the launch of such service, feature, model, or use case. Otherwise, customers will have six months from the time of publication to implement new mitigations to maintain coverage under the CCC. If a customer tenders a claim, the customer will be required to demonstrate compliance with the relevant requirements. These mitigations are required for Covered Products that allow customers to configure the safety systems, including Azure OpenAI Service; they don't impact coverage for customers using other Covered Products.
+additionalContent: |
