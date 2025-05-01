@@ -256,12 +256,12 @@ POST https://[service name].search.windows.net/indexers/[indexer name]/resetdocs
 <a name="resync-indexers"></a>
 
 ## How to resync indexers (preview)
-
+[Resync Indexers](/rest/api/searchservice/indexers/resync?view=rest-searchservice-2025-05-01-preview&preserve-view=true) is a new preview API that performs a partial reindex of all documents.
 An indexer is considered synchronized with its data source when specific fields of all documents in the target index are consistent with the data in the data source. Typically, an indexer achieves synchronization after a successful initial run. If a document is deleted from the data source, the indexer remains synchronized according to this definition. However, during the next indexer run, the corresponding document in the target index will be removed if delete tracking is enabled.
 
 If a document is modified in the data source, the indexer becomes unsynchronized. Generally, change tracking mechanisms will resynchronize the indexer during the next run. For example, in Azure Storage, modifying a blob updates its last modified time, allowing it to be re-indexed in the subsequent indexer run because the updated time surpasses the high-water mark set by the previous run.
 
-In contrast, for certain data sources like Azure Data Lake Storage Gen2, altering the Access Control Lists (ACLs) of a blob does not change its last modified time, rendering change tracking ineffective if ACls are to be ingested. Consequently, the modified blob will not be re-indexed in the subsequent run, as only documents modified after the last high-water mark are processed.
+In contrast, for certain data sources like Azure Data Lake Storage (ADLS) Gen2, altering the Access Control Lists (ACLs) of a blob does not change its last modified time, rendering change tracking ineffective if ACls are to be ingested. Consequently, the modified blob will not be re-indexed in the subsequent run, as only documents modified after the last high-water mark are processed.
 
 While using either "reset" or "reset docs" can address this issue, "reset" can be time-consuming and inefficient for large datasets, and "reset docs" requires identifying the document key of the blob intended for update.
 
@@ -280,7 +280,7 @@ Resync Indexers offers an efficient and convenient alternative. Users simply pla
         ]
     }
     ```
-    + Currently the only supported option is permissions. That is, only permission filter fields in the target index will be updated.
+    + The `options` field is required. Currently the only supported option is `permissions`. That is, only permission filter fields in the target index will be updated.
 
 1. Call [Run Indexer](/rest/api/searchservice/indexers/run) (any API version) to re-synchronize the indexer.
 
