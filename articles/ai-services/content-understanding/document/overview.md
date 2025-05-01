@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 02/19/2025
+ms.date: 05/01/2025
 ms.custom: ignite-2024-understanding-release
 ---
 
@@ -24,9 +24,10 @@ Content Understanding is a cloud-based [Azure AI Service](../../what-are-ai-serv
 Content Understanding enables organization to streamline data collection and processing, enhance operational efficiency, optimize data-driven decision making, and empower innovation. With customizable analyzers, Content Understanding allows for easy extraction of content or fields from documents and forms, tailored to specific business needs.
 
 ## April updates
-With part of our April release, 
-* **Invoice prebuild template**: Extract predefined schema from invoices using different formats of invoices. You can now customize the fields by modifying the out of the box schema by adding or deleting more fields.
-* **Generate/Classify method**: We have added support for generative and classification based methods via which you can now define generative fields like summary or classify the details on a document into multiple classes via classify method.
+
+* **Invoice prebuilt template**: Extract predefined schemas from various invoice formats. The out-of-the-box schema can be customized by adding or removing fields to suit your specific needs.
+
+* **Generative and classify methods**: Added support for both generative and classification-based methods, enabling you to create generative fields such as summaries or categorize document details into multiple classes using the classify method.
 
 ## Business use cases
 

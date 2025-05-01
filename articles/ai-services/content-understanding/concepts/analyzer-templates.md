@@ -7,7 +7,7 @@ ms.author: kabrow
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 02/19/2025
+ms.date: 05/01/2025
 ms.custom: ignite-2024-understanding-release
 ---
 
@@ -26,7 +26,7 @@ The following analyzer templates are available for use in the [Azure AI Foundry 
 |Template| Description|
 | ----|----|----|
 |Document analysis |Analyze documents to extract text, layout, structured fields, and more.|
-|Invoice Analysi |Analyze invoice as prebuilt template and extract structured fields and tables.|
+|Invoice analysis |Analyze invoice as prebuilt template and extract structured fields and tables.|
 
    :::image type="content" source="../media/analyzer-template/scenario-template-document.png" alt-text="Screenshot of document analyzer template.":::
 
