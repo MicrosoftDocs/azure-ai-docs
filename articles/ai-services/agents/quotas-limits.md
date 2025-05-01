@@ -1,6 +1,6 @@
 ---
 title: Quotas and limits for Azure AI Foundry Agent Service
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry
 description: Learn about the quotas and limits for when you use Azure AI Foundry Agent Service.
 manager: nitinme
 author: aahill

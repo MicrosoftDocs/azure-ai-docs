@@ -1,6 +1,6 @@
 ---
 title: 'How to use Grounding with Bing Search in Azure AI Foundry Agent Service'
-titleSuffix: Azure OpenAI
+titleSuffix: Azure AI Foundry
 description: Learn how to ground Azure AI Agents using Bing Search results.
 services: cognitive-services
 manager: nitinme

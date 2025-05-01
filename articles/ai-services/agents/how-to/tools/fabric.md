@@ -1,6 +1,6 @@
 ---
 title: 'How to use the data agents in Microsoft Fabric with Azure AI Foundry Agent Service'
-titleSuffix: Azure OpenAI
+titleSuffix: Azure AI Foundry
 description: Learn how to perform data analytics in Azure AI Agents using Microsoft Fabric data agent.
 services: cognitive-services
 manager: nitinme

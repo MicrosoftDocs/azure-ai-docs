@@ -1,6 +1,6 @@
 ---
 title: 'Grounding with Azure Functions code samples'
-titleSuffix: Azure OpenAI
+titleSuffix: Azure AI Foundry
 description: Find code samples to enable Azure AI Agents to use Azure Functions.
 services: azure-ai-agent-service
 manager: nitinme

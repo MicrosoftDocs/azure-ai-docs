@@ -1,6 +1,6 @@
 ---
 title: 'Grounding with Bing Search code samples'
-titleSuffix: Azure OpenAI
+titleSuffix: Azure AI Foundry
 description: Find code samples to ground Azure AI Agents using Bing Search results.
 services: cognitive-services
 manager: nitinme

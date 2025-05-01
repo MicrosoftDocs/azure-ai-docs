@@ -1,6 +1,6 @@
 ---
 title: 'Code interpreter code samples'
-titleSuffix: Azure OpenAI
+titleSuffix: Azure AI Foundry
 description: Find code samples to enable code interpreter for Azure AI Agents.
 services: cognitive-services
 manager: nitinme

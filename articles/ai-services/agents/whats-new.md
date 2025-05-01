@@ -1,6 +1,6 @@
 ---
 title: What's new in Azure AI Foundry Agent Service?
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry
 description: Learn about new feature updates and additions for your AI Agents.
 manager: nitinme
 author: aahill

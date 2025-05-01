@@ -1,6 +1,6 @@
 ---
 title: 'How to use Azure AI Foundry Agent Service with OpenAPI Specified Tools'
-titleSuffix: Azure OpenAI
+titleSuffix: Azure AI Foundry
 description: Learn how to use Azure AI Agents with OpenAPI Specified Tools.
 services: cognitive-services
 manager: nitinme

@@ -1,6 +1,6 @@
 ---
 title: 'How to use Azure Blob Storage with the file search tool'
-titleSuffix: Azure OpenAI
+titleSuffix: Azure AI Foundry
 description: Find code samples and instructions for using your existing Azure Blob Storage with Azure AI Foundry Agent Service.
 services: cognitive-services
 manager: nitinme

@@ -1,6 +1,6 @@
 ---
 title: 'How to use Agents with your licensed data'
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry
 description: Learn how to connect your licensed data for grounding with Azure AI Agent Service.
 services: cognitive-services
 manager: nitinme
