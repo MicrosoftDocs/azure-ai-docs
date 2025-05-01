@@ -335,6 +335,8 @@ items:
         href: search-howto-incremental-index.md
       - name: Design tips
         href: cognitive-search-concept-troubleshooting.md
+      - name: Best practices - GenAI Prompt skill
+        href: responsible-ai-best-practices-genai-prompt-skill.md
       - name: Custom skills
         items:
         - name: Integrate custom skills
