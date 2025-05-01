@@ -47,11 +47,17 @@ For more information about the projects and hubs model, see [Azure AI Foundry hu
 
 ::: zone pivot="fdp-project"
 
+
+
 Use the following tabs to select the method you plan to use to create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+- In the [Azure portal](https://portal.azure.com), create the resource group you want to use for your project.  Add the following role assignments to your user principle:
+    - **Azure AI User** to create and run an agent.
+    - **Azure AI Project Manager** to create a project.
+
 
 # [Python SDK](#tab/python)
 
@@ -64,7 +70,13 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 - [Azure CLI](/cli/azure/install-azure-cli) 
+- Create a resource group
+- Assign role assignments to the group:
 
+   ```
+    az role assignment create --role "Azure AI User" --assignee "joe@contoso.com" --resource-group this-rg 
+    az role assignment create --role "Azure AI Developer" --assignee "joe@contoso.com" --resource-group this-rg 
+    ```
 ---
 
 ::: zone-end
