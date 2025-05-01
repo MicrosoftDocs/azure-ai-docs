@@ -23,6 +23,11 @@ Content Understanding is a cloud-based [Azure AI Service](../../what-are-ai-serv
 
 Content Understanding enables organization to streamline data collection and processing, enhance operational efficiency, optimize data-driven decision making, and empower innovation. With customizable analyzers, Content Understanding allows for easy extraction of content or fields from documents and forms, tailored to specific business needs.
 
+## April updates
+With part of our April release, 
+* **Invoice prebuild template**: Extract predefined schema from invoices using different formats of invoices. You can now customize the fields by modifying the out of the box schema by adding or deleting more fields.
+* **Generate/Classify method**: We have added support for generative and classification based methods via which you can now define generative fields like summary or classify the details on a document into multiple classes via classify method.
+
 ## Business use cases
 
 Document analyzers can process complex documents in various formats and templates:
