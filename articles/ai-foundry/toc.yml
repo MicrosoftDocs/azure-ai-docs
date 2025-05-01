@@ -62,14 +62,12 @@ items:
       href: concepts/deployments-overview.md
     - name: Azure OpenAI in Azure AI Foundry Models
       items:
-      - name: Azure OpenAI in Azure AI Foundry
+      - name: Azure OpenAI in Azure AI Foundry portal
         href: azure-openai-in-azure-ai-foundry.md
       - name: Use Azure OpenAI in Azure AI Foundry portal
         href: ai-services/how-to/connect-azure-openai.md
       - name: Deploy Azure OpenAI models
         items: 
-        - name: Deployment overview
-          href: azure-openai-in-ai-foundry.md
         - name: Azure OpenAI deployment types
           href: ../ai-services/openai/how-to/deployment-types.md?context=/azure/ai-foundry/context/context
           displayName: provisioned, global standard, datazone, data zone, global data zone, batch, globalbatch
@@ -155,16 +153,15 @@ items:
           - name: Troubleshooting guidance
             href: ../ai-services/openai/how-to/fine-tuning-troubleshoot.md?context=/azure/ai-foundry/context/context
             displayName: finetuning, fine-tuning
-
     - name: Azure AI model inference
       items:
       - name: What is Azure AI model inference?
         href: ../ai-foundry/model-inference/overview.md?context=/azure/ai-foundry/context/context
       - name: Deployment types for Azure AI model inference
         href: ../ai-foundry/model-inference/concepts/deployment-types.md?context=/azure/ai-foundry/context/context
-      - name: Deploy models to unified endpoint
+      - name: Deploy Foundry Models to Azure AI model inference
         href: ../ai-foundry/model-inference/how-to/create-model-deployments.md?context=/azure/ai-foundry/context/context
-      - name: Foundry models supported in Azure AI model inference
+      - name: Foundry Models supported in Azure AI model inference
         href: ../ai-foundry/model-inference/concepts/models.md?context=/azure/ai-foundry/context/context
       - name: Supported programming languages and SDKs
         href: ../ai-foundry/model-inference/supported-languages.md?context=/azure/ai-foundry/context/context
@@ -222,6 +219,8 @@ items:
           href: ../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context
         - name: Work with multimodal models
           href: ../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context
+        - name: Use structured outputs  
+          href: ../ai-foundry/model-inference/how-to/use-structured-outputs.md?context=/azure/ai-foundry/context/context
     - name: Work with image models
       href: how-to/use-image-models.md
 - name: Azure AI services
