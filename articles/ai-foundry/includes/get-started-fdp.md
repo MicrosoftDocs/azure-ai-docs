@@ -107,12 +107,11 @@ Use instructions for **Azure AI Foundry portal** or **Python SDK** to create a [
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
-1. If you aren't already in the project, select the project you just created. 
-1. From the left pane, select **Model catalog**.
+1. Once your project is set up, you'll next be prompted to deploy a model.  
 1. Search for the model you want to deploy.  For this quickstart, select **gpt-4o**.
-1. Select **Use this model**.
+1. Select **Confirm**.
 1. Do not change the default settings.  Select **Deploy**.
+1. You'll now be in the **Agents playground** ready to test your agent.  
 
 # [Python SDK](#tab/python)
 
@@ -159,7 +158,7 @@ Info here.
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
 1. In your project, on the left pane, select **Agents**.
-1. Select **New agent**.
+1. Select the agent created with the project.  Or select **New agent** to create a new one.
 1. On the right **Setup** pane, change the name if you'd like.
 1. Add instructions, such as, "You are a helpful writing assistant."
 1. At the top of the **Setup** pane, select **Try in playground**.
