@@ -46,4 +46,4 @@ The README also includes information about the application, such as the use case
 
 ## Available templates
 
-A full list of templates can be found on the [Agent blueprints Github repo](https://github.com/microsoft/agent-blueprints/tree/main). There are several blueprints available that are authored by Microsoft and partners across different domains such as: travel, finance, insurance, business intellegence, healthcare and more. 
+A full list of templates can be found on the [Agent blueprints GitHub repo](https://github.com/microsoft/agent-blueprints/tree/main). There are several blueprints available that are authored by Microsoft and partners across different domains such as: travel, finance, insurance, business intelligence, healthcare, and more. 
