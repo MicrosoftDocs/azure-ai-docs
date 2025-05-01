@@ -191,6 +191,7 @@ Download [product_info_1.md]() to add to the agent.
 1. Select **Upload and save**.
 1. Change your agents instructions, such as, "You are a helpful assistant and can search information from uploaded files."
 1. Ask a question, such as, "Hello, what Contoso products do you know?"
+1. To add more files, select the **...** on the AgentVectorStore, then select **Manage**.
 
 # [Python SDK](#tab/python)
 
