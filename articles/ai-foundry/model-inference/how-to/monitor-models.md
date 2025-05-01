@@ -61,7 +61,7 @@ You can view metrics within Azure AI Foundry portal. To view them, follow these 
 
 #### Metrics explorer
 
-[Metrics explorer](/azure-monitor/fundamentals/getting-started) is a tool in the Azure portal that allows you to view and analyze metrics for Azure resources. For more information, see Analyze metrics with Azure Monitor metrics explorer.
+[Metrics explorer](/azure/azure-monitor/fundamentals/getting-started) is a tool in the Azure portal that allows you to view and analyze metrics for Azure resources. For more information, see Analyze metrics with Azure Monitor metrics explorer.
 
 To use Azure Monitor, follow these steps:
 
