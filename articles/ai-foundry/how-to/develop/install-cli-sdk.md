@@ -31,11 +31,16 @@ In the IDE of your choice, create a new folder for your project. Open a terminal
 [!INCLUDE [Install Python](../../includes/install-python.md)]
 
 # [Java](#tab/java)
+
 Info here.
+
 # [JavaScript](#tab/javascript)
+
 Info here.
+
 # [C#](#tab/csharp)
-Info here.
+
+[!INCLUDE [install-csharp](../../includes/install-csharp.md)]
 
 ---
 
@@ -46,17 +51,20 @@ Info here.
 [!INCLUDE [install-python-packages](../../includes/install-python-packages.md)]
 
 # [Java](#tab/java)
+
 Info here.
+
 # [JavaScript](#tab/javascript)
+
 Info here.
+
 # [C#](#tab/csharp)
-Info here.
+
+[!INCLUDE [install-csharp packages](../../includes/install-csharp packages.md)]
 
 ---
 
 ## <a name="installs"></a> Install the Azure CLI and sign in 
-
-@@ Do all languages need to have the CLI?  If not, move this into tabs...
 
 [!INCLUDE [Install the Azure CLI](../../includes/install-cli.md)]
 
