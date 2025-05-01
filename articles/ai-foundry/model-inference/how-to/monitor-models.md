@@ -61,7 +61,7 @@ You can view metrics within Azure AI Foundry portal. To view them, follow these 
 
 #### Metrics explorer
 
-[Metrics explorer](/azure-monitor/essentials/metrics-getting-started) is a tool in the Azure portal that allows you to view and analyze metrics for Azure resources. For more information, see Analyze metrics with Azure Monitor metrics explorer.
+[Metrics explorer](/azure-monitor/essentials/metrics-getting-started.md) is a tool in the Azure portal that allows you to view and analyze metrics for Azure resources. For more information, see Analyze metrics with Azure Monitor metrics explorer.
 
 To use Azure Monitor, follow these steps:
 
@@ -88,7 +88,7 @@ To use Azure Monitor, follow these steps:
 
 1. It is useful to break down specific metrics by some of the dimensions. The following example shows how to break down the number of requests made to the resource by model by using the option **Add splitting**:
 
-    :::image type="content" source="../media/monitor-models/azmon-add-splitting.png" alt-text="Screenshot showing how to apply a filter to a metric." lightbox="../media/monitor-models/azmon-add-splitting.png":::
+    :::image type="content" source="../media/monitor-models/azmon-add-splitting.png" alt-text="Screenshot showing how to split the metric by a given dimension." lightbox="../media/monitor-models/azmon-add-splitting.png":::
 
 1. You can save your dashboards at any time to avoid having to configure them each time.
 
