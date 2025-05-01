@@ -8,8 +8,9 @@ ms.service: azure-ai-services
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 11/21/2024
+ms.date: 05/01/2025
 ms.reviewer: deeikele
+zone_pivot_groups: project-type
 # Customer intent: As an admin, I want to understand how I can use my own encryption keys with Azure AI Foundry.
 ---
 
@@ -19,11 +20,28 @@ Customer-managed keys (CMKs) in [Azure AI Foundry portal](https://ai.azure.com/)
 
 ## About encryption in Azure AI Foundry portal
 
-Azure AI Foundry layers on top of Azure Machine Learning and Azure AI services. By default, these services use Microsoft-managed encryption keys. 
+Azure AI Foundry is a service in the Microsoft Azure cloud, and it also relies on other Azure services. By default, these services use Microsoft-managed encryption keys to encrypt data in transit and at rest.
 
-Hub and project resources are implementations of the Azure Machine Learning workspace and encrypt data in transit and at rest. For details, see [Data encryption with Azure Machine Learning](../../machine-learning/concept-data-encryption.md).
+::: zone pivot="hub-project"
+
+Hub and [!INCLUDE [hub](../includes/hub-project-name.md)] resources are implementations of the Azure Machine Learning workspace and encrypt data in transit and at rest. For details, see [Data encryption with Azure Machine Learning](../../machine-learning/concept-data-encryption.md).
+
+::: zone-end
 
 Azure AI services data is encrypted and decrypted using [FIPS 140-2](https://en.wikipedia.org/wiki/FIPS_140-2) compliant [256-bit AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) encryption. Encryption and decryption are transparent, meaning encryption and access are managed for you. Your data is secure by default and you don't need to modify your code or applications to take advantage of encryption.
+
+::: zone pivot="fdp-project"
+
+## Service-side storage of encrypted data when using customer-managed keys
+
+Customer-managed key encryption can be enabled during project creation through the Azure portal or Bicep template. The encrypted data is stored service-side on Microsoft-managed resources. Metadata is stored in multitenant resources using document-level CMK encryption. Due to its dedicated resource model, its Azure cost is charged in your subscription.
+
+> [!NOTE]
+> When you use server-side encryption, Azure charges will continue to accrue during the soft delete retention period.
+
+::: zone-end
+
+::: zone pivot="hub-project"
 
 ## Data storage in your subscription when using customer-managed keys
 
@@ -100,6 +118,8 @@ Alternatively, use infrastructure-as-code options for automation. Example Bicep 
 * [Azure AI services Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) is still required for Speech and Content Moderator.
 * If you are using the [server-side preview](#preview-service-side-storage-of-encrypted-data-when-using-customer-managed-keys), Azure charges will continue to accrue during the soft delete retention period.
 
+::: zone-end
+
 ## Related content
 
-* [What is Azure Key Vault](/azure/key-vault/general/overview)?
+* [What is Azure AI Foundry](../what-is-azure-ai-foundry.md)?
