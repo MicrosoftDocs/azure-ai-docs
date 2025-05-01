@@ -117,7 +117,7 @@ Customer-managed key encryption is configured via Azure portal in a similar way 
 1. Create a new Azure AI Foundry resource in the [Azure portal](https://portal.azure.com/).
 1. Under the **Encryption** tab, select **Customer-managed key**, **Select vault and key**, and then select the key vault and key to use.
 
-    :::image type="content" source="../../machine-learning/media/portal/customer-managed-key.png" alt-text="Screenshot of the encryption tab for an AI Foundry project with the option for customer-managed key selected." lightbox="../../machine-learning/media/portal/customer-managed-key.png":::
+    :::image type="content" source="../media/portal/customer-managed-key.png" alt-text="Screenshot of the encryption tab for an AI Foundry project with the option for customer-managed key selected." lightbox="../media/portal/customer-managed-key.png":::
 
 1. Continue creating your resource as normal.
 
