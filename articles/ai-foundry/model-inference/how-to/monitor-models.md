@@ -78,7 +78,7 @@ To use Azure Monitor, follow these steps:
     :::image type="content" source="../media/monitor-models/azmon-add-metric.png" alt-text="Screenshot showing how to add a new metric to the chart." lightbox="../media/monitor-models/azmon-add-metric.png":::
 
     > [!IMPORTANT]
-    > Metrics in category **Azure OpenAI** contains metrics for Azure OpenAI models in the resource. Category **Foundry Models** contains all the models available in the resource, including Azure OpenAI, DeepSeek, Phi, etc.
+    > Metrics in category **Azure OpenAI** contains metrics for Azure OpenAI models in the resource. Category **Models** contains all the models available in the resource, including Azure OpenAI, DeepSeek, Phi, etc. We recommend switching to this new set of metrics.
 
 1. You can add as many metrics as needed to either the same chart or to a new chart.
 
@@ -154,6 +154,14 @@ The following categories of metrics are available:
 
 | Metric | Internal name | Unit | Aggregation | Dimensions |
 |--------|---------------|------|-------------|------------|
+| **Input Tokens**<br /><br /> Number of prompt tokens processed (input) on a model. Applies to PTU, PTU-managed and Pay-as-you-go deployments. | Count | Total (Sum) | `InputTokens` | `ApiName`, `Region`, `ModelDeploymentName`, `ModelName`, `ModelVersion` |
+| **Output Tokens**<br /><br /> Number of tokens generated (output) from a model. Applies to PTU, PTU-managed and Pay-as-you-go deployments. | Count | Total (Sum) | `OutputTokens ` | `ApiName`, `Region`, `ModelDeploymentName`, `ModelName`, `ModelVersion` |
+| **Total Tokens**<br /><br /> Number of inference tokens processed on a model. Calculated as prompt tokens (input) plus generated tokens (output). Applies to PTU, PTU-managed and Pay-as- you-go deployments. | Count | Total (Sum) | `TotalTokens ` | `ApiName`, `Region`, `ModelDeploymentName`, `ModelName`, `ModelVersion` |
+| **Tokens Cache Match Rate**<br /><br /> Percentage of prompt tokens that hit the cache. Applies to PTU and PTU-managed deployments. | Percentage | Average | `TokensCacheMatchRate ` | `Region`, `ModelDeploymentName`, `ModelName`, `ModelVersion` |
+| **Provisioned Utilization**<br /><br /> Utilization % for a provisoned-managed deployment, calculated as (PTUs consumed / PTUs deployed) x 100. When utilization is greater than or equal to 100%, calls are throttled and error code 429 returned. | Percentage | Average | `TokensCacheMatchRate ` | `Region`, `ModelDeploymentName`, `ModelName`, `ModelVersion` |
+| **Provisioned Consumed Tokens**<br /><br /> Total tokens minus cached tokens over a period of time. Applies to PTU and PTU-managed deployments. | Count | Total (Sum) | `ProvisionedConsumedTokens ` | `Region`, `ModelDeploymentName`, `ModelName`, `ModelVersion` |
+| **Audio Input Tokens**<br /><br /> Number of audio prompt tokens processed (input) on a model. Applies to PTU-managed model deployments. | Count | Total (Sum) | `AudioInputTokens ` | `Region`, `ModelDeploymentName`, `ModelName`, `ModelVersion` |
+| **Audio Output Tokens**<br /><br /> Number of audio prompt tokens generated (output) on a model. Applies to PTU-managed model deployments. | Count | Total (Sum) | `AudioOutputTokens ` | `Region`, `ModelDeploymentName`, `ModelName`, `ModelVersion` |
 
 
 ## Logs
