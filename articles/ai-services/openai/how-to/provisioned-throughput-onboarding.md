@@ -82,26 +82,6 @@ The amount of throughput (measured in tokens per minute or TPM) a deployment get
 For example, for 'gpt-4.1:2025-04-14', 1 output token counts as 4 input tokens towards your utilization limit which matches the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). Older models use a different ratio and for a deeper understanding on how different ratios of input and output tokens impact the throughput your workload needs, see the [Azure OpenAI capacity calculator](https://ai.azure.com/resource/calculator).
 
 
-
-
-
-
-
-
-To understand how much throughput (TPU) you get, keep the following in mind: 
-
-* The amount of throughput (measured in tokens per minute or TPM) a deployment gets per PTU is a function of the input and output tokens in a given minute.
-* Generating output tokens requires more processing than input tokens.  Provisioned-Managed matches the Standard offering for gpt-4.1 models and later. 
-    * 1 output token now counts as 4 input tokens towards your TPM-per-PTU limit. 
-    * In the standard offering, 1 output token is 4 times expensive as an input token. See the [pricing page for details](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
-
-To help simplify the sizing effort, the following table outlines the TPM-per-PTU for the specified models. 
-To understand the impact of output tokens on the TPM-per-PTU limit, use the 4 input token to 1 output token ratio.
-
-For a detailed understanding of how different ratios of input and output tokens impact the throughput your workload needs, see the [Azure OpenAI capacity calculator](https://ai.azure.com/resource/calculator). The table also shows the [Service Level Agreement (SLA)](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?lang=1) Latency Target Values per model. 
-
-
-
 |Topic| **gpt-4o**   | **gpt-4o-mini**  | **o1**|
 | --- | --- | --- | --- |
 |Global & data zone provisioned minimum deployment|15|15|15|
