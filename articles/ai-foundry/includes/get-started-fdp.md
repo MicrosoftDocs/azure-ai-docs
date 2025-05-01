@@ -99,7 +99,7 @@ Use instructions for **Azure AI Foundry portal** or **Python SDK** to create a [
 
     * **Azure AI Project Manager** 
     * **Azure AI User** 
-
+1. After adding these roles, on the left pane, select **Go to project** to return to your project.
 
 ## Deploy a model
 
@@ -157,7 +157,14 @@ Info here.
 ## Create and run an agent
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
-Info here.
+
+1. In your project, on the left pane, select **Agents**.
+1. Select **New agent**.
+1. On the right **Setup** pane, change the name if you'd like.
+1. Add instructions, such as, "You are a helpful writing assistant."
+1. At the top of the **Setup** pane, select **Try in playground**.
+1. Start chatting with your agent, fore example, "Write me a poem about flowers"
+
 # [Python SDK](#tab/python)
 
 :::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/quickstart.py" id="create_and_run_agent":::
@@ -176,7 +183,15 @@ Info here.
 Download [product_info_1.md]() to add to the agent.
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
-Info here.
+
+1. In your agent's **Setup** pane, scroll down if necessary to find **Knowledge**.
+1. Select **Add**.
+1. Select **Files** to upload the **product_info_1.md** file.
+1. Select **Select local files** under **Add files**.
+1. Select **Upload and save**.
+1. Change your agents instructions, such as, "You are a helpful assistant and can search information from uploaded files."
+1. Ask a question, such as, "Hello, what Contoso products do you know?"
+
 # [Python SDK](#tab/python)
 
 :::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/quickstart.py" id="create_filesearch_agent":::
