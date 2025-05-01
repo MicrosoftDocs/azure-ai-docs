@@ -87,7 +87,7 @@ To enable customer-managed keys, the key vault containing your keys must meet th
 
 ::: zone-end
 
-::: zone-pivot="hub-project"
+::: zone pivot="hub-project"
 
 - You must enable both the **Soft Delete** and **Do Not Purge** properties on the key vault.
 - If you use the [Key Vault firewall](/azure/key-vault/general/access-behind-firewall), you must allow trusted Microsoft services to access the key vault.
