@@ -141,7 +141,6 @@ The following categories of metrics are available:
 |--------|---------------|------|-------------|------------|
 | **Model Availability Rate**<br /><br />Availability percentage with the following calculation: (Total Calls - Server Errors)/Total Calls. Server Errors include any HTTP responses >=500. | `ModelAvailabilityRate` | Percent | Minimum, Maximum, Average | `ApiName`, `OperationName`, `Region`, `StreamType`, `ModelDeploymentName`, `ModelName`, `ModelVersion` |
 | **Model Requests**<br /><br />Number of calls made to the model inference API over a period of time that resulted in a service error (>500). | `ModelRequests ` | Count | Total (Sum) | `ApiName`, `OperationName`, `Region`, `StreamType`, `ModelDeploymentName`, `ModelName`, `ModelVersion`, `StatusCode` |
-| **Model Requests Service Errors**<br /><br />Number of calls made to the model inference API over a period of time that resulted in a service error (>500). | `ModelRequestsServiceErrors` | Total (Count) | `ApiName`, `OperationName`, `Region`, `StreamType`, `ModelDeploymentName`, `ModelName`, `ModelVersion`, `StatusCode` |
 
 #### Models - Latency
 
