@@ -25,7 +25,7 @@ Use this quickstart to send text summarization requests using the REST API. In t
 ## Prerequisites
 
 * The current version of [cURL](https://curl.haxx.se/).
-* Once you have your Azure subscription, <[create an AI services resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal#create-a-new-azure-ai-services-resource).
+* Once you have your Azure subscription, <[create an AI Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal#create-a-new-azure-ai-services-resource).
     * You will need the key and endpoint from the resource you create to connect your application to the API. You'll paste your key and endpoint into the code below later in the quickstart.
     * You can use the free pricing tier (`Free F0`) to try the service, and upgrade later to a paid tier for production.
 

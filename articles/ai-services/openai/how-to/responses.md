@@ -55,7 +55,6 @@ Not every model is available in the regions supported by the responses API. Chec
 > [!NOTE]
 > Not currently supported:
 > - Structured outputs
-> - tool_choice
 > - image_url pointing to an internet address
 > - The web search tool is also not supported, and is not part of the `2025-03-01-preview` API.  
 > 

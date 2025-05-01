@@ -6,13 +6,13 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 5/19/2025
 ms.author: eur
 ---
 
 # Recover or purge deleted Azure AI services resources
 
-This article provides instructions on how to recover or purge an Azure AI services resource that is already deleted. 
+This article provides instructions on how to recover or purge an AI Foundry resource that is already deleted. 
 
 Once you delete a resource, you can't create another one with the same name for 48 hours. To create a resource with the same name, you need to purge the deleted resource.
 
@@ -116,7 +116,7 @@ If you need to purge a deleted resource, the steps are similar to recovering a d
 
 1. To locate the deleted resource you would like to purge, select the subscription in the dropdown list. 
 
-1. Select one or more deleted resources and select **Purge**. Purging permanently deletes an Azure AI services resource. 
+1. Select one or more deleted resources and select **Purge**. Purging permanently deletes an AI Foundry resource. 
 
     :::image type="content" source="media/managing-deleted-resource.png" alt-text="A screenshot showing a list of resources that can be purged." lightbox="media/managing-deleted-resource.png":::
 
@@ -145,5 +145,5 @@ az resource delete --ids /subscriptions/{subscriptionId}/providers/Microsoft.Cog
 
 
 ## Related content
-* [Create an Azure AI services resource](multi-service-resource.md)
-* [Create an Azure AI services resource using an ARM template](create-account-resource-manager-template.md)
+* [Create an AI Foundry resource](multi-service-resource.md)
+* [Create an AI Foundry resource using an ARM template](create-account-resource-manager-template.md)

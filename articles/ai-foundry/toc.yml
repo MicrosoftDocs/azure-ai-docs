@@ -525,6 +525,8 @@ items:
     items:
     - name: Create a project
       href: how-to/create-projects.md
+    - name: Create a project using a Bicep template
+      href: how-to/create-azure-ai-project-template.md
     - name: Hubs and projects overview
       href: concepts/ai-resources.md
     - name: Create your first hub
@@ -570,17 +572,19 @@ items:
       href: concepts/rbac-azure-ai-foundry.md
   - name: Network security
     items:
-    - name: Configure managed network
-      href: how-to/configure-managed-network.md
     - name: Configure private link
       displayName: custom dns
       href: how-to/configure-private-link.md
-    - name: Secure playground chat
-      href: how-to/secure-data-playground.md
-    - name: Securely access on-premises resources
-      href: how-to/access-on-premises-resources.md
-    - name: Troubleshoot secure project connectivity
-      href: how-to/troubleshoot-secure-connection-project.md
+    - name: Managed network for hubs
+      items:
+      - name: Configure managed network
+        href: how-to/configure-managed-network.md
+      - name: Secure playground chat
+        href: how-to/secure-data-playground.md
+      - name: Securely access on-premises resources
+        href: how-to/access-on-premises-resources.md
+      - name: Troubleshoot secure project connectivity
+        href: how-to/troubleshoot-secure-connection-project.md
   - name: Data protection & encryption
     items:
     - name: Configure customer-managed keys
@@ -591,7 +595,7 @@ items:
       href: how-to/disable-local-auth.md
   - name: Azure policies
     items:
-    - name: Audit and manage using Azure Policy
+    - name: Audit and manage hubs using Azure Policy
       href: how-to/azure-policy.md
     - name: Built-in policy to allow specific models
       href: how-to/built-in-policy-model-deployment.md

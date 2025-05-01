@@ -1,5 +1,5 @@
 ---
-title: Create an Azure AI services resource using Azure PowerShell
+title: Create an AI Foundry resource using Azure PowerShell
 titleSuffix: Azure AI services
 description: Get started with Azure AI services by using Azure PowerShell commands to create and subscribe to a resource.
 manager: nitinme
@@ -16,7 +16,7 @@ ms.custom:
 ms.devlang: azurepowershell
 ---
 
-Use this quickstart to create an Azure AI services resource using [Azure PowerShell](/powershell/azure/install-azure-powershell) commands. 
+Use this quickstart to create an AI Foundry resource using [Azure PowerShell](/powershell/azure/install-azure-powershell) commands. 
 
 ## Prerequisites
 
@@ -33,7 +33,7 @@ Connect-AzAccount
 
 ## Create a new Azure AI services resource group
 
-Before you create an Azure AI services resource, you must have an Azure resource group to contain the resource. When you create a new resource, you can either create a new resource group, or use an existing one. This article shows how to create a new resource group.
+Before you create an AI Foundry resource, you must have an Azure resource group to contain the resource. When you create a new resource, you can either create a new resource group, or use an existing one. This article shows how to create a new resource group.
 
 To create a resource, you'll need one of the Azure locations available for your subscription. You can retrieve a list of available locations with the [Get-AzLocation](/powershell/module/az.resources/get-azlocation) command. Most Azure AI services can be accessed from several locations. Choose the one closest to you, or see which locations are available for the service.
 
@@ -51,7 +51,7 @@ After you have your Azure location, create a new resource group in Azure PowerSh
 New-AzResourceGroup -Name ai-services-resource-group -Location westus2
 ```
 
-## Create an Azure AI services multi-service resource
+## Create an AI Foundry resource
 
 To create and subscribe to a new Azure AI services resource, use the [New-AzCognitiveServicesAccount](/powershell/module/az.cognitiveservices/new-azcognitiveservicesaccount) command. This command adds a new billable resource to the resource group you created earlier. When you create your new resource, you'll need to know the "kind" of service you want to use, along with its pricing tier (or SKU) and an Azure location:
 
@@ -65,7 +65,7 @@ New-AzCognitiveServicesAccount -ResourceGroupName ai-services-resource-group -Na
 ```
 
 > [!TIP]
-> If your subscription doesn't allow you to create an Azure AI services resource, you might need to enable the privilege of that [Azure resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) using the [Azure portal](/azure/azure-resource-manager/management/resource-providers-and-types#azure-portal), [PowerShell command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-powershell) or an [Azure CLI command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-cli). If you are not the subscription owner, ask someone with the role of *Owner* or *Admin* to complete the registration for you or ask for the **/register/action** privileges to be granted to your account.
+> If your subscription doesn't allow you to create an AI Foundry resource, you might need to enable the privilege of that [Azure resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) using the [Azure portal](/azure/azure-resource-manager/management/resource-providers-and-types#azure-portal), [PowerShell command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-powershell) or an [Azure CLI command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-cli). If you are not the subscription owner, ask someone with the role of *Owner* or *Admin* to complete the registration for you or ask for the **/register/action** privileges to be granted to your account.
 
 ## Get current quota usage for your resource
 
@@ -77,7 +77,7 @@ Get-AzCognitiveServicesAccountUsage -ResourceGroupName ai-services-resource-grou
 
 ## Clean up resources
 
-If you want to clean up and remove an Azure AI services resource, you can delete it or the resource group. Deleting the resource group also deletes any other resources contained in the group.
+If you want to clean up and remove an AI Foundry resource, you can delete it or the resource group. Deleting the resource group also deletes any other resources contained in the group.
 
 To remove the resource group and its associated resources, use the [Remove-AzResourceGroup](/powershell/module/az.resources/remove-azresourcegroup) command.
 
