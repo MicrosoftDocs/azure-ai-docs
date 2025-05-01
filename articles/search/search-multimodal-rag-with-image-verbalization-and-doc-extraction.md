@@ -21,9 +21,9 @@ In this scenario, vector embeddings are generated for both modalities using AI s
 
 You'll use:
 
-+ The [Document Extraction skill](/articles/search/cognitive-search-skill-document-extraction.md) for extracting normalized images and text
-+ + The [Chat Completion skill](/articles/search/cognitive-search-skill-genai-prompt.md) to generate image captions—text-based descriptions of visual content—for search and grounding
-+ A search index configured to store text and image embeddings and support vector-based similarity search
++ The [Document Extraction skill](/cognitive-search-skill-document-extraction.md) for extracting normalized images and text.
++ The [GenAI Prompt skill](/cognitive-search-skill-genai-prompt.md) to generate image captions—text-based descriptions of visual content—for search and grounding.
++ A search index configured to store text and image embeddings and support vector-based similarity search.
 
 This tutorial demonstrates a lower-cost approach for indexing multi-modal content using DocumentExtractionSkill and image captioning. It enables extraction and search over both text and images from documents in Azure Blob Storage. However, it does not include locational metadata for text, such as page numbers or bounding regions. 
 
@@ -151,8 +151,6 @@ Date: Sat, 26 Apr 2025 21:25:24 GMT
 Connection: close
 
 {
-  "@odata.context": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows-int.net/$metadata#datasources/$entity",
-  "@odata.etag": "\"0x8DD8508DB96491B\"",
   "name": "doc-extraction-image-verbalization-ds",
   "description": "A test datasource",
   "type": "azureblob",
@@ -316,15 +314,15 @@ POST {{baseUrl}}/indexes?api-version=2025-05-01  HTTP/1.1
 
 Key points:
 
-+ Text and image embeddings are stored in the content_embedding field and must be configured with appropriate dimensions (e.g., 1024) and a vector search profile.
++ Text and image embeddings are stored in the `content_embedding` field and must be configured with appropriate dimensions (e.g., 1024) and a vector search profile.
 
-+ `location_metadata` captures bounding polygon and page number metadata for each normalized image, enabling precise spatial search or UI overlays. Note that `location_metadata` only exists for images in this scenario. If you'd like to capture locational metadata for text as well, consider using [Document Layout Skill](/articles/search/cognitive-search-skill-document-intelligence-layout.md). An in-depth tutorial is linked at the bottom of the page.
++ `location_metadata` captures bounding polygon and page number metadata for each normalized image, enabling precise spatial search or UI overlays. Note that `location_metadata` only exists for images in this scenario. If you'd like to capture locational metadata for text as well, consider using [Document Layout skill](/cognitive-search-skill-document-intelligence-layout.md). An in-depth tutorial is linked at the bottom of the page.
 
-+ For more information on vector search, see [Vectors in Azure AI Search](/articles/search/vector-search-overview.md).
++ For more information on vector search, see [Vectors in Azure AI Search](/vector-search-overview.md).
 
-+ For more information on semantic ranking, see [Semantic ranking in Azure AI Search](/articles/search/semantic-search-overview.md)
++ For more information on semantic ranking, see [Semantic ranking in Azure AI Search](/semantic-search-overview.md)
 
-## Create an skillset
+## Create a skillset
 
 [Create Skillset (REST)](/rest/api/searchservice/skillset/create) creates a search index on your search service. An index specifies all the parameters and their attributes.
 
@@ -576,9 +574,9 @@ Key points:
 
 + The `content_text` field is populated in two ways:
 
-  + From document text extracted using the Document Extraction Skill and chunked using the Split Skill
+  + From document text extracted using the Document Extraction skill and chunked using the Text Split skill
 
-  + From image content using the ChatCompletionSkill, which generates descriptive captions for each normalized image
+  + From image content using the GenAI Prompt skill, which generates descriptive captions for each normalized image
   
 + The `content_embedding` field contains 1024-dimensional embeddings for both page text and verbalized image descriptions. These are generated using the text-embedding-3-large model from Azure OpenAI.
 
@@ -586,7 +584,7 @@ Key points:
 
 ## Create and run an indexer
 
-[Create Indexer](/rest/api/searchservice/indexers/create) creates an indexer on your search service. An indexer connects to the data source, loads and indexes data, and optionally provides a schedule to automate the data refresh.
+[Create Indexer](/rest/api/searchservice/indexers/create) creates an indexer on your search service. An indexer connects to the data source, loads data, runs a skillset, and indexes the enriched data.
 
 ```http
 ### Create and run an indexer
@@ -650,7 +648,6 @@ Date: Wed, 30 Apr 2025 23:20:53 GMT
 Connection: close
 
 {
-  "@odata.context": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes('doc-extraction-image-verbalization-index')/$metadata#docs(*)",
   "@odata.count": 100,
   "@search.nextPageParameters": {
     "search": "*",
@@ -671,7 +668,7 @@ For filters, you can also use Logical operators (and, or, not) and comparison op
 
 ## Reset and rerun
 
-Indexers can be reset to clear execution history, which allows a full rerun. The following GET requests are for reset, followed by rerun.
+Indexers can be reset to clear execution history, which allows a full rerun. The following POST requests are for reset, followed by rerun.
 
 ```http
 ### Reset the indexer
@@ -702,7 +699,7 @@ You can use the Azure portal to delete indexes, indexers, and data sources.
 Now that you're familiar with a sample implementation of multi-modal RAG, check out
 
 > [!div class="nextstepaction"]
-> [Chat Completion skill](/articles/search/cognitive-search-skill-genai-prompt.md)
-> [Vectors in Azure AI Search](/articles/search/vector-search-overview.md)
-> [Semantic ranking in Azure AI Search](/articles/search/semantic-search-overview.md)
+> [GenAI Prompt skill](/cognitive-search-skill-genai-prompt.md)
+> [Vectors in Azure AI Search](/vector-search-overview.md)
+> [Semantic ranking in Azure AI Search](/semantic-search-overview.md)
 > [Indexing blobs with text and images for multi-modal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal)

@@ -21,11 +21,11 @@ In this scenario, vector embeddings are generated for both modalities using AI s
 
 You'll use:
 
-+ The [Document Extraction skill](/articles/search/cognitive-search-skill-document-extraction.md) for extracting text and normalized images
++ The [Document Extraction skill](/cognitive-search-skill-document-extraction.md) for extracting text and normalized images.
 
-+ Vectorization using the [Azure AI Vision multimodal embeddings skill](/articles/search/cognitive-search-skill-vision-vectorize.md), which generates embeddings from both text and images. The same skill is used for both modalities, with text inputs processed into embeddings for semantic search, and images processed into vector representations using Azure AI Vision models.
++ Vectorization using the [Azure AI Vision multimodal embeddings skill](/cognitive-search-skill-vision-vectorize.md), which generates embeddings from both text and images. The same skill is used for both modalities, with text inputs processed into embeddings for semantic search, and images processed into vector representations using Azure AI Vision models.
 
-+ A search index configured to store text and image embeddings and support vector-based similarity search
++ A search index configured to store text and image embeddings and support vector-based similarity search.
 
 This tutorial demonstrates a lower-cost approach for indexing multi-modal content using Document Extraction skill and image captioning. It enables extraction and search over both text and images from documents in Azure Blob Storage. However, it does not include locational metadata for text, such as page numbers or bounding regions. 
 
@@ -53,7 +53,7 @@ This tutorial shows you how to  index such data, using a REST client and the [Se
 + [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 > [!NOTE] 
-> Make sure your Search service is running in a [supported region for AI Vision](/articles/ai-services/computer-vision/overview-image-analysis.md)
+> Make sure your Search service is running in a [supported region for AI Vision](/azure/ai-services/computer-vision/overview-image-analysis#region-availability)
 
 ### Download files
 
@@ -155,8 +155,6 @@ Date: Sat, 26 Apr 2025 21:25:24 GMT
 Connection: close
 
 {
-  "@odata.context": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows-int.net/$metadata#datasources/$entity",
-  "@odata.etag": "\"0x8DD8508DB96491B\"",
   "name": "doc-extraction-multimodal-embedding-ds",
   "description": "A test datasource",
   "type": "azureblob",
@@ -319,15 +317,15 @@ POST {{baseUrl}}/indexes?api-version=2025-05-01  HTTP/1.1
 
 Key points:
 
-+ Text and image embeddings are stored in the content_embedding field and must be configured with appropriate dimensions (e.g., 1024) and a vector search profile.
++ Text and image embeddings are stored in the `content_embedding` field and must be configured with appropriate dimensions (e.g., 1024) and a vector search profile.
 
-+ `location_metadata` captures bounding polygon and page number metadata for each normalized image, enabling precise spatial search or UI overlays. Note that `location_metadata` only exists for images in this scenario. If you'd like to capture locational metadata for text as well, consider using [Document Layout Skill](/articles/search/cognitive-search-skill-document-intelligence-layout.md). An in-depth tutorial is linked at the bottom of the page.
++ `location_metadata` captures bounding polygon and page number metadata for each normalized image, enabling precise spatial search or UI overlays. Note that `location_metadata` only exists for images in this scenario. If you'd like to capture locational metadata for text as well, consider using [Document Layout skill](/cognitive-search-skill-document-intelligence-layout.md). An in-depth tutorial is linked at the bottom of the page.
 
-+ For more information on vector search, see [Vectors in Azure AI Search](/articles/search/vector-search-overview.md).
++ For more information on vector search, see [Vectors in Azure AI Search](/vector-search-overview.md).
 
-+ For more information on semantic ranking, see [Semantic ranking in Azure AI Search](/articles/search/semantic-search-overview.md)
++ For more information on semantic ranking, see [Semantic ranking in Azure AI Search](/semantic-search-overview.md)
 
-## Create an skillset
+## Create a skillset
 
 [Create Skillset (REST)](/rest/api/searchservice/skillset/create) creates a search index on your search service. An index specifies all the parameters and their attributes.
 
@@ -551,13 +549,13 @@ Key points:
 
 + `content_path` will contain the relative path to the image file within the designated image projection container. This field is generated only for images extracted from PDFs when `imageAction` is set to `generateNormalizedImages`, and can be mapped from the enriched document from the source field `/document/normalized_images/*/imagePath`.
 
-+ The VectorizeSkill for vision enables embedding of both textual and visual data using the same skill type, differentiated by input (text vs image).
++ The Azure AI Vision multimodal embeddings skil enables embedding of both textual and visual data using the same skill type, differentiated by input (text vs image).
 
-+ For more information, see [Azure AI Vision multimodal embeddings skill](/articles/search/cognitive-search-skill-vision-vectorize.md).
++ For more information, see [Azure AI Vision multimodal embeddings skill](/cognitive-search-skill-vision-vectorize.md).
 
 ## Create and run an indexer
 
-[Create Indexer](/rest/api/searchservice/indexers/create) creates an indexer on your search service. An indexer connects to the data source, loads and indexes data, and optionally provides a schedule to automate the data refresh.
+[Create Indexer](/rest/api/searchservice/indexers/create) creates an indexer on your search service. An indexer connects to the data source, loads data, runs a skillset, and indexes the enriched data..
 
 ```http
 ### Create and run an indexer
@@ -621,7 +619,6 @@ Date: Wed, 30 Apr 2025 23:20:53 GMT
 Connection: close
 
 {
-  "@odata.context": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes('doc-extraction-multimodal-embedding-index')/$metadata#docs(*)",
   "@odata.count": 100,
   "@search.nextPageParameters": {
     "search": "*",
@@ -642,7 +639,7 @@ For filters, you can also use Logical operators (and, or, not) and comparison op
 
 ## Reset and rerun
 
-Indexers can be reset to clear execution history, which allows a full rerun. The following GET requests are for reset, followed by rerun.
+Indexers can be reset to clear execution history, which allows a full rerun. The following POST requests are for reset, followed by rerun.
 
 ```http
 ### Reset the indexer
@@ -673,7 +670,7 @@ You can use the Azure portal to delete indexes, indexers, and data sources.
 Now that you're familiar with a sample implementation of multi-modal RAG, check out
 
 > [!div class="nextstepaction"]
-> [AI Vision multimodal embeddings skill](/articles/search/cognitive-search-skill-vision-vectorize.md)
-> [Vectors in Azure AI Search](/articles/search/vector-search-overview.md)
-> [Semantic ranking in Azure AI Search](/articles/search/semantic-search-overview.md)
+> [AI Vision multimodal embeddings skill](/cognitive-search-skill-vision-vectorize.md)
+> [Vectors in Azure AI Search](/vector-search-overview.md)
+> [Semantic ranking in Azure AI Search](/semantic-search-overview.md)
 > [Indexing blobs with text and images for multi-modal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal)
