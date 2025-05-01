@@ -8,7 +8,7 @@ ms.service: azure-ai-services
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 05/01/2025
+ms.date: 11/21/2024
 ms.reviewer: deeikele
 zone_pivot_groups: project-type
 # Customer intent: As an admin, I want to understand how I can use my own encryption keys with Azure AI Foundry.
@@ -71,15 +71,25 @@ A new architecture for customer-managed key encryption with hubs is available in
 > - During this preview key rotation and user-assigned identity capabilities are not supported. Service-side encryption is currently not supported in reference to an Azure Key Vault for storing your encryption key that has public network access disabled.
 > - If you are using the preview server-side storage, Azure charges will continue to accrue during the soft delete retention period.
 
+::: zone-end
+
 ## Use customer-managed keys with Azure Key Vault
 
 You must use Azure Key Vault to store your customer-managed keys. You can either create your own keys and store them in a key vault, or you can use the Azure Key Vault APIs to generate keys. The Azure AI services resource and the key vault must be in the same region and in the same Microsoft Entra tenant, but they can be in different subscriptions. For more information about Azure Key Vault, see [What is Azure Key Vault?](/azure/key-vault/general/overview).
 
 To enable customer-managed keys, the key vault containing your keys must meet these requirements:
 
+::: zone-pivot="fdp-project"
 - You must enable both the **Soft Delete** and **Do Not Purge** properties on the key vault.
 - If you use the [Key Vault firewall](/azure/key-vault/general/access-behind-firewall), you must allow trusted Microsoft services to access the key vault.
-- You must grant your hub's and Azure AI Services resource's system-assigned managed identity the following permissions on your key vault: *get key*, *wrap key*, *unwrap key*.
+- You must grant your [!INCLUDE [fdp](../includes/fdp-project-name.md)] and Azure AI Services resource's system-assigned managed identity the following permissions on your key vault: *get key*, *wrap key*, *unwrap key*.
+::: zone-pivot-end
+
+::: zone-pivot="hub-project"
+- You must enable both the **Soft Delete** and **Do Not Purge** properties on the key vault.
+- If you use the [Key Vault firewall](/azure/key-vault/general/access-behind-firewall), you must allow trusted Microsoft services to access the key vault.
+- You must grant your hub and Azure AI Services resource's system-assigned managed identity the following permissions on your key vault: *get key*, *wrap key*, *unwrap key*.
+::: zone-end
 
 The following limitations hold for Azure AI Services:
 - Only Azure Key Vault with [legacy access policies](/azure/key-vault/general/assign-access-policy) are supported.
@@ -95,6 +105,19 @@ If connecting with Azure AI Services, or variants of Azure AI Services such as A
 1. Save your changes, and confirm that you want to enable the system-assigned managed identity.
 
 ## Enable customer-managed keys
+
+::: zone pivot="fdp-project"
+
+Customer-managed key encryption is configured via Azure portal in a similar way for each Azure resource:
+
+1. Create a new Azure AI Foundry resource in the [Azure portal](https://portal.azure.com/).
+1. Under the **Encryption** tab, select **Customer-managed key**.
+1. Select the **Key Vault** that contains your encryption key, and then select the **Key** that you want to use for encryption.
+1. Continue creating your resource as normal.
+
+::: zone-end
+
+::: zone pivot="hub-project"
 
 Azure AI Foundry builds on hub as implementation of Azure Machine Learning workspace, Azure AI Services, and lets you connect with other resources in Azure. You must set encryption specifically on each resource.
 
@@ -122,4 +145,4 @@ Alternatively, use infrastructure-as-code options for automation. Example Bicep 
 
 ## Related content
 
-* [What is Azure AI Foundry](../what-is-azure-ai-foundry.md)?
+* [What is Azure Key Vault](/azure/key-vault/general/overview)?
