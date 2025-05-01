@@ -335,6 +335,8 @@ items:
         href: search-howto-incremental-index.md
       - name: Design tips
         href: cognitive-search-concept-troubleshooting.md
+      - name: Best practices - GenAI Prompt skill
+        href: responsible-ai-best-practices-genai-prompt-skill.md
       - name: Custom skills
         items:
         - name: Integrate custom skills
@@ -343,8 +345,6 @@ items:
           href: cognitive-search-custom-skill-scale.md
         - name: Example - Bing Entity Search
           href: cognitive-search-create-custom-skill-example.md
-      - name: Responsible AI best practices when using GenAI prompt skill
-        href: responsible-ai-best-practices-genai-prompt-skill.md
   - name: Agentic retrieval
     items:
     - name: Create an agent
