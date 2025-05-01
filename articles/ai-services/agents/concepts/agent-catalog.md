@@ -1,19 +1,18 @@
 ---
-title: How to get started with an AI agent template
+title: How to get started with an AI agent blueprints
 titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to use an AI agent template to get started with Azure AI Foundry Agent Service.
+description: This article provides instructions on how to use an AI agent blueprints to get started with Azure AI Foundry Agent Service.
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
 ms.date: 04/29/2025
 ms.author: aahi
 author: aahill
-#customer intent: As a developer, I want to jump start my journey with an AI template.
 ---
 
-# Get started with an agent template
+# Get started with an agent blueprint
 
-Streamline your agentic system development with prebuilt, task-specific agent templates. Benefit from a quick deployment for a variety of tasks. For example, translation, sales prep, computer use, and more.
+Streamline your agentic system development with prebuilt, task-specific agent blueprints. Benefit from a quick deployment for a variety of tasks. For example, translation, sales prep, computer use, and more.
 
 [!INCLUDE [feature-preview](../../../ai-foundry/includes/feature-preview.md)]
 
@@ -33,7 +32,11 @@ Streamline your agentic system development with prebuilt, task-specific agent te
 
 1. Select **Open in Github** to view the entire sample application.
 
-## Explore the templates
+## View all available blueprints
+
+A full list of blueprints can be found on the [Agent blueprints GitHub repo](https://github.com/microsoft/agent-blueprints/tree/main). There are several blueprints available that are authored by Microsoft and partners across different domains such as: travel, finance, insurance, business intelligence, healthcare, and more. 
+
+## Explore the blueprints
 
 Once you're looking at the GitHub repository for your sample, refer to the README for more instructions and information on how to deploy your own version of the application.
 
@@ -43,7 +46,3 @@ Instructions vary by sample, but most include information on:
 * Tools used
 
 The README also includes information about the application, such as the use case, architecture, and other tips.
-
-## Available templates
-
-A full list of templates can be found on the [Agent blueprints GitHub repo](https://github.com/microsoft/agent-blueprints/tree/main). There are several blueprints available that are authored by Microsoft and partners across different domains such as: travel, finance, insurance, business intelligence, healthcare, and more. 
