@@ -115,9 +115,18 @@ If connecting with Azure AI Services, or variants of Azure AI Services such as A
 Customer-managed key encryption is configured via Azure portal in a similar way for each Azure resource:
 
 1. Create a new Azure AI Foundry resource in the [Azure portal](https://portal.azure.com/).
-1. Under the **Encryption** tab, select **Customer-managed key**.
-1. Select the **Key Vault** that contains your encryption key, and then select the **Key** that you want to use for encryption.
+1. Under the **Encryption** tab, select **Customer-managed key**, **Select vault and key**, and then select the key vault and key to use.
+
+  :::image type="content" source="../../machine-learning/media/portal/customer-managed-key.png" alt-text="Screenshot of the encryption tab for an AI Foundry project with the option for customer-managed key selected." lightbox="../../machine-learning/media/portal/customer-managed-key.png":::
+
 1. Continue creating your resource as normal.
+
+## Limitations
+
+* The customer-managed key for encryption can only be updated to keys in the same Azure Key Vault instance.
+* After deployment, your [!INCLUDE [fdp](../includes/fdp-project-name.md)] can't switch from Microsoft-managed keys to customer-managed keys or vice versa.
+* [Azure AI services Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) is required to use customer-managed keys in combination with Azure Speech and Content Moderator capabilities.
+* Azure charges will continue to accrue during the soft delete retention period.
 
 ::: zone-end
 
