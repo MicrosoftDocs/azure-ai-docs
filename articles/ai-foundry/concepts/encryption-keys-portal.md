@@ -117,7 +117,7 @@ Customer-managed key encryption is configured via Azure portal in a similar way 
 1. Create a new Azure AI Foundry resource in the [Azure portal](https://portal.azure.com/).
 1. Under the **Encryption** tab, select **Customer-managed key**, **Select vault and key**, and then select the key vault and key to use.
 
-  :::image type="content" source="../../machine-learning/media/portal/customer-managed-key.png" alt-text="Screenshot of the encryption tab for an AI Foundry project with the option for customer-managed key selected." lightbox="../../machine-learning/media/portal/customer-managed-key.png":::
+    :::image type="content" source="../../machine-learning/media/portal/customer-managed-key.png" alt-text="Screenshot of the encryption tab for an AI Foundry project with the option for customer-managed key selected." lightbox="../../machine-learning/media/portal/customer-managed-key.png":::
 
 1. Continue creating your resource as normal.
 
@@ -138,7 +138,7 @@ Customer-managed key encryption is configured via Azure portal in a similar way 
 1. Create a new Azure resource in Azure portal.
 1. Under the encryption tab, select your encryption key.
 
-:::image type="content" source="../../machine-learning/media/concept-customer-managed-keys/cmk-service-side-encryption.png" alt-text="Screenshot of the encryption tab with the option for service side encryption selected." lightbox="../../machine-learning/media/concept-customer-managed-keys/cmk-service-side-encryption.png":::
+    :::image type="content" source="../../machine-learning/media/concept-customer-managed-keys/cmk-service-side-encryption.png" alt-text="Screenshot of the encryption tab with the option for service side encryption selected." lightbox="../../machine-learning/media/concept-customer-managed-keys/cmk-service-side-encryption.png":::
 
 Alternatively, use infrastructure-as-code options for automation. Example Bicep templates for Azure AI Foundry are available on the Azure Quickstart repo:
 1. [CMK encryption for hub](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aifoundry-cmk).
