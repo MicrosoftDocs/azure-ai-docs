@@ -1,11 +1,11 @@
 ---
 title: include file
 description: include file
-author: msakande
-ms.author: mopeakande
+author: sgilley
+ms.author: sgilley
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 1/28/2025
+ms.date: 04/30/2025
 ms.custom: include file
 ---
 
@@ -28,6 +28,7 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 ## Prerequisites
 
 - An [Azure subscription](https://azure.microsoft.com/free/). If you don't have an Azure subscription, create a free account before you begin.
+- You must be **Owner** of the subscription to assign the appropriate access control needed to run these scripts.
 
 ### Set up your environment  
 
@@ -88,6 +89,16 @@ Use instructions for **Azure AI Foundry portal** or **Python SDK** to create a [
 
 
 ---
+
+## Assign role-based access control
+
+1. In the [Azure AI Foundry portal](https://ai.azure.com), select your project if it is not already selected. 
+1. At the bottom of the left pane, select **Management center**.
+1. Under the resource name, select **Users**.
+1. Add yourself as a user with each of the following roles: 
+
+    * **Azure AI Project Manager** 
+    * **Azure AI User** 
 
 
 ## Deploy a model
