@@ -34,7 +34,7 @@ Streamline your agentic system development with prebuilt, task-specific agent bl
 
 ## View all available blueprints
 
-A full list of blueprints can be found on the [Agent blueprints GitHub repo](https://github.com/microsoft/agent-blueprints/tree/main). There are several blueprints available that are authored by Microsoft and partners across different domains such as: travel, finance, insurance, business intelligence, healthcare, and more. 
+A full list of blueprints can be found on the [Agent blueprints GitHub repo](https://github.com/microsoft/agent-blueprints/tree/main) or the Azure AI Foundry. There are several blueprints available that are authored by Microsoft and partners across different domains such as: travel, finance, insurance, business intelligence, healthcare, and more. 
 
 ## Explore the blueprints
 
