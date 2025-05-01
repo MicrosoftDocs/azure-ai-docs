@@ -79,13 +79,13 @@ You must use Azure Key Vault to store your customer-managed keys. You can either
 
 To enable customer-managed keys, the key vault containing your keys must meet these requirements:
 
-::: zone-pivot="fdp-project"
+::: zone pivot="fdp-project"
 
 - You must enable both the **Soft Delete** and **Do Not Purge** properties on the key vault.
 - If you use the [Key Vault firewall](/azure/key-vault/general/access-behind-firewall), you must allow trusted Microsoft services to access the key vault.
 - You must grant your [!INCLUDE [fdp](../includes/fdp-project-name.md)] and Azure AI Services resource's system-assigned managed identity the following permissions on your key vault: *get key*, *wrap key*, *unwrap key*.
 
-::: zone-pivot-end
+::: zone-end
 
 ::: zone-pivot="hub-project"
 
