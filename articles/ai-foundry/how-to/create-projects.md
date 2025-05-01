@@ -226,7 +226,7 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
     az group create --name {my_resource_group} --location eastus
     ```
 
-- Assign role assignments to the group.  Substitute your name and resource group in these commands:
+1. Assign role assignments to the group.  Substitute your name and resource group in these commands:
 
    ```azurecli
     az role assignment create --role "Azure AI User" --assignee "joe@contoso.com" --resource-group {my_resource_group} 
