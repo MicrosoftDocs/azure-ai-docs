@@ -71,11 +71,17 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 - [Azure CLI](/cli/azure/install-azure-cli) 
 - Create a resource group
-- Assign role assignments to the group:
 
-   ```
-    az role assignment create --role "Azure AI User" --assignee "joe@contoso.com" --resource-group this-rg 
-    az role assignment create --role "Azure AI Developer" --assignee "joe@contoso.com" --resource-group this-rg 
+    ```azurecli
+    az group create --name exampleRG --location eastus
+    ```
+    
+
+- Assign role assignments to the group.  Substitute your name and resource group in these commands:
+
+   ```azurecli
+    az role assignment create --role "Azure AI User" --assignee "joe@contoso.com" --resource-group exampleRG 
+    az role assignment create --role "Azure AI Developer" --assignee "joe@contoso.com" --resource-group exampleRG 
     ```
 ---
 
