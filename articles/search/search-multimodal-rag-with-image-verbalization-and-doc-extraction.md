@@ -17,7 +17,7 @@ ms.date: 05/01/2025
 
 Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial shows how to build a multimodal retrieval pipeline that supports Retrieval-Augmented Generation (RAG) by describing visual content in natural language and embedding it alongside document text.
 
-You'll extract content from a 36-page PDF using the Document Extraction skill to retrieve text and images. Each image is passed to the GenAI Prompt skill (currently in public preview) to generate a concise textual description. These descriptions, along with the original document text, are then embedded into vector representations using Azure OpenAI’s text-embedding-3-large model. The result is a single index containing semantically searchable content from both modalities—text and verbalized images.
+You'll extract content from a 36-page PDF using the [Document Extraction skill](/cognitive-search-skill-document-extraction.md) to retrieve text and images. Each image is passed to the [GenAI Prompt skill](/cognitive-search-skill-genai-prompt.md) (currently in public preview) to generate a concise textual description. These descriptions, along with the original document text, are then embedded into vector representations using Azure OpenAI’s text-embedding-3-large model. The result is a single index containing semantically searchable content from both modalities—text and verbalized images.
 
 You'll use:
 

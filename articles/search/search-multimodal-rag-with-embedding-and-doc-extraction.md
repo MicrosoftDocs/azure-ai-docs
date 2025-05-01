@@ -15,9 +15,9 @@ ms.date: 05/01/2025
 
 # Tutorial: Indexing blobs with text and images using multimodal embedding models and document extraction skill
 
-Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial demonstrates how to build a multimodal retrieval system that supports Retrieval-Augmented Generation (RAG) with both textual and visual content. This is particularly useful when working with documents that combine rich visual context (such as charts, scanned pages, or infographics) alongside traditional text.
+Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial shows how to build a multimodal retrieval pipeline that supports Retrieval-Augmented Generation (RAG) by embedding both text and images into a unified semantic search index.
 
-In this scenario, vector embeddings are generated for both modalities using AI skills and stored in a searchable index. These embeddings can then be used in semantic or hybrid search experiences to ground generative models or improve relevance ranking.
+You’ll work with a 36-page PDF document that combines rich visual content—such as charts, infographics, and scanned pages—with traditional text. Using the [Document Extraction skill](/cognitive-search-skill-document-extraction.md), you’ll extract both text and normalized images. Each modality is then embedded using the same [Azure AI Vision multimodal embeddings skill](/cognitive-search-skill-vision-vectorize.md), which generates dense vector representations suitable for semantic and hybrid search scenarios.
 
 You'll use:
 
