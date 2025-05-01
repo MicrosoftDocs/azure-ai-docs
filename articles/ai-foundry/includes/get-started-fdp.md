@@ -38,7 +38,7 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 # [Python SDK](#tab/python)
 
-1. [Set up your development environment](../how-to/develop/install-cli-sdk.md?tab-python)
+1. [Set up your development environment](../how-to/develop/install-cli-sdk.md?tabs=python)
 1. Install these packages:
 
     ```
@@ -47,17 +47,17 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 # [Java](#tab/java)
 
-1. [Set up your development environment](../how-to/develop/install-cli-sdk.md?tab=java)
+1. [Set up your development environment](../how-to/develop/install-cli-sdk.md?tabs=java)
 1. ??? 
 
 # [JavaScript](#tab/javascript)
 
-1. [Set up your development environment](../how-to/develop/install-cli-sdk.md?tab=javascript)
+1. [Set up your development environment](../how-to/develop/install-cli-sdk.md?tabs=javascript)
 1. ??? 
 
 # [C#](#tab/csharp)
 
-1. [Set up your development environment](../how-to/develop/install-cli-sdk.md?tab-csharp)
+1. [Set up your development environment](../how-to/develop/install-cli-sdk.md?tabs=csharp)
 1. ??? 
 
 ---
