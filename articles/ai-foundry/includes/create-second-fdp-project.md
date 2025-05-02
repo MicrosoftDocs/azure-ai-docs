@@ -43,7 +43,20 @@ To add a nondefault project to a resource:
 # [Python SDK](#tab/python)
 
 ```python
-# add a project to the resource
+new_project_name = 'your-new-project-name'
+
+project = client.projects.begin_create(
+  resource_group_name=resource_group_name,
+  account_name=foundry_resource_name,
+  project_name=new_project_name,
+  project={
+      "location": location,
+      "identity": {
+          "type": "SystemAssigned"
+      },
+      "properties": {}
+  }
+)
 ```
 
 
