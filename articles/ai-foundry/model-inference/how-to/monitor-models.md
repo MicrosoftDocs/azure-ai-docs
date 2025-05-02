@@ -8,6 +8,8 @@ ms.topic: how-to
 ms.date: 4/30/2025
 ---
 
+[!INCLUDE [Feature preview](../../../includes/feature-preview.md)]
+
 # Monitor model deployments in Azure AI model inference
 
 When you have critical applications and business processes that rely on Azure resources, you need to monitor and get alerts for your system. The Azure Monitor service collects and aggregates metrics and logs from every component of your system, including Azure AI model inference model deployments. You can use this information to view availability, performance, and resilience, and get notifications of issues.
@@ -67,7 +69,7 @@ To use Azure Monitor, follow these steps:
 
 1. Go to [Azure portal](https://portal.azure.com).
 
-1. On the search box type and select **Monitor**.
+1. Type and select **Monitor** on the search box.
 
 1. Select **Metrics** in the left navigation bar.
 
@@ -78,7 +80,7 @@ To use Azure Monitor, follow these steps:
     :::image type="content" source="../media/monitor-models/azmon-add-metric.png" alt-text="Screenshot showing how to add a new metric to the chart." lightbox="../media/monitor-models/azmon-add-metric.png":::
 
     > [!IMPORTANT]
-    > Metrics in category **Azure OpenAI** contains metrics for Azure OpenAI models in the resource. Category **Models** contains all the models available in the resource, including Azure OpenAI, DeepSeek, Phi, etc. We recommend switching to this new set of metrics.
+    > Metrics in category **Azure OpenAI** contain metrics for Azure OpenAI models in the resource. Category **Models** contains all the models available in the resource, including Azure OpenAI, DeepSeek, Phi, etc. We recommend switching to this new set of metrics.
 
 1. You can add as many metrics as needed to either the same chart or to a new chart.
 
@@ -146,7 +148,7 @@ The following categories of metrics are available:
 
 | Metric | Internal name | Unit | Aggregation | Dimensions |
 |--------|---------------|------|-------------|------------|
-| **Time To Response**<br /><br />Recommended latency (responsiveness) measure for streaming requests. Applies to PTU and PTU-managed deployments. Calculated as time taken for the first response to appear after a user sends a prompt, as measured by the API gateway. This number increases as the prompt size increases and/or cache hit size reduces. Note: this metric is an approximation as measured latency is heavily dependent on multiple factors, including concurrent calls and overall workload pattern. In addition, it does not account for any client-side latency that may exist between your client and the API endpoint. Please refer to your own logging for optimal latency tracking. | `TimeToResponse` | Milliseconds | Maximum, Minimum, Average | `ApiName`, `OperationName`, `Region`, `StreamType`, `ModelDeploymentName`, `ModelName`, `ModelVersion`, `StatusCode` |
+| **Time To Response**<br /><br />Recommended latency (responsiveness) measure for streaming requests. Applies to PTU and PTU-managed deployments. Calculated as time taken for the first response to appear after a user sends a prompt, as measured by the API gateway. This number increases as the prompt size increases and/or cache hit size reduces. Note: this metric is an approximation as measured latency is heavily dependent on multiple factors, including concurrent calls and overall workload pattern. In addition, it does not account for any client-side latency that may exist between your client and the API endpoint. Refer to your own logging for optimal latency tracking. | `TimeToResponse` | Milliseconds | Maximum, Minimum, Average | `ApiName`, `OperationName`, `Region`, `StreamType`, `ModelDeploymentName`, `ModelName`, `ModelVersion`, `StatusCode` |
 | **Normalized Time Between Tokens**<br /><br />For streaming requests; model token generation rate, measured in milliseconds. Applies to PTU and PTU-managed deployments. | `NormalizedTimeBetweenTokens` | Milliseconds | Maximum, Minimum, Average |  `ApiName`, `OperationName`, `Region`, `StreamType`, `ModelDeploymentName`, `ModelName`, `ModelVersion` |
 
 #### Models - Usage
