@@ -29,7 +29,7 @@ This tutorial demonstrates a lower-cost approach for indexing multimodal content
 
 For a more comprehensive solution that includes structured text layout and spatial metadata, see [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal).
 
-Note that setting `imageAction` to `generateNormalizedImages` as is required for this tutorial will incur an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
+Note: setting `imageAction` to `generateNormalizedImages` as is required for this tutorial will incur an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
 
 Using a REST client and the [Search REST APIs](/rest/api/searchservice/) you will:
 
@@ -47,6 +47,7 @@ Using a REST client and the [Search REST APIs](/rest/api/searchservice/) you wil
 + [Azure Storage](/azure/storage/common/storage-account-create).
 
 + [Azure AI Search](search-what-is-azure-search.md). [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription.
+  > Your service must be on the Basic tier or higher—this tutorial is not supported on the Free tier. Additionally, ensure your service is deployed in a [supported region for AI Vision](/azure/ai-services/computer-vision/overview-image-analysis#region-availability)
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
@@ -313,7 +314,7 @@ POST {{baseUrl}}/indexes?api-version=2025-05-01-preview   HTTP/1.1
 
 Key points:
 
-+ Text and image embeddings are stored in the `content_embedding` field and must be configured with appropriate dimensions (e.g., 1024) and a vector search profile.
++ Text and image embeddings are stored in the `content_embedding` field and must be configured with appropriate dimensions (for example, 1024) and a vector search profile.
 
 + `location_metadata` captures bounding polygon and page number metadata for each normalized image, enabling precise spatial search or UI overlays. Note that `location_metadata` only exists for images in this scenario. If you'd like to capture locational metadata for text as well, consider using [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md). An in-depth tutorial is linked at the bottom of the page.
 
@@ -579,7 +580,7 @@ Key points:
   
 + The `content_embedding` field contains 1024-dimensional embeddings for both page text and verbalized image descriptions. These are generated using the text-embedding-3-large model from Azure OpenAI.
 
-+ `content_path` will contain the relative path to the image file within the designated image projection container. This field is generated only for images extracted from PDFs when `imageAction` is set to `generateNormalizedImages`, and can be mapped from the enriched document from the source field `/document/normalized_images/*/imagePath`.
++ `content_path` contains the relative path to the image file within the designated image projection container. This field is generated only for images extracted from PDFs when `imageAction` is set to `generateNormalizedImages`, and can be mapped from the enriched document from the source field `/document/normalized_images/*/imagePath`.
 
 ## Create and run an indexer
 
