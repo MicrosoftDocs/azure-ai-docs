@@ -11,7 +11,7 @@ ms.author: eur
 
 Follow these steps to install the Speech CLI on Windows:
 
-1. Install the [Microsoft Visual C++ Redistributable for Visual Studio](/cpp/windows/latest-supported-vc-redist?view=msvc-170&source=recommendations#latest-microsoft-visual-c-redistributable-version) for your platform. Installing it for the first time might require a restart.
+1. Install the [Microsoft Visual C++ Redistributable for Visual Studio](/cpp/windows/latest-supported-vc-redist#latest-microsoft-visual-c-redistributable-version) for your platform. Installing it for the first time might require a restart.
 1. Install [.NET 6](/dotnet/core/install/windows?tabs=net60#runtime-information).
 1. Install the Speech CLI via the .NET CLI by entering this command:
 
