@@ -52,7 +52,17 @@ You get several hub default resources in your resource group. You need to config
 
 ## Create a Foundry project that uses a private endpoint
 
+When creating a new project, use the following steps to create the project.
 
+1. From the [Azure portal](https://portal.azure.com), search for __Azure AI Foundry__ and select __Create a resource__.
+1. After configuring the __Basics__ tab, select the __Networking__ tab and then the __Disabled__ option.
+1. From the __Private endpoint__ section, select __+ Add private endpoint__.
+1. When going through the forms to create a private endpoint, be sure to:
+
+    - From __Basics__, select the same __Region__ as your virtual network.
+    - From the __Virtual Network__ form, select the virtual network and subnet that you want to connect to.
+
+1. Continue through the forms to create the project. When you reach the __Review + create__ tab, review your settings and select __Create__ to create the project.
 
 :::zone-end
 
@@ -130,10 +140,6 @@ az network private-endpoint dns-zone-group create \
 
 1. From the [Azure portal](https://portal.azure.com), select your project.
 1. From the left side of the page, select __Resource Management__, __Networking__, and then select the __Private endpoint connections__ tab. Select __+ Private endpoint__.
-
-    
-    :::image type="content" source="../media/how-to/network/add-private-endpoint.png" alt-text="Screenshot of the private endpoint connections tab"::::::image type="content" source="../media/how-to/network/add-private-endpoint.png" alt-text="Screenshot of the private endpoint connections tab":::
-
 1. When going through the forms to create a private endpoint, be sure to:
 
     - From __Basics__, select the same __Region__ as your virtual network.
@@ -238,10 +244,8 @@ You can remove one or all private endpoints for a project. Removing a private en
 To remove a private endpoint, use the following information:
 
 1. From the [Azure portal](https://portal.azure.com), select your hub.
-1. From the left side of the page, select __Settings__, __Networking__, and then select the __Private endpoint connections__ tab.
+1. From the left side of the page, select __Resource Management__, __Networking__, and then select the __Private endpoint connections__ tab.
 1. Select the endpoint to remove and then select __Remove__.
-
-    :::image type="content" source="../media/how-to/network/remove-private-endpoint.png" alt-text="Screenshot of a selected private endpoint with the remove option highlighted.":::
 
 :::zone-end
 
@@ -281,6 +285,15 @@ az network private-endpoint delete \
 :::zone pivot="fdp-project"
 
 ## Enable public access
+
+In some situations, you might want to allow someone to connect to your secured project over a public endpoint, instead of through the virtual network. Or you might want to remove the project from the virtual network and re-enable public access.
+
+> [!IMPORTANT]
+> Enabling public access doesn't remove any private endpoints that exist. All communications between components behind the virtual network that the private endpoint(s) connect to are still secured. It enables public access only to the project, in addition to the private access through any private endpoints.
+
+1. From the [Azure portal](https://portal.azure.com), select your hub.
+1. From the left side of the page, select __Resource Management__, __Networking__, and then select the __Firewalls and virtual networks__ tab.
+1. Select __All networks__, and then select __Save__.
 
 :::zone-end
 
