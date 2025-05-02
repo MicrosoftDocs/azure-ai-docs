@@ -1,7 +1,7 @@
 ---
 title: How to use image models in the model catalog
 titleSuffix: Azure AI Foundry
-description: Learn how to use image models from the AI Foundry model catalog.
+description: Learn how to use image-to-text models from the AI Foundry model catalog.
 manager: scottpolly
 author: msakande
 reviewer: frogglew
@@ -13,9 +13,13 @@ ms.reviewer: frogglew
 ms.custom: references_regions, tool_generated
 ---
 
-# How to use image models in the model catalog
+# How to use image-to-text models in the model catalog
 
-This article explains how to use _image_ models in the AI Foundry model catalog. Some models have unique parameters or data format requirements.
+This article explains how to use _image-to-text_ models in the AI Foundry model catalog. 
+
+Image-to-text models are designed to analyze images and generate descriptive text based on what they see. Think of them as a combination of a camera and a writer. You will provide an image as an input to the model, and the model will look at the image and identifies different elements within it, like objects, people, scenes, and even text. Based on its analysis, the model then generates a written description of the image, summarizing what it sees.
+
+Image-to-text models excel at various use cases such as accessibility features, content organization (tagging), creating product and educational visual description, and digitizing content (via Optical Character Recognition). One might say image-to-text models bridge the gap between visual content and written language, making information more accessible and easier to process in various contexts.
 
 ## Prerequisites
 
@@ -31,7 +35,7 @@ To use image models in your application, you need:
 
 - The endpoint URL and key.
 
-## Use image model
+## Use image-to-text model
 
 1. Authenticate using an API key. First, deploy the model to generate the endpoint URL and an API key to authenticate against the service. In this example, the endpoint and key are strings holding the endpoint URL and the API key. The API endpoint URL and API key can be found on the **Deployments + Endpoint** page once the model is deployed.
 
@@ -65,14 +69,16 @@ To use image models in your application, you need:
       "document": {
         "type": "document_url",
         "document_name": "test",
-        "document_url": "data:application/pdf;base64,JVBER..."
+        "document_url": "data:application/pdf;base64,JVBER... <replace with your base64 encoded image data>"
       }
     }'
     ```
 
 **More code samples for Mistral OCR 25.03**
 
+**Processing PDF files**
 ```bash
+# Read the pdf file
 input_file_path="assets/2201.04234v3.pdf"
 base64_value=$(base64 "$input_file_path")
 input_base64_value="data:application/pdf;base64,${base64_value}"
@@ -96,17 +102,42 @@ echo "$payload_body" | curl ${AZURE_AI_CHAT_ENDPOINT}/v1/ocr \
   -H "Authorization: Bearer ${AZURE_AI_CHAT_KEY}" \
   -d @- -o ocr_pdf_output.json
 ```
-
+**Processing an image file**
+```
+# Read the image file
+input_file_path="assets/receipt.png"
+base64_value=$(base64 "$input_file_path")
+input_base64_value="data:application/png;base64,${base64_value}"
+# echo $input_base64_value
+ 
+# Prepare JSON data
+payload_body=$(cat <<EOF
+{
+    "model": "mistral-ocr-2503",
+    "document": {
+        "type": "image_url",
+        "image_url": "$input_base64_value"
+    },
+    "include_image_base64": true
+}
+EOF
+)
+ 
+# Process the base64 data with ocr endpoint
+echo "$payload_body" | curl ${AZURE_AI_CHAT_ENDPOINT}/v1/ocr \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${AZURE_AI_CHAT_KEY}" \
+  -d @- -o ocr_png_output.json
+```
 
 ## Model-specific parameters
 
-Some image models only support specific data formats. Mistral OCR 25.03, for example, requires `base64 encoded image data` for their `document_url` parameter. The following table lists the supported and unsupported data formats for image models in the model catalog.
+Some image-to-text models only support specific data formats. Mistral OCR 25.03, for example, requires `base64 encoded image data` for their `document_url` parameter. The following table lists the supported and unsupported data formats for image models in the model catalog.
 
 | Model | Supported | Not supported |
 | :---- | ----- | ----- |
 | Mistral OCR 25.03 | base64 encoded image data  | document url, image url |
-| dall-e-3 | document url, image url, b64_json | base64 encoded image data |
-| gpt-image-1 | base64 encoded image data, image url | document url  |
+
 
 
 ## Related content
