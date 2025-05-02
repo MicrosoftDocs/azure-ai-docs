@@ -49,7 +49,7 @@ At the end of this Map stage, you should have a documented, prioritized list of 
 
 ## Measure
 
-Once you’ve identified a list of prioritized content risks , the next stage involves developing an approach for systematic measurement of each content risk and conducting evaluations of the AI system. There are manual and automated approaches to measurement. We recommend you do both, starting with manual measurement. 
+Once you’ve identified a list of prioritized content risks, the next stage involves developing an approach for systematic measurement of each content risk and conducting evaluations of the AI system. There are manual and automated approaches to measurement. We recommend you do both, starting with manual measurement. 
 
 Manual measurement is useful for: 
 - Measuring progress on a small set of priority issues. When mitigating specific content risks, it's often most productive to keep manually checking progress against a small dataset until the content risk is no longer observed before you move on to automated measurement. 
