@@ -5,6 +5,7 @@ description: Learn about the basic concepts and features of Azure AI Vision Spat
 author: PatrickFarley
 manager: nitinme
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
+ms.update-cycle: 365-days
 ms.author: pafarley
 ms.service: azure-ai-vision
 ms.topic: overview
