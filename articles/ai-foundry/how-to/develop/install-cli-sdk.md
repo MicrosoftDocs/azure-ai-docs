@@ -60,7 +60,7 @@ Info here.
 
 # [C#](#tab/csharp)
 
-[!INCLUDE [install-csharp packages](../../includes/install-csharp packages.md)]
+[!INCLUDE [install-csharp packages](../../includes/install-csharp-packages.md)]
 
 ---
 
