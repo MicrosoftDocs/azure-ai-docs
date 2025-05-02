@@ -7,6 +7,17 @@ ms.author: eur
 ms.custom: references_regions
 ---
 
+### April 2025 release
+
+#### Public preview of new HD voices
+
+The following HD voices are now available for preview:
+
+| **Locale (BCP-47)** | **Voice name**                                         |
+|---------------------|--------------------------------------------------------|
+| `en-US`             | `en-US-MultiTalker-Ava-Steffan:DragonHDLatestNeural` (Neutral)        |
+| `en-US`             | `en-US-Bree:DragonHDLatestNeural` (Female)        |
+
 ### March 2025 release
 
 #### General availability of some HD voices

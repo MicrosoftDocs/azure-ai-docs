@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 04/09/2025
+ms.date: 04/18/2025
 ---
 
 # Indexers in Azure AI Search
@@ -62,6 +62,7 @@ Indexers crawl data stores on Azure and outside of Azure.
 + [SharePoint in Microsoft 365](search-howto-index-sharepoint-online.md) (in preview)
 + [Azure Cosmos DB for MongoDB](search-howto-index-cosmosdb-mongodb.md) (in preview)
 + [Azure Cosmos DB for Apache Gremlin](search-howto-index-cosmosdb-gremlin.md) (in preview)
++ [OneLake](search-how-to-index-onelake-files.md) (in preview)
 
 Azure Cosmos DB for Cassandra is not supported.
 
