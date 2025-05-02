@@ -48,7 +48,7 @@ You need an active Azure subscription. If you don't have an Azure subscription, 
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [NodeJS programming](includes/client-libraries-sdk/javascript.md)]
+[!INCLUDE [Node.js programming](includes/client-libraries-sdk/javascript.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-python"

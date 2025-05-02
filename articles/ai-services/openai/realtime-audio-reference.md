@@ -5,13 +5,13 @@ description: Learn how to use the Realtime API to interact with the Azure OpenAI
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 3/20/2025
+ms.date: 4/28/2025
 author: eric-urban
 ms.author: eur
 recommendations: false
 ---
 
-# Realtime API (Preview) reference
+# Realtime events reference
 
 [!INCLUDE [Feature preview](includes/preview-feature.md)]
 
@@ -21,32 +21,6 @@ The Realtime API (via `/realtime`) is built on [the WebSockets API](https://deve
 
 > [!TIP]
 > To get started with the Realtime API, see the [quickstart](realtime-audio-quickstart.md) and [how-to guide](./how-to/realtime-audio.md).
-
-## Connection
-
-The Realtime API requires an existing Azure OpenAI resource endpoint in a supported region. The API is accessed via a secure WebSocket connection to the `/realtime` endpoint of your Azure OpenAI resource.
-
-You can construct a full request URI by concatenating:
-
-- The secure WebSocket (`wss://`) protocol.
-- Your Azure OpenAI resource endpoint hostname, for example, `my-aoai-resource.openai.azure.com`
-- The `openai/realtime` API path.
-- An `api-version` query string parameter for a supported API version such as `2024-10-01-preview`.
-- A `deployment` query string parameter with the name of your `gpt-4o-realtime-preview` or `gpt-4o-mini-realtime-preview` model deployment.
-
-The following example is a well-constructed `/realtime` request URI:
-
-```http
-wss://my-eastus2-openai-resource.openai.azure.com/openai/realtime?api-version=2024-10-01-preview&deployment=gpt-4o-realtime-preview
-```
-
-## Authentication
-
-To authenticate:
-- **Microsoft Entra** (recommended): Use token-based authentication with the `/realtime` API for an Azure OpenAI Service resource with managed identity enabled. Apply a retrieved authentication token using a `Bearer` token with the `Authorization` header.
-- **API key**: An `api-key` can be provided in one of two ways:
-  - Using an `api-key` connection header on the prehandshake connection. This option isn't available in a browser environment.
-  - Using an `api-key` query string parameter on the request URI. Query string parameters are encrypted when using https/wss.
 
 ## Client events
 

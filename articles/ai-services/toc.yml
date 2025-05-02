@@ -15,14 +15,14 @@ items:
     href: https://azure.microsoft.com/pricing/details/cognitive-services/
 - name: Quickstarts
   items:
-  - name: Create an Azure AI services resource
+  - name: Create an AI Foundry resource
     href: multi-service-resource.md
     displayName: applied, cognitive, form
-  - name: Create an Azure AI services resource using Bicep
+  - name: Create an AI Foundry resource using Bicep
     href: create-account-bicep.md
-  - name: Create an Azure AI services resource using an ARM template
+  - name: Create an AI Foundry resource using an ARM template
     href: create-account-resource-manager-template.md
-  - name: Create an Azure AI services resource using Terraform
+  - name: Create an AI Foundry resource using Terraform
     href: create-account-terraform.md
 - name: How-to
   items:

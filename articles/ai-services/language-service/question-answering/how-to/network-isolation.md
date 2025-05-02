@@ -11,7 +11,7 @@ ms.custom: language-service-question-answering
 
 #  Network isolation and private endpoints
 
-The steps below describe how to restrict public access to custom question answering resources as well as how to enable Azure Private Link. Protect an Azure AI services resource from public access by [configuring the virtual network](../../../cognitive-services-virtual-networks.md?tabs=portal).
+The steps below describe how to restrict public access to custom question answering resources as well as how to enable Azure Private Link. Protect an AI Foundry resource from public access by [configuring the virtual network](../../../cognitive-services-virtual-networks.md?tabs=portal).
 
 ## Private Endpoints
 
@@ -54,9 +54,9 @@ This will establish a private endpoint connection between language resource and 
 
 ## Restrict access to Azure AI Search resource
 
-Follow the steps below to restrict public access to custom question answering language resources. Protect an Azure AI services resource from public access by [configuring the virtual network](../../../cognitive-services-virtual-networks.md?tabs=portal).
+Follow the steps below to restrict public access to custom question answering language resources. Protect an AI Foundry resource from public access by [configuring the virtual network](../../../cognitive-services-virtual-networks.md?tabs=portal).
 
-After restricting access to an Azure AI services resource based on VNet, To browse projects on Language Studio from your on-premises network or your local browser.
+After restricting access to an AI Foundry resource based on VNet, To browse projects on Language Studio from your on-premises network or your local browser.
 - Grant access to [on-premises network](../../../cognitive-services-virtual-networks.md?tabs=portal#configure-access-from-on-premises-networks).
 - Grant access to your [local browser/machine](../../../cognitive-services-virtual-networks.md?tabs=portal#managing-ip-network-rules).
 - Add the **public IP address of the machine  under the Firewall** section of the **Networking** tab. By default `portal.azure.com` shows the current browsing machine's public IP (select this entry) and then select **Save**.

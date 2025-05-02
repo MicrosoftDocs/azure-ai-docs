@@ -8,12 +8,15 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 02/20/2025
+ms.date: 04/29/2025
 ms.reviewer: ambadal
 #customer intent: As an admin, I want to disable shared key access to my resources to improve security.
 ---
 
 # Disable shared key access for your hub's storage account (preview)
+
+> [!NOTE]
+> The information provided in this article is specific to a **[!INCLUDE [hub](../includes/hub-project-name.md)]**, and doesn't apply for a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. For more information, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
 
 An [Azure AI Foundry](https://ai.azure.com) hub defaults to use of a shared key to access its default Azure Storage account. With key-based authorization, anyone who has the key and access to the storage account can access data.
 
