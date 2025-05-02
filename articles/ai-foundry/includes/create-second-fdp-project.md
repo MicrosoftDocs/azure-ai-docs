@@ -63,7 +63,7 @@ project = client.projects.begin_create(
 # [Azure CLI](#tab/azurecli)
 
 ```azurecli
-az ...
+az cognitiveservices account project create --name {my_project_name} -resource-group {my_resource_group} --account {account_name}
 ```
 
 
