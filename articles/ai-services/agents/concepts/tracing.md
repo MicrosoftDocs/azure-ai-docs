@@ -23,11 +23,11 @@ Tracing solves this by allowing you to clearly see the inputs and outputs of eac
 
 ## Tracing in the Azure AI Foundry Agents playground
 
-The Agents playground in the Azure AI Foundry portal lets you trace threads and runs that your agents produce. To open a trace, select **Thread info** in an active thread.  
+The Agents playground in the Azure AI Foundry portal lets you trace threads and runs that your agents produce. To open a trace, select **Thread info** in an active thread. You can also optionally select **Metrics** to enable automatic evaluations of the model's performance across several dimensions of **AI quality** and **Risk and safety**. 
 
 :::image type="content" source="../media/ai-foundry-tracing.png" alt-text="A screenshot of the agent playground in the Azure AI Foundry portal." lightbox="../media/ai-foundry-tracing.png":::
 
-The screen that appears will be let you view the: thread, run, run steps and any tool calls that were made. You can view the inputs and outputs between the agent and user, as well the associated metadata.
+After selecting **Thread info**, the screen that appears will be let you view the: thread, run, run steps and any tool calls that were made. You can view the inputs and outputs between the agent and user, as well the associated metadata and any evaluations you selected.
 
 :::image type="content" source="../media/thread-trace.png" alt-text="A screenshot of a trace." lightbox="../media/thread-trace.png":::
 

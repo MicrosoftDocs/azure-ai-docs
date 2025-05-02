@@ -26,6 +26,8 @@ items:
   items:
     - name: Threads, runs, and messages
       href: concepts/threads-runs-messages.md 
+    - name: Agent catalog
+      href: concepts/agent-catalog.md
     - name: Tools
       items:
         - name: Tool catalog
