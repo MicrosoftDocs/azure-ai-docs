@@ -40,35 +40,39 @@ Analyzers define how your content will be processed and the insights that will b
 This quickstart uses pre-built analyzers to help you get started. 
 
 Before running the cURL command, make the following changes to the HTTP request:
-
-# [Document](#tab/document)
-
-1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal
-1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/data/invoice.pdf`.
-
-# [Image](#tab/image)
-
-1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal
-1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/data/pieChart.jpg`
-
-# [Audio](#tab/audio)
-
-1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal
-1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/data/audio.wav`
-
-# [Video](#tab/video)
-
-1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal
-1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/data/FlightSimulator.mp4`
----
-
 ### POST request
 ```bash
-curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2024-12-01-preview" \
+curl -i -X POST "{endpoint}/analyzers/{analyzerId}:analyze?api-version=2025-05-01-preview" \
   -H "Ocp-Apim-Subscription-Key: {key}" \
   -H "Content-Type: application/json" \
   -d "{\"url\":\"{fileUrl}\"}"
 ```
+
+# [Document](#tab/document)
+
+1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal
+2. Replace `{analyzerId}` with  `prebuilt-documentAnalyzer`.
+3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/data/invoice.pdf`.
+
+# [Image](#tab/image)
+
+1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal
+2. Replace `{analyzerId}` with  `prebuilt-imageAnalyzer`
+3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/data/pieChart.jpg`
+
+# [Audio](#tab/audio)
+
+1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal
+2. Replace `{analyzerId}` with  `prebuilt-audioAnalyzer`
+3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/data/audio.wav`
+
+# [Video](#tab/video)
+
+1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal
+2. Replace `{analyzerId}` with  `prebuilt-videoAnalyzer`
+3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/data/FlightSimulator.mp4`
+---
+
 
 ### POST response
 
