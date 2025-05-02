@@ -1,5 +1,5 @@
 ---  
-title: Indexing Access Control Lists and Azure Role-Based Access scopes using Indexers in Azure AI Search  
+title: Indexing Access Control Lists and Azure Role-Based Access scope using indexers in Azure AI Search  
 titleSuffix: Azure AI Search  
 description: Learn how to configure Azure AI Search indexers for ingesting Access Control Lists (ACLs) and Azure Role-Based Access (RBAC) metadata.  
 ms.service: azure-ai-search  
@@ -10,7 +10,7 @@ ms.author: wli
 ---  
 
 
-# Indexing Access Control Lists and Azure Role-Based Access Control scope using Indexers
+# Indexing Access Control Lists and Azure Role-Based Access Control scope using indexers
 
 > [!IMPORTANT]
 > Indexing Access Control Lists and Azure Role-Based Access scopes using Indexers in Azure AI Search functionality is first available in the **2025-05-01-preview** REST API. 
@@ -33,7 +33,7 @@ For example, in [ADLS Gen2 common scenarios related to permissions](/azure/stora
   | - | - | - | - | - |
   | Read Data.txt	| --X	| --X	| --X	| R-- |
   
-  The indexer fetches ACLs from each container and directory, resolves them into the retained effective access of lower levels, and continues this process until it determines the effective access for the file.
+  The indexer fetches ACLs from each container and directory, resolves them into the retained effective access of lower levels, and continues this process until it determines the effective access for each file.
   
   ```txt
   / assigned access vs Oregon/ assigned access
@@ -43,11 +43,11 @@ For example, in [ADLS Gen2 common scenarios related to permissions](/azure/stora
   ```
 
 ## Restrictions
-Some indexer features will be unavailable when enabling permission ingestion feature.
-  - Custom Web API skill
-  - Chat Completion skill
-  - Knowledge Store
-  - Indexer Cache
+Some indexer features are unavailable when enabling permission ingestion feature.
+  - [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
+  - [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
+  - [Knowledge store](knowledge-store-concept-intro.md)
+  - [Indexer cache](search-howto-incremental-index.md)
 
 ## Requirements
 - Azure Data Lake Storage Gen2 ([adlsgen2](search-howto-index-azure-data-lake-storage.md#define-the-data-source)) as the data source type.
@@ -58,29 +58,29 @@ Some indexer features will be unavailable when enabling permission ingestion fea
 
 ## Limitations
 - Refer to the [ACLs and RBAC limits in ADLS Gen2](/azure/storage/blobs/data-lake-storage-access-control-model#limits-on-azure-role-assignments-and-acl-entries) for the maximum number of role assignments and ACL entries supported.
-- The `Other` ACL category is not supported during Public Preview.
-- Guidelines for [ADLS Gen2 ACL assignments](/azure/storage/blobs/data-lake-storage-access-control#how-to-set-acls) during Public Preview:
+- The `Other` ACL category isn't supported during public preview.
+- Guidelines for [ADLS Gen2 ACL assignments](/azure/storage/blobs/data-lake-storage-access-control#how-to-set-acls) during public preview:
   ### Root Container Permissions:
   1. Assign all groups and users (security principals) that require access to any file within the container both `read` and `execute` permissions at the root container level.
   1. Ensure both `read` and `execute` permissions are also added as "Default permissions" for the container, so they propagate to newly created files and directories automatically.
   ### Existing Hierarchical File Structures:
-  For containers with existing hierarchical file structures, use the ADLS Gen2 tool to [apply ACLs recursively](/azure/storage/blobs/data-lake-storage-acl-azure-portal#apply-an-acl-recursively). This will propagate the root container's ACL assignments to all underlying directories and files.
+  For containers with existing hierarchical file structures, use the ADLS Gen2 tool to [apply ACLs recursively](/azure/storage/blobs/data-lake-storage-acl-azure-portal#apply-an-acl-recursively). This tool propagates the root container's ACL assignments to all underlying directories and files.
   ### Remove Excess Permissions:
   After applying ACLs recursively, review permissions for each directory and file.
-  Remove any permissions for security principals that should not have access to specific directories or files.
+  Remove any permissions for security principals that shouldn't have access to specific directories or files.
   ### Updating ACL Assignments:
   If any new ACL assignments are added, repeat the above steps to ensure proper propagation and permissions alignment.
   ### Sample ACL assignments structure
-  ![alt text](acl-assignment-structure-sample.png)
+  ![Diagram of an ACL assignment structure.](acl-assignment-structure-sample.png)
 
 ## Supported Scenarios  
 - Extraction of ACL and Azure RBAC container metadata from Azure Data Lake Storage Gen2.
 - Tailored for RAG (Retrieval Augmented Generation) applications and enterprise search.
 
 ## Indexing Permission Metadata
-Permission metadata can be indexed when `indexerPermissionOptions` are chosen from Data Source definition, as opt-in for permission ingestion from Indexer.
-  - **metadata_user_ids** (`Collection(Edm.String)`) - the ACL user ids list.
-  - **metadata_group_ids** (`Collection(Edm.String)`) - the ACL group ids list.
+Permission metadata can be indexed when `indexerPermissionOptions` are chosen from Data Source definition, as opt in for permission ingestion from Indexer.
+  - **metadata_user_ids** (`Collection(Edm.String)`) - the ACL user IDs list.
+  - **metadata_group_ids** (`Collection(Edm.String)`) - the ACL group IDs list.
   - **metadata_rbac_scope** (`Edm.String`) - the container RBAC scope.
 
 ## Indexing with Indexers
@@ -147,9 +147,9 @@ Permission metadata can be indexed when `indexerPermissionOptions` are chosen fr
 - Organize identities into groups and use groups whenever possible, rather than granting access directly to individual users. Continuously adding individual users instead of applying groups increases the number of access control entries that must be tracked and evaluated. Not following this best practice can lead to more frequent security metadata updates required to the index as this metadata changes, causing increased delays and inefficiencies in the refresh process.
 
 ## Re-ingest Permission Metadata as needed
-If permission metadta like ACLs and/or RBAC scope need to be re-ingested after normal indexer runs. There are a few options for certain scenarios:
+If permission metadata like ACLs or RBAC scope needs to be re-ingested after regular indexer runs, consider the following options:
 - For a few blobs, consider renewing the `Last modified` timestamp of these blobs from source, so that **both permission metadata as well as the blob data content** will be re-ingested from the next indexer run.
-- For a moderate amount of blobs, consider issuing a request with the [`/resetdocs (preview)`](search-howto-run-reset-indexers.md#how-to-reset-docs-preview) API of these blobs, so that **both permission metadata as well as the blob data content** of these blobs will be re-ingested again.
+- For a moderate amount of blobs, consider issuing a request with the [`/resetdocs (preview)`](search-howto-run-reset-indexers.md#how-to-reset-docs-preview) API of these blobs, so that **both permission metadata as well as the blob data content** of these blobs can be re-ingested again.
 
     ```http
     POST https://[service name].search.windows.net/indexers/[indexer name]/resetdocs?api-version=2025-05-01-preview

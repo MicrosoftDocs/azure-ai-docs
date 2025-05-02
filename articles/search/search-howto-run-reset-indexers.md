@@ -215,7 +215,7 @@ If the document is enriched through a skillset and has cached data, the  skillse
 When you're testing this API for the first time, the following APIs can help you validate and test the behaviors. You can use preview API version 2020-06-30-preview and later. We recommend the latest preview API.
 
 > [!NOTE]
-> Starting from API version `2025-05-01-preview`, for ADLS Gen2 data source with [`indexerPermissionOptions`](search-indexer-access-control-lists-and-role-based-access.md#indexing-with-indexers) enabled, along with file content re-ingestion the selected permission metadata (ACLs and/or RBAC scope) will be re-ingested as well. Check [Re-indexing ACL and RBAC scope with ADLS Gen2 indexer](search-indexer-access-control-lists-and-role-based-access.md#re-ingest-permission-metadata-as-needed) for detail.
+> Starting from API version `2025-05-01-preview`, ADLS Gen2 data sources with [`indexerPermissionOptions`](search-indexer-access-control-lists-and-role-based-access.md#indexing-with-indexers) enabled can be re-ingested any permission metadata (ACLs and/or RBAC scope) during the traditional re-ingestion of file content. For more information, see [Re-indexing ACL and RBAC scope with ADLS Gen2 indexer](search-indexer-access-control-lists-and-role-based-access.md#re-ingest-permission-metadata-as-needed).
 
 1. Call [Indexers - Get Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2024-05-01-preview&preserve-view=true) with a preview API version to check reset status and execution status. You can find information about the reset request at the end of the status response.
 
@@ -264,7 +264,7 @@ An indexer is considered synchronized with its data source when specific fields 
 
 If a document is modified in the data source, the indexer becomes unsynchronized. Generally, change tracking mechanisms will resynchronize the indexer during the next run. For example, in Azure Storage, modifying a blob updates its last modified time, allowing it to be re-indexed in the subsequent indexer run because the updated time surpasses the high-water mark set by the previous run.
 
-In contrast, for certain data sources like Azure Data Lake Storage (ADLS) Gen2, altering the Access Control Lists (ACLs) of a blob does not change its last modified time, rendering change tracking ineffective if ACls are to be ingested. Consequently, the modified blob will not be re-indexed in the subsequent run, as only documents modified after the last high-water mark are processed.
+In contrast, for certain data sources like Azure Data Lake Storage (ADLS) Gen2, altering the Access Control Lists (ACLs) of a blob does not change its last modified time, rendering change tracking ineffective if ACLs are to be ingested. Consequently, the modified blob will not be re-indexed in the subsequent run, as only documents modified after the last high-water mark are processed.
 
 While using either "reset" or "reset docs" can address this issue, "reset" can be time-consuming and inefficient for large datasets, and "reset docs" requires identifying the document key of the blob intended for update.
 

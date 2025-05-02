@@ -33,7 +33,7 @@ For a code sample in C#, see [Index Data Lake Gen2 using Microsoft Entra ID](htt
 + Use a [REST client](search-get-started-rest.md) to formulate REST calls similar to the ones shown in this article.
 
 > [!NOTE]
-> ADLS Gen2 supports [access control model](/azure/storage/blobs/data-lake-storage-access-control) with both Azure role-based access control (Azure RBAC) and POSIX-like access control lists (ACLs) at the blob level. Azure AI Search now supports [Document-Level Permission](search-security-trimming-for-azure-search.md) from these ADLS Gen2 access control models, and provides compliant and secure content retrieval experience according to individual user access from the source files. For how to ingest ACLs and RBAC scope using indexer, check [Indexing Access Control Lists and Azure Role-Based Access Control scope using Indexers](search-indexer-access-control-lists-and-role-based-access.md)
+> ADLS Gen2 supports an [access control model](/azure/storage/blobs/data-lake-storage-access-control) with both Azure role-based access control (Azure RBAC) and POSIX-like access control lists (ACLs) at the blob level. Azure AI Search can now recognize document-level permissions in ADLS Gen2 blobs during indexing and transfers those permissions to indexed content in the search index. For more information about ACL ingestion and RBAC scope during index, see [Indexing Access Control Lists and Azure Role-Based Access Control scope using Indexers](search-indexer-access-control-lists-and-role-based-access.md).
 
 <a name="SupportedFormats"></a>
 
