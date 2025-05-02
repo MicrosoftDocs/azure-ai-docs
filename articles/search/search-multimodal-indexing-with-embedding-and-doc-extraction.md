@@ -97,7 +97,7 @@ For this tutorial, connections to Azure AI Search require an endpoint and an API
    @apiKey = PUT-YOUR-ADMIN-API-KEY-HERE
    @storageConnection = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
    @cognitiveServicesUrl = PUT-YOUR-COGNITIVE-SERVICES-URL-HERE
-   @cognitiveServicesUrlKey= PUT-YOUR-COGNITIVE-SERVICES-URL-KEY-HERE
+   @cognitiveServicesKey= PUT-YOUR-COGNITIVE-SERVICES-URL-KEY-HERE
    @modelVersion = PUT-YOUR-VECTORIZE-MODEL-VERSION-HERE
    @imageProjectionContainer=PUT-YOUR-IMAGE-PROJECTION-CONTAINER-HERE
    ```
@@ -287,7 +287,7 @@ POST {{baseUrl}}/indexes?api-version=2025-05-01-preview   HTTP/1.1
                 "kind": "aiServicesVision",
                 "aiServicesVisionParameters": {
                     "resourceUri": "{{cognitiveServicesUrl}}",
-                    "apiKey": "{{}}",
+                    "apiKey": "{{cognitiveServicesKey}}",
                     "modelVersion": "{{modelVersion}}"
                 }
             }
@@ -471,7 +471,7 @@ POST {{baseUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
   "cognitiveServices": {
     "@odata.type": "#Microsoft.Azure.Search.AIServicesByKey",
     "subdomainUrl": "{{cognitiveServicesUrl}}",
-    "key": "{{cognitiveServicesUrlKey}}"
+    "key": "{{cognitiveServicesKey}}"
   },
   "indexProjections": {
       "selectors": [
