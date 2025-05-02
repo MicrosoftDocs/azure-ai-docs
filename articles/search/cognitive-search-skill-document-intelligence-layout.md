@@ -18,7 +18,7 @@ ms.date: 04/30/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-The **Document Layout** skill analyzes a document to extract regions of interest and their inter-relationships to produce a syntactical representation of the document in Markdown format. This skill uses the [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) provided in [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview). 
+The **Document Layout** skill analyzes a document to extract regions of interest and their inter-relationships to produce a syntactical representation of the document in Markdown or Text format. This skill uses the [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) provided in [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview). 
 
 This article is the reference documentation for the Document Layout skill. For usage information, see [Structure-aware chunking and vectorization](search-how-to-semantic-chunking.md).
 
@@ -43,6 +43,10 @@ Supported file formats include:
 + .PPTX
 + .HTML
 
+Several parameters are version-specific. The skills parameter table notes the API version in which a parameter was introduced so that you know whether a version upgrade is required. To use version-specific features such as content extraction options in 2025-05-01-preview, you can use the Azure portal, or target a REST API version, or check an Azure SDK change log to see if it supports the feature.
+
+The Azure portal supports most preview features and can be used to create or update a skillset. For updates to the Document Layout skill, edit the skillset JSON definition to add new preview parameters.
+
 > [!NOTE]
 > This skill is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services pay-as-you go price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 >
@@ -66,8 +70,6 @@ Refer to [Azure AI Document Intelligence layout model supported languages](/azur
 
 During the public preview, this skill has the following restrictions:
 
-+ The skill can't extract images embedded within documents.
-+ Page numbers are not included in the generated output.
 + The skill is not suitable for large documents requiring more than 5 minutes of processing in the AI Document Intelligence layout model. The skill will time out, but charges will still apply to the AI Services multi-services resource if it is attached to the skillset for billing purposes. Ensure documents are optimized to stay within processing limits to avoid unnecessary costs.
 
   
