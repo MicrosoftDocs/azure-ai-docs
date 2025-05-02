@@ -92,6 +92,8 @@ items:
       href: tutorial-multiple-data-sources.md
     - name: Index encrypted blobs
       href: search-howto-index-encrypted-blobs.md
+    - name: Index ACLs and RBAC scope
+      href: search-how-to-index-permission-information.md
     - name: Create a custom analyzer
       href: tutorial-create-custom-analyzer.md
   - name: RAG tutorials
