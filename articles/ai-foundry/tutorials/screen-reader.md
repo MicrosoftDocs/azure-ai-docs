@@ -36,14 +36,17 @@ For efficient navigation, it might be helpful to navigate by landmarks to move b
 
 The navigation is list of links divided into different sections. 
 
-If you haven't yet created or selected a project, you can still explore models listed on the home page.  This takes you to the **Model catalog**.  When you ask to use a model, you'll be prompted to create a project.
-Once you select a project, you can access more capabilities such as Model catalog, Playgrounds, and AI Services. Then there are collapsible sections for **Build and customize** (includes Code, Fine-tuning, Prompt-flow), **Assess and improve** (includes Tracing, Evaluation, and Safety + security) and **My assets** (includes Models + endpoints, Data + indexes, and Web apps). 
-Once you select a project, you can also use the **Recent resource picker** button within the navigation to change to a different project or resource at any time.
+If you haven't yet created or selected a project, you can still explore models listed on the home page.  This takes you to the **Model catalog**.  
+* When you ask to use a model, you'll be prompted to create a project.
+* Once you select a project: 
+    * You can access more capabilities such as Model catalog, Playgrounds, and AI Services. 
+    * You can also use the **Recent resource picker** button within the navigation breadcrumbs to change to a different project or resource at any time.
 
 ### Customize the navigation
 
 The left pane is customizable for each project or resource. 
- 
+
+ * There are collapsible sections for **Build and customize** (includes Code, Fine-tuning, Prompt-flow), **Assess and improve** (includes Tracing, Evaluation, and Safety + security) and **My assets** (includes Models + endpoints, Data + indexes, and Web apps). 
 * At the bottom of the list is a **...More** link that allows you to pin and unpin items onto the navigation.  
 * At the top of the **More** list is a shortcut to **Pin all**.  If all items are already pinned, the option changes to **Unpin all**.
 * The **Management center** is always available at the bottom of the left pane.  It cannot be unpinned.
