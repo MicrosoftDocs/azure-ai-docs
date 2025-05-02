@@ -342,9 +342,9 @@ The Stability AI collection of image generation models include Stable Image Core
 
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
-| [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai) | [Image generation](../how-to/use-image-models.md) | - **Input:** text and image (1000 tokens and 1 image)  <br /> - **Output:** 1 Image  <br />  - **Tool calling:** No <br /> - **Response formats**: Image (PNG and JPG) |
-| [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai) | [Image generation](../how-to/use-image-models.md) | - **Input:** text (1000 tokens)  <br /> - **Output:** 1 Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) |
-| [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai) | [Image generation](../how-to/use-image-models.md) | - **Input:** text (1000 tokens)  <br /> - **Output:** 1 Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) |
+| [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai) | Image generation | - **Input:** text and image (1000 tokens and 1 image)  <br /> - **Output:** 1 Image  <br />  - **Tool calling:** No <br /> - **Response formats**: Image (PNG and JPG) |
+| [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai) | Image generation | - **Input:** text (1000 tokens)  <br /> - **Output:** 1 Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) |
+| [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai) | Image generation | - **Input:** text (1000 tokens)  <br /> - **Output:** 1 Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) |
 
 #### Inference examples: Stability AI
 
