@@ -149,7 +149,7 @@ Permission metadata can be indexed when `indexerPermissionOptions` are chosen fr
 ## Re-ingest Permission Metadata as needed
 If permission metadta like ACLs and/or RBAC scope need to be re-ingested after normal indexer runs. There are a few options for certain scenarios:
 - For a few blobs, consider renewing the `Last modified` timestamp of these blobs from source, so that **both permission metadata as well as the blob data content** will be re-ingested from the next indexer run.
-- For a moderate amount of blobs, consider issuing a request with the [`/resetdocs (preview)`](search-howto-run-reset-indexers.md#How-to-reset-docs-(preview)) API of these blobs, so that **both permission metadata as well as the blob data content** of these blobs will be re-ingested again.
+- For a moderate amount of blobs, consider issuing a request with the [`/resetdocs (preview)`](search-howto-run-reset-indexers.md#how-to-reset-docs-preview) API of these blobs, so that **both permission metadata as well as the blob data content** of these blobs will be re-ingested again.
 
     ```http
     POST https://[service name].search.windows.net/indexers/[indexer name]/resetdocs?api-version=2025-05-01-preview
@@ -161,7 +161,7 @@ If permission metadta like ACLs and/or RBAC scope need to be re-ingested after n
     }
     ```
 
-- For all blobs from the source, consider issuing a request with the [`/resync`](search-howto-run-reset-indexers.md#how-to-resync-indexers-(preview)) API. Then from the next indexer run, **only the permission metadata** of all blobs will be re-synced again with the source.
+- For all blobs from the source, consider issuing a request with the [`/resync`](search-howto-run-reset-indexers.md#how-to-resync-indexers-preview) API. Then from the next indexer run, **only the permission metadata** of all blobs will be re-synced again with the source.
 
     ```http
     POST https://[service name].search.windows.net/indexers/[indexer name]/resync?api-version=2025-05-01-preview
