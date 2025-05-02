@@ -13,6 +13,7 @@ ms.reviewer: mithigpe
 ms.author: lagayhar
 author: lgayhardt
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
+ms.update-cycle: 180-days
 ---
 
 # Develop an evaluation flow in Azure AI Foundry portal
