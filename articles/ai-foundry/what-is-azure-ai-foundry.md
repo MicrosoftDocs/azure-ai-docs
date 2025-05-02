@@ -34,9 +34,9 @@ An Azure AI Foundry project is where you do most of your development work. You c
 
 Azure AI Foundry supports two types of projects: a **[!INCLUDE [hub](includes/hub-project-name.md)]** and a **[!INCLUDE [fdp](includes/fdp-project-name.md)]**. In most cases, you'll want to use a [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)].
 
-* A **[!INCLUDE [fdp](includes/fdp-project-name.md)]** is built on an Azure AI Foundry resource. This project type allows for a simple set up, access to agents, and industry leading models from OpenAI, Mistral, Meta, and more. 
+* [!INCLUDE [fdp-description](includes/fdp-description.md)]
 
-* A **[!INCLUDE [hub](includes/hub-project-name.md)]** is hosted by an [Azure AI Foundry hub](concepts/ai-resources.md). If your company has an administrative team that has created a hub for you, you can create a project from that hub. If you are working on your own, you can create a project and a default hub will automatically be created for you. See [Azure AI Foundry hubs](concepts/ai-resources.md).
+* [!INCLUDE [hub-description](includes/hub-description.md)]
 
 
 ### Which type of project do I need?
