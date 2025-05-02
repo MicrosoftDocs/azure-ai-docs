@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: build-2023
 ms.topic: conceptual
-ms.date: 10/16/2024
+ms.date: 04/29/2025
 ms.author: pafarley
 ---
 
@@ -58,7 +58,7 @@ Every harm category the service applies also comes with a severity level rating.
 [!INCLUDE [severity-levels multimodal](../includes/severity-levels-multimodal.md)]
 
 
-## Next steps
+## Next step
 
 Follow a quickstart to get started using Azure AI Content Safety in your application.
 
