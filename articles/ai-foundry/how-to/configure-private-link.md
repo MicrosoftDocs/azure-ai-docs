@@ -39,7 +39,7 @@ You get several hub default resources in your resource group. You need to config
 
 If you are creating a new hub, use the following methods to create the hub (Azure portal or Azure CLI). Each of these methods __requires an existing virtual network__:
 
-:::zone pivot="azure-portal"
+# [Azure portal](#tab/azure-portal)
 
 > [!NOTE]
 > The information in this document is only about configuring a private link. For a walkthrough of creating a secure hub in the portal, see [Create a secure hub in the Azure portal](create-secure-ai-hub.md).
@@ -55,9 +55,7 @@ If you are creating a new hub, use the following methods to create the hub (Azur
 
 1. Input required fields. When selecting the __Region__, select the same region as your virtual network.
 
-:::zone-end
-
-:::zone pivot="cli"
+# [Azure CLI](#tab/cli)
 
 > [!NOTE]
 > The information in this section doesn't cover basic hub configuration. For more information, see [Create a hub using the Azure CLI](./develop/create-hub-project-sdk.md?tabs=azurecli).
@@ -99,15 +97,13 @@ az network private-endpoint dns-zone-group create \
     --zone-name privatelink.api.azureml.ms
 ```
 
-:::zone-end
-
 ---
 
 ## Add a private endpoint to a hub
 
 Use one of the following methods to add a private endpoint to an existing hub:
 
-:::zone pivot="azure-portal"
+# [Azure portal](#tab/azure-portal)
 
 1. From the [Azure portal](https://portal.azure.com), select your hub.
 1. From the left side of the page, select __Settings__, __Networking__, and then select the __Private endpoint connections__ tab. Select __+ Private endpoint__.
@@ -122,9 +118,7 @@ Use one of the following methods to add a private endpoint to an existing hub:
  
 1. After populating the forms with any additional network configurations you require, use the __Review + create__ tab to review your settings and select __Create__ to create the private endpoint.
 
-:::zone-end
-
-:::zone pivot="cli"
+# [Azure CLI](#tab/cli)
 
 Use the [Azure networking CLI commands](/cli/azure/network/private-endpoint#az-network-private-endpoint-create) to create a private link endpoint for the hub.
 
@@ -182,8 +176,6 @@ az network private-endpoint dns-zone-group add \
     --zone-name privatelink.notebooks.azure.net
 ```
 
-:::zone-end
-
 ---
 
 ## Remove a private endpoint
@@ -195,7 +187,7 @@ You can remove one or all private endpoints for a hub. Removing a private endpoi
 
 To remove a private endpoint, use the following information:
 
-:::zone pivot="azure-portal"
+# [Azure portal](#tab/azure-portal)
 
 1. From the [Azure portal](https://portal.azure.com), select your hub.
 1. From the left side of the page, select __Settings__, __Networking__, and then select the __Private endpoint connections__ tab.
@@ -203,9 +195,7 @@ To remove a private endpoint, use the following information:
 
     :::image type="content" source="../media/how-to/network/remove-private-endpoint.png" alt-text="Screenshot of a selected private endpoint with the remove option highlighted.":::
 
-:::zone-end
-
-:::zone pivot="cli"
+# [Azure CLI](#tab/cli)
 
 When using the Azure CLI, use the following command to remove the private endpoint:
 
@@ -214,8 +204,6 @@ az network private-endpoint delete \
     --name <private-endpoint-name> \
     --resource-group <resource-group-name>
 ```
-
-:::zone-end
 
 ---
 
@@ -228,15 +216,13 @@ In some situations, you might want to allow someone to connect to your secured h
 
 To enable public access, use the following steps:
 
-:::zone pivot="azure-portal"
+# [Azure portal](#tab/azure-portal)
 
 1. From the [Azure portal](https://portal.azure.com), select your hub.
 1. From the left side of the page, select __Networking__ and then select the __Public access__ tab.
 1. Select __Enabled from all networks__, and then select __Save__.
 
-:::zone-end
-
-:::zone pivot="cli"
+# [Azure CLI](#tab/cli)
 
 Use the following Azure CLI command to enable public access:
 
@@ -250,7 +236,7 @@ If you receive an error that the `ml` command isn't found, use the following com
 az extension add --name ml
 ```
 
-:::zone-end
+---
 
 ## Enable Public Access only from internet IP ranges (preview)
 
