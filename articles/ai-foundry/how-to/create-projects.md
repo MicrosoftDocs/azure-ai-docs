@@ -288,6 +288,14 @@ The code in this section assumes you have an existing hub.  If you don't have a 
 
 ---
 
+::: zone pivot="fdp-project"
+
+## Create multiple projects on the same resource
+
+[!INCLUDE [create-second-fdp-project](../includes/create-second-fdp-project.md)]
+
+::: zone-end
+
 ## View project settings
 
 # [Azure AI Foundry portal](#tab/ai-foundry)
