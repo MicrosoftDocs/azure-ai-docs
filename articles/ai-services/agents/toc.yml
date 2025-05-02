@@ -99,10 +99,10 @@ items:
           href: how-to/virtual-networks.md
 - name: How-to
   items:
+    - name: Agent catalog
+      href: concepts/agent-catalog.md
     - name: Multi-agent workflows
       items:
-        - name: Agent catalog
-          href: concepts/agent-catalog.md
         - name: Connected agents
           href: how-to/connected-agents.md
         - name: Use the Visual Studio Code extension
