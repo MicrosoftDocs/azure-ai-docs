@@ -94,10 +94,10 @@ items:
       href: search-howto-index-encrypted-blobs.md
     - name: Create a custom analyzer
       href: tutorial-create-custom-analyzer.md
-    - name: Indexing blobs with text and images for multi-modal RAG scenarios using multi-modal embedding models and document extraction skill
-      href: search-multimodal-rag-with-embedding-and-doc-extraction.md
-    - name: Indexing blobs with text and images for multi-modal RAG scenarios using image verbalization and document extraction skill
-      href: search-multimodal-rag-with-image-verbalization-and-doc-extraction.md
+    - name: Index multimodal content using embedding and document extraction skill
+      href: search-multimodal-indexing-with-embedding-and-doc-extraction.md
+    - name: Index multimodal content using image verbalization and document extraction skill
+      href: search-multimodal-indexing-with-image-verbalization-and-doc-extraction.md
   - name: RAG tutorials
     items:
     - name: Build a RAG solution

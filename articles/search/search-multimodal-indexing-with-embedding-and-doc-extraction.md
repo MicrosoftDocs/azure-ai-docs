@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Indexing blobs with text and images using multimodal embedding models and document extraction skill'
+title: 'Tutorial: Index multimodal content using embedding and document extraction skill'
 titleSuffix: Azure AI Search
 description: Learn how to extract, index, and search both text and images from Azure Blob Storage for multimodal RAG scenarios using the Azure AI Search REST APIs.
 
@@ -13,17 +13,17 @@ ms.date: 05/01/2025
 
 ---
 
-# Tutorial: Indexing blobs with text and images using multimodal embedding models and document extraction skill
+# Tutorial: Index multimodal content using embedding and document extraction skill
 
 Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial shows how to build a multimodal retrieval pipeline that supports Retrieval-Augmented Generation (RAG) by embedding both text and images into a unified semantic search index.
 
-You’ll work with a 36-page PDF document that combines rich visual content—such as charts, infographics, and scanned pages—with traditional text. Using the [Document Extraction skill](/cognitive-search-skill-document-extraction.md), you’ll extract both text and normalized images. Each modality is then embedded using the same [Azure AI Vision multimodal embeddings skill](/cognitive-search-skill-vision-vectorize.md), which generates dense vector representations suitable for semantic and hybrid search scenarios.
+You’ll work with a 36-page PDF document that combines rich visual content—such as charts, infographics, and scanned pages—with traditional text. Using the [Document Extraction skill](cognitive-search-skill-document-extraction.md), you’ll extract both text and normalized images. Each modality is then embedded using the same [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), which generates dense vector representations suitable for semantic and hybrid search scenarios.
 
 You'll use:
 
-+ The [Document Extraction skill](/cognitive-search-skill-document-extraction.md) for extracting text and normalized images.
++ The [Document Extraction skill](cognitive-search-skill-document-extraction.md) for extracting text and normalized images.
 
-+ Vectorization using the [Azure AI Vision multimodal embeddings skill](/cognitive-search-skill-vision-vectorize.md), which generates embeddings from both text and images. The same skill is used for both modalities, with text inputs processed into embeddings for semantic search, and images processed into vector representations using Azure AI Vision models.
++ Vectorization using the [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), which generates embeddings from both text and images. The same skill is used for both modalities, with text inputs processed into embeddings for semantic search, and images processed into vector representations using Azure AI Vision models.
 
 + A search index configured to store text and image embeddings and support vector-based similarity search.
 
@@ -143,7 +143,6 @@ Send the request. The response should look like:
 HTTP/1.1 201 Created
 Transfer-Encoding: chunked
 Content-Type: application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
-ETag: "0x8DD8508DB96491B"
 Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows-int.net:443/datasources('doc-extraction-multimodal-embedding-ds')?api-version=2025-05-01-preview -Preview
 Server: Microsoft-IIS/10.0
 Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
@@ -229,7 +228,7 @@ POST {{baseUrl}}/indexes?api-version=2025-05-01-preview   HTTP/1.1
             "dimensions": 1024,
             "searchable": true,
             "retrievable": true,
-			      "vectorSearchProfile": "hnsw"
+            "vectorSearchProfile": "hnsw"
         },
         {
             "name": "content_path",
@@ -319,11 +318,11 @@ Key points:
 
 + Text and image embeddings are stored in the `content_embedding` field and must be configured with appropriate dimensions (e.g., 1024) and a vector search profile.
 
-+ `location_metadata` captures bounding polygon and page number metadata for each normalized image, enabling precise spatial search or UI overlays. Note that `location_metadata` only exists for images in this scenario. If you'd like to capture locational metadata for text as well, consider using [Document Layout skill](/cognitive-search-skill-document-intelligence-layout.md). An in-depth tutorial is linked at the bottom of the page.
++ `location_metadata` captures bounding polygon and page number metadata for each normalized image, enabling precise spatial search or UI overlays. Note that `location_metadata` only exists for images in this scenario. If you'd like to capture locational metadata for text as well, consider using [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md). An in-depth tutorial is linked at the bottom of the page.
 
-+ For more information on vector search, see [Vectors in Azure AI Search](/vector-search-overview.md).
++ For more information on vector search, see [Vectors in Azure AI Search](vector-search-overview.md).
 
-+ For more information on semantic ranking, see [Semantic ranking in Azure AI Search](/semantic-search-overview.md)
++ For more information on semantic ranking, see [Semantic ranking in Azure AI Search](semantic-search-overview.md)
 
 ## Create a skillset
 
@@ -632,7 +631,7 @@ Connection: close
 ```
 100 documents are returned in the response.
 
-For filters, you can also use Logical operators (and, or, not) and comparison operators (eq, ne, gt, lt, ge, le). String comparisons are case-sensitive. For more information and examples, see [Create a query](search-query-simple-examples.md).
+For filters, you can also use Logical operators (and, or, not) and comparison operators (eq, ne, gt, lt, ge, le). String comparisons are case-sensitive. For more information and examples, see [Examples of simple search queries](search-query-simple-examples.md).
 
 > [!NOTE]
 > The `$filter` parameter only works on fields that were marked filterable during index creation.
@@ -667,10 +666,10 @@ You can use the Azure portal to delete indexes, indexers, and data sources.
 
 ## Next steps
 
-Now that you're familiar with a sample implementation of multimodal RAG, check out
+Now that you're familiar with a sample implementation of a multimodal indexing scenario, check out
 
 > [!div class="nextstepaction"]
-> [AI Vision multimodal embeddings skill](/cognitive-search-skill-vision-vectorize.md)
-> [Vectors in Azure AI Search](/vector-search-overview.md)
-> [Semantic ranking in Azure AI Search](/semantic-search-overview.md)
+> [AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md)
+> [Vectors in Azure AI Search](vector-search-overview.md)
+> [Semantic ranking in Azure AI Search](semantic-search-overview.md)
 > [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal)
