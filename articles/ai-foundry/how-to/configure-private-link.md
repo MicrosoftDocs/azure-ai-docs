@@ -10,7 +10,7 @@ ms.date: 04/30/2025
 ms.reviewer: meerakurup
 ms.author: larryfr
 author: Blackmist
-zone_pivot_groups: azure-portal-and-cli
+zone_pivot_groups: project-type
 # Customer intent: As an admin, I want to configure a private link for hub so that I can secure my hubs.
 ---
 
