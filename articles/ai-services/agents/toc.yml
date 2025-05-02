@@ -105,8 +105,8 @@ items:
       items:
         - name: Connected agents
           href: how-to/connected-agents.md
-        - name: Use the Visual Studio Code extension
-          href: ../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context
+    - name: Use the Visual Studio Code extension
+      href: ../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context
 - name: Observability
   items:
     - name: Service monitoring
