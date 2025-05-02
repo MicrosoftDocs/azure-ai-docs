@@ -7,7 +7,7 @@ ms.service: azure-ai-services
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 10/16/2024
+ms.date: 05/01/2025
 ms.author: pafarley
 ---
 

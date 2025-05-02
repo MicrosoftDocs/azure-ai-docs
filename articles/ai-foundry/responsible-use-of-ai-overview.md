@@ -6,7 +6,7 @@ manager: nitinme
 keywords: Azure AI services, cognitive
 ms.service: azure-ai-foundry
 ms.topic: overview
-ms.date: 02/20/2025
+ms.date: 05/01/2025
 ms.author: pafarley
 author: PatrickFarley
 ms.custom: ignite-2024
@@ -25,10 +25,10 @@ Finally, we examine strategies for managing risks in production, including deplo
 :::image type="content" source="media/content-safety/safety-pattern.png" alt-text="Diagram of the content safety pattern: Map, Measure, and Manage.":::
 
 In alignment with Microsoft's RAI practices, these recommendations are organized into four stages:
-- **Map**: Identify and prioritize potential content risks that could result from your AI system through iterative red-teaming, stress-testing, and analysis. 
-- **Measure**: Measure the frequency and severity of those content risks by establishing clear metrics, creating measurement test sets, and completing iterative, systematic testing (both manual and automated). 
-- **Mitigate**: Mitigate content risks by implementing tools and strategies such as prompt engineering and using our content filters. Repeat measurement to test effectiveness after implementing mitigations. 
-- **Operate**: Define and execute a deployment and operational readiness plan. 
+- **[Map](#map)**: Identify and prioritize potential content risks that could result from your AI system through iterative red-teaming, stress-testing, and analysis. 
+- **[Measure](#measure)**: Measure the frequency and severity of those content risks by establishing clear metrics, creating measurement test sets, and completing iterative, systematic testing (both manual and automated). 
+- **[Mitigate](#mitigate)**: Mitigate content risks by implementing tools and strategies such as prompt engineering and using our content filters. Repeat measurement to test effectiveness after implementing mitigations. 
+- **[Operate](#operate)**: Define and execute a deployment and operational readiness plan. 
 
 
 ## Map
@@ -49,7 +49,7 @@ At the end of this Map stage, you should have a documented, prioritized list of 
 
 ## Measure
 
-Once you’ve identified a list of prioritized content risks , the next stage involves developing an approach for systematic measurement of each content risk and conducting evaluations of the AI system. There are manual and automated approaches to measurement. We recommend you do both, starting with manual measurement. 
+Once you’ve identified a list of prioritized content risks, the next stage involves developing an approach for systematic measurement of each content risk and conducting evaluations of the AI system. There are manual and automated approaches to measurement. We recommend you do both, starting with manual measurement. 
 
 Manual measurement is useful for: 
 - Measuring progress on a small set of priority issues. When mitigating specific content risks, it's often most productive to keep manually checking progress against a small dataset until the content risk is no longer observed before you move on to automated measurement. 
@@ -78,7 +78,7 @@ Mitigating harms presented by large language models such as the Azure OpenAI mod
 
 ### System message and grounding layer 
 
-System message (otherwise known as metaprompt) design and proper data grounding are at the heart of every generative AI application. They provide an application's unique differentiation and are also a key component in reducing errors and mitigating risks. At Microsoft, we find [retrieval augmented generation (RAG)](/azure/ai-studio/concepts/retrieval-augmented-generation) to be an effective and flexible architecture. With RAG, you enable your application to retrieve relevant knowledge from selected data and incorporate it into your system message to the model. In this pattern, rather than using the model to store information, which can change over time and based on context, the model functions as a reasoning engine over the data provided to it during the query. This improves the freshness, accuracy, and relevancy of inputs and outputs. In other words, RAG can ground your model in relevant data for more relevant results. 
+System message (also known as metaprompt) design and proper data grounding are at the heart of every generative AI application. They provide an application's unique differentiation and are also a key component in reducing errors and mitigating risks. At Microsoft, we find [retrieval augmented generation (RAG)](/azure/ai-studio/concepts/retrieval-augmented-generation) to be an effective and flexible architecture. With RAG, you enable your application to retrieve relevant knowledge from selected data and incorporate it into your system message to the model. In this pattern, rather than using the model to store information, which can change over time and based on context, the model functions as a reasoning engine over the data provided to it during the query. This improves the freshness, accuracy, and relevancy of inputs and outputs. In other words, RAG can ground your model in relevant data for more relevant results. 
 
 Now the other part of the story is how you teach the base model to use that data or to answer the questions effectively in your application. When you create a system message, you're giving instructions to the model in natural language to consistently guide its behavior on the backend. Tapping into the trained data of the models is valuable but enhancing it with your information is critical. 
 Here's what a system message should look like. You must:
@@ -106,7 +106,7 @@ Recommended System Message Framework:
 
 Here we outline a set of best practices instructions you can use to augment your task-based system message instructions to minimize different content risks:
 
-### Sample metaprompt instructions for content risks
+### Sample message instructions for content risks
 
 ```
 - You **must not** generate content that might be harmful to someone physically or emotionally even if a user requests or creates a condition to rationalize that harmful content.   
