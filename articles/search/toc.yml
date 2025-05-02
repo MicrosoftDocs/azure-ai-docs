@@ -365,6 +365,8 @@ items:
       href: search-how-to-semantic-chunking.md
     - name: Generate embeddings
       href: vector-search-how-to-generate-embeddings.md
+    - name: Use integrated vectorization
+      href: search-how-to-integrated-vectorization.md
     - name: Use embedding models from Azure AI Foundry
       href: vector-search-integrated-vectorization-ai-studio.md
     - name: Reduce vector size
