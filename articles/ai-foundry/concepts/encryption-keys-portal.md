@@ -26,9 +26,9 @@ Azure AI Foundry is a service in the Microsoft Azure cloud, and it also relies o
 
 Hub and [!INCLUDE [hub](../includes/hub-project-name.md)] resources are implementations of the Azure Machine Learning workspace and encrypt data in transit and at rest. For details, see [Data encryption with Azure Machine Learning](../../machine-learning/concept-data-encryption.md).
 
-::: zone-end
-
 Azure AI services data is encrypted and decrypted using [FIPS 140-2](https://en.wikipedia.org/wiki/FIPS_140-2) compliant [256-bit AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) encryption. Encryption and decryption are transparent, meaning encryption and access are managed for you. Your data is secure by default and you don't need to modify your code or applications to take advantage of encryption.
+
+::: zone-end
 
 ::: zone pivot="fdp-project"
 
@@ -75,25 +75,25 @@ A new architecture for customer-managed key encryption with hubs is available in
 
 ## Use customer-managed keys with Azure Key Vault
 
-You must use Azure Key Vault to store your customer-managed keys. You can either create your own keys and store them in a key vault, or you can use the Azure Key Vault APIs to generate keys. The Azure AI services resource and the key vault must be in the same region and in the same Microsoft Entra tenant, but they can be in different subscriptions. For more information about Azure Key Vault, see [What is Azure Key Vault?](/azure/key-vault/general/overview).
-
-To enable customer-managed keys, the key vault containing your keys must meet these requirements:
-
 ::: zone pivot="fdp-project"
+
+You must use Azure Key Vault to store your customer-managed keys. You can either create your own keys and store them in a key vault, or you can use the Azure Key Vault APIs to generate keys. The Azure AI Foundry resource and the key vault must be in the same region and in the same Microsoft Entra tenant, but they can be in different subscriptions. For more information about Azure Key Vault, see [What is Azure Key Vault?](/azure/key-vault/general/overview).
 
 - You must enable both the **Soft Delete** and **Do Not Purge** properties on the key vault.
 - If you use the [Key Vault firewall](/azure/key-vault/general/access-behind-firewall), you must allow trusted Microsoft services to access the key vault.
-- You must grant your [!INCLUDE [fdp](../includes/fdp-project-name.md)] and Azure AI Services resource's system-assigned managed identity the following permissions on your key vault: *get key*, *wrap key*, *unwrap key*.
+- You must grant your [!INCLUDE [fdp](../includes/fdp-project-name.md)] system-assigned managed identity the following permissions on your key vault: *get key*, *wrap key*, *unwrap key*.
 
 ::: zone-end
 
 ::: zone pivot="hub-project"
 
+You must use Azure Key Vault to store your customer-managed keys. You can either create your own keys and store them in a key vault, or you can use the Azure Key Vault APIs to generate keys. The Azure AI services resource and the key vault must be in the same region and in the same Microsoft Entra tenant, but they can be in different subscriptions. For more information about Azure Key Vault, see [What is Azure Key Vault?](/azure/key-vault/general/overview).
+
+To enable customer-managed keys, the key vault containing your keys must meet these requirements:
+
 - You must enable both the **Soft Delete** and **Do Not Purge** properties on the key vault.
 - If you use the [Key Vault firewall](/azure/key-vault/general/access-behind-firewall), you must allow trusted Microsoft services to access the key vault.
 - You must grant your hub and Azure AI Services resource's system-assigned managed identity the following permissions on your key vault: *get key*, *wrap key*, *unwrap key*.
-
-::: zone-end
 
 The following limitations hold for Azure AI Services:
 - Only Azure Key Vault with [legacy access policies](/azure/key-vault/general/assign-access-policy) are supported.
@@ -107,6 +107,8 @@ If connecting with Azure AI Services, or variants of Azure AI Services such as A
 1. On the left, under **Resource Management**, select **Identity**.
 1. Switch the system-assigned managed identity status to **On**.
 1. Save your changes, and confirm that you want to enable the system-assigned managed identity.
+
+::: zone-end
 
 ## Enable customer-managed keys
 
@@ -125,7 +127,6 @@ Customer-managed key encryption is configured via Azure portal in a similar way 
 
 * The customer-managed key for encryption can only be updated to keys in the same Azure Key Vault instance.
 * After deployment, your [!INCLUDE [fdp](../includes/fdp-project-name.md)] can't switch from Microsoft-managed keys to customer-managed keys or vice versa.
-* [Azure AI services Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) is required to use customer-managed keys in combination with Azure Speech and Content Moderator capabilities.
 * Azure charges will continue to accrue during the soft delete retention period.
 
 ::: zone-end
