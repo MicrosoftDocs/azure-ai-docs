@@ -138,7 +138,8 @@ Use instructions for **Azure AI Foundry portal** or **Python SDK** to deploy the
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-1. In the tabs at the top of the deployed model, select **Playground**. 
+1. In the left pane, select **Playgrounds**. 
+1. Select **Try the chat playground**.
 1. Fill in the prompt and select the **Send** button.
 1. The model returns a response in the **Response** pane.
 
@@ -161,7 +162,8 @@ Info here.
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
 1. In your project, on the left pane, select **Agents**.
-1. Select the agent created with the project.  Or select **New agent** to create a new one.
+1. Select the agent created with the project.  
+1. If you didn't create one with your project, select **New agent** to create an agent.
 1. On the right **Setup** pane, change the name if you'd like.
 1. Add instructions, such as, "You are a helpful writing assistant."
 1. At the top of the **Setup** pane, select **Try in playground**.
