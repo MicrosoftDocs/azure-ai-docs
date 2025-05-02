@@ -30,7 +30,7 @@ Azure AI Foundry supports two types of projects: a **[!INCLUDE [fdp](../includes
 
 * [!INCLUDE [fdp-description](../includes/fdp-description.md)]
 
-* The project type gives you the best support for:
+* This project type gives you the best support for:
 
     * Agents
     * Azure OpenAI models	

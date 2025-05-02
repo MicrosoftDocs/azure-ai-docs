@@ -42,6 +42,16 @@ To add a nondefault project to a resource:
 
 # [Python SDK](#tab/python)
 
+```python
+# add a project to the resource
+```
+
+
 # [Azure CLI](#tab/azurecli)
+
+```azurecli
+az ...
+```
+
 
 ---
