@@ -47,7 +47,7 @@ To create a custom neural voice in Speech Studio, follow these steps for one of 
 
 1. Sign in to the [Speech Studio](https://aka.ms/speechstudio/customvoice).
 1. Select **Custom voice** > *\<Your project name>* > **Train model** > **Train a new model**.
-1. Select **Neural** as the [training method](#choose-a-training-method) for your model and then select **Next**. To use a different training method, see [Neural - cross lingual](?tabs=crosslingual#train-your-custom-neural-voice-model) or [Neural - multi style](?tabs=multistyle#train-your-custom-neural-voice-model) or [Neural - multi lingual(preview)](#tab/multilingual).
+1. Select **Neural** as the [training method](#choose-a-training-method) for your model and then select **Next**. To use a different training method, see [Neural - cross lingual](?tabs=crosslingual#train-your-custom-neural-voice-model) or [Neural - multi style](?tabs=multistyle#train-your-custom-neural-voice-model) or [Neural - multi lingual(preview)](?tabs=multilingual#train-your-custom-neural-voice-model).
 
    :::image type="content" source="../../../../media/custom-voice/cnv-train-neural.png" alt-text="Screenshot that shows how to select neural training.":::
 
@@ -76,7 +76,7 @@ To create a custom neural voice in Speech Studio, follow these steps for one of 
 
 1. Sign in to the [Speech Studio](https://aka.ms/speechstudio/customvoice).
 1. Select **Custom voice** > *\<Your project name>* > **Train model** > **Train a new model**.
-1. Select **Neural - cross lingual** as the [training method](#choose-a-training-method) for your model. To use a different training method, see [Neural](?tabs=neural#train-your-custom-neural-voice-model) or [Neural - multi style](?tabs=multistyle#train-your-custom-neural-voice-model) or [Neural - multi lingual(preview)](#tab/multilingual).
+1. Select **Neural - cross lingual** as the [training method](#choose-a-training-method) for your model. To use a different training method, see [Neural](?tabs=neural#train-your-custom-neural-voice-model) or [Neural - multi style](?tabs=multistyle#train-your-custom-neural-voice-model) or [Neural - multi lingual(preview)](?tabs=multilingual#train-your-custom-neural-voice-model).
 
    :::image type="content" source="../../../../media/custom-voice/cnv-train-neural-cross-lingual.png" alt-text="Screenshot that shows how to select neural cross lingual training.":::
 
@@ -101,7 +101,7 @@ To create a custom neural voice in Speech Studio, follow these steps for one of 
 
 1. Sign in to the [Speech Studio](https://aka.ms/speechstudio/customvoice).
 1. Select **Custom voice** > *\<Your project name>* > **Train model** > **Train a new model**.
-1. Select **Neural - multi style** as the [training method](#choose-a-training-method) for your model. To use a different training method, see [Neural](?tabs=neural#train-your-custom-neural-voice-model) or [Neural - cross lingual](?tabs=crosslingual#train-your-custom-neural-voice-model) or [Neural - multi lingual(preview)](#tab/multilingual).
+1. Select **Neural - multi style** as the [training method](#choose-a-training-method) for your model. To use a different training method, see [Neural](?tabs=neural#train-your-custom-neural-voice-model) or [Neural - cross lingual](?tabs=crosslingual#train-your-custom-neural-voice-model) or [Neural - multi lingual(preview)](?tabs=multilingual#train-your-custom-neural-voice-model).
 
    :::image type="content" source="../../../../media/custom-voice/cnv-train-neural-multi-style.png" alt-text="Screenshot that shows how to select neural multi style training.":::
 
