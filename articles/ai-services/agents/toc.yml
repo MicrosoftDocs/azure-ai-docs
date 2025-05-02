@@ -89,8 +89,6 @@ items:
               displayName: azure functions, functions
             - name: How to use Azure Functions
               href: how-to/tools/azure-functions-samples.md
-    - name: Use the Visual Studio Code extension
-      href: ../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context
     - name: Enterprise features
       items: 
         - name: Use your own resources
@@ -99,6 +97,14 @@ items:
           href: ../openai/how-to/content-filters.md?context=/azure/ai-services/agents/context/context
         - name: Use virtual networks
           href: how-to/virtual-networks.md
+- name: How-to
+  items:
+    - name: Multi-agent workflows
+      items:
+        - name: Connected agents
+          href: how-to/connected-agents.md
+        - name: Use the Visual Studio Code extension
+          href: ../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context
 - name: Observability
   items:
     - name: Service monitoring
