@@ -299,7 +299,7 @@ Make a multipart/form-data POST request to the `transcriptions` endpoint with th
 
 The following example shows how to transcribe an audio file with language identification on. If you're not sure about the locale, you can specify multiple locales. If you don't specify any locale, or if the locales that you specify aren't in the audio file, then the Speech service tries to identify the locale. 
 > [!NOTE]
-> The language identficiation in fast transcription is designed to identify one main language locale per audio file. If you need to transcribe multi-lingual contents in the audio, please consider [multi-lingual transcription (preview)](?tabs=multilingual-transcription-on).
+> The language identification in fast transcription is designed to identify one main language locale per audio file. If you need to transcribe multi-lingual contents in the audio, please consider [multi-lingual transcription (preview)](?tabs=multilingual-transcription-on).
 
 - Replace `YourSubscriptionKey` with your Speech resource key.
 - Replace `YourServiceRegion` with your Speech resource region.
