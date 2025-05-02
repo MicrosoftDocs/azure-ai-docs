@@ -18,7 +18,7 @@ zone_pivot_groups: project-type
 
 :::zone pivot="fdp-project"
 
-
+When using a [!INCLUDE [fdp-projects](../includes/fdp-project-name.md)], you can use a private link to secure communication with your project. This article describes how to establish a private connection to your project using a private link.
 
 :::zone-end
 
@@ -27,7 +27,7 @@ zone_pivot_groups: project-type
 When using a [!INCLUDE [hub-projects](../includes/hub-project-name.md)], there are two network isolation aspects to consider:
 
 - **Network isolation to access an Azure AI Foundry hub**: This is the focus of this article. It describes how to establish a private connection to your hub and its default resources using a private link.
-- **Network isolation of computing resources in your hub and projects**: This includes compute instances, serverless, and managed online endpoints. For more information, see the [Configure managed networks for Azure AI Foundry hubs](configure-managed-networks.md) article.
+- **Network isolation of computing resources in your hub and projects**: This includes compute instances, serverless, and managed online endpoints. For more information, see the [Configure managed networks for Azure AI Foundry hubs](configure-managed-network.md) article.
 
 :::image type="content" source="../media/how-to/network/azure-ai-network-inbound.svg" alt-text="Diagram of Azure AI Foundry hub network isolation." lightbox="../media/how-to/network/azure-ai-network-inbound.png":::
 
@@ -47,6 +47,14 @@ You get several hub default resources in your resource group. You need to config
     > We do not recommend using the 172.17.0.0/16 IP address range for your VNet. This is the default subnet range used by the Docker bridge network on-premises.
 
 * Disable network policies for private endpoints before adding the private endpoint.
+
+:::zone pivot="fdp-project"
+
+## Create a Foundry project that uses a private endpoint
+
+
+
+:::zone-end
 
 :::zone pivot="hub-project"
 
@@ -113,6 +121,25 @@ az network private-endpoint dns-zone-group create \
 ```
 
 ---
+
+:::zone-end
+
+:::zone pivot="fdp-project"
+
+## Add a private endpoint to a project
+
+1. From the [Azure portal](https://portal.azure.com), select your project.
+1. From the left side of the page, select __Resource Management__, __Networking__, and then select the __Private endpoint connections__ tab. Select __+ Private endpoint__.
+
+    
+    :::image type="content" source="../media/how-to/network/add-private-endpoint.png" alt-text="Screenshot of the private endpoint connections tab"::::::image type="content" source="../media/how-to/network/add-private-endpoint.png" alt-text="Screenshot of the private endpoint connections tab":::
+
+1. When going through the forms to create a private endpoint, be sure to:
+
+    - From __Basics__, select the same __Region__ as your virtual network.
+    - From the __Virtual Network__ form, select the virtual network and subnet that you want to connect to.
+
+1. After populating the forms with any additional network configurations you require, use the __Review + create__ tab to review your settings and select __Create__ to create the private endpoint.
 
 :::zone-end
 
@@ -199,6 +226,25 @@ az network private-endpoint dns-zone-group add \
 
 :::zone-end
 
+:::zone pivot="fdp-project"
+
+## Remove a private endpoint from a project
+
+You can remove one or all private endpoints for a project. Removing a private endpoint removes the project from the Azure Virtual Network that the endpoint was associated with. Removing the private endpoint might prevent the project from accessing resources in that virtual network, or resources in the virtual network from accessing the workspace. For example, if the virtual network doesn't allow access to or from the public internet.
+
+> [!WARNING]
+> Removing the private endpoints for a project __doesn't make it publicly accessible__. To make the project publicly accessible, use the steps in the [Enable public access](#enable-public-access) section.
+
+To remove a private endpoint, use the following information:
+
+1. From the [Azure portal](https://portal.azure.com), select your hub.
+1. From the left side of the page, select __Settings__, __Networking__, and then select the __Private endpoint connections__ tab.
+1. Select the endpoint to remove and then select __Remove__.
+
+    :::image type="content" source="../media/how-to/network/remove-private-endpoint.png" alt-text="Screenshot of a selected private endpoint with the remove option highlighted.":::
+
+:::zone-end
+
 :::zone pivot="hub-project"
 
 ## Remove a private endpoint
@@ -229,6 +275,12 @@ az network private-endpoint delete \
 ```
 
 ---
+
+:::zone-end
+
+:::zone pivot="fdp-project"
+
+## Enable public access
 
 :::zone-end
 
