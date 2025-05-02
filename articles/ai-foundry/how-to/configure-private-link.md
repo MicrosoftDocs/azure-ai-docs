@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024
 ms.topic: how-to
-ms.date: 04/30/2025
+ms.date: 05/02/2025
 ms.reviewer: meerakurup
 ms.author: larryfr
 author: Blackmist
@@ -14,26 +14,41 @@ zone_pivot_groups: project-type
 # Customer intent: As an admin, I want to configure a private link for hub so that I can secure my hubs.
 ---
 
-# How to configure a private link for Azure AI Foundry hubs
+# How to configure a private link for Azure AI Foundry
 
-We have two network isolation aspects. One is the network isolation to access an [Azure AI Foundry](https://ai.azure.com) hub. Another is the network isolation of computing resources in your hub and projects such as compute instances, serverless, and managed online endpoints. This article explains the former highlighted in the diagram. You can use private link to establish the private connection to your hub and its default resources. This article is for Azure AI Foundry (hub and projects). For information on Azure AI services, see the [Azure AI services documentation](/azure/ai-services/cognitive-services-virtual-networks).
+:::zone pivot="fdp-project"
+
+
+
+:::zone-end
+
+:::zone pivot="hub-project"
+
+When using a [!INCLUDE [hub-projects](../includes/hub-project-name.md)], there are two network isolation aspects to consider:
+
+- **Network isolation to access an Azure AI Foundry hub**: This is the focus of this article. It describes how to establish a private connection to your hub and its default resources using a private link.
+- **Network isolation of computing resources in your hub and projects**: This includes compute instances, serverless, and managed online endpoints. For more information, see the [Configure managed networks for Azure AI Foundry hubs](configure-managed-networks.md) article.
 
 :::image type="content" source="../media/how-to/network/azure-ai-network-inbound.svg" alt-text="Diagram of Azure AI Foundry hub network isolation." lightbox="../media/how-to/network/azure-ai-network-inbound.png":::
 
-You get several hub default resources in your resource group. You need to configure following network isolation configurations.
+You get several hub default resources in your resource group. You need to configure following network isolation configurations:
 
 - Disable public network access of hub default resources such as Azure Storage, Azure Key Vault, and Azure Container Registry.
 - Establish private endpoint connection to hub default resources. You need to have both a blob and file private endpoint for the default storage account.
 - If your storage account is private, [assign roles](#private-storage-configuration) to allow access.
+
+:::zone-end
 
 ## Prerequisites
 
 * You must have an existing Azure Virtual Network to create the private endpoint in. 
 
     > [!IMPORTANT]
-    > We do not recommend using the 172.17.0.0/16 IP address range for your VNet. This is the default subnet range used by the Docker bridge network or on-premises.
+    > We do not recommend using the 172.17.0.0/16 IP address range for your VNet. This is the default subnet range used by the Docker bridge network on-premises.
 
 * Disable network policies for private endpoints before adding the private endpoint.
+
+:::zone pivot="hub-project"
 
 ## Create a hub that uses a private endpoint
 
@@ -98,6 +113,10 @@ az network private-endpoint dns-zone-group create \
 ```
 
 ---
+
+:::zone-end
+
+:::zone pivot="hub-project"
 
 ## Add a private endpoint to a hub
 
@@ -178,6 +197,10 @@ az network private-endpoint dns-zone-group add \
 
 ---
 
+:::zone-end
+
+:::zone pivot="hub-project"
+
 ## Remove a private endpoint
 
 You can remove one or all private endpoints for a hub. Removing a private endpoint removes the hub from the Azure Virtual Network that the endpoint was associated with. Removing the private endpoint might prevent the hub from accessing resources in that virtual network, or resources in the virtual network from accessing the workspace. For example, if the virtual network doesn't allow access to or from the public internet.
@@ -206,6 +229,10 @@ az network private-endpoint delete \
 ```
 
 ---
+
+:::zone-end
+
+:::zone pivot="hub-project"
 
 ## Enable public access
 
@@ -339,6 +366,8 @@ If your storage account is private (uses a private endpoint to communicate with 
 
 For information on securing playground chat, see [Securely use playground chat](secure-data-playground.md).
 
+:::zone-end
+
 ## Custom DNS configuration
 
 See [Azure Machine Learning custom DNS](/azure/machine-learning/how-to-custom-dns#example-custom-dns-server-hosted-in-vnet) article for the DNS forwarding configurations.
@@ -370,7 +399,11 @@ To check AI-PROJECT-GUID, go to the Azure portal, select your project, settings,
 
 ## Limitations
 
+:::zone pivot="hub-project"
+
 * You might encounter problems trying to access the private endpoint for your hub if you're using Mozilla Firefox. This problem might be related to DNS over HTTPS in Mozilla Firefox. We recommend using Microsoft Edge or Google Chrome.
+
+:::zone-end
 
 ## Next steps
 
