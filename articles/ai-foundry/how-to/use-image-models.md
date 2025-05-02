@@ -1,5 +1,5 @@
 ---
-title: How to use image models in the model catalog
+title: How to use image-to-text models in the model catalog
 titleSuffix: Azure AI Foundry
 description: Learn how to use image-to-text models from the AI Foundry model catalog.
 manager: scottpolly
@@ -7,7 +7,7 @@ author: msakande
 reviewer: frogglew
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 04/30/2025
+ms.date: 05/02/2025
 ms.author: mopeakande
 ms.reviewer: frogglew
 ms.custom: references_regions, tool_generated
@@ -17,9 +17,9 @@ ms.custom: references_regions, tool_generated
 
 This article explains how to use _image-to-text_ models in the AI Foundry model catalog. 
 
-Image-to-text models are designed to analyze images and generate descriptive text based on what they see. Think of them as a combination of a camera and a writer. You will provide an image as an input to the model, and the model will look at the image and identifies different elements within it, like objects, people, scenes, and even text. Based on its analysis, the model then generates a written description of the image, summarizing what it sees.
+Image-to-text models are designed to analyze images and generate descriptive text based on what they see. Think of them as a combination of a camera and a writer. You provide an image as an input to the model, and the model looks at the image and identifies different elements within it, like objects, people, scenes, and even text. Based on its analysis, the model then generates a written description of the image, summarizing what it sees.
 
-Image-to-text models excel at various use cases such as accessibility features, content organization (tagging), creating product and educational visual description, and digitizing content (via Optical Character Recognition). One might say image-to-text models bridge the gap between visual content and written language, making information more accessible and easier to process in various contexts.
+Image-to-text models excel at various use cases such as accessibility features, content organization (tagging), creating product and educational visual descriptions, and digitizing content via Optical Character Recognition (OCR). One might say image-to-text models bridge the gap between visual content and written language, making information more accessible and easier to process in various contexts.
 
 ## Prerequisites
 
@@ -74,9 +74,10 @@ To use image models in your application, you need:
     }'
     ```
 
-**More code samples for Mistral OCR 25.03**
+## More code samples for Mistral OCR 25.03
 
-**Processing PDF files**
+To process PDF files:
+
 ```bash
 # Read the pdf file
 input_file_path="assets/2201.04234v3.pdf"
@@ -102,8 +103,10 @@ echo "$payload_body" | curl ${AZURE_AI_CHAT_ENDPOINT}/v1/ocr \
   -H "Authorization: Bearer ${AZURE_AI_CHAT_KEY}" \
   -d @- -o ocr_pdf_output.json
 ```
-**Processing an image file**
-```
+
+To process an image file:
+
+```bash
 # Read the image file
 input_file_path="assets/receipt.png"
 base64_value=$(base64 "$input_file_path")
