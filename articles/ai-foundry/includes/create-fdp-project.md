@@ -55,7 +55,7 @@ Your first project (default project) plays a special role and has access to more
 | Backwards compatible with project-less {account}.cognitiveservices.com data plane API | ✓ |  |
 | Content safety | ✓ |  |
 
-To add another nondefault project to a resource:
+To add a nondefault project to a resource:
 
 1. In [Azure AI Foundry](https://ai.azure.com), select either the [!INCLUDE [fdp-project-name](fdp-project-name.md)] or its associated resource.
 1. In the left pane, select **Management center**.
