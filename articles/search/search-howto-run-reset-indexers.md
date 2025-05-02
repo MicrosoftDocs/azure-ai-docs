@@ -214,6 +214,9 @@ If the document is enriched through a skillset and has cached data, the  skillse
 
 When you're testing this API for the first time, the following APIs can help you validate and test the behaviors. You can use preview API version 2020-06-30-preview and later. We recommend the latest preview API.
 
+> [!NOTE]
+> Starting from API version `2025-05-01-preview`, for ADLS Gen2 data source with [`indexerPermissionOptions`](search-indexer-access-control-lists-and-role-based-access.md#indexing-with-indexers) enabled, along with file content re-ingestion the selected permission metadata (ACLs and/or RBAC scope) will be re-ingested as well. Check [Re-indexing ACL and RBAC scope with ADLS Gen2 indexer](search-indexer-access-control-lists-and-role-based-access.md#re-ingest-permission-metadata-as-needed) for detail.
+
 1. Call [Indexers - Get Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2024-05-01-preview&preserve-view=true) with a preview API version to check reset status and execution status. You can find information about the reset request at the end of the status response.
 
 1. Call [Indexers - Reset Docs](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2024-05-01-preview&preserve-view=true) with a preview API version to specify which documents to process.
