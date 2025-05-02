@@ -17,7 +17,7 @@ To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] in [Azure AI Foun
 1. Go to [Azure AI Foundry](https://ai.azure.com). If you are in a project, select **Azure AI Foundry** at the top left of the page to go to the **Home** page.
 1. In the middle of the page, select **Start building**. Or select **+ Create project** in the top right corner of the page if you have existing projects.
 1. Enter a name for the project.
-1. Select **Create**.  Or, if you want to customize your settings, follow the steps in the next section.
+1. Select **Create**. Or, if you want to customize your settings, follow the steps in the next section.
 
 ### Advanced options
 
@@ -36,13 +36,13 @@ To customize the settings for your project, follow these steps:
 
 1. Select **Create**. You see progress of resource creation and the project is created when the process is complete.
 
-## Create additional projects on the same resource
+## Create multiple projects on the same resource
 
-You can create additional projects on an existing `AIServices` resource.
+You can create other projects on an existing `AIServices` resource.
 
 Your first project (default project) plays a special role and has access to more features:
 
-| Feature | Default project	| Non-default project |
+| Feature | Default project	| Nondefault project |
 | Model inference| 	✓	| ✓ |
 | Playgrounds	| ✓ | 	✓ |
 | Agents	| ✓ | 	✓ |
@@ -50,11 +50,11 @@ Your first project (default project) plays a special role and has access to more
 | Connections | 	✓	| ✓ |
 | AI Foundry API that works with agents and across models| 	✓ | ✓ |
 | Project-level isolation of files and outputs	| ✓	| ✓ |
-| Azure OpenAI with Batch, StoredCompletions, Finetuning | 	✓	|  |
+| Azure OpenAI with Batch, StoredCompletions, Fine-tuning | 	✓	|  |
 | Backwards compatible with project-less {account}.cognitiveservices.com data plane API	| ✓	|  |
 | Content safety | 	✓	|  |
 
-To add an additional non-default project:
+To add another nondefault project to a resource:
 
 1. In [Azure AI Foundry](https://ai.azure.com), select either the [!INCLUDE [fdp-project-name](fdp-project-name.md)] or its associated resource.
 1. In the left pane, select **Management center**.
