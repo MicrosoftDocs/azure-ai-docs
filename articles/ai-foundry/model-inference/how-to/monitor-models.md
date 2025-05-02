@@ -37,7 +37,7 @@ Azure Monitor collects metrics from Azure AI model inference automatically. **No
 * Lightweight and capable of supporting near real-time alerting.
 * Used to track the performance of a resource over time.
 
-### Viewing metrics
+### View metrics
 
 Azure Monitor metrics can be queried using multiple tools, including:
 
