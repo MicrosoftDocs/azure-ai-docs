@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: conceptual
-ms.date: 10/16/2024
+ms.date: 04/29/2025
 ms.author: pafarley
 ms.custom: devx-track-csharp
 ---
@@ -31,6 +31,6 @@ For a comprehensive list of Azure service security recommendations, see the [Azu
 | [Customer Lockbox](/azure/security/fundamentals/customer-lockbox-overview) |The Customer Lockbox feature provides an interface for customers to review and approve or reject data access requests. It's used in cases where a Microsoft engineer needs to access customer data during a support request. For information on how Customer Lockbox requests are initiated, tracked, and stored for later reviews and audits, see the [Customer Lockbox guide](/azure/security/fundamentals/customer-lockbox-overview).<br/><br/>Customer Lockbox is available for the following services:<ul><li>Azure OpenAI</li><li>Translator</li><li>Conversational language understanding</li><li>Custom text classification</li><li>Custom named entity recognition</li><li>Orchestration workflow</li></ul>|
 | [Bring your own storage (BYOS)](./speech-service/speech-encryption-of-data-at-rest.md)| The Speech service doesn't currently support Customer Lockbox. However, you can arrange for your service-specific data to be stored in your own storage resource using bring-your-own-storage (BYOS). BYOS allows you to achieve similar data controls to Customer Lockbox. Keep in mind that Speech service data stays and is processed in the Azure region where the Speech resource was created. This applies to any data at rest and data in transit. For customization features like Custom Speech and Custom Voice, all customer data is transferred, stored, and processed in the same region where the Speech service resource and BYOS resource (if used) reside.<br/><br/>To use BYOS with Speech, follow the [Speech encryption of data at rest](./speech-service/speech-encryption-of-data-at-rest.md) guide.<br/><br/>Microsoft doesn't use customer data to improve its Speech models. Additionally, if endpoint logging is disabled and no customizations are used, then no customer data is stored by Speech. |
 
-## Next steps
+## Next step
 
 * Explore [Azure AI services](./what-are-ai-services.md) and choose a service to get started.
