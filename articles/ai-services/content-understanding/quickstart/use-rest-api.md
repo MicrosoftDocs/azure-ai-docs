@@ -12,17 +12,13 @@ ms.date: 04/14/2025
 
 # Quickstart: Azure AI Content Understanding REST APIs
 
-* Start using the latest preview version of the Azure AI Content Understanding [REST API (2024-12-01-preview)](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true).
+* This quickstart shows you how to use the [Content Understanding REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true) to get structured data from multimodal content in documents, videos, images, and audio files.
 
-* Azure AI Content Understanding is a new generative AI-based [**Azure AI Service**](../../what-are-ai-services.md) that analyzes files of any modality (documents, images, videos, and audio) and extracts structured output in user-defined field formats.
-
-* Integrate the Content Understanding service into your workflows and applications easily by calling our REST APIs.
-
-* This quickstart guides you through using the [Content Understanding REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true) to create a custom analyzer and extract content and fields from your input.
+* Try the [Content Understanding API with no code on Azure AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding)
 
 ## Prerequisites
 
-To get started, you need **An active Azure subscription**. If you don't have an Azure account, you can [create a free subscription](https://azure.microsoft.com/free/).
+To get started, you need **An Active Azure Subscription**. If you don't have an Azure Account, [create one for free](https://azure.microsoft.com/free/).
 
 * Once you have your Azure subscription, create an [Azure AI Services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) in the Azure portal. This multi-service resource enables access to multiple Azure AI services with a single set of credentials.
 
@@ -38,315 +34,32 @@ To get started, you need **An active Azure subscription**. If you don't have an 
   * [Windows](https://curl.haxx.se/windows/)
   * [Mac or Linux](https://learn2torials.com/thread/how-to-install-curl-on-mac-or-linux-(ubuntu)-or-windows)
 
-## Create a custom analyzer
 
-# [Document](#tab/document)
-
-To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for extracting basic information from an invoice document.
-
-First, create a JSON file named `request_body.json` with the following content:
-```json
-{
-  "description": "Sample invoice analyzer",
-  "scenario": "document",
-  "config": {
-    "returnDetails": true
-  },
-  "fieldSchema": {
-    "fields": {
-      "VendorName": {
-        "type": "string",
-        "method": "extract",
-        "description": "Vendor issuing the invoice"
-      },
-      "Items": {
-        "type": "array",
-        "method": "extract",
-        "items": {
-          "type": "object",
-          "properties": {
-            "Description": {
-              "type": "string",
-              "method": "extract",
-              "description": "Description of the item"
-            },
-            "Amount": {
-              "type": "number",
-              "method": "extract",
-              "description": "Amount of the item"
-            }
-          }
-        }
-      }
-    }
-  }
-}
-```
-
-# [Image](#tab/image)
-
-To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for identifying detects in images of metal plates.
-
-First, create a JSON file named `request_body.json` with the following content:
-```json
-{
-  "description": "Sample chart analyzer",
-  "scenario": "image",
-  "fieldSchema": {
-    "fields": {
-      "Title": {
-        "type": "string"
-      },
-      "ChartType": {
-        "type": "string",
-        "method": "classify",
-        "enum": [ "bar", "line", "pie" ]
-      }
-    }
-  }
-}
-```
-
-# [Audio](#tab/audio)
-
-To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for extracting basic information from call transcripts.
-
-First, create a JSON file named `request_body.json` with the following content:
-```json
-{
-  "description": "Sample call transcript analyzer",
-  "scenario": "callCenter",
-  "config": {
-    "returnDetails": true,
-    "locales": ["en-US"]
-  },
-  "fieldSchema": {
-    "fields": {
-      "Summary": {
-        "type": "string",
-        "method": "generate"
-      },
-      "Sentiment": {
-        "type": "string",
-        "method": "classify",
-        "enum": [ "Positive", "Neutral", "Negative" ]
-      },
-      "People": {
-        "type": "array",
-        "description": "List of people mentioned",
-        "items": {
-          "type": "object",
-          "properties": {
-            "Name": { "type": "string" },
-            "Role": { "type": "string" }
-          }
-        }
-      }
-    }
-  }
-}
-```
-
-# [Video](#tab/video)
-
-To create a custom analyzer, you need to define a field schema that describes the structured data you want to extract. In the following example, we define a schema for extracting basic information from marketing videos.
-
-First, create a JSON file named `request_body.json` with the following content:
-```json
-{
-  "description": "Sample marketing video analyzer",
-  "scenario": "videoShot",
-  "fieldSchema": {
-    "fields": {
-      "Description": {
-        "type": "string",
-        "description": "Detailed summary of the video segment, focusing on product characteristics, lighting, and color palette."
-      },
-      "Sentiment": {
-        "type": "string",
-        "method": "classify",
-        "enum": [ "Positive", "Neutral", "Negative" ]
-      }
-    }
-  }
-}
-```
-
----
-
-### Modified content filtering
-
-* Customers, who are approved, can customize the Content Understanding default content filtering system. After modifications, the output filters will annotate content rather than block it, offering improved control over content filtering in the Content Understanding output.
-
-* To request approval for modified content filtering, complete the following form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
-
-* Once approved, create or update your `request_body.json` file to include the `"disableContentFiltering": true` property.
-
-# [Document](#tab/document)
-
- Here's a document modality code sample using the`"disableContentFiltering": true` property:
-
-   ```json
-   {
-     "description": "Sample invoice analyzer",
-     "scenario": "document",
-     "config": {
-
-       "disableContentFiltering": true,
-
-       "enableFace": true,
-       "returnDetails": true,
-       },
-       "fieldSchema": {
-
-      <insert your schema here>
-
-       }
-   }
-
-   ```
-
-For more information, *see* [**Content Filtering**](../../openai/concepts/content-filter.md).
-
-# [Image](#tab/image)
-
-Here's an image modality code sample using the`"disableContentFiltering": true` property:
-
-   ```json
-   {
-     "description": "Sample chart analyzer",
-     "scenario": "image",
-     "config": {
-
-       "disableContentFiltering": true,
-
-       "returnDetails": true,
-       },
-       "fieldSchema": { 
-
-       <insert your schema here>
-
-       }
-   }
-
-   ```
-
-For more information, *see* [**Content Filtering**](../../openai/concepts/content-filter.md).
-
-# [Audio](#tab/audio)
-
-Here's an audio modality code sample using the`"disableContentFiltering": true` property:
-
-   ```json
-   {
-     "description": "Sample call transcript analyzer",
-     "scenario": "callCenter",
-     "config": {
-
-       "disableContentFiltering": true,
-
-       "returnDetails": true,
-       "locales": ["en-US"]
-       },
-       "fieldSchema": {
-
-       <insert your schema here>
-
-       }
-   }
-
-   ```
-
-For more information, *see* [**Content Filtering**](../../openai/concepts/content-filter.md).
-
-
-# [Video](#tab/video)
-
- Here's a video modality code sample using the`"disableContentFiltering": true` property:
-
-   ```json
-   {
-     "description": "Sample marketing video analyzer",
-     "scenario": "videoShot",
-     "config": {
-
-       "disableContentFiltering": true,
-
-       },
-       "fieldSchema": {
-
-       <insert your schema here>
-
-       }
-   }
-
-   ```
-For more information, *see* [**Content Filtering**](../../openai/concepts/content-filter.md).
-
----
-
-
-Before running the following `cURL` commands, make the following changes to the HTTP request:
-
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
-1. Replace `{analyzerId}` with the name of the new analyzer and create, such as `myInvoice`.
-
-### PUT Request
-
-```bash
-curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2024-12-01-preview" \
-  -H "Ocp-Apim-Subscription-Key: {key}" \
-  -H "Content-Type: application/json" \
-  -d @request_body.json
-```
-
-### PUT Response
-
-The 201 (`Created`) response includes an `Operation-Location` header containing a URL that you can use to track the status of this asynchronous creation operation.
-
-```
-201 Created
-Operation-Location: {endpoint}/contentunderstanding/analyzers/{analyzerId}/operations/{operationId}?api-version=2024-12-01-preview
-```
-
-Upon completion, performing an HTTP GET on the URL returns `"status": "succeeded"`.
-
-```bash
-curl -i -X GET "{endpoint}/contentunderstanding/analyzers/{analyzerId}/operations/{operationId}?api-version=2024-12-01-preview" \
-  -H "Ocp-Apim-Subscription-Key: {key}"
-```
-
-
-## Analyze a file
-
-You can analyze files using the custom analyzer you created to extract the fields defined in the schema.
+## Get Started with a Prebuilt Analyzer
+Analyzers define how your content will be processed and the insights that will be extracted. We offer [pre-built analyzers](link to pre-built analyzer page) for common use cases. You can [customize pre-built analyzers](link to learn how to customize analyzers) to better fit your specific needs and use cases. 
+This quickstart uses pre-built analyzers to help you get started. 
 
 Before running the cURL command, make the following changes to the HTTP request:
 
 # [Document](#tab/document)
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
-1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
-1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/cognitive-services-REST-api-samples/raw/master/curl/form-recognizer/rest-api/invoice.pdf`.
+1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal
+1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/data/invoice.pdf`.
 
 # [Image](#tab/image)
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
-1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
-1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS).
+1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal
+1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/data/pieChart.jpg`
 
 # [Audio](#tab/audio)
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
-1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
-1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS).
+1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal
+1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/data/audio.wav`
 
 # [Video](#tab/video)
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
-1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
-1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS).
-
+1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal
+1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/data/FlightSimulator.mp4`
 ---
 
 ### POST request
