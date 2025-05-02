@@ -90,16 +90,6 @@ Use instructions for **Azure AI Foundry portal** or **Python SDK** to create a [
 
 ---
 
-## Assign role-based access control
-
-1. In the [Azure AI Foundry portal](https://ai.azure.com), select your project if it is not already selected. 
-1. At the bottom of the left pane, select **Management center**.
-1. Under the resource name, select **Users**.
-1. Add yourself as a user with each of the following roles: 
-
-    * **Azure AI Project Manager** 
-    * **Azure AI User** 
-1. After adding these roles, on the left pane, select **Go to project** to return to your project.
 
 ## Deploy a model
 
@@ -107,11 +97,22 @@ Use instructions for **Azure AI Foundry portal** or **Python SDK** to create a [
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. Once your project is set up, you'll next be prompted to deploy a model.  
+1. If you created the project with the **Start building** link, you'll next be prompted to deploy a model.
+1. Or else, select **Model catalog**.
 1. Search for the model you want to deploy.  For this quickstart, select **gpt-4o**.
 1. Select **Confirm**.
 1. Do not change the default settings.  Select **Deploy**.
-1. You'll now be in the **Agents playground** ready to test your agent.  
+
+### Assign role-based access control
+
+1. At the bottom of the left pane, select **Management center**.
+1. Under the resource name, select **Users**.
+1. Add yourself as a user with each of the following roles: 
+
+    * **Azure AI Project Manager** 
+    * **Azure AI User** 
+
+1. After adding these roles, on the left pane, select **Go to project** to return to your project.
 
 # [Python SDK](#tab/python)
 
