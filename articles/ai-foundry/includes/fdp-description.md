@@ -11,4 +11,4 @@ ms.custom: include
 ---
 
 
-A **[!INCLUDE [fdp](fdp-project-name.md)]** is built on an Azure AI Foundry resource. This project type allows for a simple set up, access to agents, and industry leading models from OpenAI, Mistral, Meta, and more. 
+A **[!INCLUDE [fdp](fdp-project-name.md)]** is built on an Azure AI Foundry resource. This project type allows for a simple setup, access to agents, and industry leading models from OpenAI, Mistral, Meta, and more. 
