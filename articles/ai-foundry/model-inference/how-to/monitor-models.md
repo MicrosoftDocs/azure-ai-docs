@@ -8,7 +8,7 @@ ms.topic: how-to
 ms.date: 4/30/2025
 ---
 
-[!INCLUDE [Feature preview](../../../includes/feature-preview.md)]
+[!INCLUDE [Feature preview](../includes/feature-preview.md)]
 
 # Monitor model deployments in Azure AI model inference
 
