@@ -26,7 +26,7 @@ For details on subscription, resource, and authentication setup, *see* [Get star
 
 ## Additional prerequisites for custom projects
 
-In addition to the Azure account and a Document Intelligence or Azure AI services resource, you need:
+In addition to the Azure account and a Document Intelligence or Azure AI Foundry resource, you need:
 
 ### Azure Blob Storage container
 
@@ -40,7 +40,7 @@ A **standard performance** [**Azure Blob Storage account**](https://portal.azure
 For custom projects, the following role assignments are required for different scenarios.
 
 * Basic
-  * **Cognitive Services User**: You need this role for Document Intelligence or Azure AI services resource to train the custom model or do analysis with trained models.
+  * **Cognitive Services User**: You need this role for Document Intelligence or Azure AI Foundry resource to train the custom model or do analysis with trained models.
   * **Storage Blob Data Contributor**: You need this role for the Storage Account to create a project and label data.
 * Advanced
   * **Storage Account Contributor**: You need this role for the Storage Account to set up CORS settings (this action is a one-time effort if the same storage account is reused).

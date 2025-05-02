@@ -1,7 +1,7 @@
 ---
 title: Create an AI Foundry resource using Azure PowerShell
 titleSuffix: Azure AI services
-description: Get started with Azure AI services by using Azure PowerShell commands to create and subscribe to a resource.
+description: Get started with Azure AI services by using Azure PowerShell commands to create an AI Foundry resource.
 manager: nitinme
 ms.service: azure-ai-services
 keywords: Azure AI services, cognitive intelligence, cognitive solutions, ai services
@@ -31,14 +31,14 @@ Install [Azure PowerShell](/powershell/azure/install-azure-powershell). To sign 
 Connect-AzAccount
 ```
 
-## Create a new Azure AI services resource group
+## Create a new Azure AI Foundry resource group
 
 Before you create an AI Foundry resource, you must have an Azure resource group to contain the resource. When you create a new resource, you can either create a new resource group, or use an existing one. This article shows how to create a new resource group.
 
 To create a resource, you'll need one of the Azure locations available for your subscription. You can retrieve a list of available locations with the [Get-AzLocation](/powershell/module/az.resources/get-azlocation) command. Most Azure AI services can be accessed from several locations. Choose the one closest to you, or see which locations are available for the service.
 
 > [!IMPORTANT]
-> * Remember your Azure location, as you will need it when calling the Azure AI services resources.
+> * Remember your Azure location, as you will need it when calling the Azure AI Foundry resources.
 > * The availability of some Azure AI services can vary by region. For more information, see [Azure products by region](https://azure.microsoft.com/global-infrastructure/services/?products=cognitive-services).
 
 ```azurepowershell-interactive
@@ -53,15 +53,15 @@ New-AzResourceGroup -Name ai-services-resource-group -Location westus2
 
 ## Create an AI Foundry resource
 
-To create and subscribe to a new Azure AI services resource, use the [New-AzCognitiveServicesAccount](/powershell/module/az.cognitiveservices/new-azcognitiveservicesaccount) command. This command adds a new billable resource to the resource group you created earlier. When you create your new resource, you'll need to know the "kind" of service you want to use, along with its pricing tier (or SKU) and an Azure location:
+To create and subscribe to a new Azure AI Foundry resource, use the [New-AzCognitiveServicesAccount](/powershell/module/az.cognitiveservices/new-azcognitiveservicesaccount) command. This command adds a new billable resource to the resource group you created earlier. When you create your new resource, you'll need to know the "kind" of service you want to use, along with its pricing tier (or SKU) and an Azure location:
 
 > [!IMPORTANT]
 > Azure provides more than one resource kinds for Azure AI services. Be sure to create one with the `Type` (kind) of `AIServices`.
 
-You can create a Standard S0 Azure AI services multi-service resource named `multi-service-resource` with the command below.
+You can create an AI Foundry resource named `foundry-multi-service-resource` with the command below.
 
 ```azurepowershell-interactive
-New-AzCognitiveServicesAccount -ResourceGroupName ai-services-resource-group -Name multi-service-resource -Type AIServices -SkuName S0 -Location westus2
+New-AzCognitiveServicesAccount -ResourceGroupName ai-services-resource-group -Name foundry-multi-service-resource -Type AIServices -SkuName S0 -Location westus2
 ```
 
 > [!TIP]
@@ -72,7 +72,7 @@ New-AzCognitiveServicesAccount -ResourceGroupName ai-services-resource-group -Na
 Use the [Get-AzCognitiveServicesAccountUsage](/powershell/module/az.cognitiveservices/get-azcognitiveservicesaccountusage) command to get the usage for your resource.
 
 ```azurepowershell-interactive
-Get-AzCognitiveServicesAccountUsage -ResourceGroupName ai-services-resource-group -Name multi-service-resource
+Get-AzCognitiveServicesAccountUsage -ResourceGroupName ai-services-resource-group -Name foundry-multi-service-resource
 ```
 
 ## Clean up resources

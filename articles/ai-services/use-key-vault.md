@@ -62,9 +62,9 @@ Key Vault reduces the risk that secrets may be accidentally leaked, because you 
 > * The credentials and other information you will need to send API calls.
 > * The packages and code you will need to run your application.
 
-## Get your credentials from your Azure AI services resource
+## Get your credentials from your Azure AI Foundry resource
 
-Before you add your credential information to your Azure key vault, you need to retrieve them from your Azure AI services resource. For example, if your service needs a key and endpoint you would find them using the following steps:
+Before you add your credential information to your Azure key vault, you need to retrieve them from your Azure AI Foundry resource. For example, if your service needs a key and endpoint you would find them using the following steps:
 
 1. Navigate to your Azure resource in the [Azure portal](https://portal.azure.com/).
 1. From the collapsible menu on the left, select **Keys and Endpoint**.
@@ -91,7 +91,7 @@ Repeat these steps to generate a secret for each required resource credential. F
     |---------|---------|
     |Upload options     | Generate         |
     |Name     | A secret name for your key or endpoint. For example: "CognitiveServicesKey" or "CognitiveServicesEndpoint"        |
-    |Value     | Your Azure AI services resource key or endpoint.         |
+    |Value     | Your Azure AI Foundry resource key or endpoint.         |
 
     Later your application will use the secret "Name" to securely access the "Value". 
 
