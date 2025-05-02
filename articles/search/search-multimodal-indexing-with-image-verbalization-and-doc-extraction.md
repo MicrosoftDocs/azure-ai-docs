@@ -324,7 +324,7 @@ Key points:
 
 ## Create a skillset
 
-[Create Skillset (REST)](/rest/api/searchservice/skillset/create) creates a search index on your search service. An index specifies all the parameters and their attributes.
+[Create Skillset (REST)](/rest/api/searchservice/skillsets/create) creates a search index on your search service. An index specifies all the parameters and their attributes.
 
 ```http
 ### Create a skillset
