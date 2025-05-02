@@ -66,9 +66,11 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
-1. On the home page, select **Start building**.
+1. On the home page, select **Start building**. This will build a project and include steps to start working with an Agent.  
+    
+    :::image type="content" source="../media/quickstarts/start-building.png" alt-text="Screenshot shows how to start building an Agent in Azure AI Foundry portal.":::
+
 1. Fill in a name for your project and select **Create**.  
 
 # [Python SDK](#tab/python)
