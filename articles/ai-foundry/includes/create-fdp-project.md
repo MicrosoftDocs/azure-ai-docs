@@ -42,17 +42,18 @@ You can create other projects on an existing `AIServices` resource.
 
 Your first project (default project) plays a special role and has access to more features:
 
-| Feature | Default project	| Nondefault project |
-| Model inference| 	✓	| ✓ |
-| Playgrounds	| ✓ | 	✓ |
-| Agents	| ✓ | 	✓ |
-| Evaluations | 	✓ | ✓ |
-| Connections | 	✓	| ✓ |
-| AI Foundry API that works with agents and across models| 	✓ | ✓ |
-| Project-level isolation of files and outputs	| ✓	| ✓ |
-| Azure OpenAI with Batch, StoredCompletions, Fine-tuning | 	✓	|  |
-| Backwards compatible with project-less {account}.cognitiveservices.com data plane API	| ✓	|  |
-| Content safety | 	✓	|  |
+| Feature | Default project | Nondefault project |
+|--|--|--|
+| Model inference | ✓ | ✓ |
+| Playgrounds | ✓ | ✓ |
+| Agents | ✓ | ✓ |
+| Evaluations | ✓ | ✓ |
+| Connections | ✓ | ✓ |
+| AI Foundry API that works with agents and across models | ✓ | ✓ |
+| Project-level isolation of files and outputs | ✓ | ✓ |
+| Azure OpenAI with Batch, StoredCompletions, Fine-tuning | ✓ |  |
+| Backwards compatible with project-less {account}.cognitiveservices.com data plane API | ✓ |  |
+| Content safety | ✓ |  |
 
 To add another nondefault project to a resource:
 
