@@ -18,8 +18,6 @@ author: sdgilley
 
 # Tutorial: Deploy an enterprise chat web app
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
-
 In this article, you deploy an enterprise chat web app that uses your own data with a large language model in Azure AI Foundry portal.
 
 Your data source is used to help ground the model with specific data. Grounding means that the model uses your data to help it understand the context of your question. You're not changing the deployed model itself. Your data is stored separately and securely in your original data source

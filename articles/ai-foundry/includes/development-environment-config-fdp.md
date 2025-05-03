@@ -10,6 +10,3 @@ ms.custom: include file, build-2024
 ---
 
 1. Install azure-identity: `pip install azure-identity`. If in a notebook cell, use `%pip install azure-identity`.
-
-
-    

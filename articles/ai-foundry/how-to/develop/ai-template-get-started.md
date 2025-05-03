@@ -24,8 +24,6 @@ Available templates include:
 * [Get started with AI agents](https://github.com/Azure-Samples/get-started-with-ai-agents)
 * [Unlock insights from conversational data](https://github.com/microsoft/Conversation-Knowledge-Mining-Solution-Accelerator)
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
-
 ## Prerequisites
 
 - [Azure subscription](https://azure.microsoft.com/free)
@@ -37,7 +35,7 @@ Available templates include:
 
 1. Go to [Azure AI Foundry portal](https://ai.azure.com).
 1. Open your project in Azure AI Foundry portal.
-1. On the left pane, select **Templates** (preview).
+1. On the left pane, select **Templates**.
 1. Find the solution template you want to use.
 1. Select **Open in Github** to view the entire sample application.
 1. In some cases, you can also view a step-by-step tutorial that explains the AI code.
