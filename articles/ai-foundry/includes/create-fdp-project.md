@@ -17,7 +17,7 @@ To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] in [Azure AI Foun
 1. Go to [Azure AI Foundry](https://ai.azure.com). If you are in a project, select **Azure AI Foundry** at the top left of the page to go to the **Home** page.
 1. In the middle of the page, select **Start building**. Or select **+ Create project** in the top right corner of the page if you have existing projects.
 1. Enter a name for the project.
-1. Select **Create**.  Or, if you want to customize your settings, follow the steps in the next section.
+1. Select **Create**. Or, if you want to customize your settings, follow the steps in the next section.
 
 ### Advanced options
 
