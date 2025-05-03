@@ -33,10 +33,10 @@ This tutorial demonstrates how to index Azure Data Lake Storage (ADLS) Gen2 [Acc
 > You can use a free search service for this tutorial. The Free tier limits you to three indexes, three indexers, and three data sources. This tutorial creates one of each. Before you start, make sure you have room on your service to accept the new resources.
 
 ## Configure RBAC and ACLs in ADLS Gen2 storage account
-Follow the guidance from [ADLS Gen2 on RBAC configuration](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) and [setting up ACLs](/azure/storage/blobs/data-lake-storage-access-control#how-to-set-acls). Be sure to review the [Azure AI Search limitations](search-indexer-access-control-lists-and-role-based-access.md#Limitations) for ACL indexing before you continue.
+Follow the guidance from [ADLS Gen2 on RBAC configuration](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) and [setting up ACLs](/azure/storage/blobs/data-lake-storage-access-control#how-to-set-acls). Be sure to review the [Azure AI Search limitations](search-indexer-access-control-lists-and-role-based-access.md#limitations) for ACL indexing before you continue.
 
 We recommend the following best practices:
-  - Plan with hierarchical folder structure. This demo reuses ADLS Gen2 demo of folder structure for file [`/Oregon/Portland/Data.txt`]((/azure/storage/blobs/data-lake-storage-access-control#common-scenarios-related-to-acl-permissions))
+  - Plan with hierarchical folder structure. This demo reuses ADLS Gen2 demo of folder structure for file [`/Oregon/Portland/Data.txt`](/azure/storage/blobs/data-lake-storage-access-control#common-scenarios-related-to-acl-permissions)
   - Plan and collect all `Group` and `User` sets that are assigned for the container, directories, and files.
   
     [Follow the recommendations](search-indexer-access-control-lists-and-role-based-access.md#recommendations-and-best-practices) for using `Group` sets as much as possible, rather than directly assigning `User` sets. The recommendations help you avoid [ADLS Gen2 limitation](/azure/storage/blobs/data-lake-storage-access-control#what-are-the-limits-for-azure-role-assignments-and-acl-entries), and also give you well-organized member structures for the whole organization.
@@ -53,7 +53,7 @@ We recommend the following best practices:
     ![Diagram of an ACL assignment structure.](acl-assignment-structure-sample.png)
 
 ## Create an Azure AI Search index containing permission information fields
-[Create an index](search-how-to-create-search-index.md#create-an-index) that meets your service requirements, and add [permission fields](search-indexer-access-control-lists-and-role-based-access.md#index-permission-fields) to receive the respective ACLs and rbacScope metadata during indexing.
+[Create an index](search-how-to-create-search-index.md#create-an-index) that meets your service requirements, and add [permission fields](search-indexer-access-control-lists-and-role-based-access.md#3-index-permission-fields) to receive the respective ACLs and rbacScope metadata during indexing.
 > [!NOTE]
 > For demo purposes, the permission field has `retrievable` enabled so that you can check the values from the index. In production setup, you should disable `retrievable` to avoid leaking sensitive permission information.
 
@@ -98,7 +98,7 @@ With RBAC scope ingestion, [managed identity](search-howto-managed-identities-da
     ```
 
 ### Data Source creation
-Modify [data source configuration](search-indexer-access-control-lists-and-role-based-access.md#data-source-configuration) to specify indexer permission ingestion and the types of permission metadata that you want to index.
+Modify [data source configuration](search-indexer-access-control-lists-and-role-based-access.md#2-data-source-configuration) to specify indexer permission ingestion and the types of permission metadata that you want to index.
   - `adlsgen2` type is required.
   - `indexerPermissionOptions` with candidate options to opt in: `userIds`, `groupIds`, and `rbacScope`.
   - If `rbacScope` option is part of the selection, configure a [connection string](search-howto-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings) with managed identity format.
@@ -163,7 +163,7 @@ After indexer creation and immediate run, the file content along with permission
 ### Re-ingest permission metadata as needed
 There are different scenarios to [re-ingest permission metadata](search-indexer-access-control-lists-and-role-based-access.md#re-ingest-permission-metadata-as-needed).
 - For a few blobs, consider renewing the `Last modified` timestamp of these blobs from source, so that **both permission metadata as well as the blob data content** will be re-ingested from the next indexer run.
-- For a moderate amount of blobs, consider issuing a request with the [`/resetdocs (preview)`](search-howto-run-reset-indexers.md#How-to-reset-docs-(preview)) API of these blobs, so that **both permission metadata as well as the blob data content** of these blobs can be re-ingested again.
+- For a moderate amount of blobs, consider issuing a request with the [`/resetdocs (preview)`](search-howto-run-reset-indexers.md#how-to-reset-docs-preview) API of these blobs, so that **both permission metadata as well as the blob data content** of these blobs can be re-ingested again.
     ```http
     POST https://[service name].search.windows.net/indexers/[indexer name]/resetdocs?api-version=2025-05-01-preview
     {
