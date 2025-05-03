@@ -33,7 +33,7 @@ After you validate your data files, use them to build your custom neural voice m
 
   To create a multiple style voice, you need to prepare a set of general training data, at least 300 utterances. Select one or more of the preset target speaking styles. You can also create multiple custom styles by providing style samples, of at least 100 utterances per style, as extra training data for the same voice. The supported preset styles vary according to different languages. See [available preset styles across different languages](?tabs=multistyle#available-preset-styles-across-different-languages).
 
-- [Neural - multi lingual(preview)](?tabs=multilingual#train-your-custom-neural-voice-model): Create a voice that speaks multiple languages using the single-language training data. For example, with the `en-US` primary training data, you can create a voice that speaks `en-US`, `de-DE`, `zh-CN` etc secondary languages.
+- [Neural - multi lingual(preview)](?tabs=multilingual#train-your-custom-neural-voice-model): Create a voice that speaks multiple languages using the single-language training data. For example, with the `en-US` primary training data, you can create a voice that speaks `en-US`, `de-DE`, `zh-CN` etc. secondary languages.
 
   The primary language of the training data and the secondary languages must be in the [languages that are supported](../../../../language-support.md?tabs=tts#custom-neural-voice) for multi lingual voice training. You don't need to prepare training data in the secondary languages.
 
@@ -138,7 +138,7 @@ Optionally, you can also select **Add my own test script** and provide your own 
 
    :::image type="content" source="../../../../media/custom-voice/cnv-train-neural-multi-lingual.png" alt-text="Screenshot that shows how to select neural multi lingual training.":::
 
-1. Select the **Secondary language** that your voice speaks. You can select one or more secondary language for a voice model and the voice speaks languages you selected from training data.
+1. Select the **Secondary language** that your voice speaks. You can select one or more secondary languages for a voice model and the voice speaks languages you selected from training data.
 1. Select the data that you want to use for training. Duplicate audio names are removed from the training. Make sure that the data you select doesn't contain the same audio names across multiple *.zip* files.
 
    You can select only successfully processed datasets for training. Check your data processing status if you don't see your training set in the list.
