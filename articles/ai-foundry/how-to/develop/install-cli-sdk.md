@@ -32,11 +32,11 @@ In the IDE of your choice, create a new folder for your project. Open a terminal
 
 # [Java](#tab/java)
 
-Info here.
+Install Java.
 
 # [JavaScript](#tab/javascript)
 
-Info here.
+Install Javascript.
 
 # [C#](#tab/csharp)
 
@@ -52,11 +52,11 @@ Info here.
 
 # [Java](#tab/java)
 
-Info here.
+Install Java packages.
 
 # [JavaScript](#tab/javascript)
 
-Info here.
+Install JavaScript packages.
 
 # [C#](#tab/csharp)
 
