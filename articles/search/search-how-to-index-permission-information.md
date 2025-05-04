@@ -23,7 +23,7 @@ This tutorial demonstrates how to index Azure Data Lake Storage (ADLS) Gen2 [Acc
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-+ [Azure Data Lake Storage Gen2](/azure/storage/common/create-data-lake-storage-account).
++ [Azure Data Lake Storage Gen2](/azure/storage/blobs/create-data-lake-storage-account).
 
 + [Azure AI Search](search-what-is-azure-search.md). [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription.
 
@@ -73,9 +73,9 @@ We recommend the following best practices:
 ## Create and run an indexer to ingest permission information into an index from a data source
 ### Search service configuration
 With RBAC scope ingestion, [managed identity](search-howto-managed-identities-data-sources.md) is required, either system managed identity or user-assigned managed identity.
-- [system managed identity](search-howto-managed-identities-data-sources#create-a-system-managed-identity)
+- [system managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity)
 ![Turn on system assigned identity](turn-on-system-assigned-identity.png)
-- [user-assigned managed identity](search-howto-managed-identities-data-sources#create-a-user-assigned-managed-identity)
+- [user-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-user-assigned-managed-identity)
     ```http
     PUT https://management.azure.com/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Search/searchServices/mysearchservice?api-version=2025-05-01-preview
     {
