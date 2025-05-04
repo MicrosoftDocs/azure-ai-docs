@@ -74,7 +74,7 @@ We recommend the following best practices:
 ### Search service configuration
 With RBAC scope ingestion, [managed identity](search-howto-managed-identities-data-sources.md) is required, either system managed identity or user-assigned managed identity.
 - [system managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity)
-![Turn on system assigned identity](turn-on-system-assigned-identity.png)
+![Screenshot showing turn on system assigned identity.](turn-on-system-assigned-identity.png)
 - [user-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-user-assigned-managed-identity)
     ```http
     PUT https://management.azure.com/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Search/searchServices/mysearchservice?api-version=2025-05-01-preview
