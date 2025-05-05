@@ -27,21 +27,43 @@ Azure AI Foundry supports two types of projects: a **[!INCLUDE [fdp](../includes
 
 ::: zone pivot="fdp-project"
 
-## Azure AI Foundry project roles
+### Azure AI Foundry project roles
 
 Azure AI User: Cannot create project or account (only read), cannot do role assignments, has all DP actions
 AI Project Manager: Can create project, not account (only account read), can only assign Azure AI user role, has all DP actions
 Azure AI Account Owner: Can create project and account, can only assign Azure AI user role, no DP actions
  
-## Basic Agent requirements
+### Basic Agent requirements
 
 Control Plane: Azure AI Account Owner (to set-up an account and project) OR Azure AI Project Manager (if they are ONLY setting up a project) 
 Data Plane Roles: Azure AI User OR Azure AI Project Manager
  
-## Standard Agent requirements
+### Standard Agent requirements
 
 Control Plane: Azure AI Account Owner (to set-up an account and project) AND Role Based Access Administrator (to do role assignments on the other resources required for Standard Agent set-up like CosmosDB, Search, Storage, etc.) 
 Data Plane Roles: Azure AI User OR Azure AI Project Manager
+
+## Default roles for the project
+
+### Azure AI User
+
+### Azure AI Project Manager
+
+## Azure AI Account Owner
+
+## Sample enterprise RBAC setup
+
+## Access to resources created outside of AI Foundry
+
+## Manage access with roles
+
+## Create custom roles
+
+## Troubleshooting
+
+## Notes
+
+## Next steps
 
 ::: zone-end
 
