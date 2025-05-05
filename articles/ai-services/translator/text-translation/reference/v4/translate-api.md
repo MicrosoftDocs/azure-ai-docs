@@ -42,41 +42,41 @@ Request headers include:
 | **Content-Length** | _Optional_.<br/>The length of the request body. |
 | **X-ClientTraceId** | _Optional_.<br/>A client-generated GUID to uniquely identify the request. You can omit this optional header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
 
-#### Required parameters
+#### Request parameters
 
 Request parameters passed with the request are as follows:
 
-| Parameter | Type | Required? | Description |
+| Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 |**`api-version`**|string|True|Version of the API requested by the client. Accepted value is `2025-05-01-preview`.|
 |**`text`** | string | True | Source text for translation. |
 | **`targets`** | array | True | User-specified values for the translated (`target`) text. |
 | **`language`** | string | True |The language code for the translated (`target`) text *specified in the `targets` array*. Accepted values are [supported language](../../../language-support.md) codes for the translation operation.|
-
-
-#### Optional parameters (not included in the targets array)
-
-| Parameter | Type | Required? | Description |
-| --- | --- | --- | --- |
 | **textType** | string | False | Defines whether the text being translated is plain text or HTML text. Any HTML needs to be a well-formed, complete element. Accepted values are: plain (default) or html. |
 | **language** | string | False | Specifies the language code for the `source` text. If not specified, the system autodetects the language of the source text. Accepted values are list of language code supported by the specified model. |
 | **script** | string | False | Specifies the script of the source text. |
 
-#### Optional parameters (included in the targets array)
+#### Targets
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| **`targets`** | array | True | User-specified values for the translated (`target`) text. |
+
+#### Optional parameters (targets array)
 
 | Parameter | Type | Required? | Description |
 | --- | --- | --- | --- |
-| **script** | string | False | Specify the script of the translated text. |
-|**deploymentName** | string | False | Default is `general`, which uses `NMT` system. `your-model-name-gpt-4o-mini` is an example deployment name for the GPT-4o-mini model. `gpt-4o` uses GPT-4o model.<br> `<custom model id>` uses the custom `NMT` model tuned by customer.<br>  |
-| **allowFallback** | string | False | Specifies that if the intended model isn't supported for a given source and target language pair, the service is permitted to fall back to a general system. This action ensures that translations can still be provided even when the preferred model is unavailable. Default is `true`. If `false` system returns an error if language pair isn't supported. |
-| **tone** | string | False | Desired tone of target translation. Accepted values are `formal`, `informal`, or `neutral`. |
-| **gender** (For more information, *see* [Gender-specific translations](#gender-specific-translations))| string | False | Desired gender of target translation. Accepted values are `male`, `female`, or `neutral`.|
-| **adaptiveDatasetId** | string | False | Reference dataset ID having sentence pair to generate adaptive customized translation |
-| **referenceTextPairs** | string | False | Reference text pairs to generate adaptive customized translation |
-| **referenceTextPairs.source** | string | False | Source text in reference text pair. If provided, `adaptiveDatasetId` is ignored |
-| **referenceTextPairs.target** | string | False | Target text in reference text pair. |
-| **profanityAction** | string | False | Specifies how profanities should be treated in translations. Accepted values are: `NoAction` (default), `Marked`, or `Deleted`. |
-| **profanityMarker** | string | False | Specifies how profanities should be marked in translations. Accepted values are `Asterisk` (default) or Tag. |
+| **targets.script** | string | False | Specify the script of the translated text. |
+|**targets.deploymentName** | string | False | Default is `general`, which uses `NMT` system. `your-model-name-gpt-4o-mini` is an example deployment name for the GPT-4o-mini model. `gpt-4o` uses GPT-4o model.<br> `<custom model id>` uses the custom `NMT` model tuned by customer.<br>  |
+| **targets.allowFallback** | string | False | Specifies that if the intended model isn't supported for a given source and target language pair, the service is permitted to fall back to a general system. This action ensures that translations can still be provided even when the preferred model is unavailable. Default is `true`. If `false` system returns an error if language pair isn't supported. |
+| **targets.tone** | string | False | Desired tone of target translation. Accepted values are `formal`, `informal`, or `neutral`. |
+| **targets.gender** (For more information, *see* [Gender-specific translations](#gender-specific-translations))| string | False | Desired gender of target translation. Accepted values are `male`, `female`, or `neutral`.|
+| **targets.adaptiveDatasetId** | string | False | Reference dataset ID having sentence pair to generate adaptive customized translation |
+| **targets.referenceTextPairs** | string | False | Reference text pairs to generate adaptive customized translation |
+| **targets.referenceTextPairs.source** | string | False | Source text in reference text pair. If provided, `adaptiveDatasetId` is ignored |
+| **targets.referenceTextPairs.target** | string | False | Target text in reference text pair. |
+| **targets.profanityAction** | string | False | Specifies how profanities should be treated in translations. Accepted values are: `NoAction` (default), `Marked`, or `Deleted`. |
+| **targets.profanityMarker** | string | False | Specifies how profanities should be marked in translations. Accepted values are `Asterisk` (default) or Tag. |
 
 ##### Gender-specific translations
 
@@ -98,6 +98,7 @@ The request body is formatted as a JSON array, where each element is a JSON obje
 [
   {
     "text": "I would really like to drive your car around the block a few times.",
+    "language": "en",
     "targets": [
       {
         "language": "es"
@@ -157,6 +158,7 @@ Examples of JSON responses are provided in the [examples](#examples) section.
  [
   {
     "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+    "language": "en",
     "targets": [
       {
         "language": "es"
@@ -200,6 +202,7 @@ Examples of JSON responses are provided in the [examples](#examples) section.
 [
   {
     "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+    "language": "en",
     "targets": [
       {
         "language": "es"
@@ -253,6 +256,7 @@ Here, users request specific `GPT` models for deployment.
  [
   {
     "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+    "language": "en",
     "targets": [
       {
         "language": "es",
@@ -310,6 +314,7 @@ Here, users request specific `GPT` models for deployment.
 [
   {
     "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+    "language": "en",
     "targets": [
       {
         "language": "es",
@@ -374,6 +379,7 @@ Adaptive custom translation deploys on Translator service infrastructure. Charge
 [
   {
     "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+    "language": "en",
     "targets": [
       {
         "language": "es",
@@ -420,6 +426,7 @@ Adaptive custom translation deploys on Translator service infrastructure. Charge
 [
   {
     "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+    "language": "en",
     "targets": [
       {
         "language": "es",
@@ -475,6 +482,7 @@ Adaptive custom translation deploys on Translator service infrastructure. Charge
 [
   {
     "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+    "language": "en",
     "targets": [
       {
         "language": "es",

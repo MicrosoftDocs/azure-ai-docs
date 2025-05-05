@@ -1,5 +1,5 @@
 ---
-title: Migrate to v4.0 - Azure AI Translator
+title: Migrate from Translator v3 to the latest Azure AI Translator version.
 titleSuffix: Azure AI services
 description: This article provides the steps to help you migrate from Azure AI Translator v3 to  2025-05-01-preview Text translation API.
 author: laujan
@@ -12,7 +12,7 @@ ms.author: lajanuar
 
 # Azure AI Translator 2025-05-01-preview migration
 
-Azure AI Translator text translation 2025-05-01-preview (v4.0) is our latest cloud-based, multilingual neural machine translation service. As Azure AI Translator matures, we're focused on patterns and practices to best support and add value to our users.
+Azure AI Translator text translation 2025-05-01-preview is our latest cloud-based, multilingual neural machine translation service. As Azure AI Translator matures, we're focused on patterns and practices to best support and add value to our users.
 
 >[!IMPORTANT]
 > * Azure AI Translator REST API `2025-05-01-preview` is new version of the Azure AI Translator REST API **with breaking changes**.
@@ -52,8 +52,8 @@ The following table compares Translator `2025-05-01-preview` and Translator v3 A
 |[Translate text](../reference/v4/translate-api.md)|[Translate text](../reference/v3/translate.md)|
 |[Transliterate](../reference/v4/transliterate-api.md)|[Transliterate](../reference/v3/transliterate.md)|
 |[Languages](../reference/v4/get-languages.md)|[Languages](../reference/v3/languages.md)|
-|Feature no longer supported|[Detect language](../reference/v3/detect.md)|
-|Feature no longer supported|[BreakSentence](../reference/v3/break-sentence.md)|
+|Feature no longer supported. Use the [Azure AI Language detection feature](../../../language-service/language-detection/overview.md)|
+|Feature no longer supported. Use sentence delimiters function or a Natural Language Processing (NLP) library for your programming language.|[BreakSentence](../reference/v3/break-sentence.md)|
 |Feature no longer supported|[Dictionary Lookup](../reference/v3/dictionary-lookup.md)|
 |Feature no longer supported|[Dictionary Examples](../reference/v3/dictionary-examples.md)|
 
