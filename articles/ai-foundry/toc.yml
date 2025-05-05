@@ -34,8 +34,6 @@ items:
       items:
       - name: Azure OpenAI in Azure AI Foundry
         href: azure-openai-in-ai-foundry.md
-      - name: Use Azure OpenAI Service in Azure AI Foundry portal
-        href: ai-services/how-to/connect-azure-openai.md
       - name: Deploy Azure OpenAI models
         href: how-to/deploy-models-openai.md
       - name: Azure OpenAI Service quotas and limits
@@ -110,8 +108,6 @@ items:
           href: ../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context
 - name: Azure OpenAI and AI services
   items:
-  - name: Use Azure OpenAI Service in Azure AI Foundry portal
-    href: ai-services/how-to/connect-azure-openai.md
   - name: Use Azure AI services in Azure AI Foundry portal
     href: ../ai-services/connect-services-ai-foundry-portal.md?context=/azure/ai-foundry/context/context
     displayName: cognitive,task,speech,vision,language,translator,document,intelligence,content,understanding,safety
