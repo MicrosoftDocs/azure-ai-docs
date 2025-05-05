@@ -14,7 +14,7 @@ author: maanavd
 
 # Catalog API Reference
 
-This page documents the Model Catalog V2 REST APIs for discovering and retrieving model and publisher information. These APIs are used to interact with model catalogs such as Azure AI Model Catalog, but the URIs and paths are generic and can be adapted for any compatible provider.
+This page documents the Model Catalog APIs. Catalog implementors can use this reference as a guide for their own catalog implementation.
 
 ## Base URI
 
