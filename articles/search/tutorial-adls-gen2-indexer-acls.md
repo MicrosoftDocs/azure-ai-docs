@@ -1,5 +1,5 @@
 ---  
-title: 'Tutorial: Index permission metadata from ADLS Gen2 and query with permission-filtered results'
+title: 'Tutorial: Index ADLS Gen2 permission metadata'
 titleSuffix: Azure AI Search  
 description: Learn how to index Access Control Lists (ACLs) and Azure Role-Based Access Control (RBAC) scope from ADLS Gen2 and query with permission-filtered results in Azure AI Search.
 ms.service: azure-ai-search  
@@ -42,13 +42,27 @@ In this tutorial, you learn how to:
 
 Upload this [sample data](https://github.com/Azure-Samples/azure-search-sample-data) to a container in ADLS Gen2.
 
-## Configure RBAC and ACLs in ADLS Gen2 storage account
+## Check search service configuration
 
-Follow the guidance from [ADLS Gen2 on RBAC configuration](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) and [setting up ACLs](/azure/storage/blobs/data-lake-storage-access-control#how-to-set-acls). Be sure to review the [Azure AI Search limitations](search-indexer-access-control-lists-and-role-based-access.md#limitations) for ACL indexing before you continue.
+You search service must be configured for Microsoft Entra ID authentication and authorization. Review this checklist to make sure you're prepared.
 
-+ Identify all `Group` and `User` sets that are assigned to containers, directories, and files.
++ [Enable role-based access](search-security-enable-roles.md)
+
++ [Configure a system-assigned managed identity](search-howto-managed-identities-data-sources.md).
+
+## Get a personal identity token for local testing
+
+This tutorial assumes a REST client on a local system, connecting to Azure over a public internet connection.
+
+Follow these steps to [acquire a personal identity token](search-get-started-rbac.md) and set up Visual Studio Code for connection to your Azure resources.
+
+## Set permissions in ADLS Gen2
+
+1. Set permissions on the storage account to ensure the search service identity has **Storage Blob Data Reader** permissions.
+
+1. In the file hierarchy, identify all `Group` and `User` sets that are assigned to containers, directories, and files.
   
-  [Follow the recommendations](search-indexer-access-control-lists-and-role-based-access.md#recommendations-and-best-practices) for using `Group` sets as much as possible, rather than directly assigning `User` sets. The recommendations help you avoid [ADLS Gen2 limitation](/azure/storage/blobs/data-lake-storage-access-control#what-are-the-limits-for-azure-role-assignments-and-acl-entries), and also give you well-organized member structures for the whole organization.
+  [Follow the recommendations to use groups as much as possible](search-indexer-access-control-lists-and-role-based-access.md#recommendations-and-best-practices) for using `Group` sets as much as possible, rather than directly assigning `User` sets.
 
 <!-- + Assign all `Group` and `User` sets onto the container `/` with `Read` and `Execute` permissions, for example, Group1, Group2, User1, User2.
 
@@ -70,9 +84,10 @@ Here's a diagram of the ACL assignment structure for the [fictitious directory h
 ![Diagram of an ACL assignment structure.](media/search-security-acl/acl-assignment-structure-sample.png) -->
 
 <!-- We need an actual index that has everything necessary for creating a queryable index. -->
-## Create an Azure AI Search index containing permission information fields
 
-[Create an index](search-how-to-create-search-index.md#create-an-index) that meets your service requirements, and add [permission fields](search-indexer-access-control-lists-and-role-based-access.md#create-permission-fields-in-the-index) to receive the respective ACLs and rbacScope metadata during indexing.
+## Create a search index for permission metadata
+
+[Create an index](search-how-to-create-search-index.md#create-an-index) that contains fields for content and [permission metadata](search-indexer-access-control-lists-and-role-based-access.md#create-permission-fields-in-the-index).
 
 Be sure to use [2025-05-01-preview data plane REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) or a prerelease Azure SDK that provides equivalent functionality. The permission filter properties are only available in the preview APIs.
 
@@ -92,12 +107,7 @@ Be sure to use [2025-05-01-preview data plane REST API](/rest/api/searchservice/
 }
 ```
 
-## Create and run an indexer to ingest permission information into an index from a data source
-
-<!-- This section needs to move to the main how-to doc, and refocused on what we want to use the tutorial, which is system. -->
-### Search service configuration
-
-With RBAC scope ingestion, [managed identity](search-howto-managed-identities-data-sources.md) is required, either system managed identity or user-assigned managed identity.
+## Create and run an indexer to ingest permission metadata
 
 <!-- + [system managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity)
 
@@ -126,7 +136,7 @@ With RBAC scope ingestion, [managed identity](search-howto-managed-identities-da
     } 
     ``` -->
 
-### Data Source creation
+### Create a data source
 
 Modify [data source configuration](search-indexer-access-control-lists-and-role-based-access.md#configure-the-data-source) to specify indexer permission ingestion and the types of permission metadata that you want to index.
 
@@ -180,7 +190,7 @@ Here are some scenario examples.
   }
   ``` -->
 
-### Indexer creation
+### Create and run the indexer
 
 Indexer configuration for permission ingestion is primarily about defining `fieldMappings` from [permission metadata](search-indexer-access-control-lists-and-role-based-access.md#indexing-permission-metadata).
 

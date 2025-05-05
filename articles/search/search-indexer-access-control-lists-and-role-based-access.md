@@ -9,7 +9,7 @@ author: wlifuture
 ms.author: wli
 ---  
 
-# Use an ADLS Gen2 indexer to ingest permission metadata that filters search results based on user access rights
+# Use an ADLS Gen2 indexer to ingest permission metadata and filter search results based on user access rights
 
 > [!IMPORTANT]
 > This feature is in public preview. It's offered "as-is", under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and supported on best effort only. Preview features aren't recommended for production workloads and aren't guaranteed to become generally available.
