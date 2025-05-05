@@ -11,7 +11,7 @@ ms.custom: include, build-2024, ignite-2024
 ---
 
 
-You can create other projects on an existing `AIServices` resource.
+You can create multiple projects on an existing `AIServices` resource.
 
 Your first project (default project) plays a special role and has access to more features:
 
@@ -31,6 +31,8 @@ Your first project (default project) plays a special role and has access to more
 To add a nondefault project to a resource:
 
 # [Azure AI Foundry portal](#tab/ai-foundry)
+
+[!INCLUDE [tip-left-pane](tip-left-pane.md)]
 
 1. In [Azure AI Foundry](https://ai.azure.com), select either the [!INCLUDE [fdp-project-name](fdp-project-name.md)] or its associated resource.
 1. In the left pane, select **Management center**.
