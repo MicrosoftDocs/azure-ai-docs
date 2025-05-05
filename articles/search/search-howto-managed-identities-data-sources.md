@@ -72,7 +72,7 @@ A system-assigned managed identity is unique to your search service and bound to
 
 1. Select **Save**.
 
-   :::image type="content" source="media/search-managed-identities/media/search-security-acl/turn-on-system-assigned-identity.png" alt-text="Screenshot of the Identity page in Azure portal." border="true":::
+   :::image type="content" source="media/search-security-acl/turn-on-system-assigned-identity.png" alt-text="Screenshot of the Identity page in Azure portal." border="true":::
 
    After you save the settings, the page updates to show an object identifier that's assigned to your search service. 
 

@@ -91,7 +91,7 @@ With RBAC scope ingestion, [managed identity](search-howto-managed-identities-da
 
 + [system managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity)
 
-  ![Screenshot showing turn on system assigned identity.](media/search-security-acl/turn-on-system-assigned-identity.png)
+  ![Screenshot showing turn on system assigned identity.](media/search-managed-identities/turn-on-system-assigned-identity.png)
 
 + [user-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-user-assigned-managed-identity)
 
