@@ -91,38 +91,38 @@ For more information on how to manage model upgrades and migrations for provisio
 
 These models are currently available for use in Azure OpenAI Service.
 
-| Model                     | Version         | Retirement date                  | Replacement model |
-| --------------------------|-----------------|----------------------------------|-------------------|
-| `computer-use-preview`    | 2025-03-11      | No earlier than June 11, 2025    |                   |
-| `dall-e-3`                | 3               | No earlier than June 30, 2025    |                   |
-| `gpt-35-turbo-16k`        | 0613            | April, 30, 2025                  | `gpt-4.1-mini` version: `2025-04-14` |
-| `gpt-35-turbo`            | 1106            | No earlier than July 16, 2025    | `gpt-4.1-mini` version: `2025-04-14`|
-| `gpt-35-turbo`            | 0125            | No earlier than July 16, 2025    | `gpt-4.1-mini` version: `2025-04-14` |
-| `gpt-4`<br>`gpt-4-32k`    | 0314            | June 6, 2025                     | `gpt-4o` version: `2024-11-20` |
-| `gpt-4`<br>`gpt-4-32k`    | 0613            | June 6, 2025                     | `gpt-4o` version: `2024-11-20` |
-| `gpt-4`                   | turbo-2024-04-09| No earlier than June 6, 2025     | `gpt-4o` version: `2024-11-20`|
-| `gpt-4`                   | 1106-preview    | May 1, 2025                      | `gpt-4o` version: `2024-11-20`|
-| `gpt-4`                   | 0125-preview    | May 1, 2025                      | `gpt-4o`version: `2024-11-20` |
-| `gpt-4`                   | vision-preview  | May 15, 2025                     | `gpt-4o` version: `2024-11-20`|
-| `gpt-4.5-preview`         | 2025-02-27      | No Auto-upgrades <br>July 14, 2025 | `gpt-4.1` version: `2025-04-14` |
-| `gpt-4.1`                 | 2025-04-14      | No earlier than April 11, 2026|  |
-| `gpt-4.1-mini`            | 2025-04-14      | No earlier than April 11, 2026|  |
-| `gpt-4.1-nano`            | 2025-04-14      | No earlier than April 11, 2026|  |
-| `gpt-4o`                  | 2024-05-13      | No earlier than June 30, 2025    | `gpt-4.1` version: `2025-04-14`   |
-| `gpt-4o`                  | 2024-08-06      | No earlier than August 6, 2025   | `gpt-4.1` version: `2025-04-14` |
-| `gpt-4o`                  | 2024-11-20      | No earlier than January 30, 2026 | `gpt-4.1` version: `2025-04-14` |
-| `gpt-4o-mini`             | 2024-07-18      | August 16, 2025                  |  |
-| `gpt-3.5-turbo-instruct`  | 0914            | No earlier than May 31, 2025     |  |
-| `gpt-image-1`             | 2025-04-15      | No earlier than August 01, 2025  |  |
-| `o1-preview`              | 2024-09-12      | May 29, 2025                     | `o1` |
-| `o1`                      | 2024-12-17      | No earlier than December 17, 2025 | |
-| `o4-mini`                 | 2025-04-16      | No earlier than April 11, 2026   | |
-| `o3`                      | 2025-04-16      | No earlier than April 11, 2026   | |
-| `o3-mini`                 | 2025-01-31      | No earlier than February 1, 2026 | |
-| `text-embedding-ada-002`  | 2               | No earlier than April 30, 2026   | `text-embedding-3-small` or `text-embedding-3-large` |
-| `text-embedding-ada-002`  | 1               | No earlier than April 30, 2026   | `text-embedding-3-small` or `text-embedding-3-large` |
-| `text-embedding-3-small`  |                 | No earlier than April 30, 2026   | |
-| `text-embedding-3-large`  |                 | No earlier than April 30, 2026   | |
+| Model                     | Version         | Retirement date                    | Replacement model                    |
+| --------------------------|-----------------|------------------------------------|--------------------------------------|
+| `computer-use-preview`    | 2025-03-11      | No earlier than June 11, 2025      |                                      |
+| `dall-e-3`                | 3               | No earlier than June 30, 2025      |                                      |
+| `gpt-35-turbo-16k`        | 0613            | April, 30, 2025                    | `gpt-4.1-mini` version: `2025-04-14` |
+| `gpt-35-turbo`            | 1106            | No earlier than July 16, 2025      | `gpt-4.1-mini` version: `2025-04-14` |
+| `gpt-35-turbo`            | 0125            | No earlier than July 16, 2025      | `gpt-4.1-mini` version: `2025-04-14` |
+| `gpt-4`<br>`gpt-4-32k`    | 0314            | June 6, 2025                       | `gpt-4o` version: `2024-11-20`       |
+| `gpt-4`<br>`gpt-4-32k`    | 0613            | June 6, 2025                       | `gpt-4o` version: `2024-11-20`       |
+| `gpt-4`                   | turbo-2024-04-09| No earlier than June 6, 2025       | `gpt-4o` version: `2024-11-20`       |
+| `gpt-4`                   | 1106-preview    | May 1, 2025                        | `gpt-4o` version: `2024-11-20`       |
+| `gpt-4`                   | 0125-preview    | May 1, 2025                        | `gpt-4o`version: `2024-11-20`        |
+| `gpt-4`                   | vision-preview  | May 15, 2025                       | `gpt-4o` version: `2024-11-20`       |
+| `gpt-4.5-preview`         | 2025-02-27      | No Auto-upgrades <br>July 14, 2025 | `gpt-4.1` version: `2025-04-14`      |
+| `gpt-4.1`                 | 2025-04-14      | No earlier than April 11, 2026     |                                      |
+| `gpt-4.1-mini`            | 2025-04-14      | No earlier than April 11, 2026     |                                      |
+| `gpt-4.1-nano`            | 2025-04-14      | No earlier than April 11, 2026     |                                      |
+| `gpt-4o`                  | 2024-05-13      | No earlier than June 30, 2025      | `gpt-4.1` version: `2025-04-14`      |
+| `gpt-4o`                  | 2024-08-06      | No earlier than August 6, 2025     | `gpt-4.1` version: `2025-04-14`      |
+| `gpt-4o`                  | 2024-11-20      | No earlier than January 30, 2026   | `gpt-4.1` version: `2025-04-14`      |
+| `gpt-4o-mini`             | 2024-07-18      | August 16, 2025                    |                                      |
+| `gpt-3.5-turbo-instruct`  | 0914            | No earlier than May 31, 2025       |                                      |
+| `gpt-image-1`             | 2025-04-15      | No earlier than August 01, 2025    |                                      |
+| `o1-preview`              | 2024-09-12      | May 29, 2025                       | `o1`                                 |
+| `o1`                      | 2024-12-17      | No earlier than December 17, 2025  |                                      |
+| `o4-mini`                 | 2025-04-16      | No earlier than April 11, 2026     |                                      |
+| `o3`                      | 2025-04-16      | No earlier than April 11, 2026     |                                      |
+| `o3-mini`                 | 2025-01-31      | No earlier than February 1, 2026   |                                      |
+| `text-embedding-ada-002`  | 2               | No earlier than April 30, 2026     | `text-embedding-3-small` or `text-embedding-3-large` |
+| `text-embedding-ada-002`  | 1               | No earlier than April 30, 2026     | `text-embedding-3-small` or `text-embedding-3-large` |
+| `text-embedding-3-small`  |                 | No earlier than April 30, 2026     |                                      |
+| `text-embedding-3-large`  |                 | No earlier than April 30, 2026     |                                      |
 
 
 We'll notify all customers with these preview deployments at least 30 days before the start of the upgrades. We'll publish an upgrade schedule detailing the order of regions and model versions that we'll follow during the upgrades, and link to that schedule from here.
