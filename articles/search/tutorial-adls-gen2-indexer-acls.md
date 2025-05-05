@@ -1,0 +1,135 @@
+---  
+title: 'Tutorial: Index ADLS Gen2 permission metadata'
+titleSuffix: Azure AI Search  
+description: Learn how to index Access Control Lists (ACLs) and Azure Role-Based Access Control (RBAC) scope from ADLS Gen2 and query with permission-filtered results in Azure AI Search.
+ms.service: azure-ai-search  
+ms.topic: tutorial  
+ms.date: 04/30/2025
+author: wlifuture
+ms.author: wli
+---  
+
+# Tutorial: Index permission metadata from ADLS Gen2 and query with permission-filtered results
+
+This tutorial demonstrates how to index Azure Data Lake Storage (ADLS) Gen2 [Access Control Lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) and [role-based access control (RBAC)](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) scope into a search index using an indexer.
+
+It also shows you how to structure a query that respects user access permissions. A successful query outcome confirms the permission transfer that occurred during index.
+
+<!-- Add a link to Addison doc-perm concept doc -->
+For more information about indexing ACLs, see [Use an ADLS Gen2 indexer to ingest permission metadata](search-indexer-access-control-lists-and-role-based-access.md).
+
+In this tutorial, you learn how to:
+
+> [!div class="checklist"]
+> + Configure RBAC scope and ACLs on an `adlsgen2` data source
+> + Create an Azure AI Search index containing permission information fields
+> + Create and run an indexer to ingest permission information into an index from a data source
+> + Search the index you just created
+
+## Prerequisites
+
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+
++ Microsoft Entra ID authentication and authorization. Services and apps must be in the same tenant. Role assignments are used for each authenticated connection.
+
++ [ADLS Gen2](/azure/storage/blobs/create-data-lake-storage-account) with a hierarchical namespace.
+
++ Files in a hierarchical folder structure. This tutorial assumes the ADLS Gen2 demo of folder structure for file [`/Oregon/Portland/Data.txt`](/azure/storage/blobs/data-lake-storage-access-control#common-scenarios-related-to-acl-permissions). This tutorial guides you through ACL assignment on folders and files so that you can complete the exercise successfully.
+
++ [Azure AI Search](search-create-service-portal.md), any region. Basic tier or higher is required for managed identity support.
+
++ [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a [Python client](https://code.visualstudio.com/docs/languages/python) and [Jupyter package](https://pypi.org/project/jupyter/).
+
+## Prepare sample data
+
+Upload this [sample data](https://github.com/Azure-Samples/azure-search-sample-data) to a container in ADLS Gen2.
+
+## Check search service configuration
+
+You search service must be configured for Microsoft Entra ID authentication and authorization. Review this checklist to make sure you're prepared.
+
++ [Enable role-based access](search-security-enable-roles.md)
+
++ [Configure a system-assigned managed identity](search-howto-managed-identities-data-sources.md).
+
+## Get a personal identity token for local testing
+
+This tutorial assumes a REST client on a local system, connecting to Azure over a public internet connection.
+
+[Follow these steps](search-get-started-rbac.md) to acquire a personal identity token and set up Visual Studio Code for local connections to your Azure resources.
+
+## Set permissions in ADLS Gen2
+
+1. Set permissions on the storage account to ensure the search service identity has **Storage Blob Data Reader** permissions. The indexer needs this permission to retrieve data.
+
+1. In the file hierarchy, identify all `Group` and `User` sets that are assigned to containers, directories, and files.
+  
+  [Follow the recommendations to use groups as much as possible](search-indexer-access-control-lists-and-role-based-access.md#recommendations-and-best-practices) for using `Group` sets as much as possible, rather than directly assigning `User` sets.
+
+<!-- We need an actual index that has everything necessary for creating a queryable index. -->
+## Create a search index for permission metadata
+
+[Create an index](search-how-to-create-search-index.md#create-an-index) that contains fields for content and [permission metadata](search-indexer-access-control-lists-and-role-based-access.md#create-permission-fields-in-the-index).
+
+Be sure to use [2025-05-01-preview data plane REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) or a prerelease Azure SDK that provides equivalent functionality. The permission filter properties are only available in the preview APIs.
+
+> [!NOTE]
+> For demo purposes, the permission field has `retrievable` enabled so that you can check the values from the index. In a production environment, you should disable `retrievable` to avoid leaking sensitive information.
+
+```json
+{
+  "name" : "my-adlsgen2-acl-index",
+  "fields": [
+    ...
+    { "name": "UserIds", "type": "Collection(Edm.String)", "permissionFilter": "userIds", "filterable": true, "retrievable": true },
+    { "name": "GroupIds", "type": "Collection(Edm.String)", "permissionFilter": "groupIds", "filterable": true, "retrievable": true },
+    { "name": "RbacScope", "type": "Edm.String", "permissionFilter": "rbacScope", "filterable": true, "retrievable": true }
+  ],
+  "permissionFilterOption": "enabled"
+}
+```
+
+## Create a data source
+
+Modify [data source configuration](search-indexer-access-control-lists-and-role-based-access.md#configure-the-data-source) to specify indexer permission ingestion and the types of permission metadata that you want to index.
+
+A data source needs `indexerPermissionOptions`.
+
+In this tutorial, use a system-assigned managed identity for the authenticated connection.
+
+  ```json
+  {
+      "name" : "my-adlsgen2-acl-datasource",
+      "type": "adlsgen2",
+      "indexerPermissionOptions": ["userIds", "groupIds", "rbacScope"],
+      "credentials": {
+      "connectionString": "ResourceId=/subscriptions/<your subscription ID>/resourceGroups/<your resource group name>/providers/Microsoft.Storage/storageAccounts/<your storage account name>/;"
+      },
+      "container": {
+      "name": "<your container name>",
+      "query": "<optional-virtual-directory-name>"
+      }
+  }
+  ```
+
+## Create and run the indexer
+
+Indexer configuration for permission ingestion is primarily about defining `fieldMappings` from [permission metadata](search-indexer-access-control-lists-and-role-based-access.md#indexing-permission-metadata).
+
+```json
+{
+  "name" : "my-adlsgen2-acl-indexer",
+  "dataSourceName" : "my-adlsgen2-acl-datasource",
+  "targetIndexName" : "my-adlsgen2-acl-index",
+  "parameters": {
+    ...
+  }
+  "fieldMappings": [
+    { "sourceFieldName": "metadata_user_ids", "targetFieldName": "UserIds" },
+    { "sourceFieldName": "metadata_group_ids", "targetFieldName": "GroupIds" },
+    { "sourceFieldName": "metadata_rbac_scope", "targetFieldName": "RbacScope" }
+  ]
+}
+```
+
+After indexer creation and immediate run, the file content along with permission metadata information are indexed into the index.
