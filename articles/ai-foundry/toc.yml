@@ -108,6 +108,8 @@ items:
           href: ../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context
         - name: Work with multimodal models
           href: ../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context
+    - name: Work with image models
+      href: how-to/use-image-models.md
 - name: Azure OpenAI and AI services
   items:
   - name: Use Azure OpenAI Service in Azure AI Foundry portal
