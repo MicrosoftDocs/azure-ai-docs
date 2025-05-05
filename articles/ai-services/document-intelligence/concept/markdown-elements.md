@@ -1,7 +1,7 @@
 ---
-title: Document Intelligence supported markdown elements
+title: Document Intelligence supported Markdown elements
 titleSuffix: Azure AI services
-description: Description of the supported markdown elements returned as part of the Layout API response and how to use the response in your applications.
+description: Description of the supported Markdown elements returned as part of the Layout API response and how to use the response in your applications.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
@@ -13,14 +13,14 @@ ms.author: tonyeiyalla
 
 # Understanding Document Intelligence Layout API Markdown Output Format
 
-Azure AI Document Intelligence Layout API can transform your documents into rich markdown, preserving their original structure and formatting. Just specify `outputContentFormat=markdown` in your request to receive semantically structured content that maintains paragraphs, headings, tables, and other document elements in their proper hierarchy.
+Azure AI Document Intelligence Layout API can transform your documents into rich Markdown, preserving their original structure and formatting. Just specify `outputContentFormat=markdown` in your request to receive semantically structured content that maintains paragraphs, headings, tables, and other document elements in their proper hierarchy.
 
-This markdown output elegantly captures the document's original organization while providing standardized, easily consumable content for downstream applications. The preserved semantic structure enables more sophisticated document processing workflows without losing the context and relationships between document elements.
+This Markdown output elegantly captures the document's original organization while providing standardized, easily consumable content for downstream applications. The preserved semantic structure enables more sophisticated document processing workflows without losing the context and relationships between document elements.
 
 
 ## Markdown elements supported in Layout Analysis
 
-The following markdown elements are included in Layout API responses:
+The following Markdown elements are included in Layout API responses:
 
 * Paragraph
 * Heading
@@ -46,7 +46,7 @@ Here's an example:
 
 ``` md
 This is paragraph 1.
-This is still paragraph 1, even if in another markdown line.
+This is still paragraph 1, even if in another Markdown line.
 
 This is paragraph 2. There is a blank line between paragraph 1 and paragraph 2.
 ```
@@ -56,7 +56,7 @@ This is paragraph 2. There is a blank line between paragraph 1 and paragraph 2.
 
 Headings organize document content into a hierarchical structure to make navigation and understanding easier. The Layout API has the following capabilities:
 
-* Uses standard markdown heading syntax with 1-6 hash symbols (#) corresponding to heading levels.
+* Uses standard Markdown heading syntax with 1-6 hash symbols (#) corresponding to heading levels.
 * Maintains proper spacing with two blank lines before each heading for improved readability.
 
 Here's an example:
@@ -77,7 +77,7 @@ Here's an example:
 
 Tables preserve complex structured data in a visually organized format. The Layout API uses HTML table syntax for maximum fidelity and compatibility:
 
-* Implements full HTML table markup (`<table>`, `<tr>`, `<th>`, `<td>`) rather than standard markdown tables
+* Implements full HTML table markup (`<table>`, `<tr>`, `<th>`, `<td>`) rather than standard Markdown tables
 * Preserves merged cell with HTML rowspan and colspan attributes.
 * Preserves table captions with the `<caption>` tag to maintain document context
 * Handles complex table structures including headers, cells, and footers
@@ -160,9 +160,9 @@ $$= \exp \left[ - \sum _ { k = 1 } ^ { j - 1 } \beta _ { k , k + 1 } \Delta E _ 
 
 ### Barcode
 
-Barcodes and QR codes are represented using markdown image syntax with added semantic information:
+Barcodes and QR codes are represented using Markdown image syntax with added semantic information:
 
-* Uses standard image markdown syntax with descriptive attributes
+* Uses standard image Markdown syntax with descriptive attributes
 * Captures both the barcode type (QR code, barcode, etc.) and its encoded value
 * Preserves the semantic relationship between barcodes and surrounding content
 
@@ -181,7 +181,7 @@ Here's an example:
 
 Page metadata elements provide context about document pagination but aren't meant to be displayed inline with the main content:
 
-* Enclosed in HTML comments to preserve the information while keeping it hidden from standard markdown rendering
+* Enclosed in HTML comments to preserve the information while keeping it hidden from standard Markdown rendering
 * Maintains original page structure information that might be valuable for document reconstruction
 * Enables applications to understand document pagination without disrupting the content flow
 
@@ -211,7 +211,8 @@ Here's an example:
 For KeyValuePairs/Language/Style, we map them to  Analytics JSON body and not in the Markdown content.
 
 
-**NOTE:** Markdown reference - [GitHub Flavored Markdown Spec](https://github.github.com/gfm)
+> [!NOTE]
+> For more information on Markdown that is currently supported for user content on GitHub.com, *see* [GitHub Flavored Markdown Spec](https://github.github.com/gfm).
 
 ## Conclusion
 
