@@ -28,7 +28,18 @@ Azure AI Foundry supports two types of projects: a **[!INCLUDE [fdp](../includes
 > [!TIP]
 > The rest of this article shows how to create a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**.  Select **[!INCLUDE [hub](../includes/hub-project-name.md)]** at the top of this article if you want to create a [!INCLUDE [hub](../includes/hub-project-name.md)] instead.
 
-A [!INCLUDE [fdp](../includes/fdp-project-name.md)] is built on an Azure AI Foundry resource. This project type does not use a hub. Essential connections to storage and Azure AI Search are built into the resource for more seamless development. 
+* [!INCLUDE [fdp-description](../includes/fdp-description.md)]
+
+* This project type gives you the best support for:
+
+    * Agents
+    * Azure OpenAI models	
+    * Model inferencing
+    * AI Foundry API that works with agents and across models	
+    * Common filestore	
+    * Project-level isolation of files and outputs
+    * Evaluations
+    * Playgrounds
 
 ::: zone-end
 
@@ -37,9 +48,21 @@ A [!INCLUDE [fdp](../includes/fdp-project-name.md)] is built on an Azure AI Foun
 > [!TIP]
 > The rest of this article shows how to create a **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** at the top of this article if you want to create a [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
 
-A [!INCLUDE [hub](../includes/hub-project-name.md)] is hosted by an Azure AI Foundry hub. If your company has an administrative team that has created a hub for you, you can create a project from that hub. If you are working on your own, you can create a project and a default hub will automatically be created for you.
 
-For more information about the projects and hubs model, see [Azure AI Foundry hubs](../concepts/ai-resources.md).
+* [!INCLUDE [hub-description](../includes/hub-description.md)]
+
+* Use this project type for:
+
+    * Prompt flow
+    * Models-as-a-platform
+    * [Azure Machine Learning](../../machine-learning/index.yml) compatability
+
+* This project can also be used for:
+
+    * Agents (preview)
+    * Project-level isolation of files and outputs
+    * Evaluations
+    * Playgrounds
 
 ::: zone-end
 
@@ -220,17 +243,10 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
     For more information on authenticating, see [Authentication methods](/cli/azure/authenticate-azure-cli).
 
-1. Once the extension is installed and authenticated to your Azure subscription, create a resource group:
+1. Create a resource group:
 
     ```azurecli
     az group create --name {my_resource_group} --location eastus
-    ```
-
-1. Assign role assignments to the group.  Substitute your name and resource group in these commands:
-
-   ```azurecli
-    az role assignment create --role "Azure AI User" --assignee "joe@contoso.com" --resource-group {my_resource_group} 
-    az role assignment create --role "Azure AI Developer" --assignee "joe@contoso.com" --resource-group {my_resource_group} 
     ```
 
 1. Now use the following command to create a new [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
@@ -264,6 +280,14 @@ The code in this section assumes you have an existing hub.  If you don't have a 
 ::: zone-end
 
 ---
+
+::: zone pivot="fdp-project"
+
+## Create multiple projects on the same resource
+
+[!INCLUDE [create-second-fdp-project](../includes/create-second-fdp-project.md)]
+
+::: zone-end
 
 ## View project settings
 

@@ -21,7 +21,7 @@ Follow these steps to add your data in the chat playground to help the assistant
 
     :::image type="content" source="../media/tutorials/chat/playground-chat.png" alt-text="Screenshot of the chat playground with the chat mode and model selected." lightbox="../media/tutorials/chat/playground-chat.png":::
  
-1. On the left side of the chat playground, select **Add your data (PREVIEW)** > **+ Add a new data source**.
+1. On the left side of the chat playground, select **Add your data** > **+ Add a new data source**.
 
     :::image type="content" source="../media/tutorials/chat/add-your-data.png" alt-text="Screenshot of the chat playground with the option to add a data source visible." lightbox="../media/tutorials/chat/add-your-data.png":::
 
