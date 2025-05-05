@@ -264,3 +264,4 @@ If permission metadata like ACLs or RBAC scope needs to be re-ingested after reg
           "permissions"
       ]
   }
+  ```
