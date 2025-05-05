@@ -1,5 +1,5 @@
 ---
-title: Content safety for models curated by Azure AI in the model catalog
+title: Content safety for Azure Direct Models in the model catalog
 titleSuffix: Azure AI Foundry
 description: Learn about content safety for models deployed using serverless APIs, using Azure AI Foundry.
 manager: scottpolly
@@ -13,7 +13,7 @@ reviewer: ositanachi
 ms.custom: 
 ---
 
-# Content safety for models curated by Azure AI in the model catalog
+# Content safety for Azure Direct Models in the model catalog
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
