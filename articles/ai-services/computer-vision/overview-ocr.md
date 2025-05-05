@@ -15,6 +15,12 @@ ms.custom: devx-track-csharp
 
 # OCR - Optical Character Recognition
 
+> [!WARNING]
+> This service, including the Azure AI Vision legacy [OCR API in v3.2](/rest/api/computervision/recognize-printed-text?view=rest-computervision-v3.2) and [RecognizeText API in v2.1](/rest/api/computervision/recognize-printed-text/recognize-printed-text?view=rest-computervision-v2.1), is not recommended for use.
+
+[!INCLUDE [read-editions](includes/read-editions.md)]
+
+
 OCR or Optical Character Recognition is also referred to as text recognition or text extraction. Machine-learning-based OCR techniques allow you to extract printed or handwritten text from images such as posters, street signs and product labels, as well as from documents like articles, reports, forms, and invoices. The text is typically extracted as words, text lines, and paragraphs or text blocks, enabling access to digital version of the scanned text. This eliminates or significantly reduces the need for manual data entry.
 
 
@@ -23,10 +29,8 @@ OCR or Optical Character Recognition is also referred to as text recognition or 
 
 Microsoft's **Read** OCR engine is composed of multiple advanced machine-learning based models supporting [global languages](./language-support.md). It can extract printed and handwritten text including mixed languages and writing styles. **Read** is available as cloud service and on-premises container for deployment flexibility. It's also available as a synchronous API for single, non-document, image-only scenarios with performance enhancements that make it easier to implement OCR-assisted user experiences.
 
-> [!WARNING]
-> The Azure AI Vision legacy [OCR API in v3.2](/rest/api/computervision/recognize-printed-text?view=rest-computervision-v3.2) and [RecognizeText API in v2.1](/rest/api/computervision/recognize-printed-text/recognize-printed-text?view=rest-computervision-v2.1) operations are not recommended for use.
 
-[!INCLUDE [read-editions](includes/read-editions.md)]
+
 
 ## How is OCR related to Intelligent Document Processing (IDP)?
 
