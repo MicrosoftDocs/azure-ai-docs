@@ -26,7 +26,7 @@ Replace `<catalog provider URI>` and `<provider subpath>` with the appropriate v
 
 ---
 
-## Supported APIs
+## APIs
 
 - **Get Model Details**
 - **Get Publisher Details**
