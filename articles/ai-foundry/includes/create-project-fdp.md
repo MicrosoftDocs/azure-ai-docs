@@ -40,7 +40,7 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 - You must be **Owner** of the subscription to assign the appropriate access control needed to use the project.
-- [Set up your development environment](develop/install-cli-sdk.md?tabs=python)
+- [Set up your development environment](../how-to/develop/install-cli-sdk.md?tabs=python)
 - Authenticate with `az login` or `az login --use-device-code` in your environment before running code.
 
 
@@ -143,7 +143,6 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
     ```
 
 
-
 # [Azure CLI](#tab/azurecli)
 
 To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
@@ -168,6 +167,8 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
     az cognitiveservices account project create --name {my_project_name} -resource-group {my_resource_group}
     ```
 
+---
+
 ## Create multiple projects on the same resource
 
 [!INCLUDE [create-second-fdp-project](../includes/create-second-fdp-project.md)]
@@ -176,7 +177,6 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 ## View project settings
 
 # [Azure AI Foundry portal](#tab/ai-foundry)
-
 
 On the project **Home** page, you can find information about the project.
 

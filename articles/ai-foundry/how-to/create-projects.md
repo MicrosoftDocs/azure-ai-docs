@@ -78,7 +78,6 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 # [Python SDK](#tab/python)
 
-
 The code in this section assumes you have an existing hub. If you don't have a hub, see [How to create and manage an Azure AI Foundry hub](create-azure-ai-resource.md) to create one.
 
 [!INCLUDE [SDK setup](../includes/development-environment-config.md)]
@@ -119,6 +118,8 @@ The code in this section assumes you have an existing hub. If you don't have a h
     ```
 
     Form `my_hub_ID` with this syntax: `/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{hub_name}`.
+
+---
 
 ## View project settings
 
