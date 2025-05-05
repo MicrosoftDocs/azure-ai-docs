@@ -56,8 +56,9 @@ Not every model is available in the regions supported by the responses API. Chec
 > Not currently supported:
 > - Structured outputs
 > - image_url pointing to an internet address
-> - The web search tool is also not supported, and is not part of the `2025-03-01-preview` API.  
-> 
+> - The web search tool
+> - Fine-tuned models
+>
 > There is also a known issue with vision performance when using the Responses API, particularly with OCR tasks. As a temporary workaround set image detail to `high`. This article will be updated once this issue is resolved and as any additional feature support is added.
 
 
