@@ -52,7 +52,7 @@ If you have configured the resource to with **Microsoft Entra ID** support, you 
 ```python
 import os
 from azure.ai.inference import EmbeddingsClient
-from azure.core.credentials import AzureKeyCredential
+from azure.identity import DefaultAzureCredential
 
 model = EmbeddingsClient(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
