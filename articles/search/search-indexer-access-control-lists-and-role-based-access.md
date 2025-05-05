@@ -26,14 +26,8 @@ The indexer approach is built on this foundation:
 
 + An index in Azure AI Search containing the ingested documents and corresponding permissions. Permission metadata is stored as fields in the index. To set up queries that respect the permission filters, you must use the 2025-05-01-preview REST API or a prerelease package of an Azure SDK that supports the feature.
 
-<!-- In Azure AI Search, [Azure Data Lake Storage (ADLS) Gen2 indexers](search-howto-index-azure-data-lake-storage.md) can index access control metadata, such as Access Control Lists (ACLs) and Azure Role-Based Access Control (RBAC) scope, directly from ADLS Gen2.  -->
-
 <!-- Addison has a concept article for doc-level permission concept. we should link to that instead. -->
 This functionality helps align [document-level permissions](search-security-trimming-for-azure-search.md) in the search index with the access controls defined in ADLS Gen2, allowing users to retrieve content in a way that reflects their existing permissions.
-
-<!-- - [Azure RBAC scope](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) in ADLS Gen2 assigns certain security principals with certain roles, as a coarse-grain access control model.
-
-- [Access control lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) from ADLS Gen2 is a POSIX-liked fine-grain access control model. -->
 
 This article supplements [**Index data from ADLS  Gen2**](search-howto-index-azure-data-lake-storage.md) with information that's specific to ingesting permissions alongside document content into an Azure AI Search index. 
 
@@ -44,16 +38,6 @@ This article supplements [**Index data from ADLS  Gen2**](search-howto-index-azu
 + Azure AI Search, any region, but you must have a billable tier (basic and higher) for managed identity support. The search service must be [configured for role-based access](search-security-enable-roles.md) and it must [have a managed identity (either system or user)](search-howto-managed-identities-data-sources.md).
 
 + ADLS Gen2 blobs in a hierarchical namespace, with user permissions granted through ACLs or roles.
-
-<!-- - Azure Data Lake Storage Gen2 ([`adlsgen2`](search-howto-index-azure-data-lake-storage.md#define-the-data-source)) as the data source type.
-
-- Datasource property `indexerIngestionOptions` with various permission ingestion options from the indexer.
-
-- ACLs indexer ingestion supports different [credentials and connection strings](search-howto-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings): full access storage account connection string, or managed identity connection string.
-
-- RBAC scope ingestion requires [managed identity](search-howto-managed-identities-data-sources.md) credentials and [connection strings](search-howto-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings) format of managed identity only.
-
-- Indexer execution credentials should have at least [Storage Blob Data Reader](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) role from the ADLS Gen2 data source. -->
 
 ## Limitations
 
@@ -67,6 +51,7 @@ This article supplements [**Index data from ADLS  Gen2**](search-howto-index-azu
   + [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
   + [Knowledge store](knowledge-store-concept-intro.md)
   + [Indexer enrichment cache](search-howto-incremental-index.md)
+  + [Debug sessions](cognitive-search-debug-session.md)
 
 ## About ACL hierarchical permissions
 
@@ -93,7 +78,9 @@ An indexer can retrieve ACLs on a storage account if the following criteria are 
 
 ### Authorization
 
-For indexer execution, your search service identity must have **Storage Blob Data Reader** permission. If you're testing locally, you should also have a **Storage Blob Data Reader** role assignment. For more information, see [Connect to Azure Storage using a managed identity](search-howto-managed-identities-storage.md).
+For indexer execution, your search service identity must have **Storage Blob Data Reader** permission. 
+
+If you're testing locally, you should also have a **Storage Blob Data Reader** role assignment. For more information, see [Connect to Azure Storage using a managed identity](search-howto-managed-identities-storage.md).
 
 ### Root container permissions:
 
@@ -109,7 +96,9 @@ Use the ADLS Gen2 tool to [apply ACLs recursively](/azure/storage/blobs/data-lak
 
 ### Remove excess permissions
 
-After applying ACLs recursively, review permissions for each directory and file. Remove any `Group` or `User` sets that shouldn't have access to specific directories or files. For example, remove `User2` on folder `Portland/`, and for folder `Idaho` remove `Group2` and `User2` from its assignments, and so on.
+After applying ACLs recursively, review permissions for each directory and file. 
+
+Remove any `Group` or `User` sets that shouldn't have access to specific directories or files. For example, remove `User2` on folder `Portland/`, and for folder `Idaho` remove `Group2` and `User2` from its assignments, and so on.
 
 ### Sample ACL assignments structure
 
@@ -121,22 +110,6 @@ Here's a diagram of the ACL assignment structure for the [fictitious directory h
 
 Over time, as any new ACL assignments are added or modified, repeat the above steps to ensure proper propagation and permissions alignment. Updated permissions in ADLS Gen2 are updated in the search index when you re-ingest the content using the indexer.
 
-<!-- ### Sample ACL assignments structure
-
-![Diagram of an ACL assignment structure.](media/search-security-acl/acl-assignment-structure-sample.png)
- -->
-
-<!-- ## Supported scenarios
-
-- Extraction of ACL and Azure RBAC container metadata from Azure Data Lake Storage Gen2.
-- Tailored for RAG (Retrieval Augmented Generation) applications and enterprise search. -->
-
-<!-- ## Indexing with indexers
-
-### Search service configuration
-
-- For RBAC scope ingestion, [managed identity](search-howto-managed-identities-data-sources.md) is required, either system managed identity or user-assigned managed identity. -->
-
 ## Configure Azure AI Search for indexing permission filters
 
 Recall that the search service must have:
@@ -146,7 +119,9 @@ Recall that the search service must have:
 
 ### Authorization
 
-For indexer execution, the client issuing the API call must have **Search Service Contributor** permission to create objects, and **Search Index Data Reader** to query an index. If you're testing locally, you should have the same role assignment. For more information, see [Connect to Azure AI Search using roles](search-security-rbac.md).
+For indexer execution, the client issuing the API call must have **Search Service Contributor** permission to create objects, **Search Index Data Contributor** permission to perform data import, and **Search Index Data Reader** to query an index. 
+
+If you're testing locally, you should have the same role assignments. For more information, see [Connect to Azure AI Search using roles](search-security-rbac.md).
 
 ## Indexing permission metadata
 
@@ -235,15 +210,14 @@ JSON schema example:
 
 ### Configure the indexer
 
-Field mappings within an indexer set the data path to fields in an index. Target and destination fields that vary by name or data type require an explicit field mapping. The following fields might need field mappings:
+Field mappings within an indexer set the data path to fields in an index. Target and destination fields that vary by name or data type require an explicit field mapping. The following metadata fields in ADLS Gen2 might need field mappings if you vary the field name:
 
-- **metadata_user_ids** (`Collection(Edm.String)`) - the ACL user IDs list.
-- **metadata_group_ids** (`Collection(Edm.String)`) - the ACL group IDs list.
-- **metadata_rbac_scope** (`Edm.String`) - the container RBAC scope.
++ **metadata_user_ids** (`Collection(Edm.String)`) - the ACL user IDs list.
++ **metadata_group_ids** (`Collection(Edm.String)`) - the ACL group IDs list.
++ **metadata_rbac_scope** (`Edm.String`) - the container RBAC scope.
 
-Specify `fieldMappings` in the indexer to output the permission fields for indexing.
+Specify `fieldMappings` in the indexer to route the permission metadata to target fields during indexing.
 
-<!-- Question: Are these suggested field names, or are these more like blob metadata fields that are fixed? -->
 JSON schema example:
 
 ```json
