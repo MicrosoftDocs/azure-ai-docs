@@ -93,7 +93,7 @@ items:
     - name: Index encrypted blobs
       href: search-howto-index-encrypted-blobs.md
     - name: Index permissioned ADLS Gen2 blobs
-      href: search-how-to-index-permission-information.md
+      href: tutorial-adls-gen2-indexer-acls.md
     - name: Create a custom analyzer
       href: tutorial-create-custom-analyzer.md
   - name: RAG tutorials
