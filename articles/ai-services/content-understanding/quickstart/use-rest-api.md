@@ -247,6 +247,6 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ## Next steps
 
-* In this quickstart, you learned how to call the [REST API](<Reference Link>) using a pre-built analzyer. See how you can [customize pre-built analyzers](<Link to customization) to better fit your use case.
+* In this quickstart, you learned how to call the [REST API](<Reference Link>) using a pre-built analyzer. See how you can [customize pre-built analyzers](<Link to customization) to better fit your use case.
 
 
