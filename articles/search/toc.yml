@@ -339,6 +339,8 @@ items:
         href: cognitive-search-concept-troubleshooting.md
       - name: Best practices - GenAI Prompt skill
         href: responsible-ai-best-practices-genai-prompt-skill.md
+      - name: GenAI Prompt Skill - Example Usage Guide
+        href: chat-completion-skill-example-usage.md
       - name: Custom skills
         items:
         - name: Integrate custom skills
