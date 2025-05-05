@@ -112,7 +112,7 @@ In this tutorial, use a system-assigned managed identity for the authenticated c
   }
   ```
 
-### Create and run the indexer
+## Create and run the indexer
 
 Indexer configuration for permission ingestion is primarily about defining `fieldMappings` from [permission metadata](search-indexer-access-control-lists-and-role-based-access.md#indexing-permission-metadata).
 
