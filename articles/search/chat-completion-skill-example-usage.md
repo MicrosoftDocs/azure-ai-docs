@@ -6,7 +6,7 @@ author: Amit Kalay
 ms.author: amitkalay
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/30/2025
+ms.date: 05/05/2025
 ms.custom:
   - devx-track-csharp
   - build-2025
