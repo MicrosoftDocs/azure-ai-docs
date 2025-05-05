@@ -148,7 +148,7 @@ curl -X POST --location "https://<catalog provider URI>/<provider subpath>/model
 
 ---
 
-## Supported Filterable Fields
+## Filterable Fields
 
 You can filter models using the following fields:
 
