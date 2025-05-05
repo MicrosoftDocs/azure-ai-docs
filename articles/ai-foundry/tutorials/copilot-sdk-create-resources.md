@@ -33,8 +33,6 @@ If you've completed other tutorials or quickstarts, you might have already creat
 
 This tutorial is part one of a three-part tutorial.
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
-
 ## Prerequisites
 
 [!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
@@ -116,7 +114,7 @@ In the IDE of your choice, create a new folder for your project.  Open a termina
 
 ## Install packages
 
-Install `azure-ai-projects`(preview) and `azure-ai-inference` (preview), along with other required packages.
+Install required packages.
 
 1. First, create a file named **requirements.txt** in your project folder. Add the following packages to the file:
 

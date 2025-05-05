@@ -52,7 +52,7 @@ As needed, change the `sku` parameter value to the [pricing](https://azure.micro
     | **Subscription** | Select an Azure subscription. |
     | **Resource group** | Select **Create new**, enter a unique name for the resource group, and then select **OK**. |
     | **Region** | Select a region (for example, **East US**). |
-    | **AI service Name** | Replace the value with a unique name for your Azure AI services resource. You'll need the name in the next section when you validate the deployment. |
+    | **AI service Name** | Replace the value with a unique name for your Azure AI Foundry resource. You'll need the name in the next section when you validate the deployment. |
     | **Location** | Replace with the region that you selected. |
     | **Sku** | Select the [pricing tier](https://azure.microsoft.com/pricing/details/cognitive-services/) for your resource. |
 
@@ -96,7 +96,7 @@ When your deployment finishes, you can select the **Go to resource** button to s
 Run the following script. Include the name of the resource group that you created earlier.
 
 ```azurecli-interactive
-echo "Enter the resource group where the Azure AI services resource exists:" &&
+echo "Enter the resource group where the Azure AI Foundry resource exists:" &&
 read resourceGroupName &&
 az cognitiveservices account list -g $resourceGroupName
 ```
