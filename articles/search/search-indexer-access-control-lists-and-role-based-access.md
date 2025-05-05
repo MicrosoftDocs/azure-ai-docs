@@ -106,7 +106,7 @@ If any new ACL assignments are added, repeat the above steps to ensure proper pr
 
 - For RBAC scope ingestion, [managed identity](search-howto-managed-identities-data-sources.md) is required, either system managed identity or user-assigned managed identity. -->
 
-## Indexing permission data
+## Indexing permission metadata
 
 In Azure AI Search, configure an indexer, data source, and index to pull permission metadata from ADLS Gen2 blobs.
 
