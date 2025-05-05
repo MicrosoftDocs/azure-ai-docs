@@ -45,17 +45,17 @@ Since the workspace managed virtual network can access internet in this configur
 1. Configure a workspace by following [Workspace managed network isolation](./how-to-managed-network.md#configure-a-managed-virtual-network-to-allow-only-approved-outbound). In step 3 of the tutorial when selecting **Workspace managed outbound access**, select **Allow Only Approved Outbound**.  
 2. If you set the public network access to the workspace to disabled, you can connect to the workspace using one of the methods as listed [in step 2 of the allow internet outbound section of this tutorial](#workspace-managed-virtual-network-to-allow-internet-outbound).
 3. The workspace manages virtual network is set to an allow only configuration. You must add a corresponding user-defined outbound rule to allow all the relevant FQDNs.
-    1. Follow this link for a list of FQDNs required for the [Curated by Azure AI collection](#language-models-in-curated-by-azure-ai-collection).
+    1. Follow this link for a list of FQDNs required for the [Azure Direct Models collection](#language-models-in-curated-by-azure-ai-collection).
     2. Follow this link for a list of FQDNs required for the [Hugging Face collection](#work-with-hugging-face-collection). 
 
 ## Work with open source models curated by Azure Machine Learning
 
 Workspace managed virtual network to allow only approved outbound uses a Service Endpoint Policy to Azure Machine Learning managed storage accounts, to help access the models in the collections curated by Azure Machine Learning in an out-of-the-box manner. This mode of workspace configuration also has default outbound to the Microsoft Container Registry that contains the docker image used to deploy the models. 
 
-### Language models in 'Curated by Azure AI' collection
+### Language models in 'Azure Direct Models' collection
 
 These models involve dynamic installation of dependencies at runtime. To add a user defined outbound rule, follow step four of 
-To use the Curated by Azure AI collection, users should add user defined outbound rules for the following FQDNs at the workspace level:
+To use the Azure Direct Models collection, users should add user defined outbound rules for the following FQDNs at the workspace level:
 
   * `*.anaconda.org`
   * `*.anaconda.com`
