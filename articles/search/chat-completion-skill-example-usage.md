@@ -16,7 +16,9 @@ ms.custom:
 
 In this article, learn how to generate captions using AI enrichment and a skillset. Images often contain useful information that's relevant in search scenarios. You can [vectorize images](search-get-started-portal-image-search.md) to represent visual content in your search index. Or, you can use [AI enrichment and skillsets](cognitive-search-concept-intro.md) to create and extract searchable *text* from images.
 
-We are going to describe each image from your data source, and then demonstrate running a query to search for a specific thing in the image. We are going to leverage the capabilities of the Custom GenAI prompt skill to generate captions for the images in your data.
+The skillset generates a description of each image in your data source and the indexer pushes that description into a search index. To view the descriptions, you can run a query that includes them in the response.
+
+## Prerequisites
 
 To work with image content in a skillset, you need:
 
