@@ -23,25 +23,6 @@ In Azure AI Search, [Azure Data Lake Storage (ADLS) Gen2 indexers](search-howto-
 
 This article supplements [**Index data from ADLS  Gen2**](search-howto-index-azure-data-lake-storage.md) with information that's specific to ingesting permissions alongside document content into an Azure AI Search index. 
 
-## ACL hierarchical permissions
-
-Indexers can retrieve ACL assignments from the specified container and all directories leading to each file by following the ADLS Gen2 [hierarchical access evaluation flow](/azure/storage/blobs/data-lake-storage-access-control#common-scenarios-related-to-acl-permissions). The final effective access lists for each file are computed and the different access categories are indexed into the corresponding index fields.
-
-For example, in [ADLS Gen2 common scenarios related to permissions](/azure/storage/blobs/data-lake-storage-access-control#common-scenarios-related-to-acl-permissions) as the file path /Oregon/Portland/Data.txt.
-
-| Operation |	/ |	Oregon/ |	Portland/ |	Data.txt |
-| - | - | - | - | - |
-| Read Data.txt	| --X	| --X	| --X	| R-- |
-
-The indexer fetches ACLs from each container and directory, resolves them into the retained effective access of lower levels, and continues this process until it determines the effective access for each file.
-
-```txt
-/ assigned access vs Oregon/ assigned access
-  => Oregon/ effective access vs Portland/ assigned access
-    => Portland/ effective access vs Data.txt assigned access
-      => Data.txt effective access
-```
-
 ## Prerequisites
 
 - Azure Data Lake Storage Gen2 ([`adlsgen2`](search-howto-index-azure-data-lake-storage.md#define-the-data-source)) as the data source type.
@@ -66,6 +47,25 @@ The indexer fetches ACLs from each container and directory, resolves them into t
   - [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
   - [Knowledge store](knowledge-store-concept-intro.md)
   - [Indexer cache](search-howto-incremental-index.md)
+
+## ACL hierarchical permissions
+
+Indexers can retrieve ACL assignments from the specified container and all directories leading to each file by following the ADLS Gen2 [hierarchical access evaluation flow](/azure/storage/blobs/data-lake-storage-access-control#common-scenarios-related-to-acl-permissions). The final effective access lists for each file are computed and the different access categories are indexed into the corresponding index fields.
+
+For example, in [ADLS Gen2 common scenarios related to permissions](/azure/storage/blobs/data-lake-storage-access-control#common-scenarios-related-to-acl-permissions) as the file path /Oregon/Portland/Data.txt.
+
+| Operation |	/ |	Oregon/ |	Portland/ |	Data.txt |
+| - | - | - | - | - |
+| Read Data.txt	| --X	| --X	| --X	| R-- |
+
+The indexer fetches ACLs from each container and directory, resolves them into the retained effective access of lower levels, and continues this process until it determines the effective access for each file.
+
+```txt
+/ assigned access vs Oregon/ assigned access
+  => Oregon/ effective access vs Portland/ assigned access
+    => Portland/ effective access vs Data.txt assigned access
+      => Data.txt effective access
+```
 
 ## Checklist for permission filter ingestion
 
@@ -110,7 +110,7 @@ If any new ACL assignments are added, repeat the above steps to ensure proper pr
 
 In Azure AI Search, configure an indexer, data source, and index to pull permission metadata from ADLS Gen2 blobs.
 
-## Data source configuration
+### Data source configuration
 
 - Data Source type must be `adlsgen2`.
 
@@ -137,7 +137,7 @@ JSON schema example:
   }
   ```
 
-## Index permission fields
+### Index permission fields
 
 In Azure AI Search, make sure your index contains field definitions for the permission metadata. Permission metadata can be indexed when `indexerPermissionOptions` is specified in the data source definition.
 
@@ -163,7 +163,7 @@ JSON schema example:
 }
 ```
 
-## Indexer configuration
+### Indexer configuration
 
 Field mappings within an indexer set the data path to fields in an index. Target and destination fields that vary by name or data type require an explicit field mapping. The following fields might need field mappings:
 

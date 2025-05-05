@@ -9,12 +9,14 @@ author: wlifuture
 ms.author: wli
 ---  
 
-# Tutorial: Index permission metadata from ADLS Gen2 with indexer and query with permission-filtered results
+# Tutorial: Index permission metadata from ADLS Gen2 and query with permission-filtered results
 
-This tutorial demonstrates how to index Azure Data Lake Storage (ADLS) Gen2 [Access Control Lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) and [role-based access control (RBAC)](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) scope into a search index using an indexer, and how to confirm the permission transfer during querying. For more information about indexing ACLs, see [Indexing Access Control Lists and Azure Role-Based Access Control scope using Indexers](search-indexer-access-control-lists-and-role-based-access.md).
+This tutorial demonstrates how to index Azure Data Lake Storage (ADLS) Gen2 [Access Control Lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) and [role-based access control (RBAC)](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) scope into a search index using an indexer, and how to confirm the permission transfer during querying. For more information about indexing ACLs, see [Indexing Access Control Lists and Azure Role-Based Access Control scope using indexers](search-indexer-access-control-lists-and-role-based-access.md).
+
+In this tutorial, you learn how to:
 
 > [!div class="checklist"]
-> + Configure RBAC scope and ACLs on `adlsgen2` data source
+> + Configure RBAC scope and ACLs on an `adlsgen2` data source
 > + Create an Azure AI Search index containing permission information fields
 > + Create and run an indexer to ingest permission information into an index from a data source
 > + Search the index you just created
