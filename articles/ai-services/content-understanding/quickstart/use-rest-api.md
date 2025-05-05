@@ -37,7 +37,7 @@ To get started, you need **An Active Azure Subscription**. If you don't have an 
 
 ## Get Started with a Prebuilt Analyzer
 Analyzers define how your content will be processed and the insights that will be extracted. We offer [pre-built analyzers](link to pre-built analyzer page) for common use cases. You can [customize pre-built analyzers](link to learn how to customize analyzers) to better fit your specific needs and use cases. 
-This quickstart uses pre-built document, image and video analyzers to help you get started. 
+This quickstart uses pre-built document, image, audio, and video analyzers to help you get started. 
 
 Before running the cURL command, make the following changes to the HTTP request:
 #### POST Request
