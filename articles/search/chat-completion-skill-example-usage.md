@@ -84,9 +84,7 @@ Note that enabling `imageAction` (setting this parameter to other than `none`) w
 
    + `normalizedImageMaxWidth` in pixels. Default is 2,000. Maximum value is 10,000.
 
-   + `normalizedImageMaxHeight` in pixels. Default is 2,000. Maximum value is 10,000.
-
-   The default of 2,000 pixels for the normalized images maximum width and height is based on the maximum sizes supported by the [OCR skill](cognitive-search-skill-ocr.md) and the [image analysis skill](cognitive-search-skill-image-analysis.md). The [OCR skill](cognitive-search-skill-ocr.md) supports a maximum width and height of 4,200 for non-English languages, and 10,000 for English. If you increase the maximum limits, processing could fail on larger images depending on your skillset definition and the language of the documents. 
+   + `normalizedImageMaxHeight` in pixels. Default is 2,000. Maximum value is 10,000. 
 
 ### About normalized images
 
@@ -139,13 +137,11 @@ As noted, images are extracted during document cracking and then normalized as a
 
 + `/document/normalized_images/*` is for documents that are processed whole.
 
-Whether you're using OCR and image analysis in the same, inputs have virtually the same construction:
-
 ```json
     {
       "@odata.type": "#Microsoft.Skills.Custom.ChatCompletionSkill",
       "context": "/document/normalized_images/*",
-      "uri": "https://azs-grok-aoai.openai.azure.com/openai/deployments/azs-grok-gpt-4o/chat/completions?api-version=2025-01-01-preview", (this is just an EXAMPLE. Please use the URI provided in AI Foundry)
+      "uri": "https://azs-grok-aoai.openai.azure.com/openai/deployments/azs-grok-gpt-4o/chat/completions?api-version=2025-01-01-preview",
       "timeout": "PT1M",
       "apiKey": "<YOUR-API-KEY here>"
       "inputs": [
