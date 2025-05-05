@@ -387,7 +387,7 @@ items:
       href: concepts/fine-tuning-overview.md
     - name: Fine-tune Azure AI Foundry models
       items: 
-      - name: Fine-tune models deployed via serverless API
+      - name: Fine-tune models deployed via standard deployment
         href: how-to/fine-tune-serverless.md
       - name: Fine-tune models deployed via managed compute
         href: how-to/fine-tune-managed-compute.md

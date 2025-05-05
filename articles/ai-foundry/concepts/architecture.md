@@ -35,7 +35,7 @@ At the top level, Azure AI Foundry provides access to the following resources:
     For more information, visit [Management center](management-center.md).
 - **Azure AI Foundry hub**: The hub is the top-level resource in Azure AI Foundry portal, and is based on the Azure Machine Learning service. The Azure resource provider for a hub is `Microsoft.MachineLearningServices/workspaces`, and the kind of resource is `Hub`. It provides the following features:
     - Security configuration including a managed network that spans projects and model endpoints.
-    - Compute resources for interactive development, fine-tuning, open source, and serverless model deployments.
+    - Compute resources for interactive development, fine-tuning, open source, and standard deployment for models.
     - Connections to other Azure services such as Azure OpenAI, Azure AI services, and Azure AI Search. Hub-scoped connections are shared with projects created from the hub.
     - Project management. A hub can have multiple child projects.
     - An associated Azure storage account for data upload and artifact storage.
