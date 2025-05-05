@@ -35,7 +35,7 @@ Deploying models to managed compute deploys model weights to dedicated virtual m
 
 You manage the infrastructure for these managed compute resources. Azure data, privacy, and security commitments apply. To learn more about Azure compliance offerings applicable to Azure AI Foundry, see the [Azure Compliance Offerings page](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3).
 
-Although containers for **Azure Direct Models** are scanned for vulnerabilities that could exfiltrate data, not all models available through the model catalog are scanned. To reduce the risk of data exfiltration, you can [help protect your deployment by using virtual networks](configure-managed-network.md). You can also use [Azure Policy](../../ai-services/policy-reference.md) to regulate the models that your users can deploy.
+Although containers for **Curated by Azure AI** models are scanned for vulnerabilities that could exfiltrate data, not all models available through the model catalog are scanned. To reduce the risk of data exfiltration, you can [help protect your deployment by using virtual networks](configure-managed-network.md). You can also use [Azure Policy](../../ai-services/policy-reference.md) to regulate the models that your users can deploy.
 
 :::image type="content" source="../media/explore/subscription-service-cycle.png" alt-text="Diagram that shows the platform service life cycle." lightbox="../media/explore/subscription-service-cycle.png":::
 
