@@ -52,8 +52,8 @@ You might eventually want to use a project for tasks such as managing connection
 
 Let's look at two ways to connect Azure OpenAI resources to a project:
 
-- [When you create a project](#connect-azure-openai-service-when-you-create-a-project-for-the-first-time)
-- [After you create a project](#connect-azure-openai-service-after-you-create-a-project)
+- [When you create a project](#connect-azure-openai-when-you-create-a-project-for-the-first-time)
+- [After you create a project](#connect-azure-openai-after-you-create-a-project)
 
 ### Connect Azure OpenAI when you create a project for the first time
 
