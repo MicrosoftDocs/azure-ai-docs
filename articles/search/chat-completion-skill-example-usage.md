@@ -131,7 +131,7 @@ Once the basic framework of your skillset is created and Azure AI services is co
 > [!NOTE]
 > For an example skillset that combines image processing with downstream natural language processing, see [REST Tutorial: Use REST and AI to generate searchable content from Azure blobs](cognitive-search-tutorial-blob.md). It shows how to feed skill imaging output into entity recognition and key phrase extraction.
 
-### Inputs for image processing
+### Example inputs for image processing
 
 As noted, images are extracted during document cracking and then normalized as a preliminary step. The normalized images are the inputs to any image processing skill, and are always represented in an enriched document tree in either one of two ways:
 
@@ -162,6 +162,56 @@ As noted, images are extracted during document cracking and then normalized as a
           {
             "name": "response",
             "targetName": "captionedImage"
+          } 
+        ]
+    },
+```
+
+### Example using json schema responses with text inputs
+
+This example illustrates how you can use structured outputs for language models. Note that this capability is mainly supported mostly by OpenAI language models, although that may change in the future.
+
+```json
+    {
+      "@odata.type": "#Microsoft.Skills.Custom.ChatCompletionSkill",
+      "context": "/document/content",
+      "uri": "https://azs-grok-aoai.openai.azure.com/openai/deployments/azs-grok-gpt-4o/chat/completions?api-version=2025-01-01-preview",
+      "timeout": "PT1M",
+      "apiKey": "<YOUR-API-KEY here>"
+      "inputs": [
+        {
+          "name": "systemMessage",
+          "source": "='You are a useful artificial intelligence assistant that helps people.'"
+        },
+        {
+          "name": "userMessage",
+          "source": "='How many languages are there in the world and what are they?'"
+        }
+      ],
+      "response_format": { 
+        "type": "json_schema",
+        "json_schema": {
+            "name": "structured_output",
+            "strict": true,
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "total": { "type": "number" },
+                    "languages": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": ["total", "languages"],
+                "additionalProperties": false
+                }
+      },
+      "outputs": [ 
+          {
+            "name": "response",
+            "targetName": "responseJsonForLanguages"
           } 
         ]
     },
