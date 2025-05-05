@@ -21,7 +21,7 @@ zone_pivot_groups: project-type
 
 ::: zone pivot="hub-project"
 
-Quota provides the flexibility to actively manage the allocation of rate limits across the deployments within your subscription. This article walks through the process of managing quota for your Azure AI Foundry virtual machines and Azure OpenAI models.
+Quota provides the flexibility to actively manage the allocation of rate limits across the deployments within your subscription. This article walks through the process of managing quota for your Azure AI Foundry virtual machines and Azure OpenAI in Foundry models.
 
 Azure uses limits and quotas to prevent budget overruns due to fraud, and to honor Azure capacity constraints. It's also a good way to control costs for admins. Consider these limits as you scale for production workloads. 
 
@@ -101,7 +101,7 @@ When opening the support request to increase the total compute limit, provide th
 
 Azure AI Foundry provides a pool of shared quota that is available for different users across various regions to use concurrently. Depending upon availability, users can temporarily access quota from the shared pool, and use the quota to perform testing for a limited amount of time. The specific time duration depends on the use case. By temporarily using quota from the quota pool, you no longer need to file a support ticket for a short-term quota increase or wait for your quota request to be approved before you can proceed with your workload. 
 
-Use of the shared quota pool is available for testing inferencing for Llama-2, Phi, Nemotron, Mistral, Dolly, and Deci-DeciLM models from the Model Catalog. You should use the shared quota only for creating temporary test endpoints, not production endpoints. For endpoints in production, you should [request dedicated quota](#view-and-request-quotas-in-azure-ai-foundry-portal). Billing for shared quota is usage-based, just like billing for dedicated virtual machine families. 
+Use of the shared quota pool is available for testing inferencing for Llama-2, Phi, Nemotron, Mistral, Dolly, and Deci-DeciLM models from the Model Catalog. You should use the shared quota only for creating temporary test endpoints, not production endpoints. For endpoints in production, you should [request dedicated quota](#view-and-request-quotas-in-azure-ai-foundry-portal). Billing for shared quota is usage-based. 
 
 ::: zone pivot="hub-project"
 
@@ -150,7 +150,10 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
   
     :::image type="content" source="../media/cost-management/model-quota.png" alt-text="Screenshot of the Model quota page in Azure AI Foundry portal." lightbox="../media/cost-management/model-quota.png":::
 
-1. When you select the **VM quota** link, you can view the quota and usage for the virtual machine families in the selected Azure region. To request more quota, select the VM family and then select **Request quota**. 
+1. When you select the **VM quota** link, you can view the quota and usage for the virtual machine families in the selected Azure region. To request more quota, select the VM family and then select **Request quota**.
+
+    > [!TIP]
+    > If you don't see the **VM quota** link, you were viewing a [!INCLUDE [fdp](../includes/fdp-project-name.md)] project when you selected **Management center**. Use the **All resources** link and then select a project where the **Type** contains **Parent resource : <name> (Hub)**, and then select **Quota** from the left menu..
 
     :::image type="content" source="../media/cost-management/vm-quota.png" alt-text="Screenshot of the VM quota page in Azure AI Foundry portal." lightbox="../media/cost-management/vm-quota.png":::
 
