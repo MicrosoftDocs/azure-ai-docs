@@ -153,7 +153,7 @@ items:
   - name: Analyze document API response
     displayName: words, lines, pages, bounding regions, documents
     href: concept/analyze-document-response.md
-  - name: Layout API Markdown Output Elements
+  - name: Layout API markdown output elements
     displayName: words, lines, pages, bounding regions, documents
     href: concept/markdown-elements.md
   - name: Retrieval-Augmented Generation (RAG)

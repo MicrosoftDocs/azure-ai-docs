@@ -1,19 +1,19 @@
 ---
-title: Document Intelligence Supported Markdown Elements
+title: Document Intelligence supported markdown elements
 titleSuffix: Azure AI services
 description: Description of the supported markdown elements returned as part of the Layout API response and how to use the response in your applications.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 04/24/2025
+ms.date: 05/05/2025
 ms.author: tonyeiyalla
 
 ---
 
 # Understanding Document Intelligence Layout API Markdown Output Format
 
-Azure AI Document Intelligence's Layout API can transform your documents into rich markdown, preserving their original structure and formatting. Simply specify outputContentFormat=markdown in your request to receive semantically structured content that maintains paragraphs, headings, tables, and other document elements in their proper hierarchy.
+Azure AI Document Intelligence Layout API can transform your documents into rich markdown, preserving their original structure and formatting. Just specify `outputContentFormat=markdown` in your request to receive semantically structured content that maintains paragraphs, headings, tables, and other document elements in their proper hierarchy.
 
 This markdown output elegantly captures the document's original organization while providing standardized, easily consumable content for downstream applications. The preserved semantic structure enables more sophisticated document processing workflows without losing the context and relationships between document elements.
 
@@ -42,7 +42,7 @@ Paragraphs represent cohesive blocks of text that belong together semantically. 
 * Using line breaks within paragraphs to maintain the visual structure of the original document
 * Maintaining proper text flow that respects the original document's reading order
 
-Here is an example:
+Here's an example:
 
 ``` md
 This is paragraph 1.
@@ -54,12 +54,12 @@ This is paragraph 2. There is a blank line between paragraph 1 and paragraph 2.
 
 ### Heading
 
-Headings organize document content into a hierarchical structure, making navigation and understanding easier. The Layout API:
+Headings organize document content into a hierarchical structure to make navigation and understanding easier. The Layout API has the following capabilities:
 
-* Uses standard markdown heading syntax with 1-6 hash symbols (#) corresponding to heading levels
-* Maintains proper spacing with two blank lines before each heading for improved readability
+* Uses standard markdown heading syntax with 1-6 hash symbols (#) corresponding to heading levels.
+* Maintains proper spacing with two blank lines before each heading for improved readability.
 
-Here is an example:
+Here's an example:
 
 ``` md
 # This is a title
@@ -84,7 +84,7 @@ Tables preserve complex structured data in a visually organized format. The Layo
 * Maintains proper spacing with two blank lines before each table for improved readability
 * Preserves table footnotes as separate paragraph following the table
 
-Here is an example:
+Here's an example:
 
 ``` md
 <table>
@@ -108,7 +108,7 @@ The Layout API preserves figure elements:
 * Preserves figure captions with the `<figcaption>` tag to provide important context
 * Preserves figure footnotes as separate paragraphs following the figure container
 
-Here is an example:
+Here's an example:
 
 ``` md 
 <figure>
@@ -146,7 +146,7 @@ Mathematical formulas are preserved with LaTeX-compatible syntax that allows for
 * Multi-line formulas are represented as consecutive block formulas, preserving mathematical relationships
 * Original spacing and formatting are maintained to ensure accurate representation
 
-Here is an example of inline formula, single-line formula block and multiple-lines formula block:
+Here's an example of inline formula, single-line formula block and multiple-lines formula block:
 
 ``` md
 The mass-energy equivalence formula $E = m c ^ { 2 }$ is an example of an inline formula
@@ -160,13 +160,13 @@ $$= \exp \left[ - \sum _ { k = 1 } ^ { j - 1 } \beta _ { k , k + 1 } \Delta E _ 
 
 ### Barcode
 
-Barcodes and QR codes are represented using markdown image syntax with additional semantic information:
+Barcodes and QR codes are represented using markdown image syntax with added semantic information:
 
 * Uses standard image markdown syntax with descriptive attributes
 * Captures both the barcode type (QR code, barcode, etc.) and its encoded value
 * Preserves the semantic relationship between barcodes and surrounding content
 
-Here is an example:
+Here's an example:
 
 ```
 ![QRCode](barcodes/1.1 "https://www.microsoft.com")
@@ -185,7 +185,7 @@ Page metadata elements provide context about document pagination but aren't mean
 * Maintains original page structure information that might be valuable for document reconstruction
 * Enables applications to understand document pagination without disrupting the content flow
 
-Here is an example:
+Here's an example:
 
 ``` md
 <!-- PageHeader="This is page header" -->
@@ -200,7 +200,7 @@ Here is an example:
 
 To easily figure out which parts belong to which page base on the pure Markdown content, we introduced PageBreak as the delimiter of the pages
 
-Here is an example:
+Here's an example:
 ``` md
 <!-- PageBreak -->
 ```
