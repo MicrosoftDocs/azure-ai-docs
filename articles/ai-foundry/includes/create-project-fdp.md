@@ -171,8 +171,7 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
 ## Create multiple projects on the same resource
 
-[!INCLUDE [create-second-fdp-project](../includes/create-second-fdp-project.md)]
-
+[!INCLUDE [create-second-fdp-project](create-second-fdp-project.md)]
 
 ## View project settings
 
