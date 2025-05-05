@@ -12,7 +12,7 @@ ms.date: 04/14/2025
 
 # Quickstart: Azure AI Content Understanding REST APIs
 
-* This quickstart shows you how to use the [Content Understanding REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true) to get structured data from multimodal content in documents, videos, images, and audio files.
+* This quickstart shows you how to use the [Content Understanding REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true) to get structured data from multimodal content in document, image, audio, and video files.
 
 * Try the [Content Understanding API with no code on Azure AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding)
 
