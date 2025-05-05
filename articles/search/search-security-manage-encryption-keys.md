@@ -93,7 +93,7 @@ We recommend using a managed identity and roles. You can use either a system-man
 
 Enable the system assigned managed identity for your search service. It's a two-click operation, enable and save.
 
-![Screenshot of turn on system assigned managed identity.](./media/search-managed-identities/turn-on-system-assigned-identity.png "Screenshot showing how to turn on the system-assigned managed identity.")
+![Screenshot of turn on system assigned managed identity.](./media/search-managed-identities/media/search-security-acl/turn-on-system-assigned-identity.png "Screenshot showing how to turn on the system-assigned managed identity.")
 
 ### [**User-managed identity (preview)**](#tab/managed-id-user)
 
