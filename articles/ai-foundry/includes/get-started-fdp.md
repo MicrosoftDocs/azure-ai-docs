@@ -1,6 +1,6 @@
 ---
-title: include file
-description: include file
+title: Include file
+description: Include file
 author: sgilley
 ms.author: sgilley
 ms.service: azure-ai-foundry
@@ -23,7 +23,7 @@ In this quickstart, you use [Azure AI Foundry](https://ai.azure.com) to:
 The Azure AI Foundry SDK is available in multiple languages, including Python, Java, JavaScript, and C#. This quickstart provides instructions for each of these languages.
 
 > [!TIP]
-> The rest of this article shows how to use a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**.  Select **[!INCLUDE [hub](../includes/hub-project-name.md)]** at the top of this article if you want to use a [!INCLUDE [hub](../includes/hub-project-name.md)] instead.
+> The rest of this article shows how to use a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. Select **[!INCLUDE [hub](../includes/hub-project-name.md)]** at the top of this article if you want to use a [!INCLUDE [hub](../includes/hub-project-name.md)] instead.
 
 ## Prerequisites
 
@@ -66,11 +66,11 @@ Use either the Azure AI Foundry portal or Azure CLI to create a project.
 * Azure AI Foundry portal*
 
     1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
-    1. On the home page, select **Start building**. This will create a project and also include steps to start working with a basic Agent.
+    1. On the home page, select **Start building**. This creates a project and also include steps to start working with a basic Agent.
         
         :::image type="content" source="../media/quickstarts/start-building.png" alt-text="Screenshot shows how to start building an Agent in Azure AI Foundry portal.":::
     
-    1. Fill in a name for your project and select **Create**.  
+    1. Fill in a name for your project and select **Create**. 
 
 * Azure CLI 
 
@@ -85,11 +85,11 @@ Use either the Azure AI Foundry portal or Azure CLI to create a project.
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. If you just used the Azure AI Foundry portal to create the project with the **Start building** link, you'll next be prompted to deploy a model.
+1. If you just used the Azure AI Foundry portal to create the project with the **Start building** link, you're next  prompted to deploy a model.
 1. Or else, sign in to the [Azure AI Foundry portal](https://ai.azure.com), select your project, and select **Model catalog**.
-1. Search for the model you want to deploy.  For this quickstart, select **gpt-4o**.
+1. Search for the model you want to deploy. For this quickstart, select **gpt-4o**.
 1. Select **Confirm**.
-1. Do not change the default settings.  Select **Deploy**.
+1. Don't change the default settings. Select **Deploy**.
 
 ## Run a chat completion
 
@@ -120,7 +120,7 @@ Info here.
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
 1. In your project, on the left pane, select **Agents**.
-1. Select the agent created with the project.  
+1. Select the agent created with the project. 
 1. If you didn't create one with your project, select **New agent** to create an agent now.
 1. On the right **Setup** pane, change the name if you'd like.
 1. Add instructions, such as, "You are a helpful writing assistant."
@@ -173,8 +173,8 @@ Info here.
 
 If you no longer need them, delete the resource group associated with your project.
 
-In the Azure AI Foundry portal, select your project name in the top right corner.  Then select the link for the resource group to open it in the Azure portal.  Select the resource group, and then select **Delete**.  Confirm that you want to delete the resource group.
+In the Azure AI Foundry portal, select your project name in the top right corner. Then select the link for the resource group to open it in the Azure portal. Select the resource group, and then select **Delete**. Confirm that you want to delete the resource group.
 
 ## Related content
 
-[Azure AI Foundry SDK Oveview](../how-to/develop/sdk-overview.md)
+[Azure AI Foundry SDK Overview](../how-to/develop/sdk-overview.md)
