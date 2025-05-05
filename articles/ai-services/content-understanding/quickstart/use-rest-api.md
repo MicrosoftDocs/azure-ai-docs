@@ -37,7 +37,7 @@ To get started, you need **An Active Azure Subscription**. If you don't have an 
 
 ## Get Started with a Prebuilt Analyzer
 Analyzers define how your content will be processed and the insights that will be extracted. We offer [pre-built analyzers](link to pre-built analyzer page) for common use cases. You can [customize pre-built analyzers](link to learn how to customize analyzers) to better fit your specific needs and use cases. 
-This quickstart uses pre-built analyzers to help you get started. 
+This quickstart uses pre-built document, image and video analyzers to help you get started. 
 
 Before running the cURL command, make the following changes to the HTTP request:
 ### POST request
@@ -76,11 +76,11 @@ curl -i -X POST "{endpoint}/analyzers/{analyzerId}:analyze?api-version=2025-05-0
 
 ### POST response
 
-The 202 (`Accepted`) response includes an `Operation-Location` header containing a URL that you can use to track the status of this asynchronous analyze operation.
+The 202 (`Accepted`) response includes an `operation-location` header containing a URL that you can use to track the status of this asynchronous analyze operation.
 
 ```
 202 Accepted
-Operation-Location: {endpoint}/contentunderstanding/analyzers/{analyzerId}/results/{resultId}?api-version=2024-12-01-preview
+operation-location: {endpoint}/contentunderstanding/analyzerResults/{requestId}?api-version=2025-05-01-preview
 ```
 
 ## Get analyze result
@@ -88,18 +88,17 @@ Operation-Location: {endpoint}/contentunderstanding/analyzers/{analyzerId}/resul
 Use the `resultId` from the `Operation-Location` header returned by the previous `POST` response and retrieve the result of the analysis.
 
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
-1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
-1. Replace `{resultId}` with the `resultId` returned from the `POST` request.
+2. Replace `{requestId}` with the `requestId` returned from the `POST` request.
 
 ### GET request
 ```bash
-curl -i -X GET "{endpoint}/contentunderstanding/analyzers/{analyzerId}/results/{resultId}?api-version=2024-12-01-preview" \
+curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{requestId}?api-version=2025-05-01-preview" \
   -H "Ocp-Apim-Subscription-Key: {key}"
 ```
 
 ### GET response
 
-The 200 (`OK`) JSON response includes a `status` field indicating the status of the operation. If the operation isn't complete, the value of `status` is `running` or `notStarted`. In such cases, you should call the API again, either manually or through a script. Wait an interval of one second or more between calls.
+The 200 (`OK`) JSON response includes a `status` field indicating the status of the operation. If the operation isn't complete, the value of `status` is `running` or `notStarted`. In such cases, you should send the GET request again, either manually or through a script. Wait an interval of one second or more between calls.
 
 #### Sample response
 
@@ -107,47 +106,20 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ```json
 {
-  "id": "bcf8c7c7-03ab-4204-b22c-2b34203ef5db",
+  "id": "a8ccf3ea-e4ad-4302-9ac5-b40e69768053",
   "status": "Succeeded",
   "result": {
-    "analyzerId": "sample_invoice_analyzer",
-    "apiVersion": "2024-12-01-preview",
-    "createdAt": "2024-11-13T07:15:46Z",
+    "analyzerId": "prebuilt-documentAnalyzer",
+    "apiVersion": "2025-05-01-preview",
+    "createdAt": "2025-05-05T17:55:35Z",
     "warnings": [],
     "contents": [
       {
-        "markdown": "CONTOSO LTD.\n\n\n# INVOICE\n\nContoso Headquarters...",
+        "markdown": "# WEB HOSTING AGREEMENT\n\nThis web Hosting Agreement is entered as of this 15 day of October ..." ,
         "fields": {
-          "VendorName": {
+          "Summary": {
             "type": "string",
-            "valueString": "CONTOSO LTD.",
-            "spans": [ { "offset": 0, "length": 12 } ],
-            "confidence": 0.941,
-            "source": "D(1,0.5729,0.6582,2.3353,0.6582,2.3353,0.8957,0.5729,0.8957)"
-          },
-          "Items": {
-            "type": "array",
-            "valueArray": [
-              {
-                "type": "object",
-                "valueObject": {
-                  "Description": {
-                    "type": "string",
-                    "valueString": "Consulting Services",
-                    "spans": [ { "offset": 909, "length": 19 } ],
-                    "confidence": 0.971,
-                    "source": "D(1,2.3264,5.673,3.6413,5.673,3.6413,5.8402,2.3264,5.8402)"
-                  },
-                  "Amount": {
-                    "type": "number",
-                    "valueNumber": 60,
-                    "spans": [ { "offset": 995, "length": 6 } ],
-                    "confidence": 0.989,
-                    "source": "D(1,7.4507,5.6684,7.9245,5.6684,7.9245,5.8323,7.4507,5.8323)"
-                  }
-                }
-              }, ...
-            ]
+            "valueString": "This document is a Web Hosting Agreement between Contoso Corporation and AdventureWorks Cycles, both based in Washington. It outlines the terms of their agreement, including payment terms for software and bandwidth usage, technical support requirements, and governing laws. The agreement nullifies any previous agreements between the parties and is signed by representatives of both companies."
           }
         },
         "kind": "document",
@@ -157,64 +129,10 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
         "pages": [
           {
             "pageNumber": 1,
-            "angle": -0.0039,
-            "width": 8.5,
-            "height": 11,
-            "spans": [ { "offset": 0, "length": 1650 } ],
-            "words": [
-              {
-                "content": "CONTOSO",
-                "span": { "offset": 0, "length": 7 },
-                "confidence": 0.997,
-                "source": "D(1,0.5739,0.6582,1.7446,0.6595,1.7434,0.8952,0.5729,0.8915)"
-              }, ...
-            ],
-            "lines": [
-              {
-                "content": "CONTOSO LTD.",
-                "source": "D(1,0.5734,0.6563,2.335,0.6601,2.3345,0.8933,0.5729,0.8895)",
-                "span": { "offset": 0, "length": 12 }
-              }, ...
-            ]
+            "angle": -0.0052,
+            "width": 8.2639,
+            "height": 11.6806
           }
-        ],
-        "paragraphs": [
-          {
-            "content": "CONTOSO LTD.",
-            "source": "D(1,0.5734,0.6563,2.335,0.6601,2.3345,0.8933,0.5729,0.8895)",
-            "span": { "offset": 0, "length": 12 }
-          }, ...
-        ],
-        "sections": [
-          {
-            "span": { "offset": 0, "length": 1649 },
-            "elements": [ "/sections/1", "/sections/2" ]
-          },
-          {
-            "span": { "offset": 0, "length": 12 },
-            "elements": [ "/paragraphs/0" ]
-          }, ...
-        ],
-        "tables": [
-          {
-            "rowCount": 2,
-            "columnCount": 6,
-            "cells": [
-              {
-                "kind": "columnHeader",
-                "rowIndex": 0,
-                "columnIndex": 0,
-                "rowSpan": 1,
-                "columnSpan": 1,
-                "content": "SALESPERSON",
-                "source": "D(1,0.5389,4.5514,1.7505,4.5514,1.7505,4.8364,0.5389,4.8364)",
-                "span": { "offset": 512, "length": 11 },
-                "elements": [ "/paragraphs/19" ]
-              }, ...
-            ],
-            "source": "D(1,0.4885,4.5543,8.0163,4.5539,8.015,5.1207,0.4879,5.1209)",
-            "span": { "offset": 495, "length": 228 }
-          }, ...
         ]
       }
     ]
@@ -226,24 +144,20 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ```json
 {
-  "id": "12fd421b-b545-4d63-93a5-01284081bbe1",
+  "id": "1f8f3fe5-831b-4c3f-85a9-98a90e1af11b",
   "status": "Succeeded",
   "result": {
-    "analyzerId": "sample_chart_analyzer",
-    "apiVersion": "2024-12-01-preview",
-    "createdAt": "2024-11-09T08:41:00Z",
+    "analyzerId": "prebuilt-imageAnalyzer",
+    "apiVersion": "2025-05-01-preview",
+    "createdAt": "2025-05-05T18:02:32Z",
     "warnings": [],
     "contents": [
       {
-        "markdown": "![image](image)\n",
+        "markdown": "50-60 hours 36.6%\n\n60+ hours 37.8%\n\n40-50 hours 18.9%\n\n1-39 hours 6.7%\n",
         "fields": {
-          "Title": {
+          "Summary": {
             "type": "string",
-            "valueString": "Weekly Work Hours Distribution"
-          },
-          "ChartType": {
-            "type": "string",
-            "valueString": "pie"
+            "valueString": "The image is a pie chart that represents the distribution of hours worked per week by individuals. It is divided into four segments: 60+ hours (37.8%), 50-60 hours (36.6%), 40-50 hours (18.9%), and 1-39 hours (6.7%)."
           }
         },
         "kind": "document",
@@ -253,8 +167,27 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
         "pages": [
           {
             "pageNumber": 1,
+            "angle": 0.1013839,
             "width": 1283,
             "height": 617
+          }
+        ]
+      },
+      {
+        "markdown": "![image](image)\n",
+        "fields": {
+          "Summary": {
+            "type": "string",
+            "valueString": "The image is a pie chart that represents the distribution of hours worked per week by individuals. It is divided into four segments: 60+ hours (37.8%), 50-60 hours (36.6%), 40-50 hours (18.9%), and 1-39 hours (6.7%)."
+          }
+        },
+        "kind": "document",
+        "startPageNumber": 1,
+        "endPageNumber": 1,
+        "unit": "pixel",
+        "pages": [
+          {
+            "pageNumber": 1
           }
         ]
       }
@@ -267,64 +200,20 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ```json
 {
-  "id": "247c369c-1aa5-4f92-b033-a8e4318e1c02",
+  "id": "2e77aecc-b5f0-4652-b91c-4790b655ce01",
   "status": "Succeeded",
   "result": {
-    "analyzerId": "sample_chart_analyzer",
-    "apiVersion": "2024-12-01-preview",
-    "createdAt": "2024-11-09T08:42:58Z",
+    "analyzerId": "prebuilt-audioAnalyzer",
+    "apiVersion": "2025-05-01-preview",
+    "createdAt": "2025-05-05T18:06:24Z",
+    "stringEncoding": "utf8",
     "warnings": [],
     "contents": [
       {
+        "markdown": "# Audio: 00:00.000 => 01:54.670\n\nTranscript\n```\nWEBVTT\n\n00:00.080 --> 00:02.160\n<v Speaker 1>Thank you for calling Woodgrove Travel.\n\n00:02.960 --> 00:04.560\n<v Speaker 1>My name is Isabella Taylor ...",
         "kind": "audioVisual",
         "startTimeMs": 0,
-        "endTimeMs": 32182,
-        "markdown": "```WEBVTT\n\n00:00.080 --> 00:00.640\n<v Agent>Good day...",
-        "fields": {
-          "Sentiment": {
-            "type": "string",
-            "valueString": "Positive"
-          },
-          "Summary": {
-            "type": "string",
-            "valueString": "Maria Smith contacted Contoso to inquire about her current point balance. Agent John Doe confirmed her identity and informed her that she has 599 points. Maria did not require any further information and the call ended on a positive note."
-          },
-          "People": {
-            "type": "array",
-            "valueArray": [
-              {
-                "type": "object",
-                "valueObject": {
-                  "Name": {
-                    "type": "string",
-                    "valueString": "Maria Smith"
-                  },
-                  "Role": {
-                    "type": "string",
-                    "valueString": "Customer"
-                  }
-                }
-              }, ...
-            ]
-          }
-        },
-        "transcriptPhrases": [
-          {
-            "speaker": "Agent 1",
-            "startTimeMs": 80,
-            "endTimeMs": 640,
-            "text": "Good day.",
-            "confidence": 0.932,
-            "words": [
-              {
-                "startTimeMs": 80,
-                "endTimeMs": 280,
-                "text": "Good"
-              }, ...
-            ],
-            "locale": "en-US"
-          }, ...
-        ]
+        "endTimeMs": 114670
       }
     ]
   }
@@ -335,33 +224,22 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ```json
 {
-  "id": "204fb777-e961-4d6d-a6b1-6e02c773d72c",
+  "id": "3fb3cca1-4cf1-4f2f-9155-8d1db4ef9541",
   "status": "Succeeded",
   "result": {
-    "analyzerId": "sample_marketing_video_analyzer",
-    "apiVersion": "2024-12-01-preview",
-    "createdAt": "2024-11-09T08:57:21Z",
+    "analyzerId": "prebuilt-videoAnalyzer",
+    "apiVersion": "2025-05-01-preview",
+    "createdAt": "2025-05-05T18:24:03Z",
     "warnings": [],
     "contents": [
       {
+        "markdown": "# Video: 00:00.000 => 00:43.866\nWidth: 1080\nHeight: 608\n\nTranscript\n```\nWEBVTT\n\n00:01.400 --> 00:06.560\n<Speaker 1 Speaker>When it comes to the neural TTS, in order to get a good voice, it's better to have good data ..."
         "kind": "audioVisual",
         "startTimeMs": 0,
-        "endTimeMs": 2800,
-        "width": 540,
-        "height": 960,
-        "markdown": "# Shot 0:0.0 => 0:1.800\n\n## Transcript\n\n```\n\nWEBVTT\n\n0:0.80 --> 0:10.560\n<v Speaker>When I was planning my trip...",
-        "fields": {
-          "sentiment": {
-            "type": "string",
-            "valueString": "Neutral"
-          },
-          "description": {
-            "type": "string",
-            "valueString": "The video begins with a view from a glass floor, showing a person's feet in white sneakers standing on it. The scene captures a downward view of a structure, possibly a tower, with a grid pattern on the floor and a clear view of the ground below. The lighting is bright, suggesting a sunny day, and the colors are dominated by the orange of the structure and the gray of the floor."
-          }
-        }
-      },
-      ...
+        "endTimeMs": 43866,
+        "width": 1080,
+        "height": 608
+      }
     ]
   }
 }
@@ -371,6 +249,6 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ## Next steps
 
-* In this quickstart, you learned how to call the [REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true) to create a custom analyzer. For a user experience, try [**Azure AI Foundry portal**](https://ai.azure.com/).
+* In this quickstart, you learned how to call the [REST API](<Reference Link>) using a pre-built analzyer. See how you can [customize pre-built analyzers](<Link to customization) to better fit your use case.
 
 
