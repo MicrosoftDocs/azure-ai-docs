@@ -289,7 +289,7 @@ Run a query against the index to check the results of image processing. Use [Sea
 ```http
 POST /indexes/[index name]/docs/search?api-version=[api-version]
 {
-    "search": "*",
+    "search": "A cat in a picture",
     "select": "metadata_storage_name, captioned_image"
 }
 ```
