@@ -22,7 +22,7 @@ This page documents the Model Catalog APIs. Catalog implementors can use this re
 https://<catalog provider URI>/<provider subpath>
 ```
 
-Replace `<catalog provider URI>` and `<provider subpath>` with the appropriate values for your catalog provider.
+Replace `<catalog provider URI>` and `<provider subpath>` with your specific catalog hosting details.
 
 ---
 
