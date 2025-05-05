@@ -272,7 +272,7 @@
     },
     {
       "source_path": "articles/ai-services/index.yml",
-      "redirect_url": "articles/ai-foundry",
+      "redirect_url": "articles/azure/ai-foundry",
       "redirect_document_id": false
     }
   ]
