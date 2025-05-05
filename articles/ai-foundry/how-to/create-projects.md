@@ -243,17 +243,10 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
     For more information on authenticating, see [Authentication methods](/cli/azure/authenticate-azure-cli).
 
-1. Once the extension is installed and authenticated to your Azure subscription, create a resource group:
+1. Create a resource group:
 
     ```azurecli
     az group create --name {my_resource_group} --location eastus
-    ```
-
-1. Assign role assignments to the group.  Substitute your name and resource group in these commands:
-
-   ```azurecli
-    az role assignment create --role "Azure AI User" --assignee "joe@contoso.com" --resource-group {my_resource_group} 
-    az role assignment create --role "Azure AI Developer" --assignee "joe@contoso.com" --resource-group {my_resource_group} 
     ```
 
 1. Now use the following command to create a new [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
