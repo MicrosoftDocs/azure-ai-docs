@@ -61,7 +61,9 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 ## Create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] 
 
-# [Azure AI Foundry portal](#tab/azure-ai-foundry)
+Use either the Azure AI Foundry portal or Azure CLI to create a project.
+
+# [Azure AI Foundry portal](#tab/ai-foundry)
 
 1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
 1. On the home page, select **Start building**. This will build a project and include steps to start working with an Agent.  
@@ -70,40 +72,36 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 1. Fill in a name for your project and select **Create**.  
 
-# [Python SDK](#tab/python)
+# [Azure CLI](#tab/cli)
 
-:::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/create_project.py" id="create_project":::
+1. Create a resource group:
 
-# [Java](#tab/java)
+    ```azurecli
+    az group create --name {my_resource_group} --location eastus
+    ```
 
-Use instructions for **Azure AI Foundry portal** or **Python SDK** to create a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
+1. Create a new [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
-# [JavaScript](#tab/javascript)
-
-Use instructions for **Azure AI Foundry portal** or **Python SDK** to to create a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
-
-# [C#](#tab/csharp)
-
-Use instructions for **Azure AI Foundry portal** or **Python SDK** to create a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
-
-
----
-
+    ```azurecli
+    az cognitiveservices account project create --name {my_project_name} -resource-group {my_resource_group}
+        ```
 
 ## Deploy a model
 
-# [Azure AI Foundry portal](#tab/azure-ai-foundry)
-
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. If you created the project with the **Start building** link, you'll next be prompted to deploy a model.
-1. Or else, select **Model catalog**.
+1. If you just used the Azure AI Foundry portal to create the project with the **Start building** link, you'll next be prompted to deploy a model.
+1. Or else, sign in to the [Azure AI Foundry portal](https://ai.azure.com), select your project, and select **Model catalog**.
 1. Search for the model you want to deploy.  For this quickstart, select **gpt-4o**.
 1. Select **Confirm**.
 1. Do not change the default settings.  Select **Deploy**.
 
-### Assign role-based access control
+## Assign role-based access control
 
+Finally, assign access control in either Azure AI Foundry portal or with Azure CLI:
+
+# [Azure AI Foundry portal#](#tab/ai-foundry)
+    
 1. At the bottom of the left pane, select **Management center**.
 1. Under the resource name, select **Users**.
 1. Add yourself as a user with each of the following roles: 
@@ -113,23 +111,17 @@ Use instructions for **Azure AI Foundry portal** or **Python SDK** to create a [
 
 1. After adding these roles, on the left pane, select **Go to project** to return to your project.
 
-# [Python SDK](#tab/python)
+# [Azure CLI](#tab/cli) 
 
-:::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/create_project.py" id="deploy_model":::
-
-# [Java](#tab/java)
-
-Use instructions for **Azure AI Foundry portal** or **Python SDK** to deploy the **gpt-4o** model into your [!INCLUDE [fdp-project-name](fdp-project-name.md)].
-
-# [JavaScript](#tab/javascript)
-
-Use instructions for **Azure AI Foundry portal** or **Python SDK** to deploy the **gpt-4o** model into your [!INCLUDE [fdp-project-name](fdp-project-name.md)].
-
-# [C#](#tab/csharp)
-
-Use instructions for **Azure AI Foundry portal** or **Python SDK** to deploy the **gpt-4o** model into your [!INCLUDE [fdp-project-name](fdp-project-name.md)].
+Substitute your name and resource group in these commands:
+    
+```azurecli
+az role assignment create --role "Azure AI User" --assignee "joe@contoso.com" --resource-group {my_resource_group} 
+az role assignment create --role "Azure AI Developer" --assignee "joe@contoso.com" --resource-group {my_resource_group} 
+```
 
 ---
+
 
 ## Run a chat completion
 
