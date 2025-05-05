@@ -507,7 +507,7 @@ items:
     - name: Document-level permissions
       items:
       - name: Security filters
-        href: search-security-trimming-overview.md
+        href: search-security-trimming-for-azure-search.md
       - name: ADLS Gen2 permission filters
         href: search-indexer-access-control-lists-and-role-based-access.md
       href: search-security-trimming-for-azure-search.md
