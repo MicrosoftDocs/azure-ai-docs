@@ -13,12 +13,13 @@ ms.date: 02/19/2025
 ms.reviewer: siarora
 ms.author: larryfr
 author: Blackmist
+zone_pivot_groups: project-type
 # Customer intent: As an Azure AI Foundry user, I want to know how to manage and increase quotas for resources with Azure AI Foundry.
 ---
 
 # Manage and increase quotas for resources with Azure AI Foundry
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+::: zone pivot="hub-project"
 
 Quota provides the flexibility to actively manage the allocation of rate limits across the deployments within your subscription. This article walks through the process of managing quota for your Azure AI Foundry virtual machines and Azure OpenAI models.
 
@@ -30,6 +31,23 @@ In this article, you learn about:
 - Creating Azure AI Foundry hub-level quotas. 
 - Viewing your quotas and limits 
 - Requesting quota and limit increases 
+
+::: zone-end
+
+::: zone pivot="fdp-project"
+
+Quota provides the flexibility to actively manage the allocation of rate limits across the deployments within your subscription. This article walks through the process of managing quota for your Azure OpenAI in Foundry models.
+
+Azure uses limits and quotas to prevent budget overruns due to fraud, and to honor Azure capacity constraints. It's also a good way to control costs for admins. Consider these limits as you scale for production workloads. 
+
+In this article, you learn about: 
+
+- Viewing your quotas and limits 
+- Requesting quota and limit increases 
+
+::: zone-end
+
+::: zone pivot="hub-project"
 
 ## Special considerations 
 
@@ -77,11 +95,15 @@ When opening the support request to increase the total compute limit, provide th
 1. On the **Additional details** page, provide the subscription ID, region, new limit (between 500 and 2500), and business justification to increase the total compute limits for the region. 
 1. Select **Create** to submit the support request ticket. 
 
+::: zone-end
+
 ## Azure AI Foundry shared quota 
 
 Azure AI Foundry provides a pool of shared quota that is available for different users across various regions to use concurrently. Depending upon availability, users can temporarily access quota from the shared pool, and use the quota to perform testing for a limited amount of time. The specific time duration depends on the use case. By temporarily using quota from the quota pool, you no longer need to file a support ticket for a short-term quota increase or wait for your quota request to be approved before you can proceed with your workload. 
 
 Use of the shared quota pool is available for testing inferencing for Llama-2, Phi, Nemotron, Mistral, Dolly, and Deci-DeciLM models from the Model Catalog. You should use the shared quota only for creating temporary test endpoints, not production endpoints. For endpoints in production, you should [request dedicated quota](#view-and-request-quotas-in-azure-ai-foundry-portal). Billing for shared quota is usage-based, just like billing for dedicated virtual machine families. 
+
+::: zone pivot="hub-project"
 
 ## Container Instances 
 
@@ -91,11 +113,24 @@ For more information, see [Container Instances limits](/azure/azure-resource-m
 
 Azure Storage has a limit of 250 storage accounts per region, per subscription. This limit includes both Standard and Premium storage accounts.  
 
+::: zone-end
+
 ## View and request quotas in Azure AI Foundry portal
 
-Use quotas to manage compute target allocation between multiple Azure AI Foundry hubs in the same subscription. 
+::: zone pivot="hub-project"
+
+Use quotas to manage compute target allocation and model quota between multiple [!INCLUDE [hub](../includes/hub-project-name.md)]s in the same subscription. 
 
 By default, all hubs share the same quota as the subscription-level quota for VM families. However, you can set a maximum quota for individual VM families for more granular cost control and governance on hubs in a subscription. Quotas for individual VM families let you share capacity and avoid resource contention issues.
+
+::: zone-end
+::: zone pivot="fdp-project"
+
+Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../includes/fdp-project-name.md)]s in the same subscription
+
+::: zone-end
+
+::: zone pivot="hub-project"
 
 1. In Azure AI Foundry portal, select **Management center** from the left menu.
 
@@ -118,6 +153,30 @@ By default, all hubs share the same quota as the subscription-level quota for VM
 1. When you select the **VM quota** link, you can view the quota and usage for the virtual machine families in the selected Azure region. To request more quota, select the VM family and then select **Request quota**. 
 
     :::image type="content" source="../media/cost-management/vm-quota.png" alt-text="Screenshot of the VM quota page in Azure AI Foundry portal." lightbox="../media/cost-management/vm-quota.png":::
+
+::: zone-end
+::: zone pivot="fdp-project"
+
+1. In Azure AI Foundry portal, select **Management center** from the left menu.
+
+    :::image type="content" source="../media/management-center/management-center.png" alt-text="Screenshot of the management center link.":::
+
+1. Select **Quota** from the left menu.
+
+    :::image type="content" source="../media/cost-management/quotas.png" alt-text="Screenshot of the Model and VM quota entries in the management section." lightbox="../media/cost-management/quotas.png":::
+
+1. From the quota view, you can see the quota for the models in the selected Azure region. To request more quota, select the model and then select **Request quota**. 
+
+    - Use the **Show all quota** toggle to display all quota or only the currently allocated quota.
+    - Use the **Group by** dropdown to group the list by **Quota type, Region & Model**, **Quota type, Model & Region**, or **None**. The **None** grouping displays a list of model deployments.
+    - Expand the groupings to view information on specific model deployments. While viewing a model deployment, select the **pencil icon** in the **Quota allocation** column to edit the quota allocation for the model deployment.
+    - Use the **charts** along the side of the page to view more details about quota usage. The charts are interactive; hovering over a section of the chart displays more information, and selecting the chart filters the list of models. Selecting the chart legend filters the data displayed in the chart.
+    - Use the **Azure OpenAI Provisioned** link to view information about provisioned models, including a **Capacity calculator**.
+  
+    :::image type="content" source="../media/cost-management/model-quota.png" alt-text="Screenshot of the Model quota page in Azure AI Foundry portal." lightbox="../media/cost-management/model-quota.png":::
+
+
+::: zone-end
 
 ## Next steps 
 
