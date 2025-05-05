@@ -191,4 +191,4 @@ For more examples, demos, and videos:
 
 * [Get started with chat document security in Python](/azure/developer/python/get-started-app-chat-document-security-trim)
 * [Set up optional sign in and document level access control (modifications to the AzureOpenAIDemo app)](https://github.com/Azure-Samples/azure-search-openai-demo/blob/main/docs/login_and_acl.md)
-* [Video: Secure your Intelligent Applications with Microsoft Entra](https://build.microsoft.com/en-US/sessions/b5636ca7-64c2-493c-9b30-4a35852acfbe?source=/speakers/cc9b56a0-4af0-4b60-a2f3-8312c5b35ca2)
+* [Video: Secure your Intelligent Applications with Microsoft Entra](https://www.youtube.com/watch?v=e5aR_52oeBY)
