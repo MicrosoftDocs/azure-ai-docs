@@ -153,7 +153,7 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
 1. When you select the **VM quota** link, you can view the quota and usage for the virtual machine families in the selected Azure region. To request more quota, select the VM family and then select **Request quota**.
 
     > [!TIP]
-    > If you don't see the **VM quota** link, you were viewing a [!INCLUDE [fdp](../includes/fdp-project-name.md)] project when you selected **Management center**. Use the **All resources** link and then select a project where the **Type** contains **Parent resource : <name> (Hub)**, and then select **Quota** from the left menu..
+    > If you don't see the **VM quota** link, you were viewing a [!INCLUDE [fdp](../includes/fdp-project-name.md)] project when you selected **Management center**. Use the **All resources** link and then select a project where the **Type** contains **Parent resource : name (Hub)**, and then select **Quota** from the left menu..
 
     :::image type="content" source="../media/cost-management/vm-quota.png" alt-text="Screenshot of the VM quota page in Azure AI Foundry portal." lightbox="../media/cost-management/vm-quota.png":::
 
