@@ -227,6 +227,10 @@ You should receive a response body in the following format:
 }
 ```
 
+# [Neural - multi lingual (preview)](#tab/multilingual)
+
+Not currently supported via the REST API.
+
 ---
 
 ### Bilingual training
