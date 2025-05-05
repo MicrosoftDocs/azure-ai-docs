@@ -28,7 +28,7 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 ## Prerequisites
 
 - An [Azure subscription](https://azure.microsoft.com/free/). If you don't have an Azure subscription, create a free account before you begin.
-- You must be **Owner** of the subscription to assign the appropriate access control needed to run these scripts.
+- You must be **Owner** of the subscription to receive the appropriate access control needed to use your project.
 
 ### Set up your environment  
 
@@ -63,30 +63,23 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 Use either the Azure AI Foundry portal or Azure CLI to create a project.
 
-# [Azure AI Foundry portal](#tab/ai-foundry)
+* Azure AI Foundry portal*
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
-1. On the home page, select **Start building**. This will build a project and include steps to start working with an Agent.  
+    1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+    1. On the home page, select **Start building**. This will create a project and also include steps to start working with a basic Agent.
+        
+        :::image type="content" source="../media/quickstarts/start-building.png" alt-text="Screenshot shows how to start building an Agent in Azure AI Foundry portal.":::
     
-    :::image type="content" source="../media/quickstarts/start-building.png" alt-text="Screenshot shows how to start building an Agent in Azure AI Foundry portal.":::
+    1. Fill in a name for your project and select **Create**.  
 
-1. Fill in a name for your project and select **Create**.  
+* Azure CLI 
 
-# [Azure CLI](#tab/cli)
-
-1. Create a resource group:
-
-    ```azurecli
-    az group create --name {my_resource_group} --location eastus
-    ```
-
-1. Create a new [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
+    Create a new [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
     ```azurecli
     az cognitiveservices account project create --name {my_project_name} -resource-group {my_resource_group}
-        ```
+    ```
 
----
 
 ## Deploy a model
 
@@ -98,37 +91,11 @@ Use either the Azure AI Foundry portal or Azure CLI to create a project.
 1. Select **Confirm**.
 1. Do not change the default settings.  Select **Deploy**.
 
-## Assign role-based access control
-
-Finally, assign access control in either Azure AI Foundry portal or with Azure CLI:
-
-# [Azure AI Foundry portal](#tab/ai-foundry)
-    
-1. At the bottom of the left pane, select **Management center**.
-1. Under the resource name, select **Users**.
-1. Add yourself as a user with each of the following roles: 
-
-    * **Azure AI Project Manager** 
-    * **Azure AI User** 
-
-1. After adding these roles, on the left pane, select **Go to project** to return to your project.
-
-# [Azure CLI](#tab/cli) 
-
-Substitute your name and resource group in these commands:
-    
-```azurecli
-az role assignment create --role "Azure AI User" --assignee "joe@contoso.com" --resource-group {my_resource_group} 
-az role assignment create --role "Azure AI Developer" --assignee "joe@contoso.com" --resource-group {my_resource_group} 
-```
-
----
-
-
 ## Run a chat completion
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
+1. If you used **Start building** to create the project, you'll now find yourself in the Agents playground, ready to try it out. You'll come back here in a moment, but first let's play with the model.
 1. In the left pane, select **Playgrounds**. 
 1. Select **Try the chat playground**.
 1. Fill in the prompt and select the **Send** button.
@@ -158,7 +125,7 @@ Info here.
 1. On the right **Setup** pane, change the name if you'd like.
 1. Add instructions, such as, "You are a helpful writing assistant."
 1. At the top of the **Setup** pane, select **Try in playground**.
-1. Start chatting with your agent, fore example, "Write me a poem about flowers"
+1. Start chatting with your agent, for example, "Write me a poem about flowers"
 
 # [Python SDK](#tab/python)
 
@@ -210,4 +177,4 @@ In the Azure AI Foundry portal, select your project name in the top right corner
 
 ## Related content
 
-What's next: explore models, knowledge retrieval, evaluation
+[Azure AI Foundry SDK Oveview](../how-to/develop/sdk-overview.md)
