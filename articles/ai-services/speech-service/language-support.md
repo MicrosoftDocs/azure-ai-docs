@@ -33,7 +33,7 @@ Language support varies by Speech service functionality.
 
 # [Speech to text](#tab/stt)
 
-The table in this section summarizes the locales supported for speech to text ([real-time](speech-to-text.md#real-time-speech-to-text) and [batch](speech-to-text.md#batch-transcription-api) transcription). 
+The table in this section summarizes the locales supported for [real-time speech to text](speech-to-text.md#real-time-speech-to-text), [fast transcription](speech-to-text.md#fast-transcription), and [batch transcription](speech-to-text.md#batch-transcription-api) transcription.
 
 More remarks for speech to text locales are included in the [custom speech](#custom-speech) section of this article. 
 
