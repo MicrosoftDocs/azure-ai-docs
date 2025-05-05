@@ -1,7 +1,7 @@
 ---
-title: "Release notes - Custom Translator"
+title: "Release notes - Custom Translation"
 titleSuffix: Azure AI services
-description: Custom Translator releases, improvements, bug fixes, and known issues.
+description: Custom Translation releases, improvements, bug fixes, and known issues.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -11,9 +11,9 @@ ms.date: 11/01/2024
 ms.author: lajanuar
 ms.topic: release-notes
 ---
-# Custom Translator release notes
+# Custom Translation release notes
 
-This page presents the latest feature, improvement, bug fix, and known issue release notes for Custom Translator service.
+This page presents the latest feature, improvement, bug fix, and known issue release notes for Custom Translation service.
 
 ## 2025-March release
 
