@@ -46,7 +46,7 @@ In the [Azure AI Foundry portal](https://ai.azure.com), you can fine-tune some A
     > If you train a custom model with audio data, select a service resource in a region with dedicated hardware for training audio data. See footnotes in the [regions](regions.md#regions) table for more information.
 
     You can choose from the following connected resource types:
-    - **AI Service**: The Azure AI Services multi-service resource that [came with the Azure AI Foundry project](../../ai-services/connect-services-ai-foundry-portal.md#connect-azure-ai-services-when-you-create-a-project-for-the-first-time).
+    - **AI Service**: An Azure AI Foundry [multi-service resource.](../multi-service-resource.md)
     - **Speech Service**: An Azure AI Speech resource that was [connected after the project was created](../../ai-services/connect-services-ai-foundry-portal.md#connect-azure-ai-services-after-you-create-a-project). 
 
 1. Enter the language, name, and description for the fine-tuning job. Then select **Create**.
