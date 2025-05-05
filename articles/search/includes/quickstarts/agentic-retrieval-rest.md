@@ -119,7 +119,7 @@ To obtain your service endpoints:
 
 ## Connect from your local system
 
-You've configured role-based access to interact with Azure AI Search and Azure OpenAI. From the command line, use the Azure CLI to sign in to the same tenant and subscription for both services. For more information, see [Quickstart: Connect without keys](search-get-started-rbac.md).
+You configured role-based access to interact with Azure AI Search and Azure OpenAI. From the command line, use the Azure CLI to sign in to the same tenant and subscription for both services. For more information, see [Quickstart: Connect without keys](search-get-started-rbac.md).
 
 To connect from your local system:
 
@@ -141,7 +141,7 @@ To connect from your local system:
 
 ## Load connections
 
-Before you run any code, define credentials, endpoints, and deployment details for connections to Azure AI Search and Azure OpenAI. These values will be used in subsequent operations.
+Before you run any code, define credentials, endpoints, and deployment details for connections to Azure AI Search and Azure OpenAI. These values are used in subsequent operations.
 
 To load the connections:
 

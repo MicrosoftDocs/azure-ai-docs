@@ -7,19 +7,20 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.date: 05/05/2025
+zone_pivot_groups: search-get-started-agentic-retrieval
 ---
 
 # Quickstart: Run agentic retrieval in Azure AI Search
 
 ::: zone pivot="python"
 
-[!INCLUDE [Python quickstart](includes/quickstarts/search-get-started-agentic-retrieval/agentic-retrieval-python.md)]
+[!INCLUDE [Python quickstart](includes/quickstarts/agentic-retrieval-python.md)]
 
 ::: zone-end
 
 ::: zone pivot="rest"
 
-[!INCLUDE [REST quickstart](includes/quickstarts/search-get-started-agentic-retrieval/agentic-retrieval-rest.md)]
+[!INCLUDE [REST quickstart](includes/quickstarts/agentic-retrieval-rest.md)]
 
 ::: zone-end
 
