@@ -1,8 +1,7 @@
-
 ---
 title: Catalog API Reference
 titleSuffix: AI Foundry Local
-description: Reference for Model Catalog V2 REST APIs.
+description: Reference for Model Catalog.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: build-2025
@@ -40,8 +39,6 @@ Replace `<catalog provider URI>` and `<provider subpath>` with your specific cat
 All endpoints must implement
 
 - Anonymous access
-- Azure Active Directory (AAD) token
-- GitHub token
 
 ---
 
