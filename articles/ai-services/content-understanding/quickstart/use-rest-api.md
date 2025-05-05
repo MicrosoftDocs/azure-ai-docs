@@ -40,7 +40,7 @@ Analyzers define how your content will be processed and the insights that will b
 This quickstart uses pre-built document, image and video analyzers to help you get started. 
 
 Before running the cURL command, make the following changes to the HTTP request:
-### POST request
+#### POST Request
 ```bash
 curl -i -X POST "{endpoint}/analyzers/{analyzerId}:analyze?api-version=2025-05-01-preview" \
   -H "Ocp-Apim-Subscription-Key: {key}" \
@@ -74,7 +74,7 @@ curl -i -X POST "{endpoint}/analyzers/{analyzerId}:analyze?api-version=2025-05-0
 ---
 
 
-### POST response
+#### POST Response
 
 The 202 (`Accepted`) response includes an `operation-location` header containing a URL that you can use to track the status of this asynchronous analyze operation.
 
@@ -83,24 +83,22 @@ The 202 (`Accepted`) response includes an `operation-location` header containing
 operation-location: {endpoint}/contentunderstanding/analyzerResults/{requestId}?api-version=2025-05-01-preview
 ```
 
-## Get analyze result
+### Get Analyze Result
 
 Use the `resultId` from the `Operation-Location` header returned by the previous `POST` response and retrieve the result of the analysis.
 
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
 2. Replace `{requestId}` with the `requestId` returned from the `POST` request.
 
-### GET request
+#### GET Request
 ```bash
 curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{requestId}?api-version=2025-05-01-preview" \
   -H "Ocp-Apim-Subscription-Key: {key}"
 ```
 
-### GET response
+#### GET Response
 
 The 200 (`OK`) JSON response includes a `status` field indicating the status of the operation. If the operation isn't complete, the value of `status` is `running` or `notStarted`. In such cases, you should send the GET request again, either manually or through a script. Wait an interval of one second or more between calls.
-
-#### Sample response
 
 # [Document](#tab/document)
 
