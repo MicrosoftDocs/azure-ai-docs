@@ -510,7 +510,6 @@ items:
         href: search-security-trimming-for-azure-search.md
       - name: ADLS Gen2 permission filters
         href: search-indexer-access-control-lists-and-role-based-access.md
-      href: search-security-trimming-for-azure-search.md
     - name: Advanced options
       items:
       - name: Create a private endpoint
