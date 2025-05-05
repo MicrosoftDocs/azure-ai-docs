@@ -1100,6 +1100,14 @@ groups:
     title: Python
   - id: rest
     title: REST API
+- id: selection-connected-agents
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: portal
+    title: Azure AI Foundry portal
+  - id: python
+    title: Python 
 # owner: zhuoqunli
 - id: selection-bing-grounding-code
   title: Selections
