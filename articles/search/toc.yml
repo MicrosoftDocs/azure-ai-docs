@@ -92,8 +92,8 @@ items:
       href: tutorial-multiple-data-sources.md
     - name: Index encrypted blobs
       href: search-howto-index-encrypted-blobs.md
-    - name: Index ACLs and RBAC scope of ADLS Gen2 blobs
-      href: search-how-to-index-permission-information.md
+    - name: Index permissioned ADLS Gen2 blobs
+      href: tutorial-adls-gen2-indexer-acls.md
     - name: Create a custom analyzer
       href: tutorial-create-custom-analyzer.md
   - name: RAG tutorials
@@ -280,11 +280,7 @@ items:
         - name: Search over blobs
           href: search-blob-storage-integration.md
         - name: ADLS Gen2
-          items:
-          - name: Search over ADLS Gen2 files
-            href: search-howto-index-azure-data-lake-storage.md
-          - name: Configure document-level access for ADLS Gen2
-            href: search-indexer-access-control-lists-and-role-based-access.md
+          href: search-howto-index-azure-data-lake-storage.md
         - name: Blobs
           href: search-howto-indexing-azure-blob-storage.md
         - name: Files
@@ -508,8 +504,12 @@ items:
         href: search-indexer-howto-access-private.md
       - name: Connect to a SQL managed instance private endpoint
         href: search-indexer-how-to-access-private-sql.md
-    - name: Document-level security
-      href: search-security-trimming-for-azure-search.md
+    - name: Document-level permissions
+      items:
+      - name: Security filters
+        href: search-security-trimming-for-azure-search.md
+      - name: ADLS Gen2 permission filters
+        href: search-indexer-access-control-lists-and-role-based-access.md
     - name: Advanced options
       items:
       - name: Create a private endpoint

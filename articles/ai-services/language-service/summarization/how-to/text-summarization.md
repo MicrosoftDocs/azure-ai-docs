@@ -295,7 +295,7 @@ curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-text/
       "kind": "AbstractiveSummarization",
       "taskName": "Length controlled Abstractive Summarization",
           "parameters": {
-          "sentenceLength": "short"
+          "summaryLength": "short"
       }
     }
   ]
