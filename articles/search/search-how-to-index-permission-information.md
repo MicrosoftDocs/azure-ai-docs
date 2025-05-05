@@ -11,7 +11,12 @@ ms.author: wli
 
 # Tutorial: Index permission metadata from ADLS Gen2 and query with permission-filtered results
 
-This tutorial demonstrates how to index Azure Data Lake Storage (ADLS) Gen2 [Access Control Lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) and [role-based access control (RBAC)](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) scope into a search index using an indexer, and how to confirm the permission transfer during querying. For more information about indexing ACLs, see [Indexing Access Control Lists and Azure Role-Based Access Control scope using indexers](search-indexer-access-control-lists-and-role-based-access.md).
+This tutorial demonstrates how to index Azure Data Lake Storage (ADLS) Gen2 [Access Control Lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) and [role-based access control (RBAC)](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) scope into a search index using an indexer. 
+
+It also shows you how to structure a query that respects user access permissions, and confirms the permission transfer at query time. 
+
+<!-- Add a link to Addison doc-perm concept doc -->
+For more information about indexing ACLs, see [Use an ADLS Gen2 indexer to ingest permission metadata](search-indexer-access-control-lists-and-role-based-access.md).
 
 In this tutorial, you learn how to:
 
@@ -33,6 +38,10 @@ In this tutorial, you learn how to:
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
+## Prepare sample data
+
+Upload this [sample data](https://github.com/Azure-Samples/azure-search-sample-data) to a container in ADLS Gen2.
+
 ## Configure RBAC and ACLs in ADLS Gen2 storage account
 
 Follow the guidance from [ADLS Gen2 on RBAC configuration](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) and [setting up ACLs](/azure/storage/blobs/data-lake-storage-access-control#how-to-set-acls). Be sure to review the [Azure AI Search limitations](search-indexer-access-control-lists-and-role-based-access.md#limitations) for ACL indexing before you continue.
@@ -41,24 +50,24 @@ Follow the guidance from [ADLS Gen2 on RBAC configuration](/azure/storage/blobs/
   
   [Follow the recommendations](search-indexer-access-control-lists-and-role-based-access.md#recommendations-and-best-practices) for using `Group` sets as much as possible, rather than directly assigning `User` sets. The recommendations help you avoid [ADLS Gen2 limitation](/azure/storage/blobs/data-lake-storage-access-control#what-are-the-limits-for-azure-role-assignments-and-acl-entries), and also give you well-organized member structures for the whole organization.
 
-+ Assign all `Group` and `User` sets onto the container `/` with `Read` and `Execute` permissions, for example, Group1, Group2, User1, User2.
+<!-- + Assign all `Group` and `User` sets onto the container `/` with `Read` and `Execute` permissions, for example, Group1, Group2, User1, User2.
 
-  Also assign these `Group` and `User` sets into the "Default permissions" of the container `/` with `Read` and `Execute` permissions. This step makes sure underlying new directories and files automatically inherit these ACL assignments.
+  Also assign these `Group` and `User` sets into the "Default permissions" of the container `/` with `Read` and `Execute` permissions. This step makes sure underlying new directories and files automatically inherit these ACL assignments. -->
 
-+ Existing directories and files don't automatically inherit these assignments. Use the ADLS Gen2 tool to [apply ACLs recursively](/azure/storage/blobs/data-lake-storage-acl-azure-portal#apply-an-acl-recursively) for assignments propagation.
+<!-- + Existing directories and files don't automatically inherit these assignments. Use the ADLS Gen2 tool to [apply ACLs recursively](/azure/storage/blobs/data-lake-storage-acl-azure-portal#apply-an-acl-recursively) for assignments propagation. -->
 
-+ Remove any `Group` or `User` sets that shouldn't have access to specific directories or files. For example, remove `User2` on folder `Portland/`, and for folder `Idaho` remove `Group2` and `User2` from its assignments, and so on.
+<!-- + Remove any `Group` or `User` sets that shouldn't have access to specific directories or files. For example, remove `User2` on folder `Portland/`, and for folder `Idaho` remove `Group2` and `User2` from its assignments, and so on.
 
 + Repeat the previous steps if any new assignments are brought into play.
 
 > [!NOTE]
-> The `Other` ACL category isn't supported in Azure AI Search at this time.
-
+> The `Other` ACL category isn't supported in Azure AI Search at this time. -->
+<!-- 
 ### Sample ACL assignments structure
 
 Here's a diagram of the ACL assignment structure for the [fictitious directory hierarchy](/azure/storage/blobs/data-lake-storage-access-control#common-scenarios-related-to-acl-permissions) in the ADLS Gen2 documentation.
 
-![Diagram of an ACL assignment structure.](media/search-security-acl/acl-assignment-structure-sample.png)
+![Diagram of an ACL assignment structure.](media/search-security-acl/acl-assignment-structure-sample.png) -->
 
 <!-- We need an actual index that has everything necessary for creating a queryable index. -->
 ## Create an Azure AI Search index containing permission information fields
@@ -90,7 +99,7 @@ Be sure to use [2025-05-01-preview data plane REST API](/rest/api/searchservice/
 
 With RBAC scope ingestion, [managed identity](search-howto-managed-identities-data-sources.md) is required, either system managed identity or user-assigned managed identity.
 
-+ [system managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity)
+<!-- + [system managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity)
 
   ![Screenshot showing turn on system assigned identity.](media/search-managed-identities/turn-on-system-assigned-identity.png)
 
@@ -115,7 +124,7 @@ With RBAC scope ingestion, [managed identity](search-howto-managed-identities-da
             }
         }
     } 
-    ```
+    ``` -->
 
 ### Data Source creation
 
@@ -193,6 +202,7 @@ Indexer configuration for permission ingestion is primarily about defining `fiel
 
 After indexer creation and immediate run, the file content along with permission metadata information are indexed into the index.
 
+<!-- This is already in the other doc
 ### Re-ingest permission metadata as needed
 
 There are different scenarios for [re-ingesting permission metadata](search-indexer-access-control-lists-and-role-based-access.md#re-ingest-permission-metadata-as-needed).
@@ -221,3 +231,4 @@ There are different scenarios for [re-ingesting permission metadata](search-inde
         ]
     }
     ```
+ -->

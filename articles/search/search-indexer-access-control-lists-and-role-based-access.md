@@ -1,5 +1,5 @@
 ---  
-title: Use ADLS Gen2 permission metadata
+title: Use ADLS Gen2 indexer to ingest permission metadata
 titleSuffix: Azure AI Search  
 description: Learn how to configure Azure AI Search indexers for ingesting Access Control Lists (ACLs) and Azure Role-Based Access (RBAC) metadata on Azure Data Lake Storage (ADLS) Gen2 blobs.
 ms.service: azure-ai-search  
@@ -9,14 +9,16 @@ author: wlifuture
 ms.author: wli
 ---  
 
-# Use ADLS Gen2 permission metadata to filter results based on user access rights
+# Use an ADLS Gen2 indexer to ingest permission metadata that filters search results based on user access rights
 
 > [!IMPORTANT]
 > This feature is in public preview. It's offered "as-is", under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and supported on best effort only. Preview features aren't recommended for production workloads and aren't guaranteed to become generally available.
 
-The permission model in Azure Data Lake Storage (ADLS) Gen2 can be used for per-user access to specific directories or files. Starting in 2025-05-01-preview, you can now include user permissions alongside document ingestion in Azure AI Search and use those permissions to control access to search results. If a user lacks permissions on a specific directory or file in ADLS Gen2, that user won't have access to the corresponding documents in Azure AI Search results.
+The permission model in Azure Data Lake Storage (ADLS) Gen2 can be used for per-user access to specific directories or files. Starting in 2025-05-01-preview, you can now include user permissions alongside document ingestion in Azure AI Search and use those permissions to control access to search results. If a user lacks permissions on a specific directory or file in ADLS Gen2, that user doesn't have access to the corresponding documents in Azure AI Search results.
 
-This capability is built on these foundations:
+You can use the push APIs to upload and index content and permission metadata manually, or you can use an indexer to automate data ingestion. This article focuses on the indexer approach.
+
+The indexer approach is built on this foundation:
 
 + The ADLS Gen2 access control model that provides [Access control lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) and [Role-based access control (Azure RBAC)](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac). There's no support for Attribute-based access control (Azure ABAC).
 
@@ -26,6 +28,7 @@ This capability is built on these foundations:
 
 <!-- In Azure AI Search, [Azure Data Lake Storage (ADLS) Gen2 indexers](search-howto-index-azure-data-lake-storage.md) can index access control metadata, such as Access Control Lists (ACLs) and Azure Role-Based Access Control (RBAC) scope, directly from ADLS Gen2.  -->
 
+<!-- Addison has a concept article for doc-level permission concept. we should link to that instead. -->
 This functionality helps align [document-level permissions](search-security-trimming-for-azure-search.md) in the search index with the access controls defined in ADLS Gen2, allowing users to retrieve content in a way that reflects their existing permissions.
 
 <!-- - [Azure RBAC scope](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) in ADLS Gen2 assigns certain security principals with certain roles, as a coarse-grain access control model.
@@ -86,27 +89,35 @@ The indexer fetches ACLs from each container and directory, resolves them into t
 
 ## Configure ADLS Gen2 for indexing permission filters
 
-An indexer can retrieve ACLs on a storage account if the following criteria is met. For more information about ACL assignments, see [ADLS Gen2 ACL assignments](/azure/storage/blobs/data-lake-storage-access-control#how-to-set-acls).
+An indexer can retrieve ACLs on a storage account if the following criteria are met. For more information about ACL assignments, see [ADLS Gen2 ACL assignments](/azure/storage/blobs/data-lake-storage-access-control#how-to-set-acls).
 
 ### Authorization
 
-For indexer execution, your search service identity must have **Storage Blob Data Reader** permission. If you are testing locally, you should also have a **Storage Blob Data Reader** role assignment. For more information, see [Connect to Azure Storage using a managed identity](search-howto-managed-identities-storage.md).
+For indexer execution, your search service identity must have **Storage Blob Data Reader** permission. If you're testing locally, you should also have a **Storage Blob Data Reader** role assignment. For more information, see [Connect to Azure Storage using a managed identity](search-howto-managed-identities-storage.md).
 
 ### Root container permissions:
 
-1. Assign all groups and users (security principals) that require access to any file within the container both `read` and `execute` permissions at the root container level.
+1. Assign all `Group` and `User` sets (security principals) at the root container `/` with `Read` and `Execute` permissions.
 
-1. Ensure both `read` and `execute` permissions are also added as "Default permissions" for the container, so they propagate to newly created files and directories automatically.
+1. Ensure both `Read` and `Execute` are added as "Default permissions" so they propagate to newly created files and directories automatically.
 
 ### Propagate permissions down the file hierarchy
 
-For containers with existing hierarchical file structures, use the ADLS Gen2 tool to [apply ACLs recursively](/azure/storage/blobs/data-lake-storage-acl-azure-portal#apply-an-acl-recursively). This tool propagates the root container's ACL assignments to all underlying directories and files.
+Although new directories and files inherit permissions, existing directories and files don't automatically inherit these assignments. 
+
+Use the ADLS Gen2 tool to [apply ACLs recursively](/azure/storage/blobs/data-lake-storage-acl-azure-portal#apply-an-acl-recursively) for assignments propagation on existing content. This tool propagates the root container's ACL assignments to all underlying directories and files.
 
 ### Remove excess permissions
 
-After applying ACLs recursively, review permissions for each directory and file. Remove any permissions for security principals that shouldn't have access to specific directories or files.
+After applying ACLs recursively, review permissions for each directory and file. Remove any `Group` or `User` sets that shouldn't have access to specific directories or files. For example, remove `User2` on folder `Portland/`, and for folder `Idaho` remove `Group2` and `User2` from its assignments, and so on.
 
-### Update ACL assignments
+### Sample ACL assignments structure
+
+Here's a diagram of the ACL assignment structure for the [fictitious directory hierarchy](/azure/storage/blobs/data-lake-storage-access-control#common-scenarios-related-to-acl-permissions) in the ADLS Gen2 documentation.
+
+![Diagram of an ACL assignment structure.](media/search-security-acl/acl-assignment-structure-sample.png)
+
+### Updating ACL assignments over time
 
 Over time, as any new ACL assignments are added or modified, repeat the above steps to ensure proper propagation and permissions alignment. Updated permissions in ADLS Gen2 are updated in the search index when you re-ingest the content using the indexer.
 
@@ -130,12 +141,12 @@ Over time, as any new ACL assignments are added or modified, repeat the above st
 
 Recall that the search service must have:
 
-+ [Role-based access enabled](search-security-enable-roles)
-+ [Managed identity configured](search-howto-managed-identities-data-sources)
++ [Role-based access enabled](search-security-enable-roles.md)
++ [Managed identity configured](search-howto-managed-identities-data-sources.md)
 
 ### Authorization
 
-For indexer execution, the client issuing the API call must have **Search Service Contributor** permission to create objects, and **Search Index Data Reader** to query an index. If you are testing locally, you should the sae role assignment. For more information, see [Connect to Azure AI Search using roles](search-security-rbac.md).
+For indexer execution, the client issuing the API call must have **Search Service Contributor** permission to create objects, and **Search Index Data Reader** to query an index. If you're testing locally, you should have the same role assignment. For more information, see [Connect to Azure AI Search using roles](search-security-rbac.md).
 
 ## Indexing permission metadata
 
@@ -145,7 +156,7 @@ In Azure AI Search, configure an indexer, data source, and index to pull permiss
 
 This section supplements  [**Index data from ADLS  Gen2**](search-howto-index-azure-data-lake-storage.md) with information that's specific to ingesting permissions alongside document content into an Azure AI Search index.
 
-+ Data Ssource type must be `adlsgen2`.
++ Data Source type must be `adlsgen2`.
 
 + Data source must have `indexerPermissionOptions` with `userIds`, `groupIds` and/or `rbacScope`.
 
@@ -198,10 +209,14 @@ In Azure AI Search, make sure your index contains field definitions for the perm
 
 Recommended schema attributes for ACL (UserIds, GroupIds) and RBAC Scope:
 
-+ User IDs field with `userIds` permissionFilter value, and set filterable to true.
-+ Group IDs filed with `groupIds` permissionFilter value, and set filterable to true.
-+ RBAC scope field with `rbacScope` permissionFilter value, and set filterable to true.
++ User IDs field with `userIds` permissionFilter value.
++ Group IDs filed with `groupIds` permissionFilter value.
++ RBAC scope field with `rbacScope` permissionFilter value.
 + Property `permissionFilterOption` to enable filtering at querying time.
++ Use string fields for permission metadata
++ Set `filterable` to true on all fields.
+
+Notice that `retrievable` is false. You can set it true during development to verify permissions are present, but remember to set to back to false before deploying to a production environment.
 
 JSON schema example:
 
@@ -210,9 +225,9 @@ JSON schema example:
   ...
   "fields": [
     ...
-    { "name": "UserIds", "type": "Collection(Edm.String)", "permissionFilter": "userIds", "filterable": true },
-    { "name": "GroupIds", "type": "Collection(Edm.String)", "permissionFilter": "groupIds", "filterable": true },
-    { "name": "RbacScope", "type": "Edm.String", "permissionFilter": "rbacScope", "filterable": true }
+    { "name": "UserIds", "type": "Collection(Edm.String)", "permissionFilter": "userIds", "filterable": true, "retrievable": false },
+    { "name": "GroupIds", "type": "Collection(Edm.String)", "permissionFilter": "groupIds", "filterable": true, "retrievable": false },
+    { "name": "RbacScope", "type": "Edm.String", "permissionFilter": "rbacScope", "filterable": true, "retrievable": false }
   ],
   "permissionFilterOption": "enabled"
 }
