@@ -122,11 +122,9 @@ When `imageAction` is set to a value other than *none*, the new `normalized_imag
 
 ## Define skillsets for image processing
 
-This section supplements the [skill reference](cognitive-search-predefined-skills.md) articles by providing context for working with skill inputs, outputs, and patterns, as they relate to image processing.
+This section supplements the [skill reference](cognitive-search-defining-skillset.md) articles by providing context for working with skill inputs, outputs, and patterns, as they relate to image processing.
 
-1. [Create or update a skillset](/rest/api/searchservice/skillsets/create) to add skills.
-
-1. If necessary, [include a multi-service key](cognitive-search-attach-cognitive-services.md) in the Azure AI services property of the skillset. Azure AI services must be in the same region as your search service.
+1. Create or update a skillset to add skills.
 
 Once the basic framework of your skillset is created and Azure AI services is configured, you can focus on each individual image skill, defining inputs and source context, and mapping outputs to fields in either an index or knowledge store.
 
