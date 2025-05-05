@@ -86,6 +86,8 @@ Use either the Azure AI Foundry portal or Azure CLI to create a project.
     az cognitiveservices account project create --name {my_project_name} -resource-group {my_resource_group}
         ```
 
+---
+
 ## Deploy a model
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
@@ -100,7 +102,7 @@ Use either the Azure AI Foundry portal or Azure CLI to create a project.
 
 Finally, assign access control in either Azure AI Foundry portal or with Azure CLI:
 
-# [Azure AI Foundry portal#](#tab/ai-foundry)
+# [Azure AI Foundry portal](#tab/ai-foundry)
     
 1. At the bottom of the left pane, select **Management center**.
 1. Under the resource name, select **Users**.
