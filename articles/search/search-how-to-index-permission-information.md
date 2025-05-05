@@ -29,12 +29,9 @@ In this tutorial, you learn how to:
 
 + Blobs in a hierarchical folder structure. This tutorial assumes the ADLS Gen2 demo of folder structure for file [`/Oregon/Portland/Data.txt`](/azure/storage/blobs/data-lake-storage-access-control#common-scenarios-related-to-acl-permissions).
 
-+ [Azure AI Search](search-what-is-azure-search.md). [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription.
++ [Azure AI Search](search-create-service-portal.md), any region. Basic or higher is required for managed identity support.
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
-
-> [!NOTE]
-> You can use a free search service for this tutorial. The Free tier limits you to three indexes, three indexers, and three data sources. This tutorial creates one of each. Before you start, make sure you have room on your service to accept the new resources.
 
 ## Configure RBAC and ACLs in ADLS Gen2 storage account
 
@@ -63,6 +60,7 @@ Here's a diagram of the ACL assignment structure for the [fictitious directory h
 
 ![Diagram of an ACL assignment structure.](media/search-security-acl/acl-assignment-structure-sample.png)
 
+<!-- We need an actual index that has everything necessary for creating a queryable index. -->
 ## Create an Azure AI Search index containing permission information fields
 
 [Create an index](search-how-to-create-search-index.md#create-an-index) that meets your service requirements, and add [permission fields](search-indexer-access-control-lists-and-role-based-access.md#index-permission-fields) to receive the respective ACLs and rbacScope metadata during indexing.
@@ -87,6 +85,7 @@ Be sure to use [2025-05-01-preview data plane REST API](/rest/api/searchservice/
 
 ## Create and run an indexer to ingest permission information into an index from a data source
 
+<!-- This section needs to move to the main how-to doc, and refocused on what we want to use the tutorial, which is system. -->
 ### Search service configuration
 
 With RBAC scope ingestion, [managed identity](search-howto-managed-identities-data-sources.md) is required, either system managed identity or user-assigned managed identity.
@@ -122,7 +121,9 @@ With RBAC scope ingestion, [managed identity](search-howto-managed-identities-da
 
 Modify [data source configuration](search-indexer-access-control-lists-and-role-based-access.md#data-source-configuration) to specify indexer permission ingestion and the types of permission metadata that you want to index.
 
-+ `adlsgen2` type is required.
+In this tutorial, use a system-assigned managed identity.
+
+<!-- + `adlsgen2` type is required.
 
 + `indexerPermissionOptions` with candidate options to opt in: `userIds`, `groupIds`, and `rbacScope`.
 
@@ -133,7 +134,7 @@ Modify [data source configuration](search-indexer-access-control-lists-and-role-
 Here are some scenario examples.
 
 + System managed identity schema example:
-
+ -->
   ```json
   {
       "name" : "my-adlsgen2-acl-datasource",
@@ -148,7 +149,7 @@ Here are some scenario examples.
       }
   }
   ```
-
+<!-- 
 + User-assigned managed identity schema example:
 
   ```json
@@ -168,7 +169,7 @@ Here are some scenario examples.
       "userAssignedIdentity": "/subscriptions/{subscription-ID}/resourceGroups/{resource-group-name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{user-assigned-managed-identity-name}"
       }
   }
-  ```
+  ``` -->
 
 ### Indexer creation
 
