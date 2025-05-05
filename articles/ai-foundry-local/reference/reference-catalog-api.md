@@ -37,7 +37,7 @@ Replace `<catalog provider URI>` and `<provider subpath>` with the appropriate v
 
 ## Authorization
 
-All endpoints support:
+All endpoints must implement
 
 - Anonymous access
 - Azure Active Directory (AAD) token
