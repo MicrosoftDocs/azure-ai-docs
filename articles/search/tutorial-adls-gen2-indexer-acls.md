@@ -72,7 +72,7 @@ Here's a diagram of the ACL assignment structure for the [fictitious directory h
 <!-- We need an actual index that has everything necessary for creating a queryable index. -->
 ## Create an Azure AI Search index containing permission information fields
 
-[Create an index](search-how-to-create-search-index.md#create-an-index) that meets your service requirements, and add [permission fields](search-indexer-access-control-lists-and-role-based-access.md#index-permission-fields) to receive the respective ACLs and rbacScope metadata during indexing.
+[Create an index](search-how-to-create-search-index.md#create-an-index) that meets your service requirements, and add [permission fields](search-indexer-access-control-lists-and-role-based-access.md#create-permission-fields-in-the-index) to receive the respective ACLs and rbacScope metadata during indexing.
 
 Be sure to use [2025-05-01-preview data plane REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) or a prerelease Azure SDK that provides equivalent functionality. The permission filter properties are only available in the preview APIs.
 
@@ -128,7 +128,7 @@ With RBAC scope ingestion, [managed identity](search-howto-managed-identities-da
 
 ### Data Source creation
 
-Modify [data source configuration](search-indexer-access-control-lists-and-role-based-access.md#data-source-configuration) to specify indexer permission ingestion and the types of permission metadata that you want to index.
+Modify [data source configuration](search-indexer-access-control-lists-and-role-based-access.md#configure-the-data-source) to specify indexer permission ingestion and the types of permission metadata that you want to index.
 
 In this tutorial, use a system-assigned managed identity.
 
