@@ -73,7 +73,7 @@ Network isolation | [Configure managed networks for Azure AI Foundry hubs](confi
 
 ### Available models for supported deployment options
 
-For Azure OpenAI models, see [Azure OpenAI Service Models](../../ai-services/openai/concepts/models.md).
+For Azure OpenAI models, see [Azure OpenAI models](../../ai-services/openai/concepts/models.md).
 
 To view a list of supported models for Serverless API or Managed Compute, go to the home page of the model catalog in [Azure AI Foundry](https://ai.azure.com). Use the **Deployment options** filter to select either **Serverless API** or **Managed Compute**. 
 
@@ -87,8 +87,8 @@ To view a list of supported models for Serverless API or Managed Compute, go to 
 ## Model lifecycle: deprecation and retirement
 AI models evolve fast, and when a new version or a new model with updated capabilities in the same model family become available, older models may be retired in the AI Foundry model catalog. To allow for a smooth transition to a newer model version, some models provide users with the option to enable automatic updates. To learn more about the model lifecycle of different models, upcoming model retirement dates, and suggested replacement models and versions, see:
 
-- [Azure OpenAI Service model deprecations and retirements](../../ai-services/openai/concepts/model-retirements.md)
-- [Serverless API model deprecations and retirements](../concepts/model-lifecycle-retirement.md)
+- [Azure OpenAI model deprecations and retirements](../../ai-services/openai/concepts/model-retirements.md?context=/azure/ai-foundry/context/context)
+- [Deprecations and retirements for standard deployments](../concepts/model-lifecycle-retirement.md)
 
 ## Managed compute
 
