@@ -44,6 +44,10 @@ When you integrate a client application with a speech to text component, users c
 
 In a large corporation, an enterprise chat bot may handle a variety of employee affairs. It might handle frequently asked questions served by a custom question answering knowledge base, a calendar specific skill served by conversational language understanding, and an interview feedback skill served by LUIS. Use Orchestration workflow to connect all these skills together and appropriately route the incoming requests to the correct service.
 
+### Agents
+
+CLU is utilized by the [intent triage](https://aka.ms/intent-triage-agent-template) agent in oder to determine the intent of text.
+
 ## Project development lifecycle
 
 Creating a CLU project typically involves several different steps.

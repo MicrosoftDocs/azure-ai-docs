@@ -23,6 +23,8 @@ The Language service also provides several new features as well, which can eithe
 * Preconfigured, which means the AI models that the feature uses aren't customizable. You just send your data, and use the feature's output in your applications.
 * Customizable, which means you train an AI model using our tools to fit your data specifically.
 
+Language features are also utilized in the [intent triage](https://aka.ms/intent-triage-agent-template) and [exact answer](https://aka.ms/exact-answer-agent-template) [agent templates](https://aka.ms/ai-agent-catalog).
+
 > [!TIP]
 > Unsure which feature to use? See [Which Language service feature should I use](#which-language-service-feature-should-i-use) to help you decide.
 

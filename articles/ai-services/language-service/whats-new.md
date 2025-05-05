@@ -14,6 +14,12 @@ ms.author: jboback
 
 Azure AI Language is updated on an ongoing basis. To stay up-to-date with recent developments, this article provides you with information about new releases and features.
 
+## May 2025
+
+* Azure AI Language now supports the following agent templates:
+    *   [Intent triage](https://aka.ms/intent-triage-agent-template)
+    *   [Exact answer](https://aka.ms/exact-answer-agent-template)
+
 ## March 2025
 
 * Azure AI Language resource now can be deployed to 3 new regions, Jio India Central, UK West and Canada East, for the following capabilities: 
