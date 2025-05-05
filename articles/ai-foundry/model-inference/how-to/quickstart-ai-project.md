@@ -14,7 +14,7 @@ recommendations: false
 
 # Configure your AI project to use Azure AI Foundry Models
 
-If you already have an AI project in Azure AI Foundry, the model catalog deploys models from third-party model providers as stand-alone endpoints in your project by default. Each model deployment has its own set of URI and credentials to access it. On the other hand, Azure OpenAI models are deployed to Azure AI Services resource or to the Azure OpenAI Service resource.
+If you already have an AI project in Azure AI Foundry, the model catalog deploys models from third-party model providers as stand-alone endpoints in your project by default. Each model deployment has its own set of URI and credentials to access it. On the other hand, Azure OpenAI models are deployed to Azure AI Services resource or to the Azure OpenAI in Azure AI Foundry Models resource.
 
 You can change this behavior and deploy both types of models to Azure AI Foundry resources (formerly known Azure AI Services). Once configured, **deployments of Models as a Service models supporting pay-as-you-go billing happen to the connected Azure AI Services resource** instead to the project itself, giving you a single set of endpoint and credential to access all the models deployed in Azure AI Foundry. You can manage Azure OpenAI and third-party model providers models in the same way.
 

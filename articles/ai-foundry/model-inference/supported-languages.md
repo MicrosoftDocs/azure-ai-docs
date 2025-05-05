@@ -47,7 +47,7 @@ The Azure AI Inference package allows you to consume all models deployed to the 
 
 Azure OpenAI models can be consumed using the following SDKs and programming languages.
 
-To use these SDKs, connect them to the [Azure OpenAI service URI](concepts/endpoints.md#azure-openai-inference-endpoint) (usually in the form `https://<resource-name>.openai.azure.com`).
+To use these SDKs, connect them to the [Azure OpenAI in Azure AI Foundry Models URI](concepts/endpoints.md#azure-openai-inference-endpoint) (usually in the form `https://<resource-name>.openai.azure.com`).
 
 ### OpenAI and Azure OpenAI SDK
 

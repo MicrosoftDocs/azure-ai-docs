@@ -17,13 +17,13 @@ sections:
   - name: General
     questions:
       - question: |
-          What's the difference between Azure OpenAI service and Azure AI model inference?
+          What's the difference between Azure OpenAI in Azure AI Foundry Models and Azure AI model inference?
         answer: |
-          Azure OpenAI Service gives customers access to advanced language models from OpenAI. Azure AI model inference extends such capability giving customers access to all the flagship models in Azure AI under the same service, endpoint, and credentials. It includes Azure OpenAI, Cohere, Mistral AI, Meta Llama, AI21 labs, etc. Customers can seamlessly switch between models without changing their code.
+          Azure OpenAI gives customers access to advanced language models from OpenAI. Azure AI model inference extends such capability giving customers access to all the flagship models in Azure AI under the same service, endpoint, and credentials. It includes Azure OpenAI, Cohere, Mistral AI, Meta Llama, AI21 labs, etc. Customers can seamlessly switch between models without changing their code.
 
-          Both Azure OpenAI Service and Azure AI model inference are part of the Azure AI services family and build on top of the same security and enterprise promise of Azure.
+          Both Azure OpenAI and Azure AI model inference are part of the Azure AI services family and build on top of the same security and enterprise promise of Azure.
 
-          While Azure AI model inference focus on inference, Azure OpenAI Service can be used with more advanced APIs like batch, fine-tuning, assistants, and files.
+          While Azure AI model inference focuses on inference, Azure OpenAI can be used with more advanced APIs like batch, fine-tuning, assistants, and files.
       - question: |
           What's the difference between Azure AI services and Azure AI Foundry?
         answer: |
@@ -74,7 +74,7 @@ sections:
       - question: |
           I'm using OpenAI SDK and indicated the Azure OpenAI inference endpoint as base URL (https://<resource-name>.openai.azure.com). However, I get a 404 error. What should I do?
         answer: |
-          Ensure you're using the correct endpoint for the Azure OpenAI service and the right set of credentials. Also, ensure that you're using the class `AzureOpenAI` from the OpenAI SDK as the authentication mechanism and URLs used are different.
+          Ensure you're using the correct endpoint for Azure OpenAI and the right set of credentials. Also, ensure that you're using the class `AzureOpenAI` from the OpenAI SDK as the authentication mechanism and URLs used are different.
       - question: |
           Does Azure AI model inference support custom API headers? We append custom headers to our API requests and are seeing HTTP 431 failure errors.
         answer: |
@@ -121,5 +121,5 @@ sections:
       - question: |
           How do I obtain coverage under the Customer Copyright Commitment? 
         answer:
-          The Customer Copyright Commitment is a provision to be included in the December 1, 2023, Microsoft Product Terms that describes Microsoft’s obligation to defend customers against certain non-Microsoft intellectual property claims relating to Output Content. If the subject of the claim is Output Content generated from the Azure OpenAI Service (or any other Covered Product that allows customers to configure the safety systems), then to receive coverage, customers must have implemented all mitigations required by the Azure OpenAI Service documentation in the offering that delivered the Output Content. The required mitigations are documented [here](/legal/cognitive-services/openai/customer-copyright-commitment?context=/azure/ai-services/openai/context/context) and updated on an ongoing basis. For new services, features, models, or use cases, new CCC requirements will be posted and take effect at or following the launch of such service, feature, model, or use case. Otherwise, customers will have six months from the time of publication to implement new mitigations to maintain coverage under the CCC. If a customer tenders a claim, the customer will be required to demonstrate compliance with the relevant requirements. These mitigations are required for Covered Products that allow customers to configure the safety systems, including Azure OpenAI Service; they don't impact coverage for customers using other Covered Products.
+          The Customer Copyright Commitment is a provision to be included in the December 1, 2023, Microsoft Product Terms that describes Microsoft’s obligation to defend customers against certain non-Microsoft intellectual property claims relating to Output Content. If the subject of the claim is Output Content generated from Azure OpenAI (or any other Covered Product that allows customers to configure the safety systems), then to receive coverage, customers must have implemented all mitigations required by the Azure OpenAI documentation in the offering that delivered the Output Content. The required mitigations are documented [here](/legal/cognitive-services/openai/customer-copyright-commitment?context=/azure/ai-services/openai/context/context) and updated on an ongoing basis. For new services, features, models, or use cases, new CCC requirements will be posted and take effect at or following the launch of such service, feature, model, or use case. Otherwise, customers will have six months from the time of publication to implement new mitigations to maintain coverage under the CCC. If a customer tenders a claim, the customer will be required to demonstrate compliance with the relevant requirements. These mitigations are required for Covered Products that allow customers to configure the safety systems, including Azure OpenAI; they don't impact coverage for customers using other Covered Products.
 additionalContent: |

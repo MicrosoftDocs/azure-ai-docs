@@ -30,7 +30,7 @@ The **Azure AI inference endpoint** (usually with the form `https://<resource-na
 
 **Azure OpenAI** models deployed to AI services also support the Azure OpenAI API (usually with the form `https://<resource-name>.openai.azure.com`). This endpoint exposes the full capabilities of OpenAI models and supports more features like assistants, threads, files, and batch inference.
 
-To learn more about how to apply the **Azure OpenAI endpoint** see [Azure OpenAI service documentation](../../../ai-services/openai/overview.md).
+To learn more about how to apply the **Azure OpenAI endpoint** see [Azure OpenAI in Azure AI Foundry Models documentation](../../../ai-services/openai/overview.md).
 
 ## Using the routing capability in the Azure AI model inference endpoint
 

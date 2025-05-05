@@ -19,7 +19,7 @@ author: eric-urban
 
 In the chat playground in Azure AI Foundry portal, you can use speech to text and text to speech features to interact with chat models. You can try the same model that you use for text-based chat in a speech-based chat. It's just another way to interact with the model.
 
-In this quickstart, you use Azure OpenAI Service and Azure AI Speech to:
+In this quickstart, you use Azure OpenAI in Azure AI Foundry Models and Azure AI Speech to:
 
 - Speak to the assistant via speech to text.
 - Hear the assistant's response via text to speech.

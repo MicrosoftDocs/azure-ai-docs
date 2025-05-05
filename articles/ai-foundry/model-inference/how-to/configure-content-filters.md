@@ -29,5 +29,5 @@ zone_pivot_groups: azure-ai-models-deployment
 
 ## Next steps
 
-- Read more about [content filtering categories and severity levels](../concepts/content-filter.md) with Azure OpenAI Service.
+- Read more about [content filtering categories and severity levels](../concepts/content-filter.md) with Azure OpenAI in Azure AI Foundry Models.
 - Learn more about red teaming from our: [Introduction to red teaming large language models (LLMs) article](../../../ai-services/openai/concepts/red-teaming.md).

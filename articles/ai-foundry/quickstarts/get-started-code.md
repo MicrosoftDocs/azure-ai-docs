@@ -50,7 +50,7 @@ Create a file named **chat.py**.  Copy and paste the following code into it.
 
 ## Insert your connection string
 
-Your project connection string is required to call the Azure OpenAI service from your code. 
+Your project connection string is required to call the Azure OpenAI in Azure AI Foundry Models from your code. 
 
 Find your connection string in the Azure AI Foundry project you created in the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md).  Open the project, then find the connection string on the **Overview** page.  
 

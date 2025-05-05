@@ -33,7 +33,7 @@ The prompt flow Azure OpenAI GPT-4 Turbo with Vision tool enables you to use you
 
     :::image type="content" source="../../media/prompt-flow/azure-openai-gpt-4-vision-tool.png" alt-text="Screenshot that shows the Azure OpenAI GPT-4 Turbo with Vision tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/azure-openai-gpt-4-vision-tool.png":::
 
-1. Select the connection to your Azure OpenAI Service. For example, you can select the **Default_AzureOpenAI** connection. For more information, see [Prerequisites](#prerequisites).
+1. Select the connection to your Azure OpenAI in Azure AI Foundry Models. For example, you can select the **Default_AzureOpenAI** connection. For more information, see [Prerequisites](#prerequisites).
 1. Enter values for the Azure OpenAI GPT-4 Turbo with Vision tool input parameters described in the [Inputs table](#inputs). For example, you can use this example prompt:
 
     ```jinja

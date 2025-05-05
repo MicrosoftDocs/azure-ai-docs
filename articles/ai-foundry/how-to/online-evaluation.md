@@ -32,15 +32,15 @@ After your application is instrumented to send trace data to Application Insight
 > [!NOTE]
 > Online evaluation supports the same metrics as Azure AI Evaluation. For more information on how evaluation works and which evaluation metrics are supported, see [Evaluate your Generative AI application with the Azure AI Evaluation SDK](./develop/evaluate-sdk.md).
 
-For example, let’s say you have a deployed chat application that receives many customer questions on a daily basis. You want to continuously evaluate the quality of the responses from your application. You set up an online evaluation schedule with a daily recurrence. You configure the evaluators: **Groundedness**,  **Coherence**, and **Fluency**. Every day, the service computes the evaluation scores for these metrics and writes the data back to Application Insights for each trace that was collected during the recurrence time window (in this example, the past 24 hours). Then, the data can be queried from each trace and made accessible in Azure AI Foundry and Azure Monitor Application Insights.
+For example, let's say you have a deployed chat application that receives many customer questions on a daily basis. You want to continuously evaluate the quality of the responses from your application. You set up an online evaluation schedule with a daily recurrence. You configure the evaluators: **Groundedness**,  **Coherence**, and **Fluency**. Every day, the service computes the evaluation scores for these metrics and writes the data back to Application Insights for each trace that was collected during the recurrence time window (in this example, the past 24 hours). Then, the data can be queried from each trace and made accessible in Azure AI Foundry and Azure Monitor Application Insights.
 
 The evaluation results written back to each trace within Application Insights follow the following conventions. A unique span is added to each trace for each evaluation metric:
 
 | Property                                  | Application Insights Table | Fields for a given operation_ID               | Example value                        |
 |-------------------------------------------|----------------------------|-----------------------------------------------|--------------------------------------|
-| Evaluation metric                         | traces, AppTraces          | `customDimensions[“event.name”]`              | `gen_ai.evaluation.relevance`        |
-| Evaluation metric score                   | traces, AppTraces          | `customDimensions[“gen_ai.evaluation.score”]` | `3`                                  |
-| Evaluation metric comment (if applicable) | traces, AppTraces          | `message`                                     | `{“comment”: “I like the response”}` |
+| Evaluation metric                         | traces, AppTraces          | `customDimensions["event.name"]`              | `gen_ai.evaluation.relevance`        |
+| Evaluation metric score                   | traces, AppTraces          | `customDimensions["gen_ai.evaluation.score"]` | `3`                                  |
+| Evaluation metric comment (if applicable) | traces, AppTraces          | `message`                                     | `{"comment": "I like the response"}` |
 
 Now that you understand how online evaluation works and how it connects to Azure Monitor Application Insights, the next step is to set up the service.
 
@@ -217,11 +217,11 @@ app_insights_config = ApplicationInsightsConfiguration(
     query=KUSTO_QUERY
 )
 
-# Connect to your Azure OpenAI Service resource. You must use a GPT model deployment for this example.
+# Connect to your Azure OpenAI in Azure AI Foundry Models resource. You must use a GPT model deployment for this example.
 deployment_name = "gpt-4"
 api_version = "2024-08-01-preview"
 
-# This is your Azure OpenAI Service connection name, which can be found in your Azure AI Foundry project under the 'Models + Endpoints' tab.
+# This is your Azure OpenAI connection name, which can be found in your Azure AI Foundry project under the 'Models + Endpoints' tab.
 default_connection = project_client.connections._get_connection(
     "aoai_connection_name"
 )
