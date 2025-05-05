@@ -23,10 +23,8 @@ The model catalog in Azure Machine Learning studio is the hub to discover and us
 
 Models are organized by Collections in the model catalog. There are three types of collections in the model catalog: 
 
-* **Azure Direct Models:** The most popular third-party open weight and propriety models packaged and optimized to work seamlessly on the Azure AI platform. Use of these models is subject to the model provider's license terms provided with the model. When deployed in Azure Machine Learning, availability of the model is subject to the applicable [Azure SLA](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services), and Microsoft provides support for deployment issues. 
-
-Models from DeepSeek and Azure OpenAI are examples of models available in this collection on the catalog. You can identify these models by looking for a green checkmark on the model tiles in the catalog. Or you can filter by the **Azure Direct Models** collection. 
-* **Azure OpenAI in Azure AI Foundry Models:** Flagship Azure OpenAI models available in Azure AI Foundry Models.Microsoft supports these models and their use according to the product terms and [SLA for Azure OpenAI](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
+* **Models curated by Azure AI:** The most popular third-party open weight and propriety models packaged and optimized to work seamlessly on the Azure AI platform. Use of these models is subject to the model provider's license terms provided with the model. When deployed in Azure Machine Learning, availability of the model is subject to the applicable [Azure SLA](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services), and Microsoft provides support for deployment issues. Models from partners such as Meta, NVIDIA, Mistral AI are examples of models available in the "Curated by Azure AI" collection on the catalog. These models can be identified by a green checkmark on the model tiles in the catalog or you can filter by the "Curated by Azure AI" collection. 
+* **Azure OpenAI models, exclusively available on Azure:** Flagship Azure OpenAI models via the 'Azure OpenAI' collection through an integration with the Azure OpenAI Service. These models are supported by Microsoft and their use is subject to the product terms and [SLA for Azure OpenAI Service](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
 * **Open models from the Hugging Face hub:** Hundreds of models from the HuggingFace hub are accessible via the 'Hugging Face' collection for real time inference with online endpoints. Hugging face creates and maintains models listed in HuggingFace collection. Use [HuggingFace forum](https://discuss.huggingface.co) or [HuggingFace support](https://huggingface.co/support) for help. Learn more about [how to deploy models from Hugging Face](./how-to-deploy-models-from-huggingface.md).
 
 **Suggesting additions to the model catalog:** You can submit a request to add a model to the model catalog using [this form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR_frVPkg_MhOoQxyrjmm7ZJUM09WNktBMURLSktOWEdDODBDRjg2NExKUy4u). 
@@ -35,7 +33,7 @@ Models from DeepSeek and Azure OpenAI are examples of models available in this c
 
 For information on Azure OpenAI models, refer to [Azure OpenAI Service](/azure/ai-services/openai/overview). 
 
-For **Azure Direct Models** and **Open models from the Hugging Face hub**, some of these can be deployed with a managed compute option, and some of these are available to be deployed using serverless APIs with pay-as-you-go billing. These models can be discovered, compared, evaluated, fine-tuned (when supported) and deployed at scale and integrated into your Generative AI applications with enterprise-grade security and data governance.  
+For models **Curated by Azure AI** and **Open models from the Hugging Face hub**, some of these can be deployed with a managed compute option, and some of these are available to be deployed using serverless APIs with pay-as-you-go billing. These models can be discovered, compared, evaluated, fine-tuned (when supported) and deployed at scale and integrated into your Generative AI applications with enterprise-grade security and data governance.  
 
 * **Discover:** Review model cards, try sample inference and browse code samples to evaluate, fine-tune, or deploy the model. 
 * **Compare:** Compare benchmarks across models and datasets available in the industry to assess which one meets your business scenario. 
@@ -84,7 +82,7 @@ The models are made available through [Azure Machine Learning registries](concep
 
 ### Evaluate and fine-tune models deployed with managed compute
 
-You can evaluate and fine-tune in the "Azure Direct Models" collection in Azure Machine Learning using Azure Machine Learning Pipelines. You can either choose to bring your own evaluation and fine-tuning code and just access model weights or use Azure Machine Learning components that offer built-in evaluation and fine-tuning capabilities. To learn more, [follow this link](how-to-use-foundation-models.md).
+You can evaluate and fine-tune in the "Curated by Azure AI" collection in Azure Machine Learning using Azure Machine Learning Pipelines. You can either choose to bring your own evaluation and fine-tuning code and just access model weights or use Azure Machine Learning components that offer built-in evaluation and fine-tuning capabilities. To learn more, [follow this link](how-to-use-foundation-models.md).
 
 ### Deploy models for inference with managed compute 
 

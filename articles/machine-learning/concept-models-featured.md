@@ -368,4 +368,4 @@ For examples of how to use Stability AI models, see the following examples:
 - [Deploy models as serverless API endpoints](how-to-deploy-models-serverless.md)
 - [Model catalog and collections](concept-model-catalog.md)
 - [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md)
-- [Content safety for Azure Direct Models in the model catalog](../ai-foundry/concepts/model-catalog-content-safety.md)
+- [Content safety for models curated by Azure AI in the model catalog](../ai-foundry/concepts/model-catalog-content-safety.md)
