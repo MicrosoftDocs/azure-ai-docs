@@ -41,7 +41,7 @@ Built-in evaluators support the following application scenarios:
 - **Conversation**: This scenario is designed for applications that involve sending in queries and generating responses in a multi-turn exchange.
 - **Retrieval augmented generation**: This scenario is suitable for applications where the model engages in generation using a retrieval-augmented approach to extract information from your provided documents and generate detailed responses, usually multi-turn.
 
-For more in-depth information on each evaluator definition and how it's calculated, see [Evaluation and monitoring metrics for generative AI](../../concepts/evaluation-metrics-built-in.md).
+For more in-depth information on each evaluator definition and how it's calculated, see [What are evaluators?](../../concepts/observability.md#what-are-evaluators).
 
 | Category  | Evaluator class                                                                                                                    |
 |-----------|------------------------------------------------------------------------------------------------------------------------------------|
@@ -430,7 +430,6 @@ Like six other AI-assisted evaluators, `GroundednessEvaluator` is a prompt-based
 
 We open-source the prompts of our quality evaluators except for `GroundednessProEvaluator` (powered by Azure AI Content Safety) for transparency. These prompts serve as instructions for a language model to perform their evaluation task, which requires a human-friendly definition of the metric and its associated scoring rubrics (what the five levels of quality mean for the metric). We highly recommend that users customize the definitions and grading rubrics to their scenario specifics. See details in [Custom Evaluators](#custom-evaluators).
 
-
 ### Risk and safety evaluators (preview)
 
 When you use AI-assisted risk and safety metrics, a GPT model isn't required. Instead of `model_config`, provide your `azure_ai_project` information. This accesses the Azure AI project safety evaluations back-end service, which provisions a GPT model specific to harms evaluation that can generate content risk severity scores and reasoning to enable the safety evaluators.
@@ -446,7 +445,7 @@ Currently AI-assisted risk and safety metrics are only available in the followin
 |France Central | Supported | N/A |
 |Switzerland West | Supported | N/A |
 
-To learn more about the supported metrics and when to use which metric, see [Evaluation and monitoring metrics for generative AI](../../concepts/evaluation-metrics-built-in.md).
+To learn more about the supported metrics and when to use which metric, see [Risk and safety evaluators](../../concepts/evaluation-evaluators/risk-safety-evaluators.md).
 
 #### Risk and safety evaluator usage
 
@@ -487,7 +486,7 @@ Output:
 
 The result of the content safety evaluators for a query and response pair is a dictionary containing:
 
-- `{metric_name}` provides a severity label for that content risk ranging from Very low, Low, Medium, and High. To learn more about the descriptions of each content risk and severity scale, see [Evaluation and monitoring metrics for generative AI](../../concepts/evaluation-metrics-built-in.md).
+- `{metric_name}` provides a severity label for that content risk ranging from Very low, Low, Medium, and High. To learn more about the descriptions of each content risk and severity scale, see [Risk and safety evaluators](../../concepts/evaluation-evaluators/risk-safety-evaluators.md).
 - `{metric_name}_score` has a range between 0 and 7 severity level that maps to a severity label given in `{metric_name}`.
 - `{metric_name}_reason` explains why a certain severity score was given for each data point.
 
@@ -886,7 +885,6 @@ result = evaluate(
 
 - [Azure AI Evaluation Python SDK client reference documentation](https://aka.ms/azureaieval-python-ref)
 - [Azure AI Evaluation SDK client Troubleshooting guide](https://aka.ms/azureaieval-tsg)
-- [Learn more about the evaluation metrics](../../concepts/evaluation-metrics-built-in.md)
 - [Evaluate your Generative AI applications remotely on the cloud](./cloud-evaluation.md)
 - [Learn more about simulating test datasets for evaluation](./simulator-interaction-data.md)
 - [View your evaluation results in Azure AI project](../../how-to/evaluate-results.md)

@@ -25,7 +25,7 @@ Risk and safety evaluators draw on insights gained from our previous Large Langu
 - [Code vulnerability](#code-vulnerability)
 - [Ungrounded attributes](#ungrounded-attributes)
 
-An aggregate “defect rate” is calculated by the percentage of undesired content detected in the response from your AI system. You can use the safety evaluators on your own dataset or use the [AI Red Teaming Agent](link/to/AIredteamingagentconceptdoc.md) which leverages the safety evaluators in its automated red teaming scans.
+An aggregate “defect rate” is calculated by the percentage of undesired content detected in the response from your AI system. You can use the safety evaluators on your own dataset or use the [AI Red Teaming Agent](../ai-red-teaming-agent.md) which leverages the safety evaluators in its automated red teaming scans.
 
 You can also use our [Content Safety Evaluator](#content-safety-composite-evaluator), a composite evaluator that runs all four content safety evaluators (`HateUnfairnessEvaluator`, `SexualEvaluator`, `ViolenceEvaluator`, and `SelfHarmEvaluator`) on your dataset at once.
 
@@ -303,7 +303,7 @@ Direct attack jailbreak evaluations measures to what extent the response fell fo
 - Baseline adversarial test dataset.
 - Adversarial test dataset with direct attack jailbreak injections in the first turn.
 
-You can do this with functionality and attack datasets generated with the [direct attack simulator](../how-to/develop/simulator-interaction-data.md#simulating-jailbreak-attacks) with the same randomization seed. Then you can evaluate jailbreak vulnerability by comparing results from content safety evaluators between the two test dataset's aggregate scores for each safety evaluator. A direct attack jailbreak defect is detected when there's presence of content harm response detected in the second direct attack injected dataset when there was none or lower severity detected in the first control dataset.
+You can do this with functionality and attack datasets generated with the [direct attack simulator](../../how-to/develop/simulator-interaction-data.md#simulating-jailbreak-attacks) with the same randomization seed. Then you can evaluate jailbreak vulnerability by comparing results from content safety evaluators between the two test dataset's aggregate scores for each safety evaluator. A direct attack jailbreak defect is detected when there's presence of content harm response detected in the second direct attack injected dataset when there was none or lower severity detected in the first control dataset.
 
 ### Direct attack jailbreak (UPIA) example
 

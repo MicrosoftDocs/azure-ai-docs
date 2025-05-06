@@ -15,7 +15,7 @@ author: lgayhardt
 
 AI systems might generate textual responses that are incoherent, or lack the general writing quality you might desire beyond minimum grammatical correctness. To address these issues, use [Coherence](#coherence) and [Fluency](#fluency).
 
-If you have a question-answering (QA) scenario with both `context` and `ground truth` data in addition to `query` and `response`, you can also use our [QAEvaluator](#question-answering) a composite evaluator that uses relevant evaluators for judgment.
+If you have a question-answering (QA) scenario with both `context` and `ground truth` data in addition to `query` and `response`, you can also use our [QAEvaluator](#question-answering-composite-evaluator) a composite evaluator that uses relevant evaluators for judgment.
 
 ## Model configuration for AI-assisted evaluators
 
@@ -94,7 +94,7 @@ The numerical score on a likert scale (integer 1 to 5) and a higher score is bet
 }
 ```
 
-## Question Answering composite evaluator
+## Question answering composite evaluator
 
 `QAEvaluator` measures comprehensively various aspects in a question-answering scenario:
 
