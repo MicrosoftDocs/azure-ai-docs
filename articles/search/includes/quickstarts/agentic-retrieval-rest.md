@@ -7,20 +7,20 @@ ms.topic: include
 ms.date: 05/05/2025
 ---
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+[!INCLUDE [Feature preview](../previews/preview-generic.md)]
 
-In this quickstart, you use [agentic retrieval](search-agentic-retrieval-concept.md) to create a conversational search experience powered by large language models (LLMs) and your proprietary data. Agentic retrieval breaks down complex user queries into subqueries, runs the subqueries in parallel, and extracts grounding data from documents indexed in Azure AI Search. The output is intended for integration with custom chat solutions.
+In this quickstart, you use [agentic retrieval](../../search-agentic-retrieval-concept.md) to create a conversational search experience powered by large language models (LLMs) and your proprietary data. Agentic retrieval breaks down complex user queries into subqueries, runs the subqueries in parallel, and extracts grounding data from documents indexed in Azure AI Search. The output is intended for integration with custom chat solutions.
 
-Although you can provide your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents provide detailed descriptions of the urban structures and lighting patterns of Phoenix, Arizona as observed from space.
+Although you can provide your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents describe the urban structures and lighting patterns of Phoenix, Arizona as observed from space.
 
 > [!TIP]
-> The REST version of this quickstart provides a basic introduction to agentic retrieval. For an end-to-end workflow, including steps for creating conversational messages and using Azure OpenAI models to generate answers, see the Python version.
+> The REST version of this quickstart introduces agentic retrieval in Azure AI Search. For an end-to-end workflow, including steps for creating conversational messages and using an LLM to generate answers, see the Python version.
 
 ## Prerequisites
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-+ An [Azure AI Search service](search-create-service-portal.md) on the Basic tier or higher with [semantic ranker enabled](semantic-how-to-enable-disable.md).
++ An [Azure AI Search service](../../search-create-service-portal.md) on the Basic tier or higher with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
 + An [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource) in the [same region](#same-region-requirement) as your Azure AI Search service.
 
@@ -28,20 +28,20 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 ### Same-region requirement
 
-Agentic retrieval requires that Azure AI Search and Azure OpenAI be in the same region. To meet this requirement:
+Agentic retrieval invokes text-to-vector conversion during queries, which requires Azure AI Search and Azure OpenAI to be in the same region. To meet this requirement:
 
 1. [Choose an Azure OpenAI region](/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#global-standard-model-availability) in which `gpt-4o-mini` and `text-embedding-3-large` are available. Agentic retrieval supports other chat and embedding models, but this quickstart assumes those previously mentioned.
 
-1. Confirm that [Azure AI Search is available in the same region](search-region-support.md#azure-public-regions). The region must also support semantic ranker, which is essential to query execution during agentic retrieval.
+1. Confirm that [Azure AI Search is available in the same region](../../search-region-support.md#azure-public-regions). The region must also support semantic ranker, which is essential to query execution during agentic retrieval.
 
 1. Deploy both resources in the same region.
 
 ## Deploy models
 
-To use agentic retrieval, you must deploy a supported chat model and a supported embedding model to your Azure OpenAI resource. This quickstart assumes `gpt-4o-mini` and `text-embedding-3-large`, respectively.
+To use agentic retrieval, you must deploy a supported chat model (for query planning) and a supported embedding model (for vector queries) to your Azure OpenAI resource. This quickstart assumes `gpt-4o-mini` for the chat model and `text-embedding-3-large` for the embedding model.
 
 > [!IMPORTANT]
-> Regardless of the chat model and embedding model that you use, make sure they meet the [same-region requirement](#same-region-requirement) for Azure AI Search and Azure OpenAI.
+> Whatever chat model and embedding model you use, make sure they meet the [same-region requirement](#same-region-requirement) for Azure AI Search and Azure OpenAI.
 
 To deploy both Azure OpenAI models:
 
@@ -49,7 +49,7 @@ To deploy both Azure OpenAI models:
 
 1. On the home page, find the Azure OpenAI tile and select **Let's go**.
 
-    :::image type="content" source="media/search-get-started-agentic-retrieval/azure-openai-lets-go-tile.png" alt-text="Screenshot of the Azure OpenAI tile in the Azure AI Foundry portal." border="true" lightbox="media/search-get-started-agentic-retrieval/azure-openai-lets-go-tile.png":::
+    :::image type="content" source="../../media/search-get-started-agentic-retrieval/azure-openai-lets-go-tile.png" alt-text="Screenshot of the Azure OpenAI tile in the Azure AI Foundry portal." border="true" lightbox="media/search-get-started-agentic-retrieval/azure-openai-lets-go-tile.png":::
 
    Your most recently used Azure OpenAI resource appears. If you have multiple Azure OpenAI resources, select **All resources** to switch between them.
 
@@ -77,7 +77,7 @@ Agentic retrieval supports the following Azure OpenAI models:
 | Embedding model | XYZ | `text-embedding-ada-002`, `text-embedding-3-small`, and `text-embedding-3-large` |
 -->
 
-## Configure access
+## Configure role-based access
 
 Azure AI Search needs access to your Azure OpenAI models. For this task, you can use API keys or Microsoft Entra ID with role assignments. Keys are easier to start with, but roles are more secure. This quickstart assumes roles.
 
@@ -85,11 +85,11 @@ To configure the recommended role-based access:
 
 1. Sign in to the [Azure portal](https://portal.azure.com/).
 
-1. [Enable role-based access](search-security-enable-roles.md) on your Azure AI Search service.
+1. [Enable role-based access](../../search-security-enable-roles.md) on your Azure AI Search service.
 
-1. [Create a system-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity) on your Azure AI Search service.
+1. [Create a system-assigned managed identity](../../search-howto-managed-identities-data-sources.md#create-a-system-managed-identity) on your Azure AI Search service.
 
-1. On your Azure AI Search service, [assign the following roles](search-security-rbac.md#how-to-assign-roles-in-the-azure-portal) to yourself.
+1. On your Azure AI Search service, [assign the following roles](../../search-security-rbac.md#how-to-assign-roles-in-the-azure-portal) to yourself.
 
     + **Owner/Contributor** or **Search Service Contributor**
     + **Search Index Data Contributor**
@@ -97,7 +97,7 @@ To configure the recommended role-based access:
 
 1. On your Azure OpenAI resource, assign **Cognitive Services User** to the managed identity of your search service.
 
-## Get endpoints
+## Get service endpoints
 
 In your code, you specify the following endpoints to establish connections with Azure AI Search and Azure OpenAI. These steps assume that you configured role-based access in the previous section.
 
@@ -119,7 +119,7 @@ To obtain your service endpoints:
 
 ## Connect from your local system
 
-You configured role-based access to interact with Azure AI Search and Azure OpenAI. From the command line, use the Azure CLI to sign in to the same tenant and subscription for both services. For more information, see [Quickstart: Connect without keys](search-get-started-rbac.md).
+You configured role-based access to interact with Azure AI Search and Azure OpenAI. From the command line, use the Azure CLI to sign in to the subscription and tenant for both services. For more information, see [Quickstart: Connect without keys](../../search-get-started-rbac.md).
 
 To connect from your local system:
 
@@ -141,7 +141,7 @@ To connect from your local system:
 
 ## Load connections
 
-Before you run any code, define credentials, endpoints, and deployment details for connections to Azure AI Search and Azure OpenAI. These values are used in subsequent operations.
+Before you run any code, define credentials, endpoints, and deployment details for connections to Azure AI Search and Azure OpenAI. These values are used in later sections of this quickstart.
 
 To load the connections:
 
@@ -178,8 +178,6 @@ To load the connections:
 ## Create a search index
 
 In Azure AI Search, an index is a structured collection of searchable data. The following request defines a new index named `earth-at-night`, which you specified using the `@index-name` variable in the previous section.
-
-The index schema contains fields for document identification and page content, embeddings, and numbers. It also includes configurations for semantic ranking and vector queries, which use the `text-embedding-3-large` model you previously deployed.
 
 ```HTTP
 ### Create an index
@@ -257,9 +255,11 @@ PUT {{baseUrl}}/indexes/{{index-name}}?api-version={{api-version}}  HTTP/1.1
     }
 ```
 
+The index schema contains fields for document identification and page content, embeddings, and numbers. It also includes configurations for semantic ranking and vector queries, which use the `text-embedding-3-large` model you previously deployed.
+
 ## Upload documents to the index
 
-Currently, the `earth-at-night` index is empty. Send the following request to populate the index with two JSON documents. Each document contains embeddings for vectorization and metadata for the page number.
+Currently, the `earth-at-night` index is empty. Send the following request to populate the index with JSON documents from NASA's Earth at Night e-book. Each document contains embeddings for vectorization and metadata for page numbering.
 
 ```HTTP
 ### Load documents
@@ -294,7 +294,7 @@ POST {{baseUrl}}/indexes/{{index-name}}/docs/index?api-version={{api-version}}  
 
 ## Create a search agent
 
-To connect Azure AI Search to your `gpt-4o-mini` deployment and use the `earth-at-night` index at query time, you need a search agent. The following request defines an agent named `earth-search-agent`, which you specified using the `@agent-name` variable in a previous section.
+To connect Azure AI Search to your `gpt-4o-mini` deployment and target the `earth-at-night` index at query time, you need a search agent. The following request defines an agent named `earth-search-agent`, which you specified using the `@agent-name` variable in a previous section.
 
 ```HTTP
 ### Create an agent
@@ -325,7 +325,7 @@ PUT {{baseUrl}}/agents/{{agent-name}}?api-version={{api-version}}  HTTP/1.1
 
 ## Run the retrieval pipeline
 
-You're ready to run the agentic retrieval pipeline. After you send the following request, `earth-search-agent` processes the query and returns relevant information from the `earth-at-night` index.
+You're ready to run the agentic retrieval pipeline. After you send the following request, `earth-search-agent` deconstructs the user query into subqueries, processes the subqueries simultaneously, and merges and ranks results from the `earth-at-night` index.
 
 ```HTTP
 ### Run agentic retrieval
@@ -344,6 +344,96 @@ POST {{baseUrl}}/agents/{{agent-name}}/retrieve?api-version={{api-version}}  HTT
                     }
                 ]
             }
+        ],
+        "targetIndexParams": [
+            {
+                "indexName": "{{index-name}}",
+                "rerankerThreshold": 2.5
+            }
         ]
     }
+```
+
+The output should be similar to the following JSON, where:
+
++ `response` provides a text string of the most relevant documents (or chunks) in the search index based on the user query.
+
++ `activity` tracks the steps that were taken during the retrieval process, including the subqueries generated by your `gpt-4o-mini` deployment.
+
++ `references` lists the documents that contributed to the response, identified by their `docKey`.
+
+```JSON
+{
+  "response": [
+    {
+      "role": "tool",
+      "content": [
+        {
+          "type": "text",
+          "text": "[{\"ref_id\":1,\"content\":\"# Urban Structure\\n\\n## March 16, 2013\\n\\n### Phoenix Metropolitan Area at Night\\n\\nThis figure presents a nighttime satellite view of the Phoenix metropolitan area, highlighting urban structure and transport corridors. City lights illuminate the layout of several cities and major thoroughfares.\\n\\n**Labeled Urban Features:**\\n\\n- **Phoenix:** Central and brightest area in the right-center of the image.\\n- **Glendale:** Located to the west of Phoenix, this city is also brightly lit.\\n- **Peoria:** Further northwest, this area is labeled and its illuminated grid is seen.\\n- **Grand Avenue:** Clearly visible as a diagonal, brightly lit thoroughfare running from Phoenix through Glendale and Peoria.\\n- **Salt River Channel:** Identified in the southeast portion, running through illuminated sections.\\n- **Phoenix Mountains:** Dark, undeveloped region to the northeast of Phoenix.\\n- **Agricultural Fields:** Southwestern corner of the image, grid patterns are visible but with much less illumination, indicating agricultural land use.\\n\\n**Additional Notes:**\\n\\n- The overall pattern shows a grid-like urban development typical of western U.S. cities, with scattered bright nodes at major intersections or city centers.\\n- There is a clear transition from dense urban development to sparsely populated or agricultural land, particularly evident towards the bottom and left of the image.\\n- The illuminated areas follow the existing road and street grids, showcasing the extensive spread of the metropolitan area.\\n\\n**Figure Description:**  \\nA satellite nighttime image captured on March 16, 2013, showing Phoenix and surrounding areas (including Glendale and Peoria). Major landscape and infrastructural features, such as the Phoenix Mountains, Grand Avenue, the Salt River Channel, and agricultural fields, are labeled. The image reveals the extent of urbanization and the characteristic street grid illuminated by city lights.\\n\\n---\\n\\nPage 89\"},{\"ref_id\":0,\"content\":\"<!-- PageHeader=\\\"Urban Structure\\\" -->\\n\\n### Location of Phoenix, Arizona\\n\\nThe image depicts a globe highlighting the location of Phoenix, Arizona, in the southwestern United States, marked with a blue pinpoint on the map of North America. Phoenix is situated in the central part of Arizona, which is in the southwestern region of the United States.\\n\\n---\\n\\n### Grid of City Blocks-Phoenix, Arizona\\n\\nLike many large urban areas of the central and western United States, the Phoenix metropolitan area is laid out along a regular grid of city blocks and streets. While visible during the day, this grid is most evident at night, when the pattern of street lighting is clearly visible from the low-Earth-orbit vantage point of the ISS.\\n\\nThis astronaut photograph, taken on March 16, 2013, includes parts of several cities in the metropolitan area, including Phoenix (image right), Glendale (center), and Peoria (left). While the major street grid is oriented north-south, the northwest-southeast oriented Grand Avenue cuts across the three cities at image center. Grand Avenue is a major transportation corridor through the western metropolitan area; the lighting patterns of large industrial and commercial properties are visible along its length. Other brightly lit properties include large shopping centers, strip malls, and gas stations, which tend to be located at the intersections of north-south and east-west trending streets.\\n\\nThe urban grid encourages growth outwards along a city's borders by providing optimal access to new real estate. Fueled by the adoption of widespread personal automobile use during the twentieth century, the Phoenix metropolitan area today includes 25 other municipalities (many of them largely suburban and residential) linked by a network of surface streets and freeways.\\n\\nWhile much of the land area highlighted in this image is urbanized, there are several noticeably dark areas. The Phoenix Mountains are largely public parks and recreational land. To the west, agricultural fields provide a sharp contrast to the lit streets of residential developments. The Salt River channel appears as a dark ribbon within the urban grid.\\n\\n\\n<!-- PageFooter=\\\"Earth at Night\\\" -->\\n<!-- PageNumber=\\\"88\\\" -->\"}]",
+          "image": null
+        }
+      ]
+    }
+  ],
+  "activity": [
+    {
+      "type": "ModelQueryPlanning",
+      "id": 0,
+      "inputTokens": 1355,
+      "outputTokens": 423
+    },
+    {
+      "type": "AzureSearchQuery",
+      "id": 1,
+      "targetIndex": "earth_at_night",
+      "query": {
+        "search": "suburban belts December brightening urban cores comparison",
+        "filter": null
+      },
+      "queryTime": "2025-05-06T15:57:14.666Z",
+      "elapsedMs": 270
+    },
+    {
+      "type": "AzureSearchQuery",
+      "id": 2,
+      "targetIndex": "earth_at_night",
+      "query": {
+        "search": "Phoenix nighttime street grid visibility from space",
+        "filter": null
+      },
+      "queryTime": "2025-05-06T15:57:14.858Z",
+      "count": 2,
+      "elapsedMs": 192
+    },
+    {
+      "type": "AzureSearchQuery",
+      "id": 3,
+      "targetIndex": "earth_at_night",
+      "query": {
+        "search": "interstate visibility from space midwestern cities",
+        "filter": null
+      },
+      "queryTime": "2025-05-06T15:57:15.026Z",
+      "count": 1,
+      "elapsedMs": 167
+    }
+  ],
+  "references": [
+    {
+      "type": "AzureSearchDoc",
+      "id": "0",
+      "activitySource": 2,
+      "docKey": "earth_at_night_508_page_104_verbalized",
+      "sourceData": null
+    },
+    {
+      "type": "AzureSearchDoc",
+      "id": "1",
+      "activitySource": 2,
+      "docKey": "earth_at_night_508_page_105_verbalized",
+      "sourceData": null
+    }
+  ]
+}
 ```
