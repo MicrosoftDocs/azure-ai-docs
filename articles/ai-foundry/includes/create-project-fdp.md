@@ -89,44 +89,33 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 1. Use the following code to create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]:
 
     ```python
-    from azure.identity import DefaultAzureCredential
-    from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
-    import os
-    import json
-    
-    subscription_id = 'your-subscription-id'
-    resource_group_name = 'your-resource-group-name'
-    foundry_resource_name = 'your-foundry-resource-name'
-    foundry_project_name = 'your-foundry-project-name'
-    location = 'eastus'
-    
-    # TODO: add code to create create a new resource group
-    
-    client = CognitiveServicesManagementClient(
-        subscription_id=subscription_id,
-        credential=DefaultAzureCredential(), 
-        api_version="2025-04-01-preview"
-    )
-    
-    account = client.accounts.begin_create(
-        resource_group_name=resource_group_name,
-        account_name=foundry_resource_name,
-        foundry_project_name=foundry_project_name,
-        account={
+    # Provide names for your resource group, resource name, and project name
+    rgp = 'my_resource_group"
+    resource_name = "my_resource'
+    project_name = "my_project"
+    # Create resource
+    resource = client.accounts.begin_create(
+        resource_group_name=rgp,
+        resource_name=resource_name,
+        resource={
             "location": location,
             "kind": "AIServices",
-            "sku": {
-                "name": "S0",
-            },
-            "identity": {
-                "type": "SystemAssigned"
-            },
-            "properties": {
-                "allowProjectManagement": True
-            }
+            "sku": {"name": "S0",},
+            "identity": {"type": "SystemAssigned"},
+            "properties": {"allowProjectManagement": True}
         }
     )
-    
+    # Create project
+    resource = client.projects.begin_create(
+        resource_group_name=rgp,
+        resource_name=resource_name,
+        project_name=project_name,
+        project={
+            "location": location,
+            "identity": {"type": "SystemAssigned"},
+            "properties": {}
+        }
+    )
     ```
 1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you wish to use into the `DefaultAzureCredential`. Find your tenant ID from the [Azure portal](https://portal.azure.com) under **Microsoft Entra ID, External Identities**.
         
