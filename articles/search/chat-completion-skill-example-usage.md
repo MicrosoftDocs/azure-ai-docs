@@ -129,7 +129,7 @@ As noted, images are extracted during document cracking and then normalized as a
     {
       "@odata.type": "#Microsoft.Skills.Custom.ChatCompletionSkill",
       "context": "/document/normalized_images/*",
-      "uri": "https://azs-grok-aoai.openai.azure.com/openai/deployments/azs-grok-gpt-4o/chat/completions?api-version=2025-01-01-preview",
+      "uri": "https://contoso.openai.azure.com/openai/deployments/contoso-gpt-4o/chat/completions?api-version=2025-01-01-preview",
       "timeout": "PT1M",
       "apiKey": "<YOUR-API-KEY here>"
       "inputs": [
@@ -163,7 +163,7 @@ This example illustrates how you can use structured outputs for language models.
     {
       "@odata.type": "#Microsoft.Skills.Custom.ChatCompletionSkill",
       "context": "/document/content",
-      "uri": "https://azs-grok-aoai.openai.azure.com/openai/deployments/azs-grok-gpt-4o/chat/completions?api-version=2025-01-01-preview",
+      "uri": "https://contoso.openai.azure.com/openai/deployments/contoso-gpt-4o/chat/completions?api-version=2025-01-01-preview",
       "timeout": "PT1M",
       "apiKey": "<YOUR-API-KEY here>"
       "inputs": [
