@@ -21,8 +21,7 @@ ms.custom: include
     * Azure OpenAI models	
     * Model inferencing
     * AI Foundry API that works with agents and across models	
-    * Common filestore	
-    * Project-level isolation of files and outputs
+    * Upload files without needing your own Azure Storage account
     * Evaluations
     * Playgrounds
 

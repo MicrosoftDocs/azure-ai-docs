@@ -11,11 +11,13 @@ ms.custom: include, build-2024, ignite-2024
 ---
 
 
-You can create multiple projects on an existing `AIServices` resource.
+Create multiple [!INCLUDE [fdp-description](fdp-description.md)] on an existing `AI Services` resource, so you can share your environment with your team for collaboration. 
+
+[!INCLUDE [fdp-description](fdp-description.md)] as Azure child resources may get assigned their own access controls, but share common settings such as network security, deployments, and Azure tool integration from their parent resource.
 
 Your first project (default project) plays a special role and has access to more features:
 
-| Feature | Default project | Nondefault project |
+| Feature | Default [!INCLUDE [fdp-description](fdp-description.md)] | Nondefault [!INCLUDE [fdp-description](fdp-description.md)] |
 |--|--|--|
 | Model inference | ✓ | ✓ |
 | Playgrounds | ✓ | ✓ |
