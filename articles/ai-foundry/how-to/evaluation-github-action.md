@@ -35,9 +35,7 @@ Two GitHub Actions are available for evaluating AI applications: **ai-agent-eval
 > [!NOTE]
 > The **ai-agent-evals** interface is more straightforward to configure. In contrast, **genai-evals** require customers to prepare structured evaluation input data. Although code samples are provided to facilitate this process, the overall setup might involve additional complexity.
 
-## How to set up
-
-### AI agent evaluations
+## How to set up AI agent evaluations
 
 ### AI agent evaluations input
 
@@ -45,7 +43,7 @@ The input of ai-agent-evals includes:
 
 **Required:**
 
-- `azure-aiproject-connection-string`: The connection string for the Azure AI Project. This is used to connect to Azure OpenAI to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
+- `azure-aiproject-connection-string`: The connection string for the Azure AI project. This is used to connect to Azure OpenAI to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
 - `deployment-name`: the deployed model name.
 - `data-path`: Path to the input data file containing the conversation starters. Each conversation starter is sent to each agent for a pairwise comparison of evaluation results.
   - `evaluators`: built-in evaluator names.
@@ -151,11 +149,11 @@ Single agent evaluation result:
 
 :::image type="content" source="../media/evaluations/github-action-single-agent-output.png" alt-text="Screenshot of single agent evaluation result in GitHub Action." lightbox="../media/evaluations/github-action-single-agent-output.png":::
 
-## GenAI evaluations
+## How to set up genAI evaluations
 
 ### GenAI evaluations input
 
-The input of genai-evals includes (some of them are optional depending on the evaluator used): 
+The input of genai-evals includes (some of them are optional depending on the evaluator used):
 
 Evaluation configuration file:
 
