@@ -86,18 +86,30 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
 1. Install azure-identity: `pip install azure-identity azure_mgmt_cognitiveservices`. If in a notebook cell, use `%pip install azure-identity azure_mgmt_cognitiveservices`.
 
-1. Use the following code to create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]:
+1. Use the following code to create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)].  This example creates the project in West US:
 
     ```python
-    # Provide names for your resource group, resource, and project
-    rgp = 'my_resource_group"
-    resource_name = "my_resource'
-    project_name = "my_project"
+    from azure.identity import DefaultAzureCredential
+    from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+    import os
+    import json
+    
+    sub_id = 'your-sub'
+    rgp = 'your-resource-group'
+    resource_name = 'your-resource'
+    project_name = 'your-project'
+    location = 'westus'
+    
+    client = CognitiveServicesManagementClient(
+        credential=DefaultAzureCredential(), 
+        subscription_id=sub_id,
+        api_version="2025-04-01-preview"
+    )
     # Create resource
     resource = client.accounts.begin_create(
         resource_group_name=rgp,
-        resource_name=resource_name,
-        resource={
+        account_name=resource_name,
+        account={
             "location": location,
             "kind": "AIServices",
             "sku": {"name": "S0",},
@@ -108,7 +120,7 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
     # Create project
     resource = client.projects.begin_create(
         resource_group_name=rgp,
-        resource_name=resource_name,
+        account_name=resource_name,
         project_name=project_name,
         project={
             "location": location,
