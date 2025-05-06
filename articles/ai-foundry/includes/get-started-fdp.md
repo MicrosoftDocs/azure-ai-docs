@@ -74,7 +74,7 @@ Use either the Azure AI Foundry portal or Azure CLI to create a project.
 
 # [Azure CLI](#tab/azurecli)
 
-To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
+To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)]:
 
 1. Authenticate to your Azure subscription:
 
@@ -90,7 +90,7 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
     az group create --name {my_resource_group} --location eastus
     ```
 
-1. Create a new Foundry resource and [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
+1. Create a new Foundry resource and [!INCLUDE [fdp-project-name](fdp-project-name.md)]:
 
     ```azurecli
     az cognitiveservices account create --resource-group {my_resource_group} --account-name {foundry_resource_name} --sku "S0" 
