@@ -59,7 +59,8 @@ This table summarizes features available in the two project types:
 | Evaluations | ✅ | ✅ |
 | Playground | ✅ | ✅ |
 | Prompt flow |  | ✅ |
-| Models-as-a-platform, AzureML |  | ✅ |
+| Managed compute  |  | ✅ |
+| Azure Machine Learning Studio  |  | ✅ |
 
 ## Navigate in the Azure AI Foundry portal
 
