@@ -709,7 +709,7 @@ POST {{baseUrl}}/indexes/doc-extraction-image-verbalization-index/docs/search?ap
   {
     "search": "energy",
     "count": true,
-    "select": "content_id,document_title,content_text"
+    "select": "content_id, document_title, content_text, content_path"
   }
 ```
 
