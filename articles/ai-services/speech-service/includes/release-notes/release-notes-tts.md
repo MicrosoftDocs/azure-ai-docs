@@ -17,6 +17,7 @@ The following HD voices are now available for preview:
 |---------------------|--------------------------------------------------------|
 | `en-US`             | `en-US-MultiTalker-Ava-Steffan:DragonHDLatestNeural` (Neutral)        |
 | `en-US`             | `en-US-Bree:DragonHDLatestNeural` (Female)        |
+| `en-US`             | `en-US-AshTurboMultilingualNeural` (Male)        |
 
 ### March 2025 release
 
@@ -99,7 +100,7 @@ Added 14 more HD voices
 |---------------------|---------------------------|
 | `de-DE`   | `de-DE-Florian:DragonHDLatestNeural` (Male) |
 | `en-US`   | `en-US-Adam:DragonHDLatestNeural` (Male) |
-| `en-US`   | `en-US-Brain:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Brian:DragonHDLatestNeural` (Male) |
 | `en-US`   | `en-US-Davis:DragonHDLatestNeural` (Male) |
 | `en-US`   | `en-US-Phoebe:DragonHDLatestNeural` (Female) |
 | `en-US`   | `en-US-Serena:DragonHDLatestNeural` (Female) |
