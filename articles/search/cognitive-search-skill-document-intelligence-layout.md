@@ -130,8 +130,7 @@ The file reference object can be generated in one of following ways:
 | `text_sections`    | Only applies if `outputFormat` is set to `text`. A collection of text chunk objects, which represent the text within the bounds of a page (factoring in any additional chunking configured), *inclusive* of any section headers themselves. This will include locationMetadata if required.|
 | `normalized_images`    | Only applies if `outputFormat` is set to `text` and `extractionOptions` includes `images`.A collection of images that were extracted from the document, including locationMetadata if required .|
 
-## Sample definition
-
+## Sample definition for markdown output mode
 ```json
 {
   "skills": [
@@ -158,7 +157,7 @@ The file reference object can be generated in one of following ways:
 }
 ```
 
-## Sample output
+## Sample output for markdown output mode
 
 ```json
 {
@@ -191,7 +190,7 @@ The value of the `markdownHeaderDepth` controls the number of keys in the "secti
 
 This example demonstrates how to use the new parameters introduced in the **2025-05-01-preview** to output text content in fixed-sized chunks and extract images along with location metadata from the document.
 
-## Sample definition
+## Sample definition for text output mode and image and metadata extraction
 
 ```json
 {
@@ -229,7 +228,7 @@ This example demonstrates how to use the new parameters introduced in the **2025
 }
 ```
 
-## Sample output
+## Sample output for text output mode and image and metadata extraction
 
 ```json
 {
