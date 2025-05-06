@@ -550,8 +550,6 @@ items:
     href: how-to/create-manage-compute.md
   - name: Connections
     items:
-    - name: Connections overview
-      href: concepts/connections.md
     - name: Create a connection
       href: how-to/connections-add.md
     - name: Create a connection using the Azure Machine Learning SDK

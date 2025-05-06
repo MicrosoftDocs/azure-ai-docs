@@ -109,4 +109,4 @@ However, you can deploy [fine-tuned Azure AI services models](#fine-tune-azure-a
 ## Related content
 
 - [What are Azure AI services?](./what-are-ai-services.md)
-- [Connections in Azure AI Foundry portal](../ai-foundry/concepts/connections.md)
+- [How to add a new connection in Azure AI Foundry portal](../ai-foundry/how-to/connections-add.md)
