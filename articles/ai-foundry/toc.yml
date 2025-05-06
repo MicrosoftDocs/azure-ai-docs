@@ -529,6 +529,8 @@ items:
       href: how-to/create-projects.md
     - name: Create a project using a Bicep template
       href: how-to/create-azure-ai-project-template.md
+    - name: Create an Azure AI services resource
+      href: ../ai-services/multi-service-resources.md?context=/azure/ai-foundry/context/context
     - name: Hubs and projects overview
       href: concepts/ai-resources.md
     - name: Create your first hub
@@ -660,6 +662,8 @@ items:
     href: ../ai-services/cognitive-services-support-options.md?context=/azure/ai-foundry/context/context
   - name: Use Azure AI Foundry with a screen reader
     href: tutorials/screen-reader.md
+  - name: Feature availability
+    href: reference/region-support.md
   - name: Region support
     href: https://azure.microsoft.com/global-infrastructure/services/?products=cognitive-services
   - name: Azure updates
