@@ -89,7 +89,7 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 1. Use the following code to create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]:
 
     ```python
-    # Provide names for your resource group, resource name, and project name
+    # Provide names for your resource group, resource, and project
     rgp = 'my_resource_group"
     resource_name = "my_resource'
     project_name = "my_project"
