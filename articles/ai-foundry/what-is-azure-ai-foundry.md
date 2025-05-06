@@ -48,16 +48,16 @@ Most features are available in both project types, but there are a few exception
 
 | Capability | [!INCLUDE [fdp](includes/fdp-project-name.md)] | [!INCLUDE[hub](includes/hub-project-name.md)] |
 | --- | --- | --- |
-| Agents | ✓ (GA) | ✓ (Preview only) |
-| Azure OpenAI models | ✓ | |
-| Model inferencing | ✓ | |
-| AI Foundry API that works with agents and across models | ✓ | |
-| Common filestore | ✓ | |
-| Project-level isolation of files and outputs | ✓ | ✓ |
-| Evaluations | ✓ | ✓ |
-| Playground | ✓ | ✓ |
-| Prompt flow |  | ✓ |
-| Models-as-a-platform, AzureML |  | ✓ |
+| Agents | ✅ (GA) | ✅ (Preview only) |
+| Azure OpenAI models | ✅ | |
+| Model inferencing | ✅ | |
+| AI Foundry API that works with agents and across models | ✅ | |
+| Common filestore | ✅ | |
+| Project-level isolation of files and outputs | ✅ | ✅ |
+| Evaluations | ✅ | ✅ |
+| Playground | ✅ | ✅ |
+| Prompt flow |  | ✅ |
+| Models-as-a-platform, AzureML |  | ✅ |
 
 ## Navigate in the Azure AI Foundry portal
 
