@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 02/19/2025
+ms.date: 05/06/2025
 ms.reviewer: siarora
 ms.author: larryfr
 author: Blackmist
@@ -79,7 +79,7 @@ To raise the limits for compute, you can [request a quota increase](#view-and-
 
 Available resources include:
 - Dedicated cores per region have a default limit of 24 to 300, depending on your subscription offer type. You can increase the number of dedicated cores per subscription for each VM family. Specialized VM families like NCv2, NCv3, or ND series start with a default of zero cores. GPUs also default to zero cores. 
-- Total compute limit per region has a default limit of 500 per region within a given subscription and can be increased up to a maximum value of 2500 per region. This limit is shared between compute instances, and managed online endpoint deployments. A compute instance is considered a single-node cluster for quota purposes. In order to increase the total compute limit, [open an online customer support request](https://portal.azure.com/#view/Microsoft_Azure_Support/NewSupportRequestV3Blade/callerWorkflowId/5088c408-f627-4398-9aa3-c41cdd93a6eb/callerName/Microsoft_Azure_Support%2FHelpAndSupportOverview.ReactView). 
+- Total compute limit per region has a default limit of 500 per region within a given subscription. The limit can be increased up to a maximum value of 2500 per region. This limit is shared between compute instances, and managed online endpoint deployments. A compute instance is considered a single-node cluster for quota purposes. In order to increase the total compute limit, [open an online customer support request](https://portal.azure.com/#view/Microsoft_Azure_Support/NewSupportRequestV3Blade/callerWorkflowId/5088c408-f627-4398-9aa3-c41cdd93a6eb/callerName/Microsoft_Azure_Support%2FHelpAndSupportOverview.ReactView). 
 
 When opening the support request to increase the total compute limit, provide the following information:
 1. Select **Technical** for the issue type. 
@@ -140,7 +140,7 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
 
     :::image type="content" source="../media/cost-management/quotas.png" alt-text="Screenshot of the Model and VM quota entries in the management section." lightbox="../media/cost-management/quotas.png":::
 
-1. From the quota view, you can see the quota for the models in the selected Azure region. To request more quota, select the model and then select **Request quota**. 
+1. From the quota view, you can see the quota for the models in the selected Azure region. To request quota, select the model and then select **Request quota**. 
 
     - Use the **Show all quota** toggle to display all quota or only the currently allocated quota.
     - Use the **Group by** dropdown to group the list by **Quota type, Region & Model**, **Quota type, Model & Region**, or **None**. The **None** grouping displays a list of model deployments.
@@ -150,7 +150,7 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
   
     :::image type="content" source="../media/cost-management/model-quota.png" alt-text="Screenshot of the Model quota page in Azure AI Foundry portal." lightbox="../media/cost-management/model-quota.png":::
 
-1. When you select the **VM quota** link, you can view the quota and usage for the virtual machine families in the selected Azure region. To request more quota, select the VM family and then select **Request quota**.
+1. When you select the **VM quota** link, you can view the quota and usage for the virtual machine families in the selected Azure region. To request quota, select the VM family and then select **Request quota**.
 
     > [!TIP]
     > If you don't see the **VM quota** link, you were viewing a [!INCLUDE [fdp](../includes/fdp-project-name.md)] project when you selected **Management center**. Use the **All resources** link and then select a project where the **Type** contains **Parent resource : name (Hub)**, and then select **Quota** from the left menu.
@@ -169,7 +169,7 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
 
     :::image type="content" source="../media/cost-management/quotas.png" alt-text="Screenshot of the Model and VM quota entries in the management section." lightbox="../media/cost-management/quotas.png":::
 
-1. From the quota view, you can see the quota for the models in the selected Azure region. To request more quota, select the model and then select **Request quota**.
+1. From the quota view, you can see the quota for the models in the selected Azure region. To request quota, select the model and then select **Request quota**.
 
     :::image type="content" source="../media/cost-management/project-model-quota.png" alt-text="Screenshot of the Model quota page for a Foundry project in Azure AI Foundry portal." lightbox="../media/cost-management/project-model-quota.png":::
 
