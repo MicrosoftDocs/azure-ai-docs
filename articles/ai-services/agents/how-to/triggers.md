@@ -25,7 +25,7 @@ To check if a specific connector has a trigger capability, view its documentatio
 
 ## Prerequisite 
 
-* [An existing agent](https://learn.microsoft.com/en-us/azure/ai-services/agents/)
+* [An existing agent](../quickstart.md)
 
 ## Set up 
 
