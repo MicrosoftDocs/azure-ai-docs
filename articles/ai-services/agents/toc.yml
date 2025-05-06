@@ -106,8 +106,8 @@ items:
           href: how-to/virtual-networks.md
 - name: How-to
   items:
-    - name: Agent blueprints
-      href: concepts/agent-catalog.md
+    - name: Agent catalog
+      href: how-to/agent-catalog.md
     - name: Trigger an agent using Logic Apps
       href: how-to/triggers.md
     - name: Multi-agent workflows
