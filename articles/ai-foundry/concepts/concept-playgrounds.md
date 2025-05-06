@@ -10,7 +10,7 @@ ms.reviewer: mopeakande
 reviewer: msakande
 ms.author: tgokal
 author: tgokal
-ms.custom: build-2025
+ms.custom: build-2025 ai-assisted
 #customer intent: I'm a developer and want to use Azure AI Foundry Playground for quick experimentation and prototyping with models and agents before going to code.
 ---
 
@@ -26,7 +26,7 @@ In today's development cycle, speed and clarity are everything. As you build wit
 >   - Revamped **Audio Playground** for [gpt-4o-audio](https://ai.azure.com/explore/models/gpt-4o-transcribe/version/2025-03-20/registry/azure-openai), [gpt-4o-transcribe](https://ai.azure.com/explore/models/gpt-4o-transcribe/version/2025-03-20/registry/azure-openai), [gpt-4o-mini-tts](https://ai.azure.com/explore/models/gpt-4o-mini-tts/version/2025-03-20/registry/azure-openai) models.
 >   - Introducing the new **Video Playground** for Azure OpenAI Sora.
 
-![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/playground-landing-page.png)
+:::image type="content" source="../media/concept-playgrounds/playground-landing-page.png" alt-text="Azure AI Foundry playground landing page showcasing features for rapid prototyping and experimentation." lightbox="../media/concept-playgrounds/playground-landing-page.png":::
 
 ## The Playground; the prelude to production
 
@@ -68,33 +68,33 @@ Available on the multi-lingual sample code samples, "Open in VS Code" enables th
 
 1. Click on View Code in Chat playground and Agents playground to see the code sample.
 2. Click on "Open in VS Code" button.
-   ![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/open-in-vs-code-foundry.png)
+   :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-foundry.png" alt-text="Open in VS Code button in Azure AI Foundry playground for seamless code integration." lightbox="../media/concept-playgrounds/open-in-vs-code-foundry.png":::
 
 4. You're redirected to /azure environment of VS Code with importing of your code sample, API endpoint and key.
-   ![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/open-in-vs-code-vscode.png)
+   :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-vscode.png" alt-text="VS Code environment showing imported code sample, API endpoint, and key from Foundry playground." lightbox="../media/concept-playgrounds/open-in-vs-code-vscode.png":::
 
 6. Browse through the `READ.ME` file for instructions to run your model.
-   ![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/open-in-vs-code-readme.png)   
+   :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-readme.png" alt-text="README file in VS Code with instructions for running the imported model." lightbox="../media/concept-playgrounds/open-in-vs-code-readme.png":::
 
 8. Your code sample is automatically transfered to the `run_model.py`.
-   ![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/open-in-vs-code-run-model.png)
+   :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-run-model.png" alt-text="Code sample automatically transferred to run_model.py in VS Code." lightbox="../media/concept-playgrounds/open-in-vs-code-run-model.png":::
    
 10. Relevant dependencies in the `requirements.txt` file.
-    ![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/open-in-vs-code-requirements.png)   
+    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-requirements.png" alt-text="Relevant dependencies listed in the requirements.txt file in VS Code." lightbox="../media/concept-playgrounds/open-in-vs-code-requirements.png":::
 
 Frictionless and easy.
 
 ## Agents playground
 The Agents playground allows you to explore, prototype, and test agents without needing to run any code. From this page, you can quickly iterate and experiment with new ideas. Get started with Agents playground with this [quickstart](https://review.learn.microsoft.com/en-us/azure/ai-services/agents/quickstart?branch=main&pivots=ai-foundry-portal).
 
-![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/agents-playground.png) 
+:::image type="content" source="../media/concept-playgrounds/agents-playground.png" alt-text="Agents playground interface for exploring, prototyping, and testing agents without code." lightbox="../media/concept-playgrounds/agents-playground.png":::
 
 ## Chat playground
 Test the latest reasoning models from Azure Open AI, DeepSeek and Meta with the chat playground experience through this [quickstart](https://learn.microsoft.com/en-us/azure/ai-foundry/quickstarts/get-started-playground).
 
 For all reasoning models, we introduce a Chain of Thought summary drop-down to see how the model was thinking through it's response ahead of sharing the output.
 
-![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/agents-playground.png) 
+:::image type="content" source="../media/concept-playgrounds/agents-playground.png" alt-text="Agents Playground interface for exploring, prototyping, and testing agents without code." lightbox="../media/concept-playgrounds/agents-playground.png":::
 
 ## Audio playground
 With audio playground, developers can use text-to-speech and transcription capabilities with the latest audio models from Azure Open AI.
@@ -104,13 +104,13 @@ With audio playground, developers can use text-to-speech and transcription capab
 3. Receive a speech output with playback controls (play, rewind, forward, adjust speed and volume).
 4. Download to local as a .wav file.
 
-![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/audio-playground-text-to-speech.png)
+:::image type="content" source="../media/concept-playgrounds/audio-playground-text-to-speech.png" alt-text="Audio playground interface showcasing text-to-speech capabilities with playback controls." lightbox="../media/concept-playgrounds/audio-playground-text-to-speech.png":::
 
 1. Start with an audio file by either upload audio file, recording the audio from the prompt bar or speaking directly to the model.
 2. Include a phrase list as a text mechanism to guide the audio input.
 3. Once the audio input has been sent to the model, receive a transcribed output as text and JSON.
 
-![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/audio-playground-transcribe.png)
+:::image type="content" source="../media/concept-playgrounds/audio-playground-transcribe.png" alt-text="Audio playground interface demonstrating transcription output from audio input." lightbox="../media/concept-playgrounds/audio-playground-transcribe.png":::
 
 ## Images playground
 
@@ -119,21 +119,21 @@ With audio playground, developers can use text-to-speech and transcription capab
 
 We built images playground for developers who build image generation flows. Images playground is a full featured controlled environment for high-fidelity experiments designed for model-specific APIs for generation and editing.
 
-![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/images-playground-home-page.png)
+:::image type="content" source="../media/concept-playgrounds/images-playground-home-page.png" alt-text="Images playground home page showcasing tools for image generation and editing." lightbox="../media/concept-playgrounds/images-playground-home-page.png":::
 
 ### How to use images playground
 1. **Start with a pre-built text prompt**: Select an option to get started with a pre-built text prompt that automatically fills the prompt bar.
-   ![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/images-playground-generation-controls.png)
+   :::image type="content" source="../media/concept-playgrounds/images-playground-generation-controls.png" alt-text="Images playground interface with model-specific generation controls for image creation." lightbox="../media/concept-playgrounds/images-playground-generation-controls.png":::
 2. **Explore the model API-specific generation controls after model deployment:** Adjust key controls (e.g. number of variants, quality, strength) to deeply understand specific model responsiveness and constraints.
-  ![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/images-playground-grid-view.png)
+  :::image type="content" source="../media/concept-playgrounds/images-playground-grid-view.png" alt-text="Images playground interface showing side-by-side grid view for comparing prompt variations." lightbox="../media/concept-playgrounds/images-playground-grid-view.png":::
 4. **Side-by-side observations in grid view:** Visually observe outputs across prompt tweaks or parameter changes.
-   ![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/images-playground-generation.png)
+   :::image type="content" source="../media/concept-playgrounds/images-playground-generation.png" alt-text="Images playground interface demonstrating image generation outputs based on prompts." lightbox="../media/concept-playgrounds/images-playground-generation.png":::
 5. **Transform with API tooling:** Inpainting with text transformation is available for gpt-image-1. Alter parts of your original image with inpainting selection. Use text prompts to specify the change.
-  ![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/images-playground-inpainting.png)
-![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/images-playground-multi-lingual-code.png)
+  :::image type="content" source="../media/concept-playgrounds/images-playground-inpainting.png" alt-text="Images playground interface showing inpainting selection for text-based image transformation." lightbox="../media/concept-playgrounds/images-playground-inpainting.png":::
+:::image type="content" source="../media/concept-playgrounds/images-playground-multi-lingual-code.png" alt-text="Images playground interface showcasing multi-lingual code samples for production." lightbox="../media/concept-playgrounds/images-playground-multi-lingual-code.png":::
 
 6. **Port to production with multi-lingual code samples:** Use Python, Java, JavaScript, C# code samples with "View Code". Images playground is your launchpad to development work in VS Code.
-  ![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/images-playground-sample-code.png)
+  :::image type="content" source="../media/concept-playgrounds/images-playground-sample-code.png" alt-text="Images playground interface with sample code for porting experiments to production." lightbox="../media/concept-playgrounds/images-playground-sample-code.png":::
 
 ### Applicable models
 - [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai) from Azure Open AI.
@@ -179,7 +179,7 @@ Using images playground, as you plan your production workload, you're able to ex
 
 The Video Playground is your rapid iteration environment for exploring, refining, and validating generative video workflows—designed for developers who need to go from idea to prototype with precision, control, and speed. It gives you a low-friction interface to test prompt structures, assess motion fidelity, evaluate model consistency across frames, and compare outputs across models—without writing boilerplate or wasting compute cycles – and a great demo interface for your Chief Product Officer and Engineering VP.
 
-![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/video-playground-home-page.png)
+:::image type="content" source="../media/concept-playgrounds/video-playground-home-page.png" alt-text="Video playground home page showcasing tools for generative video workflows." lightbox="../media/concept-playgrounds/video-playground-home-page.png":::
 
 ### Applicable models
 - Azure Open AI Sora.
@@ -189,34 +189,34 @@ The Video Playground is your rapid iteration environment for exploring, refining
 > Videos generated are retained for 24 hours due to data privacy. Download videos to local for longer retention.
 
 1. Once your model is deployed, navigate to the Video playground and get inspired by **pre-built prompts sorted by industry filter**. From here, you can view the videos in full display and copy the prompt to build from it.
-![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/video-playground-home-page.png)
+:::image type="content" source="../media/concept-playgrounds/video-playground-home-page.png" alt-text="Video playground home page showcasing tools for generative video workflows." lightbox="../media/concept-playgrounds/video-playground-home-page.png":::
 
-![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/video-playground-industry-tab.png)
+:::image type="content" source="../media/concept-playgrounds/video-playground-industry-tab.png" alt-text="Video playground interface with pre-built prompts sorted by industry filters." lightbox="../media/concept-playgrounds/video-playground-industry-tab.png":::
 
 3.  **Understand the model API specific generation controls in your prompt bar:** Enter your text prompt and adjust key controls (e.g. aspect ratio, resolution) to deeply understand specific model responsiveness and constraints.
-![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/video-playground-prompt-rewriting.png)
+:::image type="content" source="../media/concept-playgrounds/video-playground-prompt-rewriting.png" alt-text="Video playground interface demonstrating prompt rewriting with AI for industry-specific use cases." lightbox="../media/concept-playgrounds/video-playground-prompt-rewriting.png":::
 
 4. **Rewrite your text prompt** syntax with gpt-4o using "Rewrite with AI" with industry based system prompts. Switch on the capability, select the industry and specify the change required for your original prompt.
 
-![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/video-playground-rewrite-with-ai.png)  
+:::image type="content" source="../media/concept-playgrounds/video-playground-rewrite-with-ai.png" alt-text="Video playground interface showcasing the 'Rewrite with AI' feature for prompt optimization." lightbox="../media/concept-playgrounds/video-playground-rewrite-with-ai.png":::
 
 5. From the Generation history tab, review your generations as a Grid or List view. When you click on the videos, open them in full screen mode for full immersion. Visually observe outputs across prompt tweaks or parameter changes.
-![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/video-playground-generation-history.png)
+:::image type="content" source="../media/concept-playgrounds/video-playground-generation-history.png" alt-text="Video playground interface showing generation history in grid view for comparison." lightbox="../media/concept-playgrounds/video-playground-generation-history.png":::
 
 6. In Full Screen mode, edit the prompt and submit for re-generation.
-![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/video-playground-edit-prompt.png)
+:::image type="content" source="../media/concept-playgrounds/video-playground-edit-prompt.png" alt-text="Video playground interface in full-screen mode for editing prompts and re-generating videos." lightbox="../media/concept-playgrounds/video-playground-edit-prompt.png":::
 
 8. Either in Full Screen mode or through the overflow button, download to local, view the information generation tag or delete the video.
-![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/video-playground-overflow-menu-full-screen.png)
+:::image type="content" source="../media/concept-playgrounds/video-playground-overflow-menu-full-screen.png" alt-text="Video playground interface with overflow menu options in full-screen mode." lightbox="../media/concept-playgrounds/video-playground-overflow-menu-full-screen.png":::
 
-![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/video-playground-overflow-menu.png)
+:::image type="content" source="../media/concept-playgrounds/video-playground-overflow-menu.png" alt-text="Video playground interface showing overflow menu options for managing videos." lightbox="../media/concept-playgrounds/video-playground-overflow-menu.png":::
 
 10. **Port to production with multi-lingual code samples:** Use Python, Java, JavaScript, C# contextual code samples with "View Code" that reflect your generations and copy into VS Code.
 
-![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/video-playground-multi-lingual-code.png)
+:::image type="content" source="../media/concept-playgrounds/video-playground-multi-lingual-code.png" alt-text="Video playground interface showcasing multi-lingual code samples for porting to production." lightbox="../media/concept-playgrounds/video-playground-multi-lingual-code.png":::
    
 10. **Azure AI Content Safety integration:** With all model endpoints integrated with Azure AI Content Safety, harmful and unsafe images are filtered out prior to being surfaced in video playground. If your text prompt and video generation is flagged by content moderation policies, you'll get a warning notification appear.
-![](https://github.com/msakande/azure-ai-docs-pr/blob/build/playgrounds-ai-foundry/articles/ai-foundry/media/concept-playgrounds/video-playground-content-moderation.png)
+:::image type="content" source="../media/concept-playgrounds/video-playground-content-moderation.png" alt-text="Video playground interface with Azure AI Content Safety integration for filtering harmful content." lightbox="../media/concept-playgrounds/video-playground-content-moderation.png":::
    
 ### Video generation: what you can validate or de-risk
 Using video playground, as you plan your production workload, you're able to explore and validate the following:
