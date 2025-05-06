@@ -41,7 +41,7 @@ To create an instance of either the Ubuntu 20.04 DSVM or the Azure DSVM for PyTo
       * **Size**: This option should autopopulate with an appropriate size for general workloads. For more information, visit [Linux VM sizes in Azure](/azure/virtual-machines/sizes).
         
         > [!NOTE]
-        > DSVM won't support NV family as it is incompatible with NVIDIA CUDA drivers
+        > DSVM won't support NV family as it is incompatible with NVIDIA CUDA drivers.
         
       * **Authentication type**: For quicker setup, select **Password**.
 
