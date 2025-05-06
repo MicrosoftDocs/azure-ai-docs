@@ -95,6 +95,5 @@ To create an outbound private endpoint rule to the data source, use the followin
 
 ## Related content
 
-- [Connections in Azure AI Foundry portal](../concepts/connections.md)
 - [How to create vector indexes](../how-to/index-add.md)
 - [How to configure a managed network](configure-managed-network.md)
