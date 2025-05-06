@@ -1141,7 +1141,7 @@ groups:
   pivots:
   - id: python
     title: Python
-  - id: TypeScript
+  - id: typeScript
     title: TypeScript
   - id: rest
     title: REST API
