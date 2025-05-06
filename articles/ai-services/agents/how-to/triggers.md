@@ -58,18 +58,18 @@ Start by adding the Azure AI Foundry Agent service connectors to your workflow.
 
     :::image type="content" source="../media/triggers/connectors.png" alt-text="A screenshot of the actions added to a workflow." lightbox="../media/triggers/connectors.png":::
 
-1. Depending on your use-case, choose the actions you need.  
+1. 
 
-    If you want to create a new [thread](../concepts/threads-runs-messages.md#threads) for each new event of your trigger, add the following in sequence: 
-        1. Create thread 
-        1. Create run 
-        1. Get run 
-        1. List messages 
+1. Depending on your use-case, choose the actions you need. If you want to create a new [thread](../concepts/threads-runs-messages.md#threads) for each new event of your trigger, add the following in sequence: 
+    1. Create thread 
+    1. Create run 
+    1. Get run 
+    1. List messages 
 
-    If you want to create a new [run](../concepts/threads-runs-messages.md#runs) in the same thread for each new event, add the following in sequence: 
-        1. Create run 
-        1. Get run
-        1. List messages 
+1. If you want to create a new [run](../concepts/threads-runs-messages.md#runs) in the same thread for each new event, add the following in sequence: 
+    1. Create run 
+    1. Get run
+    1. List messages 
 
 
 > [!TIP] 
