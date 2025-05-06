@@ -95,9 +95,9 @@ items:
     - name: Create a custom analyzer
       href: tutorial-create-custom-analyzer.md
     - name: Index multimodal content using embedding and document extraction skill
-      href: search-multimodal-indexing-with-embedding-and-doc-extraction.md
+      href: tutorial-multimodal-indexing-with-embedding-and-doc-extraction.md
     - name: Index multimodal content using image verbalization and document extraction skill
-      href: search-multimodal-indexing-with-image-verbalization-and-doc-extraction.md
+      href: tutorial-multimodal-indexing-with-image-verbalization-and-doc-extraction.md
   - name: RAG tutorials
     items:
     - name: Build a RAG solution
