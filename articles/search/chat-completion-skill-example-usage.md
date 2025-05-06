@@ -22,12 +22,12 @@ The GenAI Prompt skill (preview) generates a description of each image in your d
 
 To work with image content in a skillset, you need:
 
-> + A supported data source
-> + Files or blobs containing images
-> + Read access on the supported data source. This article uses key-based authentication, but indexers can also connect using the search service identity and Microsoft Entra ID authentication. For role-based access control, assign roles on the data source to allow read access by the service identity. If you're testing on a local development machine, make sure you also have read access on the supported data source.
-> + A search indexer, configured for image actions
-> + A skillset with the new custom genAI prompt skill
-> + A search index with fields to receive the verbalized text output, plus output field mappings in the indexer that establish association
++ A supported data source
++ Files or blobs containing images
++ Read access on the supported data source. This article uses key-based authentication, but indexers can also connect using the search service identity and Microsoft Entra ID authentication. For role-based access control, assign roles on the data source to allow read access by the service identity. If you're testing on a local development machine, make sure you also have read access on the supported data source.
++ A search indexer, configured for image actions
++ A skillset with the new custom genAI prompt skill
++ A search index with fields to receive the verbalized text output, plus output field mappings in the indexer that establish association
 
 Optionally, you can define projections to accept image-analyzed output into a [knowledge store](knowledge-store-concept-intro.md) for data mining scenarios.
 
@@ -112,7 +112,7 @@ When `imageAction` is set to a value other than *none*, the new `normalized_imag
 
 This section supplements the [skill reference](cognitive-search-defining-skillset.md) articles by providing context for working with skill inputs, outputs, and patterns, as they relate to image processing.
 
-1. Create or update a skillset to add skills.
++ Create or update a skillset to add skills.
 
 Once the basic framework of your skillset is created and Azure AI services is configured, you can focus on each individual image skill, defining inputs and source context, and mapping outputs to fields in either an index or knowledge store.
 
