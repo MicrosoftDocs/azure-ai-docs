@@ -51,7 +51,6 @@ Request parameters passed with the request are as follows:
 |**`api-version`**|string|True|Version of the API requested by the client. Accepted value is `2025-05-01-preview`.|
 |**`text`** | string | True | Source text for translation. |
 | **`targets`** | array | True | User-specified values for the translated (`target`) text. |
-| **`language`** | string | True |The language code for the translated (`target`) text *specified in the `targets` array*. Accepted values are [supported language](../../../language-support.md) codes for the translation operation.|
 | **textType** | string | False | Defines whether the text being translated is plain text or HTML text. Any HTML needs to be a well-formed, complete element. Accepted values are: plain (default) or html. |
 | **language** | string | False | Specifies the language code for the `source` text. If not specified, the system autodetects the language of the source text. Accepted values are list of language code supported by the specified model. |
 | **script** | string | False | Specifies the script of the source text. |
@@ -62,13 +61,14 @@ Request parameters passed with the request are as follows:
 | --- | --- | --- | --- |
 | **`targets`** | array | True | User-specified values for the translated (`target`) text. |
 
-#### Optional parameters (targets array)
+#### Targets array
 
 | Parameter | Type | Required? | Description |
 | --- | --- | --- | --- |
+| **targets.language** | string | True |The language code for the translated (`target`) text *specified in the `targets` array*. Accepted values are [supported language](../../../language-support.md) codes for the translation operation.|
 | **targets.script** | string | False | Specify the script of the translated text. |
-|**targets.deploymentName** | string | False | Default is `general`, which uses `NMT` system. `your-model-name-gpt-4o-mini` is an example deployment name for the GPT-4o-mini model. `gpt-4o` uses GPT-4o model.<br> `<custom model id>` uses the custom `NMT` model tuned by customer.<br>  |
-| **targets.allowFallback** | string | False | Indicates that if the desired model does not support a specific source and target language pair, the service may default to a general system as an alternative. This action ensures that translations can still be provided even when the preferred model is unavailable. Default is `true`. If `false` system returns an error if language pair isn't supported. |
+|**targets.deploymentName** | string | False | Default is `general`, which uses `NMT` system. `your-gpt-4omini-deployment-name` is an example deployment name for the GPT-4o-mini model. `gpt-4o` uses GPT-4o model.<br> `<custom model id>` uses the custom `NMT` model tuned by customer.<br>  |
+| **targets.allowFallback** | string | False | If the desired model does not support a particular pair of source and target languages, an alternative approach may be employed. In such cases, the service may default to utilizing a general system as a substitute. This action ensures that translations can still be provided even when the preferred model is unavailable. Default is `true`. If `false` system returns an error if language pair isn't supported. |
 | **targets.tone** | string | False | Desired tone of target translation. Accepted values are `formal`, `informal`, or `neutral`. |
 | **targets.gender** (For more information, *see* [Gender-specific translations](#gender-specific-translations))| string | False | Desired gender of target translation. Accepted values are `male`, `female`, or `neutral`.|
 | **targets.adaptiveDatasetId** | string | False | Reference dataset ID having sentence pair to generate adaptive customized translation |
@@ -260,7 +260,7 @@ Here, users request specific `GPT` models for deployment.
     "targets": [
       {
         "language": "es",
-        " deploymentName": "gpt-4o-mini"
+        " deploymentName": "your-gpt-4omini-deployment-name"
       },
       {
         "language": "de"
@@ -318,13 +318,13 @@ Here, users request specific `GPT` models for deployment.
     "targets": [
       {
         "language": "es",
-        "model": "gpt-4o-mini",
+        "deploymentName": "your-gpt-4omini-deployment-name",
         "tone": "formal",
         "gender": "female"
       },
       {
         "language": "es",
-        "model": "gpt-4o-mini",
+        "deploymentName": "your-gpt-4omini-deployment-name",
         "tone": "formal",
         "gender": "male"
       }
@@ -486,7 +486,7 @@ Adaptive custom translation deploys on Translator service infrastructure. Charge
     "targets": [
       {
         "language": "es",
-        "model": "CT-model-en-es-hr-020"
+        "deploymentName": "CT-model-en-es-hr-020"
       }
     ]
   }

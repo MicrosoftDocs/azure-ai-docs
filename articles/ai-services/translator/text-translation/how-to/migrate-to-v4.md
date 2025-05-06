@@ -52,10 +52,9 @@ The following table compares Translator `2025-05-01-preview` and Translator v3 A
 |[Translate text](../reference/v4/translate-api.md)|[Translate text](../reference/v3/translate.md)|
 |[Transliterate](../reference/v4/transliterate-api.md)|[Transliterate](../reference/v3/transliterate.md)|
 |[Languages](../reference/v4/get-languages.md)|[Languages](../reference/v3/languages.md)|
-|Feature no longer supported. Use the [Azure AI Language detection feature](../../../language-service/language-detection/overview.md)|
-|Feature no longer supported. Use sentence delimiters function or a Natural Language Processing (NLP) library for your programming language.|[BreakSentence](../reference/v3/break-sentence.md)|
-|Feature no longer supported|[Dictionary Lookup](../reference/v3/dictionary-lookup.md)|
-|Feature no longer supported|[Dictionary Examples](../reference/v3/dictionary-examples.md)|
+[BreakSentence](../reference/v3/break-sentence.md)|Feature no longer supported.<br>Use sentence delimiters function or a Natural Language Processing (NLP) library supported for your programming language.|
+[Dictionary Lookup](../reference/v3/dictionary-lookup.md)|Feature no longer supported|
+|[Dictionary Examples](../reference/v3/dictionary-examples.md)|Feature no longer supported|
 
 ## Next Steps
 
