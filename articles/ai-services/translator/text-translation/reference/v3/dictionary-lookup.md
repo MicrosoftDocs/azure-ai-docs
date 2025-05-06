@@ -1,18 +1,17 @@
 ---
-title: Translator Dictionary Lookup Method
+title: Azure AI Translator dictionary lookup method
 titleSuffix: Azure AI services
-description: The Dictionary Lookup method provides alternative translations for a word and a few idiomatic phrases.
+description: The Azure AI Translator v3.0 dictionary lookup method provides alternative translations for a word and a few idiomatic phrases.
 author: laujan
 manager: nitinme
-
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/06/2024
+ms.date: 03/31/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD033 -->
 
-# Translator 3.0: Dictionary Lookup
+# Azure AI Translator v3.0: dictionary lookup
 
 Provides alternative translations for a word and a few idiomatic phrases. Each translation has a part-of-speech and a list of back-translations. The back-translations enable a user to understand the translation in context. The [Dictionary Example](./dictionary-examples.md) operation includes example uses of each translation pair.
 
@@ -20,11 +19,11 @@ Provides alternative translations for a word and a few idiomatic phrases. Each t
 
 Send a `POST` request to:
 
-```HTTP
+```bash
 https://api.cognitive.microsofttranslator.com/dictionary/lookup?api-version=3.0
 ```
 
-_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+_See_ [**Virtual Network Support**](../authentication.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
 
 ## Request parameters
 
@@ -41,10 +40,10 @@ Request headers include:
 
 | Headers  | Description |
 | ------ | ----------- |
-| Authentication headers | **Required request header**.<br/>See [Authentication](reference.md#authentication).|
-| Content-Type | **Required request header**.<br>Specifies the content type of the payload. Possible values are: `application/json`. |
+| Authentication headers | **Required request header**.<br/>See [Authentication](../authentication.md).|
+| Content-Type | **Required request header**.<br>Specifies the content type of the payload. Accepted values are: `application/json`. |
 | Content-Length   | **Optional**.<br>The length of the request body. |
-| X-ClientTraceId   | **Optional**.<br/>A client-generated GUID to uniquely identify the request. You can omit this header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
+| X-ClientTraceId   | **Optional**.<br/>A client-generated GUID to uniquely identify the request. You can omit this optional header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
 
 ## Request body
 
@@ -107,13 +106,13 @@ A successful response is a JSON array with one result for each string in the inp
   * `frequencyCount`: An integer representing the frequency of this translation pair in the data. The main purpose of this field is to provide a user interface with a means to sort back-translations so the most frequent terms are first.
 
     > [!NOTE]
-    > If the term being looked-up does not exist in the dictionary, the response is 200 (OK) but the `translations` list is an empty list.
+    > If the term being looked-up doesn't exist in the dictionary, the response is 200 (OK) but the `translations` list is an empty list.
 
 ## Examples
 
 This example shows how to look up alternative translations in Spanish of the English term `fly` .
 
-```curl
+ ```bash
 curl -X POST "https://api.cognitive.microsofttranslator.com/dictionary/lookup?api-version=3.0&from=en&to=es" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d "[{'Text':'fly'}]"
 ```
 
@@ -160,7 +159,7 @@ The response body (abbreviated for clarity) is:
 
 This example shows what happens when the term being looked up doesn't exist for the valid dictionary pair.
 
-```curl
+ ```bash
 curl -X POST "https://api.cognitive.microsofttranslator.com/dictionary/lookup?api-version=3.0&from=en&to=es" -H "X-ClientTraceId: 875030C7-5380-40B8-8A03-63DACCF69C11" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d "[{'Text':'fly123456'}]"
 ```
 

@@ -47,7 +47,7 @@ You can read an overview of translation and custom translation, learn some tips,
 
 1. [**Publish (deploy) your trained model**](#publish-your-model). Your custom model is made available for runtime translation requests.
 
-1. [**Translate text**](#translate-text). Use the cloud-based, secure, high performance, highly scalable Microsoft Translator [Text API V3](../text-translation/reference/v3/translate.md?tabs=curl) to make translation requests.
+1. [**Translate text**](#translate-text). Use the cloud-based, secure, high performance, highly scalable Microsoft Translator [Text API v3](../text-translation/reference/v3/translate.md?tabs=curl) to make translation requests.
 
 ## Create a workspace
 
@@ -182,7 +182,7 @@ Publishing your model makes it available for use with the Translator API. A proj
 
 ## Translate text
 
-1. Developers should use the `Category ID` when making translation requests with Microsoft Translator [Text API V3](../text-translation/reference/v3/translate.md?tabs=curl). More information about the Translator Text API can be found on the [API Reference](../text-translation/reference/v3/reference.md) webpage.
+1. Developers should use the `Category ID` when making translation requests with Microsoft Translator [Text API v3](../text-translation/reference/v3/translate.md?tabs=curl). More information about the Translator Text API can be found on the [API Reference](../text-translation/reference/v3/reference.md) webpage.
 
 1. Business users can download and install our free [DocumentTranslator app for Windows](https://github.com/MicrosoftTranslator/DocumentTranslation/releases).
 

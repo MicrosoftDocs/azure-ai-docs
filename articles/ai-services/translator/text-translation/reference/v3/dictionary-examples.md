@@ -1,10 +1,9 @@
 ---
-title: Translator Dictionary Examples Method
+title: Azure AI Translator dictionary examples method
 titleSuffix: Azure AI services
-description: The Translator Dictionary Examples method provides examples that show how terms in the dictionary are used in context.
+description: The Azure AI Translator v3.0 dictionary examples method provides examples that show how terms in the dictionary are used in context.
 author: laujan
 manager: nitinme
-
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 06/06/2024
@@ -12,7 +11,7 @@ ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD033 -->
 
-# Translator 3.0: Dictionary Examples
+# Azure AI Translator v3.0: dictionary examples
 
 Provides examples that show how terms in the dictionary are used in context. This operation is used in tandem with [Dictionary lookup](dictionary-lookup.md).
 
@@ -20,11 +19,11 @@ Provides examples that show how terms in the dictionary are used in context. Thi
 
 Send a `POST` request to:
 
-```HTTP
+```bash
 https://api.cognitive.microsofttranslator.com/dictionary/examples?api-version=3.0
 ```
 
-_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+_See_ [**Virtual Network Support**](../authentication.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
 
 ## Request parameters
 
@@ -40,10 +39,10 @@ Request headers include:
 
 | Headers  | Description |
 | ------ | ----------- |
-| Authentication headers <img width=200/>  | **Required request header**.<br>See [Authentication](reference.md#authentication)>available options for authentication</a>. |
-| Content-Type | **Required request header**.<br>Specifies the content type of the payload. Possible values are: `application/json`. |
+| Authentication headers <img width=200/>  | **Required request header**.<br>*See* [available options for authentication](../authentication.md)|
+| Content-Type | **Required request header**.<br>Specifies the content type of the payload. Accepted values are: `application/json`. |
 | Content-Length   | **Optional**.<br>The length of the request body. |
-| X-ClientTraceId   | **Optional**.<br>A client-generated GUID to uniquely identify the request. You can omit this header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
+| X-ClientTraceId   | **Optional**.<br>A client-generated GUID to uniquely identify the request. You can omit this optional header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
 
 ## Request body
 
@@ -95,7 +94,7 @@ A successful response is a JSON array with one result for each string in the inp
 
 This example shows how to look up examples for the pair made up of the English term `fly` and its Spanish translation `volar`.
 
-```curl
+ ```bash
 curl -X POST "https://api.cognitive.microsofttranslator.com/dictionary/examples?api-version=3.0&from=en&to=es" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d "[{'Text':'fly', 'Translation':'volar'}]"
 ```
 

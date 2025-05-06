@@ -1,28 +1,28 @@
 ---
-title: Azure AI Translator transliterate method
+title: Azure AI Translator 2025-05-01-preview transliterate method
 titleSuffix: Azure AI services
-description: Convert text from one language from a source script to a target script with the Azure AI Translator v3.0 transliterate method.
+description: Convert text from one script to another script with the Azure AI Translator 2025-05-01-preview transliterate method.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 03/31/2025
+ms.date: 04/18/2025
 ms.author: lajanuar
 ---
 
-# Azure AI Translator v3.0: transliterate
+# Transliterate (2025-05-01-preview)
 
-Converts text in one language from source script to target script.
+The Text transliteration API maps your source language script or alphabet to a target language script or alphabet.
 
 ## Request URL
 
-Send a `POST` request:
+Send a `POST` request to:
 
 ```bash
-  https://api.cognitive.microsofttranslator.com/transliterate?api-version=3.0
+https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-05-01-preview
 ```
 
-_See_ [**Virtual Network Support**](../authentication.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+For more information on Translator service selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../authentication.md#virtual-network-support).
 
 ## Request parameters
 
@@ -30,10 +30,10 @@ Request parameters passed on the query string are:
 
 | Query parameter | Description |
 | --- | --- |
-| api-version | *Required parameter*.<br/>Version of the API requested by the client. Value must be `3.0`. |
-| language | *Required parameter*.<br/>Specifies the language of the text to convert from one script to another. Possible languages are listed in the `transliteration` scope obtained by querying the service for its [supported languages](languages.md). |
-| fromScript | *Required parameter*.<br/>Specifies the script used by the input text. Look up [supported languages](languages.md) using the `transliteration` scope, to find input scripts available for the selected language. |
-| toScript | *Required parameter*.<br/>Specifies the output script. Look up [supported languages](languages.md) using the `transliteration` scope, to find output scripts available for the selected combination of input language and input script. |
+| api-version | *Required parameter*.<br/>Version of the API requested by the client. Value must be `2025-05-01-preview`. |
+| language | *Required parameter*.<br/>Specifies the language of the text to convert from one script to another. Possible languages are listed in the `transliteration` scope obtained by querying the service for its [supported languages](get-languages.md). |
+| fromScript | *Required parameter*.<br/>Specifies the script used by the input text. Look up [supported languages](get-languages.md) using the `transliteration` scope, to find input scripts available for the selected language. |
+| toScript | *Required parameter*.<br/>Specifies the output script. Look up [supported languages](get-languages.md) using the `transliteration` scope, to find output scripts available for the selected combination of input language and input script. |
 
 ## Request headers
 
@@ -103,5 +103,5 @@ The JSON payload for the request in this example:
 If you're using cURL in a command-line window that doesn't support Unicode characters, take the following JSON payload and save it into a file named `request.txt`. Be sure to save the file with `UTF-8` encoding.
 
 ```
-curl -X POST "https://api.cognitive.microsofttranslator.com/transliterate?api-version=3.0&language=ja&fromScript=Jpan&toScript=Latn" -H "X-ClientTraceId: 875030C7-5380-40B8-8A03-63DACCF69C11" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d @request.txt
+curl -X POST "https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-05-01-preview&language=ja&fromScript=Jpan&toScript=Latn" -H "X-ClientTraceId: 875030C7-5380-40B8-8A03-63DACCF69C11" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d @request.txt
 ```

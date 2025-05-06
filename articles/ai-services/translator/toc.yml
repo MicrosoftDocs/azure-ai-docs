@@ -58,19 +58,19 @@ items:
     - name: Go
       href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/GO-Code-Samples
     - name: PHP
-      href: https://github.com/MicrosoftTranslator/Text-Translation-API-V3-PHP
+      href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-PHP
     - name: Ruby
-      href: https://github.com/MicrosoftTranslator/Text-Translation-API-V3-Ruby
+      href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-Ruby
   - name: How-to guides
     items:
     - name: Use the Text translation APIs
       displayName: detection,detect,translation,transliteration,identification,length,sentence length,alternate,usage,headers,set up,status,401
       href: text-translation/how-to/use-rest-api.md
+    - name: Migrate to 2025-05-01-preview
+      displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
+      href: text-translation/how-to/migrate-to-v4.md
     - name: Enable Microsoft Entra ID authentication
       href: how-to/microsoft-entra-id-auth.md
-    - name: Migrate to V3 Text API
-      displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
-      href: migrate-to-v3.md
     - name: Add profanity filtering
       displayName: profanityMarker,marker,profanityAction,action
       href: profanity-filtering.md
@@ -87,27 +87,50 @@ items:
       href: firewalls.md
   - name: Reference
     items:
-    - name: v3 Translator reference
+    - name: 🆕 Azure AI Translator 2025-05-01-preview
+      items:
+      - name: 2025-05-01-preview overview
+        displayName: gpt, adaptive, tone, gender
+        href: text-translation/reference/v4/reference-overview.md
+      - name: Languages
+        href: text-translation/reference/v4/get-languages.md
+      - name: Translate
+        displayName: detection,detect
+        href: text-translation/reference/v4/translate-api.md
+      - name: Transliterate
+        href: text-translation/reference/v4/transliterate-api.md
+    - name: Azure AI Translator v3
+      items:
+      - name: v3 overview
+        displayName: 401000,405000,400000
+        href: text-translation/reference/v3/reference.md
+      - name: Text Translation v3 REST APIs
+        href:  text-translation/reference/rest-api-guide.md
+      - name: Languages
+        href: text-translation/reference/v3/languages.md
+      - name: Translate
+        displayName: detection,detect
+        href: text-translation/reference/v3/translate.md
+      - name: Transliterate
+        href: text-translation/reference/v3/transliterate.md
+      - name: Detect
+        href: text-translation/reference/v3/detect.md
+      - name: BreakSentence
+        displayName: detection,detect
+        href: text-translation/reference/v3/break-sentence.md
+      - name: Dictionary Lookup
+        href: text-translation/reference/v3/dictionary-lookup.md
+      - name: Dictionary Examples
+        href: text-translation/reference/v3/dictionary-examples.md
+      - name: Migrate to v3 Text translation API
+      displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
+      href: text-translation/how-to/migrate-to-v3.md
+    - name: Authentication and authorization
+      displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
+      href: text-translation/reference/authentication.md
+    - name: Status codes
       displayName: 401000,405000,400000
-      href: text-translation/reference/v3/reference.md
-    - name: Text translation REST APIs
-      href:  text-translation/reference/rest-api-guide.md
-    - name: Languages
-      href: text-translation/reference/v3/languages.md
-    - name: Translate
-      displayName: detection,detect
-      href: text-translation/reference/v3/translate.md
-    - name: Transliterate
-      href: text-translation/reference/v3/transliterate.md
-    - name: Detect
-      href: text-translation/reference/v3/detect.md
-    - name: BreakSentence
-      displayName: detection,detect
-      href: text-translation/reference/v3/break-sentence.md
-    - name: Dictionary Lookup
-      href: text-translation/reference/v3/dictionary-lookup.md
-    - name: Dictionary Examples
-      href: text-translation/reference/v3/dictionary-examples.md
+      href: text-translation/reference/status-response-codes.md
 - name: Document translation
   items:
   - name: What is Document translation?
@@ -295,7 +318,7 @@ items:
       items:
       - name: Transparency note
         href: /legal/cognitive-services/translator/translator-pro-transparency-note?context=/azure/ai-services/translator/context/context
-  - name: Translator V3 connector
+  - name: Translator v3 connector
     items:
     - name: "Automate document translation (preview)"
       displayName: connect, power, automate, flow
@@ -319,7 +342,7 @@ items:
     href: modifications-deprecations.md
   - name: Known issues
     displayName: error, bug, issue, problem, troubleshoot, troubleshooting
-    href: reference/known-issues.md  
+    href: text-translation/reference/known-issues.md
   - name: Compliance and certification
     href: https://www.microsoft.com/translator/business/notrace/
   - name: Code samples on GitHub

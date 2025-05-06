@@ -1,37 +1,36 @@
 ---
-title: Azure AI Translator languages method
+title: Translator 2025-05-01-preview languages method
 titleSuffix: Azure AI services
-description: The Azure AI Translator v3.0 languages method returns currently supported languages.
+description: The languages method displays the set of languages currently supported by Azure AI Translator 2025-05-01-preview.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 03/31/2025
+ms.date: 04/18/2025
 ms.author: lajanuar
 ---
 
 <!-- markdownlint-disable MD033 -->
 
-# Azure AI Translator v3.0:  languages
+# Languages (2025-05-01-preview)
 
-Gets the set of languages currently supported Azure AI Translator v3.0.
-
+Get the set of languages currently supported by the latest Azure AI Translator version.
 ## Request URL
 
 Send a `GET` request to:
 
 ```bash
-https://api.cognitive.microsofttranslator.com/languages?api-version=3.0
+https://api.cognitive.microsofttranslator.com/languages?api-version=2025-05-01-preview
 
 ```
 
 For virtual networks, use your custom domain endpoint:
 
 ```bash
-https://<your-custom-domain>.cognitiveservices.azure.com/languages?api-version=3.0
+https://<your-custom-domain>.cognitiveservices.azure.com/languages?api-version=2025-05-01-preview
 ```
 
-For more information, _see_ [**Virtual Network Support**](../authentication.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+For more information on Translator service selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../authentication.md#virtual-network-support).
 
 ## Request parameters
 
@@ -39,7 +38,7 @@ Request parameters passed on the query string are:
 
 |Query parameters|Description|
 |---|---|
-|api-version|**Required parameter**<br><br>The version of the API requested by the client. Value must be `3.0`.|
+|api-version|**Required parameter**<br><br>The version of the API requested by the client. Value must be `2025-05-01-preview`.|
 |scope|**Optional parameter**.<br><br>A comma-separated list of names defining the group of languages to return. Allowed group names are: `translation`, `transliteration`, and `dictionary`. If no scope is given, then all groups are returned, which is equivalent to passing `scope=translation,transliteration,dictionary`.|
 
 *See* [response body](#response-body).
@@ -232,7 +231,7 @@ If an error occurs, the request also returns a JSON error response. The error co
 The following example shows how to retrieve languages supported for text translation.
 
  ```bash
-curl "https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation"
+curl "https://api.cognitive.microsofttranslator.com/languages?api-version=2025-05-01-preview&scope=translation"
 ```
 
 ## Related content
