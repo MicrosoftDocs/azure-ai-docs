@@ -33,9 +33,6 @@ To create a project in Azure AI Foundry, follow these steps:
 1. Select **+ New**.
 
 1. Enter a name for the project. If you want to customize the default values, select **Advanced options**.    
-<!-- 
- see the [Azure AI Foundry documentation](../../../ai-foundry/how-to/create-projects.md?tabs=ai-studio#customize-the-hub).
--->
 
     :::image type="content" source="../media/quickstart/create-project.png" alt-text="Screenshot of the project details page within the create project dialog." lightbox="../media/quickstart/create-project.png":::
 

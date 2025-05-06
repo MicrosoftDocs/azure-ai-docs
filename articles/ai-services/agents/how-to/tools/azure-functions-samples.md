@@ -22,6 +22,10 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 
 * A prepared environment. See the [overview](./azure-functions.md) article for details.
 
+
+::: zone pivot="python"
+
+
 ## Define a function for your agent to call
 
 Start by defining an Azure Function queue trigger function that will process function calls from the queue. For example this sample in Python:
@@ -57,8 +61,6 @@ def process_queue_message(msg: func.QueueMessage) -> None:
 
     logging.info(f"Sent message to output queue with message {result_message}")
 ```
-
-::: zone pivot="python"
 
 ## Create an AI project client and agent
 
