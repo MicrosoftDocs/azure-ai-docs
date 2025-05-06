@@ -61,7 +61,6 @@ Start by adding the Azure AI Foundry Agent service connectors to your workflow.
 1. Depending on your use-case, choose the actions you need. 
 
     If you want to create a new [thread](../concepts/threads-runs-messages.md#threads) for each new event of your trigger, add the following in sequence: 
-
     1. Create thread 
     1. Create run 
     1. Get run 
@@ -86,14 +85,13 @@ To create a connection, provide the following information.
 
 * **Project name**: your AI Foundry project endpoint. The format is `http://<aiservicename>.services.ai.azure.com/api/projects/<project name>`. 
 
-## Configure the "create thread" connector (optional)
+## Configure the "list thread" connector
 
-> [!NOTE]
-> The **List Agent** connector only lists all the agents you have in your AI project, you don't need to provide any information for this connector. 
+The **List Agent** connector only lists all the agents you have in your AI project, you don't need to provide any information for this connector. 
 
-The **create thread** connector creates a new [thread](../concepts/threads-runs-messages.md#threads), which is a conversation session between an Agent and a user. Threads store [messages](../concepts/threads-runs-messages.md#messages) and automatically handle truncation to fit content into a model's context. 
+## Configure the "create thread" connector
 
-To configure the **create thread** connector:
+The **create thread** connector creates a new [thread](../concepts/threads-runs-messages.md#threads), which is a conversation session between an Agent and a user. Threads store [messages](../concepts/threads-runs-messages.md#messages) and automatically handle truncation to fit content into a model's context. You can configure the **create thread** connector with the following:
 
 **messages (optional)**: You can add the message you want the AI agent to respond to. Add the role as **user** for the message you want the agent to respond to. It can be the event payload from the trigger, for example a form response field. It can also be a constant message, for example always triggering with the phrase "*what is the latest AI news this week?*"  
 
