@@ -202,7 +202,7 @@ items:
     href: ../ai-services/connect-services-ai-foundry-portal.md?context=/azure/ai-foundry/context/context
     displayName: cognitive,task,speech,vision,language,translator,document,intelligence,content,understanding,safety
   - name: What are Azure AI services?
-    href: /azure/ai-services/what-are-ai-services
+    href: ../ai-services/what-are-ai-services.md?context=/azure/ai-foundry/context/context
   - name: Content Safety
     items: 
     - name: What is Azure AI Content Safety service?
