@@ -12,34 +12,23 @@ author: samuel100
 
 Foundry Local enables you to run large language models (LLMs) directly on your device for privacy, cost savings, and low-latency inference. To use your own models with Foundry Local, you need to convert and optimize them into the ONNX format. Olive AI is the recommended tool for this process.
 
-This guide walks you through optimizing a Hugging Face or PyTorch model for Foundry Local using Olive’s auto-opt command.
+This guide walks you through optimizing a PyTorch model for Foundry Local using Olive’s auto-opt command.
 
 ## Prerequisites
 
 - Python 3.8+
 - Olive AI installed (`pip install olive-ai`)
 - ONNX Runtime installed (`pip install onnxruntime-genai`)
-- (Optional) Hugging Face account and access token for gated models
 
-## 1. Authenticate with Hugging Face (if needed)
-
-If your model is gated (e.g., Llama 3.2), you must log in to Hugging Face:
-
-```sh
-huggingface-cli login --token {YOUR_HF_TOKEN}
-```
-
-Refer to [Hugging Face documentation](https://huggingface.co/docs/hub/security-tokens) for details on obtaining a token.
-
-## 2. Optimize Your Model with Olive
+## 1. Optimize Your Model with Olive
 
 Use Olive’s `auto-opt` command to download, convert, and optimize your model. For example, to optimize the Llama-3.2-1B-Instruct model:
 
 ```sh
 olive auto-opt \
-  --model_name_or_path meta-llama/Llama-3.2-1B-Instruct \
+  --model_name_or_path ./Qwen3 \
   --trust_remote_code \
-  --output_path models/llama/ao \
+  --output_path models/qwen/ao \
   --device cpu \
   --provider CPUExecutionProvider \
   --use_ort_genai \
@@ -49,65 +38,102 @@ olive auto-opt \
 
 ### Key Arguments
 
-- `--model_name_or_path`: Hugging Face repo ID, local path, or Azure Model Catalog ID.
+- `--model_name_or_path`: local path
 - `--output_path`: Where to save the optimized ONNX model.
 - `--device`: Target device (`cpu`, `gpu`, etc.).
 - `--provider`: Hardware provider (e.g., `CPUExecutionProvider`, `CUDAExecutionProvider`).
 - `--precision`: Model precision (`fp16`, `fp32`, `int4`, `int8`). Lower precision reduces size and increases speed.
-- `--use_ort_genai`: Prepares the model for ONNX Runtime’s Generate API.
+- `--use_ort_genai`: Prepares the model for ONNX Runtime’s Generate API (required for Foundry Local).
 
-You can substitute any compatible Hugging Face model or a local model path for `--model_name_or_path`.
+## 2. Run Inference with Foundry Local
 
-## 3. Run Inference with ONNX Runtime
+You can run your compiled model using the Foundry Local CLI, REST API, or OpenAI Python SDK. First, change the model cache directory to the models directory you created in the previous step (or move the model to the default cache directory, found with `foundry cache location`).:
 
-After optimization, you can run inference using ONNX Runtime. Here’s a sample Python script for a simple chat interface:
+### [Bash](#tab/Bash)
+```bash
+foundry cache cd models
+foundry cache ls  # should show Qwen3
+```
+
+### [PowerShell](#tab/PowerShell)
+```powershell
+foundry cache cd models
+foundry cache ls  # should show Qwen3
+```
+---
+
+### Using the Foundry Local CLI
+
+### [Bash](#tab/Bash)
+```bash
+foundry model run Qwen3 --verbose
+```
+
+### [PowerShell](#tab/PowerShell)
+```powershell
+foundry model run Qwen3 --verbose
+```
+---
+
+### Using the REST API
+
+### [Bash](#tab/Bash)
+```bash
+curl -X POST http://localhost:5272/v1/chat/completions \
+-H "Content-Type: application/json" \
+-d '{
+    "model": "Qwen3",
+    "messages": [{"role": "user", "content": "What is the capital of France?"}],
+    "temperature": 0.7,
+    "max_tokens": 50,
+    "stream": true
+}'
+```
+
+### [PowerShell](#tab/PowerShell)
+```powershell
+Invoke-RestMethod -Uri http://localhost:5272/v1/chat/completions `
+    -Method Post `
+    -ContentType "application/json" `
+    -Body '{
+        "model": "Qwen3",
+        "messages": [{"role": "user", "content": "What is the capital of France?"}],
+        "temperature": 0.7,
+        "max_tokens": 50,
+        "stream": true
+    }'
+```
+---
+
+### Using the OpenAI Python SDK
 
 ```python
-import onnxruntime_genai as og
+from openai import OpenAI
 
-model_folder = "models/llama/ao/model"
+client = OpenAI(
+    base_url="http://localhost:5272/v1",
+    api_key="none",  # required but not used
+)
 
-model = og.Model(model_folder)
-tokenizer = og.Tokenizer(model)
-tokenizer_stream = tokenizer.create_stream()
+stream = client.chat.completions.create(
+    model="Qwen3",
+    messages=[{"role": "user", "content": "What is the capital of France?"}],
+    temperature=0.7,
+    max_tokens=50,
+    stream=True,
+)
 
-search_options = {'max_length': 200}
-system_prompt = "<|begin_of_text|><|start_header_id|>system<|end_header_id|>You are a helpful assistant<|eot_id|>"
-system_tokens = tokenizer.encode(system_prompt)
-chat_template = "<|start_header_id|>user<|end_header_id|>{input}<|eot_id|><|start_header_id|>assistant<|end_header_id|>"
-
-while True:
-    text = input("Prompt (Use quit() to exit): ")
-    if not text:
-        print("Error, input cannot be empty")
-        continue
-    if text == "quit()":
-        break
-    prompt = f'{chat_template.format(input=text)}'
-    input_tokens = tokenizer.encode(prompt)
-    params = og.GeneratorParams(model)
-    params.set_search_options(**search_options)
-    generator = og.Generator(model, params)
-    generator.append_tokens(system_tokens + input_tokens)
-    print("\nOutput: ", end='', flush=True)
-    try:
-        while not generator.is_done():
-            generator.generate_next_token()
-            new_token = generator.get_next_tokens()[0]
-            print(tokenizer_stream.decode(new_token), end='', flush=True)
-    except KeyboardInterrupt:
-        print("  --control+c pressed, aborting generation--")
-    print("\n")
-    del generator
+for event in stream:
+    print(event.choices[0].delta.content, end="", flush=True)
+print("\n\n")
 ```
 
-Run the script with:
+> [!TIP]
+> You can use any language that supports HTTP requests. See [Integrate with Inferencing SDKs](integrate-with-inference-sdks.md) for more options.
 
-```sh
-python app.py
-```
 
-## 4. Next steps
+
+## 3. Next steps
 
 - Integrate your ONNX model with Foundry Local’s CLI or REST API (see [Get started with Foundry Local](../get-started.md)).
 - Experiment with different models, devices, and providers for optimal performance.

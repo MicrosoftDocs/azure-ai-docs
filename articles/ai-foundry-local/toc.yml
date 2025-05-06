@@ -33,6 +33,8 @@ items:
   items:
   - name: Foundry Local CLI
     href: reference/reference-cli.md
+  - name: Foundry Local SDK
+    href: reference/reference-sdk.md
   - name: REST API
     href: reference/reference-rest.md
   - name: Catalog API
