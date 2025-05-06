@@ -33,13 +33,13 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
-- You must be **Owner** of the subscription to assign the appropriate access control needed to use the project.
+- You must be **Owner** of the subscription to receive the appropriate access control needed to use the project.
 
 
 # [Python SDK](#tab/python)
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
-- You must be **Owner** of the subscription to assign the appropriate access control needed to use the project.
+- You must be **Owner** of the subscription to receive the appropriate access control needed to use the project.
 - [Set up your development environment](../how-to/develop/install-cli-sdk.md?tabs=python)
 - Authenticate with `az login` or `az login --use-device-code` in your environment before running code.
 
@@ -47,7 +47,7 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 # [Azure CLI](#tab/azurecli)
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
-- You must be **Owner** of the subscription to assign the appropriate access control needed to use the project.
+- You must be **Owner** of the subscription to receive the appropriate access control needed to use the project.
 - [Azure CLI](/cli/azure/install-azure-cli) 
 
 ---
@@ -85,7 +85,7 @@ To customize the settings for your project, follow these steps:
 
 To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
-1. Install azure-identity: `pip install azure-identity`. If in a notebook cell, use `%pip install azure-identity`.
+1. Install azure-identity: `pip install azure-identity azure_mgmt_cognitiveservices`. If in a notebook cell, use `%pip install azure-identity azure_mgmt_cognitiveservices`.
 
 1. Use the following code to create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]:
 
