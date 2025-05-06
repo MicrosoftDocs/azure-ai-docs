@@ -63,23 +63,40 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 Use either the Azure AI Foundry portal or Azure CLI to create a project.
 
-* Azure AI Foundry portal*
+# [Azure AI Foundry portal](#tab/ai-foundry)
 
-    1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
-    1. On the home page, select **Start building**. This creates a project and also include steps to start working with a basic Agent.
-        
-        :::image type="content" source="../media/quickstarts/start-building.png" alt-text="Screenshot shows how to start building an Agent in Azure AI Foundry portal.":::
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. On the home page, select **Start building**. This creates a project and also include steps to start working with a basic Agent.
     
-    1. Fill in a name for your project and select **Create**. 
+    :::image type="content" source="../media/quickstarts/start-building.png" alt-text="Screenshot shows how to start building an Agent in Azure AI Foundry portal.":::
 
-* Azure CLI 
+1. Fill in a name for your project and select **Create**. 
 
-    Create a new [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
+# [Azure CLI](#tab/azurecli)
+
+To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
+
+1. Authenticate to your Azure subscription:
 
     ```azurecli
-    az cognitiveservices account project create --name {my_project_name} -resource-group {my_resource_group}
+    az login
     ```
 
+    For more information on authenticating, see [Authentication methods](/cli/azure/authenticate-azure-cli).
+
+1. Create a resource group,for example in East US:
+
+    ```azurecli
+    az group create --name {my_resource_group} --location eastus
+    ```
+
+1. Create a new Foundry resource and [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
+
+    ```azurecli
+    az cognitiveservices account create --resource-group {my_resource_group} --account-name {foundry_resource_name} --sku "S0" 
+ 
+    az cognitiveservices account project create --resource-group {my_resource_group} --name {my_project_name} --account-name {foundry_resource_name} 
+    ```
 
 ## Deploy a model
 
