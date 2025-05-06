@@ -27,7 +27,7 @@ You need audio or text data for testing the accuracy of speech recognition or tr
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning**.
 1. Select the custom model that you want to manage from the **Model name** column.
-1. Select **Manage data** and then select **Add data**.
+1. Select **Manage data** and then select **Upload data**.
 
     :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-add-data.png" alt-text="Screenshot of the page with an option to add data to the custom speech project." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-add-data.png":::
 
@@ -47,6 +47,8 @@ You need audio or text data for testing the accuracy of speech recognition or tr
 1. Review the data and select **Upload**. You're taken back to the **Manage data** page. The status of the data is **Processing**.
 
     :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-add-data-status-processing.png" alt-text="Screenshot of the page that shows the status of the data as processing." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-add-data-status-processing.png":::
+
+1. Repeat the previous steps to upload audio data [that you use later for testing](./how-to-custom-speech-inspect-data.md). In the **Add data** wizard, select **Audio** for the type of data you want to add. 
 
 ::: zone-end
 

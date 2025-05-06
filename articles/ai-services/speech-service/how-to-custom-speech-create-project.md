@@ -38,16 +38,6 @@ In the [Azure AI Foundry portal](https://ai.azure.com), you can fine-tune some A
     :::image type="content" source="./media/ai-foundry/custom-speech/fine-tune-azure-ai-services.png" alt-text="Screenshot of the page to select fine-tuning of Azure AI Services models." lightbox="./media/ai-foundry/custom-speech/fine-tune-azure-ai-services.png":::
  
 1. In the wizard, select **Speech to text (speech recognition)** for custom speech. Then select **Next**.
-1. Select the connected service resource that you want to use for fine-tuning. 
-
-    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-select-connection.png" alt-text="Screenshot of the page to select the connected service resource that you want to use for fine-tuning." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-select-connection.png":::
-
-    > [!IMPORTANT]
-    > If you train a custom model with audio data, select a service resource in a region with dedicated hardware for training audio data. See footnotes in the [regions](regions.md#regions) table for more information.
-
-    You can choose from the following connected resource types:
-    - **AI Service**: An Azure AI Foundry [multi-service resource.](../multi-service-resource.md)
-    - **Speech Service**: An Azure AI Speech resource that was [connected after the project was created](../../ai-services/connect-services-ai-foundry-portal.md#connect-azure-ai-services-after-you-create-a-project). 
 
 1. Enter the language, name, and description for the fine-tuning job. Then select **Create**.
 
@@ -58,16 +48,6 @@ Go to the Azure AI Speech documentation to learn how to continue fine-tuning you
 * [Train a model](how-to-custom-speech-train-model.md)
 * [Test model quantitatively](how-to-custom-speech-evaluate-data.md) and [test model qualitatively](./how-to-custom-speech-inspect-data.md)
 * [Deploy a model](how-to-custom-speech-deploy-model.md)
-
-## View fine-tuned models
-
-After fine-tuning, you can access your custom speech models and deployments from the **Fine-tuning** page. 
-
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
-1. Select **Fine-tuning** from the left pane.
-1. Select **AI Service fine-tuning**.
-
-    :::image type="content" source="./media/ai-foundry/custom-speech/fine-tune-succeeded-list.png" alt-text="Screenshot of the page where you can view fine-tuned AI services models." lightbox="./media/ai-foundry/custom-speech/fine-tune-succeeded-list.png":::
 
 ::: zone-end
 
