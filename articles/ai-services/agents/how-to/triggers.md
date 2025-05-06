@@ -10,7 +10,7 @@ ms.service: azure-ai-agent-service
 
 # Trigger an agent using Logic Apps
 
-To streamline your workflow, you might want to automatically invoke your AI agent when an event occurs, such as receiving a new email, or getting a new customer ticket so that your AI agent can immediately respond to the new event without manual invokation.  
+To streamline your workflow, you might want to automatically invoke your AI agent when an event occurs, such as receiving a new email, or getting a new customer ticket so that your AI agent can immediately respond to the new event without manual invocation.  
 
 To automatically invoke an agent, you can select among hundreds of [triggers](/azure/logic-apps/logic-apps-workflow-actions-triggers) in Azure Logic Apps, and the Azure AI Foundry Agent Service connector. 
 
@@ -21,7 +21,7 @@ A trigger is the first item you need to add to your workflow, which allows you t
 
 For example, consider a workflow with the *Microsoft Forms* connector (which has a trigger) that connects to a specific form. Whenever this form receives a new response, the trigger will recognize it and invoke the connectors following it in the workflow. You can then pass the form response as a message to your AI agent and leverage its tools to respond or take proper actions.  
 
-To check if a specific connector has a trigger capability, view its documentation and see if it has a **Trigger** section. For example, the [Triggers](/connectors/microsoftforms/#triggers) section of the *Microsoft Forms* conenctor. 
+To check if a specific connector has a trigger capability, view its documentation and see if it has a **Trigger** section. For example, the [Triggers](/connectors/microsoftforms/#triggers) section of the *Microsoft Forms* connector. 
 
 ## Prerequisite 
 
@@ -78,7 +78,7 @@ Start by adding the Azure AI Foundry Agent service connectors to your workflow.
 
 ## Create a connection
 
-To create a conenction, provide the following information.
+To create a connection, provide the following information.
 
 * **Connection name**: give your connection a name. 
 
@@ -87,7 +87,7 @@ To create a conenction, provide the following information.
 ## Configure the "create thread" connector (optional)
 
 > [!NOTE]
-> the **List Agent** connector only lists all the agents you have in your AI project, you don't need to provide any information for this connector. 
+> The **List Agent** connector only lists all the agents you have in your AI project, you don't need to provide any information for this connector. 
 
 The **create thread** connector creates a new [thread](../concepts/threads-runs-messages.md#threads), which is a conversation session between an Agent and a user. Threads store [messages](../concepts/threads-runs-messages.md#messages) and automatically handle truncation to fit content into a model's context. 
 
@@ -143,7 +143,7 @@ The **get run** connector gets and retrieves the run you just created.
 
 **Run ID (required)**: the run ID of the run you just created. Click the function icon to select the **ID** parameter from your previous **create run** connector output. 
 
-## Configure the "list messages" conenctor
+## Configure the "list messages" connector
 
 The **list Messages** connector lists all messages in the current thread.  
 
