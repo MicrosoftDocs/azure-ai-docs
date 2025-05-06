@@ -44,9 +44,11 @@ Content Understanding serves as a cornerstone for Media Asset Management solutio
 
 * **Multilingual transcription**. Generates multilingual transcripts, applying language/locale per phrase. Deviating from language detection this is enabled when no language/locale is specified or language is set to 'auto'.
 <br>For files ≤ 300 MB and/or ≤ 2 hours the following locales are currently supported: de-DE, en-AU, en-CA, en-GB, en-IN, en-US, es-ES, es-MX, fr-CA, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, and zh-CN.
-<br>For files > 300 MB and/or > 4 hours the following locales are currently supported: en-US, ...
+<br>For files > 300 MB and/or > 4 hours the following locales are currently supported: en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, zh-CN.
 
 * **Language detection**. Automatically detects the dominant language/locale which is used to transcribe the file. Set multiple languages/locales to enable language detection.
+<br>For files > 300 MB and/or > 2 hours and locales unsupported by Fast transcription, the file will be processed generating a multilingual transcript based on the specified locales.
+<br>In case language detection fails, the first language/locale defined will be used to transcribe the file.
 
 > [!NOTE]
 > Content Understanding supports the full set of [Azure AI Speech Speech to text languages](https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt).
