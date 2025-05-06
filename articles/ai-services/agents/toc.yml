@@ -101,6 +101,8 @@ items:
   items:
     - name: Agent blueprints
       href: concepts/agent-catalog.md
+    - name: Trigger an agent using Logic Apps
+      href: how-to/triggers.md
     - name: Multi-agent workflows
       items:
         - name: Connected agents
