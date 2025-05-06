@@ -5,6 +5,7 @@ description: Learn how to call the Segment API to isolate and remove the backgro
 manager: nitinme
 author: PatrickFarley
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
+ms.update-cycle: 365-days
 ms.author: pafarley
 ms.service: azure-ai-vision
 ms.topic: how-to

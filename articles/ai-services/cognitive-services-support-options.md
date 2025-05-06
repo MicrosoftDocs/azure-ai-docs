@@ -5,17 +5,17 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: conceptual
-ms.date: 10/30/2024
+ms.date: 05/01/2025
 ms.author: pafarley
 ---
 
 # Azure AI services support and help options
 
-Are you just starting to explore the functionality of Azure AI services? Perhaps you're implementing a new feature in your application. Or after using the service, do you have suggestions on how to improve it? Here are options for where you can get support, stay up-to-date, give feedback, and report bugs for Azure AI services.
+Here are the options for getting support, staying up to date, giving feedback, and reporting bugs for Azure AI services.
 
 ## Get solutions to common issues
 
-In the Azure portal, you can find answers to common AI service issues. 
+In the Azure portal, you can find answers to common AI service issues.
 
 1. Go to your Azure AI services resource in the Azure portal. You can find it on the list on this page: [Azure AI services](https://ms.portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/AllCognitiveServices). If you're a United States government customer, use the [Azure portal for the United States government](https://portal.azure.us).
 1. In the left pane, under **Help**, select **Support + Troubleshooting**.
@@ -40,6 +40,11 @@ For quick and reliable answers on your technical product questions from Microsof
 If you can't find an answer to your problem using search, submit a new question to Microsoft Q&A. Use one of the following tags when you ask your question:
 
 * [Azure AI services](/answers/topics/azure-cognitive-services.html)
+
+
+**Azure OpenAI**
+
+* [Azure OpenAI](/answers/topics/azure-openai.html)
 
 **Vision**
 
@@ -68,9 +73,6 @@ If you can't find an answer to your problem using search, submit a new question 
 * [Azure AI Metrics Advisor](/answers/topics/148981/azure-metrics-advisor.html)
 * [Azure AI Personalizer](/answers/topics/azure-personalizer.html)
 
-**Azure OpenAI**
-
-* [Azure OpenAI](/answers/topics/azure-openai.html)
 
 ## Post a question to Stack Overflow
 
@@ -78,11 +80,16 @@ If you can't find an answer to your problem using search, submit a new question 
     <img alt='Stack Overflow' src='/media/logos/logo_stackoverflow.svg'>
 </div>
 
-For answers on your developer questions from the largest community developer ecosystem, ask your question on Stack Overflow.
+For answers to your developer questions from the largest community developer ecosystem, ask your question on Stack Overflow.
 
-If you do submit a new question to Stack Overflow, use one or more of the following tags when you create the question:
+If you submit a new question to Stack Overflow, use one or more of the following tags when you create the question:
 
 * [Azure AI services](https://stackoverflow.com/questions/tagged/azure-cognitive-services)
+
+
+**Azure OpenAI**
+
+* [Azure OpenAI](https://stackoverflow.com/search?q=azure+openai)
 
 **Vision**
 
@@ -111,9 +118,6 @@ If you do submit a new question to Stack Overflow, use one or more of the follow
 * [Azure AI Metrics Advisor](https://stackoverflow.com/search?q=azure+metrics+advisor)
 * [Azure AI Personalizer](https://stackoverflow.com/search?q=azure+personalizer)
 
-**Azure OpenAI**
-
-* [Azure OpenAI](https://stackoverflow.com/search?q=azure+openai)
 
 ## Submit feedback
 

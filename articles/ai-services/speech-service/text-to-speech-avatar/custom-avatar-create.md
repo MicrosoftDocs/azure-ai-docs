@@ -20,7 +20,7 @@ Getting started with a custom text to speech avatar is a straightforward process
 
 ## Prerequisites
 
-You need an AI Services resource for Speech in one of the [regions that supports custom avatar training](./what-is-custom-text-to-speech-avatar.md#available-locations). Custom avatar only supports standard (S0) Speech resources.
+You need an AI Foundry resource for Speech in one of the [regions that supports custom avatar training](./what-is-custom-text-to-speech-avatar.md#available-locations). Custom avatar only supports standard (S0) Speech resources.
 
 You need a video recording of the talent reading a consent statement acknowledging the use of their image and voice. You upload this video when you set up the avatar talent. For more information, see [Add avatar talent consent](#step-2-add-avatar-talent-consent).
 
@@ -116,7 +116,7 @@ Training duration varies depending on how much data you use. It normally takes 2
 
 ### Copy your custom avatar model to another project (optional)
 
-Custom avatar training is currently only available in some regions. After your avatar model is trained in a supported region, you can copy it to an AI Services resource for Speech in another region as needed. For more information, see footnotes in the [regions table](../regions.md).
+Custom avatar training is currently only available in some regions. After your avatar model is trained in a supported region, you can copy it to an AI Foundry resource for Speech in another region as needed. For more information, see footnotes in the [regions table](../regions.md).
 
 To copy your custom avatar model to another project:
 1. On the **Train model** tab, select an avatar model that you want to copy, and then select **Copy to project**.

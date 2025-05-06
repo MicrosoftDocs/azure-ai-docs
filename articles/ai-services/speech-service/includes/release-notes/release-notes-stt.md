@@ -2,14 +2,23 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 3/28/2025
+ms.date: 5/4/2025
 ms.author: eur
 ms.custom: references_regions
 ---
 
+### May 2025 release
+
+#### Fast transcription API - Multi-lingual speech transcription
+
+To transcribe multi-lingual contents continuously and accurately in an audio file, now you can use the latest multi-lingual model without specifying the locale codes via fast transcription API. For more information, see [multi-lingual transcription in fast transcription](../../fast-transcription-create.md?tabs=multilingual-transcription-on).
+
+#### New locales supported in Fast Transcription
+Fast transcription now supports additional locales including fi-FI, he-IL, id-ID, pl-PL, pt-PT, sv-SE, etc. For more information, see [speech to text supported languages](../../language-support.md?tabs=stt).
+
 ### March 2025 release
 
-## Conversation transcription multichannel diarization (retired)
+#### Conversation transcription multichannel diarization (retired)
 
 Conversation transcription multichannel diarization is retiring on March 28, 2025. 
 

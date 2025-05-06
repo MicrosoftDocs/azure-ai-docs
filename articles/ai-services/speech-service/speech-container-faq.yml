@@ -118,7 +118,7 @@ sections:
           }
           ```
           
-          You reed to create an AI Services resource for Speech, not an Azure AI services resource.
+          You reed to create an AI Foundry resource for Speech, not an AI Foundry resource.
           
           
       - question: |

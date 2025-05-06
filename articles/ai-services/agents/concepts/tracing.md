@@ -36,7 +36,7 @@ Once created, you can get an Application Insights connection string, configure y
 First, use `pip install` to install OpenTelemetry and the Azure SDK tracing plugin.
 
 ```bash
-pip install opentelemetry
+pip install opentelemetry-sdk
 pip install azure-core-tracing-opentelemetry
 ```
 
