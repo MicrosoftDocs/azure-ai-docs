@@ -117,8 +117,8 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
             "properties": {"allowProjectManagement": True}
         }
     )
-    # Create project
-    resource = client.projects.begin_create(
+    # Create default project
+    project = client.projects.begin_create(
         resource_group_name=rgp,
         account_name=resource_name,
         project_name=project_name,
@@ -155,16 +155,18 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
     For more information on authenticating, see [Authentication methods](/cli/azure/authenticate-azure-cli).
 
-1. Create a resource group:
+1. Create a resource group,for example in East US:
 
     ```azurecli
     az group create --name {my_resource_group} --location eastus
     ```
 
-1. Now use the following command to create a new [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
+1. Now use the following commands to create a new [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
     ```azurecli
-    az cognitiveservices account project create --name {my_project_name} -resource-group {my_resource_group}
+    az cognitiveservices account create --resource-group {my_resource_group} --account-name {foundry_resource_name} --sku "S0" 
+ 
+    az cognitiveservices account project create --resource-group {my_resource_group} --name {my_project_name} --account-name {foundry_resource_name} 
     ```
 
 ---

@@ -69,7 +69,7 @@ project = client.projects.begin_create(
 Use your existing values for {my_resource_group} and {foundry_resource_name} to add another project to the resource:
 
 ```azurecli
-az cognitiveservices account project create --name {my_project_name} -resource-group {my_resource_group} --account {foundry_resource_name}
+ az cognitiveservices account project create --resource-group {my_resource_group} --name {my_project_name} --account-name {foundry_resource_name} 
 ```
 
 
