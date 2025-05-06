@@ -1,7 +1,7 @@
 ---
-title: Get started with AI Foundry Local
-titleSuffix: AI Foundry Local
-description: Learn how to install, configure, and run your first AI model with AI Foundry Local
+title: Get started with Foundry Local
+titleSuffix: Foundry Local
+description: Learn how to install, configure, and run your first AI model with Foundry Local
 manager: scottpolly
 keywords: Azure AI services, cognitive, AI models, local inference
 ms.service: azure-ai-foundry
@@ -11,12 +11,12 @@ ms.reviewer: samkemp
 ms.author: samkemp
 author: samuel100
 ms.custom: build-2025
-#customer intent: As a developer, I want to get started with AI Foundry Local so that I can run AI models locally.
+#customer intent: As a developer, I want to get started with Foundry Local so that I can run AI models locally.
 ---
 
-# Get started with AI Foundry Local
+# Get started with Foundry Local
 
-This article shows you how to get started with AI Foundry Local to run AI models on your device. Follow these steps to install the tool, discover available models, and run your first local AI model.
+This article shows you how to get started with Foundry Local to run AI models on your device. Follow these steps to install the tool, discover available models, and run your first local AI model.
 
 ## Prerequisites
 
@@ -33,11 +33,11 @@ This article shows you how to get started with AI Foundry Local to run AI models
 
 ## Quickstart in 2-steps
 
-Follow these steps to get started with AI Foundry Local:
+Follow these steps to get started with Foundry Local:
 
 1. **Install Foundry Local**
 
-   1. Download AI Foundry Local for your platform (Windows, MacOS, Linux - x64/ARM) from the repository's releases page.
+   1. Download Foundry Local for your platform (Windows, MacOS, Linux - x64/ARM) from the repository's releases page.
    2. Install the package by following the on-screen prompts.
 
       > [!IMPORTANT] > **For MacOS/Linux users:** Run both components in separate terminals:
@@ -62,7 +62,7 @@ Follow these steps to get started with AI Foundry Local:
 The foundry CLI is structured into several categories:
 
 - **Model**: Commands related to managing and running models
-- **Service**: Commands for managing the AI Foundry Local service
+- **Service**: Commands for managing the Foundry Local service
 - **Cache**: Commands for managing the local cache where models are stored
 
 To see all available commands, use the help option:
@@ -76,21 +76,21 @@ foundry --help
 
 ## Security and privacy considerations
 
-AI Foundry Local is designed with privacy and security as core principles:
+Foundry Local is designed with privacy and security as core principles:
 
-- **Local processing**: All data processed by AI Foundry Local remains on your device and is never sent to Microsoft or any external services.
-- **No telemetry**: AI Foundry Local does not collect usage data or model inputs.
-- **Air-gapped environments**: AI Foundry Local can be used in disconnected environments after initial model download.
+- **Local processing**: All data processed by Foundry Local remains on your device and is never sent to Microsoft or any external services.
+- **No telemetry**: Foundry Local does not collect usage data or model inputs.
+- **Air-gapped environments**: Foundry Local can be used in disconnected environments after initial model download.
 
 ### Security best practices
 
-- Use AI Foundry Local in environments that align with your organization's security policies.
+- Use Foundry Local in environments that align with your organization's security policies.
 - For handling sensitive data, ensure your device meets your organization's security requirements.
 - Consider disk encryption for devices where cached models might contain sensitive fine-tuning data.
 
 ### Licensing considerations
 
-Models available through AI Foundry Local are subject to their original licenses:
+Models available through Foundry Local are subject to their original licenses:
 
 - Open-source models maintain their original licenses (e.g., Apache 2.0, MIT).
 - Commercial models may have specific usage restrictions or require separate licensing.
@@ -98,14 +98,14 @@ Models available through AI Foundry Local are subject to their original licenses
 
 ## Production deployment scope
 
-AI Foundry Local is designed primarily for:
+Foundry Local is designed primarily for:
 
 - Individual developer workstations
 - Single-node deployment
 - Local application development and testing
 
 > [!IMPORTANT]
-> AI Foundry Local is not currently intended for distributed, containerized, or multi-machine production deployment. For production-scale deployment needs, consider Azure AI Foundry for enterprise-grade availability and scale.
+> Foundry Local is not currently intended for distributed, containerized, or multi-machine production deployment. For production-scale deployment needs, consider Azure AI Foundry for enterprise-grade availability and scale.
 
 ## Troubleshooting
 
@@ -128,5 +128,5 @@ If you're experiencing slow inference:
 
 ## Next steps
 
-- [Learn how to integrate AI Foundry Local with your applications](how-to/integrate-with-inference-sdks.md)
-- [Explore the AI Foundry Local documentation](index.yml)
+- [Learn how to integrate Foundry Local with your applications](how-to/integrate-with-inference-sdks.md)
+- [Explore the Foundry Local documentation](index.yml)

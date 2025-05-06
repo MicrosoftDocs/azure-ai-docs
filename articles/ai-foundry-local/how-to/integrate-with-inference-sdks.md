@@ -1,6 +1,6 @@
 ---
 title: Integrate with Inference SDKs
-titleSuffix: AI Foundry Local
+titleSuffix: Foundry Local
 description: This article provides instructions on how to integrate Foundry Local with common Inferencing SDKs.
 manager: scottpolly
 ms.service: azure-ai-foundry
@@ -14,23 +14,22 @@ author: samuel100
 
 # Integrate Foundry Local with Inferencing SDKs
 
-AI Foundry Local provides a REST API endpoint that makes it easy to integrate with various inferencing SDKs and programming languages. This guide shows you how to connect your applications to locally running AI models using popular SDKs.
+Foundry Local provides a REST API endpoint that makes it easy to integrate with various inferencing SDKs and programming languages. This guide shows you how to connect your applications to locally running AI models using popular SDKs.
 
 ## Prerequisites
 
-* AI Foundry Local installed and running on your system
-* A model loaded into the service (use `foundry model load <model-name>`)
-* Basic knowledge of the programming language you want to use for integration
-* Development environment for your chosen language
+- Foundry Local installed and running on your system
+- A model loaded into the service (use `foundry model load <model-name>`)
+- Basic knowledge of the programming language you want to use for integration
+- Development environment for your chosen language
 
 ## Understanding the REST API
 
-When AI Foundry Local is running, it exposes an OpenAI-compatible REST API endpoint at `http://localhost:5272/v1`. This endpoint supports standard API operations like:
+When Foundry Local is running, it exposes an OpenAI-compatible REST API endpoint at `http://localhost:5272/v1`. This endpoint supports standard API operations like:
 
-* `/completions` - For text completion
-* `/chat/completions` - For chat-based interactions
-* `/models` - To list available models
-
+- `/completions` - For text completion
+- `/chat/completions` - For chat-based interactions
+- `/models` - To list available models
 
 ::: zone pivot="programming-language-python"
 [!INCLUDE [Python](../includes/integrate-examples/python.md)]
@@ -61,4 +60,4 @@ When AI Foundry Local is running, it exposes an OpenAI-compatible REST API endpo
 ## Next steps
 
 - [Compile Hugging Face models for Foundry Local](compile-models-for-foundry-local.md)
-- [Explore the AI Foundry Local CLI reference](../reference/reference-cli.md)
+- [Explore the Foundry Local CLI reference](../reference/reference-cli.md)

@@ -1,6 +1,6 @@
 ---
 title: Catalog API Reference
-titleSuffix: AI Foundry Local
+titleSuffix: Foundry Local
 description: Reference for Model Catalog.
 manager: scottpolly
 ms.service: azure-ai-foundry

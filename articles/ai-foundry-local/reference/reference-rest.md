@@ -1,6 +1,6 @@
 ---
 title: Foundry Local REST API Reference
-titleSuffix: AI Foundry Local
+titleSuffix: Foundry Local
 description: Reference for Foundry Local REST API.
 manager: scottpolly
 ms.service: azure-ai-foundry

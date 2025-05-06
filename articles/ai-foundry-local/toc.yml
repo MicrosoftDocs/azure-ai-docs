@@ -1,7 +1,7 @@
 items:
-- name: AI Foundry Local documentation
+- name: Foundry Local documentation
   href: index.yml
-- name: What is AI Foundry Local?
+- name: What is Foundry Local?
   href: what-is-ai-foundry-local.md
 - name: Get Started
   href: get-started.md

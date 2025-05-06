@@ -1,6 +1,6 @@
 ---
 title: Foundry Local CLI Reference
-titleSuffix: AI Foundry Local
+titleSuffix: Foundry Local
 description: Reference for Foundry Local CLI.
 manager: scottpolly
 ms.service: azure-ai-foundry
@@ -13,7 +13,7 @@ author: samuel100
 
 # Foundry Local CLI Reference
 
-This article provides a comprehensive reference for the AI Foundry Local command-line interface (CLI). The foundry CLI is structured into several categories to help you manage models, control the service, and maintain your local cache.
+This article provides a comprehensive reference for the Foundry Local command-line interface (CLI). The foundry CLI is structured into several categories to help you manage models, control the service, and maintain your local cache.
 
 ## Overview
 
@@ -26,7 +26,7 @@ foundry --help
 The foundry CLI is structured into these main categories:
 
 - **Model**: Commands related to managing and running models
-- **Service**: Commands for managing the AI Foundry Local service
+- **Service**: Commands for managing the Foundry Local service
 - **Cache**: Commands for managing the local cache where models are stored
 
 ## Model commands
@@ -47,16 +47,16 @@ The following table summarizes the commands related to managing and running mode
 
 The following table summarizes the commands related to managing and running the Foundry Local service:
 
-| **Command**               | **Description**                                                    |
-| ------------------------- | ------------------------------------------------------------------ |
-| `foundry service --help`  | Displays all available service-related commands and their usage.   |
-| `foundry service start`   | Starts the AI Foundry Local service.                               |
-| `foundry service stop`    | Stops the AI Foundry Local service.                                |
-| `foundry service restart` | Restarts the AI Foundry Local service.                             |
-| `foundry service status`  | Displays the current status of the AI Foundry Local service.       |
-| `foundry service ps`      | Lists all models currently loaded in the AI Foundry Local service. |
-| `foundry service logs`    | Displays the logs of the AI Foundry Local service.                 |
-| `foundry service set`     | Set configuration of the AI Foundry Local service.                 |
+| **Command**               | **Description**                                                  |
+| ------------------------- | ---------------------------------------------------------------- |
+| `foundry service --help`  | Displays all available service-related commands and their usage. |
+| `foundry service start`   | Starts the Foundry Local service.                                |
+| `foundry service stop`    | Stops the Foundry Local service.                                 |
+| `foundry service restart` | Restarts the Foundry Local service.                              |
+| `foundry service status`  | Displays the current status of the Foundry Local service.        |
+| `foundry service ps`      | Lists all models currently loaded in the Foundry Local service.  |
+| `foundry service logs`    | Displays the logs of the Foundry Local service.                  |
+| `foundry service set`     | Set configuration of the Foundry Local service.                  |
 
 ## Cache commands
 

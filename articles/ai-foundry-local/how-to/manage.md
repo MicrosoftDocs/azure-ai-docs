@@ -1,6 +1,6 @@
 ---
 title: Manage Foundry Local
-titleSuffix: AI Foundry Local
+titleSuffix: Foundry Local
 description: This article provides instructions on how to manage Foundry Local.
 manager: scottpolly
 ms.service: azure-ai-foundry
@@ -17,11 +17,11 @@ TODO
 
 ## Prerequisites
 
-* TODO
+- TODO
 
 ## Section
 
-TODO 
+TODO
 
 ## Next step
 

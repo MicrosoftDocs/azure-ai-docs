@@ -1,7 +1,7 @@
 ---
-title: What is AI Foundry Local?
-titleSuffix: AI Foundry Local
-description: AI Foundry Local is a trusted platform that empowers developers to drive innovation and shape the future with AI in a safe, secure, and responsible way on their on-device.
+title: What is Foundry Local?
+titleSuffix: Foundry Local
+description: Foundry Local is a trusted platform that empowers developers to drive innovation and shape the future with AI in a safe, secure, and responsible way on their on-device.
 manager: scottpolly
 keywords: Azure AI services, cognitive
 ms.service: azure-ai-foundry
@@ -14,9 +14,9 @@ ms.custom: build-2025
 #customer intent: As a developer, I want to understand what Azure AI Foundry is so that I can use it to build AI applications.
 ---
 
-# What is AI Foundry Local?
+# What is Foundry Local?
 
-AI Foundry Local is a local version of Azure AI Foundry that enables local execution of large language models (LLMs) directly on your device. This on-device AI inference solution provides privacy, customization, and cost benefits compared to cloud-based alternatives. Best of all, it fits into your existing workflows and applications with an easy-to-use CLI and REST API!
+Foundry Local is a local version of Azure AI Foundry that enables local execution of large language models (LLMs) directly on your device. This on-device AI inference solution provides privacy, customization, and cost benefits compared to cloud-based alternatives. Best of all, it fits into your existing workflows and applications with an easy-to-use CLI and REST API!
 
 Foundry Local applies the optimization work of ONNX Runtime, Olive, and the ONNX ecosystem, Foundry Local delivers a highly optimized and performant user experience for running AI models locally.
 
@@ -32,7 +32,7 @@ Foundry Local applies the optimization work of ONNX Runtime, Olive, and the ONNX
 
 ## Use cases
 
-AI Foundry Local is ideal for scenarios where:
+Foundry Local is ideal for scenarios where:
 
 - Data privacy and security are paramount
 - You need to operate in environments with limited or no internet connectivity
@@ -50,6 +50,6 @@ Download from the Microsoft Store. (WIP)
 
 ## Next steps
 
-- [Get started with AI Foundry Local](get-started.md)
+- [Get started with Foundry Local](get-started.md)
 - [Compile Hugging Face models for Foundry Local](how-to/compile-models-for-foundry-local.md)
 - [Learn more about ONNX Runtime](https://onnxruntime.ai/docs/)

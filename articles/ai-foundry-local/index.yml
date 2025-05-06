@@ -1,9 +1,9 @@
 ### YamlMime:Landing
 
-title: AI Foundry Local documentation # < 60 chars
+title: Foundry Local documentation # < 60 chars
 summary:  Safely design, customize, and manage AI applications and agents on-device.
 metadata:
-  title: AI Foundry Local documentation
+  title: Foundry Local documentation
   description: Foundry Local helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and prebuilt and customizable APIs and models. Example applications include generative AI, natural language processing for conversations, search, monitoring, translation, speech, vision, and decision-making.
   ms.service: azure-ai-foundry
   ms.custom:
@@ -20,7 +20,7 @@ landingContent:
 # Cards and links should be based on top customer tasks or top subjects
 # Start card title with a verb
   # Card
-  - title: About AI Foundry Local
+  - title: About Foundry Local
     linkLists:
       - linkListType: overview
         links:

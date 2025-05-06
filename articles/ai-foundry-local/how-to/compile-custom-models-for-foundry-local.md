@@ -1,6 +1,6 @@
 ---
 title: Compile custom models for Foundry Local using Olive AI
-description: Learn how to optimize and compile your own models for AI Foundry Local using Olive AI and ONNX Runtime.
+description: Learn how to optimize and compile your own models for Foundry Local using Olive AI and ONNX Runtime.
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 04/21/2025
@@ -10,7 +10,7 @@ author: samuel100
 
 # Compile custom models for Foundry Local using Olive AI
 
-AI Foundry Local enables you to run large language models (LLMs) directly on your device for privacy, cost savings, and low-latency inference. To use your own models with Foundry Local, you need to convert and optimize them into the ONNX format. Olive AI is the recommended tool for this process.
+Foundry Local enables you to run large language models (LLMs) directly on your device for privacy, cost savings, and low-latency inference. To use your own models with Foundry Local, you need to convert and optimize them into the ONNX format. Olive AI is the recommended tool for this process.
 
 This guide walks you through optimizing a Hugging Face or PyTorch model for Foundry Local using Olive’s auto-opt command.
 
@@ -109,9 +109,9 @@ python app.py
 
 ## 4. Next steps
 
-- Integrate your ONNX model with AI Foundry Local’s CLI or REST API (see [Get started with AI Foundry Local](../get-started.md)).
+- Integrate your ONNX model with Foundry Local’s CLI or REST API (see [Get started with Foundry Local](../get-started.md)).
 - Experiment with different models, devices, and providers for optimal performance.
 
 ---
 
-**Note:** Since AI Foundry Local is not yet public, some integration details may change. This guide uses current Olive and ONNX Runtime best practices, which are expected to be compatible with Foundry Local upon release. For updates, refer to the official documentation as it becomes available.
+**Note:** Since Foundry Local is not yet public, some integration details may change. This guide uses current Olive and ONNX Runtime best practices, which are expected to be compatible with Foundry Local upon release. For updates, refer to the official documentation as it becomes available.

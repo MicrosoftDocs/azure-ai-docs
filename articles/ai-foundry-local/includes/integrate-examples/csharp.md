@@ -16,7 +16,7 @@ ChatCompletionsOptions options = new ChatCompletionsOptions()
 {
     Messages =
     {
-        new ChatMessage(ChatRole.User, "What is AI Foundry Local?")
+        new ChatMessage(ChatRole.User, "What is Foundry Local?")
     },
     DeploymentName = "Phi-4-mini-gpu-int4-rtn-block-32" // Use model name here
 };
