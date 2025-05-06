@@ -5,7 +5,7 @@ description: This article describes how to use Azure AI Custom Translator servic
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 01/28/2025
+ms.date: 05/19/2025
 ms.author: moelghaz
 ms.topic: how-to
 ---

@@ -5,7 +5,7 @@ description: How to build and upload parallel documents (two documents where one
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 02/10/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---

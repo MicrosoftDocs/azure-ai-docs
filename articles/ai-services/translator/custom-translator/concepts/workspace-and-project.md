@@ -5,7 +5,7 @@ description: In This article, learn the differences between a workspace and a pr
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 01/28/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: conceptual
 ms.custom: cogserv-non-critical-translator

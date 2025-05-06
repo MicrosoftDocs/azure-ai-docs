@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-translator
 ms.custom:
   - ignite-2023
-ms.date: 04/14/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: release-notes
 ---
@@ -21,77 +21,77 @@ This page presents the latest feature, improvement, bug fix, and known issue rel
 
 |Source Language|Target Language|
 |:----|:----|
-|Afrikaans (`af`)|English (`en`)|
-|Bosnian (`bs`)|English (`en`)|
-|Bulgarian (`bg`)|English (`en`)|
-|Catalan (`ca`)|English (`en`)|
-|Croatian (`hr`)|English (`en`)|
-|Czech (`cs`)|English (`en`)|
-|Danish (`da`)|English (`en`)|
-|Dutch (`nl`)|English (`en`)|
-|English (`en`)|Afrikaans (`af`)|
-|English (`en`)|Arabic (`ar`)|
-|English (`en`)|Bosnian (`bs`)|
-|English (`en`)|Bulgarian (`bg`)|
-|English (`en`)|Catalan (`ca`)|
-|English (`en`)|Croatian (`hr`)|
-|English (`en`)|Czech (`cs`)|
-|English (`en`)|Danish (`da`)|
-|English (`en`)|Dutch (`nl`)|
-|English (`en`)|Estonian (`et`)|
-|English (`en`)|Finnish (`fi`)|
-|English (`en`)|French (`fr`)|
-|English (`en`)|French-Canadian (fr-ca)|
-|English (`en`)|German (`de`)|
-|English (`en`)|Hindi (`hi`)|
-|English (`en`)|Hungarian (`hu`)|
-|English (`en`)|Icelandic (`is`)|
-|English (`en`)|Indonesian (`id`)|
-|English (`en`)|Italian (`it`)|
-|English (`en`)|Japanese (`ja`)|
-|English (`en`)|Korean (`ko`)|
-|English (`en`)|Malay (`ms`)|
-|English (`en`)|Norwegian-Bokmål (`nb`)|
-|English (`en`)|Persian (`fa`)|
-|English (`en`)|Polish (`pl`)|
-|English (`en`)|Portuguese (`pt`)|
-|English (`en`)|Romanian (`ro`)|
-|English (`en`)|Russian (`ru`)|
-|English (`en`)|Serbian-Latin (sr-latn)|
-|English (`en`)|Slovak (`sk`)|
-|English (`en`)|Slovenian (`sl`)|
-|English (`en`)|Spanish (`es`)|
-|English (`en`)|Swedish (`sv`)|
-|English (`en`)|Thai (`th`)|
-|English (`en`)|Turkish (`tr`)|
-|English (`en`)|Ukrainian (`uk`)|
-|English (`en`)|Vietnamese (`vi`)|
-|English (`en`)|zh-hans|
-|Estonian (`et`)|English (`en`)|
-|Finnish (`fi`)|English (`en`)|
-|French (`fr`)|English (`en`)|
-|German (`de`)|English (`en`)|
-|Hebrew (`he`)|English (`en`)|
-|Hindi (`hi`)|English (`en`)|
-|Hungarian (`hu`)|English (`en`)|
-|Icelandic (`is`)|English (`en`)|
-|Indonesian (`id`)|English (`en`)|
-|Italian (`it`)|English (`en`)|
-|Malay (`ms`)|English (`en`)|
-|Norwegian-Bokmål (`nb`)|English (`en`)|
-|Persian (`fa`)|English (`en`)|
-|Polish (`pl`)|English (`en`)|
-|Portuguese (`pt`)|English (`en`)|
-|Romanian (`ro`)|English (`en`)|
-|Russian (`ru`)|English (`en`)|
-|Serbian-Latin (sr-latn)|English (`en`)|
-|Slovak (`sk`)|English (`en`)|
-|Slovenian (`sl`)|English (`en`)|
-|Spanish (`es`)|English (`en`)|
-|Swedish (`sv`)|English (`en`)|
-|Thai (`th`)|English (`en`)|
-|Ukrainian (`uk`)|English (`en`)|
-|Vietnamese (`vi`)|English (`en`)|
+|Afrikaans (af)|English (en)|
+|Bosnian (bs)|English (en)|
+|Bulgarian (bg)|English (en)|
+|Catalan (ca)|English (en)|
+|Croatian (hr)|English (en)|
+|Czech (cs)|English (en)|
+|Danish (da)|English (en)|
+|Dutch (nl)|English (en)|
+|English (en)|Afrikaans (af)|
+|English (en)|Arabic (ar)|
+|English (en)|Bosnian (bs)|
+|English (en)|Bulgarian (bg)|
+|English (en)|Catalan (ca)|
+|English (en)|Croatian (hr)|
+|English (en)|Czech (cs)|
+|English (en)|Danish (da)|
+|English (en)|Dutch (nl)|
+|English (en)|Estonian (et)|
+|English (en)|Finnish (fi)|
+|English (en)|French (fr)|
+|English (en)|French-Canadian (fr-ca)|
+|English (en)|German (de)|
+|English (en)|Hindi (hi)|
+|English (en)|Hungarian (hu)|
+|English (en)|Icelandic (is)|
+|English (en)|Indonesian (id)|
+|English (en)|Italian (it)|
+|English (en)|Japanese (ja)|
+|English (en)|Korean (ko)|
+|English (en)|Malay (ms)|
+|English (en)|Norwegian-Bokmål (nb)|
+|English (en)|Persian (fa)|
+|English (en)|Polish (pl)|
+|English (en)|Portuguese (pt)|
+|English (en)|Romanian (ro)|
+|English (en)|Russian (ru)|
+|English (en)|Serbian-Latin (sr-latn)|
+|English (en)|Slovak (sk)|
+|English (en)|Slovenian (sl)|
+|English (en)|Spanish (es)|
+|English (en)|Swedish (sv)|
+|English (en)|Thai (th)|
+|English (en)|Turkish (tr)|
+|English (en)|Ukrainian (uk)|
+|English (en)|Vietnamese (vi)|
+|English (en)|Chinese Simplified (zh-hans)|
+|Estonian (et)|English (en)|
+|Finnish (fi)|English (en)|
+|French (fr)|English (en)|
+|German (de)|English (en)|
+|Hebrew (he)|English (en)|
+|Hindi (hi)|English (en)|
+|Hungarian (hu)|English (en)|
+|Icelandic (is)|English (en)|
+|Indonesian (id)|English (en)|
+|Italian (it)|English (en)|
+|Malay (ms)|English (en)|
+|Norwegian-Bokmål (nb)|English (en)|
+|Persian (fa)|English (en)|
+|Polish (pl)|English (en)|
+|Portuguese (pt)|English (en)|
+|Romanian (ro)|English (en)|
+|Russian (ru)|English (en)|
+|Serbian-Latin (sr-latn)|English (en)|
+|Slovak (sk)|English (en)|
+|Slovenian (sl)|English (en)|
+|Spanish (es)|English (en)|
+|Swedish (sv)|English (en)|
+|Thai (th)|English (en)|
+|Ukrainian (uk)|English (en)|
+|Vietnamese (vi)|English (en)|
 
 ## 2024-November release
 
