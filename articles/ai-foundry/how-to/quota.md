@@ -142,13 +142,13 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
 
 1. From the quota view, you can see the quota for the models in the selected Azure region. To request quota, select the model and then select **Request quota**. 
 
+    :::image type="content" source="../media/cost-management/model-quota.png" alt-text="Screenshot of the Model quota page in Azure AI Foundry portal." lightbox="../media/cost-management/model-quota.png":::
+
     - Use the **Show all quota** toggle to display all quota or only the currently allocated quota.
     - Use the **Group by** dropdown to group the list by **Quota type, Region & Model**, **Quota type, Model & Region**, or **None**. The **None** grouping displays a list of model deployments.
     - Expand the groupings to view information on specific model deployments. While viewing a model deployment, select the **pencil icon** in the **Quota allocation** column to edit the quota allocation for the model deployment.
     - Use the **charts** along the side of the page to view more details about quota usage. The charts are interactive; hovering over a section of the chart displays more information, and selecting the chart filters the list of models. Selecting the chart legend filters the data displayed in the chart.
     - Use the **Azure OpenAI Provisioned** link to view information about provisioned models, including a **Capacity calculator**.
-  
-    :::image type="content" source="../media/cost-management/model-quota.png" alt-text="Screenshot of the Model quota page in Azure AI Foundry portal." lightbox="../media/cost-management/model-quota.png":::
 
 1. When you select the **VM quota** link, you can view the quota and usage for the virtual machine families in the selected Azure region. To request quota, select the VM family and then select **Request quota**.
 
@@ -181,7 +181,17 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
 
 ::: zone-end
 
-## Next steps 
+## Related content
+
+::: zone pivot="hub-project"
 
 - [Plan to manage costs](./costs-plan-manage.md)
 - [How to create compute](./create-manage-compute.md)
+
+::: zone-end
+::: zone pivot="fdp-project"
+
+- [Plan to manage costs](./costs-plan-manage.md)
+- [Create a project](../how-to/create-projects.md)
+
+::: zone-end
