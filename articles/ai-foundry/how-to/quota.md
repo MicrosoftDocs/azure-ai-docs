@@ -132,7 +132,7 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
 
 ::: zone pivot="hub-project"
 
-1. In Azure AI Foundry portal, select **Management center** from the left menu.
+1. In Azure AI Foundry portal, select **Management center** from the bottom of the left menu.
 
     :::image type="content" source="../media/management-center/management-center.png" alt-text="Screenshot of the management center link.":::
 
@@ -153,14 +153,15 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
 1. When you select the **VM quota** link, you can view the quota and usage for the virtual machine families in the selected Azure region. To request more quota, select the VM family and then select **Request quota**.
 
     > [!TIP]
-    > If you don't see the **VM quota** link, you were viewing a [!INCLUDE [fdp](../includes/fdp-project-name.md)] project when you selected **Management center**. Use the **All resources** link and then select a project where the **Type** contains **Parent resource : name (Hub)**, and then select **Quota** from the left menu..
+    > If you don't see the **VM quota** link, you were viewing a [!INCLUDE [fdp](../includes/fdp-project-name.md)] project when you selected **Management center**. Use the **All resources** link and then select a project where the **Type** contains **Parent resource : name (Hub)**, and then select **Quota** from the left menu.
 
     :::image type="content" source="../media/cost-management/vm-quota.png" alt-text="Screenshot of the VM quota page in Azure AI Foundry portal." lightbox="../media/cost-management/vm-quota.png":::
 
 ::: zone-end
+
 ::: zone pivot="fdp-project"
 
-1. In Azure AI Foundry portal, select **Management center** from the left menu.
+1. In Azure AI Foundry portal, select **Management center** from the bottom of the left menu.
 
     :::image type="content" source="../media/management-center/management-center.png" alt-text="Screenshot of the management center link.":::
 
@@ -168,16 +169,15 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
 
     :::image type="content" source="../media/cost-management/quotas.png" alt-text="Screenshot of the Model and VM quota entries in the management section." lightbox="../media/cost-management/quotas.png":::
 
-1. From the quota view, you can see the quota for the models in the selected Azure region. To request more quota, select the model and then select **Request quota**. 
+1. From the quota view, you can see the quota for the models in the selected Azure region. To request more quota, select the model and then select **Request quota**.
+
+    :::image type="content" source="../media/cost-management/project-model-quota.png" alt-text="Screenshot of the Model quota page for a Foundry project in Azure AI Foundry portal." lightbox="../media/cost-management/project-model-quota.png":::
 
     - Use the **Show all quota** toggle to display all quota or only the currently allocated quota.
     - Use the **Group by** dropdown to group the list by **Quota type, Region & Model**, **Quota type, Model & Region**, or **None**. The **None** grouping displays a list of model deployments.
     - Expand the groupings to view information on specific model deployments. While viewing a model deployment, select the **pencil icon** in the **Quota allocation** column to edit the quota allocation for the model deployment.
     - Use the **charts** along the side of the page to view more details about quota usage. The charts are interactive; hovering over a section of the chart displays more information, and selecting the chart filters the list of models. Selecting the chart legend filters the data displayed in the chart.
     - Use the **Azure OpenAI Provisioned** link to view information about provisioned models, including a **Capacity calculator**.
-  
-    :::image type="content" source="../media/cost-management/model-quota.png" alt-text="Screenshot of the Model quota page in Azure AI Foundry portal." lightbox="../media/cost-management/model-quota.png":::
-
 
 ::: zone-end
 
