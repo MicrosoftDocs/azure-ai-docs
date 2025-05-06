@@ -49,7 +49,7 @@ The input of ai-agent-evals includes:
 - `deployment-name`: the deployed model name.
 - `data-path`: Path to the input data file containing the conversation starters. Each conversation starter is sent to each agent for a pairwise comparison of evaluation results.
   - `evaluators`: built-in evaluator names.
-  - `data`: a set of conversation starters/queries and ground truth. Ground-truth is optional and only required for a subset of evaluators. (See which [evaluator requires ground-truth](./develop/evaluate-sd.md#data-requirements-for-built-in-evaluators))
+  - `data`: a set of conversation starters/queries and ground truth. Ground-truth is optional and only required for a subset of evaluators. (See which [evaluator requires ground-truth](./develop/evaluate-sdk.md#data-requirements-for-built-in-evaluators))
   - Only single agent turn is supported.
 - `agent-ids`: a unique identifier for the agent and comma-separated list of agent IDs to evaluate.
   - When only one `agent-id` is specified, the evaluation results include the absolute values for each metric along with the corresponding confidence intervals.
@@ -159,7 +159,7 @@ The input of genai-evals includes (some of them are optional depending on the ev
 
 Evaluation configuration file:
 
-- `data`: a set of queries and ground truth. Ground-truth is optional and only required for a subset of evaluators. (See which [evaluator requires ground-truth](./develop/evaluate-sd.md#data-requirements-for-built-in-evaluators)).
+- `data`: a set of queries and ground truth. Ground-truth is optional and only required for a subset of evaluators. (See which [evaluator requires ground-truth](./develop/evaluate-sdk.md#data-requirements-for-built-in-evaluators)).
 
     Here's a sample of the dataset:
 
