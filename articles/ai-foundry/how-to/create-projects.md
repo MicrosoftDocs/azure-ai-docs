@@ -34,7 +34,7 @@ Azure AI Foundry supports two types of projects: a **[!INCLUDE [fdp](../includes
 * Use this project type for:
 
     * Prompt flow
-    * Models-as-a-platform
+    * Managed compute
     * [Azure Machine Learning](../../machine-learning/index.yml) compatibility
 
 * This project can also be used for:
