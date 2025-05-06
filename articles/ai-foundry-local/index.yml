@@ -24,8 +24,8 @@ landingContent:
     linkLists:
       - linkListType: overview
         links:
-          - text: What is AI Foundry Local?
-            url: what-is-ai-foundry-local.md
+          - text: What is Foundry Local?
+            url: what-is-foundry-local.md
       - linkListType: concept
         links:
           - text: Foundry Local Architecture

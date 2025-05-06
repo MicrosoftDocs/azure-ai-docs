@@ -1,7 +1,7 @@
 <!-- filepath: reference/reference-sdk.md -->
 ---
 title: Foundry Local Control Plane SDK Reference
-titleSuffix: AI Foundry Local
+titleSuffix: Foundry Local
 description: Reference for Foundry Local Control Plane SDK.
 manager: scottpolly
 ms.service: azure-ai-foundry

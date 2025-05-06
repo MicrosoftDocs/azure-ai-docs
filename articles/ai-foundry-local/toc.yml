@@ -2,7 +2,7 @@ items:
 - name: Foundry Local documentation
   href: index.yml
 - name: What is Foundry Local?
-  href: what-is-ai-foundry-local.md
+  href: what-is-foundry-local.md
 - name: Get Started
   href: get-started.md
 - name: Concepts

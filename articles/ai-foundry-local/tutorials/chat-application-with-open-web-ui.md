@@ -22,7 +22,7 @@ This tutorial guides you through setting up a chat application using Foundry Loc
 
 Before beginning this tutorial, make sure you have:
 
-- **Foundry Local** [installed](/articles/ai-foundry-local/get-started.md) on your machine.
+- **Foundry Local** [installed](/articles/foundry-local/get-started.md) on your machine.
 - **At least one model loaded** using the `foundry model load` command, for example:
   ```bash
   foundry model load Phi-4-mini-gpu-int4-rtn-block-32
@@ -58,4 +58,4 @@ That's it! You're now chatting with your AI model running completely locally on 
 
 ## Next steps
 
-- Try [different models](/articles/ai-foundry-local/how-to/load-models.md) to compare performance and capabilities
+- Try [different models](/articles/foundry-local/how-to/load-models.md) to compare performance and capabilities
