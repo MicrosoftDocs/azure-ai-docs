@@ -68,7 +68,7 @@ Request parameters passed with the request are as follows:
 | --- | --- | --- | --- |
 | **targets.script** | string | False | Specify the script of the translated text. |
 |**targets.deploymentName** | string | False | Default is `general`, which uses `NMT` system. `your-model-name-gpt-4o-mini` is an example deployment name for the GPT-4o-mini model. `gpt-4o` uses GPT-4o model.<br> `<custom model id>` uses the custom `NMT` model tuned by customer.<br>  |
-| **targets.allowFallback** | string | False | Specifies that if the intended model isn't supported for a given source and target language pair, the service is permitted to fall back to a general system. This action ensures that translations can still be provided even when the preferred model is unavailable. Default is `true`. If `false` system returns an error if language pair isn't supported. |
+| **targets.allowFallback** | string | False | Indicates that if the desired model does not support a specific source and target language pair, the service may default to a general system as an alternative. This action ensures that translations can still be provided even when the preferred model is unavailable. Default is `true`. If `false` system returns an error if language pair isn't supported. |
 | **targets.tone** | string | False | Desired tone of target translation. Accepted values are `formal`, `informal`, or `neutral`. |
 | **targets.gender** (For more information, *see* [Gender-specific translations](#gender-specific-translations))| string | False | Desired gender of target translation. Accepted values are `male`, `female`, or `neutral`.|
 | **targets.adaptiveDatasetId** | string | False | Reference dataset ID having sentence pair to generate adaptive customized translation |
