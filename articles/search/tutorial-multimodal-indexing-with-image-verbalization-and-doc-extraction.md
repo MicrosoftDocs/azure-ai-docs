@@ -480,7 +480,7 @@ POST {{baseUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
     {
       "@odata.type": "#Microsoft.Skills.Util.ShaperSkill",
       "name": "shaper-skill",
-      "description": "Shaper skill to reshape the data"
+      "description": "Shaper skill to reshape the data to fit the index schema"
       "context": "/document/normalized_images/*",
       "inputs": [
         {
@@ -490,7 +490,7 @@ POST {{baseUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
         },
         {
           "name": "imagePath",
-          "source": "='mdono-de-verbalize/'+$(/document/normalized_images/*/imagePath)",
+          "source": "='{{imageProjectionContainer}}/'+$(/document/normalized_images/*/imagePath)",
           "inputs": []
         },
         {
@@ -684,6 +684,34 @@ For filters, you can also use Logical operators (and, or, not) and comparison op
 
 > [!NOTE]
 > The `$filter` parameter only works on fields that were marked filterable during index creation.
+
+Here are some examples of other queries:
+
+```http
+### Query for only images
+POST {{baseUrl}}/indexes/doc-extraction-image-verbalization-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
+  Content-Type: application/json
+  api-key: {{apiKey}}
+  
+  {
+    "search": "*",
+    "count": true,
+    "filter": "image_document_id ne null"
+  }
+```
+
+```http
+### Query for text or images with content related to energy, returning the id, parent document, and text (extracted text for text chunks and verbalized image text for images), and the content path where the image is saved in the knowledge store (only populated for images)
+POST {{baseUrl}}/indexes/doc-extraction-image-verbalization-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
+  Content-Type: application/json
+  api-key: {{apiKey}}
+  
+  {
+    "search": "energy",
+    "count": true,
+    "select": "content_id,document_title,content_text"
+  }
+```
 
 ## Reset and rerun
 
