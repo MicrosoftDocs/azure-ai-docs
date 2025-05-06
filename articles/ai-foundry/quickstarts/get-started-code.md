@@ -1,7 +1,7 @@
 ---
-title: Get started building a chat app
+title: Get started with the Azure AI Foundry
 titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to build a custom chat app in Python using the Azure AI SDK.
+description: This article provides instructions on how to start using the Azure AI Foundry portal and the Azure AI Foundry SDK.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: build-2024, devx-track-azurecli, devx-track-python, ignite-2024
@@ -15,7 +15,7 @@ zone_pivot_groups: project-type
 ---
 
 
-# Get started with the Azure AI Foundry SDK
+# Get started with the Azure AI Foundry
 
 ::: zone pivot="hub-project"
 
