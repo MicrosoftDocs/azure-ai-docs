@@ -530,7 +530,7 @@ items:
     - name: Create a project using a Bicep template
       href: how-to/create-azure-ai-project-template.md
     - name: Create an Azure AI services resource
-      href: ../ai-services/multi-service-resources.md?context=/azure/ai-foundry/context/context
+      href: ../ai-services/multi-service-resource.md?context=/azure/ai-foundry/context/context
     - name: Hubs and projects overview
       href: concepts/ai-resources.md
     - name: Create your first hub
