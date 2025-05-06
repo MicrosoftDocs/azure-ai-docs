@@ -43,7 +43,7 @@ To try out the video translation demo, follow these steps:
 
 1. Select the **Play** button to hear the translated audio. Select the original video tab to play the original audio.
 
-   :::image type="content" source="../../../media/video-translation/foundry-portal/compare-original-translated.png" alt-text="Screenshot of selecting a voice type on the new project page." lightbox="../../../media/video-translation/foundry-portal/compare-original-translated.png":::
+   :::image type="content" source="../../../media/video-translation/foundry-portal/compare-original-translated.png" alt-text="Screenshot that shows selecting a voice type on the new project page." lightbox="../../../media/video-translation/foundry-portal/compare-original-translated.png":::
    
    The voice type options are:
    - **Prebuilt voice**: The service automatically selects the most suitable prebuilt voice by matching the speaker's voice in the video with prebuilt voices.
