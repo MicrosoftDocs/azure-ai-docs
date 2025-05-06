@@ -93,6 +93,12 @@
       "branch_mapping": {}
     },
     {
+      "path_to_root": "azure-functions-ai-services-agent-javascript",
+      "url": "https://github.com/Azure-Samples/azure-functions-ai-services-agent-javascript",
+      "branch": "main",
+      "branch_mapping": {}
+    },
+    {
       "path_to_root": "samples-cognitive-services-speech-sdk",
       "url": "https://github.com/Azure-Samples/cognitive-services-speech-sdk",
       "branch": "master",

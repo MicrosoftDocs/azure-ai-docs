@@ -22,7 +22,7 @@ Before getting started, determine if you want to perform a basic agent setup or 
 > [!IMPORTANT]
 > The Azure AI Foundry portal only supports basic setup at this time. If you want to perform a standard agent setup, use the other tabs at the top of the article to learn about standard agent configuration.  
 
-## Create a project in Azure AI Foundry portal
+## Create a Foundry project in Azure AI Foundry portal
 
 To create a new project, you need either the Owner or Contributor role on the resource group. If you're unable to create a project due to permissions, reach out to your administrator.
 
@@ -30,13 +30,11 @@ To create a project in Azure AI Foundry, follow these steps:
 
 1. Go to Azure AI Foundry. If you are in a project, select Azure AI Foundry at the top left of the page to go to the Home page.
 
-1. Select **+ Create project**.
+1. Select **+ New**.
 
-1. Enter a name for the project.
+1. Enter a name for the project. If you want to customize the default values, select **Advanced options**.    
 
-1. If you want to create a new one, select **Create new project** and supply a name. If you want to customize the default values, see the [Azure AI Foundry documentation](../../../ai-foundry/how-to/create-projects.md?tabs=ai-studio#customize-the-hub).
-
-    :::image type="content" source="../../../ai-foundry/media/how-to/projects/projects-create-details.png" alt-text="Screenshot of the project details page within the create project dialog." lightbox="../../../ai-foundry/media/how-to/projects/projects-create-details.png":::
+    :::image type="content" source="../media/quickstart/create-project.png" alt-text="Screenshot of the project details page within the create project dialog." lightbox="../media/quickstart/create-project.png":::
 
 1. Select **Create**.
 

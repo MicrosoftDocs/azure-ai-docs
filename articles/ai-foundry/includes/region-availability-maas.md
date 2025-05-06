@@ -78,6 +78,7 @@ Llama 3.1 405B Instruct  | [Microsoft Managed Countries/Regions](/partner-center
 | Model | Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
 |---------|---------|---------|---------|
 MAI-DS-R1      | Not applicable | East US <br> East US 2 <br> North Central US <br> South Central US <br> West US <br> West US 3  | Not available       |
+Phi-4-reasoning <br> Phi-4-mini-reasoning  | Not applicable | East US <br> East US 2 <br> North Central US <br> South Central US <br> West US <br> West US 3  | Not available     |
 Phi-4 <br>  Phi-4-mini-instruct <br>  Phi-4-multimodal-instruct    | Not applicable | East US <br> East US 2 <br> North Central US <br> South Central US <br> Sweden Central <br> West US <br> West US 3  | East US 2 <br> East US <br> North Central US <br> South Central US <br> West US <br> West US 3      |
 Phi-3.5-vision-Instruct     | Not applicable | East US <br> East US 2 <br> North Central US <br> South Central US <br> Sweden Central <br> West US <br> West US 3  | Not available       |
 Phi-3.5-MoE-Instruct     | Not applicable | East US <br> East US 2 <br> North Central US <br> South Central US <br> Sweden Central <br> West US <br> West US 3  | East US 2 <br> East US <br> North Central US <br> South Central US <br> West US <br> West US 3      |
