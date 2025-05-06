@@ -155,7 +155,7 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
     For more information on authenticating, see [Authentication methods](/cli/azure/authenticate-azure-cli).
 
-1. Create a resource group,for example in East US:
+1. Create a resource group, for example in East US:
 
     ```azurecli
     az group create --name {my_resource_group} --location eastus
