@@ -45,8 +45,6 @@ landingContent:
             url: how-to/integrate-with-inference-sdks.md
           - text: Run Hugging Face models on Foundry Local
             url: how-to/huggingface-models-for-foundry-local.md
-          - text: Compile custom models for Foundry Local
-            url: how-to/compile-custom-models-for-foundry-local.md
           - text: Manage Foundry Local
             url: how-to/manage.md
   # Card
