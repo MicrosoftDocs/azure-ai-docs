@@ -11,6 +11,7 @@ ms.custom:
 ms.topic: whats-new
 ms.date: 03/11/2024
 ms.collection: ce-skilling-fresh-tier2
+ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 

@@ -7,6 +7,7 @@ ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 08/07/2023
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
+ms.update-cycle: 365-days
 ms.author: pafarley
 ms.custom: devx-track-csharp
 ---

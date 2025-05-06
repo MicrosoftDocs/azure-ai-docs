@@ -1,36 +1,39 @@
 ---
-title: "Azure AI Foundry docs: What's new for March 2025"
-description: "What's new in the Azure AI Foundry docs for March 2025."
+title: "Azure AI Foundry docs: What's new for April 2025"
+description: "What's new in the Azure AI Foundry docs for April 2025."
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
 ms.subject: ai-studio
-ms.custom: March-2025
-ms.date: 04/02/2025
+ms.custom: April-2025
+ms.date: 05/03/2025
 ---
 
-# Azure AI Foundry docs: What's new for March 2025
+# Azure AI Foundry docs: What's new for April 2025
 
-Welcome to what's new in the Azure AI Foundry docs for March 2025. This article lists some of the major changes to docs during this period.
+Welcome to what's new in the Azure AI Foundry docs for April 2025. This article lists some of the major changes to docs during this period.
 
 
 ## Azure AI Foundry
 
 ### New articles
 
-- [Featured models of Azure AI Foundry](../ai-foundry/concepts/models-featured.md)
-- [How to deploy NVIDIA Inference Microservices](../ai-foundry/how-to/deploy-nvidia-inference-microservice.md)
-- [How to use image and audio in chat completions with Azure AI model inference](../ai-foundry/model-inference/how-to/use-chat-multi-modal.md)
-- [Tutorial: Get started with DeepSeek-R1 reasoning model in Azure AI model inference](../ai-foundry/model-inference/tutorials/get-started-deepseek-r1.md)
+- [AI Red Teaming Agent (preview)](../ai-foundry/concepts/ai-red-teaming-agent.md)
+- [Evaluate your AI agents locally with Azure AI Evaluation SDK (preview)](../ai-foundry/how-to/develop/agent-evaluate-sdk.md)
+- [How to use structured outputs for chat models](../ai-foundry/model-inference/how-to/use-structured-outputs.md)
+- [Run automated safety scans with AI Red Teaming Agent (preview)](../ai-foundry/how-to/develop/run-scans-ai-red-teaming-agent.md)
+- [Work with Azure AI Agent Service in Visual Studio Code (Preview)](../ai-foundry/how-to/develop/vs-code-agents.md)
+- [Work with the Azure AI Foundry for Visual Studio Code extension (Preview)](../ai-foundry/how-to/develop/get-started-projects-vs-code.md)
 
 
 ### Updated articles
 
-- [Deploy a flow for real-time inference](../ai-foundry/how-to/flow-deploy.md)
-- [Fine-tune models using serverless APIs in Azure AI Foundry](../ai-foundry/how-to/fine-tune-serverless.md)
-- [How to deploy and inference a managed compute deployment with code](../ai-foundry/how-to/deploy-models-managed.md) 
-- [How to trace your application with Azure AI Foundry project library](../ai-foundry/how-to/develop/trace-local-sdk.md) 
-- [Monitor quality and token usage of deployed prompt flow applications](../ai-foundry/how-to/monitor-quality-safety.md)
+- [Evaluate your AI agents locally with Azure AI Evaluation SDK (preview)](../ai-foundry/how-to/develop/agent-evaluate-sdk.md)  
+- [Evaluate your Generative AI application locally with the Azure AI Evaluation SDK](../ai-foundry/how-to/develop/evaluate-sdk.md) 
+- [Evaluation and monitoring metrics for generative AI](../ai-foundry/concepts/evaluation-metrics-built-in.md)  
+- [Fine-tune models using serverless APIs in Azure AI Foundry](../ai-foundry/how-to/fine-tune-serverless.md) 
+- [How to configure a private link for Azure AI Foundry hubs](../ai-foundry/how-to/configure-private-link.md) 
+- [How to use MedImageParse healthcare AI models for segmentation of medical images](../ai-foundry/how-to/healthcare-ai/deploy-medimageparse.md)
 
 
 

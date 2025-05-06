@@ -6,8 +6,8 @@ manager: nitinme
 ms.service: azure-ai-model-inference
 ms.topic: how-to
 ms.date: 1/21/2025
-author: PatrickFarley
-ms.author: pafarley
+author: santiagxf
+ms.author: fasantia
 ms.custom: ignite-2024, github-universe-2024
 ---
 
