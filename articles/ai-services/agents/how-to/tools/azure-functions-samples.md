@@ -167,6 +167,8 @@ project_client.agents.delete_agent(agent.id)
 print("Deleted agent")
 ```
 
+For any issues with the Python code, create an issue on the [sample code repository](https://github.com/Azure-Samples/azure-functions-ai-services-agent-python/issues)
+
 ::: zone-end
 
 ::: zone pivot="rest"
@@ -263,3 +265,37 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-1
 
 ::: zone-end
 
+
+::: zone pivot="typescript"
+
+## Define a function for your agent to call
+
+Start by defining an Azure Function queue trigger function that will process AI function calls from the queue. 
+
+:::code language="TypeScript" source="~/azure-functions-ai-services-agent-javascript/app/src/functions/queueGetWeather.ts" :::
+
+## Create an AI project client and agent
+
+In the sample below we create a client and an agent that has the AI tools definition for the Azure Function. The term `function` is used in two contexts within the AI tool definition: 
+
+* Azure Function: the type of tool. This is the Azure Functions app.
+* Function: the Http trigger function `GetWeather` within the Azure Function to call when the tool is invoked in the AI Project. 
+
+:::code language="TypeScript" source="~/azure-functions-ai-services-agent-javascript/app/src/azureProjectInit.ts" id="CreateAgent" :::
+
+## Create a thread for the agent
+
+:::code language="TypeScript" source="~/azure-functions-ai-services-agent-javascript/app/src/azureProjectInit.ts" id="CreateThread" :::
+
+## Create a run and check the output
+
+:::code language="TypeScript" source="~/azure-functions-ai-services-agent-javascript/app/src/functions/httpPrompt.ts" id="CreateMessage" :::
+
+## Get the result of the run
+
+:::code language="TypeScript" source="~/azure-functions-ai-services-agent-javascript/app/src/functions/httpPrompt.ts" id="ListMessages" :::
+
+For any issues with the TypeScript code, create an issue on the [sample code repository](https://github.com/Azure-Samples/azure-functions-ai-services-agent-javascript/issues)
+
+
+::: zone-end
