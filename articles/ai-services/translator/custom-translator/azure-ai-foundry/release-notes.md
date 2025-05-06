@@ -1,7 +1,7 @@
 ---
-title: "Release notes - Custom Translation"
+title: "Release notes - Custom translation"
 titleSuffix: Azure AI services
-description: Custom Translation releases, improvements, bug fixes, and known issues.
+description: Custom translation releases, improvements, bug fixes, and known issues.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -11,9 +11,9 @@ ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: release-notes
 ---
-# Custom Translation release notes
+# Custom translation release notes
 
-This page presents the latest feature, improvement, bug fix, and known issue release notes for Custom Translation service.
+This page presents the latest feature, improvement, bug fix, and known issue release notes for Custom translation service.
 
 ## 2025-March release
 
@@ -201,7 +201,7 @@ This page presents the latest feature, improvement, bug fix, and known issue rel
 
 ### December 2023 model updates
 
-* Added [neural dictionary](../neural-dictionary.md) support for improved translation quality when a phrase dictionary is used.
+* Added [neural dictionary](../../text-translation/how-to/use-neural-dictionary.md) support for improved translation quality when a phrase dictionary is used.
 
 * The current supported **neural dictionary** language pairs are listed in the following table:
 
@@ -296,7 +296,7 @@ This page presents the latest feature, improvement, bug fix, and known issue rel
 
 #### Custom Translator platform upgrade
 
-&emsp; 🆕 ***Model Upgrade Wizard*** is now available in **Workspace settings** to help guide customers through the V1-model-upgrade-to-new-platform process. For more information, *see* [Custom Translator platform upgrade](platform-upgrade.md).
+&emsp; 🆕 ***Model Upgrade Wizard*** is now available in **Workspace settings** to help guide customers through the V1-model-upgrade-to-new-platform process. For more information, *see* [Custom Translator platform upgrade](../platform-upgrade.md).
 
 #### Custom Translator copy model
 
@@ -308,7 +308,7 @@ This page presents the latest feature, improvement, bug fix, and known issue rel
 
 #### June language model updates
 
-&emsp; Current supported language pairs are listed in the following table. For higher quality, we encourage you to retrain your models accordingly. For more information, *see* [Language support](../language-support.md).
+&emsp; Current supported language pairs are listed in the following table. For higher quality, we encourage you to retrain your models accordingly. For more information, *see* [Language support](../../language-support.md).
 
 |Source Language|Target Language|
 |:----|:----|

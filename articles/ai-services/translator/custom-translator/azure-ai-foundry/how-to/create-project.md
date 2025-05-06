@@ -1,5 +1,5 @@
 ---
-title: Create a project - Custom Translation
+title: Create a project - Custom translation
 titleSuffix: Azure AI services
 description: How to create and manage a project
 author: laujan
@@ -13,7 +13,7 @@ ms.topic: how-to
 
 # Start fine-tuning 
 
- Custom Translation fine-tuning includes one or many language pairs, model training, tuning and testing datasets, and deployment endpoint.
+ Custom translation fine-tuning includes one or many language pairs, model training, tuning and testing datasets, and deployment endpoint.
 
 ## Create a project
 
@@ -29,7 +29,7 @@ In the [Azure AI Foundry portal](https://ai.azure.com/), you can fine-tune some 
 
 1. In the dialog, select **Translation** for custom translation. Then select **Next**.
 
-:::image type="content" source="../media/new-fine-tune-translation-select-translate.png" alt-text="Screenshot of the page to select Translate for custom translation models.":::
+:::image type="content" source="../media/fine-tune-select-translate.png" alt-text="Screenshot of the page to select Translate for custom translation models.":::
 
 > [!NOTE]
 > An Azure AI Service resouce is connected to your project.

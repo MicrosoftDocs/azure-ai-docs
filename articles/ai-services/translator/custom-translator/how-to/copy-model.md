@@ -16,7 +16,7 @@ Copying a model to other workspaces enables model lifecycle management (for exam
 
 ## Copy custom model to another workspace
 
-   > [!Note]
+   > [!NOTE]
    >
    > To copy model from one workspace to another, you must have an **Owner** role in both workspaces.
    >
@@ -32,7 +32,7 @@ Copying a model to other workspaces enables model lifecycle management (for exam
 
    :::image type="content" source="../media/how-to/copy-model-1.png" alt-text="Screenshot illustrating the copy model dialog window.":::
 
-   > [!Note]
+   > [!NOTE]
       >
       > A dropdown list displays the list of workspaces available to use. Otherwise, select **Create a new workspace**.
       >

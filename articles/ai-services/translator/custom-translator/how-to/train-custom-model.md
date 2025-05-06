@@ -22,7 +22,7 @@ An Azure AI Custom Translator model provides translations for a specific languag
 
 1. Keep the default **Full training** selected or select **Dictionary-only training**.
 
-   >[!Note]
+   >[!NOTE]
    >Full training displays all uploaded document types. Dictionary-only displays dictionary documents only.
 
 1. Under **Select documents**, select the documents you want to use to train the model, for example, `sample-English-German` and review the training cost associated with the selected number of sentences.
@@ -31,7 +31,7 @@ An Azure AI Custom Translator model provides translations for a specific languag
 
 1. Select **Train** to confirm.
 
-    >[!Note]
+    >[!NOTE]
     >**Notifications** displays model training in progress, e.g., **Submitting data** state. Training model takes few hours, subject to the number of selected sentences.
 
    :::image type="content" source="../media/quickstart/train-model.png" alt-text="Screenshot illustrating the train model blade.":::
@@ -40,7 +40,7 @@ An Azure AI Custom Translator model provides translations for a specific languag
 
 For better results, we recommended letting the system learn from your training data. However, when you don't have enough parallel sentences to meet the 10,000 minimum requirements, or sentences and compound nouns must be rendered as-is, use dictionary-only training. Your model typically completes training faster than with full training. The resulting models use the baseline models for translation along with the dictionaries you added. You don't see `BLEU` scores or get a test report.
 
-> [!Note] 
+> [!NOTE] 
 >Custom Translator doesn't sentence-align dictionary files. Therefore, it is important that there are an equal number of source and target phrases/sentences in your dictionary documents and that they are precisely aligned. If not, the document upload will fail.
 
 ## Model details
@@ -67,7 +67,7 @@ For better results, we recommended letting the system learn from your training d
 
 1. Select **Save**
 
-   > [!Note]
+   > [!NOTE]
    >
    > If you save the model as `Draft`, **Model details** is updated with the model name in `Draft` status.
    >

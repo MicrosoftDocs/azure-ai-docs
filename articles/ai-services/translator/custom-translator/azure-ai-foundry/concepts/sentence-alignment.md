@@ -1,7 +1,7 @@
 ---
-title: "Sentence pairing and alignment - Custom Translation"
+title: "Sentence pairing and alignment - Custom translation"
 titleSuffix: Azure AI services
-description: During the training execution, sentences present in parallel documents are paired or aligned. Custom Translation learns translations one sentence at a time, by reading a sentence and translating it. Then it aligns words and phrases in these two sentences to each other.
+description: During the training execution, sentences present in parallel documents are paired or aligned. Custom translation learns translations one sentence at a time, by reading a sentence and translating it. Then it aligns words and phrases in these two sentences to each other.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -9,18 +9,18 @@ ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: conceptual
 ms.custom: cogserv-non-critical-translator
-#Customer intent: As a Custom Translation user, I want to know how sentence alignment works, so that I can have better understanding of underlying process of sentence extraction, pairing, filtering, aligning.
+#Customer intent: As a Custom translation user, I want to know how sentence alignment works, so that I can have better understanding of underlying process of sentence extraction, pairing, filtering, aligning.
 ---
 
 # Sentence pairing and alignment in parallel documents
 
 After documents are uploaded, sentences present in parallel documents are
-paired or aligned. Custom Translation reports the number of sentences it was
+paired or aligned. Custom translation reports the number of sentences it was
 able to pair as the Aligned Sentences in each of the data sets.
 
 ## Pairing and alignment process
 
-Custom Translation learns translations of sentences one sentence at a time. It reads a sentence from the source text, and then the translation of this sentence from the target text. Then it aligns words and phrases in these two sentences to each other. This process enables it to create a map of the words and phrases in one sentence to the equivalent words and phrases in the translation of the sentence. Alignment tries to ensure that the system trains on sentences that are translations of each other.
+Custom translation learns translations of sentences one sentence at a time. It reads a sentence from the source text, and then the translation of this sentence from the target text. Then it aligns words and phrases in these two sentences to each other. This process enables it to create a map of the words and phrases in one sentence to the equivalent words and phrases in the translation of the sentence. Alignment tries to ensure that the system trains on sentences that are translations of each other.
 
 ## Prealigned documents
 

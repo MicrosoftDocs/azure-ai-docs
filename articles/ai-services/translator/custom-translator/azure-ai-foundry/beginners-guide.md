@@ -1,5 +1,5 @@
 ---
-title: Azure AI Translator Custom Translation for beginners
+title: Azure AI Translator Custom translation for beginners
 titleSuffix: Azure AI services
 description: A user guide for understanding the end-to-end customized machine translation process.
 author: laujan
@@ -10,13 +10,13 @@ ms.date: 05/19/2025
 ms.topic: overview
 ---
 
-# Azure AI Translator Custom Translation for beginners
+# Azure AI Translator Custom translation for beginners
 
- [Custom Translation](overview.md) enables you to a build translation system that reflects your business, industry, and domain-specific terminology and style. Training and deploying a custom system is easy and doesn't require any programming skills. The customized translation system seamlessly integrates into your existing applications, workflows, and websites and is available on Azure through the same cloud-based [Microsoft Text Translation API](../../text-translation/reference/v4/) service that powers billions of translations every day.
+ [Custom translation](overview.md) enables you to a build translation system that reflects your business, industry, and domain-specific terminology and style. Training and deploying a custom system is easy and doesn't require any programming skills. The customized translation system seamlessly integrates into your existing applications, workflows, and websites and is available on Azure through the same cloud-based [Microsoft Text Translation API](../../text-translation/reference/v4/translate-api.md) service that powers billions of translations every day.
 
-[Custom Translation](overview.md) empowers you to build a translation system that truly captures your business's unique language, industry terminology, and domain-specific style. With an intuitive interface, training, testing, and deploying your custom model is simple and requires no programming expertise. Seamlessly integrate your tailored translation system into your existing applications, workflows, and websites—all backed by the cloud-based [Azure AI Translator Text Translation API](../reference/v3-0-translate.md?tabs=curl) service that powers billions of translations each day.
+[Custom translation](overview.md) empowers you to build a translation system that truly captures your business's unique language, industry terminology, and domain-specific style. With an intuitive interface, training, testing, and deploying your custom model is simple and requires no programming expertise. Seamlessly integrate your tailored translation system into your existing applications, workflows, and websites—all backed by the cloud-based [Azure AI Translator Text Translation API](../../text-translation/reference/v4/translate-api.md?tabs=curl) service that powers billions of translations each day.
 
-The platform enables users to build and publish custom translation systems to and from English. The Custom Translator supports more than 100 languages that map directly to the languages available for Neural machine translation (NMT). For a complete list, *see* [Translator language support](../language-support.md).
+The platform enables users to build and publish custom translation systems to and from English. The Custom Translator supports more than 100 languages that map directly to the languages available for Neural machine translation (NMT). For a complete list, *see* [Translator language support](../../../language-support.md).
 
 ## Is a custom translation model the right choice for you?
 
@@ -26,7 +26,7 @@ Keep in mind that developing a full custom translation model requires a substant
 
 Ultimately, if you need translations that reflect your industry's specific language and you have ample training resources, a custom translation model can be the ideal choice for your organization.
 
-:::image type="content" source="media/how-to/for-beginners.png" alt-text="Screenshot illustrating the difference between custom and general models.":::
+:::image type="content" source="../media/how-to/for-beginners.png" alt-text="Screenshot illustrating the difference between custom and general models.":::
 
 ## What does training a custom translation model involve?
 
@@ -76,7 +76,7 @@ Finding in-domain quality data is often a challenging task that varies based on 
 
 ## What is a BLEU score?
 
-BLEU (Bilingual Evaluation Understudy) is an algorithm for evaluating the precision or accuracy of text that is machine translated from one language to another. Custom Translation uses the BLEU metric as one way of conveying translation accuracy.
+BLEU (Bilingual Evaluation Understudy) is an algorithm for evaluating the precision or accuracy of text that is machine translated from one language to another. Custom translation uses the BLEU metric as one way of conveying translation accuracy.
 
 A BLEU score is a number between zero and 100. A score of zero indicates a low quality translation where nothing in the translation matched the reference. A score of 100 indicates a perfect translation that is identical to the reference. It's not necessary to attain a score of 100 - a BLEU score between 40 and 60 indicates a high-quality translation.
 
@@ -84,7 +84,7 @@ A BLEU score is a number between zero and 100. A score of zero indicates a low q
 
 ## What happens if I don't submit tuning or testing data?
 
-Tuning and test sentences are optimally representative of what you plan to translate in the future. If you don't submit any tuning or testing data, Custom Translation automatically excludes sentences from your training documents to use as tuning and test data.
+Tuning and test sentences are optimally representative of what you plan to translate in the future. If you don't submit any tuning or testing data, Custom translation automatically excludes sentences from your training documents to use as tuning and test data.
 
 | System-generated | Manual-selection |
 |---|---|
@@ -93,13 +93,13 @@ Tuning and test sentences are optimally representative of what you plan to trans
 | Easy to redo when you grow or shrink the domain. | Allows for more data and better domain coverage.|
 |Changes each training run.| Remains static over repeated training runs|
 
-## How is training material processed by Custom Translation?
+## How is training material processed by Custom translation?
 
-To prepare for training, documents undergo a series of processing and filtering steps. Knowledge of the filtering process can help with understanding the sentence count displayed as well as the steps you can take to prepare training documents for training with Custom Translation. The filtering steps are as follows:
+To prepare for training, documents undergo a series of processing and filtering steps. Knowledge of the filtering process can help with understanding the sentence count displayed as well as the steps you can take to prepare training documents for training with Custom translation. The filtering steps are as follows:
 
 * ### Sentence alignment
 
-  If your document isn't in `XLIFF`, `XLSX`, `TMX`, or `ALIGN` format, Custom Translation aligns the sentences of your source and target documents to each other, sentence-by-sentence. Translator doesn't perform document alignment—it follows your naming convention for the documents to find a matching document in the other language. Within the source text, Custom Translation tries to find the corresponding sentence in the target language. It uses document markup like embedded HTML tags to help with the alignment.
+  If your document isn't in `XLIFF`, `XLSX`, `TMX`, or `ALIGN` format, Custom translation aligns the sentences of your source and target documents to each other, sentence-by-sentence. Translator doesn't perform document alignment—it follows your naming convention for the documents to find a matching document in the other language. Within the source text, Custom translation tries to find the corresponding sentence in the target language. It uses document markup like embedded HTML tags to help with the alignment.
 
   If you see a large discrepancy between the number of sentences in the source and target documents, your source document can't be parallel, or couldn't be aligned. The document pairs with a large difference (>10%) of sentences on each side warrant a second look to make sure they're indeed parallel.
 
@@ -139,11 +139,11 @@ To prepare for training, documents undergo a series of processing and filtering 
 
 * ### Invalid characters
 
-  Custom Translation removes sentences that contain Unicode character U+FFFD. The character U+FFFD indicates a failed encoding conversion.
+  Custom translation removes sentences that contain Unicode character U+FFFD. The character U+FFFD indicates a failed encoding conversion.
 
 * ### Invalid HTML tags
 
-  Custom Translation removes valid tags during training. Invalid tags cause unpredictable results and should be manually removed. 
+  Custom translation removes valid tags during training. Invalid tags cause unpredictable results and should be manually removed. 
 
 ## What steps should I take before uploading data?
 
@@ -163,4 +163,4 @@ After your model is successfully trained, you can view the model's BLEU score an
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Try create project](../azure-ai-foundry/how-to-custom-translation-create-project.md)
+> [Try create project](../azure-ai-foundry/how-to/create-project.md)

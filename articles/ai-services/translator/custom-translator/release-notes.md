@@ -308,7 +308,7 @@ This page presents the latest feature, improvement, bug fix, and known issue rel
 
 #### June language model updates
 
-&emsp; Current supported language pairs are listed in the following table. For higher quality, we encourage you to retrain your models accordingly. For more information, *see* [Language support](../language-support.md).
+&emsp; Current supported language pairs are listed in the following table. For higher quality, we encourage you to retrain your models accordingly. For more information, *see* [Language support](../../language-support.md).
 
 |Source Language|Target Language|
 |:----|:----|

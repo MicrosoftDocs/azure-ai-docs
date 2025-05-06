@@ -1,7 +1,7 @@
 ---
-title: View test model details - Custom Translation
+title: View test model details - Custom translation
 titleSuffix: Azure AI services
-description: How to test your Custom Translation model BLEU score and evaluate translations
+description: How to test your Custom translation model BLEU score and evaluate translations
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -9,9 +9,9 @@ ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---
-# Test Custom Translation
+# Test Custom translation
 
-Once your Custom Translation model is successfully trained, you can use translations to evaluate the quality of your model. In order to make an informed decision about whether to use our standard Azure AI Translator model or your custom model, you should evaluate the delta between your custom model [**BLEU score**](#bleu-score) and our standard Azure AI Translator model **Baseline BLEU**. If your model is trained within a narrow domain, and your training data is consistent with the test data, you can expect a high BLEU score.
+Once your Custom translation model is successfully trained, you can use translations to evaluate the quality of your model. In order to make an informed decision about whether to use our standard Azure AI Translator model or your custom model, you should evaluate the delta between your custom model [**BLEU score**](#bleu-score) and our standard Azure AI Translator model **Baseline BLEU**. If your model is trained within a narrow domain, and your training data is consistent with the test data, you can expect a high BLEU score.
 
 ## BLEU score
 
@@ -27,15 +27,15 @@ A BLEU score is a number between zero and 100. A score of zero indicates a low-q
 
 1. Select model **Name** then select **View test results**.
 
-   :::image type="content" source="../media/new-fine-tune-translation-test-model1.png" alt-text="Screenshot illustrating the test-model function.":::
+   :::image type="content" source="../media/fine-tune-test-model-1.png" alt-text="Screenshot illustrating test-model function.":::
 
 1. Human evaluate translation from your custom model **New model** and the **Baseline model** (our pretrained baseline used for customization) against **Reference** (target translation from the test set).
 
-   :::image type="content" source="../media/new-fine-tune-translation-test-model2.png" alt-text="Screenshot illustrating the test-model function.":::
+   :::image type="content" source="../media/fine-tune-test-model-2.png" alt-text="Screenshot illustrating the test-model function.":::
 
 1. If results are satisfactory, deploy the model to production, otherwise, iterate by adding more human curated training data until you find a winner model.
 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn how to deploy model](../azure-ai-foundry/how-to-custom-translation-deploy-model.md)
+> [Learn how to deploy model](deploy-model.md)

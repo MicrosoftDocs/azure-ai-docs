@@ -1,7 +1,7 @@
 ---
-title: "Document formats and naming conventions - Custom Translation"
+title: "Document formats and naming conventions - Custom translation"
 titleSuffix: Azure AI services
-description: This article is a guide to document formats, naming conventions, and how to avoid naming conflicts for Custom Translation.
+description: This article is a guide to document formats, naming conventions, and how to avoid naming conflicts for Custom translation.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -9,10 +9,10 @@ ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: conceptual
 ms.custom: cogserv-non-critical-translator
-#Customer intent: As a Custom Translation user, I want to understand how to format and name my documents.
+#Customer intent: As a Custom translation user, I want to understand how to format and name my documents.
 ---
 
-# Custom Translation document formats and naming convention 
+# Custom translation document formats and naming convention 
 
 Any file used for custom translation must be at least **four** characters in length.
 
@@ -28,16 +28,16 @@ This table includes all supported file formats that you can use to build your tr
 | Adobe Acrobat     | `.PDF`         | Adobe Acrobat portable document                                                                                                                                                                                                                                                |
 | `HTML`              | `.HTML`, `.HTM`  | HyperText Markup Language document                                                                                                                                                                                                                                                                  |
 | Text file         | `.TXT`         | UTF-16 or UTF-8 encoded text files. The file name must not contain Japanese characters.                                                                                                                                                                                        |
-| Aligned text file | `.ALIGN`       | The extension `.ALIGN` is a special extension that you can use if you know that the sentences in the document pair are perfectly aligned. If you provide a `.ALIGN` file, Custom Translation doesn't align the sentences for you. |
+| Aligned text file | `.ALIGN`       | The extension `.ALIGN` is a special extension that you can use if you know that the sentences in the document pair are perfectly aligned. If you provide a `.ALIGN` file, Custom translation doesn't align the sentences for you. |
 | Excel file        | `.XLSX`        | Excel file (2013 or later). First line/ row of the spreadsheet should be language code.                                                                                                                                                                                                                                                      |
 
 ## Dictionary formats
 
-For dictionaries, Custom Translation supports all file formats that are supported for training sets. If you're using an Excel dictionary, the first line/ row of the spreadsheet should be language codes.
+For dictionaries, Custom translation supports all file formats that are supported for training sets. If you're using an Excel dictionary, the first line/ row of the spreadsheet should be language codes.
 
 ## ZIP file formats
 
-Documents can be grouped into a single zip file and uploaded. The Custom Translation supports zip file formats (`ZIP`, `GZ`, and `TGZ`).
+Documents can be grouped into a single zip file and uploaded. The Custom translation supports zip file formats (`ZIP`, `GZ`, and `TGZ`).
 
 Each document in the zip file with the extension TXT, HTML, HTM, PDF, DOCX, ALIGN must follow this naming convention:
 
@@ -52,4 +52,4 @@ Translation Memory files (`TMX`, `XLF`, `XLIFF`, `LCL`, `XLSX`) aren't required 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn about managing  Custom Translation projects](workspace-and-project.md#what-is-a-custom-translator-project)
+> [Learn about managing Custom translation projects](workspace-and-project.md#what-is-a-custom-translation-project)

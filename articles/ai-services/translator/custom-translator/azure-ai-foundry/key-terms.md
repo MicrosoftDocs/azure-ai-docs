@@ -12,7 +12,7 @@ ms.topic: reference
 
 # Custom Translator key terms
 
-The following table presents a list of key terms that you may find as you work with Custom Translation in the [Azure AI Foundry portal](https://ai.azure.com/).
+The following table presents a list of key terms that you may find as you work with Custom translation in the [Azure AI Foundry portal](https://ai.azure.com/).
 
 | Word or Phrase|Definition|
 |------------------|-----------|

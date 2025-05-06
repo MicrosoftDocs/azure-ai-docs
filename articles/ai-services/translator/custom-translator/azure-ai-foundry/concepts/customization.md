@@ -1,5 +1,5 @@
 ---
-title: Translation Customization - Custom Translation
+title: Translation Customization - Custom translation
 titleSuffix: Azure AI services
 description: Use the Microsoft Translator Hub to build your own machine translation system using your preferred terminology and style.
 #services: cognitive-services
@@ -13,11 +13,11 @@ ms.author: lajanuar
 
 # Customize your text translations
 
-Custom Translation is a feature of the Azure AI Translator service. Custom Translation allows users to customize Azure AI Translator's advanced neural machine translation when translating text using Translator (version 3 only).
+Custom translation is a feature of the Azure AI Translator service. Custom translation allows users to customize Azure AI Translator's advanced neural machine translation when translating text using Translator (version 3 only).
 
-The feature can also be used to customize speech translation when used with [Azure AI Speech](../../../speech-service/index.yml).
+The feature can also be used to customize speech translation when used with [Azure AI Speech](../../../../speech-service/index.yml).
 
-## Custom Translation
+## Custom translation
 
 With Custom Translator, you can build neural translation systems that understand the terminology used in your own business and industry. The customized translation system integrates into existing applications, workflows, and websites.
 
@@ -31,9 +31,9 @@ The customized system is then available through a regular call to Translator usi
 
 Given the appropriate type and amount of training data it isn't uncommon to expect gains between 5 and 10, or even more `BLEU` points on translation quality by using Custom Translator.
 
-More details about the various levels of customization based on available data can be found in the [Custom Translation User Guide](../overview.md).
+More details about the various levels of customization based on available data can be found in the [Custom translation User Guide](../overview.md).
 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Set up a customized language system using Custom Translation](../overview.md)
+> [Set up a customized language system using Custom translation](../overview.md)
