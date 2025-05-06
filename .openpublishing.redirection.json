@@ -274,6 +274,11 @@
       "source_path_from_root": "/articles/ai-services/custom-vision-service/logo-detector-mobile.md",
       "redirect_url": "/azure/ai-services/custom-vision-service",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/index.yml",
+      "redirect_url": "articles/azure/ai-foundry",
+      "redirect_document_id": false
     }
   ]
 }
