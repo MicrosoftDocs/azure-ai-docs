@@ -12,7 +12,7 @@ ms.custom:
   - build-2025
 ---
 
-# Generating captions for images in another language
+# Generate captions for images in another language
 
 In this article, learn how to generate captions using AI enrichment and a skillset. Images often contain useful information that's relevant in search scenarios. You can [vectorize images](search-get-started-portal-image-search.md) to represent visual content in your search index. Or, you can use [AI enrichment and skillsets](cognitive-search-concept-intro.md) to create and extract searchable *text* from images.
 
