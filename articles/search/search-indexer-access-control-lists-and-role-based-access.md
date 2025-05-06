@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how to configure Azure AI Search indexers for ingesting Access Control Lists (ACLs) and Azure Role-Based Access (RBAC) metadata on Azure Data Lake Storage (ADLS) Gen2 blobs.
 ms.service: azure-ai-search  
 ms.topic: how-to
-ms.date: 04/29/2025  
+ms.date: 05/05/2025  
 author: wlifuture
 ms.author: wli
 ---  
@@ -237,31 +237,56 @@ JSON schema example:
 
 + Organize identities into groups and use groups whenever possible, rather than granting access directly to individual users. Continuously adding individual users instead of applying groups increases the number of access control entries that must be tracked and evaluated. Not following this best practice can lead to more frequent security metadata updates required to the index as this metadata changes, causing increased delays and inefficiencies in the refresh process.
 
-## Re-ingest permission metadata as needed
 
-If permission metadata like ACLs or RBAC scope needs to be re-ingested after regular indexer runs, consider the following options:
+## Keep ACL/RBAC metadata in sync with the data source 
 
-+ For a few blobs, consider renewing the `Last modified` timestamp of these blobs from source, so that **both permission metadata as well as the blob data content** will be re-ingested from the next indexer run.
+Enabling ACL or RBAC enrichment on an indexer works automatically only in two situations: 
 
-+ For a moderate amount of blobs, consider issuing a request with the [`/resetdocs (preview)`](search-howto-run-reset-indexers.md#how-to-reset-docs-preview) API of these blobs, so that **both permission metadata as well as the blob data content** of these blobs can be re-ingested again.
+- **The very first full indexer run / data crawl:** all permission metadata that exists at that moment for each document is captured. 
 
-  ```http
-  POST https://[service name].search.windows.net/indexers/[indexer name]/resetdocs?api-version=2025-05-01-preview
-  {
-      "documentKeys" : [
-          "1001",
-          "4452"
-      ]
-  }
-  ```
+- **Brand-new documents added after ACL/RBAC support is enabled:** their ACL/RBAC information is ingested along with their content. 
 
-+ For all blobs from the source, consider issuing a request with the [`/resync`](search-howto-run-reset-indexers.md#how-to-resync-indexers-preview) API. Then from the next indexer run, **only the permission metadata** of all blobs will be re-synced again with the source.
+Any permission change made after a document has already been indexed (for example, adding a user to an ACL or changing a role assignment) will not appear in the search index unless you explicitly point the indexer to crawl the document permission metadata again. 
 
-  ```http
-  POST https://[service name].search.windows.net/indexers/[indexer name]/resync?api-version=2025-05-01-preview
-  {
-      "options" : [
-          "permissions"
-      ]
-  }
-  ```
+
+Choose one of the following mechanisms, depending on how many items changed: 
+
+| **Scope of your change**       | **Best trigger**                                            | **What gets refreshed on the next run**                    |  
+|-----------------------------|---------------------------------------------------------|-------------------------------------------------------|  
+| **A single blob or just a handful** | Update the blob’s `Last-Modified` timestamp in storage (touch the file) | Document content **and** ACL/RBAC metadata               |  
+| **Dozens to thousands of blobs** | Call [/resetdocs (preview)](search-howto-run-reset-indexers.md#how-to-reset-docs-preview) and list the affected document keys. | Document content **and** ACL/RBAC metadata               |  
+| **Entire data source**          | Call [/resync (preview)](search-howto-run-reset-indexers.md#how-to-resync-indexers-preview) with the permissions option.              | **Only** ACL/RBAC metadata (content is left untouched)    |
+
+
+**Resetdocs (preview) API example:**
+
+   ```http
+   POST https://{service}.search.windows.net/indexers/{indexer}/resetdocs?api-version=2025-05-01-preview 
+   { 
+     "documentKeys": [ 
+       "1001", 
+       "4452" 
+     ]
+   }
+   ```
+
+**Resync (preview) API example:**
+
+   ```http
+   POST https://{service}.search.windows.net/indexers/{indexer}/resync?api-version=2025-05-01-preview 
+   { 
+     "options": [ 
+       "permissions" 
+     ] 
+   } 
+   ```
+
+> [!IMPORTANT]
+> If you change permissions on already-indexed documents and do not trigger one of the mechanisms above, the search index will keep serving stale ACL/RBAC data.
+> New documents continue to be indexed automatically; no manual trigger is needed for them. 
+
+
+## Deletion tracking 
+
+To effectively manage blob deletion, ensure that you have enabled [deletion tracking](search-howto-index-changed-deleted-blobs.md) before your indexer runs for the first time. This feature allows the system to detect deleted blobs from your source and have them deleted from the index.  
+
