@@ -11,22 +11,24 @@ ms.custom: include, build-2024, ignite-2024
 ---
 
 
-You can create multiple projects on an existing `AIServices` resource.
+Create multiple [!INCLUDE [fdp-description](fdp-description.md)] on an existing `AI Services` resource, so you can share your environment with your team for collaboration. 
+
+[!INCLUDE [fdp-description](fdp-description.md)] as Azure child resources may get assigned their own access controls, but share common settings such as network security, deployments, and Azure tool integration from their parent resource.
 
 Your first project (default project) plays a special role and has access to more features:
 
-| Feature | Default project | Nondefault project |
+| Feature | Default [!INCLUDE [fdp-description](fdp-description.md)] | Nondefault [!INCLUDE [fdp-description](fdp-description.md)] |
 |--|--|--|
-| Model inference | ✓ | ✓ |
-| Playgrounds | ✓ | ✓ |
-| Agents | ✓ | ✓ |
-| Evaluations | ✓ | ✓ |
-| Connections | ✓ | ✓ |
-| AI Foundry API that works with agents and across models | ✓ | ✓ |
-| Project-level isolation of files and outputs | ✓ | ✓ |
-| Azure OpenAI with Batch, StoredCompletions, Fine-tuning | ✓ |  |
-| Backwards compatible with project-less {account}.cognitiveservices.com data plane API | ✓ |  |
-| Content safety | ✓ |  |
+| Model inference | ✅ | ✅ |
+| Playgrounds | ✅ | ✅ |
+| Agents | ✅ | ✅ |
+| Evaluations | ✅ | ✅ |
+| Connections | ✅ | ✅ |
+| AI Foundry API that works with agents and across models | ✅ | ✅ |
+| Project-level isolation of files and outputs | ✅ | ✅ |
+| Azure OpenAI with Batch, StoredCompletions, Fine-tuning | ✅ |  |
+| Backwards compatible with project-less {account}.cognitiveservices.com data plane API | ✅ |  |
+| Content safety | ✅ |  |
 
 To add a nondefault project to a resource:
 
@@ -67,7 +69,7 @@ project = client.projects.begin_create(
 Use your existing values for {my_resource_group} and {foundry_resource_name} to add another project to the resource:
 
 ```azurecli
-az cognitiveservices account project create --name {my_project_name} -resource-group {my_resource_group} --account {foundry_resource_name}
+ az cognitiveservices account project create --resource-group {my_resource_group} --name {my_project_name} --account-name {foundry_resource_name} 
 ```
 
 
