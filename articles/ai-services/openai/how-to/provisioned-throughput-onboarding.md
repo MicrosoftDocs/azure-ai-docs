@@ -88,7 +88,7 @@ For example, for `gpt-4.1:2025-04-14`, 1 output token counts as 4 input tokens t
 |Regional provisioned minimum deployment|50|25|25|25|50|25|
 |Regional provisioned scale increment|50|25|25|50|50|25|
 |Input TPM per PTU|3,000|14,900|2,500|230|2,500|37,000|
-|Latency Target Value|44 Tokens Per Second|50 Tokens Per Second| |25 Tokens Per Second|25 Tokens Per Second|33 Tokens Per Second|
+|Latency Target Value|44 Tokens Per Second|50 Tokens Per Second| 66 Tokens Per Second |25 Tokens Per Second|25 Tokens Per Second|33 Tokens Per Second|
 
 
 For a full list, see the [Azure OpenAI Service in Azure AI Foundry portal calculator](https://ai.azure.com/resource/calculator).
