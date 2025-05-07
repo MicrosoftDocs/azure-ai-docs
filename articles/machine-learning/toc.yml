@@ -623,6 +623,8 @@ items:
             href: ../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/machine-learning/context/context
           - name: Work with multimodal models
             href: ../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/machine-learning/context/context
+      - name: Work with image models
+        href: ../ai-foundry/how-to/use-image-models.md?context=/azure/machine-learning/context/context
     - name: Built-in policy to allow specific models
       href: how-to-built-in-policy-model-deployment.md
     - name: Custom policy to allow specific models

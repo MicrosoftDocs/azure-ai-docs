@@ -18,7 +18,7 @@ ms.custom: references_regions, build-2024
 
 ## Azure AI Foundry projects
 
-Azure AI Foundry is currently available in the following Azure regions. You can create [projects in Azure AI Foundry portal](../how-to/create-projects.md) in these regions.
+Azure AI Foundry is currently available in the following Azure regions. You can create [either a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)] or [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] in Azure AI Foundry](../how-to/create-projects.md) in these regions.
 
 - Australia East
 - Brazil South

@@ -6,13 +6,13 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: conceptual
-ms.date: 5/19/2025
+ms.date: 05/01/2025
 ms.author: pafarley
 ---
 
 # Responsible use of AI with Azure AI services
 
-Azure AI services provides information and guidelines on how to responsibly use artificial intelligence in applications. Below are the links to articles that provide this guidance for the specific services within the Azure AI services suite. 
+Azure AI services provides information and guidelines on how to responsibly use artificial intelligence in applications. Below are the articles that provide this guidance for the specific services within the Azure AI services suite. 
 
 ## Generative AI
 - [Azure OpenAI](/legal/cognitive-services/openai/transparency-note?context=/azure/ai-services/openai/context/context)

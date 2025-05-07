@@ -34,30 +34,33 @@ An Azure AI Foundry project is where you do most of your development work. You c
 
 Azure AI Foundry supports two types of projects: a **[!INCLUDE [hub](includes/hub-project-name.md)]** and a **[!INCLUDE [fdp](includes/fdp-project-name.md)]**. In most cases, you'll want to use a [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)].
 
-* A **[!INCLUDE [fdp](includes/fdp-project-name.md)]** is built on an Azure AI Foundry resource. This project type allows for a simple set up, access to agents, and industry leading models from OpenAI, Mistral, Meta, and more. 
+* [!INCLUDE [fdp-description](includes/fdp-description.md)]
 
-* A **[!INCLUDE [hub](includes/hub-project-name.md)]** is hosted by an [Azure AI Foundry hub](concepts/ai-resources.md). If your company has an administrative team that has created a hub for you, you can create a project from that hub. If you are working on your own, you can create a project and a default hub will automatically be created for you. See [Azure AI Foundry hubs](concepts/ai-resources.md).
+* [!INCLUDE [hub-description](includes/hub-description.md)]
 
 
 ### Which type of project do I need?
 
-In general, you should use a [!INCLUDE [fdp](includes/fdp-project-name.md)].  You only need to use a [!INCLUDE[hub](includes/hub-project-name.md)] for features that are not available in a [!INCLUDE [fdp](includes/fdp-project-name.md)]. 
+* In general, you should use a [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] if you are looking to build agents or work with models. 
+* Use a [!INCLUDE [hub-project-name](includes/hub-project-name.md)] when you need features that are not available in a [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)]. See the following table for more on feature availability.
+* Use a [!INCLUDE [hub-project-name](includes/hub-project-name.md)] if your project requires custom machine learning model capabilities,  You can work in a [!INCLUDE [hub-project-name](includes/hub-project-name.md)] in both Azure AI Foundry and Azure Machine Learning Studio.
 
-Most features are available in both project types, but there are a few exceptions:  
+This table summarizes features available in the two project types:  
 
 
 | Capability | [!INCLUDE [fdp](includes/fdp-project-name.md)] | [!INCLUDE[hub](includes/hub-project-name.md)] |
 | --- | --- | --- |
-| Agents | ✓ (GA) | ✓ (Preview only) |
-| Azure OpenAI models | ✓ | |
-| Model inferencing | ✓ | |
-| AI Foundry API that works with agents and across models | ✓ | |
-| Common filestore | ✓ | |
-| Project-level isolation of files and outputs | ✓ | ✓ |
-| Evaluations | ✓ | ✓ |
-| Playground | ✓ | ✓ |
-| Prompt flow |  | ✓ |
-| Models-as-a-platform, AzureML |  | ✓ |
+| Agents | ✅ (GA) | ✅ (Preview only) |
+| Azure OpenAI models | ✅ | |
+| Model inferencing | ✅ | |
+| AI Foundry API that works with agents and across models | ✅ | |
+| Common filestore | ✅ | |
+| Project-level isolation of files and outputs | ✅ | ✅ |
+| Evaluations | ✅ | ✅ |
+| Playground | ✅ | ✅ |
+| Prompt flow |  | ✅ |
+| Managed compute  |  | ✅ |
+| Azure Machine Learning Studio  |  | ✅ |
 
 ## Navigate in the Azure AI Foundry portal
 

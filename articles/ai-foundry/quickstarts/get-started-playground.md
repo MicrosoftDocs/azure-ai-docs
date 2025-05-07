@@ -17,8 +17,6 @@ author: sdgilley
 
 # Quickstart: Use the chat playground in Azure AI Foundry portal
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
-
 In this quickstart, you use [Azure AI Foundry](https://ai.azure.com) to deploy a chat model and use it in the chat playground in Azure AI Foundry portal.
 
 For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-project-name.md)] or a [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information about the differences between these two project types, see [Project types](../what-is-azure-ai-foundry.md#project-types).

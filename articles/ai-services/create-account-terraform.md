@@ -128,4 +128,4 @@ In this article, you learn how to:
 
 ## Related content
 
-- [Learn more about Azure AI services resources](./multi-service-resource.md)
+- [Learn more about Azure AI Foundry resources](./multi-service-resource.md)

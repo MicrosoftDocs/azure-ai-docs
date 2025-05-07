@@ -27,7 +27,7 @@ When you deploy models in Azure AI Foundry portal, the following types of data a
 
 * **Prompts and generated content**. A user submits a prompt, and the model generates content (output) via the operations that the model supports. Prompts might include content added via retrieval-augmented generation (RAG), metaprompts, or other functionality included in an application.
 
-* **Uploaded data**. For models that support fine-tuning, customers can upload their data to a [datastore](../concepts/connections.md#connections-to-datastores) for fine-tuning.
+* **Uploaded data**. For models that support fine-tuning, customers can upload their data to a datastore for fine-tuning.
 
 ## Generation of inferencing outputs with managed compute
 
@@ -58,7 +58,7 @@ Prompts and outputs are processed within the geography specified during deployme
 
 ## Fine-tuning a model for pay-as-you-go deployment (MaaS)
 
-If a model that's available for serverless APIs supports fine-tuning, you can upload data to (or designate data already in) a [datastore](../concepts/connections.md#connections-to-datastores) to fine-tune the model. You can then create a serverless API deployment for the fine-tuned model. The fine-tuned model can't be downloaded, but:
+If a model that's available for serverless APIs supports fine-tuning, you can upload data to (or designate data already in) a datastore to fine-tune the model. You can then create a serverless API deployment for the fine-tuned model. The fine-tuned model can't be downloaded, but:
 
 * It's available exclusively for your use.
 * You can use double [encryption at rest](../../ai-services/openai/encrypt-data-at-rest.md): the default Microsoft AES-256 encryption and an optional customer-managed key.

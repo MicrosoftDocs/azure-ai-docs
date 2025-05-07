@@ -614,8 +614,8 @@
         },
         {
             "source_path_from_root": "/articles/ai-studio/concepts/connections.md",
-            "redirect_url": "/azure/ai-foundry/concepts/connections",
-            "redirect_document_id": true
+            "redirect_url": "/azure/ai-foundry/how-to/connections-add",
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/ai-studio/concepts/content-filtering.md",
@@ -708,9 +708,14 @@
             "redirect_document_id": false
         },
         {
+            "source_path_from_root": "/articles/ai-foundry/ai-services/how-to/connect-azure-openai.md",
+            "redirect_url": "/azure/ai-services/connect-services-ai-foundry-portal",
+            "redirect_document_id": false
+        },
+        {
             "source_path_from_root": "/articles/ai-studio/ai-services/how-to/connect-azure-openai.md",
-            "redirect_url": "/azure/ai-foundry/ai-services/how-to/connect-azure-openai",
-            "redirect_document_id": true
+            "redirect_url": "/azure/ai-services/connect-services-ai-foundry-portal",
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/ai-studio/tutorials/copilot-sdk-build-rag.md",
