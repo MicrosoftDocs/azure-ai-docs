@@ -47,7 +47,7 @@ The README also includes information about the application, such as the use case
 
 A full list of agent samples in the catalog can be found on the Azure AI Foundry. There are several templates available that are authored by Microsoft and partners across different domains such as: travel, finance, insurance, business intelligence, healthcare, and more. 
 
-
+<!--
 **Azure AI Agent Service Agent Catalog**
 
 | Code sample | Description | Author | Capabilities | Difficulty Level | Structure | Domain | Risk considerations |
@@ -88,4 +88,4 @@ A full list of agent samples in the catalog can be found on the Azure AI Foundry
 | [Contract Analysis](#) | Compares two versions of a contract to extract key fields and clauses, highlights differences, and generates a report for review and follow-up | Microsoft | File Search, Content Understanding | Intermediate | Single-Agent | Legal, Compliance, Operations | TBD |
 | [SOP Forge](#) | Converts instructional video into a fully formatted Standard Operating Procedure (SOP). Transcribes, identifies steps, adjusts tone, swaps visuals, and delivers a Markdown-ready file. Supports fast editing and visual generation for updated documentation. | Microsoft | Content Understanding, File Search, Image Gen | Intermediate | Single-Agent | Operations | TBD |
 | [Video Translation Agent](https://github.com/microsoft/agent-blueprints/tree/main/semantic-kernel-blueprints/video-translation-agent) | Translates videos between languages with customizable speech and subtitle output. Leverages Azure AI Foundry, Speech Services, and Blob Storage to support multilingual video localization for internal communications, education, and marketing. | Microsoft | Audio transcription, Speech synthesis, Subtitle generation | Beginner-friendly | Single-Agent | Media & Communications | TBD |
-
+-->
