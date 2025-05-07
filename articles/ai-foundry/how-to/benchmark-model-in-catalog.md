@@ -35,7 +35,7 @@ In this article, you learn to streamline your model selection process in the Azu
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
-4. Go to the **Model leaderboards** section of the model catalog. This section displays the top three model leaders ranked along [quality](../concepts/model-benchmarks.md#quality), [cost](../concepts/model-benchmarks.md#cost), and [performance](../concepts/model-benchmarks.md#performance). You can select any of these models to check out more details.
+4. Go to the **Model leaderboards** section of the model catalog. This section displays the top three model leaders ranked along [quality](../concepts/model-benchmarks.md#quality-benchmarks-of-language-models), [cost](../concepts/model-benchmarks.md#cost-benchmarks-of-language-models), and [performance](../concepts/model-benchmarks.md#performance-benchmarks-of-language-models). You can select any of these models to check out more details.
 
     :::image type="content" source="../media/how-to/model-benchmarks/leaderboard-entry-select-model.png" alt-text="Screenshot showing the selected model from entry point of leaderboards on the model catalog homepage." lightbox="../media/how-to/model-benchmarks/leaderboard-entry-select-model.png":::
 
