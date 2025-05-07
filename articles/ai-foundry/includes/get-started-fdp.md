@@ -97,6 +97,7 @@ To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)]:
  
     az cognitiveservices account project create --resource-group {my_resource_group} --name {my_project_name} --account-name {foundry_resource_name} 
     ```
+---
 
 ## Deploy a model
 
