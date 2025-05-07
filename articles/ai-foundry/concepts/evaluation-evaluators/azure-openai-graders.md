@@ -37,7 +37,8 @@ model_config = AzureOpenAIModelConfiguration(
 
 `AzureOpenAILabelGrader` uses your custom prompt to instruct a model to classify outputs based on labels you define. It returns structured results with explanations for why each label was chosen.
 
->[NOTE:] We recommend using Azure Open AI GPT o3-mini for best results.
+> [NOTE:]
+> We recommend using Azure Open AI GPT o3-mini for best results.
 
 Here's an example `data.jsonl` that is used in the following code snippets:
 
