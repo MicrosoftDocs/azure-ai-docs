@@ -130,11 +130,11 @@ Create a tool configuration .yaml file using the following steps:
 1. Once you complete the setup, create a yaml code file that specifies the tool’s configuration. For example, this format for Grounding with Bing Search:
 
     ```yml
-type: bing_grounding
-options:
-  tool_connections:
-    - >-
-      /subscriptions/<Azure Subscription ID>/resourceGroups/<Azure Resource Group name>/providers/Microsoft.MachineLearningServices/workspaces/<Azure AI Foundry Project name>/connections/<Bing connection name>
+    type: bing_grounding
+    options:
+      tool_connections:
+        - >-
+          /subscriptions/<Azure Subscription ID>/resourceGroups/<Azure Resource Group name>/providers/Microsoft.MachineLearningServices/workspaces/<Azure AI Foundry Project name>/connections/<Bing connection name>
     ```
 1. Replace the placeholders in the connection string under the `tool_connections` section with your information: 
     
