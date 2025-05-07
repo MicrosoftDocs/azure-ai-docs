@@ -471,6 +471,8 @@ items:
       href: semantic-how-to-query-rewrite.md
     - name: Migrate semantic ranking code
       href: semantic-code-migration.md
+    - name: Enable scoring profiles in semantic ranker
+      href: semantic-how-to-enable-scoring-profiles.md
   - name: Security
     items:
     - name: Configure network access
