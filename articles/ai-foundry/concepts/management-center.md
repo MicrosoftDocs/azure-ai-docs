@@ -9,47 +9,41 @@ ms.custom:
   - ignite-2024
 ms.topic: concept-article #Don't change.
 ms.date: 02/13/2025
-zone_pivot_groups: project-type
 #customer intent: As an admin, I want a central location where I can perform governance and management activities.
 ---
 
 # Management center overview
 
-::: zone pivot="hub-project"
+The management center is a part of the Azure AI Foundry portal that streamlines governance and management activities. From the management center, you can manage:
 
-The management center is a part of the Azure AI Foundry portal that streamlines governance and management activities. From the management center, you can manage Azure AI Foundry hubs, [!INCLUDE [hub](../includes/hub-project-name.md)], resources, and settings. To visit the management center, open the [Azure AI Foundry](https://ai.azure.com) and (while in a hub or [!INCLUDE [hub](../includes/hub-project-name.md)]) select the __Management center__ link from the bottom of the left menu.
+- Azure AI Foundry hubs and [!INCLUDE [hub](../includes/hub-project-name.md)]s
+- Azure AI [!INCLUDE [FDP](../includes/fdp-project-name.md)]s
+- Quotas for models and virtual machines (VMs).
 
-::: zone-end
+    > [!NOTE]
+    > VM quotas are only available for [!INCLUDE [hub](../includes/hub-project-name.md)]s.
 
-::: zone pivot="fdp-project"
+- User management and role assignment
 
-The management center is a part of the Azure AI Foundry portal that streamlines governance and management activities. From the management center, you can manage Azure AI Foundry [!INCLUDE [FDP](../includes/fdp-project-name.md)], resources, and settings. To visit the management center, open the [Azure AI Foundry](https://ai.azure.com) and (while in a [!INCLUDE [FDP](../includes/fdp-project-name.md)]) select the __Management center__ link from the bottom of the left menu.
-
-::: zone-end
+To access the management center, sign in to [Azure AI Foundry](https://ai.azure.com), select a project, and then select **Management center** from the bottom of left menu.
 
 :::image type="content" source="../media/management-center/management-center.png" alt-text="Screenshot of the left menu of Azure AI Foundry with the management center selected." lightbox="../media/management-center/management-center.png":::
 
-::: zone pivot="hub-project"
-
-## Manage hubs and hub based projects
-
-You can use the management center to configure hubs and hub based projects. Use __All resources__ to view all hubs and projects that you have access to. Use the __Hub__ and __Project__ sections of the left menu to manage individual hubs and projects.
-
-:::image type="content" source="../media/management-center/manage-hub-project.png" alt-text="Screenshot of the all resources, hub, and project sections of the management studio selected." lightbox="../media/management-center/manage-hub-project.png":::
-
-For more information, see the articles on creating a [hub](../how-to/create-azure-ai-resource.md#create-a-hub-in-azure-ai-foundry-portal) and [hub based project](../how-to/create-projects.md?pivots=hub-project).
-
-::: zone-end
-
-::: zone pivot="fdp-project"
-
 ## Manage Foundry projects
 
-You can use the management center to create and configure [!INCLUDE [FDP](../includes/fdp-project-name.md)]s. Use __All resources__ to view all [!INCLUDE [FDP](../includes/fdp-project-name.md)] that you have access to. Use the __Project__ section of the left menu to manage individual [!INCLUDE [FDP](../includes/fdp-project-name.md)].
+You can use the management center to create and configure [!INCLUDE [FDP](../includes/fdp-project-name.md)]s. Use __All resources__ to view all [!INCLUDE [FDP](../includes/fdp-project-name.md)]s that you have access to, or to create new projects. Use the __Project__ section of the left menu to manage individual [!INCLUDE [FDP](../includes/fdp-project-name.md)].
 
-For more information, see the [Create a project in Azure AI Foundry](../how-to/create-projects.md?pivots=fdp-project) article.
+:::image type="content" source="../media/management-center/project-management.png" alt-text="Screenshot of the all resources, hub, and project sections of the management studio selected." lightbox="../media/management-center/manage-hub-project.png":::
 
-::: zone-end
+### Manage Azure AI Foundry hubs and hub based projects
+
+You can also manage [!INCLUDE [hub](../includes/hub-project-name.md)]s from the management center. They are listed in the __All resources__ section, and when selected are displayed in the left menu.
+
+For more information, see the following articles:
+
+- [Create a project in Azure AI Foundry](../how-to/create-projects.md?pivots=fdp-project)
+- [Create a hub in Azure AI Foundry](../how-to/create-azure-ai-resource.md#create-a-hub-in-azure-ai-foundry-portal)
+- [Create a hub based project](../how-to/create-projects.md?pivots=hub-project)
 
 ## Manage resource utilization
 
@@ -61,9 +55,10 @@ For more information, see [Manage and increase quotas for resources](../how-to/q
 
 ## Govern access
 
-Assign roles, manage users, and ensure that all settings comply with organizational standards.
+With a project selected, you can use the __Users__ entry in the left menu to view and manage users and their roles.
 
-:::image type="content" source="../media/management-center/user-management.png" alt-text="Screenshot of the user management section of the management center." lightbox="../media/management-center/user-management.png":::
+> [!NOTE]
+> You can only assign built-in roles for Azure AI Foundry in the management center.
 
 For more information, see [Role-based access control](rbac-azure-ai-foundry.md#assigning-roles-in-azure-ai-foundry-portal).
 
