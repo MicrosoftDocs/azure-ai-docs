@@ -15,9 +15,14 @@ ms.date: 05/06/2025
 
 Integrating [scoring profiles](index-add-scoring-profiles.md) with [semantic ranker](semantic-search-overview.md) is now possible in Azure AI Search. Semantic ranker adds a new field, `@search.rerankerBoostedScore`, to help you maintain consistent relevance and greater control over final ranking outcomes in your search pipeline.
 
-Prior to this integration, scoring profiles only had an effect on the initial search results. The boosts introduced by these scoring profiles were applied to the initial BM25-ranked or RRF-ranked search result for text-based queries, the text portion of vector queries, and hybrid queries that were served to the ranker, but were overlooked once semantic ranking came into play.
+Before this integration, scoring profiles only influenced the initial ranking phase of search results. The boost values they applied affected:
+- [BM25-ranked](index-similarity-and-scoring.md) or [RRF-ranked](hybrid-search-ranking.md) results for text-based queries
+- The text portion of vector queries
+- Hybrid queries that included both text and vector components
 
-Integrating scoring profiles with semantic ranker addresses this by allowing you to apply those profiles directly at the reranking level, ensuring that the boosts are taken into account.
+However, once the semantic ranker re-ranked the results, those boosts no longer had any effect. The semantic reranking process ignored scoring profiles entirely.
+
+Integrating scoring profiles with semantic ranker addresses this behavior by allowing you to apply those profiles directly at the reranking level, ensuring that the boosts are taken into account.
 
 
 ## Prerequisites
@@ -27,11 +32,17 @@ Integrating scoring profiles with semantic ranker addresses this by allowing you
 
 ## How does semantic configuration with scoring profiles work?
 
-When you execute a semantic query associated with a scoring profile, an additional `@search.rerankerBoostedScore` is generated in every document in your search results. This boosted score, calculated by applying the scoring profile to the existing reranker score, does not have a guaranteed range (0–4) like a normal reranker score, but it can be higher than 4.
+When you execute a semantic query associated with a scoring profile, another `@search.rerankerBoostedScore` value is generated in every document in your search results. This boosted score, calculated by applying the scoring profile to the existing reranker score, doesn't have a guaranteed range (0–4) like a normal reranker score, but it can be higher than 4.
 
-Starting in API version `2025-05-01-preview`, semantic results are sorted by `@search.rerankerBoostedScore` by default. If the `rankingOrder` property is not specified, then `boostedReRankerScore` is the default value in the semantic configuration.
+Starting in API version `2025-05-01-preview`, semantic results are sorted by `@search.rerankerBoostedScore` by default. If the `rankingOrder` property isn't specified, then `boostedReRankerScore` is the default value in the semantic configuration.
 
-Enabling this capability means that your scoring profile defined in your index will first be applied in the initial BM25-ranked or RRF-ranked search result for text-based queries, the text portion of vector queries, and hybrid queries. Then, the top 50 results will be used as inputs by your semantic ranker and also apply the scoring profile after the reranking operation has occurred.
+When this capability is enabled, the scoring profile defined in your index applies during the initial ranking phase.
+It boosts results from:
+- Text-based queries (BM25 or RRF)
+- The text portion of vector queries
+- Hybrid queries that combine both types
+
+The semantic ranker then reprocesses the top 50 results. It also reapplies the scoring profile after reranking, so your boosts influence the final order of results.
 
 
 ## Enabling scoring profiles in semantic configuration
