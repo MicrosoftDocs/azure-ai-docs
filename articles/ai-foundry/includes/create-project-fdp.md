@@ -21,8 +21,7 @@ ms.custom: include
     * Azure OpenAI models	
     * Model inferencing
     * AI Foundry API that works with agents and across models	
-    * Common filestore	
-    * Project-level isolation of files and outputs
+    * Upload files without needing your own Azure Storage account
     * Evaluations
     * Playgrounds
 
@@ -87,7 +86,7 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
 1. Install azure-identity: `pip install azure-identity azure_mgmt_cognitiveservices`. If in a notebook cell, use `%pip install azure-identity azure_mgmt_cognitiveservices`.
 
-1. Use the following code to create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]:
+1. Use the following code to create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)].  This example creates the project in West US:
 
     ```python
     from azure.identity import DefaultAzureCredential
@@ -95,39 +94,40 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
     import os
     import json
     
-    subscription_id = 'your-subscription-id'
-    resource_group_name = 'your-resource-group-name'
-    foundry_resource_name = 'your-foundry-resource-name'
-    foundry_project_name = 'your-foundry-project-name'
-    location = 'eastus'
-    
-    # TODO: add code to create create a new resource group
+    sub_id = 'your-sub'
+    rgp = 'your-resource-group'
+    resource_name = 'your-resource'
+    project_name = 'your-project'
+    location = 'westus'
     
     client = CognitiveServicesManagementClient(
-        subscription_id=subscription_id,
         credential=DefaultAzureCredential(), 
+        subscription_id=sub_id,
         api_version="2025-04-01-preview"
     )
-    
-    account = client.accounts.begin_create(
-        resource_group_name=resource_group_name,
-        account_name=foundry_resource_name,
-        foundry_project_name=foundry_project_name,
+    # Create resource
+    resource = client.accounts.begin_create(
+        resource_group_name=rgp,
+        account_name=resource_name,
         account={
             "location": location,
             "kind": "AIServices",
-            "sku": {
-                "name": "S0",
-            },
-            "identity": {
-                "type": "SystemAssigned"
-            },
-            "properties": {
-                "allowProjectManagement": True
-            }
+            "sku": {"name": "S0",},
+            "identity": {"type": "SystemAssigned"},
+            "properties": {"allowProjectManagement": True}
         }
     )
-    
+    # Create default project
+    project = client.projects.begin_create(
+        resource_group_name=rgp,
+        account_name=resource_name,
+        project_name=project_name,
+        project={
+            "location": location,
+            "identity": {"type": "SystemAssigned"},
+            "properties": {}
+        }
+    )
     ```
 1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you wish to use into the `DefaultAzureCredential`. Find your tenant ID from the [Azure portal](https://portal.azure.com) under **Microsoft Entra ID, External Identities**.
         
@@ -155,16 +155,18 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
     For more information on authenticating, see [Authentication methods](/cli/azure/authenticate-azure-cli).
 
-1. Create a resource group:
+1. Create a resource group, for example in East US:
 
     ```azurecli
     az group create --name {my_resource_group} --location eastus
     ```
 
-1. Now use the following command to create a new [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
+1. Now use the following commands to create a new [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
     ```azurecli
-    az cognitiveservices account project create --name {my_project_name} -resource-group {my_resource_group}
+    az cognitiveservices account create --resource-group {my_resource_group} --account-name {foundry_resource_name} --sku "S0" 
+ 
+    az cognitiveservices account project create --resource-group {my_resource_group} --name {my_project_name} --account-name {foundry_resource_name} 
     ```
 
 ---

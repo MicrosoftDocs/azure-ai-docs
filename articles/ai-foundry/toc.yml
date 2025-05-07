@@ -202,7 +202,7 @@ items:
     href: ../ai-services/connect-services-ai-foundry-portal.md?context=/azure/ai-foundry/context/context
     displayName: cognitive,task,speech,vision,language,translator,document,intelligence,content,understanding,safety
   - name: What are Azure AI services?
-    href: /azure/ai-services/what-are-ai-services
+    href: ../ai-services/what-are-ai-services.md?context=/azure/ai-foundry/context/context
   - name: Content Safety
     items: 
     - name: What is Azure AI Content Safety service?
@@ -529,6 +529,8 @@ items:
       href: how-to/create-projects.md
     - name: Create a project using a Bicep template
       href: how-to/create-azure-ai-project-template.md
+    - name: Create an Azure AI services resource
+      href: ../ai-services/multi-service-resource.md?context=/azure/ai-foundry/context/context
     - name: Hubs and projects overview
       href: concepts/ai-resources.md
     - name: Create your first hub
@@ -548,8 +550,6 @@ items:
     href: how-to/create-manage-compute.md
   - name: Connections
     items:
-    - name: Connections overview
-      href: concepts/connections.md
     - name: Create a connection
       href: how-to/connections-add.md
     - name: Create a connection using the Azure Machine Learning SDK
@@ -660,6 +660,8 @@ items:
     href: ../ai-services/cognitive-services-support-options.md?context=/azure/ai-foundry/context/context
   - name: Use Azure AI Foundry with a screen reader
     href: tutorials/screen-reader.md
+  - name: Feature availability
+    href: reference/region-support.md
   - name: Region support
     href: https://azure.microsoft.com/global-infrastructure/services/?products=cognitive-services
   - name: Azure updates
