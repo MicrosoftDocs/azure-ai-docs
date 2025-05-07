@@ -225,7 +225,7 @@ Recall the **vector field definition** in the index example. Attributes on a vec
 
 Vector profiles are configurations of vectorizers, algorithms, and compression techniques. Each vector field can only use one profile, but your index can have many in case you want unique profiles for every vector field.
 
-Querying vectors and calling a vectorizer adds latency to the overall request, but if you want similarity search it might be worth the trade off.
+Querying vectors and calling a vectorizer adds latency to the overall request, but if you want similarity search it might be worth the trade-off.
 
 Here's an example of a vectorizer that works for agentic retrieval, as it appears in a vectorSearch configuration. There's nothing in the vectorizer definition that needs to be changed to work with agentic retrieval.
 
