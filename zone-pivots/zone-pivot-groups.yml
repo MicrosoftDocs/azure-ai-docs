@@ -834,8 +834,8 @@ groups:
   title: Usage methods
   prompt: Choose your preferred usage method
   pivots:
-  - id: language-studio
-    title: Language Studio
+  - id: azure-ai-foundry
+    title: Azure AI Foundry
   - id: rest-api
     title: REST API
 - id: programming-languages-text-analytics
