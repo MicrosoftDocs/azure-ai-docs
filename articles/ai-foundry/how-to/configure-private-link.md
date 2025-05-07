@@ -1,4 +1,5 @@
 ---
+
 title: How to configure a private link for an Azure AI Foundry hub
 titleSuffix: Azure AI Foundry
 description: Learn how to configure a private link for Azure AI Foundry hubs. A private link is used to secure communication with the Azure AI Foundry hub.
@@ -12,6 +13,7 @@ ms.author: larryfr
 author: Blackmist
 zone_pivot_groups: project-type
 # Customer intent: As an admin, I want to configure a private link for hub so that I can secure my hubs.
+
 ---
 
 # How to configure a private link for Azure AI Foundry
@@ -431,6 +433,36 @@ If your storage account is private (uses a private endpoint to communicate with 
 For information on securing playground chat, see [Securely use playground chat](secure-data-playground.md).
 
 :::zone-end
+
+::: zone pivot="fdp-project"
+
+## End-to-end secured networking for Agent Service
+
+When creating a Foundry resource and [!INCLUDE [fdp-projects](../includes/fdp-project-name.md)] to build Agents, we recommend the following network architecture for the most secure end-to-end configuration:
+
+:::image type="content" source="." alt-text="Diagram of the recommended network isolation for AI Foundry projects and agents." lightbox="../media/how-to/network/azure-ai-network-end-to-end.png":::
+
+1. Set the public network access (PNA) flag of each of your resources to `Disabled`. This locks down inbound access from the public internet to the resources.
+1. Create a private endpoint for each of your Azure resources that are required for a Standard Agent:
+
+    - Azure Storage Account
+    - Azure AI Search resource
+    - Cosmos DB resource
+    - Azure AI Foundry reesource
+
+1. To access your resources, we recommend using a Bastion VM, ExpressRoute, or VPN connection to your Azure Virtual Network. These options allow you to connect to the isolated network environment.
+
+## Network injection for Agent Service
+
+Network-secured Standard Agents support full network isolation and data exfiltration protection through network injection of the Agent client. To do this, the Agent client is network injected into your Azure virtual network, allowing for strict control over data movement and preventing data exfiltration by keeping traffic within your defined network boundaries. Network injection is supported only for Standard Agent deployment, not Light Agent deployment.
+
+Additionally, a network-secured Standard Agent is only supported through BICEP template deployment, and not through UX, CLI, or SDK. After the Foundry resource and Agent are deployed through the template, you cannot update the delegated subnet for the Agent Service. This is visible in the Foundry resource Networking tab, where you can view and copy the subnet, but cannot update or remove the subnet delegation. To update the delegated subnet, you must redeploy the network-secured Standard Agent template. 
+
+:::image type="content" source="" alt-text="Diagram of the network injection for Azure AI Foundry projects and agents." lightbox="":::
+
+For more information on secured networking for the Agent Service, see [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks) article.
+
+::: zone-end
 
 ## Custom DNS configuration
 
