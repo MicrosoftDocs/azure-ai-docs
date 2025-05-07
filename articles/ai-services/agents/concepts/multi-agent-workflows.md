@@ -17,7 +17,7 @@ Use this article to learn about how to streamline complex processes by utilizing
 
 Multi-agent workflows involve the coordinated efforts of multiple AI agents, each specializing in different tasks or possessing distinct capabilities. These agents communicate and collaborate to complete intricate processes that would be challenging for a single agent to handle. 
 
-## Solutions
+## Multi-agent solutions
 
 AI Foundry Agent Service enables you to develop multi-agent applications in the following ways.
 
