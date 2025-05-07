@@ -89,7 +89,7 @@ Content Understanding offers the following prebuild analyzers:
 - conversation transcripts with speaker role detection result
 - call summary
 - call sentiment
-- top 5 topics mentioned-
+- top 5 topics mentioned
 - list of companies mentioned
 - list of people (name and title/role) mentioned
 - list of relevant call categories
