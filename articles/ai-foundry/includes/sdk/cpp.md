@@ -14,4 +14,4 @@ ms.custom: include
 
 | Service | Description | Reference documentation |
 | --- | --- | --- |
-| ![Speech icon](~/reusable-content/ce-skilling/azure/media/ai-services/speech.svg) [Speech](../../../speech-service/index.yml) | Add speech to text, text to speech, translation, and speaker recognition capabilities to applications. | [Speech SDK for C++](/cpp/cognitive-services/speech/) |
+| ![Speech icon](~/reusable-content/ce-skilling/azure/media/ai-services/speech.svg) [Speech](../../../ai-services/speech-service/index.yml) | Add speech to text, text to speech, translation, and speaker recognition capabilities to applications. | [Speech SDK for C++](/cpp/cognitive-services/speech/) |

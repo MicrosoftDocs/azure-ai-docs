@@ -16,7 +16,7 @@ zone_pivot_groups: foundry-sdk-languages
 # customer intent: I want to learn how to use the Azure AI Foundry SDK to build AI applications on Azure.
 ---
 
-## Azure AI Foundry SDK client libraries
+# Azure AI Foundry SDK client libraries
 
 The Azure AI Foundry SDK is a comprehensive toolchain designed to simplify the development of AI applications on Azure. It enables developers to:
 
