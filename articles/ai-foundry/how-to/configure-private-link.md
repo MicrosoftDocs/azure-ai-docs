@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024
 ms.topic: how-to
-ms.date: 04/30/2025
+ms.date: 05/06/2025
 ms.reviewer: meerakurup
 ms.author: larryfr
 author: Blackmist
@@ -359,12 +359,9 @@ See [Azure Machine Learning custom DNS](/azure/machine-learning/how-to-custom-dn
 
 If you need to configure custom DNS server without DNS forwarding, use the following patterns for the required A records.
 
-* `<AI-STUDIO-GUID>.workspace.<region>.cert.api.azureml.ms`
-* `<AI-PROJECT-GUID>.workspace.<region>.cert.api.azureml.ms`
-* `<AI-STUDIO-GUID>.workspace.<region>.api.azureml.ms`
-* `<AI-PROJECT-GUID>.workspace.<region>.api.azureml.ms`
-* `ml-<workspace-name, truncated>-<region>-<AI-STUDIO-GUID>.<region>.notebooks.azure.net`
-* `ml-<workspace-name, truncated>-<region>-<AI-PROJECT-GUID>.<region>.notebooks.azure.net`
+* `<AI-HUB-GUID>.workspace.<region>.cert.api.azureml.ms`
+* `<AI-HUB-GUID>.workspace.<region>.api.azureml.ms`
+* `ml-<workspace-name, truncated>-<region>-<AI-HUB-GUID>.<region>.notebooks.azure.net`
 
     > [!NOTE]
     > The workspace name for this FQDN might be truncated. Truncation is done to keep `ml-<workspace-name, truncated>-<region>-<workspace-guid>` at 63 characters or less.
@@ -374,13 +371,15 @@ If you need to configure custom DNS server without DNS forwarding, use the follo
     > * Compute instances can be accessed only from within the virtual network.
     > * The IP address for this FQDN is **not** the IP of the compute instance. Instead, use the private IP address of the workspace private endpoint (the IP of the `*.api.azureml.ms` entries.)
 
-* `<instance-name>.<region>.instances.azureml.ms` - Only used by the `az ml compute connect-ssh` command to connect to computers in a managed virtual network. Not needed if you aren't using a managed network or SSH connections.
+* `<instance-name>-22.<region>.instances.azureml.ms` - Only used by the `az ml compute connect-ssh` command to connect to computers in a managed virtual network. Not needed if you aren't using a managed network or SSH connections.
 
 * `<managed online endpoint name>.<region>.inference.ml.azure.com` - Used by managed online endpoints
 * `models.ai.azure.com` - Used for deploying Models as a Service
 
 To find the private IP addresses for your A records, see the [Azure Machine Learning custom DNS](/azure/machine-learning/how-to-custom-dns#find-the-ip-addresses) article.
-To check AI-PROJECT-GUID, go to the Azure portal, select your project, settings, properties, and the workspace ID is displayed.
+
+> [!NOTE]
+> Project workspaces reuse the FQDNs of the associated hub workspaces. There is no reason to configure separate entries for the project workspace GUIDs.
 
 ## Limitations
 

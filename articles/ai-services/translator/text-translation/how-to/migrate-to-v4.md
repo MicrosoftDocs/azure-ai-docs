@@ -56,6 +56,7 @@ The following table compares Translator `2025-05-01-preview` and Translator v3 A
 [Dictionary Lookup](../reference/v3/dictionary-lookup.md)|Feature no longer supported|
 |[Dictionary Examples](../reference/v3/dictionary-examples.md)|Feature no longer supported|
 
+
 ## Next Steps
 
 > [!div class="nextstepaction"]
