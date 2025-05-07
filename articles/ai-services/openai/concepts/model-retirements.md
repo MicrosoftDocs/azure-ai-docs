@@ -111,7 +111,7 @@ These models are currently available for use in Azure OpenAI Service.
 | `gpt-4o`                  | 2024-05-13      | No earlier than June 30, 2025      | `gpt-4.1` version: `2025-04-14`      |
 | `gpt-4o`                  | 2024-08-06      | No earlier than August 6, 2025     | `gpt-4.1` version: `2025-04-14`      |
 | `gpt-4o`                  | 2024-11-20      | No earlier than January 30, 2026   | `gpt-4.1` version: `2025-04-14`      |
-| `gpt-4o-mini`             | 2024-07-18      | August 16, 2025                    |                                      |
+| `gpt-4o-mini`             | 2024-07-18      | August 16, 2025                    | `gpt-4.1-mini` version: `2025-04-14` |
 | `gpt-3.5-turbo-instruct`  | 0914            | No earlier than May 31, 2025       |                                      |
 | `gpt-image-1`             | 2025-04-15      | No earlier than August 01, 2025    |                                      |
 | `o1-preview`              | 2024-09-12      | May 29, 2025                       | `o1`                                 |
