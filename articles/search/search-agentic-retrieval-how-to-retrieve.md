@@ -8,16 +8,20 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/30/2025
+ms.date: 05/05/2025
 ---
 
 # Retrieve data using an agent in Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, *agentic retrieval* is a new query architecture that uses a conversational language model for query planning and parallel query execution. 
+In Azure AI Search, *agentic retrieval* is a new parallel query architecture that uses a conversational large language model (LLM) for query planning, generating subqueries that broaden the scope of what's searchable and relevant.
 
-This article explains how to use the **retrieve** method that invokes an agent and parallel query processing. This article also explains the components of the retrieval response. 
+This article explains how to use the [**retrieve** method](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-05-01-preview&preserve-view=true) that invokes an agent and parallel query processing. This article also explains the three components of the retrieval response: 
+
++ *extracted response for the LLM*
++ *referenced results*
++ *query activity*
 
 > [!NOTE]
 > Currently, there's no model-generated "answer" in the response. Instead, the response provides grounding data that you can use to generate an answer from an LLM. For an end-to-end example, see [Build an agent-to-agent retrieval solution ](search-agentic-retrieval-how-to-pipeline.md) or [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo).
@@ -26,14 +30,7 @@ This article explains how to use the **retrieve** method that invokes an agent a
 
 + An [agent definition](search-agentic-retrieval-how-to-create.md) that represents a conversational language model.
 
-+ Azure AI Search with a managed identity for role-based access to a chat model.
-
-+ Region requirements. Azure AI Search and your model should be in the same region.  Public cross-region connections and private link connection from AI Search to the model are supported. 
-
-  + **East US**
-  + **North Europe**
-  + **Japan East**
-  + **Sweden Central**
++ Azure AI Search, in any [region that provides semantic ranker](search-region-support.md), on basic tier and above. Your search service must have a [managed identity](search-howto-managed-identities-data-sources.md) for role-based access to a chat model.
 
 + API requirements. Use 2025-05-01-preview data plane REST API or a prerelease package of an Azure SDK that provides Agent APIs.
 
@@ -96,9 +93,11 @@ Content-Type: application/json
 
     `rerankerThreshold` is the minimum semantic reranker score that's acceptable for inclusion in a response. [Reranker scores](semantic-search-overview.md#how-ranking-is-scored) range from 1 to 4. Plan on revising this value based on testing and what works for your content.
 
-    `maxDocsForReranker` dictates the maximum number of documents to consider for the final response string. Semantic reranker accepts 50 documents. If the maximum is 200, four more subqueries are added to the query plan to ensure all 200 documents are semantically ranked.  for semantic ranking. If the number is not evenly divisible by 50, the query plan rounds up to nearest whole number.
+    `maxDocsForReranker` dictates the maximum number of documents to consider for the final response string. Semantic reranker accepts 50 documents. If the maximum is 200, four more subqueries are added to the query plan to ensure all 200 documents are semantically ranked. for semantic ranking. If the number isn't evenly divisible by 50, the query plan rounds up to nearest whole number.
 
-## Review the response
+## Review the extracted response
+
+The *extracted response* is single unified string that's typically passed to an LLM that consumes it as grounding data, using it to formulate a response. Your API call to the LLM includes the unified string and instructions for model, such as whether to use the grounding exclusively or as a supplement.
 
 The body of the response is also structured in the chat message style format. Currently in this preview release, the content is serialized JSON.
 
@@ -118,10 +117,9 @@ The body of the response is also structured in the chat message style format. Cu
 
 `content` is a JSON array. It's a single string composed of the most relevant documents (or chunks) found in the search index, given the query and chat history inputs. This array is your grounding data that a conversational language model uses to formulate a response to the user's question.
 
-Fields in the content `text` response string include the ref_id and semantic configuration fields: `title`, `terms`, `terms`.
+The `maxOutputSize` property on the agent determines the length of the string. We recommend 5,000 tokens.
 
-Fields in referenceSourceData when source data is included
-Semantic fields only
+Fields in the content `text` response string include the ref_id and semantic configuration fields: `title`, `terms`, `terms`.
 
 ## Review the activity array
 
