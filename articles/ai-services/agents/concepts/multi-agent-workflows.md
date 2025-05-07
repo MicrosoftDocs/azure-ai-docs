@@ -40,8 +40,14 @@ Multi-agent workflows consist of:
 * A main agent: These agents act as the primary interaction point with end-users. The agent manages the workflow, determining which (if any) connected agents are called and that tasks are delegated appropriately.
 * Task-specific connected agents: These agents focus on specific tasks such as data extraction, analysis, or decision-making. They are called by the main agent to perform their task and return outputs.
 
-:::image type="content" source="../media/multi-agent/agent-tree.png" alt-text="A diagram showing a main agent and several sub agents.":::
+:::image type="content" source="../media/multi-agent/agent-tree.png" alt-text="A diagram showing a main agent and several connected agents.":::
 
 Agent coordination is responsible for defining and executing the sequence of tasks within a workflow. An event-driven architecture is used to trigger actions based on specific events. In a basic implementation, for example, all user interaction goes through the main agent, which then hands-off to connected agents. When the connected agent completes a task, the output is passed back to the main agent. 
 
-:::image type="content" source="../media/multi-agent/example-thread.png" alt-text="A diagram showing a main agent and several sub agents.":::
+:::image type="content" source="../media/multi-agent/example-thread.png" alt-text="A diagram showing a thread with a main agent and several connected agents.":::
+
+## Next steps
+
+* [Connected agents](../how-to/connected-agents.md)
+* [Agent catalog](../how-to/agent-catalog.md)
+* [Semantic Kernel framework](/semantic-kernel/frameworks/agent/azure-ai-agent) 
