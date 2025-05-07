@@ -35,9 +35,7 @@ items:
     - name: Build a RAG solution using Azure AI Search
       href: /azure/search/tutorial-rag-build-solution?context=/azure/ai-foundry/context/context
   - name: "Ask the Foundry agent"
-    items:
-    - name: Ask the Foundry agent for help
-      href: foundry-agent/ask-foundry-agent.md
+    href: foundry-agent/ask-foundry-agent.md
 - name: Azure AI Foundry Models
   items:
   - name: Use the model catalog
