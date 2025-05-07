@@ -38,8 +38,11 @@ A sentence dictionary is case-insensitive. The sentence dictionary allows you to
 
 You can train a model using only dictionary data. To do so, select only the dictionary document (or multiple dictionary documents) that you wish to include and select **Create model**. Since this training is dictionary-only, there's no minimum number of training sentences required. Your model typically completes training faster than a standard training. The resulting models use the Microsoft baseline models for translation with the addition of the dictionaries you add. You don't get a test report.
 
->[!NOTE]
->Custom Translator doesn't sentence align dictionary files, so it is important that there are an equal number of source and target phrases/sentences in your dictionary documents and that they are precisely aligned.
+> [!NOTE]
+>
+> Custom Translator doesn't conduct sentence alignment for dictionary files. Therefore, it's crucial to ensure that your dictionary documents have an equal number of source and target phrases or sentences. Additionally, these phrases or sentences must be accurately aligned to maintain consistency and effectiveness.
+
+
 
 ## Recommendations
 

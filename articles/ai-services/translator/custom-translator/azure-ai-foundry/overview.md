@@ -40,11 +40,13 @@ Custom translation also accepts data that's parallel at the document level to ma
 
 If the appropriate type and amount of training data is supplied, it's not uncommon to see [`BLEU` score](concepts/bleu-score.md) gains between 5 and 10 points by using Custom translation.
 
-## How to build and translate with custom models
+## Build and translate with custom models
 
 You create a custom translation model by fine tuning an Azure AI Translator base model with your own data and terminology. 
 
 This article is an overview of how to use fine-tuning to create a custom translation model for your applications across all [supported languages](../../language-support.md).
+
+The steps for creating a custom model are as follows:
 
 1. [**Create a project**](how-to/create-project.md). A project is a work area for composing and building your custom translation system. A project can contain multiple language pairs, models, and documents. All the work you do in Custom translation is done inside a specific project.
 
