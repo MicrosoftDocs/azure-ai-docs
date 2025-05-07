@@ -43,10 +43,10 @@ Custom translation model provides translations for a specific language pair. The
 
 ## When to select dictionary-only training
 
-For better results, we recommended letting the system learn from your training data. However, when you don't have enough parallel sentences to meet the 10,000 minimum requirements, and sentences and compound nouns must be rendered as-is, use dictionary-only training. Your model typically completes training faster than with full training. The resulting models use the baseline models for translation along with the dictionaries you added. You will not see `BLEU` scores and test report.
+For better results, we recommended letting the system learn from your training data. However, when you don't have enough parallel sentences to meet the 10,000 minimum requirements, and sentences and compound nouns must be rendered as-is, use dictionary-only training. Your model typically completes training faster than with full training. The resulting models use the baseline models for translation along with the dictionaries you added. You don't see `BLEU` scores and test report.
 
 > [!NOTE] 
->Custom translation doesn't sentence-align dictionary files. Therefore, it is important that there are an equal number of source and target phrases/sentences in your dictionary documents and that they are precisely aligned. If not, the document upload will fail.
+>Custom translation doesn't sentence-align dictionary files. Therefore, it's important that there are an equal number of source and target phrases/sentences in your dictionary documents and that they're precisely aligned. If not, the document upload fails.
 
 ## Model details
 

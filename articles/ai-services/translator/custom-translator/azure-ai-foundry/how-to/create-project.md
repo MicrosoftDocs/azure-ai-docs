@@ -17,7 +17,7 @@ ms.topic: how-to
 
 ## Create a project
 
-In the [Azure AI Foundry portal](https://ai.azure.com/), you can fine-tune some Azure AI services models, e.g., Custom translation, Custom speech, etc. For Custom translation, you can fine-tune a model for a language pair, *say* English to French.
+In the [Azure AI Foundry portal](https://ai.azure.com/), you can fine-tune some Azure AI services models, for example, Custom translation, Custom speech, etc. For Custom translation, you can fine-tune a model for a language pair, *say* English to French.
 
 1. Go to your project in the [Azure AI Foundry portal](https://ai.azure.com/) portal. If you need to create a project, *see* [Create an Azure AI Foundry project](../../azure-ai-foundry/how-to/create-project.md).
 

@@ -12,7 +12,7 @@ ms.topic: how-to
 
 # Create language pair
 
-A language pair includes models, training, tuning and testing datasets. Creating a language pair is the first step in fine-tuning and deploying a model.
+A language pair includes models, training, tuning, and testing datasets. Creating a language pair is the first step in fine-tuning and deploying a model.
 
 ## Create a language pair
 
@@ -29,7 +29,7 @@ A language pair includes models, training, tuning and testing datasets. Creating
     :::image type="content" source="../media/fine-tune-create-language-pair.png" alt-text="Screenshot of dialog to create a language pair and fill out the details.":::
 
    > [!NOTE]
-   > Select **Advanced options** to add optional details, e.g., label, language pair description, and domain description.
+   > Select **Advanced options** to add optional details, for example, label, language pair description, and domain description.
 
    - **Language pair label:** You can add label to create the same language pair multiple times. Example, you want to create English to French model for shopping and another English to French model for automotive. A label distinguishes between the same language pair with the same language pair and domain. As a best practice, here are a few tips:
 

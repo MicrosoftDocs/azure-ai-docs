@@ -18,9 +18,9 @@ Copying a model to other project enables model lifecycle management (for example
 
    > [!NOTE]
    >
-   > To copy model from one project to another, you must be a user with an **Owner** role in both projects .
+   > To copy model from one project to another, you must be a user with an **Owner** role in both projects.
    >
-   > The copied model cannot be recopied. You can only rename, delete, or publish a copied model.
+   > The copied model can't be recopied. You can only rename, delete, or publish a copied model.
 
 1. After successful model training, select the **Train model** from the left menu.
 

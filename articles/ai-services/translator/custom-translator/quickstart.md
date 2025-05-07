@@ -103,7 +103,7 @@ In order to create a custom model, you need to upload all or a combination of [t
 In this quickstart, we show you how to upload [training](concepts/model-training.md#training-document-type-for-azure-ai-custom-translator) documents for customization.
 
 >[!NOTE]
-> You can use our sample training, phrase and sentence dictionaries dataset, [Customer sample English-to-German datasets](https://github.com/MicrosoftTranslator/CustomTranslatorSampleDatasets), for this quickstart. However, for production, it's better to upload your own training dataset.
+> You can use our sample training, phrase, and sentence dictionaries dataset, [Customer sample English-to-German datasets](https://github.com/MicrosoftTranslator/CustomTranslatorSampleDatasets), for this quickstart. However, for production, it's better to upload your own training dataset.
 
 1. Select *English-to-German* project name.
 
@@ -143,7 +143,7 @@ Now you're ready to train your English-to-German model.
 1. Select **Train** to confirm.
 
     >[!NOTE]
-    >**Notifications** displays model training in progress, e.g., **Submitting data** state. Training model takes few hours, subject to the number of selected sentences.
+    >**Notifications** displays model training in progress, for example, **Submitting data** state. Training model takes few hours, subject to the number of selected sentences.
 
     :::image type="content" source="media/quickstart/train-model.png" alt-text="Screenshot illustrating how to create a model.":::
 
@@ -153,8 +153,8 @@ Now you're ready to train your English-to-German model.
 
 1. Evaluate the model [`BLEU`](beginners-guide.md#what-is-a-bleu-score) score. The test set **BLEU score** is the custom model score and **Baseline BLEU** is the pretrained baseline model used for customization. A higher **BLEU score** means higher translation quality using the custom model.
 
-    >[!NOTE]
-    >If you train with our shared customer sample datasets, BLEU score will be different than the image.
+    > [!NOTE]
+    > If you train with our shared customer sample datasets, `BLEU` score can be different than the image.
 
     :::image type="content" source="media/quickstart/model-details.png" alt-text="Screenshot illustrating model details.":::
 

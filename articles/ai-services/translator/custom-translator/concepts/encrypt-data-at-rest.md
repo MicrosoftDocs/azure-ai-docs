@@ -33,7 +33,7 @@ By default, your subscription uses Microsoft-managed encryption keys. There's al
 
 Follow these steps to enable customer-managed keys for Translator:
 
-1. Create your new regional Translator or regional Azure AI services resource. Customer-managed keys won't work with a global resource.
+1. Create your new regional Translator or regional Azure AI services resource. Customer-managed keys don't work with a global resource.
 2. Enabled Managed Identity in the Azure portal, and add your customer-managed key information.
 3. Create a new workspace in Custom Translator and associate this subscription information.
 

@@ -20,7 +20,7 @@ Copying a model to other workspaces enables model lifecycle management (for exam
    >
    > To copy model from one workspace to another, you must have an **Owner** role in both workspaces.
    >
-   > The copied model cannot be recopied. You can only rename, delete, or publish a copied model.
+   > The copied model can't be recopied. You can only rename, delete, or publish a copied model.
 
 1. After successful model training, select the **Model details** blade.
 

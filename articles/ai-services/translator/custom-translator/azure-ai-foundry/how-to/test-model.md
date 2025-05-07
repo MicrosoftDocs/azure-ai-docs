@@ -23,7 +23,7 @@ A BLEU score is a number between zero and 100. A score of zero indicates a low-q
 
 ## Test quality of your model's translation
 
-1. Select **Test model** from the left menue.
+1. Select **Test model** from the left menu.
 
 1. Select model **Name** then select **View test results**.
 

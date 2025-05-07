@@ -17,7 +17,7 @@ Deploying your Custom translation model makes it available for use with the Azur
 
 You can deploy one model per language pair to one or multiple regions.
 
-1. Select the **Deploy model** from the menu on the left.
+1. Select **Deploy model** from the menu on the left.
 
 1. Select the model name under **Name** and check the button then select **Deploy model**.
 
@@ -39,11 +39,11 @@ To replace a deployed model, you can exchange the deployed model with a differen
 
 1. Select **Swap model**.
 
-The redeployment takes several minutes to complete. In the meantime, deployed model will continue to be available for use with the Translator API until this process is complete.
+   The redeployment takes several minutes to complete. In the meantime, deployed model continues to be available for use with the Translator API until this process is complete.
 
    :::image type="content" source="../media/fine-tune-swap-model-2.png" alt-text="Screenshot illustrating the swap-model function.":::
 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn how to Translate using your deployed model](translate-from-model.md)
+> [Learn how to Translate using your deployed model](translate-with-model.md)
