@@ -14,7 +14,7 @@ ms.topic: conceptual
 
 ## Overview
 
-The Foundry agent is an experimental feature that is here to assist you with questions about Azure AI Foundry. To start using the Foundry agent, simply click on the icon "@Foundry" located in the top right bar of the interface. A chat window opens where you can type your questions and receive answers in real-time.
+The Foundry agent is an experimental feature that is here to assist you with questions about Azure AI Foundry. To start using the Foundry agent, simply click on its icon located in the top right bar of the interface. A chat window opens where you can type your questions and receive answers in real-time.
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
