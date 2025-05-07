@@ -64,10 +64,10 @@ project = AIProjectClient.from_connection_string(
 ::: zone-end
 
 Using the project endpoint, you can:
- - Use Foundry Models (link to foundry models quickstart), including Azure OpenAI
- - Use Foundry Agent Service (link to foundry agents quickstart)
- - Run evaluations in the cloud (link to evaluation doc)
- - Enable tracing for your app (link to tracing article)
+ - [Use Foundry Model](../../quickstarts/get-started-code.md), including Azure OpenAI
+ - [Use Foundry Agent Service](../../../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context)
+ - [Run evaluations in the cloud](../../../ai-services/openai/how-to/evaluations?context=/azure/ai-foundry/context/context)
+ - [Enable tracing for your app](../../concepts/trace.md) 
  - Retrieve endpoints and keys for external resource connections
 
 ## Azure AI Services client libraries
