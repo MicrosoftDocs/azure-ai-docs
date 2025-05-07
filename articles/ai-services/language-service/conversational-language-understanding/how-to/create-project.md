@@ -82,7 +82,7 @@ You can import a CLU JSON into the service
 
 You can export a Conversational Language Understanding project as a JSON file at any time by going to the conversation projects page, selecting a project, and pressing **Export**.
 
-### [REST APIs](#tab/rest-apis)
+### [REST APIs](#tab/rest-api)
 
 You can export a Conversational Language Understanding project as a JSON file at any time.
 
