@@ -5,7 +5,7 @@ description: Learn to deploy models as serverless APIs, using Azure AI Foundry.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 12/20/2024
+ms.date: 04/23/2025
 ms.author: mopeakande
 author: msakande
 ms.reviewer: fasantia
@@ -26,8 +26,6 @@ This article uses a Meta Llama model deployment for illustration. However, you c
 ## Prerequisites
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
-
-- An [Azure AI Foundry hub](create-azure-ai-resource.md).
 
 - An [Azure AI Foundry project](create-projects.md).
 
@@ -562,6 +560,8 @@ Models deployed in Azure Machine Learning and Azure AI Foundry in Serverless API
 Read more about the [capabilities of this API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#capabilities) and how [you can use it when building applications](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#getting-started). 
 
 ## Network isolation
+
+[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
 Endpoints for models deployed as Serverless APIs follow the public network access (PNA) flag setting of the Azure AI Foundry portal Hub that has the project in which the deployment exists. To secure your MaaS endpoint, disable the PNA flag on your Azure AI Foundry Hub. You can secure inbound communication from a client to your endpoint by using a private endpoint for the hub.
 
