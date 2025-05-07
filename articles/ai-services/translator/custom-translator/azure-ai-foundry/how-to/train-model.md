@@ -20,7 +20,7 @@ Custom translation model provides translations for a specific language pair. The
 
 1. After the data is processed, select the **Train model** from the left menu.
 
-   :::image type="content" source="../media/fine-tune-train-model-1.png" alt-text="Screenshot illustrating the train model blade.":::
+   :::image type="content" source="../media/fine-tune-train-model-1.png" alt-text="Screenshot depicting the train model blade.":::
 
 1. Type the **Model name**.
 
@@ -35,7 +35,7 @@ Custom translation model provides translations for a specific language pair. The
 
 1. Select the data you want to use for training, for example, `Customer-sample-English-German-Training` and review the training cost associated with the selected number of sentences.
 
-   :::image type="content" source="../media/fine-tune-train-model-3.png" alt-text="Screenshot depicting the train model blade.":::
+   :::image type="content" source="../media/fine-tune-train-model-3.png" alt-text="Screenshot depicting a view of the train model blade.":::
 
 1. Select **Train model**.
 

@@ -1,7 +1,7 @@
 ---
 title: Key terms - Custom Translator
 titleSuffix: Azure AI services
-description: List of key terms used in Custom Translator articles.
+description: A list of key terms used in Custom translator articles.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator

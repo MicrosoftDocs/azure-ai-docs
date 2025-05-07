@@ -19,7 +19,7 @@ ms.topic: how-to
 
 In the [Azure AI Foundry portal](https://ai.azure.com/), you can fine-tune some Azure AI services models, e.g., Custom translation, Custom speech, etc. For Custom translation, you can fine-tune a model for a language pair, *say* English to French.
 
-1. Go to your project in the [Azure AI Foundry portal](https://ai.azure.com/) portal. If you need to create a project, *see* [Create an Azure AI Foundry project](https://learn.microsoft.com/azure/ai-foundry/how-to/create-projects).
+1. Go to your project in the [Azure AI Foundry portal](https://ai.azure.com/) portal. If you need to create a project, *see* [Create an Azure AI Foundry project](../../azure-ai-foundry/how-to/create-project.md).
 
 1. Select **Fine-tuning** from the left pane.
 
@@ -32,7 +32,7 @@ In the [Azure AI Foundry portal](https://ai.azure.com/), you can fine-tune some 
 :::image type="content" source="../media/fine-tune-select-translate.png" alt-text="Screenshot of the page to select Translate for custom translation models.":::
 
 > [!NOTE]
-> An Azure AI Service resouce is connected to your project.
+> An Azure AI Service resource is connected to your project.
 
 
 ## Next steps

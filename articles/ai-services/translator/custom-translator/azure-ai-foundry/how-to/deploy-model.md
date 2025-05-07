@@ -21,7 +21,7 @@ You can deploy one model per language pair to one or multiple regions.
 
 1. Select the model name under **Name** and check the button then select **Deploy model**.
 
-   :::image type="content" source="../media/fine-tune-deploy-model.png" alt-text="Screenshot illustrating the deploy-model function.":::
+   :::image type="content" source="../media/fine-tune-deploy-model.png" alt-text="Screenshot depicting the deploy-model function.":::
 
 1. Check the desired regions. Later, you can add or remove regions by selecting **Update regions**.
 
@@ -35,7 +35,7 @@ To replace a deployed model, you can exchange the deployed model with a differen
 
 1. Select the model name under **Name** then select **Deploy model**.
 
-   :::image type="content" source="../media/fine-tune-swap-model-1.png" alt-text="Screenshot illustrating the swap-model function.":::
+   :::image type="content" source="../media/fine-tune-swap-model-1.png" alt-text="Screenshot depicting the swap-model function.":::
 
 1. Select **Swap model**.
 
