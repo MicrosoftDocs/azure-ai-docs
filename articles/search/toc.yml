@@ -387,7 +387,7 @@ items:
         href: vector-search-how-to-truncate-dimensions.md
     - name: Query vectors
       href: vector-search-how-to-query.md
-    - name: Use multi-vector fiels
+    - name: Use multi-vector fields
       href: vector-search-multi-vector-fields.md
     - name: Add a vectorizer for text-to-vector queries
       displayName: query
