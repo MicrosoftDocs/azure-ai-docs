@@ -94,9 +94,9 @@ items:
       href: search-howto-index-encrypted-blobs.md
     - name: Create a custom analyzer
       href: tutorial-create-custom-analyzer.md
-    - name: Index multi-modality content using multi-modality embedding and document layout skill
+    - name: Index multimodal content using multimodaly embedding and document layout skill
       href: tutorial-multimodal-indexing-embeddings-skill.md
-    - name: Index multi-modality content using image verbalization and document layout skill
+    - name: Index multimodal content using image verbalization and document layout skill
       href: tutorial-multimodal-indexing-image-verbalization-skill.md      
   - name: RAG tutorials
     items:
