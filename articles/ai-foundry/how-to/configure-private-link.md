@@ -440,7 +440,7 @@ For information on securing playground chat, see [Securely use playground chat](
 
 When creating a Foundry resource and [!INCLUDE [fdp-projects](../includes/fdp-project-name.md)] to build Agents, we recommend the following network architecture for the most secure end-to-end configuration:
 
-:::image type="content" source="." alt-text="Diagram of the recommended network isolation for AI Foundry projects and agents." lightbox="../media/how-to/network/azure-ai-network-end-to-end.png":::
+:::image type="content" source="../media/how-to/network/network-diagram-agents.png" alt-text="Diagram of the recommended network isolation for AI Foundry projects and agents." lightbox="../media/how-to/network/network-diagram-agents.png":::
 
 1. Set the public network access (PNA) flag of each of your resources to `Disabled`. This locks down inbound access from the public internet to the resources.
 1. Create a private endpoint for each of your Azure resources that are required for a Standard Agent:
@@ -458,13 +458,48 @@ Network-secured Standard Agents support full network isolation and data exfiltra
 
 Additionally, a network-secured Standard Agent is only supported through BICEP template deployment, and not through UX, CLI, or SDK. After the Foundry resource and Agent are deployed through the template, you cannot update the delegated subnet for the Agent Service. This is visible in the Foundry resource Networking tab, where you can view and copy the subnet, but cannot update or remove the subnet delegation. To update the delegated subnet, you must redeploy the network-secured Standard Agent template. 
 
-:::image type="content" source="" alt-text="Diagram of the network injection for Azure AI Foundry projects and agents." lightbox="":::
+:::image type="content" source="../media/how-to/network/network-injection.png" alt-text="Diagram of the network injection for Azure AI Foundry projects and agents." lightbox="../media/how-to/network/network-injection.png":::
 
 For more information on secured networking for the Agent Service, see [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks) article.
 
 ::: zone-end
 
-## Custom DNS configuration
+## DNS configuration
+
+::: zone pivot="fdp-project"
+
+Clients on a virtual network that use the private endpoint use thee same connection string for the Azure AI Foundry resource and projects as clients connecting to the public endpoint. DNS resolution automatically routees the connections from the virtual network to the Azure AI Foundry resource and projects over a private link.
+
+### Apply DNS changes for private endpoints
+
+When you create a private endpoint, the DNS CNAME resource record for the Azure AI Foundry resource is updated to an alias in a subdomain with the prefix `privatelink`. By default, Azure also creates a private DNS zone that corresponds to the `privatelink` subdomain, with the DNS A resource records for the private endpoints. For more information, see [what is Azure Private DNS](/azure/dns/private-dns-overview).
+
+When you resolve the endpoint URL from outside the virtual network with the private endpoint, it resolves to the public endpoint of the Azure AI Foundry resource. When it's resolved from the virtual network hosting the private endpoint, it resolves to the private IP address of the private endpoint.
+
+This approach enables access to the Azure AI Foundry resource using the same connection string for clients in the virtual network that hosts the private endpoints, and clients outside the virtual network.
+
+If you use a custom DNS server on your network, clients must be able to resolve the fully qualified domain name (FQDN) for the Azure AI services resource endpoint to the private endpoint IP address. Configure your DNS server to delegate your private link subdomain to the private DNS zone for the virtual network.
+
+> [!TIP]
+> When you use a custom or on-premises DNS server, you should configure your DNS server to resolve the Azure AI services resource name in the `privatelink` subdomain to the private endpoint IP address. Delegate the `privatelink` subdomain to the private DNS zone of the virtual network. Alternatively, configure the DNS zone of your DNS server and add the DNS A records.
+>
+> For more information on configuring your own DNS serever to support private endpoints, use the following articles:
+> - [Name resolution that uses your own DNS server](/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances#name-resolution-that-uses-your-own-dns-server)
+> - [DNS configuration](/azure/private-link/private-endpoint-overview#dns-configuration)
+
+## Grant access to trusted Azure services
+
+You can grant a subset of trusted Azure services access to Azure OpenAI, while maintaining network rules for other apps. These trusted services will then use managed identity to authenticate your Azure OpenAI resources. The following table lists the services that can access Azure OpenAI if the managed identity of those services have the appropriate role assignment:
+
+| Service | Resource provider name |
+| ----- | ----- |
+| Azure AI Searchc | `Microsoft.Search` |
+
+You can grant networking access to trusted Azure services by creating a network rule exception using the REST API or Azure portal.
+
+::: zone-end
+
+::: zone pivot="hub-project"
 
 See [Azure Machine Learning custom DNS](/azure/machine-learning/how-to-custom-dns#example-custom-dns-server-hosted-in-vnet) article for the DNS forwarding configurations.
 
@@ -492,11 +527,21 @@ To find the private IP addresses for your A records, see the [Azure Machine Lear
 > [!NOTE]
 > Project workspaces reuse the FQDNs of the associated hub workspaces. There is no reason to configure separate entries for the project workspace GUIDs.
 
+::: zone-end
+
 ## Limitations
 
 :::zone pivot="hub-project"
 
 * You might encounter problems trying to access the private endpoint for your hub if you're using Mozilla Firefox. This problem might be related to DNS over HTTPS in Mozilla Firefox. We recommend using Microsoft Edge or Google Chrome.
+
+:::zone-end
+
+:::zone pivot="fdp-project"
+
+- A network-secured Agent (bring your own virtual network) is only supported through Bicep template deployment. For more information on network-secured Agent deployment, see [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks). 
+- A network-secured Agent to be deployed is only a Standard Agent, not a Light Agent. 
+- There is no managed virtual network support for the Agent Service or [!INCLUDE [FDP](../includes/fdp-project-name.md)].
 
 :::zone-end
 
