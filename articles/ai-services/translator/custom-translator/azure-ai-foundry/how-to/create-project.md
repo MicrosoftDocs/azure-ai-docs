@@ -38,4 +38,4 @@ In the [Azure AI Foundry portal](https://ai.azure.com/), you can fine-tune some 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn how to create a language pair](how-to-custom-translation-create-language-pair.md)
+> [Learn how to create a language pair](create-language-pair.md)

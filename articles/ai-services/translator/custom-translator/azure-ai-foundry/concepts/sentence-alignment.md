@@ -12,7 +12,7 @@ ms.custom: cogserv-non-critical-translator
 #Customer intent: As a Custom translation user, I want to know how sentence alignment works, so that I can have better understanding of underlying process of sentence extraction, pairing, filtering, aligning.
 ---
 
-# Sentence pairing and alignment in parallel documents
+# Parallel documents: sentence pairing and alignment
 
 After documents are uploaded, sentences present in parallel documents are
 paired or aligned. Custom translation reports the number of sentences it was
@@ -50,7 +50,7 @@ For a training to succeed, the following table shows the minimum number of sente
 > - Training doesn't start and fails if the 10,000 minimum sentence count for training isn't met.
 > - Tuning and testing are optional. If you don't provide them, the system removes an appropriate percentage from training to use for validation and testing.
 > - You can train a model using dictionary data only. For more information, *see* [What is a dictionary](dictionaries.md).
-> - The Document Translation feature is recommended for training with dictionaries that contain more than 250,000 sentences. For more information, *see* [Document Translation](../../document-translation/overview.md).
+> - The Document Translation feature is recommended for training with dictionaries that contain more than 250,000 sentences. For more information, *see* [Document Translation](../../../document-translation/overview.md).
 > - Free (F0) subscription training has a maximum limit of 2,000,000 characters.
 
 ## Next steps
