@@ -27,7 +27,7 @@ Model leaderboards (preview) in Azure AI Foundry portal allow you to streamline 
 Whenever you find a model to your liking, you can select it and zoom into the **Detailed benchmarking results** of the model within the model catalog. If satisfied with the model, you can deploy it, try it in the playground, or evaluate it on your data. The leaderboards support benchmarking across text language models (large language models (LLMs) and small language models (SLMs)) and embedding models.
 
 
-Model benchmarks assess LLMs and SLMs across the following categories: quality, performance, and cost. In addition, we assess the quality of embedding models using standard benchmarks. The benchmarks are updated regularly as new datasets and associated metrics are added to existing models, and as new models are added to the model catalog.
+Model benchmarks assess LLMs and SLMs across the following categories: quality, performance, and cost. In addition, we assess the quality of embedding models using standard benchmarks. The benchmarks are updated regularly as better and more unsaturated datasets and associated metrics are added to existing models, and as new models are added to the model catalog.
 
 
 ## Quality benchmarks of language models
@@ -68,7 +68,9 @@ Accuracy scores are provided on a scale of zero to one. Higher values are better
 
 ## Safety benchmarks of language models
 
-Azure AI assesses the quality of LLMs and SLMs using accuracy scores from standard, comprehensive benchmark datasets measuring model capabilities such as reasoning, knowledge, question answering, math, and coding. 
+Safety benchmarks use a standard metric Attack Success Rate to measure how vulerable language models are to attacks in biosecurity, cybersecurity, and chemical security. Currently, the [Weapons of Mass Destruction Proxy (WMDP) benchmark](https://www.wmdp.ai/) is used to assess hazardous knowledge in language models. The lower the Attack Success Rate is, the safer is the model response. 
+
+All model endpoints are benchmarked with the default Azure AI Content Safety filters on with a default configuration. These safety filters detect and block [content harm categories](../../ai-services/content-safety/concepts/harm-categories.md) in violence, self-harm, sexual, hate and unfaireness, but do not measure categories in cybersecurity, biosecurity, chemical security.
 
 
 ## Performance benchmarks of language models
