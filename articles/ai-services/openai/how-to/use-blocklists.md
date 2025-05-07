@@ -149,7 +149,7 @@ In the below example, a GPT-35-Turbo deployment with a blocklist is blocking the
         "status": 400, 
         "innererror": { 
             "code": "ResponsibleAIPolicyViolation", 
-            "content_filter_result": { 
+            "content_filter_results": { 
                 "custom_blocklists": [ 
                     { 
                         "filtered": true, 
