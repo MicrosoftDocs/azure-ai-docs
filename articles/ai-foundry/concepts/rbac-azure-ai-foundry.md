@@ -108,7 +108,9 @@ The full set of permissions for the new **Azure AI User** role are as follows:
 
 ### Azure AI Project Manager
 
-To learn more about conditional access in AI Foundry, see {TBD}. The full set of permissions for the new **Azure AI Project Manager** role are as follows:
+The Azure AI Project Manager role utilizes delegated Azure role assignment management to others with conditions. Because of the conditional delegation, the Azure AI Project Manager role can assign only the Azure AI User role to other user principals in the resource group. Conditional delegation allows the admin of your enterprise to delegate the work of role assignments to get started building and developing with AI Foundry projects. For more information on role assignments with conditions, see [Delegate Azure role assignment management to others with conditions](/azure/role-based-access-control/delegate-role-assignments-portal). 
+
+The full set of permissions for the new **Azure AI Project Manager** role are as follows:
 
 ```json
 {
@@ -147,7 +149,9 @@ To learn more about conditional access in AI Foundry, see {TBD}. The full set of
 
 ## Azure AI Account Owner
 
-To learn more about conditional access in AI Foundry, see {TBD}. The full set of permissions for the new "Azure AI Account Owner" role are as follows:
+The Azure AI Account Owner role utilizes delegated Azure role assignment management to others with conditions. Because of the conditional delegation, the Azure AI Account Owner role can assign only the Azure AI User role to other user principals in the resource group. Conditional delegation allows the admin of your enterprise to delegate the work of role assignments to get started building and developing with AI Foundry projects. For more information on role assignments with conditions, see [Delegate Azure role assignment management to others with conditions](/azure/role-based-access-control/delegate-role-assignments-portal).
+
+The full set of permissions for the new "Azure AI Account Owner" role are as follows:
 
 ```json
 {
@@ -277,7 +281,7 @@ Only the Owner and Contributor roles allow you to make a hub. At this time, cust
 
 ### Azure AI Administrator role (preview)
 
-Prior to 11/19/2024, the system-assigned managed identity created for the hub was automatically assigned the __Contributor__ role for the resource group that contains the hub and projects. Hubs created after this date have the system-assigned managed identity assigned to the __Azure AI Administrator__ role. This role is more narrowly scoped to the minimum permissions needed for the managed identity to perform its tasks.
+Before 11/19/2024, the system-assigned managed identity created for the hub was automatically assigned the __Contributor__ role for the resource group that contains the hub and projects. Hubs created after this date have the system-assigned managed identity assigned to the __Azure AI Administrator__ role. This role is more narrowly scoped to the minimum permissions needed for the managed identity to perform its tasks.
 
 The __Azure AI Administrator__ role is currently in public preview.
 
