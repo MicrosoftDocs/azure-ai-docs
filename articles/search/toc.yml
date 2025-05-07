@@ -387,12 +387,15 @@ items:
         href: vector-search-how-to-truncate-dimensions.md
     - name: Query vectors
       href: vector-search-how-to-query.md
+    - name: Use multi-vector fiels
+      href: vector-search-multi-vector-fields.md
     - name: Add a vectorizer for text-to-vector queries
       displayName: query
       href: vector-search-how-to-configure-vectorizer.md
     - name: Filter on vector queries
       displayName: query
       href: vector-search-filters.md
+
   - name: Keyword search
     items:
     - name: Full text query
