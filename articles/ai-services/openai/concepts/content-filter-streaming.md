@@ -10,7 +10,7 @@ ms.author: pafarley
 ---
 
 
-## Content filter streaming
+# Content filter streaming
 
 This section describes the Azure OpenAI content streaming experience and options. Customers can receive content from the API as it's generated, instead of waiting for chunks of content that have been verified to pass your content filters.
 
