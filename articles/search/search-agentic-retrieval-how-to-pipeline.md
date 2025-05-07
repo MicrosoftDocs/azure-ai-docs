@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/30/2025
+ms.date: 05/05/2025
 ---
 
 # Build an agent-to-agent retrieval solution using Azure AI Search

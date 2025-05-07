@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/30/2025
+ms.date: 05/05/2025
 ---
 
 # Create an agent in Azure AI Search
@@ -25,18 +25,11 @@ After you can create an agent, you can update its properties at any time. If the
 
 + A conversational language model on Azure OpenAI, either gpt-4o or gpt-4o-mini.
 
-+ Azure AI Search with a managed identity for role-based access to a chat model.
++ Azure AI Search, in any [region that provides semantic ranker](search-region-support.md), on basic tier and above. Your search service must have a [managed identity](search-howto-managed-identities-data-sources.md) for role-based access to a chat model.
 
-+ An Owner/Contributor or Search Service Contributor can create and manage an agent. Search Index Data Reader to run queries.
++ Permission requirements on Azure AI Search. An **Owner/Contributor** or **Search Service Contributor** can create and manage an agent. **Search Index Data Contributor** uploads and indexes document. **Search Index Data Reader** runs queries. Instructions are provided in this article.
 
 + A search index containing plain text or vectors. The index must [meet requirements for agentic retrieval](search-agentic-retrieval-how-to-index.md), including a [semantic configuration](semantic-how-to-configure.md) with the `defaultConfiguration` specified.
-
-+ Region requirements. Azure AI Search and your model should be in the same region.  Public cross-region connections and private link connection from AI Search to the model are supported. 
-
-  + **East US**
-  + **North Europe**
-  + **Japan East**
-  + **Sweden Central**
 
 + API requirements. To create or use an agent, use 2025-05-01-preview data plane REST API or a prerelease package of an Azure SDK that provides Agent APIs.
 
@@ -50,12 +43,17 @@ Make sure you have a supported model that Azure AI Search can access. The follow
 
 1. Deploy a supported model using [these instructions](/azure/ai-foundry/how-to/deploy-models-openai).
 
+1. Verify the search service managed identity has **Cognitive Services User** permissions on the Azure OpenAI resource. If you're testing locally, you also need **Cognitive Services User** permissions.
+
 ### Supported models
 
 Use Azure OpenAI or an equivalent open source model:
 
-+ gpt-4o
-+ gpt-4o-mini
++ `gpt-4o`
++ `gpt-4o-mini`
++ `gpt-4.1`
++ `gpt-4.1-nano`
++ `gpt-4.1-mini`
 
 ## Configure access
 
@@ -167,7 +165,7 @@ Content-Type: application/json
         }
     ],
     "requestLimits": {
-        "maxOutputSize": 10000,
+        "maxOutputSize": 5000,
         "maxRuntimeInSeconds": 60
     },
     "encryptionKey": { }
@@ -198,7 +196,7 @@ Content-Type: application/json
 <!--  Check minimum 10k  -->
 + `requestLimits` gives you control over the output generated during retrieval so that you can better manage inputs to the LLM. 
 
-  + `maxOutputSize` is the maximum number of tokens in the response `content` string, with 10,000 tokens as the minimum and no explicit maximum. The most relevant matches are preserved but the overall response is truncated at the last complete document to fit your token budget. 
+  + `maxOutputSize` is the maximum number of tokens in the response `content` string, with 5,000 tokens as the minimum and recommended value, and no explicit maximum. The most relevant matches are preserved but the overall response is truncated at the last complete document to fit your token budget. 
 
   + `maxRuntimeInSeconds` sets the maximum amount of processing time for the entire request, inclusive of both Azure OpenAI and Azure AI Search.
 

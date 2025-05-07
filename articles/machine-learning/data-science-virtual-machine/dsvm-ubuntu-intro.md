@@ -39,6 +39,10 @@ To create an instance of either the Ubuntu 20.04 DSVM or the Azure DSVM for PyTo
       * **Region**: Select the datacenter that's most appropriate. For fastest network access, the datacenter that hosts most of your data or is located closest to your physical location is the best choice. For more information, visit [Azure regions](https://azure.microsoft.com/global-infrastructure/regions/).
       * **Image**: Don't change the default value.
       * **Size**: This option should autopopulate with an appropriate size for general workloads. For more information, visit [Linux VM sizes in Azure](/azure/virtual-machines/sizes).
+        
+        > [!NOTE]
+        > DSVM won't support NV family as it is incompatible with NVIDIA CUDA drivers.
+        
       * **Authentication type**: For quicker setup, select **Password**.
 
          > [!NOTE]
