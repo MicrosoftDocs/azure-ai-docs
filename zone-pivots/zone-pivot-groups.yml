@@ -1169,3 +1169,24 @@ groups:
     title: Foundry project
   - id: hub-project
     title: Hub based project 
+# Owner: sgilley
+- id: foundry-sdk-languages
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+    - id: programming-language-csharp
+      title: C#
+    - id: programming-language-cpp
+      title: C++
+    - id: programming-language-go
+      title: Go
+    - id: programming-language-java
+      title: Java
+    - id: programming-language-javascript
+      title: JavaScript
+    - id: programming-language-objectivec
+      title: Objective-C
+    - id: programming-language-python
+      title: Python
+    - id: programming-language-swift
+      title: Swift

@@ -12,7 +12,7 @@ ms.date: 05/07/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
-zone_pivot_groups: programming-languages-reference-ai-services
+zone_pivot_groups: foundry-sdk-languages
 # customer intent: I want to learn how to use the Azure AI Foundry SDK to build AI applications on Azure.
 ---
 
@@ -75,37 +75,33 @@ Using the project endpoint, you can:
 To use Azure AI services, you can use the following client libraries with the endpoints listed on the project homepage.
 
 ::: zone pivot="programming-language-cpp"
-[!INCLUDE [C++ include](../../../ai-services/includes/reference/sdk/cpp.md)]
+[!INCLUDE [C++ include](../../includes/sdk/cpp.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
-[!INCLUDE [C# include](../../../ai-services/includes/reference/sdk/csharp.md)]
+[!INCLUDE [C# include](../../includes/sdk/csharp.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-go"
-[!INCLUDE [Go include](../../../ai-services/includes/reference/sdk/go.md)]
+[!INCLUDE [Go include](../../includes/sdk/go.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
-[!INCLUDE [Java include](../../../ai-services/includes/reference/sdk/java.md)]
+[!INCLUDE [Java include](../../includes/sdk/java.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
-[!INCLUDE [JavaScript include](../../../ai-services/includes/reference/sdk/javascript.md)]
+[!INCLUDE [JavaScript include](../../includes/sdk/javascript.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-objectivec"
-[!INCLUDE [ObjectiveC include](../../../ai-services/includes/reference/sdk/objective-c.md)]
+[!INCLUDE [ObjectiveC include](../../includes/sdk/objective-c.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
-[!INCLUDE [Python include](./../../../ai-services/includes/reference/sdk/python.md)]
-::: zone-end
-
-::: zone pivot="programming-language-ruby"
-[!INCLUDE [Ruby include](./../../../ai-services/includes/reference/sdk/ruby.md)]
+[!INCLUDE [Python include](./../../includes/sdk/python.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-swift"
-[!INCLUDE [Swift include](../../../ai-services/includes/reference/sdk/swift.md)]
+[!INCLUDE [Swift include](../../includes/sdk/swift.md)]
 ::: zone-end
