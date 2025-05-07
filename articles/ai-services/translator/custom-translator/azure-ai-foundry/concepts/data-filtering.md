@@ -1,7 +1,7 @@
 ---
 title: "Data Filtering - Custom translation"
 titleSuffix: Azure AI services
-description: When you submit documents to be used for training a custom system, the documents undergo a series of processing and filtering steps.
+description: Explaining how training documents for a custom system undergo a series of processing and filtering steps.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator

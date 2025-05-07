@@ -1,7 +1,7 @@
 ---
 title: Azure AI Translator Custom translation for beginners
 titleSuffix: Azure AI services
-description: A user guide for understanding the end-to-end customized machine translation process.
+description: User guide for understanding the end-to-end customized machine translation process.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator

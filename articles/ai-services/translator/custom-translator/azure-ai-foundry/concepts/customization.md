@@ -1,7 +1,7 @@
 ---
 title: Translation Customization - Custom translation
 titleSuffix: Azure AI services
-description: Use the Microsoft Translator Hub to build your own machine translation system using your preferred terminology and style.
+description: Build your own machine translation system using your preferred terminology and style.
 #services: cognitive-services
 author: laujan
 manager: nitinme

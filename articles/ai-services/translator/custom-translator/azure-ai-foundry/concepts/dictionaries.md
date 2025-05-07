@@ -1,7 +1,7 @@
 ---
 title: "Dictionary - Custom translation"
 titleSuffix: Azure AI services
-description: How to create an aligned document that specifies a list of phrases or sentences (and their translations) that you always want Microsoft Translator to translate the same way. Dictionaries are sometimes also called glossaries or term bases.
+description: How to create an aligned document specifying a list of phrases or sentences (and their translations) that you always want Azure AI Translator to translate in the same manner. Dictionaries can also be called glossaries or term bases.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator

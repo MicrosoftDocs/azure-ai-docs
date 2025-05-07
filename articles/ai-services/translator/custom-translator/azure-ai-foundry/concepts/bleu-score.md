@@ -1,7 +1,7 @@
 ---
 title: "BLEU score - Custom translation"
 titleSuffix: Azure AI services
-description: BLEU is a measurement of the differences between machine translation and human-created reference translations of the same source sentence.
+description: The BLEU score measures the differences between machine translation and human-created reference translations of the same source sentence.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
