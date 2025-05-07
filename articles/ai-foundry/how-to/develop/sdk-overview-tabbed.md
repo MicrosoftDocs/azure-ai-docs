@@ -72,6 +72,7 @@ Install info
 ---
 
 Create a project client in code:
+
 # [C++](#tab/cpp)
 Client info
 
@@ -122,27 +123,35 @@ Using the project endpoint, you can:
 To use Azure AI services, you can use the following client libraries with the endpoints listed on the project homepage.
 
 # [C++](#tab/cpp)
+
 [!INCLUDE [C++ include](../../includes/sdk/cpp.md)]
 
 # [C#](#tab/csharp)
+
 [!INCLUDE [C# include](../../includes/sdk/csharp.md)]
 
 # [Go](#tab/go)
+
 [!INCLUDE [Go include](../../includes/sdk/go.md)]
 
 # [Java](#tab/java)
+
 [!INCLUDE [Java include](../../includes/sdk/java.md)]
 
 # [JavaScript](#tab/javascript)
+
 [!INCLUDE [JavaScript include](../../includes/sdk/javascript.md)]
 
 # [Objective-C](#tab/objectivec)
+
 [!INCLUDE [ObjectiveC include](../../includes/sdk/objective-c.md)]
 
-# [Python}(#tab/python)
+# [Python](#tab/python)
+
 [!INCLUDE [Python include](./../../includes/sdk/python.md)]
 
 # [Swift](#tab/swift)
+
 [!INCLUDE [Swift include](../../includes/sdk/swift.md)]
 
 ---
