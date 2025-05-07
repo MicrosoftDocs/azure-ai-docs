@@ -6,12 +6,10 @@ author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 05/06/2025
+ms.date: 05/07/2025
 ---
 
 # Multi-vector field support in Azure AI Search
-
-## Overview
 
 The multi-vector field support feature in Azure AI Search enables you to index multiple child vectors within a single document field. This feature is valuable for use cases like multi-modal data or long-form documents, where representing the content with a single vector would lead to loss of important detail.
 
