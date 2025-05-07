@@ -22,6 +22,7 @@ ms.custom: include
 | ![Document Intelligence icon](~/reusable-content/ce-skilling/azure/media/ai-services/document-intelligence.svg) [Document Intelligence](../../../ai-services/document-intelligence/index.yml) | Turn documents into intelligent data-driven solutions. | &bullet;&NonBreakingSpace;[Document Intelligence SDK for Java](/java/api/overview/azure/ai-documentintelligence-readme?view=azure-java-preview&preserve-view=true) <br><br>&bullet;&NonBreakingSpace;[Document Intelligence Maven package](https://mvnrepository.com/artifact/com.azure/azure-ai-documentintelligence/1.0.0-beta.1) |
 
 NOT THESE?
+
 | Service | Description | Reference documentation |
 | --- | --- | --- |
 | ![Azure AI Search icon](~/reusable-content/ce-skilling/azure/media/ai-services/search.svg) [Azure AI Search](/azure/search/) | Bring AI-powered cloud search to your mobile and web apps. | &bullet;&NonBreakingSpace;[Azure AI Search SDK for Java](/java/api/overview/azure/search-documents-readme?view=azure-java-stable&preserve-view=true) <br><br>&bullet;&NonBreakingSpace;[Azure AI Search Maven package](https://central.sonatype.com/artifact/com.azure/azure-search-documents/11.7.0-beta.1?smo=true) |

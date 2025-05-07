@@ -23,6 +23,7 @@ ms.custom: include
 | ![Document Intelligence icon](~/reusable-content/ce-skilling/azure/media/ai-services/document-intelligence.svg) [Document Intelligence](../../../ai-services/document-intelligence/index.yml) | Turn documents into intelligent data-driven solutions. | &bullet;&NonBreakingSpace;[Document Intelligence SDK for .NET](/dotnet/api/overview/azure/ai.documentintelligence-readme?view=azure-dotnet-preview&preserve-view=true) <br><br>&bullet;&NonBreakingSpace;[Document Intelligence NuGet package](https://www.nuget.org/packages/Azure.AI.DocumentIntelligence/1.0.0-beta.1) |
 
 NOT THESE?
+
 | Service | Description | Reference documentation |
 | --- | --- | --- |
 | ![Azure AI Search icon](~/reusable-content/ce-skilling/azure/media/ai-services/search.svg) [Azure AI Search](/azure/search/) | Bring AI-powered cloud search to your mobile and web apps. | &bullet;&NonBreakingSpace;[Azure AI Search SDK for .NET](/dotnet/api/overview/azure/search.documents-readme?view=azure-dotnet&preserve-view=true)<br><br>&bullet;&NonBreakingSpace;[Azure AI Search NuGet package](https://www.nuget.org/packages/Azure.Search.Documents/11.6.0-beta.2)  |
