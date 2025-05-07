@@ -14,7 +14,7 @@ ms.topic: conceptual
 
 ## Overview
 
-The Foundry agent is an experimental experience that is here to assist you with questions about Azure AI Foundry. To start using the Foundry agent, simply click on the @Foundry icon located in the top left bar of the interface. A chat window opens where you can type your questions and receive answers in real-time.
+The Foundry agent is an experimental feature that is here to assist you with questions about Azure AI Foundry. To start using the Foundry agent, simply click on the icon "@Foundry" located in the top right bar of the interface. A chat window opens where you can type your questions and receive answers in real-time.
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -37,7 +37,7 @@ Use the Foundry agent to make the most of the Azure AI Foundry experience, but k
 
 ### What is the Foundry agent in Azure AI Foundry?
 
-It is an AI agent that enabled users of Azure AI Foundry to navigate its capabilities, identify models, and understand how to use its resources to build generative AI applications. For an overview of how the agent works and a summary of its capabilities, see [@Foundry overview](./ask-at-foundry.md).
+It is an AI agent that enabled users of Azure AI Foundry to navigate its capabilities, identify models, and understand how to use its resources to build generative AI applications. For an overview of how the agent works and a summary of its capabilities, see the overview above.
 
 ### What is the current status of the Foundry agent?
 
@@ -47,17 +47,13 @@ It is available in Azure AI Foundry as a preview feature.
 
 The Foundry agent is designed to generate the best possible responses within the context to which it has access. However, like any AI system, the agent's responses are not always perfect. All of the agent's responses should be carefully tested, reviewed, and vetted before using the responses in Azure AI Foundry or your application.
 
-### What data does  collect?
+### How do I provide feedback on the Foundry agent?
 
-User-provided prompts and @Foundry's responses are not used to further train, retrain, or improve Azure OpenAI Service foundation models that generate responses. User-provided prompts and @Foundry's responses are collected and used to improve Microsoft products and services only when users give explicit consent to include this information within feedback. We collect user engagement data, such as the number of chat sessions and session duration, the skill that's used in a particular session, thumbs up, thumbs down, feedback, etc. This information is retained and used as set forth in the [Microsoft Privacy Statement](https://privacy.microsoft.com/en-us/privacystatement).
-
-### How do I provide feedback on @Foundry?
-
-If you see a response that is inaccurate, or not supporting your needs use the thumbs-down buttons below the response to submit feedback. You can also submit feedback on your overall experience by using the Azure AI Foundry feedback button on the top menu.
+If you see a response that is inaccurate, or not supporting your needs use the thumbs-down button below the response to submit feedback. You can also submit feedback on your overall experience by using the Azure AI Foundry feedback button on the top menu.
 
 ### What should I do if I see unexpected or offensive content?
 
-The Azure AI Foundry team has built @Foundry guided by our [AI principles](https://www.microsoft.com/ai/principles-and-approach) and [Responsible AI Standard](https://aka.ms/RAIStandardPDF). We have prioritized mitigating exposing customers to offensive content. However, you might still see unexpected results. We're constantly working to improve our technology to prevent the output of harmful content.
+The Azure AI Foundry team has built the Foundry agent guided by our [AI principles](https://www.microsoft.com/ai/principles-and-approach) and [Responsible AI Standard](https://aka.ms/RAIStandardPDF). We have prioritized mitigating exposing customers to offensive content. However, you might still see unexpected results. We're constantly working to improve our technology to prevent the output of harmful content.
 
 If you encounter harmful or inappropriate content in the system, select the thumbs-down icon below the response to provide feedback or report a concern.
 
