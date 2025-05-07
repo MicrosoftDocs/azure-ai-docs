@@ -385,7 +385,7 @@ items:
       - name: Agent evaluators
         href: concepts/evaluation-evaluators/agent-evaluators.md 
       - name: Azure Open AI evaluators 
-        href: concepts/evaluation-evaluators/azure-openai-evaluators.md
+        href: concepts/evaluation-evaluators/azure-openai-graders.md
    - name: Batch evaluations
      items:
       - name: Manually evaluate prompts in the playground
