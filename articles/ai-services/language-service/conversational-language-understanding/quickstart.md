@@ -9,7 +9,7 @@ ms.topic: quickstart
 ms.date: 05/01/2025
 ms.author: jboback
 ms.custom: language-service-clu, mode-other
-zone_pivot_groups: usage-custom-language-features
+zone_pivot_groups: usage-custom-language-features-foundry
 ---
 
 # Quickstart: Conversational language understanding 
