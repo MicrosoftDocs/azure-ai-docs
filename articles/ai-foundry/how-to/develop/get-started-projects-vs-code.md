@@ -6,6 +6,7 @@ manager: mcleans
 ms.service: azure-ai-foundry
 content_well_notification: 
   - AI-contribution
+ai-usage: ai-assisted
 ms.topic: how-to
 ms.date: 04/28/2025
 ms.reviewer: erichen
