@@ -46,7 +46,7 @@ You get several hub default resources in your resource group. You need to config
 * You must have an existing Azure Virtual Network to create the private endpoint in. 
 
     > [!IMPORTANT]
-    > We do not recommend using the 172.17.0.0/16 IP address range for your VNet. This is the default subnet range used by the Docker bridge network on-premises.
+    > We don't recommend using the 172.17.0.0/16 IP address range for your VNet. This is the default subnet range used by the Docker bridge network on-premises.
 
 * Disable network policies for private endpoints before adding the private endpoint.
 
@@ -72,7 +72,7 @@ When creating a new project, use the following steps to create the project.
 
 ## Create a hub that uses a private endpoint
 
-If you are creating a new hub, use the following methods to create the hub (Azure portal or Azure CLI). Each of these methods __requires an existing virtual network__:
+If you're creating a new hub, use the following methods to create the hub (Azure portal or Azure CLI). Each of these methods __requires an existing virtual network__:
 
 # [Azure portal](#tab/azure-portal)
 
@@ -147,7 +147,7 @@ az network private-endpoint dns-zone-group create \
     - From __Basics__, select the same __Region__ as your virtual network.
     - From the __Virtual Network__ form, select the virtual network and subnet that you want to connect to.
 
-1. After populating the forms with any additional network configurations you require, use the __Review + create__ tab to review your settings and select __Create__ to create the private endpoint.
+1. After populating the forms with any other network configurations you require, use the __Review + create__ tab to review your settings and select __Create__ to create the private endpoint.
 
 :::zone-end
 
@@ -170,7 +170,7 @@ Use one of the following methods to add a private endpoint to an existing hub:
     - From __Resource__, select `amlworkspace` as the __target sub-resource__.
     - From the __Virtual Network__ form, select the virtual network and subnet that you want to connect to.
  
-1. After populating the forms with any additional network configurations you require, use the __Review + create__ tab to review your settings and select __Create__ to create the private endpoint.
+1. After populating the forms with any other network configurations you require, use the __Review + create__ tab to review your settings and select __Create__ to create the private endpoint.
 
 # [Azure CLI](#tab/cli)
 
@@ -339,7 +339,7 @@ You can use IP network rules to allow access to your secured hub from specific p
 > [!WARNING]
 > * Enable your endpoint's public network access flag if you want to allow access to your endpoint from specific public internet IP address ranges.
 > * You can only use IPv4 addresses.
-> * If the workspace goes from __Enable from selected IPs__ to __Disabled__ or __Enabled__, the IP ranges will be reset.
+> * If the workspace goes from __Enable from selected IPs__ to __Disabled__ or __Enabled__, the IP ranges are reset.
 
 # [Portal](#tab/azure-portal)
 
@@ -408,7 +408,7 @@ The following restrictions apply to IP address ranges:
 
 - When this feature is enabled, you can test public endpoints using any client tool such as Curl, but the Endpoint Test tool in the portal isn't supported.
 
-- You can only set the IP addresses for the AI Foundry hub after the hub has been created.
+- You can only set the IP addresses for the AI Foundry hub after the hub is created.
 
 ## Private storage configuration
 
@@ -424,7 +424,7 @@ If your storage account is private (uses a private endpoint to communicate with 
     | `Storage Blob Data Contributor` | Azure AI Search | Storage Account | Read blob and write knowledge store | [Search doc](/azure/search/search-howto-managed-identities-data-sources). |
 
     > [!TIP]
-    > Your storage account may have multiple private endpoints. You need to assign the `Reader` role to each private endpoint for your Azure AI Foundry project managed identity.
+    > Your storage account might have multiple private endpoints. You need to assign the `Reader` role to each private endpoint for your Azure AI Foundry project managed identity.
 
 1. Assign the `Storage Blob Data reader` role to your developers. This role allows them to read data from the storage account.
 
@@ -442,13 +442,13 @@ When creating a Foundry resource and [!INCLUDE [fdp-projects](../includes/fdp-pr
 
 :::image type="content" source="../media/how-to/network/network-diagram-agents.png" alt-text="Diagram of the recommended network isolation for AI Foundry projects and agents." lightbox="../media/how-to/network/network-diagram-agents.png":::
 
-1. Set the public network access (PNA) flag of each of your resources to `Disabled`. This locks down inbound access from the public internet to the resources.
+1. Set the public network access (PNA) flag of each of your resources to `Disabled`. Disabling public network access locks down inbound access from the public internet to the resources.
 1. Create a private endpoint for each of your Azure resources that are required for a Standard Agent:
 
     - Azure Storage Account
     - Azure AI Search resource
     - Cosmos DB resource
-    - Azure AI Foundry reesource
+    - Azure AI Foundry resource
 
 1. To access your resources, we recommend using a Bastion VM, ExpressRoute, or VPN connection to your Azure Virtual Network. These options allow you to connect to the isolated network environment.
 
@@ -456,7 +456,7 @@ When creating a Foundry resource and [!INCLUDE [fdp-projects](../includes/fdp-pr
 
 Network-secured Standard Agents support full network isolation and data exfiltration protection through network injection of the Agent client. To do this, the Agent client is network injected into your Azure virtual network, allowing for strict control over data movement and preventing data exfiltration by keeping traffic within your defined network boundaries. Network injection is supported only for Standard Agent deployment, not Light Agent deployment.
 
-Additionally, a network-secured Standard Agent is only supported through BICEP template deployment, and not through UX, CLI, or SDK. After the Foundry resource and Agent are deployed through the template, you cannot update the delegated subnet for the Agent Service. This is visible in the Foundry resource Networking tab, where you can view and copy the subnet, but cannot update or remove the subnet delegation. To update the delegated subnet, you must redeploy the network-secured Standard Agent template. 
+Additionally, a network-secured Standard Agent is only supported through BICEP template deployment, and not through UX, CLI, or SDK. After the Foundry resource and Agent are deployed through the template, you can't update the delegated subnet for the Agent Service. This is visible in the Foundry resource Networking tab, where you can view and copy the subnet, but can't update or remove the subnet delegation. To update the delegated subnet, you must redeploy the network-secured Standard Agent template. 
 
 :::image type="content" source="../media/how-to/network/network-injection.png" alt-text="Diagram of the network injection for Azure AI Foundry projects and agents." lightbox="../media/how-to/network/network-injection.png":::
 
@@ -468,7 +468,7 @@ For more information on secured networking for the Agent Service, see [How to us
 
 ::: zone pivot="fdp-project"
 
-Clients on a virtual network that use the private endpoint use thee same connection string for the Azure AI Foundry resource and projects as clients connecting to the public endpoint. DNS resolution automatically routees the connections from the virtual network to the Azure AI Foundry resource and projects over a private link.
+Clients on a virtual network that use the private endpoint use the same connection string for the Azure AI Foundry resource and projects as clients connecting to the public endpoint. DNS resolution automatically routes the connections from the virtual network to the Azure AI Foundry resource and projects over a private link.
 
 ### Apply DNS changes for private endpoints
 
@@ -483,17 +483,17 @@ If you use a custom DNS server on your network, clients must be able to resolve 
 > [!TIP]
 > When you use a custom or on-premises DNS server, you should configure your DNS server to resolve the Azure AI services resource name in the `privatelink` subdomain to the private endpoint IP address. Delegate the `privatelink` subdomain to the private DNS zone of the virtual network. Alternatively, configure the DNS zone of your DNS server and add the DNS A records.
 >
-> For more information on configuring your own DNS serever to support private endpoints, use the following articles:
+> For more information on configuring your own DNS server to support private endpoints, use the following articles:
 > - [Name resolution that uses your own DNS server](/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances#name-resolution-that-uses-your-own-dns-server)
 > - [DNS configuration](/azure/private-link/private-endpoint-overview#dns-configuration)
 
 ## Grant access to trusted Azure services
 
-You can grant a subset of trusted Azure services access to Azure OpenAI, while maintaining network rules for other apps. These trusted services will then use managed identity to authenticate your Azure OpenAI resources. The following table lists the services that can access Azure OpenAI if the managed identity of those services have the appropriate role assignment:
+You can grant a subset of trusted Azure services access to Azure OpenAI, while maintaining network rules for other apps. These trusted services then use managed identity to authenticate your Azure OpenAI resources. The following table lists the services that can access Azure OpenAI if the managed identity of those services has the appropriate role assignment:
 
 | Service | Resource provider name |
 | ----- | ----- |
-| Azure AI Searchc | `Microsoft.Search` |
+| Azure AI Search | `Microsoft.Search` |
 
 You can grant networking access to trusted Azure services by creating a network rule exception using the REST API or Azure portal.
 
@@ -525,7 +525,7 @@ If you need to configure custom DNS server without DNS forwarding, use the follo
 To find the private IP addresses for your A records, see the [Azure Machine Learning custom DNS](/azure/machine-learning/how-to-custom-dns#find-the-ip-addresses) article.
 
 > [!NOTE]
-> Project workspaces reuse the FQDNs of the associated hub workspaces. There is no reason to configure separate entries for the project workspace GUIDs.
+> Project workspaces reuse the FQDNs of the associated hub workspaces. There's no reason to configure separate entries for the project workspace GUIDs.
 
 ::: zone-end
 
@@ -541,7 +541,7 @@ To find the private IP addresses for your A records, see the [Azure Machine Lear
 
 - A network-secured Agent (bring your own virtual network) is only supported through Bicep template deployment. For more information on network-secured Agent deployment, see [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks). 
 - A network-secured Agent to be deployed is only a Standard Agent, not a Light Agent. 
-- There is no managed virtual network support for the Agent Service or [!INCLUDE [FDP](../includes/fdp-project-name.md)].
+- There's no managed virtual network support for the Agent Service or [!INCLUDE [FDP](../includes/fdp-project-name.md)].
 
 :::zone-end
 
