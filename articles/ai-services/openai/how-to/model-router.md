@@ -40,6 +40,100 @@ In the [Azure AI Foundry portal](https://ai.azure.com/), you can navigate to you
 > [!IMPORTANT]
 > The `reasoning_effort` parameter (see the [Reasoning models guide](/azure/ai-services/openai/how-to/reasoning?tabs=python-secure#reasoning-effort)) isn't supported in model router. If the model router selects a reasoning model for your prompt, it also selects a `reasoning_effort` input value based on the complexity of the prompt.
 
+### Output format 
+
+The JSON response you receive from a model router model looks like the following.
+
+```json
+{
+  "choices": [
+    {
+      "content_filter_results": {
+        "hate": {
+          "filtered": "False",
+          "severity": "safe"
+        },
+        "protected_material_code": {
+          "detected": "False",
+          "filtered": "False"
+        },
+        "protected_material_text": {
+          "detected": "False",
+          "filtered": "False"
+        },
+        "self_harm": {
+          "filtered": "False",
+          "severity": "safe"
+        },
+        "sexual": {
+          "filtered": "False",
+          "severity": "safe"
+        },
+        "violence": {
+          "filtered": "False",
+          "severity": "safe"
+        }
+      },
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": "None",
+      "message": {
+        "content": "I'm doing well, thank you! How can I assist you today?",
+        "refusal": "None",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1745308617,
+  "id": "xxxx-yyyy-zzzz",
+  "model": "gpt-4.1-nano-2025-04-14",
+  "object": "chat.completion",
+  "prompt_filter_results": [
+    {
+      "content_filter_results": {
+        "hate": {
+          "filtered": "False",
+          "severity": "safe"
+        },
+        "jailbreak": {
+          "detected": "False",
+          "filtered": "False"
+        },
+        "self_harm": {
+          "filtered": "False",
+          "severity": "safe"
+        },
+        "sexual": {
+          "filtered": "False",
+          "severity": "safe"
+        },
+        "violence": {
+          "filtered": "False",
+          "severity": "safe"
+        }
+      },
+      "prompt_index": 0
+    }
+  ],
+  "system_fingerprint": "xxxx",
+  "usage": {
+    "completion_tokens": 15,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "prompt_tokens": 21,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0
+    },
+    "total_tokens": 36
+  }
+}
+```
+
 
 ## Evaluate model router performance
 
