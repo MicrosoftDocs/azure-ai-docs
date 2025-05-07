@@ -14,7 +14,7 @@ In this quickstart, you use [agentic retrieval](../../search-agentic-retrieval-c
 Although you can provide your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents describe the urban structures and lighting patterns of Phoenix, Arizona as observed from space.
 
 > [!TIP]
-> The REST version of this quickstart introduces agentic retrieval in Azure AI Search. For an end-to-end workflow, including steps for adding conversational turns and passing your retrieved content to an LLM for answer generation, see the [Python version](../../search-get-started-agentic-retrieval?pivots=python).
+> The REST version of this quickstart introduces agentic retrieval in Azure AI Search, which *extracts* rather than *generates* answers. For an end-to-end workflow, including steps for adding conversational turns and passing your retrieved content to an LLM for answer generation, see the Python version.
 
 ## Prerequisites
 
@@ -28,12 +28,9 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 ## Deploy models
 
-To run agentic retrieval, you must deploy two models to your Azure OpenAI resource:
+To run agentic retrieval, you must deploy two models to your Azure OpenAI resource: an LLM for query planning and an embedding model for vector queries.
 
-+ An LLM for query planning
-+ An embedding model for vector queries
-
-Agentic retrieval supports other models, but this quickstart assumes `gpt-4o-mini` for the LLM and `text-embedding-3-large` for the embedding model.
+Agentic retrieval supports several models, but this quickstart assumes `gpt-4o-mini` for the LLM and `text-embedding-3-large` for the embedding model.
 
 To deploy the Azure OpenAI models:
 
@@ -84,12 +81,14 @@ To configure the recommended role-based access:
 1. On your Azure AI Search service, [assign the following roles](../../search-security-rbac.md#how-to-assign-roles-in-the-azure-portal) to yourself.
 
     + **Owner/Contributor** or **Search Service Contributor**
+
     + **Search Index Data Contributor**
+
     + **Search Index Data Reader**
 
 1. On your Azure OpenAI resource, assign **Cognitive Services User** to the managed identity of your search service.
 
-## Get service endpoints
+## Get endpoints
 
 In your code, you specify the following endpoints to establish connections with Azure AI Search and Azure OpenAI. These steps assume that you configured role-based access in the previous section.
 
@@ -152,7 +151,7 @@ To load the connections:
     @api-version = 2025-05-01-Preview
     ```
 
-1. Replace `@baseUrl` and `@aoaiBaseUrl` with the values you obtained in [Get endpoints](#get-service-endpoints).
+1. Replace `@baseUrl` and `@aoaiBaseUrl` with the values you obtained in [Get endpoints](#get-endpoints).
 
 1. Replace `@token` with the Microsoft Entra token you obtained in [Connect from your local system](#connect-from-your-local-system).
 
@@ -169,17 +168,7 @@ To load the connections:
 
 ## Create a search index
 
-In Azure AI Search, an index is a structured collection of searchable data. Use [Create Index](/rest/api/searchservice/indexes/create) to define an index named `earth-at-night`, which you specified using the `@index-name` variable in the previous section.
-
-The index schema contains fields for document identification and page content, embeddings, and numbers. It also includes configurations for semantic ranking and vector queries, which use the `text-embedding-3-large` model you previously deployed.
-
-> [!IMPORTANT]
-> Agentic retrieval has two token-based billing models:
->
-> + Billing from Azure OpenAI for query planning
-> + Billing from Azure AI Search for query execution (semantic ranking)
->
-> Semantic ranking is free in the initial public preview. After the preview, standard token billing applies. For more information, see [Availability and pricing of agentic retrieval](../../search-agentic-retrieval-concept.md#availability-and-pricing).
+In Azure AI Search, an index is a structured collection of data. Use [Create Index](/rest/api/searchservice/indexes/create) to define an index named `earth-at-night`, which you specified using the `@index-name` variable in the previous section.
 
 ```HTTP
 ### Create an index
@@ -257,6 +246,16 @@ PUT {{baseUrl}}/indexes/{{index-name}}?api-version={{api-version}}  HTTP/1.1
     }
 ```
 
+The index schema contains fields for document identification and page content, embeddings, and numbers. It also includes configurations for semantic ranking and vector queries, which use the `text-embedding-3-large` model you previously deployed.
+
+> [!IMPORTANT]
+> Agentic retrieval has two token-based billing models:
+>
+> + Billing from Azure OpenAI for query planning
+> + Billing from Azure AI Search for query execution (semantic ranking)
+>
+> Semantic ranking is free in the initial public preview. After the preview, standard token billing applies. For more information, see [Availability and pricing of agentic retrieval](../../search-agentic-retrieval-concept.md#availability-and-pricing).
+
 ## Upload documents to the index
 
 Currently, the `earth-at-night` index is empty. Use [Index Documents](/rest/api/searchservice/documents/index) to populate the index with JSON documents from NASA's Earth at Night e-book. As required by Azure AI Search, each document conforms to the fields and data types defined in the index schema.
@@ -289,7 +288,6 @@ POST {{baseUrl}}/indexes/{{index-name}}/docs/index?api-version={{api-version}}  
             }
         ]
     }
-
 ```
 
 ## Create a search agent
@@ -360,7 +358,7 @@ POST {{baseUrl}}/agents/{{agent-name}}/retrieve?api-version={{api-version}}  HTT
 
 The output should be similar to the following JSON, where:
 
-+ `response` provides a text string of the most relevant documents (or chunks) in the search index based on the user query. You can pass this string to an LLM, which uses it as grounding data for answer generation.
++ `response` provides a text string of the most relevant documents (or chunks) in the search index based on the user query. You can pass this string to an LLM for use as grounding data in answer generation.
 
 + `activity` tracks the steps that were taken during the retrieval process, including the subqueries generated by your `gpt-4o-mini` deployment and the tokens used for query planning and execution.
 
@@ -370,7 +368,7 @@ The output should be similar to the following JSON, where:
 {
   "response": [
     {
-      "role": "tool",
+      "role": "assistant",
       "content": [
         {
           "type": "text",
