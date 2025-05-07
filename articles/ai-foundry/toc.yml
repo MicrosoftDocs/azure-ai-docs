@@ -38,13 +38,13 @@ items:
     href: foundry-agent/ask-foundry-agent.md
 - name: Azure AI Foundry Models
   items:
-  - name: Use the model catalog
+  - name: What are Azure AI Foundry Models?
     href: how-to/model-catalog-overview.md
   - name: Data, privacy, and security for Model Catalog
     href: how-to/concept-data-privacy.md
   - name: Model lifecycle and retirement
     items:
-    - name: Azure Direct models and Partner models
+    - name: Azure Direct models and Azure Ecosystem models
       href: concepts/model-lifecycle-retirement.md
     - name: Azure OpenAI models
       href: ../ai-services/openai/concepts/model-retirements.md?context=/azure/ai-foundry/context/context
@@ -54,139 +54,151 @@ items:
       href: concepts/model-benchmarks.md
     - name: Compare models in leaderboards
       href: how-to/benchmark-model-in-catalog.md
-  - name: Deploy Azure AI Foundry Models
+  - name: Deployment options in Azure AI Foundry portal
+    href: concepts/deployments-overview.md
+  - name: Deploy models in AI Foundry
     items:
-    - name: Deploy Foundry Models in Azure AI Foundry portal
-      href: concepts/deployments-overview.md
-    - name: Azure OpenAI in Azure AI Foundry Models
+    - name: What is Azure AI model inference?
+      href: ../ai-foundry/model-inference/overview.md?context=/azure/ai-foundry/context/context
+    - name: Deployment types for Azure AI model inference
+      href: ../ai-foundry/model-inference/concepts/deployment-types.md?context=/azure/ai-foundry/context/context
+    - name: Deploy Foundry Models to Azure AI model inference
+      href: ../ai-foundry/model-inference/how-to/create-model-deployments.md?context=/azure/ai-foundry/context/context
+    - name: Foundry Models supported in Azure AI model inference
+      href: ../ai-foundry/model-inference/concepts/models.md?context=/azure/ai-foundry/context/context
+    - name: Supported programming languages and SDKs
+      href: ../ai-foundry/model-inference/supported-languages.md?context=/azure/ai-foundry/context/context
+    - name: Use the Azure AI model inference endpoint
+      href: ../ai-foundry/model-inference/how-to/inference.md?context=/azure/ai-foundry/context/context
+    - name: Azure AI model inference quotas and limits
+      href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-foundry/context/context
+    - name: Develop
       items:
-      - name: Azure OpenAI in Azure AI Foundry portal
-        href: azure-openai-in-azure-ai-foundry.md
-      - name: Use Azure OpenAI in Azure AI Foundry portal
-        href: ai-services/how-to/connect-azure-openai.md
-      - name: Deploy Azure OpenAI models
-        items: 
-        - name: Azure OpenAI deployment types
-          href: ../ai-services/openai/how-to/deployment-types.md?context=/azure/ai-foundry/context/context
-          displayName: provisioned, global standard, datazone, data zone, global data zone, batch, globalbatch
-        - name: Deploy Azure OpenAI models
-          href: how-to/deploy-models-openai.md
-        - name: Troubleshoot deployments and monitoring
-          href: how-to/troubleshoot-deploy-and-monitor.md
-        - name: Model region availability for Azure OpenAI in Foundry Models
-          href:  ../ai-services/openai/concepts/models.md?context=/azure/ai-foundry/context/context
-          displayName: OpenAI, gpt-4o, gpt-4o-mini, whisper
-      - name: Azure OpenAI quotas and limits
-        href: ../ai-services/openai/quotas-limits.md?context=/azure/ai-foundry/context/context
-      - name: Use Azure OpenAI models
-        items:
-        - name: Generate text
-          items:
-          - name: Batch
-            href: ../ai-services/openai/how-to/batch.md?context=/azure/ai-foundry/context/context
-            displayName: OpenAI, global batch, globalbatch, chat, chat completions 
-          - name: Reasoning models
-            href: ../ai-services/openai/how-to/reasoning.md?context=/azure/ai-foundry/context/context
-            displayName: OpenAI, o1, o1-mini, o3-mini, reasoning effort
-          - name: Responses API
-            href: ../ai-services/openai/how-to/responses.md?context=/azure/ai-foundry/context/context
-          - name: Computer use 
-            href: ../ai-services/openai/how-to/computer-use.md?context=/azure/ai-foundry/context/context
-          - name: Function calling
-            href: ../ai-services/openai/how-to/function-calling.md?context=/azure/ai-foundry/context/context
-            displayName: OpenAI 
-          - name: Predicted outputs
-            href: ../ai-services/openai/how-to/predicted-outputs.md?context=/azure/ai-foundry/context/context 
-          - name: Prompt caching
-            href: ../ai-services/openai/how-to/prompt-caching.md?context=/azure/ai-foundry/context/context 
-          - name: Structured outputs
-            href: ../ai-services/openai/how-to/structured-outputs.md?context=/azure/ai-foundry/context/context 
-          - name: Use vision-enabled chat
-            href:  ../ai-services/openai/gpt-v-quickstart.md?context=/azure/ai-foundry/context/context
-        - name: Generate images
-          href: ../ai-services/openai/dall-e-quickstart.md?context=/azure/ai-foundry/context/context
-          displayName: OpenAI, DALLE, dall-e, DALL-E
-        - name: Audio
-          items:
-            - name: Use GPT-4o in the real-time audio playground
-              href: ../ai-services/openai/realtime-audio-quickstart.md?context=/azure/ai-foundry/context/context
-              displayName: OpenAI, realtime, real-time
-            - name: Audio generation
-              href: ../ai-services/openai/audio-completions-quickstart.md?context=/azure/ai-foundry/context/context 
-        - name: Distillation (stored completions)
-          href: ../ai-services/openai/how-to/stored-completions.md?context=/azure/ai-foundry/context/context
-          displayName: OpenAI, Azure OpenAI, stored completions, model distillation
-        - name: Embeddings
-          href: ../ai-services/openai/tutorials/embeddings.md?context=/azure/ai-foundry/context/context
-          displayName: text-embedding-ada-002, text-embedding-3-large, text-embedding-3-small
-        - name: Evaluation
-          href: ../ai-services/openai/how-to/evaluations.md?context=/azure/ai-foundry/context/context
-          displayName: OpenAI
-        - name: Fine-tuning
-          items:
-          - name: Fine-tune Azure OpenAI models
-            href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-foundry/context/context
-            displayName: finetuning, fine-tuning 
-          - name: When to use Azure OpenAI fine-tuning
-            href: ../ai-services/openai/concepts/fine-tuning-considerations.md?context=/azure/ai-foundry/context/context
-            displayName: finetuning, fine-tuning 
-          - name: Deploy your Azure OpenAI fine-tuned model
-            href: ../ai-services/openai/how-to/fine-tuning-deploy.md?context=/azure/ai-foundry/context/context
-            displayName: finetuning, fine-tuning         
-          - name: Vision fine-tuning
-            href: ../ai-services/openai/how-to/fine-tuning-vision.md?context=/azure/ai-foundry/context/context
-            displayName: finetuning, fine-tuning 
-          - name: Preference fine-tuning
-            href: ../ai-services/openai/how-to/fine-tuning-direct-preference-optimization.md?context=/azure/ai-foundry/context/context
-            displayName: finetuning, fine-tuning 
-          - name: Safety evaluation
-            href: ../ai-services/openai/how-to/fine-tuning-safety-evaluation.md?context=/azure/ai-foundry/context/context
-            displayName: finetuning, fine-tuning 
-          - name: Tool calling
-            href: ../ai-services/openai/how-to/fine-tuning-functions.md?context=/azure/ai-foundry/context/context
-            displayName: finetuning, fine-tuning         
-          - name: Weights & Biases integration (preview)
-            href: ../ai-services/openai/how-to/weights-and-biases-integration.md?context=/azure/ai-foundry/context/context
-            displayName: finetuning, fine-tuning 
-          - name: Troubleshooting guidance
-            href: ../ai-services/openai/how-to/fine-tuning-troubleshoot.md?context=/azure/ai-foundry/context/context
-            displayName: finetuning, fine-tuning
-    - name: Azure AI model inference
-      items:
-      - name: What is Azure AI model inference?
-        href: ../ai-foundry/model-inference/overview.md?context=/azure/ai-foundry/context/context
-      - name: Deployment types for Azure AI model inference
-        href: ../ai-foundry/model-inference/concepts/deployment-types.md?context=/azure/ai-foundry/context/context
-      - name: Deploy Foundry Models to Azure AI model inference
-        href: ../ai-foundry/model-inference/how-to/create-model-deployments.md?context=/azure/ai-foundry/context/context
-      - name: Foundry Models supported in Azure AI model inference
-        href: ../ai-foundry/model-inference/concepts/models.md?context=/azure/ai-foundry/context/context
-      - name: Supported programming languages and SDKs
-        href: ../ai-foundry/model-inference/supported-languages.md?context=/azure/ai-foundry/context/context
       - name: Use the Azure AI model inference endpoint
         href: ../ai-foundry/model-inference/how-to/inference.md?context=/azure/ai-foundry/context/context
-      - name: Azure AI model inference quotas and limits
-        href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-foundry/context/context
-    - name: Standard deployment 
+      - name: Programming languages and SDKs
+        href: ../ai-foundry/model-inference/supported-languages.md?context=/azure/ai-foundry/context/context
+      - name: Work with embedding models
+        items:
+          - name: Work with text embeddings
+            href: ../ai-foundry/model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context
+          - name: Work with image embeddings
+            href: ../ai-foundry/model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context
+      - name: Work with chat models
+        items:
+          - name: Work with chat completion models
+            href: ../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context
+          - name: Work with reasoning models
+            href: ../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context
+          - name: Work with multimodal models
+            href: ../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context
+          - name: Use structured outputs
+            href: ../ai-foundry/model-inference/how-to/use-structured-outputs.md?context=/azure/ai-foundry/context/context
+      - name: Develop with LangChain and LangGraph
+        href: how-to/develop/langchain.md
+      - name: Develop with Llama-Index
+        href: how-to/develop/llama-index.md
+      - name: Develop with Semantic Kernel
+        href: how-to/develop/semantic-kernel.md
+  - name: Deploy Azure Open AI in Foundry Models
+    items:
+    - name: Azure OpenAI in Azure AI Foundry portal
+      href: azure-openai-in-azure-ai-foundry.md
+    - name: Use Azure OpenAI in Azure AI Foundry portal
+      href: ai-services/how-to/connect-azure-openai.md
+    - name: Deploy Azure OpenAI models
+      items: 
+      - name: Azure OpenAI deployment types
+        href: ../ai-services/openai/how-to/deployment-types.md?context=/azure/ai-foundry/context/context
+        displayName: provisioned, global standard, datazone, data zone, global data zone, batch, globalbatch
+      - name: Deploy Azure OpenAI models
+        href: how-to/deploy-models-openai.md
+      - name: Troubleshoot deployments and monitoring
+        href: how-to/troubleshoot-deploy-and-monitor.md
+      - name: Model region availability for Azure OpenAI in Foundry Models
+        href:  ../ai-services/openai/concepts/models.md?context=/azure/ai-foundry/context/context
+        displayName: OpenAI, gpt-4o, gpt-4o-mini, whisper
+      - name: Azure OpenAI quotas and limits
+        href: ../ai-services/openai/quotas-limits.md?context=/azure/ai-foundry/context/context
+    - name: Use Azure OpenAI models
       items:
-      - name: Deploy models with standard deployment
-        href: how-to/deploy-models-serverless.md
-      - name: Consume standard deployed models from a different project or hub
-        href: how-to/deploy-models-serverless-connect.md
-      - name: Model region availability for standard deployments
-        href: how-to/deploy-models-serverless-availability.md
-      - name: Content safety for standard deployment
-        href: concepts/model-catalog-content-safety.md
-    - name: Managed compute
+      - name: Generate text
+        items:
+        - name: Batch
+          href: ../ai-services/openai/how-to/batch.md?context=/azure/ai-foundry/context/context
+          displayName: OpenAI, global batch, globalbatch, chat, chat completions 
+        - name: Reasoning models
+          href: ../ai-services/openai/how-to/reasoning.md?context=/azure/ai-foundry/context/context
+          displayName: OpenAI, o1, o1-mini, o3-mini, reasoning effort
+        - name: Responses API
+          href: ../ai-services/openai/how-to/responses.md?context=/azure/ai-foundry/context/context
+        - name: Computer use 
+          href: ../ai-services/openai/how-to/computer-use.md?context=/azure/ai-foundry/context/context
+        - name: Function calling
+          href: ../ai-services/openai/how-to/function-calling.md?context=/azure/ai-foundry/context/context
+          displayName: OpenAI 
+        - name: Predicted outputs
+          href: ../ai-services/openai/how-to/predicted-outputs.md?context=/azure/ai-foundry/context/context 
+        - name: Prompt caching
+          href: ../ai-services/openai/how-to/prompt-caching.md?context=/azure/ai-foundry/context/context 
+        - name: Structured outputs
+          href: ../ai-services/openai/how-to/structured-outputs.md?context=/azure/ai-foundry/context/context 
+        - name: Use vision-enabled chat
+          href:  ../ai-services/openai/gpt-v-quickstart.md?context=/azure/ai-foundry/context/context
+      - name: Generate images
+        href: ../ai-services/openai/dall-e-quickstart.md?context=/azure/ai-foundry/context/context
+        displayName: OpenAI, DALLE, dall-e, DALL-E
+      - name: Audio
+        items:
+          - name: Use GPT-4o in the real-time audio playground
+            href: ../ai-services/openai/realtime-audio-quickstart.md?context=/azure/ai-foundry/context/context
+            displayName: OpenAI, realtime, real-time
+          - name: Audio generation
+            href: ../ai-services/openai/audio-completions-quickstart.md?context=/azure/ai-foundry/context/context 
+      - name: Distillation (stored completions)
+        href: ../ai-services/openai/how-to/stored-completions.md?context=/azure/ai-foundry/context/context
+        displayName: OpenAI, Azure OpenAI, stored completions, model distillation
+      - name: Embeddings
+        href: ../ai-services/openai/tutorials/embeddings.md?context=/azure/ai-foundry/context/context
+        displayName: text-embedding-ada-002, text-embedding-3-large, text-embedding-3-small
+      - name: Evaluation
+        href: ../ai-services/openai/how-to/evaluations.md?context=/azure/ai-foundry/context/context
+        displayName: OpenAI
+      - name: Fine-tuning
+        items:
+        - name: Fine-tune Azure OpenAI models
+          href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-foundry/context/context
+          displayName: finetuning, fine-tuning 
+        - name: When to use Azure OpenAI fine-tuning
+          href: ../ai-services/openai/concepts/fine-tuning-considerations.md?context=/azure/ai-foundry/context/context
+          displayName: finetuning, fine-tuning 
+        - name: Deploy your Azure OpenAI fine-tuned model
+          href: ../ai-services/openai/how-to/fine-tuning-deploy.md?context=/azure/ai-foundry/context/context
+          displayName: finetuning, fine-tuning         
+        - name: Vision fine-tuning
+          href: ../ai-services/openai/how-to/fine-tuning-vision.md?context=/azure/ai-foundry/context/context
+          displayName: finetuning, fine-tuning 
+        - name: Preference fine-tuning
+          href: ../ai-services/openai/how-to/fine-tuning-direct-preference-optimization.md?context=/azure/ai-foundry/context/context
+          displayName: finetuning, fine-tuning 
+        - name: Safety evaluation
+          href: ../ai-services/openai/how-to/fine-tuning-safety-evaluation.md?context=/azure/ai-foundry/context/context
+          displayName: finetuning, fine-tuning 
+        - name: Tool calling
+          href: ../ai-services/openai/how-to/fine-tuning-functions.md?context=/azure/ai-foundry/context/context
+          displayName: finetuning, fine-tuning         
+        - name: Weights & Biases integration (preview)
+          href: ../ai-services/openai/how-to/weights-and-biases-integration.md?context=/azure/ai-foundry/context/context
+          displayName: finetuning, fine-tuning 
+        - name: Troubleshooting guidance
+          href: ../ai-services/openai/how-to/fine-tuning-troubleshoot.md?context=/azure/ai-foundry/context/context
+          displayName: finetuning, fine-tuning
+  - name: Deploy models in AI hub
+    items:
+    - name: Use managed compute
       items:
       - name: Deploy models via managed compute
         href: how-to/deploy-models-managed.md
-  - name: Work with models from the model catalog
-    items:
-    - name: Featured models in the model catalog
-      href: concepts/models-featured.md
-    - name: Other featured models
-      items:
       - name: Healthcare AI models
         items:
         - name: Foundational AI models for healthcare
@@ -195,30 +207,27 @@ items:
           href: how-to/healthcare-ai/deploy-medimageinsight.md
         - name: CXRReportGen model for text generation
           href: how-to/healthcare-ai/deploy-cxrreportgen.md
-        - name: MedImageParse models for prompted segmentation 
+        - name: MedImageParse models for prompted segmentation
           href: how-to/healthcare-ai/deploy-medimageparse.md
       - name: Nvidia Inference Microservices (NIM)
         href: how-to/deploy-nvidia-inference-microservice.md
-      - name: Gretel Navigator model
-        href: how-to/deploy-models-gretel-navigator.md
-      - name: Mistral-7B and Mixtral models
-        href: how-to/deploy-models-mistral-open.md
-    - name: Work with embedding models
+    - name: Use standard deployment 
       items:
-        - name: Work with text embedding models
-          href: ../ai-foundry/model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context
-        - name: Work with image embedding models
-          href: ../ai-foundry/model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context
-    - name: Work with chat models
-      items:
-        - name: Work with chat completion models
-          href: ../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context
-        - name: Work with reasoning models
-          href: ../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context
-        - name: Work with multimodal models
-          href: ../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context
-        - name: Use structured outputs  
-          href: ../ai-foundry/model-inference/how-to/use-structured-outputs.md?context=/azure/ai-foundry/context/context
+      - name: Deploy models to serverless pay per token offer
+        href: how-to/deploy-models-serverless.md
+      - name: Consume models from a different project or hub
+        href: how-to/deploy-models-serverless-connect.md
+      - name: Model region availability for standard deployment
+        href: how-to/deploy-models-serverless-availability.md
+      - name: Content safety for standard deployment
+        href: concepts/model-catalog-content-safety.md
+      - name: Models available for standard deployment
+        href: concepts/models-featured.md
+      - name: Other featured models
+    - name: Gretel Navigator model
+      href: how-to/deploy-models-gretel-navigator.md
+    - name: Mistral-7B and Mixtral models
+      href: how-to/deploy-models-mistral-open.md
 - name: Azure AI services
   items:
   - name: Use Azure AI services in Azure AI Foundry portal
