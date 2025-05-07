@@ -6,11 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024
 ms.topic: how-to
-<<<<<<< HEAD
-ms.date: 05/02/2025
-=======
 ms.date: 05/06/2025
->>>>>>> eeb5c6b7886d96c6ae9a9a6a8decfa13c78a625a
 ms.reviewer: meerakurup
 ms.author: larryfr
 author: Blackmist
@@ -349,7 +345,6 @@ You can use IP network rules to allow access to your secured hub from specific p
 1. From the left side of the page, select __Networking__ and then select the __Public access__ tab.
 1. Select __Enabled from selected IP addresses__, input address ranges and then select __Save__.
 
-<!-- :::image type="content" source="./media/how-to-configure-private-link/workspace-public-access-ip-ranges.png" alt-text="Screenshot of the UI to enable access from internet IP ranges."::: -->
 
 # [Azure CLI](#tab/cli)
 
