@@ -10,7 +10,7 @@ ms.date: 05/07/2025
 ms.custom: include
 ---
 
-## Java supported services
+### Java supported services
 
 | Service | Description | Reference documentation |
 | --- | --- | --- |

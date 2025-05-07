@@ -10,7 +10,7 @@ ms.date: 05/07/2025
 ms.custom: include
 ---
 
-## JavaScript Supported Services
+### JavaScript Supported Services
 
 | Service | Description | Reference documentation |
 | --- | --- | --- |
