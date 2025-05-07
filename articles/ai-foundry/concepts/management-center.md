@@ -8,7 +8,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: concept-article #Don't change.
-ms.date: 02/13/2025
+ms.date: 05/07/2025
 #customer intent: As an admin, I want a central location where I can perform governance and management activities.
 ---
 
@@ -18,7 +18,7 @@ The management center is a part of the Azure AI Foundry portal that streamlines 
 
 - Azure AI Foundry hubs and [!INCLUDE [hub](../includes/hub-project-name.md)]s
 - Azure AI [!INCLUDE [FDP](../includes/fdp-project-name.md)]s
-- Quotas for models and virtual machines (VMs).
+- Quotas for models and virtual machines (VMs)
 
     > [!NOTE]
     > VM quotas are only available for [!INCLUDE [hub](../includes/hub-project-name.md)]s.
@@ -37,7 +37,7 @@ You can use the management center to create and configure [!INCLUDE [FDP](../inc
 
 ### Manage Azure AI Foundry hubs and hub based projects
 
-You can also manage [!INCLUDE [hub](../includes/hub-project-name.md)]s from the management center. They are listed in the __All resources__ section, and when selected are displayed in the left menu.
+You can also manage [!INCLUDE [hub](../includes/hub-project-name.md)]s from the management center. They're listed in the __All resources__ section, and when selected are displayed in the left menu.
 
 For more information, see the following articles:
 
