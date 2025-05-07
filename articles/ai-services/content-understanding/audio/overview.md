@@ -2,13 +2,13 @@
 title: Azure AI Content Understanding audio overview
 titleSuffix: Azure AI services
 description: Learn about Azure AI Content Understanding audio solutions
-author: laujan
+author: jagoerge
 ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 03/18/2025
-ms.custom: ignite-2024-understanding-release
+ms.date: 05/06/2025
+ms.custom: release-preview-2-cu
 ---
 
 
@@ -40,13 +40,13 @@ Content Understanding serves as a cornerstone for Media Asset Management solutio
 
 > [!NOTE]
 > Content Understanding supports the full set of [Azure AI Speech Speech to text languages](https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt).
-> For languages with Fast transcriptions support and for files ≤ 300 MB and/or ≤ 2 hours, transcription time will be reduced substantially.
+> For languages with Fast transcriptions support and for files ≤ 300 MB and/or ≤ 2 hours, transcription time is reduced substantially.
 
-* **Diarization**. Distinguishes between speakers in a conversation, attributing parts of the transcript to specific speakers.
+* **Dualization**. Distinguishes between speakers in a conversation, attributing parts of the transcript to specific speakers.
 
 * **Speaker role detection**. Identifies agent and customer roles within contact center call data.
 
-* **Multilingual transcription**. Generates multilingual transcripts, applying language/locale per phrase. Deviating from language detection this is enabled when no language/locale is specified or language is set to 'auto'.
+* **Multilingual transcription**. Generates multilingual transcripts, applying language/locale per phrase. Deviating from language detection this feature is enabled when no language/locale is specified or language is set to 'auto'.
 
 > [!NOTE]
 > The following locales are currently supported:
@@ -56,8 +56,8 @@ Content Understanding serves as a cornerstone for Media Asset Management solutio
 * **Language detection**. Automatically detects the dominant language/locale which is used to transcribe the file. Set multiple languages/locales to enable language detection.
 
 > [!NOTE]
-> For files larger than 300 MB and/or longer than 2 hours and locales unsupported by Fast transcription, the file will be processed generating a multilingual transcript based on the specified locales.
-> In case language detection fails, the first language/locale defined will be used to transcribe the file.
+> For files larger than 300 MB and/or longer than 2 hours and locales unsupported by Fast transcription, the file is processed generating a multilingual transcript based on the specified locales.
+> In case language detection fails, the first language/locale defined is used to transcribe the file.
 
 ### Field extraction
 
@@ -81,7 +81,7 @@ The prebuild analyzers allow extracting valuable insights into audio content wit
 All audio analyzers generate transcripts in standard WEBVTT format separated by speaker.
 
 > [!NOTE]
-> Prebuild analyzers are set to use multilingual transcription and have returnDetails enabled!
+> Prebuild analyzers are set to use multilingual transcription and returnDetails enabled!
 
 Content Understanding offers the following prebuild analyzers:
 
@@ -89,7 +89,7 @@ Content Understanding offers the following prebuild analyzers:
 - conversation transcripts with speaker role detection result
 - call summary
 - call sentiment
-- top 5 topics mentioned
+- top five articles mentioned
 - list of companies mentioned
 - list of people (name and title/role) mentioned
 - list of relevant call categories
@@ -259,7 +259,7 @@ Content Understanding offers the following prebuild analyzers:
 ```
 
 You can also customize prebuild analyzers for more fine-grained control of the output by defining custom fields. Customization allows you to use the full power of generative models to extract deep insights from the audio. For example, customization allows you to:
-- Generate additional insights
+- Generate other insights
 - Control the language of the field extraction output
 - Configure the transcription behavior
 - and more
