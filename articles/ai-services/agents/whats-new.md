@@ -29,7 +29,7 @@ The [agent catalog](./how-to/agent-catalog.md) helps streamline your agent deplo
 
 The [AI Foundry Visual Studio Code extension](../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context) is now available with the ability to perform a variety of AI Foundry actions, such as deploying and configure agents natively.
 
-### Conencted agents
+### Connected agents
 
 [Connected agents](./how-to/connected-agents.md) allow you to create task-specific agents that can interact seamlessly with a primary agent. This feature enables you to build multi-agent systems without the need for external orchestrators.
 
@@ -46,7 +46,7 @@ Debug and monitor your agents by [tracing agent threads](./concepts/tracing.md) 
 This release brings a number of new tools to extend agents' capabilities:
 
 * **Bing Custom Search tool** - Determine which websites will be used to ground your agents with. 
-* **SharePoint tool** - Use your SharePoint sites to ground your agents data, and chage with your data.
+* **SharePoint tool** - Use your SharePoint sites to ground your agents data, and chat with your data.
 * **Morningstar tool** - Leverage Morningstar, a prominent investment research company, as a data source for your agent. 
 
 ## April 2025
