@@ -42,7 +42,7 @@ Content Understanding serves as a cornerstone for Media Asset Management solutio
 > Content Understanding supports the full set of [Azure AI Speech Speech to text languages](https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt).
 > For languages with Fast transcriptions support and for files ≤ 300 MB and/or ≤ 2 hours, transcription time is reduced substantially.
 
-* **Dualization**. Distinguishes between speakers in a conversation, attributing parts of the transcript to specific speakers.
+* **Diarization**. Distinguishes between speakers in a conversation, attributing parts of the transcript to specific speakers.
 
 * **Speaker role detection**. Identifies agent and customer roles within contact center call data.
 
