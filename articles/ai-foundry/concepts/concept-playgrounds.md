@@ -85,12 +85,12 @@ Available on the multi-lingual sample code samples, "Open in VS Code" enables th
 Frictionless and easy.
 
 ## Agents playground
-The Agents playground allows you to explore, prototype, and test agents without needing to run any code. From this page, you can quickly iterate and experiment with new ideas. Get started with Agents playground with this [quickstart](https://review.learn.microsoft.com/en-us/azure/ai-services/agents/quickstart?branch=main&pivots=ai-foundry-portal).
+The Agents playground allows you to explore, prototype, and test agents without needing to run any code. From this page, you can quickly iterate and experiment with new ideas. Get started with Agents playground with this [quickstart](../../ai-services/agents/quickstart.md).
 
 :::image type="content" source="../media/concept-playgrounds/agents-playground.png" alt-text="Agents playground interface for exploring, prototyping, and testing agents without code." lightbox="../media/concept-playgrounds/agents-playground.png":::
 
 ## Chat playground
-Test the latest reasoning models from Azure Open AI, DeepSeek and Meta with the chat playground experience through this [quickstart](https://learn.microsoft.com/en-us/azure/ai-foundry/quickstarts/get-started-playground).
+Test the latest reasoning models from Azure Open AI, DeepSeek and Meta with the chat playground experience through this [Quickstart: Use the chat playground in Azure AI Foundry portal](../quickstarts/get-started-playground.md).
 
 For all reasoning models, we introduce a Chain of Thought summary drop-down to see how the model was thinking through it's response ahead of sharing the output.
 
