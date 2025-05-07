@@ -57,7 +57,22 @@ items:
     - name: Audio
       href: ./concepts/audio.md
     - name: Content filtering
-      href: ./concepts/content-filter.md
+      items:
+      - name: Content filtering overview
+        href: ./concepts/content-filter.md
+      - name: Content filtering risk categories
+        href: ./concepts/content-filter-risk-categories.md
+      - name: Prompt shields
+        href: ./concepts/content-filter-prompt-shields.md
+      - name: Content filter configurability
+        href: ./concepts/content-filter-configurability.md
+      - name: Content filter annotations
+        href: ./concepts/content-filter-annotations.md
+      - name: Document embedding in prompts
+        href: ./concepts/content-filter-document-embedding.md
+      - name: Content filter streaming
+        href: ./concepts/content-filter-streaming.md
+    - name: Data sources
     - name: Default safety policies
       href: ./concepts/default-safety-policies.md
     - name: Prompt transformations
