@@ -81,15 +81,24 @@ The amount of throughput (measured in tokens per minute or TPM) a deployment get
 
 For example, for `gpt-4.1:2025-04-14`, 1 output token counts as 4 input tokens towards your utilization limit which matches the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). Older models use a different ratio and for a deeper understanding on how different ratios of input and output tokens impact the throughput your workload needs, see the [Azure OpenAI capacity calculator](https://ai.azure.com/resource/calculator).
 
-
-|Topic| **gpt-4o**   | **gpt-4o-mini**  | **o1**| **o3-mini** | **gpt-4.1** | **gpt-4.1-mini** |
+|Topic| **gpt-4.1** | **gpt-4.1-mini** | **gpt-4o** | **gpt-4o-mini** | **o3-mini** | **o1** |
 | --- | --- | --- | --- | --- | --- | --- |
-|Global & data zone provisioned minimum deployment|15|15|15| 15 | 15 | 15 |
-|Global & data zone provisioned scale increment|5|5|5 | 5 | 5 | 5 | 
-|Regional provisioned minimum deployment|50|25|25| 25 | 50 | 25 |
-|Regional provisioned scale increment|50|25|50| 25 | 50 | 25 |
-|Input TPM per PTU |2,500|37,000|230| | 3000  | 14,900 |
-|Latency Target Value |25 Tokens Per Second|33 Tokens Per Second|25 Tokens Per Second| | 44 Tokens Per Second | 50 Tokens Per Second |
+|Global & data zone provisioned minimum deployment|15|15|15|15|15|15|
+|Global & data zone provisioned scale increment|5|5|5|5|5|5|
+|Regional provisioned minimum deployment|50|25|50|25|25|25|
+|Regional provisioned scale increment|50|25|50|25|25|50|
+|Input TPM per PTU|3,000|14,900|2,500|37,000|2,500|230|
+|Latency Target Value|44 Tokens Per Second|50 Tokens Per Second|25 Tokens Per Second|33 Tokens Per Second| |25 Tokens Per Second|
+
+|Topic| **gpt-4.1** | **gpt-4.1-mini** | **o3-mini** | **o1** | **gpt-4o** | **gpt-4o-mini** |
+| --- | --- | --- | --- | --- | --- | --- |
+|Global & data zone provisioned minimum deployment|15|15|15|15|15|15|
+|Global & data zone provisioned scale increment|5|5|5|5|5|5|
+|Regional provisioned minimum deployment|50|25|25|25|50|25|
+|Regional provisioned scale increment|50|25|25|50|50|25|
+|Input TPM per PTU|3,000|14,900|2,500|230|2,500|37,000|
+|Latency Target Value|44 Tokens Per Second|50 Tokens Per Second| |25 Tokens Per Second|25 Tokens Per Second|33 Tokens Per Second|
+
 
 For a full list, see the [Azure OpenAI Service in Azure AI Foundry portal calculator](https://ai.azure.com/resource/calculator).
 
