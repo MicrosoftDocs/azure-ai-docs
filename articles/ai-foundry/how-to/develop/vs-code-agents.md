@@ -6,8 +6,9 @@ manager: mcleans
 ms.service: azure-ai-foundry
 content_well_notification: 
   - AI-contribution
+ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 04/29/2025
+ms.date: 05/07/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
@@ -99,13 +100,25 @@ tools: []
 
 ### Add tools to the Azure AI Agent
 
-Azure AI Agent Service has a set of knowledge and action tools that you can use to interact with your data sources, such as:
- - [Grounding with Bing search](/azure/ai-services/agents/how-to/tools/bing-grounding?tabs=python&pivots=overview)
- - [Azure AI Search](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview) 
- - [Azure Functions](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview) 
- - [File retrieval](/azure/ai-services/agents/how-to/tools/azure-functions?tabs=python&pivots=overview) 
+Azure AI Agent Service has a set of knowledge and action tools that you can use to interact with your data sources. 
+
+
+#### Available tools for Azure AI Agents
+
+The following tools are available:
+
+- Knowledge tools:
+  - [Grounding with Bing search](/azure/ai-services/agents/how-to/tools/bing-grounding?tabs=python&pivots=overview)
+  - [File search]( /azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview)
+  - [Azure AI Search](/azure/ai-services/agents/how-to/tools/azure-ai-search?tabs=azurecli%2Cpython&pivots=overview-azure-ai-search)   
+  - [Microsoft Fabric](/azure/ai-services/agents/how-to/tools/fabric?tabs=csharp&pivots=overview)
+  - [Use licensed data](/azure/ai-services/agents/how-to/tools/licensed-data) 
+
+- Action tools:
+ - [Azure AI Agents function calling](/azure/ai-services/agents/how-to/tools/function-calling?tabs=python&pivots=overview)
  - [Code interpreter](/azure/ai-services/agents/how-to/tools/code-interpreter?tabs=python&pivots=overview)
  - [OpenAPI Specified tools](/azure/ai-services/agents/how-to/tools/openapi-spec?tabs=python&pivots=overview)
+ - [Azure Functions](/azure/ai-services/agents/how-to/tools/azure-functions?tabs=python&pivots=overview)
 
 #### Configure the tools YAML file
 
@@ -113,14 +126,13 @@ The Agent Designer adds tools to an AI Agent via .yaml files.
 
 Create a tool configuration .yaml file using the following steps:
 
-1. Perform any setup steps that might be required. See the article for the tool you’re interested in using. For example, [Grounding with Bing search](/azure/ai-services/agents/how-to/tools/bing-grounding?tabs=python&pivots=overview#setup).
+1. Choose a tool from the [available tools for Azure AI Agents](#available-tools-for-azure-ai-agents). Perform any setup steps that might be required. For example, [Grounding with Bing search](/azure/ai-services/agents/how-to/tools/bing-grounding?tabs=python&pivots=overview#setup).
 
 1. Once you complete the setup, create a yaml code file that specifies the tool’s configuration. For example, this format for Grounding with Bing Search:
 
     ```yml
     type: bing_grounding
-    name: bing_search
-    configuration:
+    options:
       tool_connections:
         - >-
           /subscriptions/<Azure Subscription ID>/resourceGroups/<Azure Resource Group name>/providers/Microsoft.MachineLearningServices/workspaces/<Azure AI Foundry Project name>/connections/<Bing connection name>
