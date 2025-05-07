@@ -1,38 +1,37 @@
 ---
-title: Translator Languages Method
+title: Azure AI Translator languages method
 titleSuffix: Azure AI services
-description: The Languages method gets the set of languages currently supported by other operations of the Translator.
+description: The Azure AI Translator v3.0 languages method returns currently supported languages.
 author: laujan
 manager: nitinme
-
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 07/19/2024
+ms.date: 03/31/2025
 ms.author: lajanuar
 ---
 
 <!-- markdownlint-disable MD033 -->
 
-# Translator 3.0: Languages
+# Azure AI Translator v3.0:  languages
 
-Gets the set of languages currently supported by other operations of the Translator.
+Gets the set of languages currently supported Azure AI Translator v3.0.
 
 ## Request URL
 
 Send a `GET` request to:
 
-```HTTP
+```bash
 https://api.cognitive.microsofttranslator.com/languages?api-version=3.0
 
 ```
 
 For virtual networks, use your custom domain endpoint:
 
-```HTTP
+```bash
 https://<your-custom-domain>.cognitiveservices.azure.com/languages?api-version=3.0
 ```
 
-For more information, _see_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+For more information, _see_ [**Virtual Network Support**](../authentication.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
 
 ## Request parameters
 
@@ -226,24 +225,13 @@ The list of supported languages doesn't change frequently. To save network bandw
 
 ## Response status codes
 
-The following are the possible HTTP status codes that a request returns.
-
-|Status Code|Description|
-|--- |--- |
-|200|Success.|
-|304|The resource isn't modified and aligns with the version specified by request headers `If-None-Match`.|
-|400|One of the query parameters is missing or not valid. Correct request parameters before retrying.|
-|429|The server rejected the request because the client exceeded request limits.|
-|500|An unexpected error occurred. If the error persists, report it with: date and time of the failure, request identifier from response header `X-RequestId`, and client identifier from request header `X-ClientTraceId`.|
-|503|Server temporarily unavailable. Retry the request. If the error persists, report it with: date and time of the failure, request identifier from response header `X-RequestId`, and client identifier from request header `X-ClientTraceId`.|
-
-If an error occurs, the request also returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [v3 Translator reference page](./reference.md#errors).
+If an error occurs, the request also returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [Translator status code reference page](../status-response-codes.md).
 
 ## Examples
 
 The following example shows how to retrieve languages supported for text translation.
 
-```curl
+ ```bash
 curl "https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation"
 ```
 

@@ -5,7 +5,7 @@ description: How to create an aligned document that specifies a list of phrases 
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 01/28/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: conceptual
 ms.custom: cogserv-non-critical-translator
@@ -16,7 +16,7 @@ ms.custom: cogserv-non-critical-translator
 
 An Azure AI Custom Translator dictionary is an aligned pair of documents that specifies a list of phrases or sentences and their corresponding translations. Use a dictionary in your training, when you want Custom Translator to translate any instances of the source phrase or sentence, using the translation you provide in the dictionary. Dictionaries are sometimes called glossaries or term bases. You can think of the dictionary as a brute force "copy and replace" for all the terms you list. Furthermore, Azure AI Custom Translator service builds and makes use of its own general purpose dictionaries to improve the quality of its translation. However, a customer provided dictionary takes precedent and is searched first to look up words or sentences.
 
-Dictionaries only work for projects in language pairs that have a fully supported Microsoft general neural network model behind them. [View the complete list of languages](../../language-support.md).
+Dictionaries only work for projects in language pairs that have a fully supported Microsoft general neural network model behind them. [View the complete list of languages](../../../language-support.md).
 
 ## Phrase dictionary
 
@@ -38,8 +38,11 @@ A sentence dictionary is case-insensitive. The sentence dictionary allows you to
 
 You can train a model using only dictionary data. To do so, select only the dictionary document (or multiple dictionary documents) that you wish to include and select **Create model**. Since this training is dictionary-only, there's no minimum number of training sentences required. Your model typically completes training faster than a standard training. The resulting models use the Microsoft baseline models for translation with the addition of the dictionaries you add. You don't get a test report.
 
->[!Note]
->Custom Translator doesn't sentence align dictionary files, so it is important that there are an equal number of source and target phrases/sentences in your dictionary documents and that they are precisely aligned.
+> [!NOTE]
+>
+> Custom Translator doesn't conduct sentence alignment for dictionary files. Therefore, it's crucial to ensure that your dictionary documents have an equal number of source and target phrases or sentences. Additionally, these phrases or sentences must be accurately aligned to maintain consistency and effectiveness.
+
+
 
 ## Recommendations
 
