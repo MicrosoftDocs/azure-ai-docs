@@ -29,7 +29,7 @@ This is where evaluators become essential. These specialized tools measure both 
 
 Evaluators are specialized tools that measure the quality, safety, and reliability of AI responses. By implementing systematic evaluations throughout the AI development lifecycle, teams can identify and address potential issues before they impact users. The following supported evaluators provide comprehensive assessment capabilities across different AI application types and concerns:
 
-[RAG (Retrieval Augmented Generation):](./evaluation-evaluators/rag-evaluators.md)
+[**RAG (Retrieval Augmented Generation)**:](./evaluation-evaluators/rag-evaluators.md)
 
 | Evaluator | Purpose |
 |--|--|
@@ -40,7 +40,7 @@ Evaluators are specialized tools that measure the quality, safety, and reliabili
 | Relevance | Measures how relevant the response is with respect to the query. |
 | Response Completeness | Measures to what extent the response is complete (not missing critical information) with respect to the ground truth. |
 
-[Agents:](./evaluation-evaluators/agent-evaluators.md)
+[**Agents:**](./evaluation-evaluators/agent-evaluators.md)
 
 | Evaluator | Purpose |
 |--|--|
@@ -48,7 +48,7 @@ Evaluators are specialized tools that measure the quality, safety, and reliabili
 | Task Adherence | Measures how well the agent follows through on identified tasks. |
 | Tool Call Accuracy | Measures how well the agent selects and calls the correct tools to.|
 
-[General Purpose:](./evaluation-evaluators/general-purpose-evaluators.md)
+[**General Purpose:**](./evaluation-evaluators/general-purpose-evaluators.md)
 
 | Evaluator | Purpose |
 |--|--|
@@ -56,7 +56,7 @@ Evaluators are specialized tools that measure the quality, safety, and reliabili
 | Coherence | Measures logical consistency and flow of responses.|
 | QA | Measures comprehensively various quality aspects in question-answering.|
 
-[Safety and Security:](./evaluation-evaluators/risk-safety-evaluators.md)
+[**Safety and Security:**](./evaluation-evaluators/risk-safety-evaluators.md)
 
 | Evaluator | Purpose |
 |--|--|
@@ -69,7 +69,7 @@ Evaluators are specialized tools that measure the quality, safety, and reliabili
 | Protected Materials | Detects unauthorized use of copyrighted or protected content. |
 | Content Safety | Comprehensive assessment of various safety concerns. |
 
-[Textual Similarity:](./evaluation-evaluators/textual-similarity-evaluators.md)
+[**Textual Similarity:**](./evaluation-evaluators/textual-similarity-evaluators.md)
 
 | Evaluator | Purpose |
 |--|--|
@@ -80,7 +80,7 @@ Evaluators are specialized tools that measure the quality, safety, and reliabili
 | ROUGE | Recall-Oriented Understudy for Gisting Evaluation measures overlaps in n-grams between response and ground truth. |
 | METEOR | Metric for Evaluation of Translation with Explicit Ordering measures overlaps in n-grams between response and ground truth. |
 
-[Azure OpenAI Graders:](./evaluation-evaluators/azure-openai-graders.md)
+[**Azure OpenAI Graders:**](./evaluation-evaluators/azure-openai-graders.md)
 
 | Evaluator | Purpose |
 |--|--|
