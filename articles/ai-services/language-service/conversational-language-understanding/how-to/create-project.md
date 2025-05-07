@@ -78,7 +78,7 @@ You can import a CLU JSON into the service
 
 ## Export project
 
-### [Language Studio](#tab/Language-Studio)
+### [Azure AI Foundry](#tab/azure-ai-foundry)
 
 You can export a Conversational Language Understanding project as a JSON file at any time by going to the conversation projects page, selecting a project, and pressing **Export**.
 
@@ -92,7 +92,7 @@ You can export a Conversational Language Understanding project as a JSON file at
 
 ## Get CLU project details
 
-### [Language Studio](#tab/language-studio)
+### [Azure AI Foundry](#tab/azure-ai-foundry)
 
 [!INCLUDE [Language Studio project details](../includes/language-studio/project-details.md)]
 
@@ -104,7 +104,7 @@ You can export a Conversational Language Understanding project as a JSON file at
 
 ## Delete project 
 
-### [Language Studio](#tab/language-studio)
+### [Azure AI Foundry](#tab/azure-ai-foundry)
 
 [!INCLUDE [Delete project](../includes/language-studio/delete-project.md)]
 
