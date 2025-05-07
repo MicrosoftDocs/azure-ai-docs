@@ -8,6 +8,7 @@ ms.custom:
 ms.topic: include
 ms.date: 02/12/2024
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
+ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 

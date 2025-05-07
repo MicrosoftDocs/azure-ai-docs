@@ -12,8 +12,8 @@ ms.topic: how-to
 ms.date: 7/31/2024
 ms.reviewer: alehughes
 reviewer: ahughes-msft
-ms.author: mopeakande
-author: msakande
+ms.author: lagayhar  
+author: lgayhardt
 ---
 
 # Monitor quality and token usage of deployed prompt flow applications
@@ -45,7 +45,7 @@ Before you follow the steps in this article, make sure that you have the followi
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions aren't supported for this scenario. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 - An [Azure AI Foundry project](create-projects.md).
 - A prompt flow ready for deployment. If you don't have one, see [Develop a prompt flow](flow-develop.md).
-- Azure role-based access controls are used to grant access to operations in the Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the Azure AI Developer role on the resource group. For more information on permissions, see [Role-based access control in the Azure AI Foundry portal](../concepts/rbac-ai-foundry.md).
+- Azure role-based access controls are used to grant access to operations in the Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the Azure AI Developer role on the resource group. For more information on permissions, see [Role-based access control in the Azure AI Foundry portal](../concepts/rbac-azure-ai-foundry.md).
   
 # [Python SDK](#tab/python)
 
@@ -531,5 +531,5 @@ After you create your monitor from the SDK, you can [consume the monitoring resu
 
 ## Related content
 
-- Learn more about what you can do in [Azure AI Foundry](../what-is-ai-foundry.md).
+- Learn more about what you can do in [Azure AI Foundry](../what-is-azure-ai-foundry.md).
 - Get answers to frequently asked questions in the [Azure AI Foundry FAQ](../faq.yml).

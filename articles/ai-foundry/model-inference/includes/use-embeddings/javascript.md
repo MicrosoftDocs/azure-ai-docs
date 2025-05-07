@@ -32,31 +32,22 @@ To use embedding models in your application, you need:
 
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
 
-
 ```javascript
-import ModelClient from "@azure-rest/ai-inference";
-import { isUnexpected } from "@azure-rest/ai-inference";
-import { AzureKeyCredential } from "@azure/core-auth";
-
-const client = new ModelClient(
-    process.env.AZURE_INFERENCE_ENDPOINT, 
-    new AzureKeyCredential(process.env.AZURE_INFERENCE_CREDENTIAL),
-    "text-embedding-3-small"
+const client = ModelClient(
+    "https://<resource>.services.ai.azure.com/models", 
+    new AzureKeyCredential(process.env.AZURE_INFERENCE_CREDENTIAL)
 );
 ```
 
-If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
-
+If you've configured the resource with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
 ```javascript
-import ModelClient from "@azure-rest/ai-inference";
-import { isUnexpected } from "@azure-rest/ai-inference";
-import { DefaultAzureCredential }  from "@azure/identity";
+const clientOptions = { credentials: { "https://cognitiveservices.azure.com" } };
 
-const client = new ModelClient(
-    process.env.AZURE_INFERENCE_ENDPOINT, 
-    new DefaultAzureCredential(),
-    "text-embedding-3-small"
+const client = ModelClient(
+    "https://<resource>.services.ai.azure.com/models", 
+    new DefaultAzureCredential()
+    clientOptions,
 );
 ```
 
@@ -67,6 +58,7 @@ Create an embedding request to see the output of the model.
 ```javascript
 var response = await client.path("/embeddings").post({
     body: {
+        model: "text-embedding-3-small",
         input: ["The ultimate answer to the question of life"],
     }
 });
@@ -94,6 +86,7 @@ It can be useful to compute embeddings in input batches. The parameter `inputs` 
 ```javascript
 var response = await client.path("/embeddings").post({
     body: {
+        model: "text-embedding-3-small",
         input: [
             "The ultimate answer to the question of life", 
             "The largest planet in our solar system is Jupiter",
@@ -126,6 +119,7 @@ You can specify the number of dimensions for the embeddings. The following examp
 ```javascript
 var response = await client.path("/embeddings").post({
     body: {
+        model: "text-embedding-3-small",
         input: ["The ultimate answer to the question of life"],
         dimensions: 1024,
     }
@@ -142,6 +136,7 @@ The following example shows how to create embeddings that are used to create an 
 ```javascript
 var response = await client.path("/embeddings").post({
     body: {
+        model: "text-embedding-3-small",
         input: ["The answer to the ultimate question of life, the universe, and everything is 42"],
         input_type: "document",
     }
@@ -154,6 +149,7 @@ When you work on a query to retrieve such a document, you can use the following 
 ```javascript
 var response = await client.path("/embeddings").post({
     body: {
+        model: "text-embedding-3-small",
         input: ["What's the ultimate meaning of life?"],
         input_type: "query",
     }

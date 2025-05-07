@@ -126,5 +126,5 @@ To run the Bicep template, use the following commands from the `aifoundry-basics
 ## Next steps
 
 - [Create an Azure AI Foundry project](create-projects.md)
-- [Learn more about Azure AI Foundry](../what-is-ai-foundry.md)
+- [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
 - [Learn more about hubs](../concepts/ai-resources.md)

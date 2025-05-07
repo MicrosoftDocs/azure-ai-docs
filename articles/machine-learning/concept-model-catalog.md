@@ -152,7 +152,7 @@ To set the PNA flag for the workspace:
 
 * Go to the [Azure portal](https://ms.portal.azure.com/).
 * Search for _Azure Machine Learning_, and select your workspace from the list of workspaces.
-* On the Overview page, use the left navigation pane to go to **Settings** > **Networking**.
+* On the Overview page, use the left pane to go to **Settings** > **Networking**.
 * Under the **Public access** tab, you can configure settings for the public network access flag.
 * Save your changes. Your changes might take up to five minutes to propagate.
 

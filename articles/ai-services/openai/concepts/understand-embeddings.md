@@ -5,7 +5,7 @@ description: Learn more about how the Azure OpenAI embeddings API uses cosine si
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: tutorial
-ms.date: 10/6/2024
+ms.date: 03/27/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false

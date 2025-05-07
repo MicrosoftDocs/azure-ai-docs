@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: conceptual
-ms.date: 09/18/2024
+ms.date: 03/26/2025
 ms.author: pafarley
 ---
 
@@ -27,7 +27,7 @@ The following services are Limited Access:
 - [Custom Neural Voice](/legal/cognitive-services/speech-service/text-to-speech/limited-access?context=/azure/ai-services/speech-service/context/context): Pro features
 - [Custom text to speech avatar](/legal/cognitive-services/speech-service/text-to-speech/limited-access?context=/azure/ai-services/speech-service/context/context): All features
 - [Speaker Recognition](/legal/cognitive-services/speech-service/speaker-recognition/limited-access-speaker-recognition?context=/azure/ai-services/speech-service/context/context): All features 
-- [Face API](/legal/cognitive-services/computer-vision/limited-access-identity?context=/azure/ai-services/computer-vision/context/context): Identify and Verify features, face ID property
+- [Azure AI Face](/legal/cognitive-services/computer-vision/limited-access-identity?context=/azure/ai-services/computer-vision/context/context): Identify and Verify features, face ID property
 - [Azure AI Vision](/legal/cognitive-services/computer-vision/limited-access?context=/azure/ai-services/computer-vision/context/context): Celebrity Recognition feature
 - [Azure AI Video Indexer](/azure/azure-video-indexer/limited-access-features): Celebrity Recognition and Face Identify features
 - [Azure OpenAI](/legal/cognitive-services/openai/limited-access): Azure OpenAI Service, modified abuse monitoring, and modified content filters
@@ -43,7 +43,7 @@ Submit a registration form for each Limited Access service you would like to use
 - [Custom Neural Voice](https://aka.ms/customneural): Pro features 
 - [Custom text to speech avatar](https://aka.ms/customneural): All features 
 - [Speaker Recognition](https://aka.ms/azure-speaker-recognition): All features 
-- [Face API](https://aka.ms/facerecognition): Identify and Verify features
+- [Azure AI Face](https://aka.ms/facerecognition): Identify and Verify features
 - [Azure AI Vision](https://aka.ms/facerecognition): Celebrity Recognition feature 
 - [Azure AI Video Indexer](https://aka.ms/facerecognition): Celebrity Recognition and Face Identify features 
 - [Azure OpenAI](/legal/cognitive-services/openai/limited-access): Azure OpenAI Service, modified abuse monitoring, and modified content filters 

@@ -22,21 +22,17 @@ To get started, make sure you have the following resources and permissions:
 
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/) before you begin.
 
-* An Azure AI Foundry hub is required to manage the resources provisioned in your Content Understanding project, and it must be created in one of the following supported regions: westus, swedencentral, or australiaeast. If you're creating a hub for the first time, *see* [How to create and manage an Azure AI Foundry hub](../../../ai-foundry/how-to/create-azure-ai-resource.md?tabs=portal) to learn more. It's important to note you need the proper permissions to create a hub, or your admin may create one for you.
-
-  * If your role is **Contributor** or **Owner**, you can proceed with creating your own hub.
-
-  * If your role is **Azure AI Developer**, the hub must already be created before you can complete this quickstart. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../../../ai-foundry/concepts/ai-resources.md) and [Azure AI roles](../../../ai-foundry/concepts/rbac-ai-foundry.md).
+* An Azure AI Foundry project created in one of the following supported regions: westus, swedencentral, or australiaeast. If you're creating a project for the first time, *see* [How to create an Azure AI Foundry project](../../../ai-foundry/how-to/create-projects.md) to learn more. It's important to note you need the proper permissions to create a project, or your admin may create one for you.
 
 > [!IMPORTANT]
-> If your organization requires you to customize the security of storage resources, the AI Foundry doesn't currently expose all the features that can be configured. Refer to [Azure AI services API access keys](../../../ai-foundry/concepts/encryption-keys-portal.md) to create resources that meet your organizations requirements through the Azure portal. Policy enforced in Azure on the hub scope applies to all projects managed under it. To learn how to utilize customer managed keys, refer to [Service-side storage of encrypted data when using customer-managed keys](../../../ai-foundry/concepts/encryption-keys-portal.md#service-side-storage-of-encrypted-data). Return here when you have resources created.
+> If your organization requires you to customize the security of storage resources, refer to [Azure AI services API access keys](../../../ai-foundry/concepts/encryption-keys-portal.md) to create resources that meet your organizations requirements through the Azure portal. To learn how to utilize customer managed keys, refer to [Service-side storage of encrypted data when using customer-managed keys](../../../ai-foundry/concepts/encryption-keys-portal.md#service-side-storage-of-encrypted-data-when-using-customer-managed-keys). 
 
-## Create your first Content Understanding project in the AI Foundry
+## Create your first Content Understanding project in the AI Foundry portal
 
 > [!NOTE]
-> The Content Understanding project type is separate from the Generative AI project type, also available in the AI Foundry.
+> The Content Understanding project type is separate from the Generative AI project type, also available in the AI Foundry portal.
 
-In order to try out [the Content Understanding service in the AI Foundry](https://aka.ms/cu-landing), you have to create a Content Understanding project. You can access Content Understanding from:
+In order to try out [the Content Understanding service in the AI Foundry portal](https://aka.ms/cu-landing), you have to create a Content Understanding project. You can access Content Understanding from:
 
 * The [AI Foundry home page](https://ai.azure.com/)
 
@@ -51,13 +47,9 @@ Once on the Content Understanding page, select `Create a new Content Understandi
 
    :::image type="content" source="../media/quickstarts/cu-landing-page.png" lightbox="../media/quickstarts/cu-landing-page.png" alt-text="Screenshot of Content Understanding page.":::
 
- Follow the steps in the project creation wizard, and start by selecting the hub that you already created. When the hub was created, it should provision an AI Services resource and a blob storage container which are selected by default. You can alternatively create one using the wizard, or the [Azure portal](../how-to/create-multi-service-resource.md). The following diagram illustrates the role of hubs, resources, and projects in the AI Foundry.
+Follow the steps in the project creation wizard. Once you complete the setup steps, select `Create project`.
 
-   :::image type="content" source="../media/quickstarts/foundry-architecture.png" alt-text="Diagram of hub, project, and resource architecture.":::
-
- Once you complete the setup steps, select `Create project`.
-
- ## Sharing your content understanding project
+## Sharing your content understanding project
 
 In order to share and manage access to the Content Understanding project you created, navigate to the Management Center, found at the bottom of the navigation for your project:
 

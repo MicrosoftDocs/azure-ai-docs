@@ -6,7 +6,7 @@ author: mrbullwinkle
 ms.author: mbullwin 
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 09/01/2023
+ms.date: 03/26/2025
 manager: nitinme
 keywords: ChatGPT
 

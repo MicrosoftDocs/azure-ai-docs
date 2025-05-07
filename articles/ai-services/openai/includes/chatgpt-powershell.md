@@ -66,7 +66,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     }
     $messages += @{
       role = 'assistant'
-      content = 'Yes, you can use use honey as a substitute for sugar.'
+      content = 'Yes, you can use honey as a substitute for sugar.'
     }
     $messages += @{
       role = 'user'

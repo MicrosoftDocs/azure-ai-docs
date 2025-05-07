@@ -1,5 +1,5 @@
 ---
-title: 'Create a search service in the Azure portal'
+title: 'Create a Search Service in the Azure Portal'
 titleSuffix: Azure AI Search
 description: Learn how to set up an Azure AI Search resource in the Azure portal. Choose resource groups, regions, and a pricing tier.
 
@@ -11,7 +11,7 @@ ms.custom:
   - references_regions
   - build-2024
 ms.topic: how-to
-ms.date: 02/20/2025
+ms.date: 04/28/2025
 ---
 
 # Create an Azure AI Search service in the Azure portal
@@ -33,13 +33,13 @@ You can also use:
 
 ## Before you start
 
-Some properties are fixed for the lifetime of the search service. Before creating your service, decide on the following properties:
+Some properties are fixed for the lifetime of the search service. Before you create your service, decide on the following properties:
 
 | Property | Description |
 |--|--|
 | [Name](#name-your-service) | Becomes part of the URL endpoint. The name must be unique and follow naming rules. |
 | [Region](search-region-support.md) | Determines data residency and availability of certain features. For example, semantic ranker and Azure AI integration have region requirements. Choose a region that supports the features you need. |
-| [Tier](search-sku-tier.md) | Determines infrastructure, service limits, and billing. Some features aren't available on lower or specialized tiers. |
+| [Tier](search-sku-tier.md) | Determines infrastructure, service limits, and billing. Some features aren't available on lower or specialized tiers. In the 2025-02-01-preview, you can also [switch from a lower tier to a higher tier](search-capacity-planning.md#change-your-pricing-tier). |
 
 ## Subscribe to Azure
 
@@ -120,7 +120,7 @@ In most cases, choose a region near you, unless any of the following apply:
 
    + Start with [Azure OpenAI regions](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) because they have the most variability. Azure OpenAI provides embedding models and chat models for RAG and integrated vectorization.
 
-   + Check [Azure AI Search regions](search-region-support.md#azure-public-regions) for a match to your Azure OpenAI region. If you're using OCR, entity recognition, or other skills backed by Azure AI, the **AI service integration** column indicates whether Azure AI services multi-service and Azure AI Search are in the same region.
+   + Check [Azure AI Search regions](search-region-support.md#azure-public-regions) for a match to your Azure OpenAI region. If you're using OCR, entity recognition, or other skills backed by Azure AI, the **AI enrichment** column indicates whether Azure AI services multi-service and Azure AI Search are in the same region.
 
    + Check [multimodal embedding regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) for multimodal APIs and image search. This API is accessed through an Azure AI services multi-service account, but in general, it's available in fewer regions than Azure AI services multi-service.
 
@@ -131,7 +131,7 @@ Currently, the following regions offer cross-regional availability for Azure AI 
 + Americas: West US, East US
 + Europe: Switzerland North, Sweden Central
 
-This list isn't definitive, and depending on your tier, you might have more choices. Region status can also change quickly, so confirm your region choice before creating your search service.
+This list isn't definitive, and depending on your tier, you might have more choices. Region status can also change quickly, so confirm your region choice before you create your search service.
 
 ## Choose a tier
 
@@ -149,8 +149,8 @@ The Basic and Standard tiers are the most common for production workloads, but m
 :::image type="content" source="media/search-create-service-portal/select-pricing-tier.png" lightbox="media/search-create-service-portal/select-pricing-tier.png" alt-text="Screenshot of the Select Pricing Tier page in the Azure portal." border="true":::
 
 > [!NOTE]
-> + You can't change the tier after creating your search service, so choose carefully.
-> + Search services created after April 3, 2024 have larger partitions and higher vector quotas at every billable tier.
+> + After you create your service, you can move up between Basic and Standard (S1, S2, and S3) tiers. Switching to a lower tier isn't currently supported. For more information, see [Change your pricing tier](search-capacity-planning.md#change-your-pricing-tier).
+> + Services created after April 3, 2024 have larger partitions and higher vector quotas at every billable tier.
 
 ## Create your service
 

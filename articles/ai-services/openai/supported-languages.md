@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom:
 ms.topic: conceptual
-ms.date: 11/18/2024
+ms.date: 04/14/2025
 ms.author: mbullwin
 zone_pivot_groups: openai-supported-languages
 ---

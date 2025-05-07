@@ -5,7 +5,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 01/27/2025
+ms.date: 04/14/2025
 ms.author: lajanuar
 recommendations: false
 ---
@@ -19,7 +19,7 @@ recommendations: false
 # Synchronous document translation
 
 Reference</br>
-Feature: **Azure AI Translator → Document Translation**</br>
+Feature: **Azure AI Translator → Document translation**</br>
 API Version: **2024-05-01**</br>
 HTTP method: **POST**
 
@@ -29,7 +29,7 @@ HTTP method: **POST**
 
 > [!IMPORTANT]
 >
-> **All API requests to the Document Translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
+> **All API requests to the Document translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
 
 ## Request URL
 

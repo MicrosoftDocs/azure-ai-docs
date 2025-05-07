@@ -117,7 +117,7 @@ You can bring any application endpoint to simulate against by specifying a targe
 
 ```python
 async def callback(
-    messages: List[Dict],
+    messages: Dict,
     stream: bool = False,
     session_state: Any = None,  # noqa: ANN401
     context: Optional[Dict[str, Any]] = None,

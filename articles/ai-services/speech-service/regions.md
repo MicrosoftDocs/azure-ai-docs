@@ -108,7 +108,7 @@ The regions in these tables support most of the core features of the Speech serv
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | australiaeast      | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
 | brazilsouth        | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
-| canadacentral      | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |  |
+| canadacentral      | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
 | centralindia       | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
 | centralus          | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
 | eastasia           | ✅ | ✅ |  |  | ✅ |  |  | ✅ |  |  |  |

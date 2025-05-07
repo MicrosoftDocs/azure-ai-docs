@@ -7,8 +7,8 @@ ms.author: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 10/21/2024
+ms.topic: reference
+ms.date: 04/14/2025
 ---
 
 # Custom Web API skill in an Azure AI Search enrichment pipeline

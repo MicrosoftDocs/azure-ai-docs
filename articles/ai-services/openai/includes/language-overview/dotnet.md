@@ -5,7 +5,7 @@ description: Azure OpenAI C# support
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 11/18/2024
+ms.date: 03/27/2025
 ---
 
 
@@ -19,7 +19,7 @@ The Azure OpenAI client library for .NET is a companion to the [official OpenAI 
 
 The preview release has access to the latest features.
 
-[Source code](https://github.com/Azure/azure-sdk-for-net/tree/Azure.AI.OpenAI_2.1.0-beta.2/sdk/openai/Azure.AI.OpenAI/src) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.OpenAI/2.1.0-beta.2) | [API reference documentation](../../reference.md) | [Package reference documentation](/dotnet/api/overview/azure/ai.openai-readme?view=azure-dotnet-preview&preserve-view=true)   [Samples](https://github.com/Azure/azure-sdk-for-net/tree/Azure.AI.OpenAI_2.1.0-beta.2/sdk/openai/Azure.AI.OpenAI/tests/Samples)
+[Source code](https://github.com/Azure/azure-sdk-for-net/tree/Azure.AI.OpenAI_2.1.0-beta.2/sdk/openai/Azure.AI.OpenAI/src) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.OpenAI/2.2.0-beta.4) | [API reference documentation](../../reference.md) | [Package reference documentation](/dotnet/api/overview/azure/ai.openai-readme?view=azure-dotnet-preview&preserve-view=true)   [Samples](https://github.com/Azure/azure-sdk-for-net/tree/Azure.AI.OpenAI_2.2.0-beta.4/sdk/openai/Azure.AI.OpenAI/tests/Samples)
 
 
 ## Azure OpenAI API version support
@@ -34,10 +34,12 @@ The [stable release](/dotnet/api/azure.ai.openai.azureopenaiclientoptions.servic
 
 The [preview release](/dotnet/api/azure.ai.openai.azureopenaiclientoptions.serviceversion?view=azure-dotnet-preview&preserve-view=true) can currently target:
 
-- `2024-06-01`
 - `2024-08-01-preview`
 - `2024-09-01-preview`
 - `2024-10-01-preview`
+- `2024-12-01-preview`
+- `2025-01-01-preview`
+- `2025-03-01-preview`
 
 ## Installation
 
@@ -262,7 +264,42 @@ bytes.ToStream().CopyTo(stream);
 
 ```
 
-- [C# DALL-E quickstart guide](/azure/ai-services/openai/dall-e-quickstart?tabs=dalle3%2Ccommand-line%2Ckeyless%2Ctypescript-keyless&pivots=programming-language-csharp)
+- [C# Image generation quickstart guide](/azure/ai-services/openai/dall-e-quickstart?tabs=dalle3%2Ccommand-line%2Ckeyless%2Ctypescript-keyless&pivots=programming-language-csharp)
+
+## Reasoning models
+
+```csharp
+using Azure.AI.OpenAI;
+using Azure.AI.OpenAI.Chat;
+using Azure.Identity;
+using OpenAI.Chat;
+
+
+AzureOpenAIClient openAIClient = new(
+    new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/"),
+    new DefaultAzureCredential());
+ChatClient chatClient = openAIClient.GetChatClient("o3-mini");
+
+// Create ChatCompletionOptions and set the reasoning effort level
+ChatCompletionOptions options = new ChatCompletionOptions
+{
+    ReasoningEffortLevel = ChatReasoningEffortLevel.Low,
+    MaxOutputTokenCount = 100000
+};
+
+#pragma warning disable AOAI001 //currently required to use MaxOutputTokenCount
+
+options.SetNewMaxCompletionTokensPropertyEnabled(true);
+
+ChatCompletion completion = chatClient.CompleteChat(
+    [
+
+        new UserChatMessage("Testing 1,2,3")
+    ],
+    options); // Pass the options to the CompleteChat method
+
+Console.WriteLine($"{completion.Role}: {completion.Content[0].Text}");
+```
 
 
 ## Completions (legacy)

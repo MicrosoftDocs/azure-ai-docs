@@ -32,29 +32,22 @@ To use chat completion models in your application, you need:
 
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
 
-
 ```javascript
-import ModelClient from "@azure-rest/ai-inference";
-import { isUnexpected } from "@azure-rest/ai-inference";
-import { AzureKeyCredential } from "@azure/core-auth";
-
-const client = new ModelClient(
-    process.env.AZURE_INFERENCE_ENDPOINT, 
+const client = ModelClient(
+    "https://<resource>.services.ai.azure.com/models", 
     new AzureKeyCredential(process.env.AZURE_INFERENCE_CREDENTIAL)
 );
 ```
 
 If you've configured the resource with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
-
 ```javascript
-import ModelClient from "@azure-rest/ai-inference";
-import { isUnexpected } from "@azure-rest/ai-inference";
-import { DefaultAzureCredential }  from "@azure/identity";
+const clientOptions = { credentials: { "https://cognitiveservices.azure.com" } };
 
-const client = new ModelClient(
-    process.env.AZURE_INFERENCE_ENDPOINT, 
+const client = ModelClient(
+    "https://<resource>.services.ai.azure.com/models", 
     new DefaultAzureCredential()
+    clientOptions,
 );
 ```
 
@@ -70,6 +63,7 @@ var messages = [
 
 var response = await client.path("/chat/completions").post({
     body: {
+        model: "mistral-large-2407",
         messages: messages,
     }
 });
@@ -122,7 +116,9 @@ var messages = [
 
 var response = await client.path("/chat/completions").post({
     body: {
+        model: "mistral-large-2407",
         messages: messages,
+        stream: true,
     }
 }).asNodeStream();
 ```
@@ -148,7 +144,7 @@ for await (const event of sses) {
         return;
     }
     for (const choice of (JSON.parse(event.data)).choices) {
-        console.log(choice.delta?.content ?? "");
+        process.stdout.write(choice.delta?.content ?? "");
     }
 }
 ```
@@ -165,6 +161,7 @@ var messages = [
 
 var response = await client.path("/chat/completions").post({
     body: {
+        model: "mistral-large-2407",
         messages: messages,
         presence_penalty: "0.1",
         frequency_penalty: "0.8",
@@ -195,6 +192,7 @@ var messages = [
 
 var response = await client.path("/chat/completions").post({
     body: {
+        model: "mistral-large-2407",
         messages: messages,
         response_format: { type: "json_object" }
     }
@@ -217,6 +215,7 @@ var response = await client.path("/chat/completions").post({
         "extra-params": "pass-through"
     },
     body: {
+        model: "mistral-large-2407",
         messages: messages,
         logprobs: true
     }
@@ -280,6 +279,7 @@ Prompt the model to book flights with the help of this function:
 ```javascript
 var result = await client.path("/chat/completions").post({
     body: {
+        model: "mistral-large-2407",
         messages: messages,
         tools: tools,
         tool_choice: "auto"

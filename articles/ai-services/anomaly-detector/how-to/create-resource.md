@@ -41,7 +41,7 @@ Anomaly Detector service is a cloud-based Azure AI service that uses machine-lea
 
 ## Get Endpoint URL and keys
 
-In your resource, select **Keys and Endpoint** on the left navigation bar, copy the **key** (both key1 and key2 will work) and **endpoint** values from your Anomaly Detector resource.. You'll need the key and endpoint values to connect your application to the Anomaly Detector API.
+In your resource, select **Keys and Endpoint** on the left pane, copy the **key** (both key1 and key2 will work) and **endpoint** values from your Anomaly Detector resource.. You'll need the key and endpoint values to connect your application to the Anomaly Detector API.
 
 > [!div class="mx-imgBorder"]
 > ![Screenshot of copy key and endpoint user experience](../media/create-resource/copy-key-endpoint.png)

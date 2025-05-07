@@ -11,7 +11,7 @@ ms.author: eur
 
 Follow these steps to install the Speech CLI on Windows:
 
-1. Install the [Microsoft Visual C++ Redistributable for Visual Studio 2019](https://support.microsoft.com/help/2977003/the-latest-supported-visual-c-downloads) for your platform. Installing it for the first time might require a restart.
+1. Install the [Microsoft Visual C++ Redistributable for Visual Studio](/cpp/windows/latest-supported-vc-redist#latest-microsoft-visual-c-redistributable-version) for your platform. Installing it for the first time might require a restart.
 1. Install [.NET 6](/dotnet/core/install/windows?tabs=net60#runtime-information).
 1. Install the Speech CLI via the .NET CLI by entering this command:
 
@@ -80,7 +80,7 @@ Enter `spx` or `spx help` to see help for the Speech CLI.
 
 #### [Docker (Windows, Linux, macOS)](#tab/dockerinstall)
 
-The following example pulls a public container image from Docker Hub. We recommend that you authenticate with your Docker Hub account (`docker login`) first instead of making an anonymous pull request. To improve reliability when you're using public content, import and manage the image in a private Azure container registry. [Learn more about working with public images](/azure/container-registry/buffer-gate-public-content).
+The following example pulls a public container image from Docker Hub. We recommend that you authenticate with your Docker Hub account (`docker login`) first instead of making an anonymous pull request. To improve reliability when you're using public content, import and manage the image in a private Azure Container Registry. [Learn more about working with public images](/azure/container-registry/buffer-gate-public-content).
 
 Follow these steps to install the Speech CLI in a Docker container:
 

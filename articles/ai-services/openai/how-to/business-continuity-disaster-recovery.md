@@ -5,7 +5,7 @@ description: Considerations for implementing Business Continuity and Disaster Re
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 12/03/2024
+ms.date: 03/27/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 recommendations: false

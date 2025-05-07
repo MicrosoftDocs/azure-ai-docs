@@ -145,5 +145,5 @@ At some point, you want to develop apps with code. Here are some developer resou
 
 ## Related content
 
-- [Azure OpenAI in Azure AI Foundry portal](../../azure-openai-in-ai-foundry.md)
+- [Azure OpenAI in Azure AI Foundry portal](../../azure-openai-in-azure-ai-foundry.md)
 - [Use Azure AI services resources](./connect-ai-services.md)

@@ -1,43 +1,39 @@
 ---
-title: "Azure AI Services docs: What's new for February 2025"
-description: "What's new in the Azure AI Services docs for February 2025."
+title: "Azure AI Services docs: What's new for April 2025"
+description: "What's new in the Azure AI Services docs for April 2025."
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
 ms.subject: ai-services
-ms.custom: February-2025
-ms.date: 03/04/2025
+ms.custom: April-2025
+ms.date: 05/03/2025
 ---
 
-# Azure AI Services docs: What's new for February 2025
+# Azure AI Services docs: What's new for April 2025
 
-Welcome to what's new in the Azure AI Services docs for February 2025. This article lists some of the major changes to docs during this period.
+Welcome to what's new in the Azure AI Services docs for April 2025. This article lists some of the major changes to docs during this period.
 
 ## Azure AI Services
 
 ### New articles
 
-- [Analyzer templates offered with Content Understanding](../ai-services/content-understanding/concepts/analyzer-templates.md)
+- [Audio capabilities in Azure OpenAI Service](../ai-services/openai/concepts/audio.md)
+- [Azure AI Agent Service monitoring data reference](../ai-services/agents/reference/monitor-service.md)
 - [Azure AI Translator known issues](../ai-services/translator/reference/known-issues.md)
-- [Azure AI Translator release history](../ai-services/translator/reference/release-history.md)
-- [Best practices for Content Understanding](../ai-services/content-understanding/concepts/best-practices.md)
-- [Content Understanding Capabilities (preview)](../ai-services/content-understanding/concepts/capabilities.md)
-- [Create a new network-secured agent with user-managed identity](../ai-services/agents/how-to/virtual-networks.md)
-- [Face liveness detection](../ai-services/computer-vision/concept-face-liveness-detection.md)
-- [QuickStart: Use a text blocklist](../ai-services/content-safety/quickstart-blocklist.md)
-- [Troubleshooting latency issues in Azure AI Document Intelligence](../ai-services/document-intelligence/concept/troubleshoot-latency.md)
+- [Configure Azure OpenAI networking](../ai-services/openai/how-to/network.md)
+- [Enable Microsoft Entra ID authentication](../ai-services/translator/how-to/microsoft-entra-id-auth.md)
+- [How to use the GPT-4o Realtime API via WebRTC (Preview)](../ai-services/openai/how-to/realtime-audio-webrtc.md)
+- [How to use the GPT-4o Realtime API via WebSockets (Preview)](../ai-services/openai/how-to/realtime-audio-websockets.md)
+- [Interpret and improve confidence and accuracy scores](../ai-services/content-understanding/concepts/accuracy-confidence.md)
+- [Monitor Azure AI Agent Service](../ai-services/agents/how-to/metrics.md)
+- [Multimodal retrieval-augmented generation with Content Understanding](../ai-services/content-understanding/concepts/retrieval-augmented-generation.md)
+- [Tutorial: Build a retrieval-augmented generation solution](../ai-services/content-understanding/tutorial/build-rag-solution.md)
+
 
 ### Updated articles
 
-- [Azure AI Agent Service Code Interpreter](../ai-services/agents/how-to/tools/code-interpreter.md)
-- [Azure AI Agents function calling](../ai-services/agents/how-to/tools/function-calling.md)
-- [Azure OpenAI stored completions & distillation (preview)](../ai-services/openai/how-to/stored-completions.md) 
-- [Custom Translator release notes](../ai-services/translator/custom-translator/release-notes.md)
-- [Customize a model with fine-tuning](../ai-services/openai/how-to/fine-tuning.md) 
-- [Document Intelligence batch analysis](../ai-services/document-intelligence/prebuilt/batch-analysis.md) 
-- [Document Intelligence read model](../ai-services/document-intelligence/prebuilt/read.md) 
-- [Fine-tuning and tool calling](../ai-services/openai/how-to/fine-tuning-functions.md) 
-- [Grounding with Bing Search](../ai-services/agents/how-to/tools/bing-grounding.md)
-- [How to use Azure AI Agent Service with OpenAPI Specified Tools](../ai-services/agents/how-to/tools/openapi-spec.md) 
-- [Structured outputs](../ai-services/openai/how-to/structured-outputs.md) 
-- [Use Azure Functions with Azure AI Agent Service](../ai-services/agents/how-to/tools/azure-functions.md) 
+- [Azure OpenAI reasoning models](../ai-services/openai/how-to/reasoning.md)
+- [Azure OpenAI Responses API (Preview)](../ai-services/openai/how-to/responses.md)
+- [How to use Azure OpenAI image generation models](../ai-services/openai/how-to/dall-e.md)
+- [Install and run containers](../ai-services/document-intelligence/containers/install-run.md)
+- [Use the Microsoft Fabric data agent](../ai-services/agents/how-to/tools/fabric.md)

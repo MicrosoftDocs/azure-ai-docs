@@ -175,6 +175,8 @@ To use the Content Safety APIs, you must create your Azure AI Content Safety res
 | West US              |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
 | West US 2            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
 | West US 3            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
+| Germany West Central |                    |                    |      |                            | ✅               | ✅             | ✅                     |                            | ✅    | 
+| Italy North          |                    |                    |      |                            | ✅               | ✅             | ✅                     |                            | ✅    | 
 | FairFax - USGovArizona|                   |                   | ✅     |                            |                 | ✅              | ✅                      |                           | ✅    | 
 | FairFax - USGovVirginia|                   |                  | ✅     |                            |                 | ✅              | ✅                      |                           | ✅    | 
 

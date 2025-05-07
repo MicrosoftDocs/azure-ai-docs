@@ -6,7 +6,7 @@ author: aahill
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: overview
-ms.date: 09/25/2024
+ms.date: 03/31/2025
 ms.author: aahi
 keywords: on-premises, Docker, container, Kubernetes
 #Customer intent: As a potential customer, I want to know more about how Azure AI services provides and supports Docker containers for each service.

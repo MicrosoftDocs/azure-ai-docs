@@ -44,7 +44,7 @@ You can see the model deployments available in the connected resource by followi
 
 1. Go to [Azure AI Foundry Portal](https://ai.azure.com).
 
-2. On the left navigation bar, select **Models + endpoints**.
+2. On the left pane, select **Models + endpoints**.
 
 3. The page displays the model deployments available to your, grouped by connection name. Locate the connection you have just created, which should be of type **Azure AI Services**.
 

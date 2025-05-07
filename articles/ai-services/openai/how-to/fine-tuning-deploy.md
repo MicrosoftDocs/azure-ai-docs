@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 ms.topic: how-to
-ms.date: 02/24/2025
+ms.date: 03/31/2025
 author: mrbullwinkle
 ms.author: mbullwin
 ---
@@ -370,14 +370,14 @@ Azure OpenAI fine-tuning supports the following deployment types.
 
 | Models | Region |
 |--|--|
+|GPT-4.1-finetune|East US2, North Central US, and Sweden Central|
+|GPT-4.1-mini-finetune|East US2, North Central US, and Sweden Central|
 |GPT-4o-finetune|East US2, North Central US, and Sweden Central|
 |GPT-4o-mini-finetune|East US2, North Central US, and Sweden Central|
 
 [Global standard](./deployment-types.md#global-standard) fine-tuned deployments offer [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), but custom model weights may temporarily be stored outside the geography of your Azure OpenAI resource.
 
 :::image type="content" source="../media/fine-tuning/global-standard.png" alt-text="Screenshot of the global standard deployment user experience with a fine-tuned model." lightbox="../media/fine-tuning/global-standard.png":::
-
-Global Standard fine-tuned deployments currently support structured outputs only on GPT-4o.
 
 ### Provisioned Managed (preview)
 
@@ -389,15 +389,13 @@ Global Standard fine-tuned deployments currently support structured outputs only
 - `gpt-4o-mini-2024-07-18`
 - `gpt-4o-2024-08-06`
 
-[Provisioned managed](./deployment-types.md#provisioned) fine-tuned deployments offer [predictable performance](../concepts/provisioned-throughput.md#what-do-the-provisioned-deployment-types-provide) for fine-tuned deployments. As part of public preview, provisioned managed deployments may be created regionally via the data-plane [REST API](../reference.md#data-plane-inference) version `2024-10-01` or newer. See below for examples.
-
-Provisioned Managed fine-tuned deployments currently support structured outputs only on GPT-4o.
+[Provisioned managed](./deployment-types.md#provisioned) fine-tuned deployments offer [predictable performance](../concepts/provisioned-throughput.md) for fine-tuned deployments. As part of public preview, provisioned managed deployments may be created regionally via the data-plane [REST API](../reference.md#data-plane-inference) version `2024-10-01` or newer. See below for examples.
 
 #### Creating a Provisioned Managed deployment
 
 To create a new deployment, make an HTTP PUT call via the [Deployments - Create or Update REST API](/rest/api/aiservices/accountmanagement/deployments/create-or-update?view=rest-aiservices-accountmanagement-2024-10-01&tabs=HTTP&preserve-view=true). The approach is similar to performing [cross region deployment](#cross-region-deployment) with the following exceptions:
 
-- You must provide a `sku` name of `ProvisionedStandard`.
+- You must provide a `sku` name of `ProvisionedManaged`.
 - The capacity must be declared in PTUs.
 - The `api-version` must be `2024-10-01` or newer.
 - The HTTP method should be `PUT`.
@@ -409,7 +407,7 @@ curl -X PUT "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceG
   -H "Authorization: Bearer <TOKEN>" \
   -H "Content-Type: application/json" \
   -d '{
-    "sku": {"name": "ProvisionedStandard", "capacity": 25},
+    "sku": {"name": "ProvisionedManaged", "capacity": 25},
     "properties": {
         "model": {
             "format": "OpenAI",
@@ -423,7 +421,7 @@ curl -X PUT "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceG
 
 #### Scaling a fine-tuned model on Provisioned Managed
 
-To scale a fine-tuned provision managed deployment to increase or decrease PTU capacity, perform the same `PUT` REST API call as you did when [creating the deployment](#creating-a-provisioned-managed-deployment) and provide an updated `capacity` value for the `sku`. Keep in mind, provisioned deployments must scale in [minimum increments](../concepts/provisioned-throughput.md#how-much-throughput-per-ptu-you-get-for-each-model).
+To scale a fine-tuned provision managed deployment to increase or decrease PTU capacity, perform the same `PUT` REST API call as you did when [creating the deployment](#creating-a-provisioned-managed-deployment) and provide an updated `capacity` value for the `sku`. Keep in mind, provisioned deployments must scale in [minimum increments](../how-to/provisioned-throughput-onboarding.md#how-much-throughput-per-ptu-you-get-for-each-model).
 
 For example, to scale the model deployed in the previous section from 25 to 40 PTU, make another `PUT` call and increase the capacity:
 
@@ -432,7 +430,7 @@ curl -X PUT "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceG
   -H "Authorization: Bearer <TOKEN>" \
   -H "Content-Type: application/json" \
   -d '{
-    "sku": {"name": "ProvisionedStandard", "capacity": 40},
+    "sku": {"name": "ProvisionedManaged", "capacity": 40},
     "properties": {
         "model": {
             "format": "OpenAI",

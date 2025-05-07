@@ -13,7 +13,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 4/7/2025
 ms.author: eur
 zone_pivot_groups: programming-languages-ai-services
 #Customer intent: As a developer, I want to implement pronunciation assessment on spoken language using a technology that works in my environment to gives feedback on accuracy and fluency.
@@ -1104,6 +1104,9 @@ For the speaking scenario (the completeness score isn't applicable):
 This formula provides a weighted calculation based on the importance of each score, ensuring a comprehensive evaluation of pronunciation.
 
 ## Content assessment
+
+> [!IMPORTANT]
+> Content assessment (preview) via the Speech SDK will be retired in July 2025. Instead, you can use the Azure OpenAI Service to get content assessment results as described in this section.
 
 For some recognized speech, you might also want to get content assessment results for vocabulary, grammar, and topic relevance. You can use a chat model such as Azure OpenAI `gpt-4o` to get the content assessment results. For more information about using chat models, see [Azure OpenAI Service models](../openai/concepts/models.md) and the Azure AI Model Inference API [chat completions reference documentation](/rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions).
 

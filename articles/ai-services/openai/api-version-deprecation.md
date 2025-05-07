@@ -5,7 +5,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 02/28/2025
+ms.date: 03/25/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -24,11 +24,12 @@ This article is to help you understand the support lifecycle for the Azure OpenA
 
 Azure OpenAI API latest release:
 
-- Inference: [2025-02-01-preview](reference-preview.md)
-- Authoring: [2025-02-01-preview](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/authoring/preview/2025-02-01-preview/azureopenai.json)
+- Inference: [2025-03-01-preview](reference-preview.md)
+- Authoring: [2025-03-01-preview](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/authoring/preview/)
 
 This version contains support for the latest Azure OpenAI features including:
 
+- [Responses API & support for `computer-use-preview` model](./how-to/responses.md) [**Added in 2025-03-01-preview**]
 - [Stored Completions (distillation) API](./how-to/stored-completions.md#stored-completions-api) [**Added in 2025-02-01-preview**]
 - [Predicted Outputs](./how-to/predicted-outputs.md) [**Added in 2025-01-01-preview**]
 - [Reasoning models](./how-to/reasoning.md) [**Added in 2024-12-01-preview**]
@@ -39,9 +40,14 @@ This version contains support for the latest Azure OpenAI features including:
 - [Text to speech](./text-to-speech-quickstart.md). [**Added in 2024-02-15-preview**]
 - [DALL-E 3](./dall-e-quickstart.md). [**Added in 2023-12-01-preview**]
 - [Fine-tuning](./how-to/fine-tuning.md). [**Added in 2023-10-01-preview**]
-- [Whisper](./whisper-quickstart.md). [**Added in 2023-09-01-preview**]
+- [Speech to text](./whisper-quickstart.md). [**Added in 2023-09-01-preview**]
 - [Function calling](./how-to/function-calling.md)  [**Added in 2023-07-01-preview**]
 - [Retrieval augmented generation with your data feature](./use-your-data-quickstart.md).  [**Added in 2023-06-01-preview**]
+
+## Changes between 2025-03-01-preview and 2025-02-01-preview
+
+- [Responses API](./how-to/responses.md)
+- [Computer use](./how-to/computer-use.md)
 
 ## Changes between 2025-02-01-preview and 2025-01-01-preview
 

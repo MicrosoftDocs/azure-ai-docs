@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 10/21/2024
+ms.date: 04/14/2025
 ---
 
 # Partial term search and patterns with special characters (hyphens, wildcard, regex, patterns)

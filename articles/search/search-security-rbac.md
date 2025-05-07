@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/27/2025
+ms.date: 03/31/2025
 ms.custom: subject-rbac-steps, devx-track-azurepowershell
 ---
 
@@ -45,7 +45,7 @@ The following steps work for all role assignments.
 
 1. [Enable role-based access](search-security-enable-roles.md).
 
-1. Select **Access Control (IAM)** in the left navigation pane.
+1. Select **Access Control (IAM)** in the left pane.
 
 1. Select **+ Add** > **Add role assignment** to start the **Add role assignment** wizard.
 
@@ -90,7 +90,7 @@ Combine these roles to get sufficient permissions for your use case.
 |List all objects on the resource |❌|❌|✅|✅|✅|
 |Access quotas and service statistics |❌|❌|✅|✅|❌|
 |Read/query an index |✅|✅|❌|❌|❌|
-|Upload data for indexing |❌|✅|❌|✅|❌|
+|Upload data for indexing <sup>1</sup>|❌|✅|❌|❌|❌|
 |Create or edit indexes/aliases |❌|❌|✅|✅|❌|
 |Create, edit and run indexers/data sources/skillsets |❌|❌|✅|✅|❌|
 |Create or edit synonym maps |❌|❌|✅|✅|❌|
@@ -102,6 +102,8 @@ Combine these roles to get sufficient permissions for your use case.
 |Set authentication options |❌|❌|✅|✅|❌|
 |Configure private connections |❌|❌|✅|✅|❌|
 |Configure network security |❌|❌|✅|✅|❌|
+
+<sup>1</sup> In the Azure portal, an Owner or Contributor can run the Import data wizards that create and load indexes, even though they can't upload documents in other clients. Data connections in the wizard are made by the search service itself and not individual users. The wizards have the `Microsoft.Search/searchServices/indexes/documents/*` permission necessary for completing this task.
 
 Owners and Contributors grant the same permissions, except that only Owners can assign roles.
 

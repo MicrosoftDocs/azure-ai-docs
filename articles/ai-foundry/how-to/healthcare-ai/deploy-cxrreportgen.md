@@ -5,7 +5,7 @@ description: Learn how to use CXRReportGen Healthcare AI Model with Azure AI Fou
 ms.service: azure-ai-foundry
 manager: scottpolly
 ms.topic: how-to
-ms.date: 10/20/2024
+ms.date: 04/24/2025
 ms.reviewer: itarapov
 reviewer: ivantarapov
 ms.author: mopeakande
@@ -35,18 +35,20 @@ The CXRReportGen model combines a radiology-specific image encoder with a large 
 
 ## Prerequisites
 
-To use the CXRReportGen model, you need the following prerequisites:
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-### A model deployment
+- An [Azure AI Foundry project](../create-projects.md).
 
-**Deployment to a self-hosted managed compute**
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../../concepts/rbac-ai-foundry.md).
 
-CXRReportGen model can be deployed to our self-hosted managed inference solution, which allows you to customize and control all the details about how the model is served. You can deploy the model through the catalog UI (in [Azure AI Foundry](https://aka.ms/healthcaremodelstudio) or [Azure Machine Learning studio](https://ml.azure.com/model/catalog)) or deploy programmatically.
+## Deploy the model to a managed compute
+
+Deployment to a self-hosted managed inference solution allows you to customize and control all the details about how the model is served. You can deploy the model from its model card in the catalog UI of [Azure AI Foundry](https://aka.ms/healthcaremodelstudio) or [Azure Machine Learning studio](https://ml.azure.com/model/catalog) or [deploy it programmatically](../deploy-models-managed.md).
 
 To __deploy the model through the UI__:
 
-1. Go to the catalog.
-1. Search for _CxrReportGen_ and select the model card.
+1. Go to the model catalog.
+1. Search for the _CxrReportGen_ model and select its model card.
 1. On the model's overview page, select __Deploy__.
 1. If given the option to choose between serverless API deployment and deployment using a managed compute, select **Managed Compute**.
 1. Fill out the details in the deployment window.
@@ -68,14 +70,14 @@ Consume the CXRReportGen report generation model as a REST API, using simple GET
 
 ```python
 from azure.ai.ml import MLClient
-from azure.identity import DeviceCodeCredential
+from azure.identity import DefaultAzureCredential
 
 credential = DefaultAzureCredential()
 
 ml_client_workspace = MLClient.from_config(credential)
 ```
 
-In the deployment configuration, you get to choose the authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see the [corresponding documentation page](../../../machine-learning/how-to-setup-authentication.md). Also, note that the client is created from a configuration file that is created automatically for Azure Machine Learning virtual machines (VMs). Learn more on the [corresponding API documentation page](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-from-config).
+In the deployment configuration, you get to choose an authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see the [corresponding documentation page](../../../machine-learning/how-to-setup-authentication.md). Also, the client is created from a configuration file that is created automatically for Azure Machine Learning virtual machines (VMs). Learn more on the [corresponding API documentation page](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-from-config).
 
 ### Make basic calls to the model
 
@@ -204,5 +206,5 @@ CXRReportGen is a versatile model that can be applied to a wide range of tasks a
 
 ## Related content
 
-* [MedImageParse for medical image segmentation](deploy-medimageparse.md)
+* [MedImageParse models for medical image segmentation](deploy-medimageparse.md)
 * [MedImageInsight for grounded report generation](deploy-medimageinsight.md)

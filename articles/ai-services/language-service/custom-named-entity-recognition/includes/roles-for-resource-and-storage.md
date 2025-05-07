@@ -17,7 +17,7 @@ Use the following steps to set the required roles for your Language resource and
 ### Roles for your Azure AI Language resource
 
 1. Go to your storage account or Language resource in the [Azure portal](https://portal.azure.com/).
-2. Select **Access Control (IAM)** in the left navigation menu.
+2. Select **Access Control (IAM)** in the left pane.
 3. Select **Add** to **Add Role Assignments**, and choose the appropriate role for your account.
 
     You should have the **owner** or **contributor** role assigned on your Language resource.
@@ -30,7 +30,7 @@ Use the following steps to set the required roles for your Language resource and
 ### Roles for your storage account
 
 1. Go to your storage account page in the [Azure portal](https://portal.azure.com/).
-2. Select **Access Control (IAM)** in the left navigation menu.
+2. Select **Access Control (IAM)** in the left pane.
 3. Select **Add** to **Add Role Assignments**, and choose the **Storage blob data contributor** role on the storage account.
 4. Within **Assign access to**, select **Managed identity**. 
 5. Select **Select members**
@@ -41,7 +41,7 @@ Use the following steps to set the required roles for your Language resource and
 > If you skip this step, you'll have a 403 error when trying to connect to your custom project. It's important that your current user has this role to access storage account blob data, even if you're the owner of the storage account.
 > 
 1. Go to your storage account page in the [Azure portal](https://portal.azure.com/).
-2. Select **Access Control (IAM)** in the left navigation menu.
+2. Select **Access Control (IAM)** in the left pane.
 3. Select **Add** to **Add Role Assignments**, and choose the **Storage blob data contributor** role on the storage account.
 4. Within **Assign access to**, select **User, group, or service principal**. 
 5. Select **Select members**

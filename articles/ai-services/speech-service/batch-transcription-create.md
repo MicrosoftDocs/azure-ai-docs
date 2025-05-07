@@ -227,7 +227,7 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey" -H "Content-
   },
   "properties": {
     "wordLevelTimestampsEnabled": true,
-  },
+  }
 }'  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions"
 ```
 

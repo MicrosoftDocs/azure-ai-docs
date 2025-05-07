@@ -10,13 +10,14 @@ author: swatig007
 ms.author: swatig
 ms.reviewer: nibaccam
 ms.date: 10/06/2021
-ms.custom: UpdateFrequency5, devx-track-python, automl, sdkv2
+ms.custom: UpdateFrequency5, devx-track-python, automl, sdkv1
 ---
 
 # Tutorial: Train an object detection model (preview) with AutoML and Python (v1)
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
-    
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 >[!IMPORTANT]
 > The features presented in this article are in preview. They should be considered [experimental](/python/api/overview/azure/ml/#stable-vs-experimental) preview features that might change at any time.

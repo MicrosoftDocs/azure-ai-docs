@@ -30,7 +30,7 @@ Follow these steps to configure Microsoft Entra ID for inference:
 
       :::image type="content" source="../../media/configure-entra-id/locate-resource-ai-services.png" alt-text="Screenshot showing the resource to which we configure Microsoft Entra ID." lightbox="../../media/configure-entra-id/locate-resource-ai-services.png":::
 
-2. On the left navigation bar, select **Access control (IAM)** and then select **Add** > **Add role assignment**.
+2. On the left pane, select **Access control (IAM)** and then select **Add** > **Add role assignment**.
 
    :::image type="content" source="../../media/configure-entra-id/resource-aim.png" alt-text="Screenshot showing how to add a role assignment in the Access control section of the resource in the Azure portal." lightbox="../../media/configure-entra-id/resource-aim.png":::
 

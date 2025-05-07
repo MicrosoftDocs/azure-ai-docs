@@ -5,7 +5,7 @@ description: Walkthrough on how to get started with Azure OpenAI and make your f
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 09/19/2023
+ms.date: 03/26/2025
 ---
 
 ## Prerequisites

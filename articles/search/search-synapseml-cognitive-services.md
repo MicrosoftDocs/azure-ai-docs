@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Index at scale (Spark)'
+title: 'Tutorial: Index at Scale (Spark)'
 titleSuffix: Azure AI Search
 description: Search big data from Apache Spark that's been transformed by SynapseML. Load invoices into data frames, apply machine learning, and then send output to a generated search index.
 
@@ -10,52 +10,52 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 01/30/2025
+ms.date: 03/28/2025
 ---
 
 # Tutorial: Index large data from Apache Spark using SynapseML and Azure AI Search
 
-In this Azure AI Search tutorial, learn how to index and query large data loaded from a Spark cluster. Set up a Jupyter Notebook that performs the following actions:
+In this Azure AI Search tutorial, you learn how to index and query large data loaded from a Spark cluster. You set up a Jupyter Notebook to:
 
 > [!div class="checklist"]
 > + Load various forms (invoices) into a data frame in an Apache Spark session
-> + Analyze them to determine their features
+> + Analyze the forms to determine their features
 > + Assemble the resulting output into a tabular data structure
 > + Write the output to a search index hosted in Azure AI Search
 > + Explore and query over the content you created
 
-This tutorial takes a dependency on [SynapseML](https://microsoft.github.io/SynapseML/), an open source library that supports massively parallel machine learning over big data. In SynapseML, search indexing and machine learning are exposed through *transformers* that perform specialized tasks. Transformers tap into a wide range of AI capabilities. In this exercise, use the **AzureSearchWriter** APIs for analysis and AI enrichment.
+This tutorial takes a dependency on [SynapseML](https://microsoft.github.io/SynapseML/), an open-source library that supports massively parallel machine learning over big data. In SynapseML, search indexing and machine learning are exposed through *transformers* that perform specialized tasks. Transformers tap into a wide range of AI capabilities. In this exercise, you use the **AzureSearchWriter** APIs for analysis and AI enrichment.
 
 Although Azure AI Search has native [AI enrichment](cognitive-search-concept-intro.md), this tutorial shows you how to access AI capabilities outside of Azure AI Search. By using SynapseML instead of indexers or skills, you're not subject to data limits or other constraints associated with those objects.
 
 > [!TIP]
-> Watch a short video of this demo at [https://www.youtube.com/watch?v=iXnBLwp7f88](https://www.youtube.com/watch?v=iXnBLwp7f88). The video expands on this tutorial with more steps and visuals.
+> Watch a [short video of this demo](https://www.youtube.com/watch?v=iXnBLwp7f88). The video expands on this tutorial with more steps and visuals.
 
 ## Prerequisites
 
 You need the `synapseml` library and several Azure resources. If possible, use the same subscription and region for your Azure resources and put everything into one resource group for simple cleanup later. The following links are for portal installs. The sample data is imported from a public site.
 
 + [SynapseML package](https://microsoft.github.io/SynapseML/docs/Get%20Started/Install%20SynapseML/#python) <sup>1</sup>
-+ [Azure AI Search](search-create-service-portal.md) (any tier), with an **API Kind** of `AIServices` <sup>2</sup> 
-+ [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills?pivots=azportal) (any tier) <sup>3</sup>
-+ [Azure Databricks](/azure/databricks/scenarios/quickstart-create-databricks-workspace-portal?tabs=azure-portal) (any tier) with Apache Spark 3.3.0 runtime<sup>4</sup>
++ [Azure AI Search](search-create-service-portal.md) (any tier) <sup>2</sup> 
++ [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills?pivots=azportal) (any tier) with an **API Kind** of `AIServices` <sup>3</sup>
++ [Azure Databricks](/azure/databricks/scenarios/quickstart-create-databricks-workspace-portal?tabs=azure-portal) (any tier) with Apache Spark 3.3.0 runtime <sup>4</sup>
 
 <sup>1</sup> This link resolves to a tutorial for loading the package.
 
-<sup>2</sup> You can use the free search tier to index the sample data, but [choose a higher tier](search-sku-tier.md) if your data volumes are large. For billable tiers, provide the [search API key](search-security-api-keys.md#find-existing-keys) in the [Set up dependencies](#step-2-set-up-dependencies) step further on.
+<sup>2</sup> You can use the Free tier to index the sample data, but [choose a higher tier](search-sku-tier.md) if your data volumes are large. For billable tiers, provide the [search API key](search-security-api-keys.md#find-existing-keys) in the [Set up dependencies](#set-up-dependencies) step further on.
 
-<sup>3</sup> This tutorial uses Azure AI Document Intelligence and Azure AI Translator. In the instructions that follow, provide a [multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills?pivots=azportal) key and the region. The same key works for both services. **It's important that you use an Azure AI services multi-service account of API kind of `AIServices` for this tutorial**. You can check the API kind in the Azure portal on the Overview section of your Azure AI services multi-service account page. For more information about API kind, see [Attach an Azure AI services multi-service resource in Azure AI Search](cognitive-search-attach-cognitive-services.md).
+<sup>3</sup> This tutorial uses Azure AI Document Intelligence and Azure AI Translator. In the instructions that follow, provide a [multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills?pivots=azportal) key and the region. The same key works for both services. **For this tutorial, it's important that you use an Azure AI services multi-service account with an API kind of `AIServices`**. You can check the API kind in the Azure portal on the Overview section of your Azure AI services multi-service account page. For more information about API kind, see [Attach an Azure AI services multi-service resource in Azure AI Search](cognitive-search-attach-cognitive-services.md).
 
 <sup>4</sup> In this tutorial, Azure Databricks provides the Spark computing platform. We used the [portal instructions](/azure/databricks/scenarios/quickstart-create-databricks-workspace-portal?tabs=azure-portal) to set up the cluster and workspace.
 
 > [!NOTE]
-> All of the above Azure resources support security features in the Microsoft Identity platform. For simplicity, this tutorial assumes key-based authentication, using endpoints and keys copied from the Azure portal pages of each service. If you implement this workflow in a production environment, or share the solution with others, remember to replace hard-coded keys with integrated security or encrypted keys.
+> The preceding Azure resources support security features in the Microsoft Identity platform. For simplicity, this tutorial assumes key-based authentication, using endpoints and keys copied from the Azure portal pages of each service. If you implement this workflow in a production environment or share the solution with others, remember to replace hard-coded keys with integrated security or encrypted keys.
 
-## Step 1: Create a Spark cluster and notebook
+## Create a Spark cluster and notebook
 
-In this section, create a cluster, install the `synapseml` library, and create a notebook to run the code.
+In this section, you create a cluster, install the `synapseml` library, and create a notebook to run the code.
 
-1. In Azure portal, find your Azure Databricks workspace and select **Launch workspace**.
+1. In the Azure portal, find your Azure Databricks workspace and select **Launch workspace**.
 
 1. On the left menu, select **Compute**.
 
@@ -67,7 +67,7 @@ In this section, create a cluster, install the `synapseml` library, and create a
 
    :::image type="content" source="media/search-synapseml-cognitive-services/cluster-green-dot.png" alt-text="Screenshot of a Data Bricks compute page with a green dot by the cluster name.":::
 
-1. Install the `synapseml` library after the cluster is created:
+1. After the cluster is created, install the `synapseml` library:
 
    1. Select **Libraries** from the tabs at the top of the cluster's page.
 
@@ -77,7 +77,7 @@ In this section, create a cluster, install the `synapseml` library, and create a
 
    1. Select **Maven**.
 
-   1. In Coordinates, search for or type `com.microsoft.azure:synapseml_2.12:1.0.9`
+   1. In **Coordinates**, search for `com.microsoft.azure:synapseml_2.12:1.0.9`.
 
    1. Select **Install**.
 
@@ -89,17 +89,17 @@ In this section, create a cluster, install the `synapseml` library, and create a
 
 1. Give the notebook a name, select **Python** as the default language, and select the cluster that has the `synapseml` library.
 
-1. Create seven consecutive cells. You use these to paste in code in the following sections.
+1. Create seven consecutive cells. In the following sections, you paste code in these cells.
 
    :::image type="content" source="media/search-synapseml-cognitive-services/create-seven-cells.png" alt-text="Screenshot of the notebook with placeholder cells." border="true":::
 
-## Step 2: Set up dependencies
+## Set up dependencies
 
-Paste the following code into the first cell of your notebook. 
+Paste the following code into the first cell of your notebook.
 
-Replace the placeholders with endpoints and access keys for each resource. Provide a name for a new search index that's created for you. No other modifications are required, so run the code when you're ready.
+Replace the placeholders with endpoints and access keys for each resource. Provide a name for a new search index to be created for you. No other modifications are required, so run the code when you're ready.
 
-This code imports multiple packages and sets up access to the Azure resources used in this workflow.
+This code imports multiple packages and sets up access to the Azure resources used in this tutorial.
 
 ```python
 import os
@@ -115,11 +115,11 @@ search_key = "placeholder-search-service-admin-api-key"
 search_index = "placeholder-for-new-search-index-name"
 ```
 
-## Step 3: Load data into Spark
+## Load data into Spark
 
 Paste the following code into the second cell. No modifications are required, so run the code when you're ready.
 
-This code loads a few external files from an Azure storage account. The files are various invoices, and they're read into a data frame.
+This code loads a few external files from an Azure storage account. The files are various invoices that are read into a data frame.
 
 ```python
 def blob_to_url(blob):
@@ -141,7 +141,7 @@ df2 = (spark.read.format("binaryFile")
 display(df2)
 ```
 
-## Step 4: Add document intelligence
+## Add document intelligence
 
 Paste the following code into the third cell. No modifications are required, so run the code when you're ready.
 
@@ -163,15 +163,15 @@ analyzed_df = (AnalyzeInvoices()
 display(analyzed_df)
 ```
 
-The output from this step should look similar to the next screenshot. Notice how the forms analysis is packed into a densely structured column, which is difficult to work with. The next transformation resolves this issue by parsing the column into rows and columns.
+The output should look similar to the following screenshot. Notice how the forms analysis is packed into a densely structured column, which is difficult to work with. The next transformation resolves this issue by parsing the column into rows and columns.
 
 :::image type="content" source="media/search-synapseml-cognitive-services/analyze-forms-output.png" alt-text="Screenshot of the AnalyzeInvoices output." border="true":::
 
-## Step 5: Restructure document intelligence output
+## Restructure document intelligence output
 
 Paste the following code into the fourth cell and run it. No modifications are required.
 
-This code loads [FormOntologyLearner](https://mmlspark.blob.core.windows.net/docs/0.10.0/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.FormOntologyTransformer), a transformer that analyzes the output of Document Intelligence transformers and infers a tabular data structure. The output of AnalyzeInvoices is dynamic and varies based on the features detected in your content. Furthermore, the transformer consolidates output into a single column. Because the output is dynamic and consolidated, it's difficult to use in downstream transformations that require more structure.
+This code loads [FormOntologyLearner](https://mmlspark.blob.core.windows.net/docs/0.10.0/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.FormOntologyTransformer), a transformer that analyzes the output of Document Intelligence transformers and infers a tabular data structure. The output of AnalyzeInvoices is dynamic and varies based on the features detected in your content. Furthermore, the transformer consolidates the output into a single column. Because the output is dynamic and consolidated, it's difficult to use in downstream transformations that require more structure.
 
 FormOntologyLearner extends the utility of the AnalyzeInvoices transformer by looking for patterns that can be used to create a tabular data structure. Organizing the output into multiple columns and rows makes the content consumable in other transformers, like AzureSearchWriter.
 
@@ -193,11 +193,11 @@ Notice how this transformation recasts the nested fields into a table, which ena
 
 :::image type="content" source="media/search-synapseml-cognitive-services/form-ontology-learner-output.png" alt-text="Screenshot of the FormOntologyLearner output." border="true":::
 
-## Step 6: Add translations
+## Add translations
 
 Paste the following code into the fifth cell. No modifications are required, so run the code when you're ready.
 
-This code loads [Translate](https://microsoft.github.io/SynapseML/docs/Explore%20Algorithms/AI%20Services/Overview/#translator-sample), a transformer that calls the Azure AI Translator service in Azure AI services. The original text, which is in English in the "Description" column, is machine-translated into various languages. All of the output is consolidated into "output.translations" array.
+This code loads [Translate](https://microsoft.github.io/SynapseML/docs/Explore%20Algorithms/AI%20Services/Overview/#translator-sample), a transformer that calls the Azure AI Translator service in Azure AI services. The original text, which is in English in the "Description" column, is machine-translated into various languages. All of the output is consolidated into the "output.translations" array.
 
 ```python
 from synapse.ml.cognitive import Translate
@@ -223,11 +223,11 @@ display(translated_df)
 > 
 > :::image type="content" source="media/search-synapseml-cognitive-services/translated-strings.png" alt-text="Screenshot of table output, showing the Translations column." border="true":::
 
-## Step 7: Add a search index with AzureSearchWriter
+## Add a search index with AzureSearchWriter
 
-Paste the following code in the sixth cell and then run it. No modifications are required.
+Paste the following code in the sixth cell and run it. No modifications are required.
 
-This code loads [AzureSearchWriter](https://microsoft.github.io/SynapseML/docs/Explore%20Algorithms/AI%20Services/Overview/#azure-cognitive-search-sample). It consumes a tabular dataset and infers a search index schema that defines one field for each column. Because the translations structure is an array, it's articulated in the index as a complex collection with subfields for each language translation. The generated index has a document key and use the default values for fields created using the [Create Index REST API](/rest/api/searchservice/indexes/create).
+This code loads [AzureSearchWriter](https://microsoft.github.io/SynapseML/docs/Explore%20Algorithms/AI%20Services/Overview/#azure-cognitive-search-sample). It consumes a tabular dataset and infers a search index schema that defines one field for each column. Because the translations structure is an array, it's articulated in the index as a complex collection with subfields for each language translation. The generated index has a document key and uses the default values for fields created using the [Create Index REST API](/rest/api/searchservice/indexes/create).
 
 ```python
 from synapse.ml.cognitive import *
@@ -243,21 +243,21 @@ from synapse.ml.cognitive import *
     ))
 ```
 
-You can check the search service pages in Azure portal to explore the index definition created by AzureSearchWriter.
+To explore the index definition created by AzureSearchWriter, check the search service pages in the Azure portal.
 
 > [!NOTE]
-> If you can't use default search index, you can provide an external custom definition in JSON, passing its URI as a string in the "indexJson" property. Generate the default index first so that you know which fields to specify, and then follow with customized properties if you need specific analyzers, for example.
+> If you can't use the default search index, you can provide an external custom definition in JSON, passing its URI as a string in the "indexJson" property. Generate the default index first so that you know which fields to specify, and then follow with customized properties if you need specific analyzers, for example.
 
-## Step 8: Query the index
+## Query the index
 
-Paste the following code into the seventh cell and then run it. No modifications are required, except that you might want to vary the syntax or try more examples to further explore your content:
+Paste the following code into the seventh cell and run it. No modifications are required, except that you might want to vary the syntax or try more examples to further explore your content:
 
 + [Query syntax](query-simple-syntax.md)
 + [Query examples](search-query-simple-examples.md)
 
 There's no transformer or module that issues queries. This cell is a simple call to the [Search Documents REST API](/rest/api/searchservice/documents/search-post). 
 
-This particular example is searching for the word "door" (`"search": "door"`). It also returns a "count" of the number of matching documents, and selects just the contents of the "Description' and "Translations" fields for the results. If you want to see the full list of fields, remove the "select" parameter.
+This particular example is searching for the word "door" (`"search": "door"`). It also returns a "count" of the number of matching documents and selects just the contents of the "Description' and "Translations" fields for the results. If you want to see the full list of fields, remove the "select" parameter.
 
 ```python
 import requests
@@ -278,7 +278,7 @@ You can find and manage resources in the Azure portal, using the **All resources
 
 ## Next steps
 
-In this tutorial, you learned about the [AzureSearchWriter](https://microsoft.github.io/SynapseML/docs/Explore%20Algorithms/AI%20Services/Overview/#azure-cognitive-search-sample) transformer in SynapseML, which is a new way of creating and loading search indexes in Azure AI Search. The transformer takes structured JSON as an input. The FormOntologyLearner can provide the necessary structure for output produced by the Document Intelligence transformers in SynapseML.
+In this tutorial, you learned about the [AzureSearchWriter](https://microsoft.github.io/SynapseML/docs/Explore%20Algorithms/AI%20Services/Overview/#azure-cognitive-search-sample) transformer in SynapseML, which is a new way of creating and loading search indexes in Azure AI Search. The transformer takes structured JSON as an input. FormOntologyLearner can provide the necessary structure for output produced by the Document Intelligence transformers in SynapseML.
 
 As a next step, review the other SynapseML tutorials that produce transformed content you might want to explore through Azure AI Search:
 

@@ -32,7 +32,7 @@ This guide shows you how to use an [exported TensorFlow model](./export-your-mod
     pip install numpy
     pip install opencv-python
     ```
-    
+
 ## Load your model and tags
 
 The downloaded _.zip_ file from the export step contains a _model.pb_ and a _labels.txt_ file. These files represent the trained model and the classification labels. The first step is to load the model into your project. Add the following code to a new Python script.
@@ -64,19 +64,19 @@ with open(labels_filename, 'rt') as lf:
 There are a few steps you need to take to prepare an image for prediction. These steps mimic the image manipulation performed during training.
 
 1. Open the file and create an image in the BGR color space
-    
+
     ```Python
     from PIL import Image
     import numpy as np
     import cv2
-    
+
     # Load from a file
     imageFile = "<path to your image file>"
     image = Image.open(imageFile)
-    
+
     # Update orientation based on EXIF tags, if the file has orientation info.
     image = update_orientation(image)
-    
+
     # Convert to OpenCV format
     image = convert_to_opencv(image)
     ```
@@ -108,14 +108,14 @@ There are a few steps you need to take to prepare an image for prediction. These
     with tf.compat.v1.Session() as sess:
         input_tensor_shape = sess.graph.get_tensor_by_name('Placeholder:0').shape.as_list()
     network_input_size = input_tensor_shape[1]
-    
+
     # Crop the center for the specified network_input_Size
     augmented_image = crop_center(augmented_image, network_input_size, network_input_size)
-    
+
     ```
 
 1. Define helper functions. The steps above use the following helper functions:
-    
+
     ```Python
     def convert_to_opencv(image):
         # RGB -> BGR conversion is performed as well.
@@ -123,25 +123,25 @@ There are a few steps you need to take to prepare an image for prediction. These
         r,g,b = np.array(image).T
         opencv_image = np.array([b,g,r]).transpose()
         return opencv_image
-    
+
     def crop_center(img,cropx,cropy):
         h, w = img.shape[:2]
         startx = w//2-(cropx//2)
         starty = h//2-(cropy//2)
         return img[starty:starty+cropy, startx:startx+cropx]
-    
+
     def resize_down_to_1600_max_dim(image):
         h, w = image.shape[:2]
         if (h < 1600 and w < 1600):
             return image
-    
+
         new_size = (1600 * w // h, 1600) if (h > w) else (1600, 1600 * h // w)
         return cv2.resize(image, new_size, interpolation = cv2.INTER_LINEAR)
-    
+
     def resize_to_256_square(image):
         h, w = image.shape[:2]
         return cv2.resize(image, (256, 256), interpolation = cv2.INTER_LINEAR)
-    
+
     def update_orientation(image):
         exif_orientation_tag = 0x0112
         if hasattr(image, '_getexif'):
@@ -158,7 +158,7 @@ There are a few steps you need to take to prepare an image for prediction. These
                     image = image.transpose(Image.FLIP_LEFT_RIGHT)
         return image
     ```
-    
+
 ## Classify an image
 
 Once the image is prepared as a tensor, we can send it through the model for a prediction.
@@ -201,4 +201,3 @@ The results of running the image tensor through the model will then need to be m
 Next, learn how to wrap your model into a mobile application:
 * [Use your exported TensorFlow model in an Android application](https://github.com/Azure-Samples/cognitive-services-android-customvision-sample)
 * [Use your exported CoreML model in a Swift iOS application](https://go.microsoft.com/fwlink/?linkid=857726)
-* [Use your exported CoreML model in an iOS application with Xamarin](https://github.com/xamarin/ios-samples/tree/master/ios11/CoreMLAzureModel)

@@ -105,7 +105,7 @@ response = client.complete(
         SystemMessage("You are a helpful assistant that can generate responses based on images."),
         UserMessage(content=[
             TextContentItem(text="Which conclusion can be extracted from the following chart?"),
-            ImageContentItem(image=ImageUrl(url=data_url))
+            ImageContentItem(image_url=ImageUrl(url=data_url))
         ]),
     ],
     temperature=1,

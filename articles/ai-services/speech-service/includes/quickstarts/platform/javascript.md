@@ -42,7 +42,7 @@ This guide shows how to install the [Speech SDK](~/articles/ai-services/speech-s
 
 1. Create a new, empty folder. If you want to host the sample on a web server, make sure that the web server can access the folder.
 
-1. Download the Speech SDK as a [.zip package](https://aka.ms/csspeech/jsbrowserpackage) and unpack it into the newly created folder. These files are unpacked:
+1. Download the Speech SDK as a [.zip package](https://github.com/Microsoft/cognitive-services-speech-sdk-js/releases) and unpack it into the newly created folder. These files are unpacked:
 
    - *microsoft.cognitiveservices.speech.sdk.bundle.js*: A human-readable version of the Speech SDK.
    - *microsoft.cognitiveservices.speech.sdk.bundle.js.map*: A map file to use for debugging SDK code.
@@ -54,7 +54,7 @@ This guide shows how to install the [Speech SDK](~/articles/ai-services/speech-s
 
 ### HTML script tag
 
-Download and extract the *microsoft.cognitiveservices.speech.sdk.bundle.js* file from the [Speech SDK for JavaScript](https://aka.ms/csspeech/jsbrowserpackage). Place it in a folder that your HTML file can access.
+Download and extract the *microsoft.cognitiveservices.speech.sdk.bundle.js* file from the [Speech SDK for JavaScript](https://github.com/Microsoft/cognitive-services-speech-sdk-js/releases). Place it in a folder that your HTML file can access.
 
 ```html
 <script src="microsoft.cognitiveservices.speech.sdk.bundle.js"></script>;

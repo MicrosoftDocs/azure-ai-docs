@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 03/11/2025
+ms.date: 03/31/2025
 ---
 
 # Chunk large documents for vector search solutions in Azure AI Search
@@ -20,7 +20,9 @@ We recommend [integrated vectorization](vector-search-integrated-vectorization.m
 
 ## Common chunking techniques
 
-Chunking is only required if the source documents are too large for the maximum input size imposed by models. Here are some common chunking techniques, associated with built-in features if you use [indexers](search-indexer-overview.md) and [skills](cognitive-search-working-with-skillsets.md).
+Chunking is only required if the source documents are too large for the maximum input size imposed by models, but it's also beneficial if content is poorly represented as a single vector. Consider a wiki page that covers a lot of varied sub-topics. The entire page might be small enough to meet model input requirements, but you might get better results if you chunk at a finer grain.
+
+Here are some common chunking techniques, associated with built-in features if you use [indexers](search-indexer-overview.md) and [skills](cognitive-search-working-with-skillsets.md).
 
 | Approach | Usage | Built-in functionality |
 |----------|-------|-----------------|

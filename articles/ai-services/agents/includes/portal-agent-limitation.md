@@ -4,8 +4,9 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: include
-ms.date: 02/05/2025
+ms.date: 04/13/2025
 ---
 
 > [!NOTE]
-> You can use the following automated bicep templates to perform either a standard or basic agent. You can also create a basic agent using the [Azure AI Foundry portal](../quickstart.md?pivots=ai-foundry). Azure AI Foundry currently doesn't support the standard agent setup.
+> The Standard Agent Setup now supports **Bring your own (BYO) Thread Storage using an Azure Cosmos DB for NoSQL account**. This feature lets you store all messages and conversation history in your own Azure Cosmos DB for NoSQL account.
+> You can use the following automated bicep templates to deploy either a Standard or Basic agent project. You can also create a basic project using the [Azure AI Foundry portal](../quickstart.md?pivots=ai-foundry). The Azure AI Foundry portal currently doesn't support creating a Standard project.

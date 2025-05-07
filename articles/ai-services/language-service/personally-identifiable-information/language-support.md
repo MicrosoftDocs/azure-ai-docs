@@ -190,7 +190,7 @@ Use this article to learn which natural languages are supported by the text PII,
 
 ## PII language support
 
-The Generally Available Conversational PII serivce currently supports English. Preview model version `2023-04-15-preview` supports English, German, Spanish, and French. 
+The Generally Available Conversational PII service currently supports English. Preview model version `2023-04-15-preview` supports English, German, Spanish, and French. 
 
 
 ---

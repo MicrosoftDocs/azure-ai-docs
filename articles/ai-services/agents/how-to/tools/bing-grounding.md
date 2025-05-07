@@ -33,7 +33,12 @@ Developers and end users don't have access to raw content returned from Groundin
 The user query is the message that an end user sends to an agent, such as *"should I take an umbrella with me today? I'm in Seattle."* Instructions are the system message a developer can provide to share context and provide instructions to the AI model on how to use various tools or behave. 
 
 When a user sends a query, the customer's AI model deployment first processes it (using the provided instructions) to later perform a Bing search query (which is [visible to developers](#how-to-display-grounding-with-bing-search-results)). 
-Grounding with Bing returns relevant search results to the customer's model deployment, which then generates the final output. When using Grounding with Bing Search, only the Bing search query and your resource key are sent to Bing, and no end user-specific information is included. Your resource key is sent to Bing solely for billing and rate limiting purposes. Any Bing search query that is generated and sent to Bing for the purposes of grounding is transferred, along with the resource key, outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is subject to Bing's terms and do not have the same compliance standards and certifications as the Azure AI Agent Service, as described in the [Grounding with Bing Search Terms of Use](https://www.microsoft.com/bing/apis/grounding-legal). It is your responsibility to assess whether the use of Grounding with Bing Search in your agent meets your needs and requirements.
+Grounding with Bing returns relevant search results to the customer's model deployment, which then generates the final output. 
+
+> [!NOTE]
+> When using Grounding with Bing Search, only the Bing search query and your resource key are sent to Bing, and no end user-specific information is included. Your resource key is sent to Bing solely for billing and rate limiting purposes. 
+
+The authorization will happen between Grounding with Bing Search service and Azure AI Agent service. Any Bing search query that is generated and sent to Bing for the purposes of grounding is transferred, along with the resource key, outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is subject to Bing's terms and do not have the same compliance standards and certifications as the Azure AI Agent Service, as described in the [Grounding with Bing Search Terms of Use](https://www.microsoft.com/bing/apis/grounding-legal). It is your responsibility to assess whether the use of Grounding with Bing Search in your agent meets your needs and requirements.
 
 ## Usage support
 
@@ -44,7 +49,7 @@ Grounding with Bing returns relevant search results to the customer's model depl
 ## Setup  
 
 > [!NOTE]
-> 1. Grounding with Bing Search only works with the following Azure OpenAI models: `gpt-3.5-turbo-0125`, `gpt-4-0125-preview`, `gpt-4-turbo-2024-04-09`, `gpt-4o-0513`
+> 1. Grounding with Bing Search works with [all Azure OpenAI models](../../concepts/model-region-support.md) that Azure AI Agent Service supports, except `gpt-4o-mini, 2024-07-18`. 
 
 1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
 
@@ -94,12 +99,6 @@ print(f"Last run step detail: {run_steps_data}")
 
 :::image type="content" source="../../media/tools/bing/website-citations.png" alt-text="A screenshot showing citations for Bing search results." lightbox="../../media/tools/bing/website-citations.png":::
 
-### Other legal considerations
-
-Microsoft will use data you send to Grounding with Bing to improve Microsoft products and services. Where you send personal data to this service, you are responsible for obtaining sufficient consent from the data subjects. The Data Protection Terms in the Online Services Terms do not apply to Grounding with Bing. 
-
-Your use of Grounding with Bing Search will be governed by the Terms of Use. By using Grounding with Bing Search, you agree to be bound by and comply with these Terms of Use.
-
 ::: zone-end
 
 ::: zone pivot="code-example"
@@ -137,14 +136,13 @@ using Azure.Core;
 using Azure.Core.TestFramework;
 using NUnit.Framework;
 
-var connectionString = TestEnvironment.AzureAICONNECTIONSTRING;
+var connectionString = System.Environment.GetEnvironmentVariable("PROJECT_CONNECTION_STRING");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+var bingConnectionName = System.Environment.GetEnvironmentVariable("BING_CONNECTION_NAME");
 
-var clientOptions = new AIProjectClientOptions();
+var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential());
 
-// Adding the custom headers policy
-clientOptions.AddPolicy(new CustomHeadersPolicy(), HttpPipelinePosition.PerCall);
-var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential(), clientOptions);
-
+AgentsClient agentClient = projectClient.GetAgentsClient();
 ```
 
 # [JavaScript](#tab/javascript)
@@ -203,23 +201,20 @@ with project_client:
 # [C#](#tab/csharp)
 
 ```csharp
-GetConnectionResponse bingConnection = await projectClient.GetConnectionsClient().GetConnectionAsync(TestEnvironment.BINGCONNECTIONNAME);
+ConnectionResponse bingConnection = projectClient.GetConnectionsClient().GetConnection(bingConnectionName);
 var connectionId = bingConnection.Id;
 
-AgentsClient agentClient = projectClient.GetAgentsClient();
-
-ToolConnectionList connectionList = new ToolConnectionList
+ToolConnectionList connectionList = new()
 {
     ConnectionList = { new ToolConnection(connectionId) }
 };
-BingGroundingToolDefinition bingGroundingTool = new BingGroundingToolDefinition(connectionList);
+BingGroundingToolDefinition bingGroundingTool = new(connectionList);
 
-Response<Agent> agentResponse = await agentClient.CreateAgentAsync(
-    model: "gpt-4o",
-    name: "my-assistant",
-    instructions: "You are a helpful assistant.",
-    tools: new List<ToolDefinition> { bingGroundingTool });
-Agent agent = agentResponse.Value;
+Agent agent = agentClient.CreateAgent(
+   model: modelDeploymentName,
+   name: "my-assistant",
+   instructions: "You are a helpful assistant.",
+   tools: [bingGroundingTool]);
 ```
 
 # [JavaScript](#tab/javascript)
@@ -286,16 +281,13 @@ print(f"Created message, ID: {message.id}")
 # [C#](#tab/csharp)
 
 ```csharp
-// Create thread for communication
-Response<AgentThread> threadResponse = await agentClient.CreateThreadAsync();
-AgentThread thread = threadResponse.Value;
+AgentThread thread = agentClient.CreateThread();
 
 // Create message to thread
-Response<ThreadMessage> messageResponse = await agentClient.CreateMessageAsync(
+ThreadMessage message = agentClient.CreateMessage(
     thread.Id,
     MessageRole.User,
     "How does wikipedia explain Euler's Identity?");
-ThreadMessage message = messageResponse.Value;
 ```
 
 # [JavaScript](#tab/javascript)
@@ -313,6 +305,7 @@ await client.agents.createMessage(
 ```
 
 # [REST API](#tab/rest)
+
 ### Create a thread
 
 ```console
@@ -368,22 +361,27 @@ print(f"Messages: {messages}")
 # [C#](#tab/csharp)
 
 ```csharp
-// Run the agent
-Response<ThreadRun> runResponse = await agentClient.CreateRunAsync(thread, agent);
 
+// Run the agent
+ThreadRun run = agentClient.CreateRun(thread, agent);
 do
 {
-    await Task.Delay(TimeSpan.FromMilliseconds(500));
-    runResponse = await agentClient.GetRunAsync(thread.Id, runResponse.Value.Id);
+    Thread.Sleep(TimeSpan.FromMilliseconds(500));
+    run = agentClient.GetRun(thread.Id, run.Id);
 }
-while (runResponse.Value.Status == RunStatus.Queued
-    || runResponse.Value.Status == RunStatus.InProgress);
+while (run.Status == RunStatus.Queued
+    || run.Status == RunStatus.InProgress);
 
-Response<PageableList<ThreadMessage>> afterRunMessagesResponse
-    = await agentClient.GetMessagesAsync(thread.Id);
-IReadOnlyList<ThreadMessage> messages = afterRunMessagesResponse.Value.Data;
+Assert.AreEqual(
+    RunStatus.Completed,
+    run.Status,
+    run.LastError?.Message);
 
-// Note: messages iterate from newest to oldest, with the messages[0] being the most recent
+PageableList<ThreadMessage> messages = agentClient.GetMessages(
+    threadId: thread.Id,
+    order: ListSortOrder.Ascending
+);
+
 foreach (ThreadMessage threadMessage in messages)
 {
     Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
@@ -391,7 +389,18 @@ foreach (ThreadMessage threadMessage in messages)
     {
         if (contentItem is MessageTextContent textItem)
         {
-            Console.Write(textItem.Text);
+            string response = textItem.Text;
+            if (textItem.Annotations != null)
+            {
+                foreach (MessageTextAnnotation annotation in textItem.Annotations)
+                {
+                    if (annotation is MessageTextUrlCitationAnnotation urlAnnotation)
+                    {
+                        response = response.Replace(urlAnnotation.Text, $" [{urlAnnotation.UrlCitation.Title}]({urlAnnotation.UrlCitation.Url})");
+                    }
+                }
+            }
+            Console.Write($"Agent response: {response}");
         }
         else if (contentItem is MessageImageFileContent imageFileItem)
         {
@@ -400,6 +409,9 @@ foreach (ThreadMessage threadMessage in messages)
         Console.WriteLine();
     }
 }
+
+agentClient.DeleteThread(threadId: thread.Id);
+agentClient.DeleteAgent(agentId: agent.Id);
 ```
 
 # [JavaScript](#tab/javascript)

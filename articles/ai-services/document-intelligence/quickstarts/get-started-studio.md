@@ -17,8 +17,6 @@ monikerRange: '>=doc-intel-3.0.0'
 
 [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/) is an online tool for visually exploring, understanding, and integrating features from the Document Intelligence service in your applications. You can get started by exploring the pretrained models with sample or your own documents. You can also create projects to build custom template models and reference the models in your applications.
 
-> [!VIDEO https://www.microsoft.com/videoplayer/embed/RE56n49]
-
 ## Prerequisites for new users
 
 To use Document Intelligence Studio, you need to acquire the following assets from the Azure portal:
@@ -77,7 +75,7 @@ Navigate to the [Document Intelligence Studio](https://formrecognizer.appliedai.
 * **Local authentication: access by API endpoint and key**.
 
   * Retrieve your endpoint and key from the Azure portal.
-  * Go to the overview page for your resource and select **Keys and Endpoint** from the left navigation bar.
+  * Go to the overview page for your resource and select **Keys and Endpoint** from the left pane.
   * Enter the values in the appropriate fields.
 
       :::image type="content" source="../media/studio/keys-and-endpoint.png" lightbox="../media/studio/keys-and-endpoint.png" alt-text="Screenshot of the keys and endpoint page in the Azure portal.":::

@@ -29,7 +29,7 @@ NVIDIA inference microservices are containers built by NVIDIA for optimized pret
 
 - Marketplace purchases enabled for your Azure subscription. Learn more [here](/azure/cost-management-billing/manage/enable-marketplace-purchases).
 
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned a _custom role_ with the following permissions. User accounts assigned the _Owner_ or _Contributor_ role for the Azure subscription can also create NIM deployments. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-ai-foundry.md).
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned a _custom role_ with the following permissions. User accounts assigned the _Owner_ or _Contributor_ role for the Azure subscription can also create NIM deployments. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-azure-ai-foundry.md).
 
     -	On the Azure subscription—**to subscribe the workspace to the Azure Marketplace offering**, once for each workspace/project:
         -	Microsoft.MarketplaceOrdering/agreements/offers/plans/read

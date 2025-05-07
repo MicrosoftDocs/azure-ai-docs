@@ -6,27 +6,27 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 03/11/2025
+ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 # Translator language support
 
-**Translation - Cloud:** Cloud translation is available in all languages for the `Translate` operation of Text Translation and for Document Translation.
+**Translation - Cloud:** Cloud translation is available in all languages for the `Translate` operation of Text translation and for Document translation.
 
 **Translation – Containers:** Language support for Containers.
 
-**Custom Translator:** Enables you to create tailored translation models. You can use these models to customize your translated output when utilizing the Text Translation or Document Translation features.
+**Custom Translator:** Enables you to create tailored translation models. You can use these models to customize your translated output when utilizing the Text translation or Document translation features.
 
-**Auto Language Detection:** Automatically detect the language of the source text while using Text Translation or Document Translation.
+**Auto Language Detection:** Automatically detect the language of the source text while using Text translation or Document translation.
 
-**Dictionary:** To display alternative translations from or to English and examples of words in context, use the [Dictionary Lookup](text-translation/reference/v3/dictionary-lookup.md) or [Dictionary Examples](text-translation/reference/v3/dictionary-examples.md) operations from the Text Translation feature.
+**Dictionary:** To display alternative translations from or to English and examples of words in context, use the [Dictionary Lookup](text-translation/reference/v3/dictionary-lookup.md) or [Dictionary Examples](text-translation/reference/v3/dictionary-examples.md) operations from the Text translation feature.
 
 ## Translation
 
 > [!NOTE]
 > Language code `pt` defaults to `pt-br`, Portuguese (Brazil).
 
-|Language|Language code|Cloud – Text Translation and Document Translation|Containers – Text Translation|Custom Translator|Auto Language Detection|Dictionary|
+|Language|Language code|Cloud – Text translation and Document translation|Containers – Text translation|Custom Translator|Auto Language Detection|Dictionary|
 |:----|:----|:----|:----|:----|:----|:----|
 |Afrikaans|`af`|✔|✔|✔|✔|✔|
 |Albanian|`sq`|✔|✔| |✔| |
@@ -162,7 +162,7 @@ ms.author: lajanuar
 |Yucatec Maya|`yua`|✔|✔| |✔| |
 |Zulu|`zu`|✔|✔| |✔| |
 
-## Document Translation: scanned PDF support
+## Document translation: scanned PDF support
 
 |Language|Language Code|Supported as source language for scanned PDF?|Supported as target language for scanned PDF?|
 |:----|:----:|:----:|:----:|
@@ -282,7 +282,7 @@ ms.author: lajanuar
 
 ## Transliteration
 
-[Transliterate](text-translation/reference/v3/transliterate.md) is a Text Translation operation that supports the following languages. In the `To/From`, `<-->` indicates that the language can be transliterated from or to either of the scripts listed. The `-->` indicates that the language can only be transliterated from one script to the other.
+[Transliterate](text-translation/reference/v3/transliterate.md) is a Text translation operation that supports the following languages. In the `To/From`, `<-->` indicates that the language can be transliterated from or to either of the scripts listed. The `-->` indicates that the language can only be transliterated from one script to the other.
 
 | Language    | Language code | Script | To/From | Script|
 |:----------- |:-------------:|:-------------:|:-------------:|:-------------:|
@@ -336,6 +336,6 @@ View all [Azure AI services](../index.yml).
 
 ## Next steps
 
-* [Text Translation reference](text-translation/reference/v3/reference.md)
-* [Document Translation reference](document-translation/reference/rest-api-guide.md)
+* [Text translation reference](text-translation/reference/v3/reference.md)
+* [Document translation reference](document-translation/reference/rest-api-guide.md)
 * [Custom Translator overview](custom-translator/overview.md)

@@ -7,7 +7,7 @@ ms.service: azure-ai-openai
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 03/10/2025
+ms.date: 03/26/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -120,7 +120,7 @@ In addition to the updates for the hourly payment model, in December 2024 new [A
 |gpt-4| 0613, 1106-Preview, 0125-Preview|
 |gpt-4-turbo| 2024-04-09|
 |gpt-4-32k| 0613|
-|gpt-4o| 2042-05-13, 2024-08-06|
+|gpt-4o| 2024-05-13, 2024-08-06|
 |gpt-4o-mini| 2024-07-18|
 
 
@@ -251,7 +251,7 @@ Customers must reach out to their account teams to schedule a managed migration.
 
 **Managed migration advantages:**
 
-- Bulk migration of all commitments in an subscription/region is beneficial for customers with many commitments.
+- Bulk migration of all commitments in a subscription/region is beneficial for customers with many commitments.
 - Seamless cost migration: No possibility of double-billing or extra hourly charges.
 
 **Managed migration disadvantages:**
