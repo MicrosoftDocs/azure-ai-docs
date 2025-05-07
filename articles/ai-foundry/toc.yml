@@ -426,17 +426,17 @@ items:
     - name: Built-in evaluators
       items:
       - name: General purpose evaluators 
-        href: concept/evaluation-evaluators/general-purpose-evaluators.md
+        href: concepts/evaluation-evaluators/general-purpose-evaluators.md
       - name: Textual similarity evaluators 
-        href: concept/evaluation-evaluators/textual-similarity-evaluators.md
+        href: concepts/evaluation-evaluators/textual-similarity-evaluators.md
       - name: Retrieval Augmented Generation (RAG) evaluators 
-        href: concept/evaluation-evaluators/rag-evaluators.md
+        href: concepts/evaluation-evaluators/rag-evaluators.md
       - name: Risk and safety evaluators
-        href: concept/evaluation-evaluators/risk-safety-evaluators.md
+        href: concepts/evaluation-evaluators/risk-safety-evaluators.md
       - name: Agent evaluators
-        href: concept/evaluation-evaluators/agent-evaluators.md 
+        href: concepts/evaluation-evaluators/agent-evaluators.md 
       - name: Azure Open AI evaluators 
-        href: concept/evaluation-evaluators/azure-open-ai-evaluators.md
+        href: concepts/evaluation-evaluators/azure-open-ai-evaluators.md
     - name: Batch evaluations
       items:
       - name: Manually evaluate prompts in the playground
