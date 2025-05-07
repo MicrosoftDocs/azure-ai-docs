@@ -26,8 +26,9 @@ You should use agentic retrieval when you want to customize a chat experience wi
 
 The *agentic* aspect is a reasoning step in query planning processing that's performed by a supported large language model (LLM) that you provide. The LLM is tasked with designing multiple subqueries based on: user questions, chat history, and parameters on the request. The subqueries target your indexed documents (plain text and vectors) in Azure AI Search.
 
-The *retrieval* component is the ability to run subqueries simultaneously, merge results, semantically rank results, and return a 3-part response that includes grounding data for the next conversation turn, reference data so that you can inspect the source content, and an activity plan that shows query execution steps.
+The *retrieval* component is the ability to run subqueries simultaneously, merge results, semantically rank results, and return a three-part response that includes grounding data for the next conversation turn, reference data so that you can inspect the source content, and an activity plan that shows query execution steps.
 
+Query expansion and parallel execution, plus the retrieval response, are the key capabilities of agentic retrieval that make it the best choice for generative AI (RAG) applications.
 <!-- Queries target a new retrieval pipeline in AI Search supports parallel processing, expanding the scope of single request to include subqueries Query execution runs on your search service, utilizing the best and most effective relevance enhancements in Azure AI Search, including semantic ranker. Output is intended for integration into custom chat solutions, particularly those patterned after an agent-to-agent approach. -->
 
 Agentic retrieval adds latency to query processing, but it makes up for it by adding these capabilities:
@@ -53,7 +54,7 @@ Agentic retrieval has these components:
 
 | Component | Resource | Usage |
 |-----------|----------|-------|
-| LLM (gpt-4o and gpt-4.1 series) | Azure OpenAI | Formulates subqueries for the query plan. Potentially used to provide an answer based on the grounding data, but you can use any supported model for this step. |
+| LLM (gpt-4o and gpt-4.1 series) | Azure OpenAI | Formulates subqueries for the query plan. You can use these models for other downstream operations. Specifically, you can send the unified response string to one of these models and ask it ground its answer on the string. |
  Search index | Azure AI Search | Contains plain text and vector content, a semantic configuration, other elements as needed. |
 | Agent | Azure AI Search | Connects to your model, providing parameters and inputs to build a query plan. |
 | Retrieval engine | Azure AI Search | Executes on the LLM-generated query plan and other parameters, returning a rich response that includes content and query plan metadata. Queries are keyword, vector, and hybrid. Results are merged and ranked. |
@@ -107,8 +108,8 @@ To estimate the query plan costs as pay-as-you-go in Azure OpenAI, let's assume 
 
 + 15 cents for 1 million input tokens
 + 60 cents for 1 million output tokens
-+ Assume small chat conversations of 2,000 input tokens
-+ Assume an average output plan size of 350 tokens
++ 2,000 input tokens for average chat conversation size
++ 350 tokens for average output plan size
 
 #### Estimated billing costs for query execution
 
@@ -153,10 +154,6 @@ Choose any of these options for you next step.
 + REST API reference, Agents.
 
 + [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo), updated to use agentic retrieval.
-
-<!-- From the web
-
-Agentic Retrieval-Augmented Generation (Agentic RAG) transcends traditional RAG systems by embedding autonomous AI agents into the RAG pipeline. These agents leverage agentic design patterns such as reflection, planning, tool use, and multi-agent collaboration to dynamically manage retrieval strategies, iteratively refine contextual understanding, and adapt workflows to meet complex task requirements. This integration enables Agentic RAG systems to deliver unparalleled flexibility, scalability, and context awareness across diverse applications -->
 
 <!-- 
 •Query Pipeline Recap: The query pipeline includes stages: Query Preprocessing (Query Rewriting, Vectorization, Text analysis), Ranking (Vector Search, Keyword Search, Fusion, Semantic Ranking), and Synthesis (Results for LLM, Extractive Answers, Contextualized Captions).
