@@ -1,7 +1,7 @@
 ---
 title: Risk and safety evaluators for generative AI
 titleSuffix: Azure AI Foundry
-description: 
+description: Learn about risk and safety evaluators for generative AI, including tools for assessing content safety, jailbreak vulnerabilities, and code security risks.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: reference
@@ -25,13 +25,13 @@ Risk and safety evaluators draw on insights gained from our previous Large Langu
 - [Code vulnerability](#code-vulnerability)
 - [Ungrounded attributes](#ungrounded-attributes)
 
-An aggregate “defect rate” is calculated by the percentage of undesired content detected in the response from your AI system. You can use the safety evaluators on your own dataset or use the [AI Red Teaming Agent](../ai-red-teaming-agent.md) which leverages the safety evaluators in its automated red teaming scans.
+An aggregate "defect rate" is calculated by the percentage of undesired content detected in the response from your AI system. You can use the safety evaluators on your own dataset or use the [AI Red Teaming Agent](../ai-red-teaming-agent.md) which uses the safety evaluators in its automated red teaming scans.
 
 You can also use our [Content Safety Evaluator](#content-safety-composite-evaluator), a composite evaluator that runs all four content safety evaluators (`HateUnfairnessEvaluator`, `SexualEvaluator`, `ViolenceEvaluator`, and `SelfHarmEvaluator`) on your dataset at once.
 
 ## Azure AI Foundry project configuration and region support
 
-Since the risk and safety evaluators use hosted evaluation LLMs in the Azure AI Foundry Evaluation Service, they require your Azure AI project information to be instantiated. The Azure AI project must be in a supported region:
+Since the risk and safety evaluators use hosted evaluation LLMs in the Azure AI Foundry evaluation service, they require your Azure AI project information to be instantiated. The Azure AI project must be in a supported region:
 
 | Region | Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack, Code vulnerabilities, Ungrounded attributes | Protected material |
 |--|--|--|

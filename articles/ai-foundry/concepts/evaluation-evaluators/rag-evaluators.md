@@ -1,7 +1,7 @@
 ---
 title: Retrieval-augmented Generation (RAG) evaluators for generative AI
 titleSuffix: Azure AI Foundry
-description: 
+description: Learn about Retrieval-augmented Generation (RAG) evaluators for assessing relevance, groundedness, and response completeness in generative AI systems.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: reference
@@ -15,9 +15,9 @@ author: lgayhardt
 
 A retrieval-augmented generation (RAG) system tries to generate the most relevant answer consistent with grounding documents in response to a user's query. At a high level, a user's query triggers a search retrieval in the corpus of grounding documents to provide grounding context for the AI model to generate a response. It's important to evaluate:
 
-- the relevance of the retrieval results to the user's query: use [Document Retrieval](#document-retrieval) if you have labels for query-specific document relevance, or query relevance judgement (qrels) for more accurate measurements, and [Retrieval](#retrieval) if you only have the retrieved context, but you don't have such labels and have a higher tolerance for a less fine-grained measurement.
-- the consistency of the generated response with respect to the grounding documents: use [Groundedness](#groundedness) if you want to potentially customize the definition of groundedness in our open-source LLM-judge prompt, [Groundedness Pro](#groundedness-pro) if you want a straightforward definition.
-- the relevance of the final response to the query: [Relevance](#relevance) if you don't have ground truth, and [Response Completeness](#response-completeness) if you have ground truth and don't want your response to miss critical information.
+- The relevance of the retrieval results to the user's query: use [Document Retrieval](#document-retrieval) if you have labels for query-specific document relevance, or query relevance judgement (qrels) for more accurate measurements. Use [Retrieval](#retrieval) if you only have the retrieved context, but you don't have such labels and have a higher tolerance for a less fine-grained measurement.
+- The consistency of the generated response with respect to the grounding documents: use [Groundedness](#groundedness) if you want to potentially customize the definition of groundedness in our open-source LLM-judge prompt, [Groundedness Pro](#groundedness-pro) if you want a straightforward definition.
+- The relevance of the final response to the query: [Relevance](#relevance) if you don't have ground truth, and [Response Completeness](#response-completeness) if you have ground truth and don't want your response to miss critical information.
 
 A good way to think about **Groundedness** and **Response Completeness** is: groundedness is about the **precision** aspect of the response that it shouldn't contain content outside of the grounding context, whereas response completeness is about the **recall** aspect of the response that it shouldn't miss critical information compared to the expected response (ground truth).
 
@@ -41,7 +41,7 @@ model_config = AzureOpenAIModelConfiguration(
 
 ## Retrieval
 
-Retrieval quality is very important given its upstream role in RAG: if the retrieval quality is poor and the response requires corpus-specific knowledge, there's less chance your LLM model gives you a satisfactory answer. `RetrievalEvaluator` measures the **textual quality** of retrieval results with an LLM without requiring ground truth (also known as query relevance judgment), which provides value compared to `DocumentRetrievalEvaluator` measuring `ndcg`,  `xdcg`, `fidelity` and other classical information retrieval metrics that require ground truth. This metric focuses on how relevant the context chunks (encoded as a string) are to address a query and how the most relevant context chunks are surfaced at the top of the list.
+Retrieval quality is very important given its upstream role in RAG: if the retrieval quality is poor and the response requires corpus-specific knowledge, there's less chance your LLM model gives you a satisfactory answer. `RetrievalEvaluator` measures the **textual quality** of retrieval results with an LLM without requiring ground truth (also known as query relevance judgment), which provides value compared to `DocumentRetrievalEvaluator` measuring `ndcg`,  `xdcg`, `fidelity`, and other classical information retrieval metrics that require ground truth. This metric focuses on how relevant the context chunks (encoded as a string) are to address a query and how the most relevant context chunks are surfaced at the top of the list.
 
 ### Retrieval example
 
@@ -69,7 +69,7 @@ The numerical score on a likert scale (integer 1 to 5) and a higher score is bet
 }
 ```
 
-## Document Retrieval
+## Document retrieval
 
 Retrieval quality is very important given its upstream role in RAG: if the retrieval quality is poor and the response requires corpus-specific knowledge, there's less chance your LLM model gives you a satisfactory answer. Therefore, it's important to use `DocumentRetrievalEvaluator` to evaluate the retrieval quality but also optimize your search parameters for RAG.
 
@@ -85,7 +85,7 @@ Retrieval quality is very important given its upstream role in RAG: if the retri
 
 - To optimize your RAG in a scenario called "parameter sweep", you can use these metrics to calibrate the search parameters for the optimal RAG results. Simply generate different retrieval results for various search parameters such as search algorithms (vector, semantic), top_k, and chunk sizes you're interested in testing. Then use `DocumentRetrievalEvaluator` to find the search parameters that yield the highest retrieval quality.
 
-### Document Retrieval example
+### Document retrieval example
 
 ```python
 from azure.ai.evaluation import DocumentRetrievalEvaluator
@@ -150,7 +150,7 @@ document_retrieval_evaluator = DocumentRetrievalEvaluator(threshold=default_thre
 document_retrieval_evaluator(retrieval_ground_truth=retrieval_ground_truth, retrieved_documents=retrieved_documents)   
 ```
 
-### Document Retrieval output
+### Document retrieval output
 
 The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score <= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
 
@@ -276,11 +276,11 @@ The numerical score on a likert scale (integer 1 to 5) and a higher score is bet
 }
 ```
 
-## Response Completeness
+## Response completeness
 
 AI systems can fabricate content or generate irrelevant responses outside the given context. Given ground truth response, `ResponseCompletenessEvaluator` that captures the **recall** aspect of response alignment with the expected response. This is complementary to `GroundednessEvaluator` which captures the **precision** aspect of response alignment with the grounding source.
 
-### Response Completeness example
+### Response completeness example
 
 ```python
 from azure.ai.evaluation import ResponseCompletenessEvaluator

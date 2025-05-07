@@ -1,7 +1,7 @@
 ---
 title: General purpose evaluators for generative AI
 titleSuffix: Azure AI Foundry
-description: 
+description: Learn about general-purpose evaluators for generative AI, including coherence, fluency, and question-answering composite evaluation.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: reference
@@ -67,7 +67,7 @@ The numerical score on a likert scale (integer 1 to 5) and a higher score is bet
 
 ## Fluency
 
-`FluencyEvaluator`measures the effectiveness and clarity of written communication, focusing on grammatical accuracy, vocabulary range, sentence complexity, coherence, and overall readability. It assesses how smoothly ideas are conveyed and how easily the text can be understood by the reader.
+`FluencyEvaluator`measures the effectiveness and clarity of written communication, focusing on grammatical accuracy, vocabulary range, sentence complexity, coherence, and overall readability. It assesses how smoothly ideas are conveyed and how easily the reader can understand the text.
 
 ### Fluency example
 

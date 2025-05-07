@@ -15,7 +15,7 @@ author: lgayhardt
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In today's AI-driven world, Generative AI Operations (GenAIOps) is revolutionizing how organizations build and deploy intelligent systems. As companies increasingly leverage AI to transform decision-making, enhance customer experiences, and fuel innovation, one element stands paramount: robust evaluation frameworks. Evaluation isn't just a checkpoint. It's the foundation of trust in AI applications. Without rigorous assessment, AI systems can produce content that's:
+In today's AI-driven world, Generative AI Operations (GenAIOps) is revolutionizing how organizations build and deploy intelligent systems. As companies increasingly use AI to transform decision-making, enhance customer experiences, and fuel innovation, one element stands paramount: robust evaluation frameworks. Evaluation isn't just a checkpoint. It's the foundation of trust in AI applications. Without rigorous assessment, AI systems can produce content that's:
 
 - Fabricated or ungrounded in reality
 - Irrelevant or incoherent to user needs
@@ -54,7 +54,7 @@ Evaluators are specialized tools that measure the quality, safety, and reliabili
 |--|--|
 | Fluency | Measures natural language quality and readability. |
 | Coherence | Measures logical consistency and flow of responses.|
-| QA | Measures comprehensively a variety of quality aspects in question-answering.|
+| QA | Measures comprehensively various quality aspects in question-answering.|
 
 [Safety and Security:](./evaluation-evaluators/risk-safety-evaluators.md)
 
@@ -64,7 +64,7 @@ Evaluators are specialized tools that measure the quality, safety, and reliabili
 | Sexual | Identifies inappropriate sexual content. |
 | Self-Harm | Detects content promoting or describing self-harm.|
 | Hate and Unfairness | Identifies biased, discriminatory, or hateful content. |
-| Ungrounded Attributes | Detects fabricated or hallucinated information inferred from user interactions. | 
+| Ungrounded Attributes | Detects fabricated or hallucinated information inferred from user interactions. |
 | Code Vulnerability | Identifies security issues in generated code. |
 | Protected Materials | Detects unauthorized use of copyrighted or protected content. |
 | Content Safety | Comprehensive assessment of various safety concerns. |
@@ -80,7 +80,7 @@ Evaluators are specialized tools that measure the quality, safety, and reliabili
 | ROUGE | Recall-Oriented Understudy for Gisting Evaluation measures overlaps in n-grams between response and ground truth. |
 | METEOR | Metric for Evaluation of Translation with Explicit Ordering measures overlaps in n-grams between response and ground truth. |
 
-[Azure OpenAI Graders:]()
+[Azure OpenAI Graders:](./evaluation-evaluators/azure-openai-graders.md)
 
 | Evaluator | Purpose |
 |--|--|
@@ -89,7 +89,7 @@ Evaluators are specialized tools that measure the quality, safety, and reliabili
 | String Checker | Performs flexible text validations and pattern matching. |
 | Textual Similarity | Evaluates the quality of text or determine semantic closeness. |
 
-By leveraging these evaluators strategically throughout the development lifecycle, teams can build more reliable, safe, and effective AI applications that meet user needs while minimizing potential risks.
+By using these evaluators strategically throughout the development lifecycle, teams can build more reliable, safe, and effective AI applications that meet user needs while minimizing potential risks.
 
 :::image type="content" source="../media/evaluations/lifecycle.png" alt-text="Diagram of enterprise GenAIOps lifecycle, showing model selection, building an AI application, and operationalizing." lightbox="../media/evaluations/lifecycle.png":::
 
@@ -108,7 +108,7 @@ Before building your application, you need to select the right foundation. This 
 
 ### Pre-production evaluation
 
-After selecting a base model, the next step is to develop an AI application—such as an AI-powered chatbot, a retrieval-augmented generation (RAG) application, an agentic AI application, or any other generative AI tool. Once development is complete, pre-production evaluation begins. Before deploying to a production environment, thorough testing is essential to ensure the model is ready for real-world use.
+After you select a base model, the next step is to develop an AI application—such as an AI-powered chatbot, a retrieval-augmented generation (RAG) application, an agentic AI application, or any other generative AI tool. Once development is complete, pre-production evaluation begins. Before deploying to a production environment, thorough testing is essential to ensure the model is ready for real-world use.
 
 Pre-production evaluation involves:
 
@@ -127,7 +127,7 @@ Evaluation Tools and Approaches:
 - Simulators and AI red teaming agent (preview): If you don’t have evaluation data (test data), [Azure AI Evaluation SDK’s simulators](..//how-to/develop/simulator-interaction-data.md) can help by generating topic-related or adversarial queries. These simulators test the model’s response to situation-appropriate or attack-like queries (edge cases).
     - [Adversarial simulators](../how-to/develop/simulator-interaction-data.md#generate-adversarial-simulations-for-safety-evaluation) injects static queries that mimic potential safety risks or security attacks such as or attempt jailbreaks, helping identify limitations and preparing the model for unexpected conditions.
     - [Context-appropriate simulators](../how-to/develop/simulator-interaction-data.md#generate-synthetic-data-and-simulate-non-adversarial-tasks) generate typical, relevant conversations you’d expect from users to test quality of responses. With context-appropriate simulators you can assess metrics such as groundedness, relevance, coherence, and fluency of generated responses.
-    - [AI red teaming agent (preview)](../how-to/develop/run-scans-ai-red-teaming-agent.md) simulates complex adversarial attacks against your AI system using a broad range of safety and security attacks using Microsoft’s open framework for Python Risk Identification Tool or PyRIT. Automated scans using the AI red teaming agent enhances pre-production risk assessment by systematically testing AI applications for risks. This process involves simulated attack scenarios to identify weaknesses in model responses before real-world deployment. By running AI red teaming scans, you can detect and mitigate potential safety issues before deployment. This tool is recommended to be used in conjunction with human-in-the-loop processes such as conventional AI red teaming probing to help accelerate risk identification and aid in the assessment by a human expert.
+    - [AI red teaming agent (preview)](../how-to/develop/run-scans-ai-red-teaming-agent.md) simulates complex adversarial attacks against your AI system using a broad range of safety and security attacks using Microsoft’s open framework for Python Risk Identification Tool or PyRIT. Automated scans using the AI red teaming agent enhances pre-production risk assessment by systematically testing AI applications for risks. This process involves simulated attack scenarios to identify weaknesses in model responses before real-world deployment. By running AI red teaming scans, you can detect and mitigate potential safety issues before deployment. This tool is recommended to be used with human-in-the-loop processes such as conventional AI red teaming probing to help accelerate risk identification and aid in the assessment by a human expert.
 
 Alternatively, you can also use [Azure AI Foundry portal's evaluation widget](../how-to/evaluate-generative-ai-app.md) for testing your generative AI applications.
 
@@ -148,7 +148,7 @@ By continuously monitoring the AI application's behavior in production, you can 
 
 ## Building trust through systematic evaluation
 
-GenAIOps establishes a reliable process for managing AI applications throughout their lifecycle. By implementing thorough evaluation at each stage—from model selection through deployment and beyond—teams can create AI solutions that are not just powerful but trustworthy and safe.
+GenAIOps establishes a reliable process for managing AI applications throughout their lifecycle. By implementing thorough evaluation at each stage—from model selection through deployment and beyond—teams can create AI solutions that aren't just powerful but trustworthy and safe.
 
 ### Evaluation cheat sheet
 
