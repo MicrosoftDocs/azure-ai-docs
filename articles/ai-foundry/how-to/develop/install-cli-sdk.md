@@ -32,7 +32,7 @@ In the IDE of your choice, create a new folder for your project. Open a terminal
 
 # [Java](#tab/java)
 
-Install Java.
+[!INCLUDE [Install Jave](../../includes/install-jave.md)]
 
 # [JavaScript](#tab/javascript)
 
