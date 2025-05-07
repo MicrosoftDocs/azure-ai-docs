@@ -8,14 +8,14 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/30/2025
+ms.date: 05/05/2025
 ---
 
 # Define an index for agentic retrieval in Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, *agentic retrieval* is a new query architecture that uses a conversational language model for query planning and parallel query execution. 
+In Azure AI Search, *agentic retrieval* is a new parallel query architecture that uses a conversational language model for query planning, generating subqueries that broaden the scope of what's searchable and relevant.
 
 Queries are created internally. Certain aspects of those generated queries are determined by your search index. This article explains which index elements affect agentic retrieval. None of the required elements are new or specific to agentic retrieval, which means you can use an existing index if it meets the criteria identified in this article, even if it was created using earlier API versions.
 
@@ -225,7 +225,7 @@ Recall the **vector field definition** in the index example. Attributes on a vec
 
 Vector profiles are configurations of vectorizers, algorithms, and compression techniques. Each vector field can only use one profile, but your index can have many in case you want unique profiles for every vector field.
 
-Querying vectors and calling a vectorizer adds latency to the overall request, but if you want similarity search it might be worth the trade off.
+Querying vectors and calling a vectorizer adds latency to the overall request, but if you want similarity search it might be worth the trade-off.
 
 Here's an example of a vectorizer that works for agentic retrieval, as it appears in a vectorSearch configuration. There's nothing in the vectorizer definition that needs to be changed to work with agentic retrieval.
 
