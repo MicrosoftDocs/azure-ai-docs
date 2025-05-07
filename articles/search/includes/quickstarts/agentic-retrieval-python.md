@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 05/05/2025
+ms.date: 05/07/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -19,26 +19,19 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 + An [Azure AI Search service](../../search-create-service-portal.md) on the Basic tier or higher with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
-+ An [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource) in the [same region](#same-region-requirement) as your Azure AI Search service.
++ An [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource).
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter package](https://pypi.org/project/jupyter/).
 
-### Same-region requirement
-
-Agentic retrieval invokes text-to-vector conversion during queries, which requires Azure AI Search and Azure OpenAI to be in the same region. To meet this requirement:
-
-1. [Choose an Azure OpenAI region](/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#global-standard-model-availability) in which `text-embedding-3-large` is available. Agentic retrieval supports other embedding models, but this quickstart assumes the one previously mentioned.
-
-1. Confirm that [Azure AI Search is available in the same region](../../search-region-support.md#azure-public-regions). The region must also support semantic ranker, which is essential to query execution during agentic retrieval.
-
-1. Deploy both resources in the same region.
-
 ## Deploy models
 
-To use agentic retrieval, you must deploy two supported chat models (one for query planning, one for generating answers) and a supported embedding model (for vector queries) to your Azure OpenAI resource. This quickstart assumes `gpt-4o` and `gpt-4o-mini` for the chat models and `text-embedding-3-large` for the embedding model.
+To run agentic retrieval, you must deploy three models to your Azure OpenAI resource:
 
-> [!IMPORTANT]
-> Whatever models you use, make sure they meet the [same-region requirement](#same-region-requirement) for Azure AI Search and Azure OpenAI.
++ An LLM for query planning
++ An LLM for answer generation
++ An embedding model for vector queries
+
+Agentic retrieval supports other models, but this quickstart assumes `gpt-4o-mini` for the LLMs and `text-embedding-3-large` for the embedding model.
 
 To deploy the Azure OpenAI models:
 
@@ -46,13 +39,13 @@ To deploy the Azure OpenAI models:
 
 1. On the home page, find the Azure OpenAI tile and select **Let's go**.
 
-    :::image type="content" source="../../media/search-get-started-agentic-retrieval/azure-openai-lets-go-tile.png" alt-text="Screenshot of the Azure OpenAI tile in the Azure AI Foundry portal." border="true" lightbox="media/search-get-started-agentic-retrieval/azure-openai-lets-go-tile.png":::
+    :::image type="content" source="../../media/search-get-started-agentic-retrieval/azure-openai-lets-go-tile.png" alt-text="Screenshot of the Azure OpenAI tile in the Azure AI Foundry portal." border="true" lightbox="../../media/search-get-started-agentic-retrieval/azure-openai-lets-go-tile.png":::
 
    Your most recently used Azure OpenAI resource appears. If you have multiple Azure OpenAI resources, select **All resources** to switch between them.
 
 1. From the left pane, select **Model catalog**.
 
-1. Deploy `gpt-4o`, `gpt-4o-mini`, and `text-embedding-3-large` to your Azure OpenAI resource.
+1. Deploy `gpt-4o-mini` and `text-embedding-3-large` to your Azure OpenAI resource.
 
    > [!NOTE]
    > To simplify your code, don't use a custom deployment name for either model. This quickstart assumes the deployment and model names are the same.
@@ -116,7 +109,7 @@ To obtain your service endpoints:
 
 ## Connect from your local system
 
-You configured role-based access to interact with Azure AI Search and Azure OpenAI. From the command line, use the Azure CLI to sign in to the subscription and tenant for both services. For more information, see [Quickstart: Connect without keys](../../search-get-started-rbac.md).
+You configured role-based access to interact with Azure AI Search and Azure OpenAI. From the command line, use the Azure CLI to sign in to the same subscription and tenant for both services. For more information, see [Quickstart: Connect without keys](../../search-get-started-rbac.md).
 
 ```Azure CLI
 az account show
@@ -128,13 +121,13 @@ az login --tenant <PUT YOUR TENANT ID HERE>
 
 ## Install packages and load connections
 
-Before you run any code, install Python packages and define credentials, endpoints, and deployment details for connections to Azure AI Search and Azure OpenAI. These values are used in later sections of this quickstart.
+Before you run any code, install Python packages and define credentials, endpoints, and deployment details for connections to Azure AI Search and Azure OpenAI. These values are used in subsequent operations.
 
 To install the packages and load the connections:
 
 1. In Visual Studio Code, create a `.ipynb` file.
 
-1. In a new code cell, install the following Python packages.
+1. Install the following packages.
 
     ```Python
     ! pip install azure-search-documents==11.6.0a20250505003 --quiet
@@ -163,17 +156,27 @@ To install the packages and load the connections:
     azure_openai_embedding_deployment = "text-embedding-3-large"
     azure_openai_embedding_model = "text-embedding-3-large"
     agent_name = "earth-search-agent"
-    answer_model = "gpt-4o"
+    answer_model = "gpt-4o-mini"
     api_version = "2025-05-01-Preview"
     ```
 
-1. Replace `endpoint` and `azure_openai_endpoint` with the values you obtained in [Get endpoints](#get-endpoints).
+1. Replace `endpoint` and `azure_openai_endpoint` with the values you obtained in [Get endpoints](#get-service-endpoints).
 
 1. To verify the variables, run the code cell.
 
 ## Create a search index
 
-In Azure AI Search, an index is a structured collection of searchable data. The following request defines a new index named `earth-at-night`, which you specified using the `@index-name` variable in the previous section.
+In Azure AI Search, an index is a structured collection of searchable data. The following code defines an index named `earth-at-night`, which you specified using the `index_name` variable in the previous section.
+
+The index schema contains fields for document identification and page content, embeddings, and numbers. It also includes configurations for semantic ranking and vector queries, which use the `text-embedding-3-large` model you previously deployed.
+
+> [!IMPORTANT]
+> Agentic retrieval has two token-based billing models:
+>
+> + Billing from Azure OpenAI for query planning
+> + Billing from Azure AI Search for query execution (semantic ranking)
+>
+> Semantic ranking is free in the initial public preview. After the preview, standard token billing applies. For more information, see [Availability and pricing of agentic retrieval](../../search-agentic-retrieval-concept.md#availability-and-pricing).
 
 ```Python
 from azure.search.documents.indexes.models import SearchIndex, SearchField, VectorSearch, VectorSearchProfile, HnswAlgorithmConfiguration, AzureOpenAIVectorizer, AzureOpenAIVectorizerParameters, SemanticSearch, SemanticConfiguration, SemanticPrioritizedFields, SemanticField
@@ -221,11 +224,9 @@ index_client.create_or_update_index(index)
 print(f"Index '{index_name}' created or updated successfully")
 ```
 
-The index schema contains fields for document identification and page content, embeddings, and numbers. It also includes configurations for semantic ranking and vector queries, which use the `text-embedding-3-large` model you previously deployed.
-
 ## Upload documents to the index
 
-Currently, the `earth-at-night` index is empty. Run the following code to populate the index with JSON documents from NASA's Earth at Night e-book. Each document contains embeddings for vectorization and metadata for page numbering.
+Currently, the `earth-at-night` index is empty. Run the following code to populate the index with JSON documents from NASA's Earth at Night e-book. As required by Azure AI Search, each document conforms to the fields and data types defined in the index schema.
 
 ```Python
 from azure.search.documents import SearchIndexingBufferedSender
@@ -242,7 +243,9 @@ print(f"Documents uploaded to index '{index_name}'")
 
 ## Create a search agent
 
-To connect Azure AI Search to your `gpt-4o-mini` deployment and target the `earth-at-night` index at query time, you need a search agent. The following request defines an agent named `earth-search-agent`, which you specified using the `@agent-name` variable in a previous section.
+To connect Azure AI Search to your `gpt-4o-mini` deployment and target the `earth-at-night` index at query time, you need a search agent. The following code defines an agent named `earth-search-agent`, which you specified using the `agent_name` variable in a previous section.
+
+To ensure relevant and semantically meaningful responses, `defaultRerankerThreshold` is set to exclude responses with a reranker score of `2.5` or lower.
 
 ```Python
 from azure.search.documents.indexes.models import KnowledgeAgent, KnowledgeAgentAzureOpenAIModel, KnowledgeAgentTargetIndex, KnowledgeAgentRequestLimits, AzureOpenAIVectorizerParameters
@@ -270,9 +273,11 @@ index_client.create_or_update_agent(agent)
 print(f"Knowledge agent '{agent_name}' created or updated successfully")
 ```
 
-### Set up messages for the agent
+## Set up a system message
 
-The next step is to define how `earth-search-agent` should respond to user queries. In this case, you tell the agent to answer questions about the Earth at night, cite sources using their `ref_id`, and respond with "I don't know" when it can't find an answer.
+The next step is to define the conversation context and agent instructions using the `messages` array. Each message includes a `role`, such as `user` or `system`, and `content` in natural language. A user message represents the query to be processed, while a system message guides the agent on how to respond. In the next section, these messages are sent to your `gpt-4o-mini` deployment to extract relevant responses from the indexed documents.
+
+For now, create the following system message, which instructs `earth-search-agent` to answer questions about the Earth at night, cite sources using their `ref_id`, and respond with "I don't know" when answers are unavailable.
 
 ```Python
 instructions = """
@@ -291,7 +296,9 @@ messages = [
 
 ## Run the retrieval pipeline
 
-You're ready to run the agentic retrieval pipeline. The following code sends a user query to `earth-search-agent`, which deconstructs the query into subqueries, processes the subqueries simultaneously, and merges and ranks results from the `earth-at-night` index. The response is then appended to the `messages` list.
+You're ready to initiate the agentic retrieval pipeline. The input for this pipeline is the `messages` array, whose conversation history includes system instructions and user queries. Additionally, `target_index_params` specifies the index to query and optional configurations, such as reranking thresholds and filters.
+
+The following code sends a two-part user query to `earth-search-agent`, which deconstructs the query into subqueries, runs the subqueries against both text fields and vector embeddings in the `earth-at-night` index, and ranks and merges the results. The response is then appended to the `messages` array.
 
 ```Python
 from azure.search.documents.agent import KnowledgeAgentRetrievalClient
@@ -321,7 +328,7 @@ messages.append({
 
 ### Review the response, activity, and results
 
-To output the retrieval response, activity, and results, run the following code.
+To output the response, activity, and results of the retrieval pipeline, run the following code.
 
 ```Python
 import textwrap
@@ -339,11 +346,11 @@ print(json.dumps([r.as_dict() for r in retrieval_result.references], indent=2))
 
 The output should be similar to the following example, where:
 
-+ `Respone` provides a text string of the most relevant documents (or chunks) in the search index based on the user query.
++ `Response` provides a text string of the most relevant documents (or chunks) in the search index based on the user query. As shown in the following sections, you can pass this string to an LLM for answer generation.
 
-+ `Activity` tracks the steps that were taken during the retrieval process, including the subqueries generated by your `gpt-4o-mini` deployment.
++ `Activity` tracks the steps that were taken during the retrieval process, including the subqueries generated by your `gpt-4o-mini` deployment and the tokens used for query planning and execution.
 
-+ `Results` lists the documents that contributed to the response, identified by their `doc_key`.
++ `Results` lists the documents that contributed to the response, each one identified by their `doc_key`.
 
 ```
 Response
@@ -397,7 +404,7 @@ Results
 
 ## Create the Azure OpenAI client
 
-To extend the retrieval pipeline from answer extraction to answer generation, set up the Azure OpenAI client to interact with your `gpt-4o` deployment, which you specified using the `@answer_model` variable in a previous section.
+To extend the retrieval pipeline from answer *extraction* to answer *generation*, set up the Azure OpenAI client to interact with your `gpt-4o-mini` deployment, which you specified using the `answer_model` variable in a previous section.
 
 ```Python
 from openai import AzureOpenAI
@@ -413,7 +420,7 @@ client = AzureOpenAI(
 
 ### Use the Responses API to generate an answer
 
-You can now use the Responses API to generate a detailed answer. The following code sends the `messages` list, which includes the user query and prior conversation context, to the `gpt-4o` model.
+You can now use the Responses API to generate a detailed answer based on the indexed documents. The following code sends the `messages` array, which includes the conversation history, to your `gpt-4o-mini` deployment.
 
 ```Python
 response = client.responses.create(
@@ -425,7 +432,7 @@ wrapped = textwrap.fill(response.output_text, width=100)
 print(wrapped)
 ```
 
-The output should be similar to the following example, which combines insights from the indexed data and the reasoning capabilities of `gpt-4o`.
+The output should be similar to the following example, which uses the reasoning capabilities of `gpt-4o-mini` to provide contextually relevant answers.
 
 ```
 1. **Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown?**   Suburban belts experience larger December brightening likely due to holiday-related displays such as decorative lighting on homes and public spaces, which become more widespread during the holiday season. In contrast, urban cores already have high levels of constant lighting from commercial areas, buildings, and streets year-round, leaving less room for noticeable seasonal changes in brightness. The suburban areas, with more residential lighting influence, therefore show a more significant relative increase in brightness during December holidays.    ---  2. **Why is the Phoenix nighttime street grid so sharply visible from space, whereas large stretches of the interstate between Midwestern cities remain comparatively dim?** The Phoenix metropolitan area is planned around a regular grid of streets, which are extensively lit at night, creating a clear and uniform pattern visible from space. Major corridors such as the Grand Avenue and intersections housing shopping centers, gas stations, and strip malls contribute further to the brightness. This urban development style, fueled by automobile use and outward expansion, results in more consistent lighting compared to the interstate highways between Midwestern cities, which are often surrounded by sparsely populated rural areas with fewer sources of light beyond the highways themselves.    **Sources:** [1], [0]
@@ -433,7 +440,7 @@ The output should be similar to the following example, which combines insights f
 
 ### Use the Chat Completions API to generate an answer
 
-Alternatively, you can use the Chat Completions API to generate a detailed answer. The following code sends the `messages` list, which includes the user query and prior conversation context, to the `gpt-4o` model.
+Alternatively, you can use the Chat Completions API for answer generation.
 
 ```Python
 response = client.chat.completions.create(
@@ -445,7 +452,7 @@ wrapped = textwrap.fill(response.choices[0].message.content, width=100)
 print(wrapped)
 ```
 
-The output should be similar to the following example, which combines insights from the indexed data and the reasoning capabilities of `gpt-4o`.
+The output should be similar to the following example.
 
 ```
 1. Suburban belts tend to display larger December brightening compared to urban cores despite the higher absolute brightness in city centers due to differing sources of light emission. Urban cores are already saturated with high levels of static artificial lighting (e.g., from buildings and streetlights), so seasonal increases in illumination—such as decorative holiday lights in December—have a smaller proportional impact. In contrast, suburban areas typically start from a lower baseline level of lighting, making additional light sources, like holiday displays, more noticeable in satellite imagery.  2. The Phoenix nighttime street grid is sharply visible from space because of its regular, well-organized grid layout of city blocks, paired with consistent illumination provided by streetlights and commercial properties at intersections. The metropolitan area's design reflects the characteristic urban planning of the western United States, focusing on automobile infrastructure and outward expansion. In comparison, interstates between midwestern cities appear dimmer because they are primarily illuminated at major intersections or rest stops, with the vast stretches in between remaining largely unlit. Consequently, road lighting is sparse and unevenly distributed over rural areas, which are less populated and lack the dense, uniformly lit patterns seen in urban grids like Phoenix's [0][1].
@@ -453,7 +460,7 @@ The output should be similar to the following example, which combines insights f
 
 ## Continue the conversation
 
-Continue the conversation by sending another user query to `earth-search-agent`. The following code retrieves relevant information from the `earth-at-night` index and appends the agent's response to the `messages` list. However, unlike before, you can now use the Azure OpenAI client to generate an answer based on the retrieved data.
+Continue the conversation by sending another user query to `earth-search-agent`. The following code reruns the retrieval pipeline, fetching relevant content from the `earth-at-night` index and appending the response to the `messages` array. However, unlike before, you can now use the Azure OpenAI client to generate an answer based on the retrieved data.
 
 ```Python
 messages.append({
@@ -475,7 +482,7 @@ messages.append({
 
 ### Review the new response, activity, and results
 
-To output the new retrieval response, activity, and results, run the following code.
+To output the response, activity, and results of the new retrieval pipeline, run the following code.
 
 ```Python
 import textwrap
@@ -569,6 +576,8 @@ Results
 
 ## Generate an answer
 
+Now that you have sent multiple user queries, use the Responses API to generate a contextual answer based on the indexed documents and conversation history, which is captured in the `messages` array.
+
 ```Python
 response = client.responses.create(
     model=answer_model,
@@ -579,7 +588,7 @@ wrapped = textwrap.fill(response.output_text, width=100)
 print(wrapped)
 ```
 
-The output should be similar to the following example, which...
+The output should be similar to the following example.
 
 ```
 To find lava at night, you can rely on natural brightness emitted by the hot lava flows themselves. Volcanic eruptions produce infrared glow visible even from space, particularly in active zones like Mount Etna, Italy, or Kilauea, Hawaii. Key methods include:  1. **Thermal Infrared Imaging**: Satellites equipped with thermal sensors, like Landsat 8 or VIIRS on Suomi NPP, can detect heat signatures from lava and provide nighttime observations. Infrared light reveals hot lava flows by highlighting their brightness, even in darkness ([ref_id:2], [ref_id:0]).  2. **Moonlight-Enhanced Visibility**: Satellite instruments utilize moonlight and other weak light sources to distinguish lava flows. For example, images of Mount Etna captured at night use moonlight combined with infrared to reveal active lava zones ([ref_id:1], [ref_id:2]).  3. **Nighttime Monitoring Tools**: Tools like the VIIRS Day/Night Band on satellites are specifically adapted to detect faint sources of nighttime light such as glowing lava, aiding scientists in tracking eruptions and flows ([ref_id:2]).  So, if you want to locate lava at night, monitoring active volcanic regions with satellite data or infrared thermal imaging would be your best approach.

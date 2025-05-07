@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 05/05/2025
+ms.date: 05/07/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -14,7 +14,7 @@ In this quickstart, you use [agentic retrieval](../../search-agentic-retrieval-c
 Although you can provide your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents describe the urban structures and lighting patterns of Phoenix, Arizona as observed from space.
 
 > [!TIP]
-> The REST version of this quickstart introduces agentic retrieval in Azure AI Search. For an end-to-end workflow, including steps for creating conversational messages and using an LLM to generate answers, see the Python version.
+> The REST version of this quickstart introduces agentic retrieval in Azure AI Search. For an end-to-end workflow, including steps for adding conversational turns and passing your retrieved content to an LLM for answer generation, see the [Python version](../../search-get-started-agentic-retrieval?pivots=python).
 
 ## Prerequisites
 
@@ -22,34 +22,26 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 + An [Azure AI Search service](../../search-create-service-portal.md) on the Basic tier or higher with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
-+ An [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource) in the [same region](#same-region-requirement) as your Azure AI Search service.
++ An [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource).
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
-### Same-region requirement
-
-Agentic retrieval invokes text-to-vector conversion during queries, which requires Azure AI Search and Azure OpenAI to be in the same region. To meet this requirement:
-
-1. [Choose an Azure OpenAI region](/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#global-standard-model-availability) in which `gpt-4o-mini` and `text-embedding-3-large` are available. Agentic retrieval supports other chat and embedding models, but this quickstart assumes those previously mentioned.
-
-1. Confirm that [Azure AI Search is available in the same region](../../search-region-support.md#azure-public-regions). The region must also support semantic ranker, which is essential to query execution during agentic retrieval.
-
-1. Deploy both resources in the same region.
-
 ## Deploy models
 
-To use agentic retrieval, you must deploy a supported chat model (for query planning) and a supported embedding model (for vector queries) to your Azure OpenAI resource. This quickstart assumes `gpt-4o-mini` for the chat model and `text-embedding-3-large` for the embedding model.
+To run agentic retrieval, you must deploy two models to your Azure OpenAI resource:
 
-> [!IMPORTANT]
-> Whatever chat model and embedding model you use, make sure they meet the [same-region requirement](#same-region-requirement) for Azure AI Search and Azure OpenAI.
++ An LLM for query planning
++ An embedding model for vector queries
 
-To deploy both Azure OpenAI models:
+Agentic retrieval supports other models, but this quickstart assumes `gpt-4o-mini` for the LLM and `text-embedding-3-large` for the embedding model.
+
+To deploy the Azure OpenAI models:
 
 1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/).
 
 1. On the home page, find the Azure OpenAI tile and select **Let's go**.
 
-    :::image type="content" source="../../media/search-get-started-agentic-retrieval/azure-openai-lets-go-tile.png" alt-text="Screenshot of the Azure OpenAI tile in the Azure AI Foundry portal." border="true" lightbox="media/search-get-started-agentic-retrieval/azure-openai-lets-go-tile.png":::
+    :::image type="content" source="../../media/search-get-started-agentic-retrieval/azure-openai-lets-go-tile.png" alt-text="Screenshot of the Azure OpenAI tile in the Azure AI Foundry portal." border="true" lightbox="../../media/search-get-started-agentic-retrieval/azure-openai-lets-go-tile.png":::
 
    Your most recently used Azure OpenAI resource appears. If you have multiple Azure OpenAI resources, select **All resources** to switch between them.
 
@@ -119,7 +111,7 @@ To obtain your service endpoints:
 
 ## Connect from your local system
 
-You configured role-based access to interact with Azure AI Search and Azure OpenAI. From the command line, use the Azure CLI to sign in to the subscription and tenant for both services. For more information, see [Quickstart: Connect without keys](../../search-get-started-rbac.md).
+You configured role-based access to interact with Azure AI Search and Azure OpenAI. From the command line, use the Azure CLI to sign in to the same subscription and tenant for both services. For more information, see [Quickstart: Connect without keys](../../search-get-started-rbac.md).
 
 To connect from your local system:
 
@@ -141,7 +133,7 @@ To connect from your local system:
 
 ## Load connections
 
-Before you run any code, define credentials, endpoints, and deployment details for connections to Azure AI Search and Azure OpenAI. These values are used in later sections of this quickstart.
+Before you send any requests, define credentials, endpoints, and deployment details for connections to Azure AI Search and Azure OpenAI. These values are used in subsequent operations.
 
 To load the connections:
 
@@ -160,7 +152,7 @@ To load the connections:
     @api-version = 2025-05-01-Preview
     ```
 
-1. Replace `@baseUrl` and `@aoaiBaseUrl` with the values you obtained in [Get endpoints](#get-endpoints).
+1. Replace `@baseUrl` and `@aoaiBaseUrl` with the values you obtained in [Get endpoints](#get-service-endpoints).
 
 1. Replace `@token` with the Microsoft Entra token you obtained in [Connect from your local system](#connect-from-your-local-system).
 
@@ -177,7 +169,17 @@ To load the connections:
 
 ## Create a search index
 
-In Azure AI Search, an index is a structured collection of searchable data. The following request defines a new index named `earth-at-night`, which you specified using the `@index-name` variable in the previous section.
+In Azure AI Search, an index is a structured collection of searchable data. Use [Create Index](/rest/api/searchservice/indexes/create) to define an index named `earth-at-night`, which you specified using the `@index-name` variable in the previous section.
+
+The index schema contains fields for document identification and page content, embeddings, and numbers. It also includes configurations for semantic ranking and vector queries, which use the `text-embedding-3-large` model you previously deployed.
+
+> [!IMPORTANT]
+> Agentic retrieval has two token-based billing models:
+>
+> + Billing from Azure OpenAI for query planning
+> + Billing from Azure AI Search for query execution (semantic ranking)
+>
+> Semantic ranking is free in the initial public preview. After the preview, standard token billing applies. For more information, see [Availability and pricing of agentic retrieval](../../search-agentic-retrieval-concept.md#availability-and-pricing).
 
 ```HTTP
 ### Create an index
@@ -255,11 +257,9 @@ PUT {{baseUrl}}/indexes/{{index-name}}?api-version={{api-version}}  HTTP/1.1
     }
 ```
 
-The index schema contains fields for document identification and page content, embeddings, and numbers. It also includes configurations for semantic ranking and vector queries, which use the `text-embedding-3-large` model you previously deployed.
-
 ## Upload documents to the index
 
-Currently, the `earth-at-night` index is empty. Send the following request to populate the index with JSON documents from NASA's Earth at Night e-book. Each document contains embeddings for vectorization and metadata for page numbering.
+Currently, the `earth-at-night` index is empty. Use [Index Documents](/rest/api/searchservice/documents/index) to populate the index with JSON documents from NASA's Earth at Night e-book. As required by Azure AI Search, each document conforms to the fields and data types defined in the index schema.
 
 ```HTTP
 ### Load documents
@@ -294,7 +294,9 @@ POST {{baseUrl}}/indexes/{{index-name}}/docs/index?api-version={{api-version}}  
 
 ## Create a search agent
 
-To connect Azure AI Search to your `gpt-4o-mini` deployment and target the `earth-at-night` index at query time, you need a search agent. The following request defines an agent named `earth-search-agent`, which you specified using the `@agent-name` variable in a previous section.
+To connect Azure AI Search to your `gpt-4o-mini` deployment and target the `earth-at-night` index at query time, you need a search agent. Use [Create Knowledge Agents](/rest/api/searchservice/knowledge-agents/create?view=rest-searchservice-2025-05-01-preview&preserve-view=true) to define an agent named `earth-search-agent`, which you specified using the `@agent-name` variable in a previous section.
+
+To ensure relevant and semantically meaningful responses, `defaultRerankerThreshold` is set to exclude responses with a reranker score of `2.5` or lower.
 
 ```HTTP
 ### Create an agent
@@ -325,7 +327,9 @@ PUT {{baseUrl}}/agents/{{agent-name}}?api-version={{api-version}}  HTTP/1.1
 
 ## Run the retrieval pipeline
 
-You're ready to run the agentic retrieval pipeline. After you send the following request, `earth-search-agent` deconstructs the user query into subqueries, processes the subqueries simultaneously, and merges and ranks results from the `earth-at-night` index.
+You're ready to initiate the agentic retrieval pipeline. The input for this pipeline is the `messages` array, whose conversation history includes system instructions and user queries. Additionally, `targetIndexParams` specifies the index to query and optional configurations, such as reranking thresholds and filters.
+
+Use [Retrieve Knowledge Retrieval](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-05-01-preview&preserve-view=true) to send the following two-part user query to `earth-search-agent`, which deconstructs the query into subqueries, runs the subqueries against both text fields and vector embeddings in the `earth-at-night` index, and ranks and merges the results.
 
 ```HTTP
 ### Run agentic retrieval
@@ -356,11 +360,11 @@ POST {{baseUrl}}/agents/{{agent-name}}/retrieve?api-version={{api-version}}  HTT
 
 The output should be similar to the following JSON, where:
 
-+ `response` provides a text string of the most relevant documents (or chunks) in the search index based on the user query.
++ `response` provides a text string of the most relevant documents (or chunks) in the search index based on the user query. You can pass this string to an LLM, which uses it as grounding data for answer generation.
 
-+ `activity` tracks the steps that were taken during the retrieval process, including the subqueries generated by your `gpt-4o-mini` deployment.
++ `activity` tracks the steps that were taken during the retrieval process, including the subqueries generated by your `gpt-4o-mini` deployment and the tokens used for query planning and execution.
 
-+ `references` lists the documents that contributed to the response, identified by their `docKey`.
++ `references` lists the documents that contributed to the response, each one identified by their `docKey`.
 
 ```JSON
 {
