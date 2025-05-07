@@ -34,11 +34,12 @@ After testing the service on their data, customers can use `entitySynonyms` to:
 ```json
 { 
     "parameter":  
-    "entitySynonyms":[  
+    "entitySynonyms": [  
         { 
             "entityType": "InternationalBankAccountNumber", 
             "synonyms": [ {"synonym": "BAN", "language": "en"} ] 
         } 
+    ]
 } 
 ```
 

@@ -1253,4 +1253,4 @@ These entity types include identifiable Azure information like authentication in
 
 ## Next steps
 
-* [NER overview](../overview.md)
+* [PII overview](../overview.md)

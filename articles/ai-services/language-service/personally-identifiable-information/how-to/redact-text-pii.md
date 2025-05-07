@@ -126,7 +126,7 @@ The `valueExclusionPolicy` option allows customers to adapt the PII service for 
 
 Customers can now adapt the PII service’s detecting by specifying their own regex using a regex recognition configuration file. See our [container how-to guides](use-containers.md) for a tutorial on how to install and run Personally Identifiable Information (PII) Detection containers. 
 
-A more detailed tutorial can be found in the “Adapting PII to your domain” how-to guide. 
+A more detailed tutorial can be found in the “[Adapting PII to your domain](adapt-to-domain-pii.md)” how-to guide. 
 
 
 ## Submitting data
