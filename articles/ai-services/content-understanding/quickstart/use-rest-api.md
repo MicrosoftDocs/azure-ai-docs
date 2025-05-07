@@ -50,49 +50,58 @@ curl -i -X POST "{endpoint}/analyzers/{analyzerId}:analyze?api-version=2025-05-0
 
 # [Document](#tab/document)
 
-1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal
+1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal.
 2. Replace `{analyzerId}` with  `prebuilt-documentAnalyzer`.
-3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/data/invoice.pdf`.
+3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf`.
 
 # [Image](#tab/image)
 
-1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal
-2. Replace `{analyzerId}` with  `prebuilt-imageAnalyzer`
-3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/data/pieChart.jpg`
+1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal.
+2. Replace `{analyzerId}` with  `prebuilt-imageAnalyzer`.
+3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/pieChart.jpg`.
 
 # [Audio](#tab/audio)
 
-1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal
-2. Replace `{analyzerId}` with  `prebuilt-audioAnalyzer`
-3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/data/audio.wav`
+1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal.
+2. Replace `{analyzerId}` with  `prebuilt-audioAnalyzer`.
+3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/audio.wav`.
 
 # [Video](#tab/video)
 
-1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal
-2. Replace `{analyzerId}` with  `prebuilt-videoAnalyzer`
-3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/data/FlightSimulator.mp4`
+1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal.
+2. Replace `{analyzerId}` with  `prebuilt-videoAnalyzer`.
+3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/FlightSimulator.mp4`.
 ---
 
 
 #### POST Response
 
-The 202 (`Accepted`) response includes an `operation-location` header containing a URL that you can use to track the status of this asynchronous analyze operation.
+The response returns `resultId` that you can use to track the status of this asynchronous analyze operation.
 
 ```
-202 Accepted
-operation-location: {endpoint}/contentunderstanding/analyzerResults/{requestId}?api-version=2025-05-01-preview
+{
+  "id": {resultId},
+  "status": "Running",
+  "result": {
+    "analyzerId": {analyzerId},
+    "apiVersion": "2025-05-01-preview",
+    "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
+    "warnings": [],
+    "contents": []
+  }
+}
 ```
 
 ### Get Analyze Result
 
-Use the `resultId` from the `Operation-Location` header returned by the previous `POST` response and retrieve the result of the analysis.
+Use the `resultId` from the `POST` response above and retrieve the result of the analysis.
 
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
-2. Replace `{requestId}` with the `requestId` returned from the `POST` request.
+2. Replace `{resultId}` with the `resultId` from the `POST` response.
 
 #### GET Request
 ```bash
-curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{requestId}?api-version=2025-05-01-preview" \
+curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{resultId}?api-version=2025-05-01-preview" \
   -H "Ocp-Apim-Subscription-Key: {key}"
 ```
 
@@ -142,20 +151,20 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ```json
 {
-  "id": "1f8f3fe5-831b-4c3f-85a9-98a90e1af11b",
+  "id": {resultId},
   "status": "Succeeded",
   "result": {
     "analyzerId": "prebuilt-imageAnalyzer",
     "apiVersion": "2025-05-01-preview",
-    "createdAt": "2025-05-05T18:02:32Z",
+    "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
     "warnings": [],
     "contents": [
       {
-        "markdown": "50-60 hours 36.6%\n\n60+ hours 37.8%\n\n40-50 hours 18.9%\n\n1-39 hours 6.7%\n",
+        "markdown": "![image](image)\n",
         "fields": {
           "Summary": {
             "type": "string",
-            "valueString": "The image is a pie chart that represents the distribution of hours worked per week by individuals. It is divided into four segments: 60+ hours (37.8%), 50-60 hours (36.6%), 40-50 hours (18.9%), and 1-39 hours (6.7%)."
+            "valueString": "The image is a pie chart depicting the distribution of hours worked per week among a group of individuals. The chart is divided into four segments: 60+ hours (37.8%), 50-60 hours (36.6%), 40-50 hours (18.9%), and 1-39 hours (6.7%). Each segment is labeled with its corresponding percentage and color-coded for clarity."
           }
         },
         "kind": "document",
@@ -165,27 +174,7 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
         "pages": [
           {
             "pageNumber": 1,
-            "angle": 0.1013839,
-            "width": 1283,
-            "height": 617
-          }
-        ]
-      },
-      {
-        "markdown": "![image](image)\n",
-        "fields": {
-          "Summary": {
-            "type": "string",
-            "valueString": "The image is a pie chart that represents the distribution of hours worked per week by individuals. It is divided into four segments: 60+ hours (37.8%), 50-60 hours (36.6%), 40-50 hours (18.9%), and 1-39 hours (6.7%)."
-          }
-        },
-        "kind": "document",
-        "startPageNumber": 1,
-        "endPageNumber": 1,
-        "unit": "pixel",
-        "pages": [
-          {
-            "pageNumber": 1
+            "spans": []
           }
         ]
       }
@@ -247,6 +236,6 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ## Next steps
 
-* In this quickstart, you learned how to call the [REST API](<Reference Link>) using a pre-built analyzer. See how you can [customize pre-built analyzers](<Link to customization) to better fit your use case.
+* In this quickstart, you learned how to call the [REST API](REFERENCE LINK) using a pre-built analyzer. See how you can [customize pre-built analyzers](LINK TO CUSTOMIZATION) to better fit your use case.
 
 
