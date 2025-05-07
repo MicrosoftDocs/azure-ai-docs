@@ -17,7 +17,7 @@ This article provides a summary of the latest releases and major documentation u
 
 ## May 2025
 
-### Azure AI Foundry Agent Service
+### Azure AI Foundry Agent Service GA
 
 The Azure AI Foundry Agent Service is now Generally Available (GA). Along with this milestone, the service offers the following feature updates:
 
