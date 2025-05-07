@@ -13,17 +13,17 @@ ms.date: 05/06/2025
 
 ## Overview
 
-The multi-vector field support feature in Azure AI Search enables you to index multiple child vectors within a single document field. This feature is particularly valuable for use cases like multi-modal data or long-form documents, where representing the content with a single vector would lead to loss of important detail.
+The multi-vector field support feature in Azure AI Search enables you to index multiple child vectors within a single document field. This feature is valuable for use cases like multi-modal data or long-form documents, where representing the content with a single vector would lead to loss of important detail.
 
 ## Understanding multi-vector field support
 
 Traditionally, vector types, for example `Collection(Edm.Single)` could only be used in top-level fields. With the introduction of multi-vector field support, you can now use vector types in nested fields of complex collections, effectively allowing multiple vectors to be associated with a single document.
 
-A single document can include up to 100 vectors in total, across all complex collection fields. Note that vector fields can only be nested one level deep.
+A single document can include up to 100 vectors in total, across all complex collection fields. Vector fields can only be nested one level deep.
 
 ### Index definition with multi-vector field
 
-No new index properties are needed for this feature. Here is a sample index definition:
+No new index properties are needed for this feature. Here's a sample index definition:
 
 ```json
 {
@@ -89,7 +89,7 @@ No new index properties are needed for this feature. Here is a sample index defi
 
 ### Sample ingest document
 
-Here is a sample document that illustrates how you might use multi-vector fields in practice:
+Here's a sample document that illustrates how you might use multi-vector fields in practice:
 
 ```json
 {
@@ -120,8 +120,8 @@ In this example, the scenes field is a complex collection containing multiple ve
 ## Querying with multi-vector field support
 
 The multi-vector field support feature introduces some changes to the query mechanism in Azure AI Search. However, the main querying process remains largely the same.
-Previously, `vectorQueries` could only target vector fields defined as top-level index fields. With this feature, we are relaxing this restriction and allowing vectorQueries to target fields that are nested within a collection of complex types (up to 1 level deep).
-Additionally, a new query time parameter has been added: `perDocumentVectorLimit`.
+Previously, `vectorQueries` could only target vector fields defined as top-level index fields. With this feature, we're relaxing this restriction and allowing vectorQueries to target fields that are nested within a collection of complex types (up to one level deep).
+Additionally, a new query time parameter is available: `perDocumentVectorLimit`.
 
 - Setting `perDocumentVectorLimit` to `1` ensures that at most one vector per document is matched, guaranteeing that results come from distinct documents.
 - Setting `perDocumentVectorLimit` to `0` (unlimited) allows multiple relevant vectors from the same document to be matched.
@@ -142,7 +142,7 @@ Additionally, a new query time parameter has been added: `perDocumentVectorLimit
 ```
 ## Ranking across multiple vectors in a single field
 
-When multiple vectors are associated with a single document, Azure AI Search uses the maximum score among them for ranking. This ensures each document is scored by its best-matching vector, which avoids dilution by less relevant ones.
+When multiple vectors are associated with a single document, Azure AI Search uses the maximum score among them for ranking. The system uses the most relevant vector to score each document, which prevents dilution by less relevant ones.
 
 ## Retrieving the relevant elements in a collection
 
@@ -153,11 +153,11 @@ When a collection of complex types is included in the `$select` parameter, only 
 
 ## Limitations
 
-- Semantic ranker is not supported for nested chunks within a complex field. Therefore, nested vectors in multi-vector fields are not supported by the semantic ranker.
+- Semantic ranker isn't supported for nested chunks within a complex field. Therefore, the semantic ranker doesn't support nested vectors in multi-vector fields.
 
 ## Debugging multi-vector queries (Preview)
 
-When using multiple embedded vectors (for example a subfield with text embeddings and other with image embeddings) in a collection, the overall document is scored using the highest vector match across all child elements.
+When a document includes multiple embedded vectors, such as text and image embeddings in different subfields, the system uses the highest vector score across all elements to rank the document.
 
 To debug how each vector contributed, use the `innerHits` debug mode (available in API version 2025-05-01-preview).
 
@@ -220,7 +220,7 @@ POST /indexes/my-index/docs/search?api-version=2025-05-01-preview
 |-------------------|---------------------------------------------------------------------------|
 | `ordinal`         | Zero-based index of the element inside the collection.                   |
 | `vectors`         | One entry per searchable vector field contained in the element.          |
-| `searchScore`     | Final score for that field, after any re-scoring and boosts.             |
+| `searchScore`     | Final score for that field, after any rescoring and boosts.             |
 | `vectorSimilarity`| Raw similarity returned by the distance function.                        |
 
 
