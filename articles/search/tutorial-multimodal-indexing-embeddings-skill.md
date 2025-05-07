@@ -63,7 +63,7 @@ Download the sample PDF below:
 
 ### Upload sample data to Azure Storage
 
-1. In Azure Storage, create a new container named **doc-extraction-multimodality-container**.
+1. In Azure Storage, create a new container named **doc-intelligence-multimodality-container**.
 
 1. [Upload the sample data file](/azure/storage/blobs/storage-quickstart-blobs-portal).
 
