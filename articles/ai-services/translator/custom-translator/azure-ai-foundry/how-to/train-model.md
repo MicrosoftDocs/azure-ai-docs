@@ -1,7 +1,7 @@
 ---
-title: Train model - Custom translation
+title: Azure AI Foundry custom translation
 titleSuffix: Azure AI services
-description: How to train a custom model
+description: How to train a custom model in Azure AI Foundry.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -10,11 +10,13 @@ ms.author: lajanuar
 ms.topic: how-to
 ---
 
-# Train a model
+# Azure AI Foundry: train a custom model
 
-Custom translation model provides translations for a specific language pair. The outcome of a successful training is a model. To train a custom model, three mutually exclusive document types are required: training, tuning, and testing. If only training data is provided when queuing a training, Custom translation automatically assembles tuning and testing data. It uses a random subset of sentences from your training documents, and exclude these sentences from the training data itself. A minimum of 10,000 parallel training sentences are required to train a full model.
+A custom translation model provides translations for a specific language pair. The outcome of a successful training is a model. To train a custom model, three mutually exclusive document types are required: training, tuning, and testing. If only training data is provided when queuing a training, Custom translation automatically assembles tuning and testing data. It uses a random subset of sentences from your training documents, and exclude these sentences from the training data itself. A minimum of 10,000 parallel training sentences are required to train a full model.
 
 ## Create custom model
+
+Here are the steps to create a custom model:
 
 1. Follow [Upload data](upload-data.md), then continue here.
 
