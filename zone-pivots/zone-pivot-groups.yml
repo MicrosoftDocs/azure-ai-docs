@@ -838,7 +838,7 @@ groups:
     title: Language Studio
   - id: rest-api
     title: REST API
-    - id: usage-custom-language-features-foundry
+- id: usage-custom-language-features-foundry
 # Owner jboback
   title: Usage methods
   prompt: Choose your preferred usage method
