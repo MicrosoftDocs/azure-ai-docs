@@ -602,6 +602,32 @@ For filters, you can also use Logical operators (and, or, not) and comparison op
 > [!NOTE]
 > The `$filter` parameter only works on fields that were marked filterable during index creation.
 
+```http
+### Query for only images
+POST {{baseUrl}}/indexes/doc-intelligence-image-verbalization-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
+  Content-Type: application/json
+  api-key: {{apiKey}}
+  
+  {
+    "search": "*",
+    "count": true,
+    "filter": "image_document_id ne null"
+  }
+```
+
+```http
+### Query for text or images with content related to energy, returning the id, parent document, and text (only populated for text chunks), and the content path where the image is saved in the knowledge store (only populated for images)
+POST {{baseUrl}}/indexes/doc-intelligence-image-verbalization-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
+  Content-Type: application/json
+  api-key: {{apiKey}}
+  
+  {
+    "search": "energy",
+    "count": true,
+    "select": "content_id, document_title, content_text, content_path"
+  }
+```
+
 ## Reset and rerun
 
 Indexers can be reset to clear execution history, which allows a full rerun. The following POST requests are for reset, followed by rerun.

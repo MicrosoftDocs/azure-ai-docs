@@ -1,7 +1,7 @@
 ---
-title: 'Tutorial: Index multi-modality content using multi-modality embedding and document layout skill'
+title: 'Tutorial: Index multimodal content using multimodal embedding and document layout skill'
 titleSuffix: Azure AI Search
-description: Learn how to extract, index, and search both text and images from Azure Blob Storage for multi-modality scenarios using the Azure AI Search REST APIs.
+description: Learn how to extract, index, and search both text and images from Azure Blob Storage for multimodal scenarios using the Azure AI Search REST APIs.
 
 manager: arjagann
 author: rawan    
@@ -13,9 +13,9 @@ ms.date: 05/05/2025
 
 ---
 
-# Tutorial: Index multi-modality content using multi-modality embedding and document layout skill
+# Tutorial: Index multimodal content using multimodal embedding and document layout skill
 
-Multi-modality plays an essential role in Gen AI apps and the user experience as it enables the extraction of information not only from text but also from complex images embedded within documents. This tutorial shows how to use Azure AI Search to build a multi-modal retrieval pipeline by extract text from pages and inline images, store cropped images in the knowledge store and create vision/text embeddings into a unified semantic search index.
+Multimodal plays an essential role in Gen AI apps and the user experience as it enables the extraction of information not only from text but also from complex images embedded within documents. This tutorial shows how to use Azure AI Search to build a multi-modal retrieval pipeline by extract text from pages and inline images, store cropped images in the knowledge store and create vision/text embeddings into a unified semantic search index.
 
 You’ll work with a 36-page PDF document that combines rich visual content—such as charts, infographics, and scanned pages—with traditional text. Using the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)(currently in public preview), you’ll extract both text and normalized images with its locationMetadata. Each modality is then embedded using the same [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), which generates dense vector representations suitable for semantic and hybrid search scenarios.
 
@@ -67,9 +67,9 @@ Download the sample PDF below:
 
 1. [Upload the sample data file](/azure/storage/blobs/storage-quickstart-blobs-portal).
 
-1. [Create a role assignment in Azure Storage and Specify a managed identity in a connection string](search-howto-managed-identities-storage.md)
+1. [Create a role assignment in Azure Storage and specify a managed identity in a connection string](search-howto-managed-identities-storage.md)
 
-   1. For connections made using a system-assigned managed identity. Provide a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. The connection string is similar to the following example:
+   1. For connections made using a system-assigned managed identity, provide a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. The connection string is similar to the following example:
 
     ```json
     "credentials" : { 
@@ -130,7 +130,7 @@ POST {{baseUrl}}/datasources?api-version=2025-05-01-preview   HTTP/1.1
 
   {
     "name": "doc-intelligence-multimodal-embedding-ds",
-    "description": "A data source to store multi-modality documents",
+    "description": "A data source to store multimodal documents",
     "type": "azureblob",
     "subtype": null,
     "credentials": {
@@ -297,7 +297,7 @@ Key points:
 
 + For more information on vector search, see [Vectors in Azure AI Search](vector-search-overview.md).
 
-+ For more information on semantic ranking, see [Semantic ranking in Azure AI Search](semantic-search-overview.md)
++ For more information on semantic ranking, see [Semantic ranking in Azure AI Search](semantic-search-overview.md).
 
 ## Create a skillset
 
@@ -311,7 +311,7 @@ POST {{baseUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
 
 {
   "name": "doc-intelligence-multimodal-embedding-skillset",
-  "description": "A sample skillset for multi-modality using multi-modality embedding",
+  "description": "A sample skillset for multimodal using multimodal embedding",
   "skills": [
     {
       "@odata.type": "#Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill",
@@ -553,6 +553,32 @@ For filters, you can also use Logical operators (and, or, not) and comparison op
 
 > [!NOTE]
 > The `$filter` parameter only works on fields that were marked filterable during index creation.
+
+```http
+### Query for only images
+POST {{baseUrl}}/indexes/doc-intelligence-multimodal-embedding-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
+  Content-Type: application/json
+  api-key: {{apiKey}}
+  
+  {
+    "search": "*",
+    "count": true,
+    "filter": "image_document_id ne null"
+  }
+```
+
+```http
+### Query for text or images with content related to energy, returning the id, parent document, and text (only populated for text chunks), and the content path where the image is saved in the knowledge store (only populated for images)
+POST {{baseUrl}}/indexes/doc-intelligence-multimodal-embedding-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
+  Content-Type: application/json
+  api-key: {{apiKey}}
+  
+  {
+    "search": "energy",
+    "count": true,
+    "select": "content_id, document_title, content_text, content_path"
+  }
+```
 
 ## Reset and rerun
 

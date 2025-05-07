@@ -24,7 +24,7 @@ This article is the reference documentation for the Document Layout skill. For u
 
 The **Document Layout** skill calls the [Document Intelligence Public preview version 2024-07-31-preview](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true). 
 
-Supported regions varies by modality:
+Supported regions vary by modality:
 
 + When you're using AI services keys [to attach your multi-service resource to your skillset](cognitive-search-attach-cognitive-services.md#bill-through-a-resource-key) via the REST API, both your Azure AI Search service and AI multi-service resource must be in the same region. This is only possible in the Azure regions of **East US**, **West Europe**, **North Central US**, **West US 2**. But if you're using a managed identity for [billing through a keyless connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection), your Azure AI Search service must be in one of the following regions: **East US**, **West Europe**, **North Central US**, **West US 2**. On the other hand, you can use AI Document Intelligence through an Azure AI multi-service resource in any region where this service is available. See [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).
 
@@ -70,7 +70,7 @@ Refer to [Azure AI Document Intelligence layout model supported languages](/azur
 
 During the public preview, this skill has the following restrictions:
 
-+ The skill is not suitable for large documents requiring more than 5 minutes of processing in the AI Document Intelligence layout model. The skill will time out, but charges will still apply to the AI Services multi-services resource if it is attached to the skillset for billing purposes. Ensure documents are optimized to stay within processing limits to avoid unnecessary costs.
++ The skill isn't suitable for large documents requiring more than 5 minutes of processing in the AI Document Intelligence layout model. The skill times out, but charges still apply to the AI Services multi-services resource if it attaches to the skillset for billing purposes. Ensure documents are optimized to stay within processing limits to avoid unnecessary costs.
 
   
 ## Skill parameters
@@ -79,15 +79,15 @@ Parameters are case-sensitive.
 
 | Parameter name     | Version | Allowed Values | Description |
 |--------------------|-------------|-------------|-------------|
-| `outputMode`    | All versions |`oneToMany` | Controls the cardinality of the output produced by the skill. |
-| `markdownHeaderDepth` | All versions |`h1`, `h2`, `h3`, `h4`, `h5`, `h6(default)` | Only applies if `outputFormat` is set to `markdown`. This parameter describes the deepest nesting level that should be considered. For instance, if the markdownHeaderDepth is indicated as "h3" any markdown section that’s deeper than h3 (that is, #### and deeper) is considered as "content" that needs to be added to whatever level its parent is at. |
-| `outputFormat`    | [2025-05-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) |`markdown(default)`, `text` | **New**. Controls the format of the output spit out by the skill. |
-| `extractionOptions`    | [2025-05-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) |`["images"]`, `["images", "locationMetadata"]`, `["locationMetadata"]` | **New**. Identify any additional content extracted from the document. Define an array of enums that correspond to the content to be included in the output. This applies to both output formats.  |
-| `chunkingProperties`    | [2025-05-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) | See below | **New**. Only applies if `outputFormat` is set to `text`. Options that encapsulates how to chunk text content while re-computing other metadata. |
+| `outputMode`    | [2024-11-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2024-11-01-preview&preserve-view=true) |`oneToMany` | Controls the cardinality of the output produced by the skill. |
+| `markdownHeaderDepth` | [2024-11-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2024-11-01-preview&preserve-view=true) |`h1`, `h2`, `h3`, `h4`, `h5`, `h6(default)` | Only applies if `outputFormat` is set to `markdown`. This parameter describes the deepest nesting level that should be considered. For instance, if the markdownHeaderDepth is `h3`, any sections that are deeper such as `h4`, are rolled into `h3`. |
+| `outputFormat`    | [2025-05-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) |`markdown(default)`, `text` | **New**. Controls the format of the output generated by the skill. |
+| `extractionOptions`    | [2025-05-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) |`["images"]`, `["images", "locationMetadata"]`, `["locationMetadata"]` | **New**. Identify any extra content extracted from the document. Define an array of enums that correspond to the content to be included in the output. For instance, if the extractionOptions is `["images", "locationMetadata"]`, the output includes images and location metadata which provides page location information related to where the content was extracted, such as a page number or section. This parameter applies to both output formats.  |
+| `chunkingProperties`    | [2025-05-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) | See below | **New**. Only applies if `outputFormat` is set to `text`. Options that encapsulate how to chunk text content while recomputing other metadata. |
 
 | ChunkingProperties Parameter     | Version | Allowed Values | Description |
 |--------------------|-------------|-------------|-------------|
-| `unit`    | [2025-05-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) |`Characters` | Controls the cardinality of the chunk unit. |
+| `unit`    | [2025-05-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) |`Characters`. currently the only allowed value. Chunk length is measured in characters, as opposed to words or tokens | Controls the cardinality of the chunk unit. |
 | `maximumLength`    | [2025-05-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) | Any integer between 300-50000 | The maximum chunk length in characters as measured by String.Length. |
 | `overlapLength`    | [2025-05-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) | Integer. The value needs to be less than the half of the `maximumLength` | The length of overlap provided between two text chunks. |
 
@@ -127,8 +127,8 @@ The file reference object can be generated in one of following ways:
 | Output name      | Description                   |
 |---------------|-------------------------------|
 | `markdown_document`    | Only applies if `outputFormat` is set to `markdown`. A collection of "sections" objects, which represent each individual section in the Markdown document.|
-| `text_sections`    | Only applies if `outputFormat` is set to `text`. A collection of text chunk objects, which represent the text within the bounds of a page (factoring in any additional chunking configured), *inclusive* of any section headers themselves. This will include locationMetadata if required.|
-| `normalized_images`    | Only applies if `outputFormat` is set to `text` and `extractionOptions` includes `images`.A collection of images that were extracted from the document, including locationMetadata if required .|
+| `text_sections`    | Only applies if `outputFormat` is set to `text`. A collection of text chunk objects, which represent the text within the bounds of a page (factoring in any more chunking configured), *inclusive* of any section headers themselves. The text chunk object includes locationMetadata if required.|
+| `normalized_images`    | Only applies if `outputFormat` is set to `text` and `extractionOptions` includes `images`.A collection of images that were extracted from the document, including locationMetadata if required.|
 
 ## Sample definition for markdown output mode
 ```json
@@ -184,7 +184,7 @@ The file reference object can be generated in one of following ways:
 }
 ```
 
-The value of the `markdownHeaderDepth` controls the number of keys in the "sections" dictionary. In the example skill definition, since the `markdownHeaderDepth` is "h3", there are three keys in the "sections" dictionary: h1, h2, h3.
+The value of the `markdownHeaderDepth` controls the number of keys in the "sections" dictionary. In the example skill definition, since the `markdownHeaderDepth` is "h3," there are three keys in the "sections" dictionary: h1, h2, h3.
 
 ## Example for text output mode and image and metadata extraction
 
@@ -278,7 +278,7 @@ This example demonstrates how to use the new parameters introduced in the **2025
     ] 
 }
 ```
-The skill uses [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview) to compute locationMetadata. Please refer to [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) for details on how pages and bounding polygon coordinates are defined.
+The skill uses [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview) to compute locationMetadata. Refer to [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) for details on how pages and bounding polygon coordinates are defined.
 The `imagePath` represents the relative path of a stored image. If the knowledge store file projection is configured in the skillset, this path matches the relative path of the image stored in the knowledge store.
 
 ## See also
