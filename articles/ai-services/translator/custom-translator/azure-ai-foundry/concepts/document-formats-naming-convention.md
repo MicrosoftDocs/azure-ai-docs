@@ -52,4 +52,4 @@ Translation Memory files (`TMX`, `XLF`, `XLIFF`, `LCL`, `XLSX`) aren't required 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn about managing custom translation projects](workspace-and-project.md#what-is-a-custom-translation-project)
+> [Learn about managing custom translation projects](workspace-and-project.md#what-is-an-azure-ai-foundry-custom-translation-project)

@@ -1,7 +1,7 @@
 ---
 title: Azure AI Foundry custom translation data filtering
 titleSuffix: Azure AI services
-description: How custom transltation training documents for a custom system undergo a series of processing and filtering steps.
+description: How custom translation training documents for a custom system undergo a series of processing and filtering steps.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -18,13 +18,13 @@ When you submit documents to be used for training, the documents undergo a serie
 
 ## Sentence alignment
 
-If your document isn't in XLIFF, `TMX`, or ALIGN format, custom translation aligns the sentences of your source and target documents to each other, sentence by sentence. custom translation doesn't perform document alignment – it follows your naming of the documents to find the matching document of the other language. Within the document, custom translation tries to find the corresponding sentence in the other language. It uses document markup like embedded HTML tags to help with the alignment.
+If your document isn't in XLIFF, `TMX`, or ALIGN format, custom translation aligns the sentences of your source and target documents to each other, sentence by sentence. Custom translation doesn't perform document alignment – it follows your naming of the documents to find the matching document of the other language. Within the document, custom translation tries to find the corresponding sentence in the other language. It uses document markup like embedded HTML tags to help with the alignment.
 
-If you see a large discrepancy between the number of sentences in the source and target documents, your documents can't be parallel. The document pairs with a large difference (>10%) of sentences on each side warrant a second look to make sure they're indeed parallel. custom translation shows a warning next to the document if the sentence count differs suspiciously.
+If you see a large discrepancy between the number of sentences in the source and target documents, your documents can't be parallel. The document pairs with a large difference (>10%) of sentences on each side warrant a second look to make sure they're indeed parallel. Custom translation shows a warning next to the document if the sentence count differs suspiciously.
 
 ## Deduplication
 
-Custom translation removes the sentences that are present in test and tuning documents from training data. The removal happens dynamically inside of the training run, not in the data processing step. custom translation reports the sentence count to you in the project overview before such removal. Deduplication doesn't apply if you choose to upload your own test and tuning documents.
+Custom translation removes the sentences that are present in test and tuning documents from training data. The removal happens dynamically inside of the training run, not in the data processing step. Custom translation reports the sentence count to you in the project overview before such removal. Deduplication doesn't apply if you choose to upload your own test and tuning documents.
 
 ## Length filter
 

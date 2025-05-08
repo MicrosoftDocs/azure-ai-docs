@@ -1,7 +1,7 @@
 ---
 title: Azure AI Foundry custom translation sentence pairing and alignment
 titleSuffix: Azure AI services
-description: During the training execution, sentences present in parallel documents are paired or aligned. custom translation learns translations one sentence at a time, by reading a sentence and translating it. Then it aligns words and phrases in these two sentences to each other.
+description: During the training execution, sentences present in parallel documents are paired or aligned. Custom translation learns translations one sentence at a time, by reading a sentence and translating it. Then it aligns words and phrases in these two sentences to each other.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -14,7 +14,7 @@ ms.custom: cogserv-non-critical-translator
 
 # Azure AI Foundry custom translation sentence pairing and alignment
 
-After documents are uploaded, sentences present in parallel documents are paired or aligned. custom translation reports the number of sentences it was able to pair as the Aligned Sentences in each of the data sets.
+After documents are uploaded, sentences present in parallel documents are paired or aligned. Custom translation reports the number of sentences it was able to pair as the Aligned Sentences in each of the data sets.
 
 ## Pairing and alignment process
 

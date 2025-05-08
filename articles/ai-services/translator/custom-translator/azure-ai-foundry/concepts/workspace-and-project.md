@@ -1,7 +1,7 @@
 ---
 title: What is an Azure AI Foundry custom translation project?
 titleSuffix: Azure AI services
-description: In This article, learn the differences about creating projects as well as project categories and labels for the custom translation service.
+description: In This article, learn the differences about creating projects, project categories, and labels for the custom translation service.
 #services: cognitive-services
 author: laujan
 manager: nitinme
@@ -28,7 +28,7 @@ included in both language pairs. Each project has a Category ID associated with 
 
 The category identifies the domain – the area of terminology and style you want to use – for your language pair. Choose the category most relevant to your documents. 
 
-In the same project, you can create language pairs for the same language pair in different categories. custom translation prevents creation of a duplicate language pair with the same language pair and category. Applying a label to your language pair allows you to avoid this restriction. Don't use labels unless you're building translation systems for multiple clients, as adding a unique label to your language pair is reflected in your language pairs Category ID.
+In the same project, you can create language pairs for the same language pair in different categories. Custom translation prevents creation of a duplicate language pair with the same language pair and category. Applying a label to your language pair allows you to avoid this restriction. Don't use labels unless you're building translation systems for multiple clients, as adding a unique label to your language pair is reflected in your language pairs Category ID.
 
 ## Language pair labels
 

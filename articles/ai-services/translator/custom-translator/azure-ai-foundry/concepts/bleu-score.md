@@ -24,7 +24,7 @@ The BLEU algorithm compares consecutive phrases of the automatic translation wit
 
 The BLEU score's strength is that it correlates well with human judgment. BLEU averages out individual sentence judgment errors over a test corpus, rather than attempting to devise the exact human judgment for every sentence.
 
-A more extensive discussion of BLEU scores *see* [Microsoft Translator Hub - Discussion of BLEU Score](https://youtu.be/-UqDljMymMg). BLEU results depend strongly on the breadth of your domain; consistency of test, training and tuning data; and how much data you have available for training. If your models are trained within a narrow domain, and your training data is consistent with your test data, you can expect a high BLEU score.
+For a more extensive discussion of BLEU scores, *see* [Microsoft Translator Hub - Discussion of BLEU Score](https://youtu.be/-UqDljMymMg). BLEU results depend strongly on the breadth of your domain; consistency of test, training and tuning data; and how much data you have available for training. If your models are trained within a narrow domain, and your training data is consistent with your test data, you can expect a high BLEU score.
 
 >[!NOTE]
 >A comparison between BLEU scores is only justifiable when BLEU results are compared with the same Test set, the same language pair, and the same MT engine. A BLEU score from a different test set is bound to be different.
