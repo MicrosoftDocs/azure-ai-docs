@@ -45,7 +45,7 @@ No installation is necessary to use the Azure AI Foundry portal.
     ```
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
 
-The scripts in this quickstart are also availble on [Github](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/mslearn-resources/quickstart).
+The scripts in this quickstart are also available on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/mslearn-resources/quickstart).
 
 # [Java](#tab/java)
 
@@ -53,7 +53,7 @@ The scripts in this quickstart are also availble on [Github](https://github.com/
 1. Download []
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
 
-The scripts in this quickstart are also availble on [Github](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart).
+The scripts in this quickstart are also available on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart).
 
 # [JavaScript](#tab/javascript)
 
@@ -62,7 +62,7 @@ The scripts in this quickstart are also availble on [Github](https://github.com/
 1. Download [package.json](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/javascript/mslearn-resources/quickstart/package.json).
 1. Install packages with `npm install`
 
- The scripts in this quickstart are also availble on [Github](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/javascript/mslearn-resources/quickstart).
+ The scripts in this quickstart are also available on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/javascript/mslearn-resources/quickstart).
 
 # [C#](#tab/csharp)
 
@@ -73,7 +73,7 @@ The scripts in this quickstart are also availble on [Github](https://github.com/
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
 
- The scripts in this quickstart are also availble on [Github](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/csharp/mslearn-resources/quickstart).
+ The scripts in this quickstart are also available on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/csharp/mslearn-resources/quickstart).
 
 ---
 
@@ -102,7 +102,7 @@ To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)]:
 
     For more information on authenticating, see [Authentication methods](/cli/azure/authenticate-azure-cli).
 
-1. Create a resource group,for example in East US:
+1. Create a resource group. For example in East US:
 
     ```azurecli
     az group create --name {my_resource_group} --location eastus
