@@ -124,7 +124,6 @@ Client info
 **Copy** the the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value above.
 
 
-
 Using the project endpoint, you can:
  - [Use Foundry Model](../../quickstarts/get-started-code.md), including Azure OpenAI
  - [Use Foundry Agent Service](../../../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context)
