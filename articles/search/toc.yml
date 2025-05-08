@@ -16,6 +16,8 @@ items:
   expanded: true
 - name: Quickstarts
   items:
+  - name: Agentic search
+    href: search-get-started-agentic-retrieval.md
   - name: Vector search
     href: search-get-started-vector.md
   - name: Generative search (RAG)

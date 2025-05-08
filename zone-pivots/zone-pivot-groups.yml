@@ -1160,3 +1160,12 @@ groups:
     title: Azure portal
   - id: cli
     title: Azure CLI
+# Owner: haileytapia
+- id: search-get-started-agentic-retrieval
+  title: Python and REST
+  prompt: Choose a usage method
+  pivots:
+  - id: python
+    title: Python
+  - id: rest
+    title: REST
