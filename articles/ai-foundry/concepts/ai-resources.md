@@ -21,7 +21,7 @@ author: Blackmist
 > [!NOTE]
 > You must use a **[!INCLUDE [hub](../includes/hub-project-name.md)]** for the features mentioned in this article. A **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** is not supported. For more information, see [Project types](../what-is-azure-ai-foundry.md#project-types).
 
-Hubs are a top-level Azure resource for Azure AI Foundry and provide a central way for a team to govern security, connectivity, and computing resources across playgrounds and projects. Once a hub is created, developers can create projects from it and access shared company resources without needing an IT administrator's repeated help.
+Hubs are a top-level Azure resource for Azure AI Foundry and provide a central way for a team to govern security, connectivity, and computing resources across playgrounds and projects. Once a hub is created, developers can create [!INCLUDE [hub](../includes/hub-project-name.md)]s from it and access shared company resources without needing an IT administrator's repeated help.
 
 Projects that are created using a hub inherit the same security settings and shared resource access. Teams can create projects from a hub as needed to organize their work, isolate data, and/or restrict access. 
 
