@@ -1,17 +1,18 @@
 ---
 title: Work with the Azure AI Foundry for Visual Studio Code extension
 titleSuffix: Azure AI Foundry
-description: Use this article to learn how to deploy Large Language Models and develop AI agents using Azure AI Foundry capabilities directly in VS Code.
+description: Use this article to learn how to deploy Large Language Models using Azure AI Foundry capabilities directly in VS Code.
 manager: mcleans
 ms.service: azure-ai-foundry
 content_well_notification: 
   - AI-contribution
+ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 04/03/2025
+ms.date: 05/07/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
-# customer intent: As an AI app developer, I want to learn how to use the Azure AI Foundry for Visual Studio Code extension so that I can deploy Large Language Models and develop AI agents using Azure AI Foundry capabilities directly in VS Code.
+# customer intent: As an AI app developer, I want to learn how to use the Azure AI Foundry for Visual Studio Code extension so that I can deploy Large Language Models using Azure AI Foundry capabilities directly in VS Code.
 ---
 
 # Work with the Azure AI Foundry for Visual Studio Code extension (Preview)
@@ -30,7 +31,7 @@ With Azure AI Foundry, you can:
 
 With the Azure AI Foundry for Visual Studio Code extension, you can accomplish much of this workflow directly from Visual Studio Code. It also comes with other features, such as code templates, playgrounds, and integration with other VS Code extensions and features. 
 
-This article shoes you how to quickly get started using the features of the Azure AI Foundry for Visual Studio Code extension. 
+This article shows you how to quickly get started using the features of the Azure AI Foundry for Visual Studio Code extension. 
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -85,22 +86,46 @@ Sign in to your Azure subscription to access your resources with the following s
 
 1. Under the "Resources" section, select your Azure Subscription and Resource Group. 
 
-1. Select **Azure AI Foundry** and open your project.
+1. Select **Azure AI Foundry** and right-click your project.
 
-1. The **Agents** and **Models** sections are listed under your project. 
+1. Select **Open in Azure AI Foundry Extension**.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/open-azure-ai-foundry-extension.png" alt-text="A screenshot of the Open in Azure AI Foundry Extension option." lightbox="../../media/how-to/get-started-projects-vs-code/open-azure-ai-foundry-extension.png":::
 
 
-### Set the default Azure AI Foundry Project
+### Explore the Azure AI Foundry Extension
 
- Set your default Azure AI Foundry Project with the following steps:
+The Azure AI Foundry Extension opens in its own view, with the Azure AI Foundry Icon now displayed on the VS Code Navbar. The extension has three main sections: **Resources**, **Tools**, and **Help and Feedback**.
 
-1. Open a new Visual Studio Code window.
 
-1. Select <kbd>F1</kbd> to open the command palette.
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/initial-view.png" alt-text="A screenshot of the Azure AI Foundry Extension with highlighted sections.":::
 
-1. Enter **Azure AI Foundry: Select Default Project** and press Enter.
+- **Resources**: This section contains the resources you have access to in your Azure AI Foundry project. The **Resources** section is the main view for interacting with your Azure AI Foundry resources. It contains the following subsections:
+  - **Models**: This section contains the models you can use to build and deploy your AI applications. The **Models** view is where you can find your deployed models in your Azure AI Foundry project.  
+  - **Agents**: This section contains your deployed agents in your Azure AI Foundry project.
+  - **Threads**: This section contains the threads and runs from a deployed agent in your Azure AI Foundry project.
 
-1. Select the Azure AI Foundry Project you want to use from the list of available projects and press Enter.
+- **Tools**: This section contains the tools you can use to build and deploy your AI applications. The **Tools** view is where you can find the tools available to deploy and then work with your deployed models and agents. It contains the following subsections:
+    - **Model Catalog**: The link to the model catalog you can use to discover and deploy models. 
+    - **Model Playground**: The link to the model playground for interacting with your deployed models in your Azure AI Foundry project.
+    - **Agent Playground**: The link to the agent playground for interacting with your deployed agents in your Azure AI Foundry project.
+
+- **Help and Feedback**: This section contains links to the Azure AI Foundry documentation, feedback, and support. It contains the following subsections:
+    - **Documentation**: The link to the Azure AI Foundry Extension documentation.
+    - **GitHub**: The link to the Azure AI Foundry extension GitHub repository.
+
+>[!NOTE]
+> To learn more about working with Agents and Threads in the Azure AI Foundry Extension, see the [Work with Azure AI Agent Service in Visual Studio Code](./vs-code-agents.md) article. 
+
+### The default Azure AI Foundry Project
+
+When you open a project in the Azure AI Foundry Extension, that project is set as your default project. 
+
+Switch your default project by following these steps:
+
+1. Right-click on the Azure AI Foundry Project and select the **Switch Default Project in Azure Extension** option. 
+
+1. In the top center, select the Azure AI Foundry Project you want to use from the list of available projects and press Enter.
 
 Your selected project will now display **Default** after the project name.
 
@@ -115,7 +140,14 @@ The Azure AI Foundry for Visual Studio Code extension enables you to create, int
 
 The [model catalog](/azure/ai-foundry/how-to/model-catalog-overview) in Azure AI Foundry portal is the hub to discover and use a wide range of models for building generative AI applications.
 
- Access the model catalog from the command palette to explore and deploy a curated selection of models available in Azure AI Foundry, right from inside VS Code.
+ Access the model catalog from several different ways:
+- The **Azure AI Foundry: Open Model Catalog** command palette command.
+- Select the **plus** icon next to **Models** in the **Resources** section of the Azure AI Foundry Extension view.
+- Select the **Model Catalog** link in the **Tools** section of the Azure AI Foundry Extension view.
+
+#### Open the model catalog from the command palette
+
+Access the model catalog from the command palette to explore and deploy a curated selection of models available in Azure AI Foundry, right from inside VS Code.
 
 1. Select <kbd>F1</kbd> to open the command palette.
 
@@ -130,8 +162,22 @@ The [model catalog](/azure/ai-foundry/how-to/model-catalog-overview) in Azure AI
 
 1. Search for a specific model using the search bar at the top-center of the page.
 
+#### Open the model catalog from the Resources section
 
-#### Deploy a model from the model catalog
+The **Model Catalog** is also available in the **Resources** section of the Azure AI Foundry Extension view. 
+
+In the Azure AI Foundry Extension view, select the **plus** icon next to **Models** to open the Model Catalog.
+
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-plus-expanded.png" alt-text="Screenshot of the plus sign next to models with the list of models expanded." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-plus-expanded.png":::
+
+> [!TIP] 
+> You can also right-click on **Models** and select the **Deploy new AI model** option to open the Model Catalog to start the deployment process. 
+
+#### Open the model catalog from the Tools section
+
+The **Model Catalog** is also available in the **Tools** section of the Azure AI Foundry Extension view. Double-click on the **Model Catalog** link to open the Model Catalog.
+
+### Deploy a model from the model catalog
 
 Deploy a selected model in the model catalog using the following steps:
 
@@ -163,48 +209,7 @@ Deploy a selected model in the model catalog using the following steps:
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/deployed-model.png" alt-text="Screenshot of the newly deployed model under the Models section." lightbox="../../media/how-to/get-started-projects-vs-code/deployed-model.png":::
 
-### Deploy, view, and update models
-
-#### Deploy a model
-
-You can also deploy a model directly from your Azure AI Foundry project. 
-
-1. In the Azure Resources Extension view, select the **plus** icon next to **Models** to start the deployment process.
-
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-plus-expanded.png" alt-text="Screenshot of the plus sign next to models with the list of models expanded." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-plus-expanded.png":::
-
-    > [!TIP] 
-    > You can also right-click on **Models** and select the **Deploy new AI model** option to start the deployment process. 
-
-1. In the top center, select the AI service to use in the **Choose an AI service** dropdown and press Enter.
-
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png" alt-text="Screenshot of the Choose AI service dropdown for model deployment." lightbox="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png":::
-
-1. In the top center, select the model to deploy in the **Choose a model to deploy** dropdown and press Enter.
-
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-deployment-model.png" alt-text="Screenshot of the Choose a model to deploy dropdown." lightbox="../../media/how-to/get-started-projects-vs-code/select-deployment-model.png":::
-
-1. In the top center, select the model version to use in the **Choose model version** dropdown and press Enter.
-
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-version-2.png" alt-text="Screenshot of the Choose model version dropdown for model deployment." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-version-2.png":::
-
-1. In the top center, select the deployment type to use in the **Choose deployment type** dropdown and press Enter.
-
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-deployment-type.png" alt-text="Screenshot of the Choose deployment type dropdown for model deployment." lightbox="../../media/how-to/get-started-projects-vs-code/select-deployment-type.png":::
-
-1. In the top center, enter the model deployment name to use in the **Enter deployment name** textbox and press Enter.
-
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/enter-deployment-name-2.png" alt-text="Screenshot of the Enter deployment name textbox for model deployment." lightbox="../../media/how-to/get-started-projects-vs-code/enter-deployment-name-2.png":::
-
-1. A confirmation dialog box appears. Select the **Deploy** button to deploy the model to your project.
-
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/deploy-model-popup-2.png" alt-text="Screenshot of the model deployment confirmation dialog box with the Deploy button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/deploy-model-popup-2.png":::
-
-1. After a successful deployment, your model will be listed with your other deployed models under the **Models** section in your project.  
-
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/deployed-model-2.png" alt-text="Screenshot of the deployed model under the Models section." lightbox="../../media/how-to/get-started-projects-vs-code/deployed-model-2.png":::
-
-#### View deployed models
+### View deployed models
 
 In the Azure Resources Extension view, select the **caret** icon in front of the **Models** section to view the list of deployed models.
 
@@ -271,7 +276,9 @@ This Python sample code file that demonstrates a basic call to the chat completi
 
 Chat interactively with the model, change settings, and system instructions using the **Model Playground**.
 
-Open the model playground using the following steps:
+The **Model Playground** is available in the **Tools** section of the Azure AI Foundry Extension view. Double-click on the **Model Playground** link to open the Model Playground.
+
+You can also open the model playground using the following steps:
 
 1. Right-click on your deployed model and select the **Open in playground** option. 
 
@@ -292,15 +299,9 @@ Open the model playground using the following steps:
 
 The Azure resources that you created in this article are billed to your Azure subscription. If you don't expect to need these resources in the future, delete them to avoid incurring more charges.
 
-### Delete your agents
-
-Delete the deployed agent in the [online AI Foundry portal](https://ai.azure.com). Select **Agents** from the navigation menu on the left, select your agent, then select the **Delete** button.
-
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-agent.png" alt-text="Screenshot of the AI Foundry portal with 'Agents' from the navigation menu on the left and the **Delete** button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
-
 ### Delete your models
 
-1. In the VS Code navbar, refresh the **Azure Resources** view. Expand the **Models** subsection to display the list of deployed models.
+1. In the VS Code navbar, refresh the **Azure AI Foundry Extension**. In the **Resources** section, expand the **Models** subsection to display the list of deployed models.
 
 1. Right-click on your deployed model to delete and select the **Delete** option.
 
