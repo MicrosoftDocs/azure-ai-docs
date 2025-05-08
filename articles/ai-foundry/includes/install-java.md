@@ -17,5 +17,3 @@ Install:
     - We recommend the [Microsoft Build of OpenJDK](/java/openjdk/download), which is a free, Long-Term Support (LTS) distribution of OpenJDK
 - Maven 3.6.0 or later
     - Download from the [Apache Maven website](https://maven.apache.org/download.cgi)
-
-
