@@ -22,22 +22,22 @@ The Foundry agent is an experimental feature that is here to assist you with que
 
 **What The Foundry Agent Can Do** - The agent is designed to provide assistance by answering questions based on:
 
-- **Azure AI Foundry Documentation**: It can help you navigate and understand the documentation.
-- **Model Catalog**: It can provide information about the models available in the Azure AI Foundry catalog.
+- **Azure AI Foundry Documentation**: This documentation includes details about Azure AI Foundry such as Quickstarts, How-Tos or reference documentation of the Azure AI Foundry SDK. The Foundry agent can help you navigate the documentation, or find answers for you.
+- **Model Catalog**: The model catalog is a comprehensive hub for discovering, evaluating, and deploying a wide range of AI models. It features hundreds of models from various providers, including Azure OpenAI Service, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, as well as models trained by Microsoft. The Foundry agent can provide information about the models available in the Azure AI Foundry catalog.
 
 **What The Foundry Agent Cannot Do** - While the agent is a powerful tool, it has some limitations:
 
 - **No Access to Your Resources**: the agent can't access your Azure resources. For example, it can't answer questions like "How much capacity do I have?" or "What is the status of my deployment?"
 - **Limited Scope**: It's restricted to answering questions related to the Azure AI Foundry documentation and model catalog. It can't provide support for unrelated Azure services or external systems.
 
-Use the Foundry agent to make the most of the Azure AI Foundry experience, but keep its scope and limitations in mind when asking questions.
+Use the Foundry agent to make the most of the Azure AI Foundry experience but keep its scope and limitations in mind when asking questions.
 
 
 ## Responsible AI FAQ for the Foundry agent
 
 ### What is the Foundry agent in Azure AI Foundry?
 
-It is an AI agent that enabled users of Azure AI Foundry to navigate its capabilities, identify models, and understand how to use its resources to build generative AI applications. For an overview of how the agent works and a summary of its capabilities, see the overview above.
+It is an AI agent that enables users of Azure AI Foundry to navigate its capabilities, identify models, and understand how to use its resources to build generative AI applications. For an overview of how the agent works and a summary of its capabilities, see the overview above.
 
 ### What is the current status of the Foundry agent?
 
@@ -45,11 +45,11 @@ It is available in Azure AI Foundry as a preview feature.
 
 ### Are the Foundry agent's results reliable?
 
-The Foundry agent is designed to generate the best possible responses within the context to which it has access. However, like any AI system, the agent's responses are not always perfect. All of the agent's responses should be carefully tested, reviewed, and vetted before using the responses in Azure AI Foundry or your application.
+The Foundry agent is designed to generate the best possible responses within the context to which it has access. However, like any AI system, the agent's responses are not always perfect. All of the agent's responses should be carefully tested, reviewed, and vetted before using the responses in Azure AI Foundry or for your application.
 
 ### How do I provide feedback on the Foundry agent?
 
-If you see a response that is inaccurate, or not supporting your needs use the thumbs-down button below the response to submit feedback. You can also submit feedback on your overall experience by using the Azure AI Foundry feedback button on the top menu.
+If you see a response that is inaccurate, or does not support your needs use the thumbs-down button below the response to submit feedback. You can also submit feedback on your overall experience by using the Azure AI Foundry feedback button on the top menu.
 
 ### What should I do if I see unexpected or offensive content?
 
