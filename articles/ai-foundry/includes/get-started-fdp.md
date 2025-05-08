@@ -50,7 +50,6 @@ The scripts in this quickstart are also available on [GitHub](https://github.com
 # [Java](#tab/java)
 
 1. [Install Java and Azure CLI](../how-to/develop/install-cli-sdk.md?tabs=java).
-1. Download []
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
 
 The scripts in this quickstart are also available on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart).
