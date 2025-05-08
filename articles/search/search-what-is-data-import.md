@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 03/11/2025
+ms.date: 05/08/2025
 ---
 
 # Data import in Azure AI Search
@@ -28,7 +28,7 @@ Push model is an approach that uses APIs to upload documents into an existing se
 
 Key benefits include:
 
-+ No restrictions on data source type. The payload must be composed of JSON documents that map to your index schema, but the data can be sourced from anywhere. 
++ No restrictions on data source type. The payload must be composed of JSON documents that map to your index schema, but the data can be sourced from anywhere.
 
 + No restrictions on frequency of execution. You can push changes to an index as often as you like. For applications having low latency requirements (for example, when the index needs to be in sync with product inventory fluctuations), the push model is your only option.
 
@@ -89,7 +89,7 @@ Indexers connect an index to a data source (usually a table, view, or equivalent
 
 Use the following tools and APIs for indexer-based indexing:
 
-+ [Import data wizard or Import and vectorize data wizard](search-import-data-portal.md)
++ [Import data wizard or Quickstart wizard](search-import-data-portal.md)
 + REST APIs: [Create Indexer (REST)](/rest/api/searchservice/indexers/create), [Create Data Source (REST)](/rest/api/searchservice/data-sources/create), [Create Index (REST)](/rest/api/searchservice/indexes/create)
 + Azure SDK for .NET: [SearchIndexer](/dotnet/api/azure.search.documents.indexes.models.searchindexer), [SearchIndexerDataSourceConnection](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourceconnection), [SearchIndex](/dotnet/api/azure.search.documents.indexes.models.searchindex),
 + Azure SDK for Python: [SearchIndexer](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchindexer), [SearchIndexerDataSourceConnection](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchindexerdatasourceconnection), [SearchIndex](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchindex),
@@ -98,7 +98,7 @@ Use the following tools and APIs for indexer-based indexing:
 
 Indexer functionality is exposed in the [Azure portal], the [REST API](/rest/api/searchservice/indexers/create), and the [.NET SDK](/dotnet/api/azure.search.documents.indexes.searchindexerclient).
 
-An advantage to using the Azure portal is that Azure AI Search can usually generate a default index schema by reading the metadata of the source dataset. 
+An advantage to using the Azure portal is that Azure AI Search can usually generate a default index schema by reading the metadata of the source dataset.
 
 ## Verify data import with Search explorer
 

@@ -13,7 +13,7 @@ ms.custom:
 
 # Quickstart: Search for images using Search Explorer in the Azure portal
 
-In this quickstart, you use the **Import and vectorize data** wizard in the Azure portal to get started with image search. You also use Search Explorer to run image-based queries.
+In this quickstart, you use the **Quickstart wizard** in the Azure portal to get started with image search. You also use Search Explorer to run image-based queries.
 
 The sample data consists of image files in the [azure-search-sample-data](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/unsplash-images) repo, but you can use different images and still follow this quickstart.
 
@@ -27,7 +27,7 @@ The sample data consists of image files in the [azure-search-sample-data](https:
 
   The service tier determines how many blobs you can index. We used the Free tier to create this quickstart and limited the content to 10 JPG files.
 
-+ Familiarity with the wizard. See [Import data wizards in the Azure portal](search-import-data-portal.md) for details.
++ Familiarity with the wizard. See [Import data wizards in the Azure portal](search-import-data-portal.md).
 
 + Azure Storage to store image files as blobs. Use Azure Blob Storage or Azure Data Lake Storage Gen2 (a storage account with a hierarchical namespace), a standard performance (general-purpose v2) account. Access tiers can be hot, cool, or cold.
 

@@ -10,12 +10,12 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: conceptual
-ms.date: 02/24/2025
+ms.date: 05/08/2025
 ---
 
 # Features of Azure AI Search
 
-Azure AI Search provides information retrieval and uses optional AI integration to extract more value from text and vector content. 
+Azure AI Search provides information retrieval and uses optional AI integration to extract more value from text and vector content.
 
 The following table summarizes features by category. There's feature parity in all Azure public, private, and sovereign clouds, but some features aren't supported in specific regions. For more information, see [Choose a region](search-region-support.md).
 
@@ -73,7 +73,7 @@ The following table summarizes features by category. There's feature parity in a
 
 | Category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  | Features |
 |-------------------|----------|
-| Tools for prototyping and inspection | [**Add index**](search-what-is-an-index.md) is an index designer in the Azure portal that you can use to create a basic schema consisting of attributed fields and a few other settings. After saving the index, you can populate it using an SDK or the REST API to provide the data. <br/><br/>[**Import data wizard**](search-import-data-portal.md) creates indexes, indexers, skillsets, and data source definitions. If your data exists in Azure, this wizard can save you significant time and effort, especially for proof-of-concept investigation and exploration. <br/><br/>[**Import and vectorize data**](search-get-started-portal-import-vectors.md) creates a full indexing pipeline that includes data chunking and vectorization. The wizard creates all of the objects and configuration settings. <br/><br/>[**Search explorer**](search-explorer.md) is used to test queries and refine scoring profiles.<br/><br/>[**Create demo app**](search-create-app-portal.md) is used to generate an HTML page that can be used to test the search experience.  <br/><br/>[**Debug Sessions**](cognitive-search-debug-session.md) is a visual editor that lets you debug a skillset interactively. It shows you dependencies, output, and transformations. |
+| Tools for prototyping and inspection | [**Add index**](search-what-is-an-index.md) is an index designer in the Azure portal that you can use to create a basic schema consisting of attributed fields and a few other settings. After saving the index, you can populate it using an SDK or the REST API to provide the data. <br/><br/>[**Import data wizard**](search-import-data-portal.md) creates indexes, indexers, skillsets, and data source definitions. If your data exists in Azure, this wizard can save you significant time and effort, especially for proof-of-concept investigation and exploration. <br/><br/>[**Quickstart wizard**](search-get-started-portal-import-vectors.md) creates a full indexing pipeline that includes data chunking and vectorization. The wizard creates all of the objects and configuration settings. <br/><br/>[**Search explorer**](search-explorer.md) is used to test queries and refine scoring profiles.<br/><br/>[**Create demo app**](search-create-app-portal.md) is used to generate an HTML page that can be used to test the search experience.  <br/><br/>[**Debug Sessions**](cognitive-search-debug-session.md) is a visual editor that lets you debug a skillset interactively. It shows you dependencies, output, and transformations. |
 | Monitoring and diagnostics | [**Enable monitoring features**](monitor-azure-cognitive-search.md) to go beyond the metrics-at-a-glance that are always visible in the Azure portal. Metrics on queries per second, latency, and throttling are captured and reported in portal pages with no extra configuration required.|
 
 ## Programmability

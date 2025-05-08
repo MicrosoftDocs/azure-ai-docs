@@ -32,9 +32,9 @@ items:
     items:
     - name: Keyword search wizard
       href: search-get-started-portal.md
-    - name: Vector search wizard
+    - name: RAG wizard
       href: search-get-started-portal-import-vectors.md
-    - name: Image search wizard
+    - name: Multimodal RAG wizard
       href: search-get-started-portal-image-search.md
     - name: Create a demo app
       href: search-create-app-portal.md
@@ -235,7 +235,7 @@ items:
       href: search-how-to-create-search-index.md
     - name: Load an index
       href: search-how-to-load-search-index.md
-    - name: Index via import data wizards
+    - name: Index via portal wizards
       href: search-import-data-portal.md
     - name: Update or rebuild an index
       href: search-howto-reindex.md

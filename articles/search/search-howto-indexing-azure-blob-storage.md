@@ -11,7 +11,7 @@ ms.custom:
   - ignite-2023
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 05/08/2025
 ---
 
 # Index data from Azure Blob Storage
@@ -22,8 +22,8 @@ To configure and run the indexer, you can use:
 
 + [Search Service REST API](/rest/api/searchservice), any version.
 + An Azure SDK package, any version.
-+ [Import data](search-get-started-portal.md) wizard in the Azure portal.
-+ [Import and vectorize data](search-get-started-portal-import-vectors.md) wizard in the Azure portal.
++ [Import data wizard](search-get-started-portal.md) in the Azure portal.
++ [Quickstart wizard](search-get-started-portal-import-vectors.md) in the Azure portal.
 
 This article uses the REST APIs to illustrate each step.
 

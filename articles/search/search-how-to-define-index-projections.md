@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 04/14/2025
+ms.date: 05/08/2025
 ---
 
 # Define an index projection for parent-child indexing
@@ -300,11 +300,11 @@ Some data sources like [Azure Storage](search-howto-index-changed-deleted-blobs.
 
 If the source content no longer exists (for example, if text is shortened to have fewer chunks), the corresponding child document in the search index is deleted. The remaining child documents also get their key updated to include a new hash value, even if their content didn't otherwise change.
 
-If a parent document is completely deleted from the datasource, the corresponding child documents only get deleted if the deletion is detected by a `dataDeletionDetectionPolicy` defined on the datasource definition. If you don't have a `dataDeletionDetectionPolicy` configured and need to delete a parent document from the datasource, then you should manually delete the child documents if they're no longer wanted. 
+If a parent document is completely deleted from the datasource, the corresponding child documents only get deleted if the deletion is detected by a `dataDeletionDetectionPolicy` defined on the datasource definition. If you don't have a `dataDeletionDetectionPolicy` configured and need to delete a parent document from the datasource, then you should manually delete the child documents if they're no longer wanted.
 
 ### Projected key value
 
-To ensure data integrity for updated and deleted content, data refresh in one-to-many indexing relies on a *projected key value* on the "many" side. If you're using integrated vectorization or the [Import and vectorize data wizard](search-import-data-portal.md), the projected key value is the `parent_id` field in a chunked or "many" side of the index.
+To ensure data integrity for updated and deleted content, data refresh in one-to-many indexing relies on a *projected key value* on the "many" side. If you're using integrated vectorization or the [Quickstart wizard](search-import-data-portal.md), the projected key value is the `parent_id` field in a chunked or "many" side of the index.
 
 A projected key value is a unique identifier that the indexer generates for each document. It ensures uniqueness and allows for change and deletion tracking to work correctly. This key contains the following segments:
 
