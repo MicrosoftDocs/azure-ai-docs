@@ -18,7 +18,6 @@ In this quickstart, you use [Azure AI Foundry](https://ai.azure.com) to:
 > * Run a chat completion
 > * Create and run an agent
 > * Upload files to the agent
-> * Evaluate the agent run
 
 The Azure AI Foundry SDK is available in multiple languages, including Python, Java, JavaScript, and C#. This quickstart provides instructions for each of these languages.
 
@@ -50,7 +49,8 @@ The scripts in this quickstart are also availble on [Github](https://github.com/
 
 # [Java](#tab/java)
 
-1. [Install Java and Azure CLI](../how-to/develop/install-cli-sdk.md?tabs=java)
+1. [Install Java and Azure CLI](../how-to/develop/install-cli-sdk.md?tabs=java).
+1. Download []
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
 
 The scripts in this quickstart are also availble on [Github](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart).
@@ -59,6 +59,8 @@ The scripts in this quickstart are also availble on [Github](https://github.com/
 
 1. [Install JavaScript and Azure CLI](../how-to/develop/install-cli-sdk.md?tabs=javascript)
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your JavaScript scripts.
+1. Download [package.json](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/javascript/mslearn-resources/quickstart/package.json).
+1. Install packages with `npm install`
 
  The scripts in this quickstart are also availble on [Github](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/javascript/mslearn-resources/quickstart).
 
@@ -211,7 +213,7 @@ Download [product_info_1.md]() to add to the agent.
 
 # [JavaScript](#tab/javascript)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js"  id="create_filesearch_agent":::
+<!-- :::code language="python" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="create_filesearch_agent"::: -->
 
 # [C#](#tab/csharp)
 
