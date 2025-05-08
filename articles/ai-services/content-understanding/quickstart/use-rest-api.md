@@ -14,7 +14,7 @@ ms.date: 04/14/2025
 
 * This quickstart shows you how to use the [Content Understanding REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true) to get structured data from multimodal content in document, image, audio, and video files.
 
-* Try the [Content Understanding API with no code on Azure AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding)
+* Try [Content Understanding with no code on Azure AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding)
 
 ## Prerequisites
 
@@ -113,20 +113,20 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ```json
 {
-  "id": "a8ccf3ea-e4ad-4302-9ac5-b40e69768053",
+  "id": {resultId},
   "status": "Succeeded",
   "result": {
     "analyzerId": "prebuilt-documentAnalyzer",
     "apiVersion": "2025-05-01-preview",
-    "createdAt": "2025-05-05T17:55:35Z",
+    "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
     "warnings": [],
     "contents": [
       {
-        "markdown": "# WEB HOSTING AGREEMENT\n\nThis web Hosting Agreement is entered as of this 15 day of October ..." ,
+        "markdown": "CONTOSO LTD.\n\n\n# INVOICE\n\nContoso Headquarters\n123 456th St...",
         "fields": {
           "Summary": {
             "type": "string",
-            "valueString": "This document is a Web Hosting Agreement between Contoso Corporation and AdventureWorks Cycles, both based in Washington. It outlines the terms of their agreement, including payment terms for software and bandwidth usage, technical support requirements, and governing laws. The agreement nullifies any previous agreements between the parties and is signed by representatives of both companies."
+            "valueString": "This document is an invoice issued by Contoso Ltd. to Microsoft Corporation for services rendered during the period of 10/14/2019 to 11/14/2019..."
           }
         },
         "kind": "document",
@@ -136,10 +136,66 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
         "pages": [
           {
             "pageNumber": 1,
-            "angle": -0.0052,
-            "width": 8.2639,
-            "height": 11.6806
+            "angle": -0.0039,
+            "width": 8.5,
+            "height": 11,
+            "spans": [ { "offset": 0, "length": 1650 } ],
+            "words": [
+              {
+                "content": "CONTOSO",
+                "span": { "offset": 0, "length": 7 },
+                "confidence": 0.998,
+                "source": "D(1,0.5739,0.6582,1.7446,0.6595,1.7434,0.8952,0.5729,0.8915)"
+              }, ...
+            ],
+            "lines": [
+              {
+                "content": "CONTOSO LTD.",
+                "source": "D(1,0.5734,0.6563,2.335,0.6601,2.3345,0.8933,0.5729,0.8895)",
+                "span": { "offset": 0, "length": 12 }
+              }, ...
+            ]
           }
+        ],
+        "paragraphs": [
+          {
+            "content": "CONTOSO LTD.",
+            "source": "D(1,0.5734,0.6563,2.335,0.6601,2.3345,0.8933,0.5729,0.8895)",
+            "span": { "offset": 0, "length": 12 }
+          },
+          {
+            "role": "title",
+            "content": "INVOICE",
+            "source": "D(1,7.0515,0.5614,8.0064,0.5628,8.006,0.791,7.0512,0.7897)",
+            "span": { "offset": 15, "length": 9 }
+          }, ...
+        ],
+        "sections": [
+          {
+            "span": { "offset": 0, "length": 1649 },
+            "elements": [ "/sections/1", "/sections/2" ]
+          }, ...
+        ],
+        "tables": [
+          {
+            "rowCount": 2,
+            "columnCount": 6,
+            "cells": [
+              {
+                "kind": "columnHeader",
+                "rowIndex": 0,
+                "columnIndex": 0,
+                "rowSpan": 1,
+                "columnSpan": 1,
+                "content": "SALESPERSON",
+                "source": "D(1,0.5389,4.5514,1.7505,4.5514,1.7505,4.8364,0.5389,4.8364)",
+                "span": { "offset": 512, "length": 11 },
+                "elements": [ "/paragraphs/19" ]
+              }, ...
+            ],
+            "source": "D(1,0.4885,4.5543,8.0163,4.5539,8.015,5.1207,0.4879,5.1209)",
+            "span": { "offset": 495, "length": 228 }
+          }, ...
         ]
       }
     ]
@@ -187,20 +243,41 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ```json
 {
-  "id": "2e77aecc-b5f0-4652-b91c-4790b655ce01",
+  "id": {resultId},
   "status": "Succeeded",
   "result": {
     "analyzerId": "prebuilt-audioAnalyzer",
     "apiVersion": "2025-05-01-preview",
-    "createdAt": "2025-05-05T18:06:24Z",
+    "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
     "stringEncoding": "utf8",
     "warnings": [],
     "contents": [
       {
-        "markdown": "# Audio: 00:00.000 => 01:54.670\n\nTranscript\n```\nWEBVTT\n\n00:00.080 --> 00:02.160\n<v Speaker 1>Thank you for calling Woodgrove Travel.\n\n00:02.960 --> 00:04.560\n<v Speaker 1>My name is Isabella Taylor ...",
+        "markdown": "# Audio: 00:00.000 => 01:54.670\n\nTranscript\n```\nWEBVTT\n\n00:00.080 --> 00:02.160\n<v Speaker 1>Thank you for calling Woodgrove Travel...",
+        "fields": {
+          "Summary": {
+            "type": "string",
+            "valueString": "John Smith contacted Woodgrove Travel to report a negative experience with his flight from New York City to Los Angeles..."
+          }
+        },
         "kind": "audioVisual",
         "startTimeMs": 0,
-        "endTimeMs": 114670
+        "endTimeMs": 114670,
+        "transcriptPhrases": [
+          {
+            "speaker": "Speaker 1",
+            "startTimeMs": 80,
+            "endTimeMs": 2160,
+            "text": "Thank you for calling Woodgrove Travel.",
+            "words": [
+              {
+                "startTimeMs": 80,
+                "endTimeMs": 280,
+                "text": "Thank"
+              }, ...
+            ]
+          }, ...
+        ]
       }
     ]
   }
@@ -211,21 +288,56 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ```json
 {
-  "id": "3fb3cca1-4cf1-4f2f-9155-8d1db4ef9541",
+  "id": {resultId},
   "status": "Succeeded",
   "result": {
     "analyzerId": "prebuilt-videoAnalyzer",
     "apiVersion": "2025-05-01-preview",
-    "createdAt": "2025-05-05T18:24:03Z",
+    "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
     "warnings": [],
     "contents": [
       {
-        "markdown": "# Video: 00:00.000 => 00:43.866\nWidth: 1080\nHeight: 608\n\nTranscript\n```\nWEBVTT\n\n00:01.400 --> 00:06.560\n<Speaker 1 Speaker>When it comes to the neural TTS, in order to get a good voice, it's better to have good data ..."
+        "markdown": "# Video: 00:00.000 => 00:43.866\nWidth: 1080\nHeight: 608\n\n## Segment 1: 00:00.000 => 00:07.367\nThe video begins with a scenic aerial view featuring the Flight Simulator and Microsoft Azure AI logos...\n\nTranscript\n```\nWEBVTT\n\n00:01.400 --> 00:06.560\n<Speaker 1 Speaker>When it comes to the neural TTS, in order to get a good voice, it's better to have good data.\n```\n\nKey Frames\n- 00:00.726 ![](keyFrame.726.jpg)...",
+        "fields": {
+          "Segments": {
+            "type": "array",
+            "valueArray": [
+              {
+                "type": "object",
+                "valueObject": {
+                  "SegmentId": {
+                    "type": "string",
+                    "valueString": "1"
+                  }
+                }
+              }, ...
+            ]
+          }
+        },
         "kind": "audioVisual",
         "startTimeMs": 0,
         "endTimeMs": 43866,
         "width": 1080,
-        "height": 608
+        "height": 608,
+        "KeyFrameTimesMs": [ 726, 2046, ... ],
+        "transcriptPhrases": [
+          {
+            "speaker": "Speaker 1",
+            "startTimeMs": 1400,
+            "endTimeMs": 6560,
+            "text": "When it comes to the neural TTS, in order to get a good voice, it's better to have good data.",
+            "words": []
+          }, ...
+        ],
+        "cameraShotTimesMs": [ 1467, 3233, ... ],
+        "segments": [
+          {
+            "startTimeMs": 0,
+            "endTimeMs": 7367,
+            "description": "The video begins with a scenic aerial view featuring the Flight Simulator and Microsoft Azure AI logos...",
+            "segmentId": "1"
+          }, ...
+        ]
       }
     ]
   }
