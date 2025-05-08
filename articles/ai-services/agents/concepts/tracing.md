@@ -36,6 +36,11 @@ After selecting **Thread info**, the screen that appears will be let you view th
 > :::image type="content" source="../media/thread-highlight.png" alt-text="A screenshot of the create and debug screen." lightbox="../media/thread-highlight.png":::
 > You will be able to see the **Thread info** button at the top of the screen to view the trace. 
 
+
+> [!NOTE]
+> Observability features such as Risk and Safety Evaluation are billed based on consumption as listed in the [Azure pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
+
+
 ## Trace agents using OpenTelemetry and an Application Insights resource
 
 Tracing lets you analyze your agent's performance and behavior by using OpenTelemetry and adding an Application Insights resource to your Azure AI Foundry project. 
@@ -76,5 +81,3 @@ Once you have the packages installed, you can use one the following Python sampl
 * [Basic agent example](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/sample_agents_basics_with_console_tracing.py)
 * [Agent example with function calling](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/sample_agents_functions_with_console_tracing.py)
 * [Example with a stream event handler](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/sample_agents_stream_eventhandler_with_console_tracing.py)
-
-
