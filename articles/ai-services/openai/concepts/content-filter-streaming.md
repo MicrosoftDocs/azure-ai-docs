@@ -1,6 +1,6 @@
 ---
 title: Content Filter Streaming in Azure OpenAI
-description: Learn about content filter streaming options in Azure OpenAI, including default and asynchronous filtering modes, and their impact on latency and content safety.
+description: Learn about content filter streaming options in Azure OpenAI, including default and asynchronous filtering modes, and their impact on latency and Guidelines & controls performance.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
@@ -20,11 +20,11 @@ The content filtering system is integrated and enabled by default for all custom
 
 ## Asynchronous filtering
 
-Customers can choose the Asynchronous Filter as an extra option, providing a new streaming experience. In this case, content filters are run asynchronously, and completion content is returned immediately with a smooth token-by-token streaming experience. No content is buffered, which allows for a fast streaming experience with zero latency associated with content safety.
+Customers can choose the Asynchronous Filter as an extra option, providing a new streaming experience. In this case, content filters are run asynchronously, and completion content is returned immediately with a smooth token-by-token streaming experience. No content is buffered, which allows for a fast streaming experience with zero latency associated with content filtering.
 
 Customers must understand that while the feature improves latency, it's a trade-off against the safety and real-time vetting of smaller sections of model output. Because content filters are run asynchronously, content moderation messages and policy violation signals are delayed, which means some sections of harmful content that would otherwise have been filtered immediately could be displayed to the user.
  
-**Annotations**: Annotations and content moderation messages are continuously returned during the stream. We strongly recommend you consume annotations in your app and implement other AI content safety mechanisms, such as redacting content or returning other safety information to the user.
+**Annotations**: Annotations and content moderation messages are continuously returned during the stream. We strongly recommend you consume annotations in your app and implement other AI Guidelines & control mechanisms, such as redacting content or returning other safety information to the user.
 
 **Content filtering signal**: The content filtering error signal is delayed. If there is a policy violation, it’s returned as soon as it’s available, and the stream is stopped. The content filtering signal is guaranteed within a ~1,000-character window of the policy-violating content. 
 
