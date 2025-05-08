@@ -26,6 +26,8 @@ ms.custom: ignite-2023, build-2024, ignite-2024
 
 With Azure AI Foundry, you can explore a wide variety of models, services and capabilities, and get to building AI applications that best serve your goals. Azure AI Foundry facilitates scalability for transforming proof of concepts into full-fledged production applications with ease. Continuous monitoring and refinement support long-term success.  
 
+[!INCLUDE [fdp-rollout](includes/fdp-rollout.md)]
+
 ## Work in an Azure AI Foundry project
 
 An Azure AI Foundry project is where you do most of your development work. You can work with your project in the Azure AI Foundry portal, or use the SDK in your preferred development environment.
