@@ -61,6 +61,17 @@ Here's a table of some of the available connection types in Azure AI Foundry por
 | Serverless Model              |    ✓    |                                        | Serverless Model connections allow you to serverless API deployment.                                                                                                                     |
 | Azure Databricks              |    ✓    |                                        | Azure Databricks connector allows you to connect your Azure AI Foundry Agents to Azure Databricks to access workflows and Genie Spaces during runtime. It supports three connection types - __Jobs__, __Genie__, and __Other__. You can pick the Job or Genie space you want associated with this connection while setting up the connection in the Foundry UI. You can also use the Other connection type and allow your agent to access workspace operations in Azure Databricks. Authentication is handled through Microsoft Entra ID for users or service principals. |
 
+## Agent knowledge tool connections
+
+To help AI Agents make well-informed decisions with confidence, knowledge serves as the foundation for generating accurate and grounded responses. Connections are supported to the following knowledge tools to build your Agents. Connections to the following knowledge tools can be created through [Azure AI Foundry](https://ai.azure.com):
+
+- Microsoft Fabric
+- Grounding with Bing Search
+- Grounding with Bing Custom Search
+- Azure AI Search.
+
+To learn more about Agent Knowledge tools, see [Knowledge tool overview](https://aka.ms/AgentToolOverviewDoc).
+
 ::: zone-end
 
 ## Create a new connection
