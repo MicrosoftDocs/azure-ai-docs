@@ -38,7 +38,7 @@ items:
     href: foundry-agent/ask-foundry-agent.md
 - name: Azure AI Foundry Models
   items:
-  - name: What are Azure AI Foundry Models?
+  - name: Explore Azure AI Foundry Models
     href: how-to/model-catalog-overview.md
   - name: Data, privacy, and security for Model Catalog
     href: how-to/concept-data-privacy.md
@@ -56,28 +56,24 @@ items:
       href: how-to/benchmark-model-in-catalog.md
   - name: Deployment options in Azure AI Foundry portal
     href: concepts/deployments-overview.md
-  - name: Deploy models in AI Foundry
+  - name: Supported programming languages and SDKs
+    href: ../ai-services/openai/supported-languages.md?context=/azure/ai-foundry/context/context
+  - name: Deploy Foundry Models
     items:
-    - name: What is Azure AI model inference?
-      href: ../ai-foundry/model-inference/overview.md?context=/azure/ai-foundry/context/context
-    - name: Deployment types for Azure AI model inference
+    - name: Deployment types
       href: ../ai-foundry/model-inference/concepts/deployment-types.md?context=/azure/ai-foundry/context/context
-    - name: Deploy Foundry Models to Azure AI model inference
-      href: ../ai-foundry/model-inference/how-to/create-model-deployments.md?context=/azure/ai-foundry/context/context
-    - name: Foundry Models supported in Azure AI model inference
+    - name: Supported Foundry Models
       href: ../ai-foundry/model-inference/concepts/models.md?context=/azure/ai-foundry/context/context
+    - name: Deploy Foundry Models
+      href: ../ai-foundry/model-inference/how-to/create-model-deployments.md?context=/azure/ai-foundry/context/context
     - name: Supported programming languages and SDKs
       href: ../ai-foundry/model-inference/supported-languages.md?context=/azure/ai-foundry/context/context
-    - name: Use the Azure AI model inference endpoint
+    - name: Use the Foundry Models endpoint
       href: ../ai-foundry/model-inference/how-to/inference.md?context=/azure/ai-foundry/context/context
-    - name: Azure AI model inference quotas and limits
+    - name: Foundry Models quotas and limits
       href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-foundry/context/context
     - name: Develop
       items:
-      - name: Use the Azure AI model inference endpoint
-        href: ../ai-foundry/model-inference/how-to/inference.md?context=/azure/ai-foundry/context/context
-      - name: Programming languages and SDKs
-        href: ../ai-foundry/model-inference/supported-languages.md?context=/azure/ai-foundry/context/context
       - name: Work with embedding models
         items:
           - name: Work with text embeddings
@@ -106,20 +102,22 @@ items:
       href: azure-openai-in-azure-ai-foundry.md
     - name: Use Azure OpenAI in Azure AI Foundry portal
       href: ai-services/how-to/connect-azure-openai.md
+    - name: Supported Azure OpenAI models
+      href: ../ai-services/openai/concepts/models.md?context=/azure/ai-foundry/context/context
+    - name: Azure OpenAI deployment types
+      href: ../ai-services/openai/how-to/deployment-types.md?context=/azure/ai-foundry/context/context
+      displayName: provisioned, global standard, datazone, data zone, global data zone, batch, globalbatch
     - name: Deploy Azure OpenAI models
-      items: 
-      - name: Azure OpenAI deployment types
-        href: ../ai-services/openai/how-to/deployment-types.md?context=/azure/ai-foundry/context/context
-        displayName: provisioned, global standard, datazone, data zone, global data zone, batch, globalbatch
-      - name: Deploy Azure OpenAI models
-        href: how-to/deploy-models-openai.md
-      - name: Troubleshoot deployments and monitoring
-        href: how-to/troubleshoot-deploy-and-monitor.md
-      - name: Model region availability for Azure OpenAI in Foundry Models
-        href:  ../ai-services/openai/concepts/models.md?context=/azure/ai-foundry/context/context
-        displayName: OpenAI, gpt-4o, gpt-4o-mini, whisper
-      - name: Azure OpenAI quotas and limits
-        href: ../ai-services/openai/quotas-limits.md?context=/azure/ai-foundry/context/context
+      href: how-to/deploy-models-openai.md
+    - name: Supported programming languages and SDKs
+      href: ../ai-services/openai/supported-languages.md?context=/azure/ai-foundry/context/context
+    - name: Troubleshoot deployments and monitoring
+      href: how-to/troubleshoot-deploy-and-monitor.md
+    - name: Model region availability for Azure OpenAI in Foundry Models
+      href:  ../ai-services/openai/concepts/models.md?context=/azure/ai-foundry/context/context
+      displayName: OpenAI, gpt-4o, gpt-4o-mini, whisper
+    - name: Azure OpenAI quotas and limits
+      href: ../ai-services/openai/quotas-limits.md?context=/azure/ai-foundry/context/context
     - name: Use Azure OpenAI models
       items:
       - name: Generate text
@@ -649,8 +647,22 @@ items:
   - name: Azure AI services REST APIs
     displayName: swagger http
     href: ../ai-services/reference/rest-api-resources.md?context=/azure/ai-foundry/context/context
-  - name: Azure AI Model Inference API
-    href: /rest/api/aifoundry/modelinference
+  - name: Azure AI Foundry Models API
+    items:
+    - name: What's the Azure AI Model Inference API?
+      href: /rest/api/aifoundry/modelinference
+    - name: Reference
+      items:
+      - name: Get Model Info
+        href: /rest/api/aifoundry/model-inference/get-model-info/get-model-info
+      - name: Get Chat Completions
+        href: /rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions
+      - name: Get Embeddings
+        href: /rest/api/aifoundry/model-inference/get-embeddings/get-embeddings
+      - name: Get Image Embeddings
+        href: /rest/api/aifoundry/model-inference/get-image-embeddings/get-image-embeddings
+  - name: Azure OpenAI API
+    href: /azure/ai-services/openai/reference
   
 - name: Other resources
   items:
