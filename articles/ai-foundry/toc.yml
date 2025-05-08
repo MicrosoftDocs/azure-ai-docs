@@ -66,8 +66,6 @@ items:
       href: ../ai-foundry/model-inference/concepts/models.md?context=/azure/ai-foundry/context/context
     - name: Deploy Foundry Models
       href: ../ai-foundry/model-inference/how-to/create-model-deployments.md?context=/azure/ai-foundry/context/context
-    - name: Supported programming languages and SDKs
-      href: ../ai-foundry/model-inference/supported-languages.md?context=/azure/ai-foundry/context/context
     - name: Use the Foundry Models endpoint
       href: ../ai-foundry/model-inference/how-to/inference.md?context=/azure/ai-foundry/context/context
     - name: Foundry Models quotas and limits
@@ -109,8 +107,6 @@ items:
       displayName: provisioned, global standard, datazone, data zone, global data zone, batch, globalbatch
     - name: Deploy Azure OpenAI models
       href: how-to/deploy-models-openai.md
-    - name: Supported programming languages and SDKs
-      href: ../ai-services/openai/supported-languages.md?context=/azure/ai-foundry/context/context
     - name: Troubleshoot deployments and monitoring
       href: how-to/troubleshoot-deploy-and-monitor.md
     - name: Model region availability for Azure OpenAI in Foundry Models
@@ -211,7 +207,7 @@ items:
         href: how-to/deploy-nvidia-inference-microservice.md
     - name: Use standard deployment 
       items:
-      - name: Deploy models to serverless pay per token offer
+      - name: Deploy models via standard deployment
         href: how-to/deploy-models-serverless.md
       - name: Consume models from a different project or hub
         href: how-to/deploy-models-serverless-connect.md
@@ -221,7 +217,6 @@ items:
         href: concepts/model-catalog-content-safety.md
       - name: Models available for standard deployment
         href: concepts/models-featured.md
-      - name: Other featured models
     - name: Gretel Navigator model
       href: how-to/deploy-models-gretel-navigator.md
     - name: Mistral-7B and Mixtral models
