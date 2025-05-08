@@ -51,7 +51,7 @@ This article supplements [**Index data from ADLS  Gen2**](search-howto-index-azu
   + [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
   + [Knowledge store](knowledge-store-concept-intro.md)
   + [Indexer enrichment cache](search-howto-incremental-index.md)
-  + [Debug sessions](cognitive-search-debug-session.md) works with document content only
+  + [Debug sessions](cognitive-search-debug-session.md)
 
 ## About ACL hierarchical permissions
 
