@@ -40,8 +40,9 @@ Follow these steps to get started with Foundry Local:
    1. Download Foundry Local for your platform (Windows, MacOS, Linux - x64/ARM) from the repository's releases page.
    2. Install the package by following the on-screen prompts.
 
-      > [!IMPORTANT] > **For MacOS/Linux users:** Run both components in separate terminals:
-      >
+
+      > [!IMPORTANT]
+      > **For MacOS/Linux users:** Run both components in separate terminals:
       > - Neutron Server (`Inference.Service.Agent`) - Use `chmod +x Inference.Service.Agent` to make executable
       > - Foundry Client (`foundry`) - Use `chmod +x foundry` to make executable, and add to your PATH
 

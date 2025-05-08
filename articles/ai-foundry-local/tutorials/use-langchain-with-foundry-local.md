@@ -22,7 +22,7 @@ This tutorial guides you through setting up a chat application using Foundry Loc
 
 Before beginning this tutorial, make sure you have:
 
-- **Foundry Local** [installed](/articles/foundry-local/get-started.md) on your machine.
+- **Foundry Local** [installed](../get-started.md) on your machine.
 - **At least one model loaded** using the `foundry model load` command, for example:
   ```bash
   foundry model load phi4-cpu
@@ -79,4 +79,4 @@ That's it! You're now running Langchain with locally hosted model
 
 ## Next steps
 
-- Try [different models](/articles/foundry-local/how-to/load-models.md) to compare performance and capabilities
+- Try [different models](../how-to/manage.md) to compare performance and capabilities

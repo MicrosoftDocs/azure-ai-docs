@@ -59,5 +59,5 @@ When Foundry Local is running, it exposes an OpenAI-compatible REST API endpoint
 
 ## Next steps
 
-- [Compile Hugging Face models for Foundry Local](compile-models-for-foundry-local.md)
+- [Compile Hugging Face models for Foundry Local](huggingface-models-for-foundry-local.md)
 - [Explore the Foundry Local CLI reference](../reference/reference-cli.md)

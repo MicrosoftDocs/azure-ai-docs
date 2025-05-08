@@ -1,4 +1,3 @@
-<!-- filepath: reference/reference-sdk.md -->
 ---
 title: Foundry Local Control Plane SDK Reference
 titleSuffix: Foundry Local

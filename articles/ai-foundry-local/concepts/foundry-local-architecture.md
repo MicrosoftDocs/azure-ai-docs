@@ -80,7 +80,7 @@ The model cache is a local storage system where AI models are downloaded and sto
 Before models can be used with Foundry Local, they must be compiled and optimized in the [ONNX](https://onnx.ai) format. Microsoft provides a selection of published models in the Azure AI Foundry Model Catalog that are already optimized for Foundry Local. However, you aren't limited to those models - by using [Olive](https://microsoft.github.io/Olive/). Olive is a powerful framework for preparing AI models for efficient inference. It converts models into the ONNX format, optimizes their graph structure, and applies techniques like quantization to improve performance on local hardware.
 
 > [!TIP]
-> To learn more about compiling models for Foundry Local, read [Compile Hugging Face models for Foundry Local](../how-to/compile-models-for-foundry-local.md).
+> To learn more about compiling models for Foundry Local, read [Compile Hugging Face models for Foundry Local](../how-to/huggingface-models-for-foundry-local.md).
 
 ### Hardware Abstraction Layer
 

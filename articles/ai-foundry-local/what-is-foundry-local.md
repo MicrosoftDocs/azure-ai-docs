@@ -51,5 +51,5 @@ Download from the Microsoft Store. (WIP)
 ## Next steps
 
 - [Get started with Foundry Local](get-started.md)
-- [Compile Hugging Face models for Foundry Local](how-to/compile-models-for-foundry-local.md)
+- [Compile Hugging Face models for Foundry Local](how-to/huggingface-models-for-foundry-local.md)
 - [Learn more about ONNX Runtime](https://onnxruntime.ai/docs/)
