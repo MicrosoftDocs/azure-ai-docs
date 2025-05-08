@@ -53,7 +53,7 @@ const manager = new FoundryManager({ serviceUrl: 'http://localhost:5272' })
 |-------------- |----------|----------------------------------------------|
 | `serviceUrl`  | `string` | The base URL of the Foundry Local service.   |
 | `endpoint`    | `string` | The API endpoint (serviceUrl + `/v1`).       |
-| `apiKey`      | `string` | The API key (always `OPENAI_API_KEY`).       |
+| `apiKey`      | `string` | The API key (none).                          |
 
 #### Example Usage
 
