@@ -72,7 +72,7 @@ Install info
 pip install azure-ai-projects azure-ai-identity
 ```
 
-[Swift](#tab/swift)
+# [Swift](#tab/swift)
 
 Install info
 
