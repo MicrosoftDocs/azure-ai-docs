@@ -3,7 +3,7 @@ title: Content Filter Annotations
 description: Learn about annotations for content filtering in Azure OpenAI, including severity levels and optional models.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-services
+ms.service: azure-ai-openai
 ms.topic: conceptual
 ms.date: 05/07/2025
 ms.author: pafarley

@@ -3,7 +3,7 @@ title: Content Filter Severity Levels
 description: Overview of risk categories for content filtering in Azure OpenAI, including hate, fairness, sexual, violence, and more.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-services
+ms.service: azure-ai-openai
 ms.topic: conceptual
 ms.date: 05/07/2025
 ms.author: pafarley
