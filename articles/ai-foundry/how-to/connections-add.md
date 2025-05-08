@@ -98,10 +98,7 @@ Follow these steps to create a new connection that's only available for the curr
 
     :::image type="content" source="../media/data-connections/connection-add-azure-ai-search-connect-entra-id.png" alt-text="Screenshot of the page to select the Azure AI Search service that you want to connect to." lightbox="../media/data-connections/connection-add-azure-ai-search-connect-entra-id.png":::
 
-1. After the service is connected, select __Close__ to return to the __Settings__ page.
-1. Select __Connected resources__ > __View all__ to view the new connection. You might need to refresh the page to see the new connection.
-
-    :::image type="content" source="../media/data-connections/connections-all.png" alt-text="Screenshot of all connections after you add the Azure AI Search connection." lightbox="../media/data-connections/connections-all.png":::
+1. After the service is connected, select __Close__.
 
 ## Network isolation
 
