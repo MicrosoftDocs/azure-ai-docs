@@ -51,7 +51,7 @@ The input of ai-agent-evals includes:
   - Only single agent turn is supported.
 - `agent-ids`: a unique identifier for the agent and comma-separated list of agent IDs to evaluate.
   - When only one `agent-id` is specified, the evaluation results include the absolute values for each metric along with the corresponding confidence intervals.
-  - When multiple a`gent-ids` are specified, the results include absolute values for each agent and a statistical comparison against the designated baseline agent ID.
+  - When multiple `agent-ids` are specified, the results include absolute values for each agent and a statistical comparison against the designated baseline agent ID.
 
 **Optional:**
 
