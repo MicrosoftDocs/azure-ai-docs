@@ -115,7 +115,7 @@ const client = new OpenAI({
 })
 
 const completion = await client.chat.completions.create({
-    model: modelInfo.modelId,
+    model: modelInfo.id,
     messages: [{ role: 'user', content: 'Solve x^2 + 5x + 6 = 0.' }],
     max_tokens: 250,
     stream: true,
