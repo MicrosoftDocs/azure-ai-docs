@@ -5,7 +5,7 @@ description: How to run evaluation in GitHub Action to streamline the evaluation
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 05/05/2025
+ms.date: 05/08/2025
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
@@ -15,9 +15,9 @@ author: lgayhardt
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-This GitHub Action enables offline evaluation of AI models within your CI/CD pipelines. It's designed to streamline the evaluation process, allowing you to assess model performance and make informed decisions before deploying to production.
+This GitHub Action enables offline evaluation of AI models and agents within your CI/CD pipelines. It's designed to streamline the evaluation process, allowing you to assess model performance and make informed decisions before deploying to production.
 
-Offline evaluation involves testing AI models using test datasets to measure their performance on various quality and safety metrics such as fluency, coherence, and content safety. After you select a model in the [Azure AI Model Catalog](https://azure.microsoft.com/products/ai-model-catalog?msockid=1f44c87dd9fa6d1e257fdd6dd8406c42) or [GitHub Model marketplace](https://github.com/marketplace/models), offline pre-production evaluation is crucial for AI application validation during integration testing. This process allows developers to identify potential issues and make improvements before deploying the model or application to production, such as when updating agents.
+Offline evaluation involves testing AI models and agents using test datasets to measure their performance on various quality and safety metrics such as fluency, coherence, and content safety. After you select a model in the [Azure AI Model Catalog](https://azure.microsoft.com/products/ai-model-catalog?msockid=1f44c87dd9fa6d1e257fdd6dd8406c42) or [GitHub Model marketplace](https://github.com/marketplace/models), offline pre-production evaluation is crucial for AI application validation during integration testing. This process allows developers to identify potential issues and make improvements before deploying the model or application to production, such as when creating and updating agents.
 
 [!INCLUDE [features](../includes/evaluation-github-action-azure-devops-features.md)]
 
@@ -29,11 +29,11 @@ Offline evaluation involves testing AI models using test datasets to measure the
 
 Two GitHub Actions are available for evaluating AI applications: **ai-agent-evals** and **genai-evals**.
 
-- If your application is already leveraging AI Foundry agents, **ai-agent-evals** is well-suited as it offers a simplified setup process and direct integration with agent-based workflows. **genai-evals** is intended for evaluating generative AI models outside of the agent framework.
+- If your application is already using AI Foundry agents, **ai-agent-evals** is well-suited as it offers a simplified setup process and direct integration with agent-based workflows.
 - **genai-evals** is intended for evaluating generative AI models outside of the agent framework.
 
 > [!NOTE]
-> The **ai-agent-evals** interface is more straightforward to configure. In contrast, **genai-evals** require customers to prepare structured evaluation input data. Although code samples are provided to facilitate this process, the overall setup might involve additional complexity.
+> The **ai-agent-evals** interface is more straightforward to configure. In contrast, **genai-evals** requires you to prepare structured evaluation input data. Code samples are provided to help with setup.
 
 ## How to set up AI agent evaluations
 
@@ -47,7 +47,7 @@ The input of ai-agent-evals includes:
 - `deployment-name`: the deployed model name.
 - `data-path`: Path to the input data file containing the conversation starters. Each conversation starter is sent to each agent for a pairwise comparison of evaluation results.
   - `evaluators`: built-in evaluator names.
-  - `data`: a set of conversation starters/queries and ground truth. Ground-truth is optional and only required for a subset of evaluators. (See which [evaluator requires ground-truth](./develop/evaluate-sdk.md#data-requirements-for-built-in-evaluators))
+  - `data`: a set of conversation starters/queries.
   - Only single agent turn is supported.
 - `agent-ids`: a unique identifier for the agent and comma-separated list of agent IDs to evaluate.
   - When only one `agent-id` is specified, the evaluation results include the absolute values for each metric along with the corresponding confidence intervals.
@@ -65,20 +65,16 @@ Here's a sample of the dataset:
 { 
   "name": "MyTestData", 
   "evaluators": [ 
-    "GroundednessEvaluator", 
     "RelevanceEvaluator", 
     "ViolenceEvaluator", 
-    "HateUnfairnessEvaluator", 
-    "RougeScoreEvaluator" 
+    "HateUnfairnessEvaluator",
   ], 
   "data": [ 
     { 
       "query": "Tell me about Tokyo?", 
-      "ground_truth": "Tokyo is the capital of Japan and the largest city in the country. It is located on the eastern coast of Honshu, the largest of Japan's four main islands. Tokyo is the political, economic, and cultural center of Japan and is one of the world's most populous cities. It is also one of the world's most important financial centers and is home to the Tokyo Stock Exchange." 
     }, 
     { 
       "query": "Where is Italy?", 
-      "ground_truth": "Italy is a country in southern Europe, located on the Italian Peninsula and the two largest islands in the Mediterranean Sea, Sicily and Sardinia. It is a unitary parliamentary republic with its capital in Rome, the largest city in Italy. Other major cities include Milan, Naples, Turin, and Palermo." 
     } 
   ] 
 } 
@@ -92,47 +88,44 @@ To use the GitHub Action, add the GitHub Action to your CI/CD workflows and spec
 > [!TIP]
 > To minimize costs, you should avoid running evaluation on every commit.  
 
-This example illustrates how Azure Agent AI Evaluation can be run when comparing two different agents with agent ID `my-agent-id1` and `my-agent-id2`.
+This example illustrates how Azure Agent AI Evaluation can be run when comparing different agents with agent IDs.
 
 ```YAML
 name: "AI Agent Evaluation"
 
 on:
-workflow_dispatch:
-push:
-branches:
-- main
+  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 permissions:
-id-token: write
-contents: read
+  id-token: write
+  contents: read
 
 jobs:
-run-action:
-runs-on: ubuntu-latest
-steps:
-- name: Checkout
-uses: actions/checkout@v4
+  run-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Azure login using Federated Credentials
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
-  - name: Azure login using Federated Credentials
-    uses: azure/login@v2
-    with:
-      client-id: ${{ vars.AZURE_CLIENT_ID }}
-      tenant-id: ${{ vars.AZURE_TENANT_ID }}
-      subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
-
-  - name: Run Evaluation
-    uses: microsoft/ai-agent-evals@v1-beta
-    with:
-      # Replace placeholders with values for your Azure AI Project
-      azure-aiproject-connection-string: "<your-ai-project-conn-str>"
-      deployment-name: "<your-deployment-name>"
-      agent-ids: "<your-ai-agent-ids>"
-      data-path: ${{ github.workspace }}/path/to/your/data-file
+      - name: Run Evaluation
+        uses: microsoft/ai-agent-evals@v1
+        with:
+          # Replace placeholders with values for your Azure AI Project
+          azure-aiproject-connection-string: "<your-ai-project-conn-str>"
+          deployment-name: "<your-deployment-name>"
+          agent-ids: "<your-ai-agent-ids>"
+          data-path: ${{ github.workspace }}/path/to/your/data-file
 
 ```
 
-### AI agent evaluations outputs
+### AI agent evaluations output
 
 Evaluation results are outputted to the summary section for each AI evaluation GitHub Action run under Actions in GitHub.com.
 
@@ -238,7 +231,7 @@ jobs:
           evaluate-configuration: ${{ env.GENAI_EVALS_CONFIG_PATH }} 
 ```
 
-### GenAI evaluations outputs
+### GenAI evaluations output
 
 Evaluation results are outputted to the summary section for each AI evaluation GitHub Action run under Actions in GitHub.com.
 

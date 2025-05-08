@@ -4,7 +4,7 @@ description: Include file
 author: lgayhardt
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 4/30/2025
+ms.date: 5/08/2025
 ms.author: lagayhar
 ms.custom: include file
 ---
@@ -17,7 +17,7 @@ ms.custom: include file
 
     The following evaluators are supported:
 
-    | Category | Evaluator class/Metrics | AI Agent evals | GenAI evals |
+    | Category | Evaluator class/Metrics | AI Agent evaluations | GenAI evaluations |
     |--|--|--|--|
     | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `GroundednessEvaluator` | Not Supported | Supported |
     | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `GroundednessProEvaluator` | Not Supported | Supported |
@@ -28,7 +28,7 @@ ms.custom: include file
     | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `SimilarityEvaluator` | Not Supported | Supported |
     | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `IntentResolutionEvaluator` | Supported | Supported |
     | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `TaskAdherenceEvaluator` | Supported | Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `ToolCallAccuracyEvaluator` | Supported | Not Supported |
+    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `ToolCallAccuracyEvaluator` | Not Supported | Not Supported |
     | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `ResponseCompletenessEvaluator` | Not Supported | Supported |
     | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `DocumentRetrievalEvaluator` | Not Supported | Not Supported |
     | [Performance and quality (NLP)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `F1ScoreEvaluator` | Not Supported | Supported |
