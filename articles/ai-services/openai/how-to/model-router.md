@@ -152,16 +152,15 @@ See the [Evaluations guide](/azure/ai-services/openai/how-to/evaluations?tabs=qu
 
 You can monitor the performance of your model router deployment in Azure monitor (AzMon) in the Azure portal. 
 
-To view the metrics for model router: 
+1. Go to the **Monitoring** -> **Metrics** page for your Azure OpenAI resource in the Azure portal. 
 1. Filter by the deployment name of your model router model.
 1. Optionally, split up the metrics by underlying models.
 
-The following metrics are available: TBD
 
 ### Monitor costs
 
 You can monitor the costs of model router, which is the sum of the costs incurred by the underlying models.
-1. Visit the **Cost analysis** page in the Azure portal.
+1. Visit the **Resource Management** -> **Cost analysis** page in the Azure portal.
 1. If needed, filter by Azure resource.
-1. Then, filter by deployment name: Filter by billing "Tag", select **Deployment** as the name of the tag, and then select your model router deployment name as the value.
+1. Then, filter by deployment name: Filter by "Tag", select **Deployment** as the type of the tag, and then select your model router deployment name as the value.
 
