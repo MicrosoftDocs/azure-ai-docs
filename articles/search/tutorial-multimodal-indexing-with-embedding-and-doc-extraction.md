@@ -703,7 +703,7 @@ When you're working in your own subscription, at the end of a project, it's a go
 
 You can use the Azure portal to delete indexes, indexers, and data sources.
 
-## Next steps
+## See also
 
 Now that you're familiar with a sample implementation of a multimodal indexing scenario, check out:
 
