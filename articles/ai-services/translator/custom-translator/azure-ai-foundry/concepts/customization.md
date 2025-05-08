@@ -1,5 +1,5 @@
 ---
-title: Translation Customization - Custom translation
+title: Azure AI Foundry custom translations
 titleSuffix: Azure AI services
 description: Build your own machine translation system using your preferred terminology and style.
 #services: cognitive-services
@@ -11,9 +11,9 @@ ms.date: 05/19/2025
 ms.author: lajanuar
 ---
 
-# Customize your text translations
+# Azure AI Foundry custom translations
 
-Custom translation is a feature of the Azure AI Translator service. Custom translation allows users to customize Azure AI Translator's advanced neural machine translation when translating text using Translator (version 3 only).
+Custom translation is a feature of the Azure AI Translator service. Azure AI Foundry custom translation allows users to customize Azure AI Translator's advanced neural machine translation when translating text using Translator (version 3 only).
 
 The feature can also be used to customize speech translation when used with [Azure AI Speech](../../../../speech-service/index.yml).
 
@@ -36,4 +36,4 @@ More details about the various levels of customization based on available data c
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Set up a customized language system using Custom translation](../overview.md)
+> [Set up a customized language system using custom translation](../overview.md)

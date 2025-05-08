@@ -1,7 +1,7 @@
 ---
-title: Create a project - Custom translation
+title: Create an Azure AI Foundry fine-tuning project - custom translation
 titleSuffix: Azure AI services
-description: How to create and manage a project
+description: How to create and manage a fine-tuning project
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -11,15 +11,11 @@ ms.topic: how-to
 
 ---
 
-# Start fine-tuning 
+# Create an Azure AI Foundry fine-tuning project
 
- Custom translation fine-tuning includes one or many language pairs, model training, tuning and testing datasets, and deployment endpoint.
+Custom translation fine-tuning includes one or many language pairs, model training, tuning and testing datasets, and deployment endpoint. In the [Azure AI Foundry](https://ai.azure.com/), you can fine-tune some Azure AI services models, for example, custom translation, Custom speech, etc. For custom translation, you can fine-tune a model for a language pair, *say* English to French.
 
-## Create a project
-
-In the [Azure AI Foundry portal](https://ai.azure.com/), you can fine-tune some Azure AI services models, for example, Custom translation, Custom speech, etc. For Custom translation, you can fine-tune a model for a language pair, *say* English to French.
-
-1. Go to your project in the [Azure AI Foundry portal](https://ai.azure.com/) portal. If you need to create a project, *see* [Create an Azure AI Foundry project](../../azure-ai-foundry/how-to/create-project.md).
+1. Go to your project in the [Azure AI Foundry](https://ai.azure.com/) portal. If you need to create a project, *see* [Create an Azure AI Foundry project](../../azure-ai-foundry/how-to/create-project.md).
 
 1. Select **Fine-tuning** from the left pane.
 
@@ -33,7 +29,6 @@ In the [Azure AI Foundry portal](https://ai.azure.com/), you can fine-tune some 
 
 > [!NOTE]
 > An Azure AI Service resource is connected to your project.
-
 
 ## Next steps
 

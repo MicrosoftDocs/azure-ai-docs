@@ -1,7 +1,7 @@
 ---
-title: "Data Filtering - Custom translation"
+title: Azure AI Foundry custom translation data filtering
 titleSuffix: Azure AI services
-description: Explaining how training documents for a custom system undergo a series of processing and filtering steps.
+description: How custom translation training documents for a custom system undergo a series of processing and filtering steps.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -9,16 +9,16 @@ ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: conceptual
 ms.custom: cogserv-non-critical-translator
-#Customer intent: As a Custom translation, I want to understand how data is filtered before training a model.
+#Customer intent: As a custom translation, I want to understand how data is filtered before training a model.
 ---
 
-# Custom translation Data filtering
+# Azure AI Foundry custom translation data filtering
 
-When you submit documents to be used for training, the documents undergo a series of processing and filtering steps. These steps are explained here. The knowledge of the filtering can help you understand the sentence count displayed in Custom translation and the steps you can take yourself to prepare the documents for training with Custom translation.
+When you submit documents to be used for training, the documents undergo a series of processing and filtering steps. These steps are explained here. The knowledge of the filtering can help you understand the sentence count displayed in custom translation and the steps you can take yourself to prepare the documents for training with custom translation.
 
 ## Sentence alignment
 
-If your document isn't in XLIFF, `TMX`, or ALIGN format, Custom translation aligns the sentences of your source and target documents to each other, sentence by sentence. Custom translation doesn't perform document alignment – it follows your naming of the documents to find the matching document of the other language. Within the document, Custom translation tries to find the corresponding sentence in the other language. It uses document markup like embedded HTML tags to help with the alignment.
+If your document isn't in XLIFF, `TMX`, or ALIGN format, custom translation aligns the sentences of your source and target documents to each other, sentence by sentence. Custom translation doesn't perform document alignment – it follows your naming of the documents to find the matching document of the other language. Within the document, custom translation tries to find the corresponding sentence in the other language. It uses document markup like embedded HTML tags to help with the alignment.
 
 If you see a large discrepancy between the number of sentences in the source and target documents, your documents can't be parallel. The document pairs with a large difference (>10%) of sentences on each side warrant a second look to make sure they're indeed parallel. Custom translation shows a warning next to the document if the sentence count differs suspiciously.
 

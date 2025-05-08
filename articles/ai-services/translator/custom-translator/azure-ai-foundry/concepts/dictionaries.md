@@ -1,7 +1,7 @@
 ---
-title: "Dictionary - Custom translation"
+title: Azure AI Foundry custom translation dictionary
 titleSuffix: Azure AI services
-description: How to create an aligned document specifying a list of phrases or sentences (and their translations) that you always want Azure AI Translator to translate in the same manner. Dictionaries can also be called glossaries or term bases.
+description: How to create an Azure AI Foundry custom translation dictionary specifying a list of phrases or sentences (and their translations) that you want Azure AI Translator to always translate in the same manner. Dictionaries can also be called glossaries or term bases.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -12,9 +12,9 @@ ms.custom: cogserv-non-critical-translator
 #Customer intent: As a Custom Translator, I want to understand how to use a dictionary to build a custom translation model.
 ---
 
-# Dictionary
+# Azure AI Foundry custom translation dictionary
 
-A custom translation dictionary is an aligned pair of documents that specifies a list of phrases or sentences and their corresponding translations. Use a dictionary in your training, when you want Custom Translator to translate any instances of the source phrase or sentence, using the translation you provide in the dictionary. Dictionaries are sometimes called glossaries or term bases. You can think of the dictionary as a brute force "copy and replace" for all the terms you list. Furthermore, Custom translation service builds and makes use of its own general purpose dictionaries to improve the quality of its translation. However, a customer provided dictionary takes precedent and is searched first to look up words or sentences.
+A custom translation dictionary is an aligned pair of documents that specifies a list of phrases or sentences and their corresponding translations. Use a dictionary in your training, when you want Custom Translator to translate any instances of the source phrase or sentence, using the translation you provide in the dictionary. Dictionaries are sometimes called glossaries or term bases. You can think of the dictionary as a brute force "copy and replace" for all the terms you list. Furthermore, custom translation service builds and makes use of its own general purpose dictionaries to improve the quality of its translation. However, a customer provided dictionary takes precedent and is searched first to look up words or sentences.
 
 Dictionaries only work for projects in language pairs that have a fully supported Microsoft general neural network model behind them. [View the complete list of languages](../../../language-support.md).
 

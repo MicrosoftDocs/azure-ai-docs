@@ -1,7 +1,7 @@
 ---
-title: Azure AI Translator Custom translation for beginners
+title: Azure AI Translator custom translation for beginners
 titleSuffix: Azure AI services
-description: User guide for understanding the end-to-end customized machine translation process.
+description: User guide for understanding the end-to-end customized machine translation process using Azure AI Foundry.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -10,7 +10,7 @@ ms.date: 05/19/2025
 ms.topic: overview
 ---
 
-# Azure AI Translator Custom translation for beginners
+# Azure AI Translator custom translation for beginners
 
  [Custom translation](overview.md) enables you to a build translation system that reflects your business, industry, and domain-specific terminology and style. Training and deploying a custom system is easy and doesn't require any programming skills. The customized translation system seamlessly integrates into your existing applications, workflows, and websites and is available on Azure through the same cloud-based [Microsoft Text Translation API](../../text-translation/reference/v4/translate-api.md) service that powers billions of translations every day.
 
@@ -84,7 +84,7 @@ A BLEU score is a number between zero and 100. A score of zero indicates a low q
 
 ## What happens if I don't submit tuning or testing data?
 
-Tuning and test sentences are optimally representative of what you plan to translate in the future. If you don't submit any tuning or testing data, Custom translation automatically excludes sentences from your training documents to use as tuning and test data.
+Tuning and test sentences are optimally representative of what you plan to translate in the future. If you don't submit any tuning or testing data, custom translation automatically excludes sentences from your training documents to use as tuning and test data.
 
 | System-generated | Manual-selection |
 |---|---|
@@ -93,13 +93,13 @@ Tuning and test sentences are optimally representative of what you plan to trans
 | Easy to redo when you grow or shrink the domain. | Allows for more data and better domain coverage.|
 |Changes each training run.| Remains static over repeated training runs|
 
-## How is training material processed by Custom translation?
+## How is training material processed by custom translation?
 
-To prepare for training, documents undergo a series of processing and filtering steps. Knowledge of the filtering process can help with understanding the sentence count displayed as well as the steps you can take to prepare training documents for training with Custom translation. The filtering steps are as follows:
+To prepare for training, documents undergo a series of processing and filtering steps. Knowledge of the filtering process can help with understanding the sentence count displayed as well as the steps you can take to prepare training documents for training with custom translation. The filtering steps are as follows:
 
 * ### Sentence alignment
 
-  If your document isn't in `XLIFF`, `XLSX`, `TMX`, or `ALIGN` format, Custom translation aligns the sentences of your source and target documents to each other, sentence-by-sentence. Translator doesn't perform document alignment—it follows your naming convention for the documents to find a matching document in the other language. Within the source text, Custom translation tries to find the corresponding sentence in the target language. It uses document markup like embedded HTML tags to help with the alignment.
+  If your document isn't in `XLIFF`, `XLSX`, `TMX`, or `ALIGN` format, custom translation aligns the sentences of your source and target documents to each other, sentence-by-sentence. Translator doesn't perform document alignment—it follows your naming convention for the documents to find a matching document in the other language. Within the source text, custom translation tries to find the corresponding sentence in the target language. It uses document markup like embedded HTML tags to help with the alignment.
 
   If you see a large discrepancy between the number of sentences in the source and target documents, your source document can't be parallel, or couldn't be aligned. The document pairs with a large difference (>10%) of sentences on each side warrant a second look to make sure they're indeed parallel.
 
@@ -139,11 +139,11 @@ To prepare for training, documents undergo a series of processing and filtering 
 
 * ### Invalid characters
 
-  Custom translation removes sentences that contain Unicode character U+FFFD. The character U+FFFD indicates a failed encoding conversion.
+  custom translation removes sentences that contain Unicode character U+FFFD. The character U+FFFD indicates a failed encoding conversion.
 
 * ### Invalid HTML tags
 
-  Custom translation removes valid tags during training. Invalid tags cause unpredictable results and should be manually removed. 
+  custom translation removes valid tags during training. Invalid tags cause unpredictable results and should be manually removed. 
 
 ## What steps should I take before uploading data?
 

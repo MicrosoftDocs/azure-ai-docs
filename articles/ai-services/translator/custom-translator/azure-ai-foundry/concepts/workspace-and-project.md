@@ -1,7 +1,7 @@
 ---
-title: "What is a project and language pair? - Custom translation"
+title: What is an Azure AI Foundry custom translation project?
 titleSuffix: Azure AI services
-description: In This article, learn the differences between a project and a project as well as project categories and labels for the Custom translation service.
+description: In This article, learn the differences about creating projects, project categories, and labels for the custom translation service.
 #services: cognitive-services
 author: laujan
 manager: nitinme
@@ -10,19 +10,19 @@ ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: conceptual
 ms.custom: cogserv-non-critical-translator
-#Customer intent: As a Custom translation user, I want to concept of a project, so that I can use it efficiently.
+#Customer intent: As a custom translation user, I want to concept of a project, so that I can use it efficiently.
 ---
-# What is a Custom translation project?
+# What is an Azure AI Foundry custom translation project?
 
-A project is a work area for composing and building your custom translation system. A project can contain multiple language pairs, models, and documents. All the work you do in Custom translation is inside a specific project.
+A project is a work area for composing and building your custom translation system. A project can contain multiple language pairs, models, and documents. All the work you do in custom translation is inside a specific project.
 
 A project is private to you and the people you invite into your project. Uninvited people don't have access to the content of your project. You can invite as many people as you like into your project and modify or remove their access anytime. You can also create a new project. By default a project doesn't contain any language pairs or documents that already exist in other projects.
 
-## What is a Custom translation language pair?
+## What is a custom translation language pair?
 
 A language pair is a wrapper for a model, documents, and tests. Each language pair automatically includes all documents that are uploaded into that project that
 have the correct language pair. For example, if you have both an English-to-Spanish language pair and a Spanish-to-English language pair, the same documents are
-included in both language pairs. Each project has a Category ID associated with it that is used when querying the [V3 API](../../../text-translation/reference/v4/translate-api.md) for translations. Category ID is parameter used to get translations from a customized system built with Custom translation.
+included in both language pairs. Each project has a Category ID associated with it that is used when querying the [V3 API](../../../text-translation/reference/v4/translate-api.md) for translations. Category ID is parameter used to get translations from a customized system built with custom translation.
 
 ## Language pair categories
 
@@ -32,14 +32,11 @@ In the same project, you can create language pairs for the same language pair in
 
 ## Language pair labels
 
-Custom translation allows you to assign a label to your language pair. The language pair label distinguishes between multiple language pairs with the same language
-pair and category. As a best practice, avoid using language pair labels unless necessary.
+Custom translation allows you to assign a label to your language pair. The language pair label distinguishes between multiple language pairs with the same language pair and category. As a best practice, avoid using language pair labels unless necessary.
 
 The language pair label is used as part of the **Category ID**. When the language pair label is either unspecified or identical for multiple language pairs, those pairs with the same category but *distinct* language combinations share the same Category ID. This method offers a significant benefit by enabling seamless transitions between languages while utilizing the Translator API. Unlike traditional systems, there's no need to manage a separate Category ID for each language pair, simplifying the process considerably and enhancing efficiency.
 
-For example, if I wanted to enable translations in the Technology domain from English-to-French and from French-to-English, I would create two
-language pairs: one for English -\> French, and one for French -\> English. I would specify the same category (Technology) for both and leave the project label
-blank. The Category ID for both language pairs would match, so I could query the API for both English and French translations without having to modify my Category ID.
+For example, if I wanted to enable translations in the Technology domain from English-to-French and from French-to-English, I would create two language pairs: one for English -\> French, and one for French -\> English. I would specify the same category (Technology) for both and leave the project label blank. The Category ID for both language pairs would match, so I could query the API for both English and French translations without having to modify my Category ID.
 
 For language service providers aiming to cater to multiple customers with models that share the same category and language pair, applying a language pair label is an effective way to distinguish between different clients. This approach ensures clarity and organization when managing customer-specific models within identical language pairings.
 

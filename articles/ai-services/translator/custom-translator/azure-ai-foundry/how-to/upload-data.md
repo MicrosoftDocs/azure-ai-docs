@@ -1,7 +1,7 @@
 ---
-title: Upload language pair datasets - Custom translation
+title: Upload Azure AI Foundry custom translation model language pair datasets 
 titleSuffix: Azure AI services
-description: How to upload datasets for model training in the Azure AI Custom translation.
+description: How to upload Azure AI Foundry custom translation datasets
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -10,11 +10,11 @@ ms.author: lajanuar
 ms.topic: how-to
 ---
 
-# How to upload datasets
+# How to upload Azure AI Foundry custom translation model datasets
 
 Document types are associated with the language pair selected when you create a project.
 
-1. Sign-in to [Azure AI Foundry portal](https://ai.azure.com/). 
+1. Sign-in to [Azure AI Foundry](https://ai.azure.com/). 
 
 1. Select **Fine-tuning** from the left pane.
 
