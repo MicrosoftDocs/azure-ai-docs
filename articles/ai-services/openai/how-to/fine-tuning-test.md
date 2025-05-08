@@ -138,8 +138,6 @@ az cognitiveservices account deployment create
 ```
 ---
 
-[!INCLUDE [Fine-tuning deletion](../includes/fine-tune.md)]
-
 ## Use your deployed fine-tuned model
 
 ## [Portal](#tab/portal)
