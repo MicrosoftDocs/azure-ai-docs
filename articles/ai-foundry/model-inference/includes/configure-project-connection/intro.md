@@ -15,6 +15,6 @@ The following article explains how to create a connection to the Azure AI Foundr
 
 To complete this article, you need:
 
-* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI model inference](../how-to/quickstart-github-models.md) if that's your case.
+* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI Foundry Models](../../how-to/quickstart-github-models.md) if that's your case.
 
-* An Azure AI Foundry resource (formerly known as Azure AI Services). For more information, see [Create an Azure AI Foundry resource](../how-to/quickstart-create-resources.md).
+* An Azure AI Foundry resource (formerly known as Azure AI Services). For more information, see [Create and configure all the resources for Azure AI Foundry Models](../../how-to/quickstart-create-resources.md).
