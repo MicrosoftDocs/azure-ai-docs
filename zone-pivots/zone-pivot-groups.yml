@@ -1123,6 +1123,18 @@ groups:
     title: Python
   - id: rest
     title: REST API
+- id: selection-bing-custom-grounding
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: portal
+    title: Azure AI Foundry portal
+  - id: csharp
+    title: C#
+  - id: javascript
+    title: JavaScript
+  - id: python
+    title: Python
 - id: selection-openapi-function
   title: Selections
   prompt: What would you like to see?
