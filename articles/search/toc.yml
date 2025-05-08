@@ -94,6 +94,8 @@ items:
       href: tutorial-multiple-data-sources.md
     - name: Index encrypted blobs
       href: search-howto-index-encrypted-blobs.md
+    - name: Index permissioned ADLS Gen2 blobs
+      href: tutorial-adls-gen2-indexer-acls.md
     - name: Create a custom analyzer
       href: tutorial-create-custom-analyzer.md
   - name: RAG tutorials
@@ -280,11 +282,7 @@ items:
         - name: Search over blobs
           href: search-blob-storage-integration.md
         - name: ADLS Gen2
-          items:
-          - name: Search over ADLS Gen2 files
-            href: search-howto-index-azure-data-lake-storage.md
-          - name: Configure document-level access for ADLS Gen2
-            href: search-indexer-access-control-lists-and-role-based-access.md
+          href: search-howto-index-azure-data-lake-storage.md
         - name: Blobs
           href: search-howto-indexing-azure-blob-storage.md
         - name: Files
@@ -339,6 +337,8 @@ items:
         href: cognitive-search-concept-troubleshooting.md
       - name: Best practices - GenAI Prompt skill
         href: responsible-ai-best-practices-genai-prompt-skill.md
+      - name: GenAI Prompt Skill - Example Usage Guide
+        href: chat-completion-skill-example-usage.md
       - name: Custom skills
         items:
         - name: Integrate custom skills
@@ -367,6 +367,8 @@ items:
       href: search-how-to-semantic-chunking.md
     - name: Generate embeddings
       href: vector-search-how-to-generate-embeddings.md
+    - name: Use integrated vectorization
+      href: search-how-to-integrated-vectorization.md
     - name: Use embedding models from Azure AI Foundry
       href: vector-search-integrated-vectorization-ai-studio.md
     - name: Reduce vector size
@@ -387,12 +389,15 @@ items:
         href: vector-search-how-to-truncate-dimensions.md
     - name: Query vectors
       href: vector-search-how-to-query.md
+    - name: Use multi-vector fields
+      href: vector-search-multi-vector-fields.md
     - name: Add a vectorizer for text-to-vector queries
       displayName: query
       href: vector-search-how-to-configure-vectorizer.md
     - name: Filter on vector queries
       displayName: query
       href: vector-search-filters.md
+
   - name: Keyword search
     items:
     - name: Full text query
@@ -468,6 +473,8 @@ items:
       href: semantic-how-to-query-rewrite.md
     - name: Migrate semantic ranking code
       href: semantic-code-migration.md
+    - name: Enable scoring profiles in semantic ranker
+      href: semantic-how-to-enable-scoring-profiles.md
   - name: Security
     items:
     - name: Configure network access
@@ -506,8 +513,12 @@ items:
         href: search-indexer-howto-access-private.md
       - name: Connect to a SQL managed instance private endpoint
         href: search-indexer-how-to-access-private-sql.md
-    - name: Document-level security
-      href: search-security-trimming-for-azure-search.md
+    - name: Document-level permissions
+      items:
+      - name: Security filters
+        href: search-security-trimming-for-azure-search.md
+      - name: ADLS Gen2 permission filters
+        href: search-indexer-access-control-lists-and-role-based-access.md
     - name: Advanced options
       items:
       - name: Create a private endpoint
