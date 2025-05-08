@@ -14,7 +14,7 @@ First you need to create a new Python environment. DO NOT install packages into 
 
 ### If needed, install Python
 
-We recommend using Python 3.10 or later, but having at least Python 3.8 is required. If you don't have a suitable version of Python installed, follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
+We recommend using Python 3.10 or later, but having at least Python 3.9 is required. If you don't have a suitable version of Python installed, follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
 
 ### Create a virtual environment
 
