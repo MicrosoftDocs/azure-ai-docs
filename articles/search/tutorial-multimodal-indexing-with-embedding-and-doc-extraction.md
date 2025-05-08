@@ -31,7 +31,7 @@ This tutorial demonstrates a lower-cost approach for indexing multimodal content
 
 For a more comprehensive solution that includes structured text layout and spatial metadata, see [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal).
 
-Note: setting `imageAction` to `generateNormalizedImages` as is required for this tutorial will incur an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
+ [!NOTE] setting `imageAction` to `generateNormalizedImages` as is required for this tutorial will incur an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
 
 This tutorial shows you how to  index such data, using a REST client and the [Search REST APIs](/rest/api/searchservice/) to:
 
@@ -72,22 +72,22 @@ Download the sample PDF below:
 
 1. For connections made using a system-assigned managed identity. Provide a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. The connection string is similar to the following example:
 
-```json
-"credentials" : { 
-    "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
-}
-```
+    ```json
+    "credentials" : { 
+        "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
+    }
+    ```
 1. For connections made using a user-assigned managed identity. Provide a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. Provide an identity using the syntax shown in the following example. Set userAssignedIdentity to the user-assigned managed identity The connection string is similar to the following example:
 
-```json
-"credentials" : { 
-    "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
-},
-"identity" : { 
-    "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
-    "userAssignedIdentity" : "/subscriptions/00000000-0000-0000-0000-00000000/resourcegroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.ManagedIdentity/userAssignedIdentities/MY-DEMO-USER-MANAGED-IDENTITY" 
-}
-```
+    ```json
+    "credentials" : { 
+        "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
+    },
+    "identity" : { 
+        "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
+        "userAssignedIdentity" : "/subscriptions/00000000-0000-0000-0000-00000000/resourcegroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.ManagedIdentity/userAssignedIdentities/MY-DEMO-USER-MANAGED-IDENTITY" 
+    }
+    ```
 
 ### Copy a search service URL and API key
 
@@ -650,7 +650,7 @@ For filters, you can also use Logical operators (and, or, not) and comparison op
 
 ```http
 ### Query for only images
-POST {{baseUrl}}/indexes/doc-extraction-image-verbalization-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
+POST {{baseUrl}}/indexes/doc-extraction-multimodal-embedding-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
   
@@ -663,7 +663,7 @@ POST {{baseUrl}}/indexes/doc-extraction-image-verbalization-index/docs/search?ap
 
 ```http
 ### Query for text or images with content related to energy, returning the id, parent document, and text (only populated for text chunks), and the content path where the image is saved in the knowledge store (only populated for images)
-POST {{baseUrl}}/indexes/doc-extraction-image-verbalization-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
+POST {{baseUrl}}/indexes/doc-extraction-multimodal-embedding-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
   
@@ -705,10 +705,9 @@ You can use the Azure portal to delete indexes, indexers, and data sources.
 
 ## Next steps
 
-Now that you're familiar with a sample implementation of a multimodal indexing scenario, check out
+Now that you're familiar with a sample implementation of a multimodal indexing scenario, check out:
 
-> [!div class="nextstepaction"]
-> [AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md)
-> [Vectors in Azure AI Search](vector-search-overview.md)
-> [Semantic ranking in Azure AI Search](semantic-search-overview.md)
-> [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal)
+* [AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md)
+* [Vectors in Azure AI Search](vector-search-overview.md)
+* [Semantic ranking in Azure AI Search](semantic-search-overview.md)
+* [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal)

@@ -29,7 +29,7 @@ This tutorial demonstrates a lower-cost approach for indexing multimodal content
 
 For a more comprehensive solution that includes structured text layout and spatial metadata, see [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal).
 
-Note: setting `imageAction` to `generateNormalizedImages` as is required for this tutorial will incur an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
+ [!NOTE] setting `imageAction` to `generateNormalizedImages` as is required for this tutorial will incur an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
 
 Using a REST client and the [Search REST APIs](/rest/api/searchservice/) you will:
 
@@ -69,22 +69,22 @@ Download the sample PDF below:
 
 1. For connections made using a system-assigned managed identity. Provide a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. The connection string is similar to the following example:
 
-```json
-"credentials" : { 
-    "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
-}
-```
+    ```json
+    "credentials" : { 
+        "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
+    }
+    ```
 1. For connections made using a user-assigned managed identity. Provide a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. Provide an identity using the syntax shown in the following example. Set userAssignedIdentity to the user-assigned managed identity The connection string is similar to the following example:
 
-```json
-"credentials" : { 
-    "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
-},
-"identity" : { 
-    "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
-    "userAssignedIdentity" : "/subscriptions/00000000-0000-0000-0000-00000000/resourcegroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.ManagedIdentity/userAssignedIdentities/MY-DEMO-USER-MANAGED-IDENTITY" 
-}
-```
+    ```json
+    "credentials" : { 
+        "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
+    },
+    "identity" : { 
+        "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
+        "userAssignedIdentity" : "/subscriptions/00000000-0000-0000-0000-00000000/resourcegroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.ManagedIdentity/userAssignedIdentities/MY-DEMO-USER-MANAGED-IDENTITY" 
+    }
+    ```
 
 ### Copy a search service URL and API key
 
@@ -741,12 +741,11 @@ When you're working in your own subscription, at the end of a project, it's a go
 
 You can use the Azure portal to delete indexes, indexers, and data sources.
 
-## Next steps
+## See also
 
-Now that you're familiar with a sample implementation of a multimodal indexing scenario, check out
+Now that you're familiar with a sample implementation of a multimodal indexing scenario, check out:
 
-> [!div class="nextstepaction"]
-> [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
-> [Vectors in Azure AI Search](vector-search-overview.md)
-> [Semantic ranking in Azure AI Search](semantic-search-overview.md)
-> [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal)
+* [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
+* [Vectors in Azure AI Search](vector-search-overview.md)
+* [Semantic ranking in Azure AI Search](semantic-search-overview.md)
+* [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal)

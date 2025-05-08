@@ -100,7 +100,7 @@ Metadata adjustments are captured in a complex type created for each image. You 
 
    The default of 2,000 pixels for the normalized images maximum width and height is based on the maximum sizes supported by the [OCR skill](cognitive-search-skill-ocr.md) and the [image analysis skill](cognitive-search-skill-image-analysis.md). The [OCR skill](cognitive-search-skill-ocr.md) supports a maximum width and height of 4,200 for non-English languages, and 10,000 for English. If you increase the maximum limits, processing could fail on larger images depending on your skillset definition and the language of the documents. 
 
-+ Optionally, [set file type criteria](search-blob-storage-integration.md#PartsOfBlobToIndex) if the workload targets a specific file type. Blob indexer configuration includes file inclusion and exclusion settings. You can filter out files you don't want.
+1.  Optionally, [set file type criteria](search-blob-storage-integration.md#PartsOfBlobToIndex) if the workload targets a specific file type. Blob indexer configuration includes file inclusion and exclusion settings. You can filter out files you don't want.
 
   ```json
   {
