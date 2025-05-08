@@ -177,6 +177,5 @@ For more information on price and quota, use the following articles:
 
 Create a hub using one of the following methods:
 
-- [Azure AI Foundry portal](../how-to/create-azure-ai-resource.md#create-a-hub-in-azure-ai-foundry-portal): Create a hub for getting started.
 - [Azure portal](../how-to/create-secure-ai-hub.md): Create a hub with your own networking.
 - [Bicep template](../how-to/create-azure-ai-hub-template.md).

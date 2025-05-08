@@ -42,7 +42,6 @@ You can also manage [!INCLUDE [hub](../includes/hub-project-name.md)]s from the 
 For more information, see the following articles:
 
 - [Create a project in Azure AI Foundry](../how-to/create-projects.md?pivots=fdp-project)
-- [Create a hub in Azure AI Foundry](../how-to/create-azure-ai-resource.md#create-a-hub-in-azure-ai-foundry-portal)
 - [Create a hub based project](../how-to/create-projects.md?pivots=hub-project)
 
 ## Manage resource utilization
