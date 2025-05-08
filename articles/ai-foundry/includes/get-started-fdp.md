@@ -128,7 +128,7 @@ To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)]:
 
 # [Python SDK](#tab/python)
 
-:::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/quickstart.py" id="chat_completion":::
+:::code language="python" source="~/foundry-samples/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="chat_completion":::
 
 
 # [Java](#tab/java)
@@ -154,7 +154,7 @@ Info here.
 
 # [Python SDK](#tab/python)
 
-:::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/quickstart.py" id="create_and_run_agent":::
+:::code language="python" source="~/foundry-samples/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_and_run_agent":::
 
 # [Java](#tab/java)
 Info here.
@@ -182,7 +182,7 @@ Download [product_info_1.md]() to add to the agent.
 
 # [Python SDK](#tab/python)
 
-:::code language="python" source="~/foundry-samples/doc-samples/getting-started/python/quickstart.py" id="create_filesearch_agent":::
+:::code language="python" source="~/foundry-samples/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_filesearch_agent":::
 
 # [Java](#tab/java)
 Info here.
