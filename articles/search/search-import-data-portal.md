@@ -34,7 +34,7 @@ This article isn't a step by step. For help with using the wizard with sample da
 
 The wizards support most of the data sources supported by indexers.
 
-| Data | Import data wizard | Import and vectorize data wizard |
+| Data | Import data wizard | Quickstart wizard |
 |------|--------------------|----------------------------------|
 | [ADLS Gen2](search-howto-index-azure-data-lake-storage.md)  | ✅ | ✅ |
 | [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md) | ✅ | ✅ |
@@ -53,7 +53,7 @@ The wizards support most of the data sources supported by indexers.
 
 Microsoft hosts sample data so that you can omit a data source configuration step on a wizard workflow.
 
-| Sample data | Import data wizard | Import and vectorize data wizard |
+| Sample data | Import data wizard | Quickstart wizard |
 |------|--------------------|----------------------------------|
 | hotels | ✅ | ❌ |
 | real estate  | ✅ | ❌ |
@@ -68,7 +68,7 @@ Here are some points to keep in mind about the skills in the following list:
 + Shaper is added if you configure a knowledge store.
 + Text Split and Text Merge are added for data chunking if you choose an embedding model. They are added for other non-embedding skills if the source field granularity is set to pages or sentences.
 
-| Skills | Import data wizard | Import and vectorize data wizard |
+| Skills | Import data wizard | Quickstart wizard |
 |------|--------------------|----------------------------------|
 | [AI Vision multimodal](cognitive-search-skill-vision-vectorize.md)  | ❌ | ✅ |
 | [Azure OpenAI embedding](cognitive-search-skill-azure-openai-embedding.md)  | ❌ | ✅ |
@@ -90,7 +90,7 @@ Here are some points to keep in mind about the skills in the following list:
 
 You can [generate a knowledge store](knowledge-store-create-portal.md) for secondary storage of enriched (skills-generated) content. You might want a knowledge store for information retrieval workflows that don't require a search engine.
 
-| Knowledge store | Import data wizard | Import and vectorize data wizard |
+| Knowledge store | Import data wizard | Quickstart wizard |
 |------|--------------------|----------------------------------|
 | storage | ✅ | ❌ |
 
@@ -152,11 +152,11 @@ You can use the wizards over restricted public connections, but not all function
 
 + On connections to an Azure AI services multi-service account that you provide, or on connections to embedding models deployed in [Azure AI Foundry portal](https://ai.azure.com/) or Azure OpenAI, public internet access must be enabled unless your search service meets the creation date, tier, and region requirements for private connections. For more information about these requirements, see [Make outbound connections through a shared private link](search-indexer-howto-access-private.md).
 
-  Connections to Azure AI services multi-service are for [billing purposes](cognitive-search-attach-cognitive-services.md). Billing occurs when API calls exceed the free transaction count (20 per indexer run) for built-in skills called by the **Import data** wizard or integrated vectorization in the **Import and vectorize data** wizard. 
+  Connections to Azure AI services multi-service are for [billing purposes](cognitive-search-attach-cognitive-services.md). Billing occurs when API calls exceed the free transaction count (20 per indexer run) for built-in skills called by the **Import data** wizard or integrated vectorization in the **Quickstart wizard**.
 
   If Azure AI Search can't connect:
 
-  + In the **Import and vectorize data** wizard, the error is `"Access denied due to Virtual Network/Firewall rules."`
+  + In the **Quickstart wizard**, the error is `"Access denied due to Virtual Network/Firewall rules."`
 
   + In the **Import data** wizard, there's no error, but the skillset won't be created.
 
@@ -180,9 +180,9 @@ The workflow is a pipeline, so it's one way. You can't use the wizard to edit an
 
 Here's how you start the wizards.
 
-1. In the [Azure portal](https://portal.azure.com), open the search service page from the dashboard or [find your service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in the service list. 
+1. In the [Azure portal](https://portal.azure.com), open the search service page from the dashboard or [find your service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in the service list.
 
-1. In the service Overview page at the top, select **Import data** or **Import and vectorize data**.
+1. On the **Overview** page, select **Import data** or **Quickstart wizard**.
 
     :::image type="content" source="media/search-import-data-portal/import-data-cmd.png" alt-text="Screenshot of the import wizard options." border="true":::
 
