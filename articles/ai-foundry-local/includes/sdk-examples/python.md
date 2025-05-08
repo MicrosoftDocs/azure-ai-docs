@@ -5,7 +5,7 @@
 Install the Python package:
 
 ```bash
-pip install foundry-management-sdk
+pip install foundry-manager
 ```
 
 ### FoundryManager Class
@@ -15,7 +15,7 @@ The `FoundryManager` class provides methods to manage models, cache, and the Fou
 #### Initialization
 
 ```python
-from foundry_local import FoundryManager
+from foundry_manager import FoundryManager
 
 # Initialize and optionally bootstrap with a model
 manager = FoundryManager(model_id_or_alias=None, bootstrap=True)

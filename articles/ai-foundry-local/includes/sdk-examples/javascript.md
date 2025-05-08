@@ -5,7 +5,7 @@
 Install the npm package:
 
 ```bash
-npm install foundry-management-sdk
+npm install foundry-manager
 ```
 
 ### FoundryManager Class
@@ -15,7 +15,7 @@ The `FoundryManager` class provides methods to manage models, cache, and the Fou
 #### Initialization
 
 ```js
-import FoundryManager from 'foundry-management-sdk'
+import FoundryManager from 'foundry-manager'
 
 const manager = new FoundryManager()
 ```
@@ -68,7 +68,7 @@ const manager = new FoundryManager()
 ## Example Usage
 
 ```js
-import FoundryManager from 'foundry-management-sdk'
+import FoundryManager from 'foundry-manager'
 
 const manager = new FoundryManager()
 
@@ -105,7 +105,7 @@ You can use the Foundry Local endpoint with an OpenAI-compatible API client. For
 
 ```js
 import OpenAI from 'openai';
-import FoundryManager from 'foundry-management-sdk'
+import FoundryManager from 'foundry-manager'
 const manager = new FoundryManager()
 const modelInfo = await foundryManager.loadModel('DeepSeek-R1-Distill-Qwen-1.5B')
 
@@ -136,7 +136,7 @@ The SDK also provides a browser-compatible version. However, you must provide th
 
 
 ```js
-import FoundryManager from 'foundry-local/browser'
+import FoundryManager from 'foundry-manager/browser'
 
 const manager = new FoundryManager({ serviceUrl: 'http://localhost:8080' })
 
@@ -146,7 +146,7 @@ const manager = new FoundryManager({ serviceUrl: 'http://localhost:8080' })
 #### Example Usage
 
 ```js
-import FoundryManager from 'foundry-management-sdk'
+import FoundryManager from 'foundry-manager'
 
 const manager = new FoundryManager({ serviceUrl: 'http://localhost:8080' })
 
