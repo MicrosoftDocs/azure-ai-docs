@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 03/06/2025
+ms.date: 05/19/2025
 ms.custom: ignite-2024-understanding-release
 
 #customer intent: As a user, I want to learn more about Content Understanding solutions.

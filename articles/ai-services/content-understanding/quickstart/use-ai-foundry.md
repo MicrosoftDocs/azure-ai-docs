@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: quickstart
-ms.date: 03/12/2025
+ms.date: 05/19/2025
 ms.custom: ignite-2024-understanding-release
 ---
 
