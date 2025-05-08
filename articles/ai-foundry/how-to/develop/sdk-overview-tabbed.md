@@ -73,6 +73,7 @@ pip install azure-ai-projects azure-ai-identity
 ```
 
 [Swift](#tab/swift)
+
 Install info
 
 ---
@@ -115,6 +116,7 @@ project = AIProjectClient.from_connection_string(
 ```
 
 # [Swift](#tab/swift)
+
 Client info
 
 ---
