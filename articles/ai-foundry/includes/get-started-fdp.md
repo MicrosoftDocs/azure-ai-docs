@@ -132,11 +132,15 @@ To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)]:
 
 
 # [Java](#tab/java)
-Info here.
+
+:::code language="python" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/ChatCompletionSample.java" :::
+
 # [JavaScript](#tab/javascript)
-Info here.
+
+
 # [C#](#tab/csharp)
-Info here.
+
+:::code language="python" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/SimpleInference.cs" id="chat_completion":::
 
 ---
 
@@ -157,11 +161,15 @@ Info here.
 :::code language="python" source="~/foundry-samples/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_and_run_agent":::
 
 # [Java](#tab/java)
-Info here.
+
+:::code language="python" source="~/foundry-samples/samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" :::
+
 # [JavaScript](#tab/javascript)
-Info here.
+
+
 # [C#](#tab/csharp)
-Info here.
+
+:::code language="python" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentService.cs" id="create_and_run_agent" :::
 
 ---
 
@@ -185,11 +193,16 @@ Download [product_info_1.md]() to add to the agent.
 :::code language="python" source="~/foundry-samples/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_filesearch_agent":::
 
 # [Java](#tab/java)
-Info here.
+
+:::code language="python" source="~/foundry-samples/samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/FileSearchAgentSample.java" :::
+
+
 # [JavaScript](#tab/javascript)
-Info here.
+
+
 # [C#](#tab/csharp)
-Info here.
+
+:::code language="python" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentFileSearch.cs" id="create_filesearch_agent":::
 
 ---
 
