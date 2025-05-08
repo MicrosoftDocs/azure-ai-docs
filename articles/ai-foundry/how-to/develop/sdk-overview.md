@@ -74,9 +74,9 @@ Using the project endpoint, you can:
 
 To use Azure AI services, you can use the following client libraries with the endpoints listed on the project homepage.
 
-::: zone pivot="programming-language-cpp"
+<!-- ::: zone pivot="programming-language-cpp"
 [!INCLUDE [C++ include](../../includes/sdk/cpp.md)]
-::: zone-end
+::: zone-end -->
 
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C# include](../../includes/sdk/csharp.md)]
@@ -94,14 +94,14 @@ To use Azure AI services, you can use the following client libraries with the en
 [!INCLUDE [JavaScript include](../../includes/sdk/javascript.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-objectivec"
+<!-- ::: zone pivot="programming-language-objectivec"
 [!INCLUDE [ObjectiveC include](../../includes/sdk/objective-c.md)]
-::: zone-end
+::: zone-end -->
 
 ::: zone pivot="programming-language-python"
 [!INCLUDE [Python include](./../../includes/sdk/python.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-swift"
+<!-- ::: zone pivot="programming-language-swift"
 [!INCLUDE [Swift include](../../includes/sdk/swift.md)]
-::: zone-end
+::: zone-end -->

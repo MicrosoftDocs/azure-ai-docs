@@ -1176,17 +1176,11 @@ groups:
   pivots:
     - id: programming-language-csharp
       title: C#
-    - id: programming-language-cpp
-      title: C++
     - id: programming-language-go
       title: Go
     - id: programming-language-java
       title: Java
     - id: programming-language-javascript
       title: JavaScript
-    - id: programming-language-objectivec
-      title: Objective-C
     - id: programming-language-python
       title: Python
-    - id: programming-language-swift
-      title: Swift
