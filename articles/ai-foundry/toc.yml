@@ -34,10 +34,8 @@ items:
       href: tutorials/deploy-chat-web-app.md
     - name: Build a RAG solution using Azure AI Search
       href: /azure/search/tutorial-rag-build-solution?context=/azure/ai-foundry/context/context
-  - name: "Ask @Foundry"
-    items:
-    - name: Ask @Foundry for help
-      href: at-foundry/ask-at-foundry.md
+  - name: "Ask the Foundry agent"
+    href: foundry-agent/ask-foundry-agent.md
 - name: Azure AI Foundry Models
   items:
   - name: Use the model catalog
