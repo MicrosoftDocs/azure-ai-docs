@@ -17,7 +17,7 @@ The `FoundryManager` class provides methods to manage models, cache, and the Fou
 ```js
 import { FoundryManager } from 'foundry-management-sdk'
 
-const manager = new FoundryManager({ serviceUrl: 'http://localhost:5272' })
+const manager = new FoundryManager()
 ```
 
 - `serviceUrl`: The base URL of the Foundry Local service.
