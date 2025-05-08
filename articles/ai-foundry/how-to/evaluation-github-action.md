@@ -1,7 +1,7 @@
 ---
 title: How to run an evaluation in GitHub Action 
 titleSuffix: Azure AI Foundry
-description: How to evaluation in GitHub Action to streamline the evaluation process, allowing you to assess model performance and make informed decisions before deploying to production.
+description: How to run evaluation in GitHub Action to streamline the evaluation process, allowing you to assess model performance and make informed decisions before deploying to production.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
