@@ -31,7 +31,7 @@ Azure AI Foundry Models provides customers with choices on the hosting structure
 
 Global deployments are available in the same Azure AI Foundry resources as non-global deployment types but allow you to leverage Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request.  Global standard provides the highest default quota and eliminates the need to load balance across multiple resources.  
 
-Customers with high consistent volume may experience greater latency variability. The threshold is set per model. See the [quotas page to learn more](../../how-to/quota.md).  For applications that require the lower latency variance at large workload usage, we recommend purchasing provisioned throughput.
+Customers with high consistent volume may experience greater latency variability. The threshold is set per model. See the [quotas page to learn more](../quotas-limits.md).  For applications that require the lower latency variance at large workload usage, we recommend purchasing provisioned throughput.
 
 ## Global provisioned
 
@@ -108,7 +108,7 @@ Standard deployments are optimized for low to medium volume workloads with high 
 
 **SKU name in code:** `ProvisionedManaged`
 
-Provisioned deployments allow you to specify the amount of throughput you require in a deployment. The service then allocates the necessary model processing capacity and ensures it's ready for you. Throughput is defined in terms of provisioned throughput units (PTU) which is a normalized way of representing the throughput for your deployment. Each model-version pair requires different amounts of PTU to deploy and provide different amounts of throughput per PTU. Learn more from our [Provisioned throughput concepts article](../concepts/provisioned-throughput.md).
+Provisioned deployments allow you to specify the amount of throughput you require in a deployment. The service then allocates the necessary model processing capacity and ensures it's ready for you. Throughput is defined in terms of provisioned throughput units (PTU) which is a normalized way of representing the throughput for your deployment. Each model-version pair requires different amounts of PTU to deploy and provide different amounts of throughput per PTU. Learn more from our [Provisioned throughput concepts article](/azure/ai-services/openai/concepts/provisioned-throughput).
 
 
 ## Control deployment options
@@ -118,4 +118,4 @@ Administrators can control which model deployment types are available to their u
 ## Related content
 
 - [Quotas & limits](../quotas-limits.md)
-- [Data privacy, and security for Azure AI Foundry Models](concept-data-privacy.md)
+- [Data privacy, and security for Azure AI Foundry Models](../../how-to/concept-data-privacy.md)
