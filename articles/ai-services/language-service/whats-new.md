@@ -17,8 +17,8 @@ Azure AI Language is updated on an ongoing basis. To stay up-to-date with recent
 ## May 2025
 
 * Azure AI Language now supports the following agent templates:
-    *   [Intent triage](https://aka.ms/intent-triage-agent-template)
-    *   [Exact answer](https://aka.ms/exact-answer-agent-template)
+    *   [Intent routing](https://aka.ms/intent-triage-agent-template) detects user intent and provides exact answering. Perfect for deterministically intent routing and exact question answering with human controls.
+    *   [Exact question answering](https://aka.ms/exact-answer-agent-template) answers high-value predefined questions deterministically to ensure consistent and accurate responses.
 
 ## March 2025
 

@@ -46,7 +46,7 @@ In a large corporation, an enterprise chat bot may handle a variety of employee 
 
 ### Agents
 
-CLU is utilized by the [intent triage](https://aka.ms/intent-triage-agent-template) agent in oder to determine the intent of text.
+CLU is utilized by the [intent routing](https://aka.ms/intent-triage-agent-template) agent template, which detects user intent and provides exact answering. Perfect for deterministically intent routing and exact question answering with human control.
 
 ## Project development lifecycle
 

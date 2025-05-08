@@ -23,7 +23,9 @@ The Language service also provides several new features as well, which can eithe
 * Preconfigured, which means the AI models that the feature uses aren't customizable. You just send your data, and use the feature's output in your applications.
 * Customizable, which means you train an AI model using our tools to fit your data specifically.
 
-Language features are also utilized in the [intent triage](https://aka.ms/intent-triage-agent-template) and [exact answer](https://aka.ms/exact-answer-agent-template) [agent templates](https://aka.ms/ai-agent-catalog).
+Language features are also utilized in [agent templates](https://aka.ms/ai-agent-catalog):
+    * [Intent routing](https://aka.ms/intent-triage-agent-template) detects user intent and provides exact answering. Perfect for deterministically intent routing and exact question answering with human controls.
+    * [Exact question answering](https://aka.ms/exact-answer-agent-template) answers high-value predefined questions deterministically to ensure consistent and accurate responses.
 
 > [!TIP]
 > Unsure which feature to use? See [Which Language service feature should I use](#which-language-service-feature-should-i-use) to help you decide.
