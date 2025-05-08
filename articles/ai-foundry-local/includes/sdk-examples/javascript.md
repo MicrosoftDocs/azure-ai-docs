@@ -70,7 +70,7 @@ const manager = new FoundryManager({ serviceUrl: 'http://localhost:5272' })
 ```js
 import { FoundryManager } from 'foundry-management-sdk'
 
-const manager = new FoundryManager({ serviceUrl: 'http://localhost:5272' })
+const manager = new FoundryManager()
 
 // Initialize the SDK and optionally load a model
 await manager.init('DeepSeek-R1-Distill-Qwen-1.5B-generic-gpu')
@@ -143,7 +143,7 @@ const manager = new FoundryManager({ serviceUrl: 'http://localhost:8080' })
 ```js
 import { FoundryManager } from 'foundry-management-sdk'
 
-const manager = new FoundryManager({ serviceUrl: 'http://localhost:5272' })
+const manager = new FoundryManager()
 
 // List available models in the catalog
 const catalog = await manager.listCatalogModels()
