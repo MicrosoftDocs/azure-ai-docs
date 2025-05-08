@@ -19,6 +19,12 @@ recommendations: false
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI Service.
 
+## May 2025 TBD
+
+### PII detection for content filters
+
+### Embedded document spotlighting
+
 ## April 2025
 
 ### GPT-image-1 released (preview, limited access)
