@@ -188,7 +188,11 @@ To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)]:
 
 ## Add files to the agent
 
-Download [product_info_1.md]() to add to the agent.
+
+Enable your agent to search and retrieve information from a provided file. 
+
+* Download [product_info_1.md]() to give to your agent.
+
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
