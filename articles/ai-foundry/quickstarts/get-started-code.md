@@ -29,7 +29,7 @@ In this quickstart, we walk you through setting up your local development enviro
 - An [Azure subscription](https://azure.microsoft.com/free/). If you don't have an Azure subscription, create a free account before you begin.
 - A [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. If you're new to Azure AI Foundry and don't have a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)], select **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** at the top of this article to use a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)] instead.
 
-## Set up your development environmant
+## Set up your development environment
 
 1. [Set up your development environment](../how-to/develop/install-cli-sdk.md?tab-python)
 
