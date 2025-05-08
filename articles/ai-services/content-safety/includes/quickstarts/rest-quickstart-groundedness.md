@@ -165,7 +165,7 @@ The Groundedness detection API provides the option to include _reasoning_ in the
 ### Connect your own GPT deployment
 
 > [!TIP]
-> We only support Azure OpenAI GPT4o (0513, 0806 version) resources and do not support other GPT types. You have the flexibility to deploy your Azure OpenAI GPT4o (0513, 0806 version) resources in any region. However, to minimize potential latency and avoid any geographical boundary data privacy and risk concerns, we recommend situating them in the same region as your content safety resources. For comprehensive details on data privacy, refer to the [Data, privacy and security guidelines for Azure OpenAI Service](/legal/cognitive-services/openai/data-privacy) and [Data, privacy, and security for Azure AI Content Safety](/legal/cognitive-services/content-safety/data-privacy?context=%2Fazure%2Fai-services%2Fcontent-safety%2Fcontext%2Fcontext).
+> We only support Azure OpenAI GPT4o (0513, 0806 version) resources and do not support other GPT types. You have the flexibility to deploy your Azure OpenAI GPT4o (0513, 0806 version) resources in any region. However, to minimize potential latency and avoid any geographical boundary data privacy and risk concerns, we recommend situating them in the same region as your Azure AI Content Safety resources. For comprehensive details on data privacy, refer to the [Data, privacy and security guidelines for Azure OpenAI Service](/legal/cognitive-services/openai/data-privacy) and [Data, privacy, and security for Azure AI Content Safety](/legal/cognitive-services/content-safety/data-privacy?context=%2Fazure%2Fai-services%2Fcontent-safety%2Fcontext%2Fcontext).
 
 In order to use your Azure OpenAI GPT4o (0513, 0806 version) resource to enable the reasoning feature, use Managed Identity to allow your Content Safety resource to access the Azure OpenAI resource:
 
@@ -347,7 +347,7 @@ The groundedness detection API includes a correction feature that automatically 
 ### Connect your own GPT deployment
 
 > [!TIP]
-> Currently, the correction feature supports only **Azure OpenAI GPT4o (0513, 0806 version)** resources. To minimize latency and adhere to data privacy guidelines, it's recommended to deploy your Azure OpenAI GPT4o (0513, 0806 version) in the same region as your content safety resources. For more details on data privacy, please refer to the [Data, privacy and security guidelines for Azure OpenAI Service](/legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context)
+> Currently, the correction feature supports only **Azure OpenAI GPT4o (0513, 0806 version)** resources. To minimize latency and adhere to data privacy guidelines, it's recommended to deploy your Azure OpenAI GPT4o (0513, 0806 version) in the same region as your Azure AI Content Safety resources. For more details on data privacy, please refer to the [Data, privacy and security guidelines for Azure OpenAI Service](/legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context)
  and [Data, privacy, and security for Azure AI Content Safety](/legal/cognitive-services/content-safety/data-privacy?context=/azure/ai-services/content-safety/context/context).
 
 To use your Azure OpenAI GPT4o (0513, 0806 version) resource for enabling the correction feature, use Managed Identity to allow your Content Safety resource to access the Azure OpenAI resource. Follow the steps in the [earlier section](#connect-your-own-gpt-deployment) to set up the Managed Identity.
