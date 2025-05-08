@@ -101,6 +101,8 @@ We've recently published a walk-through for RAG on Video using Content Understan
 
 Under the hood, two stages transform raw pixels into business-ready insights. The diagram below shows how extraction feeds generation, ensuring each downstream step has the context it needs.
 
+:::image type="content" source="../media/video/video-overview.png" alt-text="Screenshot of video analyzer flow.":::
+
 The service operates in two stages. The first stage, content extraction, involves capturing foundational metadata such as transcripts, shots, and faces. The second stage, field extraction, uses a generative model to produce custom fields and perform segmentation. Additionally, you can optionally enable a Face add-on to identify individuals and describe them in the video.
 
 ---
