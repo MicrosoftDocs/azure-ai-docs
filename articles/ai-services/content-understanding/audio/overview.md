@@ -38,7 +38,7 @@ Content Understanding serves as a cornerstone for Media Asset Management solutio
 * **Transcription**. Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Customizable fields can be generated from transcription data. Sentence-level and word-level timestamps are available upon request.
 
 > [!NOTE]
-> Content Understanding supports the full set of [Azure AI Speech Speech to text languages](https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt).
+> Content Understanding supports the full set of [Azure AI Speech Speech to text languages](../../recover-purge-resources.mdspeech-service/language-support.md).
 > For languages with Fast transcriptions support and for files ≤ 300 MB and/or ≤ 2 hours, transcription time is reduced substantially.
 
 * **Diarization**. Distinguishes between speakers in a conversation, attributing parts of the transcript to specific speakers.
