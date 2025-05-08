@@ -64,6 +64,10 @@ items:
         href: ./concepts/content-filter-risk-categories.md
       - name: Prompt shields
         href: ./concepts/content-filter-prompt-shields.md
+      - name: Groundedness detection
+        href: 
+      - name: Protected material detection
+        href: 
       - name: Content filter configurability
         href: ./concepts/content-filter-configurability.md
       - name: Content filter annotations
