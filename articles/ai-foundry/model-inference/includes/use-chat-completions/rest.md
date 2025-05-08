@@ -1,7 +1,7 @@
 ---
-title: How to use chat completions with Azure AI model inference
+title: How to use chat completions with Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn how to generate chat completions with Azure AI model inference
+description: Learn how to generate chat completions with Azure AI Foundry Models
 manager: scottpolly
 author: mopeakande
 reviewer: santiagxf

@@ -1,5 +1,5 @@
 ---
-title: Understanding deployment types in Azure AI model inference
+title: Understanding deployment types in Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: Learn how to use deployment types in Azure AI model deployments
 author: santiagxf
@@ -11,32 +11,105 @@ ms.author: fasantia
 ms.custom: ignite-2024, github-universe-2024
 ---
 
-# Deployment types in Azure AI model inference
+# Deployment types in Azure AI Foundry Models
 
-Azure AI model inference makes models available using the *model deployment* concept in Azure AI Services resources. *Model deployments* are also Azure resources and, when created, they give access to a given model under certain configurations. Such configuration includes the infrastructure require to process the requests. 
+Azure AI Foundry Models makes models available using the *model deployment* concept in Azure AI Foundry resources (formerly known Azure AI Services). *Model deployments* are also Azure resources and, when created, they give access to a given model under certain configurations. Such configuration includes the infrastructure require to process the requests. 
 
-Azure AI model inference provides customers with choices on the hosting structure that fits their business and usage patterns. Those options are translated to different deployments types (or SKUs) that are available at model deployment time in the Azure AI Services resource.
+Azure AI Foundry Models provides customers with choices on the hosting structure that fits their business and usage patterns. Those options are translated to different deployments types (or SKUs) that are available at model deployment time in the Azure AI Foundry resource.
 
 :::image type="content" source="../media/add-model-deployments/models-deploy-deployment-type.png" alt-text="Screenshot showing how to customize the deployment type for a given model deployment." lightbox="../media/add-model-deployments/models-deploy-deployment-type.png":::
 
-Different model providers offer different deployments SKUs that you can select from. When selecting a deployment type, consider your **data residency needs** and **call volume/capacity** requirements.
+**Different model providers offer different deployments types** that you can select from. When selecting a deployment type, consider your **data residency needs** and **call volume/capacity** requirements.
 
-## Deployment types for Azure OpenAI models
 
-The service offers two main types of deployments: **standard** and **provisioned**. For a given deployment type, customers can align their workloads with their data processing requirements by choosing an Azure geography (`Standard` or `Provisioned-Managed`), Microsoft specified data zone (`DataZone-Standard` or `DataZone Provisioned-Managed`), or Global (`Global-Standard` or `Global Provisioned-Managed`) processing options.
+## Global standard
 
-To learn more about deployment options for Azure OpenAI models see [Azure OpenAI documentation](../../../ai-services/openai/how-to/deployment-types.md).
+> [!IMPORTANT]
+> Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure AI Foundry location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
-## Deployment types for Models-as-a-Service models
+**SKU name in code:** `GlobalStandard`
 
-Models with pay-as-you-go billing (collectively called Models-as-a-Service), makes models available in Azure AI model inference under **standard** deployments with a Global processing option (`Global-Standard`). 
+Global deployments are available in the same Azure AI Foundry resources as non-global deployment types but allow you to leverage Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request.  Global standard provides the highest default quota and eliminates the need to load balance across multiple resources.  
 
-> [!TIP]
-> Models-as-a-Service offers regional deployment options under [Serverless API endpoints](../../../ai-studio/how-to/deploy-models-serverless.md) in Azure AI Foundry. However, those deployments can't be accessed using the Azure AI model inference endpoint in Azure AI Services and they need to be created within a project.
+Customers with high consistent volume may experience greater latency variability. The threshold is set per model. See the [quotas page to learn more](./quota.md).  For applications that require the lower latency variance at large workload usage, we recommend purchasing provisioned throughput.
 
-### Global-Standard
+## Global provisioned
 
-Global deployments leverage Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request. Global standard provides the highest default quota and eliminates the need to load balance across multiple resources. Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure location. Learn more about [data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
+> [!IMPORTANT]
+> Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure AI Foundry location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
+
+**SKU name in code:** `GlobalProvisionedManaged`
+
+Global deployments are available in the same Azure AI Foundry resources as non-global deployment types but allow you to leverage Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request. Global provisioned deployments provide reserved model processing capacity for high and predictable throughput using Azure global infrastructure.  
+
+## Global batch
+
+> [!IMPORTANT]
+> Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure AI Foundry location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
+
+[Global batch](./batch.md) is designed to handle large-scale and high-volume processing tasks efficiently. Process asynchronous groups of requests with separate quota, with 24-hour target turnaround, at [50% less cost than global standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, rather than send one request at a time you send a large number of requests in a single file. Global batch requests have a separate enqueued token quota avoiding any disruption of your online workloads.  
+
+**SKU name in code:** `GlobalBatch`
+
+Key use cases include:
+
+* **Large-Scale Data Processing:** Quickly analyze extensive datasets in parallel.
+
+* **Content Generation:** Create large volumes of text, such as product descriptions or articles.
+
+* **Document Review and Summarization:** Automate the review and summarization of lengthy documents.
+
+* **Customer Support Automation:** Handle numerous queries simultaneously for faster responses.
+
+* **Data Extraction and Analysis:** Extract and analyze information from vast amounts of unstructured data.
+
+* **Natural Language Processing (NLP) Tasks:** Perform tasks like sentiment analysis or translation on large datasets.
+
+* **Marketing and Personalization:** Generate personalized content and recommendations at scale.
+
+## Data zone standard
+
+> [!IMPORTANT]
+> Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure AI Foundry location within the Microsoft specified data zone. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
+
+**SKU name in code:** `DataZoneStandard`
+
+Data zone standard deployments are available in the same Azure AI Foundry resource as all other AI Foundry Models deployment types but allow you to leverage Azure global infrastructure to dynamically route traffic to the data center within the Microsoft defined data zone with the best availability for each request. Data zone standard provides higher default quotas than our Azure geography-based deployment types. 
+
+Customers with high consistent volume may experience greater latency variability. The threshold is set per model. See the [Quotas and limits](/azure/ai-services/openai/quotas-limits#usage-tiers) page to learn more. For workloads that require low latency variance at large volume, we recommend leveraging the provisioned deployment offerings. 
+
+## Data zone provisioned
+
+> [!IMPORTANT]
+> Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure AI Foundry location within the Microsoft specified data zone.[Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
+
+**SKU name in code:** `DataZoneProvisionedManaged`
+
+Data zone provisioned deployments are available in the same Azure AI Foundry resource as all other AI Foundry Models deployment types but allow you to leverage Azure global infrastructure to dynamically route traffic to the data center within the Microsoft specified data zone with the best availability for each request. Data zone provisioned deployments provide reserved model processing capacity for high and predictable throughput using Azure infrastructure within the Microsoft specified data zone.  
+
+## Data zone batch
+
+> [!IMPORTANT]
+> Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure AI Foundry location within the Microsoft specified data zone. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
+ 
+**SKU name in code:** `DataZoneBatch`
+
+Data zone batch deployments provide all the same functionality as [global batch deployments](./batch.md) while allowing you to leverage Azure global infrastructure to dynamically route traffic to only data centers within the Microsoft defined data zone with the best availability for each request. 
+
+## Standard
+
+**SKU name in code:** `Standard`
+
+Standard deployments provide a pay-per-call billing model on the chosen model. Provides the fastest way to get started as you only pay for what you consume. Models available in each region as well as throughput may be limited.  
+
+Standard deployments are optimized for low to medium volume workloads with high burstiness. Customers with high consistent volume may experience greater latency variability.
+
+## Provisioned
+
+**SKU name in code:** `ProvisionedManaged`
+
+Provisioned deployments allow you to specify the amount of throughput you require in a deployment. The service then allocates the necessary model processing capacity and ensures it's ready for you. Throughput is defined in terms of provisioned throughput units (PTU) which is a normalized way of representing the throughput for your deployment. Each model-version pair requires different amounts of PTU to deploy and provide different amounts of throughput per PTU. Learn more from our [Provisioned throughput concepts article](../concepts/provisioned-throughput.md).
+
 
 ## Control deployment options
 
@@ -45,4 +118,4 @@ Administrators can control which model deployment types are available to their u
 ## Related content
 
 - [Quotas & limits](../quotas-limits.md)
-- [Data privacy, and security for Models-as-a-Service models](../../../ai-studio/how-to/concept-data-privacy.md)
+- [Data privacy, and security for Azure AI Foundry Models](concept-data-privacy.md)

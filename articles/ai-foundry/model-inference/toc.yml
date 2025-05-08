@@ -22,7 +22,7 @@ items:
       href: ./how-to/quickstart-create-resources.md
     - name: Upgrade from GitHub Models to Azure AI model inference
       href: ./how-to/quickstart-github-models.md 
-    - name: Configure AI projects to work with Azure AI model inference
+    - name: Configure AI projects to work with Azure AI Foundry Models
       href: ./how-to/quickstart-ai-project.md
 - name: Tutorials
   items:

@@ -1,7 +1,7 @@
 ---
-title: Model inference endpoint in Azure AI services
+title: Model inference endpoint in Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn about the model inference endpoint in Azure AI services
+description: Learn about the model inference endpoint in Azure AI Foundry Models
 author: santiagxf
 manager: nitinme
 ms.service: azure-ai-model-inference
@@ -11,15 +11,15 @@ ms.author: fasantia
 ms.custom: ignite-2024, github-universe-2024
 ---
 
-# Model inference endpoint in Azure AI Services
+# Model inference endpoint in Azure AI Foundry Models
 
-Azure AI model inference in Azure AI services allows customers to consume the most powerful models from flagship model providers using a single endpoint and credentials. This means that you can switch between models and consume them from your application without changing a single line of code.
+Azure AI Foundry Models allows customers to consume the most powerful models from flagship model providers using a single endpoint and credentials. This means that you can switch between models and consume them from your application without changing a single line of code.
 
 The article explains how models are organized inside of the service and how to use the inference endpoint to invoke them.
 
 ## Deployments
 
-Azure AI model inference makes models available using the **deployment** concept. **Deployments** are a way to give a model a name under certain configurations. Then, you can invoke such model configuration by indicating its name on your requests.
+Azure AI Foundry makes models available using the **deployment** concept. **Deployments** are a way to give a model a name under certain configurations. Then, you can invoke such model configuration by indicating its name on your requests.
 
 Deployments capture:
 
@@ -32,7 +32,7 @@ Deployments capture:
 
 <sup>1</sup> Configurations may vary depending on the selected model.
 
-An Azure AI services resource can have as many model deployments as needed and they don't incur in cost unless inference is performed for those models. Deployments are Azure resources and hence they're subject to Azure policies.
+An Azure AI Foundry resource can have as many model deployments as needed and they don't incur in cost unless inference is performed for those models. Deployments are Azure resources and hence they're subject to Azure policies.
 
 To learn more about how to create deployments see [Add and configure model deployments](../how-to/create-model-deployments.md).
 
