@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 03/12/2025
+ms.date: 05/08/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -37,7 +37,7 @@ To streamline workflows with your AI agent with capabilities to take actions. Th
 
 ## How does a tool work in the Foundry Agent Service?
 
-Tools are optional capabilities you can add to your AI agent for AI models to decide and pick based on the user query and context. When a user sends a query, the AI model identifies the intent with the context and potentially rewrite the user query. Then the AI model decides which tools to be called for each run. For example, if you add both the Grounding with Bing Search tool and the Azure AI Search tool to your agent and ask "*what is the weather in Seattle today?*", the model will identify your intent to ask about real-time information and more likely to invoke the Grounding with Bing Search tool.
+Tools are optional capabilities you can add to your AI agent for AI models to decide and pick based on the user query and context. When a user sends a query, the AI model identifies the intent with the context and potentially rewrites the user query. Then the AI model decides which tools to be called for each run. For example, if you add both the Grounding with Bing Search tool and the Azure AI Search tool to your agent and ask "*what is the weather in Seattle today?*", the model will identify your intent to ask about real-time information and more likely to invoke the Grounding with Bing Search tool.
 
 You can add tools at the agent, thread, or run level. By providing tools at a narrower level, the tool resources will **override** tool resources at a broader level. For example, tool resources at the run level override tool resources at thread level. Currently, you can add multiple tools but you can add **one instance of each** of the following tools: File Search, Azure AI Search, Grounding with Bing Search, Grounding with Bing Custom Search, Microsoft Fabric, and other tools under `knowledge` section. 
 
@@ -75,7 +75,7 @@ The following tools are authored by third-party partners. Use the links below to
 
 > [!IMPORTANT]
 > * Your use of connected non-Microsoft services is subject to the terms between you and the service provider. By connecting to a non-Microsoft service, you acknowledge that some of your data, such as prompt content, is passed to the non-Microsoft service, and/or your application might receive data from the non-Microsoft service. You're responsible for your use of non-Microsoft data. 
-> * Using tools from tool catalog might incur usage with tool providers, review the pricing plan with your selected tool providers. 
+> * Using tools might incur usage with tool providers, review the pricing plan with your selected tool providers. 
 
 |Tool  |Description  |
 |---------|---------|

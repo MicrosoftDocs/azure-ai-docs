@@ -27,7 +27,8 @@ To use all features of function calling including parallel functions, you need t
 ## Prerequisites
 
 * [Azure Functions Core Tools v4.x](/azure/azure-functions/functions-run-local)
-* [Azure AI Foundry Agent Service](../../../../ai-foundry/how-to/develop/sdk-overview.md?tabs=sync&pivots=programming-language-python#azure-ai-agent-service)
+* [A deployed agent with the standard setup](../../quickstart.md)
+    * The basic agent setup is not supported.
 * [Azurite](https://github.com/Azure/Azurite)
 
 ## Prepare your local environment
