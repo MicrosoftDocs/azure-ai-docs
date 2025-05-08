@@ -11,7 +11,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# How to run an evaluation in GitHub Action
+# How to run an evaluation in GitHub Action (preview)
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
