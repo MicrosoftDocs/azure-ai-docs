@@ -46,15 +46,21 @@ No installation is necessary to use the Azure AI Foundry portal.
     ```
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
 
+The scripts in this quickstart are also availble on [Github](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/mslearn-resources/quickstart).
+
 # [Java](#tab/java)
 
 1. [Install Java and Azure CLI](../how-to/develop/install-cli-sdk.md?tabs=java)
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
 
+The scripts in this quickstart are also availble on [Github](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart).
+
 # [JavaScript](#tab/javascript)
 
 1. [Install JavaScript and Azure CLI](../how-to/develop/install-cli-sdk.md?tabs=javascript)
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your JavaScript scripts.
+
+ The scripts in this quickstart are also availble on [Github](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/javascript/mslearn-resources/quickstart).
 
 # [C#](#tab/csharp)
 
@@ -64,6 +70,9 @@ No installation is necessary to use the Azure AI Foundry portal.
     [!INCLUDE [install-csharp-packages](install-csharp-packages.md)]
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
+
+ The scripts in this quickstart are also availble on [Github](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/csharp/mslearn-resources/quickstart).
+
 ---
 
 ## Create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] 
@@ -137,6 +146,8 @@ To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)]:
 
 # [JavaScript](#tab/javascript)
 
+:::code language="python" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="chat_completion":::
+
 
 # [C#](#tab/csharp)
 
@@ -162,10 +173,11 @@ To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)]:
 
 # [Java](#tab/java)
 
-:::code language="python" source="~/foundry-samples/samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" :::
+:::code language="python" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" :::
 
 # [JavaScript](#tab/javascript)
 
+:::code language="python" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="create_and_run_agent" :::
 
 # [C#](#tab/csharp)
 
@@ -194,11 +206,12 @@ Download [product_info_1.md]() to add to the agent.
 
 # [Java](#tab/java)
 
-:::code language="python" source="~/foundry-samples/samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/FileSearchAgentSample.java" :::
+:::code language="python" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/FileSearchAgentSample.java" :::
 
 
 # [JavaScript](#tab/javascript)
 
+:::code language="python" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js"  id="create_filesearch_agent":::
 
 # [C#](#tab/csharp)
 
