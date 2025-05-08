@@ -15,7 +15,7 @@ The `FoundryManager` class provides methods to manage models, cache, and the Fou
 #### Initialization
 
 ```js
-import { FoundryManager } from 'foundry-management-sdk'
+import FoundryManager from 'foundry-management-sdk'
 
 const manager = new FoundryManager()
 ```
@@ -68,7 +68,7 @@ const manager = new FoundryManager()
 ## Example Usage
 
 ```js
-import { FoundryManager } from 'foundry-management-sdk'
+import FoundryManager from 'foundry-management-sdk'
 
 const manager = new FoundryManager()
 
@@ -102,8 +102,12 @@ await manager.unloadModel('DeepSeek-R1-Distill-Qwen-1.5B')
 
 You can use the Foundry Local endpoint with an OpenAI-compatible API client. For example, using the `openai` package:
 
+
 ```js
-const { OpenAI } = require('openai')
+import OpenAI from 'openai';
+import FoundryManager from 'foundry-management-sdk'
+const manager = new FoundryManager()
+const modelInfo = await foundryManager.loadModel('DeepSeek-R1-Distill-Qwen-1.5B')
 
 const client = new OpenAI({
     apiKey: manager.apiKey,
@@ -111,15 +115,15 @@ const client = new OpenAI({
 })
 
 const completion = await client.chat.completions.create({
-    model: 'DeepSeek-R1-Distill-Qwen-1.5B',
-    messages: [{"role": "user", "content": "Solve x^2 + 5x + 6 = 0."}],
+    model: modelInfo.modelId,
+    messages: [{ role: 'user', content: 'Solve x^2 + 5x + 6 = 0.' }],
     max_tokens: 250,
     stream: true,
-});
+})
 for await (const chunk of completion) {
-    const textChunk = chunk.choices[0]?.delta?.content || "";
+    const textChunk = chunk.choices[0]?.delta?.content || ''
     if (textChunk) {
-        process.stdout.write(textChunk);
+        process.stdout.write(textChunk)
     }
 }
 ```
@@ -130,8 +134,9 @@ for await (const chunk of completion) {
 
 The SDK also provides a browser-compatible version. However, you must provide the service URL manually. You can use the `FoundryManager` class in the browser as follows:
 
+
 ```js
-import { FoundryManager } from 'foundry-local/browser'
+import FoundryManager from 'foundry-local/browser'
 
 const manager = new FoundryManager({ serviceUrl: 'http://localhost:8080' })
 
@@ -141,15 +146,15 @@ const manager = new FoundryManager({ serviceUrl: 'http://localhost:8080' })
 #### Example Usage
 
 ```js
-import { FoundryManager } from 'foundry-management-sdk'
+import FoundryManager from 'foundry-management-sdk'
 
-const manager = new FoundryManager()
+const manager = new FoundryManager({ serviceUrl: 'http://localhost:8080' })
 
 // List available models in the catalog
 const catalog = await manager.listCatalogModels()
 
 // Download and load a model
-await manager.downloadModel('DeepSeek-R1-Distill-Qwen-1.5B') 
+await manager.downloadModel('DeepSeek-R1-Distill-Qwen-1.5B')
 await manager.loadModel('DeepSeek-R1-Distill-Qwen-1.5B')
 
 // List models in cache
