@@ -15,7 +15,7 @@ ms.date: 05/05/2025
 
 # Tutorial: Index multimodal content using multimodal embedding and document layout skill
 
-Multimodal plays an essential role in Gen AI apps and the user experience as it enables the extraction of information not only from text but also from complex images embedded within documents. This tutorial shows how to use Azure AI Search to build a multi-modal retrieval pipeline by extract text from pages and inline images, store cropped images in the knowledge store and create vision/text embeddings into a unified semantic search index.
+Multimodal plays an essential role in Gen AI apps and the user experience as it enables the extraction of information not only from text but also from complex images embedded within documents. In this Azure AI Search tutorial, learn how to build a multimodal retrieval pipeline that chunks data based on document structure, and uses a multimodal embedding model to vectorize text and images in a searchable index.
 
 You’ll work with a 36-page PDF document that combines rich visual content—such as charts, infographics, and scanned pages—with traditional text. Using the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)(currently in public preview), you’ll extract both text and normalized images with its locationMetadata. Each modality is then embedded using the same [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), which generates dense vector representations suitable for semantic and hybrid search scenarios.
 
@@ -49,8 +49,7 @@ This tutorial shows you how to  index such data, using a REST client and the [Se
 
 + An [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) for image vectorization. Image vectorization requires Azure AI Vision multimodal embeddings. For an updated list of regions, see the [Azure AI Vision documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 
-+ [Azure AI Search](search-what-is-azure-search.md), with a managed identity. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription.  
-  > Your service must be on the Basic tier or higher—this tutorial is not supported on the Free tier. Additionally, it must be in the [same region as Azure AI services multi-service](search-create-service-portal.md#regions-with-the-most-overlap).
++ [Azure AI Search](search-what-is-azure-search.md), with a managed identity. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. Your service must be on the Basic tier or higher—this tutorial is not supported on the Free tier. Additionally, it must be in the [same region as Azure AI services multi-service](search-create-service-portal.md#regions-with-the-most-overlap).
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
@@ -71,21 +70,21 @@ Download the sample PDF below:
 
    1. For connections made using a system-assigned managed identity, provide a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. The connection string is similar to the following example:
 
-    ```json
-    "credentials" : { 
-        "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
-    }
-    ```
+        ```json
+        "credentials" : { 
+            "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
+        }
+        ```
    1. For connections made using a user-assigned managed identity. Provide a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. Provide an identity using the syntax shown in the following example. Set userAssignedIdentity to the user-assigned managed identity The connection string is similar to the following example:
 
-    ```json
-    "credentials" : { 
-        "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
-    },
-    "identity" : { 
-        "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
-        "userAssignedIdentity" : "/subscriptions/00000000-0000-0000-0000-00000000/resourcegroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.ManagedIdentity/userAssignedIdentities/MY-DEMO-USER-MANAGED-IDENTITY" 
-    }
+        ```json
+        "credentials" : { 
+            "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
+        },
+        "identity" : { 
+            "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
+            "userAssignedIdentity" : "/subscriptions/00000000-0000-0000-0000-00000000/resourcegroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.ManagedIdentity/userAssignedIdentities/MY-DEMO-USER-MANAGED-IDENTITY" 
+        }
     ```
 
 ### Copy a search service URL and API key
@@ -608,7 +607,7 @@ When you're working in your own subscription, at the end of a project, it's a go
 
 You can use the Azure portal to delete indexes, indexers, and data sources.
 
-## Next steps
+## See also
 
 Now that you're familiar with a sample implementation of a multimodal indexing scenario, check out
 + [AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md)

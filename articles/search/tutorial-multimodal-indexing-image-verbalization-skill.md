@@ -15,23 +15,24 @@ ms.date: 05/05/2025
 
 # Tutorial: Index multimodal content using image verbalization and document layout skill
 
-Multi-modality plays an essential role in Gen AI apps and the user experience as it enables the extraction of information not only from text but also from complex images embedded within documents. This tutorial shows how to use Azure AI Search to build a multi-modal retrieval pipeline by extract text from pages and inline images, store cropped images in the knowledge store, describing visual content in natural language and embedding it alongside document text.
+Multi-modality plays an essential role in Gen AI apps and the user experience as it enables the extraction of information not only from text but also from complex images embedded within documents. "In this Azure AI Search tutorial, learn how to build a multimodal retrieval pipeline that that chunks data based on document structure, and =uses image verbalization to describe images. Cropped images are stored in a knowledge store, and visual content is described in natural language and ingested alongside text in a searchable index.
 
 You’ll work with a 36-page PDF document that combines rich visual content—such as charts, infographics, and scanned pages—with traditional text. Using the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)(currently in public preview), you’ll extract both text and normalized images with its locationMetadata. Each image is passed to the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) (currently in public preview) to generate a concise textual description. These descriptions, along with the original document text, are then embedded into vector representations using Azure OpenAI’s text-embedding-3-large model. The result is a single index containing semantically searchable content from both modalities—text and verbalized images.
 
 You'll use:
 
 + The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) for extracting text and normalized images.
-+ The [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) to generate image captions—text-based descriptions of visual content—for search and grounding.
++ The [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) to generate image captions — text-based descriptions of visual content — for search and grounding.
 + Vectorization using the [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), which generates embeddings from both text and images. The same skill is used for both modalities, with text inputs processed into embeddings for semantic search, and images processed into vector representations using Azure AI Vision models.
 + A search index configured to store text and image embeddings and support vector-based similarity search.
 
 This tutorial demonstrates a solution for indexing multi-modal content using Document Layout skill. Document Layout skill
 enables extraction both text and image with its locational metadata from various documents, such as page numbers or bounding regions. However, [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited region availability and is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day
 
-For a lower-cost solution that indexing multi-modal content, see [Index multimodal content using embedding and document extraction skill](https://aka.ms/azs-multimodal).
+For a lower-cost solution that indexing multi-modal content, see [Index multimodal content using image verbalization and document extraction skill](https://aka.ms/azs-multimodal).
 
-Note: setting `imageAction` to `generateNormalizedImages` as is required for this tutorial will incur an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
+> [!NOTE]
+> Setting `imageAction` to `generateNormalizedImages` as is required for this tutorial will incur an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
 
 Using a REST client and the [Search REST APIs](/rest/api/searchservice/) you will:
 
@@ -48,8 +49,7 @@ Using a REST client and the [Search REST APIs](/rest/api/searchservice/) you wil
 
 + [Azure Storage](/azure/storage/common/storage-account-create).
 
-+ [Azure AI Search](search-what-is-azure-search.md). [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription.
-  > Your service must be on the Basic tier or higher—this tutorial is not supported on the Free tier. Additionally, ensure your service is deployed in a [supported region for AI Vision](/azure/ai-services/computer-vision/overview-image-analysis#region-availability)
++ [Azure AI Search](search-what-is-azure-search.md). [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. Your service must be on the Basic tier or higher—this tutorial is not supported on the Free tier. Additionally, ensure your service is deployed in a [supported region for AI Vision](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
@@ -69,22 +69,22 @@ Download the sample PDF below:
 
    1. For connections made using a system-assigned managed identity. Provide a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. The connection string is similar to the following example:
 
-    ```json
-    "credentials" : { 
-        "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
-    }
-    ```
+        ```json
+        "credentials" : { 
+            "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
+        }
+        ```
    1. For connections made using a user-assigned managed identity. Provide a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. Provide an identity using the syntax shown in the following example. Set userAssignedIdentity to the user-assigned managed identity The connection string is similar to the following example:
-
-    ```json
-    "credentials" : { 
-        "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
-    },
-    "identity" : { 
-        "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
-        "userAssignedIdentity" : "/subscriptions/00000000-0000-0000-0000-00000000/resourcegroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.ManagedIdentity/userAssignedIdentities/MY-DEMO-USER-MANAGED-IDENTITY" 
-    }
-    ```
+    
+        ```json
+        "credentials" : { 
+            "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
+        },
+        "identity" : { 
+            "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
+            "userAssignedIdentity" : "/subscriptions/00000000-0000-0000-0000-00000000/resourcegroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.ManagedIdentity/userAssignedIdentities/MY-DEMO-USER-MANAGED-IDENTITY" 
+        }
+        ```
 
 ### Copy a search service URL and API key
 
@@ -656,10 +656,9 @@ When you're working in your own subscription, at the end of a project, it's a go
 
 You can use the Azure portal to delete indexes, indexers, and data sources.
 
-## Next steps
+## See also
 
 Now that you're familiar with a sample implementation of a multimodal indexing scenario, check out
-
 + [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
 + [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)
 + [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md)
