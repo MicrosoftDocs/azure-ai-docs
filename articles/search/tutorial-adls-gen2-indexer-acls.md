@@ -68,7 +68,11 @@ As a best practice, use [`Group` sets](search-indexer-access-control-lists-and-r
 
 1. Grant per-group or user permissions in the file hierarchy. In the file hierarchy, identify all `Group` and `User` sets that are assigned to containers, directories, and files. 
 
-   You can use the Azure portal for this step. In Storage Browser, select the Oregon directory and then select **Manage ACL** from the context menu to add security principals.
+1. You can use the Azure portal to manage ACLs. In Storage Browser, select the Oregon directory and then select **Manage ACL** from the context menu.
+
+1. Add new security principals for users and groups.
+
+1. Remove existing principals for owning groups, owning users, and other.  These principals aren't supported for ACL indexing during the public preview.
 
 ## Create a search index for permission metadata
 
