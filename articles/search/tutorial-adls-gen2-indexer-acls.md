@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how to index Access Control Lists (ACLs) and Azure Role-Based Access Control (RBAC) scope from ADLS Gen2 and query with permission-filtered results in Azure AI Search.
 ms.service: azure-ai-search  
 ms.topic: tutorial  
-ms.date: 04/30/2025
+ms.date: 05/08/2025
 author: wlifuture
 ms.author: wli
 ---  
@@ -26,11 +26,13 @@ In this tutorial, you learn how to:
 > + Create and run an indexer to ingest permission information into an index from a data source
 > + Search the index you just created
 
+You need a REST client to complete this tutorial. There's no currently no support for ACL indexing in the Azure portal.
+
 ## Prerequisites
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-+ Microsoft Entra ID authentication and authorization. Services and apps must be in the same tenant. Role assignments are used for each authenticated connection.
++ Microsoft Entra ID authentication and authorization. Services and apps must be in the same tenant. Role assignments are used for each authenticated connection. Users and groups must be in the same tenant. You should have user and groups to work with. Creating tenants and security principals is out-of-scope for this tutorial.
 
 + [ADLS Gen2](/azure/storage/blobs/create-data-lake-storage-account) with a hierarchical namespace.
 
@@ -42,7 +44,7 @@ In this tutorial, you learn how to:
 
 ## Prepare sample data
 
-Upload this [sample data](https://github.com/Azure-Samples/azure-search-sample-data) to a container in ADLS Gen2.
+Upload the [state parks sample data](https://github.com/Azure-Samples/azure-search-sample-data/state-parks) to a container in ADLS Gen2. The container name should be "parks" and it should have two folders: "Oregon" and "Washington".
 
 ## Check search service configuration
 
@@ -60,30 +62,67 @@ This tutorial assumes a REST client on a local system, connecting to Azure over 
 
 ## Set permissions in ADLS Gen2
 
-1. Set permissions on the storage account to ensure the search service identity has **Storage Blob Data Reader** permissions. The indexer needs this permission to retrieve data.
+As a best practice, use [`Group` sets](search-indexer-access-control-lists-and-role-based-access.md#recommendations-and-best-practices) rather than directly assigning `User` sets.
 
-1. In the file hierarchy, identify all `Group` and `User` sets that are assigned to containers, directories, and files.
-  
-  [Follow the recommendations to use groups as much as possible](search-indexer-access-control-lists-and-role-based-access.md#recommendations-and-best-practices) for using `Group` sets as much as possible, rather than directly assigning `User` sets.
+1. Grant the search service identity read access to the container. The indexer connects to Azure Storage under the search service identity. The search service must have **Storage Blob Data Reader** permissions to retrieve data.
 
-<!-- We need an actual index that has everything necessary for creating a queryable index. -->
+1. Grant per-group or user permissions in the file hierarchy. In the file hierarchy, identify all `Group` and `User` sets that are assigned to containers, directories, and files. 
+
+1. You can use the Azure portal to manage ACLs. In Storage Browser, select the Oregon directory and then select **Manage ACL** from the context menu.
+
+1. Add new security principals for users and groups.
+
+1. Remove existing principals for owning groups, owning users, and other.  These principals aren't supported for ACL indexing during the public preview.
+
 ## Create a search index for permission metadata
 
 [Create an index](search-how-to-create-search-index.md#create-an-index) that contains fields for content and [permission metadata](search-indexer-access-control-lists-and-role-based-access.md#create-permission-fields-in-the-index).
 
 Be sure to use [2025-05-01-preview data plane REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) or a prerelease Azure SDK that provides equivalent functionality. The permission filter properties are only available in the preview APIs.
 
-> [!NOTE]
-> For demo purposes, the permission field has `retrievable` enabled so that you can check the values from the index. In a production environment, you should disable `retrievable` to avoid leaking sensitive information.
+For demo purposes, the permission field has `retrievable` enabled so that you can check the values from the index. In a production environment, you should disable `retrievable` to avoid leaking sensitive information.
 
 ```json
 {
   "name" : "my-adlsgen2-acl-index",
   "fields": [
-    ...
-    { "name": "UserIds", "type": "Collection(Edm.String)", "permissionFilter": "userIds", "filterable": true, "retrievable": true },
-    { "name": "GroupIds", "type": "Collection(Edm.String)", "permissionFilter": "groupIds", "filterable": true, "retrievable": true },
-    { "name": "RbacScope", "type": "Edm.String", "permissionFilter": "rbacScope", "filterable": true, "retrievable": true }
+    {
+      "name": "name", "type": "Edm.String",
+      "searchable": true, "filterable": false, "retrievable": true
+    },
+    {
+      "name": "description", "type": "Edm.String",
+      "searchable": true, "filterable": false, "retrievable": true    
+    },
+    {
+      "name": "location", "type": "Edm.String",
+      "searchable": true, "filterable": false, "retrievable": true
+    },
+    {
+      "name": "state", "type": "Edm.String",
+      "searchable": true, "filterable": false, "retrievable": true
+    },
+    {
+      "name": "AzureSearch_DocumentKey", "type": "Edm.String",
+      "searchable": true, "filterable": false, "retrievable": true
+      "stored": true,
+      "key": true
+    },
+    { 
+      "name": "UserIds", "type": "Collection(Edm.String)", 
+      "permissionFilter": "userIds", 
+      "searchable": true, "filterable": false, "retrievable": true
+    },
+    { 
+      "name": "GroupIds", "type": "Collection(Edm.String)", 
+      "permissionFilter": "groupIds", 
+      "searchable": true, "filterable": false, "retrievable": true
+    },
+    { 
+      "name": "RbacScope", "type": "Edm.String", 
+      "permissionFilter": "rbacScope", 
+      "searchable": true, "filterable": false, "retrievable": true
+    }
   ],
   "permissionFilterOption": "enabled"
 }
@@ -97,20 +136,20 @@ A data source needs `indexerPermissionOptions`.
 
 In this tutorial, use a system-assigned managed identity for the authenticated connection.
 
-  ```json
-  {
-      "name" : "my-adlsgen2-acl-datasource",
-      "type": "adlsgen2",
-      "indexerPermissionOptions": ["userIds", "groupIds", "rbacScope"],
-      "credentials": {
-      "connectionString": "ResourceId=/subscriptions/<your subscription ID>/resourceGroups/<your resource group name>/providers/Microsoft.Storage/storageAccounts/<your storage account name>/;"
-      },
-      "container": {
-      "name": "<your container name>",
-      "query": "<optional-virtual-directory-name>"
-      }
-  }
-  ```
+```json
+{
+    "name" : "my-adlsgen2-acl-datasource",
+    "type": "adlsgen2",
+    "indexerPermissionOptions": ["userIds", "groupIds", "rbacScope"],
+    "credentials": {
+    "connectionString": "ResourceId=/subscriptions/<your subscription ID>/resourceGroups/<your resource group name>/providers/Microsoft.Storage/storageAccounts/<your storage account name>/;"
+    },
+    "container": {
+    "name": "parks",
+    "query": null
+    }
+}
+```
 
 ## Create and run the indexer
 
@@ -122,13 +161,22 @@ Indexer configuration for permission ingestion is primarily about defining `fiel
   "dataSourceName" : "my-adlsgen2-acl-datasource",
   "targetIndexName" : "my-adlsgen2-acl-index",
   "parameters": {
-    ...
-  }
+    "batchSize": null,
+    "maxFailedItems": 0,
+    "maxFailedItemsPerBatch": 0,
+    "configuration": {
+      "dataToExtract": "contentAndMetadata",
+      "parsingMode": "delimitedText",
+      "firstLineContainsHeaders": true,
+      "delimitedTextDelimiter": ",",
+      "delimitedTextHeaders": ""
+      },
   "fieldMappings": [
     { "sourceFieldName": "metadata_user_ids", "targetFieldName": "UserIds" },
     { "sourceFieldName": "metadata_group_ids", "targetFieldName": "GroupIds" },
     { "sourceFieldName": "metadata_rbac_scope", "targetFieldName": "RbacScope" }
-  ]
+    ]
+  }
 }
 ```
 
