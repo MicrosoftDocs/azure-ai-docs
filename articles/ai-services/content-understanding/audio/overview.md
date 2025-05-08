@@ -32,7 +32,7 @@ Here are common scenarios for using Content Understanding with conversational au
 
 :::image type="content" source="../media/audio/overview/workflow-diagram.png" lightbox="../media/audio/overview/workflow-diagram.png" alt-text="Illustration of Content Understanding audio workflow.":::
 
-Content Understanding serves as a cornerstone for Media Asset Management solutions, enabling the following capabilities for audio files:
+Content Understanding serves as a cornerstone for Speech Analytics solutions, enabling the following capabilities for audio files:
   
 ### Content extraction
 
@@ -52,6 +52,11 @@ Content Understanding serves as a cornerstone for Media Asset Management solutio
 > The following locales are currently supported:
 > **Files ≤ 300 MB and/or ≤ 2 hours**: de-DE, en-AU, en-CA, en-GB, en-IN, en-US, es-ES, es-MX, fr-CA, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, and zh-CN.
 > **Files larger than 300 MB and/or longer than 4 hours**: en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, zh-CN.
+
+> [!WARNING]
+> When Multilingual transcription is used, a file with an unsupported locale will still produce a result. This result will be based on the closest locale but most likely not correct.
+> This is a know behavior. Please make sure to configure locales when not using Multilingual transcription!
+
 
 * **Language detection**. Automatically detects the dominant language/locale which is used to transcribe the file. Set multiple languages/locales to enable language detection.
 
