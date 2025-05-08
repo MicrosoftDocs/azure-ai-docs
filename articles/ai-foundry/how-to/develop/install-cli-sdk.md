@@ -36,7 +36,7 @@ In the IDE of your choice, create a new folder for your project. Open a terminal
 
 # [JavaScript](#tab/javascript)
 
-Install Javascript.
+Install [Node.js](https://nodejs.org/)
 
 # [C#](#tab/csharp)
 
