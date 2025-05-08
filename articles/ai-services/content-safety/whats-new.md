@@ -15,13 +15,6 @@ ms.author: pafarley
 
 Learn what's new in the service. These items might be release notes, videos, blog posts, and other types of information. Bookmark this page to stay up to date with new features, enhancements, fixes, and documentation updates.
 
-## May 2025
-
-### Custom categories TBD
-
-### PII protection TBD
-
-### Prompt shields spotlighting TBD
 
 ## October 2024
 
