@@ -39,37 +39,40 @@ To get started, you need **An Active Azure Subscription**. If you don't have an 
 Analyzers define how your content will be processed and the insights that will be extracted. We offer [pre-built analyzers](link to pre-built analyzer page) for common use cases. You can [customize pre-built analyzers](link to learn how to customize analyzers) to better fit your specific needs and use cases. 
 This quickstart uses pre-built document, image, audio, and video analyzers to help you get started. 
 
-Before running the cURL command, make the following changes to the HTTP request:
+
+
+### Send File for Analysis
 #### POST Request
+
 ```bash
 curl -i -X POST "{endpoint}/analyzers/{analyzerId}:analyze?api-version=2025-05-01-preview" \
   -H "Ocp-Apim-Subscription-Key: {key}" \
   -H "Content-Type: application/json" \
   -d "{\"url\":\"{fileUrl}\"}"
 ```
-
+Before running the cURL command, make the following changes to the HTTP request:
 # [Document](#tab/document)
 
 1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal.
-2. Replace `{analyzerId}` with  `prebuilt-documentAnalyzer`.
+2. Replace `{analyzerId}` with  `prebuilt-documentAnalyzer`. This analyzer extracts text and layout elements such as paragraphs, sections, and tables from a document.. 
 3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf`.
 
 # [Image](#tab/image)
 
 1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal.
-2. Replace `{analyzerId}` with  `prebuilt-imageAnalyzer`.
+2. Replace `{analyzerId}` with  `prebuilt-imageAnalyzer`. This analyzer generates a description of the image.
 3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/pieChart.jpg`.
 
 # [Audio](#tab/audio)
 
 1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal.
-2. Replace `{analyzerId}` with  `prebuilt-audioAnalyzer`.
+2. Replace `{analyzerId}` with  `prebuilt-audioAnalyzer`. This analyzer extracts the audio transcript, generates a summary, and performs speaker labeling.
 3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/audio.wav`.
 
 # [Video](#tab/video)
 
 1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal.
-2. Replace `{analyzerId}` with  `prebuilt-videoAnalyzer`.
+2. Replace `{analyzerId}` with  `prebuilt-videoAnalyzer`. This analyzer extracts keyframes, transcript, and chapter segments from video. 
 3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/FlightSimulator.mp4`.
 ---
 
