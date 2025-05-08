@@ -11,7 +11,7 @@ ms.date: 05/08/2025
 
 In this quickstart, you use [agentic retrieval](../../search-agentic-retrieval-concept.md) to create a conversational search experience powered by large language models (LLMs) and your proprietary data. Agentic retrieval breaks down complex user queries into subqueries, runs the subqueries in parallel, and extracts grounding data from documents indexed in Azure AI Search. The output is intended for integration with custom chat solutions.
 
-Although you can provide your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents describe the urban structures and lighting patterns of Phoenix, Arizona as observed from space.
+Although you can provide your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents describe general science topics and images of Earth at night as observed from space.
 
 > [!TIP]
 > The REST version of this quickstart introduces agentic retrieval in Azure AI Search, which *extracts* rather than *generates* answers. For an end-to-end workflow, including steps for adding conversational turns and passing your retrieved content to an LLM for answer generation, see the Python version.
@@ -28,9 +28,15 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 ## Deploy models
 
-To run agentic retrieval, you must deploy two models to your Azure OpenAI resource: an LLM for query planning and an embedding model for vector queries.
+To run agentic retrieval, you must deploy three models to your Azure OpenAI resource:
 
-Agentic retrieval supports several models, but this quickstart assumes `gpt-4o-mini` for the LLM and `text-embedding-3-large` for the embedding model.
++ An LLM for query planning.
+
++ An LLM for answer generation.
+
++ (Optional) An embedding model for vector queries.
+
+Agentic retrieval [supports several models](../../search-agentic-retrieval-how-to-create.md#supported-models), but this quickstart assumes `gpt-4o-mini` for the query-planning LLM and `text-embedding-3-large` for the embedding model. To use the answer-generating LLM, which is excluded from the REST version of this quickstart, see the Python version.
 
 To deploy the Azure OpenAI models:
 
@@ -48,23 +54,6 @@ To deploy the Azure OpenAI models:
 
    > [!NOTE]
    > To simplify your code, don't use a custom deployment name for either model. This quickstart assumes the deployment and model names are the same.
-
-<!--
-### Supported models
-
-Agentic retrieval supports the following Azure OpenAI models:
-
-+ `gpt-4o`
-+ `gpt-4o-mini`
-+ `gpt-4.1`
-+ `gpt-4.1-nano`
-+ `gpt-4.1-mini`
-
-| Model type | Description | Supported models |
-| -- | -- | -- |
-| Chat model | XYZ | `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-nano`, and `gpt-4.1-mini` |
-| Embedding model | XYZ | `text-embedding-ada-002`, `text-embedding-3-small`, and `text-embedding-3-large` |
--->
 
 ## Configure role-based access
 
@@ -251,8 +240,8 @@ The index schema contains fields for document identification and page content, e
 > [!IMPORTANT]
 > Agentic retrieval has two token-based billing models:
 >
-> + Billing from Azure OpenAI for query planning
-> + Billing from Azure AI Search for query execution (semantic ranking)
+> + Billing from Azure OpenAI for query planning.
+> + Billing from Azure AI Search for query execution (semantic ranking).
 >
 > Semantic ranking is free in the initial public preview. After the preview, standard token billing applies. For more information, see [Availability and pricing of agentic retrieval](../../search-agentic-retrieval-concept.md#availability-and-pricing).
 
