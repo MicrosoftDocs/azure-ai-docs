@@ -1,7 +1,7 @@
 ---
-title: How to use the Azure AI model inference endpoint to consume models
+title: How to use the Azure AI Foundry Models inference endpoint to consume models
 titleSuffix: Azure AI Foundry
-description: Learn how to use the Azure AI model inference endpoint to consume models
+description: Learn how to use the Azure AI Foundry Models inference endpoint to consume models
 manager: scottpolly
 author: msakande
 reviewer: santiagxf
@@ -12,9 +12,9 @@ ms.author: mopeakande
 ms.reviewer: fasantia
 ---
 
-# Use the Azure AI model inference endpoint to consume models
+# Use the Azure AI Foundry Models inference endpoints
 
-Azure AI model inference in Azure AI services allows customers to consume the most powerful models from flagship model providers using a single endpoint and credentials. This means that you can switch between models and consume them from your application without changing a single line of code.
+Azure AI Foundry Models allows customers to consume the most powerful models from flagship model providers using a single endpoint and credentials. This means that you can switch between models and consume them from your application without changing a single line of code.
 
 This article explains how to use the inference endpoint to invoke them.
 
@@ -50,7 +50,7 @@ If you specify a model name that doesn't match any given model deployment, you g
 
 ## Key-less authentication
 
-Models deployed to Azure AI model inference in Azure AI Services support key-less authorization using Microsoft Entra ID. Key-less authorization enhances security, simplifies the user experience, reduces operational complexity, and provides robust compliance support for modern development. It makes it a strong choice for organizations adopting secure and scalable identity management solutions.
+Models deployed to Azure AI Foundry Models in Azure AI Services support key-less authorization using Microsoft Entra ID. Key-less authorization enhances security, simplifies the user experience, reduces operational complexity, and provides robust compliance support for modern development. It makes it a strong choice for organizations adopting secure and scalable identity management solutions.
 
 To use key-less authentication, [configure your resource and grant access to users](configure-entra-id.md) to perform inference. Once configured, then you can authenticate as follows:
 
