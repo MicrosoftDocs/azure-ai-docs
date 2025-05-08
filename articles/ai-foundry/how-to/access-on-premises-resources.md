@@ -26,8 +26,6 @@ To access on-premises or custom virtual network resources from the managed virtu
 
 ## Prerequisites
 
-[!INCLUDE [azure-ai-foundry-managed-network](../includes/uses-hub-only.md)]
-
 - Read the [How an application gateway works](/azure/application-gateway/how-application-gateway-works) article to understand how the Application Gateway can secure the connection to your non-Azure resources. 
 - Set up your Azure AI Foundry hub's managed virtual network and select your isolation mode, either Allow Internet Outbound or Allow Only Approved Outbound. For more information, see [Managed virtual network isolation](configure-managed-network.md).
 - Get the private HTTP(S) endpoint of the resource to access.
