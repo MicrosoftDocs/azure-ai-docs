@@ -43,24 +43,30 @@ The Azure AI Foundry Projects client library is a unified library that enables y
 To install the project client library:
 
 # [C++](#tab/cpp)
+
 Install info
 
-[C#](#tab/csharp)
+# [C#](#tab/csharp)
+
 Install info
 
-[Go](#tab/go)
+# [Go](#tab/go)
+
 Install info
 
-[Java](#tab/java)
+# [Java](#tab/java)
+
 Install info
 
-[JavaScript](#tab/javascript)
+# [JavaScript](#tab/javascript)
+
 Install info
 
-[Objective-C](#tab/objectivec)
+# [Objective-C](#tab/objectivec)
+
 Install info
 
-[Python](#tab/python)
+# [Python](#tab/python)
 
 ```bash
 pip install azure-ai-projects azure-ai-identity
@@ -74,21 +80,27 @@ Install info
 Create a project client in code:
 
 # [C++](#tab/cpp)
+
 Client info
 
 # [C#](#tab/csharp)
+
 Client info
 
 # [Go](#tab/go)
+
 Client info
 
 # [Java](#tab/java)
+
 Client info
 
 # [JavaScript](#tab/javascript)
+
 Client info
 
 # [Objective-C](#tab/objectivec)
+
 Client info
 
 # [Python](#tab/python)
