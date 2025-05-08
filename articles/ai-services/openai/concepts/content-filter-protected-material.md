@@ -6,9 +6,11 @@ ms.author: pafarley
 ms.date: 05/08/2025
 ms.topic: conceptual
 ms.service: azure-ai-openai
-ms.subservice: openai
 ---
 
+# Protected material detection filter
+
+The Protected material detection filter scans the output of large language models (LLMs) to identify and flag known protected material. This feature is designed to help organizations prevent the generation of content that closely matches copyrighted text or code.
 
 The Protected material detection filter scans the output of large language models to identify and flag known protected material. It is designed to help organizations prevent the generation of content that closely matches copyrighted text or code.
 
