@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 03/12/2025
+ms.date: 05/08/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -75,7 +75,7 @@ The following tools are authored by third-party partners. Use the links below to
 
 > [!IMPORTANT]
 > * Your use of connected non-Microsoft services is subject to the terms between you and the service provider. By connecting to a non-Microsoft service, you acknowledge that some of your data, such as prompt content, is passed to the non-Microsoft service, and/or your application might receive data from the non-Microsoft service. You're responsible for your use of non-Microsoft data. 
-> * Using tools from tool catalog might incur usage with tool providers, review the pricing plan with your selected tool providers. 
+> * Using tools might incur usage with tool providers, review the pricing plan with your selected tool providers. 
 
 |Tool  |Description  |
 |---------|---------|
