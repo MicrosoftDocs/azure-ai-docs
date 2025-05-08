@@ -74,6 +74,7 @@ huggingface-cli login
 
 Run the Olive `auto-opt` command to download, convert to ONNX, quantize, and optimize the model:
 
+
 ### [Bash](#tab/Bash)
 
 ```bash
@@ -118,7 +119,9 @@ The command uses the following parameters:
 | `precision`          | Model precision: `fp16`, `fp32`, `int4`, or `int8`                         |
 | `use_ort_genai`      | Creates inference configuration files                                      |
 
-You can substitute any model from Hugging Face or a local path - Olive handles the conversion, optimization, and quantization automatically.
+
+> [!TIP]
+> If you have a local copy of the model, you can use a local path instead of the Hugging Face ID. For example, `--model_name_or_path models/llama-3.2-1B-Instruct`. Olive handles the conversion, optimization, and quantization automatically.
 
 ### Step 2: Rename the output model
 

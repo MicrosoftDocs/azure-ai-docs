@@ -2,7 +2,7 @@ items:
 - name: Foundry Local documentation
   href: index.yml
 - name: What is Foundry Local?
-  href: what-is-ai-foundry-local.md
+  href: what-is-foundry-local.md
 - name: Get Started
   href: get-started.md
 - name: Concepts
@@ -17,8 +17,6 @@ items:
     href: how-to/integrate-with-inference-sdks.md
   - name: Run Hugging Face models on Foundry Local
     href: how-to/huggingface-models-for-foundry-local.
-  - name: Run Custom models on Foundry Local
-    href: how-to/custom-models-for-foundry-local.md
   - name: Manage Foundry Local
     href: how-to/manage.md
 - name: Tutorials
@@ -33,6 +31,8 @@ items:
   items:
   - name: Foundry Local CLI
     href: reference/reference-cli.md
+  - name: Foundry Local SDK
+    href: reference/reference-sdk.md
   - name: REST API
     href: reference/reference-rest.md
   - name: Catalog API

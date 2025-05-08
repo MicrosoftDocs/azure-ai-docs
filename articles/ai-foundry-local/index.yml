@@ -20,12 +20,12 @@ landingContent:
 # Cards and links should be based on top customer tasks or top subjects
 # Start card title with a verb
   # Card
-  - title: About Foundry Local
+  - title: Learn About Foundry Local
     linkLists:
       - linkListType: overview
         links:
-          - text: What is Azure AI Foundry?
-            url: what-is-ai-foundry-local.md
+          - text: What is Foundry Local?
+            url: what-is-foundry-local.md
       - linkListType: concept
         links:
           - text: Foundry Local Architecture
@@ -36,17 +36,30 @@ landingContent:
     linkLists:   
       - linkListType: quickstart
         links:
-          - text: Get started with Foundry Local
+          - text: Get started with AI Foundry Local
             url: get-started.md
 
       - linkListType: how-to-guide
         links:
           - text: Integrate with Inferencing SDKs
             url: how-to/integrate-with-inference-sdks.md
-          - text: Compile Hugging Face models for Foundry Local
-            url: how-to/compile-models-for-foundry-local.md
+          - text: Run Hugging Face models on Foundry Local
+            url: how-to/huggingface-models-for-foundry-local.md
           - text: Manage Foundry Local
             url: how-to/manage.md
+  # Card
+  - title: Reference
+    linkLists:
+      - linkListType: reference
+        links:
+          - text: CLI reference
+            url: reference/reference-cli.md
+          - text: SDK reference
+            url: reference/reference-sdk.md
+          - text: REST reference
+            url: reference/reference-rest.md
+          - text: Catalog API reference
+            url: reference/reference-catalog-api.md
   
   # Card
   - title: Explore more AI resources
