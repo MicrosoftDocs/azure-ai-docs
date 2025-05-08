@@ -1,21 +1,21 @@
 ---
-title: Continuously Evaluate your Generative AI agent application
+title: Continuously Evaluate your AI agents
 titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to continuously evaluate Generative AI agent application.
+description: This article provides instructions on how to continuously evaluate AI agents.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 01/16/2025
+ms.date: 05/19/2025
 ms.reviewer: amibp
 ms.author: lagayhar  
 author: lgayhardt
 ---
 
-# Continuously evaluate your agent application
+# Continuously evaluate your AI agents
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Continuous evaluations enable near-real-time monitoring of your agent's performance, helping you identify and troubleshoot issues early.
+Continuous evaluation for Agents provides near real-time observability and monitoring for your AI application. Once enabled, this feature continuously evaluates agent interactions at a set sampling rate to provide insights into quality, safety and performance with metrics surfaced in the Foundry Observability dashboard. By leveraging continuous evaluation, you will be able to identify and troubleshoot issues early, optimize agent performance, and maintain safety. Evaluations are also connected to [traces](./develop/trace-local-sdk.md) to enable detailed debugging and root cause analysis.
 
 ## Getting Started
 
@@ -109,12 +109,72 @@ project.evaluation.create_agent_evaluation(
 ### Get the evaluation result using Application Insights
 
 ```python
+from azure.core.exceptions import HttpResponseError  
 
+from azure.identity import DefaultAzureCredential  
+
+from azure.monitor.query import LogsQueryClient, LogsQueryStatus import pandas as pd 
+
+credential = DefaultAzureCredential() client = LogsQueryClient(credential) 
+
+query = "traces 
+
+| where customDimensions["event.name"] startswith "gen_ai.evaluation" and customDimensions["event.name"] != "gen_ai.evaluation.user_feedback" 
+
+| where ('*' in (application) or array_length(application) == 0 or cloud_RoleName in (application)) and timestamp {TimeRange}  // Replace {TimeRange} with your specific time filter 
+
+| where customDimensions.["gen_ai.response.id"] in (response_ids) 
+
+| project metric = extract("gen_ai\\.evaluation\\.(.*)", 1, tostring(customDimensions["event.name"])), score = toint(customDimensions["gen_ai.evaluation.score"]) 
+
+| summarize TotalScores = count(), ScoresInTotal = sum(score) by tostring(metric) 
+
+| extend Percentage = round(todouble(ScoresInTotal) / (TotalScores * 5) * 100) 
+
+| join kind=inner ( 
+
+traces 
+
+| where customDimensions["event.name"] startswith "gen_ai.evaluation" and customDimensions["event.name"] != "gen_ai.evaluation.user_feedback" 
+
+| where ('*' in (application) or array_length(application) == 0 or cloud_RoleName in (application)) and timestamp {TimeRange}  // Replace {TimeRange} with your specific time filter 
+
+| where customDimensions.["gen_ai.response.id"] in (response_ids) 
+
+| project metric = extract("gen_ai\\.evaluation\\.(.*)", 1, tostring(customDimensions["event.name"])), score = toint(customDimensions["gen_ai.evaluation.score"]), timestamp 
+
+| summarize TotalScores = count(), ScoresInTotal = sum(score) by tostring(metric), bin(timestamp,1d) 
+
+| extend Percentage = round(todouble(ScoresInTotal) / (TotalScores * 5) * 100) 
+
+| summarize  
+
+    initial_metric_percentage = todouble(arg_min(timestamp, Percentage).[1]),  
+
+    final_metric_exception = todouble(arg_max(timestamp, Percentage).[1]) 
+
+    by metric 
+
+) on metric 
+
+| extend PercentageChange = round(todouble(initial_metric_percentage - final_metric_exception)) 
+
+| project metric=strcat(toupper(substring(metric, 0, 1)), substring(metric, 1)),initial_metric_percentage,final_metric_exception, Percentage,PercentageChange " 
+
+try: response = client.query_workspace(os.environ["LOGS_WORKSPACE_ID"], query, timespan=timedelta(days=1)) if response.status == LogsQueryStatus.SUCCESS: data = response.tables else: # LogsQueryPartialResult - handle error here error = response.partial_error data = response.partial_data print(error) 
+
+for table in data: 
+    df = pd.DataFrame(data=table.rows, columns=table.columns) 
+    key_value = df.to_dict(orient="records") 
+    pprint(key_value) 
+  
+
+except HttpResponseError as err: print("something fatal happened") print(err) 
 ```
 
 ### Customize your sampling configuration
 
-You can customize the sampling configuration by defining an `AgentEvaluationSamplingConfiguration` and specify your preferred sampling percent and maximum requests per hour.
+You can customize the sampling configuration by defining an `AgentEvaluationSamplingConfiguration` and specify your preferred sampling percent and maximum requests hour within the system limit of 1000/hour.
 
 ```python
 
@@ -123,7 +183,7 @@ from azure.ai.projects import AgentEvaluationSamplingConfiguration
 sampling_config = AgentEvaluationSamplingConfiguration (  
     name = agent.id,  
     samplingPercent = 15,       # Percentage of sampling per hour (0-100)
-    maxRequestRate = 250,       # Maximum request rate per hour (0-10000)
+    maxRequestRate = 250,       # Maximum request rate per hour (0-1000)
 )                                
 project.evaluation.create_agent_evaluation(
     AgentEvaluationRequest(  
