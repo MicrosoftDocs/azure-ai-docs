@@ -338,7 +338,7 @@ items:
   items:
   - name: Agents
     items:
-    - name: What is Azure AI Agent Service
+    - name: What is Azure AI Foundry Agent Service
       href: ../ai-services/agents/overview.md?context=/azure/ai-foundry/context/context
     - name: "Quickstart: Create a new agent"
       href: ../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context
@@ -356,7 +356,7 @@ items:
     items:
     - name: Work in VS Code (Preview)
       href: how-to/develop/get-started-projects-vs-code.md
-    - name: Use the Azure AI Agent service in VS Code (Preview)
+    - name: Use the Azure AI Foundry Agent Service in VS Code (Preview)
       href: how-to/develop/vs-code-agents.md
     - name: Work with projects in VS Code containers
       href: how-to/develop/vscode.md

@@ -472,9 +472,9 @@ SearchClient searchClient = new SearchClient(
 
 To learn more about using Azure AI Search, check out [Azure AI Search documentation](/azure/search/).
 
-## Azure AI Agent Service
+## Azure AI Foundry Agent Service
 
-Azure AI Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. To enable building agents for a wide range of generative AI use cases, [Azure AI Agent Service](/azure/ai-services/agents) uses an extensive ecosystem of models, tools and capabilities from OpenAI, Microsoft, and third-party providers.
+Azure AI Foundry Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. To enable building agents for a wide range of generative AI use cases, [Azure AI Foundry Agent Service](/azure/ai-services/agents) uses an extensive ecosystem of models, tools and capabilities from OpenAI, Microsoft, and third-party providers.
 
 ## Evaluation
 

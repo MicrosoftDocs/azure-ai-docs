@@ -58,7 +58,7 @@ The following table lists the availability of Azure AI Foundry features across A
 | Speech capabilities            | Azure AI Speech capabilities including custom neural voice vary in regional availability due to underlying hardware availability.                     | [Speech service supported regions](../../ai-services/speech-service/regions.md)                           |
 | Serverless API deployments     | Some models in the model catalog can be deployed as a serverless API with pay-as-you-go billing.                                                      | [Region availability for models in Serverless API endpoints](../how-to/deploy-models-serverless-availability.md) |
 | Azure AI Content Safety        | To use the Content Safety APIs, you must create your Azure AI Content Safety resource in a supported region.                                           | [What is Azure AI Content Safety?](../../ai-services/content-safety/overview.md#region-availability)       |
-| Azure AI Agent Service         | Azure AI Agent Service supports the same models as the chat completions API in Azure OpenAI.                                                          | [Azure AI Agent Service region availability](../../ai-services/agents/concepts/model-region-support.md#azure-openai-models) |
+| Azure AI Foundry Agent Service         | Azure AI Foundry Agent Service supports the same models as the chat completions API in Azure OpenAI.                                                          | [Azure AI Foundry Agent Service region availability](../../ai-services/agents/concepts/model-region-support.md#azure-openai-models) |
 
 ## Azure AI Foundry in sovereign clouds
 
