@@ -300,12 +300,12 @@ try:
 
 except openai.error.InvalidRequestError as e:
     if e.error.code == "content_filter" and e.error.innererror:
-        content_filter_result = e.error.innererror.content_filter_result
+        content_filter_results = e.error.innererror.content_filter_results
         # print the formatted JSON
-        print(content_filter_result)
+        print(content_filter_results)
 
         # or access the individual categories and details
-        for category, details in content_filter_result.items():
+        for category, details in content_filter_results.items():
             print(f"{category}:\n filtered={details['filtered']}\n severity={details['severity']}")
 
 ```
@@ -469,7 +469,7 @@ Blocks completion content when ungrounded completion content was detected.
         "status": 400,
         "innererror": {
             "code": "ResponsibleAIPolicyViolation",
-            "content_filter_result": {
+            "content_filter_results": {
                 "hate": {
                     "filtered": true,
                     "severity": "high"
