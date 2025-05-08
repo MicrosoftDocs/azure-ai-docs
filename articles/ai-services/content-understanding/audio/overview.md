@@ -269,6 +269,15 @@ You can also customize prebuild analyzers for more fine-grained control of the o
 - Configure the transcription behavior
 - and more
 
+## Conversational Knowledge Mining Solution Accelerator
+To provide an end-2-end quickstart for Speech Analytics solutions based on Content Understanding, please refer to the [Conversation knowledge mining solution accelerator](https://aka.ms/Conversational-Knowledge-Mining).
+
+Gain actionable insights from large volumes of conversational data by identifying key themes, patterns, and relationships. Using Azure AI Foundry, Azure AI Content Understanding, Azure OpenAI Service, and Azure AI Search, this solution analyzes unstructured dialogue and maps it to meaningful, structured insights.
+
+Capabilities such as topic modeling, key phrase extraction, speech-to-text transcription, and interactive chat enable users to explore data naturally and make faster, more informed decisions.
+
+Analysts working with large volumes of conversational data can use this solution to extract insights through natural language interaction. It supports tasks like identifying customer support trends, improving contact center quality, and uncovering operational intelligence—enabling teams to spot patterns, act on feedback, and make informed decisions faster.
+
 ## Input requirements
 For a detailed list of supported audio formats, refer to our [Service limits and codecs](../service-limits.md) page.
 
