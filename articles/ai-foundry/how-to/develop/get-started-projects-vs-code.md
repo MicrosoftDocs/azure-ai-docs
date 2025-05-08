@@ -26,7 +26,7 @@ With Azure AI Foundry, you can:
 
 - Quickly get started with developing generative AI applications using a collection of Azure curated code templates 
 
-- Configure and deploy agents with Azure AI Agent Service 
+- Configure and deploy agents with Azure AI Foundry Agent Service 
 
 With the Azure AI Foundry for Visual Studio Code extension, you can accomplish much of this workflow directly from Visual Studio Code. It also comes with other features, such as code templates, playgrounds, and integration with other VS Code extensions and features. 
 
@@ -114,7 +114,7 @@ The Azure AI Foundry Extension opens in its own view, with the Azure AI Foundry 
     - **GitHub**: The link to the Azure AI Foundry extension GitHub repository.
 
 >[!NOTE]
-> To learn more about working with Agents and Threads in the Azure AI Foundry Extension, see the [Work with Azure AI Agent Service in Visual Studio Code](./vs-code-agents.md) article. 
+> To learn more about working with Agents and Threads in the Azure AI Foundry Extension, see the [Work with Azure AI Foundry Agent Service in Visual Studio Code](./vs-code-agents.md) article. 
 
 ### The default Azure AI Foundry Project
 
@@ -324,4 +324,4 @@ Delete the connected tool with the following steps:
 
 ##	Next steps
 
-- Learn about [working with the Azure AI Agent Service](./vs-code-agents.md) using this Visual Studio Code extension.
+- Learn about [working with the Azure AI Foundry Agent Service](./vs-code-agents.md) using this Visual Studio Code extension.

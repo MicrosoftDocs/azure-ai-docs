@@ -1,7 +1,7 @@
 ---
-title: Work with Azure AI Agent Service using the Azure AI Foundry for Visual Studio Code extension
+title: Work with Azure AI Foundry Agent Service using the Azure AI Foundry for Visual Studio Code extension
 titleSuffix: Azure AI Foundry
-description: Use this article to learn how to use Azure AI Agent Service directly in VS Code.
+description: Use this article to learn how to use Azure AI Foundry Agent Service directly in VS Code.
 manager: mcleans
 ms.service: azure-ai-foundry
 content_well_notification: 
@@ -13,9 +13,9 @@ ms.author: johalexander
 author: ms-johnalex
 ---
 
-# Work with Azure AI Agent Service in Visual Studio Code (Preview)
+# Work with Azure AI Foundry Agent Service in Visual Studio Code (Preview)
 
-After you [get started with the AI Foundry the VS Code extension](./get-started-projects-vs-code.md), you can work with [Azure AI Agent Service](/azure/ai-services/agents/overview). Agents are "smart" microservices that:
+After you [get started with the AI Foundry the VS Code extension](./get-started-projects-vs-code.md), you can work with [Azure AI Foundry Agent Service](/azure/ai-services/agents/overview). Agents are "smart" microservices that:
 
 - Answer questions using their training data or search other sources with Retrieval Augmented Generation (RAG)
 - Perform specific actions
@@ -99,7 +99,7 @@ tools: []
 
 ### Add tools to the Azure AI Agent
 
-Azure AI Agent Service has a set of knowledge and action tools that you can use to interact with your data sources, such as:
+Azure AI Foundry Agent Service has a set of knowledge and action tools that you can use to interact with your data sources, such as:
  - [Grounding with Bing search](/azure/ai-services/agents/how-to/tools/bing-grounding?tabs=python&pivots=overview)
  - [Azure AI Search](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview) 
  - [Azure Functions](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview) 
