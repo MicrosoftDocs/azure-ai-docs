@@ -38,25 +38,32 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 # [Python SDK](#tab/python)
 
-1. [Set up your development environment](../how-to/develop/install-cli-sdk.md?tabs=python)
+1. [Install Python and Azure CLI](../how-to/develop/install-cli-sdk.md?tabs=python)
 1. Install these packages:
 
     ```
     pip install openai azure-ai-projects azure-identity
     ```
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
 
 # [Java](#tab/java)
 
-1. [Set up your development environment](../how-to/develop/install-cli-sdk.md?tabs=java)
+1. [Install Java and Azure CLI](../how-to/develop/install-cli-sdk.md?tabs=java)
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
 
 # [JavaScript](#tab/javascript)
 
-1. [Set up your development environment](../how-to/develop/install-cli-sdk.md?tabs=javascript)
+1. [Install JavaScript and Azure CLI](../how-to/develop/install-cli-sdk.md?tabs=javascript)
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your JavaScript scripts.
 
 # [C#](#tab/csharp)
 
-1. [Set up your development environment](../how-to/develop/install-cli-sdk.md?tabs=csharp)
+1. [Install C# and Azure CLI](../how-to/develop/install-cli-sdk.md?tabs=csharp)
+1. Install packages:
 
+    [!INCLUDE [install-csharp-packages](install-csharp-packages.md)]
+
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
 ---
 
 ## Create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] 
