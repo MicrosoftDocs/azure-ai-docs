@@ -29,7 +29,7 @@ You'll use:
 This tutorial demonstrates a solution for indexing multi-modal content using Document Layout skill. Document Layout skill
 enables extraction both text and image with its locational metadata from various documents, such as page numbers or bounding regions. However, [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited region availability and is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day
 
-For a lower-cost solution that indexing multi-modal content, see [Index multi-modal content using embedding and document extraction skill](https://aka.ms/azs-multimodal).
+For a lower-cost solution that indexing multi-modal content, see [Index multimodal content using embedding and document extraction skill](https://aka.ms/azs-multimodal).
 
 Note: setting `imageAction` to `generateNormalizedImages` as is required for this tutorial will incur an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
 
@@ -660,10 +660,9 @@ You can use the Azure portal to delete indexes, indexers, and data sources.
 
 Now that you're familiar with a sample implementation of a multimodal indexing scenario, check out
 
-> [!div class="nextstepaction"]
-> [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
-> [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)
-> [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md)
-> [Vectors in Azure AI Search](vector-search-overview.md)
-> [Semantic ranking in Azure AI Search](semantic-search-overview.md)
-> [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal)
++ [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
++ [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)
++ [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md)
++ [Vectors in Azure AI Search](vector-search-overview.md)
++ [Semantic ranking in Azure AI Search](semantic-search-overview.md)
++ [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal)
