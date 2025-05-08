@@ -1,5 +1,5 @@
 ---
-title: Agentic retrieval
+title: Agentic Retrieval
 titleSuffix: Azure AI Search
 description: Learn about agentic retrieval concepts, architecture, and use cases.
 
@@ -10,12 +10,13 @@ ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom: references_regions
 ms.date: 05/08/2025
+---
 
 # Agentic retrieval in Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, *agentic retrieval* is a new parallel query processing architecture that uses conversational language models to generate multiple subqueries for a single retrieval request, incorporating conversation history and semantic ranking to produce high quality grounding data for custom chat and generative AI solutions.
+In Azure AI Search, *agentic retrieval* is a new parallel query processing architecture that uses conversational language models to generate multiple subqueries for a single retrieval request, incorporating conversation history and semantic ranking to produce high-quality grounding data for custom chat and generative AI solutions.
 
 Programmatically, agentic retrieval is supported through a new Agents object in the 2025-05-01-preview data plane REST API and in Azure SDK prerelease packages that provide the feature. An agent's retrieval response is designed for downstream consumption by other agents and chat apps based on generative AI.
 
@@ -81,16 +82,16 @@ Billing for agentic retrieval has two parts:
 
 + Billing for query planning is pay-as-you-go in Azure OpenAI. It's token based for both input and output tokens. The model you assign to the agent is the one charged for token usage. For example, if you use gpt-4o, the token charge appears in the bill for gpt-4o.
 
-+ Billing for semantic ranking during query execution. Billing is suspended during the initial roll-out phase, from May 19 through June 30, 2025. On July 1, billing will be token based and is pay-as-you-go on the Azure AI Search side through the semantic ranker. Semantic ranker, which is a premium billable feature, is an integral part of agentic retrieval. You're charged on the Azure AI Search side for token inputs to the semantic ranking models. 
++ Billing for semantic ranking during query execution. Billing is suspended during the initial roll-out phase, from May 19 through June 30, 2025. On July 1, billing will be token based and is pay-as-you-go on the Azure AI Search side through the semantic ranker. Semantic ranker, which is a premium billable feature, is an integral part of agentic retrieval. You're charged on the Azure AI Search side for token inputs to the semantic ranking models.
 
 Semantic ranking is performed for every subquery in the plan. Semantic ranking charges are based on the number of tokens returned by each subquery.
 
-  | Aspect | Classic single-query pipeline | Agentic retrieval multi-query pipeline |
-  |--------|------------------------|----------------------------|
-  | Unit | Query based (1,000 queries) per unit of currency| Token based (1 million tokens per unit of currency) |
-  | Cost per unit | Uniform cost per query | Uniform cost per token |
-  | Cost estimation | Estimate query count | Estimate token usage |
-  | Free tier| 1,000 free queries | 50 million free tokens |
+| Aspect | Classic single-query pipeline | Agentic retrieval multi-query pipeline |
+|--------|------------------------|----------------------------|
+| Unit | Query based (1,000 queries) per unit of currency| Token based (1 million tokens per unit of currency) |
+| Cost per unit | Uniform cost per query | Uniform cost per token |
+| Cost estimation | Estimate query count | Estimate token usage |
+| Free tier| 1,000 free queries | 50 million free tokens |
 
 > [!NOTE]
 > Existing semantic ranker billing is unchanged if you're using it outside of agentic retrieval. For pricing without agentic retrieval, see the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search/).
