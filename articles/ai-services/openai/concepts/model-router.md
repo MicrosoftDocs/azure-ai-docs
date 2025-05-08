@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 04/17/2025
+ms.date: 05/08/2025
 ms.custom: 
 manager: nitinme
 ---
@@ -34,17 +34,15 @@ If you select **Auto-update** at the deployment step (see [Manage models](/azure
 
 ## Limitations
 
-See quotas and limits
+See [Quotas and limits](/azure/ai-services/openai/quotas-limits).
 
 Model router doesn't process input images or audio.
-
-Global Standard region support.
 
 ## Billing information
 
 When you use Azure OpenAI model router, you're only billed for the use of the underlying models as they're recruited to respond to prompts. The model router itself doesn't incur any extra charges.
 
-You can monitor the overall costs of your model router deployment in the Azure portal. TBD
+You can monitor the costs of your model router deployment in the Azure portal.
 
 ## Next step
 

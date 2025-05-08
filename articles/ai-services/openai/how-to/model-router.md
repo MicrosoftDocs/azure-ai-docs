@@ -152,8 +152,8 @@ See the [Evaluations guide](/azure/ai-services/openai/how-to/evaluations?tabs=qu
 
 You can monitor the performance of your model router deployment in Azure monitor (AzMon) in the Azure portal. 
 
-To view AzMon metrics for router: 
-1. Filter by deployment name of model router.
+To view the metrics for model router: 
+1. Filter by the deployment name of your model router model.
 1. Optionally, split up the metrics by underlying models.
 
 The following metrics are available: TBD
