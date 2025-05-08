@@ -11,21 +11,19 @@ ms.author: pafarley
 
 # Document embedding in prompts
 
-A key aspect of Azure OpenAI's Responsible AI measures is the content safety system. This system runs alongside the core GPT model to monitor any irregularities in the model input and output. Its performance is improved when it can differentiate between various elements of your prompt like system input, user input, and AI assistant's output. 
- 
-For enhanced detection capabilities, prompts should be formatted according to the following recommended methods.
+Azure OpenAI's content filtering system performs better when it can differentiate between the various elements of your prompt, like system input, user input, and the AI assistant's output. For enhanced detection capabilities, prompts should be formatted according to the following recommended methods.
 
-## Chat Completions API
+## Default behavior in Chat Completions API
 
-The Chat Completion API is structured by definition. It consists of a list of messages, each with an assigned role. 
+The Chat Completion API is structured by definition. Inputs consist of a list of messages, each with an assigned role. 
 
 The safety system parses this structured format and applies the following behavior: 
-- On the latest “user” content, the following categories of RAI Risks will be detected: 
+- On the latest "user" content, the following categories of RAI Risks are detected: 
     - Hate 
     - Sexual 
     - Violence 
     - Self-Harm 
-    - Prompt shields (optional) 
+    - Prompt shields (optional)
 
 This is an example message array: 
 
@@ -38,15 +36,14 @@ This is an example message array:
 
 ## Embedding documents in your prompt  
 
-In addition to detection on last user content, Azure OpenAI also supports the detection of specific risks inside context documents via Prompt Shields – Indirect Prompt Attack Detection. You should identify parts of the input that are a document (for example, retrieved website, email, etc.) with the following document delimiter.  
+In addition to detection on last user content, Azure OpenAI also supports the detection of specific risks inside context documents via [Prompt Shields – Indirect Prompt Attack Detection](./content-filter-prompt-shields.md). You should identify the parts of the input that are a document (for example, retrieved website, email, etc.) with the following document delimiter.
 
 ```
 \"\"\" <documents> *insert your document content here* </documents> \"\"\" 
 ```
 
-When you do so, the following options are available for detection on tagged documents: 
-- On each tagged “document” content, detect the following categories: 
-    - Indirect attacks (optional) 
+When you do this, the following options are available for detection on tagged documents: 
+- Indirect attacks (optional) 
 
 Here's an example chat completion messages array: 
 

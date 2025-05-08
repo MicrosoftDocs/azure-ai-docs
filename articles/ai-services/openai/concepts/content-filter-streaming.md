@@ -12,13 +12,13 @@ ms.author: pafarley
 
 # Content filter streaming
 
-This section describes the Azure OpenAI content streaming experience and options. Customers can receive content from the API as it's generated, instead of waiting for chunks of content that have been verified to pass your content filters.
+This guide describes the Azure OpenAI content streaming experience and options. Customers can receive content from the API as it's generated, instead of waiting for chunks of content that have been verified to pass the content filters.
 
-## Default
+## Default filtering behavior
 
-The content filtering system is integrated and enabled by default for all customers. In the default streaming scenario, completion content is buffered, the content filtering system runs on the buffered content, and – depending on the content filtering configuration – content is either returned to the user if it doesn't violate the content filtering policy (Microsoft's default or a custom user configuration), or it’s immediately blocked and returns a content filtering error, without returning the harmful completion content. This process is repeated until the end of the stream. Content is fully vetted according to the content filtering policy before it's returned to the user. Content isn't returned token-by-token in this case, but in “content chunks” of the respective buffer size.
+The content filtering system is integrated and enabled by default for all customers. In the default streaming scenario, completion content is buffered, the content filtering system runs on the buffered content, and – depending on the content filtering configuration – content is either returned to the user if it doesn't violate the content filtering policy (Microsoft's default or a custom user configuration), or it’s immediately blocked and a content filtering error is returned instead. This process is repeated until the end of the stream. Content is fully vetted according to the content filtering policy before it's returned to the user. Content isn't returned token-by-token in this case, but in “content chunks” of the respective buffer size.
 
-## Asynchronous Filter
+## Asynchronous filtering
 
 Customers can choose the Asynchronous Filter as an extra option, providing a new streaming experience. In this case, content filters are run asynchronously, and completion content is returned immediately with a smooth token-by-token streaming experience. No content is buffered, which allows for a fast streaming experience with zero latency associated with content safety.
 

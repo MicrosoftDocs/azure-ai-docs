@@ -11,6 +11,8 @@ ms.author: pafarley
 
 # Content filtering annotations
 
+
+
 ## Standard content filters
 
 When annotations are enabled as shown in the code snippets below, the following information is returned via the API for the categories hate and fairness, sexual, violence, and self-harm:
@@ -20,9 +22,9 @@ When annotations are enabled as shown in the code snippets below, the following 
 
 ## Optional models
 
-Optional models can be enabled in annotate (returns information when content was flagged, but not filtered) or filter mode (returns information when content was flagged and filtered).  
+Optional models can be set to annotate mode (returns information when content is flagged, but not filtered) or filter mode (returns information when content is flagged and filtered).  
 
-When annotations are enabled as shown in the code snippets below, the following information is returned by the API for optional models:
+When annotations are enabled as shown in the code snippets below, the following information is returned by the API for each optional model:
 
 |Model| Output|
 |--|--|
@@ -34,9 +36,9 @@ When annotations are enabled as shown in the code snippets below, the following 
 
 When displaying code in your application, we strongly recommend that the application also displays the example citation from the annotations. Compliance with the cited license may also be required for Customer Copyright Commitment coverage.
 
-See the following table for the annotation availability in each API version:
+See the following table for the annotation mode availability in each API version:
 
-|Category |2024-10-01-preview|2024-02-01 GA| 2024-04-01-preview | 2023-10-01-preview | 2023-06-01-preview| 
+|Filter category |2024-10-01-preview|2024-02-01 GA| 2024-04-01-preview | 2023-10-01-preview | 2023-06-01-preview| 
 |--|--|--|--|
 | Hate | ✅|✅ |✅ |✅ |✅ |
 | Violence | ✅|✅ |✅ |✅ |✅ |
@@ -51,6 +53,10 @@ See the following table for the annotation availability in each API version:
 |Groundedness<sup>1</sup>|✅| |  | |  |
 
 <sup>1</sup> Not available in non-streaming scenarios; only available for streaming scenarios. The following regions support Groundedness Detection: Central US, East US, France Central, and Canada East 
+
+## Code examples
+
+The following code snippets show how to view content filter annotations in different programming languages.
 
 # [OpenAI Python 1.x](#tab/python-new)
 
@@ -417,7 +423,7 @@ For details on the inference REST API endpoints for Azure OpenAI and how to crea
 
 ## Groundedness
 
-### Annotate only 
+### Annotate mode 
 
 Returns offsets referencing the ungrounded completion content. 
 
@@ -436,7 +442,7 @@ Returns offsets referencing the ungrounded completion content.
 } 
 ```
 
-### Annotate and filter 
+### Filter mode 
 
 Blocks completion content when ungrounded completion content was detected. 
 
@@ -448,6 +454,7 @@ Blocks completion content when ungrounded completion content was detected.
 } 
 ```
 
+<!--
 ### Example scenario: An input prompt containing content that is classified at a filtered category and severity level is sent to the completions API
 
 ```json
@@ -484,3 +491,4 @@ Blocks completion content when ungrounded completion content was detected.
     }
 }
 ```
+-->
