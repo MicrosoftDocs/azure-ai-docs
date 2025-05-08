@@ -17,7 +17,8 @@ After you've fine-tuned a model, you may want to test its quality via the Chat C
 
 A Developer Tier deployment allows you to deploy your new model without the hourly hosting fee incurred by Standard or Global deployments. The only charges incurred are per-token. Consult the [pricing page](https://aka.ms/aoaipricing) for the most up-to-date pricing.
 
-> Developer Tier offers no availability SLA and no [data residency](https://aka.ms/data-residency). If you require an SLA or data residency, choose an alternative [deployment type](./deployment-types.md) for testing your model.
+> [!IMPORTANT]
+> Developer Tier offers no availability SLA and no [data residency](https://aka.ms/data-residency) guarantees. If you require an SLA or data residency, choose an alternative [deployment type](./deployment-types.md) for testing your model.
 
 ## Deploy your fine-tuned model
 
