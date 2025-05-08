@@ -14,6 +14,8 @@ ms.author: mbullwin
 
 Azure OpenAI provides customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main types of deployments: **standard** and **provisioned**. For a given deployment type, customers can align their workloads with their data processing requirements by choosing an Azure geography (`Standard` or `Provisioned-Managed`), Microsoft specified data zone (`DataZone-Standard` or `DataZone Provisioned-Managed`), or Global (`Global-Standard` or `Global Provisioned-Managed`) processing options.
 
+For fine-tuned models, an additional `Developer` deployment type provides a cost-efficient means of custom model evaluation, but without data residency.
+
 All deployments can perform the exact same inference operations, however the billing, scale, and performance are substantially different. As part of your solution design, you will need to make two key decisions:
 
 - **Data processing location**  
@@ -146,6 +148,15 @@ You can use the following policy to disable access to any Azure OpenAI deploymen
     }
 }
 ```
+
+## Developer (for fine-tuned models)
+
+> [!IMPORTANT]
+> Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure OpenAI location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
+
+**SKU name in code:** `Developer`
+
+Fine-tuned models support a Developer deployment specifically designed to support custom model evaluation. It offers no data residency guarantees nor does it offer an SLA. To learn more about using the Developer deployment type, see the [fine-tuning guide](./fine-tuning-test.md).
 
 ## Deploy models
 
