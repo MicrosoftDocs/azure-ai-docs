@@ -212,7 +212,7 @@ Download [product_info_1.md]() to add to the agent.
 
 # [JavaScript](#tab/javascript)
 
-<!-- :::code language="python" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="create_filesearch_agent"::: -->
+:::code language="python" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="create_filesearch_agent":::
 
 # [C#](#tab/csharp)
 
