@@ -1,7 +1,7 @@
 ---
-title: "Sentence pairing and alignment - Custom translation"
+title: Azure AI Foundry custom translation sentence pairing and alignment
 titleSuffix: Azure AI services
-description: During the training execution, sentences present in parallel documents are paired or aligned. Custom translation learns translations one sentence at a time, by reading a sentence and translating it. Then it aligns words and phrases in these two sentences to each other.
+description: During the training execution, sentences present in parallel documents are paired or aligned. custom translation learns translations one sentence at a time, by reading a sentence and translating it. Then it aligns words and phrases in these two sentences to each other.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -9,14 +9,12 @@ ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: conceptual
 ms.custom: cogserv-non-critical-translator
-#Customer intent: As a Custom translation user, I want to know how sentence alignment works, so that I can have better understanding of underlying process of sentence extraction, pairing, filtering, aligning.
+#Customer intent: As a custom translation user, I want to know how sentence alignment works, so that I can have better understanding of underlying process of sentence extraction, pairing, filtering, aligning.
 ---
 
-# Parallel documents: sentence pairing and alignment
+# Azure AI Foundry custom translation sentence pairing and alignment
 
-After documents are uploaded, sentences present in parallel documents are
-paired or aligned. Custom translation reports the number of sentences it was
-able to pair as the Aligned Sentences in each of the data sets.
+After documents are uploaded, sentences present in parallel documents are paired or aligned. custom translation reports the number of sentences it was able to pair as the Aligned Sentences in each of the data sets.
 
 ## Pairing and alignment process
 
@@ -24,15 +22,9 @@ Custom translation learns translations of sentences one sentence at a time. It r
 
 ## Prealigned documents
 
-If you know you have parallel documents, you can override the
-sentence alignment by supplying prealigned text files. You can extract all
-sentences from both documents into text file, organized one sentence per line,
-and upload with an `.align` extension. The `.align` extension signals Custom
-Translation that it should skip sentence alignment.
+If you know you have parallel documents, you can override the sentence alignment by supplying prealigned text files. You can extract all sentences from both documents into text file, organized one sentence per line, and upload with an `.align` extension. The `.align` extension signals Custom Translation that it should skip sentence alignment.
 
-For best results, try to make sure that you have one sentence per line in your
- files. Don't have newline characters within a sentence—it causes poor
-alignments.
+For best results, try to make sure that you have one sentence per line in your files. Don't have newline characters within a sentence—it causes poor alignments.
 
 ## Suggested minimum number of sentences
 

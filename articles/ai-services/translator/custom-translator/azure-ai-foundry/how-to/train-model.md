@@ -1,7 +1,7 @@
 ---
-title: Azure AI Foundry custom translation
+title: Train an Azure AI Foundry custom translation model
 titleSuffix: Azure AI services
-description: How to train a custom model in Azure AI Foundry.
+description: How to train a custom translation model in Azure AI Foundry.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -10,13 +10,13 @@ ms.author: lajanuar
 ms.topic: how-to
 ---
 
-# Azure AI Foundry: train a custom model
+# Train an Azure AI Foundry custom translation model
 
-A custom translation model provides translations for a specific language pair. The outcome of a successful training is a model. To train a custom model, three mutually exclusive document types are required: training, tuning, and testing. If only training data is provided when queuing a training, Custom translation automatically assembles tuning and testing data. It uses a random subset of sentences from your training documents, and exclude these sentences from the training data itself. A minimum of 10,000 parallel training sentences are required to train a full model.
+A custom translation model provides translations for a specific language pair. The outcome of a successful training is a model. To train a custom translation model, three mutually exclusive document types are required: training, tuning, and testing. If only training data is provided when queuing a training, custom translation automatically assembles tuning and testing data. It uses a random subset of sentences from your training documents, and exclude these sentences from the training data itself. A minimum of 10,000 parallel training sentences are required to train a full model.
 
-## Create custom model
+## Create your custom translation model
 
-Here are the steps to create a custom model:
+Here are the steps to create a custom translation model:
 
 1. Follow [Upload data](upload-data.md), then continue here.
 
@@ -56,7 +56,7 @@ For better results, we recommended letting the system learn from your training d
 
 1. Select the **Model Name** to review training date/time, total training time, number of sentences used for training, tuning, testing, dictionary, and whether the system generated the test and tuning sets. You use `Category ID` to make translation requests.
 
-1. Evaluate the model [`BLEU` score](../beginners-guide.md#what-is-a-bleu-score). Review the test set: the **BLEU score** is the custom model score and the **Baseline BLEU** is the pretrained baseline model used for customization. A higher **BLEU score** means higher translation quality using the custom model.
+1. Evaluate the model [`BLEU` score](../beginners-guide.md#what-is-a-bleu-score). Review the test set: the **BLEU score** is the custom translation model score and the **Baseline BLEU** is the pretrained baseline model used for customization. A higher **BLEU score** means higher translation quality using the custom translation model.
 
    :::image type="content" source="../media/fine-tune-model-detail.png" alt-text="Screenshot illustrating the model details.":::
 
