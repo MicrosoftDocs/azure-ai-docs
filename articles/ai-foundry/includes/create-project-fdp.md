@@ -163,11 +163,7 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
 1. Now use the following commands to create a new [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
-    ```azurecli
-    az cognitiveservices account create --resource-group {my_resource_group} --account-name {foundry_resource_name} --sku "S0" 
- 
-    az cognitiveservices account project create --resource-group {my_resource_group} --name {my_project_name} --account-name {foundry_resource_name} 
-    ```
+    [!INCLUDE [cli-create-project](cli-create-project.md)]
 
 ---
 
