@@ -3,7 +3,6 @@ items:
   href: index.yml
 - name: What is Azure AI Foundry?
   href: what-is-azure-ai-foundry.md
-
 - name: Get started
   expanded: true
   items:
@@ -367,7 +366,67 @@ items:
       - name: Deploy an enterprise chat web app
         href: tutorials/deploy-chat-web-app.md
       - name: Build a RAG solution using Azure AI Search
-        href: /azure/search/tutorial-rag-build-solution?context=/azure/ai-foundry/context/context      
+        href: /azure/search/tutorial-rag-build-solution?context=/azure/ai-foundry/context/context
+- name: Observability 
+  items:
+   - name: Observability basics
+     href: concepts/observability.md
+   - name: Built-in evaluators
+     items:
+      - name: General purpose evaluators 
+        href: concepts/evaluation-evaluators/general-purpose-evaluators.md
+      - name: Textual similarity evaluators 
+        href: concepts/evaluation-evaluators/textual-similarity-evaluators.md
+      - name: Retrieval Augmented Generation (RAG) evaluators 
+        href: concepts/evaluation-evaluators/rag-evaluators.md
+      - name: Risk and safety evaluators
+        href: concepts/evaluation-evaluators/risk-safety-evaluators.md
+      - name: Agent evaluators
+        href: concepts/evaluation-evaluators/agent-evaluators.md 
+      - name: Azure Open AI evaluators 
+        href: concepts/evaluation-evaluators/azure-openai-graders.md
+   - name: Batch evaluations
+     items:
+      - name: Manually evaluate prompts in the playground
+        href: how-to/evaluate-prompts-playground.md
+      - name: Generate synthetic and simulated data for evaluation
+        href: how-to/develop/simulator-interaction-data.md
+      - name: Run evaluations locally (Azure AI Evaluation SDK)
+        href: how-to/develop/evaluate-sdk.md
+        displayName: code,accuracy,metrics
+      - name: Run evaluations in the cloud (Azure AI Foundry SDK)
+        href: how-to/develop/cloud-evaluation.md
+      - name: Run agent evaluations locally (Azure AI Evaluation SDK)
+        href: how-to/develop/agent-evaluate-sdk.md
+      - name: Run evaluations from the portal
+        href: how-to/evaluate-generative-ai-app.md
+      - name: View evaluation results in the portal
+        href: how-to/evaluate-results.md
+        displayName: accuracy,metrics
+   - name: AI red teaming
+     items:
+      - name: AI red teaming overview
+        href: concepts/ai-red-teaming-agent.md
+      - name: Run automated scans with AI Red Teaming Agent
+        href: how-to/develop/run-scans-ai-red-teaming-agent.md
+   - name: Continuous monitoring and evaluation 
+     items:
+      - name: Continuously monitor your applications
+        href: how-to/monitor-applications.md
+      - name: Run evaluations online
+        href: how-to/online-evaluation.md
+   - name: Tracing for debugging
+     items:
+      - name: Tracing in Azure AI Foundry
+        href: concepts/trace.md
+      - name: Trace your application with Azure AI Inference SDK
+        href: how-to/develop/trace-local-sdk.md
+      - name: Visualize your traces
+        href: how-to/develop/visualize-traces.md
+   - name: A/B experimentation
+     href: concepts/a-b-experimentation.md
+   - name: Transparency Note for safety evaluations
+     href: ./concepts/safety-evaluations-transparency-note.md              
 - name: Optimizations
   items:
   - name: Prompt engineering
@@ -419,54 +478,6 @@ items:
         displayName: finetuning, fine-tuning 
     - name: Distillation
       href: concepts/concept-model-distillation.md
-  - name: Tracing
-    items:
-    - name: Tracing in Azure AI Foundry
-      href: concepts/trace.md
-    - name: Trace your application with Azure AI Inference SDK
-      href: how-to/develop/trace-local-sdk.md
-    - name: Visualize your traces
-      href: how-to/develop/visualize-traces.md
-  - name: Evaluating generative AI apps
-    items:
-    - name: Evaluations concepts
-      items:
-      - name: Evaluation of generative AI models and AI applications
-        href: concepts/evaluation-approach-gen-ai.md
-      - name: Evaluation and monitoring metrics for generative AI
-        href: concepts/evaluation-metrics-built-in.md
-    - name: Manually evaluate prompts in the playground
-      href: how-to/evaluate-prompts-playground.md
-    - name: Generate synthetic and simulated data for evaluation
-      href: how-to/develop/simulator-interaction-data.md
-    - name: Evaluate agents locally with Azure AI Evaluation SDK
-      href: how-to/develop/agent-evaluate-sdk.md
-    - name: Evaluate apps locally with Azure AI Evaluation SDK
-      href: how-to/develop/evaluate-sdk.md
-      displayName: code,accuracy,metrics
-    - name: Evaluate apps in the cloud with Azure AI Projects SDK
-      href: how-to/develop/cloud-evaluation.md
-    - name: AI red teaming
-      items:
-      - name: AI red teaming overview
-        href: concepts/ai-red-teaming-agent.md
-      - name: Run automated scans with AI Red Teaming Agent
-        href: how-to/develop/run-scans-ai-red-teaming-agent.md
-    - name: Run evaluations from the portal
-      href: how-to/evaluate-generative-ai-app.md
-    - name: View evaluation results in the portal
-      href: how-to/evaluate-results.md
-      displayName: accuracy,metrics
-    - name: Run evaluations online
-      href: how-to/online-evaluation.md
-    - name: Evaluate flows in the portal
-      items:
-        - name: Submit batch run and evaluate a flow
-          href: how-to/flow-bulk-test-evaluation.md
-        - name: Develop an evaluation flow in Prompt flow
-          href: how-to/flow-develop-evaluation.md
-    - name: A/B experimentation
-      href: concepts/a-b-experimentation.md
   - name: Build apps with prompt flow
     items:
     - name: Prompt flow overview
@@ -481,6 +492,12 @@ items:
         href: how-to/flow-tune-prompts-using-variants.md
       - name: Process images in a flow
         href: how-to/flow-process-image.md
+      - name: Evaluate flows in the portal
+        items:
+        - name: Submit batch run and evaluate a flow
+          href: how-to/flow-bulk-test-evaluation.md
+        - name: Develop an evaluation flow in Prompt flow
+          href: how-to/flow-develop-evaluation.md
       - name: Use prompt flow tools
         items:
         - name: Prompt flow tools overview
@@ -503,10 +520,6 @@ items:
           href: how-to/prompt-flow-tools/embedding-tool.md
         - name: Serp API tool
           href: how-to/prompt-flow-tools/serp-api-tool.md
-    - name: Deploy and monitor generative AI apps
-      items:
-      - name: Continuously monitor your applications
-        href: how-to/monitor-applications.md
       - name: Deploy and monitor flows
         items:
         - name: Deploy a flow for real-time inference
@@ -627,8 +640,6 @@ items:
     href: ../ai-services/cognitive-services-limited-access.md?context=/azure/ai-foundry/context/context
   - name: System message templates
     href: ../ai-services/openai/concepts/system-message.md?context=/azure/ai-foundry/context/context
-  - name: Transparency Note for safety evaluations
-    href: ./concepts/safety-evaluations-transparency-note.md
 - name: SDK + API Reference
   items:
   - name: Azure AI Projects SDK

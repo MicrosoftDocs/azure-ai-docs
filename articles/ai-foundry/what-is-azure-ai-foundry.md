@@ -16,6 +16,8 @@ ms.custom: ignite-2023, build-2024, ignite-2024
 
 # What is Azure AI Foundry?
 
+[!INCLUDE [fdp-rollout](includes/fdp-rollout.md)]
+
 [Azure AI Foundry](https://ai.azure.com) provides a unified platform for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, ensuring organizations can build and operate AI applications with confidence. 
 
 [Azure AI Foundry](https://ai.azure.com) is designed for developers to:

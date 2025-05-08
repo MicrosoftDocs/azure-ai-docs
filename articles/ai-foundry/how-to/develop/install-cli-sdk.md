@@ -15,21 +15,36 @@ author: sdgilley
 
 # Set up your development environment
 
-Set up your development environment to use the [Azure AI Foundry](https://ai.azure.com) SDK.  You also need Azure CLI for authentication so that your code can access your user credentials.
+Set up your development environment to use the [Azure AI Foundry](https://ai.azure.com) SDK. You also need Azure CLI for authentication so that your code can access your user credentials.
 
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 
-## Create a new Python environment
 
-In the IDE of your choice, create a new folder for your project.  Open a terminal window in that folder.
+## Install you programming language 
+
+# [Python SDK](#tab/python)
+
+In the IDE of your choice, create a new folder for your project. Open a terminal window in that folder.
 
 [!INCLUDE [Install Python](../../includes/install-python.md)]
 
-## Install packages
+# [Java](#tab/java)
 
-[!INCLUDE [install-python-packages](../../includes/install-python-packages.md)]
+[!INCLUDE [Install Jave](../../includes/install-java.md)]
+
+# [JavaScript](#tab/javascript)
+
+Install [Node.js](https://nodejs.org/)
+
+# [C#](#tab/csharp)
+
+[!INCLUDE [install-csharp](../../includes/install-csharp.md)]
+
+---
+
+
 
 ## <a name="installs"></a> Install the Azure CLI and sign in 
 
@@ -39,4 +54,4 @@ Keep this terminal window open to run your scripts from here as well, now that y
 
 ## Next step
 
-* [Create a project for Azure AI Foundry](../create-projects.md)
+* [Get started in Azure AI Foundry](../../quickstarts/get-started-code.md)

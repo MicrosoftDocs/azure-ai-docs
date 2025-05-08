@@ -1142,6 +1142,16 @@
           "source_path_from_root": "/articles/ai-foundry/ai-services/how-to/connect-ai-services.md",
           "redirect_url": "/azure/ai-services/connect-services-ai-foundry-portal",
           "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/concepts/evaluation-approach-gen-ai.md",
+          "redirect_url": "/azure/ai-foundry/concepts/observability",
+          "redirect_document_id": true
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/concepts/evaluation-metrics-built-in.md",
+          "redirect_url": "/azure/ai-foundry/concepts/observability",
+          "redirect_document_id": false
         }
     ]
 }

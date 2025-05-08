@@ -20,18 +20,17 @@ author: lgayhardt
 
 Model leaderboards (preview) in Azure AI Foundry portal allow you to streamline the model selection process in the Azure AI Foundry [model catalog](../how-to/model-catalog-overview.md). The model leaderboards, backed by industry-standard benchmarks can help you to find the best model for your custom AI solution. From the model leaderboards section of the model catalog, you can [browse leaderboards](https://aka.ms/model-leaderboards) to compare available models as follows:
 
-- **Quality, cost, and performance leaderboards** to quickly identify the model leaders along a single metric (quality, cost, or throughput);
-- **Trade-off charts** to see how models perform on one metric versus another, such as quality versus cost;
-- **Leaderboards by scenario** to find the best leaderboards that suite your scenario.
+- [Quality, cost, and performance leaderboards](../how-to/benchmark-model-in-catalog.md#access-model-leaderboards) to quickly identify the model leaders along a single metric (quality, cost, or throughput);
+- [Trade-off charts](../how-to/benchmark-model-in-catalog.md#compare-models-in-the-trade-off-charts) to see how models perform on one metric versus another, such as quality versus cost;
+- [Leaderboards by scenario](../how-to/benchmark-model-in-catalog.md#view-leaderboards-by-scenario) to find the best leaderboards that suite your scenario.
 
 Whenever you find a model to your liking, you can select it and zoom into the **Detailed benchmarking results** of the model within the model catalog. If satisfied with the model, you can deploy it, try it in the playground, or evaluate it on your data. The leaderboards support benchmarking across text language models (large language models (LLMs) and small language models (SLMs)) and embedding models.
 
 
-## Benchmarking of large and small language models
+Model benchmarks assess LLMs and SLMs across the following categories: quality, performance, and cost. In addition, we assess the quality of embedding models using standard benchmarks. The benchmarks are updated regularly as better and more unsaturated datasets and associated metrics are added to existing models, and as new models are added to the model catalog.
 
-Model benchmarks assess LLMs and SLMs across the following categories: quality, performance, and cost. The benchmarks are updated regularly as new datasets and associated metrics are added to existing models, and as new models are added to the model catalog.
 
-### Quality
+## Quality benchmarks of language models
 
 Azure AI assesses the quality of LLMs and SLMs using accuracy scores from standard, comprehensive benchmark datasets measuring model capabilities such as reasoning, knowledge, question answering, math, and coding. 
 
@@ -67,7 +66,14 @@ See more details in accuracy scores:
 Accuracy scores are provided on a scale of zero to one. Higher values are better.
 
 
-### Performance
+## Safety benchmarks of language models
+
+Safety benchmarks use a standard metric Attack Success Rate to measure how vulerable language models are to attacks in biosecurity, cybersecurity, and chemical security. Currently, the [Weapons of Mass Destruction Proxy (WMDP) benchmark](https://www.wmdp.ai/) is used to assess hazardous knowledge in language models. The lower the Attack Success Rate is, the safer is the model response. 
+
+All model endpoints are benchmarked with the default Azure AI Content Safety filters on with a default configuration. These safety filters detect and block [content harm categories](../../ai-services/content-safety/concepts/harm-categories.md) in violence, self-harm, sexual, hate and unfaireness, but do not measure categories in cybersecurity, biosecurity, chemical security.
+
+
+## Performance benchmarks of language models
 
 Performance metrics are calculated as an aggregate over 14 days, based on 24 trails (two requests per trail) sent daily with a one-hour interval between every trail. The following default parameters are used for each request to the model endpoint:
 
@@ -109,7 +115,7 @@ Azure AI also displays performance indexes for latency and throughput as follows
 
 For performance metrics like latency or throughput, the time to first token and the generated tokens per second give a better overall sense of the typical performance and behavior of the model. We refresh our performance numbers on regular cadence.
 
-### Cost
+## Cost benchmarks of language models
 
 Cost calculations are estimates for using an LLM or SLM model endpoint hosted on the Azure AI platform. Azure AI supports displaying the cost of serverless APIs and Azure OpenAI models. Because these costs are subject to change, we refresh our cost calculations on a regular cadence.
 
@@ -127,13 +133,11 @@ Azure AI also displays the cost index as follows:
 |-------|-------------|
 | Cost index | Estimated cost. Lower values are better. |
 
-## Benchmarking of embedding models
+## Quality benchmarks of embedding models
 
-Model benchmarks assess embedding models based on quality.
+The quality index of embedding models is defined as the averaged accuracy scores of a comprehensive set of standard benchmark datasests targeting Information Retrieval, Document Clustering, and Summarization tasks.
 
-### Quality
-
-The quality of embedding models is assessed across the following metrics:
+See more details in accuracy score definitions specific to each dataset:
 
 | Metric | Description |
 |--------|-------------|
@@ -145,9 +149,9 @@ The quality of embedding models is assessed across the following metrics:
 | Spearman correlation | Spearman correlation based on cosine similarity is calculated by first computing the cosine similarity between variables, then ranking these scores and using the ranks to compute the Spearman correlation. |
 | V measure | V measure is a metric used to evaluate the quality of clustering. V measure is calculated as a harmonic mean of homogeneity and completeness, ensuring a balance between the two for a meaningful score. Possible scores lie between zero and one, with one being perfectly complete labeling. |
 
-### Calculation of scores
+## Calculation of scores
 
-#### Individual scores
+### Individual scores
 
 Benchmark results originate from public datasets that are commonly used for language model evaluation. In most cases, the data is hosted in GitHub repositories maintained by the creators or curators of the data. Azure AI evaluation pipelines download data from their original sources, extract prompts from each example row, generate model responses, and then compute relevant accuracy metrics.
 

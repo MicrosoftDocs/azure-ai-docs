@@ -30,14 +30,14 @@ Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (temp
 
     ```azurecli
     git clone https://github.com/Azure-AI-Foundry/foundry-samples
-    cd foundry-samples/use-cases/infrastructure-as-code/00-basic
+    cd foundry-samples/samples/microsoft/infrastructure-setup/00-basic
     ```
 
     # [Azure PowerShell](#tab/powershell)
 
     ```azurepowershell
     git clone https://github.com/Azure-AI-Foundry/foundry-samples
-    cd foundry-samples/use-cases/infrastructure-as-code/00-basic
+    cd foundry-samples/samples/microsoft/infrastructure-setup/00-basic
     ```
 
     ---
@@ -46,7 +46,7 @@ Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (temp
 
 ## Review the Bicep file
 
-The Bicep file used in this article can be found at [https://github.com/azure-ai-foundry/foundry-samples/tree/main/use-cases/infrastructure-as-code/00-basic](https://github.com/azure-ai-foundry/foundry-samples/tree/main/use-cases/infrastructure-as-code/00-basic).
+The Bicep file used in this article can be found at [https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/00-basic](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/00-basic).
 
 This template creates the following resources:
 
