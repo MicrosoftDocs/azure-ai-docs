@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how to configure Azure AI Search indexers for ingesting Access Control Lists (ACLs) and Azure Role-Based Access (RBAC) metadata on Azure Data Lake Storage (ADLS) Gen2 blobs.
 ms.service: azure-ai-search  
 ms.topic: how-to
-ms.date: 05/07/2025  
+ms.date: 05/08/2025  
 author: wlifuture
 ms.author: wli
 ---  
@@ -51,7 +51,7 @@ This article supplements [**Index data from ADLS  Gen2**](search-howto-index-azu
   + [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
   + [Knowledge store](knowledge-store-concept-intro.md)
   + [Indexer enrichment cache](search-howto-incremental-index.md)
-  + [Debug sessions](cognitive-search-debug-session.md)
+  + [Debug sessions](cognitive-search-debug-session.md) works with document content only
 
 ## About ACL hierarchical permissions
 
