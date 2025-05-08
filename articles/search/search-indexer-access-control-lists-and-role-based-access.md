@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how to configure Azure AI Search indexers for ingesting Access Control Lists (ACLs) and Azure Role-Based Access (RBAC) metadata on Azure Data Lake Storage (ADLS) Gen2 blobs.
 ms.service: azure-ai-search  
 ms.topic: how-to
-ms.date: 05/05/2025  
+ms.date: 05/07/2025  
 author: wlifuture
 ms.author: wli
 ---  
@@ -43,8 +43,8 @@ This article supplements [**Index data from ADLS  Gen2**](search-howto-index-azu
 
 + [Limits on Azure role assignments and ACL entries](/azure/storage/blobs/data-lake-storage-access-control-model#limits-on-azure-role-assignments-and-acl-entries) in ADLS Gen2 impose a maximum number of role assignments and ACL entries.
 
-+ The `Other` ACL category isn't supported during public preview. Attribute-based access control (Azure ABAC) isn't supported.
-
++ The `owning users`, `owning groups` and `Other` [ACL identities categories](/azure/storage/blobs/data-lake-storage-access-control#users-and-identities) are not supported during public preview. Use `named users` and `named groups` assignments instead.
+  
 + Some indexer features are unavailable when enabling permission ingestion feature.
 
   + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
