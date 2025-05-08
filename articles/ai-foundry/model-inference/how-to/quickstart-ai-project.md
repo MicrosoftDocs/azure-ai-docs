@@ -1,7 +1,7 @@
 ---
-title: Configure your AI project to use Azure AI model inference
+title: Configure your AI project to use Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn how to upgrade your AI project to use models deployed in Azure AI model inference in Azure AI Foundry
+description: Learn how to upgrade your AI project to use models deployed in Azure AI Foundry Models in Azure AI Foundry
 ms.service: azure-ai-model-inference
 ms.topic: how-to
 ms.date: 1/21/2025
@@ -12,13 +12,13 @@ ms.author: fasantia
 recommendations: false
 ---
 
-# Configure your AI project to use Azure AI model inference
+# Configure your AI project to use Azure AI Foundry Models
 
 If you already have an AI project in Azure AI Foundry, the model catalog deploys models from third-party model providers as stand-alone endpoints in your project by default. Each model deployment has its own set of URI and credentials to access it. On the other hand, Azure OpenAI models are deployed to Azure AI Services resource or to the Azure OpenAI Service resource.
 
-You can change this behavior and deploy both types of models to Azure AI Services resources using Azure AI model inference. Once configured, **deployments of Models as a Service models supporting pay-as-you-go billing happen to the connected Azure AI Services resource** instead to the project itself, giving you a single set of endpoint and credential to access all the models deployed in Azure AI Foundry. You can manage Azure OpenAI and third-party model providers models in the same way.
+You can change this behavior and deploy both types of models to Azure AI Foundry resources (formerly known Azure AI Services). Once configured, **deployments of Models as a Service models supporting pay-as-you-go billing happen to the connected Azure AI Services resource** instead to the project itself, giving you a single set of endpoint and credential to access all the models deployed in Azure AI Foundry. You can manage Azure OpenAI and third-party model providers models in the same way.
 
-Additionally, deploying models to Azure AI model inference brings the extra benefits of:
+Additionally, deploying models to Azure AI Foundry Models brings the extra benefits of:
 
 > [!div class="checklist"]
 > * [Routing capability](../concepts/endpoints.md#routing).
