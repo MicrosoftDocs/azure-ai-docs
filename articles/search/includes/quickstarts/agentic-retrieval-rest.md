@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 05/07/2025
+ms.date: 05/08/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -325,9 +325,7 @@ PUT {{baseUrl}}/agents/{{agent-name}}?api-version={{api-version}}  HTTP/1.1
 
 ## Run the retrieval pipeline
 
-You're ready to initiate the agentic retrieval pipeline. The input for this pipeline is the `messages` array, whose conversation history includes system instructions and user queries. Additionally, `targetIndexParams` specifies the index to query and optional configurations, such as reranking thresholds and filters.
-
-Use [Retrieve Knowledge Retrieval](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-05-01-preview&preserve-view=true) to send the following two-part user query to `earth-search-agent`, which deconstructs the query into subqueries, runs the subqueries against both text fields and vector embeddings in the `earth-at-night` index, and ranks and merges the results.
+You're ready to initiate the agentic retrieval pipeline. Use [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-05-01-preview&preserve-view=true) to send a two-part user query to `earth-search-agent`, which deconstructs the query into subqueries, runs the subqueries against both text fields and vector embeddings in the `earth-at-night` index, and ranks and merges the results.
 
 ```HTTP
 ### Run agentic retrieval

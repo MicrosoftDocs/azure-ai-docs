@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 05/07/2025
+ms.date: 05/08/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -273,7 +273,7 @@ print(f"Knowledge agent '{agent_name}' created or updated successfully")
 
 ## Set up messages
 
-The next step is to define the conversation context and agent instructions using the `messages` array. Each message includes a `role`, such as `user` or `assistant`, and `content` in natural language. A user message represents the query to be processed, while an assistant message guides the agent on how to respond. During retrieval, these messages are sent to an LLM to extract relevant responses from indexed documents.
+The next step is to define the agent instructions and conversation context using the `messages` array. Each message includes a `role`, such as `user` or `assistant`, and `content` in natural language. A user message represents the query to be processed, while an assistant message guides the agent on how to respond. During the retrieval process, these messages are sent to an LLM to extract relevant responses from indexed documents.
 
 For now, create the following assistant message, which instructs `earth-search-agent` to answer questions about the Earth at night, cite sources using their `ref_id`, and respond with "I don't know" when answers are unavailable.
 
@@ -294,7 +294,7 @@ messages = [
 
 ## Run the retrieval pipeline
 
-You're ready to initiate the agentic retrieval pipeline. The input for this pipeline is the `messages` array, whose conversation history includes assistant instructions and user queries. Additionally, `target_index_params` specifies the index to query and optional configurations, such as reranking thresholds and filters.
+You're ready to initiate the agentic retrieval pipeline. The input for this pipeline is the `messages` array, whose conversation history includes the instructions you previously provided and user queries. Additionally, `target_index_params` specifies the index to query and other configurations, such as the semantic ranker threshold.
 
 The following code sends a two-part user query to `earth-search-agent`, which deconstructs the query into subqueries, runs the subqueries against both text fields and vector embeddings in the `earth-at-night` index, and ranks and merges the results. The response is then appended to the `messages` array.
 
@@ -480,7 +480,7 @@ messages.append({
 
 ### Review the new response, activity, and results
 
-To output the response, activity, and results of the new retrieval pipeline, run the following code.
+To output the latest response, activity, and results of the retrieval pipeline, run the following code.
 
 ```Python
 import textwrap
@@ -572,9 +572,9 @@ Results
 ]
 ```
 
-## Generate an answer
+## Generate an LLM-powered answer
 
-Now that you've sent multiple user queries, use the Responses API to generate a context-rich answer based on the indexed documents and conversation history, which is captured in the `messages` array.
+Now that you've sent multiple user queries, use the Responses API to generate an answer based on the indexed documents and conversation history, which is captured in the `messages` array.
 
 ```Python
 response = client.responses.create(

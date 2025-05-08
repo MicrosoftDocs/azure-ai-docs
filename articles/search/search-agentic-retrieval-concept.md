@@ -9,36 +9,36 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom: references_regions
-ms.date: 04/30/2025
+ms.date: 05/08/2025
 ---
 
 # Agentic retrieval in Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, *agentic retrieval* is a new parallel query processing architecture that generates multiple subqueries from a single retrieval request, producing high quality grounding data for chat and generative AI solutions. 
+In Azure AI Search, *agentic retrieval* is a new parallel query processing architecture that generates multiple subqueries from a single retrieval request, producing high-quality grounding data for chat and generative AI solutions.
 
-Programmatically, agentic retrieval is supported through a new Agents object in the newest preview data plane REST API 2025-05-01-preview and in Azure SDK prerelease packages that provide the feature. An agent's retrieval response is designed for downstream consumption by other agents and chat apps based on generative AI.
+Programmatically, agentic retrieval is supported through a new Agents object in the 2025-05-01-preview data plane REST API and in Azure SDK prerelease packages that provide the feature. An agent's retrieval response is designed for downstream consumption by other agents and chat apps based on generative AI.
 
 ## Why use agentic retrieval
 
-You should use agentic retrieval when you want to customize a chat experience with high quality inputs that include your proprietary data. The grounding data is built from queries against indexed documents (plain text and vectors) in Azure AI Search. The custom experience is powered by a new retrieval pipeline in AI Search that adds query expansion powered by a conversational language model for query planning. Query execution is through the search engine on your search service, utilizing the best and most effective relevance enhancements in Azure AI Search. Output is intended for integration into custom chat solutions, particularly those patterned after an agent-to-agent approach.
+You should use agentic retrieval when you want to customize a chat experience with high-quality inputs that include your proprietary data. The grounding data is built from queries against indexed documents (plain text and vectors) in Azure AI Search. The custom experience is powered by a new retrieval pipeline in Azure AI Search that adds query expansion powered by a conversational language model for query planning. Query execution is through the search engine on your search service, using the best and most effective relevance enhancements in Azure AI Search. The output is intended for integration into custom chat solutions, particularly those patterned after an agent-to-agent approach.
 
-The *agentic* aspect is a reasoning step in query planning processing that's performed by a large language model (LLM). The LLM is tasked with designing multiple subqueries based on: the user query, any chat history that provides context, and parameters on the request. Metadata about query execution and reference data is included in the response.
+The *agentic* aspect is a reasoning step in query planning processing that's performed by a large language model (LLM). The LLM is tasked with designing multiple subqueries based on the user query, any chat history that provides context, and parameters on the request. The response includes metadata about query execution and reference data.
 
 Agentic retrieval adds latency to query processing, but it makes up for it by adding these capabilities:
 
 + Reads in chat history as an input to the retrieval pipeline.
-+ Rewrites an original query into multiple subqueries using both synonym maps (optional) *and* LLM-generated paraphrasing.
++ Rewrites an original query into multiple subqueries using synonym maps (optional) and LLM-generated paraphrasing.
 + Corrects spelling mistakes.
-+ Deconstructs a complex query that contains multiple "asks" into component parts (for example, "find me a hotel near the beach, with airport transportation, and that's within walking distance of vegetarian restaurants")
-+ Executes all subqueries in simultaneously.
++ Deconstructs a complex query that contains multiple "asks" into component parts. For example: "find me a hotel near the beach, with airport transportation, and that's within walking distance of vegetarian restaurants."
++ Executes all subqueries simultaneously.
 + Outputs a unified result as a single string. Alternatively, you can extract parts of the response for your solution.
 
 Agentic retrieval invokes the entire query processing pipeline multiple times for each query request, but it does so in parallel, preserving the efficiency and performance necessary for a reasonable user experience.
 
 > [!NOTE]
-> Including an LLM in query planning adds latency to a query pipeline. You can mitigate by using faster models such as gpt-4o-mini and summarizing the message threads, but you should expect longer query times with this pipeline.
+> Including an LLM in query planning adds latency to a query pipeline. You can mitigate the effects by using faster models, such as gpt-4o-mini, and summarizing the message threads. Nonetheless, you should expect longer query times with this pipeline.
 
 ## Agentic retrieval architecture
 
@@ -50,7 +50,7 @@ Agentic retrieval has these components:
 | Component | Resource | Usage |
 |-----------|----------|-------|
 | LLM (gpt-4o series) | Azure OpenAI | Formulates subqueries for the query plan. Potentially used to provide an answer based on the grounding data, but you can use any model you want for this step. |
- Search index | Azure AI Search | Contains plain text and vector content, a semantic configuration, other elements as needed. |
+| Search index | Azure AI Search | Contains plain text and vector content, a semantic configuration, and other elements as needed. |
 | Agent | Azure AI Search | Connects to your model, providing parameters and inputs to build a query plan. |
 | Retrieval engine | Azure AI Search | Executes on the LLM-generated query plan and other parameters, returning a rich response that includes content and query plan metadata. |
 
@@ -60,34 +60,29 @@ Your solution should include a tool or app that drives the pipeline. An agentic 
 Agentic retrieval has these processes:
 
 + Requests for agentic retrieval are initiated by calls to an agent on Azure AI Search.
-+ Agents connect to an LLM and provides conversation history as an input (how much history is configurable by the number of messages you provide).
-+ LLMs look at the conversation and determine whether to break it up into subqueries. The number of subqueries depends on what the LLM decides, and also whether `maxDocsForReranker` parameter is higher than 50. A new subquery is defined for each 50 document batch sent to the semantic ranker.
++ Agents connect to an LLM and provide conversation history as input. How much history is configurable by the number of messages you provide.
++ LLMs look at the conversation and determine whether to break it up into subqueries. The number of subqueries depends on what the LLM decides and whether the `maxDocsForReranker` parameter is higher than 50. A new subquery is defined for each 50-document batch sent to semantic ranker.
 + Subqueries execute simultaneously on Azure AI Search and generate structured results and extracted references.
-+ Results are merged and ranked.
-+ Agent responses are formulated and returned as a three part response consisting of a unified result (a long string), a reference array, and an activities array that enumerates all operations.
++ Results are ranked and merged.
++ Agent responses are formulated and returned as a three-part response consisting of a unified result (a long string), a reference array, and an activities array that enumerates all operations.
 
-Query execution and any optimizations that occur during query execution are determined by your search index. Namely, your semantic configuration, but also optionally: scoring profiles, synonym maps, analyzers and normalizers if you add filters.
+Your search index determines query execution and any optimizations that occur during query execution. This includes your semantic configuration, as well as optional scoring profiles, synonym maps, analyzers, and normalizers (if you add filters).
 
 ## Availability and pricing
 
-Agentic retrieval is available in these regions, on all tiers including the free tier:
+Agentic retrieval is available to search services on the Basic tier or higher in [regions that support semantic ranker](search-region-support.md).
 
-+ **East US**
-+ **North Europe**
-+ **Japan East**
-+ **Sweden Central**
+Billing for agentic retrieval has two parts:
 
-Agentic retrieval billing will have two parts:
++ Billing for query planning is pay-as-you-go in Azure OpenAI. It's token based for both input and output tokens. The model you assign to the agent is charged for token usage. For example, if you use gpt-4o, the token charge appears in the bill for gpt-4o.
 
-+ Billing for query planning is pay-as-you-go in Azure OpenAI. It's token based for both input and output tokens. The model you assign to the agent is the one charged for token usage. For example, if you use gpt-4o, the token charge appears in the bill for gpt-4o.
-
-+ Billing for semantic ranking during query execution. This billing will be token based and is pay-as-you-go on the Azure AI Search side through the semantic ranker. Semantic ranker, which is a premium billable feature, is an integral part of agentic retrieval. You're charged on the Azure AI Search side for token inputs to the semantic ranking models. 
++ Billing for semantic ranking during query execution. This billing is token based and is pay-as-you-go on the Azure AI Search side through semantic ranker. Semantic ranker, which is a premium billable feature, is an integral part of agentic retrieval. You're charged on the Azure AI Search side for token inputs to the semantic ranking models.
 
 Billing for semantic ranking during query execution will be implemented *after* the initial phase of the public preview. Semantic ranking is performed for every subquery in the plan. Semantic ranking charges are based on the number of tokens returned by each subquery.
 
   | Aspect | Classic single-query pipeline | Agentic retrieval multi-query pipeline |
   |--------|------------------------|----------------------------|
-  | Unit | Query-based (1,000 queries) per unit of currency| Token-based (1 million tokens per unit of currency) |
+  | Unit | Query based (1,000 queries) per unit of currency| Token based (1 million tokens per unit of currency) |
   | Cost per unit | Uniform cost per query | Uniform cost per token |
   | Cost estimation | Estimate query count | Estimate token usage |
   | Free tier| 1,000 free queries | 50 million free tokens |
@@ -97,7 +92,7 @@ Billing for semantic ranking during query execution will be implemented *after* 
 
 ### Example: Estimate costs
 
-There are two billing models in effect for agentic retrieval. Billing from Azure AI Search for semantic ranking (query execution) and billing from Azure OpenAI (query planning).
+Agentic retrieval has two billing models: billing from Azure OpenAI (query planning) and billing from Azure AI Search for semantic ranking (query execution).
 
 The prices shown in this article are hypothetical. They're used to illustrate the estimation process. Your costs could be lower. For the actual price of transactions, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing). For query execution, there's no charge for semantic ranking for agentic retrieval in the initial public preview.
 
@@ -105,10 +100,10 @@ The prices shown in this article are hypothetical. They're used to illustrate th
 
 To estimate the query plan costs as pay-as-you-go in Azure OpenAI, let's assume gpt-4o-mini:
 
-+ 15 cents for 1 million input tokens
-+ 60 cents for 1 million output tokens
-+ Assume small chat conversations of 2,000 input tokens
-+ Assume an average output plan size of 350 tokens
++ 15 cents for 1 million input tokens.
++ 60 cents for 1 million output tokens.
++ Assume small chat conversations of 2,000 input tokens.
++ Assume an average output plan size of 350 tokens.
 
 #### Estimated billing costs for query execution
 
@@ -125,21 +120,21 @@ To estimate the semantic ranking costs associated with agentic retrieval, start 
 
 1. Rerank 50 chunks per subquery, which is 300,000 total chunks.
 
-1. Average chunk is 500 tokens, so total tokens for reranking is 150 million.
+1. Average chunk is 500 tokens, so the total tokens for reranking is 150 million.
 
 1. Given a hypothetical price of 0.022 per token, $3.30 is the total cost for reranking in US dollars.
 
 1. Moving on to query plan costs: 2,000 input tokens multiplied by 2,000 agentic retrievals equals 4 million input tokens for a total of 60 cents.
 
-1. Estimate output costs based on an average of 350 tokens. If we multiply 350 by 2,000 agentic retrievals, we get 700,000 output tokens total for a total of 42 cents.
+1. Estimate the output costs based on an average of 350 tokens. If we multiply 350 by 2,000 agentic retrievals, we get 700,000 output tokens total for a total of 42 cents.
 
-Putting it all together, you'd pay about $3.30 for the semantic ranking in Azure AI Search, 60 cents for input tokens in Azure OpenAI, and 42 cents for output tokens in Azure OpenAI, for $1.02 for query planning total. Combined cost for the full execution is $4.02.
+Putting it all together, you'd pay about $3.30 for semantic ranking in Azure AI Search, 60 cents for input tokens in Azure OpenAI, and 42 cents for output tokens in Azure OpenAI, for $1.02 for query planning total. The combined cost for the full execution is $4.02.
 
 ## How to get started
 
-You must use the REST APIs or a prerelease Azure SDK page that provides the functionality. There's no Azure portal or Azure AI Foundry portal support at this time.
+You must use the REST APIs or a prerelease Azure SDK page that provides the functionality. At this time, there's no Azure portal or Azure AI Foundry portal support.
 
-Choose any of these options for you next step.
+Choose any of these options for your next step.
 
 <!-- + Watch this demo. -->
 + Quickstart. Learn the basic workflow using sample data and a prepared index and queries.
