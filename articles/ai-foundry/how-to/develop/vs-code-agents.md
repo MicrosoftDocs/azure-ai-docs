@@ -1,7 +1,7 @@
 ---
-title: Work with Azure AI Agent Service using the Azure AI Foundry for Visual Studio Code extension
+title: Work with Azure AI Foundry Agent Service using the Azure AI Foundry for Visual Studio Code extension
 titleSuffix: Azure AI Foundry
-description: Use this article to learn how to use Azure AI Agent Service directly in VS Code.
+description: Use this article to learn how to use Azure AI Foundry Agent Service directly in VS Code.
 manager: mcleans
 ms.service: azure-ai-foundry
 content_well_notification: 
@@ -14,9 +14,9 @@ ms.author: johalexander
 author: ms-johnalex
 ---
 
-# Work with Azure AI Agent Service in Visual Studio Code (Preview)
+# Work with Azure AI Foundry Agent Service in Visual Studio Code (Preview)
 
-After you [get started with the AI Foundry the VS Code extension](./get-started-projects-vs-code.md), you can work with [Azure AI Agent Service](/azure/ai-services/agents/overview). Agents are "smart" microservices that:
+After you [get started with the AI Foundry the VS Code extension](./get-started-projects-vs-code.md), you can work with [Azure AI Foundry Agent Service](/azure/ai-services/agents/overview). Agents are "smart" microservices that:
 
 - Answer questions using their training data or search other sources with Retrieval Augmented Generation (RAG)
 - Perform specific actions
@@ -28,7 +28,7 @@ Azure AI Foundry developers can stay productive by developing, testing, and depl
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-###	Create and edit Azure AI Agents within the designer view
+###    Create and edit Azure AI Agents within the designer view
 
 Follow these steps to create an Azure AI Agent:
 
@@ -72,7 +72,7 @@ After you choose your save location, both the agent .yaml file and the Designer 
  
     1. To save the .yaml file, select **File** > **Save** in the VS Code menu bar.
 
-###	Explore the Azure AI Agent YAML definition
+###    Explore the Azure AI Agent YAML definition
 
 Your AI Agent .yaml file was opened at the same time the designer was. This file contains the details and setup information for your agent, similar to the following .yaml file example: 
 
@@ -116,6 +116,11 @@ The following tools are available:
 
 - Action tools:
  - [Azure AI Agents function calling](/azure/ai-services/agents/how-to/tools/function-calling?tabs=python&pivots=overview)
+Azure AI Foundry Agent Service has a set of knowledge and action tools that you can use to interact with your data sources, such as:
+ - [Grounding with Bing search](/azure/ai-services/agents/how-to/tools/bing-grounding?tabs=python&pivots=overview)
+ - [Azure AI Search](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview) 
+ - [Azure Functions](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview) 
+ - [File retrieval](/azure/ai-services/agents/how-to/tools/azure-functions?tabs=python&pivots=overview) 
  - [Code interpreter](/azure/ai-services/agents/how-to/tools/code-interpreter?tabs=python&pivots=overview)
  - [OpenAPI Specified tools](/azure/ai-services/agents/how-to/tools/openapi-spec?tabs=python&pivots=overview)
  - [Azure Functions](/azure/ai-services/agents/how-to/tools/azure-functions?tabs=python&pivots=overview)
@@ -128,7 +133,7 @@ Create a tool configuration .yaml file using the following steps:
 
 1. Choose a tool from the [available tools for Azure AI Agents](#available-tools-for-azure-ai-agents). Perform any setup steps that might be required. For example, [Grounding with Bing search](/azure/ai-services/agents/how-to/tools/bing-grounding?tabs=python&pivots=overview#setup).
 
-1. Once you complete the setup, create a yaml code file that specifies the tool’s configuration. For example, this format for Grounding with Bing Search:
+1. Once you complete the setup, create a yaml code file that specifies the tool's configuration. For example, this format for Grounding with Bing Search:
 
     ```yml
     type: bing_grounding
@@ -165,7 +170,7 @@ Add a tool to the AI Agent with the following steps:
 1. To save the .yaml file, select **File** > **Save** in the VS Code menu bar.
 
 
-###	Deploy Azure AI Agents to the Azure AI Foundry Studio
+###    Deploy Azure AI Agents to the Azure AI Foundry Studio
 
 Deploy your agent directly to Azure AI Foundry with the following steps:
 
@@ -216,11 +221,11 @@ Select a thread to see the **Thread Details** page.
 
 :::image type="content" source="../../media/how-to/get-started-projects-vs-code/thread-view.png" alt-text="Screenshot of the thread details view." lightbox="../../media/how-to/get-started-projects-vs-code/thread-view.png":::
 
-- A **Thread** is a conversation session between an agent and a user. Threads store **Messages** and automatically handle truncation to fit content into a model’s context.
+- A **Thread** is a conversation session between an agent and a user. Threads store **Messages** and automatically handle truncation to fit content into a model's context.
 
 - A **Message** is a single interaction between the agent and the user. Messages can include text, images, and other files. Messages are stored as a list on the Thread.
 
-- A **Run** is a single execution of an agent. Each run can have multiple threads, and each thread can have multiple messages. The agent uses its configuration and Thread’s Messages to perform tasks by calling models and tools. As part of a Run, the agent appends Messages to the Thread.
+- A **Run** is a single execution of an agent. Each run can have multiple threads, and each thread can have multiple messages. The agent uses its configuration and Thread's Messages to perform tasks by calling models and tools. As part of a Run, the agent appends Messages to the Thread.
 
 ###  View run details
 
@@ -254,6 +259,6 @@ Delete the connected tool with the following steps:
 1. Select the Azure Resource Group containing the tool.
 1. Select the **Delete** button.  
 
-##	Next steps
+##    Next steps
 
 - Learn about the tools you can use with Azure AI Agents, such as [file search](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview), or [code interpreter](/azure/ai-services/agents/how-to/tools/code-interpreter?tabs=python&pivots=overview).
