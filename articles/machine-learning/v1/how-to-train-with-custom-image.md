@@ -74,37 +74,6 @@ fastai_env.docker.base_image = "fastdotai/fastai2:latest"
 fastai_env.python.user_managed_dependencies = True
 ```
 
-#### Use a private container registry (optional)
-
-To use an image from a private container registry that isn't in your workspace, use `docker.base_image_registry` to specify the address of the repository and a username and password:
-
-```python
-# Set the container registry information
-fastai_env.docker.base_image_registry.address = "myregistry.azurecr.io"
-fastai_env.docker.base_image_registry.username = "username"
-fastai_env.docker.base_image_registry.password = "password"
-```
-
-#### Use a custom Dockerfile (optional)
-
-It's also possible to use a custom Dockerfile. Use this approach if you need to install non-Python packages as dependencies. Remember to set the base image to `None`.
-
-```python 
-# Specify Docker steps as a string
-dockerfile = r"""
-FROM mcr.microsoft.com/azureml/openmpi3.1.2-ubuntu18.04:20210615.v1
-RUN echo "Hello from custom container!"
-"""
-
-# Set the base image to None, because the image is defined by Dockerfile
-fastai_env.docker.base_image = None
-fastai_env.docker.base_dockerfile = dockerfile
-
-# Alternatively, load the string from a file
-fastai_env.docker.base_image = None
-fastai_env.docker.base_dockerfile = "./Dockerfile"
-```
-
 > [!IMPORTANT]
 > Azure Machine Learning only supports Docker images that provide the following software:
 > * Ubuntu 18.04 or greater
