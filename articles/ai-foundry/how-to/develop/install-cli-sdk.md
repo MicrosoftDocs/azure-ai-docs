@@ -32,7 +32,7 @@ In the IDE of your choice, create a new folder for your project. Open a terminal
 
 # [Java](#tab/java)
 
-[!INCLUDE [Install Jave](../../includes/install-jave.md)]
+[!INCLUDE [Install Jave](../../includes/install-java.md)]
 
 # [JavaScript](#tab/javascript)
 
@@ -44,25 +44,7 @@ Install Javascript.
 
 ---
 
-## Install packages
 
-# [Python SDK](#tab/python)
-
-[!INCLUDE [install-python-packages](../../includes/install-python-packages.md)]
-
-# [Java](#tab/java)
-
-Install Java packages.
-
-# [JavaScript](#tab/javascript)
-
-Install JavaScript packages.
-
-# [C#](#tab/csharp)
-
-[!INCLUDE [install-csharp packages](../../includes/install-csharp-packages.md)]
-
----
 
 ## <a name="installs"></a> Install the Azure CLI and sign in 
 
