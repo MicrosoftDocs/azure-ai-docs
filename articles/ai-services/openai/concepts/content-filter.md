@@ -240,7 +240,7 @@ The table below outlines the various ways content filtering can appear:
 
 **HTTP Response Code** | **Response behavior**
 |------------------------|----------------------|
-| 200 | If the content filtering system is down or otherwise unable to complete the operation in time, your request will still complete without content filtering. You can determine that the filtering wasn't applied by looking for an error message in the `content_filter_result` object.|
+| 200 | If the content filtering system is down or otherwise unable to complete the operation in time, your request will still complete without content filtering. You can determine that the filtering wasn't applied by looking for an error message in the `content_filter_results` object.|
 
 **Example request payload:**
 
@@ -266,7 +266,7 @@ The table below outlines the various ways content filtering can appear:
             "index": 0,
             "finish_reason": "length",
             "logprobs": null,
-            "content_filter_result": {
+            "content_filter_results": {
                 "error": {
                     "code": "content_filter_error",
                     "message": "The contents are not filtered"
@@ -284,7 +284,7 @@ As part of your application design, consider the following best practices to del
 
 - Decide how you want to handle scenarios where your users send prompts containing content that is classified at a filtered category and severity level or otherwise misuse your application.
 - Check the `finish_reason` to see if a completion is filtered.
-- Check that there's no error object in the `content_filter_result` (indicating that content filters didn't run).
+- Check that there's no error object in the `content_filter_results` (indicating that content filters didn't run).
 - If you're using the protected material code model in annotate mode, display the citation URL when you're displaying the code in your application.
 
 ## Related content

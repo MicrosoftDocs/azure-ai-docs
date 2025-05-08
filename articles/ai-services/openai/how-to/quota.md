@@ -6,7 +6,7 @@ author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 01/09/2025
+ms.date: 04/30/2025
 ms.author: mbullwin
 ---
 
@@ -28,11 +28,11 @@ Quota provides the flexibility to actively manage the allocation of rate limits 
 Azure OpenAI's quota feature enables assignment of rate limits to your deployments, up-to a global limit called your *quota*. Quota is assigned to your subscription on a per-region, per-model basis in units of **Tokens-per-Minute (TPM)**. When you onboard a subscription to Azure OpenAI, you'll receive default quota for most available models. Then, you'll assign TPM to each deployment as it is created, and the available quota for that model will be reduced by that amount. You can continue to create deployments and assign them TPM until you reach your quota limit. Once that happens, you can only create new deployments of that model by reducing the TPM assigned to other deployments of the same model (thus freeing TPM for use), or by requesting and being approved for a model quota increase in the desired region.
 
 > [!NOTE]
-> With a quota of 240,000 TPM for GPT-35-Turbo in East US, a customer can create a single deployment of 240 K TPM, 2 deployments of 120 K TPM each, or any number of deployments in one or multiple Azure OpenAI resources as long as their TPM adds up to less than 240 K total in that region.
+> With a quota of 240,000 TPM for GPT-4o in East US, a customer can create a single deployment of 240 K TPM, 2 deployments of 120 K TPM each, or any number of deployments in one or multiple Azure OpenAI resources as long as their TPM adds up to less than 240 K total in that region.
 
 When a deployment is created, the assigned TPM will directly map to the tokens-per-minute rate limit enforced on its inferencing requests. A **Requests-Per-Minute (RPM)** rate limit will also be enforced whose value is set proportionally to the TPM assignment using the following ratio:
 
-6 RPM per 1000 TPM.
+6 RPM per 1000 TPM. (This ratio can vary by model for more information, see [quota, and limits](../quotas-limits.md#o-series-rate-limits).)
 
 The flexibility to distribute TPM globally within a subscription and region has allowed Azure OpenAI Service to loosen other restrictions:
 
@@ -145,10 +145,10 @@ This is only a subset of the available request body parameters. For the full lis
 #### Example request
 
 ```Bash
-curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-temp/providers/Microsoft.CognitiveServices/accounts/docs-openai-test-001/deployments/gpt-35-turbo-test-deployment?api-version=2023-05-01 \
+curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-temp/providers/Microsoft.CognitiveServices/accounts/docs-openai-test-001/deployments/gpt-4o-test-deployment?api-version=2023-05-01 \
   -H "Content-Type: application/json" \
   -H 'Authorization: Bearer YOUR_AUTH_TOKEN' \
-  -d '{"sku":{"name":"Standard","capacity":10},"properties": {"model": {"format": "OpenAI","name": "gpt-35-turbo","version": "0613"}}}'
+  -d '{"sku":{"name":"Standard","capacity":10},"properties": {"model": {"format": "OpenAI","name": "gpt-4o","version": "2024-11-20"}}}'
 ```
 
 > [!NOTE]
@@ -215,7 +215,7 @@ az login
 By setting sku-capacity to 10 in the command below this deployment will be set with a 10K TPM limit.
 
 ```azurecli
-az cognitiveservices account deployment create -g test-resource-group -n test-resource-name --deployment-name test-deployment-name --model-name gpt-35-turbo --model-version "0613" --model-format OpenAI --sku-capacity 10 --sku-name "Standard"
+az cognitiveservices account deployment create -g test-resource-group -n test-resource-name --deployment-name test-deployment-name --model-name gpt-4o --model-version "2024-11-20" --model-format OpenAI --sku-capacity 10 --sku-name "Standard"
 ```
 
 ### Usage
@@ -272,8 +272,8 @@ $cognitiveServicesDeploymentParams = @{
     Name = 'test-deployment-name'
     Properties = @{
         Model = @{
-            Name = 'gpt-35-turbo'
-            Version = '0613'
+            Name = 'gpt-4o'
+            Version = '2024-11-20'
             Format  = 'OpenAI'
         }
     }
@@ -301,7 +301,7 @@ Get-AzCognitiveServicesUsage -Location eastus
 
 This command runs in the context of the currently active subscription for Azure PowerShell. Use `Set-AzContext` to [modify the active subscription](/powershell/azure/manage-subscriptions-azureps#change-the-active-subscription).
 
-For more details on `New-AzCognitiveServicesAccountDeployment` and `Get-AzCognitiveServicesUsage`, consult the [Azure PowerShell reference documentation](/powershell/module/az.cognitiveservices/).
+For more information on `New-AzCognitiveServicesAccountDeployment` and `Get-AzCognitiveServicesUsage`, see [Azure PowerShell reference documentation](/powershell/module/az.cognitiveservices/).
 
 # [Azure Resource Manager](#tab/arm)
 
@@ -324,8 +324,8 @@ For more details on `New-AzCognitiveServicesAccountDeployment` and `Get-AzCognit
     "properties": {
         "model": {
             "format": "OpenAI",
-            "name": "gpt-35-turbo",
-            "version": "0613"        // Version 0613 of gpt-35-turbo will be used
+            "name": "gpt-4o",
+            "version": "2024-11-20"       
         }
     }
 }
@@ -350,8 +350,8 @@ resource arm_je_std_deployment 'Microsoft.CognitiveServices/accounts/deployments
   properties: {
     model: {
       format: 'OpenAI'
-      name: 'gpt-35-turbo'
-      version: '0613'           // gpt-35-turbo version 0613 will be used
+      name: 'gpt-4o'
+      version: '2024-11-20'          
     }
   }
 }
@@ -425,8 +425,8 @@ resource "azapi_resource" "TERRAFORM-AOAI-STD-DEPLOYMENT" {
     properties = {
         model = {
             format = "OpenAI",
-            name = "gpt-35-turbo",
-            version = "0613"           # Deploy gpt-35-turbo version 0613
+            name = "gpt-4o",
+            version = "2024-11-20"           
         }
     }
   })
