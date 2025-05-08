@@ -9,6 +9,7 @@ ms.date: 04/30/2025
 ms.custom: include file
 ---
 
+[!INCLUDE [fdp-rollout](fdp-rollout.md)]
 
 In this quickstart, you use [Azure AI Foundry](https://ai.azure.com) to:
 
