@@ -69,8 +69,8 @@ manager = FoundryManager()
 catalog = manager.list_catalog_models()
 
 # Download and load a model
-manager.download_model("DeepSeek-R1-Distill-Qwen-1.5B-generic-gpu")
-manager.load_model("DeepSeek-R1-Distill-Qwen-1.5B-generic-gpu")
+manager.download_model("DeepSeek-R1-Distill-Qwen-1.5B")
+manager.load_model("DeepSeek-R1-Distill-Qwen-1.5B")
 
 # List models in cache
 local_models = manager.list_local_models()
@@ -79,5 +79,5 @@ local_models = manager.list_local_models()
 loaded = manager.list_loaded_models()
 
 # Unload a model
-manager.unload_model("DeepSeek-R1-Distill-Qwen-1.5B-generic-gpu")
+manager.unload_model("DeepSeek-R1-Distill-Qwen-1.5B")
 ```

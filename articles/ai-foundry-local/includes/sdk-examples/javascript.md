@@ -73,7 +73,7 @@ import { FoundryManager } from 'foundry-management-sdk'
 const manager = new FoundryManager()
 
 // Initialize the SDK and optionally load a model
-await manager.init('DeepSeek-R1-Distill-Qwen-1.5B-generic-gpu')
+await manager.init('DeepSeek-R1-Distill-Qwen-1.5B')
 
 // Check if the service is running
 const isRunning = await manager.isServiceRunning()
@@ -83,8 +83,8 @@ console.log(`Service running: ${isRunning}`)
 const catalog = await manager.listCatalogModels()
 
 // Download and load a model
-await manager.downloadModel('DeepSeek-R1-Distill-Qwen-1.5B-generic-gpu')
-await manager.loadModel('DeepSeek-R1-Distill-Qwen-1.5B-generic-gpu')
+await manager.downloadModel('DeepSeek-R1-Distill-Qwen-1.5B')
+await manager.loadModel('DeepSeek-R1-Distill-Qwen-1.5B')
 
 // List models in cache
 const localModels = await manager.listLocalModels()
@@ -93,7 +93,7 @@ const localModels = await manager.listLocalModels()
 const loaded = await manager.listLoadedModels()
 
 // Unload a model
-await manager.unloadModel('DeepSeek-R1-Distill-Qwen-1.5B-generic-gpu')
+await manager.unloadModel('DeepSeek-R1-Distill-Qwen-1.5B')
 ```
 
 ---
@@ -111,7 +111,7 @@ const client = new OpenAI({
 })
 
 const completion = await client.chat.completions.create({
-    model: 'DeepSeek-R1-Distill-Qwen-1.5B-generic-gpu',
+    model: 'DeepSeek-R1-Distill-Qwen-1.5B',
     messages: [{"role": "user", "content": "Solve x^2 + 5x + 6 = 0."}],
     max_tokens: 250,
     stream: true,
@@ -149,8 +149,8 @@ const manager = new FoundryManager()
 const catalog = await manager.listCatalogModels()
 
 // Download and load a model
-await manager.downloadModel('DeepSeek-R1-Distill-Qwen-1.5B-generic-gpu')
-await manager.loadModel('DeepSeek-R1-Distill-Qwen-1.5B-generic-gpu')
+await manager.downloadModel('DeepSeek-R1-Distill-Qwen-1.5B') 
+await manager.loadModel('DeepSeek-R1-Distill-Qwen-1.5B')
 
 // List models in cache
 const localModels = await manager.listLocalModels()
@@ -159,5 +159,5 @@ const localModels = await manager.listLocalModels()
 const loaded = await manager.listLoadedModels()
 
 // Unload a model
-await manager.unloadModel('DeepSeek-R1-Distill-Qwen-1.5B-generic-gpu')
+await manager.unloadModel('DeepSeek-R1-Distill-Qwen-1.5B')
 ```
