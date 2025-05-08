@@ -191,7 +191,7 @@ To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)]:
 
 Enable your agent to search and retrieve information from a provided file. 
 
-* Download [product_info_1.md]() to give to your agent.
+* Download [product_info_1.md](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/data/product_info_1.md) to give to your agent.
 
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
