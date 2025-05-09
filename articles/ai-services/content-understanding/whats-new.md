@@ -35,7 +35,8 @@ The Azure AI Content Understanding **2025-05-01-preview** REST API is now availa
   * Support for face identification on extracted face thumbnails.The identity will enhance the description and downstream tasks like search/retrieval, etc.
   * Support for disabling face blurring in Analyzer configuration.
 * **Audio Modality improvements**: Support for multi-speaker callcenter role detection to allow detection of 2+ speakers. 
-* **Face preview**: Detection, recognition and enrollement of face APIs.
+* **Face API preview**: Detection, recognition and enrollement of faces.
+* **Billing Changes** New simpler pricing model that lowers costs from preview.1 across all modalities. 
 
   
 ## April 2025
