@@ -22,7 +22,7 @@ Set up your development environment to use the [Azure AI Foundry](https://ai.azu
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 
 
-## Install you programming language 
+## Install your programming language 
 
 # [Python SDK](#tab/python)
 
