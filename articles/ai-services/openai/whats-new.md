@@ -19,11 +19,17 @@ recommendations: false
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI Service.
 
-## May 2025 TBD
+## May 2025
 
 ### PII detection for content filters
 
-### Embedded document spotlighting
+Personally identifiable information (PII) detection is now available as a built-in content filter. This feature allows you to identify and filter out sensitive information in LLM outputs, enhancing data privacy. For more information, see the [Content filter configurability](./concepts/content-filter-configurability.md) documentation.
+
+### Spotlighting for prompt shields
+
+Spotlighting is a new feature for prompt shields that enhances protection from indirect (embedded document) attacks by tagging input documents with special formatting to indicate lower trust to the model. For more information, see the [Prompt shields content filtering](./concepts/content-filter-prompt-shields.md) documentation.
+
+
 
 ## April 2025
 
