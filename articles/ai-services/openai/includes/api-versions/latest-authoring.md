@@ -5994,13 +5994,10 @@ A model is either a base model or the result of a successful fine tune job.
 |------|------|-------------|----------|---------|
 | capabilities | [Capabilities](#capabilities) | The capabilities of a base or fine tune model. | Yes |  |
 | created_at | integer | A timestamp when this job or item was created (in unix epochs). | No |  |
-| deprecation | [Deprecation](#deprecation) | Defines the dates of deprecation for the different use cases of a model.
-Usually base models support 1 year of fine tuning after creation. Inference is typically supported 2 years after creation of base or
-fine tuned models. The exact dates are specified in the properties. | Yes |  |
+| deprecation | [Deprecation](#deprecation) | Defines the dates of deprecation for the different use cases of a model. Usually base models support 1 year of fine tuning after creation Inference is typically supported 2 years after creation of base or fine tuned models. The exact dates are specified in the properties. | Yes |  |
 | fine_tune | string | The fine tune job identity (fine-tune-id) if this is a fine tune model; otherwise `null`. | No |  |
 | id | string | The identity of this item. | No |  |
-| lifecycle_status | [LifeCycleStatus](#lifecyclestatus) | The life cycle status of a model.
-Note: A model can be promoted from "preview" to "generally-available", but never from "generally-available" to "preview". | Yes |  |
+| lifecycle_status | [LifeCycleStatus](#lifecyclestatus) | The life cycle status of a model. Note: A model can be promoted from "preview" to "generally-available", but never from "generally-available" to "preview". | Yes |  |
 | model | string | The base model identity (model-id) if this is a fine tune model; otherwise `null`. | No |  |
 | object | [TypeDiscriminator](#typediscriminator) | Defines the type of an object. | No |  |
 | status | [FineTuningState](#finetuningstate) | The state of a finetunes object or fine tuning job. | No |  |
