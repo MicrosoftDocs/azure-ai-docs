@@ -214,12 +214,12 @@ Advanced users have the capability to import or define a custom grader and integ
 ### Example
 
 ```python
-from openai.types.eval_string_check_grader import EvalStringCheckGrader
+from openai.types.graders import StringCheckGrader
 from azure.ai.evaluation import AzureOpenAIGrader
-
+ 
 # Define an string check grader config directly using the OAI SDK
 # Evaluation criteria: Pass if query column contains "Northwind"
-oai_string_check_grader = EvalStringCheckGrader(
+oai_string_check_grader = StringCheckGrader(
     input="{{item.query}}",
     name="contains hello",
     operation="like",
