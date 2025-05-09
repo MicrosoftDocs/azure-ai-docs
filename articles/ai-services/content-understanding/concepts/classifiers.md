@@ -58,15 +58,15 @@ For a complete end to end flow, you may link classifier categories with existing
 
 ### Classifier limits
 
-✔️ Classifier requires at least one distinct category to be defined. Response contains the page ranges for each of the categories of documents identified.
+* Classifier requires at least one distinct category to be defined. Response contains the page ranges for each of the categories of documents identified.
 
-✔️ The maximum allowed number of categories is 50.
+* The maximum allowed number of categories is 50.
 
-✔️ The maximum length of input file is 300 pages.
+* The maximum length of input file is 300 pages.
 
-✔️ For each category name and description, there's a limit of 120 characters combined.
+* For each category name and description, there's a limit of 120 characters combined.
 
-✔️ By default, there's an `$other` class as well, which we utilize to categorize the pages into for cases where any of the defined categories doesn't seem suitable.
+* By default, there's an `$other` class as well, which we utilize to categorize the pages into for cases where any of the defined categories doesn't seem suitable.
 
 Classifier categorizes each page of the input document, unless specified, to one of the defined categories. You can specify the page numbers to analyze in the input document as well.
 
