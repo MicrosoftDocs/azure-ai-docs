@@ -1,7 +1,7 @@
 ---
 title: Run Hugging Face models on Foundry Local
 titleSuffix: Foundry Local
-description: This article provides instructions on how to compile and run Hugging Face models for Foundry Local.
+description: Learn how to compile and run Hugging Face models with Foundry Local.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: build-2025
@@ -13,14 +13,14 @@ author: samuel100
 
 # Run Hugging Face models on Foundry Local
 
-Foundry Local lets you run ONNX models on your local device with high performance. While the model catalog includes pre-compiled models, you can also use any ONNX-formatted model.
+Foundry Local runs ONNX models on your device with high performance. While the model catalog offers pre-compiled options, you can use any model in ONNX format.
 
-In this guide, you'll learn to:
+This guide shows you how to:
 
 > [!div class="checklist"]
 >
-> - **Convert and optimize** a Hugging Face model into the ONNX format using Olive
-> - **Run** the optimized model using Foundry Local
+> - **Convert and optimize** Hugging Face models to ONNX format using Olive
+> - **Run** your optimized models with Foundry Local
 
 ## Prerequisites
 
@@ -28,7 +28,7 @@ In this guide, you'll learn to:
 
 ## Install Olive
 
-[Olive](https://github.com/microsoft/olive) is a toolkit for optimizing models to ONNX format.
+[Olive](https://github.com/microsoft/olive) is a tool that optimizes models to ONNX format.
 
 ### [Bash](#tab/Bash)
 
@@ -45,11 +45,11 @@ pip install olive-ai[auto-opt]
 ---
 
 > [!TIP]
-> Install Olive in a virtual environment using [venv](https://docs.python.org/3/library/venv.html) or [conda](https://www.anaconda.com/docs/getting-started/miniconda/main).
+> For best results, install Olive in a virtual environment using [venv](https://docs.python.org/3/library/venv.html) or [conda](https://www.anaconda.com/docs/getting-started/miniconda/main).
 
 ## Sign in to Hugging Face
 
-We'll optimize Llama-3.2-1B-Instruct, which requires Hugging Face authentication:
+We'll optimize the Llama-3.2-1B-Instruct model, which requires Hugging Face authentication:
 
 ### [Bash](#tab/Bash)
 
@@ -66,13 +66,13 @@ huggingface-cli login
 ---
 
 > [!NOTE]
-> You'll need to [create a Hugging Face token](https://huggingface.co/docs/hub/security-tokens) and [directly request access](https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct) to the model.
+> You must first [create a Hugging Face token](https://huggingface.co/docs/hub/security-tokens) and [request model access](https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct) before proceeding.
 
 ## Compile the model
 
-### Step 1: Run the Olive `auto-opt` command
+### Step 1: Run the Olive auto-opt command
 
-Run the Olive `auto-opt` command to download, convert to ONNX, quantize, and optimize the model:
+Use the Olive `auto-opt` command to download, convert, quantize, and optimize the model:
 
 
 ### [Bash](#tab/Bash)
@@ -106,7 +106,7 @@ olive auto-opt `
 ---
 
 > [!NOTE]
-> Compilation takes ~60 seconds plus model download time.
+> The compilation process takes approximately 60 seconds, plus additional time for model download.
 
 The command uses the following parameters:
 

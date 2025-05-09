@@ -2,7 +2,7 @@
 
 ### Installation
 
-Install the npm package:
+Install the package from npm:
 
 ```bash
 npm install foundry-manager
@@ -10,7 +10,7 @@ npm install foundry-manager
 
 ### FoundryManager Class
 
-The `FoundryManager` class provides methods to manage models, cache, and the Foundry Local service in the browser or Node.js.
+The `FoundryManager` class lets you manage models, control the cache, and interact with the Foundry Local service in both browser and Node.js environments.
 
 #### Initialization
 
@@ -20,8 +20,9 @@ import FoundryManager from 'foundry-manager'
 const manager = new FoundryManager()
 ```
 
-- `serviceUrl`: The base URL of the Foundry Local service.
-- `fetch`: (optional) Custom fetch implementation (e.g., for Node.js).
+Available options:
+- `serviceUrl`: Base URL of the Foundry Local service
+- `fetch`: (optional) Custom fetch implementation for environments like Node.js
 
 
 ### Service Management
@@ -100,26 +101,31 @@ await manager.unloadModel('DeepSeek-R1-Distill-Qwen-1.5B')
 
 ## OpenAI-Compatible Usage
 
-You can use the Foundry Local endpoint with an OpenAI-compatible API client. For example, using the `openai` package:
-
+Connect to Foundry Local with any OpenAI-compatible client. Here's an example using the `openai` package:
 
 ```js
 import OpenAI from 'openai';
 import FoundryManager from 'foundry-manager'
-const manager = new FoundryManager()
-const modelInfo = await foundryManager.loadModel('DeepSeek-R1-Distill-Qwen-1.5B')
 
+// Initialize the manager and load a model
+const manager = new FoundryManager()
+const modelInfo = await manager.loadModel('DeepSeek-R1-Distill-Qwen-1.5B')
+
+// Create an OpenAI client pointing to our local endpoint
 const client = new OpenAI({
-    apiKey: manager.apiKey,
+    apiKey: manager.apiKey,  // Not actually used but required by the client
     baseURL: manager.endpoint
 })
 
+// Create a streaming completion
 const completion = await client.chat.completions.create({
     model: modelInfo.id,
     messages: [{ role: 'user', content: 'Solve x^2 + 5x + 6 = 0.' }],
     max_tokens: 250,
     stream: true,
 })
+
+// Process the streaming response
 for await (const chunk of completion) {
     const textChunk = chunk.choices[0]?.delta?.content || ''
     if (textChunk) {
@@ -132,15 +138,15 @@ for await (const chunk of completion) {
 
 ## Browser Usage
 
-The SDK also provides a browser-compatible version. However, you must provide the service URL manually. You can use the `FoundryManager` class in the browser as follows:
-
+The SDK includes a browser-compatible version where you must specify the service URL manually:
 
 ```js
 import FoundryManager from 'foundry-manager/browser'
 
 const manager = new FoundryManager({ serviceUrl: 'http://localhost:8080' })
 
-// The rest of the code is the same as above, except that `init`, `isServiceRunning`, and `startService` are not available in the browser version.
+// Note: The `init`, `isServiceRunning`, and `startService` methods 
+// are not available in the browser version
 ```
 
 #### Example Usage
@@ -150,19 +156,19 @@ import FoundryManager from 'foundry-manager'
 
 const manager = new FoundryManager({ serviceUrl: 'http://localhost:8080' })
 
-// List available models in the catalog
+// Get all available models
 const catalog = await manager.listCatalogModels()
 
-// Download and load a model
+// Download and load a specific model
 await manager.downloadModel('DeepSeek-R1-Distill-Qwen-1.5B')
 await manager.loadModel('DeepSeek-R1-Distill-Qwen-1.5B')
 
-// List models in cache
+// View models in your local cache
 const localModels = await manager.listLocalModels()
 
-// List loaded models
+// Check which models are currently loaded
 const loaded = await manager.listLoadedModels()
 
-// Unload a model
+// Unload a model when finished
 await manager.unloadModel('DeepSeek-R1-Distill-Qwen-1.5B')
 ```

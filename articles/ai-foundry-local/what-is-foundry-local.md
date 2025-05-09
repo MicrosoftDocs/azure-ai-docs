@@ -1,7 +1,7 @@
 ---
 title: What is Foundry Local?
 titleSuffix: Foundry Local
-description: Foundry Local is a trusted platform that empowers developers to drive innovation and shape the future with AI in a safe, secure, and responsible way on their on-device.
+description: Foundry Local is a trusted platform that empowers developers to drive innovation and shape the future with AI in a safe, secure, and responsible way on their devices.
 manager: scottpolly
 keywords: Azure AI services, cognitive
 ms.service: azure-ai-foundry
@@ -11,24 +11,24 @@ ms.reviewer: samkemp
 ms.author: samkemp
 author: samuel100
 ms.custom: build-2025
-#customer intent: As a developer, I want to understand what Azure AI Foundry is so that I can use it to build AI applications.
+#customer intent: As a developer, I want to understand what Azure AI Foundry Local is so that I can use it to build AI applications.
 ---
 
 # What is Foundry Local?
 
-Foundry Local is a local version of Azure AI Foundry that enables local execution of large language models (LLMs) directly on your device. This on-device AI inference solution provides privacy, customization, and cost benefits compared to cloud-based alternatives. Best of all, it fits into your existing workflows and applications with an easy-to-use CLI and REST API!
+Foundry Local is a local version of Azure AI Foundry that runs large language models (LLMs) directly on your device. This on-device AI inference solution offers privacy, customization, and cost advantages over cloud-based options. It integrates seamlessly into your existing workflows and applications through an intuitive CLI and REST API.
 
-Foundry Local applies the optimization work of ONNX Runtime, Olive, and the ONNX ecosystem, Foundry Local delivers a highly optimized and performant user experience for running AI models locally.
+By leveraging the optimization capabilities of ONNX Runtime, Olive, and the ONNX ecosystem, Foundry Local delivers a highly optimized and responsive experience for running AI models locally.
 
 ## Key features
 
-- **On-Device Inference**: Run LLMs locally on your own hardware, reducing dependency on cloud services while keeping your data on-device.
+- **On-Device Inference**: Run LLMs locally on your own hardware, reducing cloud dependency while keeping all your data on your device.
 
-- **Model Customization**: Choose from preset models or bring your own to match your specific requirements and use cases.
+- **Model Customization**: Select from preset models or use your own to meet specific requirements and use cases.
 
-- **Cost Efficiency**: Avoid recurring cloud service costs by using your existing hardware, making AI tasks more accessible.
+- **Cost Efficiency**: Eliminate recurring cloud service costs by using your existing hardware, making AI more accessible.
 
-- **Seamless Integration**: Easily interface with your applications via an endpoint or test with the CLI, with the option to scale to Azure AI Foundry as your workload demands increase.
+- **Seamless Integration**: Connect with your applications through API endpoints or the CLI, with easy scaling to Azure AI Foundry as your needs grow.
 
 ## Use cases
 
@@ -51,5 +51,5 @@ Download from the Microsoft Store. (WIP)
 ## Next steps
 
 - [Get started with Foundry Local](get-started.md)
-- [Compile Hugging Face models for Foundry Local](how-to/compile-models-for-foundry-local.md)
+- [Compile Hugging Face models for Foundry Local](how-to/huggingface-models-for-foundry-local.md)
 - [Learn more about ONNX Runtime](https://onnxruntime.ai/docs/)

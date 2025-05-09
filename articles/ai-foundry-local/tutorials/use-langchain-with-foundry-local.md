@@ -1,7 +1,7 @@
 ---
-title: Build an app with Langchain
+title: Build an application with LangChain
 titleSuffix: Foundry Local
-description: Learn how to build a Langchain application with Foundry local
+description: Learn how to build a LangChain application using Foundry Local
 manager: scottpolly
 keywords: Azure AI services, cognitive, AI models, local inference
 ms.service: azure-ai-foundry
@@ -14,28 +14,28 @@ ms.custom: build-2025
 #customer intent: As a developer, I want to get started with Foundry Local so that I can run AI models locally.
 ---
 
-# Build a Chat application with Langchain
+# Build an application with LangChain
 
-This tutorial guides you through setting up a chat application using Foundry Local and Open Web UI. By the end, you'll have a fully functional chat interface running locally on your device.
+This tutorial shows you how to create an application using Foundry Local and LangChain. You'll learn how to integrate locally-hosted AI models with the popular LangChain framework.
 
 ## Prerequisites
 
-Before beginning this tutorial, make sure you have:
+Before starting this tutorial, you need:
 
-- **Foundry Local** [installed](/articles/foundry-local/get-started.md) on your machine.
-- **At least one model loaded** using the `foundry model load` command, for example:
+- **Foundry Local** [installed](../get-started.md) on your computer
+- **At least one model loaded** using the `foundry model load` command:
   ```bash
   foundry model load phi4-cpu
   ```
-- Install Langchain by running following command
+- **LangChain with OpenAI support** installed:
 
-```bash
-pip install langchain[openai]
-```
+  ```bash
+  pip install langchain[openai]
+  ```
 
-## Create Langchain application
+## Create a LangChain application
 
-Azure Foundry Local supports the OpenAI Chat Completion API and can be seamlessly integrated with the LangChain framework. Here is an example chain:
+Foundry Local supports the OpenAI Chat Completion API, making it easy to integrate with LangChain. Here's how to build a simple translation application:
 
 ```python
 import os
@@ -43,40 +43,43 @@ import os
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 
-# no key needed
+# Set a placeholder API key (not actually used by Foundry Local)
 if not os.environ.get("OPENAI_API_KEY"):
    os.environ["OPENAI_API_KEY"] = "no_key"
 
-# base url pointing to Azure Founry Local
-llm = ChatOpenAI(model="Phi-4-mini-cpu-int4-rtn-block-32-acc-level-4-onnx",
-                   base_url="http://localhost:5272/v1/",
-                   temperature=0.0, streaming=False)
-
-prompt = ChatPromptTemplate.from_messages(
-    [
-        (
-            "system",
-            "You are a helpful assistant that translates {input_language} to {output_language}.",
-        ),
-        ("human", "{input}"),
-    ]
+# Configure ChatOpenAI to use your locally-running model
+llm = ChatOpenAI(
+    model="Phi-4-mini-cpu-int4-rtn-block-32-acc-level-4-onnx",
+    base_url="http://localhost:5272/v1/",
+    temperature=0.0,
+    streaming=False
 )
 
-# simple chain
+# Create a translation prompt template
+prompt = ChatPromptTemplate.from_messages([
+    (
+        "system",
+        "You are a helpful assistant that translates {input_language} to {output_language}."
+    ),
+    ("human", "{input}")
+])
+
+# Build a simple chain by connecting the prompt to the language model
 chain = prompt | llm
-ai_msg = chain.invoke(
-    {
-        "input_language": "English",
-        "output_language": "French",
-        "input": "I love programming.",
-    }
-)
 
+# Run the chain with your inputs
+ai_msg = chain.invoke({
+    "input_language": "English",
+    "output_language": "French",
+    "input": "I love programming."
+})
+
+# Display the result
 print(ai_msg)
 ```
 
-That's it! You're now running Langchain with locally hosted model
+That's all you need! You're now running LangChain with a model hosted on your local device.
 
 ## Next steps
 
-- Try [different models](/articles/foundry-local/how-to/load-models.md) to compare performance and capabilities
+- Try [different models](../how-to/manage.md) to compare performance and capabilities

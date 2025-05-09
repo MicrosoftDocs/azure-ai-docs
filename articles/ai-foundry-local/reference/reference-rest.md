@@ -1,7 +1,7 @@
 ---
 title: Foundry Local REST API Reference
 titleSuffix: Foundry Local
-description: Reference for Foundry Local REST API.
+description: Complete reference guide for the Foundry Local REST API.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: build-2025
@@ -14,52 +14,52 @@ author: samuel100
 # Foundry Local REST API Reference
 
 > [!CAUTION]
-> This API is actively being developed and may introduce breaking changes without prior notice. We recommend monitoring the changelog for updates before building production applications.
+> This API is under active development and may include breaking changes without notice. We strongly recommend monitoring the changelog before building production applications.
 
-## OpenAI v1 contract
+## OpenAI v1 compatibility
 
 ### POST /v1/chat/completions
 
-Handles chat completion requests.  
-Compatible with the [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/chat/create)
+This endpoint processes chat completion requests.  
+Fully compatible with the [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/chat/create)
 
 **Request Body:**
 
-_---Properties Defined by OpenAI Contract---_
+_---Standard OpenAI Properties---_
 
 - `model` (string)  
-  The model to use for the completion.
+  The specific model to use for completion.
 - `messages` (array)  
-  A list of messages comprising the conversation history.
-  - Each message must contain:
+  The conversation history as a list of messages.
+  - Each message requires:
     - `role` (string)  
-      The role of the author. Must be one of: `system`, `user`, or `assistant`.
+      The message sender's role. Must be `system`, `user`, or `assistant`.
     - `content` (string)  
-      The content of the message.
+      The actual message text.
 - `temperature` (number, optional)  
-  Sampling temperature between 0 and 2. Higher values (e.g., 0.8) produce more random outputs, while lower values (e.g., 0.2) produce more focused, deterministic outputs.
+  Controls randomness, ranging from 0 to 2. Higher values (0.8) create varied outputs, while lower values (0.2) create focused, consistent outputs.
 - `top_p` (number, optional)  
-  Nucleus sampling probability between 0 and 1. Value of 0.1 means only tokens comprising the top 10% probability mass are considered.
+  Controls token selection diversity from 0 to 1. A value of 0.1 means only the tokens in the top 10% probability are considered.
 - `n` (integer, optional)  
-  Number of chat completion choices to generate for each input message.
+  Number of alternative completions to generate for each input message.
 - `stream` (boolean, optional)  
-  If true, partial message deltas will be sent as server-sent events as they become available, with the stream terminated by a `data: [DONE]` message.
+  When true, sends partial message responses as server-sent events, ending with a `data: [DONE]` message.
 - `stop` (string or array, optional)  
-  Up to 4 sequences where the API will stop generating further tokens.
+  Up to 4 sequences that will cause the model to stop generating further tokens.
 - `max_tokens` (integer, optional)  
-  Maximum number of tokens to generate. Deprecated for o1 series models; use `max_completion_tokens` instead.
+  Maximum number of tokens to generate. For newer models, use `max_completion_tokens` instead.
 - `max_completion_token` (integer, optional)  
-  Upper bound for the number of tokens to generate, including both visible output tokens and reasoning tokens.
+  Maximum token limit for generation, including both visible output and reasoning tokens.
 - `presence_penalty` (number, optional)  
-  Number between -2.0 and 2.0. Positive values penalize new tokens based on their presence in the text so far, increasing the model's likelihood to talk about new topics.
+  Value between -2.0 and 2.0. Positive values encourage the model to discuss new topics by penalizing tokens that have already appeared.
 - `frequency_penalty` (number, optional)  
-  Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text, decreasing the model's likelihood to repeat the same line verbatim.
+  Value between -2.0 and 2.0. Positive values discourage repetition by penalizing tokens based on their frequency in the text.
 - `logit_bias` (map, optional)  
-  Modify the likelihood of specified tokens appearing in the completion.
+  Adjusts the probability of specific tokens appearing in the completion.
 - `user` (string, optional)  
-  A unique identifier representing your end-user, which can help monitor and detect abuse.
+  A unique identifier for your end-user that helps with monitoring and abuse prevention.
 - `functions` (array, optional)  
-  A list of functions the model may generate JSON inputs for.
+  Available functions for which the model can generate JSON inputs.
   - Each function must include:
     - `name` (string)  
       Function name.

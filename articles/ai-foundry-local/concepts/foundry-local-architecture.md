@@ -1,7 +1,7 @@
 ---
 title: Foundry Local Architecture
 titleSuffix: Foundry Local
-description: This article articulates the Foundry Local architecture
+description: Learn about the architecture and components of Foundry Local
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: build-2025
@@ -13,45 +13,45 @@ author: samuel100
 
 # Foundry Local Architecture
 
-Foundry Local is designed to enable efficient, secure, and scalable AI model inference directly on local devices. This article explains the key components of the Foundry Local architecture and how they interact to deliver AI capabilities.
+Foundry Local enables efficient, secure, and scalable AI model inference directly on your devices. This article explains the core components of Foundry Local and how they work together to deliver AI capabilities.
 
-The benefits of Foundry Local include:
+Key benefits of Foundry Local include:
 
 > [!div class="checklist"]
 >
-> - **Low Latency**: By running models locally, Foundry Local minimizes the time it takes to process requests and return results.
-> - **Data Privacy**: Sensitive data can be processed locally without sending it to the cloud, ensuring compliance with data protection regulations.
-> - **Flexibility**: Foundry Local supports a wide range of hardware configurations, allowing users to choose the best setup for their needs.
-> - **Scalability**: Foundry Local can be deployed on various devices, from personal computers to powerful servers, making it suitable for different use cases.
-> - **Cost-Effectiveness**: Running models locally can reduce costs associated with cloud computing, especially for high-volume applications.
-> - **Offline Capabilities**: Foundry Local can operate without an internet connection, making it ideal for remote or disconnected environments.
-> - **Integration with Existing Workflows**: Foundry Local can be easily integrated into existing development and deployment workflows, allowing for a smooth transition to local inference.
+> - **Low Latency**: Run models locally to minimize processing time and deliver faster results.
+> - **Data Privacy**: Process sensitive data locally without sending it to the cloud, helping meet data protection requirements.
+> - **Flexibility**: Support for diverse hardware configurations lets you choose the optimal setup for your needs.
+> - **Scalability**: Deploy across various devices, from laptops to servers, to suit different use cases.
+> - **Cost-Effectiveness**: Reduce cloud computing costs, especially for high-volume applications.
+> - **Offline Operation**: Work without an internet connection in remote or disconnected environments.
+> - **Seamless Integration**: Easily incorporate into existing development workflows for smooth adoption.
 
 ## Key Components
 
-The key components of the Foundry Local architecture are articulated in the following diagram:
+The Foundry Local architecture consists of these main components:
 
 :::image type="content" source="../media/architecture/foundry-local-arch.png" alt-text="Foundry Local Architecture Diagram":::
 
 ### Foundry Local Service
 
-The Foundry Local Service is an OpenAI compatible REST server that provides a standardized interface for interacting with the inference engine and model management. Developers can use this API to send requests, run models, and retrieve results programmatically.
+The Foundry Local Service is an OpenAI-compatible REST server that provides a standard interface for working with the inference engine and managing models. Developers use this API to send requests, run models, and get results programmatically.
 
 - **Endpoint**: `http://localhost:5272/v1`
 - **Use Cases**:
-  - Integrating Foundry Local with custom applications.
-  - Running models via HTTP requests.
+  - Connect Foundry Local to your custom applications
+  - Execute models through HTTP requests
 
 ### ONNX Runtime
 
-The ONNX runtime is a core component responsible for running AI models. It uses optimized ONNX models to perform inference efficiently on local hardware, such as CPUs, GPUs, or NPUs.
+The ONNX Runtime is a core component that executes AI models. It runs optimized ONNX models efficiently on local hardware like CPUs, GPUs, or NPUs.
 
 **Features**:
 
-- Supports multiple hardware providers (for example: NVIDIA, AMD, Intel) and devices (for example: NPUs, CPUs, GPUs).
-- Provides a unified interface for running models on different hardware platforms.
-- Best-in-class performance.
-- Supports quantized models for faster inference.
+- Works with multiple hardware providers (NVIDIA, AMD, Intel) and device types (NPUs, CPUs, GPUs)
+- Offers a consistent interface for running models across different hardware
+- Delivers best-in-class performance
+- Supports quantized models for faster inference
 
 ### Model Management
 
@@ -59,28 +59,28 @@ Foundry Local provides robust tools for managing AI models, ensuring that they'r
 
 #### Model Cache
 
-The model cache is a local storage system where AI models are downloaded and stored. It ensures that models are available for inference without requiring repeated downloads. The cache can be managed using the Foundry CLI or REST API.
+The model cache stores downloaded AI models locally on your device. This ensures models are ready for inference without needing to download them repeatedly. You can manage the cache using either the Foundry CLI or REST API.
 
-- **Purpose**: Reduces latency by storing models locally.
-- **Management Commands**:
-  - `foundry cache list`: Lists all models stored in the local cache.
-  - `foundry cache remove <model-name>`: Deletes a specific model from the cache.
-  - `foundry cache cd <path>`: Changes the directory where models are stored.
+- **Purpose**: Speeds up inference by keeping models locally available
+- **Key Commands**:
+  - `foundry cache list`: Shows all models in your local cache
+  - `foundry cache remove <model-name>`: Removes a specific model from the cache
+  - `foundry cache cd <path>`: Changes the storage location for cached models
 
 #### Model Lifecycle
 
-1. **Download**: Models are downloaded from the Azure AI Foundry model catalog to local disk.
-2. **Load**: Models are loaded into the Foundry Local service (and therefore memory) for inference. You can set a TTL (time-to-live) for how long the model should remain in memory (the default is 10 minutes).
-3. **Run**: Models are inferenced.
-4. **Unload**: Models can be unloaded from the inference engine to free up resources.
-5. **Delete**: Models can be deleted from the local cache to free up disk space.
+1. **Download**: Get models from the Azure AI Foundry model catalog and save them to your local disk.
+2. **Load**: Load models into the Foundry Local service memory for inference. Set a TTL (time-to-live) to control how long the model stays in memory (default: 10 minutes).
+3. **Run**: Execute model inference for your requests.
+4. **Unload**: Remove models from memory to free up resources when no longer needed.
+5. **Delete**: Remove models from your local cache to reclaim disk space.
 
 #### Model Compilation using Olive
 
 Before models can be used with Foundry Local, they must be compiled and optimized in the [ONNX](https://onnx.ai) format. Microsoft provides a selection of published models in the Azure AI Foundry Model Catalog that are already optimized for Foundry Local. However, you aren't limited to those models - by using [Olive](https://microsoft.github.io/Olive/). Olive is a powerful framework for preparing AI models for efficient inference. It converts models into the ONNX format, optimizes their graph structure, and applies techniques like quantization to improve performance on local hardware.
 
 > [!TIP]
-> To learn more about compiling models for Foundry Local, read [Compile Hugging Face models for Foundry Local](../how-to/compile-models-for-foundry-local.md).
+> To learn more about compiling models for Foundry Local, read [Compile Hugging Face models for Foundry Local](../how-to/huggingface-models-for-foundry-local.md).
 
 ### Hardware Abstraction Layer
 
