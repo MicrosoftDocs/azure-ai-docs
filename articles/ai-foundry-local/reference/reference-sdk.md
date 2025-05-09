@@ -8,6 +8,7 @@ ms.custom: build-2025
 ms.topic: conceptual
 ms.date: 05/06/2025
 ms.author: maanavdalal
+zone_pivot_groups: azure-ai-model-catalog-samples-chat
 author: maanavd
 ---
 

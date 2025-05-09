@@ -49,7 +49,7 @@ The ONNX Runtime is a core component that executes AI models. It runs optimized 
 **Features**:
 
 - Works with multiple hardware providers (NVIDIA, AMD, Intel) and device types (NPUs, CPUs, GPUs)
-- Offers a consistent interface for running models across different hardware
+- Offers a consistent interface for running across models different hardware
 - Delivers best-in-class performance
 - Supports quantized models for faster inference
 
@@ -59,7 +59,7 @@ Foundry Local provides robust tools for managing AI models, ensuring that they'r
 
 #### Model Cache
 
-The model cache stores downloaded AI models locally on your device. This ensures models are ready for inference without needing to download them repeatedly. You can manage the cache using either the Foundry CLI or REST API.
+The model cache stores downloaded AI models locally on your device, which ensures models are ready for inference without needing to download them repeatedly. You can manage the cache using either the Foundry CLI or REST API.
 
 - **Purpose**: Speeds up inference by keeping models locally available
 - **Key Commands**:
@@ -80,7 +80,7 @@ The model cache stores downloaded AI models locally on your device. This ensures
 Before models can be used with Foundry Local, they must be compiled and optimized in the [ONNX](https://onnx.ai) format. Microsoft provides a selection of published models in the Azure AI Foundry Model Catalog that are already optimized for Foundry Local. However, you aren't limited to those models - by using [Olive](https://microsoft.github.io/Olive/). Olive is a powerful framework for preparing AI models for efficient inference. It converts models into the ONNX format, optimizes their graph structure, and applies techniques like quantization to improve performance on local hardware.
 
 > [!TIP]
-> To learn more about compiling models for Foundry Local, read [Compile Hugging Face models for Foundry Local](../how-to/huggingface-models-for-foundry-local.md).
+> To learn more about compiling models for Foundry Local, read [How to compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hf-models.md).
 
 ### Hardware Abstraction Layer
 

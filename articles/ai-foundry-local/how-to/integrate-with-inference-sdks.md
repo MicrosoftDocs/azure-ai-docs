@@ -39,7 +39,7 @@ When Foundry Local is running, it exposes an OpenAI-compatible REST API endpoint
 [!INCLUDE [Rest](../includes/integrate-examples/rest.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-JavaScript"
+::: zone pivot="programming-language-javascript"
 [!INCLUDE [JavaScript](../includes/integrate-examples/javascript.md)]
 ::: zone-end
 
