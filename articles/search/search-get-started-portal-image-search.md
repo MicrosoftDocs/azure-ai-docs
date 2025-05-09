@@ -61,7 +61,7 @@ To prepare the sample data for this quickstart:
 
 1. Create a container, and then upload the [sample PDF](https://github.com/Azure-Samples/azure-search-sample-data/blob/main/sustainable-ai-pdf/Accelerating-Sustainability-with-AI-2025.pdf) to the container.
 
-1. Create another container to store the images extracted from the PDF.
+1. Create another container to store images extracted from the PDF.
 
 ## Start the wizard
 
@@ -200,13 +200,13 @@ When the wizard completes the configuration, it creates the following objects:
 
 + A skillset with the following skills:
 
-  + The [Document Extraction](cognitive-search-skill-document-extraction.md) skill extracts both text and images from the documents.
+  + The [Document Extraction skill](cognitive-search-skill-document-extraction.md) extracts both text and images from the documents.
 
-  + The [Text Split](cognitive-search-skill-textsplit.md) skill adds data chunking.
+  + The [Text Split skill](cognitive-search-skill-textsplit.md) adds data chunking.
 
-  + The [Azure AI Vision multimodal embeddings](cognitive-search-skill-vision-vectorize.md) skill vectorizes text produced by the Document Extraction skill.
+  + The [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) vectorizes text produced by the Document Extraction skill.
 
-  + The [Azure AI Vision multimodal embeddings](cognitive-search-skill-vision-vectorize.md) skill is called again to vectorize images.
+  + The [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) is called again to vectorize images.
 
   + The [Shaper skill](cognitive-search-skill-shaper.md) enriches the output with metadata and creates new images with contextual information.
 
