@@ -100,6 +100,10 @@ items:
       href: search-index-access-control-lists-and-rbac-push-api.md
     - name: Create a custom analyzer
       href: tutorial-create-custom-analyzer.md
+    - name: Index multimodal content using semantic chunking
+      href: tutorial-multimodal-index-embeddings-skill.md
+    - name: Index image verbalizations using semantic chunking
+      href: tutorial-multimodal-index-image-verbalization-skill.md      
     - name: Index multimodal content using embedding and document extraction skill
       href: tutorial-multimodal-indexing-with-embedding-and-doc-extraction.md
     - name: Index multimodal content using image verbalization and document extraction skill
