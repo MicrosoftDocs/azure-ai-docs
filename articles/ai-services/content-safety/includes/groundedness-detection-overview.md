@@ -18,7 +18,7 @@ The Groundedness detection feature detects whether the text responses of large l
 - **Groundedness and Ungroundedness in LLMs**: This refers to the extent to which the model's outputs are based on provided information or reflect reliable sources accurately. A grounded response adheres closely to the given information, avoiding speculation or fabrication. In groundedness measurements, source information is crucial and serves as the grounding source.
 
 
-##  Use cases
+## User scenarios
 
 Groundedness detection supports text-based Summarization and QnA tasks to ensure that the generated summaries or answers are accurate and reliable.
 

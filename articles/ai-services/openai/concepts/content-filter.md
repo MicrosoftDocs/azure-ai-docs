@@ -32,7 +32,7 @@ The content filtering system integrated in the Azure OpenAI Service contains:
 * Neural multi-class classification models aimed at detecting and filtering harmful content; the models cover four categories (hate, sexual, violence, and self-harm) across four severity levels (safe, low, medium, and high). Content detected at the 'safe' severity level is labeled in annotations but isn't subject to filtering and isn't configurable.
 * Other optional classification models aimed at detecting jailbreak risk and known content for text and code; these models are binary classifiers that flag whether user or model behavior qualifies as a jailbreak attack or match to known text or source code. The use of these models is optional, but use of protected material code model may be required for Customer Copyright Commitment coverage.
 
-## Risk categories
+## Filter categories
 
 The following table summarizes the risk categories supported by Azure OpenAI's content filtering system.
 
