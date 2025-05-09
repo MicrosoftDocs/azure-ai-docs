@@ -6,9 +6,9 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure
 ms.topic: how-to
-ms.date: 03/04/2025
-author: aahill
-ms.author: aahi
+ms.date: 05/09/2025
+author: umangsehgal
+ms.author: umangsehgal
 recommendations: false
 ---
 
@@ -52,4 +52,98 @@ You can follow the instructions in [OpenAPI spec tool](./openapi-spec.md) to con
    ```
     
    > [!TIP]
-   > Your connection ID will have the following format:`/subscriptions/{subscription ID}/resourceGroups/{resource group name}/providers/Microsoft.CognitiveService/account/{project name}/connections/{connection name}`  
+   > Your connection ID will have the following format:`/subscriptions/{subscription ID}/resourceGroups/{resource group name}/providers/Microsoft.CognitiveService/account/{project name}/connections/{connection name}`
+
+:::zone pivot="python"
+
+## Step 1: Create a project client
+
+Create a client object to connect to your AI project and other resources.
+
+```python
+import os
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.agents.models import OpenApiConnectionAuthDetails, OpenApiConnectionSecurityScheme
+
+# Retrieve the project endpoint from environment variables
+project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
+
+# Initialize the AIProjectClient
+project_client = AIProjectClient(
+    endpoint=project_endpoint,  # Azure AI Project endpoint
+    credential=DefaultAzureCredential(),  # Use Azure Default Credential for authentication
+    api_version="latest",  # Use the latest API version
+)
+```
+
+## Step 2: Configure the Morningstar tool
+
+Set up the Morningstar tool using the connection ID for your custom key connection.
+
+```python
+# Retrieve the connection ID for the Morningstar custom key connection
+connection_id = os.environ["CONNECTION_ID"]  # Ensure the CONNECTION_ID environment variable is set
+
+# Set up authentication details for the Morningstar tool
+auth = OpenApiConnectionAuthDetails(
+    security_scheme=OpenApiConnectionSecurityScheme(connection_id=connection_id)  # Use the connection ID for authentication
+)
+```
+
+## Step 3: Create an agent with the Morningstar tool
+
+Create an agent and attach the Morningstar tool to it.
+
+```python
+with project_client:
+    # Create an agent with the Morningstar tool
+    agent = project_client.agents.create_agent(
+        model="gpt-4o",  # Specify the model to use
+        name="MorningstarAgent",  # Name of the agent
+        instructions="You are a financial assistant that uses Morningstar data to provide investment insights.",  # Instructions for the agent
+        tools=[auth],  # Attach the Morningstar tool to the agent
+    )
+    print(f"Created agent, ID: {agent.id}")
+```
+
+## Step 4: Interact with the agent
+
+Send a query to the agent and process the response.
+
+```python
+    # Create a thread for communication with the agent
+    thread = project_client.agents.threads.create()
+    print(f"Created thread, ID: {thread.id}")
+
+    # Send a message to the thread
+    message = project_client.agents.messages.create(
+        thread_id=thread.id,
+        role="user",  # Role of the message sender
+        content="What are the top-rated mutual funds according to Morningstar?",  # Message content
+    )
+    print(f"Created message, ID: {message['id']}")
+
+    # Create and process a run for the agent to handle the message
+    run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+    print(f"Run finished with status: {run.status}")
+
+    # Check if the run failed
+    if run.status == "failed":
+        print(f"Run failed: {run.last_error}")
+
+    # Fetch and log all messages from the thread
+    messages = project_client.agents.messages.list(thread_id=thread.id)
+    for message in messages:
+        print(f"Role: {message['role']}, Content: {message['content']}")
+```
+
+## Step 5: Clean up resources
+
+Delete the agent after use to clean up resources.
+
+```python
+    # Delete the agent after the interaction is complete
+    project_client.agents.delete_agent(agent.id)
+    print("Deleted agent")
+```

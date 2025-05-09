@@ -30,96 +30,93 @@ In this example, we use Azure AI Foundry Agent Service to create an agent that c
 
 ### Step 1: Create a project client
 ```python
+### Step 1: Create a project client
+
+```python
 import os
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import FileSearchTool, VectorStoreDataSource, VectorStoreDataSourceAssetType
 from azure.identity import DefaultAzureCredential
 
+# Retrieve the endpoint from environment variables
+endpoint = os.environ["PROJECT_ENDPOINT"]
 
-# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
-# At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>"
-# Customer needs to login to Azure subscription via Azure CLI and set the environment variables
-
-credential = DefaultAzureCredential()
-project_client = AIProjectClient.from_connection_string(
-    credential=credential, conn_str=os.environ["PROJECT_CONNECTION_STRING"]
+# Initialize the AIProjectClient
+project_client = AIProjectClient(
+    endpoint=endpoint,
+    credential=DefaultAzureCredential(exclude_interactive_browser_credential=False),
 )
 ```
 
-### Step 2: Upload local files to your project Azure Blob Storage container
-Upload your local file to the project’s Azure Blob Storage container. This is the same storage account you connected to your agent during setup. When creating additional agents within the same project, you can reuse the asset URIs of any previously uploaded files that those agents need. This means you don't have to upload the same file repeatedly, as the asset URIs allow you to reference the files directly.
+### Step 2: Use an existing file in Azure Blob Storage
 
-Then, create a vector store using the ```asset_uri```, which is the location of your file in your project's datastore.
+Use the `asset_uri` of a file already in Azure Blob Storage to create a vector store. This is useful if you have multiple agents that need access to the same files, as it eliminates the need to upload the same file multiple times.
+
 ```python
-# We'll upload the local file to your project Azure Blob Storage container and will use it for vector store creation.
-_, asset_uri = project_client.upload_file("sample_file_for_upload.md")
-print(f"Uploaded file, asset URI: {asset_uri}")
+from azure.ai.agents.models import VectorStoreDataSource, VectorStoreDataSourceAssetType
 
-# create a vector store with a file in blob storage and wait for it to be processed
-ds = VectorStoreDataSource(asset_identifier=asset_uri, asset_type=VectorStoreDataSourceAssetType.URI_ASSET)
-vector_store = project_client.agents.create_vector_store_and_poll(data_sources=[ds], name="sample_vector_store")
+# Define the asset URI for the file in Azure Blob Storage
+asset_uri = os.environ["AZURE_BLOB_URI"]
+
+# Create a vector store using the asset URI
+data_source = VectorStoreDataSource(asset_identifier=asset_uri, asset_type=VectorStoreDataSourceAssetType.URI_ASSET)
+vector_store = project_client.agents.create_vector_store_and_poll(data_sources=[data_source], name="sample_vector_store")
 print(f"Created vector store, vector store ID: {vector_store.id}")
 ```
 
 ### Step 3: Create an agent with access to the file search tool
 
 ```python
-# create a file search tool
+from azure.ai.agents.models import FileSearchTool
+
+# Create a file search tool using the vector store
 file_search_tool = FileSearchTool(vector_store_ids=[vector_store.id])
 
-# notices that FileSearchTool as tool and tool_resources must be added or the assistant unable to search the file
-agent_1 = project_client.agents.create_agent(
-    model="gpt-4o-mini",
-    name="my-assistant",
-    instructions="You are helpful assistant",
+# Create an agent with the file search tool
+agent = project_client.agents.create_agent(
+    model=os.environ["MODEL_DEPLOYMENT_NAME"],
+    name="my-agent",
+    instructions="You are a helpful assistant",
     tools=file_search_tool.definitions,
     tool_resources=file_search_tool.resources,
 )
-# [END upload_file_and_create_agent_with_file_search]
-print(f"Created agent_1, agent_1 ID: {agent_1.id}")
+print(f"Created agent, agent ID: {agent.id}")
+```
 
+### Step 4: Create a thread and send a message
+
+```python
+# Create a thread for communication
 thread = project_client.agents.create_thread()
 print(f"Created thread, thread ID: {thread.id}")
 
+# Send a message to the thread
 message = project_client.agents.create_message(
-    thread_id=thread.id, role="user", content="What feature does Smart Eyewear offer?"
+    thread_id=thread.id, role="user", content="What does the file say?"
 )
 print(f"Created message, message ID: {message.id}")
+```
 
-run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent_1.id)
+### Step 5: Create a run and check the output
 
+Create a run and observe that the model uses the file search tool to provide a response.
+
+```python
+# Create and process a run with the specified thread and agent
+run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+print(f"Run finished with status: {run.status}")
+
+# Check if the run failed
+if run.status == "failed":
+    print(f"Run failed: {run.last_error}")
+
+# Cleanup resources
 project_client.agents.delete_vector_store(vector_store.id)
 print("Deleted vector store")
 
 project_client.agents.delete_agent(agent.id)
 print("Deleted agent")
 
+# List and print all messages in the thread
 messages = project_client.agents.list_messages(thread_id=thread.id)
 print(f"Messages: {messages}")
-```
-
-### Step 4: Create second vector store using the previously uploaded file
-Now, create a second vector store using the previously uploaded file. Using the ```asset_uri``` of a file already in Azure Blob Storage is useful if you have multiple agents that need access to the same files, as it eliminates the need to upload the same file multiple times.
-```python
-
-# create a vector store with a previously uploaded file and wait for it to be processed
-ds_2 = VectorStoreDataSource(asset_identifier=asset_uri, asset_type=VectorStoreDataSourceAssetType.URI_ASSET)
-vector_store_2 = project_client.agents.create_vector_store_and_poll(data_sources=[ds_2], name="sample_vector_store_2")
-print(f"Created vector store, vector store ID: {vector_store.id}")
-
-```
-
-### Step 5: Create a second agent with access to the file search tool
-```python
-file_search_tool_2 = FileSearchTool(vector_store_ids=[vector_store_2.id])
-# notices that FileSearchTool as tool and tool_resources must be added or the assistant unable to search the file
-agent_2 = project_client.agents.create_agent(
-    model="gpt-4o-mini",
-    name="my-assistant-2",
-    instructions="You are helpful assistant",
-    tools=file_search_tool_2.definitions,
-    tool_resources=file_search_tool_2.resources,
-)
-# [END upload_file_and_create_agent_with_file_search]
-print(f"Created agent, agent ID: {agent_2.id}")
 ```

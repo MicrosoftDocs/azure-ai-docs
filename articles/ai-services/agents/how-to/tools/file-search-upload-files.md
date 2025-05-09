@@ -50,31 +50,34 @@ Create a client object that contains the connection string for connecting to you
 ```python
 import os
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import FileSearchTool, MessageAttachment, FilePurpose
 from azure.identity import DefaultAzureCredential
 
-# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
-# At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>"
-# Customer needs to login to Azure subscription via Azure CLI and set the environment variables
+# Define the project endpoint
+project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
 
-credential = DefaultAzureCredential()
-project_client = AIProjectClient.from_connection_string(
-    credential=credential, conn_str=os.environ["PROJECT_CONNECTION_STRING"] 
+# Initialize the AIProjectClient
+project_client = AIProjectClient(
+    endpoint=project_endpoint,
+    credential=DefaultAzureCredential(exclude_interactive_browser_credential=False),  # Use Azure Default Credential for authentication
+    api_version="latest",
 )
 ```
 
 ## Step 2: Upload files and add them to a Vector Store
 
-To access your files, the file search tool uses the vector store object. Upload your files and create a vector store. After creating the vector store, poll its status until all files are out of the `in_progress` state to ensure that all content is fully processed. The SDK provides helpers for uploading and polling.
+To access your files, the file search tool uses the vector store object. Upload your files and create a vector store.
 
 ```python
-# We will upload the local file and will use it for vector store creation.
+from azure.ai.agents.models import FilePurpose
 
-#upload a file
-file = project_client.agents.upload_file_and_poll(file_path='./data/product_catelog.md', purpose=FilePurpose.AGENTS)
+# Define the path to the file to be uploaded
+file_path = "./data/product_info_1.md"
+
+# Upload the file
+file = project_client.agents.upload_file_and_poll(file_path=file_path, purpose=FilePurpose.AGENTS)
 print(f"Uploaded file, file ID: {file.id}")
 
-# create a vector store with the file you uploaded
+# Create a vector store with the uploaded file
 vector_store = project_client.agents.create_vector_store_and_poll(file_ids=[file.id], name="my_vectorstore")
 print(f"Created vector store, vector store ID: {vector_store.id}")
 ```
@@ -84,41 +87,38 @@ print(f"Created vector store, vector store ID: {vector_store.id}")
 To make the files accessible to your agent, create a `FileSearchTool` object with the `vector_store` ID, and attach tools and `tool_resources` to the agent.
 
 ```python
-# create a file search tool
-file_search_tool = FileSearchTool(vector_store_ids=[vector_store.id])
+from azure.ai.agents.models import FileSearchTool
 
-# notice that the file search tool and tool_resources must be added or the agent will be unable to search the file
+# Create a file search tool
+file_search = FileSearchTool(vector_store_ids=[vector_store.id])
+
+# Create an agent with the file search tool
 agent = project_client.agents.create_agent(
-    model="gpt-4o-mini",
-    name="my-agent",
-    instructions="You are a helpful agent",
-    tools=file_search_tool.definitions,
-    tool_resources=file_search_tool.resources,
+    model=os.environ["MODEL_DEPLOYMENT_NAME"],  # Model deployment name
+    name="my-agent",  # Name of the agent
+    instructions="You are a helpful agent and can search information from uploaded files",  # Instructions for the agent
+    tools=file_search.definitions,  # Tools available to the agent
+    tool_resources=file_search.resources,  # Resources for the tools
 )
-print(f"Created agent, agent ID: {agent.id}")
+print(f"Created agent, ID: {agent.id}")
 ```
 
 ## Step 4: Create a thread
 
-You can also attach files as Message attachments on your thread. Doing so creates another `vector_store` associated with the thread, or, if there's already a vector store attached to this thread, attaches the new files to the existing thread vector store. When you create a Run on this thread, the file search tool queries both the `vector_store` from your agent and the `vector_store` on the thread.
+You can also attach files as message attachments on your thread. Doing so creates another `vector_store` associated with the thread, or, if there's already a vector store attached to this thread, attaches the new files to the existing thread vector store.
 
 ```python
 # Create a thread
-thread = project_client.agents.create_thread()
-print(f"Created thread, thread ID: {thread.id}")
+thread = project_client.agents.threads.create()
+print(f"Created thread, ID: {thread.id}")
 
-# Upload the user provided file as a messsage attachment
-message_file = project_client.agents.upload_file_and_poll(file_path='product_info_1.md', purpose=FilePurpose.AGENTS)
-print(f"Uploaded file, file ID: {message_file.id}")
-
-# Create a message with the file search attachment
-# Notice that a vector store is created temporarily when using attachments with a default expiration policy of seven days.
-
-attachment = MessageAttachment(file_id=message_file.id, tools=FileSearchTool().definitions)
-message = project_client.agents.create_message(
-    thread_id=thread.id, role="user", content="What feature does Smart Eyewear offer?", attachments=[attachment]
+# Send a message to the thread
+message = project_client.agents.messages.create(
+    thread_id=thread.id,
+    role="user",
+    content="Hello, what Contoso products do you know?",  # Message content
 )
-print(f"Created message, message ID: {message.id}")
+print(f"Created message, ID: {message['id']}")
 ```
 
 ## Step 5: Create a run and check the output
@@ -126,19 +126,28 @@ print(f"Created message, message ID: {message.id}")
 Create a run and observe that the model uses the file search tool to provide a response.
 
 ```python
-run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
-print(f"Created run, run ID: {run.id}")
+# Create and process an agent run in the thread
+run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+print(f"Run finished with status: {run.status}")
 
+if run.status == "failed":
+    print(f"Run failed: {run.last_error}")
+
+# Cleanup resources
 project_client.agents.delete_vector_store(vector_store.id)
 print("Deleted vector store")
+
+project_client.agents.delete_file(file_id=file.id)
+print("Deleted file")
 
 project_client.agents.delete_agent(agent.id)
 print("Deleted agent")
 
-messages = project_client.agents.list_messages(thread_id=thread.id)
-print(f"Messages: {messages}")
+# Fetch and log all messages from the thread
+messages = project_client.agents.messages.list(thread_id=thread.id)
+for message in messages.data:
+    print(f"Role: {message.role}, Content: {message.content}")
 ```
-
 :::zone-end
 
 :::zone pivot="csharp"
