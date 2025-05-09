@@ -26,7 +26,7 @@ You can add an Azure OpenAI service to a network security perimeter in the Azure
 ## Limitations and considerations
 * Azure OpenAI customer-managed keys might not behave as expected. The Azure OpenAI resources in the Azure subscription might not be able to use the fine-tune API or assistants API.
 
-* Network security perimeter controls only data plane operations within Azure OpenAI, not control plane operations. For example, users can deploy a model within their Azure OpenAI resource secured by the perimeter, but cannot use finetune models, upload files, or start a session in the Chat Playground. In these data plane scenarios, an error message will show that access is blocked by the Network Security Perimeter, as expected.
+* Network security perimeter controls only data plane operations within Azure OpenAI, not control plane operations. For example, users can deploy a model within their Azure OpenAI resource secured by the perimeter, but cannot use fine-tuned models, upload files, or start a session in the Chat Playground. In these data plane scenarios, an error message will show that access is blocked by the Network Security Perimeter, as expected.
 
 * For an Azure OpenAI service within a network security perimeter, the resource must use a system or user-assigned managed identity and have a role assignment that permits read-access to data sources.
 
@@ -114,7 +114,7 @@ The `publicNetworkAccess` setting determines the Azure OpenAI services associati
 5. Under Logs, select `allLogs`. `allLogs` ensures all inbound and outbound network access to resources in your network security perimeter is logged.
 6. Under Destination details, select Archive to a storage account or Send to Log Analytics workspace. The storage account must be in the same region as the network security perimeter. You can either use an existing storage account or create a new one. A Log Analytics workspace can be in a different region than the one used by the network security perimeter. You can also select any of the other applicable destinations.
 
-    :::image type="content" source="../media/network-security-perimeter/log-catagories.png" alt-text="A screenshot showing the available log catagories." lightbox="../media/network-security-perimeter/log-catagories.png":::
+    :::image type="content" source="../media/network-security-perimeter/log-catagories.png" alt-text="A screenshot showing the available log categories." lightbox="../media/network-security-perimeter/log-catagories.png":::
 
 7. Select Save to create the diagnostic setting and start logging network access.
 
@@ -141,7 +141,7 @@ Within the perimeter, all resources have mutual access at the network level. You
 
 For resources outside of the network security perimeter, you must specify inbound and outbound access rules. Inbound rules specify which connections to allow in, and outbound rules specify which requests are allowed out.
 
-The Azure OpenAI service accepts inbound requests from apps like Azure AI Foundry portal, Azure Machine Learning prompt flow, and any app that sends indexing or query requests. The Azure OpenAI service sends outbound requests during indexer-based indexing and skillset execution. This section explains how to set up inbound and outbound access rules for Azure AI Azure OpenAI scenarios.
+The Azure OpenAI service accepts inbound requests from apps like Azure AI Foundry portal, Azure Machine Learning prompt flow, and any app that sends indexing or query requests. The Azure OpenAI service sends outbound requests during indexer-based indexing and skill set execution. This section explains how to set up inbound and outbound access rules for Azure AI Azure OpenAI scenarios.
 
 > [!NOTE] 
 > Any service associated with a network security perimeter implicitly allows inbound and outbound access to any other service associated with the same network security perimeter when that access is authenticated using managed identities and role assignments. Access rules only need to be created when allowing access outside of the network security perimeter, or for authenticated access using API keys.
@@ -188,7 +188,7 @@ To add an inbound access rule in the Azure portal:
 
 ### Add an outbound access rule
 
-The Azure OpenAI service makes outbound calls during indexer-based indexing and skillset execution. If your indexer data sources, Azure AI services, or custom skill logic is outside of the network security perimeter, you should create an outbound access rule that allows your Azure OpenAI service to make the connection.
+The Azure OpenAI service makes outbound calls during indexer-based indexing and skill set execution. If your indexer data sources, Azure AI services, or custom skill logic is outside of the network security perimeter, you should create an outbound access rule that allows your Azure OpenAI service to make the connection.
 
 Recall that in public preview, Azure AI Azure OpenAI can only connect to Azure Storage or Azure Cosmos DB within the security perimeter. If your indexers use other data sources, you need an outbound access rule to support that connection.
 
