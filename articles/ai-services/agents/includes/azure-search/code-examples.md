@@ -94,10 +94,9 @@ conn_id = ""
 
 # Search in the metadata field of each connection in the list for the azure_ai_search type and get the id value to establish the variable
 for conn in conn_list:
-    metadata = conn["properties"].get("metadata", {})
-    if metadata.get("type", "").upper() == "AZURE_AI_SEARCH":
-        conn_id = conn["id"]
-        break
+    if conn.connection_type == "CognitiveSearch":
+        print(f"Connection ID: {conn.id}")
+
 ```
 # [C#](#tab/csharp)
 ```csharp
@@ -388,6 +387,7 @@ foreach (ThreadMessage threadMessage in messages)
     }
   }
 ```
+
 
 # [REST API](#tab/rest)
 ### Create a thread
