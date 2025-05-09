@@ -44,115 +44,154 @@ Use this article to find step-by-step instructions and code samples for using Op
 
 :::zone pivot="csharp"
 
-## Step 1: Create a project client
-Create a client object, which will contain the connection string for connecting to your AI project and other resources.
+# How to use the OpenAPI spec tool
+
+In this example we will demonstrate the possibility to use services with [OpenAPI Specification](https://en.wikipedia.org/wiki/OpenAPI_Specification) with the agent. We will use [wttr.in](https://wttr.in) service to get weather and its specification file [weather_openapi.json](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/tests/Samples/Agent/weather_openapi.json).
+
+1. First get `ProjectEndpoint` and `ModelDeploymentName` from config and create a `PersistentAgentsClient`. Also, create an `OpenApiAnonymousAuthDetails` and `OpenApiToolDefinition` from config. 
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Runtime.CompilerServices;
-using System.Text.Json.Serialization;
-using System.Text.Json;
-using System.Threading.Tasks;
-using Azure.Core.TestFramework;
-using NUnit.Framework;
-using Newtonsoft.Json.Linq;
+var projectEndpoint = configuration["ProjectEndpoint"];
+var modelDeploymentName = configuration["ModelDeploymentName"];
+var openApiSpec = configuration["OpenApiSpec"];
+PersistentAgentsClient client = new(new Uri(projectEndpoint), new DefaultAzureCredential());
 
-namespace Azure.AI.Projects.Tests;
+var spec = BinaryData.FromBytes(File.ReadAllBytes(openApiSpec));
+OpenApiAnonymousAuthDetails openApiAnonAuth = new();
+OpenApiToolDefinition openApiTool = new(
+    name: "get_weather",
+    description: "Retrieve weather information for a location",
+    spec: spec,
+    auth: openApiAnonAuth,
+    defaultParams: ["format"]
+);
+```
 
-public partial class Sample_Agent_OpenAPI : SamplesBase<AIProjectsTestEnvironment>
+2. Next we will need to create an agent.
+
+Synchronous sample:
+
+```csharp
+PersistentAgent agent = client.CreateAgent(
+    model: modelDeploymentName,
+    name: "Open API Tool Calling Agent",
+    instructions: "You are a helpful agent.",
+    tools: [openApiTool]
+);
+```
+
+Asynchronous sample:
+
+```csharp
+PersistentAgent agent = await client.CreateAgentAsync(
+    model: modelDeploymentName,
+    name: "Open API Tool Calling Agent",
+    instructions: "You are a helpful agent.",
+    tools: [openApiTool]
+);
+```
+
+3. Now we will create a `ThreadRun` and wait until it is complete. If the run will not be successful, we will print the last error.
+
+Synchronous sample:
+```csharp
+PersistentAgentThread thread = client.CreateThread();
+ThreadMessage message = client.CreateMessage(
+    thread.Id,
+    MessageRole.User,
+    "What's the weather in Seattle?");
+
+ThreadRun run = client.CreateRun(thread, agent);
+
+do
 {
-    private static string GetFile([CallerFilePath] string pth = "")
+    Thread.Sleep(TimeSpan.FromMilliseconds(500));
+    run = client.GetRun(thread.Id, run.Id);
+}
+while (run.Status == RunStatus.Queued
+    || run.Status == RunStatus.InProgress
+    || run.Status == RunStatus.RequiresAction);
+```
+
+Asynchronous sample:
+
+```csharp
+PersistentAgentThread thread = await client.CreateThreadAsync();
+ThreadMessage message = await client.CreateMessageAsync(
+    thread.Id,
+    MessageRole.User,
+    "What's the weather in Seattle?");
+
+ThreadRun run = await client.CreateRunAsync(thread, agent);
+
+do
+{
+    await Task.Delay(TimeSpan.FromMilliseconds(500));
+    run = await client.GetRunAsync(thread.Id, run.Id);
+}
+while (run.Status == RunStatus.Queued
+    || run.Status == RunStatus.InProgress
+    || run.Status == RunStatus.RequiresAction);
+```
+
+4. Print the messages to the console in chronological order.
+
+Synchronous sample:
+
+```csharp
+PageableList<ThreadMessage> messages = client.GetMessages(
+    threadId: thread.Id,
+    order: ListSortOrder.Ascending
+);
+
+foreach (ThreadMessage threadMessage in messages)
+{
+    foreach (MessageContent contentItem in threadMessage.ContentItems)
     {
-        var dirName = Path.GetDirectoryName(pth) ?? "";
-        return Path.Combine(dirName, "weather_openapi.json");
+        if (contentItem is MessageTextContent textItem)
+        {
+            Console.Write($"{threadMessage.Role}: {textItem.Text}");
+        }
+        Console.WriteLine();
     }
+}
+```
 
-    [Test]
-    public async Task OpenAPICallingExample()
+Asynchronous sample:
+
+```csharp
+PageableList<ThreadMessage> messages = await client.GetMessagesAsync(
+    threadId: thread.Id,
+    order: ListSortOrder.Ascending
+);
+
+foreach (ThreadMessage threadMessage in messages)
+{
+    foreach (MessageContent contentItem in threadMessage.ContentItems)
     {
-        var connectionString = TestEnvironment.AzureAICONNECTIONSTRING;
-        var storageQueueUri = TestEnvironment.STORAGE_QUEUE_URI;
-        AgentsClient client = new(connectionString, new DefaultAzureCredential());
-        var file_path = GetFile();
-```
-
-
-## Step 2: Create the OpenAPI Spec tool definition
-You might want to store the OpenAPI specification in another file and import the content to initialize the tool. The sample code is using `anonymous` as the authentication type.
-
-```csharp
-    OpenApiAnonymousAuthDetails oaiAuth = new();
-    OpenApiToolDefinition openapiTool = new(
-        name: "get_weather",
-        description: "Retrieve weather information for a location",
-        spec: BinaryData.FromBytes(File.ReadAllBytes(file_path)),
-        auth: oaiAuth
-    );
-```
-
-## Step 3: Create an agent and a thread
-
-```csharp
-Response<Agent> agentResponse = await client.CreateAgentAsync(
-            model: "gpt-4o",
-            name: "azure-function-agent-foo",
-            instructions: "You are a helpful assistant.",
-            tools: new List<ToolDefinition> { openapiTool }
-            );
-Agent agent = agentResponse.Value;
-#endregion
-Response<AgentThread> threadResponse = await client.CreateThreadAsync();
-AgentThread thread = threadResponse.Value;
-```
-
-
-## Step 4: Create a run and check the output
-Create a run and observe that the model uses the OpenAPI Spec tool to provide a response to the user's question.
-
-
-```csharp
-        #region Snippet:OpenAPIHandlePollingWithRequiredAction
-        Response<ThreadMessage> messageResponse = await client.CreateMessageAsync(
-            thread.Id,
-            MessageRole.User,
-            "What's the weather in Seattle?");
-        ThreadMessage message = messageResponse.Value;
-
-        Response<ThreadRun> runResponse = await client.CreateRunAsync(thread, agent);
-
-        do
+        if (contentItem is MessageTextContent textItem)
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(500));
-            runResponse = await client.GetRunAsync(thread.Id, runResponse.Value.Id);
+            Console.Write($"{threadMessage.Role}: {textItem.Text}");
         }
-        while (runResponse.Value.Status == RunStatus.Queued
-            || runResponse.Value.Status == RunStatus.InProgress
-            || runResponse.Value.Status == RunStatus.RequiresAction);
-        #endregion
+        Console.WriteLine();
+    }
+}
+```
 
-        Response<PageableList<ThreadMessage>> afterRunMessagesResponse
-            = await client.GetMessagesAsync(thread.Id);
-        IReadOnlyList<ThreadMessage> messages = afterRunMessagesResponse.Value.Data;
+5. Finally, we delete all the resources, we have created in this sample.
 
-        // Note: messages iterate from newest to oldest, with the messages[0] being the most recent
-        foreach (ThreadMessage threadMessage in messages)
-        {
-            Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
-            foreach (MessageContent contentItem in threadMessage.ContentItems)
-            {
-                if (contentItem is MessageTextContent textItem)
-                {
-                    Console.Write(textItem.Text);
-                }
-                else if (contentItem is MessageImageFileContent imageFileItem)
-                {
-                    Console.Write($"<image from ID: {imageFileItem.FileId}");
-                }
-                Console.WriteLine();
-            }
-        }
+Synchronous sample:
+
+```csharp
+client.DeleteThread(thread.Id);
+client.DeleteAgent(agent.Id);
+```
+
+Asynchronous sample:
+
+```csharp
+await client.DeleteThreadAsync(thread.Id);
+await client.DeleteAgentAsync(agent.Id);
 ```
 
 :::zone-end
