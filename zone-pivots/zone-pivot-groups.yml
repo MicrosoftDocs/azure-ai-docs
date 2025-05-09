@@ -1151,6 +1151,7 @@ groups:
     title: Python
   - id: programming-language-typescript
     title: TypeScript
+- id: azure-portal-and-cli
 # Owner: Larryfr
   title: Portal and CLI
   prompt: Choose a usage method
