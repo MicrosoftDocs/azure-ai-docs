@@ -12,7 +12,7 @@ ms.custom:
   - ignite-2024
 ms.topic: reference
 ms.date: 05/08/2025
-
+---
 
 # Document Layout skill
 
