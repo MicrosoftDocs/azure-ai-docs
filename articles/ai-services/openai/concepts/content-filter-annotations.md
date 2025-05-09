@@ -11,7 +11,7 @@ ms.author: pafarley
 
 # Content filtering annotations
 
-
+Azure OpenAI Service provides content filtering annotations to help you understand the content filtering results for your requests. Annotations can be enabled even for filters and severity levels that have been disabled from blocking requests.
 
 ## Standard content filters
 

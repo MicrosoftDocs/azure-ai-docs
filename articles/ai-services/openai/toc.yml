@@ -76,7 +76,6 @@ items:
         href: ./concepts/content-filter-document-embedding.md
       - name: Content streaming
         href: ./concepts/content-streaming.md
-    - name: Data sources
     - name: Default safety policies
       href: ./concepts/default-safety-policies.md
     - name: Prompt transformations
