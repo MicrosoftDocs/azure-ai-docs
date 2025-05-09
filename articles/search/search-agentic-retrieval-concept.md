@@ -143,7 +143,9 @@ You must use the REST APIs or a prerelease Azure SDK page that provides the func
 Choose any of these options for your next step.
 
 <!-- + Watch this demo. -->
-+ Quickstart. Learn the basic workflow using sample data and a prepared index and queries.
++ [Quickstart](search-get-started-agentic-retrieval.md). Learn the basic workflow using sample data and a prepared index and queries.
+
++ [(Sample code) Build an agentic retrieval pipeline using Azure AI Search and Azure AI Agent in the Foundry portal](https://github.com/Azure-Samples/azure-search-python-samples/agent-example)
 
 + How-to guides for a closer look at building an agentic retrieval pipeline:
 
@@ -151,7 +153,7 @@ Choose any of these options for your next step.
   + [Use an agent to retrieve data](search-agentic-retrieval-how-to-retrieve.md)
   + [Build an agent-to-agent retrieval solution](search-agentic-retrieval-how-to-pipeline.md).
 
-+ REST API reference, Agents.
++ REST API reference, [Agents](/rest/api/searchservice/knowledge-agents/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) and [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-05-01-preview&preserve-view=true).
 
 + [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo), updated to use agentic retrieval.
 
