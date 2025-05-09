@@ -1,5 +1,5 @@
 ---
-title: How to run evaluation in Azure DevOps
+title: How to run an evaluation in Azure DevOps
 titleSuffix: Azure AI Foundry
 description: How to run evaluation in Azure DevOps which enables offline evaluation of AI models within your CI/CD pipelines in Azure DevOps. 
 manager: scottpolly
@@ -11,7 +11,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# How to run evaluation in Azure DevOps (preview)
+# How to run an evaluation in Azure DevOps (preview)
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 

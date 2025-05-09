@@ -41,11 +41,11 @@ ms.custom: include file
     | Risk and safety (AI-assisted) | [IndirectAttackEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators.md#indirect-attack-jailbreak-xpia) | Supported | Supported |
     | Risk and safety (AI-assisted) | [ProtectedMaterialEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators.md#protected-material-content) | Supported | Supported |
     | Risk and safety (AI-assisted) | [CodeVulnerabilityEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators.md#code-vulnerability) | Supported | Supported |
-    | Risk and safety (AI-assisted)| [UngroundedAttributesEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators.md##ungrounded-attributes) | Not Supported | Supported |
+    | Risk and safety (AI-assisted)| [UngroundedAttributesEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators.md#ungrounded-attributes) | Not Supported | Supported |
     | Risk and safety (AI-assisted) | [ContentSafetyEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators.md#content-safety-composite-evaluator) | Supported | Supported |
     | Agent (AI-assisted) | [IntentResolutionEvaluator](../concepts/evaluation-evaluators/agent-evaluators.md#intent-resolution) | Supported | Supported |
     | Agent (AI-assisted) | [TaskAdherenceEvaluator](../concepts/evaluation-evaluators/agent-evaluators.md#task-adherence) | Supported | Supported |
-    | Agent (AI-assisted) | [ToolCallAccuracyEvaluator](/concepts/evaluation-evaluators/agent-evaluators.md#tool-call-accuracy) | Not Supported | Not Supported |
+    | Agent (AI-assisted) | [ToolCallAccuracyEvaluator](../concepts/evaluation-evaluators/agent-evaluators.md#tool-call-accuracy) | Not Supported | Not Supported |
     | Composite | `AgentOverallEvaluator` | Not Supported | Not Supported |
     | Operational metrics | Client run duration | Supported | Not Supported |
     | Operational metrics | Server run duration | Supported | Not Supported |
