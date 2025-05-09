@@ -84,7 +84,7 @@ It's important to call out that fine-tuning is heavily dependent on the quality 
 ## Supported models for fine-tuning
 
 Now that you know when to use fine-tuning for your use case, you can go to Azure AI Foundry to find models available to fine-tune.
-For some models in the model catalog, fine-tuning is available by using a serverless API, or a managed compute (preview), or both.
+For some models in the model catalog, fine-tuning is available by using a standard deployment, or a managed compute (preview), or both.
 
 Fine-tuning is available in specific Azure regions for some models that are deployed via serverless APIs. To fine-tune such models, a user must have a hub/project in the region where the model is available for fine-tuning. See [Region availability for models in serverless API endpoints](../how-to/deploy-models-serverless-availability.md) for detailed information.
 
