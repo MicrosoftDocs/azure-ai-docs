@@ -185,11 +185,11 @@ Be sure to check out the [reference](https://aka.ms/aifoundrysdk/reference) and 
 
 ::: zone-end
 
-## Azure OpenAI Service
+## Azure OpenAI in Foundry Models
 
-The [Azure OpenAI Service](../../../ai-services/openai/overview.md) provides access to OpenAI's models including the GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, DALLE-3, Whisper, and Embeddings model series with the data residency, scalability, safety, security, and enterprise capabilities of Azure.
+The [Azure OpenAI in Azure AI Foundry Models](../../../ai-services/openai/overview.md) provides access to OpenAI's models including the GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, DALLE-3, Whisper, and Embeddings model series with the data residency, scalability, safety, security, and enterprise capabilities of Azure.
 
-If you have code that uses the OpenAI SDK, you can easily target your code to use the Azure OpenAI service. First, install the OpenAI SDK:
+If you have code that uses the OpenAI SDK, you can easily target your code to use Azure OpenAI in Foundry Models. First, install the OpenAI SDK:
 
 ::: zone pivot="programming-language-python"
 
@@ -259,7 +259,7 @@ Console.WriteLine($"{completion.Role}: {completion.Content[0].Text}");
 
 ::: zone-end
 
-If you’re already using the [Azure OpenAI SDK](../../../ai-services/openai/chatgpt-quickstart.md) directly against the Azure OpenAI Service, the project provides a convenient way to use Azure OpenAI Service capabilities alongside the rest of the Azure AI Foundry capabilities.
+If you're already using the [Azure OpenAI SDK](../../../ai-services/openai/chatgpt-quickstart.md) directly against Azure OpenAI, the project provides a convenient way to use Azure OpenAI's capabilities alongside the rest of the Azure AI Foundry capabilities.
 
 ## Azure AI model inference service
 
@@ -331,7 +331,7 @@ Console.WriteLine(response.Value.Content);
 
 ::: zone-end
 
-You can change the model name to any model that you deployed to the inference service or Azure OpenAI service.
+You can change the model name to any model that you deployed to the inference service or to Azure OpenAI.
 
 To learn more about using the Azure AI inferencing client, check out the [Azure AI model inferencing reference](/azure/ai-studio/reference/reference-model-inference-api).
 
@@ -472,9 +472,9 @@ SearchClient searchClient = new SearchClient(
 
 To learn more about using Azure AI Search, check out [Azure AI Search documentation](/azure/search/).
 
-## Azure AI Agent Service
+## Azure AI Foundry Agent Service
 
-Azure AI Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. To enable building agents for a wide range of generative AI use cases, [Azure AI Agent Service](/azure/ai-services/agents) uses an extensive ecosystem of models, tools and capabilities from OpenAI, Microsoft, and third-party providers.
+Azure AI Foundry Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. To enable building agents for a wide range of generative AI use cases, [Azure AI Foundry Agent Service](/azure/ai-services/agents) uses an extensive ecosystem of models, tools and capabilities from OpenAI, Microsoft, and third-party providers.
 
 ## Evaluation
 

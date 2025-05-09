@@ -1,7 +1,7 @@
 ---
-title: How to generate embeddings with Azure AI model inference service
+title: How to generate embeddings with Azure AI Foundry Models service
 titleSuffix: Azure AI Foundry
-description: Learn how to generate embeddings with Azure AI model inference
+description: Learn how to generate embeddings with Azure AI Foundry Models
 manager: scottpolly
 author: msakande
 reviewer: santiagxf
@@ -14,7 +14,7 @@ ms.custom: generated
 zone_pivot_groups: azure-ai-inference-samples
 ---
 
-# How to generate embeddings with Azure AI model inference
+# How to generate embeddings with Azure AI Foundry Models
 
 
 ::: zone pivot="programming-language-python"

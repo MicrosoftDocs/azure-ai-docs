@@ -10,7 +10,7 @@ zone_pivot_groups: azure-ai-models-deployment
 
 [!INCLUDE [Header](intro.md)]
 
-* An AI project connected to your Azure AI Services resource with the feature **Deploy models to Azure AI model inference service** on.
+* An AI project connected to your Azure AI Foundry resource with the feature **Deploy models to Azure AI model inference service** on.
 
   * You can follow the steps at [Configure Azure AI model inference service in my project](../../how-to/quickstart-ai-project.md#configure-the-project-to-use-azure-ai-model-inference) in Azure AI Foundry.
 
@@ -37,12 +37,12 @@ You can add models to the Azure AI model inference endpoint using the following 
    > [!TIP]
    > Each model can support different deployments types, providing different data residency or throughput guarantees. See [deployment types](../../concepts/deployment-types.md) for more details.
 
-5. We automatically select an Azure AI Services connection depending on your project. Use the **Customize** option to change the connection based on your needs. If you're deploying under the **Standard** deployment type, the models need to be available in the region of the Azure AI Services resource.
+5. We automatically select an Azure AI Foundry connection depending on your project. Use the **Customize** option to change the connection based on your needs. If you're deploying under the **Standard** deployment type, the models need to be available in the region of the Azure AI Foundry resource.
    
    :::image type="content" source="../../media/add-model-deployments/models-deploy-customize.png" alt-text="Screenshot showing how to customize the deployment if needed." lightbox="../../media/add-model-deployments/models-deploy-customize.png":::
 
    > [!TIP]
-   > If the desired resource isn't listed, you might need to create a connection to it. See [Configure Azure AI model inference service in my project](../../how-to/configure-project-connection.md) in Azure AI Foundry portal.
+   > If the desired resource isn't listed, you might need to create a connection to it. See [Configure Azure AI Foundry Models in my project](../../how-to/configure-project-connection.md) in Azure AI Foundry portal.
 
 6. Select **Deploy**.
 
@@ -54,7 +54,7 @@ You can manage the existing model deployments in the resource using Azure AI Fou
 
 1. Go to **Models + Endpoints** section in [Azure AI Foundry portal](https://ai.azure.com).
 
-2. Scroll to the connection to your Azure AI Services resource. Model deployments are grouped and displayed per connection.
+2. Scroll to the connection to your Azure AI Foundry resource. Model deployments are grouped and displayed per connection.
 
    :::image type="content" source="../../media/quickstart-ai-project/endpoints-ai-services-connection.png" alt-text="Screenshot showing the list of models available under a given connection." lightbox="../../media/quickstart-ai-project/endpoints-ai-services-connection.png":::
 
