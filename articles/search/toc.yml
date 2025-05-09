@@ -100,13 +100,15 @@ items:
       href: search-index-access-control-lists-and-rbac-push-api.md
     - name: Create a custom analyzer
       href: tutorial-create-custom-analyzer.md
+  - name: Multimodal indexing tutorials
+    items:
     - name: Index multimodal content using semantic chunking
       href: tutorial-multimodal-index-embeddings-skill.md
     - name: Index image verbalizations using semantic chunking
       href: tutorial-multimodal-index-image-verbalization-skill.md      
-    - name: Index multimodal content using embedding and document extraction skill
+    - name: Index multimodal content using document extraction
       href: tutorial-multimodal-indexing-with-embedding-and-doc-extraction.md
-    - name: Index multimodal content using image verbalization and document extraction skill
+    - name: Index image verbalizations using document extraction
       href: tutorial-multimodal-indexing-with-image-verbalization-and-doc-extraction.md
   - name: RAG tutorials
     items:
@@ -255,6 +257,10 @@ items:
       href: search-how-to-alias.md
     - name: Import large data sets
       href: search-how-to-large-index.md
+    - name: Logic Apps workflows
+      items:
+      - name: Create a workflow
+        href: search-how-to-index-logic-apps-indexers.md
     - name: Indexers
       items:
       - name: Create an indexer
@@ -407,7 +413,6 @@ items:
     - name: Filter on vector queries
       displayName: query
       href: vector-search-filters.md
-
   - name: Keyword search
     items:
     - name: Full text query
