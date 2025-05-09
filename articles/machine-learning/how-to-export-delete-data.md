@@ -110,7 +110,9 @@ Select **Download all** to start the model download process, as shown in this sc
 
 :::moniker range="azureml-api-1"
 
-## Export and delete resources using the Python SDK
+## Export and delete resources using the Python SDK v1
+
+[!INCLUDE [v1 deprecation](includes/sdk-v1-deprecation.md)]
 
 You can download the outputs of a particular job using:
 

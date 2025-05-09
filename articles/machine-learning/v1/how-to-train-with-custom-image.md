@@ -19,6 +19,8 @@ ms.custom: UpdateFrequency5, sdkv1
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 This article describes how to use a custom Docker image to train models with Azure Machine Learning. Example scripts show how to classify images by creating a convolutional neural network. 
 
 Azure Machine Learning provides a default Docker base image. You can also use Azure Machine Learning environments to specify a different base image, such as a maintained [Azure Machine Learning base image](https://github.com/Azure/AzureML-Containers) or your own [custom image](../how-to-deploy-custom-container.md). Custom base images allow you to closely manage your dependencies and maintain tighter control over component versions when you run training jobs.
@@ -35,7 +37,7 @@ To run the example code, your configuration must include one of the following en
 
    - Create a [workspace configuration file](../how-to-configure-environment.md#local-and-dsvm-only-create-a-workspace-configuration-file).
    - Install the [Azure Machine Learning SDK](/python/api/overview/azure/ml/install).
-   - Create an [Azure container registry](/azure/container-registry/) or other Docker registry available on the internet.
+   - Create an [Azure Container Registry](/azure/container-registry/) or other Docker registry available on the internet.
 
 ## Set up a training experiment
 
@@ -70,37 +72,6 @@ When you use your custom Docker image, you might already have your Python enviro
 ```python
 fastai_env.docker.base_image = "fastdotai/fastai2:latest"
 fastai_env.python.user_managed_dependencies = True
-```
-
-#### Use a private container registry (optional)
-
-To use an image from a private container registry that isn't in your workspace, use `docker.base_image_registry` to specify the address of the repository and a username and password:
-
-```python
-# Set the container registry information
-fastai_env.docker.base_image_registry.address = "myregistry.azurecr.io"
-fastai_env.docker.base_image_registry.username = "username"
-fastai_env.docker.base_image_registry.password = "password"
-```
-
-#### Use a custom Dockerfile (optional)
-
-It's also possible to use a custom Dockerfile. Use this approach if you need to install non-Python packages as dependencies. Remember to set the base image to `None`.
-
-```python 
-# Specify Docker steps as a string
-dockerfile = r"""
-FROM mcr.microsoft.com/azureml/openmpi3.1.2-ubuntu18.04:20210615.v1
-RUN echo "Hello from custom container!"
-"""
-
-# Set the base image to None, because the image is defined by Dockerfile
-fastai_env.docker.base_image = None
-fastai_env.docker.base_dockerfile = dockerfile
-
-# Alternatively, load the string from a file
-fastai_env.docker.base_image = None
-fastai_env.docker.base_dockerfile = "./Dockerfile"
 ```
 
 > [!IMPORTANT]

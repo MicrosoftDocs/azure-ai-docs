@@ -118,7 +118,7 @@ Models that are available for deployment as serverless APIs with pay-as-you-go b
 
 ### Pay for model usage in MaaS    
 
-The discovery, subscription, and consumption experience for models deployed via MaaS is in the Azure AI Foundry portal and Azure Machine Learning studio. Users accept license terms for use of the models, and pricing information for consumption is provided during deployment. Models from third party providers are billed through Azure Marketplace, in accordance with the [Commercial Marketplace Terms of Use](/legal/marketplace/marketplace-terms); models from Microsoft are billed using Azure meters as First Party Consumption Services. As described in the [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), First Party Consumption Services are purchased using Azure meters but aren't subject to Azure service terms; use of these models is subject to the license terms provided. 
+The discovery, subscription, and consumption experience for models deployed via MaaS is in the [Azure AI Foundry portal](https://ai.azure.com/) and Azure Machine Learning studio. Users accept license terms for use of the models, and pricing information for consumption is provided during deployment. Models from third party providers are billed through Azure Marketplace, in accordance with the [Commercial Marketplace Terms of Use](/legal/marketplace/marketplace-terms); models from Microsoft are billed using Azure meters as First Party Consumption Services. As described in the [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), First Party Consumption Services are purchased using Azure meters but aren't subject to Azure service terms; use of these models is subject to the license terms provided. 
 
 ### Deploy models for inference through MaaS 
 
@@ -126,7 +126,7 @@ Deploying a model through MaaS allows users to get access to ready to use infere
 
 ### Fine-tune models through MaaS with Pay-as-you-go 
 
-For models that are available through MaaS and support fine-tuning, users can take advantage of hosted fine-tuning with pay-as-you-go billing to tailor the models using data they provide. For more information, see [fine-tune a Llama 2 model](/azure/ai-studio/how-to/fine-tune-model-llama) in Azure AI Foundry portal. 
+For models that are available through MaaS and support fine-tuning, users can take advantage of hosted fine-tuning with pay-as-you-go billing to tailor the models using data they provide. For more information, see [fine-tune a Llama 2 model](/azure/ai-services/openai/how-to/fine-tuning) in [Azure AI Foundry portal](https://ai.azure.com/). 
 
 ### RAG with models deployed through MaaS 
 
@@ -142,7 +142,7 @@ PPay-as-you-go billing is available only to users whose Azure subscription belon
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
-[!INCLUDE [content-safety-serverless-models](../ai-studio/includes/content-safety-serverless-models.md)]
+[!INCLUDE [content-safety-serverless-models](../ai-foundry/includes/content-safety-serverless-models.md)]
 
 ### Network isolation for models deployed via Serverless APIs
 
@@ -152,7 +152,7 @@ To set the PNA flag for the workspace:
 
 * Go to the [Azure portal](https://ms.portal.azure.com/).
 * Search for _Azure Machine Learning_, and select your workspace from the list of workspaces.
-* On the Overview page, use the left navigation pane to go to **Settings** > **Networking**.
+* On the Overview page, use the left pane to go to **Settings** > **Networking**.
 * Under the **Public access** tab, you can configure settings for the public network access flag.
 * Save your changes. Your changes might take up to five minutes to propagate.
 

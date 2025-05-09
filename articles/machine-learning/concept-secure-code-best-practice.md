@@ -9,7 +9,7 @@ ms.topic: conceptual
 ms.author: larryfr
 author:  Blackmist
 ms.reviewer: deeikele
-ms.date: 04/02/2024
+ms.date: 04/01/2025
 ---
 
 # Best practices for secure code
@@ -17,7 +17,7 @@ ms.date: 04/02/2024
 In Azure Machine Learning, you can upload files and content from any source into Azure. Content within Jupyter notebooks or scripts that you load can potentially read data from your sessions, access sensitive data within your organization in Azure, or run malicious processes on your behalf.
 
 > [!IMPORTANT]
-> Only run notebooks or scripts from trusted sources. For example, where you or your security team have reviewed the notebook or script.
+> Only run notebooks or scripts from trusted sources. For example, where you or your security team reviewed the notebook or script.
 
 ## Potential threats
 

@@ -15,6 +15,8 @@ ms.custom: UpdateFrequency5, designer
 
 # Run batch predictions using Azure Machine Learning designer
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, you learn how to use the designer to create a batch prediction pipeline. Batch prediction lets you continuously score large datasets on-demand using a web service that can be triggered from any HTTP library.
 
 In this how-to, you learn to do the following tasks:

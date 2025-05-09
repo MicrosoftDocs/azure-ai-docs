@@ -1,14 +1,14 @@
 ---
 title: Share models, components, and environments across workspaces with registries
 titleSuffix: Azure Machine Learning
-description: Learn how practice cross-workspace MLOps and collaborate across teams buy sharing models, components and environments through registries.
+description: Learn how practice cross-workspace MLOps and collaborate across teams buy sharing models, components, and environments through registries.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.author: larryfr
 author: Blackmist
-ms.reviewer: kritifaujdar
-ms.date: 04/09/2024
+ms.reviewer: soumyapatro
+ms.date: 04/07/2025
 ms.topic: how-to
 ms.custom: devx-track-azurecli, build-2023
 ---
@@ -19,10 +19,10 @@ Azure Machine Learning registry enables you to collaborate across workspaces wit
  
 There are two scenarios where you'd want to use the same set of models, components and environments in multiple workspaces:
 
-* __Cross-workspace MLOps__: You're training a model in a `dev` workspace and need to deploy it to `test` and `prod` workspaces. In this case you, want to have end-to-end lineage between endpoints to which the model is deployed in `test` or `prod` workspaces and the training job, metrics, code, data and environment that was used to train the model in the `dev` workspace.
+* __Cross-workspace MLOps__: You're training a model in a `dev` workspace and need to deploy it to `test` and `prod` workspaces. In this case you, want to have end-to-end lineage between endpoints to which the model is deployed in `test` or `prod` workspaces and the training job, metrics, code, data, and environment that was used to train the model in the `dev` workspace.
 * __Share and reuse models and pipelines across different teams__: Sharing and reuse improve collaboration and productivity. In this scenario, you might want to publish a trained model and the associated components and environments used to train it to a central catalog. From there, colleagues from other teams can search and reuse the assets you shared in their own experiments.
 
-In this article, you'll learn how to:
+In this article, you learn how to:
 
 * Create an environment and component in the registry.
 * Use the component from registry to submit a model training job in a workspace.
@@ -35,9 +35,9 @@ Before following the steps in this article, make sure you have the following pre
 
 * An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
 
-- An Azure Machine Learning registry to share models, components and environments. To create a registry, see [Learn how to create a registry](how-to-manage-registries.md).
+- An Azure Machine Learning registry to share models, components, and environments. To create a registry, see [Learn how to create a registry](how-to-manage-registries.md).
 
-- An Azure Machine Learning workspace. If you don't have one, use the steps in the [Quickstart: Create workspace resources](quickstart-create-resources.md) article to create one.
+- An Azure Machine Learning workspace. To create one if you don't have one, use the steps in the [Quickstart: Create workspace resources](quickstart-create-resources.md) article.
 
     > [!IMPORTANT]
     > The Azure region (location) where you create your workspace must be in the list of supported regions for Azure Machine Learning registry
@@ -49,8 +49,8 @@ Before following the steps in this article, make sure you have the following pre
     To install the Azure CLI and extension, see [Install, set up, and use the CLI (v2)](how-to-configure-cli.md).
 
     > [!IMPORTANT]
-    > * The CLI examples in this article assume that you are using the Bash (or compatible) shell. For example, from a Linux system or [Windows Subsystem for Linux](/windows/wsl/about).
-    > * The examples also assume that you have configured defaults for the Azure CLI so that you don't have to specify the parameters for your subscription, workspace, resource group, or location. To set default settings, use the following commands. Replace the following parameters with the values for your configuration:
+    > * The CLI examples in this article assume that you're using the Bash (or compatible) shell. For example, from a Linux system or [Windows Subsystem for Linux](/windows/wsl/about).
+    > * The examples also assume that you configured defaults for the Azure CLI so that you don't have to specify the parameters for your subscription, workspace, resource group, or location. To set default settings, use the following commands. Replace the following parameters with the values for your configuration:
     >
     >     * Replace `<subscription>` with your Azure subscription ID.
     >     * Replace `<workspace>` with your Azure Machine Learning workspace name.
@@ -128,7 +128,7 @@ Environments define the docker container and Python dependencies required to run
 > [!TIP]
 > The same CLI command `az ml environment create` can be used to create environments in a workspace or registry. Running the command with `--workspace-name` command creates the environment in a workspace whereas running the command with `--registry-name` creates the environment in the registry.
 
-We'll create an environment that uses the `python:3.8` docker image and installs Python packages required to run a training job using the SciKit Learn framework. If you've cloned the examples repo and are in the folder `cli/jobs/pipelines-with-components/nyc_taxi_data_regression`, you should be able to see environment definition file `env_train.yml` that references the docker file `env_train/Dockerfile`. The `env_train.yml` is shown below for your reference:
+We create an environment that uses the `python:3.8` docker image and installs Python packages required to run a training job using the SciKit Learn framework. If you cloned the examples repo and are in the folder `cli/jobs/pipelines-with-components/nyc_taxi_data_regression`, you should be able to see environment definition file `env_train.yml` that references the docker file `env_train/Dockerfile`. The contents of `env_train.yml` is as follows:
 
 ```YAML
 $schema: https://azuremlschemas.azureedge.net/latest/environment.schema.json
@@ -153,7 +153,7 @@ az ml environment create --file env_train.yml --registry-name <registry-name> --
 ```
 
 > [!TIP]
-> `version=$(date +%s)` works only in Linux. Replace `$version` with a random number if this does not work.
+> `version=$(date +%s)` works only in Linux. Replace `$version` with a random number if this doesn't work.
 
 Note down the `name` and `version` of the environment from the output of the `az ml environment create` command and use them with `az ml environment show` commands as follows. You'll need the `name` and `version` in the next section when you create a component in the registry.
 
@@ -169,10 +169,10 @@ az ml environment show --name SKLearnEnv --version 1 --registry-name <registry-n
 # [Python SDK](#tab/python)
 
 > [!TIP]
-> The same `MLClient.environments.create_or_update()` can be used to create environments in either a workspace or a registry depending on the target it has been initialized with. Since you work wth both workspace and registry in this document, you have initialized `ml_client_workspace` and `ml_client_registry` to work with workspace and registry respectively. 
+> The same `MLClient.environments.create_or_update()` can be used to create environments in either a workspace or a registry depending on the target it was initialized with. Since you work with both workspace and registry in this document, you initialize `ml_client_workspace` and `ml_client_registry` to work with workspace and registry respectively. 
 
 
-We'll create an environment that uses the `python:3.8` docker image and installs Python packages required to run a training job using the SciKit Learn framework. The `Dockerfile` with base image and list of Python packages to install is available in `cli/jobs/pipelines-with-components/nyc_taxi_data_regression/env_train`. Initialize the environment object and create the environment.
+We create an environment that uses the `python:3.8` docker image and installs Python packages required to run a training job using the SciKit Learn framework. The `Dockerfile` with base image and list of Python packages to install is available in `cli/jobs/pipelines-with-components/nyc_taxi_data_regression/env_train`. Initialize the environment object and create the environment.
 
 ```python
 env_docker_context = Environment(
@@ -185,7 +185,7 @@ ml_client_registry.environments.create_or_update(env_docker_context)
 ```
 
 > [!TIP]
-> If you get an error that an environment with this name and version already exists in the registry, specify a different version for the `version` parameter.
+> If you get an error that an environment with the name and version already exists in the registry, specify a different version for the `version` parameter.
 
 Note down the `name` and `version` of the environment from the output and pass them to the `ml_client_registry.environments.get()` method to fetch the environment from registry. 
 
@@ -200,7 +200,7 @@ You can browse all environments in the Azure Machine Learning studio. Make sure 
  
 ## Create a component in registry
 
-Components are reusable building blocks of Machine Learning pipelines in Azure Machine Learning. You can package the code, command, environment, input interface and output interface of an individual pipeline step into a component. Then you can reuse the component across multiple pipelines without having to worry about porting dependencies and code each time you write a different pipeline.
+Components are reusable building blocks of Machine Learning pipelines in Azure Machine Learning. You can package the code, command, environment, input interface, and output interface of an individual pipeline step into a component. Then you can reuse the component across multiple pipelines without having to worry about porting dependencies and code each time you write a different pipeline.
 
 Creating a component in a workspace allows you to use the component in any pipeline job within that workspace. Creating a component in a registry allows you to use the component in any pipeline in any workspace within your organization. Creating components in a registry is a great way to build modular reusable utilities or shared training tasks that can be used for experimentation by different teams within your organization.
 
@@ -210,11 +210,11 @@ For more information on components, see the following articles:
 * [How to use components in pipelines (SDK)](how-to-create-component-pipeline-python.md)
 
   > [!IMPORTANT]
-  > Registry only support to have named assets (data/model/component/environment). If you to reference an asset in a registry, you need to create it in the registry first. Especially for pipeline component case, if you want reference component or environment in pipeline component, you need first create the component or environment in the registry.
+  > Registry only supports named assets (data/model/component/environment). To reference an asset in a registry, you need to create it in the registry first. Especially for pipeline component case, if you want reference component or environment in pipeline component, you need first create the component or environment in the registry.
 
 # [Azure CLI](#tab/cli)
 
-Make sure you are in the folder `cli/jobs/pipelines-with-components/nyc_taxi_data_regression`. You'll find the component definition file `train.yml` that packages a Scikit Learn training script `train_src/train.py` and the [curated environment](resource-curated-environments.md) `AzureML-sklearn-0.24-ubuntu18.04-py37-cpu`. We'll use the Scikit Learn environment created in pervious step instead of the curated environment. You can edit `environment` field in the `train.yml` to refer to your Scikit Learn environment. The resulting component definition file `train.yml` will be similar to the following example: 
+Make sure you are in the folder `cli/jobs/pipelines-with-components/nyc_taxi_data_regression`. You find the component definition file `train.yml` that packages a Scikit Learn training script `train_src/train.py` and the [curated environment](resource-curated-environments.md) `AzureML-sklearn-0.24-ubuntu18.04-py37-cpu`. We use the Scikit Learn environment created in pervious step instead of the curated environment. You can edit `environment` field in the `train.yml` to refer to your Scikit Learn environment. The resulting component definition file `train.yml` is similar to the following example: 
 
 ```YAML
 # <component>
@@ -254,7 +254,7 @@ az ml component create --file train.yml --registry-name <registry-name>
 ```
 
 > [!TIP]
-> The same the CLI command `az ml component create` can be used to create components in a workspace or registry. Running the command with `--workspace-name` command creates the component in a workspace whereas running the command with `--registry-name` creates the component in the registry.
+> The same CLI command `az ml component create` can be used to create components in a workspace or registry. Running the command with `--workspace-name` command creates the component in a workspace whereas running the command with `--registry-name` creates the component in the registry.
 
 If you prefer to not edit the `train.yml`, you can override the environment name on the CLI as follows:
 
@@ -315,7 +315,7 @@ When running a pipeline job that uses a component from a registry, the _compute_
 
 # [Azure CLI](#tab/cli)
 
-We'll run a pipeline job with the Scikit Learn training component created in the previous section to train a model. Check that you are in the folder `cli/jobs/pipelines-with-components/nyc_taxi_data_regression`. The training dataset is located in the `data_transformed` folder. Edit the `component` section in under the `train_job` section of the `single-job-pipeline.yml` file to refer to the training component created in the previous section.  The resulting `single-job-pipeline.yml` is shown below.
+We run a pipeline job with the Scikit Learn training component created in the previous section to train a model. Check that you are in the folder `cli/jobs/pipelines-with-components/nyc_taxi_data_regression`. The training dataset is located in the `data_transformed` folder. Edit the `component` section in under the `train_job` section of the `single-job-pipeline.yml` file to refer to the training component created in the previous section.  The resulting `single-job-pipeline.yml` is as follows:
 
 ```YAML
 $schema: https://azuremlschemas.azureedge.net/latest/pipelineJob.schema.json
@@ -341,7 +341,7 @@ jobs:
 The key aspect is that this pipeline is going to run in a workspace using a component that isn't in the specific workspace. The component is in a registry that can be used with any workspace in your organization. You can run this training job in any workspace you have access to without having worry about making the training code and environment available in that workspace. 
 
 > [!WARNING]
-> * Before running the pipeline job, confirm that the workspace in which you will run the job is in an Azure region that is supported by the registry in which you created the component.
+> * Before running the pipeline job, confirm that the workspace in which you run the job is in an Azure region that is supported by the registry in which you created the component.
 > * Confirm that the workspace has a compute cluster with the name `cpu-cluster` or edit the `compute` field under `jobs.train_job.compute` with the name of your compute.
 
 Run the pipeline job with the `az ml job create` command.
@@ -351,7 +351,7 @@ az ml job create --file single-job-pipeline.yml
 ```
 
 > [!TIP]
-> If you have not configured the default workspace and resource group as explained in the prerequisites section, you will need to specify the `--workspace-name` and `--resource-group` parameters for the `az ml job create` to work.
+> If you didn't configure the default workspace and resource group as explained in the prerequisites section, you need to specify the `--workspace-name` and `--resource-group` parameters for the `az ml job create` to work.
 
 
 Alternatively, ou can skip editing `single-job-pipeline.yml` and override the component name used by `train_job` in the CLI.
@@ -370,7 +370,7 @@ az ml job create --file single-job-pipeline.yml --workspace-name prod-workspace 
 
 # [Python SDK](#tab/python)
 
-You'll run a pipeline job with the Scikit Learn training component created in the previous section to train a model. The training dataset is located in the `cli/jobs/pipelines-with-components/nyc_taxi_data_regression/data_transformed` folder. Construct the pipeline using the component created in the previous step. 
+You run a pipeline job with the Scikit Learn training component created in the previous section to train a model. The training dataset is located in the `cli/jobs/pipelines-with-components/nyc_taxi_data_regression/data_transformed` folder. Construct the pipeline using the component created in the previous step. 
 
 The key aspect is that this pipeline is going to run in a workspace using a component that isn't in the specific workspace. The component is in a registry that can be used with any workspace in your organization. You can run this training job in any workspace you have access to without having worry about making the training code and environment available in that workspace. 
 
@@ -390,7 +390,7 @@ print(pipeline_job)
 ```
 
 > [!WARNING]
-> * Confirm that the workspace in which you will run this job is in an Azure location that is supported by the registry in which you created the component before you run the pipeline job.
+> * Confirm that the workspace in which you run this job is in an Azure location that is supported by the registry in which you created the component before you run the pipeline job.
 > * Confirm that the workspace has a compute cluster with the name `cpu-cluster` or update it `pipeline_job.settings.default_compute=<compute-cluster-name>`.
 
 Run the pipeline job and wait for it to complete. 
@@ -405,7 +405,7 @@ pipeline_job
 ```
 
 > [!TIP]
-> Notice that you are using `ml_client_workspace` to run the pipeline job whereas you had used `ml_client_registry` to use create environment and component.
+> Notice that you're using `ml_client_workspace` to run the pipeline job whereas you previously used `ml_client_registry` to use create environment and component.
 
 Since the component used in the training job is shared through a registry, you can submit the job to any workspace that you have access to in your organization, even across different subscriptions. For example, if you have `dev-workspace`, `test-workspace` and `prod-workspace`, you can connect to those workspaces and resubmit the job.
 
@@ -417,9 +417,9 @@ In Azure Machine Learning studio, select the endpoint link in the job output to 
 
 ## Create a model in registry
 
-You'll learn how to create models in a registry in this section. Review [manage models](./how-to-manage-models.md) to learn more about model management in Azure Machine Learning. We'll look at two different ways to create a model in a registry. First is from local files. Second, is to copy a model registered in the workspace to a registry. 
+You learn how to create models in a registry in this section. Review [manage models](./how-to-manage-models.md) to learn more about model management in Azure Machine Learning. We look at two different ways to create a model in a registry. First is from local files. Second, is to copy a model registered in the workspace to a registry. 
 
-In both the options, you'll create model with the [MLflow format](./how-to-manage-models-mlflow.md), which will help you to [deploy this model for inference without writing any inference code](./how-to-deploy-mlflow-models-online-endpoints.md). 
+In both the options, you create model with the [MLflow format](./how-to-manage-models-mlflow.md), which helps you to [deploy this model for inference without writing any inference code](./how-to-deploy-mlflow-models-online-endpoints.md). 
 
 ### Create a model in registry from local files
 
@@ -437,7 +437,7 @@ ls -l ./artifacts/model/
 ```
 
 > [!TIP]
-> If you have not configured the default workspace and resource group as explained in the prerequisites section, you will need to specify the `--workspace-name` and `--resource-group` parameters for the `az ml model create` to work.
+> If you didn't configure the default workspace and resource group as explained in the prerequisites section, you need to specify the `--workspace-name` and `--resource-group` parameters for the `az ml model create` to work.
 
 > [!WARNING]
 > The output of `az ml job list` is passed to `sed`. This works only on Linux shells. If you are on Windows, run `az ml job list --parent-job-name <job-name> --query [0].name ` and strip any quotes you see in the train job name.
@@ -452,12 +452,12 @@ az ml model create --name nyc-taxi-model --version 1 --type mlflow_model --path 
 ```
 
 > [!TIP]
-> * Use a random number for the `version` parameter if you get an error that model name and version exists.
-> * The same the CLI command `az ml model create` can be used to create models in a workspace or registry. Running the command with `--workspace-name` command creates the model in a workspace whereas running the command with `--registry-name` creates the model in the registry.
+> * Use a random number for the `version` parameter if you get an error that model name and version already exist.
+> * The same CLI command `az ml model create` can be used to create models in a workspace or registry. Running the command with `--workspace-name` command creates the model in a workspace whereas running the command with `--registry-name` creates the model in the registry.
 
 # [Python SDK](#tab/python)
 
-Make sure you use the `pipeline_job` object from the previous section or fetch the pipeline job using `ml_client_workspace.jobs.get(name="<pipeline-job-name>")` method to get the list of child jobs in the pipeline. You'll then look for the job with `display_name` as `train_job` and download the trained model from `train_job` output. The downloaded model along with MLflow metadata files should be available in the `./artifacts/model/`.
+Make sure you use the `pipeline_job` object from the previous section or fetch the pipeline job using `ml_client_workspace.jobs.get(name="<pipeline-job-name>")` method to get the list of child jobs in the pipeline. You then look for the job with `display_name` as `train_job` and download the trained model from `train_job` output. The downloaded model along with MLflow metadata files should be available in the `./artifacts/model/`.
 
 ```python
 jobs=ml_client_workspace.jobs.list(parent_job_name=pipeline_job.name)
@@ -485,11 +485,11 @@ ml_client_registry.models.create_or_update(mlflow_model)
 
 ### Share a model from workspace to registry 
 
-In this workflow, you'll first create the model in the workspace and then share it to the registry. This workflow is useful when you want to test the model in the workspace before sharing it. For example, deploy it to endpoints, try out inference with some test data and then copy the model to a registry if everything looks good. This workflow may also be useful when you're developing a series of models using different techniques, frameworks or parameters and want to promote just one of them to the registry as a production candidate. 
+In this workflow, you first create the model in the workspace and then share it to the registry. This workflow is useful when you want to test the model in the workspace before sharing it. For example, deploy it to endpoints and try out inference with some test data and then copy the model to a registry if everything looks good. This workflow might also be useful when you're developing a series of models using different techniques, frameworks, or parameters and want to promote just one of them to the registry as a production candidate. 
 
 # [Azure CLI](#tab/cli)
 
-Make sure you have the name of the pipeline job from the previous section and replace that in the command to fetch the training job name below. You'll then register the model from the output of the training job into the workspace. Note how the `--path` parameter refers to the output `train_job` output with the `azureml://jobs/$train_job_name/outputs/artifacts/paths/model` syntax. 
+Make sure you have the name of the pipeline job from the previous section and replace that in the command to fetch the training job name. You then register the model from the output of the training job into the workspace. Note how the `--path` parameter refers to the output `train_job` output with the `azureml://jobs/$train_job_name/outputs/artifacts/paths/model` syntax. 
 
 ```azurecli
 # fetch the name of the train_job by listing all child jobs of the pipeline job
@@ -499,12 +499,12 @@ az ml model create --name nyc-taxi-model --version 1 --type mlflow_model --path 
 ```
 
 > [!TIP]
-> * Use a random number for the `version` parameter if you get an error that model name and version exists.`
-> * If you have not configured the default workspace and resource group as explained in the prerequisites section, you will need to specify the `--workspace-name` and `--resource-group` parameters for the `az ml model create` to work.
+> * Use a random number for the `version` parameter if you get an error that the model name and version  already exists.
+> * If you haven't configured the default workspace and resource group as explained in the prerequisites section, you need to specify the `--workspace-name` and `--resource-group` parameters for the `az ml model create` to work.
 
 Note down the model name and version. You can validate if the model is registered in the workspace by browsing it in the Studio UI or using `az ml model show --name nyc-taxi-model --version $model_version` command.  
 
-Next, you'll now share the model from the workspace to the registry. 
+Next, you share the model from the workspace to the registry. 
 
 
 ```azurecli
@@ -537,7 +537,7 @@ for job in jobs:
 print(model_path_from_job)
 ```
 
-Register the model from the output of the training job into the workspace using the path constructed above.
+Register the model from the output of the training job into the workspace using the path constructed previously.
 
 ```python
 mlflow_model = Model(

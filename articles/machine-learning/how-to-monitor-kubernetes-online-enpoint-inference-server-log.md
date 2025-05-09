@@ -6,10 +6,11 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: conceptual
-author: zetiaatgithub
-ms.author: zetia
+author: Blackmist
+ms.author: larryfr
+ms.reviewer: zetia
 ms.custom: devplatv2
-ms.date: 09/26/2023
+ms.date: 03/12/2025
 ---
 
 # Monitor Kubernetes Online Endpoint inference server logs
@@ -17,8 +18,7 @@ ms.date: 09/26/2023
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
 
-To diagnose online issues and monitor Azure Machine Learning model inference server metrics, we usually need to collect model inference server logs. 
-
+To diagnose online issues and monitor Azure Machine Learning model inference server metrics, you usually need to collect model inference server logs. In this article, learn how to collect inference server logs from Azure Kubernetes Service (AKS) and Azure Arc enabled Kubernetes clusters. The logs are collected in **Log Analytics** workspace, which is a part of **Azure Monitor**.
 
 ## AKS cluster
 
@@ -28,7 +28,7 @@ In AKS cluster, you can use the built-in ability to collect container logs. Foll
 
     :::image type="content" source="./media/how-to-attach-kubernetes-to-workspace/aks-portal-monitor-logs.png" alt-text="Diagram illustrating how to configure Azure monitor in AKS." lightbox="./media/how-to-attach-kubernetes-to-workspace/aks-portal-monitor-logs.png":::
 
-1. Click **Configure Monitoring** to enable Azure Monitor for your AKS. In the **Advanced Settings** section, you can specify an existing **Log Analytics** or create a new one for collecting logs.
+1. Select **Configure Monitoring** to enable Azure Monitor for your AKS. In the **Advanced Settings** section, you can specify an existing **Log Analytics** or create a new one for collecting logs.
 
     :::image type="content" source="./media/how-to-attach-kubernetes-to-workspace/aks-portal-config-az-monitor.png" alt-text="Diagram illustrating how to configure container insight in AKS monitor." lightbox="./media/how-to-attach-kubernetes-to-workspace/aks-portal-config-az-monitor.png":::
 

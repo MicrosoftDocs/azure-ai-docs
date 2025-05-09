@@ -5,13 +5,13 @@ description: Learn how to use the Realtime API to interact with the Azure OpenAI
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 2/7/2024
+ms.date: 4/28/2025
 author: eric-urban
 ms.author: eur
 recommendations: false
 ---
 
-# Realtime API (Preview) reference
+# Realtime events reference
 
 [!INCLUDE [Feature preview](includes/preview-feature.md)]
 
@@ -22,32 +22,6 @@ The Realtime API (via `/realtime`) is built on [the WebSockets API](https://deve
 > [!TIP]
 > To get started with the Realtime API, see the [quickstart](realtime-audio-quickstart.md) and [how-to guide](./how-to/realtime-audio.md).
 
-## Connection
-
-The Realtime API requires an existing Azure OpenAI resource endpoint in a supported region. The API is accessed via a secure WebSocket connection to the `/realtime` endpoint of your Azure OpenAI resource.
-
-You can construct a full request URI by concatenating:
-
-- The secure WebSocket (`wss://`) protocol.
-- Your Azure OpenAI resource endpoint hostname, for example, `my-aoai-resource.openai.azure.com`
-- The `openai/realtime` API path.
-- An `api-version` query string parameter for a supported API version such as `2024-12-17`
-- A `deployment` query string parameter with the name of your `gpt-4o-realtime-preview` or `gpt-4o-mini-realtime-preview` model deployment.
-
-The following example is a well-constructed `/realtime` request URI:
-
-```http
-wss://my-eastus2-openai-resource.openai.azure.com/openai/realtime?api-version=2024-12-17&deployment=gpt-4o-realtime-preview
-```
-
-## Authentication
-
-To authenticate:
-- **Microsoft Entra** (recommended): Use token-based authentication with the `/realtime` API for an Azure OpenAI Service resource with managed identity enabled. Apply a retrieved authentication token using a `Bearer` token with the `Authorization` header.
-- **API key**: An `api-key` can be provided in one of two ways:
-  - Using an `api-key` connection header on the prehandshake connection. This option isn't available in a browser environment.
-  - Using an `api-key` query string parameter on the request URI. Query string parameters are encrypted when using https/wss.
-
 ## Client events
 
 There are nine client events that can be sent from the client to the server:
@@ -56,10 +30,12 @@ There are nine client events that can be sent from the client to the server:
 |-------|-------------|
 | [RealtimeClientEventConversationItemCreate](#realtimeclienteventconversationitemcreate) | The client `conversation.item.create` event is used to add a new item to the conversation's context, including messages, function calls, and function call responses. |
 | [RealtimeClientEventConversationItemDelete](#realtimeclienteventconversationitemdelete) | The client `conversation.item.delete` event is used to remove an item from the conversation history. |
+| [RealtimeClientEventConversationItemRetrieve](#realtimeclienteventconversationitemretrieve) | The client `conversation.item.retrieve` event is used to retrieve an item from the conversation history. |
 | [RealtimeClientEventConversationItemTruncate](#realtimeclienteventconversationitemtruncate) | The client `conversation.item.truncate` event is used to truncate a previous assistant message's audio. |
 | [RealtimeClientEventInputAudioBufferAppend](#realtimeclienteventinputaudiobufferappend) | The client `input_audio_buffer.append` event is used to append audio bytes to the input audio buffer. |
 | [RealtimeClientEventInputAudioBufferClear](#realtimeclienteventinputaudiobufferclear) | The client `input_audio_buffer.clear` event is used to clear the audio bytes in the buffer. |
 | [RealtimeClientEventInputAudioBufferCommit](#realtimeclienteventinputaudiobuffercommit) | The client `input_audio_buffer.commit` event is used to commit the user input audio buffer. |
+| [RealtimeClientEventOutputAudioBufferClear](#realtimeclienteventoutputaudiobufferclear) | The client `output_audio_buffer.clear` event is used to clear the audio bytes in the output buffer.<br/><br/>This event is only applicable for WebRTC. |
 | [RealtimeClientEventResponseCancel](#realtimeclienteventresponsecancel) | The client `response.cancel` event is used to cancel an in-progress response. |
 | [RealtimeClientEventResponseCreate](#realtimeclienteventresponsecreate) | The client `response.create` event is used to instruct the server to create a response via model inferencing. |
 | [RealtimeClientEventSessionUpdate](#realtimeclienteventsessionupdate) | The client `session.update` event is used to update the session's default configuration. |
@@ -108,6 +84,31 @@ The server responds with a `conversation.item.deleted` event, unless the item do
 |-------|------|-------------| 
 | type | string | The event type must be `conversation.item.delete`. |
 | item_id | string | The ID of the item to delete. | 
+
+
+### RealtimeClientEventConversationItemRetrieve
+
+The client `conversation.item.retrieve` event is used to retrieve the server's representation of a specific item in the conversation history. This event is useful, for example, to inspect user audio after noise cancellation and VAD. 
+
+If the client event is successful, the server responds with a `conversation.item.retrieved` event. If the item doesn't exist in the conversation history, the server will respond with an error.
+
+#### Event structure
+
+```json
+{
+  "type": "conversation.item.retrieve",
+  "item_id": "<item_id>",
+  "event_id": "<event_id>"
+}
+```
+
+#### Properties
+
+| Field | Type | Description | 
+|-------|------|-------------| 
+| type | string | The event type must be `conversation.item.retrieve`. | 
+| item_id | string | The ID of the item to retrieve. | 
+| event_id | string | The ID of the event. |
 
 ### RealtimeClientEventConversationItemTruncate
 
@@ -205,6 +206,32 @@ The server responds with an `input_audio_buffer.committed` event.
 |-------|------|-------------| 
 | type | string | The event type must be `input_audio_buffer.commit`. | 
 
+### RealtimeClientEventOutputAudioBufferClear
+
+The client `output_audio_buffer.clear` event is used to clear the audio bytes in the buffer. 
+
+> [!NOTE]
+> This event is only applicable for WebRTC. 
+
+This event should be preceded by a `response.cancel` client event to stop the generation of the current response.
+
+The server stops generating audio and responds with an `output_audio_buffer.cleared` event.
+
+#### Event structure
+
+```json
+{
+  "type": "output_audio_buffer.clear"
+}
+```
+
+#### Properties
+
+| Field | Type | Description | 
+|-------|------|-------------| 
+| event_id | string | The ID of the event that caused the error. |
+| type | string | The event type must be `output_audio_buffer.clear`. | 
+
 ### RealtimeClientEventResponseCancel
 
 The client `response.cancel` event is used to cancel an in-progress response. 
@@ -283,6 +310,7 @@ There are 28 server events that can be received from the server:
 |-------|-------------|
 | [RealtimeServerEventConversationCreated](#realtimeservereventconversationcreated) | The server `conversation.created` event is returned right after session creation. One conversation is created per session. |
 | [RealtimeServerEventConversationItemCreated](#realtimeservereventconversationitemcreated) | The server `conversation.item.created` event is returned when a conversation item is created. |
+| [RealtimeServerEventConversationItemRetrieved](#realtimeservereventconversationitemretrieved) | The server `conversation.item.retrieved` event is returned when a conversation item is retrieved. |
 | [RealtimeServerEventConversationItemDeleted](#realtimeservereventconversationitemdeleted) | The server `conversation.item.deleted` event is returned when the client deleted an item in the conversation with a `conversation.item.delete` event. |
 | [RealtimeServerEventConversationItemInputAudioTranscriptionCompleted](#realtimeservereventconversationiteminputaudiotranscriptioncompleted) | The server `conversation.item.input_audio_transcription.completed` event is the result of audio transcription for speech written to the audio buffer. |
 | [RealtimeServerEventConversationItemInputAudioTranscriptionFailed](#realtimeservereventconversationiteminputaudiotranscriptionfailed) | The server `conversation.item.input_audio_transcription.failed` event is returned when input audio transcription is configured, and a transcription request for a user message failed. |
@@ -292,6 +320,9 @@ There are 28 server events that can be received from the server:
 | [RealtimeServerEventInputAudioBufferCommitted](#realtimeservereventinputaudiobuffercommitted) | The server `input_audio_buffer.committed` event is returned when an input audio buffer is committed, either by the client or automatically in server VAD mode. |
 | [RealtimeServerEventInputAudioBufferSpeechStarted](#realtimeservereventinputaudiobufferspeechstarted) | The server `input_audio_buffer.speech_started` event is returned in `server_vad` mode when speech is detected in the audio buffer. |
 | [RealtimeServerEventInputAudioBufferSpeechStopped](#realtimeservereventinputaudiobufferspeechstopped) | The server `input_audio_buffer.speech_stopped` event is returned in `server_vad` mode when the server detects the end of speech in the audio buffer. |
+| [RealtimeServerEventOutputAudioBufferCleared](#realtimeservereventoutputaudiobuffercleared) | The server `output_audio_buffer.cleared` event is returned when the user has interrupted (`input_audio_buffer.speech_started`), or when the client has emitted the `output_audio_buffer.clear` event to manually cut off the current audio response.<br/><br/>This event is only applicable for WebRTC. |
+| [RealtimeServerEventOutputAudioBufferStarted](#realtimeservereventoutputaudiobufferstarted) | The server `output_audio_buffer.started` event is returned when the server begins streaming audio to the client. This event is emitted after an audio content part has been added (`response.content_part.added`) to the response.<br/><br/>This event is only applicable for WebRTC. |
+| [RealtimeServerEventOutputAudioBufferStopped](#realtimeservereventoutputaudiobufferstopped) | The server `output_audio_buffer.stopped` event is returned when the output audio buffer has been completely drained on the server, and no more audio is forthcoming.<br/><br/>This event is only applicable for WebRTC. |
 | [RealtimeServerEventRateLimitsUpdated](#realtimeservereventratelimitsupdated) | The server `rate_limits.updated` event is emitted at the beginning of a response to indicate the updated rate limits. |
 | [RealtimeServerEventResponseAudioDelta](#realtimeservereventresponseaudiodelta) | The server `response.audio.delta` event is returned when the model-generated audio is updated. |
 | [RealtimeServerEventResponseAudioDone](#realtimeservereventresponseaudiodone) | The server `response.audio.done` event is returned when the model-generated audio is done. |
@@ -364,6 +395,27 @@ The server `conversation.item.created` event is returned when a conversation ite
 | previous_item_id | string | The ID of the preceding item in the conversation context, allows the client to understand the order of the conversation. | 
 | item | [RealtimeConversationResponseItem](#realtimeconversationresponseitem) | The item that was created. |
 
+### RealtimeServerEventConversationItemRetrieved
+
+The server `conversation.item.retrieved` event is returned when a conversation item is retrieved. 
+
+#### Event structure
+
+```json
+{
+  "type": "conversation.item.retrieved",
+  "previous_item_id": "<previous_item_id>"
+}
+```
+
+#### Properties
+
+| Field | Type | Description | 
+|-------|------|-------------| 
+| type | string | The event type must be `conversation.item.retrieved`. | 
+| event_id | string | The ID of the event. |
+| item | [RealtimeConversationResponseItem](#realtimeconversationresponseitem) | The item that was retrieved. |
+
 ### RealtimeServerEventConversationItemDeleted
 
 The server `conversation.item.deleted` event is returned when the client deleted an item in the conversation with a `conversation.item.delete` event. This event is used to synchronize the server's understanding of the conversation history with the client's view.
@@ -390,7 +442,7 @@ The server `conversation.item.input_audio_transcription.completed` event is the 
 
 Transcription begins when the input audio buffer is committed by the client or server (in `server_vad` mode). Transcription runs asynchronously with response creation, so this event can come before or after the response events.
 
-Realtime API models accept audio natively, and thus input transcription is a separate process run on a separate speech recognition model, currently always `whisper-1`. Thus the transcript can diverge somewhat from the model's interpretation, and should be treated as a rough guide.
+Realtime API models accept audio natively, and thus input transcription is a separate process run on a separate speech recognition model such as `whisper-1`. Thus the transcript can diverge somewhat from the model's interpretation, and should be treated as a rough guide.
 
 #### Event structure
 
@@ -600,6 +652,83 @@ The server also sends a `conversation.item.created` event with the user message 
 | type | string | The event type must be `input_audio_buffer.speech_stopped`. | 
 | audio_end_ms | integer | Milliseconds since the session started when speech stopped. This property corresponds to the end of audio sent to the model, and thus includes the `min_silence_duration_ms` configured in the session. | 
 | item_id | string | The ID of the user message item created. | 
+
+### RealtimeServerEventOutputAudioBufferCleared
+
+The server `output_audio_buffer.cleared` event is returned when the output audio buffer is cleared. 
+
+> [!NOTE]
+> This event is only applicable for WebRTC. 
+
+This happens either in VAD mode when the user has interrupted (`input_audio_buffer.speech_started`), or when the client has emitted the `output_audio_buffer.clear` event to manually cut off the current audio response. 
+
+#### Event structure
+
+```json
+{
+  "type": "output_audio_buffer.cleared"
+}
+```
+
+#### Properties
+
+| Field | Type | Description | 
+|-------|------|-------------| 
+| type | string | The event type must be `output_audio_buffer.cleared`. | 
+| event_id | string | The ID of the server event. |
+| response_id | string | The unique ID of the response that produced the audio. |
+
+### RealtimeServerEventOutputAudioBufferStarted
+
+The server `output_audio_buffer.started` event is returned when the server begins streaming audio to the client. This event is emitted after an audio content part has been added (`response.content_part.added`) to the response.
+
+> [!NOTE]
+> This event is only applicable for WebRTC. 
+
+#### Event structure
+
+```json
+{
+  "type": "output_audio_buffer.started",
+  "event_id": "<item_id>",
+  "response_id": "<response_id>"
+}
+```
+
+#### Properties
+
+| Field | Type | Description | 
+|-------|------|-------------| 
+| type | string | The event type must be `output_audio_buffer.started`. | 
+| event_id | string | The ID of the server event. |
+| response_id | string | The unique ID of the response that produced the audio. |
+
+### RealtimeServerEventOutputAudioBufferStopped
+
+The server `output_audio_buffer.stopped` event is returned when the output audio buffer has been completely drained on the server, and no more audio is forthcoming. 
+
+> [!NOTE]
+> This event is only applicable for WebRTC. 
+
+This event is returned after the full response data has been sent to the client via the `response.done` event.
+
+#### Event structure
+
+```json
+{
+  "type": "output_audio_buffer.stopped",
+  "audio_end_ms": 0,
+  "item_id": "<item_id>"
+}
+```
+
+#### Properties
+
+| Field | Type | Description | 
+|-------|------|-------------| 
+| type | string | The event type must be `output_audio_buffer.stopped`. | 
+| event_id | string | The ID of the server event. |
+| response_id | string | The unique ID of the response that produced the audio. |
 
 ### RealtimeServerEventRateLimitsUpdated
 
@@ -1067,13 +1196,22 @@ The server `session.updated` event is returned when a session is updated by the 
 **Allowed Values:**
 
 * `whisper-1` 
+* `gpt-4o-transcribe`
+* `gpt-4o-mini-transcribe`
 
 ### RealtimeAudioInputTranscriptionSettings
 
 | Field | Type | Description | 
 |-------|------|-------------|
-| model | [RealtimeAudioInputTranscriptionModel](#realtimeaudioinputtranscriptionmodel) | The default `whisper-1` model is currently the only model supported for audio input transcription. | 
+| language | string | The language of the input audio. Supplying the input language in ISO-639-1 format (such as `en`) will improve accuracy and latency. |
+| model | [RealtimeAudioInputTranscriptionModel](#realtimeaudioinputtranscriptionmodel) | The model for audio input transcription. For example, `whisper-1`. |
+| prompt | string | The prompt for the audio input transcription. Optional text to guide the model's style or continue a previous audio segment. For the `whisper-1` model, the prompt is a list of keywords. For the `gpt-4o-transcribe` and `gpt-4o-mini-transcribe` models, the prompt is a free text string such as "expect words related to technology."|
 
+### RealtimeAudioInputAudioNoiseReductionSettings
+
+| Field | Type | Description | 
+|-------|------|-------------|
+| type | string | Type of noise reduction. Specify `near_field` for close-talking microphones such as headphones or `far_field` for far-field microphones such as laptop or conference room microphones. | 
 
 ### RealtimeClientEvent
 
@@ -1251,8 +1389,9 @@ You use the `RealtimeRequestSession` object when you want to update the session 
 | instructions | string | The instructions (the system message) to guide the model's text and audio responses.<br><br>Here are some example instructions to help guide content and format of text and audio responses:<br>`"instructions": "be succinct"`<br>`"instructions": "act friendly"`<br>`"instructions": "here are examples of good responses"`<br><br>Here are some example instructions to help guide audio behavior:<br>`"instructions": "talk quickly"`<br>`"instructions": "inject emotion into your voice"`<br>`"instructions": "laugh frequently"`<br><br>While the model might not always follow these instructions, they provide guidance on the desired behavior. |
 | voice | [RealtimeVoice](#realtimevoice) | The voice used for the model response for the session.<br><br>Once the voice is used in the session for the model's audio response, it can't be changed. | 
 | input_audio_format | [RealtimeAudioFormat](#realtimeaudioformat) | The format for the input audio. | 
-| output_audio_format | [RealtimeAudioFormat](#realtimeaudioformat) | The format for the output audio. | 
-| input_audio_transcription | [RealtimeAudioInputTranscriptionSettings](#realtimeaudioinputtranscriptionsettings) | The settings for audio input transcription.<br><br>This property is nullable. |
+| output_audio_format | [RealtimeAudioFormat](#realtimeaudioformat) | The format for the output audio. |
+| input_audio_noise_reduction | boolean | Configuration for input audio noise reduction. This can be set to null to turn off. Noise reduction filters audio added to the input audio buffer before it is sent to VAD and the model. Filtering the audio can improve VAD and turn detection accuracy (reducing false positives) and model performance by improving perception of the input audio.<br><br>This property is nullable.| 
+| input_audio_transcription | [RealtimeAudioInputTranscriptionSettings](#realtimeaudioinputtranscriptionsettings) | The configuration for input audio transcription. The configuration is null (off) by default. Input audio transcription isn't native to the model, since the model consumes audio directly. Transcription runs asynchronously through the `/audio/transcriptions` endpoint and should be treated as guidance of input audio content rather than precisely what the model heard. For additional guidance to the transcription service, the client can optionally set the language and prompt for transcription.<br><br>This property is nullable. |
 | turn_detection | [RealtimeTurnDetection](#realtimeturndetection) | The turn detection settings for the session.<br><br>This property is nullable. |
 | tools | array of [RealtimeTool](#realtimetool) | The tools available to the model for the session. |
 | tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session.<br><br>Allowed values: `auto`, `none`, and `required`. Otherwise, you can specify the name of the function to use. |
@@ -1293,7 +1432,7 @@ You use the `RealtimeRequestSession` object when you want to update the session 
 | + total_tokens | integer | The total number of tokens in the Response including input and output text and audio tokens.<br><br>A property of the `usage` object. | 
 | + input_tokens | integer | The number of input tokens used in the response, including text and audio tokens.<br><br>A property of the `usage` object. |
 | + output_tokens | integer | The number of output tokens sent in the response, including text and audio tokens.<br><br>A property of the `usage` object. | 
-| + input_token_details | object | Details about the input tokens used in the response.<br><br>A property of the `usage` object.<br>br><br>See nested properties next.|
+| + input_token_details | object | Details about the input tokens used in the response.<br><br>A property of the `usage` object.<br><br>See nested properties next.|
 | + cached_tokens | integer | The number of cached tokens used in the response.<br><br>A property of the `input_token_details` object. | 
 | + text_tokens | integer | The number of text tokens used in the response.<br><br>A property of the `input_token_details` object. | 
 | + audio_tokens | integer | The number of audio tokens used in the response.<br><br>A property of the `input_token_details` object. | 
@@ -1517,17 +1656,20 @@ Currently, only 'function' tools are supported.
 
 | Field | Type | Description | 
 |-------|------|-------------|
-| type | [RealtimeTurnDetectionType](#realtimeturndetectiontype) | The type of turn detection.<br><br>Allowed values: `server_vad` |
-| threshold | number | The activation threshold for the server VAD turn detection. In noisy environments, you might need to increase the threshold to avoid false positives. In quiet environments, you might need to decrease the threshold to avoid false negatives.<br><br>Defaults to `0.5`. You can set the threshold to a value between `0.0` and `1.0`. |
-| prefix_padding_ms | string | The duration of speech audio (in milliseconds) to include before the start of detected speech.<br><br>Defaults to `300` milliseconds. |
-| silence_duration_ms | string | The duration of silence (in milliseconds) to detect the end of speech. You want to detect the end of speech as soon as possible, but not too soon to avoid cutting off the last part of the speech.<br><br>The model will respond more quickly if you set this value to a lower number, but it might cut off the last part of the speech. If you set this value to a higher number, the model will wait longer to detect the end of speech, but it might take longer to respond.<br><br>Defaults to `500` milliseconds. |
+| type | [RealtimeTurnDetectionType](#realtimeturndetectiontype) | The type of turn detection.<br><br>Allowed values: `semantic_vad` or `server_vad` |
+| threshold | number | The activation threshold for the server VAD (`server_vad`) turn detection. In noisy environments, you might need to increase the threshold to avoid false positives. In quiet environments, you might need to decrease the threshold to avoid false negatives.<br><br>Defaults to `0.5`. You can set the threshold to a value between `0.0` and `1.0`.<br/><br>This property is only applicable for `server_vad` turn detection. |
+| prefix_padding_ms | string | The duration of speech audio (in milliseconds) to include before the start of detected speech.<br><br>Defaults to `300` milliseconds.<br/><br>This property is only applicable for `server_vad` turn detection. |
+| silence_duration_ms | string | The duration of silence (in milliseconds) to detect the end of speech. You want to detect the end of speech as soon as possible, but not too soon to avoid cutting off the last part of the speech.<br><br>The model will respond more quickly if you set this value to a lower number, but it might cut off the last part of the speech. If you set this value to a higher number, the model will wait longer to detect the end of speech, but it might take longer to respond.<br><br>Defaults to `500` milliseconds.<br/><br>This property is only applicable for `server_vad` turn detection. |
 | create_response | boolean | Indicates whether the server will automatically create a response when VAD is enabled and speech stops.<br><br>Defaults to `true`. |
+| interrupt_response | boolean | Indicates whether the server will automatically interrupt any ongoing response with output to the default (`auto`) conversation when a VAD start event occurs.<br><br>Defaults to `true`. |
+| eagerness | boolean | The eagerness of the model to respond and interrupt the user. Specify `low` to wait longer for the user to continue speaking. Specify `high` to chunk the audio as soon as possible for quicker responses. The default value is `auto` that's equivalent to medium.<br/><br>This property is only applicable for `server_vad` turn detection. |
 
 ### RealtimeTurnDetectionType
 
 **Allowed Values:**
 
-* `server_vad` 
+* `semantic_vad` - Semantic VAD detects when the user has finished speaking based on the words they have uttered. The input audio is scored based on the probability that the user is done speaking. When the probability is low the model will wait for a timeout. When the probability is high there's no need to wait. 
+* `server_vad` - The server evaluates user audio from the client. The server automatically uses that audio to initiate response generation on applicable conversations when an end of speech is detected.
 
 ### RealtimeVoice
 

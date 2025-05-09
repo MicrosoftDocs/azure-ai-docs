@@ -2,7 +2,6 @@
 title: How to deploy a custom NER model
 titleSuffix: Azure AI services
 description: Learn how to deploy a model for custom NER.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language

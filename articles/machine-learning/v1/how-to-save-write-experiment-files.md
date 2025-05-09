@@ -15,6 +15,8 @@ ms.date: 05/31/2024
 # Where to save and write files for Azure Machine Learning experiments
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, you learn where to save input files, and where to write output files from your experiments to prevent storage limit errors and experiment latency.
 
 When you run training jobs on a [compute target](../concept-compute-target.md), they're isolated from outside environments. The purpose of this design is to ensure reproducibility and portability of the experiment. If you run the same script twice, on the same or another compute target, you receive the same results. With this design, you can treat compute targets as stateless computation resources, each having no affinity to the jobs that are running after they're finished.

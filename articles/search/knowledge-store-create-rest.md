@@ -31,7 +31,7 @@ To make the initial data set available, the hotel reviews are first imported int
 
 + Azure Storage. [Create an account](/azure/storage/common/storage-account-create) or [find an existing one](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Storage%2storageAccounts/). The account type must be **StorageV2 (general purpose V2)**.
 
-The skillset in this examples uses Azure AI Services for enrichments. Because the workload is so small, Azure AI services is tapped behind the scenes to provide free processing for up to 20 transactions daily. A small workload means that you can skip creating or attaching an Azure AI multi-service resource.
+The skillset in this examples uses Azure AI Services for enrichments. Because the workload is so small, Azure AI services is tapped behind the scenes to provide free processing for up to 20 transactions daily. A small workload means that you can skip creating or attaching an Azure AI services multi-service resource.
 
 ## Upload data to Azure Storage and get a connection string
 

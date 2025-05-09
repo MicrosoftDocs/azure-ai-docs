@@ -4,11 +4,11 @@ titleSuffix: Azure OpenAI
 description: Learn about the different model capabilities that are available with Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 2/19/2025
+ms.date: 05/07/2025
 ms.custom: references_regions, build-2023, build-2023-dataai, refefences_regions
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
-ms.author: mbullwin #chrhoder
+ms.author: mbullwin #chrhoder#
 recommendations: false
 ---
 
@@ -18,15 +18,80 @@ Azure OpenAI Service is powered by a diverse set of models with different capabi
 
 | Models | Description |
 |--|--|
+| [GPT-4.1 series](#gpt-41-series) | Latest model release from Azure OpenAI |
+| [computer-use-preview](#computer-use-preview) | An experimental model trained for use with the Responses API computer use tool. |
+| [GPT-4.5 Preview](#gpt-45-preview) |The latest GPT model that excels at diverse text and image tasks.  |
 | [o-series models](#o-series-models) |[Reasoning models](../how-to/reasoning.md) with advanced problem-solving and increased focus and capability.  |
 | [GPT-4o & GPT-4o mini & GPT-4 Turbo](#gpt-4o-and-gpt-4-turbo) | The latest most capable Azure OpenAI models with multimodal versions, which can accept both text and images as input. |
-| [GPT-4o audio](#gpt-4o-audio) | GPT-4o audio models that support either low-latency, "speech in, speech out" conversational interactions or audio generation. |
 | [GPT-4](#gpt-4) | A set of models that improve on GPT-3.5 and can understand and generate natural language and code. |
 | [GPT-3.5](#gpt-35) | A set of models that improve on GPT-3 and can understand and generate natural language and code. |
 | [Embeddings](#embeddings-models) | A set of models that can convert text into numerical vector form to facilitate text similarity. |
-| [DALL-E](#dall-e-models) | A series of models that can generate original images from natural language. |
-| [Whisper](#whisper-models) | A series of models in preview that can transcribe and translate speech to text. |
-| [Text to speech](#text-to-speech-models-preview) (Preview) | A series of models in preview that can synthesize text to speech. |
+| [Image generation](#image-generation-models) | A series of models that can generate original images from natural language. |
+| [Audio](#audio-models) | A series of models for speech to text, translation, and text to speech. GPT-4o audio models support either low-latency, "speech in, speech out" conversational interactions or audio generation. |
+
+## GPT 4.1 series
+
+### Region Availability
+
+| Model | Region |
+|---|---|
+| `gpt-4.1` (2025-04-14) |  See the [models table](#model-summary-table-and-region-availability). |
+| `gpt-4.1-nano` (2025-04-14) |  See the [models table](#model-summary-table-and-region-availability).|
+| `gpt-4.1-mini` (2025-04-14) |  See the [models table](#model-summary-table-and-region-availability).|
+
+### Capabilities
+
+|  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
+|  --- |  :--- |:--- |:---|:---: |
+| `gpt-4.1` (2025-04-14)   | - Text & image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> Structured outputs (chat completions)   | - 1,047,576 <br> - 128,000 (provisioned managed deployments) | 32,768 | May 31, 2024 |
+| `gpt-4.1-nano` (2025-04-14) <br><br> **Fastest 4.1 model** | - Text & image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> Structured outputs (chat completions)   | 1,047,576  | 32,768 | May 31, 2024 |
+| `gpt-4.1-mini` (2025-04-14) | - Text & image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> Structured outputs (chat completions)   | 1,047,576  | 32,768 | May 31, 2024 |
+
+
+## computer-use-preview
+
+An experimental model trained for use with the [Responses API](../how-to/responses.md) computer use tool. It can be used in conjunction with 3rd-party libraries to allow the model to control mouse & keyboard input while getting context from screenshots of the current environment.
+
+> [!CAUTION]
+> We don't recommend using preview models in production. We will upgrade all deployments of preview models to either future preview versions or to the latest stable GA version. Models that are designated preview don't follow the standard Azure OpenAI model lifecycle.
+
+### Availability
+
+**For access to `computer-use-preview` registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who have access to other limited access models will still need to request access for this model.
+
+Request access: [`computer-use-preview` limited access model application](https://aka.ms/oai/cuaaccess)
+
+Once access has been granted, you will need to create a deployment for the model.
+
+### Region Availability
+
+| Model | Region |
+|---|---|
+| `computer-use-preview` |  See the [models table](#model-summary-table-and-region-availability). |
+
+### Capabilities
+
+|  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
+|  --- |  :--- |:--- |:---|:---: |
+| `computer-use-preview` (2025-03-11)  | Specialized model for use with the [Responses API](../how-to/responses.md) computer use tool <br> <br>-Tools <br>-Streaming<br>-Text(input/output)<br>- Image(input)   | 8,192 | 1,024 | Oct 2023 |
+
+
+## GPT-4.5 Preview
+
+### Region Availability
+
+| Model | Region |
+|---|---|
+| `gpt-4.5-preview` |  See the [models table](#model-summary-table-and-region-availability).|
+
+### Capabilities
+
+|  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
+|  --- |  :--- |:--- |:---|:---: |
+| `gpt-4.5-preview` (2025-02-27) <br> **GPT-4.5 Preview**  | [GPT 4.1](#gpt-41-series) is the recommended replacement for this model. Excels at diverse text and image tasks. <br>-Structured outputs <br>-Prompt caching <br>-Tools <br>-Streaming<br>-Text(input/output)<br>- Image(input)   | 128,000 | 16,384 | Oct 2023 |
+
+> [!NOTE]
+> It is expected behavior that the model cannot answer questions about itself. If you want to know when the knowledge cutoff for the model's training data is, or other details about the model you should refer to the model documentation above.
 
 ## o-series models
 
@@ -34,18 +99,14 @@ The Azure OpenAI o<sup>&#42;</sup> series models are specifically designed to ta
 
 |  Model ID  | Description | Max Request (tokens) | Training Data (up to)  |
 |  --- |  :--- |:--- |:---: |
-| `o3-mini` (2025-01-31) | The latest reasoning model, offering [enhanced reasoning abilities](../how-to/reasoning.md). <br> - Structured outputs<br> - Text-only processing <br> - Functions/Tools <br> <br> **Request access: [limited access model application](https://aka.ms/OAI/o1access)** | Input: 200,000 <br> Output: 100,000 | Oct 2023 |  
-| `o1` (2024-12-17) | The most capable model in the o1 series, offering [enhanced reasoning abilities](../how-to/reasoning.md). <br> - Structured outputs<br> - Text, image processing <br> - Functions/Tools <br> <br> **Request access: [limited access model application](https://aka.ms/OAI/o1access)** | Input: 200,000 <br> Output: 100,000 | Oct 2023 |  
+| `o4-mini` (2025-04-16) | - **NEW** reasoning model, offering [enhanced reasoning abilities](../how-to/reasoning.md). <br><br> - Chat Completions API <br> - [Responses API](../how-to/responses.md) <br>- Structured outputs<br> - Text, image processing <br> - Functions/Tools/Parallel tool calling <br> [Full summary of capabilities](../how-to/reasoning.md) | Input: 200,000 <br> Output: 100,000 | May 31, 2024 |   
+| `o3` (2025-04-16) | - **NEW** reasoning model, offering [enhanced reasoning abilities](../how-to/reasoning.md). <br>  <br> - Chat Completions API <br> - [Responses API](../how-to/responses.md) <br> - Structured outputs<br> - Text, image processing <br> - Functions/Tools/Parallel tool calling <br> [Full summary of capabilities](../how-to/reasoning.md) | Input: 200,000 <br> Output: 100,000 | May 31, 2024 |    
+| `o3-mini` (2025-01-31) | - [Enhanced reasoning abilities](../how-to/reasoning.md). <br> - Structured outputs<br> - Text-only processing <br> - Functions/Tools | Input: 200,000 <br> Output: 100,000 | Oct 2023 |  
+| `o1` (2024-12-17) | - [Enhanced reasoning abilities](../how-to/reasoning.md). <br> - Structured outputs<br> - Text, image processing <br> - Functions/Tools | Input: 200,000 <br> Output: 100,000 | Oct 2023 |  
 |`o1-preview` (2024-09-12) | Older preview version | Input: 128,000  <br> Output: 32,768 | Oct 2023 |
 | `o1-mini` (2024-09-12) | A faster and more cost-efficient option in the o1 series, ideal for coding tasks requiring speed and lower resource consumption. <br><br> Global standard deployment available by default. <br> <br> Standard (regional) deployments are currently only available for select customers who received access as part of the `o1-preview` limited access release.  | Input: 128,000  <br> Output: 65,536 | Oct 2023 |
 
 ### Availability
-
-**For access to `o3-mini` and `o1` registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who previously applied and received access to `o1-preview`, or `o1`  don't need to reapply as they are automatically on the wait-list for the latest models in the o-series.
-
-Request access: [limited access model application](https://aka.ms/OAI/o1access)
-
-Once access has been granted, you will need to create a deployment for each model. 
 
 To learn more about the advanced `o-series` models see, [getting started with reasoning models](../how-to/reasoning.md).
 
@@ -53,41 +114,12 @@ To learn more about the advanced `o-series` models see, [getting started with re
 
 | Model | Region |
 |---|---|
+|`o4-mini`|   See the [models table](#model-summary-table-and-region-availability).  |
+| `o3` |   See the [models table](#model-summary-table-and-region-availability).  |
 |`o3-mini` | See the [models table](#model-summary-table-and-region-availability). |
 |`o1` | See the [models table](#model-summary-table-and-region-availability). |
 | `o1-preview` | See the [models table](#model-summary-table-and-region-availability). This model is only available for customers who were granted access as part of the original limited access |
 | `o1-mini` | See the [models table](#model-summary-table-and-region-availability). |
-
-## GPT-4o audio
-
-The GPT 4o audio models are part of the GPT-4o model family and support either low-latency, "speech in, speech out" conversational interactions or audio generation. 
-- GPT-4o real-time audio is designed to handle real-time, low-latency conversational interactions, making it a great fit for support agents, assistants, translators, and other use cases that need highly responsive back-and-forth with a user. For more information on how to use GPT-4o real-time audio, see the [GPT-4o real-time audio quickstart](../realtime-audio-quickstart.md) and [how to use GPT-4o audio](../how-to/realtime-audio.md).
-- GPT-4o audio completion is designed to generate audio from audio or text prompts, making it a great fit for generating audio books, audio content, and other use cases that require audio generation. The GPT-4o audio completions model introduces the audio modality into the existing `/chat/completions` API. For more information on how to use GPT-4o audio completions, see the [audio generation quickstart](../audio-completions-quickstart.md).
-
-To use GPT-4o audio, you need [an Azure OpenAI resource](../how-to/create-resource.md) in one of the [supported regions](#global-standard-model-availability).
-
-When your resource is created, you can [deploy](../how-to/create-resource.md#deploy-a-model) the GPT-4o audio model. 
-
-Details about maximum request tokens and training data are available in the following table.
-
-|  Model ID  | Description | Max Request (tokens) | Training Data (up to)  |
-|---|---|---|---|
-|`gpt-4o-mini-audio-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for audio and text generation. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
-|`gpt-4o-mini-realtime-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
-|`gpt-4o-audio-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for audio and text generation. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
-|`gpt-4o-realtime-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
-|`gpt-4o-realtime-preview` (2024-10-01) <br> **GPT-4o audio** | **Audio model** for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
-
-### Region availability
-
-| Model | Region |
-|---|---|
-|`gpt-4o-mini-audio-preview` | East US2 (Global Standard) |
-|`gpt-4o-mini-realtime-preview` | East US2 (Global Standard) <br> Sweden Central (Global Standard) |
-|`gpt-4o-audio-preview` | East US2 (Global Standard) <br> Sweden Central (Global Standard) |
-|`gpt-4o-realtime-preview` | East US2 (Global Standard) <br> Sweden Central (Global Standard) |
-
-To compare the availability of GPT-4o audio models across all regions, see the [models table](#global-standard-model-availability).
 
 ## GPT-4o and GPT-4 Turbo
 
@@ -188,21 +220,75 @@ The third generation embeddings models support reducing the size of the embeddin
 
 OpenAI's MTEB benchmark testing found that even when the third generation model's dimensions are reduced to less than `text-embeddings-ada-002` 1,536 dimensions performance remains slightly better.
 
-## DALL-E
+## Image generation models
 
-The DALL-E models generate images from text prompts that the user provides. DALL-E 3 is generally available for use with the REST APIs. DALL-E 2 and DALL-E 3 with client SDKs are in preview.
+The image generation models generate images from text prompts that the user provides. GPT-image-1 is in limited access public preview. DALL-E 3 is generally available for use with the REST APIs. DALL-E 2 and DALL-E 3 with client SDKs are in preview.
 
-## Whisper
+### Availability
 
-The Whisper models can be used for speech to text.
+**For access to `gpt-image-1` registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who have access to other limited access models will still need to request access for this model.
 
-You can also use the Whisper model via Azure AI Speech [batch transcription](../../speech-service/batch-transcription-create.md) API. Check out [What is the Whisper model?](../../speech-service/whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI Service.
+Request access: [`gpt-image-1` limited access model application](https://aka.ms/oai/gptimage1access)
 
-## Text to speech (Preview)
+Once access has been granted, you will need to create a deployment for the model.
 
-The OpenAI text to speech models, currently in preview, can be used to synthesize text to speech.
+### Region availability
 
-You can also use the OpenAI text to speech voices via Azure AI Speech. To learn more, see [OpenAI text to speech voices via Azure OpenAI Service or via Azure AI Speech](../../speech-service/openai-voices.md#openai-text-to-speech-voices-via-azure-openai-service-or-via-azure-ai-speech) guide. 
+| Model | Region |
+|---|---|
+|`dall-e-3` | East US<br>Australia East<br>Sweden Central|
+|`gpt-image-1` | West US 3 (Global Standard) <br> UAE North (Global Standard) |
+
+## Audio models
+
+Audio models in Azure OpenAI are available via the `realtime`, `completions`, and `audio` APIs.
+
+### GPT-4o audio models
+
+The GPT 4o audio models are part of the GPT-4o model family and support either low-latency, "speech in, speech out" conversational interactions or audio generation. 
+
+> [!CAUTION]
+> We don't recommend using preview models in production. We will upgrade all deployments of preview models to either future preview versions or to the latest stable GA version. Models that are designated preview don't follow the standard Azure OpenAI model lifecycle.
+
+Details about maximum request tokens and training data are available in the following table.
+
+|  Model ID  | Description | Max Request (tokens) | Training Data (up to)  |
+|---|---|---|---|
+|`gpt-4o-mini-audio-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for audio and text generation. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
+|`gpt-4o-mini-realtime-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
+|`gpt-4o-audio-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for audio and text generation. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
+|`gpt-4o-realtime-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
+|`gpt-4o-mini-realtime-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | Oct 2023 |
+
+To compare the availability of GPT-4o audio models across all regions, see the [models table](#global-standard-model-availability).
+
+### Audio API
+
+The audio models via the `/audio` API can be used for speech to text, translation, and text to speech. 
+
+#### Speech to text models
+
+|  Model ID  | Description | Max Request (audio file size) |
+| ----- | ----- | ----- |
+| `whisper` | General-purpose speech recognition model. | 25 MB |
+| `gpt-4o-transcribe` | Speech to text powered by GPT-4o. | 25 MB|
+| `gpt-4o-mini-transcribe` | Speech to text powered by GPT-4o mini. | 25 MB|
+
+#### Speech translation models
+
+|  Model ID  | Description | Max Request (audio file size) |
+| ----- | ----- | ----- |
+| `whisper` | General-purpose speech recognition model. | 25 MB |
+
+#### Text to speech models (Preview)
+
+|  Model ID  | Description |
+|  --- | :--- |
+| `tts` | Text to speech optimized for speed. |
+| `tts-hd` | Text to speech optimized for quality.|
+| `gpt-4o-mini-tts` | Text to speech model powered by GPT-4o mini.<br/><br/>You can guide the voice to speak in a style or tone. |
+
+For more information see [Audio models region availability](?tabs=standard-audio#standard-deployment-regional-models-by-endpoint) in this article.
 
 ## Model summary table and region availability
 
@@ -222,7 +308,7 @@ All deployments can perform the exact same inference operations, however the bil
 [!INCLUDE [Standard Global](../includes/model-matrix/standard-global.md)]
 
 > [!NOTE]
-> **Most o-series models are limited access**. Request access: [limited access model application](https://aka.ms/OAI/o1access). `o1-mini` is currently available to all customers for global standard deployment.
+> `o1-mini` is currently available to all customers for global standard deployment.
 >
 > Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time access to `o1-mini` standard (regional) deployments is not being expanded.
 
@@ -245,7 +331,7 @@ All deployments can perform the exact same inference operations, however the bil
 [!INCLUDE [Data zone standard](../includes/model-matrix/datazone-standard.md)]
 
 > [!NOTE]
-> **Most o-series models are limited access**. Request access: [limited access model application](https://aka.ms/OAI/o1access). `o1-mini` is currently available to all customers for global standard deployment.
+> `o1-mini` is currently available to all customers for global standard deployment.
 >
 > Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time access to `o1-mini` standard (regional) deployments is not being expanded.
 
@@ -268,7 +354,7 @@ All deployments can perform the exact same inference operations, however the bil
 [!INCLUDE [Standard Models](../includes/model-matrix/standard-models.md)]
 
 > [!NOTE]
-> **Most o-series models are limited access**. Request access: [limited access model application](https://aka.ms/OAI/o1access). `o1-mini` is currently available to all customers for global standard deployment.
+> `o1-mini` is currently available to all customers for global standard deployment.
 >
 > Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time access to `o1-mini` standard (regional) deployments is not being expanded.
 
@@ -288,7 +374,7 @@ For more information on Provisioned deployments, see our [Provisioned guidance](
 
 This table doesn't include fine-tuning regional availability information.  Consult the [fine-tuning section](#fine-tuning-models) for this information.
 
-### Standard models by endpoint
+### Standard deployment (regional) models by endpoint
 
 # [Chat Completions](#tab/standard-chat-completions)
 
@@ -297,7 +383,7 @@ This table doesn't include fine-tuning regional availability information.  Consu
 [!INCLUDE [Chat Completions](../includes/model-matrix/standard-chat-completions.md)]
 
 > [!NOTE]
-> **Most o-series models are limited access**. Request access: [limited access model application](https://aka.ms/OAI/o1access). `o1-mini` is currently available to all customers for global standard deployment.
+> `o1-mini` is currently available to all customers for global standard deployment.
 >
 > Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time access to `o1-mini` standard (regional) deployments is not being expanded.
 
@@ -343,10 +429,11 @@ These models can only be used with Embedding API requests.
 
 [!INCLUDE [Image Generation](../includes/model-matrix/standard-image-generation.md)]
 
-### DALL-E models
+### Image generation models
 
 |  Model ID  | Max Request (characters) |
 |  --- | :---: |
+| gpt-image-1 | 4,000 |
 | dall-e-3  | 4,000 |
 
 # [Audio](#tab/standard-audio)
@@ -354,20 +441,6 @@ These models can only be used with Embedding API requests.
 ### Audio models
 
 [!INCLUDE [Audio](../includes/model-matrix/standard-audio.md)]
-
-### Whisper models
-
-|  Model ID  | Max Request (audio file size) |
-|  --- | :---: |
-| `whisper` | 25 MB |
-
-### Text to speech models (Preview)
-
-|  Model ID  | Description |
-|  --- | :--- |
-| `tts` | The latest Azure OpenAI text to speech model, optimized for speed. |
-| `tts-hd` | The latest Azure OpenAI text to speech model, optimized for quality.|
- |
 
 # [Completions (Legacy)](#tab/standard-completions)
 

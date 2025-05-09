@@ -2,13 +2,13 @@
 title: Language support - Azure AI Vision
 titleSuffix: Azure AI services
 description: This article provides a list of natural languages supported by Azure AI Vision features; OCR, Image analysis.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: conceptual
 ms.date: 09/25/2024
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
+ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 

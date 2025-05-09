@@ -8,7 +8,7 @@ ms.topic: how-to
 author: Blackmist
 ms.author: larryfr
 ms.reviewer: osiotugo
-ms.date: 04/19/2024
+ms.date: 04/04/2025
 ms.custom: devx-track-azurecli, devplatv2, devx-track-python
 ---
 
@@ -39,12 +39,12 @@ To run the training examples, first clone the examples repository. For the CLI e
 git clone --depth 1 https://github.com/Azure/azureml-examples
 ```
 
-Note that `--depth 1` clones only the latest commit to the repository, which reduces time to complete the operation.
+The `--depth 1` parameter clones only the latest commit to the repository, which reduces time to complete the operation.
 
 ### Connect to the workspace
 
 > [!TIP]
-> Use the following tabs to select the method you want to use to work with environments. Selecting a tab will automatically switch all the tabs in this article to the same tab. You can select another tab at any time.
+> Use the following tabs to select the method you want to use to work with environments. Selecting a tab automatically switches all the tabs in this article to the same tab. You can select another tab at any time.
 
 # [Azure CLI](#tab/cli)
 
@@ -78,7 +78,7 @@ You can use these curated environments out of the box for training or deployment
 You can see the set of available curated environments in the Azure Machine Learning studio UI, or by using the CLI (v2) via `az ml environment list`.
 
 > [!TIP]
-> When working with curated environments in the CLI or SDK, the environment name begins with `AzureML-` followed by the name of the curated environment. When using the Azure Machine Learning studio, they do not have this prefix. The reason for this difference is that the studio UI displays curated and custom environments on separate tabs, so the prefix isn't necessary. The CLI and SDK do not have this separation, so the prefix is used to differentiate between curated and custom environments.
+> When you work with curated environments in the CLI or SDK, the environment name begins with `AzureML-` followed by the name of the curated environment. When you use the Azure Machine Learning studio, they don't have this prefix. The reason for this difference is that the studio UI displays curated and custom environments on separate tabs, so the prefix isn't necessary. The CLI and SDK don't have this separation, so the prefix is used to differentiate between curated and custom environments.
 
 ## Create a custom environment
 
@@ -115,7 +115,7 @@ The following example creates an environment from a Docker image. An image from 
 
 ### Create an environment from a Docker build context
 
-Instead of defining an environment from a prebuilt image, you can also define one from a Docker [build context](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#understand-build-context). To do so, specify the directory that serves as the build context. This directory should contain a Dockerfile (not larger than 1MB) and any other files needed to build the image.
+Instead of defining an environment from a prebuilt image, you can also define one from a Docker [build context](https://docs.docker.com/build/concepts/context/). To do so, specify the directory that serves as the build context. This directory should contain a Dockerfile (not larger than 1MB) and any other files needed to build the image.
 
 # [Azure CLI](#tab/cli)
 
@@ -295,7 +295,7 @@ ml_client.environments.archive(name="docker-image-example", version="1")
 ---
 
 > [!IMPORTANT]
-> Archiving an environment's version does not delete the cached image in the container registry. If you wish to delete the cached image associated with a specific environment, you can use the command [az acr repository delete](/cli/azure/acr/repository?view=azure-cli-latest#az-acr-repository-delete) on the environment's associated repository.
+> Archiving an environment's version doesn't delete the cached image in the container registry. If you wish to delete the cached image associated with a specific environment, you can use the command [az acr repository delete](/cli/azure/acr/repository?view=azure-cli-latest#az-acr-repository-delete) on the environment's associated repository.
 
 
 ## Use environments for training

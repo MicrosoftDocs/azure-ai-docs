@@ -2,7 +2,6 @@
 title: 'Quickstart: Use GPT-4o and GPT-4o mini via Azure AI Foundry'
 titleSuffix: Azure OpenAI Service
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with Azure AI Foundry. 
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
@@ -16,7 +15,7 @@ ms.date: 09/19/2024
 
 ## Go to Azure AI Foundry
 
-Navigate to [Azure AI Foundry](https://oai.azure.com/) and sign-in with credentials that have access to your Azure OpenAI resource. During or after the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
+Navigate to the [Azure AI Foundry portal](https://ai.azure.com/) and sign-in with credentials that have access to your Azure OpenAI resource. During or after the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
 
 From Azure AI Foundry, select **Chat playground**.
 

@@ -5,7 +5,7 @@ items:
   expanded: true
   items:
   - name: What is Azure AI Content Understanding?
-    displayName: document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+    displayName: document, text, images, video, audio, multimodal, visual, structured, content, field, extraction, content filtering, filter
     href: overview.md
   - name: Create an Azure AI Services resource
     displayName: extract, text, images, OCR, optical character recognition
@@ -29,13 +29,19 @@ items:
 - name: Quickstarts
   items:
   - name: Content Understanding REST API
-    displayName: quickstart, extract, text, images, OCR, optical character recognition
+    displayName: quickstart, extract, text, images, OCR, optical character recognition, content filtering, filter
     href: quickstart/use-rest-api.md
   - name: Content Understanding Azure AI Foundry portal
     displayName: quickstart, extract, text, images, OCR, optical character recognition
     href: quickstart/use-ai-foundry.md
 - name: Capabilities
   items:
+  - name: Overview
+    displayName: content understanding capabilities, document, text, images, video, audio, visual, structured, content, field, extraction
+    href: concepts/capabilities.md
+  - name: Analyzer templates
+    displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+    href: concepts/analyzer-templates.md
   - name: Document
     displayName: document, text, images, video, audio, visual, structured, content, field, extraction
     href: document/overview.md
@@ -48,14 +54,25 @@ items:
   - name: Video
     href: video/overview.md
     displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+  - name: Best practices
+    displayName: best practices, analyzers, optimization, fields
+    href: concepts/best-practices.md   
 - name: Concepts
   items:
-    - name: Azure AI Foundry analyzer templates
-      displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-      href: concepts/analyzer-templates.md
-    - name: Azure AI Content Understanding best practices
+    - name: Best practices
       displayName: best practices, analyzers, optimization, fields
       href: concepts/best-practices.md
+    - name: Accuracy and confidence
+      displayName: accuracy, confidence, analyzers, optimization, fields, scores
+      href: concepts/accuracy-confidence.md
+    - name: Retrieval-augmented generation (RAG)
+      displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
+      href: concepts/retrieval-augmented-generation.md
+- name: Tutorials
+  items:
+    - name: Build a retrieval-augmented solution
+      displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
+      href: tutorial/build-rag-solution.md
 - name: Responsible AI
   items:
     - name: Transparency note
@@ -67,4 +84,4 @@ items:
   - name: REST API
     displayName: quota, tiers, throttle, max, adjustments, requests, support, ocr
     href: /rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true
-  
+

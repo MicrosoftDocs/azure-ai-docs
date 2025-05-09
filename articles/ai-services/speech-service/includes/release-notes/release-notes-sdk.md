@@ -2,9 +2,65 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 12/17/2024
+ms.date: 03/17/2025
 ms.author: eur
 ---
+
+> [!IMPORTANT]
+> Content assessment (preview) via the Speech SDK will be retired in July 2025. Instead, you can use the Azure OpenAI Service to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
+
+### Speech SDK 1.43: 2025-March release
+
+> [!NOTE]
+> [Ubuntu 20.04 "standard security maintenance" expires in April 2025](https://ubuntu.com/about/release-cycle) and will no longer be available as ADO Build agents.
+> Future Speech SDK releases will require Ubuntu 22.04 LTS (instead of Ubuntu 20.04) as the minimum supported version.
+
+#### New features:
+  * Updated FromEndpoint API to be the recommended method for constructing a SpeechConfig for most scenarios.
+    * Applies to using:
+      * SpeechRecognizer
+      * TranslationRecognizer (via SpeechTranslationConfig)
+      * ConversationTranscriber
+      * SpeechSynthesizer
+    In all programming languages except JavaScript.
+    * You can now use the Endpoint from the Azure Portal for Speech and Cognitive Services resources to construct a SpeechConfig object.
+    * All other methods to construct a SpeechConfig continue to function and are supported.
+  * Updated TranslationRecognizer to use V2 endpoints by default.
+    * This moves control parameters from the URL to in-channel messages when using a V2 endpoint.
+    * Behavior change: The default language returned for "zh" is now "zh-CN" instead of "zh-hans"
+  * Added property ids for SpeechSynthesis_FrameTimeoutInterval and SpeechSynthesis_RtfTimeoutThreshold.
+  * Optimized the number of times the SDK reconnects for long running recognitions.
+  * [C++, Python] Added support for specifying the style and temperature in text streaming requests.
+  * [C#] Added support for automatic AAD token refresh when using FromEndpoint to construct a config object.
+    * This adds a dependency from the Speech SDK to the Azure.Core nuget package.
+    * The Speech SDK can now accept TokenCredential derived objects for authentication when using:
+      * SpeechRecognizer
+      * TranslationRecognizer
+      * ConversationTranscriber
+  * [Objective-C] Updated SPXTranslationRecognizer to support source language auto detection from open range.
+  * [Objective-C , Python] Added diagnostics APIs EventLogger, FileLogger, and MemoryLogger.
+  * [Go]: Added TranslationRecognizer support
+  
+#### Bug fixes
+  * Fixed OpenSSL 3 support on Linux arm32 (https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2736).
+  * Fixed the missing status field in the speech synthesis voice list (https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2771).
+  * Fixed IntentRecognizer pattern matching Japanese language parser not correctly identifying integer characters.
+  * Fixed a potential issue with duplicate results from embedded speech recognition.
+  * [Java] Fixed empty participants in ConversationParticipantsChangedEventArgs on Android 12 and newer (https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2687).
+
+#### Samples
+  * [C++] Added a sample for standalone intent recognition using pattern matching.
+    * With the retirement of the LUIS service in October 2025 the Speech SDK will also be retiring the IntentRecognizer object family.
+    * Before that, we wanted to share the implementation for pattern matching.
+  * [C++, C#, Java, Python] Updated most samples to use FromEndpoint API instead of FromSubscription.
+  * [C#] Added a scenario sample for a multi-tier speech recognition application.
+    * Demonstrates a methodology for audio replay and reconnection from an edge device to a middle tier service that 
+then forwards audio to the Speech Service via the Speech SDK
+  * [C#] Updated samples to use automatic AAD token refresh.
+  * [Python] Added samples for new diagnostics APIs.
+  * [Unity] Added instructions for installing the new Azure.Core dependency.
+
+
 
 ### Speech SDK 1.42.0: 2024-December release
 
@@ -282,11 +338,10 @@ We added text to speech avatar code samples for [Android](https://github.com/Azu
 
 #### Breaking changes
 
-* The former "conversation transcription" scenario is renamed to "meeting transcription". For example, use `MeetingTranscriber` instead of `ConversationTranscriber`, and use `CreateMeetingAsync` instead of `CreateConversationAsync`. Although the names of SDK objects and methods have changed, the renaming doesn't change the feature itself. Use meeting transcription objects for transcription of meetings with user profiles and voice signatures. See [Meeting transcription](../../meeting-transcription.md) for more information. The "conversation translation" objects and methods aren't affected by these changes. You can still use the `ConversationTranslator` object and its methods for meeting translation scenarios.
+- The former "conversation transcription" scenario is renamed to "meeting transcription". For example, use `MeetingTranscriber` instead of `ConversationTranscriber`, and use `CreateMeetingAsync` instead of `CreateConversationAsync`. Although the names of SDK objects and methods have changed, the renaming doesn't change the feature itself. Use meeting transcription objects for transcription of meetings with user profiles and voice signatures. The "conversation translation" objects and methods aren't affected by these changes. You can still use the `ConversationTranslator` object and its methods for meeting translation scenarios.
 
 - For real-time diarization, a new `ConversationTranscriber` object is introduced. The new "conversation transcription" object model and call patterns are similar to continuous recognition with the `SpeechRecognizer` object. A key difference is that the `ConversationTranscriber` object is designed to be used in a conversation scenario where you want to differentiate multiple speakers (diarization). User profiles and voice signatures aren't applicable. See the [real-time diarization quickstart](../../get-started-stt-diarization.md) for more information.
 
-<br>
 This table shows the previous and new object names for real-time diarization and meeting transcription. The scenario name is in the first column, the previous object names are in the second column, and the new object names are in the third column. 
 
 | Scenario name | Previous object names | New object names |
@@ -319,9 +374,9 @@ This table shows the previous and new object names for real-time diarization and
 
     * [New JavaScript meeting transcription quickstart](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/javascript/browser/meeting-transcription/README.md)
 
-    * [New NodeJS conversation transcription quickstart](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/javascript/node/conversation-transcription/README.md)
+    * [New Node.js conversation transcription quickstart](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/javascript/node/conversation-transcription/README.md)
 
-    * [New NodeJS meeting transcription quickstart](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/javascript/node/meeting-transcription/README.md)
+    * [New Node.js meeting transcription quickstart](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/javascript/node/meeting-transcription/README.md)
 
 ### Speech SDK 1.30.0: July 2023 release
 
@@ -530,7 +585,7 @@ This table shows the previous and new object names for real-time diarization and
   - Fix recognized callback when LUIS response `connectionMessage` is empty ([Customer issue](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/1644)).
   - Properly set speech segmentation timeout.
 - **Intent Recognition using pattern matching**:
-  - Non-json characters inside models now loads properly.
+  - Non-json characters inside models now load properly.
   - Fix hanging issue when `recognizeOnceAsync(text)` was called during continuous recognition.
 
 ### Speech SDK 1.23.0: July 2022 release
@@ -724,8 +779,8 @@ This table shows the previous and new object names for real-time diarization and
 
 ### Speech SDK 1.17.0: 2021-May release
 
->[!NOTE]
->Get started with the Speech SDK [here](../../quickstarts/setup-platform.md).
+> [!NOTE]
+> Get started with the Speech SDK [here](../../quickstarts/setup-platform.md).
 
 #### Highlights summary
 
@@ -1053,11 +1108,10 @@ Stay healthy!
 
 #### Bug fixes
 
- - Fixed bug where Conversation Transcriber didn't await  properly in JAVA APIs
- - Android x86 emulator fix for Xamarin [GitHub issue](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/363)
- - Add missing (Get|Set)Property methods to AudioConfig
- - Fix a TTS bug where the audioDataStream couldn't be stopped when connection fails
- - Using an endpoint without a region would cause USP failures for conversation translator
+ - Fixed bug where Conversation Transcriber didn't await properly in JAVA APIs.
+ - Add missing (Get|Set)Property methods to AudioConfig.
+ - Fix a TTS bug where the audioDataStream couldn't be stopped when connection fails.
+ - Using an endpoint without a region would cause USP failures for conversation translator.
  - ID generation in Universal Windows Applications now uses an appropriately unique GUID algorithm; it previously and unintentionally defaulted to a stubbed implementation that often produced collisions over large sets of interactions.
 
  #### Samples

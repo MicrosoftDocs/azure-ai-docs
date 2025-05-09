@@ -20,7 +20,7 @@ items:
     - name: Model and region support
       href: ./concepts/model-region-support.md
     - name: Pricing
-      href: https://azure.microsoft.com/pricing/details/ai-studio/
+      href: https://azure.microsoft.com/pricing/details/ai-foundry/
 - name: Concepts
   expanded: true
   items:
@@ -34,6 +34,10 @@ items:
             href: how-to/tools/file-search.md
           - name: Azure AI Search
             href: how-to/tools/azure-ai-search.md 
+          - name: Microsoft Fabric
+            href: how-to/tools/fabric.md
+          - name: Use licensed data
+            href: how-to/tools/licensed-data.md
         - name: Action tools
           items:
           - name: Function calling
@@ -52,6 +56,12 @@ items:
           href: concepts/tracing.md
         - name: Content filtering
           href: ../openai/how-to/content-filters.md?context=/azure/ai-services/agents/context/context
+        - name: Use virtual networks
+          href: how-to/virtual-networks.md
+    - name: Service monitoring
+      href: how-to/metrics.md
+    - name: Use the Visual Studio Code extension
+      href: ../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context
 - name: Responsible AI
   items:
     - name: Transparency note
@@ -65,17 +75,19 @@ items:
       - name: Azure SDK
         items:
         - name: C#
-          href: /dotnet/api/overview/azure/ai.projects-readme?context=/azure/ai-services/agents/context/context
+          href: /dotnet/api/overview/azure/ai.projects-readme
         - name: Python
-          href: /python/api/overview/azure/ai-projects-readme?context=/azure/ai-services/agents/context/context
+          href: /python/api/overview/azure/ai-projects-readme
         - name: JavaScript
-          href: /javascript/api/@azure/ai-projects/?context=/azure/ai-services/agents/context/context
+          href: /javascript/api/overview/azure/ai-projects-readme
       - name: OpenAI SDK
         items:
         - name: C#
           href: https://github.com/openai/openai-dotnet/blob/main/README.md
         - name: Python
           href: https://github.com/openai/openai-python/blob/main/README.md
+    - name: Data monitoring reference
+      href: reference/monitor-service.md
 - name: Resources
   items: 
     - name: Support and help options

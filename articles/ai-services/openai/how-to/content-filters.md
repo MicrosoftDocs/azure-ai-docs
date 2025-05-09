@@ -1,12 +1,11 @@
 ---
-title: 'Use content filters (preview) with Azure AI Foundry'
+title: 'Use content filters (preview)'
 titleSuffix: Azure OpenAI
 description: Learn how to use and configure the content filters that come with Azure AI Foundry, including getting approval for gated modifications.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 12/05/2024
+ms.date: 03/05/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -14,9 +13,9 @@ ms.custom: FY25Q1-Linter
 # customer intent: As a developer, I want to learn how to configure content filters with Azure AI Foundry so that I can ensure that my applications comply with our Code of Conduct.
 ---
 
-# How to configure content filters with Azure AI Foundry
+# How to configure content filters
 
-The content filtering system integrated into Azure AI Foundry runs alongside the core models, including DALL-E image generation models. It uses an ensemble of multi-class classification models to detect four categories of harmful content (violence, hate, sexual, and self-harm) at four severity levels respectively (safe, low, medium, and high), and optional binary classifiers for detecting jailbreak risk, existing text, and code in public repositories. 
+The content filtering system integrated into Azure AI Foundry runs alongside the core models, including image generation models. It uses an ensemble of multi-class classification models to detect four categories of harmful content (violence, hate, sexual, and self-harm) at four severity levels respectively (safe, low, medium, and high), and optional binary classifiers for detecting jailbreak risk, existing text, and code in public repositories. 
 
 The default content filtering configuration is set to filter at the medium severity threshold for all four content harms categories for both prompts and completions. That means that content that is detected at severity level medium or high is filtered, while content detected at severity level low or safe is not filtered by the content filters. Learn more about content categories, severity levels, and the behavior of the content filtering system [here](../concepts/content-filter.md). 
 
@@ -45,9 +44,45 @@ You can configure the following filter categories in addition to the default har
 |Prompt Shields for indirect attacks  | GA| Off | User prompt | Filter / annotate Indirect Attacks, also referred to as Indirect Prompt Attacks or Cross-Domain Prompt Injection Attacks, a potential vulnerability where third parties place malicious instructions inside of documents that the generative AI system can access and process. Requires: [Document embedding and formatting](/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new#embedding-documents-in-your-prompt). |
 | Protected material - code |GA| On | Completion | Filters protected code or gets the example citation and license information in annotations for code snippets that match any public code sources, powered by GitHub Copilot. For more information about consuming annotations, see the [content filtering concepts guide](/azure/ai-services/openai/concepts/content-filter#annotations-preview) |
 | Protected material - text | GA| On | Completion | Identifies and blocks known text content from being displayed in the model output (for example, song lyrics, recipes, and selected web content).  |
-| Groundedness* | Preview |Off | Completion |Detects whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users. Ungroundedness refers to instances where the LLMs produce information that is non-factual or inaccurate from what was present in the source materials. Requires: [Document embedding and formatting](/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new#embedding-documents-in-your-prompt).|
+| Groundedness | Preview |Off | Completion |Detects whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users. Ungroundedness refers to instances where the LLMs produce information that is non-factual or inaccurate from what was present in the source materials. Requires: [Document embedding and formatting](/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new#embedding-documents-in-your-prompt).|
 
-[!INCLUDE [create-content-filter](../../../ai-studio/includes/create-content-filter.md)]
+[!INCLUDE [create-content-filter](../../../ai-foundry/includes/create-content-filter.md)]
+
+## Specify a content filtering configuration at request time (preview)
+
+In addition to the deployment-level content filtering configuration, we also provide a request header that allows you specify your custom configuration at request time for every API call. 
+
+```bash
+curl --request POST \ 
+    --url 'URL' \ 
+    --header 'Content-Type: application/json' \ 
+    --header 'api-key: API_KEY' \ 
+    --header 'x-policy-id: CUSTOM_CONTENT_FILTER_NAME' \ 
+    --data '{ 
+        "messages": [ 
+            { 
+                "role": "system", 
+                "content": "You are a creative assistant." 
+            }, 
+            { 
+                "role": "user", 
+                "content": "Write a poem about the beauty of nature." 
+            } 
+        ] 
+    }' 
+```
+
+The request-level content filtering configuration will override the deployment-level configuration, for the specific API call. If a configuration is specified that does not exist, the following error message will be returned. 
+
+```json
+{ 
+    "error": 
+        { 
+            "code": "InvalidContentFilterPolicy", 
+            "message": "Your request contains invalid content filter policy. Please provide a valid policy." 
+        } 
+} 
+```
 
 ## Report content filtering feedback
 
@@ -66,3 +101,4 @@ We recommend informing your content filtering configuration decisions through an
 - Learn more about Responsible AI practices for Azure OpenAI: [Overview of Responsible AI practices for Azure OpenAI models](/legal/cognitive-services/openai/overview?context=/azure/ai-services/openai/context/context).
 - Read more about [content filtering categories and severity levels](../concepts/content-filter.md) with Azure AI Foundry.
 - Learn more about red teaming from our: [Introduction to red teaming large language models (LLMs) article](../concepts/red-teaming.md).
+- Learn how to [configure content filters using the API](/rest/api/aiservices/accountmanagement/rai-policies/create-or-update)

@@ -2,7 +2,6 @@
 title: "Quickstart: Entity linking using the client library and REST API"
 titleSuffix: Azure AI services
 description: 'Use this quickstart to perform Entity Linking, using C#, Python, Java, JavaScript, and the REST API.'
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
@@ -32,7 +31,7 @@ zone_pivot_groups: programming-languages-entity-linking
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [NodeJS quickstart](includes/quickstarts/nodejs-sdk.md)]
+[!INCLUDE [Node.js quickstart](includes/quickstarts/nodejs-sdk.md)]
 
 ::: zone-end
 

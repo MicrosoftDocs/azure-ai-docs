@@ -153,6 +153,9 @@ items:
   - name: Analyze document API response
     displayName: words, lines, pages, bounding regions, documents
     href: concept/analyze-document-response.md
+  - name: Layout API markdown output elements
+    displayName: words, lines, pages, bounding regions, documents
+    href: concept/markdown-elements.md
   - name: Retrieval-Augmented Generation (RAG)
     displayName: RAG, LLM, semantic, chunk, LangChain, language model
     href: concept/retrieval-augmented-generation.md
@@ -167,7 +170,10 @@ items:
     - name: Document Intelligence Studio custom projects
       displayName: get started, cors, blob, storage, upload, labels, custom, dynamic, fixed, signatures
       href: quickstarts/studio-custom-project.md
-    - name: "Get started with Document Intelligence"
+    - name: Get started with Document Intelligence Studio
+      displayName: get started, studio, upload, labels, custom, dynamic, fixed, signatures
+      href: quickstarts/get-started-studio.md
+    - name: "Get started with Document Intelligence client libraries"
       displayName: formRecognizerClient, Document Intelligence client, boundingBox, box, begin_recognize
       href: quickstarts/get-started-sdks-rest-api.md
     - name: Sample Labeling tool
@@ -365,3 +371,5 @@ items:
     href: ../../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/document-intelligence/context/context
   - name: Privacy and cookies
     href: https://privacy.microsoft.com/en-US/privacystatement
+  - name: Azure AI Document Intelligence release history
+    href: reference/release-history.md

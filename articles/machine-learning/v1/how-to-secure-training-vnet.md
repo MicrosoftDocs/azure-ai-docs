@@ -17,6 +17,7 @@ ms.custom: UpdateFrequency5, tracking-python, references_regions, build-2023
 
 [!INCLUDE [SDK v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 In this article, you learn how to secure training environments with a virtual network in Azure Machine Learning using the Python SDK v1.
 
@@ -144,7 +145,7 @@ Use the following information to create a compute instance or cluster with no pu
 To create a compute instance or compute cluster with no public IP, use the Azure Machine Learning studio UI to create the resource:
 
 1. Sign in to the [Azure Machine Learning studio](https://ml.azure.com), and then select your subscription and workspace.
-1. Select the **Compute** page from the left navigation bar.
+1. Select the **Compute** page from the left pane.
 1. Select the **+ New** from the navigation bar of compute instance or compute cluster.
 1. Configure the VM size and configuration you need, then select **Next**.
 1. From the **Advanced Settings**, Select **Enable virtual network**, your virtual network and subnet, and finally select the **No Public IP** option under the VNet/subnet section.

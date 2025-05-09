@@ -2,7 +2,6 @@
 title: Language support for orchestration workflow
 titleSuffix: Azure AI services
 description: Learn about the languages supported by orchestration workflow.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language

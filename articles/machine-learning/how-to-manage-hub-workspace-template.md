@@ -10,7 +10,7 @@ ms.topic: how-to
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: deeikele
-ms.date: 02/29/2024
+ms.date: 03/07/2025
 #Customer intent: As a DevOps person, I need to automate or customize the creation of Azure Machine Learning by using templates.
 ---
 
@@ -18,7 +18,7 @@ ms.date: 02/29/2024
 
 Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) template to create a [hub workspace](concept-hub-workspace.md) for use in ML Studio and [Azure AI Foundry](/azure/ai-studio/what-is-ai-studio). A template makes it easy to create resources as a single, coordinated operation. A Bicep template is a text document that defines the resources that are needed for a deployment. It might also specify deployment parameters. Parameters are used to provide input values when using the template.
 
-The template used in this article can be found at [https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-basics](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-basics). Both the source `main.bicep` file and the compiled Azure Resource Manager template (`main.json`) file are available. This template creates the following resources:
+The template used in this article can be found at [https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aifoundry-basics](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aifoundry-basics). Both the source `main.bicep` file and the compiled Azure Resource Manager template (`main.json`) file are available. This template creates the following resources:
 
 - An Azure Resource Group (if one doesn't already exist)
 - An Azure Machine Learning workspace of kind 'hub'
@@ -26,7 +26,7 @@ The template used in this article can be found at [https://github.com/Azure/azur
 - Azure Key Vault
 - Azure Container Registry
 - Azure Application Insights
-- Azure AI services (required for Azure AI Foundry, and may be dropped for Azure Machine Learning use cases)
+- Azure AI services (required for Azure AI Foundry, and can be dropped for Azure Machine Learning use cases)
 
 ## Prerequisites
 
@@ -58,12 +58,12 @@ The Bicep template is made up of the following files:
 
 | File | Description |
 | ---- | ----------- |
-| [main.bicep](https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.machinelearningservices/aistudio-basics/main.bicep) | The main Bicep file that defines the parameters and variables. Passing parameters & variables to other modules in the `modules` subdirectory. |
-| [ai-resource.bicep](https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.machinelearningservices/aistudio-basics/modules/ai-hub.bicep)  | Defines the Azure AI hub resource. |
-| [dependent-resources.bicep](https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.machinelearningservices/aistudio-basics/modules/dependent-resources.bicep) | Defines the dependent resources for the Azure AI hub. Azure Storage Account, Container Registry, Key Vault, and Application Insights. |
+| [main.bicep](https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.machinelearningservices/aifoundry-basics/main.bicep) | The main Bicep file that defines the parameters and variables. Passing parameters & variables to other modules in the `modules` subdirectory. |
+| [ai-resource.bicep](https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.machinelearningservices/aifoundry-basics/modules/ai-hub.bicep)  | Defines the Azure AI hub resource. |
+| [dependent-resources.bicep](https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.machinelearningservices/aifoundry-basics/modules/dependent-resources.bicep) | Defines the dependent resources for the Azure AI hub. Azure Storage Account, Container Registry, Key Vault, and Application Insights. |
 
 > [!IMPORTANT]
-> The example templates may not always use the latest API version for the Azure resources it creates. Before using the template, we recommend modifying it to use the latest API versions. Each Azure service has its own set of API versions. For information on the API for a specific service, check the service information in the [Azure REST API reference](/rest/api/azure/).
+> The example templates might not always use the latest API version for the Azure resources it creates. Before using the template, we recommend modifying it to use the latest API versions. Each Azure service has its own set of API versions. For information on the API for a specific service, check the service information in the [Azure REST API reference](/rest/api/azure/).
 >
 > The AI hub resource is based on Azure Machine Learning. For information on the latest API versions for Azure Machine Learning, see the [Azure Machine Learning REST API reference](/rest/api/azureml/). To update this API version, find the `Microsoft.MachineLearningServices/<resource>` entry for the resource type and update it to the latest version. The following example is an entry for the Azure AI hub that uses an API version of `2023-08-01-preview`:
 >
@@ -101,7 +101,7 @@ To run the Bicep template, use the following commands from the `aistudio-basics`
 
     ---
 
-1. To run the template, use the following command. Replace `myai` with the name to use for your resources. This value is used, along with generated prefixes and suffixes, to create a unique name for the resources created by the template.
+1. To run the template, use the following command. Replace `myai` with the name to use for your Azure AI Foundry hub. This value is used, along with generated prefixes and suffixes, to create a unique name for the resources created by the template.
 
     > [!TIP]
     > The `aiResourceName` must be 5 or less characters. It can't be entirely numeric or contain the following characters: `~ ! @ # $ % ^ & * ( ) = + _ [ ] { } \ | ; : . ' " , < > / ?`.
@@ -109,13 +109,13 @@ To run the Bicep template, use the following commands from the `aistudio-basics`
     # [Azure CLI](#tab/cli)
 
     ```azurecli
-    az deployment group create --resource-group exampleRG --template-file main.bicep --parameters aiResourceName=myai 
+    az deployment group create --resource-group exampleRG --template-file main.bicep --parameters aiHubeName=myai 
     ```
 
     # [Azure PowerShell](#tab/powershell)
 
     ```azurepowershell
-    New-AzResourceGroupDeployment -ResourceGroupName exampleRG -TemplateFile main.bicep -aiResourceName myai
+    New-AzResourceGroupDeployment -ResourceGroupName exampleRG -TemplateFile main.bicep -aiHubName myai
     ```
 
     ---

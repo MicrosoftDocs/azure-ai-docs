@@ -36,13 +36,15 @@ Content-Type: application/json
 api-key: <key>
 ```
 
-If you have configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header:
+If you have configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header with the format `Bearer <token>`. Use scope `https://cognitiveservices.azure.com/.default`. 
 
 ```http
 POST https://<resource>.services.ai.azure.com/models/embeddings?api-version=2024-05-01-preview
 Content-Type: application/json
 Authorization: Bearer <token>
 ```
+
+Using Microsoft Entra ID may require additional configuration in your resource to grant access. Learn how to [configure key-less authentication with Microsoft Entra ID](../../how-to/configure-entra-id.md).
 
 ### Create embeddings
 

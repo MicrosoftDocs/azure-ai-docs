@@ -1,85 +1,100 @@
 ---
 services: ai-services
-author: mrbullwinkle
-ms.author: mbullwin
-ms.service: openai
+author: eric-urban
+ms.author: eur
+ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 3/19/2024
+ms.date: 3/11/2025
 ---
 
 ## Prerequisites
 
 - An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true).
-- An Azure OpenAI resource with a Whisper model deployed in a [supported region](../concepts/models.md#whisper-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+- An Azure OpenAI resource with a speech to text model deployed in a [supported region](../concepts/models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 - [The .NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download)
+
+### Microsoft Entra ID prerequisites
+
+For the recommended keyless authentication with Microsoft Entra ID, you need to:
+- Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
+- Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
 ## Set up
 
-### Retrieve key and endpoint
+1. Create a new folder `whisper-quickstart` and go to the quickstart folder with the following command:
 
-To successfully make a call against Azure OpenAI, you need an *endpoint* and a *key*.
-
-|Variable name | Value |
-|--------------------------|-------------|
-| `AZURE_OPENAI_ENDPOINT`               | The service endpoint can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively, you can find the endpoint via the **Deployments** page in Azure AI Foundry portal. An example endpoint is: `https://docs-test-001.openai.azure.com/`.|
-| `AZURE_OPENAI_API_KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either `KEY1` or `KEY2`.|
-
-Go to your resource in the Azure portal. The **Endpoint and Keys** can be found in the **Resource Management** section. Copy your endpoint and access key as you'll need both for authenticating your API calls. You can use either `KEY1` or `KEY2`. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption.
-
-:::image type="content" source="../media/quickstarts/endpoint.png" alt-text="Screenshot of the overview UI for an Azure OpenAI resource in the Azure portal with the endpoint & access keys location circled in red." lightbox="../media/quickstarts/endpoint.png":::
-
-## Create the .NET app
-
-1. Create a .NET app using the `dotnet new` command:
-
-    ```dotnetcli
-    dotnet new console -n OpenAIWhisper
+    ```shell
+    mkdir whisper-quickstart && cd whisper-quickstart
     ```
 
-1. Change into the directory of the new app:
+1. Create a new console application with the following command:
 
-    ```dotnetcli
-    cd OpenAIWhisper
+    ```shell
+    dotnet new console
     ```
 
-1. Install the [`Azure.OpenAI`](https://www.nuget.org/packages/Azure.AI.OpenAI/) client library:
+3. Install the [OpenAI .NET client library](https://www.nuget.org/packages/Azure.AI.OpenAI/) with the [dotnet add package](/dotnet/core/tools/dotnet-add-package) command:
 
-    ```dotnetcli
+    ```console
     dotnet add package Azure.AI.OpenAI
     ```
 
-## Passwordless authentication is recommended
+1. For the **recommended** keyless authentication with Microsoft Entra ID, install the [Azure.Identity](https://www.nuget.org/packages/Azure.Identity) package with:
 
-Passwordless authentication is more secure than key-based alternatives and is the recommended approach for connecting to Azure services. If you choose to use Passwordless authentication, you'll need to complete the following:
-
-1. Add the [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity) package.
-
-    ```dotnetcli
+    ```console
     dotnet add package Azure.Identity
     ```
 
-1. Assign the `Cognitive Services User` role to your user account. This can be done in the Azure portal on your OpenAI resource under **Access control (IAM)** > **Add role assignment**.
-1. Sign-in to Azure using Visual Studio or the Azure CLI via `az login`.
+1. For the **recommended** keyless authentication with Microsoft Entra ID, sign in to Azure with the following command:
 
-## Update the app code
+    ```console
+    az login
+    ```
 
-1. Replace the contents of `program.cs` with the following code and update the placeholder values with your own.
+## Retrieve resource information
 
-    > [!NOTE]
-    > You can get sample audio files, such as *wikipediaOcelot.wav*, from the [Azure AI Speech SDK repository at GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/sampledata/audiofiles).
+[!INCLUDE [resource authentication](resource-authentication.md)]
+
+## Run the quickstart
+
+The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with an `AzureKeyCredential` object. 
+
+#### [Microsoft Entra ID](#tab/keyless)
+
+```csharp
+AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new DefaultAzureCredential()); 
+```
+
+#### [API key](#tab/api-key)
+
+```csharp
+AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new AzureKeyCredential(key));
+```
+---
+
+> [!NOTE]
+> You can get sample audio files, such as *wikipediaOcelot.wav*, from the [Azure AI Speech SDK repository at GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/sampledata/audiofiles).
+
+To run the quickstart, follow these steps:
+
+1. Replace the contents of `Program.cs` with the following code and update the placeholder values with your own.
     
     ```csharp
     using Azure;
     using Azure.AI.OpenAI;
     using Azure.Identity; // Required for Passwordless auth
     
-    var endpoint = new Uri("YOUR_OPENAI_ENDPOINT");
-    var credentials = new AzureKeyCredential("YOUR_OPENAI_KEY");
-    // var credentials = new DefaultAzureCredential(); // Use this line for Passwordless auth
-    var deploymentName = "whisper"; // Default deployment name, update with your own if necessary
-    var audioFilePath = "YOUR_AUDIO_FILE_PATH";
     
-    var openAIClient = new AzureOpenAIClient(endpoint, credentials);
+    string deploymentName = "whisper";
+    
+    string endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT") ?? "https://<your-resource-name>.openai.azure.com/";
+    string key = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY") ?? "<your-key>";
+    
+    // Use the recommended keyless credential instead of the AzureKeyCredential credential.
+    AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new DefaultAzureCredential()); 
+    //AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new AzureKeyCredential(key));
+    
+    var audioFilePath = "<audio file path>"
     
     var audioClient = openAIClient.GetAudioClient(deploymentName);
     
@@ -92,19 +107,18 @@ Passwordless authentication is more secure than key-based alternatives and is th
     }
     ```
 
-[!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
-
 1. Run the application using the `dotnet run` command or the run button at the top of Visual Studio:
 
     ```dotnetcli
     dotnet run
     ```
 
-    If you are using the sample audio file, you should see the following text printed out in the console:
+## Output
 
-    ```text
-    The ocelot, Lepardus paradalis, is a small wild cat native to the southwestern United States, 
-    Mexico, and Central and South America. This medium-sized cat is characterized by solid 
-    black spots and streaks on its coat, round ears...
-    ```
-    
+If you are using the sample audio file, you should see the following text printed out in the console:
+
+```text
+The ocelot, Lepardus paradalis, is a small wild cat native to the southwestern United States, 
+Mexico, and Central and South America. This medium-sized cat is characterized by solid 
+black spots and streaks on its coat, round ears...
+```

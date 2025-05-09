@@ -21,11 +21,11 @@ Batch Endpoints can be used to deploy expensive models, like language models, ov
 
 ## About this sample
 
-The model we are going to work with was built using the popular library transformers from HuggingFace along with [a pre-trained model from Facebook with the BART architecture](https://huggingface.co/facebook/bart-large-cnn). It was introduced in the paper [BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation](https://arxiv.org/abs/1910.13461). This model has the following constraints, which are important to keep in mind for deployment:
+The model we're going to work with was built using the popular library transformers from HuggingFace along with [a pre-trained model from Facebook with the BART architecture](https://huggingface.co/facebook/bart-large-cnn). It was introduced in the paper [BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation](https://arxiv.org/abs/1910.13461). This model has the following constraints, which are important to keep in mind for deployment:
 
-* It can work with sequences up to 1024 tokens.
-* It is trained for summarization of text in English.
-* We are going to use Torch as a backend.
+* It can work with sequences up to 1,024 tokens.
+* It's trained for summarization of text in English.
+* We're going to use Torch as a backend.
 
 [!INCLUDE [machine-learning-batch-clone](includes/azureml-batch-clone-samples.md)]
 
@@ -45,7 +45,7 @@ You can follow along this sample in a Jupyter Notebook. In the cloned repository
 
 ### Registering the model
 
-Due to the size of the model, it hasn't been included in this repository. Instead, you can download a copy from the HuggingFace model's hub. You need the packages `transformers` and `torch` installed in the environment you are using.
+Due to the size of the model, it isn't included in this repository. Instead, you can download a copy from the HuggingFace model's hub. You need the packages `transformers` and `torch` installed in the environment you're using.
 
 ```python
 %pip install transformers torch
@@ -82,7 +82,7 @@ model = ml_client.models.create_or_update(
 
 ## Creating the endpoint
 
-We are going to create a batch endpoint named `text-summarization-batch` where to deploy the HuggingFace model to run text summarization on text files in English.
+We're going to create a batch endpoint named `text-summarization-batch` where to deploy the HuggingFace model to run text summarization on text files in English.
 
 1. Decide on the name of the endpoint. The name of the endpoint ends-up in the URI associated with your endpoint. Because of that, __batch endpoint names need to be unique within an Azure region__. For example, there can be only one batch endpoint with the name `mybatchendpoint` in `westus2`.
 
@@ -152,9 +152,9 @@ Let's create the deployment that hosts the model:
    :::code language="python" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/huggingface-text-summarization/code/batch_driver.py" :::
 
    > [!TIP]
-   > Although files are provided in mini-batches by the deployment, this scoring script processes one row at a time. This is a common pattern when dealing with expensive models (like transformers) as trying to load the entire batch and send it to the model at once may result in high-memory pressure on the batch executor (OOM exeptions).
+   > Although files are provided in mini-batches by the deployment, this scoring script processes one row at a time. This is a common pattern when dealing with expensive models (like transformers), because trying to load the entire batch and send it to the model at once can result in high-memory pressure on the batch executor (OOM exceptions).
 
-1. We need to indicate over which environment we are going to run the deployment. In our case, our model runs on `Torch` and it requires the libraries `transformers`, `accelerate`, and `optimum` from HuggingFace. Azure Machine Learning already has an environment with Torch and GPU support available. We are just going to add a couple of dependencies in a `conda.yaml` file.
+1. We need to indicate over which environment we're going to run the deployment. In our case, our model runs on `Torch` and it requires the libraries `transformers`, `accelerate`, and `optimum` from HuggingFace. Azure Machine Learning already has an environment with Torch and GPU support available. We're just going to add a couple of dependencies in a `conda.yaml` file.
 
    __environment/torch200-conda.yaml__
 
@@ -184,7 +184,7 @@ Let's create the deployment that hosts the model:
    ---
    
    > [!IMPORTANT]
-   > The environment `torch200-transformers-gpu` we've created requires a CUDA 11.8 compatible hardware device to run Torch 2.0 and Ubuntu 20.04. If your GPU device doesn't support this version of CUDA, you can check the alternative `torch113-conda.yaml` conda environment (also available on the repository), which runs Torch 1.3 over Ubuntu 18.04 with CUDA 10.1. However, acceleration using the `optimum` and `accelerate` libraries won't be supported on this configuration.
+   > The environment `torch200-transformers-gpu` we've created requires a CUDA 11.8 compatible hardware device to run Torch 2.0 and Ubuntu 20.04. If your GPU device doesn't support this version of CUDA, you can check the alternative `torch113-conda.yaml` conda environment (also available on the repository), which runs Torch 1.3 over Ubuntu 18.04 with CUDA 10.1. However, acceleration using the `optimum` and `accelerate` libraries isn't supported on this configuration.
    
 1. Each deployment runs on compute clusters. They support both [Azure Machine Learning Compute clusters (AmlCompute)](./how-to-create-attach-compute-cluster.md) or [Kubernetes clusters](./how-to-attach-kubernetes-anywhere.md). In this example, our model can benefit from GPU acceleration, which is why we use a GPU cluster.
 
@@ -208,7 +208,7 @@ Let's create the deployment that hosts the model:
    ---
 
    > [!NOTE]
-   > You are not charged for compute at this point as the cluster remains at 0 nodes until a batch endpoint is invoked and a batch scoring job is submitted. Learn more about [manage and optimize cost for AmlCompute](./how-to-manage-optimize-cost.md#use-azure-machine-learning-compute-cluster-amlcompute).
+   > You aren't charged for compute at this point, because the cluster remains at zero nodes until a batch endpoint is invoked and a batch scoring job is submitted. Learn more about [manage and optimize cost for AmlCompute](./how-to-manage-optimize-cost.md#use-azure-machine-learning-compute-cluster-amlcompute).
 
 1. Now, let's create the deployment.
 
@@ -226,7 +226,7 @@ Let's create the deployment that hosts the model:
    
    # [Python](#tab/python)
    
-   To create a new deployment with the indicated environment and scoring script use the following code:
+   To create a new deployment with the indicated environment and scoring script, use the following code:
    
    ```python
    deployment = BatchDeployment(
@@ -258,7 +258,7 @@ Let's create the deployment that hosts the model:
    ---
    
    > [!IMPORTANT]
-   > You will notice in this deployment a high value in `timeout` in the parameter `retry_settings`. The reason for it is due to the nature of the model we are running. This is a very expensive model and inference on a single row may take up to 60 seconds. The `timeout` parameters controls how much time the Batch Deployment should wait for the scoring script to finish processing each mini-batch. Since our model runs predictions row by row, processing a long file may take time. Also notice that the number of files per batch is set to 1 (`mini_batch_size=1`). This is again related to the nature of the work we are doing. Processing one file at a time per batch is expensive enough to justify it. You will notice this being a pattern in NLP processing.
+   > You'll notice in this deployment a high value in `timeout` in the parameter `retry_settings`. The reason involves the nature of the model we're running. This is a very expensive model and inference on a single row can take up to 60 seconds. The `timeout` parameter controls how much time the Batch Deployment should wait for the scoring script to finish processing each mini-batch. Since our model runs predictions row by row, processing a long file can take time. Also notice that the number of files per batch is set to 1 (`mini_batch_size=1`). This is again related to the nature of the work we're doing. Processing one file at a time per batch is expensive enough to justify it. You'll notice this being a pattern in NLP processing.
 
 1. Although you can invoke a specific deployment inside of an endpoint, you usually want to invoke the endpoint itself and let the endpoint decide which deployment to use. Such deployment is named the "default" deployment. This gives you the possibility of changing the default deployment and hence changing the model serving the deployment without changing the contract with the user invoking the endpoint. Use the following instruction to update the default deployment:
 
@@ -281,7 +281,7 @@ Let's create the deployment that hosts the model:
 
 ## Testing out the deployment
 
-For testing our endpoint, we are going to use a sample of the dataset [BillSum: A Corpus for Automatic Summarization of US Legislation](https://arxiv.org/abs/1910.00523). This sample is included in the repository in the folder `data`. Notice that the format of the data is CSV and the content to be summarized is under the column `text`, as expected by the model.
+For testing our endpoint, we're going to use a sample of the dataset [BillSum: A Corpus for Automatic Summarization of US Legislation](https://arxiv.org/abs/1910.00523). This sample is included in the repository in the folder `data`. Notice that the format of the data is CSV and the content to be summarized is under the column `text`, as expected by the model.
    
 1. Let's invoke the endpoint:
 
@@ -290,7 +290,7 @@ For testing our endpoint, we are going to use a sample of the dataset [BillSum: 
    :::code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/huggingface-text-summarization/deploy-and-run.sh" ID="start_batch_scoring_job" :::
    
    > [!NOTE]
-   > The utility `jq` may not be installed on every installation. You can get instructions in [this link](https://stedolan.github.io/jq/download/).
+   > The utility `jq` might not be installed on every installation. You can get instructions in [this link](https://stedolan.github.io/jq/download/).
    
    # [Python](#tab/python)
    
@@ -339,19 +339,19 @@ For testing our endpoint, we are going to use a sample of the dataset [BillSum: 
 
 ## Considerations when deploying models that process text
 
-As mentioned in some of the notes along this tutorial, processing text may have some peculiarities that require specific configuration for batch deployments. Take the following consideration when designing the batch deployment:
+As mentioned in some of the notes along this tutorial, processing text can have some peculiarities that require specific configuration for batch deployments. Take the following consideration when designing the batch deployment:
 
 > [!div class="checklist"]
-> * Some NLP models may be very expensive in terms of memory and compute time. If this is the case, consider decreasing the number of files included on each mini-batch. In the example above, the number was taken to the minimum, 1 file per batch. While this may not be your case, take into consideration how many files your model can score at each time. Have in mind that the relationship between the size of the input and the memory footprint of your model may not be linear for deep learning models.
+> * Some NLP models may be very expensive in terms of memory and compute time. If this is the case, consider decreasing the number of files included on each mini-batch. In the previous example, the number was taken to the minimum, 1 file per batch. While this may not be your case, take into consideration how many files your model can score at each time. Have in mind that the relationship between the size of the input and the memory footprint of your model may not be linear for deep learning models.
 > * If your model can't even handle one file at a time (like in this example), consider reading the input data in rows/chunks. Implement batching at the row level if you need to achieve higher throughput or hardware utilization.
 > * Set the `timeout` value of your deployment accordly to how expensive your model is and how much data you expect to process. Remember that the `timeout` indicates the time the batch deployment would wait for your scoring script to run for a given batch. If your batch have many files or files with many rows, this impacts the right value of this parameter.
 
 ## Considerations for MLflow models that process text
 
-The same considerations mentioned above apply to MLflow models. However, since you are not required to provide a scoring script for your MLflow model deployment, some of the recommendations mentioned may require a different approach. 
+The same considerations mentioned earlier apply to MLflow models. However, since you aren't required to provide a scoring script for your MLflow model deployment, some of the recommendations mentioned might require a different approach. 
 
-* MLflow models in Batch Endpoints support reading tabular data as input data, which may contain long sequences of text. See [File's types support](how-to-mlflow-batch.md#review-support-for-file-types) for details about which file types are supported.
+* MLflow models in Batch Endpoints support reading tabular data as input data, which might contain long sequences of text. See [File's types support](how-to-mlflow-batch.md#review-support-for-file-types) for details about which file types are supported.
 * Batch deployments calls your MLflow model's predict function with the content of an entire file in as Pandas dataframe. If your input data contains many rows, chances are that running a complex model (like the one presented in this tutorial) results in an out-of-memory exception. If this is your case, you can consider:
-   * Customize how your model runs predictions and implement batching. To learn how to customize MLflow model's inference, see [Logging custom models](how-to-log-mlflow-models.md?#logging-custom-models).
+   * Customize how your model runs predictions and implement batching. To learn how to customize MLflow model's inference, see [Log custom models](how-to-log-mlflow-models.md?#log-custom-models).
    * Author a scoring script and load your model using `mlflow.<flavor>.load_model()`. See [Using MLflow models with a scoring script](how-to-mlflow-batch.md#customize-model-deployment-with-scoring-script) for details.
 

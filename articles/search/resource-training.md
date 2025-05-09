@@ -2,12 +2,13 @@
 title: Training modules
 titleSuffix: Azure AI Search
 description: Get hands-on training on Azure AI Search from Microsoft and other third-party training providers.
-author: HeidiSteen
+
 manager: nitinme
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 10/28/2024
+ms.date: 04/07/2025
 ---
 
 # Training - Azure AI Search
@@ -26,10 +27,9 @@ Learning paths are a collection of training modules that are organized around sp
 
 | Module | Learning path |
 |--------|---------------|
-[Fundamentals of Knowledge Mining and Azure AI Search](/training/modules/intro-to-azure-search/) | [Microsoft Azure AI Fundamentals:](/training/paths/document-intelligence-knowledge-mining/) |
+[Fundamentals of Knowledge Mining and Azure AI Search](/training/modules/intro-to-azure-search/) | [Microsoft Azure AI Fundamentals](/training/paths/document-intelligence-knowledge-mining/) |
 | [Create an Azure AI Search solution](/training/modules/create-azure-cognitive-search-solution/) | [Implement knowledge mining](/training/paths/implement-knowledge-mining-azure-cognitive-search/) |
 | [Create a custom skill for Azure AI Search](/training/modules/create-azure-ai-custom-skill/) | [Implement knowledge mining](/training/paths/implement-knowledge-mining-azure-cognitive-search/) |
-| [Build an Azure Machine Learning custom skill for Azure AI Search](/training/modules/build-azure-machine-learn-custom-skill-for-azure-cognitive-search/) | |
 | [Enrich your data with Azure AI Language](/training/modules/enrich-search-index-using-language-studio/) | |
 | [Create a knowledge store with Azure AI Search](/training/modules/create-knowledge-store-azure-cognitive-search/) | [Implement knowledge mining](/training/paths/implement-knowledge-mining-azure-cognitive-search/) |
 | [Implement advanced search features in Azure AI Search](/training/modules/implement-advanced-search-features-azure-cognitive-search/)| [Implement knowledge mining](/training/paths/implement-knowledge-mining-azure-cognitive-search/) |

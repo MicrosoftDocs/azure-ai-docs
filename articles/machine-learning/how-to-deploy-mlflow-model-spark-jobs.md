@@ -35,9 +35,11 @@ cd sdk/python/using-mlflow/deploy
 
 Before following the steps in this article, make sure you have the following prerequisites:
 
+- Install and configure the [Azure CLI](/cli/azure/install-azure-cli) and the `ml` extension to the Azure CLI. For more information, see [Install and set up the CLI (v2)](how-to-configure-cli.md).
+
 [!INCLUDE [mlflow-prereqs](includes/machine-learning-mlflow-prereqs.md)]
 
-- You must have a MLflow model registered in your workspace. Particularly, this example will register a model trained for the [Diabetes dataset](https://www4.stat.ncsu.edu/~boos/var.select/diabetes.html).
+- You must have an MLflow model registered in your workspace. Particularly, this example will register a model trained for the [Diabetes dataset](https://www4.stat.ncsu.edu/~boos/var.select/diabetes.html).
 
 
 ### Connect to your workspace

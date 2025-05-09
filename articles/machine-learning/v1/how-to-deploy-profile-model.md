@@ -5,7 +5,7 @@ description: Use CLI (v1) or SDK (v1) to profile your model before deployment. P
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-ms.date: 11/04/2022
+ms.date: 03/07/2025
 ms.topic: how-to
 zone_pivot_groups: aml-control-methods
 ms.reviewer: None
@@ -18,37 +18,39 @@ ms.custom: UpdateFrequency5, deploy, cliv1, sdkv1
 
 [!INCLUDE [dev v1](../includes/machine-learning-dev-v1.md)]
 
-This article shows how to profile a machine learning to model to determine how much CPU and memory you will need to allocate for the model when deploying it as a web service.
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
+This article shows how to profile a machine learning to model to determine how much CPU and memory you need to allocate for the model when deploying it as a web service.
 
 > [!IMPORTANT]
-> This article applies to CLI v1 and SDK v1.  This profiling technique is not available for v2 of either CLI or SDK.
+> This article applies to CLI v1 and SDK v1.  This profiling technique isn't available for v2 of either CLI or SDK.
 
 [!INCLUDE [cli v1 deprecation](../includes/machine-learning-cli-v1-deprecation.md)]
 
 ## Prerequisites
 
-This article assumes you have trained and registered a model with Azure Machine Learning. See the [sample tutorial here](../how-to-train-scikit-learn.md) for an example of training and registering a scikit-learn model with Azure Machine Learning.
+This article assumes you train and register a model with Azure Machine Learning. See the [sample tutorial here](how-to-train-scikit-learn.md) for an example of training and registering a scikit-learn model with Azure Machine Learning.
 
 ## Limitations
 
-* Profiling will not work when the Azure Container Registry (ACR) for your workspace is behind a virtual network.
+* Profiling doesn't work when the Azure Container Registry (ACR) for your workspace is behind a virtual network.
 
 ## Run the profiler
 
-Once you have registered your model and prepared the other components necessary for its deployment, you can determine the CPU and memory the deployed service will need. Profiling tests the service that runs your model and returns information such as the CPU usage, memory usage, and response latency. It also provides a recommendation for the CPU and memory based on resource usage.
+Once you register your model and prepared the other components necessary for its deployment, you can determine the CPU and memory the deployed service need. Profiling tests the service that runs your model and returns information such as the CPU usage, memory usage, and response latency. It also provides a recommendation for the CPU and memory based on resource usage.
 
-In order to profile your model, you will need:
+In order to profile your model, you need:
 * A registered model.
 * An inference configuration based on your entry script and inference environment definition.
 * A single column tabular dataset, where each row contains a string representing sample request data.
 
 > [!IMPORTANT]
-> At this point we only support profiling of services that expect their request data to be a string, for example: string serialized json, text, string serialized image, etc. The content of each row of the dataset (string) will be put into the body of the HTTP request and sent to the service encapsulating the model for scoring.
+> Azure Machine Learning only supports profiling of services that expect their request data to be a string, for example: string serialized json, text, string serialized image, etc. The content of each row of the dataset (string) is put into the body of the HTTP request and sent to the service encapsulating the model for scoring.
 
 > [!IMPORTANT]
 > We only support profiling up to 2 CPUs in ChinaEast2 and USGovArizona region.
 
-Below is an example of how you can construct an input dataset to profile a service that expects its incoming request data to contain serialized json. In this case, we created a dataset based 100 instances of the same request data content. In real world scenarios we suggest that you use larger datasets containing various inputs, especially if your model resource usage/behavior is input dependent.
+The following is an example of how you can construct an input dataset to profile a service that expects its incoming request data to contain serialized json. In this case, we created a dataset based 100 instances of the same request data content. In real world scenarios we suggest that you use larger datasets containing various inputs, especially if your model resource usage/behavior is input dependent.
 
 ::: zone pivot="py-sdk"
 

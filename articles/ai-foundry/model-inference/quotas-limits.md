@@ -17,7 +17,7 @@ This article contains a quick reference and a detailed description of the quotas
 
 ## Quotas and limits reference
 
-The following sections provide you with a quick guide to the default quotas and limits that apply to Azure AI model's inference service in Azure AI services:
+Azure uses quotas and limits to prevent budget overruns due to fraud, and to honor Azure capacity constraints. Consider these limits as you scale for production workloads. The following sections provide you with a quick guide to the default quotas and limits that apply to Azure AI model's inference service in Azure AI services:
 
 ### Resource limits
 
@@ -28,12 +28,18 @@ The following sections provide you with a quick guide to the default quotas and 
 
 ### Rate limits
 
-| Limit name | Limit value |
-| ---------- | ----------- |
-| Tokens per minute (Azure OpenAI models)   | Varies per model and SKU. See [limits for Azure OpenAI](../../ai-services/openai/quotas-limits.md). |
-| Tokens per minute (rest of models)        | 200.000 |
-| Requests per minute (Azure OpenAI models) | Varies per model and SKU. See [limits for Azure OpenAI](../../ai-services/openai/quotas-limits.md). |
-| Requests per minute (rest of models)      | 1.000   |
+| Limit name           | Applies to          | Limit value |
+| -------------------- | ------------------- | ----------- |
+| Tokens per minute    | Azure OpenAI models | Varies per model and SKU. See [limits for Azure OpenAI](../../ai-services/openai/quotas-limits.md). |
+| Requests per minute  | Azure OpenAI models | Varies per model and SKU. See [limits for Azure OpenAI](../../ai-services/openai/quotas-limits.md). |
+| Tokens per minute    | DeepSeek-R1<br />DeepSeek-V3-0324         | 5,000,000 |
+| Requests per minute  | DeepSeek-R1<br />DeepSeek-V3-0324         | 5,000     |
+| Concurrent requests  | DeepSeek-R1<br />DeepSeek-V3-0324         | 300       |
+| Tokens per minute    | Rest of models      | 400,000   |
+| Requests per minute  | Rest of models      | 1,000     |
+| Concurrent requests  | Rest of models      | 300       |
+
+You can [request increases to the default limits](#request-increases-to-the-default-limits). Due to high demand, limit increase requests can be submitted and evaluated per request.
 
 ### Other limits
 
@@ -49,6 +55,28 @@ Global Standard deployments use Azure's global infrastructure, dynamically routi
 
 The Usage Limit determines the level of usage above which customers might see larger variability in response latency. A customer's usage is defined per model and is the total tokens consumed across all deployments in all subscriptions in all regions for a given tenant.
 
+## Request increases to the default limits
+
+Limit increase requests can be submitted and evaluated per request. [Open an online customer support request](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest/). When requesting for endpoint limit increase, provide the following information:
+
+1. When opening the support request, select **Service and subscription limits (quotas)** as the **Issue type**.
+
+1. Select the subscription of your choice.
+
+1. Select **Cognitive Services** as **Quota type**.
+
+1. Select **Next**.
+
+1. On the **Additional details** tab, you need to provide detailed reasons for the limit increase in order for your request to be processed. Be sure to add the following information into the reason for limit increase:
+
+   * Model name, model version (if applicable), and deployment type (SKU).
+   * Description of your scenario and workload.
+   * Rationale for the requested increase.
+   * Provide the target throughput: Tokens per minute, requests per minute, etc.
+   * Provide planned time plan (by when you need increased limits).
+
+1. Finally, select **Save and continue** to continue.
+
 ## General best practices to remain within rate limits
 
 To minimize issues related to rate limits, it's a good idea to use the following techniques:
@@ -57,10 +85,6 @@ To minimize issues related to rate limits, it's a good idea to use the following
 - Avoid sharp changes in the workload. Increase the workload gradually.
 - Test different load increase patterns.
 - Increase the quota assigned to your deployment. Move quota from another deployment, if necessary.
-
-### Request increases to the default quotas and limits
-
-Quota increase requests can be submitted and evaluated per request. [Submit a service request](../../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context).
 
 ## Next steps
 

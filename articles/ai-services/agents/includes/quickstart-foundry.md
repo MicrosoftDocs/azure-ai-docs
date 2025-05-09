@@ -2,14 +2,14 @@
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure
+ms.service: azure-ai-agent-service
 ms.topic: include
 ms.date: 01/21/2025
 ---
 
 ## Prerequisites
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-- Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-studio/concepts/rbac-ai-studio.md) assigned.
+- Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-foundry/concepts/rbac-azure-ai-foundry.md) assigned.
 
 ## Basic agent setup support
 
@@ -38,16 +38,16 @@ To create a project in Azure AI Foundry, follow these steps:
 
 1. If you have access to more than one hub, you can select a different hub from the dropdown.
 
-1. If you want to create a new one, select **Create new hub** and supply a name. If you want to customize the default values, see the [Azure AI Foundry documentation](../../../ai-studio/how-to/create-projects.md?tabs=ai-studio#customize-the-hub).
+1. If you want to create a new one, select **Create new hub** and supply a name. If you want to customize the default values, see the [Azure AI Foundry documentation](../../../ai-foundry/how-to/create-projects.md?tabs=ai-studio#customize-the-hub).
 
-    :::image type="content" source="../../../ai-studio/media/how-to/projects/projects-create-details.png" alt-text="Screenshot of the project details page within the create project dialog." lightbox="../../../ai-studio/media/how-to/projects/projects-create-details.png":::
+    :::image type="content" source="../../../ai-foundry/media/how-to/projects/projects-create-details.png" alt-text="Screenshot of the project details page within the create project dialog." lightbox="../../../ai-foundry/media/how-to/projects/projects-create-details.png":::
 
 1. Select **Create**.
 
 ## Deploy a model
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com).
-1. Go to your project or [create a new project](../../../ai-studio//how-to/create-projects.md) in Azure AI Foundry portal.
+1. Go to your project or [create a new project](../../../ai-foundry/how-to/create-projects.md) in Azure AI Foundry portal.
 1. From your project overview, select **Agents**, located under **Build and customize**.
 
 1. Select your Azure OpenAI resource.

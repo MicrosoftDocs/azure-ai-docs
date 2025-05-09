@@ -15,6 +15,10 @@ ms.custom: UpdateFrequency5, deploy, sdkv1
 
 # Troubleshooting with a local model deployment
 
+[!INCLUDE [cli v1 deprecation](../includes/machine-learning-cli-v1-deprecation.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 Try a local model deployment as a first step in troubleshooting deployment to Azure Container Instances (ACI) or Azure Kubernetes Service (AKS).  Using a local web service makes it easier to spot and fix common Azure Machine Learning Docker web service deployment errors.
 
 ## Prerequisites

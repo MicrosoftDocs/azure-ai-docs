@@ -7,7 +7,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/12/2024
+ms.date: 3/10/2025
 zone_pivot_groups: speech-cli-rest
 ms.custom: devx-track-csharp
 # Customer intent: As a user who implements audio transcription, I want create transcriptions in bulk so that I don't have to submit audio content repeatedly.
@@ -227,7 +227,7 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey" -H "Content-
   },
   "properties": {
     "wordLevelTimestampsEnabled": true,
-  },
+  }
 }'  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions"
 ```
 
@@ -246,7 +246,7 @@ To use a custom speech model for batch transcription, you need the model's URI. 
 > [!TIP]
 > A [hosted deployment endpoint](how-to-custom-speech-deploy-model.md) isn't required to use custom speech with the batch transcription service. You can conserve resources if you use the [custom speech model](how-to-custom-speech-train-model.md) only for batch transcription.
 
-Batch transcription requests for expired models fail with a 4xx error. Set the `model` property to a base model or custom model that isn't expired. Otherwise don't include the `model` property to always use the latest base model. For more information, see [Choose a model](how-to-custom-speech-create-project.md#choose-your-model) and [Custom speech model lifecycle](how-to-custom-speech-model-and-endpoint-lifecycle.md).
+Batch transcription requests for expired models fail with a 4xx error. Set the `model` property to a base model or custom model that isn't expired. Otherwise don't include the `model` property to always use the latest base model. For more information, see [Choose a model](./custom-speech-overview.md#choose-your-model) and [Custom speech model lifecycle](how-to-custom-speech-model-and-endpoint-lifecycle.md).
 
 ## Use a Whisper model
 

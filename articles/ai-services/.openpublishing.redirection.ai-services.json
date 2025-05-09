@@ -161,6 +161,16 @@
       "redirect_document_id": true
     },
     {
+      "source_path_from_root": "/articles/ai-services/content-safety/how-to/foundry.md",
+      "redirect_url": "/azure/ai-foundry/ai-services/content-safety-overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/content-safety/studio-quickstart.md",
+      "redirect_url": "/azure/ai-foundry/ai-services/content-safety-overview?context=/azure/ai-services/content-safety/context/context",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-voice-create-voice.md",
       "redirect_url": "/azure/ai-services/speech-service/professional-voice-train-voice",
       "redirect_document_id": true
@@ -187,8 +197,8 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/plan-manage-costs.md",
-      "redirect_url": "/azure/ai-studio/how-to/costs-plan-manage",
-      "redirect_document_id": true
+      "redirect_url": "/azure/ai-foundry/how-to/costs-plan-manage",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/cognitive-services-and-machine-learning.md",
@@ -361,6 +371,51 @@
       "redirect_document_id": false
     },
     {
+     "source_path_from_root": "/articles/ai-services/computer-vision/spatial-analysis-logging.md",
+      "redirect_url": "/azure/ai-services/computer-vision/spatial-analysis-container",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/spatial-analysis-container.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/spatial-analysis-local.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/spatial-analysis-operations.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/spatial-analysis-zone-line-placement.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/vehicle-analysis.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/spatial-analysis-camera-placement.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/use-case-dwell-time.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/use-case-queue-time.md",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+    {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-document-intelligence-studio.md",
       "redirect_url": "/azure/ai-services/document-intelligence/studio-overview",
       "redirect_document_id": true
@@ -458,6 +513,11 @@
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-speech-continuous-integration-continuous-deployment.md",
       "redirect_url": "/azure/ai-services/speech-service/how-to-custom-speech-model-and-endpoint-lifecycle",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/custom-speech-ai-foundry-portal.md",
+      "redirect_url": "/azure/ai-services/speech-service/how-to-custom-speech-create-project",
       "redirect_document_id": false
     },
     {
@@ -777,7 +837,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/custom-speech-ai-studio.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-speech-ai-foundry-portal",
+      "redirect_url": "/azure/ai-services/speech-service/how-to-custom-speech-create-project",
       "redirect_document_id": true
     },
     {
@@ -858,6 +918,236 @@
     {
       "source_path_from_root": "/articles/ai-services/ai-services-and-ecosystem.md",
       "redirect_url": "/azure/ai-services/what-are-ai-services",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/text-translation-overview.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/overview",
+      "redirect_document_id": true
+    }, 
+    {
+      "source_path_from_root": "/articles/ai-services/translator/translator-overview.md",
+      "redirect_url": "/azure/ai-services/translator/overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/create-translator-resource.md",
+      "redirect_url": "/azure/ai-services/translator/how-to/create-translator-resource",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/dynamic-dictionary.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/how-to/use-dynamic-dictionary",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/encrypt-data-at-rest.md",
+      "redirect_url": "/azure/ai-services/translator/custom-translator/concepts/encrypt-data-at-rest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/quickstart-text-rest-api.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/quickstart/rest-api",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/quickstart-text-sdk.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/quickstart/client-library-sdk",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/text-sdk-overview.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/sdk-overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/translator-text-apis.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/how-to/use-rest-api",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/firewalls.md",
+      "redirect_url": "/azure/ai-services/translator/how-to/use-firewalls",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/modifications-deprecations.md",
+      "redirect_url": "/azure/ai-services/translator/reference/release-history",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/neural-dictionary.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/how-to/use-neural-dictionary",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/prevent-translation.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/how-to/prevent-translation",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/profanity-filtering.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/how-to/use-profanity-filtering",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/translator-pro/faq.yml",
+      "redirect_url": "/azure/ai-services/translator/solutions/translator-pro/faq",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/translator-pro/language-support.md",
+      "redirect_url": "/azure/ai-services/translator/solutions/translator-pro/language-support",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/translator-pro/overview.md",
+      "redirect_url": "/azure/ai-services/translator/solutions/translator-pro/overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/solutions-overview.md",
+      "redirect_url": "/azure/ai-services/translator/solutions/overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/translator-faq.md",
+      "redirect_url": "/azure/ai-services/translator/faq",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/word-alignment.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/how-to/word-alignment",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/migrate-to-v3.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/how-to/migrate-to-v3",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/known-issues.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/known-issues",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/reference/rest-api-guide.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/rest-api-guide",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-break-sentence.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/break-sentence",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-detect.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/detect",
+      "redirect_document_id": true
+    },
+     {
+      "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-dictionary-examples.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/dictionary-examples",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-dictionary-lookup.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/dictionary-lookup",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-languages.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/languages",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-reference.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/reference",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-translate.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/translate",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-transliterate.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/transliterate",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/connector/document-translation-flow.md",
+      "redirect_url": "/azure/ai-services/translator/solutions/connector/document-translation-flow",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/connector/text-translator-flow.md",
+      "redirect_url": "/azure/ai-services/translator/solutions/connector/text-translator-flow",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/personally-identifiable-information/how-to-call.md",
+      "redirect_url": "/azure/ai-services/language-service/personally-identifiable-information/how-to/redact-text-pii",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/personally-identifiable-information/how-to-call-for-conversations.md",
+      "redirect_url": "/azure/ai-services/language-service/personally-identifiable-information/how-to/redact-conversation-pii",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/native-document-support/use-native-documents.md",
+      "redirect_url": "/azure/ai-services/language-service/native-document-support/overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/text-translation/reference/known-issues.md",
+      "redirect_url": "/azure/ai-services/translator/reference/known-issues",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/release-history.md",
+      "redirect_url": "/azure/ai-services/translator/reference/release-history",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/translator/sovereign-clouds.md",
+      "redirect_url": "/azure/ai-services/translator/reference/sovereign-clouds",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/assistants-reference-messages.md",
+      "redirect_url": "/azure/ai-services/openai/reference-preview#list---messages",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/assistants-reference-runs.md",
+      "redirect_url": "/azure/ai-services/openai/reference-preview#create---thread-and-run",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/assistants-reference-threads.md",
+      "redirect_url": "/azure/ai-services/openai/reference-preview#create---thread",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/assistants-reference.md",
+      "redirect_url": "/azure/ai-services/openai/reference-preview#list---assistants",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/meeting-transcription.md",
+      "redirect_url": "/azure/ai-services/speech-service/multi-device-conversation",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to-use-meeting-transcription.md",
+      "redirect_url": "/azure/ai-services/speech-service/multi-device-conversation",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to-async-meeting-transcription.md",
+      "redirect_url": "/azure/ai-services/speech-service/multi-device-conversation",
       "redirect_document_id": false
     }
   ]

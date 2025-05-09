@@ -2,7 +2,6 @@
 title: 'Quickstart: Generate images with Azure OpenAI Service and Azure AI Foundry'
 titleSuffix: Azure OpenAI
 description: Learn how to generate images with Azure OpenAI Service in the DALL-E playground (Preview) in Azure AI Foundry.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom:
@@ -32,7 +31,7 @@ On the model's page, select **Open in playground**.
 Start exploring Azure OpenAI capabilities with a no-code approach through the **Images playground**. Enter your image prompt into the text box and select **Generate**. When the AI-generated image is ready, it appears on the page.
 
 > [!NOTE]
-> The image generation APIs come with a content moderation filter. If Azure OpenAI recognizes your prompt as harmful content, it doesn't return a generated image. For more information, see [Content filtering](../concepts/content-filter.md).
+> The Image APIs come with a content moderation filter. If Azure OpenAI recognizes your prompt as harmful content, it doesn't return a generated image. For more information, see [Content filtering](../concepts/content-filter.md).
 
 In the **Images playground**, you can also view Python and cURL code samples, which are prefilled according to your settings. Select **View code** near the top of the page. You can use this code to write an application that completes the same task.
 
@@ -45,6 +44,6 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 
 ## Next steps
 
-* Explore the image generation APIs in more depth with the [DALL-E how-to guide](../how-to/dall-e.md).
+* Explore the Image APIs in more depth with the [Image API how-to guide](../how-to/dall-e.md).
 * Try examples in the [Azure OpenAI Samples GitHub repository](https://github.com/Azure/openai-samples).
 * See the [API reference](../reference.md#image-generation)

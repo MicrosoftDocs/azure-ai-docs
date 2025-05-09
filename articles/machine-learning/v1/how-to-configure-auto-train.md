@@ -17,6 +17,8 @@ ms.custom: UpdateFrequency5, devx-track-python, automl, sdkv1
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this guide, learn how to set up an automated machine learning, AutoML, training run with the [Azure Machine Learning Python SDK](/python/api/overview/azure/ml/intro) using Azure Machine Learning automated ML. Automated ML picks an algorithm and hyperparameters for you and generates a model ready for deployment. This guide provides details of the various options that you can use to configure automated ML experiments.
 
 For an end to end example, see [Tutorial: AutoML- train regression model](how-to-auto-train-models-v1.md).

@@ -1,23 +1,22 @@
 ---
-title: "Quickstart: Create a skillset in the Azure portal"
+title: "Quickstart: Create a Skillset in the Azure Portal"
 titleSuffix: Azure AI Search
-description: Learn how to use the Import Data wizard to generate searchable text from images and unstructured documents. Skills in this quickstart include OCR, image analysis, and natural language processing.
-
+description: Learn how to use the Import Data wizard to generate searchable text from images and unstructured documents. Skills in this quickstart include optical character recognition (OCR), image analysis, and natural language processing.
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: quickstart
-ms.date: 11/20/2024
+ms.date: 03/04/2025
 ---
 
 # Quickstart: Create a skillset in the Azure portal
 
 In this quickstart, you learn how a skillset in Azure AI Search adds optical character recognition (OCR), image analysis, language detection, text translation, and entity recognition to generate text-searchable content in a search index.
 
-You can run the **Import data** wizard in the Azure portal to apply skills that create and transform textual content during indexing. Input is your raw data, usually blobs in Azure Storage. Output is a searchable index containing AI-generated image text, captions, and entities. Generated content is queryable in the Azure portal using [**Search explorer**](search-explorer.md).
+You can run the **Import data** wizard in the Azure portal to apply skills that create and transform textual content during indexing. The input is your raw data, usually blobs in Azure Storage. The output is a searchable index containing AI-generated image text, captions, and entities. You can query generated content in the Azure portal using [**Search explorer**](search-explorer.md).
 
 To prepare, you create a few resources and upload sample files before running the wizard.
 
@@ -25,12 +24,12 @@ To prepare, you create a few resources and upload sample files before running th
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
 
-+ Create an [Azure AI Search service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices). You can use a free service for this quickstart. 
++ An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch) in your current subscription. For this quickstart, you can use a free service.
 
 + An Azure Storage account with Azure Blob Storage.
 
 > [!NOTE]
-> This quickstart uses [Azure AI services](https://azure.microsoft.com/services/cognitive-services/) for the AI transformations. Because the workload is so small, Azure AI services is tapped behind the scenes for free processing for up to 20 transactions. You can complete this exercise without having to create an Azure AI multi-service resource.
+> This quickstart uses [Azure AI services](https://azure.microsoft.com/services/cognitive-services/) for AI transformations. Because the workload is so small, Azure AI services is tapped behind the scenes for free processing for up to 20 transactions. You can complete this exercise without having to create an Azure AI services multi-service resource.
 
 ## Set up your data
 
@@ -130,7 +129,7 @@ The indexer drives the indexing process. It specifies the data source name, a ta
 
 ## Monitor status
 
-Select **Indexers** from the left navigation pane to monitor status, and then select the indexer. Skills-based indexing takes longer than text-based indexing, especially OCR and image analysis.
+Select **Indexers** from the left pane to monitor status, and then select the indexer. Skills-based indexing takes longer than text-based indexing, especially OCR and image analysis.
 
   :::image type="content" source="media/search-get-started-skillset/indexer-notification.png" alt-text="Screenshot of the indexer status page." border="true":::
 
@@ -192,7 +191,7 @@ If you used a free service, remember that you're limited to three indexes, index
 
 ## Next step
 
-You can create skillsets using the Azure portal, .NET SDK, or REST API. To further your knowledge, try the REST API by using a REST client and more sample data.
+You can create skillsets using the Azure portal, .NET SDK, or REST API. To further your knowledge, try the REST API by using a REST client and more sample data:
 
 > [!div class="nextstepaction"]
 > [Tutorial: Use skillsets to generate searchable content in Azure AI Search](cognitive-search-tutorial-blob.md)

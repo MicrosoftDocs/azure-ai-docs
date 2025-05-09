@@ -58,20 +58,18 @@ items:
       items:
         - name: Custom speech overview
           href: custom-speech-overview.md
-        - name: Fine-tune in the Azure AI Foundry portal
-          href: custom-speech-ai-foundry-portal.md
-        - name: Create a custom speech model 
+        - name: Fine-tune for custom speech
           items:
           - name: "Part 1: Create a project"
             href: how-to-custom-speech-create-project.md
           - name: "Part 2: Upload training and testing datasets"
             href: how-to-custom-speech-upload-data.md
-          - name: "Part 3: Test recognition quality"
-            href: how-to-custom-speech-inspect-data.md
-          - name: "Part 4: Test model quantitatively"
-            href: how-to-custom-speech-evaluate-data.md
-          - name: "Part 5: Train a model"
+          - name: "Part 3: Train a model"
             href: how-to-custom-speech-train-model.md
+          - name: "Part 4: Test recognition quality"
+            href: how-to-custom-speech-inspect-data.md
+          - name: "Part 5: Test model quantitatively"
+            href: how-to-custom-speech-evaluate-data.md
           - name: "Part 6: Deploy a model"
             href: how-to-custom-speech-deploy-model.md
         - name: Custom speech datasets
@@ -297,14 +295,6 @@ items:
           displayName: pronounce, learn language, assess pron, chatting 
     - name: Azure OpenAI speech to speech chat
       href: openai-speech.md
-    - name: Conversation transcription multichannel diarization (preview)
-      items:
-        - name: Conversation transcription overview
-          href: meeting-transcription.md
-        - name: Real-time conversation transcription quickstart
-          href: how-to-use-meeting-transcription.md
-        - name: Asynchronous conversation transcription
-          href: how-to-async-meeting-transcription.md
     - name: Multi-device conversation
       items:
         - name: Multi-device conversation overview
@@ -537,7 +527,7 @@ items:
       - name: Transparency note
         href: /legal/cognitive-services/speech-service/text-to-speech/transparency-note?context=/azure/ai-services/speech-service/context/context
       - name: Code of conduct
-        href: /legal/cognitive-services/speech-service/text-to-speech/code-of-conduct?context=/azure/ai-services/speech-service/context/context
+        href: /legal/ai-code-of-conduct?context=/azure/ai-services/speech-service/context/context
       - name: Limited access
         href: /legal/cognitive-services/speech-service/custom-neural-voice/limited-access-custom-neural-voice?context=/azure/ai-services/speech-service/context/context
       - name: Disclosure for voice and avatar talent

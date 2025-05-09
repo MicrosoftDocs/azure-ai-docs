@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 02/20/2025
+ms.date: 03/21/2025
 ms.custom: template-concept, devx-track-python
 manager: nitinme
 ---
@@ -14,9 +14,9 @@ manager: nitinme
 # Content filtering
 
 > [!IMPORTANT]
-> The content filtering system isn't applied to prompts and completions processed by the Whisper model in Azure OpenAI Service. Learn more about the [Whisper model in Azure OpenAI](models.md#whisper).
+> The content filtering system isn't applied to prompts and completions processed by the audio models such as Whisper in Azure OpenAI Service. Learn more about the [Audio models in Azure OpenAI](models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint).
 
-Azure OpenAI Service includes a content filtering system that works alongside core models, including DALL-E image generation models. This system works by running both the prompt and completion through an ensemble of classification models designed to detect and prevent the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Variations in API configurations and application design might affect completions and thus filtering behavior.
+Azure OpenAI Service includes a content filtering system that works alongside core models, including image generation models. This system works by running both the prompt and completion through an ensemble of classification models designed to detect and prevent the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Variations in API configurations and application design might affect completions and thus filtering behavior.
 
 The text content filtering models for the hate, sexual, violence, and self-harm categories have been specifically trained and tested on the following languages: English, German, Japanese, Spanish, French, Italian, Portuguese, and Chinese. However, the service can work in many other languages, but the quality might vary. In all cases, you should do your own testing to ensure that it works for your application.
 
@@ -275,7 +275,7 @@ The table below outlines the various ways content filtering can appear:
 
 **HTTP Response Code** | **Response behavior**
 |------------------------|----------------------|
-| 200 | If the content filtering system is down or otherwise unable to complete the operation in time, your request will still complete without content filtering. You can determine that the filtering wasn't applied by looking for an error message in the `content_filter_result` object.|
+| 200 | If the content filtering system is down or otherwise unable to complete the operation in time, your request will still complete without content filtering. You can determine that the filtering wasn't applied by looking for an error message in the `content_filter_results` object.|
 
 **Example request payload:**
 
@@ -301,7 +301,7 @@ The table below outlines the various ways content filtering can appear:
             "index": 0,
             "finish_reason": "length",
             "logprobs": null,
-            "content_filter_result": {
+            "content_filter_results": {
                 "error": {
                     "code": "content_filter_error",
                     "message": "The contents are not filtered"
@@ -597,12 +597,12 @@ try:
 
 except openai.error.InvalidRequestError as e:
     if e.error.code == "content_filter" and e.error.innererror:
-        content_filter_result = e.error.innererror.content_filter_result
+        content_filter_results = e.error.innererror.content_filter_result
         # print the formatted JSON
-        print(content_filter_result)
+        print(content_filter_results)
 
         # or access the individual categories and details
-        for category, details in content_filter_result.items():
+        for category, details in content_filter_results.items():
             print(f"{category}:\n filtered={details['filtered']}\n severity={details['severity']}")
 
 ```
@@ -765,7 +765,7 @@ Blocks completion content when ungrounded completion content was detected.
         "status": 400,
         "innererror": {
             "code": "ResponsibleAIPolicyViolation",
-            "content_filter_result": {
+            "content_filter_results": {
                 "hate": {
                     "filtered": true,
                     "severity": "high"
@@ -820,9 +820,7 @@ This is an example message array:
 In addition to detection on last user content, Azure OpenAI also supports the detection of specific risks inside context documents via Prompt Shields – Indirect Prompt Attack Detection. You should identify parts of the input that are a document (for example, retrieved website, email, etc.) with the following document delimiter.  
 
 ```
-<documents> 
-*insert your document content here* 
-</documents>
+\"\"\" <documents> *insert your document content here* </documents> \"\"\" 
 ```
 
 When you do so, the following options are available for detection on tagged documents: 
@@ -832,9 +830,9 @@ When you do so, the following options are available for detection on tagged docu
 Here's an example chat completion messages array: 
 
 ```json
-{"role": "system", "content": "Provide some context and/or instructions to the model, including document context. \"\"\" <documents>\n*insert your document content here*\n</documents> \"\"\""}, 
+{"role": "system", "content": "Provide some context and/or instructions to the model.}, 
 
-{"role": "user", "content": "First question/message for the model to actually respond to."} 
+{"role": "user", "content": "First question/message for the model to actually respond to, including document context.  \"\"\" <documents>\n*insert your document content here*\n</documents> \"\"\"""}
 ```
 
 #### JSON escaping 
@@ -883,7 +881,7 @@ Customers must understand that while the feature improves latency, it's a trade-
 
 **Customer Copyright Commitment**: Content that is retroactively flagged as protected material may not be eligible for Customer Copyright Commitment coverage. 
 
-To enable Asynchronous Filter in Azure AI Foundry portal, follow the [Content filter how-to guide](/azure/ai-services/openai/how-to/content-filters) to create a new content filtering configuration, and select **Asynchronous Filter** in the Streaming section.
+To enable Asynchronous Filter in [Azure AI Foundry portal](https://ai.azure.com/), follow the [Content filter how-to guide](/azure/ai-services/openai/how-to/content-filters) to create a new content filtering configuration, and select **Asynchronous Filter** in the Streaming section.
 
 ### Comparison of content filtering modes
 
@@ -891,7 +889,7 @@ To enable Asynchronous Filter in Azure AI Foundry portal, follow the [Content fi
 |---|---|---|
 |Status |GA |Public Preview |
 | Eligibility |All customers |Customers approved for modified content filtering |
-| How to enable | Enabled by default, no action needed |Customers approved for modified content filtering can configure it directly in Azure AI Foundry portal (as part of a content filtering configuration, applied at the deployment level) |
+| How to enable | Enabled by default, no action needed |Customers approved for modified content filtering can configure it directly in [Azure AI Foundry portal](https://ai.azure.com/) (as part of a content filtering configuration, applied at the deployment level) |
 |Modality and availability |Text; all GPT models |Text; all GPT models |
 |Streaming experience |Content is buffered and returned in chunks |Zero latency (no buffering, filters run asynchronously) |
 |Content filtering signal |Immediate filtering signal |Delayed filtering signal (in up to ~1,000-character increments) |
@@ -1042,7 +1040,7 @@ As part of your application design, consider the following best practices to del
 
 - Decide how you want to handle scenarios where your users send prompts containing content that is classified at a filtered category and severity level or otherwise misuse your application.
 - Check the `finish_reason` to see if a completion is filtered.
-- Check that there's no error object in the `content_filter_result` (indicating that content filters didn't run).
+- Check that there's no error object in the `content_filter_results` (indicating that content filters didn't run).
 - If you're using the protected material code model in annotate mode, display the citation URL when you're displaying the code in your application.
 
 ## Next steps

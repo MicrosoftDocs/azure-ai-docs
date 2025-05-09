@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 12/10/2024
+ms.date: 03/21/2025
 ---
 
 # Plan and manage costs of an Azure AI Search service
@@ -22,7 +22,7 @@ As a first step, estimate your baseline costs by using the Azure pricing calcula
 Azure provides built-in cost management that cuts across service boundaries to provide inclusive cost monitoring and the ability to set budgets and define alerts. The costs of running a search service will vary depending on capacity and which features you use. After you create your search service, optimize capacity so that you pay only for what you need. 
 
 > [!NOTE]
-> Higher capacity partitions are available at the same billing rate on newer services created after April and May 2024. For more information, see [Service limits](search-limits-quotas-capacity.md#service-limits) for partition size upgrades.
+> Higher capacity partitions are available at the same billing rate on newer services created after April and May 2024. For more information about partition size upgrades, see [Service limits](search-limits-quotas-capacity.md#service-limits).
 
 <a name="billable-events"></a>
 
@@ -50,7 +50,7 @@ Billing is based on capacity (SUs) and the costs of running premium features, su
 
 <sup>1</sup> Applies only if you use or enable the feature.
 
-<sup>2</sup> In an [indexer configuration](/rest/api/searchservice/indexers/create#indexer-parameters), `imageAction` is the parameter that triggers image extraction. If `imageAction` is set to "none" (the default), you won't be charged for image extraction. Costs are incurred when `imageAction` parameter is set *and* you include OCR, Image Analysis, or Document Extraction in a skillset.
+<sup>2</sup> Refers to images extracted from a file within the indexer pipeline. Text extraction is free. Image extraction is billed during the initial document cracking step and when invoking the Document Extraction skill. In an [indexer configuration](/rest/api/searchservice/indexers/create#indexer-parameters), `imageAction` is the parameter that triggers image extraction. If `imageAction` is set to "none" (the default), there's no charge. If set to "generateNormalizedImages" or "generateNormalizedImagePerPage" and the document contains images, you're charged for each image. This is true even if there are no skills to consume the image content.
 
 You aren't billed on the number of full text or vector queries, query responses, or documents ingested, although [service limits](search-limits-quotas-capacity.md) do apply at each tier.
 
@@ -76,7 +76,7 @@ Follow these guidelines to minimize costs of an Azure AI Search solution.
 
 1. [Scale up](search-capacity-planning.md) for resource-intensive operations like indexing, and then readjust downwards for regular query workloads. If there are predictable patterns to your workloads, you might be able to synchronize scale up to coincide with the expected volume (you would need to write code to automate this).
 
-   When estimating the cost of a search solution, keep in mind that pricing and capacity aren't linear (doubling capacity more than doubles the cost on the same tier). Also, at some point, switching up to a higher tier can give you better and faster performance at roughly the same price point. For more information and an example, see [Upgrade to a Standard S2 tier](search-performance-tips.md#tip-upgrade-to-a-standard-s2-tier).
+   When estimating the cost of a search solution, keep in mind that pricing and capacity aren't linear (doubling capacity more than doubles the cost on the same tier). Also, at some point, switching up to a higher tier can give you better and faster performance at roughly the same price point. For more information and an example, see [Switch to a Standard S2 tier](search-performance-tips.md#tip-switch-to-a-standard-s2-tier).
 
 1. Consider [Azure Web App](/azure/app-service/overview) for your front-end application so that requests and responses stay within the data center boundary.
 
@@ -100,7 +100,7 @@ Search runs as a continuous service. Dedicated resources are always operational,
 
 **Can I change the billing rate (tier) of an existing search service?**
 
-In-place upgrade or downgrade isn't supported. Changing a service tier requires provisioning a new service at the desired tier.
+Existing services can be switched between Basic and Standard (S1, S2, and S3) tiers. Currently, you can only switch from a lower tier to a higher tier, such as going from Basic to S1. For more information, see [Change your pricing tier](search-capacity-planning.md#change-your-pricing-tier).
 
 ## Next steps
 

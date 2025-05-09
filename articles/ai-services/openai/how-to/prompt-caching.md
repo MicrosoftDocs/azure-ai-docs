@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 12/15/2024
+ms.date: 04/14/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -22,6 +22,7 @@ Caches are typically cleared within 5-10 minutes of inactivity and are always re
 
 Currently only the following models support prompt caching with Azure OpenAI:
 
+- `o3-mini-2025-01-31`
 - `o1-2024-12-17`
 - `o1-preview-2024-09-12`
 - `o1-mini-2024-09-12`
@@ -30,13 +31,15 @@ Currently only the following models support prompt caching with Azure OpenAI:
 - `gpt-4o-mini-2024-07-18`
 - `gpt-4o-realtime-preview` (version 2024-12-17)
 - `gpt-4o-mini-realtime-preview` (version 2024-12-17)
+- `gpt-4.1-2025-04-14`
+- `gpt-4.1-nano-2025-04-14`
 
 > [!NOTE]
 > Prompt caching is now also available as part of model fine-tuning for `gpt-4o` and `gpt-4o-mini`. Refer to the fine-tuning section of the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for details.
 
 ## API support
 
-Official support for prompt caching was first added in API version `2024-10-01-preview`. At this time, only the o1 model family supports the `cached_tokens` API response parameter.
+Official support for prompt caching was first added in API version `2024-10-01-preview`. At this time, only the o-series model family supports the `cached_tokens` API response parameter.
 
 ## Getting started
 
@@ -50,7 +53,7 @@ When a match is found between the token computations in a prompt and the current
 ```json
 {
   "created": 1729227448,
-  "model": "o1-preview-2024-09-12",
+  "model": "o1-2024-12-17",
   "object": "chat.completion",
   "service_tier": null,
   "system_fingerprint": "fp_50cdd5dc04",
@@ -82,13 +85,13 @@ Prompt caching is supported for:
 
 |**Caching supported**|**Description**|**Supported models**|
 |--------|--------|--------|
-| **Messages** | The complete messages array: system, developer, user, and assistant content | `gpt-4o`<br/>`gpt-4o-mini`<br/>`gpt-4o-realtime-preview` (version 2024-12-17)<br/>`gpt-4o-mini-realtime-preview` (version 2024-12-17)<br> `o1` (version 2024-12-17) |
+| **Messages** | The complete messages array: system, developer, user, and assistant content | `gpt-4o`<br/>`gpt-4o-mini`<br/>`gpt-4o-realtime-preview` (version 2024-12-17)<br/>`gpt-4o-mini-realtime-preview` (version 2024-12-17)<br> `o1` (version 2024-12-17) <br> `o3-mini` (version 2025-01-31) |
 | **Images** | Images included in user messages, both as links or as base64-encoded data. The detail parameter must be set the same across requests. | `gpt-4o`<br/>`gpt-4o-mini` <br> `o1` (version 2024-12-17)  |
-| **Tool use** | Both the messages array and tool definitions. | `gpt-4o`<br/>`gpt-4o-mini`<br/>`gpt-4o-realtime-preview` (version 2024-12-17)<br/>`gpt-4o-mini-realtime-preview` (version 2024-12-17)<br> `o1` (version 2024-12-17) |
-| **Structured outputs** | Structured output schema is appended as a prefix to the system message. | `gpt-4o`<br/>`gpt-4o-mini` <br> `o1` (version 2024-12-17) |
+| **Tool use** | Both the messages array and tool definitions. | `gpt-4o`<br/>`gpt-4o-mini`<br/>`gpt-4o-realtime-preview` (version 2024-12-17)<br/>`gpt-4o-mini-realtime-preview` (version 2024-12-17)<br> `o1` (version 2024-12-17) <br> `o3-mini` (version 2025-01-31) |
+| **Structured outputs** | Structured output schema is appended as a prefix to the system message. | `gpt-4o`<br/>`gpt-4o-mini` <br> `o1` (version 2024-12-17) <br> `o3-mini` (version 2025-01-31) |
 
 To improve the likelihood of cache hits occurring, you should structure your requests such that repetitive content occurs at the beginning of the messages array.
 
 ## Can I disable prompt caching?
 
-Prompt caching is enabled by default for all supported models. There is no opt-out support for prompt caching. 
+Prompt caching is enabled by default for all supported models. There is no opt-out support for prompt caching.

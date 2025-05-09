@@ -2,9 +2,10 @@
 title: Microsoft partners
 titleSuffix: Azure AI Search
 description: Learn about end-to-end solutions offered by Microsoft partners that include Azure AI Search.
-author: HeidiSteen
+
 manager: nitinme
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

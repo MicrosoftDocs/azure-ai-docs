@@ -8,26 +8,27 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 01/15/2025
+ms.date: 03/21/2025
 
 ---
 
 # Choose a service tier for Azure AI Search
 
-Part of [creating a search service](search-create-service-portal.md) is choosing a pricing tier (or SKU) that's fixed for the lifetime of the service. In the Azure portal, tier is specified in the **Select Pricing Tier** page when you create the service. In PowerShell or Azure CLI, the tier is specified through the **`-Sku`** parameter.
+Part of [creating a search service](search-create-service-portal.md) is choosing a pricing tier (or SKU). In the Azure portal, tier is specified in the **Select Pricing Tier** page when you create the service. In PowerShell or Azure CLI, the tier is specified through the `-Sku` parameter.
 
-The tier determines:
+The tier determines the:
 
-+ Maximum number of indexes and other objects allowed on the service
-+ Size and speed of partitions (physical storage)
-+ Billable rate as a fixed monthly cost, but also an incremental cost if you add capacity
++ Maximum number of indexes and other objects allowed on the service.
++ Size and speed of partitions (physical storage).
++ Billable rate as a fixed monthly cost, but also an incremental cost if you add capacity.
++ Workload characteristics. Some tiers are optimized for specific workloads.
 
 In a few instances, the tier you choose determines the availability of [premium features](#feature-availability-by-tier).
 
 Billing rates are shown in the Azure portal's **Select Pricing Tier** page. You can check the [pricing page](https://azure.microsoft.com/pricing/details/search/) for regional rates and review [Plan and manage costs](search-sku-manage-costs.md) to learn more about the billing model.
 
 > [!NOTE]
-> Search services created after April 3, 2024 have larger partitions and higher vector quotas at almost every tier. For more information, see [service limits](search-limits-quotas-capacity.md#service-limits).
+> Search services created after April 3, 2024 have larger partitions and higher vector quotas at almost every tier. For more information, see [Service limits](search-limits-quotas-capacity.md#service-limits).
 
 ## Tier descriptions
 
@@ -59,12 +60,11 @@ Currently, several regions are capacity-constrained for specific tiers and can't
 
 | Region | Disabled tier (SKU) due to over-capacity | Suggested alternative |
 |--------|------------------------------------------|-----------------------|
-| France Central | All tiers| Sweden Central, West Europe|
-| North Europe | All tiers | Sweden Central, West Europe|
+| North Europe | S2, S3, L1, L2 | Sweden Central, West Europe|
 
 ## Feature availability by tier
 
-Most features are available on all tiers, including the free tier. In a few cases, the tier determines the availability of a feature. The following table describes the constraints.
+Most features are available on all tiers, including the Free tier. In a few cases, the tier determines the availability of a feature. The following table describes the constraints.
 
 | Feature | Tier considerations |
 |---------|---------------------|
@@ -89,7 +89,7 @@ Tiers determine the  maximum storage of the service itself, plus the maximum num
 Tier pricing includes details about per-partition storage that ranges from 15 GB for Basic, up to 2 TB for Storage Optimized (L2) tiers. Other hardware characteristics, such as speed of operations, latency, and transfer rates, aren't published, but tiers that are designed for specific solution architectures are built on hardware that has the features to support those scenarios. For more information about partitions, see [Estimate and manage capacity](search-capacity-planning.md) and [Reliability in Azure AI Search](search-reliability.md).
 
 > [!NOTE]
-> Higher capacity partitions became available in selected regions starting in April 2024. A second wave of higher capacity partitions released in May 2024. If you're using an older search service, consider creating a new search service to benefit from more capacity at the same billing rate. For more information, see [Service limits](search-limits-quotas-capacity.md#service-limits). To check the age of your search service, see [How to check service creation date](vector-search-index-size.md#how-to-check-service-creation-date).
+> Higher capacity partitions became available in select regions in April 2024. A second wave of higher capacity partitions was released in May 2024. If you have an older search service, you might be able to [upgrade your service](search-how-to-upgrade.md) to benefit from more capacity at the same billing rate.
 
 ## Billing rates
 
@@ -103,22 +103,30 @@ The following example provides an illustration. Assume a hypothetical billing ra
 
 This billing model is based on the concept of applying the billing rate to the number *search units* (SU) used by a search service. All services are initially provisioned at one SU, but you can increase the SUs by adding either partitions or replicas to handle larger workloads. For more information, see [How to estimate costs of a search service](search-sku-manage-costs.md).
 
-## Tier upgrade or downgrade
+## Tier changes
 
-There's no built-in support to upgrade or downgrade tiers. If you want to switch to a different tier, the approach is:
+Services can be switched between Basic and Standard (S1, S2, and S3) tiers. Currently, you can only switch from a lower tier to a higher tier, such as going from Basic to S1. Your region also can't have capacity constraints on the higher tier. For more information, see [Change your pricing tier](search-capacity-planning.md#change-your-pricing-tier).
 
-+ Create a new search service at the new tier.
+If you want to switch to a lower tier or to a different tier than those previously listed, the approach is:
 
-+ Deploy your search content onto the new service. [Follow this checklist](search-howto-move-across-regions.md#prepare-and-move) to make sure you have all of the content.
+1. Create a new search service at the new tier.
 
-+ Delete the old search service once you're sure it's no longer needed.
+1. Deploy your search content onto the new service. [Follow this checklist](search-howto-move-across-regions.md#prepare-and-move) to make sure you have all of the content.
 
-For large indexes that you don't want to rebuild from scratch, consider using the [backup and restore sample](https://github.com/Azure-Samples/azure-search-dotnet-utilities/blob/main/index-backup-restore/README.md) to move them.
+1. Delete the old search service when you're sure it's no longer needed.
+
+For large indexes that you don't want to rebuild from scratch, consider using one of the backup and restore samples to move them:
+
++ [Backup and restore sample (C#)](https://github.com/Azure-Samples/azure-search-dotnet-utilities/blob/main/index-backup-restore/README.md)
++ [Backup and restore sample (Python)](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/utilities/index-backup-restore/azure-search-backup-and-restore.ipynb)
++ [Largest index backup and restore (Python)](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/utilities/resumable-index-backup-restore/backup-and-restore.ipynb)
 
 ## Next steps
 
-The best way to choose a pricing tier is to start with a least-cost tier, and then allow experience and testing inform your decision to keep the service or create a new one at a higher tier. For next steps, we recommend that you create a search service at a tier that can accommodate the level of testing you propose to do, and then review the following guidance for recommendations on estimating cost and capacity.
+The best way to choose a pricing tier is to start with a least-cost tier, and then allow experience and testing to inform your decision to keep the service or switch to a higher tier.
+
+For next steps, we recommend that you create a search service at a tier that can accommodate the level of testing you propose to do, and then review the following guidance on estimating cost and capacity:
 
 + [Create a search service](search-create-service-portal.md)
 + [Estimate costs](search-sku-manage-costs.md)
-+ [Estimate capacity](search-sku-manage-costs.md)
++ [Estimate capacity](search-capacity-planning.md)

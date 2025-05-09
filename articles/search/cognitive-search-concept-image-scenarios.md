@@ -6,7 +6,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/15/2024
+ms.date: 04/28/2025
 ms.custom:
   - devx-track-csharp
   - ignite-2023
@@ -14,7 +14,7 @@ ms.custom:
 
 # Extract text and information from images by using AI enrichment
 
-Through [AI enrichment](cognitive-search-concept-intro.md), Azure AI Search gives you several options for creating and extracting searchable text from images, including:
+Images often contain useful information that's relevant in search scenarios. You can [vectorize images](search-get-started-portal-image-search.md) to represent visual content in your search index. Or, you can use [AI enrichment and skillsets](cognitive-search-concept-intro.md) to create and extract searchable *text* from images, including:
 
 + [OCR](cognitive-search-skill-ocr.md) for optical character recognition of text and digits
 + [Image Analysis](cognitive-search-skill-image-analysis.md) that describes images through visual features
@@ -22,7 +22,7 @@ Through [AI enrichment](cognitive-search-concept-intro.md), Azure AI Search give
 
 By using OCR, you can extract text and from photos or pictures, such as the word *STOP* in a stop sign. Through image analysis, you can generate a text representation of an image, such as *dandelion* for a photo of a dandelion, or the color *yellow*. You can also extract metadata about the image, such as its size.
 
-This article covers the fundamentals of working with images, and also describes several common scenarios, such as working with embedded images, custom skills, and overlaying visualizations on original images.
+This article covers the fundamentals of working with images in skillsets, and also describes several common scenarios, such as working with embedded images, custom skills, and overlaying visualizations on original images.
 
 To work with image content in a skillset, you need:
 
@@ -58,7 +58,9 @@ Azure Blob Storage is the most frequently used storage for image processing in A
 After the source files are set up, enable image normalization by setting the `imageAction` parameter in indexer configuration. Image normalization helps make images more uniform for downstream processing. Image normalization includes the following operations:
 
 + Large images are resized to a maximum height and width to make them uniform.
-+ For images that have metadata that specifies orientation, image rotation is adjusted for vertical loading.  
++ For images that have metadata that specifies orientation, image rotation is adjusted for vertical loading.
+
+Note that enabling `imageAction` (setting this parameter to other than `none`) will incur an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
 
 Metadata adjustments are captured in a complex type created for each image. You can't opt out of the image normalization requirement. Skills that iterate over images, such as OCR and image analysis, expect normalized images.
 

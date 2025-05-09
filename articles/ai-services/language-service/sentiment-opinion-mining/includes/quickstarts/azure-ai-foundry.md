@@ -9,7 +9,7 @@ ms.author: jboback
 
 ## Prerequisites
 
-* [Create a Project in Foundry in the Azure AI Foundry Portal](../../../../../ai-studio/how-to/create-projects.md)
+* [Create a Project in Foundry in the Azure AI Foundry Portal](../../../../../ai-foundry/how-to/create-projects.md)
 
 ## Navigate to the Azure AI Foundry Playground
 
@@ -56,4 +56,4 @@ The following fields are only present if opinion mining is enabled:
 |Target|The target of the detected opinion.|
 |Assessments| The detected opinion and the detected persuasion (positive, neutral, negative), as well as the percent of detected persuasion.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/sentiment-opinion-mining.png" alt-text="An example of Analyze sentiment in azure AI studio" lightbox="../../media/quickstarts/azure-ai-foundry/sentiment-opinion-mining.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/sentiment-opinion-mining.png" alt-text="An example of Analyze sentiment in Azure AI Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/sentiment-opinion-mining.png":::

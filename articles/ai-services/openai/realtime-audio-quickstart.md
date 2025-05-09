@@ -5,7 +5,7 @@ description: Learn how to use GPT-4o Realtime API for speech and audio with Azur
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 2/7/2025
+ms.date: 3/20/2025
 author: eric-urban
 ms.author: eur
 ms.custom: references_regions, ignite-2024
@@ -26,13 +26,12 @@ Most users of the Realtime API need to deliver and receive audio from an end-use
 The GPT 4o real-time models are available for global deployments.
 - `gpt-4o-realtime-preview` (version `2024-12-17`)
 - `gpt-4o-mini-realtime-preview` (version `2024-12-17`)
-- `gpt-4o-realtime-preview` (version `2024-10-01`)
 
-See the [models and versions documentation](./concepts/models.md#gpt-4o-audio) for more information.
+See the [models and versions documentation](./concepts/models.md#audio-models) for more information.
 
 ## API support
 
-Support for the Realtime API was first added in API version `2024-10-01-preview`. Use the latest `2024-12-17` model version. 
+Support for the Realtime API was first added in API version `2024-10-01-preview` (retired). Use version `2025-04-01-preview` to access the latest Realtime API features. 
 
 ::: zone pivot="ai-foundry-portal"
 

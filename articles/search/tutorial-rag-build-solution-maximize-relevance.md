@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: tutorial
-ms.date: 10/05/2024
+ms.date: 03/11/2025
 ---
 
 # Tutorial: Maximize relevance (RAG in Azure AI Search)

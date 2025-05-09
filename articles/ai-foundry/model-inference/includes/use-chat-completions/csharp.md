@@ -7,7 +7,7 @@ author: mopeakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 1/21/2025
+ms.date: 03/20/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: references_regions, tool_generated
@@ -24,19 +24,11 @@ To use chat completion models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
-* A chat completions model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
+[!INCLUDE [how-to-prerequisites-csharp](../how-to-prerequisites-csharp.md)]
 
-* Install the [Azure AI inference package](https://aka.ms/azsdk/azure-ai-inference/python/reference) with the following command:
+* A chat completions model deployment. If you don't have one, read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
 
-    ```bash
-    dotnet add package Azure.AI.Inference --prerelease
-    ```
-    
-* If you are using Entra ID, you also need the following package:
-
-    ```bash
-    dotnet add package Azure.Identity
-    ```
+    * This example uses `mistral-large-2407`.
 
 ## Use chat completions
 
@@ -50,7 +42,7 @@ ChatCompletionsClient client = new ChatCompletionsClient(
 );
 ```
 
-If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
+If you've configured the resource with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
 
 ```csharp
@@ -189,7 +181,7 @@ response = client.Complete(requestOptions);
 Console.WriteLine($"Response: {response.Value.Content}");
 ```
 
-Some models don't support JSON output formatting. You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
+Some models don't support JSON output formatting. You can always prompt the model to generate JSON outputs. However, such outputs aren't guaranteed to be valid JSON.
 
 If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
 
@@ -345,7 +337,7 @@ foreach (ChatCompletionsToolCall tool in toolsCall)
         Dictionary<string, object> toolArguments = JsonSerializer.Deserialize<Dictionary<string, object>>(toolArgumentsString);
 
         // Here you have to call the function defined. In this particular example we use 
-        // reflection to find the method we definied before in an static class called 
+        // reflection to find the method we definied before in a static class called 
         // `ChatCompletionsExamples`. Using reflection allows us to call a function 
         // by string name. Notice that this is just done for demonstration purposes as a 
         // simple way to get the function callable from its string name. Then we can call 
@@ -408,69 +400,3 @@ catch (RequestFailedException ex)
 
 > [!TIP]
 > To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
-
-## Use chat completions with images
-
-Some models can reason across text and images and generate text completions based on both kinds of input. In this section, you explore the capabilities of Some models for vision in a chat fashion:
-
-> [!IMPORTANT]
-> Some models support only one image for each turn in the chat conversation and only the last image is retained in context. If you add multiple images, it results in an error.
-
-To see this capability, download an image and encode the information as `base64` string. The resulting data should be inside of a [data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs):
-
-
-```csharp
-string imageUrl = "https://news.microsoft.com/source/wp-content/uploads/2024/04/The-Phi-3-small-language-models-with-big-potential-1-1900x1069.jpg";
-string imageFormat = "jpeg";
-HttpClient httpClient = new HttpClient();
-httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0");
-byte[] imageBytes = httpClient.GetByteArrayAsync(imageUrl).Result;
-string imageBase64 = Convert.ToBase64String(imageBytes);
-string dataUrl = $"data:image/{imageFormat};base64,{imageBase64}";
-```
-
-Visualize the image:
-
-:::image type="content" source="../../../../ai-studio/media/how-to/sdks/small-language-models-chart-example.jpg" alt-text="A chart displaying the relative capabilities between large language models and small language models." lightbox="../../../../ai-studio/media/how-to/sdks/small-language-models-chart-example.jpg":::
-
-Now, create a chat completion request with the image:
-
-
-```csharp
-ChatCompletionsOptions requestOptions = new ChatCompletionsOptions()
-{
-    Messages = {
-        new ChatRequestSystemMessage("You are an AI assistant that helps people find information."),
-        new ChatRequestUserMessage([
-            new ChatMessageTextContentItem("Which conclusion can be extracted from the following chart?"),
-            new ChatMessageImageContentItem(new Uri(dataUrl))
-        ]),
-    },
-    MaxTokens=2048,
-    Model = "phi-3.5-vision-instruct",
-};
-
-var response = client.Complete(requestOptions);
-Console.WriteLine(response.Value.Content);
-```
-
-The response is as follows, where you can see the model's usage statistics:
-
-
-```csharp
-Console.WriteLine($"{response.Value.Role}: {response.Value.Content}");
-Console.WriteLine($"Model: {response.Value.Model}");
-Console.WriteLine("Usage:");
-Console.WriteLine($"\tPrompt tokens: {response.Value.Usage.PromptTokens}");
-Console.WriteLine($"\tTotal tokens: {response.Value.Usage.TotalTokens}");
-Console.WriteLine($"\tCompletion tokens: {response.Value.Usage.CompletionTokens}");
-```
-
-```console
-ASSISTANT: The chart illustrates that larger models tend to perform better in quality, as indicated by their size in billions of parameters. However, there are exceptions to this trend, such as Phi-3-medium and Phi-3-small, which outperform smaller models in quality. This suggests that while larger models generally have an advantage, there might be other factors at play that influence a model's performance.
-Model: phi-3.5-vision-instruct
-Usage: 
-  Prompt tokens: 2380
-  Completion tokens: 126
-  Total tokens: 2506
-```

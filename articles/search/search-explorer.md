@@ -1,35 +1,33 @@
 ---
-title: "Quickstart: Search explorer query tool"
+title: "Quickstart: Search Explorer Query Tool"
 titleSuffix: Azure AI Search
 description: Search explorer is a query tool in the Azure portal that sends query requests to a search index in Azure AI Search. Use it to learn syntax, test query expressions, or inspect a search document.
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 01/15/2025
+ms.date: 03/04/2025
 ms.custom:
   - mode-ui
 ---
 
 # Quickstart: Use Search explorer to run queries in the Azure portal
 
-In this quickstart, learn how to use **Search explorer**, a built-in query tool in the Azure portal used for running queries against a search index in Azure AI Search. Use it to test a query or filter expression, or confirm whether content exists in the index.
+In this quickstart, you learn how to use **Search explorer**, a built-in query tool in the Azure portal for running queries against an Azure AI Search index. Use it to test a query or filter expression, or confirm whether content exists in the index.
 
 This quickstart uses an existing index to demonstrate Search explorer.
 
 > [!TIP]
-> Search explorer now supports image search. [Quickstart: Image search in Azure portal](search-get-started-portal-image-search.md) provides the steps.
+> Search explorer now supports image search. To learn more, see [Quickstart: Image search in the Azure portal](search-get-started-portal-image-search.md).
 
 ## Prerequisites
 
-Before you begin, have the following prerequisites in place:
-
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
 
-+ An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) under your current subscription. You can use a free service for this quickstart. 
++ An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. For this quickstart, you can use a free service.
 
-+ The *realestate-us-sample-index* is used for this quickstart. To create the index, use the [**Import data wizard**](search-import-data-portal.md), choose the built-in sample data, and step through the wizard using all of the default values.
++ This quickstart uses the realestate-us-sample index. To create the index, run the [**Import data wizard**](search-import-data-portal.md), select the built-in sample data, and step through the wizard using all the default values.
 
   :::image type="content" source="media/search-explorer/search-explorer-sample-data.png" alt-text="Screenshot of the sample data sets available in the Import data wizard." border="true":::  
 
@@ -54,7 +52,7 @@ There are two approaches for querying in Search explorer.
 + JSON view supports parameterized queries. Filters, orderby, select, count, searchFields, and all other parameters must be set in JSON view.
 
   > [!TIP]
-  > JSON view provides intellisense for parameter name completion. Place the cursor inside the JSON view and type a space character to show a list of all query parameters, or type a single letter like "s" to show just the query parameters starting with "s". Intellisense doesn't exclude invalid parameters so use your best judgment.
+  > JSON view provides intellisense for parameter name completion. Place your cursor inside the JSON view and type a space character to see a list of all query parameters. You can also type a letter, like "s," to see only the query parameters that begin with that letter. Intellisense doesn't exclude invalid parameters, so use your best judgment.
 
   Switch to **JSON view** for parameterized queries. The examples in this article assume JSON view throughout. You can paste JSON examples from this article into the text area.
 
@@ -193,7 +191,7 @@ In this quickstart, you used **Search explorer** to query an index using the RES
 
 + Search results are composed of all fields marked as "retrievable" in the index. Select the adjacent **Fields** tab to review attributes.
 
-+ Keyword search, similar to what you might enter in a commercial web browser, are useful for testing an end-user experience. For example, assuming the built-in real estate sample index, you could enter "Seattle apartments lake washington", and then you can use Ctrl-F to find terms within the search results. 
++ Keyword search, similar to what you might enter in a commercial web browser, are useful for testing an end-user experience. For example, assuming the built-in real estate sample index, you could enter "Seattle apartments lake washington," and then you can use Ctrl-F to find terms within the search results.
 
 + Query and filter expressions are articulated in a syntax implemented by Azure AI Search. The default is a [simple syntax](/rest/api/searchservice/simple-query-syntax-in-azure-search), but you can optionally use [full Lucene](/rest/api/searchservice/lucene-query-syntax-in-azure-search) for more powerful queries. [Filter expressions](/rest/api/searchservice/odata-expression-syntax-for-azure-search) are articulated in an OData syntax.
 
@@ -205,9 +203,9 @@ You can find and manage resources in the Azure portal, using the **All resources
 
 If you're using a free service, remember that you're limited to three indexes, indexers, and data sources. You can delete individual items in the Azure portal to stay under the limit. 
 
-## Next steps
+## Next step
 
 To learn more about query structures and syntax, use a REST client to create query expressions that use more parts of the API. The [Search POST REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&preserve-view=true) is especially helpful for learning and exploration.
 
 > [!div class="nextstepaction"]
-> [Create a basic query in REST](search-get-started-rest.md)
+> [Quickstart: Create a basic query in REST](search-get-started-rest.md)

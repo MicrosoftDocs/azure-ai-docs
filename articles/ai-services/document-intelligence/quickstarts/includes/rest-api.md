@@ -6,14 +6,14 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 02/07/2025
+ms.date: 04/11/2025
 ms.author: lajanuar
 ---
 
 <!-- markdownlint-disable MD036 -->
 
 :::moniker range="doc-intel-4.0.0"
-| [Document Intelligence REST API](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) | [Supported Azure SDKS](../../sdk-overview-v4-0.md)
+| [Document Intelligence REST API](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20%282024-11-30%29&preserve-view=true) | [Supported Azure SDKS](../../sdk-overview-v4-0.md)
 :::moniker-end
 
 :::moniker range="doc-intel-3.1.0"
@@ -140,7 +140,7 @@ You receive a `202 (Success)` response that includes a read-only **Operation-Loc
 
 :::moniker range="doc-intel-4.0.0"
 
-After you call the [`Analyze document`](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)&preserve-view=true&tabs=HTTP) API, call the [**Get analyze result**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)&preserve-view=true&tabs=HTTP) API to get the status of the operation and the extracted data. Before you run the command, make these changes:
+After you call the [`Analyze document`](/rest/api/aiservices/operation-groups) API, call the [**Get analyze result**](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)&preserve-view=true&tabs=HTTP) API to get the status of the operation and the extracted data. Before you run the command, make these changes:
 :::moniker-end
 
 :::moniker range="doc-intel-3.1.0"

@@ -7,7 +7,7 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 9/20/2024
+ms.date: 3/10/2025
 #Customer intent: As a developer, I want to learn about intent recognition and how to use it with the Speech service.
 ---
 

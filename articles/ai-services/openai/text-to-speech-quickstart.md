@@ -5,7 +5,7 @@ description: Use the Azure OpenAI Service for text to speech with OpenAI voices.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: quickstart
-ms.date: 9/12/2024
+ms.date: 3/10/2025
 ms.reviewer: eur
 ms.author: eur
 author: eric-urban
@@ -17,7 +17,7 @@ zone_pivot_groups: programming-languages-rest-js-cs
 
 In this quickstart, you use the Azure OpenAI Service for text to speech with OpenAI voices.  
 
-The available voices are: `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. For more information, see [Azure OpenAI Service reference documentation for text to speech](./reference.md#text-to-speech).
+The available voices are: `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. For more information, see [Azure OpenAI Service reference documentation for text to speech](./reference.md#text-to-speech-preview).
 
 ::: zone pivot="rest-api"
 
@@ -52,5 +52,5 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 
 ## Next steps
 
-* Learn more about how to work with text to speech with Azure OpenAI Service in the [Azure OpenAI Service reference documentation](./reference.md#text-to-speech).
+* Learn more about how to work with text to speech with Azure OpenAI Service in the [Azure OpenAI Service reference documentation](./reference.md#text-to-speech-preview).
 * For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai)

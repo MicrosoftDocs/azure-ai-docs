@@ -36,13 +36,13 @@ items:
       displayName: ChatGPT, chatgpt
     - name: Vision-enabled chats
       href: gpt-v-quickstart.md
-    - name: DALL-E
+    - name: Image generation
       href: dall-e-quickstart.md
     - name: Use your data
       href: use-your-data-quickstart.md
     - name: Realtime API for speech and audio (preview)
       href: realtime-audio-quickstart.md
-    - name: Whisper model
+    - name: Speech to text with Whisper
       href: whisper-quickstart.md
     - name: Text to speech (preview)
       href: text-to-speech-quickstart.md
@@ -54,6 +54,8 @@ items:
       href: ./concepts/assistants.md
     - name: Abuse monitoring
       href: ./concepts/abuse-monitoring.md
+    - name: Audio
+      href: ./concepts/audio.md
     - name: Content filtering
       href: ./concepts/content-filter.md
     - name: Default safety policies
@@ -88,13 +90,6 @@ items:
         href: ./concepts/safety-system-message-templates.md
     - name: Model versions
       href: ./concepts/model-versions.md
-    - name: Provisioned throughput units (PTU)
-      href: ./concepts/provisioned-throughput.md
-      displayName: PTU, provisioned, provisioned throughput units
-    - name: Azure OpenAI PTU update
-      href: ./concepts/provisioned-migration.md
-    - name: Azure OpenAI PTU reservation update
-      href: ./concepts/provisioned-reservation-update.md
     - name: Legacy models
       href: ./concepts/legacy-models.md
 - name: How-to 
@@ -117,18 +112,31 @@ items:
           href: ./how-to/assistants-logic-apps.md
       - name: File search
         href: ./how-to/file-search.md
+  - name: Audio
+    items:
+      - name: Realtime API for speech and audio (preview)
+        href: ./how-to/realtime-audio.md
+      - name: Realtime API via WebRTC (preview)
+        href: ./how-to/realtime-audio-webrtc.md
+      - name: Realtime API via WebSockets (preview)
+        href: ./how-to/realtime-audio-websockets.md
   - name: Batch
     href: ./how-to/batch.md
-  - name: Completions & chat completions
+  - name: Responses & chat completions
     items:
+    - name: Responses API
+      href: ./how-to/responses.md
     - name: Reasoning models
       href: ./how-to/reasoning.md
     - name: GPT-35-Turbo & GPT-4 
       href: ./how-to/chatgpt.md
       displayName: ChatGPT, chatgpt
+    - name: Computer Use
+      href: ./how-to/computer-use.md
+      displayName: cua, computer using model
     - name: Vision-enabled chats
       href: ./how-to/gpt-with-vision.md
-    - name: DALL-E
+    - name: Image generation
       href: ./how-to/dall-e.md
     - name: Function calling
       href: ./how-to/function-calling.md
@@ -170,12 +178,28 @@ items:
     items:
       - name: Fine-tuning your model
         href: ./how-to/fine-tuning.md
-        displayName: finetuning 
-      - name: Function calling
+        displayName: finetuning, fine-tuning 
+      - name: Deploy your fine-tuned model
+        href: ./how-to/fine-tuning-deploy.md 
+        displayName: finetuning, fine-tuning  
+      - name: Vision fine-tuning
+        href: ./how-to/fine-tuning-vision.md
+        displayName: finetuning, fine-tuning  
+      - name: Preference fine-tuning
+        href: ./how-to/fine-tuning-direct-preference-optimization.md
+        displayName: finetuning, fine-tuning  
+      - name: Safety evaluation
+        href: ./how-to/fine-tuning-safety-evaluation.md
+        displayName: finetuning, fine-tuning  
+      - name: Tool calling
         href: ./how-to/fine-tuning-functions.md
-        displayName: fine-tuning, finetuning
+        displayName: fine-tuning, finetuning, function calling
       - name: Weights & Biases integration (preview)
         href: ./how-to/weights-and-biases-integration.md
+        displayName: finetuning, fine-tuning  
+      - name: Troubleshooting guidance
+        href: ./how-to/fine-tuning-troubleshoot.md
+        displayName: finetuning, fine-tuning
   - name: Stored completions
     href: ./how-to/stored-completions.md
   - name: Use your data
@@ -191,8 +215,6 @@ items:
         href: ./how-to/azure-developer-cli.md
       - name: Troubleshooting and best practices
         href: ./how-to/on-your-data-best-practices.md
-  - name: Use the Realtime API (preview)
-    href: ./how-to/realtime-audio.md
   - name: Migrate to OpenAI Python v1.x
     href: ./how-to/migration.md
   - name: Migrate to OpenAI JavaScript v4.x
@@ -207,6 +229,8 @@ items:
     items:
       - name: Use virtual networks
         href: ../cognitive-services-virtual-networks.md?context=/azure/ai-services/openai/context/context
+      - name: Virtual networks with private endpoints
+        href: ./how-to/network.md        
       - name: Encryption of data at rest
         href: encrypt-data-at-rest.md
       - name: Managed identity
@@ -223,12 +247,23 @@ items:
         href: ./how-to/dynamic-quota.md
       - name: Monitor Azure OpenAI
         href: ./how-to/monitor-openai.md
-      - name: Onboarding to Provisioned Throughput Units (PTU)
-        href: ./how-to/provisioned-throughput-onboarding.md
-        displayName: PTU, provisioned, provisioned throughput units
-      - name: Get started with Provisioned Deployments
-        href: ./how-to/provisioned-get-started.md
-        displayName: PTU, provisioned, provisioned throughput units
+      - name: Provisioned throughput units (PTU)
+        items:
+        - name: What is the Provisioned Managed offering (PTU)?
+          href: ./concepts/provisioned-throughput.md
+          displayName: PTU, provisioned, provisioned throughput units
+        - name: Understanding and calculating PTU costs 
+          href: ./how-to/provisioned-throughput-onboarding.md
+          displayName: PTU, provisioned, provisioned throughput units
+        - name: Get started with Provisioned Deployments
+          href: ./how-to/provisioned-get-started.md
+          displayName: PTU, provisioned, provisioned throughput units
+        - name: Provisioned spillover
+          href: ./how-to/spillover-traffic-management.md
+        - name: Azure OpenAI PTU updates
+          href: ./concepts/provisioned-migration.md
+        - name: Azure OpenAI PTU in Azure Government
+          href: ./concepts/gov-provisioned.md
       - name: Plan and manage costs
         href: ./how-to/manage-costs.md
       - name: Performance & latency
@@ -270,7 +305,7 @@ items:
     - name: Limited access
       href: /legal/cognitive-services/openai/limited-access?context=/azure/ai-services/openai/context/context
     - name: Code of conduct
-      href: /legal/cognitive-services/openai/code-of-conduct?context=/azure/ai-services/openai/context/context
+      href: /legal/ai-code-of-conduct?context=/azure/ai-services/openai/context/context
     - name: Data, privacy, and security
       href: /legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context
     - name: Customer Copyright Commitment
@@ -283,16 +318,16 @@ items:
       href: reference-preview.md
     - name: Assistants API Reference
       items:
-        - name: Python/REST
+        - name: REST
           items:
           - name: Assistants
-            href: ./assistants-reference.md
+            href: reference-preview.md#list---assistants
           - name: Threads
-            href: ./assistants-reference-threads.md
+            href: reference-preview.md#create---thread
           - name: Messages
-            href: ./assistants-reference-messages.md
+            href: reference-preview.md#list---messages
           - name: Runs
-            href: ./assistants-reference-runs.md 
+            href: reference-preview.md#create---thread-and-run
         - name: SDK 
           items:
           - name: C#
@@ -303,6 +338,8 @@ items:
             href: /java/api/overview/azure/ai-openai-assistants-readme?context=/azure/ai-services/openai/context/context
           - name: JavaScript
             href: /javascript/api/overview/azure/openai-assistants-readme?context=/azure/ai-services/openai/context/context
+          - name: Python
+            href: https://platform.openai.com/docs/api-reference/assistants
           
     - name: Azure OpenAI On Your Data API Reference
       items:

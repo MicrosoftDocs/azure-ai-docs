@@ -2,7 +2,6 @@
 title: "Immersive Reader JavaScript SDK release notes"
 titleSuffix: Azure AI services
 description: Learn about what's new in the Immersive Reader JavaScript SDK.
-#services: cognitive-services
 author: rwallerms
 manager: guillasi
 

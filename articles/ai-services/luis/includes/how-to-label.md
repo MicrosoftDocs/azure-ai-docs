@@ -1,7 +1,6 @@
 ---
 title: Label an entity using the LUIS portal
 description: include file
-#services: cognitive-services
 manager: nitinme
 ms.author: aahi
 author: aahill

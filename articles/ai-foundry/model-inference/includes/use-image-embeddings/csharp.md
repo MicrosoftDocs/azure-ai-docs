@@ -24,24 +24,11 @@ To use embedding models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
+[!INCLUDE [how-to-prerequisites-csharp](../how-to-prerequisites-csharp.md)]
+
 * An image embeddings model deployment. If you don't have one, read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add an embeddings model to your resource.
 
   * This example uses `Cohere-embed-v3-english` from Cohere.
-
-* Install the Azure AI inference package with the following command:
-
-    ```bash
-    dotnet add package Azure.AI.Inference --prerelease
-    ```
-    
-    > [!TIP]
-    > Read more about the [Azure AI inference package and reference](https://aka.ms/azsdk/azure-ai-inference/python/reference).
-
-* If you're using Entra ID, you also need the following package:
-
-    ```bash
-    dotnet add package Azure.Identity
-    ```
 
 ## Use image embeddings
 
@@ -49,7 +36,7 @@ First, create the client to consume the model. The following code uses an endpoi
 
 
 ```csharp
-EmbeddingsClient client = new EmbeddingsClient(
+ImageEmbeddingsClient client = new ImageEmbeddingsClient(
     new Uri("https://<resource>.services.ai.azure.com/models"),
     new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_INFERENCE_CREDENTIAL"))
 );
@@ -64,7 +51,7 @@ BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolic
 
 clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
 
-client = new EmbeddingsClient(
+ImageEmbeddingsClient client = new ImageEmbeddingsClient(
     new Uri("https://<resource>.services.ai.azure.com/models"),
     credential,
     clientOptions

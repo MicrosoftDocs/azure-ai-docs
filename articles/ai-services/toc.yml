@@ -27,7 +27,7 @@ items:
 - name: How-to
   items:
   - name: Plan and manage costs
-    href: ../ai-studio/how-to/costs-plan-manage.md?context=/azure/ai-services/context/context
+    href: ../ai-foundry/how-to/costs-plan-manage.md?context=/azure/ai-services/context/context
   - name: Increase rate limit
     href: autoscale.md
   - name: Use commitment tier pricing

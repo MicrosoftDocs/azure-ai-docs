@@ -1,10 +1,10 @@
 ---
-title: 'Quickstart: Full text search using the Azure SDKs'
+title: 'Quickstart: Full Text Search Using the Azure SDKs'
 titleSuffix: Azure AI Search
 description: "Learn how to create, load, and query a search index using the Azure SDKs for .NET, Python, Java, and JavaScript."
 manager: nitinme
-author: eric-urban
-ms.author: eur
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - devx-track-dotnet
@@ -15,7 +15,7 @@ ms.custom:
   - ignite-2023
 ms.topic: quickstart
 zone_pivot_groups: search-quickstart-full-text
-ms.date: 2/19/2025
+ms.date: 03/04/2025
 ---
 
 # Quickstart: Full text search using the Azure SDKs
@@ -60,7 +60,9 @@ If you're using a free service, remember that you're limited to three indexes, i
 
 ## Next step
 
-In this quickstart, you worked through a set of tasks to create an index, load it with documents, and run queries. At different stages, we took shortcuts to simplify the code for readability and comprehension. Now that you're familiar with the basic concepts, try a tutorial that calls the Azure AI Search APIs in a web app.
+In this quickstart, you worked through a set of tasks to create an index, load it with documents, and run queries. At different stages, we took shortcuts to simplify the code for readability and comprehension.
+
+Now that you're familiar with the basic concepts, try a tutorial that calls the Azure AI Search APIs in a web app:
 
 > [!div class="nextstepaction"]
 > [Tutorial: Add search to web apps](tutorial-csharp-overview.md)

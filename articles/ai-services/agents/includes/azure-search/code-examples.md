@@ -85,13 +85,19 @@ Get the connection ID of the Azure AI Search connection in the project. You can 
 
 ```python
 # AI Search resource connection ID
-# This code prints out the connection ID of all the Azure AI Search connections in the project
-# If you have more than one AI search connection, make sure to select the correct one that contains the index you want to use.
-conn_list = project_client.connections.list()
+# This code looks for the AI Search Connection ID and saves it as variable conn_id
+
+# If you have more than one AI search connection, try to establish the value in your .env file.
+# Extract the connection list.
+conn_list = project_client.connections._list_connections()["value"]
 conn_id = ""
+
+# Search in the metadata field of each connection in the list for the azure_ai_search type and get the id value to establish the variable
 for conn in conn_list:
-    if conn.connection_type == "AZURE_AI_SEARCH":
-        print(f"Connection ID: {conn.id}")
+    metadata = conn["properties"].get("metadata", {})
+    if metadata.get("type", "").upper() == "AZURE_AI_SEARCH":
+        conn_id = conn["id"]
+        break
 ```
 # [C#](#tab/csharp)
 ```csharp
@@ -130,7 +136,8 @@ conn_id =  "/subscriptions/<your-subscription-id>/resourceGroups/<your-resource-
 
 # Initialize agent AI search tool and add the search index connection ID and index name
 # TO DO: replace <your-index-name> with the name of the index you want to use
-ai_search = AzureAISearchTool(index_connection_id=conn_id, index_name="<your-index-name>")
+ai_search = AzureAISearchTool(index_connection_id=conn_id, index_name="<your-index-name>",
+query_type="<select-search-type>")
 ```
 # [C#](#tab/csharp)
 ```csharp
@@ -143,7 +150,7 @@ ToolResources searchResource = new ToolResources
 {
     AzureAISearch = new AzureAISearchResource
     {
-        IndexList = { new IndexResource(connection.Id, "<your-index-name>") }
+        IndexList = { new IndexResource(connection.Id, "<your-index-name>", "<select-search-type>") }
     }
 };
 ```
@@ -255,7 +262,7 @@ message = project_client.agents.create_message(
 print(f"Created message, message ID: {message.id}")
     
 # Run the agent
-run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
+run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
 print(f"Run finished with status: {run.status}")
  
 if run.status == "failed":

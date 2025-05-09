@@ -7,7 +7,7 @@ author: mopeakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 1/21/2025
+ms.date: 03/20/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: references_regions, tool_generated
@@ -24,41 +24,30 @@ To use chat completion models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
-* A chat completions model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
+[!INCLUDE [how-to-prerequisites-javascript](../how-to-prerequisites-javascript.md)]
 
-* Install the [Azure Inference library for JavaScript](https://aka.ms/azsdk/azure-ai-inference/javascript/reference) with the following command:
-
-  ```bash
-  npm install @azure-rest/ai-inference
-  ```
+* A chat completions model deployment. If you don't have one, read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
       
 ## Use chat completions
 
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
 
-
 ```javascript
-import ModelClient from "@azure-rest/ai-inference";
-import { isUnexpected } from "@azure-rest/ai-inference";
-import { AzureKeyCredential } from "@azure/core-auth";
-
-const client = new ModelClient(
-    process.env.AZURE_INFERENCE_ENDPOINT, 
+const client = ModelClient(
+    "https://<resource>.services.ai.azure.com/models", 
     new AzureKeyCredential(process.env.AZURE_INFERENCE_CREDENTIAL)
 );
 ```
 
-If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
-
+If you've configured the resource with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
 ```javascript
-import ModelClient from "@azure-rest/ai-inference";
-import { isUnexpected } from "@azure-rest/ai-inference";
-import { DefaultAzureCredential }  from "@azure/identity";
+const clientOptions = { credentials: { "https://cognitiveservices.azure.com" } };
 
-const client = new ModelClient(
-    process.env.AZURE_INFERENCE_ENDPOINT, 
+const client = ModelClient(
+    "https://<resource>.services.ai.azure.com/models", 
     new DefaultAzureCredential()
+    clientOptions,
 );
 ```
 
@@ -74,6 +63,7 @@ var messages = [
 
 var response = await client.path("/chat/completions").post({
     body: {
+        model: "mistral-large-2407",
         messages: messages,
     }
 });
@@ -126,7 +116,9 @@ var messages = [
 
 var response = await client.path("/chat/completions").post({
     body: {
+        model: "mistral-large-2407",
         messages: messages,
+        stream: true,
     }
 }).asNodeStream();
 ```
@@ -152,7 +144,7 @@ for await (const event of sses) {
         return;
     }
     for (const choice of (JSON.parse(event.data)).choices) {
-        console.log(choice.delta?.content ?? "");
+        process.stdout.write(choice.delta?.content ?? "");
     }
 }
 ```
@@ -169,6 +161,7 @@ var messages = [
 
 var response = await client.path("/chat/completions").post({
     body: {
+        model: "mistral-large-2407",
         messages: messages,
         presence_penalty: "0.1",
         frequency_penalty: "0.8",
@@ -181,7 +174,7 @@ var response = await client.path("/chat/completions").post({
 });
 ```
 
-Some models don't support JSON output formatting. You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
+Some models don't support JSON output formatting. You can always prompt the model to generate JSON outputs. However, such outputs aren't guaranteed to be valid JSON.
 
 If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
 
@@ -199,6 +192,7 @@ var messages = [
 
 var response = await client.path("/chat/completions").post({
     body: {
+        model: "mistral-large-2407",
         messages: messages,
         response_format: { type: "json_object" }
     }
@@ -221,6 +215,7 @@ var response = await client.path("/chat/completions").post({
         "extra-params": "pass-through"
     },
     body: {
+        model: "mistral-large-2407",
         messages: messages,
         logprobs: true
     }
@@ -284,6 +279,7 @@ Prompt the model to book flights with the help of this function:
 ```javascript
 var result = await client.path("/chat/completions").post({
     body: {
+        model: "mistral-large-2407",
         messages: messages,
         tools: tools,
         tool_choice: "auto"
@@ -392,82 +388,3 @@ catch (error) {
 > [!TIP]
 > To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
 
-## Use chat completions with images
-
-Some models can reason across text and images and generate text completions based on both kinds of input. In this section, you explore the capabilities of Some models for vision in a chat fashion:
-
-> [!IMPORTANT]
-> Some models support only one image for each turn in the chat conversation and only the last image is retained in context. If you add multiple images, it results in an error.
-
-To see this capability, download an image and encode the information as `base64` string. The resulting data should be inside of a [data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs):
-
-
-```javascript
-const image_url = "https://news.microsoft.com/source/wp-content/uploads/2024/04/The-Phi-3-small-language-models-with-big-potential-1-1900x1069.jpg";
-const image_format = "jpeg";
-
-const response = await fetch(image_url, { headers: { "User-Agent": "Mozilla/5.0" } });
-const image_data = await response.arrayBuffer();
-const image_data_base64 = Buffer.from(image_data).toString("base64");
-const data_url = `data:image/${image_format};base64,${image_data_base64}`;
-```
-
-Visualize the image:
-
-
-```javascript
-const img = document.createElement("img");
-img.src = data_url;
-document.body.appendChild(img);
-```
-
-:::image type="content" source="../../../../ai-studio/media/how-to/sdks/small-language-models-chart-example.jpg" alt-text="A chart displaying the relative capabilities between large language models and small language models." lightbox="../../../../ai-studio/media/how-to/sdks/small-language-models-chart-example.jpg":::
-
-Now, create a chat completion request with the image:
-
-
-```javascript
-var messages = [
-    { role: "system", content: "You are a helpful assistant that can generate responses based on images." },
-    { role: "user", content: 
-        [
-            { type: "text", text: "Which conclusion can be extracted from the following chart?" },
-            { type: "image_url", image:
-                {
-                    url: data_url
-                }
-            } 
-        ] 
-    }
-];
-
-var response = await client.path("/chat/completions").post({
-    body: {
-        messages: messages,
-        temperature: 0,
-        top_p: 1,
-        max_tokens: 2048,
-    }
-});
-```
-
-The response is as follows, where you can see the model's usage statistics:
-
-
-```javascript
-console.log(response.body.choices[0].message.role + ": " + response.body.choices[0].message.content);
-console.log("Model:", response.body.model);
-console.log("Usage:");
-console.log("\tPrompt tokens:", response.body.usage.prompt_tokens);
-console.log("\tCompletion tokens:", response.body.usage.completion_tokens);
-console.log("\tTotal tokens:", response.body.usage.total_tokens);
-```
-
-```console
-ASSISTANT: The chart illustrates that larger models tend to perform better in quality, as indicated by their size in billions of parameters. However, there are exceptions to this trend, such as Phi-3-medium and Phi-3-small, which outperform smaller models in quality. This suggests that while larger models generally have an advantage, there might be other factors at play that influence a model's performance.
-Model: mistral-large-2407
-Usage: 
-  Prompt tokens: 2380
-  Completion tokens: 126
-  Total tokens: 2506
-```

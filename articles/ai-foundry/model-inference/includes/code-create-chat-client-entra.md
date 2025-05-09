@@ -98,12 +98,12 @@ Add the package to your project:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-inference</artifactId>
-    <version>1.0.0-beta.1</version>
+    <version>1.0.0-beta.4</version>
 </dependency>
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-identity</artifactId>
-    <version>1.13.3</version>
+    <version>1.15.3</version>
 </dependency>
 ```
 

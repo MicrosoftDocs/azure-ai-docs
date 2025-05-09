@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 02/27/2025
 ms.author: lajanuar
 ---
 
@@ -29,7 +29,7 @@ ms.author: lajanuar
 
 > [!IMPORTANT]
 >
-> The v4.0 2024-11-30 (GA) [`model compose` ](#benefits-of-the-new-model-compose-operation) operation adds an explicitly trained classifier instead of an implicit classifier for analysis. For the previous composed model version, *see* Composed custom models v3.1.  If you are currently using composed models consider upgrading to the latest implementation.
+> The v4.0 `2024-11-30` (GA) [`model compose` ](#benefits-of-the-new-model-compose-operation) operation adds an explicitly trained classifier instead of an implicit classifier for analysis. For the previous composed model version, *see* Composed custom models v3.1. If you're currently using composed models, consider upgrading to the latest implementation.
 
 ## What is a composed model?
 
@@ -119,7 +119,7 @@ Composed models are billed the same as individual custom models. The pricing is 
 
 ### Composed model compatibility
 
-|Custom model type|Models trained with v2.1 and v2.0 | Custom template and neural models v3.1 and v3.0 |Custom template and neural models v4.0 2024-11-30 (GA)|
+|Custom model type|Models trained with v2.1 and v2.0 | Custom template and neural models v3.1 and v3.0 |Custom template and neural models v4.0 `2024-11-30` (GA)|
 |--|--|--|--|
 |**Models trained with version 2.1 and v2.0** |Not Supported|Not Supported|Not Supported|
 |**Custom template and neural models v3.0 and v3.1** |Not Supported|Supported|Supported|
@@ -140,7 +140,7 @@ Document Intelligence **v4.0:2024-11-30 (GA)** supports the following tools, app
 | Feature | Resources |
 |----------|-------------|
 |***Custom model***| &bullet; [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/custommodel/projects)</br>&bullet; [REST API](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)</br>&bullet; [C# SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet; [Java SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet; [JavaScript SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)</br>&bullet; [Python SDK](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true)|
-| ***Composed model***| &bullet; [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/custommodel/projects)</br>&bullet; [REST API](/rest/api/aiservices/operation-groups?view=rest-aiservices-2024-02-29-preview&preserve-view=true)</br>&bullet; [C# SDK](/dotnet/api/azure.ai.formrecognizer.training.formtrainingclient.startcreatecomposedmodel)</br>&bullet; [Java SDK](/java/api/com.azure.ai.formrecognizer.training.formtrainingclient.begincreatecomposedmodel)</br>&bullet; [JavaScript SDK](/javascript/api/@azure/ai-form-recognizer/documentmodeladministrationclient?view=azure-node-latest#@azure-ai-form-recognizer-documentmodeladministrationclient-begincomposemodel&preserve-view=true)</br>&bullet; [Python SDK](/python/api/azure-ai-formrecognizer/azure.ai.formrecognizer.formtrainingclient?view=azure-python#azure-ai-formrecognizer-formtrainingclient-begin-create-composed-model&preserve-view=true)|
+| ***Composed model***| &bullet; [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/custommodel/projects)</br>&bullet; [REST API](/rest/api/aiservices/operation-groups?view=rest-aiservices-2024-11-30&preserve-view=true)</br>&bullet; [C# SDK](/dotnet/api/azure.ai.formrecognizer.training.formtrainingclient.startcreatecomposedmodel)</br>&bullet; [Java SDK](/java/api/com.azure.ai.formrecognizer.training.formtrainingclient.begincreatecomposedmodel)</br>&bullet; [JavaScript SDK](/javascript/api/@azure/ai-form-recognizer/documentmodeladministrationclient?view=azure-node-latest#@azure-ai-form-recognizer-documentmodeladministrationclient-begincomposemodel&preserve-view=true)</br>&bullet; [Python SDK](/python/api/azure-ai-formrecognizer/azure.ai.formrecognizer.formtrainingclient?view=azure-python#azure-ai-formrecognizer-formtrainingclient-begin-create-composed-model&preserve-view=true)|
 
 :::moniker-end
 

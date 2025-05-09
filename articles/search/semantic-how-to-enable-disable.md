@@ -10,12 +10,12 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 01/28/2025
+ms.date: 03/31/2025
 ---
 
 # Enable or disable semantic ranker
 
-Semantic ranker is a premium feature billed by usage. By default, semantic ranker is turned on when you create a new billable search service, but anyone with *Contributor* permissions can disable it or change the billing plan. If you don't want anyone to use the feature, you can [disable it service-wide using the management REST API](#disable-semantic-ranker-using-the-rest-api).
+Semantic ranker is a premium feature billed by usage. By default, semantic ranker is enabled on a new billable search service and it's configured for the free plan, but anyone with *Contributor* permissions can disable it or change the billing plan. If you don't want anyone to use the feature, you can [disable it service-wide using the management REST API](#disable-semantic-ranker-using-the-rest-api).
 
 ## Check availability
 
@@ -45,7 +45,7 @@ To enable semantic ranker using the REST API, you can use the [Create or Update 
 
 Management REST API calls are authenticated through Microsoft Entra ID. For instructions on how to authenticate, see [Manage your Azure AI Search service with REST APIs](search-manage-rest.md).
 
-* Management REST API version 2023-11-01 provides the configuration property.
+* Management REST API version 2023-11-01 or later provides the configuration property.
 
 * *Owner* or *Contributor* permissions are required to enable or disable features. 
 

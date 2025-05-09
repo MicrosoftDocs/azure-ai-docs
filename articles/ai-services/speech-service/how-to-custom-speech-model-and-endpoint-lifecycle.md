@@ -7,9 +7,9 @@ manager: nitinme
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/19/2024
+ms.date: 2/25/2025
 ms.reviewer: heikora
-zone_pivot_groups: speech-studio-cli-rest
+zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I want to understand the lifecycle of custom speech models and endpoints so that I can plan for the expiration of my models.
 ---
 
@@ -48,11 +48,22 @@ When a custom model or base model expires, it's no longer available for transcri
 
 ## Get base model expiration dates
 
-::: zone pivot="speech-studio"
-
 The last date that you could use the base model for training was shown when you created the custom model. For more information, see [Train a custom speech model](how-to-custom-speech-train-model.md).
 
 Follow these instructions to get the transcription expiration date for a base model:
+
+::: zone pivot="ai-foundry-portal"
+
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Select **Fine-tuning** from the left pane.
+1. Select **AI Service fine-tuning**.
+1. Select the custom model that you want to check from the **Model name** column.
+1. Select **Deploy models**.
+1. The expiration date for the model is shown in the **Expiration** column. This date is the last date that you can use the model for transcription.
+
+::: zone-end
+
+::: zone pivot="speech-studio"
 
 1. Sign in to the [Speech Studio](https://aka.ms/speechstudio/customspeech). 
 1. Select **Custom speech** > Your project name > **Deploy models**.
@@ -67,7 +78,7 @@ Follow these instructions to get the transcription expiration date for a base mo
 
 To get the training and transcription expiration dates for a base model, use the `spx csr model status` command. Construct the request parameters according to the following instructions:
 
-- Set the `url` parameter to the URI of the base model that you want to get. You can run the `spx csr list --base` command to get available base models for all locales.
+- Set the `url` property to the URI of the base model that you want to get. You can run the `spx csr list --base` command to get available base models for all locales.
 
 Here's an example Speech CLI command to get the training and transcription expiration dates for a base model:
 
@@ -150,6 +161,19 @@ You should receive a response body in the following format:
 
 ## Get custom model expiration dates
 
+::: zone pivot="ai-foundry-portal"
+
+Follow these instructions to get the transcription expiration date for a custom model:
+
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Select **Fine-tuning** from the left pane.
+1. Select **AI Service fine-tuning**.
+1. Select the custom model that you want to check from the **Model name** column.
+1. Select **Deploy models**.
+1. The expiration date for the model is shown in the **Expiration** column. This date is the last date that you can use the model for transcription.
+
+::: zone-end
+
 ::: zone pivot="speech-studio"
 
 Follow these instructions to get the transcription expiration date for a custom model:
@@ -175,7 +199,7 @@ You can also follow these instructions to get the transcription expiration date 
 
 To get the transcription expiration date for your custom model, use the `spx csr model status` command. Construct the request parameters according to the following instructions:
 
-- Set the `url` parameter to the URI of the model that you want to get. Replace `YourModelId` with your model ID and replace `YourServiceRegion` with your Speech resource region.
+- Set the `url` property to the URI of the model that you want to get. Replace `YourModelId` with your model ID and replace `YourServiceRegion` with your Speech resource region.
 
 Here's an example Speech CLI command to get the transcription expiration date for your custom model:
 

@@ -6,7 +6,7 @@ author: mattgotteiner
 ms.author: magottei
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 10/29/2024
+ms.date: 04/14/2025
 ms.custom:
   - subject-reliability
   - references_regions
@@ -21,13 +21,13 @@ Across Azure, [reliability](/azure/reliability/overview) means resiliency and av
 
 + Deploy multiple search services across different geographic regions. All search workloads are fully contained within a single service that runs in a single geographic region, but in a multi-service scenario, you have options for synchronizing content so that it's the same across all services. You can also set up a load balancing solution to redistribute requests or fail over if there's a service outage.
 
-For business continuity and recovery from disasters at a regional level, plan on a cross-regional topology, consisting of multiple search services having identical configuration and content. Your custom script or code provides the *fail over* mechanism to an alternate search service if one suddenly becomes unavailable.
+For business continuity and recovery from disasters at a regional level, plan on a cross-regional topology, consisting of multiple search services having identical configuration and content. Your custom script or code provides the *failover* mechanism to an alternate search service if one suddenly becomes unavailable.
 
 <a name="scale-for-availability"></a>
 
 ## High availability
 
-In Azure AI Search, replicas are copies of your index. A search service is commissioned with at least one replica, and can have up to 12 replicas. [Adding replicas](search-capacity-planning.md#adjust-capacity) allows Azure AI Search to do machine reboots and maintenance against one replica, while query execution continues on other replicas.
+In Azure AI Search, replicas are copies of your index. A search service is commissioned with at least one replica, and can have up to 12 replicas. [Adding replicas](search-capacity-planning.md#add-or-remove-partitions-and-replicas) allows Azure AI Search to do machine reboots and maintenance against one replica, while query execution continues on other replicas.
 
 For each individual search service, Microsoft guarantees at least 99.9% availability for configurations that meet these criteria:
 
@@ -45,7 +45,7 @@ No Service Level Agreement (SLA) is provided for the *Free* tier. For more infor
 
 [Availability zones](/azure/reliability/availability-zones-overview) are an Azure platform capability that divides a region's data centers into distinct physical location groups to provide high availability, within the same region. In Azure AI Search, individual replicas are the units for zone assignment. A search service runs within one region; its replicas run in different physical data centers (or zones) within that region.
 
-Availability zones are used when you add two or more replicas to your search service. Each replica is placed in a different availability zone within the region. If you have more replicas than available zones in the search service region, the replicas are distributed across zones as evenly as possible. There's no specific action on your part, except to [create a search service](search-create-service-portal.md) in a region that provides availability zones, and then to configure the service to [use multiple replicas](search-capacity-planning.md#adjust-capacity).
+Availability zones are used when you add two or more replicas to your search service. Each replica is placed in a different availability zone within the region. If you have more replicas than available zones in the search service region, the replicas are distributed across zones as evenly as possible. There's no specific action on your part, except to [create a search service](search-create-service-portal.md) in a region that provides availability zones, and then to configure the service to [use multiple replicas](search-capacity-planning.md#add-or-remove-partitions-and-replicas).
 
 ### Prerequisites
 
@@ -115,7 +115,7 @@ The goal of a geo-distributed set of search services is to have two or more inde
 You can implement this architecture by creating multiple services and designing a strategy for data synchronization. Optionally, you can include a resource like Azure Traffic Manager for routing requests. 
 
 > [!TIP]
-> For help in deploying multiple search services across multiple regions, see this [Bicep sample on GitHub](https://github.com/Azure-Samples/azure-search-multiple-regions) that deploys a fully configured, multi-regional search solution. The sample gives you two options for index synchronization, and request redirection using Traffic Manager.
+> For help with deploying multiple search services across multiple regions, see this [Bicep sample on GitHub](https://github.com/Azure-Samples/azure-search-multiple-regions) that deploys a fully configured, multi-regional search solution. The sample gives you two options for index synchronization, and request redirection using Traffic Manager.
 
 <a name="data-sync"></a>
 
@@ -166,7 +166,7 @@ Azure Traffic Manager is primarily used for routing network traffic across diffe
 Traffic Manager doesn't provide an endpoint for a direct connection to Azure AI Search, which means you can't put a search service directly behind Traffic Manager. Instead, the assumption is that requests flow to Traffic Manager, then to a search-enabled web client, and finally to a search service on the backend. The client and service are located in the same region. If one search service goes down, the search client starts failing, and Traffic Manager redirects to the remaining client.
 
 > [!NOTE]
-> If you are using Azure Load Balancer [health probes](/azure/load-balancer/load-balancer-custom-probe-overview) on a search service, you must use a HTTPS probe with `/ping` as the path.
+> If you are using Azure Load Balancer [health probes](/azure/load-balancer/load-balancer-custom-probe-overview) on a search service, you must use an HTTPS probe with `/ping` as the path.
 
 ![Diagram of search apps connecting through Azure Traffic Manager.][4]
 
@@ -189,7 +189,7 @@ If you don't use indexers, you would use your application code to push objects a
 
 ## Back up and restore alternatives
 
-A business continuity strategy for the data layer usually includes a restore-from-backup step. Because Azure AI Search isn't a primary data storage solution, Microsoft doesn't provide a formal mechanism for self-service backup and restore. However, you can use the **index-backup-restore** sample code in this [Azure AI Search .NET sample repo](https://github.com/Azure-Samples/azure-search-dotnet-utilities) to back up your index definition and snapshot to a series of JSON files, and then use these files to restore the index, if needed. This tool can also move indexes between service tiers.
+A business continuity strategy for the data layer usually includes a restore-from-backup step. Because Azure AI Search isn't a primary data storage solution, Microsoft doesn't provide a formal mechanism for self-service backup and restore. However, you can use the **index-backup-restore** sample code in this [Azure AI Search .NET sample repo](https://github.com/Azure-Samples/azure-search-dotnet-utilities)  or in this [Python sample repository](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/utilities/index-backup-restore/azure-search-backup-and-restore.ipynb) to back up your index definition and snapshot to a series of JSON files, and then use these files to restore the index, if needed. This tool can also move indexes between service tiers.
 
 Otherwise, your application code used for creating and populating an index is the de facto restore option if you delete an index by mistake. To rebuild an index, you would delete it (assuming it exists), recreate the index in the service, and reload by retrieving data from your primary data store.
 

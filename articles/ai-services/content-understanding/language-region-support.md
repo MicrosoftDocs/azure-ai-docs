@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: reference
 ms.custom: references_regions, ignite-2024-understanding-release
-ms.date: 11/19/2024
+ms.date: 02/28/2025
 ---
 
 # Content Understanding region and language support
@@ -32,6 +32,11 @@ Azure AI Content Understanding enables you to process and integrate multiple dat
 To learn more Content Understanding language support, select a capability from the following tabs.
 
 # [Document](#tab/document)
+
+> [!IMPORTANT]
+>
+> * The following list of supported languages are those that have locale-aware normalization for words enabled in post-processing.
+> * Content Understanding supports different languages so we encourage you to try it out and focus on the content and not the value itself.
 
 |Language|Language code and locale|
 |--------|-------------|

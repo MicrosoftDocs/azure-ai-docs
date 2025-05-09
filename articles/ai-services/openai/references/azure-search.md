@@ -4,8 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI on your Azure Search data Python & REST API.
 manager: nitinme
 ms.service: azure-ai-openai
-ms.topic: conceptual
-ms.date: 09/20/2024
+ms.topic: reference
+ms.date: 02/27/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -95,7 +95,7 @@ The details of the vectorization source, used by Azure OpenAI On Your Data when 
 | `endpoint`|string|True|Specifies the resource endpoint URL from which embeddings should be retrieved. It should be in the format of `https://{YOUR_RESOURCE_NAME}.openai.azure.com/openai/deployments/YOUR_DEPLOYMENT_NAME/embeddings`. The api-version query parameter isn't allowed.|
 | `authentication`| [ApiKeyAuthenticationOptions](#api-key-authentication-options)|True | Specifies the authentication options to use when retrieving embeddings from the specified endpoint.|
 | `type`|string|True| Must be `endpoint`.|
-| `dimensions`|integer|False| The number of dimensions the embeddings should have. Only supported in `text-embedding-3` and later models. |
+| `dimensions`|integer|False| The number of dimensions the embeddings should have. Only supported in `text-embedding-3` and later models. This is supported in the api version 2024-10-21. |
 
 
 ## Fields mapping options

@@ -2,7 +2,6 @@
 title: 'Quickstart: Use Azure OpenAI Service with the JavaScript SDK'
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first chat completions call with the JavaScript SDK. 
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
@@ -22,7 +21,7 @@ ms.date: 10/22
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
 - [TypeScript](https://www.typescriptlang.org/download/)
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
-- An Azure OpenAI Service resource with a `gpt-35-turbo` or `gpt-4` series models deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- An Azure OpenAI Service resource with a `gpt-4` series model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 ### Microsoft Entra ID prerequisites
 
@@ -32,7 +31,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Set up
 
-1. Create a new folder `chat-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
+1. Create a new folder `chat-quickstart` and go to the quickstart folder with the following command:
 
     ```shell
     mkdir chat-quickstart && cd chat-quickstart

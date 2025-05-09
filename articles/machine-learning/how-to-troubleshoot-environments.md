@@ -22,7 +22,9 @@ monikerRange: 'azureml-api-1 || azureml-api-2'
 :::moniker range="azureml-api-1"
 [!INCLUDE [dev v1](includes/machine-learning-dev-v1.md)]
 
-[!INCLUDE [cli-version-info](./includes/machine-learning-cli-v1-deprecation.md)]
+[!INCLUDE [v1 deprecation](includes/sdk-v1-deprecation.md)]
+
+[!INCLUDE [cli v1 deprecation](./includes/machine-learning-cli-v1-deprecation.md)]
 :::moniker-end
 
 In this article, learn how to troubleshoot common problems you may encounter with environment image builds and learn about AzureML environment vulnerabilities.
@@ -735,6 +737,7 @@ The following base images are deprecated:
 * `azureml/openmpi3.1.2-ubuntu18.04`
 * `azureml/openmpi4.1.0-cuda11.0.3-cudnn8-ubuntu18.04`
 * `azureml/openmpi4.1.0-cuda11.1-cudnn8-ubuntu18.04`
+* `azureml/openmpi4.1.0-ubuntu20.04`
 
 **Affected areas (symptoms):**
 * Failure in registering your environment

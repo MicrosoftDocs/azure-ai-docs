@@ -2,7 +2,6 @@
 title: 'How to use blocklists with Azure OpenAI Service'
 titleSuffix: Azure OpenAI
 description: Learn how to use blocklists with Azure OpenAI Service
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
@@ -149,7 +148,7 @@ In the below example, a GPT-35-Turbo deployment with a blocklist is blocking the
         "status": 400, 
         "innererror": { 
             "code": "ResponsibleAIPolicyViolation", 
-            "content_filter_result": { 
+            "content_filter_results": { 
                 "custom_blocklists": [ 
                     { 
                         "filtered": true, 
@@ -253,7 +252,7 @@ If the completion itself is blocked, the response returns `200`, as the completi
 
 #### [Azure AI Foundry](#tab/foundry)
 
-[!INCLUDE [use-blocklists](../../../ai-studio/includes/use-blocklists.md)]
+[!INCLUDE [use-blocklists](../../../ai-foundry/includes/use-blocklists.md)]
 
 ---
 

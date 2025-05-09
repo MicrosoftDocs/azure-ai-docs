@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 09/24/2024
+ms.date: 04/14/2025
 ---
 
 # Configure network access and firewall rules for Azure AI Search
@@ -144,7 +144,7 @@ To set up managed identities for Azure OpenAI and Azure Machine Learning:
 
 To set up a managed identity for an Azure AI service:
 
-1. [Find your multiservice account](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/microsoft.cognitiveServices%2Faccounts).
+1. [Find your multi-service account](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/microsoft.cognitiveServices%2Faccounts).
 1. On the leftmost pane, under **Resource management**, select **Identity**.
 1. Set **System-assigned** to **On**.
 
@@ -164,7 +164,7 @@ The trusted services are used for vectorization workloads: generating vectors fr
 
 1. Select **Next**.
 1. On the **Members** page, select **Managed identity** and **Select members**.
-1. Filter by system-managed identity and then select the managed identity of your Azure AI multiservice account.
+1. Filter by system-managed identity and then select the managed identity of your Azure AI services multi-service account.
 
 > [!NOTE]
 > This article covers the trusted exception for admitting requests to your search service, but Azure AI Search is itself on the trusted services list of other Azure resources. Specifically, you can use the trusted service exception for [connections from Azure AI Search to Azure Storage](search-indexer-howto-access-trusted-service-exception.md).

@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 9/20/2024
+ms.date: 3/3/2025
 ms.author: eur
 ms.custom: references_regions, build-2024
 #Customer intent: As a developer, I want to learn about the languages supported by the Speech service.
@@ -33,7 +33,7 @@ Language support varies by Speech service functionality.
 
 # [Speech to text](#tab/stt)
 
-The table in this section summarizes the locales supported for speech to text ([real-time](speech-to-text.md#real-time-speech-to-text) and [batch](speech-to-text.md#batch-transcription-api) transcription). 
+The table in this section summarizes the locales supported for [real-time speech to text](speech-to-text.md#real-time-speech-to-text), [fast transcription](speech-to-text.md#fast-transcription), and [batch transcription](speech-to-text.md#batch-transcription-api) transcription.
 
 More remarks for speech to text locales are included in the [custom speech](#custom-speech) section of this article. 
 
@@ -46,7 +46,7 @@ More remarks for speech to text locales are included in the [custom speech](#cus
 
 To improve speech to text recognition accuracy, customization is available for some languages and base models. Depending on the locale, you can upload audio + human-labeled transcripts, plain text, structured text, and pronunciation data. By default, plain text customization is supported for all available base models. To learn more about customization, see [custom speech](./custom-speech-overview.md).
 
-These are the locales that support the [display text format feature](./how-to-custom-speech-display-text-format.md): da-DK, de-DE, en-AU, en-CA, en-GB, en-HK, en-IE, en-IN, en-NG, en-NZ, en-PH, en-SG, en-US, es-ES, es-MX, fi-FI, fr-CA, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, sv-SE, tr-TR, zh-CN, zh-HK.
+These locales support the [display text format feature](./how-to-custom-speech-display-text-format.md): da-DK, de-DE, en-AU, en-CA, en-GB, en-HK, en-IE, en-IN, en-NG, en-NZ, en-PH, en-SG, en-US, es-ES, es-MX, fi-FI, fr-CA, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, sv-SE, tr-TR, zh-CN, zh-HK.
 
 
 # [Text to speech](#tab/tts)
@@ -67,9 +67,19 @@ More remarks for text to speech locales are included in the [voice styles and ro
 
 Multilingual voices can support more languages. This expansion enhances your ability to express content in various languages, to overcome language barriers and foster a more inclusive global communication environment. 
 
-Use this table to understand all supported speaking languages for each multilingual neural voice. If the voice doesn’t speak the language of the input text, the Speech service doesn’t output synthesized audio. The table is sorted by the number of supported languages in descending order. The primary locale for each voice is indicated by the prefix in its name, such as the voice `en-US-AndrewMultilingualNeural`, its primary locale is `en-US`.
+Use this table to understand all supported speaking languages for each multilingual neural voice. If the voice doesn’t speak the language of the input text, the Speech service doesn't output synthesized audio. The table is sorted by the number of supported languages in descending order. The locale prefix indicates the primary locale. For example, for the voice `en-US-AndrewMultilingualNeural`, the locale prefix is `en-US`. The locale prefix is the first part of the voice name. 
 
 [!INCLUDE [Language support include](includes/language-support/multilingual-voices.md)]
+
+### Multi-talker voices
+
+Multi-talker voices enable natural, dynamic conversations with multiple distinct speakers. This innovation enhances the realism of synthesized dialogues by preserving contextual flow, emotional consistency, and natural speech patterns.
+
+Use this capability to generate engaging, podcast-style speech or conversational exchanges with seamless transitions between speakers. Unlike single-talker models, which synthesize each turn in isolation, multi-talker voices maintain coherence across dialogue, ensuring a more authentic and immersive listening experience.
+
+[!INCLUDE [Language support include](includes/language-support/multi-talker.md)]
+
+For more information about how to use multi-talker voices via Speech Synthesis Markup Language (SSML), see [Multi-talker voice](speech-synthesis-markup-voice.md#multi-talker-voice-example).
 
 ### Voice styles and roles
 
@@ -97,7 +107,7 @@ Each prebuilt neural voice supports a specific language and dialect, identified 
 
 Each prebuilt neural voice model is available at 24kHz and high-fidelity 48kHz. Other sample rates can be obtained through upsampling or downsampling when synthesizing.
 
-Note that the following neural voices are retired.
+The following neural voices are retired.
 
 - The English (United Kingdom) voice `en-GB-MiaNeural` is retired on October 30, 2021. All service requests to `en-GB-MiaNeural` will be redirected to `en-GB-SoniaNeural` automatically as of October 30, 2021. If you're using containers for text to speech, [download](speech-container-ntts.md#get-the-container-image-with-docker-pull) and deploy the latest version. All requests with previous versions don't succeed starting from October 30, 2021.
 - The `en-US-JessaNeural` voice is retired and replaced by `en-US-AriaNeural`. If you were using "Jessa" before, convert  to "Aria."
@@ -123,7 +133,7 @@ With the cross-lingual feature, you can transfer your custom neural voice model 
 
 # [Pronunciation assessment](#tab/pronunciation-assessment)
 
-The table in this section summarizes the 33 locales supported for pronunciation assessment, and each language is available on all [speech to text regions](regions.md#regions). Latest update extends support from English to 32 more languages and quality enhancements to existing features, including accuracy, fluency and miscue assessment. You should specify the language that you're learning or practicing improving pronunciation. The default language is set as `en-US`. If you know your target learning language, [set the locale](how-to-pronunciation-assessment.md#get-pronunciation-assessment-results) accordingly. For example, if you're learning British English, you should specify the language as `en-GB`. If you're teaching a broader language, such as Spanish, and are uncertain about which locale to select, you can run various accent models (`es-ES`, `es-MX`) to determine the one that achieves the highest score to suit your specific scenario. If you're interested in languages not listed in the following table, fill out this [intake form](https://aka.ms/speechpa/intake) for further assistance.
+The table in this section summarizes the 33 locales supported for pronunciation assessment, and each language is available on all [speech to text regions](regions.md#regions). Latest update extends support from English to 32 more languages and quality enhancements to existing features, including accuracy, fluency, and miscue assessment. You should specify the language that you're learning or practicing improving pronunciation. The default language is set as `en-US`. If you know your target learning language, [set the locale](how-to-pronunciation-assessment.md#get-pronunciation-assessment-results) accordingly. For example, if you're learning British English, you should specify the language as `en-GB`. If you're teaching a broader language, such as Spanish, and are uncertain about which locale to select, you can run various accent models (`es-ES`, `es-MX`) to determine the one that achieves the highest score to suit your specific scenario. If you're interested in languages not listed in the following table, fill out this [intake form](https://aka.ms/speechpa/intake) for further assistance.
 
 [!INCLUDE [Language support include](includes/language-support/pronunciation-assessment.md)]
 
@@ -148,7 +158,7 @@ To set the translation target language, with few exceptions you only specify the
 
 ### Video translation
 
-The following table illustrates the fixed mapping relationship between source and target locales, along with the full locales associated with each language.
+The table in this section summarizes the locales supported for the [video translation API](./video-translation-overview.md). Video translation supports different languages for prebuilt (platform) voice and personal voice. The available source and target languages depend on whether the translation source is prebuilt or personal voice.
 
 [!INCLUDE [Language support include](includes/language-support/video-translation.md)]
 

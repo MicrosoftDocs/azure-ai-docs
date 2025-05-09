@@ -15,6 +15,8 @@ ms.custom: UpdateFrequency5, designer, training
 
 # What is Designer (v1) in Azure Machine Learning?
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 The Azure Machine Learning designer is a drag-and-drop interface used to train and deploy models in Azure Machine Learning studio. This article describes the tasks you can do in the designer.
 
 > [!IMPORTANT]

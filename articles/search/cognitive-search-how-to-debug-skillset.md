@@ -176,7 +176,7 @@ Tunnelmole is an open source tunneling tool that can create a public URL that fo
    + npm:  `npm install -g tunnelmole`
    + Linux: `curl -s https://tunnelmole.com/sh/install-linux.sh | sudo bash`
    + Mac:  `curl -s https://tunnelmole.com/sh/install-mac.sh --output install-mac.sh && sudo bash install-mac.sh`
-   + Windows: Install by using npm. Or if you don't have NodeJS installed, download the [precompiled .exe file for Windows](https://tunnelmole.com/downloads/tmole.exe) and put it somewhere in your PATH.
+   + Windows: Install by using npm. Or if you don't have Node.js installed, download the [precompiled .exe file for Windows](https://tunnelmole.com/downloads/tmole.exe) and put it somewhere in your PATH.
 
 1. Run this command to create a new tunnel:
 

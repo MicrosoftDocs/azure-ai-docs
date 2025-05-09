@@ -29,7 +29,7 @@ Cached content is placed in Azure Storage using account information that you pro
 You should be familiar with setting up indexers. Start with [indexer overview](search-indexer-overview.md) and then continue on to [skillsets](cognitive-search-working-with-skillsets.md) to learn about enrichment pipelines. For more background on key concepts, see [incremental enrichment](cognitive-search-incremental-indexing-conceptual.md).
 
 > [!CAUTION]
-> If you're using the [SharePoint Online indexer (Preview)](search-howto-index-sharepoint-online.md), you should avoid incremental enrichment. Under certain circumstances, the cache becomes invalid, requiring an [indexer reset and run](search-howto-run-reset-indexers.md), should you choose to reload it.
+> Avoid enrichment caching for data originating from the [SharePoint Online indexer (Preview)](search-howto-index-sharepoint-online.md). Under certain circumstances, the cache becomes invalid, requiring a [full indexer reset and run](search-howto-run-reset-indexers.md), should you choose to reload it.
 
 ## Permissions
 

@@ -8,7 +8,7 @@ ms.subservice: training
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: balapv
-ms.date: 03/26/2024
+ms.date: 03/06/2025
 ms.topic: how-to
 ms.custom: sdkv2, update-code
 #Customer intent: As a Python scikit-learn developer, I need to combine open-source with a cloud platform to train, evaluate, and deploy my machine learning models at scale.
@@ -49,7 +49,7 @@ We're using `DefaultAzureCredential` to get access to the workspace. This creden
 
 If `DefaultAzureCredential` doesn't work for you, see [`azure-identity reference documentation`](/python/api/azure-identity/azure.identity) or [`Set up authentication`](how-to-setup-authentication.md?tabs=sdk) for more available credentials.
 
-[!notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=credential)]
+[!Notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=credential)]
 
 If you prefer to use a browser to sign in and authenticate, you should remove the comments in the following code and use it instead.
 
@@ -68,12 +68,12 @@ Next, get a handle to the workspace by providing your Subscription ID, Resource 
 2. Select your workspace name to show your Resource Group and Subscription ID.
 3. Copy the values for Resource Group and Subscription ID into the code.
 
-[!notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=ml_client)]
+[!Notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=ml_client)]
 
 The result of running this script is a workspace handle that you use to manage other resources and jobs.
 
 > [!NOTE]
-> Creating `MLClient` will not connect the client to the workspace. The client initialization is lazy and will wait for the first time it needs to make a call. In this article, this will happen during compute creation.
+> Creating `MLClient` won't connect the client to the workspace. The client initialization is lazy and waits for the first time it needs to make a call. In this article, this happens during compute creation.
 
 ### Create a compute resource 
 
@@ -81,7 +81,7 @@ Azure Machine Learning needs a compute resource to run a job. This resource can 
 
 In the following example script, we provision a Linux [`compute cluster`](./how-to-create-attach-compute-cluster.md?tabs=python). You can see the [`Azure Machine Learning pricing`](https://azure.microsoft.com/pricing/details/machine-learning/) page for the full list of VM sizes and prices. We only need a basic cluster for this example; thus, we pick a Standard_DS3_v2 model with 2 vCPU cores and 7-GB RAM to create an Azure Machine Learning compute.
 
-[!notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=cpu_compute_target)]
+[!Notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=cpu_compute_target)]
 
 ### Create a job environment
 
@@ -91,26 +91,26 @@ Azure Machine Learning allows you to either use a curated (or ready-made) enviro
 
 #### Create a custom environment
 
-To create your custom environment, you define your Conda dependencies in a YAML file. First, create a directory for storing the file. In this example, we've named the directory `env`.
+To create your custom environment, you define your Conda dependencies in a YAML file. First, create a directory for storing the file. In this example, the name is `env`.
 
-[!notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=make_env_folder)]
+[!Notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=make_env_folder)]
 
 Then, create the file in the dependencies directory. In this example, we've named the file `conda.yml`.
 
-[!notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=make_conda_file)]
+[!Notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=make_conda_file)]
 
 The specification contains some usual packages (such as numpy and pip) that you use in your job.
 
 Next, use the YAML file to create and register this custom environment in your workspace. The environment is packaged into a Docker container at runtime.
 
-[!notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=custom_environment)]
+[!Notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=custom_environment)]
 
 For more information on creating and using environments, see [Create and use software environments in Azure Machine Learning](how-to-use-environments.md).
 
 ##### [Optional] Create a custom environment with Intel&reg; Extension for Scikit-Learn
 
-Want to speed up your scikit-learn scripts on Intel hardware? Try adding [Intel&reg; Extension for Scikit-Learn](https://www.intel.com/content/www/us/en/developer/tools/oneapi/scikit-learn.html) into your conda yaml file and following the subsequent steps detailed above. We'll show you how to enable these optimizations later in this example:
-[!notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=make_sklearnex_conda_file)]
+Want to speed up your scikit-learn scripts on Intel hardware? Try adding [Intel&reg; Extension for Scikit-Learn](https://www.intel.com/content/www/us/en/developer/tools/oneapi/scikit-learn.html) into your conda yaml file and following the subsequent steps detailed above. You'll see how to enable these optimizations later in this example:
+[!Notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=make_sklearnex_conda_file)]
 
 ## Configure and submit your training job
 
@@ -123,27 +123,27 @@ In this article, we've provided the training script *train_iris.py*. In practice
 
 > [!NOTE]
 > The provided training script does the following:
-> - shows how to log some metrics to your Azure Machine Learning run;
-> - downloads and extracts the training data using `iris = datasets.load_iris()`; and
-> - trains a model, then saves and registers it.
+> - shows how to log some metrics to your Azure Machine Learning run
+> - downloads and extracts the training data using `iris = datasets.load_iris()`
+> - trains a model, then saves and registers it
 
 To use and access your own data, see [how to read and write data in a job](how-to-read-write-data-v2.md) to make data available during training.
 
 To use the training script, first create a directory where you'll store the file.
 
-[!notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=make_src_folder)]
+[!Notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=make_src_folder)]
 
 Next, create the script file in the source directory.
 
-[!notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=create_script_file)]
+[!Notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=create_script_file)]
 
 #### [Optional] Enable Intel&reg; Extension for Scikit-Learn optimizations for more performance on Intel hardware
 
-If you have installed Intel&reg; Extension for Scikit-Learn (as demonstrated in the previous section), you can enable the performance optimizations by adding the two lines of code to the top of the script file, as shown below.
+If you installed Intel&reg; Extension for Scikit-Learn (as demonstrated in the previous section), you can enable the performance optimizations by adding the two lines of code to the top of the script file, as shown below.
 
 To learn more about Intel&reg; Extension for Scikit-Learn, visit the package's [documentation](https://intel.github.io/scikit-learn-intelex/).
 
-[!notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=create_sklearnex_script_file)]
+[!Notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=create_sklearnex_script_file)]
 
 ### Build the training job
 
@@ -163,15 +163,15 @@ You use the general purpose `command` to run the training script and perform you
     - configure the command line action itself—in this case, the command is `python train_iris.py`. You can access the inputs and outputs in the command via the `${{ ... }}` notation; and
     - configure the metadata such as the display name and experiment name; where an experiment is a container for all the iterations one does on a certain project. All the jobs submitted under the same experiment name would be listed next to each other in Azure Machine Learning studio.
 
-[!notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=job)]
+[!Notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=job)]
 
 ### Submit the job
 
 It's now time to submit the job to run in Azure Machine Learning. This time you use `create_or_update` on `ml_client.jobs`. 
 
-[!notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=create_job)]
+[!Notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=create_job)]
 
-Once completed, the job registers a model in your workspace (as a result of training) and output a link for viewing the job in Azure Machine Learning studio.
+Once completed, the job registers a model in your workspace (as a result of training) and outputs a link for viewing the job in Azure Machine Learning studio.
 
 > [!WARNING]
 > Azure Machine Learning runs training scripts by copying the entire source directory. If you have sensitive data that you don't want to upload, use a [.ignore file](concept-train-machine-learning-model.md#understand-what-happens-when-you-submit-a-training-job) or don't include it in the source directory.
@@ -189,19 +189,19 @@ As the job is executed, it goes through the following stages:
 
 Now that you've seen how to do a simple Scikit-learn training run using the SDK, let's see if you can further improve the accuracy of your model. You can tune and optimize our model's hyperparameters using Azure Machine Learning's [`sweep`](/python/api/azure-ai-ml/azure.ai.ml.sweep) capabilities.
 
-To tune the model's hyperparameters, define the parameter space in which to search during training. You do this by replacing some of the parameters (`kernel` and `penalty`) passed to the training job with special inputs from the `azure.ml.sweep` package.
+To tune the model's hyperparameters, define the parameter space in which to search during training. You tune by replacing some of the parameters (`kernel` and `penalty`) passed to the training job with special inputs from the `azure.ml.sweep` package.
 
-[!notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=job_for_sweep)]
+[!Notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=job_for_sweep)]
 
 Then, you configure sweep on the command job, using some sweep-specific parameters, such as the primary metric to watch and the sampling algorithm to use.
 
 In the following code we use random sampling to try different configuration sets of hyperparameters in an attempt to maximize our primary metric, `Accuracy`.
 
-[!notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=sweep_job)]
+[!Notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=sweep_job)]
 
-Now, you can submit this job as before. This time, you are running a sweep job that sweeps over your train job.
+Now, you can submit this job as before. This time, you're running a sweep job that sweeps over your train job.
 
-[!notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=create_sweep_job)]
+[!Notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=create_sweep_job)]
 
 You can monitor the job by using the studio user interface link that is presented during the job run.
 
@@ -210,16 +210,16 @@ You can monitor the job by using the studio user interface link that is presente
 
 Once all the runs complete, you can find the run that produced the model with the highest accuracy.
 
-[!notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=model)]
+[!Notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=model)]
 
 You can then register this model.
 
-[!notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=register_model)]
+[!Notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/scikit-learn/train-hyperparameter-tune-deploy-with-sklearn/train-hyperparameter-tune-with-sklearn.ipynb?name=register_model)]
 
 
 ## Deploy the model
 
-After you've registered your model, you can deploy it the same way as any other registered model in Azure Machine Learning. For more information about deployment, see [Deploy and score a machine learning model with managed online endpoint using Python SDK v2](how-to-deploy-managed-online-endpoint-sdk-v2.md).
+After you register your model, you can deploy it the same way as any other registered model in Azure Machine Learning. For more information about deployment, see [Deploy and score a machine learning model with managed online endpoint using Python SDK v2](how-to-deploy-managed-online-endpoint-sdk-v2.md).
 
 
 ## Next steps

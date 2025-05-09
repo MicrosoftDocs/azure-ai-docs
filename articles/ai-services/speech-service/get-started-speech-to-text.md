@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: quickstart
-ms.date: 11/19/2024
+ms.date: 3/10/2025
 ms.author: eur
 ms.reviewer: eur
 ms.custom: devx-track-python, devx-track-js, devx-track-csharp, mode-other, devx-track-extended-java, devx-track-go, build-2024, ignite-2024
@@ -17,7 +17,7 @@ zone_pivot_groups: programming-languages-speech-services-studio
 # Quickstart: Recognize and convert speech to text
 
 ::: zone pivot="ai-studio"
-[!INCLUDE [Azure AI Foundry include](includes/quickstarts/speech-to-text-basics/ai-studio.md)]
+[!INCLUDE [Azure AI Foundry include](includes/quickstarts/speech-to-text-basics/ai-foundry.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"

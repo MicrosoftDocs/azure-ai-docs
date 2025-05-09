@@ -16,6 +16,8 @@ monikerRange: 'azureml-api-1'
 
 # Failover for business continuity and disaster recovery
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 To maximize your uptime, plan ahead to maintain business continuity and prepare for disaster recovery with Azure Machine Learning. 
 
 Microsoft strives to ensure that Azure services are always available. However, unplanned service outages may occur. We recommend having a disaster recovery plan in place for handling regional service outages. In this article, you'll learn how to:

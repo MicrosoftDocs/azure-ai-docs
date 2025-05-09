@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 02/20/2025
+ms.date: 02/27/2025
 ms.author: lajanuar
 ---
 
@@ -66,7 +66,7 @@ The process for copying a custom model consists of the following steps:
 The following HTTP request gets copy authorization from your target resource. You need to enter the endpoint and key of your target resource as headers.
 
 ```http
-POST https://<your-resource-endpoint>/documentintelligence/documentModels:authorizeCopy?api-version=2024-02-29-preview
+POST https://<your-resource-endpoint>/documentintelligence/documentModels:authorizeCopy?api-version=2024-11-30
 Ocp-Apim-Subscription-Key: {<your-key>}
 ```
 
@@ -97,7 +97,7 @@ You receive a `200` response code with response body that contains the JSON payl
 The following HTTP request starts the copy operation on the source resource. You need to enter the endpoint and key of your source resource as the url and header. Notice that the request URL contains the model ID of the source model you want to copy.
 
 ```http
-POST https://<your-resource-endpoint>/documentintelligence/documentModels/{modelId}:copyTo?api-version=2024-02-29-preview
+POST https://<your-resource-endpoint>/documentintelligence/documentModels/{modelId}:copyTo?api-version=2024-11-30
 Ocp-Apim-Subscription-Key: {<your-key>}
 ```
 
@@ -118,7 +118,7 @@ You receive a `202\Accepted` response with an Operation-Location header. This va
 
 ```http
 HTTP/1.1 202 Accepted
-Operation-Location: https://<your-resource-endpoint>.cognitiveservices.azure.com/documentintelligence/operations/{operation-id}?api-version=2024-02-29-preview
+Operation-Location: https://<your-resource-endpoint>.cognitiveservices.azure.com/documentintelligence/operations/{operation-id}?api-version=2024-11-30
 ```
 
 > [!NOTE]
@@ -127,7 +127,7 @@ Operation-Location: https://<your-resource-endpoint>.cognitiveservices.azure.com
 ## Track Copy progress
 
 ```console
-GET https://<your-resource-endpoint>.cognitiveservices.azure.com/documentintelligence/operations/{<operation-id>}?api-version=2024-02-29-preview
+GET https://<your-resource-endpoint>.cognitiveservices.azure.com/documentintelligence/operations/{<operation-id>}?api-version=2024-11-30
 Ocp-Apim-Subscription-Key: {<your-key>}
 ```
 
@@ -136,7 +136,7 @@ Ocp-Apim-Subscription-Key: {<your-key>}
 You can also use the **[`Get model`](/rest/api/aiservices/document-models/get-model?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)** API to track the status of the operation by querying the target model. Call the API using the target model ID that you copied down from the [`Generate copy authorization` request](#generate-copy-authorization-request) response.
 
 ```http
-GET https://<your-resource-endpoint>/documentintelligence/documentModels/{modelId}?api-version=2024-02-29-preview" -H "Ocp-Apim-Subscription-Key: <your-key>
+GET https://<your-resource-endpoint>/documentintelligence/documentModels/{modelId}?api-version=2024-11-30" -H "Ocp-Apim-Subscription-Key: <your-key>
 ```
 
 In the response body, you see information about the model. Check the `"status"` field for the status of the model.
@@ -156,7 +156,7 @@ The following code snippets use cURL to make API calls. You also need to fill in
 **Request**
 
 ```bash
-curl -i -X POST "<your-resource-endpoint>/documentintelligence/documentModels:authorizeCopy?api-version=2024-02-29-preview"
+curl -i -X POST "<your-resource-endpoint>/documentintelligence/documentModels:authorizeCopy?api-version=2024-11-30"
 -H "Content-Type: application/json"
 -H "Ocp-Apim-Subscription-Key: <YOUR-KEY>"
 --data-ascii "{
@@ -183,7 +183,7 @@ curl -i -X POST "<your-resource-endpoint>/documentintelligence/documentModels:au
 **Request**
 
 ```bash
-curl -i -X POST "<your-resource-endpoint>/documentintelligence/documentModels/{modelId}:copyTo?api-version=2024-02-29-preview"
+curl -i -X POST "<your-resource-endpoint>/documentintelligence/documentModels/{modelId}:copyTo?api-version=2024-11-30"
 -H "Content-Type: application/json"
 -H "Ocp-Apim-Subscription-Key: <YOUR-KEY>"
 --data-ascii "{
@@ -201,7 +201,7 @@ curl -i -X POST "<your-resource-endpoint>/documentintelligence/documentModels/{m
 
 ```http
 HTTP/1.1 202 Accepted
-Operation-Location: https://<your-resource-endpoint>.cognitiveservices.azure.com/documentintelligence/operations/{operation-id}?api-version=2024-02-29-preview
+Operation-Location: https://<your-resource-endpoint>.cognitiveservices.azure.com/documentintelligence/operations/{operation-id}?api-version=2024-11-30
 ```
 
 ### Track copy operation progress
@@ -233,7 +233,7 @@ The process for copying a custom model consists of the following steps:
 The following HTTP request gets copy authorization from your target resource. You need to enter the endpoint and key of your target resource as headers.
 
 ```http
-POST https://{TARGET_FORM_RECOGNIZER_RESOURCE_ENDPOINT}/formrecognizer/documentModels:authorizeCopy?api-version=2024-02-29-preview
+POST https://{TARGET_FORM_RECOGNIZER_RESOURCE_ENDPOINT}/formrecognizer/documentModels:authorizeCopy?api-version=2024-11-30
 Ocp-Apim-Subscription-Key: {TARGET_FORM_RECOGNIZER_RESOURCE_KEY}
 ```
 

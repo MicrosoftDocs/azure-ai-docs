@@ -7,7 +7,7 @@ ms.date: 1/21/2025
 ms.topic: include
 ---
 
-[!INCLUDE [Feature preview](../../../../ai-studio/includes/feature-preview.md)]
+[!INCLUDE [Feature preview](../../../includes/feature-preview.md)]
 
 You can use Azure AI model inference in your projects in Azure AI Foundry to create reach applications and interact/manage the models available. To use the Azure AI model inference service in your project, you need to create a connection to the Azure AI Services resource.
 

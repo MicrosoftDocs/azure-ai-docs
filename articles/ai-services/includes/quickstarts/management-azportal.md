@@ -48,7 +48,7 @@ To create an Azure AI services resource follow these instructions:
 
 ## Clean up resources
 
-If you want to clean up and remove an Azure AI services subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources contained in the group.
+If you want to clean up and remove an Azure AI services resource, you can delete the resource or resource group. Deleting the resource group also deletes any other resources contained in the group.
 
 1. In the Azure portal, expand the menu on the left side to open the menu of services, and choose **Resource Groups** to display the list of your resource groups.
 1. Locate the resource group containing the resource to be deleted.

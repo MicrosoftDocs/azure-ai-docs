@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 10/24/2024
+ms.date: 03/21/2025
 ---
 
 # Index large data sets in Azure AI Search
@@ -21,7 +21,7 @@ These strategies assume familiarity with the [two basic approaches for importing
 
 This article complements [Tips for better performance](search-performance-tips.md), which offers best practices on index and query design. A well-designed index that includes only the fields and attributes you need is an important prerequisite for large-scale indexing.
 
-We recommend using a newer search service, created after April 3, 2024, for [higher storage per partition](search-limits-quotas-capacity.md#service-limits).
+We recommend using a search service created after April 3, 2024 for [higher storage per partition](search-limits-quotas-capacity.md#service-limits). Older services can also be [upgraded to benefit from higher partition storage](search-how-to-upgrade.md).
 
 > [!NOTE]
 > The strategies described in this article assume a single large data source. If your solution requires indexing from multiple data sources, see [Index multiple data sources in Azure AI Search](/samples/azure-samples/azure-search-dotnet-scale/multiple-data-sources/) for a recommended approach.
@@ -46,7 +46,7 @@ Because the optimal batch size depends on your index and your data, the best app
 
 ### Manage threads and a retry strategy
 
-Indexers have built-in thread management, but when you're using the push APIs, your application code needs to manage threads. Make sure there are sufficient threads to make full use of the available capacity, especially if you've recently increased partitions or upgraded to a higher tier search service. 
+Indexers have built-in thread management, but when you're using the push APIs, your application code needs to manage threads. Make sure there are sufficient threads to make full use of the available capacity, especially if you recently [upgraded your service](search-how-to-upgrade.md), [switched to a higher tier](search-capacity-planning.md#change-your-pricing-tier), or [increased partitions](search-capacity-planning.md#add-or-remove-partitions-and-replicas).
 
 1. [Increase the number of concurrent threads](tutorial-optimize-indexing-push-api.md#use-multiple-threadsworkers) in your client code.
 
@@ -76,7 +76,7 @@ Partitioning data into smaller individual data sources enables parallel processi
 
 As with the push API, indexers allow you to configure the number of items per batch. For indexers based on the [Create Indexer REST API](/rest/api/searchservice/indexers/create), you can set the `batchSize` argument to customize this setting to better match the characteristics of your data. 
 
-Default batch sizes are data-source specific. Azure SQL Database and Azure Cosmos DB have a default batch size of 1,000. In contrast, Azure Blob indexing sets batch size at 10 documents in recognition of the larger average document size. 
+Default batch sizes are data-source specific. Azure SQL Database and Azure Cosmos DB have a default batch size of 1,000. In contrast, Azure Blob and SharePoint Online (Preview) indexing sets batch size at 10 documents in recognition of the larger average document size. 
 
 ### Schedule indexers for long-running processes
 
@@ -97,7 +97,7 @@ When there are no longer any new or updated documents in the data source, indexe
 For more information about setting schedules, see [Create Indexer REST API](/rest/api/searchservice/indexers/create) or see [Schedule indexers for Azure AI Search](search-howto-schedule-indexers.md).
 
 > [!NOTE]
-> Some indexers that run on an older runtime architecture have a 24-hour rather than 2-hour maximum processing window. The two-hour limit is for newer content processors that run in an [internally managed multitenant environment](search-howto-run-reset-indexers.md#indexer-execution-environment). Whenever possible, Azure AI Search tries to offload indexer and skillset processing to the multi-tenant environment. If the indexer can't be migrated, it runs in the private environment and it can run for as long as 24 hours. If you're scheduling an indexer that exhibits these characteristics, assume a 24-hour processing window.
+> Some indexers that run on an older runtime architecture have a 24-hour rather than 2-hour maximum processing window. The two-hour limit is for newer content processors that run in an [internally managed multitenant environment](search-howto-run-reset-indexers.md#indexer-execution-environment). Whenever possible, Azure AI Search tries to offload indexer and skillset processing to the multitenant environment. If the indexer can't be migrated, it runs in the private environment and it can run for as long as 24 hours. If you're scheduling an indexer that exhibits these characteristics, assume a 24-hour processing window.
 
 <a name="parallel-indexing"></a>
 

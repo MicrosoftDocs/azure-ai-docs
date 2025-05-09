@@ -4,8 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI On Your Data Python & REST API.
 manager: nitinme
 ms.service: azure-ai-openai
-ms.topic: conceptual
-ms.date: 07/18/2024
+ms.topic: reference
+ms.date: 02/27/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -49,7 +49,7 @@ The request body inherits the same schema of chat completions API request. This 
 
 |Name | Type | Required | Description |
 |--- | --- | --- | --- |
-| `data_sources` | [DataSource](#data-source)[] | True | The configuration entries for Azure OpenAI On Your Data. There must be exactly one element in the array. If `data_sources` is not provided, the service uses chat completions model directly, and does not use Azure OpenAI On Your Data. When you specify the `data_sources` parameter, you won't be able to to use the `logprobs` or `top_logprobs` parameters. |
+| `data_sources` | [DataSource](#data-source)[] | True | The configuration entries for Azure OpenAI On Your Data. There must be exactly one element in the array. If `data_sources` is not provided, the service uses chat completions model directly, and does not use Azure OpenAI On Your Data. When you specify the `data_sources` parameter, you won't be able to use the `logprobs` or `top_logprobs` parameters. |
 
 ## Response body
 

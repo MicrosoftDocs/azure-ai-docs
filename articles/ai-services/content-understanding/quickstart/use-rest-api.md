@@ -7,7 +7,7 @@ ms.author: tonyeiyalla
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: quickstart
-ms.date: 11/19/2024
+ms.date: 04/14/2025
 ---
 
 # Quickstart: Azure AI Content Understanding REST APIs
@@ -22,7 +22,7 @@ ms.date: 11/19/2024
 
 ## Prerequisites
 
-To get started, you need **An active Azure subscription**. If you don't have an Azure account, you can [create a free subscription](https://azure.microsoft.com/free/). 
+To get started, you need **An active Azure subscription**. If you don't have an Azure account, you can [create a free subscription](https://azure.microsoft.com/free/).
 
 * Once you have your Azure subscription, create an [Azure AI Services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) in the Azure portal. This multi-service resource enables access to multiple Azure AI services with a single set of credentials.
 
@@ -173,6 +173,118 @@ First, create a JSON file named `request_body.json` with the following content:
 ```
 
 ---
+
+### Modified content filtering
+
+* Customers, who are approved, can customize the Content Understanding default content filtering system. After modifications, the output filters will annotate content rather than block it, offering improved control over content filtering in the Content Understanding output.
+
+* To request approval for modified content filtering, complete the following form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
+
+* Once approved, create or update your `request_body.json` file to include the `"disableContentFiltering": true` property.
+
+# [Document](#tab/document)
+
+ Here's a document modality code sample using the`"disableContentFiltering": true` property:
+
+   ```json
+   {
+     "description": "Sample invoice analyzer",
+     "scenario": "document",
+     "config": {
+
+       "disableContentFiltering": true,
+
+       "enableFace": true,
+       "returnDetails": true,
+       },
+       "fieldSchema": {
+
+      <insert your schema here>
+
+       }
+   }
+
+   ```
+
+For more information, *see* [**Content Filtering**](../../openai/concepts/content-filter.md).
+
+# [Image](#tab/image)
+
+Here's an image modality code sample using the`"disableContentFiltering": true` property:
+
+   ```json
+   {
+     "description": "Sample chart analyzer",
+     "scenario": "image",
+     "config": {
+
+       "disableContentFiltering": true,
+
+       "returnDetails": true,
+       },
+       "fieldSchema": { 
+
+       <insert your schema here>
+
+       }
+   }
+
+   ```
+
+For more information, *see* [**Content Filtering**](../../openai/concepts/content-filter.md).
+
+# [Audio](#tab/audio)
+
+Here's an audio modality code sample using the`"disableContentFiltering": true` property:
+
+   ```json
+   {
+     "description": "Sample call transcript analyzer",
+     "scenario": "callCenter",
+     "config": {
+
+       "disableContentFiltering": true,
+
+       "returnDetails": true,
+       "locales": ["en-US"]
+       },
+       "fieldSchema": {
+
+       <insert your schema here>
+
+       }
+   }
+
+   ```
+
+For more information, *see* [**Content Filtering**](../../openai/concepts/content-filter.md).
+
+
+# [Video](#tab/video)
+
+ Here's a video modality code sample using the`"disableContentFiltering": true` property:
+
+   ```json
+   {
+     "description": "Sample marketing video analyzer",
+     "scenario": "videoShot",
+     "config": {
+
+       "disableContentFiltering": true,
+
+       },
+       "fieldSchema": {
+
+       <insert your schema here>
+
+       }
+   }
+
+   ```
+For more information, *see* [**Content Filtering**](../../openai/concepts/content-filter.md).
+
+---
+
 
 Before running the following `cURL` commands, make the following changes to the HTTP request:
 
@@ -540,8 +652,8 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ---
 
-## Next steps 
+## Next steps
 
-* In this quickstart, you learned how to call the [REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true) to create a custom analyzer. For a user experience, try [**Azure AI Foundry portal**](https://ai.azure.com/). 
+* In this quickstart, you learned how to call the [REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true) to create a custom analyzer. For a user experience, try [**Azure AI Foundry portal**](https://ai.azure.com/).
 
 

@@ -18,18 +18,18 @@ Use this article to get started using [Azure AI Foundry](https://ai.azure.com) t
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
 - Once you have your Azure subscription, <a href="/azure/ai-services/openai/how-to/create-resource?pivots=web-portal"  title="Create an Azure OpenAI resource."  target="_blank">create an Azure OpenAI resource </a>.
  For more information about resource creation, see the [resource deployment guide](/azure/ai-services/openai/how-to/create-resource).
-- An [Azure AI Foundry hub](/azure/ai-studio/how-to/create-azure-ai-resource) with your Azure OpenAI resource added as a connection. 
+- An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects) with your Azure OpenAI resource added as a connection. 
 
 ## Prepare your media
 
 You need an image to complete this quickstart. You can use this sample image or any other image you have available.
 
-:::image type="content" source="/azure/ai-studio/media/quickstarts/multimodal-vision/car-accident.png" alt-text="Photo of a car accident that can be used to complete the quickstart." lightbox="/azure/ai-studio/media/quickstarts/multimodal-vision/car-accident.png":::
+:::image type="content" source="/azure/ai-foundry/media/quickstarts/multimodal-vision/car-accident.png" alt-text="Photo of a car accident that can be used to complete the quickstart." lightbox="/azure/ai-foundry/media/quickstarts/multimodal-vision/car-accident.png":::
 
 ## Go to Azure AI Foundry
 
 1. Browse to [Azure AI Foundry](https://ai.azure.com/) and sign in with the credentials associated with your Azure OpenAI resource. During or after the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
-1. Select the hub you'd like to work in.
+1. Select the project you'd like to work in.
 1. On the left nav menu, select **Models + endpoints** and select **+ Deploy model**.
 1. Choose an image-capable deployment by selecting model name: **gpt-4o** or **gpt-4o-mini**. In the window that appears, select a name and deployment type. Make sure your Azure OpenAI resource is connected. For more information about model deployment, see the [resource deployment guide](/azure/ai-services/openai/how-to/create-resource).
 1. Select **Deploy**.

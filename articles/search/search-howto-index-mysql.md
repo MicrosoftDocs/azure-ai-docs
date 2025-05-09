@@ -83,6 +83,9 @@ The data source definition specifies the data to index, credentials, and policie
 
 - Set [`dataDeletionDetectionPolicy`](#DataDeletionDetectionPolicy) if you want to remove search documents from a search index when the source item is deleted.
 
+> [!NOTE]
+> For the container name property, the value is restricted to only allow letters, numbers, underscores (_), dots (.), single dashes (-), and square brackets ([])
+
 ## Create an index
 
 [Create or Update Index](/rest/api/searchservice/indexes/create?view=rest-searchservice-2024-05-01-preview&preserve-view=true) specifies the index schema:

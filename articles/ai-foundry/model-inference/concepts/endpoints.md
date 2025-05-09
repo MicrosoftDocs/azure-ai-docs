@@ -38,7 +38,7 @@ To learn more about how to create deployments see [Add and configure model deplo
 
 ## Azure AI inference endpoint
 
-The Azure AI inference endpoint allows customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. This endpoint follows the [Azure AI model inference API](.././reference/reference-model-inference-api.md) which all the models in Azure AI model inference support. It support the following modalidities:
+The Azure AI inference endpoint allows customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. This endpoint follows the [Azure AI model inference API](.././reference/reference-model-inference-api.md) which all the models in Azure AI model inference support. It support the following modalities:
 
 * Text embeddings
 * Image embeddings

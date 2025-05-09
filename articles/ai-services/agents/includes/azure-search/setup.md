@@ -4,7 +4,7 @@ author: fosteramanda
 ms.author: fosteramanda
 ms.service: azure-ai-agent-service
 ms.topic: include
-ms.date: 12/10/2024
+ms.date: 03/22/2025
 ---
 
 ## Setup: Create an agent that can use an existing Azure AI Search index
@@ -32,7 +32,7 @@ If you already connected the AI Search resource that contains the index you want
     :::image type="content" source="../../media/tools/ai-search/azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search/azure-portal.png":::
 
 ##### Create an Azure AI Search project connection
-If you use Microsoft Entra ID for the connection authentication type, you need to manually assign the project managed identity the roles Search Index Data Contributor and Search Service Contributor to the Azure AI Search resource.
+If you use Microsoft Entra ID for the connection authentication type, you need to manually assign the project managed identity the roles Search Index Data Contributor and Search Service Contributor to the Azure AI Search resource. The connection **name** must be the AI Search **index** name. 
 
 # [Azure CLI](#tab/azurecli)
 **Create the following connections.yml file**
@@ -101,7 +101,7 @@ Now that you have created a project connection to your Azure AI Search resource,
 
 ## Add the Azure AI Search tool to an agent
 
-you can add the Azure AI Search tool to an agent programatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal:
+You can add the Azure AI Search tool to an agent programmatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal:
 
 1. In the **Create and debug** screen for your agent, scroll down the **Setup** pane on the right to **knowledge**. Then select **Add**.
 

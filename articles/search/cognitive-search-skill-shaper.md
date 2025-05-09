@@ -241,7 +241,7 @@ In this case, the **Shaper** creates a complex type. This structure exists in-me
                     "chapterTitles": [
                       { "title": "Start young", "number": 1},
                       { "title": "Laugh often", "number": 2},
-                      { "title": "Eat, sleep and exercise", "number: 3}
+                      { "title": "Eat, sleep and exercise", "number": 3}
                     ]
                 }
             }

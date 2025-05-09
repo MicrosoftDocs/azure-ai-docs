@@ -240,7 +240,7 @@ Semantic segmentation is a speech recognition segmentation strategy that's desig
 - Under-segmentation: When users speak for a long time without pauses, they can see a long sequence of text without breaks ("wall of text"), which severely degrades their readability experience. 
 - Over-segmentation: When a user pauses for a short time, the silence detection mechanism can segment incorrectly. 
 
-Instead of relying on silence timeouts, semantic segmentation segments and returns final results when it detects sentence-ending punctuation (such as '.' or '?'). This improves the user experience with higher-quality, semantically complete segments and prevents long intermediate results. 
+Instead of only relying on silence timeouts, semantic segmentation mostly segments and returns final results when it detects sentence-ending punctuation (such as '.' or '?'). This improves the user experience with higher-quality, semantically complete segments and prevents long intermediate results. 
 
 To use semantic segmentation, you need to set the following property on the `SpeechConfig` instance used to create a `SpeechRecognizer`:
 

@@ -7,7 +7,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/12/2024
+ms.date: 3/10/2025
 ms.devlang: csharp
 ms.custom: devx-track-csharp, devx-track-azurecli
 # Customer intent: As a user who implements audio transcription, I want to learn how to locate audio files for batch transcription.
@@ -39,7 +39,6 @@ The batch transcription API (and [fast transcription API](./fast-transcription-c
 - MULAW in WAV container
 - AMR
 - WebM
-- M4A
 - SPEEX
 
 

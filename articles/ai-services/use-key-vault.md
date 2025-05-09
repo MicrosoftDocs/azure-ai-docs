@@ -6,7 +6,7 @@ ms.author: aahi
 ms.service: azure-ai-services
 ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 8/11/2024
+ms.date: 02/27/2025
 zone_pivot_groups: programming-languages-set-twenty-eight
 ---
 
@@ -89,7 +89,7 @@ Repeat these steps to generate a secret for each required resource credential. F
 
     |Name  | Value  |
     |---------|---------|
-    |Upload options     | Manual         |
+    |Upload options     | Generate         |
     |Name     | A secret name for your key or endpoint. For example: "CognitiveServicesKey" or "CognitiveServicesEndpoint"        |
     |Value     | Your Azure AI services resource key or endpoint.         |
 

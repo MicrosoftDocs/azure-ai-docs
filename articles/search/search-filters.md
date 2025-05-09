@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 09/19/2024
+ms.date: 03/11/2025
 ms.custom:
   - devx-track-csharp
   - ignite-2023

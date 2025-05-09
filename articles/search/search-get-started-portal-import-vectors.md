@@ -1,30 +1,30 @@
 ---
-title: "Quickstart: Vectorize text and images by using the Azure portal"
+title: "Quickstart: Vector Search in the Azure Portal"
 titleSuffix: Azure AI Search
-description: Use a wizard to automate data chunking and vectorization in a search index.
-author: HeidiSteen
-ms.author: heidist
+description: Learn how to use a wizard to automate data chunking and vectorization in a search index.
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: quickstart
-ms.date: 02/06/2025
+ms.date: 04/18/2025
 ---
 
-# Quickstart: Vectorize text and images by using the Azure portal
+# Quickstart: Vectorize text and images in the Azure portal
 
-This quickstart helps you get started with [integrated vectorization](vector-search-integrated-vectorization.md) by using the **Import and vectorize data** wizard in the Azure portal. The wizard chunks your content and calls an embedding model to vectorize content during indexing and for queries.
+In this quickstart, you use the **Import and vectorize data** wizard in the Azure portal to get started with [integrated vectorization](vector-search-integrated-vectorization.md). The wizard chunks your content and calls an embedding model to vectorize content during indexing and for queries.
 
 ## Prerequisites
 
-+ An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-+ [An Azure AI Search service](search-create-service-portal.md) in the same region as your Azure AI multi-service resource. We recommend the Basic tier or higher.
++ An [Azure AI Search service](search-create-service-portal.md) in the same region as your Azure AI services multi-service resource. We recommend the Basic tier or higher.
 
-+ [A supported data source](#supported-data-sources) with the [Health Plan PDF](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) sample documents.
++ A [supported data source](#supported-data-sources) with the [Health Plan PDF](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) sample documents.
 
-+ [A supported embedding model](#supported-embedding-models).
++ A [supported embedding model](#supported-embedding-models).
 
 + Familiarity with the wizard. See [Import data wizards in the Azure portal](search-import-data-portal.md) for details.
 
@@ -47,12 +47,12 @@ Use an embedding model on an Azure AI platform in the [same region as Azure AI S
 | Provider | Supported models |
 |---|---|
 | [Azure OpenAI Service](https://aka.ms/oai/access) | text-embedding-ada-002 <br>text-embedding-3-large <br>text-embedding-3-small |
-| [Azure AI Foundry model catalog](/azure/ai-studio/what-is-ai-studio) | For text: <br>Cohere-embed-v3-english <br>Cohere-embed-v3-multilingual <br>For images: <br>Facebook-DinoV2-Image-Embeddings-ViT-Base <br>Facebook-DinoV2-Image-Embeddings-ViT-Giant |
-| [Azure AI services multi-service account](/azure/ai-services/multi-service-resource) | [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) for image and text vectorization, [available in selected regions](/azure/ai-services/computer-vision/how-to/image-retrieval?tabs=csharp). Depending on how you [attach the multi-service resource](cognitive-search-attach-cognitive-services.md), the multi-service account might need to be in the same region as Azure AI Search. |
+| [Azure AI Foundry model catalog](/azure/ai-foundry/what-is-azure-ai-foundry) | For text: <br>Cohere-embed-v3-english <br>Cohere-embed-v3-multilingual <br>For images: <br>Facebook-DinoV2-Image-Embeddings-ViT-Base <br>Facebook-DinoV2-Image-Embeddings-ViT-Giant |
+| [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) | [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) for image and text vectorization, [available in selected regions](/azure/ai-services/computer-vision/how-to/image-retrieval?tabs=csharp). Depending on how you [attach the multi-service resource](cognitive-search-attach-cognitive-services.md), the multi-service account might need to be in the same region as Azure AI Search. |
 
 If you use the Azure OpenAI Service, the endpoint must have an associated [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains). A custom subdomain is an endpoint that includes a unique name (for example, `https://hereismyuniquename.cognitiveservices.azure.com`). If the service was created through the Azure portal, this subdomain is automatically generated as part of your service setup. Ensure that your service includes a custom subdomain before using it with the Azure AI Search integration.
 
-Azure OpenAI Service resources (with access to embedding models) that were created in Azure AI Foundry portal aren't supported. Only the Azure OpenAI Service resources created in the Azure portal are compatible with the **Azure OpenAI Embedding** skill integration.
+Azure OpenAI Service resources (with access to embedding models) that were created in [Azure AI Foundry portal](https://ai.azure.com/) aren't supported. Only the Azure OpenAI Service resources created in the Azure portal are compatible with the **Azure OpenAI Embedding** skill integration.
 
 ### Public endpoint requirements
 
@@ -104,7 +104,7 @@ This section points you to the content that works for this quickstart.
 
    1. If you're using [native soft delete](search-howto-index-changed-deleted-blobs.md#native-blob-soft-delete), no further steps are required on Azure Storage.
 
-   1. Otherwise, [add custom metadata](search-howto-index-changed-deleted-blobs.md#soft-delete-strategy-using-custom-metadata) that an indexer can scan to determine which blobs are marked for deletion. Give your custom property a descriptive name. For example, you could name the property "IsDeleted", set to false. Do this for every blob in the container. Later, when you want to delete the blob, change the property to true. For more information, see [Change and delete detection when indexing from Azure Storage](search-howto-index-changed-deleted-blobs.md)
+   1. Otherwise, [add custom metadata](search-howto-index-changed-deleted-blobs.md#soft-delete-strategy-using-custom-metadata) that an indexer can scan to determine which blobs are marked for deletion. Give your custom property a descriptive name. For example, you could name the property "IsDeleted", set to false. Do this for every blob in the container. Later, when you want to delete the blob, change the property to true. For more information, see [Change and delete detection when indexing from Azure Storage](search-howto-index-changed-deleted-blobs.md).
 
 ### [ADLS Gen2](#tab/sample-data-adlsgen2)
 
@@ -157,7 +157,7 @@ This section points you to the content that works for this quickstart.
 
 ## Set up embedding models
 
-The wizard can use embedding models deployed from Azure OpenAI, Azure AI Vision, or from the model catalog in Azure AI Foundry portal.
+The wizard can use embedding models deployed from Azure OpenAI, Azure AI Vision, or from the model catalog in [Azure AI Foundry portal](https://ai.azure.com/).
 
 ### [Azure OpenAI](#tab/model-aoai)
 
@@ -189,9 +189,9 @@ The wizard supports text-embedding-ada-002, text-embedding-3-large, and text-emb
 
 The wizard supports Azure AI Vision image retrieval through multimodal embeddings (version 4.0). Internally, the wizard calls the [multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to connect to Azure AI Vision.
 
-1. [Create an Azure AI Vision service in a supported region](/azure/ai-services/computer-vision/how-to/image-retrieval?tabs=csharp#prerequisites).
+1. [Create an Azure AI multi-service resource](/azure/ai-services/multi-service-resource?pivots=azportal#azure-ai-services-resource-for-azure-ai-search-skills). [Choose a region](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) that provides the multimodal embeddings model.
 
-1. Make sure your Azure AI Search service is in the same region.
+1. Make sure your Azure AI Search service is in the same region, and the [region supports AI enrichment](search-region-support.md).
 
 1. After the service is deployed, go to the resource and select **Access control** to assign the **Cognitive Services User** role to your search service's managed identity. Optionally, you can use key-based authentication for the connection.
 
@@ -204,7 +204,7 @@ After you finish these steps, you should be able to select the Azure AI Vision v
 
 The wizard supports Azure, Cohere, and Facebook embedding models in the Azure AI Foundry model catalog, but it doesn't currently support the OpenAI CLIP models. Internally, the wizard calls the [AML skill](cognitive-search-aml-skill.md) to connect to the catalog.
 
-1. For the model catalog, you should have an [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource), a [hub in Azure AI Foundry portal](/azure/ai-studio/how-to/create-projects), and a [project](/azure/ai-studio/how-to/create-projects). Hubs and projects having the same name can share connection information and permissions.
+1. For the model catalog, you should have an [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource), a [hub in Azure AI Foundry portal](/azure/ai-foundry/how-to/create-projects), and a [project](/azure/ai-foundry/how-to/create-projects). Hubs and projects having the same name can share connection information and permissions.
 
 1. Deploy an embedding model to the model catalog in your project.
 
@@ -315,7 +315,7 @@ Chunking is built in and nonconfigurable. The effective settings are:
 
    + Azure OpenAI
    + Azure AI Foundry model catalog
-   + An existing Azure AI Vision multimodal resource in the same region as Azure AI Search. If there's no [Azure AI Services multi-service account](/azure/ai-services/multi-service-resource) in the same region, this option isn't available.
+   + An existing Azure AI Vision multimodal resource in the same region as Azure AI Search. If there's no [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) in the same region, this option isn't available.
 
 1. Choose the Azure subscription.
 
@@ -331,7 +331,7 @@ Chunking is built in and nonconfigurable. The effective settings are:
 
 1. Specify whether you want your search service to authenticate using an API key or managed identity.
 
-   + The identity should have a **Cognitive Services User** role on the Azure AI multi-services account.
+   + The identity should have a **Cognitive Services User** role on the Azure AI services multi-services account.
 
 1. Select the checkbox that acknowledges the billing effects of using these resources.
 
@@ -351,7 +351,7 @@ However, if you work with content that includes useful images, you can apply AI 
 
 Azure AI Search and your Azure AI resource must be in the same region or configured for [keyless billing connections](cognitive-search-attach-cognitive-services.md).
 
-1. On the **Vectorize your images** page, specify the kind of connection the wizard should make. For image vectorization, the wizard can connect to embedding models in Azure AI Foundry portal or Azure AI Vision.
+1. On the **Vectorize your images** page, specify the kind of connection the wizard should make. For image vectorization, the wizard can connect to embedding models in [Azure AI Foundry portal](https://ai.azure.com/) or Azure AI Vision.
 
 1. Specify the subscription.
 

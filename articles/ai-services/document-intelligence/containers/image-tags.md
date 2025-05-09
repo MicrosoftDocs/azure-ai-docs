@@ -14,16 +14,18 @@ ms.author: lajanuar
 
 <!-- markdownlint-disable MD051 -->
 
-:::moniker range="doc-intel-2.1.0 || doc-intel-4.0.0"
+:::moniker range="doc-intel-2.1.0"
 
-Document Intelligence doesn't support containers for v4.0. Support for containers is currently available with Document Intelligence version `2022-08-31 (GA)` for all models and `2023-07-31 (GA)` for Read, Layout, Invoice, Receipt, and ID Document models:
+Support for containers is currently available with Document Intelligence version `2022-08-31 (GA)` for all models, `2023-07-31 (GA)` for Read, Layout, Invoice, Receipt, and ID Document models, and `2024-11-30 (GA)` for Layout model:
 
 * [REST API `2022-08-31 (GA)`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)
 * [REST API `2023-07-31 (GA)`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.1%20(2023-07-31)&tabs=HTTP&preserve-view=true)
+* [REST API `2024-11-30 (GA)`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v4.0%20(2024-11-30)&tabs=HTTP&preserve-view=true)
 * [Client libraries targeting `REST API 2022-08-31 (GA)`](../sdk-overview-v3-0.md)
 * [Client libraries targeting `REST API 2023-07-31 (GA)`](../sdk-overview-v3-1.md)
+* [Client libraries targeting `REST API 2024-11-30 (GA)`](../sdk-overview-v4-0.md)
 
-✔️ See [**Document Intelligence v3.0 container image tags**](?view=doc-intel-3.0.0&preserve-view=true) or [**Document Intelligence v3.1 container image tags**](?view=doc-intel-3.1.0&preserve-view=true) for supported versions of container documentation.
+✔️ See [**Document Intelligence v3.0 container image tags**](?view=doc-intel-3.0.0&preserve-view=true) or [**Document Intelligence v3.1 container image tags**](?view=doc-intel-3.1.0&preserve-view=true) or [**Document Intelligence v4.0 container image tags**](?view=doc-intel-4.0.0&preserve-view=true) for supported versions of container documentation.
 
 :::moniker-end
 
@@ -72,11 +74,26 @@ The following containers support DocumentIntelligence v3.1 models and features:
 
 ::: moniker-end
 
+::: moniker range="doc-intel-4.0.0"
+**This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (GA)**
+
+## Microsoft container registry (MCR)
+
+Document Intelligence container images can be found within the [**Microsoft Artifact Registry** (also know as Microsoft Container Registry(MCR))](https://mcr.microsoft.com/catalog?search=document%20intelligence), the primary registry for all Microsoft published container images.
+
+The following containers support DocumentIntelligence v3.1 models and features:
+
+| Container name |image |
+|---|---|
+| [**Layout 4.0**](https://mcr.microsoft.com/en-us/product/azure-cognitive-services/form-recognizer/layout-4.0/tags) |`mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-4.0:latest`|
+::: moniker-end
+
+
 :::moniker range="doc-intel-2.1.0"
 
 > [!IMPORTANT]
 >
-> Document Intelligence v3.0 containers are now generally available. If you are getting started with containers, consider using the v3 containers.
+> Document Intelligence v3.0 containers are now generally available. If you're getting started with containers, consider using the v3 containers.
 The following containers:
 
 ## Feature containers

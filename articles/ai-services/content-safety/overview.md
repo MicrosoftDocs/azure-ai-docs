@@ -2,12 +2,11 @@
 title: What is Azure AI Content Safety? 
 titleSuffix: Azure AI services
 description: Learn how to use Content Safety to track, flag, assess, and filter inappropriate material in user-generated content.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: overview
-ms.date: 02/21/2025
+ms.date: 02/27/2025
 ms.author: pafarley
 keywords: content safety, Azure AI Content Safety, online content safety, content filtering software, content moderation service, content moderation
 ms.custom: references_regions, build-2023, build-2023-dataai
@@ -136,6 +135,7 @@ See the following list for the input requirements for each feature.
 - **Groundedness detection API (preview)**: 
   - Maximum length for grounding sources: 55,000 characters (per API call).
   - Maximum text and query length: 7,500 characters.
+  - Minimum query length: 3 words.
 - **Protected material detection APIs**: 
   - Default maximum length: 10K characters.
   - Default minimum length: 110 characters (for scanning LLM completions, not user prompts).
@@ -157,7 +157,7 @@ To use the Content Safety APIs, you must create your Azure AI Content Safety res
 |--------------------|--------------------|--------------------|-------|-----------------------------|-------------------|---------------|---------------------------|---------------------------|------|
 | Australia East     | ✅                  |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
 | Canada East          |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| Central US             |                    |                  | ✅    |                            | ✅               |                | ✅                     | ✅                        | ✅    | 
+| Central US             |                    |                  | ✅    |                            | ✅               | ✅               | ✅                     | ✅                        | ✅    | 
 | East US            | ✅                 |  ✅                 | ✅    |  ✅                        | ✅               | ✅             | ✅                     | ✅                       | ✅    |
 | East US 2           |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
 | France Central        |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                       | ✅    | 
@@ -165,7 +165,7 @@ To use the Content Safety APIs, you must create your Azure AI Content Safety res
 | North Central US      |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    |            
 | Poland Central        |                    |                    | ✅    |                            |                 | ✅             | ✅                     | ✅                        | ✅    | 
 | South Central US     |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| South India           |                    |                    | ✅    |                            | ✅               |               | ✅                     | ✅                        | ✅    | 
+| South India           |                    |                    | ✅    |                            | ✅               | ✅              | ✅                     | ✅                        | ✅    | 
 | Sweden Central        |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                       | ✅    | 
 | Switzerland North     | ✅                 |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                       | ✅    | 
 | Switzerland West      |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    |             
@@ -175,6 +175,8 @@ To use the Content Safety APIs, you must create your Azure AI Content Safety res
 | West US              |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
 | West US 2            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
 | West US 3            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
+| Germany West Central |                    |                    |      |                            | ✅               | ✅             | ✅                     |                            | ✅    | 
+| Italy North          |                    |                    |      |                            | ✅               | ✅             | ✅                     |                            | ✅    | 
 | FairFax - USGovArizona|                   |                   | ✅     |                            |                 | ✅              | ✅                      |                           | ✅    | 
 | FairFax - USGovVirginia|                   |                  | ✅     |                            |                 | ✅              | ✅                      |                           | ✅    | 
 

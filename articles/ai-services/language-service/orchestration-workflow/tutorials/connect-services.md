@@ -37,7 +37,7 @@ This tutorial will include creating a **chit chat** knowledge base and **email c
     
     :::image type="content" source="../media/chit-chat.png" alt-text="A screenshot of the chit chat popup." lightbox="../media/chit-chat.png":::
     
-5. Go to **Deploy knowledge base** from the left navigation menu and select **Deploy** and confirm the popup that shows up.
+5. Go to **Deploy knowledge base** from the left pane and select **Deploy** and confirm the popup that shows up.
 
 You are now done with deploying your knowledge base for chit chat. You can explore the type of questions and answers to expect in the **Edit knowledge base** page.
 

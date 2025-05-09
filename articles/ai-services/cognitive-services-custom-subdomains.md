@@ -2,23 +2,22 @@
 title: Custom subdomains
 titleSuffix: Azure AI services
 description: Learn how to add custom subdomain names for Azure AI services resource by using the Azure portal, Azure Cloud Shell, or Azure CLI.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.custom: devx-track-azurecli
 ms.topic: conceptual
-ms.date: 10/30/2024
+ms.date: 05/01/2025
 ms.author: pafarley
 ---
 
 # Custom subdomain names for Azure AI services
 
-Starting in July 2019, Azure AI services use custom subdomain names for each resource created through the [Azure portal](https://portal.azure.com), [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/), or [Azure CLI](/cli/azure/install-azure-cli). Unlike regional endpoints, which were common for all customers in a specific Azure region, custom subdomain names are unique to the resource. Custom subdomain names are required to enable features like Microsoft Entra ID for authentication.
+Since July 2019, new Azure AI service resources use custom subdomain names when created through the [Azure portal](https://portal.azure.com), [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/), or [Azure CLI](/cli/azure/install-azure-cli). Unlike regional endpoints, which were common for all customers in a specific Azure region, custom subdomain names are unique to the resource. Custom subdomain names are required to enable features like Microsoft Entra ID for authentication.
 
 ## How does this impact existing resources?
 
-Azure AI services resources created before July 1, 2019, use the regional endpoints for the associated service. These endpoints work with existing and new resources.
+Azure AI services resources created before July 1, 2019 use the regional endpoints for the associated service. These endpoints work with existing and new resources.
 
 If you'd like to migrate an existing resource to use custom subdomain names to enable features like Microsoft Entra ID, follow these instructions:
 

@@ -5,15 +5,19 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 10/11/2024
-ms.custom: include
+ms.date: 3/8/2025
+ms.custom: references_regions
 ---
 
-[!INCLUDE [Feature preview](../../../../includes/preview-feature.md)]
+In this article, you learn how to use video translation with Azure AI Speech in the [Speech Studio](https://aka.ms/speechstudio).
 
-In this article, you learn how to use Azure AI Speech video translation in the studio.
+## Pre-requisites
 
-All it takes to get started is an original video. See if video translation supports your [language](../../../language-support.md?tabs=speech-translation#video-translation) and [region](../../../video-translation-overview.md#supported-regions-and-languages).
+- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin.
+- An Azure AI Services resource for Speech [in a supported region](../../../video-translation-overview.md#supported-regions-and-languages). If you don't have a Speech resource, create one in the [Azure portal](https://portal.azure.com/).
+- An [Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview) account. 
+- You need a video file in .mp4 format, less than 5 GB, and shorter than 4 hours. For testing purposes, you can use the sample video file provided by Microsoft at [https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4](https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4).
+- Make sure video translation supports your [source and target language](../../../language-support.md?tabs=speech-translation#video-translation).
 
 ## Create a video translation project
 
@@ -27,59 +31,74 @@ To create a video translation project, follow these steps:
 
 1. On the **Create and Manage Projects** page, select **Create a project**.
 
-1. On the **New project** page, select **Voice type**.
+1. On the **New project** page, select a **Voice type**.
 
-   :::image type="content" source="../../../media/video-translation/select-voice-type.png" alt-text="Screenshot of selecting voice type on the new project page.":::
+   :::image type="content" source="../../../media/video-translation/select-voice-type.png" alt-text="Screenshot of selecting a voice type on the new project page." lightbox="../../../media/video-translation/select-voice-type.png":::
    
-   You can select **Prebuilt neural voice** or **Personal voice** for **Voice type**. For prebuilt neural voice, the system automatically 
-   selects the most suitable prebuilt voice by matching the speaker's voice in the video with prebuilt voices. For personal voice, the system offers a model that generates high-quality voice replication in a few seconds.
+   The voice type options are:
+   - **Prebuilt neural voice**: The service automatically selects the most suitable prebuilt voice by matching the speaker's voice in the video with prebuilt voices.
+   - **Personal voice**: Use the personal voice that matches the voice of the speakers in the video. 
 
-   >[!NOTE]
+   > [!NOTE]
    > To use personal voice, you need to apply for [access](https://aka.ms/customneural). 
     
-1. Upload your video file by dragging and dropping the video file or selecting the file manually.
-
-   :::image type="content" source="../../../media/video-translation/upload-video-file.png" alt-text="Screenshot of uploading your video file on the new project page.":::
-
-   Ensure the video is in .mp4 format, less than 500 MB, and shorter than 60 minutes.
+1. Upload your video file by dragging and dropping the video file or selecting the file manually. The video must be in .mp4 format, less than 5 GB, and shorter than 4 hours.
    
-1. Provide **Project name**, and select **Number of speakers**,  **Language of the video**, **Translate to** language.
+1. Provide the **Project name**, **Number of speakers**, **Language of the video**, and **Translate to** language.
 
-    :::image type="content" source="../../../media/video-translation/provide-video-information.png" alt-text="Screenshot of providing video information on the new project page.":::
+1. Select the boxes to acknowledge the pricing information and code of conduct. 
+
+1. Select **Next: Advanced settings** if you want to adjust the advanced settings. 
+
+    :::image type="content" source="../../../media/video-translation/provide-video-information.png" alt-text="Screenshot of providing video information on the new project page." lightbox="../../../media/video-translation/provide-video-information.png":::
+
+1. Optionally, you can adjust the following settings:
+
+    - **Lexicon file**: This option allows you to add custom words or phrases that the system should recognize and pronounce correctly. You can create a lexicon file in the [audio content creation tool in the Speech Studio](https://aka.ms/speechstudio) and select it here. 
+    - **Burn subtitles**: This option allows you to add subtitles to the video. The subtitle file can be in WebVTT or JSON format. You can download a sample WebVTT file for your reference by selecting **Download sample VTT file**.
    
-   If you want to use your own subtitle files, select **Add subtitle file**. You can choose to upload either the source subtitle file or the target subtitle file. The subtitle file can be in WebVTT or JSON format. You can download a sample VTT file for your reference by selecting **Download sample VTT file**.
-   
-   :::image type="content" source="../../../media/video-translation/add-subtitle-file.png" alt-text="Screenshot of adding subtitle file on the new project page.":::
+    :::image type="content" source="../../../media/video-translation/provide-video-information-advanced.png" alt-text="Screenshot of providing lexicon and subtitle information while creating a new project." lightbox="../../../media/video-translation/provide-video-information-advanced.png":::
 
-1. After reviewing the pricing information and code of conduct, then proceed to create the project.
+   If you want to use your own subtitle files, select **Subtitle** > **Upload your own**. You can choose to upload either the source subtitle file or the target subtitle file. 
+   - Automatic subtitles: Results in both source and target language subtitles.
+   - Upload source language subtitles: Results in both source and target language subtitles.
+   - Upload target language subtitles: Results in only target language subtitles.
 
-   Once the upload is complete, you can check the processing status on the project tab.
+1. Select **Create**.
 
-   After the project is created, you can select the project to review detailed settings and make adjustments according to your preferences.
+Once the upload to Azure Blob Storage is complete, you can check the processing status on the project tab.
+
+After the project is created, you can select the project to review detailed settings and make adjustments according to your preferences.
 
 ## Check and adjust voice settings
 
-On the project details page, the project offers two tabs **Translated** and **Original** under **Video**, allowing you to compare them side by side.    
+On the project details page, you can see the **Translated** and **Original** tabs under **Video**. You can compare the original and translated videos by selecting the corresponding tab. The translated video is generated automatically, and you can play it to check the translation quality. 
 
-On the right side of the video, you can view both the original script and the translated script. Hovering over each part of the original script triggers the video to automatically jump to the corresponding segment of the original video, while hovering over each part of the translated script triggers the video to jump to the corresponding translated segment.
+To the right side of the video, you can view both the original script and the translated script. Hovering over each part of the original script triggers the video to automatically jump to the corresponding segment of the original video, while hovering over each part of the translated script triggers the video to jump to the corresponding translated segment.
 
 You can also add or remove segments as needed. When you want to add a segment, ensure that the new segment timestamp doesn't overlap with the previous and next segment, and the segment end time should be larger than the start time. The correct format of timestamp should be `hh:mm:ss.ms`. Otherwise, you can't apply the changes.
 
-You can adjust the time frame of the scripts directly using the audio waveform below the video. After selecting **Apply changes**, the adjustments will be applied.
+You can adjust the time frame of the scripts directly using the audio waveform below the video. The adjustments will be applied after you select **Apply changes**. 
 
 If you encounter segments with an "unidentified" voice name, it might be because the system couldn't accurately detect the voice, especially in situations where speaker voices overlap. In such cases, it's advisable to manually change the voice name.  
 
-:::image type="content" source="../../../media/video-translation/voice-unidentified.png" alt-text="Screenshot of one segment with unidentified voice name.":::
+:::image type="content" source="../../../media/video-translation/voice-unidentified.png" alt-text="Screenshot of one segment with unidentified voice name." lightbox="../../../media/video-translation/voice-unidentified.png":::
 
-If you want to adjust the voice, select **Voice settings** to make some changes. On the **Voice settings** page, you can adjust the voice type, gender, and the voice. Select the voice sample on the right of **Voice** to determine your voice selection. If you find there is missing voice, you can add the new voice name by selecting **Add speaker**. After changing the settings, select **Update**. 
+If you want to adjust the voice, select **Voice settings** to make some changes. On the **Voice settings** page, you can adjust the voice type, gender, and the voice. Select the voice sample on the right of **Voice** to determine your voice selection. If you find there's missing voice, you can add the new voice name by selecting **Add speaker**. After changing the settings, select **Update**. 
 
- :::image type="content" source="../../../media/video-translation/voice-settings.png" alt-text="Screenshot of adjusting voice settings on the voice settings page.":::
+:::image type="content" source="../../../media/video-translation/voice-settings.png" alt-text="Screenshot of adjusting voice settings on the voice settings page." lightbox="../../../media/video-translation/voice-settings.png":::
 
-If you make changes multiple times but haven't finished, you only need to save the changes you've made by selecting **Save**. After making all changes, select **Apply changes** to apply them to the video. You'll be charged only after you select **Apply changes**. 
+You can make multiple changes to the video, including adjusting the voice settings, adding or removing segments, and changing the time frame of the scripts. You're only charged after you select **Apply changes** to apply your changes. You can select **Save** to save work in progress without incurring any charges.
 
- :::image type="content" source="../../../media/video-translation/apply-changes.png" alt-text="Screenshot of selecting apply changes button after making all changes.":::
+:::image type="content" source="../../../media/video-translation/apply-changes.png" alt-text="Screenshot of selecting apply changes button after making all changes." lightbox="../../../media/video-translation/apply-changes.png":::
 
-You can translate the original video into a new language by selecting **New language**. On the **Translate** page, you can choose a new translated language and voice type. Once the video file has been translated, a new project is automatically created. 
+## Translate to another language
+
+You can keep the current translation project and translate the original video into another language.
+
+1. Open your project.
+1. Select **+ New language**. 
+1. On the new **Translate** page that appears, choose a new translated language and voice type. Once the video is translated, a new project is automatically created. 
 
 ## Related content
 

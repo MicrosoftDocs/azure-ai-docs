@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 10/31/2024
+ms.date: 04/14/2025
 ---
 # Fuzzy search to correct misspellings and typos
 

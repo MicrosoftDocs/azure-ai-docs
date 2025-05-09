@@ -1,6 +1,5 @@
 ---
 title: Gather required parameters
-#services: cognitive-services
 author: aahill
 manager: nitinme
 description: The parameters for all Azure AI containers.
