@@ -137,17 +137,6 @@ The JSON response you receive from a model router model looks like the following
 ```
 
 
-## Evaluate model router performance
-
-TBD
-you can create a custom metric, and submit a job to compare the router to other models. then in foundry portal you can compare the performances. 
-
-We provide custom metric test via notebooks.
-in azmon, you can monitor all the standard metrics
-cost analysis page (only in the azure portal). it will show the costs of each underlying model. (no extra charges for model router, above the underlying charges)
-
-See the [Evaluations guide](/azure/ai-services/openai/how-to/evaluations?tabs=question-eval-input).
-
 ## Monitor model router metrics
 
 ### Monitor performance
