@@ -65,6 +65,9 @@ items:
     - name: Accuracy and confidence
       displayName: accuracy, confidence, analyzers, optimization, fields, scores
       href: concepts/accuracy-confidence.md
+    - name: Classifiers
+      displayName: classifiers, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+      href: concepts/classifiers.md  
     - name: Retrieval-augmented generation (RAG)
       displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
       href: concepts/retrieval-augmented-generation.md

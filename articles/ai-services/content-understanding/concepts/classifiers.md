@@ -50,13 +50,13 @@ When you call the classifier, the `analyze` operation includes a `splitMode` pro
 * To classify each page of the input file, set the `splitMode` to `perPage`. The service attempts to classify each page as an individual document.
 * Set the `splitMode` to `auto` and the service identifies the documents and associated page ranges.
 
-### Optional Analysis
+### Optional analysis
 
 For a complete end to end flow, you may link classifier categories with existing analyzers. For each content object classified to categories with linked analyzers, the service automatically invokes analysis on the content object using the corresponding analyzer. As an example, this linking can be used to create classifiers that identify and analyze only invoices from a PDF that may contain multiple types of forms in a document.
 
 * Set the `analyzerId` to an existing analyzer to route and perform field extraction from the classified documents or pages.
 
-### Classifier Limits
+### Classifier limits
 
 ✔️ Classifier requires at least one distinct category to be defined. Response contains the page ranges for each of the categories of documents identified.
 
@@ -73,11 +73,11 @@ Classifier categorizes each page of the input document, unless specified, to one
 For detailed information on supported input document formats, refer to our [Service quotas and limits](../service-limits.md) page.
 
 
-### Best Practices
+### Best practices
 
 To improve classification and splitting quality, it's important to give a good category name and description so the model can understand the categories with some context. For more information on category names and descriptions, *see* [Best practices](../concepts/best-practices.md#classifier-category-names-and-descriptions).
 
-## Key Benefits
+## Key benefits
 
 * **Accuracy and reliability:** Ensure precise document classification, reducing errors and boosting efficiency.
 * **Scalability:** Seamlessly scale out document processing to meet business demands.
