@@ -8,6 +8,8 @@ ms.date: 04/16/2021
 
 # Human Reference Genomes
 
+[!INCLUDE [Open Dataset usage notice](./includes/open-datasets-change-notice.md)]
+
 This dataset includes two human-genome references assembled by the [Genome Reference Consortium](https://www.ncbi.nlm.nih.gov/grc): Hg19 and Hg38.
 
 For more information on Hg19 (GRCh37) data, see the [GRCh37 report at NCBI](https://www.ncbi.nlm.nih.gov/assembly/GCF_000001405.13/).
