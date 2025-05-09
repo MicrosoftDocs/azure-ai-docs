@@ -53,14 +53,14 @@ To use Gretel Navigator chat model with Azure AI Foundry, you need the following
 
 ### A model deployment
 
-**Deployment to serverless APIs**
+**Deployment to standard deployments**
 
-Gretel Navigator chat model can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
+Gretel Navigator chat model can be deployed to standard deployment with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a standard deployment doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a standard deployment](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
-> [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
+> [Deploy the model to standard deployments](deploy-models-serverless.md)
 
 ### The inference package installed
 
@@ -299,14 +299,14 @@ To use Gretel Navigator chat model with Azure AI Foundry, you need the following
 
 ### A model deployment
 
-**Deployment to serverless APIs**
+**Deployment to standard deployments**
 
-Gretel Navigator chat model can be deployed to serverless API endpoints with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
+Gretel Navigator chat model can be deployed to standard deployments with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
-Deployment to a serverless API endpoint doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a serverless API](deploy-models-serverless.md).
+Deployment to a standard deployment doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a standard deployment](deploy-models-serverless.md).
 
 > [!div class="nextstepaction"]
-> [Deploy the model to serverless API endpoints](deploy-models-serverless.md)
+> [Deploy the model to standard deployments](deploy-models-serverless.md)
 
 ### A REST client
 
@@ -524,11 +524,11 @@ For more examples of how to use Gretel models, see the following examples and tu
 | Azure AI Inference package for Python     | Python            | [Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)  | 
 
 
-## Cost and quota considerations for Gretel models deployed as serverless API endpoints
+## Cost and quota considerations for Gretel models deployed as standard deployments
 
 Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. However, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
 
-Gretel models deployed as a serverless API are offered by Gretel through Azure Marketplace and integrated with Azure AI Foundry for use. You can find Azure Marketplace pricing when deploying the model.
+Gretel models deployed as a standard deployment are offered by Gretel through Azure Marketplace and integrated with Azure AI Foundry for use. You can find Azure Marketplace pricing when deploying the model.
 
 Each time a project subscribes to a given offer from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference; however, multiple meters are available to track each scenario independently.
 
@@ -538,7 +538,7 @@ For more information on how to track costs, see [Monitor costs for models offere
 
 
 * [Azure AI Model Inference API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md)
-* [Deploy models as serverless APIs](deploy-models-serverless.md)
-* [Consume serverless API endpoints from a different Azure AI Foundry project or hub](deploy-models-serverless-connect.md)
-* [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)
+* [Deploy models as standard deployments](deploy-models-serverless.md)
+* [Consume standard deployments from a different Azure AI Foundry project or hub](deploy-models-serverless-connect.md)
+* [Region availability for models in standard deployments](deploy-models-serverless-availability.md)
 * [Plan and manage costs (marketplace)](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace)

@@ -33,9 +33,9 @@ Although containers for models "Curated by Azure AI" are scanned for vulnerabili
 
 :::image type="content" source="media/concept-data-privacy/platform-service.png" alt-text="A diagram showing the platform service life cycle." lightbox="media/concept-data-privacy/platform-service.png":::
 
-## Generate inferencing outputs with serverless APIs (Models-as-a-Service)
+## Generate inferencing outputs with standard deployments
 
-When you deploy a model from the model catalog (base or fine-tuned) as a serverless API for inferencing, an API is provisioned giving you access to the model hosted and managed by the Azure Machine Learning Service. Learn more about [Models-as-a-Service](concept-model-catalog.md). The model processes your input prompts and generates outputs based on the functionality of the model, as described in the model details provided for the model. While the model is provided by the model provider, and your use of the model (and the model provider's accountability for the model and its outputs) is subject to the license terms provided with the model, Microsoft provides and manages the hosting infrastructure and API endpoint. The models hosted in Models-as-a-Service are subject to Azure's data, privacy, and security commitments. Learn more about Azure compliance offerings applicable to Azure Machine Learning [here](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3). 
+When you deploy a model from the model catalog (base or fine-tuned) as a standard deployment for inferencing, an API is provisioned giving you access to the model hosted and managed by the Azure Machine Learning Service. Learn more about [Models-as-a-Service](concept-model-catalog.md). The model processes your input prompts and generates outputs based on the functionality of the model, as described in the model details provided for the model. While the model is provided by the model provider, and your use of the model (and the model provider's accountability for the model and its outputs) is subject to the license terms provided with the model, Microsoft provides and manages the hosting infrastructure and API endpoint. The models hosted in Models-as-a-Service are subject to Azure's data, privacy, and security commitments. Learn more about Azure compliance offerings applicable to Azure Machine Learning [here](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3). 
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
@@ -45,9 +45,9 @@ Microsoft acts as the data processor for prompts and outputs sent to and generat
 
 As explained during the deployment process for Models-as-a-Service, Microsoft may share customer contact information and transaction details (including usage volume associated with the offering) with the model publisher so that they can contact customers regarding the model. Learn more about information available to model publishers, [follow this link](/partner-center/analytics).
 
-## Fine-tune a model with serverless APIs (Models-as-a-Service)
+## Fine-tune a model with standard deployments (Models-as-a-Service)
 
-If a model available for serverless API deployment supports fine-tuning, you can upload data to (or designate data already in) an [Azure Machine Learning Datastore](./concept-data.md) to fine-tune the model. You can then create a serverless API for the fine-tuned model. The fine-tuned model can't be downloaded, but the fine-tuned model:
+If a model available for standard deployment supports fine-tuning, you can upload data to (or designate data already in) an [Azure Machine Learning Datastore](./concept-data.md) to fine-tune the model. You can then create a standard deployment for the fine-tuned model. The fine-tuned model can't be downloaded, but the fine-tuned model:
 
 * Is available exclusively for your use;
 

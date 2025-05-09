@@ -21,8 +21,8 @@ zone_pivot_groups: azure-ai-model-catalog-samples-chat
 In this article, you learn about Mistral-7B and Mixtral chat models and how to use them.
 Mistral AI offers two categories of models, namely:
 
-- _Premium models_: These include [Mistral Large, Mistral Small, and Ministral 3B](deploy-models-mistral.md) models, and are available as serverless APIs with pay-as-you-go token-based billing.  
-- _Open models_: These include [Codestral](deploy-models-mistral-codestral.md) and [Mistral Nemo](deploy-models-mistral-nemo.md) (that are available as serverless APIs with pay-as-you-go token-based billing), and Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01 (that are available to download and run on self-hosted managed endpoints).
+- _Premium models_: These include [Mistral Large, Mistral Small, and Ministral 3B](deploy-models-mistral.md) models, and are available as standard deployments with pay-as-you-go token-based billing.  
+- _Open models_: These include [Codestral](deploy-models-mistral-codestral.md) and [Mistral Nemo](deploy-models-mistral-nemo.md) (that are available as standard deployments with pay-as-you-go token-based billing), and Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01 (that are available to download and run on self-hosted managed endpoints).
 
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
@@ -1309,7 +1309,7 @@ It's a good practice to start with a low number of instances and scale up as nee
 
 
 * [Azure AI Model Inference API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md)
-* [Deploy models as serverless APIs](deploy-models-serverless.md)
-* [Consume serverless API endpoints from a different Azure AI Foundry project or hub](deploy-models-serverless-connect.md)
-* [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)
+* [Deploy models as standard deployments](deploy-models-serverless.md)
+* [Consume standard deployment from a different Azure AI Foundry project or hub](deploy-models-serverless-connect.md)
+* [Region availability for models in standard deployment](deploy-models-serverless-availability.md)
 * [Plan and manage costs (marketplace)](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace)

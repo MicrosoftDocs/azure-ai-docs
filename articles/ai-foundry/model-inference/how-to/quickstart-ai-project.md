@@ -139,35 +139,35 @@ Generate your first chat completion:
 Use the parameter `model="<deployment-name>` to route your request to this deployment. *Deployments work as an alias of a given model under certain configurations*. See [Routing](../concepts/endpoints.md#routing) concept page to learn how Azure AI Services route deployments.
 
 
-## Move from Serverless API Endpoints to Azure AI model inference
+## Move from standard deployments to Azure AI model inference
 
-Although you configured the project to use the Azure AI model inference, existing model deployments continue to exist within the project as Serverless API Endpoints. Those deployments aren't moved for you. Hence, you can progressively upgrade any existing code that reference previous model deployments. To start moving the model deployments, we recommend the following workflow:
+Although you configured the project to use the Azure AI model inference, existing model deployments continue to exist within the project as standard deployments. Those deployments aren't moved for you. Hence, you can progressively upgrade any existing code that reference previous model deployments. To start moving the model deployments, we recommend the following workflow:
 
 1. Recreate the model deployment in Azure AI model inference. This model deployment is accessible under the **Azure AI model inference endpoint**.
 
 2. Upgrade your code to use the new endpoint.
 
-3. Clean up the project by removing the Serverless API Endpoint.
+3. Clean up the project by removing the standard deployment.
 
 
 ### Upgrade your code with the new endpoint
 
-Once the models are deployed under Azure AI Services, you can upgrade your code to use the Azure AI model inference endpoint. The main difference between how Serverless API endpoints and Azure AI model inference works reside in the endpoint URL and model parameter. While Serverless API Endpoints have a set of URI and key per each model deployment, Azure AI model inference has only one for all of them.
+Once the models are deployed under Azure AI Services, you can upgrade your code to use the Azure AI model inference endpoint. The main difference between how standard deployments and Azure AI model inference works reside in the endpoint URL and model parameter. While standard deployments have a set of URI and key per each model deployment, Azure AI model inference has only one for all of them.
 
 The following table summarizes the changes you have to introduce:
 
-| Property | Serverless API Endpoints | Azure AI Model Inference |
+| Property | standard deployments | Azure AI Model Inference |
 | -------- | ------------------------ | ------------------------ |
 | Endpoint      | `https://<endpoint-name>.<region>.inference.ai.azure.com` | `https://<ai-resource>.services.ai.azure.com/models` |
 | Credentials | One per model/endpoint. | One per Azure AI Services resource. You can use Microsoft Entra ID too. |
 | Model parameter | None. | Required. Use the name of the model deployment. |
 
 
-### Clean-up existing Serverless API endpoints from your project
+### Clean-up existing standard deployments from your project
 
-After you refactored your code, you might want to delete the existing Serverless API endpoints inside of the project (if any).
+After you refactored your code, you might want to delete the existing standard deployments inside of the project (if any).
 
-For each model deployed as Serverless API Endpoints, follow these steps:
+For each model deployed as standard deployments, follow these steps:
 
 1. Go to [Azure AI Foundry portal](https://ai.azure.com).
 
@@ -182,7 +182,7 @@ For each model deployed as Serverless API Endpoints, follow these steps:
 
 5. Confirm the operation by selecting **Delete**.
 
-6. If you created a **Serverless API connection** to this endpoint from other projects, such connections aren't removed and continue to point to the inexistent endpoint. Delete any of those connections for avoiding errors.
+6. If you created a **standard deployment connection** to this endpoint from other projects, such connections aren't removed and continue to point to the inexistent endpoint. Delete any of those connections for avoiding errors.
 
 ## Limitations
 

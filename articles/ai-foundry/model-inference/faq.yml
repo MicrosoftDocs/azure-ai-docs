@@ -29,13 +29,13 @@ sections:
         answer: |
           Azure AI services are a suite of AI services that provide prebuilt APIs for common AI scenarios. Azure AI Services is part of the Azure AI Foundry platform. Azure AI services can be used in Azure AI Foundry portal to enhance your models with prebuilt AI capabilities.
       - question: |
-          What's the difference between Serverless API Endpoints and Azure AI model inference?
+          What's the difference between standard deployments and Azure AI model inference?
         answer: |
           Both features allow you to deploy Models-as-a-Service models in Azure AI Foundry. However, there are some differences between them:
-          - *Resource involved*: Serverless API Endpoints are deployed within an AI project resource, while Azure AI model inference is part of the Azure AI services resource.
-          - *Deployment options*: Serverless API Endpoints allow regional deployments, while Azure AI model inference allows deployments under a global capacity.
+          - *Resource involved*: standard deployments are deployed within an AI project resource, while Azure AI model inference is part of the Azure AI services resource.
+          - *Deployment options*: standard deployments allow regional deployments, while Azure AI model inference allows deployments under a global capacity.
           - *Models*: Azure AI model inference also supports deploying Azure OpenAI models.
-          - *Endpoint*: Serverless API Endpoints creates one endpoint and credential per deployment, while Azure AI model inference creates one endpoint and credential per resource.
+          - *Endpoint*: standard deployments creates one endpoint and credential per deployment, while Azure AI model inference creates one endpoint and credential per resource.
           - *Model router*: Azure AI model inference allows you to switch between models without changing your code using a model router.
   - name: Models
     questions:
