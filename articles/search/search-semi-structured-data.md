@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Index semi-structured data in JSON blobs'
+title: 'Tutorial: Index Semi-Structured Data in JSON Blobs'
 titleSuffix: Azure AI Search
 description: Learn how to index and search semi-structured Azure JSON blobs using Azure AI Search REST APIs.
 
@@ -10,15 +10,15 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 12/10/2024
+ms.date: 03/28/2025
 
 ---
 
 # Tutorial: Index nested JSON blobs from Azure Storage using REST
 
-Azure AI Search can index JSON documents and arrays in Azure Blob Storage using an [indexer](search-indexer-overview.md) that knows how to read semi-structured data. Semi-structured data contains tags or markings which separate content within the data. It splits the difference between unstructured data, which must be fully indexed, and formally structured data that adheres to a data model, such as a relational database schema that can be indexed on a per-field basis.
+Azure AI Search can index JSON documents and arrays in Azure Blob Storage using an [indexer](search-indexer-overview.md) that knows how to read semi-structured data. Semi-structured data contains tags or markings that separate content within the data. It splits the difference between unstructured data, which must be fully indexed, and formally structured data that adheres to a data model, such as a relational database schema that can be indexed on a per-field basis.
 
-This tutorial shows you to index nested JSON arrays. It uses a REST client and the [Search REST APIs](/rest/api/searchservice/) to perform the following tasks:
+This tutorial shows you how to index nested JSON arrays, using a REST client and the [Search REST APIs](/rest/api/searchservice/) to:
 
 > [!div class="checklist"]
 > + Set up sample data and configure an `azureblob` data source
@@ -26,18 +26,18 @@ This tutorial shows you to index nested JSON arrays. It uses a REST client and t
 > + Create and run an indexer to read the container and extract searchable content
 > + Search the index you just created
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
-
 ## Prerequisites
+
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+
++ [Azure Storage](/azure/storage/common/storage-account-create).
+
++ [Azure AI Search](search-what-is-azure-search.md). [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription.
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
-+ [Azure Storage](/azure/storage/common/storage-account-create)
-
-+ [Azure AI Search](search-what-is-azure-search.md). [Create](search-create-service-portal.md) or [find an existing Azure AI Search resource](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) under your current subscription.
-
 > [!NOTE]
-> You can use the free service for this tutorial. A free search service limits you to three indexes, three indexers, and three data sources. This tutorial creates one of each. Before starting, make sure you have room on your service to accept the new resources.
+> You can use a free search service for this tutorial. The Free tier limits you to three indexes, three indexers, and three data sources. This tutorial creates one of each. Before you start, make sure you have room on your service to accept the new resources.
 
 ### Download files
 
@@ -45,7 +45,7 @@ Download a zip file of the sample data repository and extract the contents. [Lea
 
 + [ny-philharmonic-free](https://github.com/Azure-Samples/azure-search-sample-data)
 
-Sample data is a single JSON file containing a JSON array and 1,521 nested JSON elements. Sample data originates from [NY Philharmonic Performance History](https://www.kaggle.com/datasets/nyphil/perf-history) on Kaggle. We chose one JSON file to stay under the storage limits of the free tier.
+The sample data is a single JSON file that contains a JSON array and 1,521 nested JSON elements. The data originates from the [NY Philharmonic Performance History](https://www.kaggle.com/datasets/nyphil/perf-history) on Kaggle. We chose one JSON file to stay under the storage limits of the Free tier.
 
 Here's the first nested JSON in the file. The remainder of the file includes 1,520 other instances of concert performances.
 
@@ -90,7 +90,7 @@ Here's the first nested JSON in the file. The remainder of the file includes 1,5
 
 ### Upload sample data to Azure Storage
 
-1. In Azure Storage, create a new container and name it *ny-philharmonic-free*.
+1. In Azure Storage, create a new container named **ny-philharmonic-free**.
 
 1. [Upload the sample data files](/azure/storage/blobs/storage-quickstart-blobs-portal).
 
@@ -106,7 +106,7 @@ Here's the first nested JSON in the file. The remainder of the file includes 1,5
 
 ### Copy a search service URL and API key
 
-For this tutorial, connections to Azure AI Search require an endpoint and an API key. You can get these values from the Azure portal.
+For this tutorial, connections to Azure AI Search require an endpoint and an API key. You can get these values from the Azure portal. For alternative connection methods, see [Managed identities](search-howto-managed-identities-data-sources.md).
 
 1. Sign in to the [Azure portal](https://portal.azure.com), navigate to the search service **Overview** page, and copy the URL. An example endpoint might look like `https://mydemo.search.windows.net`.
 
@@ -116,9 +116,9 @@ For this tutorial, connections to Azure AI Search require an endpoint and an API
 
 ## Set up your REST file
 
-1. Start Visual Studio Code and create a new file
+1. Start Visual Studio Code and create a new file.
 
-1. Provide values for variables used in the request: 
+1. Provide values for variables used in the request.
 
    ```http
    @baseUrl = PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE
@@ -129,7 +129,7 @@ For this tutorial, connections to Azure AI Search require an endpoint and an API
 
 1. Save the file using a `.rest` or `.http` file extension.
 
-See [Quickstart: Text search using REST](search-get-started-rest.md) if you need help with the REST client.
+For help with the REST client, see [Quickstart: Keyword search using REST](search-get-started-rest.md).
 
 ## Create a data source
 
@@ -199,7 +199,7 @@ Connection: close
 
 [Create Index (REST)](/rest/api/searchservice/indexes/create) creates a search index on your search service. An index specifies all the parameters and their attributes.
 
-For nested JSON, the index fields must be identical to the source fields. Currently, Azure AI Search doesn't support field mappings to nested JSON. For this reason, field names and data types must match completely. The following index aligns to the JSON elements in the raw content.
+For nested JSON, the index fields must be identical to the source fields. Currently, Azure AI Search doesn't support field mappings to nested JSON, so field names and data types must match completely. The following index aligns to the JSON elements in the raw content.
 
 ```http
 ### Create an index
@@ -235,7 +235,7 @@ POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
     }
 ```
 
-**Key points**:
+Key points:
 
 + You can't use [field mappings](search-indexer-field-mappings.md) to reconcile differences in field names or data types. This index schema is designed to mirror the raw content.
 
@@ -268,7 +268,7 @@ POST {{baseUrl}}/indexers?api-version=2024-07-01  HTTP/1.1
     }
 ```
 
-**Key points**:
+Key points:
 
 + The raw content file contains a JSON array (`"programs"`) with 1,526 nested JSON structures. Set `parsingMode` to `jsonArray` to tell the indexer that each blob contains a  JSON array. Because the nested JSON starts one level down, set `documentRoot` to `/programs`.
 
@@ -290,7 +290,7 @@ POST {{baseUrl}}/indexes/ny-philharmonic-index/docs/search?api-version=2024-07-0
   }
 ```
 
-Send the request. This is an unspecified full text search query that returns all of the fields marked as retrievable in the index, along with a document count. The response should look like:
+Send the request. This is an unspecified full-text search query that returns all of the fields marked as retrievable in the index, along with a document count. The response should look like:
 
 ```json
 HTTP/1.1 200 OK
@@ -321,7 +321,7 @@ Connection: close
 }
 ```
 
-Add a `search` parameter to search on a string. Add a `select` parameter to limit the results to fewer fields. Add a `filter` to further narrow the search.
+Add a `search` parameter to search on a string, a `select` parameter to limit the results to fewer fields, and a `filter` to further narrow the search.
 
 ```http
 ### Query the index
@@ -339,14 +339,14 @@ POST {{baseUrl}}/indexes/ny-philharmonic-index/docs/search?api-version=2024-07-0
 
 Two documents are returned in the response.
 
-For filters, you can also use Logical operators (and, or, not) and comparison operators (eq, ne, gt, lt, ge, le). String comparisons are case-sensitive. For more information and examples, see [Create a query](search-query-simple-examples.md).
+For filters, you can also use Logical operators (and, or, not) and comparison operators (eq, ne, gt, lt, ge, le). String comparisons are case -sensitive. For more information and examples, see [Create a query](search-query-simple-examples.md).
 
 > [!NOTE]
-> The `$filter` parameter only works on fields that were marked filterable at the creation of your index.
+> The `$filter` parameter only works on fields that were marked filterable during index creation.
 
 ## Reset and rerun
 
-Indexers can be reset, clearing execution history, which allows a full rerun. The following GET requests are for reset, followed by rerun.
+Indexers can be reset to clear execution history, which allows a full rerun. The following GET requests are for reset, followed by rerun.
 
 ```http
 ### Reset the indexer
@@ -374,7 +374,7 @@ You can use the Azure portal to delete indexes, indexers, and data sources.
 
 ## Next steps
 
-Now that you're familiar with the basics of Azure Blob indexing, let's take a closer look at indexer configuration for JSON blobs in Azure Storage.
+Now that you're familiar with the basics of Azure Blob indexing, take a closer look at indexer configuration for JSON blobs in Azure Storage:
 
 > [!div class="nextstepaction"]
 > [Configure JSON blob indexing](search-howto-index-json-blobs.md)

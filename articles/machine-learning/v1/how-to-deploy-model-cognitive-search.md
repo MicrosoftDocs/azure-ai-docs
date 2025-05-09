@@ -23,6 +23,8 @@ monikerRange: 'azureml-api-1'
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 This article teaches you how to use Azure Machine Learning to deploy a model for use with [Azure AI Search](/azure/search/search-what-is-azure-search).
 
 Azure AI Search performs content processing over heterogenous content, to make it queryable by humans or applications. This process can be enhanced by using a model deployed from Azure Machine Learning.

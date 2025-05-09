@@ -1,17 +1,17 @@
 ### YamlMime:Landing
 
 title: Azure OpenAI Service documentation # < 60 chars
-summary: Azure OpenAI Service provides access to OpenAI's models including the GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, GPT-3.5-Turbo, DALLE-3 and Embeddings model series with the security and enterprise capabilities of Azure. 
+summary: Azure OpenAI Service provides access to OpenAI's models including o-series, GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, GPT-3.5-Turbo, GPT-image-1 and Embeddings model series with the security and enterprise capabilities of Azure. 
   
 metadata:
   title: Azure OpenAI Service documentation - Quickstarts, Tutorials, API Reference - Azure AI services | Microsoft Docs
-  description: Learn how to use Azure OpenAI's powerful models including the GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, GPT-3.5-Turbo, DALL-E 3 and Embeddings model series
+  description: Learn how to use Azure OpenAI's powerful models including o-series, GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, GPT-3.5-Turbo, GPT-image-1, and Embeddings model series
   ms.service: azure-ai-openai
   ms.custom:
   ms.topic: landing-page
   author: mrbullwinkle
   ms.author: mbullwin
-  ms.date: 09/18/2024
+  ms.date: 03/27/2025
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 # Limits: https://review.learn.microsoft.com/help/contribute/contribute-how-to-write-landing-page?branch=main#limits
@@ -42,11 +42,11 @@ landingContent:
              url: chatgpt-quickstart.md
            - text: Vision-enabled models
              url: gpt-v-quickstart.md  
-           - text: DALL-E
+           - text: Image generation
              url: dall-e-quickstart.md
            - text: Use your data (preview)
              url: use-your-data-quickstart.md
-           - text: Whisper
+           - text: Speech to text with Whisper
              url: whisper-quickstart.md
            - text: Text to speech (preview)
              url: text-to-speech-quickstart.md
@@ -86,17 +86,17 @@ landingContent:
      linkLists:
          - linkListType: get-started
            links:
-             - text: Migrate to OpenAI Python 1.x
-               url: ./how-to/migration.md
-             - text: Manage models
-               url: ./how-to/working-with-models.md
+             - text: Responses API & computer-use-preview
+               url: ./how-to/responses.md
+             - text: Reasoning models
+               url: ./how-to/reasoning.md
              - text: OpenAI versus Azure OpenAI (Python)
                url: ./how-to/switching-endpoints.yml
              - text: Global batch
                url: ./how-to/batch.md
-             - text: Role-based access control (Azure RBAC)
-               url: ./how-to/role-based-access-control.md 
-             - text: GPT-3.5 Turbo & GPT-4
+             - text: Structured outputs
+               url: ./how-to/structured-outputs.md
+             - text: Chat completion models
                url:  ./how-to/chatgpt.md
              - text: Vision-enabled models
                url:  ./how-to/gpt-with-vision.md

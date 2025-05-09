@@ -15,6 +15,8 @@ ms.custom: UpdateFrequency5, devx-track-python, sdkv1
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this tutorial, you learn how to convert Jupyter notebooks into Python scripts to make it testing and automation friendly using the MLOpsPython code template and Azure Machine Learning. Typically, this process is used to take experimentation / training code from a Jupyter notebook and convert it into Python scripts. Those scripts can then be used testing and CI/CD automation in your production environment. 
 
 A machine learning project requires experimentation where hypotheses are tested with agile tools like Jupyter Notebook using real datasets. Once the model is ready for production, the model code should be placed in a production code repository. In some cases, the model code must be converted to Python scripts to be placed in the production code repository. This tutorial covers a recommended approach on how to export experimentation code to Python scripts.

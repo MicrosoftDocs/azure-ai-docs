@@ -145,7 +145,7 @@ ml_client.begin_create_or_update(compute_instance)
 You can't create a compute cluster or compute instance from the Azure portal. Instead, use the following steps to create these computes from Azure Machine Learning [studio](https://ml.azure.com):
 
 1. From [studio](https://ml.azure.com), select your workspace.
-1. Select the __Compute__ page from the left navigation bar.
+1. Select the __Compute__ page from the left pane.
 1. Select the __+ New__ from the navigation bar of _compute instance_ or _compute cluster_.
 1. Configure the VM size and configuration you need, then select __Next__ until you arrive at the following pages:
 

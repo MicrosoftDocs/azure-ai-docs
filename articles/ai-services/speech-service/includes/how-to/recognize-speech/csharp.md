@@ -15,8 +15,8 @@ ms.custom: devx-track-csharp
 
 To call the Speech service by using the Speech SDK, you need to create a [`SpeechConfig`](/dotnet/api/microsoft.cognitiveservices.speech.speechconfig) instance. This class includes information about your subscription, like your key and associated region, endpoint, host, or authorization token.
 
-1. Create an AI Services resource for Speech in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices). Get the Speech resource key and region.
-1. Create a `SpeechConfig` instance by using the following code. Replace `YourSpeechKey` and `YourSpeechRegion` with your Speech resource key and region.
+1. Create an AI Services resource for Speech in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices). Get the Speech resource key and endpoint.
+1. Create a `SpeechConfig` instance by using the following code. Replace `YourSpeechKey` and `YourSpeechEndpoint` with your Speech resource key and endpoint.
 
 ```csharp
 using System;
@@ -29,7 +29,7 @@ class Program
 {
     async static Task Main(string[] args)
     {
-        var speechConfig = SpeechConfig.FromSubscription("YourSpeechKey", "YourSpeechRegion");
+        var speechConfig = SpeechConfig.FromEndpoint(new Uri("YourSpeechEndpoint"), "YourSpeechKey");
     }
 }
 ```
@@ -68,7 +68,7 @@ class Program
 
     async static Task Main(string[] args)
     {
-        var speechConfig = SpeechConfig.FromSubscription("YourSpeechKey", "YourSpeechRegion");
+        var speechConfig = SpeechConfig.FromEndpoint(new Uri("YourSpeechEndpoint"), "YourSpeechKey");
         await FromMic(speechConfig);
     }
 }
@@ -100,7 +100,7 @@ class Program
 
     async static Task Main(string[] args)
     {
-        var speechConfig = SpeechConfig.FromSubscription("YourSpeechKey", "YourSpeechRegion");
+        var speechConfig = SpeechConfig.FromEndpoint(new Uri("YourSpeechEndpoint"), "YourSpeechKey");
         await FromFile(speechConfig);
     }
 }
@@ -143,7 +143,7 @@ class Program
 
     async static Task Main(string[] args)
     {
-        var speechConfig = SpeechConfig.FromSubscription("YourSpeechKey", "YourSpeechRegion");
+        var speechConfig = SpeechConfig.FromEndpoint(new Uri("YourSpeechEndpoint"), "YourSpeechKey");
         await FromStream(speechConfig);
     }
 }
@@ -176,7 +176,7 @@ switch (speechRecognitionResult.Reason)
         {
             Console.WriteLine($"CANCELED: ErrorCode={cancellation.ErrorCode}");
             Console.WriteLine($"CANCELED: ErrorDetails={cancellation.ErrorDetails}");
-            Console.WriteLine($"CANCELED: Did you set the speech resource key and region values?");
+            Console.WriteLine($"CANCELED: Did you set the speech resource key and endpoint values?");
         }
         break;
 }
@@ -234,7 +234,7 @@ speechRecognizer.Canceled += (s, e) =>
     {
         Console.WriteLine($"CANCELED: ErrorCode={e.ErrorCode}");
         Console.WriteLine($"CANCELED: ErrorDetails={e.ErrorDetails}");
-        Console.WriteLine($"CANCELED: Did you set the speech resource key and region values?");
+        Console.WriteLine($"CANCELED: Did you set the speech resource key and endpoint values?");
     }
 
     stopRecognition.TrySetResult(0);
@@ -280,7 +280,7 @@ For a complete code sample, see [Language identification](../../../language-iden
 With [custom speech](../../../custom-speech-overview.md), you can upload your own data, test and train a custom model, compare accuracy between models, and deploy a model to a custom endpoint. The following example shows how to set a custom endpoint.
 
 ```csharp
-var speechConfig = SpeechConfig.FromSubscription("YourSubscriptionKey", "YourServiceRegion");
+var speechConfig = SpeechConfig.FromEndpoint(new Uri("YourSpeechEndpoint"), "YourSpeechKey");
 speechConfig.EndpointId = "YourEndpointId";
 var speechRecognizer = new SpeechRecognizer(speechConfig);
 ```

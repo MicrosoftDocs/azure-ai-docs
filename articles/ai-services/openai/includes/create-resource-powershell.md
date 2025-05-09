@@ -2,7 +2,6 @@
 title: 'Create and manage Azure OpenAI Service deployments with the Azure PowerShell'
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure PowerShell to create an Azure OpenAI resource and manage deployments with the Azure OpenAI Service.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: devx-track-azurepowershell
@@ -65,12 +64,12 @@ Get-AzCognitiveServicesAccountKey -Name MyOpenAIResource -ResourceGroupName OAIR
 
 ## Deploy a model
 
-To deploy a model, use the [New-AzCognitiveServicesAccountDeployment](/powershell/module/az.cognitiveservices/new-azcognitiveservicesaccountdeployment) command. In the following example, you deploy an instance of the `text-embedding-ada-002` model and give it the name _MyModel_. When you try the example, update the code to use your values for the resource group and resource. You don't need to change the `model-version`, `model-format` or `sku-capacity`, and `sku-name` values. 
+To deploy a model, use the [New-AzCognitiveServicesAccountDeployment](/powershell/module/az.cognitiveservices/new-azcognitiveservicesaccountdeployment) command. In the following example, you deploy an instance of the `gpt-4o` model and give it the name _MyModel_. When you try the example, update the code to use your values for the resource group and resource. You don't need to change the `model-version`, `model-format` or `sku-capacity`, and `sku-name` values. 
 
 ```azurepowershell-interactive
 $model = New-Object -TypeName 'Microsoft.Azure.Management.CognitiveServices.Models.DeploymentModel' -Property @{
-    Name = 'text-embedding-ada-002'
-    Version = '2'
+    Name = 'gpt-4o'
+    Version = '2024-11-20'
     Format = 'OpenAI'
 }
 

@@ -2,7 +2,6 @@
 title: Summarize text with the extractive summarization API
 titleSuffix: Azure AI services
 description: This article shows you how to summarize text with the extractive summarization API.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
@@ -296,7 +295,7 @@ curl -i -X POST https://<your-language-resource-endpoint>/language/analyze-text/
       "kind": "AbstractiveSummarization",
       "taskName": "Length controlled Abstractive Summarization",
           "parameters": {
-          "sentenceLength": "short"
+          "summaryLength": "short"
       }
     }
   ]

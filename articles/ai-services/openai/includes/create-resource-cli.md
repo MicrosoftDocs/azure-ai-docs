@@ -2,7 +2,6 @@
 title: 'Create and manage Azure OpenAI Service deployments with the Azure CLI'
 titleSuffix: Azure OpenAI
 description: Learn how to use the Azure CLI to create an Azure OpenAI resource and manage deployments with the Azure OpenAI Service.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: devx-track-azurecli
@@ -78,15 +77,15 @@ az cognitiveservices account keys list \
 
 ## Deploy a model
 
-To deploy a model, use the [az cognitiveservices account deployment create](/cli/azure/cognitiveservices/account/deployment?view=azure-cli-latest&preserve-view=true#az-cognitiveservices-account-deployment-create) command. In the following example, you deploy an instance of the `text-embedding-ada-002` model and give it the name _MyModel_. When you try the example, update the code to use your values for the resource group and resource. You don't need to change the `model-version`, `model-format` or `sku-capacity`, and `sku-name` values.
+To deploy a model, use the [az cognitiveservices account deployment create](/cli/azure/cognitiveservices/account/deployment?view=azure-cli-latest&preserve-view=true#az-cognitiveservices-account-deployment-create) command. In the following example, you deploy an instance of the `gpt-4o` model and give it the name _MyModel_. When you try the example, update the code to use your values for the resource group and resource. You don't need to change the `model-version`, `model-format` or `sku-capacity`, and `sku-name` values.
 
 ```azurecli
 az cognitiveservices account deployment create \
 --name <myResourceName> \
 --resource-group  <myResourceGroupName> \
 --deployment-name MyModel \
---model-name text-embedding-ada-002 \
---model-version "1"  \
+--model-name gpt-4o \
+--model-version "2024-11-20"  \
 --model-format OpenAI \
 --sku-capacity "1" \
 --sku-name "Standard"

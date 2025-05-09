@@ -2,11 +2,10 @@
 title: Azure OpenAI Service embeddings tutorial
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI's embeddings API for document search with the BillSum dataset
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: tutorial
-ms.date: 08/30/2024
+ms.date: 03/26/2025
 author: mrbullwinkle #noabenefraim
 ms.author: mbullwin
 zone_pivot_groups: "openai-embeddings"

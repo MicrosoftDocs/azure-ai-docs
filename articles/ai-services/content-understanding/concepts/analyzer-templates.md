@@ -7,7 +7,7 @@ ms.author: kabrow
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 02/19/2025
+ms.date: 05/01/2025
 ms.custom: ignite-2024-understanding-release
 ---
 
@@ -19,14 +19,14 @@ fields in the schemas to better fit your needs. Learn more about the analyzer te
 
 ## Modality templates
 
-The following analyzer templates are available for use in the [Azure AI Foundry Content Understanding experience](https://ai.azure.com/). For more information, *see* [Use Content Understanding in the Azure AI Foundry](../quickstart/use-ai-foundry.md) for a step-by-step guide to creating your first analyzer.
+The following analyzer templates are available for use in the [Azure AI Foundry Content Understanding experience](https://aka.ms/cu-landing). For more information, *see* [Use Content Understanding in the Azure AI Foundry](../quickstart/use-ai-foundry.md) for a step-by-step guide to creating your first analyzer.
 
 # [Document](#tab/document)
 
 |Template| Description|
 | ----|----|----|
 |Document analysis |Analyze documents to extract text, layout, structured fields, and more.|
-|Text analysis |Analyze texts and extract structured fields.|
+|Invoice analysis |Analyze invoice as prebuilt template and extract structured fields and tables.|
 
    :::image type="content" source="../media/analyzer-template/scenario-template-document.png" alt-text="Screenshot of document analyzer template.":::
 

@@ -2,7 +2,6 @@
 title: Configure containers - Azure AI Translator
 titleSuffix: Azure AI services
 description: The Azure AI Translator container runtime environment is configured using the `docker run` command arguments. There are both required and optional settings.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator

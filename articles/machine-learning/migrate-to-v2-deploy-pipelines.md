@@ -257,4 +257,4 @@ response = requests.post(
 
 - [How to deploy pipelines in Batch Endpoints](how-to-use-batch-pipeline-deployments.md)
 - [How to operationalize a training routine in batch endpoints](how-to-use-batch-training-pipeline.md)
-- [How to operationalize an scoring routine in batch endpoints](how-to-use-batch-scoring-pipeline.md)
+- [How to operationalize a scoring routine in batch endpoints](how-to-use-batch-scoring-pipeline.md)

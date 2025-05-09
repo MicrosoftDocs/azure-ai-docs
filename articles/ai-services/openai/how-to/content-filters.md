@@ -2,7 +2,6 @@
 title: 'Use content filters (preview)'
 titleSuffix: Azure OpenAI
 description: Learn how to use and configure the content filters that come with Azure AI Foundry, including getting approval for gated modifications.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
@@ -16,7 +15,7 @@ ms.custom: FY25Q1-Linter
 
 # How to configure content filters
 
-The content filtering system integrated into Azure AI Foundry runs alongside the core models, including DALL-E image generation models. It uses an ensemble of multi-class classification models to detect four categories of harmful content (violence, hate, sexual, and self-harm) at four severity levels respectively (safe, low, medium, and high), and optional binary classifiers for detecting jailbreak risk, existing text, and code in public repositories. 
+The content filtering system integrated into Azure AI Foundry runs alongside the core models, including image generation models. It uses an ensemble of multi-class classification models to detect four categories of harmful content (violence, hate, sexual, and self-harm) at four severity levels respectively (safe, low, medium, and high), and optional binary classifiers for detecting jailbreak risk, existing text, and code in public repositories. 
 
 The default content filtering configuration is set to filter at the medium severity threshold for all four content harms categories for both prompts and completions. That means that content that is detected at severity level medium or high is filtered, while content detected at severity level low or safe is not filtered by the content filters. Learn more about content categories, severity levels, and the behavior of the content filtering system [here](../concepts/content-filter.md). 
 

@@ -7,7 +7,7 @@ ms.author: mbullwin
 ms.service: azure-ai-openai
 ms.custom: devx-track-dotnet
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 03/27/2025
 manager: nitinme
 ---
 
@@ -25,7 +25,7 @@ Stable releases of `Azure.AI.OpenAI` are associated with a corresponding stable 
 dotnet add package Azure.AI.OpenAI
 ```
 
-Beta releases of `Azure.AI.OpenAI` are associated with a corresponding preview Azure OpenAI Service API version label, for example, `2024-10-01-preview`.
+Beta releases of `Azure.AI.OpenAI` are associated with a corresponding preview Azure OpenAI Service API version label, for example, `2024-03-01-preview`.
 
 ```dotnetcli
 dotnet add package Azure.AI.OpenAI --prerelease

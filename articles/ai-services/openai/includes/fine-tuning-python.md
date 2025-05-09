@@ -2,11 +2,10 @@
 title: 'Customize a model with Azure OpenAI Service and the Python SDK'
 titleSuffix: Azure OpenAI
 description: Learn how to create your own customized model with Azure OpenAI Service by using the Python SDK.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 02/27/2025
+ms.date: 04/30/2025
 author: mrbullwinkle
 ms.author: mbullwin
 ---
@@ -30,6 +29,8 @@ The following models support fine-tuning:
 - `gpt-35-turbo` (0125)
 - `gpt-4o` (2024-08-06)
 - `gpt-4o-mini` (2024-07-18)
+- `gpt-4.1` (2024-04-14)
+- `gpt-4.1-mini`(2025-04-14)
 
 Or you can fine tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
 
@@ -110,8 +111,6 @@ For large data files, we recommend that you import from an Azure Blob  store. La
 
 The following Python example uploads local training and validation files by using the Python SDK, and retrieves the returned file IDs.
 
-# [OpenAI Python 1.x](#tab/python-new)
-
 ```python
 # Upload fine-tuning files
 
@@ -144,42 +143,6 @@ print("Validation file ID:", validation_file_id)
 
 ```
 
-# [OpenAI Python 0.28.1](#tab/python)
-
-[!INCLUDE [Deprecation](../includes/deprecation.md)]
-
-```python
-# Upload fine-tuning files
-
-import openai
-import os
-
-openai.api_key = os.getenv("AZURE_OPENAI_API_KEY") 
-openai.api_base =  os.getenv("AZURE_OPENAI_ENDPOINT")
-openai.api_type = 'azure'
-openai.api_version = '2024-02-01' # This API version or later is required
-
-training_file_name = 'training_set.jsonl'
-validation_file_name = 'validation_set.jsonl'
-
-# Upload the training and validation dataset files to Azure OpenAI with the SDK.
-
-training_response = openai.File.create(
-    file=open(training_file_name, "rb"), purpose="fine-tune", user_provided_filename="training_set.jsonl"
-)
-training_file_id = training_response["id"]
-
-validation_response = openai.File.create(
-    file=open(validation_file_name, "rb"), purpose="fine-tune", user_provided_filename="validation_set.jsonl"
-)
-validation_file_id = validation_response["id"]
-
-print("Training file ID:", training_file_id)
-print("Validation file ID:", validation_file_id)
-```
-
----
-
 ## Create a customized model
 
 After you upload your training and validation files, you're ready to start the fine-tuning job.
@@ -205,7 +168,6 @@ print("Job ID:", response.id)
 print("Status:", response.id)
 print(response.model_dump_json(indent=2))
 ```
----
 
 You can also pass additional optional parameters like hyperparameters to take greater control of the fine-tuning process. For initial training we recommend using the automatic defaults that are present without specifying these parameters. 
 
@@ -226,7 +188,7 @@ from openai import AzureOpenAI
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-02-01"  # This API version or later is required
+  api_version="2024-10-21"  # This API version or later is required
 )
 
 client.fine_tuning.jobs.create(
@@ -265,7 +227,7 @@ When each training epoch completes a checkpoint is generated. A checkpoint is a 
 You can run the list checkpoints command to retrieve the list of checkpoints associated with an individual fine-tuning job. You might need to upgrade your OpenAI client library to the latest version with `pip install openai --upgrade` to run this command.
 
 ```python
-response = client.fine_tuning.jobs.list_events(fine_tuning_job_id=job_id, limit=10)
+response = client.fine_tuning.jobs.checkpoints.list(job_id)
 print(response.model_dump_json(indent=2))
 ```
 
@@ -275,7 +237,7 @@ print(response.model_dump_json(indent=2))
 
 Azure OpenAI attaches a result file named _results.csv_ to each fine-tune job after it completes. You can use the result file to analyze the training and validation performance of your customized model. The file ID for the result file is listed for each customized model, and you can use the Python SDK to retrieve the file ID and download the result file for analysis.
 
-The following Python example retrieves the file ID of the first result file attached to the fine-tuning job for your customized model, and then uses the Python SDK to download the file to your working directory for analysis.
+The following Python example retrieves the file ID of the first result file attached to the fine-tuning job for your customized model, and then uses the Python SDK to download the file to your current working directory for analysis.
 
 ```python
 # Retrieve the file ID of the first result file from the fine-tuning job
@@ -336,7 +298,7 @@ resource_group = "<YOUR_RESOURCE_GROUP_NAME>"
 resource_name = "<YOUR_AZURE_OPENAI_RESOURCE_NAME>"
 model_deployment_name ="gpt-35-turbo-ft" # custom deployment name that you will use to reference the model when making inference calls.
 
-deploy_params = {'api-version': "2024-10-21"} 
+deploy_params = {'api-version': "2024-10-01"} # control plane API version rather than dataplane API for this call 
 deploy_headers = {'Authorization': 'Bearer {}'.format(token), 'Content-Type': 'application/json'}
 
 deploy_data = {
@@ -378,7 +340,7 @@ from openai import AzureOpenAI
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-02-01"  
+  api_version="2024-10-21"  
 )
 
 response = client.fine_tuning.jobs.create(

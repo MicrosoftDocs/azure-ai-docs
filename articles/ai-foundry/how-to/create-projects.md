@@ -156,5 +156,5 @@ In addition, a number of resources are only accessible by users in your project 
 ## Related content
 
 - [Deploy an enterprise chat web app](../tutorials/deploy-chat-web-app.md)
-- [Learn more about Azure AI Foundry](../what-is-ai-foundry.md)
+- [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
 - [Learn more about hubs](../concepts/ai-resources.md)

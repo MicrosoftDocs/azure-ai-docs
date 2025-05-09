@@ -41,10 +41,10 @@ Enable logging for your application as described in [this article](how-to-use-lo
 
 ### Get Session ID from the log
 
-Open the log file your application produced and look for `SessionId:`. The number that would follow is the Session ID you need. In the following log excerpt example, `0b734c41faf8430380d493127bd44631` is the Session ID.
+Open the log file your application produced and look for `SessionId:`. The number that would follow is the Session ID you need. In the following log excerpt example, `0b734c41faf8430380d493127bd44632` is the Session ID.
 
 ```
-[874193]: 218ms SPX_DBG_TRACE_VERBOSE:  audio_stream_session.cpp:1238 [0000023981752A40]CSpxAudioStreamSession::FireSessionStartedEvent: Firing SessionStarted event: SessionId: 0b734c41faf8430380d493127bd44631
+[874193]: 218ms SPX_DBG_TRACE_VERBOSE:  audio_stream_session.cpp:1238 [0000023981752A40]CSpxAudioStreamSession::FireSessionStartedEvent: Firing SessionStarted event: SessionId: 0b734c41faf8430380d493127bd44632
 ```
 ### Get Session ID using JavaScript
 

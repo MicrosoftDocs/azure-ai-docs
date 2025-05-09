@@ -2,7 +2,6 @@
 title: What are Azure AI Translator prebuilt solutions?
 titlesuffix: Azure AI services
 description: Integrate the Azure AI Translator prebuilt solutions into your applications, websites, tools, and other solutions.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator

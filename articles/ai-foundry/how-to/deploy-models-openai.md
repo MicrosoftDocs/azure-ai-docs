@@ -91,5 +91,5 @@ To learn more about quota, see [Azure AI Foundry quota](./quota.md) and [Manage 
 
 ## Related content
 
-- Learn more about what you can do in [Azure AI Foundry](../what-is-ai-foundry.md)
+- Learn more about what you can do in [Azure AI Foundry](../what-is-azure-ai-foundry.md)
 - Get answers to frequently asked questions in the [Azure AI FAQ article](../faq.yml)

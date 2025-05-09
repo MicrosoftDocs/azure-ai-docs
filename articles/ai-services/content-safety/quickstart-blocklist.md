@@ -2,7 +2,6 @@
 title: "Quickstart: Use a text blocklist"
 titleSuffix: Azure AI services
 description: Get started using a text blocklist to detect harmful content in text.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
@@ -20,6 +19,12 @@ Get started using Azure AI Content Safety to create a custom text blocklist and 
 > [!CAUTION]
 > 
 > The sample data and code may contain offensive content. User discretion is advised.
+
+::: zone pivot="programming-language-foundry-portal"
+
+[!INCLUDE [Foundry portal quickstart](./includes/quickstarts/foundry-quickstart-blocklist.md)]
+
+::: zone-end
 
 ::: zone pivot="programming-language-rest"
 

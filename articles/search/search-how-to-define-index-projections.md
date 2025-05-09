@@ -8,12 +8,12 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 10/10/2024
+ms.date: 04/14/2025
 ---
 
 # Define an index projection for parent-child indexing
 
-For indexes containing chunked documents, an index projection specifies how parent-child content is mapped to fields in a search index for one-to-many indexing. Through an index projection, you can send content to:
+For indexes containing chunked documents, an *index projection* specifies how parent-child content is mapped to fields in a search index for one-to-many indexing. Through an index projection, you can send content to:
 
 - A single index, where the parent fields repeat for each chunk, but the grain of the index is at the chunk level. The [RAG tutorial](tutorial-rag-build-solution-index-schema.md) is an example of this approach.
 

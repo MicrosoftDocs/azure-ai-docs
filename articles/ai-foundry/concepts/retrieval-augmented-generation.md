@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: conceptual
-ms.date: 12/12/2024
+ms.date: 04/03/2025
 ms.reviewer: sgilley
 ms.author: sgilley
 author: sdgilley
@@ -20,7 +20,7 @@ This article talks about the importance and need for Retrieval Augmented Generat
 
 ## What is RAG?
 
-Some basics first. Large language models (LLMs) like ChatGPT are trained on public internet data that was available at the point in time when they were trained. They can answer questions related to the data they were trained on. This public data might not be sufficient to meet all your needs. You might want questions answered based on your private data. Or, the public data might simply have gotten out of date. The solution to this problem is Retrieval Augmented Generation (RAG), a pattern used in AI that uses an LLM to generate answers with your own data.
+Some basics first. Large language models (LLMs) like ChatGPT are trained on public internet data that was available at the point in time when they were trained. They can answer questions related to the data they were trained on. This public data might not be sufficient to meet all your needs. You might want questions answered based on your private data. Or, the public data might simply be out of date. The solution to this problem is Retrieval Augmented Generation (RAG), a pattern used in AI that uses an LLM to generate answers with your own data.
 
 ## How does RAG work?
 

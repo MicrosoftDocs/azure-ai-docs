@@ -201,6 +201,8 @@ items:
       href: search-region-support.md
     - name: Choose a tier
       href: search-sku-tier.md
+    - name: Upgrade a service
+      href: search-how-to-upgrade.md
     - name: Service limits
       href: search-limits-quotas-capacity.md
     - name: Plan and manage capacity
@@ -215,11 +217,11 @@ items:
       href: search-modeling-multitenant-saas-applications.md
     - name: Manage
       items:
-      - name: Manage with PowerShell
+      - name: Manage using PowerShell
         href: search-manage-powershell.md
-      - name: Manage with Azure CLI
+      - name: Manage using Azure CLI
         href: search-manage-azure-cli.md
-      - name: Manage with REST
+      - name: Manage using REST
         href: search-manage-rest.md
       - name: Move service across regions
         href: search-howto-move-across-regions.md
@@ -345,6 +347,8 @@ items:
       href: search-how-to-semantic-chunking.md
     - name: Generate embeddings
       href: vector-search-how-to-generate-embeddings.md
+    - name: Use integrated vectorization
+      href: search-how-to-integrated-vectorization.md
     - name: Use embedding models from Azure AI Foundry
       href: vector-search-integrated-vectorization-ai-studio.md
     - name: Reduce vector size
@@ -399,19 +403,21 @@ items:
         href: index-add-language-analyzers.md
       - name: Add a custom analyzer
         href: index-add-custom-analyzers.md
-    - name: Filters
+    - name: Filters and facets
       items:
       - name: Filters in text queries
         displayName: query
         href: search-filters.md
-      - name: Add faceted navigation
-        href: search-faceted-navigation.md
       - name: Understand collection filters
         href: search-query-understand-collection-filters.md
       - name: Troubleshoot collection filters
         href: search-query-troubleshoot-collection-filters.md
       - name: Normalize text for filters
         href: search-normalizers.md
+      - name: Add faceted navigation
+        href: search-faceted-navigation.md
+      - name: Faceted navigation examples
+        href: search-faceted-navigation-examples.md
     - name: Search results
       items:
       - name: Page, sort, and shape results

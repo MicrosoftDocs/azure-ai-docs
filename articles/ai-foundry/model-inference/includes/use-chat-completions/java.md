@@ -7,7 +7,7 @@ author: mopeakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 1/21/2025
+ms.date: 03/20/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: references_regions, tool_generated
@@ -26,7 +26,7 @@ To use chat completion models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites-java](../how-to-prerequisites-java.md)]
 
-* A chat completions model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
+* A chat completions model deployment. If you don't have one, read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
 
     * This example uses `mistral-large-2407`.
 
@@ -41,7 +41,7 @@ ChatCompletionsClient client = new ChatCompletionsClientBuilder()
     .buildClient();
 ```
 
-If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
+If you've configured the resource with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
 ```java
 TokenCredential defaultCredential = new DefaultAzureCredentialBuilder().build();
@@ -120,7 +120,7 @@ client.completeStream(new ChatCompletionsOptions(chatMessages))
 #### Explore more parameters supported by the inference client
 
 Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Azure AI Model Inference API reference](https://aka.ms/azureai/modelinference).
-Some models don't support JSON output formatting. You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
+Some models don't support JSON output formatting. You can always prompt the model to generate JSON outputs. However, such outputs aren't guaranteed to be valid JSON.
 
 If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
 

@@ -2,7 +2,6 @@
 title: "Face detection, attributes, and input data - Face"
 titleSuffix: Azure AI services
 description: Learn more about face detection; face detection is the action of locating human faces in an image and optionally returning different kinds of face-related data.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
@@ -11,7 +10,7 @@ ms.subservice: azure-ai-face
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 09/18/2024
+ms.date: 03/26/2025
 ms.author: pafarley
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
@@ -21,11 +20,11 @@ feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 [!INCLUDE [Gate notice](./includes/identity-gate-notice.md)]
 
 > [!IMPORTANT]
-> Face attributes are predicted through the use of statistical algorithms. They might not always be accurate. Use caution when you make decisions based on attribute data. Please refrain from using these attributes for anti-spoofing. Instead, we recommend using Face Liveness detection. For more information, please refer to [Tutorial: Detect liveness in faces](/azure/ai-services/computer-vision/tutorials/liveness). 
+> Face attributes are predicted by statistical algorithms. They might not always be accurate. Use caution when you make decisions based on attribute data. Refrain from using these attributes for anti-spoofing. Instead, we recommend using Face Liveness detection. For more information, please refer to [Tutorial: Detect liveness in faces](/azure/ai-services/computer-vision/tutorials/liveness). 
 
 This article explains the concepts of face detection and face attribute data. Face detection is the process of locating human faces in an image and optionally returning different kinds of face-related data.
 
-You use the [Detect] API to detect faces in an image. To get started using the REST API or a client SDK, follow a [Face service quickstart](./quickstarts-sdk/identity-client-library.md). Or, for a more in-depth guide, see [Call the detect API](./how-to/identity-detect-faces.md).
+You use the [Detect] API to detect faces in an image. To get started using the REST API or a client SDK, follow a [Face service quickstart](./quickstarts-sdk/identity-client-library.md). Or, for a more in-depth guide, see [Call the Detect API](./how-to/identity-detect-faces.md).
 
 ## Face rectangle
 

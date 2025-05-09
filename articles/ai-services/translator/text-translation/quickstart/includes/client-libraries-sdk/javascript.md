@@ -17,7 +17,7 @@ recommendations: false
 
 For this quickstart, we use the Node.js JavaScript runtime environment to create and run the application.
 
-1. If you haven't done so already, install the latest version of [Node.js](https://nodejs.org/en/download/). Node Package Manager (npm) is included with the Node.js installation.
+1. Make sure that you have the latest version of [Node.js](https://nodejs.org/en/download/). Node Package Manager (npm) is included with the Node.js installation.
 
     > [!TIP]
     > If you're new to Node.js, try the [Introduction to Node.js](/training/modules/intro-to-nodejs/) Learn module.
@@ -43,11 +43,11 @@ For this quickstart, we use the Node.js JavaScript runtime environment to create
     * The most important attributes are name, version number, and entry point.
     * We recommend keeping `index.js` for the entry point name. The description, test command, GitHub repository, keywords, author, and license information are optional attributes—they can be skipped for this project.
     * Accept the suggestions in parentheses by selecting **Return** or **Enter**.
-    * After you've completed the prompts, a `package.json` file will be created in your text-translation-app directory.
+    * After you complete the prompts, a `package.json` file will be created in your text-translation-app directory.
 
 ## Install the client library
 
-Open a terminal window and install the `Azure Text Translation` client library for JavaScript with `npm`:
+Open a terminal window and install the `Azure Text translation` client library for JavaScript with `npm`:
 
 ```console
 npm i @azure-rest/ai-translation-text@1.0.0-beta.1
@@ -77,7 +77,7 @@ To interact with the Translator service using the client library, you need to cr
 **Translate text**
 
   > [!NOTE]
-  > In this example we are using a regional endpoint. If you're using the global endpoint, see [Create a Text Translation client](../../../../create-translator-resource.md#create-a-text-translation-client).
+  > In this example, we're using a regional endpoint. If you're using the global endpoint, see [Create a Text translation client](../../../../create-translator-resource.md#create-a-text-translation-client).
 
 ```javascript
 const TextTranslationClient = require("@azure-rest/ai-translation-text").default
@@ -123,7 +123,7 @@ main().catch((err) => {
 
 ## Run your application
 
-Once you've added the code sample to your application, run your program:
+Once you add the code sample to your application, run your program:
 
 1. Navigate to the folder where you have your text translation application (text-translation-app).
 

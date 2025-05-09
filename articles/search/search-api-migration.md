@@ -12,7 +12,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: conceptual
-ms.date: 02/14/2025
+ms.date: 03/10/2025
 ---
 
 # Upgrade to the latest REST API in Azure AI Search
@@ -24,7 +24,7 @@ Use this article to migrate to newer versions of the [**Search Service REST APIs
 | Data plane | [`2024-07-01`](/rest/api/searchservice/search-service-api-versions#2024-07-01) | Stable |
 | Data plane | [`2024-11-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-11-01-preview) | Preview |
 | Control plane | [`2023-11-01`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2023-11-0&preserve-view=true1) | Stable |
-| Control plane | [`2024-03-01-preview`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2024-03-01-preview&preserve-view=true) | Preview |
+| Control plane | [`2025-02-01-preview`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true) | Preview |
 
 Upgrade instructions focus on code changes that get you through breaking changes from previous versions so that existing code runs the same as before, but on the newer API version. Once your code is in working order, you can decide whether to adopt newer features. To learn more about new features, see [vector code samples](https://github.com/Azure/azure-search-vector-samples) and [What's New](whats-new.md).
 

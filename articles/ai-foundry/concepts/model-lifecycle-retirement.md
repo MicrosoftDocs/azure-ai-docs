@@ -5,7 +5,7 @@ description: Learn about the lifecycle stages, deprecation, and retirement for m
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 02/28/2025
+ms.date: 03/20/2025
 ms.author: mopeakande
 author: msakande
 ms.reviewer: kritifaujdar
@@ -80,6 +80,12 @@ The following tables list the timelines for models that are on track for retirem
 | [Cohere-rerank-v3-english](https://ai.azure.com/explore/models/Cohere-rerank-v3-english/version/1/registry/azureml-cohere) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Cohere-rerank-v3.5-english](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/1/registry/azureml-cohere) |
 | [Cohere-rerank-v3-multilingual](https://ai.azure.com/explore/models/Cohere-rerank-v3-multilingual/version/1/registry/azureml-cohere) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Cohere-rerank-v3.5-multilingual](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/1/registry/azureml-cohere) |
 
+#### DeepSeek
+
+| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
+|-------|-------------------|------------------------|-----------------------|-----------------------------|
+| [DeepSeek-V3](https://aka.ms/azureai/landing/DeepSeek-V3) | April 10, 2025 | May 31, 2025 | August 31, 2025 | [DeepSeek-V3-0324](https://aka.ms/azureai/landing/DeepSeek-V3-0324) |
+
 #### Meta
 
 | Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
@@ -98,6 +104,7 @@ The following tables list the timelines for models that are on track for retirem
 
 | Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
 |-------|-------------------|------------------------|-----------------------|-----------------------------|
+| [Mistral-small](https://ai.azure.com/explore/models/Mistral-small/version/1/registry/azureml-mistral) | March 31, 2025 | April 30, 2025 | July 31, 2025 | [Mistral-small-2503](https://aka.ms/aistudio/landing/mistral-small-2503) |
 | [Mistral-large-2407](https://aka.ms/azureai/landing/Mistral-Large-2407) | January 13, 2025 | February 13, 2025 | May 13, 2025 | [Mistral-large-2411](https://aka.ms/aistudio/landing/Mistral-Large-2411) |
 | [Mistral-large](https://aka.ms/azureai/landing/Mistral-Large) | December 15, 2024 | January 15, 2025 | April 15, 2025 | [Mistral-large-2411](https://aka.ms/aistudio/landing/Mistral-Large-2411) |
 

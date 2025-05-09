@@ -51,4 +51,4 @@ Copying a model to other workspaces enables model lifecycle management (for exam
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn how to publish/deploy a Azure AI Custom Translator model](publish-model.md).
+> [Learn how to publish/deploy an Azure AI Custom Translator model](publish-model.md).

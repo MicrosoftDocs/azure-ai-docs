@@ -78,7 +78,7 @@ You can create a workspace [directly in Azure Machine Learning studio](./quickst
 
    [!notebook-python[](~/azureml-examples-main/sdk/python/resources/workspace/workspace.ipynb?name=basic_ex_workspace_name)]
 
-* **(Preview) Use existing hub workspace**. Instead of creating a default workspace with its own security settings and [associated resources](concept-workspace.md#associated-resources), you can reuse a [hub workspace](concept-hub-workspace.md)'s shared environment. Your new 'project' workspace obtains security settings and shared configurations from the hub including compute and connections. This example assumes that the hub workspace already exists.
+* **Use existing hub workspace**. Instead of creating a default workspace with its own security settings and [associated resources](concept-workspace.md#associated-resources), you can reuse a [hub workspace](concept-hub-workspace.md)'s shared environment. Your new 'project' workspace obtains security settings and shared configurations from the hub including compute and connections. This example assumes that the hub workspace already exists.
 
    ```python
    from azure.ai.ml.entities import Project
@@ -147,7 +147,7 @@ If you have problems in accessing your subscription, see [Set up authentication 
 
 1. Provide a friendly name for displaying your workspace in Studio.
 
-1. (Preview) Optionally, select a [hub workspace](concept-hub-workspace.md), to host your workspace in a shared environment for your team, with preconfigured security, access to company resources, and shared compute. 
+1. Optionally, select a [hub workspace](concept-hub-workspace.md), to host your workspace in a shared environment for your team, with preconfigured security, access to company resources, and shared compute. 
 
    :::image type="content" source="media/concept-hub-workspace/project-workspace-create.png" alt-text="Screenshot of creating a workspace using hub in Azure Machine Learning studio.":::
 
@@ -313,7 +313,7 @@ These features are on by default. To turn them off:
 * For an existing workspace, turn off features from the **Tags** section:
 
    1. Go to workspace resource in the [Azure portal](https://portal.azure.com)
-   1. Open **Tags** from left navigation panel
+   1. Open **Tags** from left panel
    1. Turn off feedback by adding the pair "ADMIN_HIDE_SURVEY: TRUE"
    1. Turn off previews by adding the pair "AZML_DISABLE_PREVIEW_FEATURE: TRUE"
    1. Select **Apply**.  
@@ -327,7 +327,7 @@ If the preview setting is disabled at the subscription level, setting it on indi
 To disable preview features at the subscription level:
 
 1. Go to subscription resource in the [Azure portal](https://portal.azure.com)
-1. Open **Tags** from left navigation panel
+1. Open **Tags** from left panel
 1. Turn off previews for all workspaces in the subscription by adding the pair "AZML_DISABLE_PREVIEW_FEATURE": "TRUE"
 1. Select **Apply**.  
 
@@ -378,7 +378,7 @@ To obtain specific workspace details:
 
 1. Look through the list of the workspaces. You can filter based on subscription, resource groups, and locations.
 
-1. To to display properties, select a workspace.
+1. To display properties, select a workspace.
 
 # [Studio](#tab/studio)
 

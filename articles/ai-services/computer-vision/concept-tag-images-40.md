@@ -2,7 +2,6 @@
 title: Content tags - Image Analysis 4.0
 titleSuffix: Azure AI services
 description: Learn how to generate image tags for a wide variety of objects by using the Image Analysis 4.0 API.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
@@ -10,6 +9,7 @@ ms.service: azure-ai-vision
 ms.topic: conceptual
 ms.date: 11/01/2024
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
+ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 

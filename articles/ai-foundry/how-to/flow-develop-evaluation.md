@@ -8,11 +8,12 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 3/31/2025
 ms.reviewer: mithigpe
 ms.author: lagayhar
 author: lgayhardt
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
+ms.update-cycle: 180-days
 ---
 
 # Develop an evaluation flow in Azure AI Foundry portal
@@ -31,12 +32,12 @@ In prompt flow, you can customize or create your own evaluation flow tailored to
 There are two ways to develop your own evaluation methods:
 
 - **Customize a Built-in Evaluation Flow:** Modify a built-in evaluation flow. 
-  1. Under *Tools* select **Prompt flow**.
+  1. Under *Build and customize* select **Prompt flow**.
   2. Select **Create** to open the flow creation wizard.
   3. In the flow gallery under *Explore gallery* select **Evaluation flow** to filter by that type. Pick a sample and select **Clone** to do customization.
 
 - **Create a New Evaluation Flow from Scratch:** Develop a brand-new evaluation method from the ground up. 
-  1. Under *Tools* select **Prompt flow**.
+  1. Under *Build and customize* select **Prompt flow**.
   2. Select **Create** to open the flow creation wizard.
   3. In the flow gallery under *Create by type* in the "Evaluation flow" box select **Create** then you can see a template of evaluation flow.
 

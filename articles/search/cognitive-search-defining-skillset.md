@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 12/06/2024
+ms.date: 04/18/2025
 ---
 
 # Create a skillset in Azure AI Search
@@ -192,7 +192,7 @@ Skills read from and write to an enriched document. Skill inputs specify the ori
   | `source`: `/document/some-named-field` | For text-based skills, such as entity recognition or key phrase extraction, the origin should be a field that contains sufficient text to be analyzed, such as a *description* or *summary*. |
   | `source`: `/document/normalized_images/*` | For image content, the source is image that's been normalized during document cracking. |
 
-If the skill iterates over an array, both context and input source should include `/*` in the correct positions.
+If the skill iterates over an array, both context and input source should include `/*` in the correct positions. For more information about the complete syntax, see [Skill context and input annotation language](cognitive-search-skill-annotation-language.md).
 
 ## Define outputs
 

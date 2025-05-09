@@ -8,7 +8,7 @@ ms.subservice: core
 author: Blackmist
 ms.author: larryfr
 ms.reviewer: osiotugo
-ms.date: 11/22/2024
+ms.date: 04/14/2025
 ms.topic: how-to
 ms.custom:
 # Customer Intent: As a Data Scientist, I want to understand how to manage environments for training and inference in Azure Machine Learning studio.
@@ -35,6 +35,9 @@ For a high-level overview of environments, see [What are Azure Machine Learning 
 ## Browse curated environments
 
 Curated environments contain collections of Python packages and are available in your workspace by default. These environments are backed by cached Docker images, which reduce the job preparation cost and support training and inferencing scenarios.
+
+> [!TIP]
+> When you work with curated environments in the CLI or SDK, the curated environment names begin with `AzureML-`. When you use the Azure Machine Learning studio, the curated environments don't have this prefix. The reason for this difference is that the studio UI displays curated and custom environments on separate tabs, so the prefix isn't necessary. The CLI and SDK don't have this separation, so the prefix is used to differentiate between curated and custom environments.
 
 Select an environment to see detailed information about its contents. For more information, see [Azure Machine Learning curated environments](resource-curated-environments.md).
 

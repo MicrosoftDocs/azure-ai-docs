@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 12/10/2024
+ms.date: 04/04/2025
 ---
 
 # Configure semantic ranker and return captions in search results
@@ -43,6 +43,8 @@ You can specify a semantic configuration on new or existing indexes, using any o
 ## Add a semantic configuration
 
 A *semantic configuration* is a section in your index that establishes field inputs for semantic ranking. You can add or update a semantic configuration at any time, no rebuild necessary. If you create multiple configurations, you can specify a default. At query time, specify a semantic configuration on a [query request](semantic-how-to-query-request.md), or leave it blank to use the default.
+
+You can create up to 100 semantic configurations in a single index.
 
 A semantic configuration has a name and the following properties:
 
@@ -157,6 +159,60 @@ SearchIndex searchIndex = new(indexName)
 ```
 
 ---
+
+## Opt in for prerelease semantic ranking models
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
+Starting in [2025-03-01-preview REST APIs](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-03-01-preview&preserve-view=true) and in Azure SDKs that provide the property, you can optionally configure an index to use prerelease semantic ranking models if one is deployed in your region. There's no mechanism for knowing if a prerelease is available, or if it was used on specific query. For this reason, we recommend that you use this property in test environments, and only if you're interested in trying out the very latest semantic ranking models.
+
+The configuration property is `"flightingOptIn": true`, and it's set in the semantic configuration section of an index. The property is null or false by default. You can set it true on a create or update request at any time, and it affects semantic queries moving forward, assuming the query stipulates a semantic configuration that includes the property.
+
+```rest
+PUT https://myservice.search.windows.net/indexes('hotels')?allowIndexDowntime=False&api-version=2025-03-01-preview
+
+{
+  "name": "hotels",
+  "fields": [ ],
+  "scoringProfiles": [ ],
+  "defaultScoringProfile": "geo",
+  "suggesters": [ ],
+  "analyzers": [ ],
+  "corsOptions": { },
+  "encryptionKey": { },
+  "similarity": { },
+  "semantic": {
+    "configurations": [
+      {
+        "name": "semanticHotels",
+        "prioritizedFields": {
+          "titleField": {
+            "fieldName": "hotelName"
+          },
+        "prioritizedContentFields": [
+            {
+              "fieldName": "description"
+            },
+            {
+              "fieldName": "description_fr"
+            }
+          ],
+        "prioritizedKeywordsFields": [
+            {
+              "fieldName": "tags"
+            },
+            {
+              "fieldName": "category"
+            }
+          ],
+        "flightingOptIn": true
+        }
+      }
+    ]
+  },
+  "vectorSearch": {  }
+}
+```
 
 ## Next steps
 

@@ -181,7 +181,7 @@ Configure the **Project Settings** fields with the following values:
 
 1. **Display Name**. Name your project.
 
-1. **Security Token**. Each project autogenerates a security token that can be used to encrypt/decrypt sensitive project settings. You can find security tokens in the Application Settings by selecting the gear icon at the bottom of the left navigation bar.
+1. **Security Token**. Each project autogenerates a security token that can be used to encrypt/decrypt sensitive project settings. You can find security tokens in the Application Settings by selecting the gear icon at the bottom of the left pane.
 
 1. **Source connection**. The Sample Labeling tool connects to a source (your original uploaded forms) and a target (created labels and output data). Connections can be set up and shared across projects. They use an extensible provider model, so you can easily add new source/target providers.
 

@@ -2,7 +2,6 @@
 title: 'Quickstart: Use Azure OpenAI Service with the C# SDK to generate images'
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first image generation call with the C# SDK. 
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
@@ -29,7 +28,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Set up
 
-1. Create a new folder `vision-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
+1. Create a new folder `vision-quickstart` and go to the quickstart folder with the following command:
 
     ```shell
     mkdir vision-quickstart && cd vision-quickstart
@@ -126,7 +125,7 @@ The URL of the generated image is printed to the console.
 ```
 
 > [!NOTE]
-> The image generation APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it won't return a generated image. For more information, see the [content filter](../concepts/content-filter.md) article.
+> The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it won't return a generated image. For more information, see the [content filter](../concepts/content-filter.md) article.
 
 ## Clean up resources
 
@@ -137,5 +136,5 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 
 ## Next steps
 
-* Explore the image generation APIs in more depth with the [DALL-E how-to guide](../how-to/dall-e.md).
+* Explore the Image APIs in more depth with the [Image API how-to guide](../how-to/dall-e.md).
 * For more examples check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure/openai-samples).

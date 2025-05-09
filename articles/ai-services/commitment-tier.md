@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2023
 ms.service: azure-ai-services
 ms.topic: conceptual
-ms.date: 01/31/2025
+ms.date: 04/15/2025
 ---
 
 # Purchase commitment tier pricing
@@ -28,6 +28,9 @@ Azure AI offers commitment tier pricing, allowing discounted rates compared to t
 * Document Intelligence – Custom/Invoice
 
 For more information, see [Azure AI services pricing](https://azure.microsoft.com/pricing/details/cognitive-services/).
+
+> [!NOTE]
+> You cannot use commitment tier pricing with an Azure AI Services or an Azure AI Foundry multi-service resource. You must use resources dedicated to single services, such as a Speech or Translator resource.
 
 ## Create a new resource
 

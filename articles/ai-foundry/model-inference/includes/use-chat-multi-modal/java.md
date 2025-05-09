@@ -7,14 +7,14 @@ author: mopeakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 1/21/2025
+ms.date: 03/20/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: references_regions, tool_generated
 zone_pivot_groups: azure-ai-inference-samples
 ---
 
-This article explains how to use chat completions API with models supporting images or audio deployed to Azure AI model inference in Azure AI services.
+This article explains how to use chat completions API with _multimodal_ models deployed to Azure AI model inference in Azure AI services. Apart from text input, multimodal models can accept other input types, such as images or audio input.
 
 ## Prerequisites
 
@@ -39,7 +39,7 @@ ChatCompletionsClient client = new ChatCompletionsClientBuilder()
     .buildClient();
 ```
 
-If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
+If you've configured the resource with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
 ```java
 TokenCredential defaultCredential = new DefaultAzureCredentialBuilder().build();
@@ -48,6 +48,7 @@ ChatCompletionsClient client = new ChatCompletionsClientBuilder()
     .endpoint("https://<resource>.services.ai.azure.com/models")
     .buildClient();
 ```
+
 
 ## Use chat completions with images
 
@@ -92,7 +93,7 @@ System.out.println("\tTotal tokens: " + response.getValue().getUsage().getTotalT
 System.out.println("\tCompletion tokens: " + response.getValue().getUsage().getCompletionTokens());
 ```
 
-Images are broken into tokens and submitted to the model for processing. When referring to images, each of those tokens is typically referred as *patches*. Each model may break down a given image on a different number of patches. Read the model card to learn the details.
+Images are broken into tokens and submitted to the model for processing. When referring to images, each of those tokens is typically referred as *patches*. Each model might break down a given image on a different number of patches. Read the model card to learn the details.
 
 > [!IMPORTANT]
 > Some models support only one image for each turn in the chat conversation and only the last image is retained in context. If you add multiple images, it results in an error.
@@ -119,4 +120,4 @@ ChatCompletions response = client.complete(options);
 
 ## Use chat completions with audio
 
-Some models can reason across text and audio inputs. This capability is not available in the Azure AI Inference package for Java.
+Some models can reason across text and audio inputs. This capability isn't available in the Azure AI Inference package for Java.

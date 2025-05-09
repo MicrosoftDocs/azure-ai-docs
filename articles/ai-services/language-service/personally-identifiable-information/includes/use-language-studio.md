@@ -1,5 +1,4 @@
 ---
-#services: cognitive-services
 author: jboback
 ms.service: azure-ai-language
 ms.topic: include
@@ -9,4 +8,4 @@ ms.custom: include, ignite-2024
 ---
 
 > [!TIP]
-> You can use [**Azure AI Foundry**](../../../../ai-foundry/what-is-ai-foundry.md) to try summarization without needing to write code. 
+> You can use [**Azure AI Foundry**](../../../../ai-foundry/what-is-azure-ai-foundry.md) to try summarization without needing to write code. 

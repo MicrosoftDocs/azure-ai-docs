@@ -5,7 +5,7 @@ description: Azure OpenAI Python support
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 11/18/2024
+ms.date: 03/27/2024
 ---
 
 [Library source code](https://github.com/openai/openai-python?azure-portal=true) | [Package (PyPi)](https://pypi.org/project/openai?azure-portal=true) | [Reference](../../reference.md) |
@@ -19,7 +19,7 @@ Feature availability in Azure OpenAI is dependent on what version of the REST AP
 
 | Latest GA API | Latest Preview API|
 |:-----|:------|
-|`2024-10-21` |`2025-01-01-preview`|
+|`2024-10-21` |`2025-03-01-preview`|
 
 ## Installation
 
@@ -336,7 +336,7 @@ print(completion.model_dump_json(indent=2))
   "prompt_filter_results": [
     {
       "prompt_index": 0,
-      "content_filter_result": {
+      "content_filter_results": {
         "jailbreak": {
           "filtered": false,
           "detected": false
@@ -345,7 +345,7 @@ print(completion.model_dump_json(indent=2))
     },
     {
       "prompt_index": 1,
-      "content_filter_result": {
+      "content_filter_results": {
         "sexual": {
           "filtered": false,
           "severity": "safe"
@@ -487,6 +487,10 @@ print(generate_image.model_dump_json(indent=2))
 ```
 
 ---
+
+## Responses API
+
+See the [Responses API](../../how-to/responses.md) documentation.
 
 ## Completions (legacy)
 

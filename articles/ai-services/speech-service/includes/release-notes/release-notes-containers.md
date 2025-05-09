@@ -2,9 +2,25 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 2/24/2025
+ms.date: 4/28/2025
 ms.author: eur
 ---
+
+### 2025-March release
+
+Add support for the latest model versions:
+- Neural text to speech 3.9.0
+- Speech to text 5.0.1 (Preview)
+- Custom speech to text 5.0.1 (Preview)
+
+For speech to text and custom speech to text, the following features are included:
+- Support for new speech to text models
+- Operating system change to Azure Linux 3.0
+- Support for new locales: ar-dz, as-in, es-gq or-in, pa-in and ur-in
+- Decoder update
+- Ability to use newer custom models (2023+) in container
+
+For text to speech, added support for new neural voices: `en-GB-OliviaNeural`, `en-US-ChristopherNeural` and `nl-NL-FennaNeural`.
 
 ### 2025-February release
 

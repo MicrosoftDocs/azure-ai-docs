@@ -11,7 +11,7 @@ Before troubleshooting, verify that you have the right permissions assigned:
 
 1. Go to the [Azure portal](https://portal.azure.com) and locate the **Azure AI Services** resource you're using.
 
-2. On the left navigation bar, select **Access control (IAM)** and then select **Check access**.
+2. On the left pane, select **Access control (IAM)** and then select **Check access**.
 
 3. Type the name of the user or identity you are using to connect to the service.
 

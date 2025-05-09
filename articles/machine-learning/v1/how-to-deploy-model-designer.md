@@ -15,6 +15,8 @@ ms.custom: UpdateFrequency5, deploy, studio, designer
 
 # Use the studio to deploy models trained in the designer
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, you learn how to deploy a designer model as an online (real-time) endpoint in Azure Machine Learning studio.
 
 Once registered or downloaded, you can use designer trained models just like any other model. Exported models can be deployed in use cases such as internet of things (IoT) and local deployments.

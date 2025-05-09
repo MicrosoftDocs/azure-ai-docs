@@ -2,7 +2,6 @@
 title: 'Quickstart: Use the Face service'
 titleSuffix: Azure AI services
 description: The Face API offers client libraries that make it easy to detect, find similar, identify, verify, and more.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 zone_pivot_groups: programming-languages-set-face

@@ -25,15 +25,15 @@ items:
   - name: Translator Service FAQ
     displayName: character,count,usage,attribution, cognitive
     href: translator-faq.md
-- name: Text Translation
+- name: Text translation
   items:
-  - name: What is Text Translation?
+  - name: What is Text translation?
     displayName: features,develop,development,free
     href: text-translation/overview.md
-  - name: 🆕 Text Translation SDK overview
+  - name: 🆕 Text translation SDK overview
     displayName: get started,sdk,keys,endpoint
     href: text-sdk-overview.md
-  - name: Text Translation REST API guide
+  - name: Text translation REST API guide
     href:  text-translation/reference/rest-api-guide.md
   - name: Quickstarts
     items:
@@ -63,9 +63,11 @@ items:
       href: https://github.com/MicrosoftTranslator/Text-Translation-API-V3-Ruby
   - name: How-to guides
     items:
-    - name: Use the Text Translation APIs
+    - name: Use the Text translation APIs
       displayName: detection,detect,translation,transliteration,identification,length,sentence length,alternate,usage,headers,set up,status,401
       href: text-translation/how-to/use-rest-api.md
+    - name: Enable Microsoft Entra ID authentication
+      href: how-to/microsoft-entra-id-auth.md
     - name: Migrate to V3 Text API
       displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
       href: migrate-to-v3.md
@@ -88,7 +90,7 @@ items:
     - name: v3 Translator reference
       displayName: 401000,405000,400000
       href: text-translation/reference/v3/reference.md
-    - name: Text Translation REST APIs
+    - name: Text translation REST APIs
       href:  text-translation/reference/rest-api-guide.md
     - name: Languages
       href: text-translation/reference/v3/languages.md
@@ -108,26 +110,26 @@ items:
       href: text-translation/reference/v3/dictionary-examples.md
 - name: Document translation
   items:
-  - name: What is Document Translation?
+  - name: What is Document translation?
     displayName: ocr,batch,features,development,formats,file types
     href: document-translation/overview.md
-  - name: 🆕 Document Translation SDK guide
+  - name: 🆕 Document translation SDK guide
     displayName: batch,c#,dotnet,.net,python,blob,set up,install,cli,storage,domain,custom domain
     href: document-translation/document-sdk-overview.md
-  - name: 🆕 Document Translation REST API guide
+  - name: 🆕 Document translation REST API guide
     displayName: get,post,cancel,delete
     href: document-translation/reference/rest-api-guide.md
   - name: Quickstarts
     items:
-    - name: "Quickstart: Document Translation client libraries"
+    - name: "Quickstart: Document translation client libraries"
       displayName: batch,c#,dotnet,.net,python,blob,set up,install,cli,storage,domain,custom domain
       href: document-translation/quickstarts/client-library-sdks.md
-    - name: "Quickstart: Document Translation REST APIs"
+    - name: "Quickstart: Document translation REST APIs"
       displayName: get,post,cancel,delete
       href: document-translation/quickstarts/rest-api.md
   - name: How-to guides
     items:
-    - name: Use Document Translation APIs programmatically
+    - name: Use Document translation APIs programmatically
       displayName: get started,batch,sdk,c#,.net,dotnet,python,javascript,java,go,source,target,blob,set up,storage
       href: document-translation/how-to-guides/use-rest-api-programmatically.md
   - name: Authentication and authorization
@@ -140,7 +142,7 @@ items:
       href: document-translation/how-to-guides/create-sas-tokens.md
   - name: Reference
     items:
-      - name: Document Translation operations
+      - name: Document translation operations
         href: document-translation/reference/rest-api-guide.md
       - name: Translate a single document
         href: document-translation/reference/translate-document.md
@@ -163,7 +165,7 @@ items:
   - name: Create and use glossaries
     displayName: glossary, dictionary, case-sensitive, match
     href: document-translation/how-to-guides/create-use-glossaries.md
-  - name: Document Translation FAQ
+  - name: Document translation FAQ
     href: document-translation/faq.md
 - name: Containers
   items:
@@ -311,16 +313,16 @@ items:
   items:
   - name: Translator in sovereign clouds
     displayName: fairfax,compliant,secret,compliance,government,government cloud,dod,china,batch,region
-    href: sovereign-clouds.md
+    href: reference/sovereign-clouds.md
   - name: Modifications to Translator Service
     displayName: deprecation, deprecate, changes, modify, modifications
     href: modifications-deprecations.md
   - name: Known issues
     displayName: error, bug, issue, problem, troubleshoot, troubleshooting
-    href: text-translation/reference/known-issues.md  
+    href: reference/known-issues.md  
   - name: Compliance and certification
     href: https://www.microsoft.com/translator/business/notrace/
   - name: Code samples on GitHub
     href: https://aka.ms/TranslatorGitHub
   - name: Azure AI Translator release history
-    href: release-history.md
+    href: reference/release-history.md

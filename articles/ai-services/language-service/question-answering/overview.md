@@ -6,7 +6,7 @@ author: jboback
 ms.author: jboback
 recommendations: false
 ms.topic: overview
-ms.date: 09/27/2024
+ms.date: 03/24/2025
 keywords: "qna maker, low code chat bots, multi-turn conversations"
 ms.custom: language-service-question-answering
 ---

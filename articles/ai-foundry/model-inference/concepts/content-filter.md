@@ -14,7 +14,7 @@ manager: nitinme
 # Content filtering for model inference in Azure AI services
 
 > [!IMPORTANT]
-> The content filtering system isn't applied to prompts and completions processed by the Whisper model in Azure OpenAI. Learn more about the [Whisper model in Azure OpenAI](../../../ai-services/openai/concepts/models.md#whisper).
+> The content filtering system isn't applied to prompts and completions processed by the audio models such as Whisper in Azure OpenAI Service. Learn more about the [Audio models in Azure OpenAI](../../../ai-services/openai/concepts/models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint).
 
 Azure AI model inference in Azure AI Services includes a content filtering system that works alongside core models and it's powered by [Azure AI Content Safety](https://azure.microsoft.com/products/cognitive-services/ai-content-safety). This system works by running both the prompt and completion through an ensemble of classification models designed to detect and prevent the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Variations in API configurations and application design might affect completions and thus filtering behavior.
 

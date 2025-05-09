@@ -66,6 +66,8 @@ items:
         href: ./how-to/configure-entra-id.md
       - name: Control model deployment with custom policies
         href: ./how-to/configure-deployment-policies.md
+      - name: Use virtual networks
+        href: ../../ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-foundry/model-inference/context/context
   - name: Manage cost
     href: ./how-to/manage-costs.md
   - name: Quotas and limits
@@ -88,8 +90,10 @@ items:
           href: ./how-to/use-chat-completions.md
         - name: Work with reasoning models
           href: ./how-to/use-chat-reasoning.md
-        - name: Work with image and audio content
+        - name: Work with multimodal models
           href: ./how-to/use-chat-multi-modal.md
+        - name: Use structured outputs
+          href: ./how-to/use-structured-outputs.md
     - name: Develop with LangChain and LangGraph
       href: ../how-to/develop/langchain.md?context=/azure/ai-foundry/model-inference/context/context
     - name: Develop with Llama-Index
@@ -113,4 +117,4 @@ items:
         - name: Get Image Embeddings
           href: /rest/api/aifoundry/model-inference/get-image-embeddings/get-image-embeddings
     - name: Azure OpenAI API
-      href: /azure/ai-services/openai/reference?context=/azure/ai-foundry/model-inference/context/context
+      href: /azure/ai-services/openai/reference

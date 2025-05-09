@@ -2,7 +2,6 @@
 title: What is summarization?
 titleSuffix: Azure AI services
 description: Learn about summarizing text.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language
@@ -22,7 +21,7 @@ Use this article to learn more about this feature, and how to use it in your app
 Out of the box, the service provides summarization solutions for three types of genre, plain texts, conversations, and native documents. Text summarization only accepts plain text blocks. Conversation summarization accepts conversational input, including various speech audio signals. Native document summarization accepts documents in their native formats, such as Word, PDF, or plain text. For more information, *see* [Supported document formats](../native-document-support/overview.md#supported-document-formats).
 
 > [!TIP]
-> Try out Summarization [in Azure AI Foundry portal](https://ai.azure.com/explore/language). There you can [utilize a currently existing Language Studio resource or create a new Azure AI Foundry resource](../../../ai-foundry/ai-services/how-to/connect-ai-services.md) in order to use this service.
+> Try out Summarization [in Azure AI Foundry portal](https://ai.azure.com/explore/language). There you can [utilize a currently existing Language Studio resource or create a new Azure AI Foundry resource](../../../ai-services/connect-services-ai-foundry-portal.md) in order to use this service.
 
 ## Capabilities
 

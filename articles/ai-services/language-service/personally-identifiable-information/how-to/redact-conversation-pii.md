@@ -2,7 +2,6 @@
 title: Identify and extract Personally Identifying Information (PII) from conversations
 titleSuffix: Azure AI services
 description: This article shows you how to detect and redact Personally Identifying Information (PII) from speech, chat, and spoken-word transcriptions and call transcripts.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language

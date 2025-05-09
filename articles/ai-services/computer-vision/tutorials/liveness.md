@@ -8,7 +8,7 @@ ms.subservice: azure-ai-face
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 09/25/2024
+ms.date: 03/26/2025
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
@@ -25,7 +25,7 @@ This tutorial demonstrates how to operate a frontend application and an app serv
 [!INCLUDE [liveness-sdk-gate](../includes/liveness-sdk-gate.md)]
 
 > [!TIP]
-> After you complete the prerequisites, you can get started faster by building and running a complete frontend sample (either on iOS, Android, or Web) from the [SDK samples folder](https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main/samples).  
+> After you complete the prerequisites, you can try the iOS liveness experience from [TestFlight](https://aka.ms/face/liveness/demo/ios) and the web-liveness experience from [Vision Studio](https://portal.vision.cognitive.azure.com/demo/face-liveness-detection). Moreover, you can also build and run a complete frontend sample (either on iOS, Android, or Web) from the [Samples](https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main?tab=readme-ov-file#samples) section.
 
 ## Prerequisites
 

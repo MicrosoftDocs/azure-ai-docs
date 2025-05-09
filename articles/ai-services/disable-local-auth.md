@@ -2,12 +2,11 @@
 title: Disable local authentication in Azure AI Services
 titleSuffix: Azure AI services
 description: "This article describes how to disable local authentication in Azure AI Services for improved security."
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 09/25/2024
+ms.date: 03/26/2025
 ms.author: pafarley
 ms.custom: FY25Q1-Linter
 #customer intent: As a developer, I want to disable local authentication in Azure AI Services so that I can enforce Microsoft Entra authentication.
@@ -40,5 +39,6 @@ You can use PowerShell to determine whether the local authentication policy is c
 
 To enable local authentication, execute the PowerShell cmdlet **[Set-AzCognitiveServicesAccount](/powershell/module/az.cognitiveservices/set-azcognitiveservicesaccount)** with the parameter `-DisableLocalAuth $false`.  Allow a few minutes for the service to accept the change to allow local authentication requests.
 
-## Next steps
+## Next step
+
 - [Authenticate requests to Azure AI services](./authentication.md)

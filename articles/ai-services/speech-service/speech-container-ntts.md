@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 4/28/2025
 ms.author: eur
 zone_pivot_groups: programming-languages-speech-sdk-cli
 keywords: on-premises, Docker, container
@@ -31,7 +31,7 @@ The fully qualified container image name is, `mcr.microsoft.com/azure-cognitive-
 | Version | Path |
 |-----------|------------|
 | Latest | `mcr.microsoft.com/azure-cognitive-services/speechservices/neural-text-to-speech:latest`<br/><br/>The `latest` tag pulls the `en-US` locale and `en-us-arianeural` voice. |
-| 3.7.0 | `mcr.microsoft.com/azure-cognitive-services/speechservices/neural-text-to-speech:3.7.0-amd64-en-us-arianeural` |
+| 3.9.0 | `mcr.microsoft.com/azure-cognitive-services/speechservices/neural-text-to-speech:3.9.0-amd64-en-us-arianeural` |
 
 All tags, except for `latest`, are in the following format and are case sensitive:
 
@@ -46,19 +46,19 @@ The tags are also available [in JSON format](https://mcr.microsoft.com/v2/azure-
   "name": "azure-cognitive-services/speechservices/neural-text-to-speech",
   "tags": [
     <--redacted for brevity-->
-    "3.7.0-amd64-uk-ua-ostapneural",
-    "3.7.0-amd64-zh-cn-xiaochenneural-preview",
-    "3.7.0-amd64-zh-cn-xiaohanneural",
-    "3.7.0-amd64-zh-cn-xiaomoneural",
-    "3.7.0-amd64-zh-cn-xiaoqiuneural-preview",
-    "3.7.0-amd64-zh-cn-xiaoruineural",
-    "3.7.0-amd64-zh-cn-xiaoshuangneural-preview",
-    "3.7.0-amd64-zh-cn-xiaoxiaoneural",
-    "3.7.0-amd64-zh-cn-xiaoyanneural-preview",
-    "3.7.0-amd64-zh-cn-xiaoyouneural",
-    "3.7.0-amd64-zh-cn-yunxineural",
-    "3.7.0-amd64-zh-cn-yunyangneural",
-    "3.7.0-amd64-zh-cn-yunyeneural",
+    "3.9.0-amd64-uk-ua-ostapneural",
+    "3.9.0-amd64-zh-cn-xiaochenneural-preview",
+    "3.9.0-amd64-zh-cn-xiaohanneural",
+    "3.9.0-amd64-zh-cn-xiaomoneural",
+    "3.9.0-amd64-zh-cn-xiaoqiuneural-preview",
+    "3.9.0-amd64-zh-cn-xiaoruineural",
+    "3.9.0-amd64-zh-cn-xiaoshuangneural-preview",
+    "3.9.0-amd64-zh-cn-xiaoxiaoneural",
+    "3.9.0-amd64-zh-cn-xiaoyanneural-preview",
+    "3.9.0-amd64-zh-cn-xiaoyouneural",
+    "3.9.0-amd64-zh-cn-yunxineural",
+    "3.9.0-amd64-zh-cn-yunyangneural",
+    "3.9.0-amd64-zh-cn-yunyeneural",
     "latest"
   ]
 }

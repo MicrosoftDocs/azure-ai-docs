@@ -275,7 +275,7 @@ This section will walk through the practice of sending anomaly notifications thr
 
 **Step 2:** Create a new 'Teams hook' in Metrics Advisor
 
-- Select 'Hooks' tab in left navigation bar, and select the 'Create hook' button at top right of the page. 
+- Select 'Hooks' tab in left pane, and select the 'Create hook' button at top right of the page. 
 - Choose hook type of 'Teams', then input a name and paste the URL that you copied from the above step. 
 - Select 'Save'. 
 
@@ -307,7 +307,7 @@ This section will share the practice of using an SMTP server to send email notif
 
 **Step 2:** Configure SMTP server in Metrics Advisor workspace
 
-After you've completed the above steps and have been successfully added as an administrator of the Metrics Advisor resource. Wait several minutes for the permissions to propagate. Then sign in to your Metrics Advisor workspace, you should be able to view a new tab named 'Email setting' on the left navigation panel. Select it and to continue configuration. 
+After you've completed the above steps and have been successfully added as an administrator of the Metrics Advisor resource. Wait several minutes for the permissions to propagate. Then sign in to your Metrics Advisor workspace, you should be able to view a new tab named 'Email setting' on the left panel. Select it and to continue configuration. 
 
 Parameters to be filled out: 
 

@@ -18,7 +18,7 @@ ms.date: 11/13/2024
 * Additionally, to deploy the template, you need to have the preset **Role Based Access Administrator** role at the subscription level.
    * The **Owner** role at the subscription level satisfies this requirement.
    * The specific admin role that is needed is `Microsoft.Authorization/roleAssignments/write`
-* Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-foundry/concepts/rbac-ai-foundry.md) assigned at the appropriate level.
+* Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-foundry/concepts/rbac-azure-ai-foundry.md) assigned at the appropriate level.
 * You need the **Cognitive Services OpenAI User** role assigned to use the Azure AI Services resource.
 * Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
 

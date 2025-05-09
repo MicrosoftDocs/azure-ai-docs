@@ -2,7 +2,6 @@
 title: 'Using your data with Azure OpenAI Service'
 titleSuffix: Azure OpenAI
 description: Use this article to learn about using your data for better text generation in Azure OpenAI.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: quickstart
@@ -19,7 +18,7 @@ Use this article to learn about Azure OpenAI On Your Data, which makes it easier
 
 ## What is Azure OpenAI On Your Data
 
-Azure OpenAI On Your Data enables you to run advanced AI models such as GPT-35-Turbo and GPT-4 on your own enterprise data without needing to train or fine-tune models. You can chat on top of and analyze your data with greater accuracy. You can specify sources to support the responses based on the latest information available in your designated data sources. You can access Azure OpenAI On Your Data using a REST API, via the SDK or the web-based interface in the [Azure AI Foundry portal](https://oai.azure.com/). You can also create a web app that connects to your data to enable an enhanced chat solution or deploy it directly as a copilot in the Copilot Studio (preview).
+Azure OpenAI On Your Data enables you to run advanced AI models such as GPT-35-Turbo and GPT-4 on your own enterprise data without needing to train or fine-tune models. You can chat on top of and analyze your data with greater accuracy. You can specify sources to support the responses based on the latest information available in your designated data sources. You can access Azure OpenAI On Your Data using a REST API, via the SDK or the web-based interface in the [Azure AI Foundry portal](https://ai.azure.com/). You can also create a web app that connects to your data to enable an enhanced chat solution or deploy it directly as a copilot in the Copilot Studio (preview).
 
 ## Developing with Azure OpenAI On Your Data
 
@@ -563,7 +562,7 @@ You can send a streaming request using the `stream` parameter, allowing data to 
 ```json
 {
     "stream": true,
-    "dataSources": [
+    "data_sources": [
         {
             "type": "AzureCognitiveSearch",
             "parameters": {

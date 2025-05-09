@@ -1,6 +1,5 @@
 ---
 title: Create a resource group
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services

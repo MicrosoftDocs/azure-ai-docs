@@ -309,7 +309,7 @@ If you plan to continue now to other tutorials, skip to [Next steps](#next-steps
 
 If you don't plan to use it now, stop the compute instance:
 
-1. In the studio, in the left navigation area, select **Compute**.
+1. In the studio, in the left pane, select **Compute**.
 1. In the top tabs, select **Compute instances**
 1. Select the compute instance in the list.
 1. On the top toolbar, select **Stop**.

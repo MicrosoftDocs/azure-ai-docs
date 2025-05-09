@@ -4,14 +4,14 @@ titleSuffix: Azure AI services
 description: Learn about the latest news and features updates for Azure OpenAI.
 manager: nitinme
 author: mrbullwinkle
-ms.author: mbullwin
+ms.author: mbullwin #
 ms.service: azure-ai-openai
 ms.custom:
   - ignite-2023
   - references_regions
   - ignite-2024
 ms.topic: whats-new
-ms.date: 03/05/2025
+ms.date: 04/16/2025
 recommendations: false
 ---
 
@@ -19,7 +19,56 @@ recommendations: false
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI Service.
 
+## April 2025
+
+### Realtime API (preview) support for WebRTC
+
+The Realtime API (preview) now supports WebRTC, enabling real-time audio streaming and low-latency interactions. This feature is ideal for applications requiring immediate feedback, such as live customer support or interactive voice assistants. For more information, see the [Realtime API (preview) documentation](./how-to/realtime-audio-webrtc.md).
+
+### GPT-image-1 released (preview, limited access)
+
+GPT-image-1 (2025-04-15) is the latest image generation model from Azure OpenAI. It features major improvements over DALL-E, including:
+- Better at responding to precise instructions.
+- Reliably renders text.
+- Accepts images as input, which enables the new capabilities of image editing and inpainting.
+
+Request access: [Limited access model application](https://aka.ms/oai/gptimage1access)
+
+Follow the [image generation how-to guide](/en-us/azure/ai-services/openai/how-to/dall-e) to get started with the new model.
+
+### o4-mini and o3 models released
+
+`o4-mini` and `o3` models are now available. These are the latest reasoning models from Azure OpenAI offering significantly enhanced reasoning, quality, and performance. For more information, see the [getting started with reasoning models page](./how-to/reasoning.md).
+
+### GPT-4.1 released
+
+GPT 4.1 and GPT 4.1-nano are now available. These are the latest models from Azure OpenAI. GPT 4.1 has a 1 million token context limit. For more information, see the [models page](./concepts/models.md#gpt-41-series).
+
+### gpt-4o audio models released
+
+New audio models powered by GPT-4o are now available.  
+
+- The `gpt-4o-transcribe` and `gpt-4o-mini-transcribe` speech to text models are released. Use these models via the `/audio` and `/realtime` APIs.  
+
+- The `gpt-4o-mini-tts` text to speech model is released. Use the `gpt-4o-mini-tts` model for text to speech generation via the `/audio` API.
+
+For more information about available models, see the [models and versions documentation](./concepts/models.md#audio-models).
+
 ## March 2025
+
+### Responses API & computer-use-preview model
+
+The [Responses API](./how-to/responses.md) is a new stateful API from Azure OpenAI. It brings together the best capabilities from the chat completions and assistants API in one unified experience. The Responses API also adds support for the new `computer-use-preview` model which powers the [Computer use](./how-to/computer-use.md) capability.
+
+**For access to `computer-use-preview` registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who have access to other limited access models will still need to request access for this model.
+
+Request access: [`computer-use-preview` limited access model application](https://aka.ms/oai/cuaaccess)
+
+For more information on model capabilities, and region availability see the [models documentation](./concepts/models.md#computer-use-preview).
+
+:::image type="content" source="./media/computer-use-preview.gif" alt-text="Animated gif of computer-use-preview model integrated with playwright." lightbox="./media/computer-use-preview.gif":::
+
+[Playwright integration demo code](./how-to/responses.md#computer-use).
 
 ### Provisioned spillover (preview)
 
@@ -34,10 +83,6 @@ In addition to the deployment-level content filtering configuration, we now also
 ### GPT-4.5 Preview
 
 The latest GPT model that excels at diverse text and image tasks is now available on Azure OpenAI.
-
-**For access to `gpt-4.5-preview` registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who have access to other limited access models will still need to request access for this model.
-
-Request access: [GPT-4.5-preview limited access model application](https://aka.ms/oai/gptaccess)
 
 For more information on model capabilities, and region availability see the [models documentation](./concepts/models.md#gpt-45-preview).
 
@@ -57,7 +102,7 @@ The `gpt-4o-mini-audio-preview` (2024-12-17) model is the latest audio completio
 
 The `gpt-4o-mini-realtime-preview` (2024-12-17) model is the latest real-time audio model. The real-time models use the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions. For more information, see the [real-time audio quickstart](./realtime-audio-quickstart.md).
 
-For more information about available models, see the [models and versions documentation](./concepts/models.md#gpt-4o-audio).
+For more information about available models, see the [models and versions documentation](./concepts/models.md#audio-models).
 
 ## January 2025
 
@@ -761,7 +806,7 @@ Azure OpenAI Service now supports speech to text APIs powered by OpenAI's Whispe
 
 ### Regional quota limits increases
 
-- Increases to the max default quota limits for certain models and regions. Migrating workloads to [these models and regions](./quotas-limits.md#regional-quota-limits) will allow you to take advantage of higher Tokens per minute (TPM).  
+- Increases to the max default quota limits for certain models and regions. Migrating workloads to [these models and regions](./quotas-limits.md) will allow you to take advantage of higher Tokens per minute (TPM).  
 
 ## August 2023
 

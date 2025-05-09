@@ -2,7 +2,6 @@
 title: 'Customize a model with Azure OpenAI Service and the REST API'
 titleSuffix: Azure OpenAI
 description: Learn how to create your own customized model with Azure OpenAI Service by using the REST APIs.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
@@ -29,6 +28,8 @@ The following models support fine-tuning:
 - `gpt-35-turbo` (0125)
 - `gpt-4o` (2024-08-06)
 - `gpt-4o-mini` (2024-07-18)
+- `gpt-4.1` (2024-04-14)
+- `gpt-4.1-mini`(2025-04-14)
 
 Or you can fine tune a previously fine-tuned model, formatted as base-model.ft-{jobid}.
 

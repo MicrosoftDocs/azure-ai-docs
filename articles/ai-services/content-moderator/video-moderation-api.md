@@ -2,7 +2,6 @@
 title: "Analyze video content for objectionable material in C# - Content Moderator"
 titleSuffix: Azure AI services
 description: How to analyze video content for various objectionable material using the Content Moderator SDK for .NET
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-moderator
@@ -47,7 +46,7 @@ Once you've done this, you can use the video moderation media processor in two d
 
 ## Use Azure Media Services Explorer
 
-The Azure Media Services Explorer is a user-friendly frontend for AMS. Use it to browse your AMS account, upload videos, and scan content with the Content Moderator media processor. Download and install it from [GitHub](https://github.com/Azure/Azure-Media-Services-Explorer/releases), or see the [Azure Media Services Explorer blog post](https://azure.microsoft.com/blog/managing-media-workflows-with-the-new-azure-media-services-explorer-tool/) for more information.
+The Azure Media Services Explorer is a user-friendly frontend for AMS. Use it to browse your AMS account, upload videos, and scan content with the Content Moderator media processor. Download and install it from GitHub, or see the [Azure Media Services Explorer blog post](https://azure.microsoft.com/blog/managing-media-workflows-with-the-new-azure-media-services-explorer-tool/) for more information.
 
 ![Azure Media Services explorer with Content Moderator](images/ams-explorer-content-moderator.png)
 

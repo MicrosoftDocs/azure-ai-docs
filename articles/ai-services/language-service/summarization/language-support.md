@@ -2,7 +2,6 @@
 title: Summarization language support
 titleSuffix: Azure AI services
 description: Learn about which languages are supported by document summarization.
-#services: cognitive-services
 author: jboback
 manager: nitinme
 ms.service: azure-ai-language

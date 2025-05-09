@@ -1,13 +1,13 @@
 ---
 title: "Quickstart: Image Analysis client library for Python"
 description: Get started with the Image Analysis client library for Python with this quickstart.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 09/30/2024
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
+ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 

@@ -2,7 +2,6 @@
 title: Summarize native documents with the extractive summarization API
 titleSuffix: Azure AI services
 description: This article shows you how to summarize native documents with the extractive summarization API.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language

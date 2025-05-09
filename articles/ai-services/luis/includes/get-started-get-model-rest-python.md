@@ -1,7 +1,6 @@
 ---
 title: Get model with REST call in C#
 titleSuffix: Azure AI services
-#services: cognitive-services
 
 manager: nitinme
 ms.service: azure-ai-language

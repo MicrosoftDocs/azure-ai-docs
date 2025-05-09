@@ -2,7 +2,6 @@
 title: 'Troubleshooting for Azure OpenAI fine-tuning'
 titleSuffix: Azure OpenAI
 description: Learn how to troubleshoot Azure OpenAI Service fine-tuning.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions

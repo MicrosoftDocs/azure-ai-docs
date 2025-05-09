@@ -2,12 +2,56 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 3/6/2025
+ms.date: 4/8/2025
 ms.author: eur
 ms.custom: references_regions
 ---
 
+### April 2025 release
+
+#### Public preview of new HD voices
+
+The following HD voices are now available for preview:
+
+| **Locale (BCP-47)** | **Voice name**                                         |
+|---------------------|--------------------------------------------------------|
+| `en-US`             | `en-US-MultiTalker-Ava-Steffan:DragonHDLatestNeural` (Neutral)        |
+| `en-US`             | `en-US-Bree:DragonHDLatestNeural` (Female)        |
+| `en-US`             | `en-US-AshTurboMultilingualNeural` (Male)        |
+
 ### March 2025 release
+
+#### General availability of some HD voices
+
+The following HD voices are now generally available:
+
+| **Locale (BCP-47)** | **Voice name**                                         |
+|---------------------|--------------------------------------------------------|
+| `de-DE`             | `de-DE-Florian:DragonHDLatestNeural` (Male)            |
+| `de-DE`             | `de-DE-Seraphina:DragonHDLatestNeural` (Female)        |
+| `en-US`             | `en-US-Adam:DragonHDLatestNeural` (Male)               |
+| `en-US`             | `en-US-Andrew:DragonHDLatestNeural` (Male)             |
+| `en-US`             | `en-US-Andrew2:DragonHDLatestNeural` (Male)            |
+| `en-US`             | `en-US-Ava:DragonHDLatestNeural` (Female)              |
+| `en-US`             | `en-US-Brian:DragonHDLatestNeural` (Male)              |
+| `en-US`             | `en-US-Davis:DragonHDLatestNeural` (Male)              |
+| `en-US`             | `en-US-Emma:DragonHDLatestNeural` (Female)             |
+| `en-US`             | `en-US-Emma2:DragonHDLatestNeural` (Female)            |
+| `en-US`             | `en-US-Steffan:DragonHDLatestNeural` (Male)            |
+| `es-ES`             | `es-ES-Tristan:DragonHDLatestNeural` (Male)            |
+| `es-ES`             | `es-ES-Ximena:DragonHDLatestNeural` (Female)           |
+| `fr-FR`             | `fr-FR-Remy:DragonHDLatestNeural` (Male)               |
+| `fr-FR`             | `fr-FR-Vivienne:DragonHDLatestNeural` (Female)         |
+| `ja-JP`             | `ja-JP-Masaru:DragonHDLatestNeural` (Male)             |
+| `ja-JP`             | `ja-JP-Nanami:DragonHDLatestNeural` (Female)           |
+| `zh-CN`             | `zh-CN-Xiaochen:DragonHDLatestNeural` (Female)         |
+| `zh-CN`             | `zh-CN-Yunfan:DragonHDLatestNeural` (Male)             |
+
+#### Multi-talker voices for podcast scenarios (Preview)
+
+| **Locale (BCP-47)** | **Voice name**                                         |
+|---------------------|--------------------------------------------------------|
+| `en-US`             | `en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural` (Neutral)            |
 
 #### New HD voices (Preview)
 
@@ -15,6 +59,16 @@ ms.custom: references_regions
 |---------------------|---------------------------|
 | `en-US`   | `en-US-Ava3:DragonHDLatestNeural` (Female) - optimized for Podcast | 
 | `en-US`   | `en-US-Andrew3:DragonHDLatestNeural` (Male) - optimized for Podcast | 
+
+#### Dragon HD Flash models (Preview)
+
+| **Locale (BCP-47)** | **Voice name**                                         |
+|---------------------|--------------------------------------------------------|
+| `zh-CN`             | `zh-CN-Xiaochen:DragonHDFlashLatestNeural` (Female)     |
+| `zh-CN`             | `zh-CN-Xiaoxiao:DragonHDFlashLatestNeural` (Female)     |
+| `zh-CN`             | `zh-CN-Xiaoxiao2:DragonHDFlashLatestNeural` (Female, Optimized for free-talking) |
+| `zh-CN`             | `zh-CN-Yunxiao:DragonHDFlashLatestNeural` (Male)       |
+| `zh-CN`             | `zh-CN-Yunyi:DragonHDFlashLatestNeural` (Male)          |
 
 ### February 2025 release
 
@@ -46,7 +100,7 @@ Added 14 more HD voices
 |---------------------|---------------------------|
 | `de-DE`   | `de-DE-Florian:DragonHDLatestNeural` (Male) |
 | `en-US`   | `en-US-Adam:DragonHDLatestNeural` (Male) |
-| `en-US`   | `en-US-Brain:DragonHDLatestNeural` (Male) |
+| `en-US`   | `en-US-Brian:DragonHDLatestNeural` (Male) |
 | `en-US`   | `en-US-Davis:DragonHDLatestNeural` (Male) |
 | `en-US`   | `en-US-Phoebe:DragonHDLatestNeural` (Female) |
 | `en-US`   | `en-US-Serena:DragonHDLatestNeural` (Female) |
@@ -59,7 +113,7 @@ Added 14 more HD voices
 | `ja-JP`   | `ja-JP-Nanami:DragonHDLatestNeural` (Female) |
 | `zh-CN`   | `zh-CN-Yunfan:DragonHDLatestNeural` (Male) |
 
-#### Introducting new Multilingual voices (Preview)
+#### Introducing new Multilingual voices (Preview)
 
 Added 4 more multilingual voices in `en-US` with emotions support.
 
@@ -474,7 +528,7 @@ Personal voice is now generally available. With personal voice, you can get AI g
 - The Azure AI Speech service supports OpenAI text to speech voices in the following regions: North Central US and Sweden Central. Like Azure AI Speech voices, OpenAI text to speech voices deliver high-quality speech synthesis to convert written text into natural sounding spoken audio. This unlocks a wide range of possibilities for immersive and interactive user experiences. For more information, see [What are OpenAI text to speech voices?](../../openai-voices.md).
 
   > [!NOTE]
-  > OpenAI text to speech voices are also available in [Azure OpenAI Service](../../../openai/reference.md#text-to-speech). 
+  > OpenAI text to speech voices are also available in [Azure OpenAI Service](../../../openai/reference.md#text-to-speech-preview). 
   
 - With this update, we have adjusted the pricing of prebuilt neural voices with Azure AI Speech. Check the updated pricing [here](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services).
 

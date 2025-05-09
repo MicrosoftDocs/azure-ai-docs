@@ -290,7 +290,7 @@ def _calculate_angle_distance_from_du_dv(du, dv, flagDegree=False):
 
 def flow2vis(flownp, maxF=500.0, n=8, mask=None, hueMax=179, angShift=0.0): 
     """
-    Show a optical flow field as the KITTI dataset does.
+    Show an optical flow field as the KITTI dataset does.
     Some parts of this function is the transform of the original MATLAB code flow_to_color.m.
     """
 

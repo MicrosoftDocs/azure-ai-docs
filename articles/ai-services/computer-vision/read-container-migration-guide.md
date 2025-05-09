@@ -1,14 +1,14 @@
 ---
 title: Migrate to v3.x of the Read OCR container
 titleSuffix: Azure AI services
-description: Learn how to migrate to the v3 Read OCR containers.
-#services: cognitive-services 
+description: Learn how to migrate to the v3 Read OCR containers. 
 author: aahill
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: how-to
 ms.date: 02/27/2024
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
+ms.update-cycle: 365-days
 ms.author: aahi
 ms.custom: cogserv-non-critical-vision
 ---

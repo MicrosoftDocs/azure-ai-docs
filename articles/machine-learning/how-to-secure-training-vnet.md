@@ -254,7 +254,7 @@ ml_client.begin_create_or_update(entity=compute)
 # [Studio](#tab/azure-studio)
 
 1. Sign in to the [Azure Machine Learning studio](https://ml.azure.com), and then select your subscription and workspace.
-1. Select the **Compute** page from the left navigation bar.
+1. Select the **Compute** page from the left pane.
 1. Select the **+ New** from the navigation bar of compute instance or compute cluster.
 1. Configure the VM size and configuration you need, then select **Next**.
 1. From **Security**, select **Enable virtual network**, your virtual network and subnet, and finally select the **No Public IP** option under the VNet/subnet section.
@@ -428,7 +428,7 @@ ml_client.begin_create_or_update(entity=compute)
 # [Studio](#tab/azure-studio)
 
 1. Sign in to the [Azure Machine Learning studio](https://ml.azure.com), and then select your subscription and workspace.
-1. Select the **Compute** page from the left navigation bar.
+1. Select the **Compute** page from the left pane.
 1. Select the **+ New** from the navigation bar of compute instance or compute cluster.
 1. Configure the VM size and configuration you need, then select **Next**.
 1. From **Security**, select **Enable virtual network** and then select your virtual network and subnet.
@@ -497,7 +497,7 @@ workspace = ml_client.workspaces.begin_update(workspace)
 
 # [Studio](#tab/azure-studio)
 
-Use Azure CLI or Python SDK to to configure **serverless compute** nodes with a public IP address in the VNet.
+Use Azure CLI or Python SDK to configure **serverless compute** nodes with a public IP address in the VNet.
 
 ---
 

@@ -5,11 +5,9 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: include
-ms.date: 5/21/2024
+ms.date: 4/14/2025
 ms.author: eur
 ---
-
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
 In this quickstart, you try real-time speech to text in [Azure AI Foundry](https://ai.azure.com). 
 
@@ -22,11 +20,11 @@ In this quickstart, you try real-time speech to text in [Azure AI Foundry](https
 1. Go to your Azure AI Foundry project. If you need to create a project, see [Create an Azure AI Foundry project](../../../../../ai-foundry/how-to/create-projects.md).
 1. Select **Playgrounds** from the left pane and then select a playground to use. In this example, select **Try the Speech playground**.
 
-    :::image type="content" source="../../../../../ai-foundry/media/ai-services/playgrounds/azure-ai-services-playgrounds.png" alt-text="Screenshot of the project level playgrounds that you can use." lightbox="../../../../../ai-foundry/media/ai-services/playgrounds/azure-ai-services-playgrounds.png":::
+    :::image type="content" source="../../../../../ai-services/media/ai-foundry/azure-ai-services-playgrounds.png" alt-text="Screenshot of the project level playgrounds that you can use." lightbox="../../../../../ai-services/media/ai-foundry/azure-ai-services-playgrounds.png":::
 
 1. Optionally, you can select a different connection to use in the playground. In the Speech playground, you can connect to Azure AI Services multi-service resources or Speech service resources. 
 
-    :::image type="content" source="../../../../../ai-foundry/media/ai-services/playgrounds/speech-playground.png" alt-text="Screenshot of the Speech playground in a project." lightbox="../../../../../ai-foundry/media/ai-services/playgrounds/speech-playground.png":::
+    :::image type="content" source="../../../../../ai-services/media/ai-foundry/speech-playground.png" alt-text="Screenshot of the Speech playground in a project." lightbox="../../../../../ai-services/media/ai-foundry/speech-playground.png":::
 
 1. Select **Real-time transcription**.
 1. Select **Show advanced options** to configure speech to text options such as: 

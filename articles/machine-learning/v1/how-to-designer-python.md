@@ -15,6 +15,8 @@ ms.custom: UpdateFrequency5, designer, devx-track-python
 
 # Run Python code in Azure Machine Learning designer
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, you'll learn how to use the [Execute Python Script](../algorithm-module-reference/execute-python-script.md) component to add custom logic to the Azure Machine Learning designer. In this how-to, you use the Pandas library to do simple feature engineering.
 
 You can use the in-built code editor to quickly add simple Python logic. You should use the zip file method to add more complex code, or to upload additional Python libraries.
