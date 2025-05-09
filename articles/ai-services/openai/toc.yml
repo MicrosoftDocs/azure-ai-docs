@@ -314,6 +314,8 @@ items:
   items:
     - name: Inference GA API reference
       href: reference.md
+    - name: Authoring preview API reference
+      href: ./includes/api-versions/latest-authoring.md
     - name: Inference preview API reference
       href: reference-preview.md
     - name: Assistants API Reference
