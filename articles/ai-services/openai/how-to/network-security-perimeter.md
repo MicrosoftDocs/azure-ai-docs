@@ -54,18 +54,21 @@ Azure Network Security Perimeter allows administrators to define a logical netwo
 You can add Azure OpenAI to a network security perimeter so that all indexing and query requests occur within the security boundary.
 
 1. In the Azure portal, find the network security perimeter service for your subscription.
-2. Select **Resources** from the left-hand menu.
+2. Select **Associated Resources** from the left-hand menu.
 
-[Image 1]
+    :::image type="content" source="../media/network-security-perimeter/associated-resources-selection.png" alt-text="A screenshot showing the associated resources selection in the left navigation menu." lightbox="../media/network-security-perimeter/associated-resources-selection.png":::
 
-3. Select **Add** > **Associate** resources with an existing profile.
+3. Select **Add** > **Associate resources with an existing profile**.
 
-[Image 2]
 
-4. Select the profile you created when you created the network security perimeter for Profile.
-5. Select Associate, and then select the Azure OpenAI service you created.
+    :::image type="content" source="../media/network-security-perimeter/add-associated-resources.png" alt-text="A screenshot showing the button to add associated resources." lightbox="../media/network-security-perimeter/add-associated-resources.png":::
 
-[Image 3]
+4. Select the profile you created when you created the network security perimeter for a profile.
+5. Select **Associate**, and then select the Azure OpenAI service you created.
+
+    :::image type="content" source="../media/network-security-perimeter/associate-with-profile.png" alt-text="A screenshot showing the screen for associating resources with a profile." lightbox="../media/network-security-perimeter/associate-with-profile.png":::
+
+
 
 6. Select Associate in the bottom left-hand section of the screen to create the association.
 
@@ -87,29 +90,31 @@ The `publicNetworkAccess` setting determines the Azure OpenAI services associati
 1. Navigate to your network security perimeter resource in the Azure portal.
 2. Select **Resources** in the left-hand menu.
 
-[Image 4]
+    :::image type="content" source="../media/network-security-perimeter/associated-resources-selection.png" alt-text="A screenshot showing the associated resources selection in the left navigation menu." lightbox="../media/network-security-perimeter/associated-resources-selection.png":::
 
 3. Find your Azure OpenAI service in the table.
-4. Select the three dots in the far right of the Azure OpenAI service row. Select Change access mode in the popup.
+4. Select the three dots in the far right of the Azure OpenAI service row. Select **Change access mode** in the popup.
 
-[Image 5]
+    :::image type="content" source="../media/network-security-perimeter/change-access-mode.png" alt-text="A screenshot showing the button to change the access mode." lightbox="../media/network-security-perimeter/change-access-mode.png":::
+
 
 5. Select the desired access mode and select Apply.
 
-[Image 6]
+    :::image type="content" source="../media/network-security-perimeter/apply-access-mode.png" alt-text="A screenshot showing the button to apply the access mode." lightbox="../media/network-security-perimeter/apply-access-mode.png":::
 
 ## Enable logging network access
 1. Navigate to your network security perimeter resource in the Azure portal.
 2. Select **Diagnostic settings** in the left-hand menu.
 
-[Image 7]
+    :::image type="content" source="../media/network-security-perimeter/diagnostic-settings.png" alt-text="A screenshot showing the button for navigating to the diagnostic settings." lightbox="../media/network-security-perimeter/diagnostic-settings.png":::
+
 
 3. Select **Add diagnostic setting**.
 4. Enter any name such as "diagnostic" for Diagnostic setting name.
 5. Under Logs, select `allLogs`. `allLogs` ensures all inbound and outbound network access to resources in your network security perimeter is logged.
 6. Under Destination details, select Archive to a storage account or Send to Log Analytics workspace. The storage account must be in the same region as the network security perimeter. You can either use an existing storage account or create a new one. A Log Analytics workspace can be in a different region than the one used by the network security perimeter. You can also select any of the other applicable destinations.
 
-[Image 8]
+    :::image type="content" source="../media/network-security-perimeter/log-catagories.png" alt-text="A screenshot showing the available log catagories." lightbox="../media/network-security-perimeter/log-catagories.png":::
 
 7. Select Save to create the diagnostic setting and start logging network access.
 
@@ -153,19 +158,20 @@ To add an inbound access rule in the Azure portal:
 1. Navigate to your network security perimeter resource in the Azure portal.
 2. Select **Profiles** in the left-hand menu.
 
-[Image 9]
+    :::image type="content" source="../media/network-security-perimeter/profiles-selector.png" alt-text="A screenshot showing the button to navigate to the profiles screen." lightbox="../media/network-security-perimeter/profiles-selector.png":::
+
 
 3. Select the profile you're using with your network security perimeter.
 
-[Image 10]
+    :::image type="content" source="../media/network-security-perimeter/selected-profile.png" alt-text="A screenshot showing a selected profile." lightbox="../media/network-security-perimeter/selected-profile.png":::
 
 4. Select **Inbound access rules** in the left-hand menu.
 
-[Image 11]
+    :::image type="content" source="../media/network-security-perimeter/inbound-network-navigation.png" alt-text="A screenshot showing button to navigate to the inbound access rules." lightbox="../media/network-security-perimeter/inbound-network-navigation.png":::
 
 5. Select **Add**.
 
-[Image 12]
+    :::image type="content" source="../media/network-security-perimeter/add-rule.png" alt-text="A screenshot showing the add button." lightbox="../media/network-security-perimeter/add-rule.png":::
 
 6. Enter or select the following values:
     
@@ -177,7 +183,8 @@ To add an inbound access rule in the Azure portal:
     
 7. Select **Add** to create the inbound access rule.
 
-[Image 13]
+    :::image type="content" source="../media/network-security-perimeter/add-rule-2.png" alt-text="A screenshot showing the add button." lightbox="../media/network-security-perimeter/add-rule-2.png":::
+
 
 ### Add an outbound access rule
 
@@ -185,26 +192,27 @@ The Azure OpenAI service makes outbound calls during indexer-based indexing and 
 
 Recall that in public preview, Azure AI Azure OpenAI can only connect to Azure Storage or Azure Cosmos DB within the security perimeter. If your indexers use other data sources, you need an outbound access rule to support that connection.
 
-Network security perimeter supports outbound access rules based on the Fully Qualified Domain Name (FQDN) of the destination. For example, you can allow outbound access from any service associated with your network security perimeter to an FQDN such as mystorageaccount.blob.core.windows.net.
+Network security perimeter supports outbound access rules based on the Fully Qualified Domain Name (FQDN) of the destination. For example, you can allow outbound access from any service associated with your network security perimeter to an FQDN such as `mystorageaccount.blob.core.windows.net`.
 
 To add an outbound access rule in the Azure portal:
 
 1. Navigate to your network security perimeter resource in the Azure portal.
 2. Select **Profiles** in the left-hand menu.
 
-[Image 14]
+    :::image type="content" source="../media/network-security-perimeter/profiles-selector.png" alt-text="A screenshot showing the add button." lightbox="../media/network-security-perimeter/profiles-selector.png":::
+
 
 3. Select the profile you're using with your network security perimeter.
 
-[Image 15]
+    :::image type="content" source="../media/network-security-perimeter/selected-profile.png" alt-text="A screenshot showing the add button." lightbox="../media/network-security-perimeter/selected-profile.png":::
 
 4. Select **Outbound access rules** in the left-hand menu.
 
-[Image 16]
+    :::image type="content" source="../media/network-security-perimeter/outbound-network-navigation.png" alt-text="A screenshot showing the button to navigate to outbound access rules." lightbox="../media/network-security-perimeter/outbound-network-navigation.png":::
 
 5. Select **Add**.
 
-[Image 17]
+    :::image type="content" source="../media/network-security-perimeter/add-outbound.png" alt-text="A screenshot showing the button to navigate to outbound access rules." lightbox="../media/network-security-perimeter/add-outbound.png":::
 
 6. Enter or select the following values:
     
@@ -216,7 +224,7 @@ To add an outbound access rule in the Azure portal:
     
 7. Select **Add** to create the outbound access rule.
 
-[Image 18]
+    :::image type="content" source="../media/network-security-perimeter/add-outbound-2.png" alt-text="A screenshot showing the screen to add an outbound access rule." lightbox="../media/network-security-perimeter/add-outbound-2.png":::
 
 ## Test your connection through network security perimeter
 
