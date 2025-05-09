@@ -33,6 +33,7 @@ Before you start this tutorial, you need:
 1. **Install Open Web UI** by following the instructions from the [Open Web UI GitHub repository](https://github.com/open-webui/open-webui).
 
 2. **Launch Open Web UI** with this command in your terminal:
+
    ```bash
    open-webui serve
    ```
@@ -41,18 +42,18 @@ Before you start this tutorial, you need:
 
 4. **Connect Open Web UI to Foundry Local**:
 
-   - Click **Settings** in the navigation menu
-   - Select **Connections**
-   - Click **Manage Direct Connections**
-   - Click the **+** icon to add a connection
-   - Enter `http://localhost:5272/v1` for the URL
-   - Type any value (like `test`) for the API Key, since it cannot be empty
-   - Save your connection
+   1. Click **Settings** in the navigation menu
+   2. Select **Connections**
+   3. Click **Manage Direct Connections**
+   4. Click the **+** icon to add a connection
+   5. Enter `http://localhost:5272/v1` for the URL
+   6. Type any value (like `test`) for the API Key, since it cannot be empty
+   7. Save your connection
 
 5. **Start chatting with your model**:
-   - Your loaded models will appear in the dropdown at the top
-   - Select any model from the list
-   - Type your message in the input box at the bottom
+   1. Your loaded models will appear in the dropdown at the top
+   2. Select any model from the list
+   3. Type your message in the input box at the bottom
 
 That's it! You're now chatting with an AI model running entirely on your local device.
 
