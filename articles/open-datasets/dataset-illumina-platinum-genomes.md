@@ -8,6 +8,8 @@ ms.date: 04/16/2021
 
 # Illumina Platinum Genomes
 
+[!INCLUDE [Open Dataset usage notice](./includes/open-datasets-change-notice.md)]
+
 Whole-genome sequencing is enabling researchers worldwide to characterize the human genome more fully and accurately. This effort requires a comprehensive, genome-wide catalog of high-confidence variants called in a set of genomes as a benchmark. Illumina generated deep, whole-genome sequence data of 17 individuals in a three-generation pedigree. Illumina called variants in each genome using a range of currently available algorithms.
 
 For more information on the data, see the official [Illumina site](https://www.illumina.com/platinumgenomes.html).
