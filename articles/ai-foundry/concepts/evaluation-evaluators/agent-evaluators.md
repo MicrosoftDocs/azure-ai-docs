@@ -19,6 +19,12 @@ Agents are powerful productivity assistants. They can plan, make decisions, and 
 
 Agents emit messages, and providing the above inputs typically require parsing messages and extracting the relevant information. If you're building agents using Azure AI Agent Service, we provide native integration for evaluation that directly takes their agent messages. To learn more, see an [end-to-end example of evaluating agents in Azure AI Agent Service](https://aka.ms/e2e-agent-eval-sample).
 
+Besides `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence` specific to agentic workflows, you can also assess other quality as well as safety aspects of your agentic workflows, leveraging out comprehensive suite of built-in evaluators. We support this list of evaluators for Azure AI agent messages from our converter: 
+- **Quality**: `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence`, `Relevance`, `Coherence`, `Fluency`
+- **Safety**: `CodeVulnerabilities`, `Violence`, `Self-harm`, `Sexual`, `HateUnfairness`, `IndirectAttack`, `ProtectedMaterials`.
+
+We will show examples of `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence` here. See more examples in [evaluating Azure AI agents](../../how-to/develop/agent-evaluate-sdk.md#evaluate-azure-ai-agents) for other evaluators with Azure AI agent message support.
+
 ## Model configuration for AI-assisted evaluators
 
 For reference in the following code snippets, the AI-assisted evaluators use a model configuration for the LLM-judge:

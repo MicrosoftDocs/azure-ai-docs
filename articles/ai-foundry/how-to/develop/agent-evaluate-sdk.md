@@ -44,7 +44,6 @@ If you use [Azure AI Agent Service](../../../ai-services/agents/overview.md), ho
 - Quality: `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence`, `Relevance`, `Coherence`, `Fluency`
 - Safety: `CodeVulnerabilities`, `Violence`, `Self-harm`, `Sexual`, `HateUnfairness`, `IndirectAttack`, `ProtectedMaterials`.
 
-
 Here's an example to seamlessly build and evaluate an Azure AI agent. Separately from evaluation, Azure AI Agent Service requires `pip install azure-ai-projects azure-identity` and an Azure AI project connection string and the supported models.
 
 ### Create agent threads and runs
@@ -150,13 +149,17 @@ run_id = run.id
 
 converted_data = converter.convert(thread_id, run_id)
 ```
-And that's it! You do not need to read the input requirements for each evaluator and do any work to parse them. We have done it for you. All you need to do is select your evaluator and call the evaluator on this single run.  For model choice, we recommend a strong reasoning model like `o3-mini`. 
+And that's it! You do not need to read the input requirements for each evaluator and do any work to parse them. We have done it for you. All you need to do is select your evaluator and call the evaluator on this single run.  For model choice, we recommend a strong reasoning model like `o3-mini` and models released afterwards. We set up a list of quality and safety evaluator in `quality_evaluators` and `safety_evaluators` and will reference them afterwards.
 
 ```python
-from azure.ai.evaluation import IntentResolutionEvaluator, TaskAdherenceEvaluator, ToolCallAccuracyEvaluator
+# specific to agentic workflows
+from azure.ai.evaluation import IntentResolutionEvaluator, TaskAdherenceEvaluator, ToolCallAccuracyEvaluator 
+# other quality as well as risk and safety metrics
+from azure.ai.evaluation import RelevanceEvaluator, CoherenceEvaluator, CodeVulnerabilityEvaluator, ContentSafetyEvaluator, IndirectAttackEvaluator, FluencyEvaluator
 from azure.ai.projects.models import ConnectionType
-import os
+from azure.identity import DefaultAzureCredential
 
+import os
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -169,15 +172,32 @@ model_config = project_client.connections.get_default(
                                             include_credentials=True
                                           )
 
+quality_evaluators = {evaluator.__name__: evaluator(model_config=model_config) for evaluator in [IntentResolutionEvaluator, TaskAdherenceEvaluator, ToolCallAccuracyEvaluator, CoherenceEvaluator, FluencyEvaluator, RelevanceEvaluator]}
 
-for evaluator in [IntentResolutionEvaluator, TaskAdherenceEvaluator, ToolCallAccuracyEvaluator]:
-   evaluator = evaluator(model_config)
+
+## Using Azure AI Foundry Hub
+azure_ai_project = {
+    "subscription_id": os.environ.get("AZURE_SUBSCRIPTION_ID"),
+    "resource_group_name": os.environ.get("AZURE_RESOURCE_GROUP"),
+    "project_name": os.environ.get("AZURE_PROJECT_NAME"),
+}
+## Using Azure AI Foundry Development Platform, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
+azure_ai_project = os.environ.get("AZURE_AI_PROJECT")
+
+safety_evaluators = {evaluator.__name__: evaluator(azure_ai_project=azure_ai_project, credential=DefaultAzureCredential()) for evaluator in[ContentSafetyEvaluator, IndirectAttackEvaluator, CodeVulnerabilityEvaluator]}
+
+# reference the quality and safety evaluator list above
+quality_and_safety_evaluators = {**quality_evaluators, **safety_evaluators}
+
+for name, evaluator in quality_and_safety_evaluators.items():
    try:
       result = evaluator(**converted_data)
+      print(name)
       print(json.dumps(result, indent=4)) 
    except:
       print("Note: if there is no tool call to evaluate in the run history, ToolCallAccuracyEvaluator will raise an error")
       pass
+
 ```
 
 #### Output format
@@ -193,6 +213,8 @@ To further improve intelligibility, all evaluators accept a binary threshold (un
 - `{metric_name}_result` a "pass" or "fail" string based on a binarization threshold.
 - `{metric_name}_threshold` a numerical binarization threshold set by default or by the user.
 - `additional_details` contains debugging information about the quality of a single agent run. 
+
+Example output for some evaluators: 
 
 ```json
 {
@@ -248,33 +270,13 @@ evaluation_data = converter.prepare_evaluation_data(thread_ids=thread_id, filena
 print(f"Evaluation data saved to {filename}")
 ```
 
-With the evaluation data prepared in one line of code, you can select the evaluators to assess the agent quality (for example, intent resolution, tool call accuracy, and task adherence), and submit a batch evaluation run:
-```python
-from azure.ai.evaluation import IntentResolutionEvaluator, TaskAdherenceEvaluator, ToolCallAccuracyEvaluator
-from azure.ai.projects.models import ConnectionType
-import os
+With the evaluation data prepared in one line of code, you can select the evaluators to assess the agent quality and submit a batch evaluation run. Here, we reference the same list of quality and safety evaluators in section [evaluate a single agent run](#evaluate-a-single-agent-run) `quality_and_safety_evaluators`:  
 
+```python
+import os
 from dotenv import load_dotenv
 load_dotenv()
 
-# Another convenient way to access model config from the project_client 
-project_client = AIProjectClient.from_connection_string(
-    credential=DefaultAzureCredential(),
-    conn_str=os.environ["PROJECT_CONNECTION_STRING"],
-)
-model_config = project_client.connections.get_default(
-                                            connection_type=ConnectionType.AZURE_OPEN_AI,
-                                            include_credentials=True) \
-                                         .to_evaluator_model_config(
-                                            deployment_name="o3-mini",
-                                            api_version="2023-05-15",
-                                            include_credentials=True
-                                          )
-
-# Select evaluators of your choice
-intent_resolution = IntentResolutionEvaluator(model_config=model_config)
-task_adherence = TaskAdherenceEvaluator(model_config=model_config)
-tool_call_accuracy = ToolCallAccuracyEvaluator(model_config=model_config)
 
 # Batch evaluation API (local)
 from azure.ai.evaluation import evaluate
@@ -282,11 +284,7 @@ from azure.ai.evaluation import evaluate
 response = evaluate(
     data=filename,
     evaluation_name="agent demo - batch run",
-    evaluators={
-        "intent_resolution": intent_resolution,
-        "task_adherence": task_adherence,
-        "tool_call_accuracy": tool_call_accuracy,
-    },
+    evaluators=quality_and_safety_evaluators,
     # optionally, log your results to your Azure AI Foundry project for rich visualization 
     azure_ai_project={
         "subscription_id": os.environ["AZURE_SUBSCRIPTION_ID"],
