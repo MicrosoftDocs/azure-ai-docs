@@ -36,7 +36,7 @@ This dataset contains approximately 10 GB of data and is updated daily.
 
 ## Storage location
 
-This dataset is stored in the West US 2, West Central US and South Central US Azure regions. Allocating compute resources in West US 2 or West Central US or South Central US is recommended for affinity.
+This dataset is stored in the West US 2, West Central US, and South Central US Azure regions. Allocating compute resources in West US 2 or West Central US or South Central US is recommended for affinity.
 
 ## Data Access
 
@@ -65,11 +65,11 @@ For any questions or feedback about this dataset, contact the [Genome Reference 
 
 ## Getting the Reference Genomes from Azure Open Datasets
 
-Several public genomics data has been uploaded as an Azure Open Dataset [here](https://azure.microsoft.com/services/open-datasets/catalog/). We create a blob service linked to this open dataset. You can find examples of data calling procedure from Azure Open Datasets for `Reference Genomes` dataset in below:
+Several public genomics data is uploaded as an Azure Open Dataset [here](https://azure.microsoft.com/services/open-datasets/catalog/). We create a blob service linked to this open dataset. You can find examples of data calling procedure from Azure Open Datasets for `Reference Genomes` dataset in below:
 
 Users can call and download the following path with this notebook: 'https://datasetreferencegenomes.blob.core.windows.net/dataset/vertebrate_mammalian/Homo_sapiens/latest_assembly_versions/GCF_000001405.39_GRCh38.p13/GCF_000001405.39_GRCh38.p13_assembly_structure/genomic_regions_definitions.txt'
 
-**Important note:** Users need to log in their Azure Account via Azure CLI for viewing the data with Azure ML SDK. On the other hand, they do not need do any actions for downloading the data.
+**Important note:** Users need to log in their Azure Account via Azure CLI for viewing the data with Azure ML SDK. On the other hand, they don't need do any actions for downloading the data.
 
 [Install the Azure CLI](/cli/azure/install-azure-cli).
 
