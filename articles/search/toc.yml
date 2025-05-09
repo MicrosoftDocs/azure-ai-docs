@@ -255,6 +255,10 @@ items:
       href: search-how-to-alias.md
     - name: Import large data sets
       href: search-how-to-large-index.md
+    - name: Logic Apps connectors
+      items:
+      - name: Configure a connector
+        href: search-how-to-index-logic-apps-indexers.md
     - name: Indexers
       items:
       - name: Create an indexer
@@ -407,7 +411,6 @@ items:
     - name: Filter on vector queries
       displayName: query
       href: vector-search-filters.md
-
   - name: Keyword search
     items:
     - name: Full text query

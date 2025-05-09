@@ -343,6 +343,12 @@ The next step is to connect to a data source to use for the search index.
 
 1. Select **Next**.
 
+### [Logic Apps](#tab/connect-logic-apps)
+
+The current preview adds support for Logic Apps connectors. For a list of supported connectors and operations:
+
++ [Use a Logic Apps connector for indexer-based indexing](search-how-to-index-logic-apps-indexers.md)
+
 ---
 
 ## Vectorize your text

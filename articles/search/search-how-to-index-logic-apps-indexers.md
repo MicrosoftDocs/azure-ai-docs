@@ -1,0 +1,65 @@
+---
+title: Connect to Logic Apps
+titleSuffix: Azure AI Search
+description: Use a Logic Apps connector for indexer-based indexing in Azure AI Search.
+manager: nitinme
+author: HeidiSteen
+ms.author: heidist
+ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 05/15/2025
+---
+
+# Use a Logic Apps connector for indexer-based indexing in Azure AI Search
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
+Support for Logic Apps connector is now in public preview, available in the Azure portal [Quickstart wizard](search-get-started-portal-import-vectors.md) only.
+
+A Logic apps connector is equivalent to an indexer in Azure AI Search, inclusive of both the data source and indexer definition. Logic Apps integration adds support for more data sources, and includes integration with Azure OpenAI models for vectorizing data during indexing.
+
+You can create an connector in Azure AI Search, and then manage it in Logic Apps alongside your other connectors. Logic Apps connectors are a billable resource. For more information, see [Azure Logic Apps pricing](/azure/logic-apps/logic-apps-pricing).
+
+## Key features
+
+The Quickstart wizard generates a Logic Apps connector, one each for on-demand or scheduled indexing, and a search index.
+
++ Support for more data sources
++ Integrated vectorization
++ Scheduled or on-demand indexing
+
+## Supported regions
+
+End-to-end functionality is available in the following regions, which provide the data source connector, document cracking, document chunks, support for Azure OpenAI embedding models, and the Azure AI indexer support for pulling the data:
+
++ Australia East
++ Brazil South
++ South Central US
++ East US
++ East US 2
++ East Asia
++ North Europe
++ Southeast Asia
++ Sweden Central
++ UK South
++ West US 2
++ West US 3
+
+## Create a Logic Apps connector
+
+Follow these steps to create a Logic Apps connector for indexing content in Azure AI Search.
+
+1. Start the Quickstart wizard in the Azure portal.
+
+1. Choose a Logic Apps indexer.
+
+   :::image type="content" source="media/logic-apps-connectors/choose-data-source.png" alt-text="Screenshot of the choose data source page in the Quickstart wizard." lightbox="media/logic-apps-connectors/choose-data-source.png" :::
+
+## Template management
+
+Templates are created by the wizard when you specify a Logic Apps indexer. To create and manage templates, including template deletion, do this through Logic Apps. The Azure portal search service dashboard doesn't provide template management, and currently there's no programmatic support in Azure AI Search APIs.
+
+## Related content
+
++ [Indexers](search-indexer-overview.md)
+
