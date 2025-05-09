@@ -33,7 +33,7 @@ A BLEU score is a number between zero and 100. A score of zero indicates a low-q
 
    :::image type="content" source="../media/fine-tune-test-model-2.png" alt-text="Screenshot illustrating the test-model function.":::
 
-1. If results are satisfactory, deploy the model to production, otherwise, iterate by adding more human curated training data until you find a winner model.
+1. If results are satisfactory, deploy the model, otherwise, iterate by adding more human curated training data until you find a winner model.
 
 ## Next steps
 

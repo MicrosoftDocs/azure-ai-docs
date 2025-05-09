@@ -35,11 +35,13 @@ Here are the steps to create a custom translation model:
 
    :::image type="content" source="../media/fine-tune-train-model-2.png" alt-text="Screenshot illustrating train model blade.":::
 
-1. Select the data you want to use for training, for example, `Customer-sample-English-German-Training` and review the training cost associated with the selected number of sentences.
+1. Select the data you want to use for training and review the training cost associated with the selected number of sentences.
 
    :::image type="content" source="../media/fine-tune-train-model-3.png" alt-text="Screenshot depicting a view of the train model blade.":::
 
-1. Select **Train model**.
+1. Select **Next**
+
+1. Review and select **Train model**.
 
    :::image type="content" source="../media/fine-tune-train-model-4.png" alt-text="Screenshot illustrating the train model blade.":::
 
