@@ -459,12 +459,8 @@ items:
       displayName: accuracy,metrics
     - name: Run evaluations online
       href: how-to/online-evaluation.md
-    - name: Evaluate flows in the portal
-      items:
-        - name: Submit batch run and evaluate a flow
-          href: how-to/flow-bulk-test-evaluation.md
-        - name: Develop an evaluation flow in Prompt flow
-          href: how-to/flow-develop-evaluation.md
+    - name: Run an evaluation in GitHub Action
+      href: how-to/evaluation-github-action.md
     - name: A/B experimentation
       href: concepts/a-b-experimentation.md
   - name: Build apps with prompt flow
@@ -481,6 +477,12 @@ items:
         href: how-to/flow-tune-prompts-using-variants.md
       - name: Process images in a flow
         href: how-to/flow-process-image.md
+      - name: Evaluate flows in the portal
+        items:
+        - name: Submit batch run and evaluate a flow
+          href: how-to/flow-bulk-test-evaluation.md
+        - name: Develop an evaluation flow in Prompt flow
+          href: how-to/flow-develop-evaluation.md
       - name: Use prompt flow tools
         items:
         - name: Prompt flow tools overview
