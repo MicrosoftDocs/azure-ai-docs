@@ -84,7 +84,7 @@ Use either the Azure AI Foundry portal or Azure CLI to create a project.
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
 1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
-1. On the home page, select **Start building**. This creates a project and also include steps to start working with a basic Agent.
+1. On the home page, select **Create the future**. This creates a project and also include steps to start working with a basic Agent.
     
     :::image type="content" source="../media/quickstarts/start-building.png" alt-text="Screenshot shows how to start building an Agent in Azure AI Foundry portal.":::
 
@@ -121,7 +121,7 @@ To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)]:
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. If you just used the Azure AI Foundry portal to create the project with the **Start building** link, you're next  prompted to deploy a model.
+1. If you just used the Azure AI Foundry portal to create the project with the **Create the future** link, you're next  prompted to deploy a model.
 1. Or else, sign in to the [Azure AI Foundry portal](https://ai.azure.com), select your project, and select **Model catalog**.
 1. Search for the model you want to deploy. For this quickstart, select **gpt-4o**.
 1. Select **Confirm**.
@@ -131,7 +131,7 @@ To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)]:
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-1. If you used **Start building** to create the project, you'll now find yourself in the Agents playground, ready to try it out. You'll come back here in a moment, but first let's play with the model.
+1. If you used **Create the future** to create the project, you'll now find yourself in the Agents playground, ready to try it out. You'll come back here in a moment, but first let's play with the model.
 1. In the left pane, select **Playgrounds**. 
 1. Select **Try the chat playground**.
 1. Fill in the prompt and select the **Send** button.
