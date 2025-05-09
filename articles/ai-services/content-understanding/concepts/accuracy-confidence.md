@@ -7,7 +7,7 @@ ms.author: admaheshwari
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: reference
-ms.date: 04/09/2025
+ms.date: 05/19/2025
 ---
 
 # Interpret and improve confidence and accuracy scores
