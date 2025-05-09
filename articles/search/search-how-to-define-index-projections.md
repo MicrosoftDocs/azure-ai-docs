@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 04/14/2025
+ms.date: 05/08/2025
 ---
 
 # Define an index projection for parent-child indexing
@@ -286,13 +286,13 @@ Depending on the underlying data source, an indexer can usually provide ongoing 
 For data sources that provide change tracking and deletion detection, an indexer process can pick up changes in your source data. Each time you run the indexer and skillset, the index projections are updated if the skillset or underlying source data has changed. Any changes picked up by the indexer are propagated through the enrichment process to the projections in the index, ensuring that your projected data is a current representation of content in the originating data source. Data refresh activity is captured in a projected key value for each chunk. This value gets updated when the underlying data changes.
 
 > [!NOTE]
-> While you can manually edit the data in the projected documents using the [index push API](search-how-to-load-search-index.md), you should avoid doing so. Manual updates to an index are overwritten on the next pipeline invocation, assuming the document in source data is updated and the data source has change tracking or deletion detection enabled. 
+> While you can manually edit the data in the projected documents using the [index push API](search-how-to-load-search-index.md), you should avoid doing so. Manual updates to an index are overwritten on the next pipeline invocation, assuming the document in source data is updated and the data source has change tracking or deletion detection enabled.
 
 ### Updated content
 
 If you add new content to your data source, new chunks or child documents are added to the index on the next indexer run.
 
-If you modify existing content in the data source, chunks are updated incrementally in the search index if the data source you're using supports change tracking and deletion detection. For exammple, if a word or sentence changes in a document, the chunk in the target index that contains that word or sentence is updated on the next indexer run. Other types of updates, such as changing a field type and some attributions, aren't supported for existing fields. For more information about allowed updates, see [Update an index schema](search-howto-reindex.md#update-an-index-schema).
+If you modify existing content in the data source, chunks are updated incrementally in the search index if the data source you're using supports change tracking and deletion detection. For example, if a word or sentence changes in a document, the chunk in the target index that contains that word or sentence is updated on the next indexer run. Other types of updates, such as changing a field type and some attributions, aren't supported for existing fields. For more information about allowed updates, see [Update an index schema](search-howto-reindex.md#update-an-index-schema).
 
 Some data sources like [Azure Storage](search-howto-index-changed-deleted-blobs.md) support change and deletion tracking by default, based on the timestamp. Other data sources such as [OneLake](search-how-to-index-onelake-files.md), [Azure SQL](search-how-to-index-sql-database.md), or [Azure Cosmos DB](search-howto-index-cosmosdb.md) must be configured for change tracking.
 
@@ -300,11 +300,11 @@ Some data sources like [Azure Storage](search-howto-index-changed-deleted-blobs.
 
 If the source content no longer exists (for example, if text is shortened to have fewer chunks), the corresponding child document in the search index is deleted. The remaining child documents also get their key updated to include a new hash value, even if their content didn't otherwise change.
 
-If a parent document is completely deleted from the datasource, the corresponding child documents only get deleted if the deletion is detected by a `dataDeletionDetectionPolicy` defined on the datasource definition. If you don't have a `dataDeletionDetectionPolicy` configured and need to delete a parent document from the datasource, then you should manually delete the child documents if they're no longer wanted. 
+If a parent document is completely deleted from the datasource, the corresponding child documents only get deleted if the deletion is detected by a `dataDeletionDetectionPolicy` defined on the datasource definition. If you don't have a `dataDeletionDetectionPolicy` configured and need to delete a parent document from the datasource, then you should manually delete the child documents if they're no longer wanted.
 
 ### Projected key value
 
-To ensure data integrity for updated and deleted content, data refresh in one-to-many indexing relies on a *projected key value* on the "many" side. If you're using integrated vectorization or the [Import and vectorize data wizard](search-import-data-portal.md), the projected key value is the `parent_id` field in a chunked or "many" side of the index.
+To ensure data integrity for updated and deleted content, data refresh in one-to-many indexing relies on a *projected key value* on the "many" side. If you're using integrated vectorization or the [Quickstart wizard](search-import-data-portal.md), the projected key value is the `parent_id` field in a chunked or "many" side of the index.
 
 A projected key value is a unique identifier that the indexer generates for each document. It ensures uniqueness and allows for change and deletion tracking to work correctly. This key contains the following segments:
 

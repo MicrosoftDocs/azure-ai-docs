@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 02/24/2025
+ms.date: 05/08/2025
 ---
 
 # Vectors in Azure AI Search
@@ -71,7 +71,7 @@ Newer services created after April 3, 2024 support [higher quotas for vector ind
 
 Vector search is available in:
 
-+ [Azure portal: Import and vectorize data wizard](search-get-started-portal-import-vectors.md)
++ [Azure portal: Quickstart wizard](search-get-started-portal-import-vectors.md)
 + [Azure REST APIs](/rest/api/searchservice/operation-groups)
 + [Azure SDKs for .NET](https://www.nuget.org/packages/Azure.Search.Documents), [Python](https://pypi.org/project/azure-search-documents), and [JavaScript](https://www.npmjs.com/package/@azure/search-documents)
 + Other Azure offerings such as Azure AI Foundry.

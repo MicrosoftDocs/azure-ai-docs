@@ -11,7 +11,7 @@ ms.custom:
   - devx-track-dotnet
   - ignite-2023
 ms.topic: how-to
-ms.date: 11/20/2024
+ms.date: 05/08/2025
 ---
 
 # Index data from Azure Cosmos DB for NoSQL for queries in Azure AI Search
@@ -52,7 +52,7 @@ Use these instructions to create a container and database in Cosmos DB for testi
     | Container throughput (autoscale) | Autoscale |
     | Container Max RU/s | 1000 |
 
-1. In **Data Explorer**, expand *hotelsdb* and *hotels", and then select **Items**.
+1. In **Data Explorer**, expand *hotelsdb* and *hotels*, and then select **Items**.
 
 1. Select **Upload Item** and then select *HotelsData_toCosmosDB.JSON* file that you downloaded from GitHub.
 
@@ -66,7 +66,7 @@ The Description field provides the most verbose content. You should target this 
 
 ## Use the Azure portal
 
-You can use either the **Import data** wizard or **Import and vectorize data** wizard to automate indexing from an SQL database table or view. The data source configuration is similar for both wizards.
+You can use either the **Import data** wizard or **Quickstart wizard** to automate indexing from an SQL database table or view. The data source configuration is similar for both wizards.
 
 1. [Start the wizard](search-import-data-portal.md#starting-the-wizards).
 
@@ -80,17 +80,17 @@ You can use either the **Import data** wizard or **Import and vectorize data** w
 
    If you [configure Azure AI Search to use a managed identity](search-howto-managed-identities-data-sources.md), and you create a [role assignment on Cosmos DB](/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions) that grants **Cosmos DB Account Reader** and **Cosmos DB Built-in Data Reader** permissions to the identity, your indexer can connect to Cosmos DB using Microsoft Entra ID and roles.
 
-1. For the **Import and vectorize data** wizard, you can specify options for change and deletion tracking.
+1. For the **Quickstart wizard**, you can specify options for change and deletion tracking.
 
    [Change detection](#incremental-indexing-and-custom-queries) is supported by default through a `_ts` field (timestamp). If you upload content using the approach described in [Try with sample data](#try-with-sample-data), the collection is created with a `_ts` field.
 
-   [Deletion detection](#indexing-deleted-documents) requires that you have a preexisting top-level field in the collection that can be used as a soft-delete flag. It should be a Boolean field (you could name it IsDeleted). Specify `true` as the soft-deleted value. In the search index, add a corresponding search field called *IsDeleted* set to retrievable and filterable. 
+   [Deletion detection](#indexing-deleted-documents) requires that you have a preexisting top-level field in the collection that can be used as a soft-delete flag. It should be a Boolean field (you could name it IsDeleted). Specify `true` as the soft-deleted value. In the search index, add a corresponding search field called *IsDeleted* set to retrievable and filterable.
 
 1. Continue with the remaining steps to complete the wizard:
 
-   + [Quickstart: Import data wizard](search-get-started-portal.md)
+   + [Import data wizard](search-get-started-portal.md)
 
-   + [Quickstart: Import and vectorize data wizard](search-get-started-portal-import-vectors.md)
+   + [Quickstart wizard](search-get-started-portal-import-vectors.md)
 
 ## Use the REST APIs
 
