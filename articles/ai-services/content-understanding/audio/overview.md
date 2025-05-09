@@ -20,9 +20,9 @@ ms.custom: release-preview-2-cu
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Content Understanding audio analyzers enable transcription and diarization of conversational audio, extracting structured fields such as summaries, sentiments, and key topics. Customize an audio analyzer template to your business needs using [Azure AI Foundry portal](https://ai.azure.com/) to start generating results.
+Audio analyzers enable transcription and diarization of conversational audio, extracting structured fields such as summaries, sentiments, and key topics. Customize an audio analyzer template to your business needs using [Azure AI Foundry portal](https://ai.azure.com/) to start generating results.
 
-Here are common scenarios for using Content Understanding with conversational audio data:
+Here are common scenarios for conversational audio data processing:
 
 * Gain customer insights through summarization and sentiment analysis.
 * Assess and verify call quality and compliance in call centers.
@@ -30,7 +30,7 @@ Here are common scenarios for using Content Understanding with conversational au
 
 ## Audio analyzer capabilities
 
-:::image type="content" source="../media/audio/overview/workflow-diagram.png" lightbox="../media/audio/overview/workflow-diagram.png" alt-text="Illustration of Content Understanding audio workflow.":::
+:::image type="content" source="../media/audio/overview/workflow-diagram.png" lightbox="../media/audio/overview/workflow-diagram.png" alt-text="Illustration of Content Understanding audio capabilities.":::
 
 Content Understanding serves as a cornerstone for Speech Analytics solutions, enabling the following capabilities for audio files:
   
@@ -39,7 +39,7 @@ Content Understanding serves as a cornerstone for Speech Analytics solutions, en
 * **Transcription**. Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Customizable fields can be generated from transcription data. Sentence-level and word-level timestamps are available upon request.
 
 > [!NOTE]
-> Content Understanding supports the full set of [Azure AI Speech Speech to text languages](https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt).
+> Content Understanding supports the full set of [Azure AI Speech Speech to text languages](../../speech-service/language-support?tabs=stt).
 > For languages with Fast transcriptions support and for files ≤ 300 MB and/or ≤ 2 hours, transcription time is reduced substantially.
 
 * **Diarization**. Distinguishes between speakers in a conversation, attributing parts of the transcript to specific speakers.
@@ -47,15 +47,13 @@ Content Understanding serves as a cornerstone for Speech Analytics solutions, en
 * **Speaker role detection**. Identifies agent and customer roles within contact center call data.
 
 * **Multilingual transcription**. Generates multilingual transcripts, applying language/locale per phrase. Deviating from language detection this feature is enabled when no language/locale is specified or language is set to 'auto'.
-
-> [!NOTE]
-> The following locales are currently supported:
-> **Files ≤ 300 MB and/or ≤ 2 hours**: de-DE, en-AU, en-CA, en-GB, en-IN, en-US, es-ES, es-MX, fr-CA, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, and zh-CN.
-> **Files larger than 300 MB and/or longer than 4 hours**: en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, zh-CN.
+  <br>The following locales are currently supported for multilingual transcription:
+  * **Files ≤ 300 MB and/or ≤ 2 hours**: de-DE, en-AU, en-CA, en-GB, en-IN, en-US, es-ES, es-MX, fr-CA, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, and zh-CN.
+  * **Files larger than 300 MB and/or longer than 4 hours**: en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, zh-CN.
 
 > [!WARNING]
-> When Multilingual transcription is used, a file with an unsupported locale will still produce a result. This result will be based on the closest locale but most likely not correct.
-> This is a know behavior. Please make sure to configure locales when not using Multilingual transcription!
+> When Multilingual transcription is used, a file with an unsupported locale produces a result. This result is based on the closest locale but most likely not correct.
+> This result is a known behavior. Make sure to configure locales when not using Multilingual transcription!
 
 
 * **Language detection**. Automatically detects the dominant language/locale which is used to transcribe the file. Set multiple languages/locales to enable language detection.
@@ -69,7 +67,7 @@ Content Understanding serves as a cornerstone for Speech Analytics solutions, en
 Field extraction allows you to extract structured data from audio files, such as summaries, sentiments, and mentioned entities from call logs. You can begin by customizing a suggested analyzer template or creating one from scratch.
 
 ## Key Benefits
-Content Understanding offers advanced audio capabilities, including:
+Advanced audio capabilities, including:
 
 * **Customizable data extraction**. Tailor the output to your specific needs by modifying the field schema, allowing for precise data generation and extraction.
 
@@ -79,7 +77,7 @@ Content Understanding offers advanced audio capabilities, including:
 
 * **Scenario adaptability**. Adapt the service to your requirements by generating custom fields and extract relevant data.
 
-## Content Understanding prebuild audio analyzers
+## Prebuild audio analyzers
 
 The prebuild analyzers allow extracting valuable insights into audio content without the need to create an analyzer setup.
 
@@ -88,7 +86,7 @@ All audio analyzers generate transcripts in standard WEBVTT format separated by 
 > [!NOTE]
 > Prebuild analyzers are set to use multilingual transcription and returnDetails enabled!
 
-Content Understanding offers the following prebuild analyzers:
+The following prebuild analyzers are available:
 
 **Post-call analysis (prebuilt-callCenter)**. Analyze call recordings to generate:
 - conversation transcripts with speaker role detection result
@@ -270,9 +268,9 @@ You can also customize prebuild analyzers for more fine-grained control of the o
 - and more
 
 ## Conversational Knowledge Mining Solution Accelerator
-To provide an end-2-end quickstart for Speech Analytics solutions based on Content Understanding, please refer to the [Conversation knowledge mining solution accelerator](https://aka.ms/Conversational-Knowledge-Mining).
+For an end-2-end quickstart for Speech Analytics solutions, refer to the [Conversation knowledge mining solution accelerator](https://aka.ms/Conversational-Knowledge-Mining).
 
-Gain actionable insights from large volumes of conversational data by identifying key themes, patterns, and relationships. Using Azure AI Foundry, Azure AI Content Understanding, Azure OpenAI Service, and Azure AI Search, this solution analyzes unstructured dialogue and maps it to meaningful, structured insights.
+Gain actionable insights from large volumes of conversational data by identifying key themes, patterns, and relationships. By using Azure AI Foundry, Azure AI Content Understanding, Azure OpenAI Service, and Azure AI Search, this solution analyzes unstructured dialogue and maps it to meaningful, structured insights.
 
 Capabilities such as topic modeling, key phrase extraction, speech-to-text transcription, and interactive chat enable users to explore data naturally and make faster, more informed decisions.
 
@@ -287,11 +285,11 @@ For a complete list of supported regions, languages, and locales, see our [Langu
 
 ## Data privacy and security
 
-Developers using Content Understanding should review Microsoft's policies on customer data. For more information, visit our [Data, protection, and privacy](https://www.microsoft.com/trust-center/privacy) page.
+Developers using this service should review Microsoft's policies on customer data. For more information, visit our [Data, protection, and privacy](https://www.microsoft.com/trust-center/privacy) page.
 
 ## Next steps
 
-* Try processing your audio content using Content Understanding in [**Azure AI Foundry portal**](https://aka.ms/cu-landing).
+* Try processing your audio content in [**Azure AI Foundry portal**](https://aka.ms/cu-landing).
 * Learn how to analyze audio content [**analyzer templates**](../quickstart/use-ai-foundry.md).
 * Review code sample: [**audio content extraction**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/notebooks/content_extraction.ipynb).
 * Review code sample: [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
