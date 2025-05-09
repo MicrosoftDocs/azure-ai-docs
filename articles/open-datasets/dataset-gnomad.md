@@ -8,6 +8,8 @@ ms.date: 04/16/2021
 
 # Genome Aggregation Database (gnomAD)
 
+[!INCLUDE [Open Dataset usage notice](./includes/open-datasets-change-notice.md)]
+
 The [Genome Aggregation Database (gnomAD)](https://gnomad.broadinstitute.org/) is a resource developed by an international coalition of investigators, with the goal of aggregating and harmonizing both exome and genome sequencing data from a wide variety of large-scale sequencing projects, and making summary data available for the wider scientific community.
 
 [!INCLUDE [Open Dataset usage notice](./includes/open-datasets-usage-note.md)]
