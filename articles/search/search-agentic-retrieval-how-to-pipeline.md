@@ -102,7 +102,7 @@ If you don't have an Azure OpenAI resource in your Foundry project, revisit the 
 
 ### Add an agentic retrieval tool to AI Agent
 
-An end-to-end pipeline needs an orchestration mechanism for coordinating calls to the retriever and agent. You can use a [tool](https://learn.microsoft.com/azure/ai-services/agents/how-to/tools/function-calling) for this task. The tool calls the Azure AI Search knowledge retrieval client and the Azure AI agent, and it drives the conversations with the user.
+An end-to-end pipeline needs an orchestration mechanism for coordinating calls to the retriever and agent. You can use a [tool](/azure/ai-services/agents/how-to/tools/function-calling) for this task. The tool calls the Azure AI Search knowledge retrieval client and the Azure AI agent, and it drives the conversations with the user.
 
 ## How to design a prompt
 
