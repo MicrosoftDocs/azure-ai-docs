@@ -89,15 +89,33 @@ The following limits apply as of version 2024-12-01-preview.
 
 ### Classification fields
 
+   > [!NOTE]
+   > This is the classification field within the extraction capability and not the separate [Content Understanding Classifier](concepts/classifier.md) itself.
+
 Classification fields can be defined to return either a single category (single-label classification) or multiple categories (multi-label classification).
 
 * **Single-label classification**: Defined using a string field with the `classify` method. It can be a top-level basic field or a subfield within a group or table.
 * **Multi-label classification**: Represented as a list of string fields with the `classify` method. In the [REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true), `method=classify` and `enum` are specified on the inner string field and can only be a top-level field.
-
-*Note: Document analyzers currently don't support classification fields.*
 
 
 ## Training limits
 | File type| Max training data |
 | ---| --- |
 | Document | 1 GB total<br>50k pages/images |
+
+## Classifier limits
+
+The following limits apply as of version 2025-05-01-preview.
+
+### Input File Limits (Documents only)
+
+| Supported File Types | File Size | Length |
+| --- | --- | --- |
+| ✓ `.pdf`<br> ✓ `.tiff`<br> ✓ `.jpg`<br> ✓ `.png`<br> ✓ `.bmp`<br> ✓ `.heif` | ≤ 200 MB | ≤ 300 pages |
+| ✓ `.txt`  | ≤ 1 MB | ≤ 1M characters |
+
+### Category Limits
+
+* **Category Name and Description**: Limit of total 120 characters for each category name and description combined.
+* **Category Name**: Category name can't start with `$`.
+* **Number of categories**: Minimum 1 to maximum 50 categories per classifier.
