@@ -20,7 +20,7 @@ ms.custom: include file
     | Category | Evaluator class/Metrics | AI Agent evaluations | GenAI evaluations |
     |--|--|--|--|
     | Performance and quality (AI-assisted) | `GroundednessEvaluator` | Not Supported | Supported |
-    | Performance and quality (AI-assisted) | [`GroundednessProEvaluator`](../concepts/evaluation-evaluators/rag-evaluators#groundedness-pro) | Not Supported | Supported |
+    | Performance and quality (AI-assisted) | `GroundednessProEvaluator` | Not Supported | Supported |
     | Performance and quality (AI-assisted) | `RetrievalEvaluator` | Not Supported | Supported |
     | Performance and quality (AI-assisted)| `RelevanceEvaluator` | Supported | Supported |
     | Performance and quality (AI-assisted) | `CoherenceEvaluator` | Supported | Supported |
