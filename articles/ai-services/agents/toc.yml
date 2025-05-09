@@ -71,6 +71,8 @@ items:
               displayName: sharepoint
             - name: How to use SharePoint
               href: how-to/tools/sharepoint-samples.md
+        - name: Logic apps
+          href: how-to/tools/logic-apps.md
         - name: Use licensed data
           items:
             - name: Morningstar

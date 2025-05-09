@@ -35,110 +35,101 @@ Complete the [Azure AI Search tool setup](../../how-to/tools/azure-ai-search.md?
 :::zone pivot="python"
 
 ## Step 1: Create an Azure AI Client
-First, create an Azure AI Client using the connection string of your project.
+First, create an Azure AI Client using the endpoint of your project.
 
 ```python
 import os
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
-from azure.ai.projects.models import AzureAISearchTool
 
-# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
-# At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>"
-# HostName can be found by navigating to your discovery_url and removing the leading "https://" and trailing "/discovery" 
-# To find your discovery_url, run the CLI command: az ml workspace show -n {project_name} --resource-group {resource_group_name} --query discovery_url
-# Project Connection example: eastus.api.azureml.ms;my-subscription-id;my-resource-group;my-hub-name
+# Retrieve the endpoint from environment variables
+project_endpoint = os.environ["PROJECT_ENDPOINT"]
 
-connection_string = os.environ["PROJECT_CONNECTION_STRING"] 
-
-project_client = AIProjectClient.from_connection_string(
-    credential=DefaultAzureCredential(),
-    conn_str=connection_string,
+# Initialize the AIProjectClient
+project_client = AIProjectClient(
+    endpoint=project_endpoint,
+    credential=DefaultAzureCredential(exclude_interactive_browser_credential=False),
+    api_version="latest",
 )
 ```
 
-## Step 2: Get the connection ID for the Azure AI Search resource
-Get the connection ID of the Azure AI Search connection in the project. You can use the code snippet to print the connection ID of all the Azure AI Search connections in the project.
+## Step 2: Configure the Azure AI Search tool
+Using the connection ID of your Azure AI Search resource, configure the Azure AI Search tool to use your Azure AI Search index.
 
 ```python
-# AI Search resource connection ID
-# This code looks for the AI Search Connection ID and saves it as variable conn_id
+from azure.ai.agents.models import AzureAISearchTool, AzureAISearchQueryType
 
-# If you have more than one AI search connection, try to establish the value in your .env file.
-# Extract the connection list.
-conn_list = project_client.connections._list_connections()["value"]
-conn_id = ""
+# Define the Azure AI Search connection ID and index name
+azure_ai_conn_id = os.environ["AZURE_AI_CONNECTION_ID"]
+index_name = "sample_index"
 
-# Search in the metadata field of each connection in the list for the azure_ai_search type and get the id value to establish the variable
-for conn in conn_list:
-    metadata = conn["properties"].get("metadata", {})
-    if metadata.get("type", "").upper() == "AZURE_AI_SEARCH":
-        conn_id = conn["id"]
-        break
+# Initialize the Azure AI Search tool
+ai_search = AzureAISearchTool(
+    index_connection_id=azure_ai_conn_id,
+    index_name=index_name,
+    query_type=AzureAISearchQueryType.SIMPLE,  # Use SIMPLE query type
+    top_k=3,  # Retrieve the top 3 results
+    filter="",  # Optional filter for search results
+)
 ```
 
-## Step 3: Configure the Azure AI Search tool
-Using the connection ID you got in the previous step, you can now configure the Azure AI Search tool to use your Azure AI Search index.
+## Step 3: Create an agent with the Azure AI Search tool enabled
+Create an agent with the Azure AI Search tool attached. Change the model to the one deployed in your project.
 
 ```python
-# TO DO: replace this value with the connection ID of the search index
-conn_id =  "/subscriptions/<your-subscription-id>/resourceGroups/<your-resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<your-project-name>/connections/<your-azure-ai-search-connection-name>"
+# Define the model deployment name
+model_deployment_name = os.environ["MODEL_DEPLOYMENT_NAME"]
 
-# Initialize agent AI search tool and add the search index connection ID and index name
-# TO DO: replace <your-index-name> with the name of the index you want to use
-ai_search = AzureAISearchTool(index_connection_id=conn_id, index_name="<your-index-name>",
-query_type="<select-search-type>")
-```
-
-## Step 4: Create an agent with the Azure AI Search tool enabled
-Change the model to the one deployed in your project. You can find the model name in the Azure AI Foundry under the **Models** tab. You can also change the name and instructions of the agent to suit your needs.
-
-```python
+# Create an agent with the Azure AI Search tool
 agent = project_client.agents.create_agent(
-    model="gpt-4o-mini",
-    name="my-assistant",
-    instructions="You are a helpful assistant",
+    model=model_deployment_name,
+    name="my-agent",
+    instructions="You are a helpful agent",
     tools=ai_search.definitions,
-    tool_resources = ai_search.resources,
+    tool_resources=ai_search.resources,
 )
 print(f"Created agent, ID: {agent.id}")
 ```
 
-## Step 5: Ask the agent questions about data in the index
-Now that the agent is created, ask it questions about the data in your Azure AI Search index. The example assumes your Azure AI Search index contains information about health care plans.
+## Step 4: Ask the agent questions about data in the index
+Now that the agent is created, ask it questions about the data in your Azure AI Search index.
 
 ```python
-# Create a thread
-thread = project_client.agents.create_thread()
-print(f"Created thread, thread ID: {thread.id}")
- 
-# Create a message
-message = project_client.agents.create_message(
+from azure.ai.agents.models import MessageRole, ListSortOrder
+
+# Create a thread for communication
+thread = project_client.agents.threads.create()
+print(f"Created thread, ID: {thread.id}")
+
+# Send a message to the thread
+message = project_client.agents.messages.create(
     thread_id=thread.id,
-    role="user",
-    content="what are my health insurance plan coverage types?",
+    role=MessageRole.USER,
+    content="What is the temperature rating of the cozynights sleeping bag?",
 )
-print(f"Created message, message ID: {message.id}")
-    
-# Run the agent
-run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+print(f"Created message, ID: {message['id']}")
+
+# Create and process a run with the specified thread and agent
+run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 print(f"Run finished with status: {run.status}")
- 
+
+# Check if the run failed
 if run.status == "failed":
-    # Check if you got "Rate limit is exceeded.", then you want to get more quota
     print(f"Run failed: {run.last_error}")
 
-# Get messages from the thread 
-messages = project_client.agents.list_messages(thread_id=thread.id)
-print(f"Messages: {messages}")
-    
-assistant_message = ""
+# Fetch and log all messages in the thread
+messages = project_client.agents.messages.list(thread_id=thread.id, order=ListSortOrder.ASCENDING)
 for message in messages.data:
-    if message["role"] == "assistant":
-        assistant_message = message["content"][0]["text"]["value"]
+    print(f"Role: {message.role}, Content: {message.content}")
+```
 
-# Get the last message from the sender
-print(f"Assistant response: {assistant_message}")
+## Step 5: Clean up resources
+After completing the operations, delete the agent to clean up resources.
+
+```python
+# Delete the agent
+project_client.agents.delete_agent(agent.id)
+print("Deleted agent")
 ```
 
 :::zone-end
