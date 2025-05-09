@@ -32,7 +32,7 @@ ms.custom: include file
     | Retrieval-augmented Generation (RAG) (AI-assisted) | [GroundednessProEvaluator](../concepts/evaluation-evaluators/rag-evaluators.md#groundedness-pro) | Not Supported | Supported |
     | Retrieval-augmented Generation (RAG) (AI-assisted) | [RetrievalEvaluator](../concepts/evaluation-evaluators/rag-evaluators.md#relevance) | Not Supported | Supported |
     | Retrieval-augmented Generation (RAG) (AI-assisted) | [RelevanceEvaluator](../concepts/evaluation-evaluators/rag-evaluators.md#retrieval) | Supported | Supported |
-    | Retrieval-augmented Generation (RAG) (AI-assisted) | [ResponseCompletenessEvaluator`](../concepts/evaluation-evaluators/rag-evaluators.md#response-completeness) | Not Supported | Supported |
+    | Retrieval-augmented Generation (RAG) (AI-assisted) | [ResponseCompletenessEvaluator](../concepts/evaluation-evaluators/rag-evaluators.md#response-completeness) | Not Supported | Supported |
     | Retrieval-augmented Generation (RAG) (AI-assisted) | [DocumentRetrievalEvaluator](../concepts/evaluation-evaluators/rag-evaluators.md#document-retrieval) | Not Supported | Not Supported |
     | Risk and safety (AI-assisted) | [ViolenceEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators.md#violent-content) | Supported | Supported |
     | Risk and safety (AI-assisted) | [SexualEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators.md#sexual-content) | Supported | Supported |
