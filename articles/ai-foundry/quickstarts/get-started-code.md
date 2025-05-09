@@ -31,7 +31,7 @@ In this quickstart, we walk you through setting up your local development enviro
 
 ## Set up your development environment
 
-1. [Set up your development environment](../how-to/develop/install-cli-sdk.md?tab-python)
+1. [Set up your development environment](../how-to/develop/install-cli-sdk.md?pivots=programming-language-python)
 
 1. Make sure you install these packages:
 
