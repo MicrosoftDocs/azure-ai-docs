@@ -1,22 +1,22 @@
 ---
-title: "What is a dictionary? - Custom Translation"
+title: Azure AI Foundry custom translation dictionary
 titleSuffix: Azure AI services
-description: How to create an aligned document that specifies a list of phrases or sentences (and their translations) that you always want Microsoft Translator to translate the same way. Dictionaries are sometimes also called glossaries or term bases.
+description: How to create an Azure AI Foundry custom translation dictionary specifying a list of phrases or sentences (and their translations) that you want Azure AI Translator to always translate in the same manner. Dictionaries can also be called glossaries or term bases.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 01/28/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: conceptual
 ms.custom: cogserv-non-critical-translator
 #Customer intent: As a Custom Translator, I want to understand how to use a dictionary to build a custom translation model.
 ---
 
-# What is a dictionary?
+# Azure AI Foundry custom translation dictionary
 
-An Custom Translation dictionary is an aligned pair of documents that specifies a list of phrases or sentences and their corresponding translations. Use a dictionary in your training, when you want Custom Translator to translate any instances of the source phrase or sentence, using the translation you provide in the dictionary. Dictionaries are sometimes called glossaries or term bases. You can think of the dictionary as a brute force "copy and replace" for all the terms you list. Furthermore, Custom Translation service builds and makes use of its own general purpose dictionaries to improve the quality of its translation. However, a customer provided dictionary takes precedent and is searched first to look up words or sentences.
+A custom translation dictionary is an aligned pair of documents that specifies a list of phrases or sentences and their corresponding translations. Use a dictionary in your training, when you want Custom Translator to translate any instances of the source phrase or sentence, using the translation you provide in the dictionary. Dictionaries are sometimes called glossaries or term bases. You can think of the dictionary as a brute force "copy and replace" for all the terms you list. Furthermore, custom translation service builds and makes use of its own general purpose dictionaries to improve the quality of its translation. However, a customer provided dictionary takes precedent and is searched first to look up words or sentences.
 
-Dictionaries only work for projects in language pairs that have a fully supported Microsoft general neural network model behind them. [View the complete list of languages](../../language-support.md).
+Dictionaries only work for projects in language pairs that have a fully supported Microsoft general neural network model behind them. [View the complete list of languages](../../../language-support.md).
 
 ## Phrase dictionary
 
@@ -24,11 +24,11 @@ A phrase dictionary is case-sensitive. It's an exact find-and-replace operation.
 
 ## Dynamic dictionary
 
-The [dynamic dictionary](../../dynamic-dictionary.md) feature allows you to customize translations for specific terms or phrases. You define custom translations for your unique context, language, or specific needs.
+The [dynamic dictionary](../../concepts/dictionaries.md#dynamic-dictionary) feature allows you to customize translations for specific terms or phrases. You define custom translations for your unique context, language, or specific needs.
 
 ## Neural phrase dictionary
 
-The [neural phrase dictionary](../../neural-dictionary.md) extends our [dynamic dictionary](#dynamic-dictionary) and [standard phrase dictionary](#phrase-dictionary) features. Dynamic and phrase dictionaries allow you to customize the translation output by providing your own translations for specific terms or phrases. The dynamic dictionary feature is used with the Translator API while the neural phrase dictionary is enabled using Custom Translator. The neural phrase dictionary improves translation quality for sentences that include one or more term translations by letting the machine translation model adjust both the term and the context. This adjustment produces more fluent translations. At the same time, it preserves high-term translation accuracy.
+The [neural phrase dictionary](../../concepts/dictionaries.md#neural-phrase-dictionary) extends our [dynamic dictionary](#dynamic-dictionary) and [standard phrase dictionary](#phrase-dictionary) features. Dynamic and phrase dictionaries allow you to customize the translation output by providing your own translations for specific terms or phrases. The dynamic dictionary feature is used with the Translator API while the neural phrase dictionary is enabled using Custom Translator. The neural phrase dictionary improves translation quality for sentences that include one or more term translations by letting the machine translation model adjust both the term and the context. This adjustment produces more fluent translations. At the same time, it preserves high-term translation accuracy.
 
 ## Sentence dictionary
 
@@ -38,8 +38,10 @@ A sentence dictionary is case-insensitive. The sentence dictionary allows you to
 
 You can train a model using only dictionary data. To do so, select only the dictionary document (or multiple dictionary documents) that you wish to include and select **Create model**. Since this training is dictionary-only, there's no minimum number of training sentences required. Your model typically completes training faster than a standard training. The resulting models use the Microsoft baseline models for translation with the addition of the dictionaries you add. You don't get a test report.
 
->[!Note]
->Custom Translator doesn't sentence align dictionary files, so it is important that there are an equal number of source and target phrases/sentences in your dictionary documents and that they are precisely aligned.
+> [!NOTE]
+> Custom Translator doesn't perform sentence alignment for dictionary files. Therefore, it's crucial to ensure that your dictionary documents contain an equal number of phrases or sentences for both the source and target languages. These phrases or sentences must be carefully and accurately aligned to maintain consistency and effectiveness.
+
+
 
 ## Recommendations
 
@@ -57,7 +59,7 @@ You can train a model using only dictionary data. To do so, select only the dict
   - When you request translation of a sentence that includes the same phrase but **doesn't** match what is in your source file, such as _sql server_, _sql Server_, or _SQL Server_, it **won't** return a match from your dictionary.
   - The translation follows the rules of the target language as specified in your phrase dictionary.
 
-- For more information about neural phrase dictionary, _see_ [neural dictionary guidance and recommendations](../../neural-dictionary.md#guidance-and-recommendations).
+- For more information about neural phrase dictionary, _see_ [neural dictionary guidance and recommendations](../../../text-translation/how-to/use-neural-dictionary.md#guidance-and-recommendations).
 
 - If you're using a sentence dictionary, end-of-sentence punctuation is ignored.
 

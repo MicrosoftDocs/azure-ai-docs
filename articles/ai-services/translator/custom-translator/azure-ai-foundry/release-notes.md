@@ -1,19 +1,17 @@
 ---
-title: "Release notes - Custom Translation"
+title: "Release notes - custom translation"
 titleSuffix: Azure AI services
-description: Custom Translation releases, improvements, bug fixes, and known issues.
+description: Custom translation releases, improvements, bug fixes, and known issues.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.custom:
-  - ignite-2023
-ms.date: 11/01/2024
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: release-notes
 ---
-# Custom Translation release notes
+# Custom translation release notes
 
-This page presents the latest feature, improvement, bug fix, and known issue release notes for Custom Translation service.
+This page presents the latest feature, improvement, bug fix, and known issue release notes for custom translation service.
 
 ## 2025-March release
 
@@ -21,83 +19,83 @@ This page presents the latest feature, improvement, bug fix, and known issue rel
 
 |Source Language|Target Language|
 |:----|:----|
-|Afrikaans (af)|English (en)|
-|Bosnian (bs)|English (en)|
-|Bulgarian (bg)|English (en)|
-|Catalan (ca)|English (en)|
-|Croatian (hr)|English (en)|
-|Czech (cs)|English (en)|
-|Danish (da)|English (en)|
-|Dutch (nl)|English (en)|
-|English (en)|Afrikaans (af)|
-|English (en)|Arabic (ar)|
-|English (en)|Bosnian (bs)|
-|English (en)|Bulgarian (bg)|
-|English (en)|Catalan (ca)|
-|English (en)|Croatian (hr)|
-|English (en)|Czech (cs)|
-|English (en)|Danish (da)|
-|English (en)|Dutch (nl)|
-|English (en)|Estonian (et)|
-|English (en)|Finnish (fi)|
-|English (en)|French (fr)|
-|English (en)|French-Canadian (fr-ca)|
-|English (en)|German (de)|
-|English (en)|Hindi (hi)|
-|English (en)|Hungarian (hu)|
-|English (en)|Icelandic (is)|
-|English (en)|Indonesian (id)|
-|English (en)|Italian (it)|
-|English (en)|Japanese (ja)|
-|English (en)|Korean (ko)|
-|English (en)|Malay (ms)|
-|English (en)|Norwegian-Bokmål (nb)|
-|English (en)|Persian (fa)|
-|English (en)|Polish (pl)|
-|English (en)|Portuguese (pt)|
-|English (en)|Romanian (ro)|
-|English (en)|Russian (ru)|
-|English (en)|Serbian-Latin (sr-latn)|
-|English (en)|Slovak (sk)|
-|English (en)|Slovenian (sl)|
-|English (en)|Spanish (es)|
-|English (en)|Swedish (sv)|
-|English (en)|Thai (th)|
-|English (en)|Turkish (tr)|
-|English (en)|Ukrainian (uk)|
-|English (en)|Vietnamese (vi)|
-|English (en)|Chinese Simplified (zh-hans)|
-|Estonian (et)|English (en)|
-|Finnish (fi)|English (en)|
-|French (fr)|English (en)|
-|German (de)|English (en)|
-|Hebrew (he)|English (en)|
-|Hindi (hi)|English (en)|
-|Hungarian (hu)|English (en)|
-|Icelandic (is)|English (en)|
-|Indonesian (id)|English (en)|
-|Italian (it)|English (en)|
-|Malay (ms)|English (en)|
-|Norwegian-Bokmål (nb)|English (en)|
-|Persian (fa)|English (en)|
-|Polish (pl)|English (en)|
-|Portuguese (pt)|English (en)|
-|Romanian (ro)|English (en)|
-|Russian (ru)|English (en)|
-|Serbian-Latin (sr-latn)|English (en)|
-|Slovak (sk)|English (en)|
-|Slovenian (sl)|English (en)|
-|Spanish (es)|English (en)|
-|Swedish (sv)|English (en)|
-|Thai (th)|English (en)|
-|Ukrainian (uk)|English (en)|
-|Vietnamese (vi)|English (en)|
+|Afrikaans (`af`)|English (`en`)|
+|Bosnian (`bs`)|English (`en`)|
+|Bulgarian (`bg`)|English (`en`)|
+|Catalan (`ca`)|English (`en`)|
+|Croatian (`hr`)|English (`en`)|
+|Czech (`cs`)|English (`en`)|
+|Danish (`da`)|English (`en`)|
+|Dutch (`nl`)|English (`en`)|
+|English (`en`)|Afrikaans (`af`)|
+|English (`en`)|Arabic (`ar`)|
+|English (`en`)|Bosnian (`bs`)|
+|English (`en`)|Bulgarian (`bg`)|
+|English (`en`)|Catalan (`ca`)|
+|English (`en`)|Croatian (`hr`)|
+|English (`en`)|Czech (`cs`)|
+|English (`en`)|Danish (`da`)|
+|English (`en`)|Dutch (`nl`)|
+|English (`en`)|Estonian (`et`)|
+|English (`en`)|Finnish (`fi`)|
+|English (`en`)|French (`fr`)|
+|English (`en`)|French-Canadian (fr-ca)|
+|English (`en`)|German (`de`)|
+|English (`en`)|Hindi (`hi`)|
+|English (`en`)|Hungarian (`hu`)|
+|English (`en`)|Icelandic (`is`)|
+|English (`en`)|Indonesian (`id`)|
+|English (`en`)|Italian (`it`)|
+|English (`en`)|Japanese (`ja`)|
+|English (`en`)|Korean (`ko`)|
+|English (`en`)|Malay (`ms`)|
+|English (`en`)|Norwegian-Bokmål (`nb`)|
+|English (`en`)|Persian (`fa`)|
+|English (`en`)|Polish (`pl`)|
+|English (`en`)|Portuguese (`pt`)|
+|English (`en`)|Romanian (`ro`)|
+|English (`en`)|Russian (`ru`)|
+|English (`en`)|Serbian-Latin (sr-latn)|
+|English (`en`)|Slovak (`sk`)|
+|English (`en`)|Slovenian (`sl`)|
+|English (`en`)|Spanish (`es`)|
+|English (`en`)|Swedish (`sv`)|
+|English (`en`)|Thai (`th`)|
+|English (`en`)|Turkish (`tr`)|
+|English (`en`)|Ukrainian (`uk`)|
+|English (`en`)|Vietnamese (`vi`)|
+|English (`en`)|Chinese Simplified (zh-hans)|
+|Estonian (`et`)|English (`en`)|
+|Finnish (`fi`)|English (`en`)|
+|French (`fr`)|English (`en`)|
+|German (`de`)|English (`en`)|
+|Hebrew (`he`)|English (`en`)|
+|Hindi (`hi`)|English (`en`)|
+|Hungarian (`hu`)|English (`en`)|
+|Icelandic (`is`)|English (`en`)|
+|Indonesian (`id`)|English (`en`)|
+|Italian (`it`)|English (`en`)|
+|Malay (`ms`)|English (`en`)|
+|Norwegian-Bokmål (`nb`)|English (`en`)|
+|Persian (`fa`)|English (`en`)|
+|Polish (`pl`)|English (`en`)|
+|Portuguese (`pt`)|English (`en`)|
+|Romanian (`ro`)|English (`en`)|
+|Russian (`ru`)|English (`en`)|
+|Serbian-Latin (sr-latn)|English (`en`)|
+|Slovak (`sk`)|English (`en`)|
+|Slovenian (`sl`)|English (`en`)|
+|Spanish (`es`)|English (`en`)|
+|Swedish (`sv`)|English (`en`)|
+|Thai (`th`)|English (`en`)|
+|Ukrainian (`uk`)|English (`en`)|
+|Vietnamese (`vi`)|English (`en`)|
 
 ## 2024-November release
 
 ### Language model updates
 
-* Language pairs are listed in the table below.
+* Language pairs are listed in the following table:
 
 * We encourage you to retrain your models accordingly for higher quality.
 
@@ -201,7 +199,7 @@ This page presents the latest feature, improvement, bug fix, and known issue rel
 
 ### December 2023 model updates
 
-* Added [neural dictionary](../neural-dictionary.md) support for improved translation quality when a phrase dictionary is used.
+* Added [neural dictionary](../../text-translation/how-to/use-neural-dictionary.md) support for improved translation quality when a phrase dictionary is used.
 
 * The current supported **neural dictionary** language pairs are listed in the following table:
 
@@ -296,7 +294,7 @@ This page presents the latest feature, improvement, bug fix, and known issue rel
 
 #### Custom Translator platform upgrade
 
-&emsp; 🆕 ***Model Upgrade Wizard*** is now available in **Workspace settings** to help guide customers through the V1-model-upgrade-to-new-platform process. For more information, *see* [Custom Translator platform upgrade](platform-upgrade.md).
+&emsp; 🆕 ***Model Upgrade Wizard*** is now available in **Workspace settings** to help guide customers through the V1-model-upgrade-to-new-platform process. For more information, *see* [Custom Translator platform upgrade](../platform-upgrade.md).
 
 #### Custom Translator copy model
 
@@ -308,7 +306,7 @@ This page presents the latest feature, improvement, bug fix, and known issue rel
 
 #### June language model updates
 
-&emsp; Current supported language pairs are listed in the following table. For higher quality, we encourage you to retrain your models accordingly. For more information, *see* [Language support](../language-support.md).
+&emsp; Current supported language pairs are listed in the following table. For higher quality, we encourage you to retrain your models accordingly. For more information, *see* [Language support](../../language-support.md).
 
 |Source Language|Target Language|
 |:----|:----|
@@ -379,24 +377,24 @@ This page presents the latest feature, improvement, bug fix, and known issue rel
 |:----|:----|
 |Chinese Simplified (`zh-hans`)|English (`en-us`)|
 |Chinese Traditional (zh-Hant)|English (`en-us`)|
-|Czech (cs)|English (`en-us`)|
-|Dutch (nl)|English (`en-us`)|
+|Czech (`cs`)|English (`en-us`)|
+|Dutch (`nl`)|English (`en-us`)|
 |English (`en-us`)|Chinese Simplified (`zh-hans`)|
 |English (`en-us`)|Chinese Traditional (zh-Hant)|
-|English (`en-us`)|Czech (cs)|
-|English (`en-us`)|Dutch (nl)|
-|English (`en-us`)|French (fr)|
-|English (`en-us`)|German (de)|
-|English (`en-us`)|Italian (it)|
-|English (`en-us`)|Polish (pl)|
-|English (`en-us`)|Romanian (ro)|
-|English (`en-us`)|Russian (ru)|
-|English (`en-us`)|Spanish (es)|
-|English (`en-us`)|Swedish (sv)|
-|German (de)|English (`en-us`)|
-|Italian (it)|English (`en-us`)|
-|Russian (ru)|English (`en-us`)|
-|Spanish (es)|English (`en-us`)|
+|English (`en-us`)|Czech (`cs`)|
+|English (`en-us`)|Dutch (`nl`)|
+|English (`en-us`)|French (`fr`)|
+|English (`en-us`)|German (`de`)|
+|English (`en-us`)|Italian (`it`)|
+|English (`en-us`)|Polish (`pl`)|
+|English (`en-us`)|Romanian (`ro`)|
+|English (`en-us`)|Russian (`ru`)|
+|English (`en-us`)|Spanish (`es`)|
+|English (`en-us`)|Swedish (`sv`)|
+|German (`de`)|English (`en-us`)|
+|Italian (`it`)|English (`en-us`)|
+|Russian (`ru`)|English (`en-us`)|
+|Spanish (`es`)|English (`en-us`)|
 
 #### Security update
 
@@ -414,7 +412,7 @@ This page presents the latest feature, improvement, bug fix, and known issue rel
 
 ### **May** 2021 improvements and fixes
 
-* We added new training pipeline to improve the custom model generalization and capacity to retain more customer terminology (words and phrases).
+* Added new training pipeline to improve the custom model generalization and capacity to retain more customer terminology (words and phrases).
 
 * Refreshed Custom Translator baselines to fix word alignment bug. See list of impacted language pair*.
 
@@ -430,7 +428,7 @@ This page presents the latest feature, improvement, bug fix, and known issue rel
 | Croatian (`hr`)    | English (``en-us``)|
 | Czech (`cs`)    | English (``en-us``)|
 | Danish (`da`)    | English (``en-us``)|
-| Dutch (nl)    | English (``en-us``)|
+| Dutch (`nl`)    | English (``en-us``)|
 | English (``en-us``)    | Arabic (`ar`)|
 | English (``en-us``)    | Bulgarian (`bg`)|
 | English (``en-us``)    | Chinese Simplified (``zh-hans``|

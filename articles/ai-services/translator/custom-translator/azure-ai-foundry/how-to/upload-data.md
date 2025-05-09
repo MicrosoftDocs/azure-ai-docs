@@ -1,20 +1,20 @@
 ---
-title: Upload language pair datasets - Custom Translation
+title: Upload Azure AI Foundry custom translation model language pair datasets 
 titleSuffix: Azure AI services
-description: How to upload datasets for model training in the Azure AI Custom Translation.
+description: How to upload Azure AI Foundry custom translation datasets
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 02/10/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---
 
-# How to upload datasets
+# How to upload Azure AI Foundry custom translation model datasets
 
 Document types are associated with the language pair selected when you create a project.
 
-1. Sign-in to [Azure AI Foundry portal](https://ai.azure.com/). 
+1. Sign-in to [Azure AI Foundry](https://ai.azure.com/). 
 
 1. Select **Fine-tuning** from the left pane.
 
@@ -32,7 +32,7 @@ Document types are associated with the language pair selected when you create a 
 
 1. Select dataset type and select your data document format.
 
-   :::image type="content" source="../media/new-fine-tune-translation-upload-data" alt-text="Screenshot illustrating the upload data page.":::
+   :::image type="content" source="../media/fine-tune-upload-data.png" alt-text="Screenshot illustrating the upload data page.":::
 
     - For **Parallel documents**, fill in the `Document set name` and select **Upload file** to browse local director to select source and target Files.
     - For **Translation memory (TM)** or **ZIP with multiple sets**, select **Upload file** to browse local directory to select the file.
@@ -49,9 +49,9 @@ You can view history of all document uploads details like document type, upload 
 2. This page shows the status of all of your past uploads. It displays
     uploads from most recent to least recent. Each upload shows name, status, type, and created on.
 
-   :::image type="content" source="../media/new-fine-tune-translation-upload-history.png" alt-text="Screenshot showing the upload history page.":::
+   :::image type="content" source="../media/fine-tune-upload-history.png" alt-text="Screenshot showing the upload history page.":::
 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn how to train model](../azure-ai-foundry/how-to-custom-translation-train-model.md)
+> [Learn how to train model](train-model.md)

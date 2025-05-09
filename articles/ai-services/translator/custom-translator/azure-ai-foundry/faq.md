@@ -1,23 +1,22 @@
 ---
-title: "Frequently asked questions - Custom Translation"
+title: "Frequently asked questions - Azure AI Foundry custom translation"
 titleSuffix: Azure AI services
-description: This article contains answers to frequently asked questions about the Custom Translation.
+description: This article contains answers to Azure AI Foundry custom translation frequently asked questions.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 01/28/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: faq
-ms.custom: cogserv-non-critical-translator
 ---
 
-# Custom Translation frequently asked questions
+# Azure AI Foundry custom translation frequently asked questions
 
-This article contains answers to frequently asked questions about Custom Translation in [Azure AI Foundry portal](https://ai.azure.com/).
+This article contains answers to frequently asked questions about custom translation in [Azure AI Foundry](https://ai.azure.com/).
 
-## What are the current restrictions in Custom Translation?
+## What are the current restrictions in custom translation?
 
-There are restrictions and limits with respect to file size, model training, and model deployment. Keep these restrictions in mind when setting up your training to build a model in Custom Translation.
+There are restrictions and limits with respect to file size, model training, and model deployment. Keep these restrictions in mind when setting up your training to build a model in custom translation.
 
 - Files for translation must be less than 100 MB in size.
 - Monolingual data isn't supported. A monolingual file has a single language not paired with another file of a different language.
@@ -36,13 +35,13 @@ The deployment generally takes less than an hour.
 
 ## How do you access a deployed system?
 
-Deployed systems can be accessed via the Azure AI Translator Text API V3 by specifying the Category ID. More information about the Translator Text API can be found in the [API Reference](../reference/v3-0-reference.md) webpage.
+Deployed systems can be accessed via the Azure AI Translator Text API V3 by specifying the Category ID. More information about the Translator Text API can be found in the [API Reference](../../text-translation/reference/v4/translate-api.md) webpage.
 
 ## How do I skip alignment and sentence breaking if my data is already sentence aligned?
 
-Custom Translation skips sentence alignment and sentence breaking for **TMX** files and for text files with the **.align** extension. **.align** files give users an option to skip Custom Translation's sentence breaking and alignment process for the files that are perfectly aligned, and need no further processing. We recommend using **.align** extension only for files that are perfectly aligned.
+Custom translation skips sentence alignment and sentence breaking for **TMX** files and for text files with **align** extension. The **align** files give users an option to skip custom translation's sentence breaking and alignment process for the files that are perfectly aligned, and need no further processing. We recommend using **align** extension only for files that are perfectly aligned.
 
-If the number of extracted sentences doesn't match the two files with the same base name, Custom Translation runs the sentence aligner on **.align** files.
+If the number of extracted sentences doesn't match the two files with the same base name, custom translation runs the sentence aligner on **align** files.
 
 ## I tried uploading my Translation Memory Exchange (TMX) file, but it says "document processing failed"
 
@@ -51,4 +50,4 @@ Ensure that the TMX conforms to the [TMX 1.4b Specification](https://www.gala-gl
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn more about Custom Translation](../azure-ai-foundry/beginners-guide.md)
+> [Learn more about custom translation](../azure-ai-foundry/beginners-guide.md)
