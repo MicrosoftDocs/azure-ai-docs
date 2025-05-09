@@ -210,7 +210,7 @@ Here are some of the tasks you can do on the **Models** tab:
 
 ### Supported enterprise scenarios for fine-tuning
 
-Several enterprise scenarios are supported for MaaS fine-tuning. The table below outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
+Several enterprise scenarios are supported for standard deployment fine-tuning. The table below outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
 
 >[!Note]  
 >- Data connections auth can be changed via AI Foundry by clicking on the datastore connection which your dataset is stored in, and navigating to the **Access details** > **Authentication Method** setting.  
@@ -230,7 +230,7 @@ Several enterprise scenarios are supported for MaaS fine-tuning. The table below
 
 The scenarios above should work in a Managed Vnet workspace as well. See setup of Managed Vnet AI Foundry hub here: [How to configure a managed network for Azure AI Foundry hubs](./configure-managed-network.md)
 
-Customer-Managed Keys (CMKs) is **not** a supported enterprise scenario with MaaS fine-tuning.
+Customer-Managed Keys (CMKs) is **not** a supported enterprise scenario with standard deployment fine-tuning.
 
 Issues fine-tuning with unique network setups on the workspace and storage usually points to a networking setup issue.
 
@@ -577,7 +577,7 @@ model_id = f"azureml://locations/{workspace.location}/workspaces/{workspace._wor
 
 ### Supported enterprise scenarios for fine-tuning
 
-Several enterprise scenarios are supported for MaaS fine-tuning. The table below outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
+Several enterprise scenarios are supported for standard deployment fine-tuning. The table below outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
 
 >[!Note]  
 >- Data connections auth can be changed via AI Foundry by clicking on the datastore connection which your dataset is stored in, and navigating to the **Access details** > **Authentication Method** setting.  
@@ -597,7 +597,7 @@ Several enterprise scenarios are supported for MaaS fine-tuning. The table below
 
 The scenarios above should work in a Managed Vnet workspace as well. See setup of Managed Vnet AI Foundry hub here: [How to configure a managed network for Azure AI Foundry hubs](./configure-managed-network.md)
 
-Customer-Managed Keys (CMKs) is **not** a supported enterprise scenario with MaaS fine-tuning.
+Customer-Managed Keys (CMKs) is **not** a supported enterprise scenario with standard deployment fine-tuning.
 
 Issues fine-tuning with unique network setups on the workspace and storage usually points to a networking setup issue.
 

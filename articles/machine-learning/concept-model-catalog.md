@@ -108,27 +108,27 @@ For models not available in the model catalog, Azure Machine Learning provides a
 
 ## standard deployments with Pay-as-you-go billing
 
-Certain models in the model catalog can be deployed as standard deployments with pay-as-you-go billing; this method of deployment is called Models-as-a Service (MaaS). Models available through MaaS are hosted in infrastructure managed by Microsoft, which enables API-based access to the model provider's model. API based access can dramatically reduce the cost of accessing a model and significantly simplify the provisioning experience. Most MaaS models come with token-based pricing.   
+Certain models in the model catalog can be deployed as standard deployments with pay-as-you-go billing; this method of deployment is calledstandard deployment. Models available through standard deployment are hosted in infrastructure managed by Microsoft, which enables API-based access to the model provider's model. API based access can dramatically reduce the cost of accessing a model and significantly simplify the provisioning experience. Most standard deployment models come with token-based pricing.   
 
-### How are third-party models made available in MaaS?   
+### How are third-party models made available in standard deployment?   
 
 :::image type="content" source="media/concept-model-catalog/model-publisher-cycle.png" alt-text="A diagram showing model publisher service cycle." lightbox="media/concept-model-catalog/model-publisher-cycle.png":::
 
-Models that are available for deployment as standard deployments with pay-as-you-go billing are offered by the model provider but hosted in Microsoft-managed Azure infrastructure and accessed via API. Model providers define the license terms and set the price for use of their models, while Azure Machine Learning service manages the hosting infrastructure, makes the inference APIs available, and acts as the data processor for prompts submitted and content output by models deployed via MaaS. Learn more about data processing for MaaS at the [data privacy](concept-data-privacy.md) article. 
+Models that are available for deployment as standard deployments with pay-as-you-go billing are offered by the model provider but hosted in Microsoft-managed Azure infrastructure and accessed via API. Model providers define the license terms and set the price for use of their models, while Azure Machine Learning service manages the hosting infrastructure, makes the inference APIs available, and acts as the data processor for prompts submitted and content output by models deployed via standard deployment. Learn more about data processing for standard deployment at the [data privacy](concept-data-privacy.md) article. 
 
-### Pay for model usage in MaaS    
+### Pay for model usage in standard deployment    
 
-The discovery, subscription, and consumption experience for models deployed via MaaS is in the [Azure AI Foundry portal](https://ai.azure.com/) and Azure Machine Learning studio. Users accept license terms for use of the models, and pricing information for consumption is provided during deployment. Models from third party providers are billed through Azure Marketplace, in accordance with the [Commercial Marketplace Terms of Use](/legal/marketplace/marketplace-terms); models from Microsoft are billed using Azure meters as First Party Consumption Services. As described in the [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), First Party Consumption Services are purchased using Azure meters but aren't subject to Azure service terms; use of these models is subject to the license terms provided. 
+The discovery, subscription, and consumption experience for models deployed via standard deployment is in the [Azure AI Foundry portal](https://ai.azure.com/) and Azure Machine Learning studio. Users accept license terms for use of the models, and pricing information for consumption is provided during deployment. Models from third party providers are billed through Azure Marketplace, in accordance with the [Commercial Marketplace Terms of Use](/legal/marketplace/marketplace-terms); models from Microsoft are billed using Azure meters as First Party Consumption Services. As described in the [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), First Party Consumption Services are purchased using Azure meters but aren't subject to Azure service terms; use of these models is subject to the license terms provided. 
 
-### Deploy models for inference through MaaS 
+### Deploy models for inference through standard deployment 
 
-Deploying a model through MaaS allows users to get access to ready to use inference APIs without the need to configure infrastructure or provision GPUs, saving engineering time and resources. These APIs can be integrated with several LLM tools and usage is billed as described in the previous section. 
+Deploying a model through standard deployment allows users to get access to ready to use inference APIs without the need to configure infrastructure or provision GPUs, saving engineering time and resources. These APIs can be integrated with several LLM tools and usage is billed as described in the previous section. 
 
-### Fine-tune models through MaaS with Pay-as-you-go 
+### Fine-tune models through standard deployment
 
-For models that are available through MaaS and support fine-tuning, users can take advantage of hosted fine-tuning with pay-as-you-go billing to tailor the models using data they provide. For more information, see [fine-tune a Llama 2 model](/azure/ai-services/openai/how-to/fine-tuning) in [Azure AI Foundry portal](https://ai.azure.com/). 
+For models that are available through standard deployment and support fine-tuning, users can take advantage of hosted fine-tuning with serverless pay per token offer billing to tailor the models using data they provide. For more information, see [fine-tune a Llama 2 model](/azure/ai-services/openai/how-to/fine-tuning) in [Azure AI Foundry portal](https://ai.azure.com/). 
 
-### RAG with models deployed through MaaS 
+### RAG with models deployed through standard deployment 
 
 Azure AI Foundry enables users to make use of Vector Indexes and Retrieval Augmented Generation. Models that can be deployed as standard deployments can be used to generate embeddings and inferencing based on custom data to generate answers specific to their use case. For more information, see [Retrieval augmented generation and indexes](concept-retrieval-augmented-generation.md). 
 
@@ -138,7 +138,7 @@ PPay-as-you-go billing is available only to users whose Azure subscription belon
 
 
 
-### Content safety for models deployed via MaaS  
+### Content safety for models deployed via standard deployment  
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
@@ -160,7 +160,7 @@ To set the PNA flag for the workspace:
 
 * If you have a workspace with a private endpoint created before July 11, 2024, new standard deployment added to this workspace won't follow its networking configuration. Instead, you need to create a new private endpoint for the workspace and create new standard deployment in the workspace so that the new deployments can follow the workspace's networking configuration. 
 * If you have a workspace with standard deployment created before July 11, 2024, and you enable a private endpoint on this workspace, the existing standard deployment won't follow the workspace's networking configuration. For standard deployment in the workspace to follow the workspace's configuration, you need to create the deployments again.
-* Currently [On Your Data](#rag-with-models-deployed-through-maas) support isn't available for standard deployment in private workspaces, since private workspaces have the PNA flag disabled.
+* Currently [On Your Data](#rag-with-models-deployed-through-standard deployment) support isn't available for standard deployment in private workspaces, since private workspaces have the PNA flag disabled.
 * Any network configuration change (for example, enabling or disabling the PNA flag) might take up to five minutes to propagate.
 
 ## Learn more

@@ -92,7 +92,7 @@ This article uses a Meta Llama model deployment for illustration. However, you c
 
 1. For models offered through the Azure Marketplace, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings).
 
-    Models that are offered by non-Microsoft providers (for example, Llama and Mistral models) are billed through the Azure Marketplace. For such models, you're required to subscribe your workspace to the particular model offering. Models that are offered by Microsoft (for example, Phi-3 models) don't have this requirement, as billing is done differently. For details about billing for serverless deployment of models in the model catalog, see [Billing for standard deployments](concept-model-catalog.md#pay-for-model-usage-in-maas).
+    Models that are offered by non-Microsoft providers (for example, Llama and Mistral models) are billed through the Azure Marketplace. For such models, you're required to subscribe your workspace to the particular model offering. Models that are offered by Microsoft (for example, Phi-3 models) don't have this requirement, as billing is done differently. For details about billing for serverless deployment of models in the model catalog, see [Billing for standard deployments](concept-model-catalog.md#pay-for-model-usage-in-standard-deployment).
 
 1. Go to your workspace. To use the standard deployment offering, your workspace must belong to one of the [regions that are supported for serverless deployment](concept-endpoint-serverless-availability.md) for the particular model you want to deploy.
 
@@ -268,7 +268,7 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
 
         :::image type="content" source="media/how-to-deploy-models-serverless/deployment-name.png" alt-text="A screenshot showing how to specify the name of the deployment you want to create." lightbox="media/how-to-deploy-models-serverless/deployment-name.png":::
        > [!TIP]
-       > The **Content filter (preview)** option is enabled by default. Leave the default setting for the service to detect harmful content such as hate, self-harm, sexual, and violent content. For more information about content filtering (preview), see [Content safety for models deployed via standard deployments](concept-model-catalog.md#content-safety-for-models-deployed-via-maas).
+       > The **Content filter (preview)** option is enabled by default. Leave the default setting for the service to detect harmful content such as hate, self-harm, sexual, and violent content. For more information about content filtering (preview), see [Content safety for models deployed via standard deployments](concept-model-catalog.md#content-safety-for-models-deployed-via-standard-deployment).
 
     1. Select **Deploy**. Wait until the deployment is ready and you're redirected to the Deployments page.
 

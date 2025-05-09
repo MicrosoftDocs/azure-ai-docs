@@ -35,7 +35,7 @@ The information in the rest of this document provides information on what featur
 ## Azure Government    
 
 ### Model Catalog in USGOV Virginia and Arizona 
-| Model Name | MaaP Inference  | Batch Enabled | MaaS (serverless Compute Inferencing)|  MaaS (Fine-tuning) | 
+| Model Name | MaaP Inference  | Batch Enabled | standard deployment (serverless Compute Inferencing)|  Standard deployment (Fine-tuning) | 
 |----------------------------------------------------------------------------|:----------------------:|:--------------------:|:-------------:|:-------------:|
 |ALLaM-2-7b-instruct	|maap-inference		||||	
 |Aurora	|maap-inference			||||

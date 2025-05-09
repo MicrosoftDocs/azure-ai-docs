@@ -563,7 +563,7 @@ Read more about the [capabilities of this API](../../ai-foundry/model-inference/
 
 ## Network isolation
 
-Endpoints for models deployed as standard deployment follow the public network access (PNA) flag setting of the Azure AI Foundry portal Hub that has the project in which the deployment exists. To secure your MaaS endpoint, disable the PNA flag on your Azure AI Foundry Hub. You can secure inbound communication from a client to your endpoint by using a private endpoint for the hub.
+Endpoints for models deployed as standard deployment follow the public network access (PNA) flag setting of the Azure AI Foundry portal Hub that has the project in which the deployment exists. To secure your standard deployment, disable the PNA flag on your Azure AI Foundry Hub. You can secure inbound communication from a client to your endpoint by using a private endpoint for the hub.
 
 To set the PNA flag for the Azure AI Foundry hub:
 

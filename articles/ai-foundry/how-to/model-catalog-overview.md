@@ -133,9 +133,9 @@ Models that are available for deployment as standard deployments with pay-as-you
 
 * Manages the hosting infrastructure.
 * Makes the inference APIs available.
-* Acts as the data processor for prompts submitted and content output by models deployed via MaaS.
+* Acts as the data processor for prompts submitted and content output by models deployed via standard deployment.
 
-Learn more about data processing for MaaS in the [article about data privacy](concept-data-privacy.md).
+Learn more about data processing for standard deployment in the [article about data privacy](concept-data-privacy.md).
 
 :::image type="content" source="../media/explore/model-publisher-cycle.png" alt-text="Diagram that shows the model publisher service cycle." lightbox="../media/explore/model-publisher-cycle.png":::
 
@@ -144,7 +144,7 @@ Learn more about data processing for MaaS in the [article about data privacy](co
 
 ### Billing
 
-The discovery, subscription, and consumption experience for models deployed via MaaS is in Azure AI Foundry portal and Azure Machine Learning studio. Users accept license terms for use of the models. Pricing information for consumption is provided during deployment.
+The discovery, subscription, and consumption experience for models deployed via standard deployment is in Azure AI Foundry portal and Azure Machine Learning studio. Users accept license terms for use of the models. Pricing information for consumption is provided during deployment.
 
 Models from non-Microsoft providers are billed through Azure Marketplace, in accordance with the [Microsoft Commercial Marketplace Terms of Use](/legal/marketplace/marketplace-terms).
 
@@ -182,7 +182,7 @@ To set the public network access flag for the Azure AI Foundry hub:
 
 * If you have an Azure AI Foundry hub with a private endpoint created before July 11, 2024, standard deployments added to projects in this hub won't follow the networking configuration of the hub. Instead, you need to create a new private endpoint for the hub and create new standard deployments in the project so that the new deployments can follow the hub's networking configuration.
 
-* If you have an Azure AI Foundry hub with MaaS deployments created before July 11, 2024, and you enable a private endpoint on this hub, the existing standard deployments won't follow the hub's networking configuration. For standard deployments in the hub to follow the hub's networking configuration, you need to create the deployments again.
+* If you have an Azure AI Foundry hub with standard deployment created before July 11, 2024, and you enable a private endpoint on this hub, the existing standard deployments won't follow the hub's networking configuration. For standard deployments in the hub to follow the hub's networking configuration, you need to create the deployments again.
 
 * Currently, [Azure OpenAI On Your Data](/azure/ai-services/openai/concepts/use-your-data) support isn't available for standard deployments in private hubs, because private hubs have the public network access flag disabled.
 
