@@ -31,7 +31,7 @@ Key benefits of Foundry Local include:
 
 The Foundry Local architecture consists of these main components:
 
-:::image type="content" source="../media/architecture/foundry-local-arch.png" alt-text="Diagram of Foundry Local Architecture":::
+:::image type="content" source="../media/architecture/foundry-local-arch.png" alt-text="Diagram of Foundry Local Architecture.":::
 
 ### Foundry Local service
 
