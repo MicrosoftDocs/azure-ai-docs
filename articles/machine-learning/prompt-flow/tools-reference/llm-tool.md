@@ -44,7 +44,7 @@ Create OpenAI resources:
 - **Models deployed to standard deployments**
 
   - Create an endpoint with the model from the catalog you are interested [and deploy it with a standard deployment](../../how-to-deploy-models-serverless.md).
-  - To use models deployed to standard deployment supported by the [Azure AI model inference API](https://aka.ms/azureai/modelinference), like Mistral, Cohere, Meta Llama, or Microsoft family of models (among others), you need to [create a connection in your project to your endpoint](../../how-to-connect-models-serverless.md?#create-a-serverless-api-endpoint-connection)
+  - To use models deployed to standard deployment supported by the [Azure AI model inference API](https://aka.ms/azureai/modelinference), like Mistral, Cohere, Meta Llama, or Microsoft family of models (among others), you need to [create a connection in your project to your endpoint](../../how-to-connect-models-serverless.md?#create-a-standard-deployment-connection)
 
 ## Connections
 
