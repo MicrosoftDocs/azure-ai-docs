@@ -9,7 +9,7 @@ ms.author: heidist
 
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/22/2025
+ms.date: 05/08/2025
 ---
 
 # Load data into a search index in Azure AI Search
@@ -38,7 +38,7 @@ In the Azure portal, use the [import wizards](search-import-data-portal.md) to c
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) with your Azure account and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-1. On the Overview page, select **Import data** or **Import and vectorize data** on the command bar to create and populate a search index. 
+1. On the **Overview** page, select **Import data** or **Quickstart wizard** on the command bar to create and populate a search index.
 
    :::image type="content" source="media/search-import-data-portal/import-data-cmd.png" alt-text="Screenshot of the Import data command" border="true":::
 

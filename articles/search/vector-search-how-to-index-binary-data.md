@@ -10,7 +10,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 05/08/2025
 ---
 
 # Index binary vectors for vector search
@@ -37,7 +37,7 @@ The binary data type is generally available starting with API version 2024-07-01
 
 ## Limitations
 
-+ No Azure portal support in the Import and vectorize data wizard.
++ No Azure portal support in the Quickstart wizard.
 + No support for binary fields in the [AML skill](cognitive-search-aml-skill.md) that's used for integrated vectorization of models in the Azure AI Foundry model catalog.
 
 ## Add a vector search algorithm and vector profile
