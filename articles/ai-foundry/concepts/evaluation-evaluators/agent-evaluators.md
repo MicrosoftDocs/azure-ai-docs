@@ -42,6 +42,7 @@ model_config = AzureOpenAIModelConfiguration(
     api_version=os.environ.get("AZURE_API_VERSION"),
 )
 ```
+We recommend using `o3-mini` for a balance of reasoning capability and cost efficiency. 
 
 ## Intent resolution
 
@@ -88,6 +89,9 @@ If you're building agents outside of Azure AI Agent Serice, this evaluator accep
 ## Tool call accuracy
 
 `ToolCallAccuracyEvaluator` measures an agent's ability to select appropriate tools, extract, and process correct parameters from previous steps of the agentic workflow. It detects whether each tool call made is accurate (binary) and reports back the average scores, which can be interpreted as a passing rate across tool calls made.
+
+> [!NOTE]
+> `ToolCallAccuracyEvaluator` only supports Azure AI Agent's Function Tool evaluation, but does not support Built-in Tool evaluation. 
 
 ### Tool call accuracy example
 

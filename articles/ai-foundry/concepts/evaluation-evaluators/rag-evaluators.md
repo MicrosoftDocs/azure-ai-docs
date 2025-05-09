@@ -39,6 +39,8 @@ model_config = AzureOpenAIModelConfiguration(
 )
 ```
 
+We recommend using `o3-mini` for a balance of reasoning capability and cost efficiency.
+
 ## Retrieval
 
 Retrieval quality is very important given its upstream role in RAG: if the retrieval quality is poor and the response requires corpus-specific knowledge, there's less chance your LLM model gives you a satisfactory answer. `RetrievalEvaluator` measures the **textual quality** of retrieval results with an LLM without requiring ground truth (also known as query relevance judgment), which provides value compared to `DocumentRetrievalEvaluator` measuring `ndcg`,  `xdcg`, `fidelity`, and other classical information retrieval metrics that require ground truth. This metric focuses on how relevant the context chunks (encoded as a string) are to address a query and how the most relevant context chunks are surfaced at the top of the list.

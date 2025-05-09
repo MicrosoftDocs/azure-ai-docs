@@ -323,6 +323,9 @@ As illustrated in the example, we enabled agent message support specifically for
 
 For `ToolCallAccuracyEvaluator`, either `response` or  `tool_calls` must be provided. 
 
+> [!NOTE]
+> `ToolCallAccuracyEvaluator` does not support Azure AI Agent's Built-in Tool evaluation. 
+
 We'll demonstrate some examples of the two data formats: simple agent data, and agent messages. However, due to the unique requirements of these evaluators, we recommend referring to the [sample notebooks](#sample-notebooks) which illustrate the possible input paths for each evaluator.  
 
 As with other [built-in AI-assisted quality evaluators](./evaluate-sdk.md#performance-and-quality-evaluators), `IntentResolutionEvaluator` and `TaskAdherenceEvaluator` output a likert score (integer 1-5; higher score is better). `ToolCallAccuracyEvaluator` outputs the passing rate of all tool calls made (a float between 0-1) based on user query. To further improve intelligibility, all evaluators accept a binary threshold and output two new keys. For the binarization threshold, a default is set and user can override it. The two new keys are:
