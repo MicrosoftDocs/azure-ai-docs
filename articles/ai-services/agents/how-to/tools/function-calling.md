@@ -33,10 +33,8 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 Start by defining a function for your agent to call. When you create a function for an agent to call, you describe its structure of it with any required parameters in a docstring. 
 
 ```csharp
-// Example of a function that defines no parameters
 string GetUserFavoriteCity() => "Seattle, WA";
 FunctionToolDefinition getUserFavoriteCityTool = new("getUserFavoriteCity", "Gets the user's favorite city.");
-// Example of a function with a single required parameter
 string GetCityNickname(string location) => location switch
 {
     "Seattle, WA" => "The Emerald City",
@@ -60,6 +58,34 @@ FunctionToolDefinition getCityNicknameTool = new(
             Required = new[] { "location" },
         },
         new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
+string GetWeatherAtLocation(string location, string temperatureUnit = "f") => location switch
+{
+    "Seattle, WA" => temperatureUnit == "f" ? "70f" : "21c",
+    _ => throw new NotImplementedException()
+};
+FunctionToolDefinition getCurrentWeatherAtLocationTool = new(
+    name: "getCurrentWeatherAtLocation",
+    description: "Gets the current weather at a provided location.",
+    parameters: BinaryData.FromObjectAsJson(
+        new
+        {
+            Type = "object",
+            Properties = new
+            {
+                Location = new
+                {
+                    Type = "string",
+                    Description = "The city and state, e.g. San Francisco, CA",
+                },
+                Unit = new
+                {
+                    Type = "string",
+                    Enum = new[] { "c", "f" },
+                },
+            },
+            Required = new[] { "location" },
+        },
+        new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
 ```
 
 <!--See the [C# file on GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/user_functions.py) for an additional function definition examples. -->
@@ -72,14 +98,24 @@ ToolOutput GetResolvedToolOutput(RequiredToolCall toolCall)
     if (toolCall is RequiredFunctionToolCall functionToolCall)
     {
         if (functionToolCall.Name == getUserFavoriteCityTool.Name)
-                {
-                    return new ToolOutput(toolCall, GetUserFavoriteCity());
-                }
-                using JsonDocument argumentsJson = JsonDocument.Parse(functionToolCall.Arguments);
+        {
+            return new ToolOutput(toolCall, GetUserFavoriteCity());
+        }
+        using JsonDocument argumentsJson = JsonDocument.Parse(functionToolCall.Arguments);
         if (functionToolCall.Name == getCityNicknameTool.Name)
         {
             string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
             return new ToolOutput(toolCall, GetCityNickname(locationArgument));
+        }
+        if (functionToolCall.Name == getCurrentWeatherAtLocationTool.Name)
+        {
+            string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
+            if (argumentsJson.RootElement.TryGetProperty("unit", out JsonElement unitElement))
+            {
+                string unitArgument = unitElement.GetString();
+                return new ToolOutput(toolCall, GetWeatherAtLocation(locationArgument, unitArgument));
+            }
+            return new ToolOutput(toolCall, GetWeatherAtLocation(locationArgument));
         }
     }
     return null;
@@ -89,78 +125,75 @@ ToolOutput GetResolvedToolOutput(RequiredToolCall toolCall)
 ## Create a client and agent
 
 ```csharp
-// note: parallel function calling is only supported with newer models like gpt-4-1106-preview
-Response<Agent> agentResponse = await client.CreateAgentAsync(
-    model: "gpt-4-1106-preview",
+PersistentAgent agent = await client.Administration.CreateAgentAsync(
+    model: modelDeploymentName,
     name: "SDK Test Agent - Functions",
-        instructions: "You are a weather bot. Use the provided functions to help answer questions. "
-            + "Customize your responses to the user's preferences as much as possible and use friendly "
-            + "nicknames for cities whenever possible.",
-    tools: new List<ToolDefinition> { getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool }
-    );
-Agent agent = agentResponse.Value;
+    instructions: "You are a weather bot. Use the provided functions to help answer questions. "
+        + "Customize your responses to the user's preferences as much as possible and use friendly "
+        + "nicknames for cities whenever possible.",
+    tools: [getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool]);
 ```
 
 ## Create a thread
 
 ```csharp
-Response<AgentThread> threadResponse = await client.CreateThreadAsync();
-AgentThread thread = threadResponse.Value;
+PersistentAgentThread thread = await client.Threads.CreateThreadAsync();
 
-Response<ThreadMessage> messageResponse = await client.CreateMessageAsync(
+await client.Messages.CreateMessageAsync(
     thread.Id,
     MessageRole.User,
     "What's the weather like in my favorite city?");
-ThreadMessage message = messageResponse.Value;
 ```
 
 ## Create a run and check the output
 
 ```csharp
-Response<ThreadRun> runResponse = await client.CreateRunAsync(thread, agent);
+ThreadRun run = await client.Runs.CreateRunAsync(thread.Id, agent.Id);
 
-#region Snippet:FunctionsHandlePollingWithRequiredAction
 do
 {
     await Task.Delay(TimeSpan.FromMilliseconds(500));
-    runResponse = await client.GetRunAsync(thread.Id, runResponse.Value.Id);
+    run = await client.Runs.GetRunAsync(thread.Id, run.Id);
 
-    if (runResponse.Value.Status == RunStatus.RequiresAction
-        && runResponse.Value.RequiredAction is SubmitToolOutputsAction submitToolOutputsAction)
+    if (run.Status == RunStatus.RequiresAction
+        && run.RequiredAction is SubmitToolOutputsAction submitToolOutputsAction)
     {
-        List<ToolOutput> toolOutputs = new();
+        List<ToolOutput> toolOutputs = [];
         foreach (RequiredToolCall toolCall in submitToolOutputsAction.ToolCalls)
         {
-            toolOutputs.Add(GetResolvedToolOutput(toolCall));
+            ToolOutput? toolOutput = GetResolvedToolOutput(toolCall);
+            if (toolOutput != null)
+            {
+                toolOutputs.Add(toolOutput);
+            }
         }
-        runResponse = await client.SubmitToolOutputsToRunAsync(runResponse.Value, toolOutputs);
+        run = await client.Runs.SubmitToolOutputsToRunAsync(run, toolOutputs);
     }
 }
-while (runResponse.Value.Status == RunStatus.Queued
-    || runResponse.Value.Status == RunStatus.InProgress);
-#endregion
+while (run.Status == RunStatus.Queued
+    || run.Status == RunStatus.InProgress
+    || run.Status == RunStatus.RequiresAction);
 
-Response<PageableList<ThreadMessage>> afterRunMessagesResponse
-    = await client.GetMessagesAsync(thread.Id);
-IReadOnlyList<ThreadMessage> messages = afterRunMessagesResponse.Value.Data;
+AsyncPageable<ThreadMessage> messages = client.Messages.GetMessagesAsync(
+    threadId: thread.Id,
+    order: ListSortOrder.Ascending
+);
 
-// Note: messages iterate from newest to oldest, with the messages[0] being the most recent
-foreach (ThreadMessage threadMessage in messages)
+await foreach (ThreadMessage threadMessage in messages)
 {
-    Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
-    foreach (MessageContent contentItem in threadMessage.ContentItems)
+    foreach (MessageContent content in threadMessage.ContentItems)
     {
-        if (contentItem is MessageTextContent textItem)
+        switch (content)
         {
-            Console.Write(textItem.Text);
+            case MessageTextContent textItem:
+                Console.WriteLine($"[{threadMessage.Role}]: {textItem.Text}");
+                break;
         }
-        else if (contentItem is MessageImageFileContent imageFileItem)
-        {
-            Console.Write($"<image from ID: {imageFileItem.FileId}");
-        }
-        Console.WriteLine();
     }
 }
+
+await client.Threads.DeleteThreadAsync(threadId: thread.Id);
+await client.Administration.DeleteAgentAsync(agentId: agent.Id);
 ```
 
 ::: zone-end
