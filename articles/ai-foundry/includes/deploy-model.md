@@ -19,7 +19,7 @@ To work with a model, you first deploy it into a project.
 
     * If you're new to Azure AI Foundry, select **Create the future**. Add a name for your project and select **Create**.
     * If you see a list of projects, select the one you want to use.  You can use either a [!INCLUDE [hub-project-name](hub-project-name.md)] or a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
-    * If you're already in a project and want to use a new one, select **Azure AI Foundry** in the top left corner, then select **Create new* to create the new project.
+    * If you're already in a project and want to use a new one, select **Azure AI Foundry** in the top left corner, then select **Create new** to create the new project.
 
 1. Select **Model catalog** from the left pane.
 
