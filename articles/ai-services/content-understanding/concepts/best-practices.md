@@ -7,7 +7,7 @@ ms.author: jfilcik
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 02/24/2025
+ms.date: 05/19/2025
 ---
 
 # Best practices for Content Understanding

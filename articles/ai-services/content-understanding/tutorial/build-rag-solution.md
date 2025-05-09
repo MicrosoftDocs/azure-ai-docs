@@ -7,7 +7,7 @@ ms.author: tonyeiyalla
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: tutorial
-ms.date: 04/25/2025
+ms.date: 05/19/2025
 ---
 
 # Tutorial: Build a retrieval-augmented generation solution 

@@ -7,97 +7,90 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 04/14/2025
-ms.custom: ignite-2024-understanding-release
+ms.date: 05/19/2025
 ---
 
 # Azure AI Content Understanding video solutions (preview)
 
-> \[!IMPORTANT]
+> [!IMPORTANT]
 >
 > * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes can change or have limited capabilities before General Availability (GA).
 > * For more information, *see* **[Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms)**.
 
-# Azure AI Content Understanding
-
 Azure AI Content Understanding allows you to generate a standard set of video metadata and create custom fields for your specific use case using the power of generative models. Content Understanding helps efficiently manage, categorize, retrieve, and build workflows for video assets. It enhances your media asset library, supports workflows such as highlight generation, categorizes content, and facilitates applications like retrieval-augmented generation (RAG).
 
 The **pre-built video analyzer** outputs RAG-ready Markdown that includes:
 
-- **Transcript:** Inline transcripts in standard WEBVTT format  
-- **Description:** Natural-language segment descriptions with visual and speech context  
-- **Segmentation:** Automatic scene segmentation breaking the video into logical chunks  
-- **Key Frames:** Ordered key-frame thumbnails enabling deeper analysis  
+- **Transcript:** Inline transcripts in standard WEBVTT format
+- **Description:** Natural-language segment descriptions with visual and speech context
+- **Segmentation:** Automatic scene segmentation breaking the video into logical chunks
+- **Key Frames:** Ordered key-frame thumbnails enabling deeper analysis
 
-This format can drop straight into a vector store to enable an agent or RAG workflows — no post-processing required.
+This format can drop straight into a vector store to enable an agent or RAG workflows—no post-processing required.
 
 From there you can **customize the analyzer** for more fine-grained control of the output. You can define custom fields, segments, or enable face identification. Customization allows you to use the full power of generative models to extract deep insights from the visual and audio details of the video. For example, customization allows you to:
 
-- Identify what products and brands are seen or mentioned in the video.  
-- Segment a basketball video by different plays such as "Offensive play", "Defensive play", "Free throw".  
-- Use face identification to label speakers as executives, for example, "CEO John Doe", "CFO Jane Smith".  
-
----
+- Identify what products and brands are seen or mentioned in the video.
+- Segment a basketball video by different plays such as `offensive play`, `defensive play`, `free throw`.
+- Use face identification to label speakers as executives, for example, `CEO John Doe`, `CFO Jane Smith`.
 
 ## Why use Content Understanding for video?
 
-Content understanding for video has broad potential uses. For example, you can customize metadata to tag specific scenes in a training video, making it easier for employees to locate and revisit important sections. You can also use metadata customization to identify product placement in promotional videos, which helps marketing teams analyze brand exposure. Some additional use cases include:
+Content understanding for video has broad potential uses. For example, you can customize metadata to tag specific scenes in a training video, making it easier for employees to locate and revisit important sections. You can also use metadata customization to identify product placement in promotional videos, which helps marketing teams analyze brand exposure. Other use cases include:
 
-- **Broadcast media and entertainment:** Manage large libraries of shows, movies, and clips by generating detailed metadata for each asset.  
-- **Education and e-Learning:** Index and retrieve specific moments in educational videos or lectures.  
-- **Corporate training:** Organize training videos by key topics, scenes, or important moments.  
-- **Marketing and advertising:** Analyze promotional videos to extract product placements, brand appearances, and key messages.  
+- **Broadcast media and entertainment:** Manage large libraries of shows, movies, and clips by generating detailed metadata for each asset.
+- **Education and e-Learning:** Index and retrieve specific moments in educational videos or lectures.
+- **Corporate training:** Organize training videos by key topics, scenes, or important moments.
+- **Marketing and advertising:** Analyze promotional videos to extract product placements, brand appearances, and key messages.
 
----
+## Prebuilt video analyzer example
 
-## Pre-built video analyzer example
-
-With the prebuilt video analyzer, you can upload a video and get an immediately usable knowledge asset. The service packages every clip into both richly formatted Markdown and JSON. This allows your search index or chat agent to ingest without custom glue code.  
-Calling prebuilt-video with no custom schema returns a document like the (abridged) example below.
+With the prebuilt video analyzer, you can upload a video and get an immediately usable knowledge asset. The service packages every clip into both richly formatted Markdown and JSON. This process allows your search index or chat agent to ingest without custom glue code.
+Calling prebuilt-video with no custom schema returns a document like the following (abridged) example:
 
 ```markdown
-# Video: 00:00.000 → 00:30.000  
-Width: 1280  ·  Height: 720
+   # Video: 00:00.000 → 00:30.000
+   Width: 1280  ·  Height: 720
 
-## Segment 1  00:00.000 → 00:06.400
-A lively gathering in a room decorated with colorful banners and balloons. Party guests watch a TV showing a sports event while a young man kneels excitedly in front. Snacks and drinks underline the festive mood.
+   ## Segment 1  00:00.000 → 00:06.400
+   A lively gathering in a room decorated with colorful banners and balloons. Party guests watch a TV showing a sports event while a young man kneels excitedly in front. Snacks and drinks underline the festive mood.
 
-**Transcript**  
-WEBVTT  
-00:03.600 → 00:06.000  <1 Speaker> Get New Years ready.
+   **Transcript**
+   WEBVTT
+   00:03.600 → 00:06.000  <1 Speaker> Get New Years ready.
 
-**Key frames**  
-- 00:00.600 ![KF](keyFrame.600.jpg)  
-- 00:01.200 ![KF](keyFrame.1200.jpg)  
-- 00:02.560 ![KF](keyFrame.2560.jpg)  
-- 00:03.280 ![KF](keyFrame.3280.jpg)  
-- 00:04.560 ![KF](keyFrame.4560.jpg)  
-- 00:05.600 ![KF](keyFrame.5600.jpg)  
-- 00:06.200 ![KF](keyFrame.6200.jpg)
+   **Key frames**
+   - 00:00.600 ![KF](keyFrame.600.jpg)
+   - 00:01.200 ![KF](keyFrame.1200.jpg)
+   - 00:02.560 ![KF](keyFrame.2560.jpg)
+   - 00:03.280 ![KF](keyFrame.3280.jpg)
+   - 00:04.560 ![KF](keyFrame.4560.jpg)
+   - 00:05.600 ![KF](keyFrame.5600.jpg)
+   - 00:06.200 ![KF](keyFrame.6200.jpg)
 
-## Segment 2  00:06.400 → 00:10.080
-The room erupts into a vibrant party scene—people dancing under soccer-themed décor, flags waving, energy soaring.
+   ## Segment 2  00:06.400 → 00:10.080
+   The room erupts into a vibrant party scene—people dancing under soccer-themed décor, flags waving, energy soaring.
 
-**Key frames**  
-- 00:07.080 ![KF](keyFrame.7080.jpg)  
-- 00:07.760 ![KF](keyFrame.7760.jpg)  
-- 00:08.560 ![KF](keyFrame.8560.jpg)  
-- 00:09.360 ![KF](keyFrame.9360.jpg)
+   **Key frames**
+   - 00:07.080 ![KF](keyFrame.7080.jpg)
+   - 00:07.760 ![KF](keyFrame.7760.jpg)
+   - 00:08.560 ![KF](keyFrame.8560.jpg)
+   - 00:09.360 ![KF](keyFrame.9360.jpg)
 
-*…additional segments omitted for brevity…*
+   *…additional segments omitted for brevity…*
 ````
-
----
 
 ## Walk-through
 
-We've recently published a walk-through for RAG on Video using Content Understanding.
+We recently published a walk-through for RAG on Video using Content Understanding.
 [https://www.youtube.com/watch?v=fafneWnT2kw\&lc=Ugy2XXFsSlm7PgIsWQt4AaABAg](https://www.youtube.com/watch?v=fafneWnT2kw&lc=Ugy2XXFsSlm7PgIsWQt4AaABAg)
 
----
+## Capabilities
 
-# Capabilities
+1. [Content extraction](#content-extraction-capabilities)
+1. [Field extraction](#field-extraction-and-segmentation)
+1. [Face identification](#face-identification-description-add-on)
 
 Under the hood, two stages transform raw pixels into business-ready insights. The diagram below shows how extraction feeds generation, ensuring each downstream step has the context it needs.
 
@@ -105,31 +98,29 @@ Under the hood, two stages transform raw pixels into business-ready insights. Th
 
 The service operates in two stages. The first stage, content extraction, involves capturing foundational metadata such as transcripts, shots, and faces. The second stage, field extraction, uses a generative model to produce custom fields and perform segmentation. Additionally, you can optionally enable a Face add-on to identify individuals and describe them in the video.
 
----
+## Content extraction capabilities
 
-## 1 · Content extraction capabilities
+The first pass is all about extracting a first set of details—who's speaking, where are the cuts, and which faces recur. It creates a solid metadata backbone that later steps can reason over.
 
-This first pass is all about extracting a first set of details — who’s speaking, where are the cuts, and which faces recur. It creates a solid metadata backbone that later steps can reason over.
-
-* **Transcription:** Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Sentence-level and word-level timestamps are available upon request. Content Understanding supports the full set of Azure AI Speech Speech to text languages. For languages with Fast transcriptions support and for files ≤ 300 MB and/or ≤ 2 hours, transcription time is reduced substantially. Additionally, the following transcription details are imporant to consider:
+* **Transcription:** Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Sentence-level and word-level timestamps are available upon request. Content Understanding supports the full set of Azure AI Speech speech-to-text languages. For languages with Fast transcriptions support and for files ≤ 300 MB and/or ≤ 2 hours, transcription time is reduced substantially. Additionally, the following transcription details are important to consider:
   * **Diarization:** Distinguishes between speakers in a conversation in the output, attributing parts of the transcript to specific speakers.
-  * **Multilingual transcription:** Generates multilingual transcripts, applying language/locale per phrase. Deviating from language detection this feature is enabled when no language/locale is specified or language is set to 'auto'.
-    
+  * **Multilingual transcription:** Generates multilingual transcripts, applying language/locale per phrase. Deviating from language detection this feature is enabled when no language/locale is specified or language is set to `auto`.
+
     > [!WARNING]
-    > When Multilingual transcription is used, a file with an unsupported locale will still produce a result. This result will be based on the closest locale but most likely not correct.
-    > This is a know behavior. Please make sure to configure locales when not using Multilingual transcription!
+    > When multilingual transcription is used, a file with an unsupported locale still produces a result. This result is based on the closest locale but most likely not correct.
+    > This transcription behavior is known. Make sure to configure locales when not using multilingual transcription!
 * **Shot detection:** Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and repackaging of content with breaks exactly on shot boundaries.
-* **Key frame extraction:** Extracts key frames from videos to represent each shot completely, ensuring each shot has enough key frames to enable Field Extraction to work effectively.
+* **Key frame extraction:** Extracts key frames from videos to represent each shot completely, ensuring each shot has enough key frames to enable field extraction to work effectively.
 
----
 
-## 2 · Field extraction & segmentation
 
-Next, the generative model layers on meaning—tagging scenes, summarizing actions, and slicing footage up into segments exactly how you ask. This is where prompts turn into structured data.
+## Field extraction and segmentation
+
+Next, the generative model layers meaning—tagging scenes, summarizing actions, and slicing footage into segments per your request. This action is where prompts turn into structured data.
 
 ### Custom fields
 
-Shape the output to match your business vocabulary. Use a `fieldSchema` object where each entry defines a field’s name, type, and description. At run-time, the generative model fills those fields for every segment.
+Shape the output to match your business vocabulary. Use a `fieldSchema` object where each entry defines a field's name, type, and description. At run-time, the generative model fills those fields for every segment.
 
 **Examples:**
 
@@ -168,7 +159,7 @@ Shape the output to match your business vocabulary. Use a `fieldSchema` object w
 }
 ```
 
----
+
 
 ### Segmentation mode
 
@@ -182,14 +173,14 @@ Content Understanding offers three ways to slice a video, letting you get the ou
     * full-length descriptive summaries
 
 * **Automatic segmentation** – `SegmentationMode = Auto`
-  The service analyzes the timeline and breaks it up for you.  Groups successive shots into coherent scenes, capped at one minute each.
+  The service analyzes the timeline and breaks it up for you. Groups successive shots into coherent scenes, capped at one minute each.
 
-  **Example:** 
+  **Example:**
     * Create storyboards from a show
     * Inserting mid-roll ads at logical pauses.
 
 * **Custom segmentation** – `SegmentationMode = Custom`
-  You describe the logic in natural language and the model creates segments to match. Just set `segmentationDefinition` with a string describing how you'd like the video to be segmented. Custom will allow segments of varying length from seconds to minutes depending on the prompt. 
+  You describe the logic in natural language and the model creates segments to match. Set `segmentationDefinition` with a string describing how you'd like the video to be segmented. Custom allows segments of varying length from seconds to minutes depending on the prompt.
 
   **Example:**
     * Break a news broadcast up into stories.
@@ -200,33 +191,33 @@ Content Understanding offers three ways to slice a video, letting you get the ou
   }
   ```
 
-> **Note:** Setting segmentation triggers Field Extraction even if no fields are defined.
+> **Note:** Setting segmentation triggers field extraction even if no fields are defined.
 
----
 
-## 3. Face identification & description add-on
 
-Face identification and description is an add-on that adds additional context to Content Extraction and Field Extraction using face information.
+## Face identification description add-on
+
+Face identification description is an add-on that provides context to content extraction and field extraction using face information.
 
 > **Note:** Face features incur additional cost. This feature is limited access and involves face identification and grouping; customers need to register for access at Face Recognition.
 
-### Content extraction – grouping & identification
+### Content extraction: grouping and identification
 
 The face add-on enables grouping and identification as output from the content extraction section.
 
 * **Grouping:** Grouped faces appearing in a video to extract one representative face image for each person and provides segments where each one is present. The grouped face data is available as metadata and can be used to generate customized metadata fields when `returnDetails: true` for the analyzer.
-* **Identification:** Labels individuals in the video with names based on a Face API person directory. Customers can enable this by supplying a name for a Face API directory in the current resource in `apersonDirectoryId` property of the analyzer.
+* **Identification:** Labels individuals in the video with names based on a Face API person directory. Customers can enable this feature by supplying a name for a Face API directory in the current resource in the `personDirectoryId` property of the analyzer.
 
 ### Field Extraction – Face description
 
-The Field Extraction capability is enhanced by providing detailed descriptions of identified faces in the video. This includes attributes such as facial hair, emotions, and the presence of celebrities, which can be crucial for various analytical and indexing purposes.
+ The field extraction capability is enhanced by providing detailed descriptions of identified faces in the video. This capability includes attributes such as facial hair, emotions, and the presence of celebrities, which can be crucial for various analytical and indexing purposes.
 
 **Examples:**
 
-* **Example field: emotionDescription:** Provides a description of the emotional state of the primary person in this clip (e.g., "happy", "sad", "angry")
-* **Example field: facialHairDescription:** Describes the type of facial hair (e.g., "beard", "mustache", "clean-shaven")
+* **Example field: emotionDescription:** Provides a description of the emotional state of the primary person in this clip (for example, `happy`, `sad`, `angry`)
+* **Example field: facialHairDescription:** Describes the type of facial hair (for example, `beard`, `mustache`, `clean-shaven`)
 
----
+
 
 ## Key benefits
 
@@ -237,35 +228,35 @@ Content Understanding provides several key benefits when compared to other video
 * **Generative models:** Describe in natural language what content you want to extract, and Content Understanding uses generative models to extract that metadata.
 * **Optimized preprocessing:** Perform several content extraction preprocessing steps, such as transcription and scene detection, optimized to provide rich context to AI generative models.
 
----
+
 ## Technical constraints and limitations
 
 Specific limitations of video processing to keep in mind:
 
-* **Frame sampling (\~ 1 FPS)** — The analyzer inspects about one frame per second. Rapid motions or single-frame events may be missed.
-* **Frame resolution (512 × 512 px)** — Sampled frames are resized to 512 pixels square. Very small text or distant objects can be lost.
-* **Speech** — Only spoken words are transcribed. Music, sound effects, and ambient noise are ignored. Specific of supported locals are document
-  
+* **Frame sampling (\~ 1 FPS)**: The analyzer inspects about one frame per second. Rapid motions or single-frame events may be missed.
+* **Frame resolution (512 × 512 px)**: Sampled frames are resized to 512 pixels square. Small text or distant objects can be lost.
+* **Speech**: Only spoken words are transcribed. Music, sound effects, and ambient noise are ignored. Specific of supported locals are document.
+
 ## Input requirements
 
 For supported formats, see [Service quotas and limits](../service-limits.md).
 
----
+
 
 ## Supported languages and regions
 
 See [Language and region support](../language-region-support.md).
 
----
+
 
 ## Data privacy and security
 
-As with all Azure AI services, review Microsoft’s [Data, protection, and privacy](https://www.microsoft.com/trust-center/privacy) documentation.
+As with all Azure AI services, review Microsoft's [Data, protection, and privacy](https://www.microsoft.com/trust-center/privacy) documentation.
 
 > \[!IMPORTANT]
 > If you process **Biometric Data** (for example, enable **Face Grouping** or **Face Identification**), you must meet all notice, consent, and deletion requirements under GDPR or other applicable laws. See [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
 
----
+
 
 ## Next steps
 
