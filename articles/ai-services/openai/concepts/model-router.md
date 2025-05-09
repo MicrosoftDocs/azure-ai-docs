@@ -34,7 +34,13 @@ If you select **Auto-update** at the deployment step (see [Manage models](/azure
 
 ## Limitations
 
-See [Quotas and limits](/azure/ai-services/openai/quotas-limits).
+See [Quotas and limits](/azure/ai-services/openai/quotas-limits) for rate limit information.
+
+The context window limit listed on the [Models](../concepts/models.md) page is the limit of the smallest underlying model. Other underlying models are compatible with larger context windows, which means an API call with a larger context will succeed only if the prompt happens to be routed to the right model, otherwise the call will fail. To shorten the context window, you can do one of the following:
+- Summarize the prompt before passing it to the model
+- Truncate the prompt into more relevant parts
+- Use document embeddings and have the chat model retrieve relevant sections: see [Azure AI Search](/azure/search/search-what-is-azure-search) 
+
 
 Model router doesn't process input images or audio.
 

@@ -36,6 +36,8 @@ In the [Azure AI Foundry portal](https://ai.azure.com/), you can navigate to you
 
 > [!IMPORTANT]
 > You can set the `Temperature` and `Top_P` parameters to the values you prefer (see the [concepts guide](/azure/ai-services/openai/concepts/prompt-engineering?tabs=chat#temperature-and-top_p-parameters)), but note that reasoning models (o-series) don't support these parameters. If model router selects a reasoning model for your prompt, it ignores the `Temperature` and `Top_P` input parameters.
+>
+> The parameters `stop`, `presence_penalty`, `frequency_penalty`, `logit_bias`, and `logprobs` are similarly dropped for o-series models but used otherwise.
 
 > [!IMPORTANT]
 > The `reasoning_effort` parameter (see the [Reasoning models guide](/azure/ai-services/openai/how-to/reasoning?tabs=python-secure#reasoning-effort)) isn't supported in model router. If the model router selects a reasoning model for your prompt, it also selects a `reasoning_effort` input value based on the complexity of the prompt.
