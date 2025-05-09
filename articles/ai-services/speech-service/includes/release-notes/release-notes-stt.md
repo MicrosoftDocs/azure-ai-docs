@@ -9,27 +9,20 @@ ms.custom: references_regions
 
 ### May 2025 release
 
-#### Pronunciation assessment
-
-Announcing the release of 6 latest pronunciation assessment models (de-DE, es-MX, it-IT, ja-JP, ko-KR, pt-BR), which brings substantial improvements on Pearson Correlation Coefficients (PCC). Below are the relative improvement on each locale:
-
-|locale|Relative improvement on PCC (%)|
-|:-----|:-----------------------------:|
-|de-DE |13.4|
-|es-MX |32.4|
-|it-IT |4.0|
-|ja-JP |20.5|
-|ko-KR |15.9|
-|pt-BR |12.3|
-
-The new models are expected to provide a more accurate, efficient, and satisfying experience for all users and are available through the API and Azure AI Foundry playground. Feedback is encouraged to further refine its capabilities.
-
 #### Fast transcription API - Multi-lingual speech transcription
 
 To transcribe multi-lingual contents continuously and accurately in an audio file, now you can use the latest multi-lingual model without specifying the locale codes via fast transcription API. For more information, see [multi-lingual transcription in fast transcription](../../fast-transcription-create.md?tabs=multilingual-transcription-on).
 
 #### New locales supported in Fast Transcription
 Fast transcription now supports additional locales including fi-FI, he-IL, id-ID, pl-PL, pt-PT, sv-SE, etc. For more information, see [speech to text supported languages](../../language-support.md?tabs=stt).
+
+### April 2025 release
+
+#### Pronunciation assessment
+
+Announcing the release of 6 latest pronunciation assessment models (`de-DE`, `es-MX`, `it-IT`, `ja-JP`, `ko-KR`, `pt-BR`), which brings substantial improvements on Pearson Correlation Coefficients (PCC).
+
+The new models are available through the API and Azure AI Foundry playground. Feedback is encouraged to further refine its capabilities.
 
 ### March 2025 release
 
