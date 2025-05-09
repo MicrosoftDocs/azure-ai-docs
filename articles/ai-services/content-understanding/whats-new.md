@@ -41,4 +41,5 @@ The Content Understanding **2024-12-01-preview** REST API is now available. This
   * Add download code samples for quick setup added.
 
 ## November 2024
+
 Welcome! The Azure AI Content Understanding API version `2024-12-01-preview` is now in public preview. This version allows you to generate a structured representation of content tailored to specific tasks from various modalities or formats. Content Understanding uses a defined schema to extract content suitable for processing by large language models and subsequent applications.

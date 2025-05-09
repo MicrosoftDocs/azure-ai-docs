@@ -69,11 +69,11 @@ The following limits apply as of version 2024-12-01-preview.
 
 | Property | Document | Image | Text | Audio | Video |
 | --- | --- | --- | --- | --- | --- |
-| Max fields | 50 | 10 | 10 | 10 | 10 |
+| Max fields | 50 | 50 | 50 | 50 | 50 |
 | Max classify field categories | 300 | 300 | 300 | 300 | 300 |
 | Supported generation methods | extract | generate<br>classify | generate<br>classify | generate<br>classify | generate<br>classify |
 
-* The *Max fields* limit includes all named fields. For example, a list of strings counts as one field, while a group with string and number subfields counts as three fields. To extract beyond default limits, contact us at cu_contact@microsoft.com.
+* The *Max fields* limit includes all named fields. For example, a list of strings counts as one field, while a group with string and number subfields counts as three fields. To extend the limit for documents fields up to 100, contact us at `cu_contact@microsoft.com`.
 * The *Max classify field categories* limit is the total number of categories across all fields using the `classify` generation method.
 * The generation method currently applies only to basic fields.
 
@@ -83,7 +83,7 @@ The following limits apply as of version 2024-12-01-preview.
 | --- | --- | --- | --- | --- | --- |
 | Basic | No *boolean* | No *date*, *time* | *string* | *string* | No *date*, *time* |
 | List | N/A | No *date*, *time* | *string* | *string* | No *date*, *time* |
-| Group | N/A | No *date*, *time* | N/A | N/A | No *date*, *time* |
+| Group | N/A | No *date*, *time* |*string* | *string* | No *date*, *time* |
 | Table | No *boolean* | No *date*, *time* | *string* | *string* | No *date*, *time* |
 | Fixed table | No *boolean* | N/A | N/A | N/A | N/A |
 

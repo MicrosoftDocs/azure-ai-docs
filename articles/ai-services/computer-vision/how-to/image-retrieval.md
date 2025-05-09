@@ -9,6 +9,7 @@ ms.service: azure-ai-vision
 ms.topic: how-to
 ms.date: 02/22/2025
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
+ms.update-cycle: 365-days
 ms.author: pafarley
 
 #customer intent: As a developer, I want to use the image retrieval API to vectorize images and text so that I can perform text-based image searches.
