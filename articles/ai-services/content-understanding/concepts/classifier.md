@@ -7,15 +7,14 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 05/01/2025
-ms.custom: ignite-2024-understanding-release
+ms.date: 05/19/2025
 ---
 
 # Content Understanding classifier
 
 > [!IMPORTANT]
 >
-> * Classifier is only available for documents for the `2025-05-01-preview` release.
+> * Classifier is only available for documents with the `2025-05-01-preview` release.
 > * Azure AI Content Understanding classifier is available in `2025-05-01-preview` release. Public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
@@ -41,11 +40,11 @@ Content Understanding classifier can analyze a single- or multi-file documents t
 
 ### How to use Content Understanding classifier
 
-Content Understanding classifier does not require any training dataset. Simply define up to 50 category name and description and create a classifier.  By default, the entire file is treated as a single content object, meaning it is associated to a single category.
+Content Understanding classifier doesn't require any training dataset. Define up to 50 category name and description and create a classifier. By default, the entire file is treated as a single content object, meaning the file/object is associated to a single category.
 
 However, when you have more than one document in a file, the classifier can identify the different document types contained within the input file with splitting capability. The classifier response contains the page ranges for each of the identified document types contained within a file. This response can include multiple instances of the same document type.
 
-When calling the classifier, the analyze operation includes a `splitMode` property that gives you granular control over the splitting behavior.
+When you call the classifier, the `analyze` operation includes a `splitMode` property that gives you granular control over the splitting behavior.
 
 * To treat the entire input file as a single document for classification set the `splitMode` to `none`. When you do so, the service returns just one category for the entire input file.
 * To classify each page of the input file, set the `splitMode` to `perPage`. The service attempts to classify each page as an individual document.
@@ -53,7 +52,7 @@ When calling the classifier, the analyze operation includes a `splitMode` proper
 
 ### Optional Analysis
 
-For a complete end to end flow, you may link classifier categories with existing analyzers. For each content object classified to categories with linked analyzers, the service will automatically invoke analysis on the content object using the corresponding analyzer. As an example, this can be used to create classifiers that identifies and analyzes only invoices from a PDF that may contain multiple types of forms in a document.
+For a complete end to end flow, you may link classifier categories with existing analyzers. For each content object classified to categories with linked analyzers, the service automatically invokes analysis on the content object using the corresponding analyzer. As an example, this linking can be used to create classifiers that identify and analyze only invoices from a PDF that may contain multiple types of forms in a document.
 
 * Set the `analyzerId` to an existing analyzer to route and perform field extraction from the classified documents or pages.
 
@@ -65,18 +64,18 @@ For a complete end to end flow, you may link classifier categories with existing
 
 ✔️ The maximum length of input file is 300 pages.
 
-✔️ For each category name and description, there is a limit of 120 characters combined.
+✔️ For each category name and description, there's a limit of 120 characters combined.
 
-✔️ By default, there is an `$other` class as well, which we will utilize to categorize the pages into for cases where any of the defined categories does not seem suitable.
+✔️ By default, there's an `$other` class as well, which we utilize to categorize the pages into for cases where any of the defined categories doesn't seem suitable.
 
-Classifier will categorize each page of the input document, unless specified, to one of the defined catregories. You can specify the page numbers to analyze in the input document as well.
+Classifier categorizes each page of the input document, unless specified, to one of the defined categories. You can specify the page numbers to analyze in the input document as well.
 
 For detailed information on supported input document formats, refer to our [Service quotas and limits](../service-limits.md) page.
 
 
 ### Best Practices
-To improve classification and splitting quality, it is important to give a good category name and description so the model can understand the categories with some context.
-For a detailed best practices, visit our [Best practices](../best-practices.md#classifier-category-names-and-descriptions) page.
+
+To improve classification and splitting quality, it's important to give a good category name and description so the model can understand the categories with some context. For more information on category names and descriptions, *see* [Best practices](../concepts/best-practices.md#classifier-category-names-and-descriptions).
 
 ## Key Benefits
 

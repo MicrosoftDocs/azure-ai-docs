@@ -89,10 +89,10 @@ By default, Content Extraction information such as speech transcripts, document 
 
 ## Classifier category names and descriptions
 
-To improve the classifier and splitting accuracy, it is important to give a good category name and description with context. For example:
+To improve the classifier and splitting accuracy, it's important to give a good category name and description with context. For example:
 
 * Common titles for category names (ex. Annual Financial Report, SEC Form 10-K)
 * Semantic definition of the category for descriptions (ex. receipts for expense reporting)
-* Common layout of the initial page in the description (2-column form)
+* Common layout of the initial page in the description (two-column form)
 * Key content that uniquely identifies a category as a description ("2025" on the upper right)
 

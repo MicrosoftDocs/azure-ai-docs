@@ -8,7 +8,6 @@ manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: how-to
 ms.date: 05/19/2025
-ms.custom: ignite-2024-understanding-release
 ---
 
 # Content Understanding image solutions (preview)

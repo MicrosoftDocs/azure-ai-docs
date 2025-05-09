@@ -7,7 +7,6 @@ manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: conceptual
 ms.date: 05/19/2025
-ms.custom: ignite-2024-understanding-release
 ms.author: lajanuar
 ---
 
@@ -90,7 +89,7 @@ The following limits apply as of version 2024-12-01-preview.
 ### Classification fields
 
    > [!NOTE]
-   > This is the classification field within the extraction capability and not the separate [Content Understanding Classifier](concepts/classifier.md) itself.
+   > This classification field is the one within the extraction capability and not the separate [Content Understanding classifier](concepts/classifier.md) itself.
 
 Classification fields can be defined to return either a single category (single-label classification) or multiple categories (multi-label classification).
 
