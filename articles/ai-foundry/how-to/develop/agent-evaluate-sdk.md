@@ -29,7 +29,7 @@ The agentic workflow is triggered by a user query "weather tomorrow". It starts 
 -	[Tool call accuracy](https://aka.ms/toolcallaccuracy-sample): Evaluates the agent's ability to select the appropriate tools, and process correct parameters from previous steps.
 -	[Task adherence](https://aka.ms/taskadherence-sample): Measures how well the agent's final response adheres to its assigned tasks, according to its system message and prior steps.
 
-You can also assess other quality as well as safety aspects of your agentic workflows, leveraging our comprehensive suite of built-in evaluators. In general, agents emit agent messages. Transforming agent messages into the right evaluation data to use our evaluators can be a nontrivial task. If you build your agent using [Azure AI Agent Service](../../../ai-services/agents/overview.md), you can [seamlessly evaluate it via our converter support](#evaluate-Azure-AI-agents). If you build your agent outside of Azure AI Agent Service, you can still use our evaluators as appropriate to your agentic workflow, by parsing your agent messages into the [required data formats](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). See examples in [evaluating other agents](#evaluating-other-agents). 
+You can also assess other quality as well as safety aspects of your agentic workflows, leveraging out comprehensive suite of built-in evaluators. In general, agents emit agent messages. Transforming agent messages into the right evaluation data to use our evaluators can be a nontrivial task. If you build your agent using [Azure AI Agent Service](../../../ai-services/agents/overview.md), you can [seamlessly evaluate it via our converter support](#evaluate-Azure-AI-agents). If you build your agent outside of Azure AI Agent Service, you can still use our evaluators as appropriate to your agentic workflow, by parsing your agent messages into the [required data formats](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). See examples in [evaluating other agents](#evaluating-other-agents). 
 
 ## Getting started
 
@@ -40,7 +40,7 @@ pip install azure-ai-evaluation
 ```
 
 ## Evaluate Azure AI agents
-If you use [Azure AI Agent Service](../../../ai-services/agents/overview.md), however, you can seamlessly evaluate your agents via our converter support for Azure AI agent threads and runs. We support this list of evaluator for Azure AI agent messages without further user inputs: 
+If you use [Azure AI Agent Service](../../../ai-services/agents/overview.md), however, you can seamlessly evaluate your agents via our converter support for Azure AI agent threads and runs. We support this list of evaluators for Azure AI agent messages from our converter: 
 - Quality: `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence`, `Relevance`, `Coherence`, `Fluency`
 - Safety: `CodeVulnerabilities`, `Violence`, `Self-harm`, `Sexual`, `HateUnfairness`, `IndirectAttack`, `ProtectedMaterials`.
 
