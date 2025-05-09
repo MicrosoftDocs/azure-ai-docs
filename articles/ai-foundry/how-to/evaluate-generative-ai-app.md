@@ -229,9 +229,6 @@ From the flow page: From the collapsible left menu, select **Prompt flow** > **E
 ## View and manage the evaluators in the evaluator library
 
 The evaluator library is a centralized place that allows you to see the details and status of your evaluators. You can view and manage Microsoft curated evaluators.
-
-> [!TIP]
-> You can use custom evaluators via the prompt flow SDK. For more information, see [Evaluate with the prompt flow SDK](../how-to/develop/evaluate-sdk.md#custom-evaluators).
  
 The evaluator library also enables version management. You can compare different versions of your work, restore previous versions if needed, and collaborate with others more easily. 
 
@@ -241,7 +238,7 @@ To use the evaluator library in Azure AI Foundry portal, go to your project's **
 
 You can select the evaluator name to see more details. You can see the name, description, and parameters, and check any files associated with the evaluator. Here are some examples of Microsoft curated evaluators:
 
-- For performance and quality evaluators curated by Microsoft, you can view the annotation prompt on the details page. You can adapt these prompts to your own use case by changing the parameters or criteria according to your data and objectives [Azure AI Evaluation SDK](../how-to/develop/evaluate-sdk.md#custom-evaluators). For example, you can select *Groundedness-Evaluator* and check the Prompty file showing how we calculate the metric.
+- For performance and quality evaluators curated by Microsoft, you can view the annotation prompt on the details page. You can adapt these prompts to your own use case by changing the parameters or criteria according to your data and objectives in the Azure AI Evaluation SDK. For example, you can select *Groundedness-Evaluator* and check the Prompty file showing how we calculate the metric.
 - For risk and safety evaluators curated by Microsoft, you can see the definition of the metrics. For example, you can select the *Self-Harm-Related-Content-Evaluator* and learn what it means and how Microsoft determines the various severity levels for this safety metric.
 
 ## Next steps

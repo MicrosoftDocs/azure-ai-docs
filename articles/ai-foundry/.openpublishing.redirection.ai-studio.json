@@ -1159,12 +1159,12 @@
           "redirect_document_id": false
         },
         {
-          "source_path_from_root": "/articles/ai-foundry/how-to/trace-local-sdk.md",
+          "source_path_from_root": "/articles/ai-foundry/how-to/develop/trace-local-sdk.md",
           "redirect_url": "/azure/ai-foundry/how-to/trace-application",
           "redirect_document_id": false
         },
         {
-          "source_path_from_root": "/articles/ai-foundry/how-to/visualize-traces.md",
+          "source_path_from_root": "/articles/ai-foundry/how-to/develop/visualize-traces.md",
           "redirect_url": "/azure/ai-foundry/how-to/trace-application#visualize-your-traces",
           "redirect_document_id": false
         }

@@ -15,7 +15,7 @@ author: lgayhardt
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Continuous evaluation for Agents provides near real-time observability and monitoring for your AI application. Once enabled, this feature continuously evaluates agent interactions at a set sampling rate to provide insights into quality, safety, and performance with metrics surfaced in the Foundry Observability dashboard. By using continuous evaluation, you're able to identify and troubleshoot issues early, optimize agent performance, and maintain safety. Evaluations are also connected to [traces](./develop/trace-application.mdd) to enable detailed debugging and root cause analysis.
+Continuous evaluation for Agents provides near real-time observability and monitoring for your AI application. Once enabled, this feature continuously evaluates agent interactions at a set sampling rate to provide insights into quality, safety, and performance with metrics surfaced in the Foundry Observability dashboard. By using continuous evaluation, you're able to identify and troubleshoot issues early, optimize agent performance, and maintain safety. Evaluations are also connected to [traces](./develop/trace-application.md) to enable detailed debugging and root cause analysis.
 
 ## Getting Started
 
@@ -203,4 +203,4 @@ After you deployed your application to production with continuous evaluation set
 ## Related content
 
 - [How to run evaluations online with the Azure AI Foundry SDK](./online-evaluation.md)
-- [Evaluate your AI agents locally with Azure AI Evaluation SDK](./develop/agent-evaluate-sdk)
+- [Evaluate your AI agents locally with Azure AI Evaluation SDK](./develop/agent-evaluate-sdk.md)

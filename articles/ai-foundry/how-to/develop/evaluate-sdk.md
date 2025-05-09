@@ -16,7 +16,7 @@ author: lgayhardt
 ---
 # Evaluate your Generative AI application locally with the Azure AI Evaluation SDK
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 To thoroughly assess the performance of your generative AI application when applied to a substantial dataset, you can evaluate a Generative AI application in your development environment with the Azure AI evaluation SDK. Given either a test dataset or a target, your generative AI application generations are quantitatively measured with both mathematical based metrics and AI-assisted quality and safety evaluators. Built-in or custom evaluators can provide you with comprehensive insights into the application's capabilities and limitations.
 
@@ -37,12 +37,12 @@ pip install azure-ai-evaluation
 
 | Category | Evaluators |
 |--------------------------|-----------------------------|
-| [General purpose](link/to/general-purpose,md) | `CoherenceEvaluator`, `FluencyEvaluator`, `QAEvaluator` |
-| [Textual similarity](link/to/textual-similarity.md) | `SimilarityEvaluator`, `F1ScoreEvaluator`, `BleuScoreEvaluator`, `GleuScoreEvaluator`, `RougeScoreEvaluator`, `MeteorScoreEvaluator` |
+| [General purpose](../../concepts/evaluation-evaluators/general-purpose-evaluators.md) | `CoherenceEvaluator`, `FluencyEvaluator`, `QAEvaluator` |
+| [Textual similarity](l../../concepts/evaluation-evaluators/textual-similarity-evaluators.md) | `SimilarityEvaluator`, `F1ScoreEvaluator`, `BleuScoreEvaluator`, `GleuScoreEvaluator`, `RougeScoreEvaluator`, `MeteorScoreEvaluator` |
 | [Retrieval-Augmented Generation (RAG)](link/to/retrieval-augmented-generation.md) | `RetrievalEvaluator`, `DocumentRetrievalEvaluator`, `GroundednessEvaluator`, `GroundednessProEvaluator`, `RelevanceEvaluator`, `ResponseCompletenessEvaluator` |
-| [Risk and safety](link/to/risk-and-safety.md) | `ViolenceEvaluator`, `SexualEvaluator`, `SelfHarmEvaluator`, `HateUnfairnessEvaluator`, `IndirectAttackEvaluator`, `ProtectedMaterialEvaluator`, `UngroundedAttributesEvaluator`, `CodeVulnerabilityEvaluator`, `ContentSafetyEvaluator` |
-| [Agentic](link/to/agent_evaluators.md) | `IntentResolutionEvaluator`, `ToolCallAccuracyEvaluator`, `TaskAdherenceEvaluator` |
-| [Azure Open AI](link/to/azure-open-ai.md) | `AzureOpenAILabelGrader`, `AzureOpenAIStringCheckGrader`, `AzureOpenAITextSimilarityGrader`, `AzureOpenAIGrader` |
+| [Risk and safety](../../concepts/evaluation-evaluators/risk-safety-evaluators.md) | `ViolenceEvaluator`, `SexualEvaluator`, `SelfHarmEvaluator`, `HateUnfairnessEvaluator`, `IndirectAttackEvaluator`, `ProtectedMaterialEvaluator`, `UngroundedAttributesEvaluator`, `CodeVulnerabilityEvaluator`, `ContentSafetyEvaluator` |
+| [Agentic](../../concepts/evaluation-evaluators/agent-evaluators.md) | `IntentResolutionEvaluator`, `ToolCallAccuracyEvaluator`, `TaskAdherenceEvaluator` |
+| [Azure Open AI](../../concepts/evaluation-evaluators/azure-openai-graders.md) | `AzureOpenAILabelGrader`, `AzureOpenAIStringCheckGrader`, `AzureOpenAITextSimilarityGrader`, `AzureOpenAIGrader` |
 
 Built-in quality and safety metrics take in query and response pairs, along with additional information for specific evaluators.
 
@@ -58,9 +58,9 @@ Built-in evaluators can accept *either* query and response pairs or a list of co
 > AI-assisted quality evaluators except for `SimilarityEvaluator` come with a reason field. They employ techniques including chain-of-thought reasoning to generate an explanation for the score. Therefore they'll consume more token usage in generation as a result of improved evaluation quality. Specifically, `max_token` for evaluator generation has been set to 800 for all AI-assisted evaluators (and 1600 for `RetrievalEvaluator` to accommodate for longer inputs.)
 
 > [!NOTE]
-> Azure Open AI graders require a template that descripts how their input columns are turned into the 'real' input that the grader uses. Ex: If you have 2 inputs called "query" and "response", and a template that was formatted like so: `{{item.query}}`, then only the query would be used. Similarly you could have something like `{{item.conversation}}` to accept a conversation input, but the ability of the system to handle that will depend on how you configure the rest of the grader to expect that input.
+> Azure Open AI graders require a template that describes how their input columns are turned into the 'real' input that the grader uses. Ex: If you have 2 inputs called "query" and "response", and a template that was formatted like so: `{{item.query}}`, then only the query would be used. Similarly you could have something like `{{item.conversation}}` to accept a conversation input, but the ability of the system to handle that will depend on how you configure the rest of the grader to expect that input.
 
-For more information on data requirements for agentic evaluators, go to [Run agent evaluations locally with Azure AI Evaluation SDK](link/to/agent-eval.md).
+For more information on data requirements for agentic evaluators, go to [Run agent evaluations locally with Azure AI Evaluation SDK](agent-evaluate-sdk.md).
 
 #### Single-turn support for text
 
@@ -320,7 +320,7 @@ For all Risk and Safety Evaluators and `GroundednessProEvaluator` (preview), ins
 
 #### Prompts for AI-assisted built-in evaluators
 
-We open-source the prompts of our quality evaluators in our Evaluator Library and Azure AI Evaluation Python SDK repository for transparency, except for the Safety Evaluators and `GroundednessProEvaluator` (powered by Azure AI Content Safety). These prompts serve as instructions for a language model to perform their evaluation task, which requires a human-friendly definition of the metric and its associated scoring rubrics. We highly recommend that users customize the definitions and grading rubrics to their scenario specifics. See details in [Custom Evaluators](link/to/custom-evaluators.md).
+We open-source the prompts of our quality evaluators in our Evaluator Library and Azure AI Evaluation Python SDK repository for transparency, except for the Safety Evaluators and `GroundednessProEvaluator` (powered by Azure AI Content Safety). These prompts serve as instructions for a language model to perform their evaluation task, which requires a human-friendly definition of the metric and its associated scoring rubrics. We highly recommend that users customize the definitions and grading rubrics to their scenario specifics. See details in [Custom Evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md).
 
 ### Composite evaluators
 

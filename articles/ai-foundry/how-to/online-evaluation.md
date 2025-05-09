@@ -17,7 +17,7 @@ author: lgayhardt
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, you learn how to run evaluations online in a continuous manner with the Azure AI Foundry SDK. [Evaluations](./develop/evaluate-sdk.md) in pre-production environments is essential for ensuring that your application is safe, performant, and produces high-quality results. However, evaluation doesn't stop after your application is deployed. In production, various things can change, such as the types of queries users are sending to your application, which can influence your application's performance. To maintain a high degree of observability into your production generative AI application, it's important to [trace](./develop/trace-local-sdk.md) and continuously evaluate your application's data. By doing so, you can maintain confidence in your application's safety, quality, and performance.
+In this article, you learn how to run evaluations online in a continuous manner with the Azure AI Foundry SDK. [Evaluations](./develop/evaluate-sdk.md) in pre-production environments is essential for ensuring that your application is safe, performant, and produces high-quality results. However, evaluation doesn't stop after your application is deployed. In production, various things can change, such as the types of queries users are sending to your application, which can influence your application's performance. To maintain a high degree of observability into your production generative AI application, it's important to [trace](./develop/trace-application.md) and continuously evaluate your application's data. By doing so, you can maintain confidence in your application's safety, quality, and performance.
 
 ## How online evaluation works
 
@@ -49,7 +49,7 @@ Now that you understand how online evaluation works and how it connects to Azure
 In this section, you'll learn how to configure an online evaluation schedule to continuously monitor your deployed generative AI application. Azure AI Foundry SDK offers such capabilities via. A Python API and supports all of the features available in local evaluations. Use the following steps to submit your online evaluation schedule on your data using built-in or custom evaluators.
 
 > [!NOTE]
-> Evaluations are only supported in the same [regions](./develop/evaluate-sdk.md#region-support) as AI-assisted risk and safety metrics.
+> Evaluations are only supported in the same [regions](../../concepts/evaluation-evaluators/risk-safety-evaluators.md#azure-ai-foundry-project-configuration-and-region-support) as AI-assisted risk and safety metrics.
 
 ### Prerequisites
 
@@ -96,7 +96,7 @@ pip install azure-identity azure-ai-projects azure-ai-ml
 
 ### Set up tracing for your generative AI application
 
-Prior to setting up online evaluation, ensure you have first [set up tracing for your generative AI application](./develop/trace-local-sdk.md).
+Prior to setting up online evaluation, ensure you have first [set up tracing for your generative AI application](./develop/trace-application.md).
 
 #### Using service name in trace data
 
@@ -104,11 +104,11 @@ To identify your application via a unique ID in Application Insights, you can us
 
 To set up the service name property, you can do so directly in your application code by following the steps, see  [Using multiple tracer providers with different Resource](https://opentelemetry.io/docs/languages/python/cookbook/#using-multiple-tracer-providers-with-different-resource). Alternatively, you can set the environment variable `OTEL_SERVICE_NAME` prior to deploying your app. To learn more about working with the service name, see [OTEL Environment Variables](https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/#general-sdk-configuration) and [Service Resource Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/resource/#service).
 
-For more information on using the service name to differentiate between your generative AI applications, see [tracing](./develop/trace-local-sdk.md).
+For more information on using the service name to differentiate between your generative AI applications, see [tracing](./develop/trace-application.md).
 
 ### Query stored trace data in Application Insights
 
-Using the [Kusto Query Language (KQL)](/kusto/query/?view=microsoft-fabric&preserve-view=true), you can query your generative AI application's trace data from Application Insights to use for continuous online evaluation. If you use the [Azure AI Tracing package](./develop/trace-local-sdk.md) to trace your generative AI application, you can use the following Kusto query:
+Using the [Kusto Query Language (KQL)](/kusto/query/?view=microsoft-fabric&preserve-view=true), you can query your generative AI application's trace data from Application Insights to use for continuous online evaluation. If you use the [Azure AI Tracing package](./develop/trace-application.md) to trace your generative AI application, you can use the following Kusto query:
 
 > [!IMPORTANT]
 > The KQL query used by the online evaluation service must output the following columns: `operation_Id`, `operation_ParentId`, and `gen_ai_response_id`. Additionally, each evaluator has its own input data requirements. The KQL query must output these columns to be used as inputs to the evaluators themselves. For a list of data requirements for evaluators, see [data requirements for built-in evaluators](./develop/evaluate-sdk.md#data-requirements-for-built-in-evaluators).
@@ -321,7 +321,7 @@ project_client.evaluations.disable_schedule(name)
 ## Related content
 
 - [Monitor your generative AI applications](./monitor-applications.md)
-- [Trace your application with Azure AI Inference SDK](./develop/trace-local-sdk.md)
+- [Trace your application](./develop/trace-application.md)
 - [Visualize your traces](./develop/visualize-traces.md)
 - [Evaluation of Generative AI Models & Applications](../concepts/evaluation-approach-gen-ai.md)
 - [Azure Monitor Application Insights](/azure/azure-monitor/app/app-insights-overview)
