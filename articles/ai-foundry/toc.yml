@@ -72,14 +72,10 @@ items:
       href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-foundry/context/context
     - name: Develop
       items:
-      - name: Work with embedding models
-        items:
-          - name: Work with text embeddings
-            href: ../ai-foundry/model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context
-          - name: Work with image embeddings
-            href: ../ai-foundry/model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context
-      - name: Work with chat models
-        items:
+        - name: Work with image models
+          href: how-to/use-image-models.md
+        - name: Work with chat models
+          items:
           - name: Work with chat completion models
             href: ../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context
           - name: Work with reasoning models
@@ -88,12 +84,18 @@ items:
             href: ../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context
           - name: Use structured outputs
             href: ../ai-foundry/model-inference/how-to/use-structured-outputs.md?context=/azure/ai-foundry/context/context
-      - name: Develop with LangChain and LangGraph
-        href: how-to/develop/langchain.md
-      - name: Develop with Llama-Index
-        href: how-to/develop/llama-index.md
-      - name: Develop with Semantic Kernel
-        href: how-to/develop/semantic-kernel.md
+        - name: Work with embedding models
+          items:
+          - name: Work with text embeddings
+            href: ../ai-foundry/model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context
+          - name: Work with image embeddings
+            href: ../ai-foundry/model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context
+        - name: Develop with LangChain and LangGraph
+          href: how-to/develop/langchain.md
+        - name: Develop with Llama-Index
+          href: how-to/develop/llama-index.md
+        - name: Develop with Semantic Kernel
+          href: how-to/develop/semantic-kernel.md
   - name: Deploy Azure Open AI in Foundry Models
     items:
     - name: Azure OpenAI in Azure AI Foundry portal
