@@ -5128,9 +5128,7 @@ Relative deployment connection.
 
 Defines the dates of deprecation for the different use cases of a model.
 
-Usually base models support 1 year of fine tuning after creation. Inference is typically supported 2 years after creation of base or
-
-fine tuned models. The exact dates are specified in the properties.
+Usually base models support 1 year of fine tuning after creation. Inference is typically supported 2 years after creation of base or fine tuned models. The exact dates are specified in the properties.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -5566,8 +5564,7 @@ Defines a document to import from an external content url to be usable with Azur
 |------|------|-------------|----------|---------|
 | content_url | string | The url to download the document from (can be SAS url of a blob or any other external url accessible with a GET request). | Yes |  |
 | expires_after | [FileExpiresAfter](#fileexpiresafter) | Defines a expiration for the file. | No |  |
-| filename | string | The name of the [JSON Lines](https://jsonlines.readthedocs.io/en/latest/) file to be uploaded.
-If the `purpose` is set to "fine-tune", each line is a JSON record with "prompt" and "completion" fields representing your training examples. | Yes |  |
+| filename | string | The name of the [JSON Lines](https://jsonlines.readthedocs.io/en/latest/) file to be uploaded. If the `purpose` is set to "fine-tune", each line is a JSON record with "prompt" and "completion" fields representing your training examples. | Yes |  |
 | purpose | [Purpose](#purpose) | The intended purpose of the uploaded documents. Use "fine-tune" for fine-tuning. This allows us to validate the format of the uploaded file. | Yes |  |
 
 ### FileList
@@ -5683,8 +5680,7 @@ Defines the values of a fine tune job.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | hyperparameters | [FineTuningHyperParameters](#finetuninghyperparameters) | The hyper parameter settings used in a fine tune job. | No |  |
-| integrations | array | A list configurations for integrations supporting the fine-tuning job.
-There are many integrations planned, so make sure to check and act on the integration type. | No |  |
+| integrations | array | A list configurations for integrations supporting the fine-tuning job. There are many integrations planned, so make sure to check and act on the integration type. | No |  |
 | method | object | Method used for supervised finetuning | No |  |
 | └─ type | [FineTuningMethodType](#finetuningmethodtype) |  | No |  |
 | model | string | The identifier (model-id) of the base model used for this fine-tune. | Yes |  |
@@ -5763,8 +5759,7 @@ The state of a finetunes object or fine tuning job.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| description | string | A description of what the function does, used by the model to
-choose when and how to call the function. | No |  |
+| description | string | A description of what the function does, used by the model to choose when and how to call the function. | No |  |
 | name | string | The name of the function to be called. | No |  |
 | parameters |  | The parameters the functions accepts, described as a JSON Schema object. | No |  |
 
@@ -5909,8 +5904,7 @@ Inner error codes as defined in the [Microsoft REST guidelines](https://github.c
 |------|------|-------------|----------|---------|
 | content | string | The contents of the message. | No |  |
 | id | string | The identity of message. | No |  |
-| name | string | An optional name for the participant.
-Provides the model information to differentiate between participants of the same role. | No |  |
+| name | string | An optional name for the participant. Provides the model information to differentiate between participants of the same role. | No |  |
 | role | string | The role of the entity that is creating the message. | No |  |
 
 ### InputTextContent
@@ -5956,8 +5950,7 @@ Note: A model can be promoted from "preview" to "generally-available", but never
 
 | Property | Value |
 |----------|-------|
-| **Description** | The life cycle status of a model.
-Note: A model can be promoted from "preview" to "generally-available", but never from "generally-available" to "preview". |
+| **Description** | The life cycle status of a model. Note: A model can be promoted from "preview" to "generally-available", but never from "generally-available" to "preview". |
 | **Type** | string |
 | **Values** | `preview`<br>`generally-available`<br>`deprecating`<br>`deprecated` |
 
@@ -5975,8 +5968,7 @@ The verbosity level of an event.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| logprob | number | The log probability of this token, if it is within the top 20 most likely tokens.
-Otherwise, the value `-9999.0` is used to signify that the token is very unlikely. | No |  |
+| logprob | number | The log probability of this token, if it is within the top 20 most likely tokens. Otherwise, the value `-9999.0` is used to signify that the token is very unlikely. | No |  |
 | token | string | The token. | No |  |
 
 ### Metadata
@@ -6084,8 +6076,7 @@ Serverless compute.
 `system_fingerprint` response parameter to monitor changes in the backend. | No |  |
 | service_tier | string | Specifies the latency tier to use for processing the request. | No |  |
 | system_fingerprint | string | This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. | No |  |
-| temperature | number | What sampling temperature to use, between 0 and 2. Higher values
-like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or `top_p` but not both. | No |  |
+| temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or `top_p` but not both. | No |  |
 | tool_choice | string | Controls which (if any) tool is called by the model. | No |  |
 | tools | array | A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. | No |  |
 | top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. We generally recommend altering this or `temperature` but not both. | No |  |
