@@ -89,7 +89,7 @@ The following limits apply as of version 2024-12-01-preview.
 ### Classification fields
 
    > [!NOTE]
-   > This classification field is the one within the extraction capability and not the separate [Content Understanding classifier](concepts/classifier.md) itself.
+   > This classification field is the one within the extraction capability and not the separate [Content Understanding classifier](concepts/classifiers.md) itself.
 
 Classification fields can be defined to return either a single category (single-label classification) or multiple categories (multi-label classification).
 
