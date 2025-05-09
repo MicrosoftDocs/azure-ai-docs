@@ -44,7 +44,7 @@ You can secure your [Azure AI Foundry](https://ai.azure.com) hub, projects, and 
 
     :::image type="content" source="../media/how-to/network/ai-hub-storage.png" alt-text="Screenshot of the Create a hub with the option to set storage resource information." lightbox="../media/how-to/network/ai-hub-storage.png"::: 
 
-1. Select the **Inbound access** tab to configure network isolation for inbound traffic to the hub. Set **Public network access** to **Disabled**, and then use **+ Add** to add a private endpoint for the hub to an Azure Virtual Network that your clients connect to. The private endpoint allows your clients to connect to the hub over a private connection. For more information, see [Private endpoints](https://learn.microsoft.com/azure/private-link/private-endpoint-overview).
+1. Select the **Inbound access** tab to configure network isolation for inbound traffic to the hub. Set **Public network access** to **Disabled**, and then use **+ Add** to add a private endpoint for the hub to an Azure Virtual Network that your clients connect to. The private endpoint allows your clients to connect to the hub over a private connection. For more information, see [Private endpoints](/azure/private-link/private-endpoint-overview).
  
     :::image type="content" source="../media/how-to/network/inbound-access.png" alt-text="Screenshot of the inbound access tab with public network access disabled." lightbox="../media/how-to/network/inbound-access.png":::
 
