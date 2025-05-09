@@ -52,7 +52,7 @@ Here's a basic example schema that includes both user and group ACLs and RBAC me
 ```
 
 ## REST API indexing example
-Once you have an index with the desired permission filter fields, you can populate those values using the Indexing Push API as with any other document fields. Here 'san example using the specified index schema.
+Once you have an index with the desired permission filter fields, you can populate those values using the Indexing Push API as with any other document fields. Here's an example using the specified index schema.
 
 ```https
 POST https://exampleservice.search.windows.net/indexes('indexdocumentsexample')/docs/search.index?api-version=2025-05-01-preview
