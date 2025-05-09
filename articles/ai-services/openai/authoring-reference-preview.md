@@ -1,7 +1,7 @@
 ---
-title: Azure OpenAI Service REST API preview reference
+title: Azure OpenAI Service REST API authoring preview reference
 titleSuffix: Azure OpenAI
-description: Learn how to use Azure OpenAI's latest preview REST API. In this article, you learn about authorization options,  how to structure a request and receive a response.
+description: Learn how to use Azure OpenAI's latest authoring preview REST API. In this article, you learn about authorization options,  how to structure a request and receive a response.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual

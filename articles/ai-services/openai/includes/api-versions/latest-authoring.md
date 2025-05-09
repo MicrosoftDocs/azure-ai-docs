@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI latest preview dataplane authoring API documentation
+title: Azure OpenAI latest preview authoring API documentation
 titleSuffix: Azure OpenAI Service
 description: Latest preview data plane authoring documentation generated from OpenAPI 3.0 spec
 manager: nitinme
@@ -8,7 +8,6 @@ ms.topic: include
 ms.date: 05/08/2025
 ---
 
-# API Documentation
 
 ## Batch - List
 
@@ -5887,27 +5886,20 @@ The job type.
 
 ### InnerError
 
-Inner error as defined in the Microsoft REST guidelines
-
-(https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses).
+Inner error as defined in the [Microsoft REST guidelines](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses).
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| code | [InnerErrorCode](#innererrorcode) | Inner error codes as defined in the Microsoft REST guidelines
-(https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses). | No |  |
-| innererror | [InnerError](#innererror) | Inner error as defined in the Microsoft REST guidelines
-(https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses). | No |  |
+| code | [InnerErrorCode](#innererrorcode) | Inner error codes as defined in the [Microsoft REST guidelines](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses). | No |  |
+| innererror | [InnerError](#innererror) | Inner error as defined in the [Microsoft REST guidelines](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses). | No |  |
 
 ### InnerErrorCode
 
-Inner error codes as defined in the Microsoft REST guidelines
-
-(https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses).
+Inner error codes as defined in the [Microsoft REST guidelines](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses).
 
 | Property | Value |
 |----------|-------|
-| **Description** | Inner error codes as defined in the Microsoft REST guidelines
-(https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses). |
+| **Description** | Inner error codes as defined in the [Microsoft REST guidelines](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses). |
 | **Type** | string |
 | **Values** | `invalidPayload` |
 
