@@ -1,7 +1,7 @@
 ---
-title: Content safety for models curated by Azure AI in the model catalog
+title: Guidelines & controls for models curated by Azure AI in the model catalog
 titleSuffix: Azure AI Foundry
-description: Learn about content safety for models deployed using serverless APIs, using Azure AI Foundry.
+description: Learn about Guidelines & controls for models deployed using serverless APIs, using Azure AI Foundry.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: conceptual
@@ -13,11 +13,11 @@ reviewer: ositanachi
 ms.custom: 
 ---
 
-# Content safety for models curated by Azure AI in the model catalog
+# Guidelines & controls for models curated by Azure AI in the model catalog
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, learn about content safety capabilities for models from the model catalog deployed using serverless APIs.
+In this article, learn about Guidelines & controls capabilities for models from the model catalog deployed using serverless APIs.
 
 
 ## Content filter defaults

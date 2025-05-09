@@ -25,7 +25,7 @@ ms.custom: include
 
 ## Attach a blocklist to a content filter configuration
 
-1. Once the blocklist is ready, go back to the **Safety+ Security** page and select the **Content filters** tab. Create a new content filter configuration. This opens a wizard with several AI content safety components.
+1. Once the blocklist is ready, go back to the **Safety+ Security** page and select the **Content filters** tab. Create a new content filter configuration. This opens a wizard with several content filter components.
 
     :::image type="content" source="../media/content-safety/content-filter/create-content-filter.png" lightbox="../media/content-safety/content-filter/create-content-filter.png" alt-text="Screenshot of the Create content filter button.":::
 
