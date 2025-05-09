@@ -34,7 +34,9 @@ model_config = AzureOpenAIModelConfiguration(
     api_version=os.environ.get("AZURE_API_VERSION"),
 )
 ```
-We recommend using `o3-mini` for a balance of reasoning capability and cost efficiency.
+
+> [!TIP]
+> We recommend using `o3-mini` for a balance of reasoning capability and cost efficiency.
 
 ## Coherence
 

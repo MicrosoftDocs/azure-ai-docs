@@ -39,7 +39,8 @@ model_config = AzureOpenAIModelConfiguration(
 )
 ```
 
-We recommend using `o3-mini` for a balance of reasoning capability and cost efficiency.
+> [!TIP]
+> We recommend using `o3-mini` for a balance of reasoning capability and cost efficiency.
 
 ## Retrieval
 
