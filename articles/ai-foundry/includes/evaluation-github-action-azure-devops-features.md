@@ -19,36 +19,36 @@ ms.custom: include file
 
     | Category | Evaluator class/Metrics | AI Agent evaluations | GenAI evaluations |
     |--|--|--|--|
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `GroundednessEvaluator` | Not Supported | Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `GroundednessProEvaluator` | Not Supported | Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `RetrievalEvaluator` | Not Supported | Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `RelevanceEvaluator` | Supported | Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `CoherenceEvaluator` | Supported | Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `FluencyEvaluator` | Supported | Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `SimilarityEvaluator` | Not Supported | Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `IntentResolutionEvaluator` | Supported | Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `TaskAdherenceEvaluator` | Supported | Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `ToolCallAccuracyEvaluator` | Not Supported | Not Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `ResponseCompletenessEvaluator` | Not Supported | Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `DocumentRetrievalEvaluator` | Not Supported | Not Supported |
-    | [Performance and quality (NLP)](../how-to/develop/evaluate-sdk.md) | `F1ScoreEvaluator` | Not Supported | Supported |
-    | [Performance and quality (NLP)](../how-to/develop/evaluate-sdk.md) | `RougeScoreEvaluator` | Not Supported | Not Supported |
-    | [Performance and quality (NLP)](../how-to/develop/evaluate-sdk.md) | `GleuScoreEvaluator` | Not Supported | Supported |
-    | [Performance and quality (NLP)](../how-to/develop/evaluate-sdk.md) | `BleuScoreEvaluator ` | Not Supported | Supported |
-    | [Performance and quality (NLP)](../how-to/develop/evaluate-sdk.md) | `MeteorScoreEvaluator` | Not Supported | Supported |
-    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.m) | `ViolenceEvaluator` | Supported | Supported |
-    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.m) | `SexualEvaluator` | Supported | Supported |
-    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.m) | `SelfHarmEvaluator` | Supported | Supported |
-    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.m) | `HateUnfairnessEvaluator` | Supported | Supported |
-    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.m) | `IndirectAttackEvaluator` | Supported | Supported |
-    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.m) | `ProtectedMaterialEvaluator` | Supported | Supported |
-    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.m) | `CodeVulnerabilityEvaluator` | Supported | Supported |
-    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.m) | `UngroundedAttributesEvaluator` | Not Supported | Supported |
-    | [Composite](../how-to/develop/evaluate-sdk.md#composite-evaluators) | `QAEvaluator` | Not Supported | Supported |
-    | [Composite](../how-to/develop/evaluate-sdk.md#composite-evaluators) | `ContentSafetyEvaluator` | Supported | Supported |
-    | [Composite](../how-to/develop/evaluate-sdk.md#composite-evaluators) | `AgentOverallEvaluator` | Not Supported | Not Supported |
+    | Performance and quality (AI-assisted) | `GroundednessEvaluator` | Not Supported | Supported |
+    | Performance and quality (AI-assisted) | [`GroundednessProEvaluator`](../concepts/evaluation-evaluators/rag-evaluators#groundedness-pro) | Not Supported | Supported |
+    | Performance and quality (AI-assisted) | `RetrievalEvaluator` | Not Supported | Supported |
+    | Performance and quality (AI-assisted)| `RelevanceEvaluator` | Supported | Supported |
+    | Performance and quality (AI-assisted) | `CoherenceEvaluator` | Supported | Supported |
+    | Performance and quality (AI-assisted) | `FluencyEvaluator` | Supported | Supported |
+    | Performance and quality (AI-assisted)| `SimilarityEvaluator` | Not Supported | Supported |
+    | Performance and quality (AI-assisted) | `IntentResolutionEvaluator` | Supported | Supported |
+    | Performance and quality (AI-assisted)| `TaskAdherenceEvaluator` | Supported | Supported |
+    | Performance and quality (AI-assisted) | `ToolCallAccuracyEvaluator` | Not Supported | Not Supported |
+    | Performance and quality (AI-assisted) | `ResponseCompletenessEvaluator` | Not Supported | Supported |
+    | Performance and quality (AI-assisted) | `DocumentRetrievalEvaluator` | Not Supported | Not Supported |
+    | Performance and quality (NLP) | `F1ScoreEvaluator` | Not Supported | Supported |
+    | Performance and quality (NLP) | `RougeScoreEvaluator` | Not Supported | Not Supported |
+    | Performance and quality (NLP) | `GleuScoreEvaluator` | Not Supported | Supported |
+    | Performance and quality (NLP) | `BleuScoreEvaluator ` | Not Supported | Supported |
+    | Performance and quality (NLP) | `MeteorScoreEvaluator` | Not Supported | Supported |
+    | Risk and safety (AI-assisted)| `ViolenceEvaluator` | Supported | Supported |
+    | Risk and safety (AI-assisted) | `SexualEvaluator` | Supported | Supported |
+    | Risk and safety (AI-assisted) | `SelfHarmEvaluator` | Supported | Supported |
+    | Risk and safety (AI-assisted)| `HateUnfairnessEvaluator` | Supported | Supported |
+    | Risk and safety (AI-assisted)| `IndirectAttackEvaluator` | Supported | Supported |
+    | Risk and safety (AI-assisted)| `ProtectedMaterialEvaluator` | Supported | Supported |
+    | Risk and safety (AI-assisted)| `CodeVulnerabilityEvaluator` | Supported | Supported |
+    | Risk and safety (AI-assisted)| `UngroundedAttributesEvaluator` | Not Supported | Supported |
+    | Composite| `QAEvaluator` | Not Supported | Supported |
+    | Composite | `ContentSafetyEvaluator` | Supported | Supported |
+    | Composite| `AgentOverallEvaluator` | Not Supported | Not Supported |
     | Operational metrics | Client run duration | Supported | Not Supported |
     | Operational metrics | Server run duration | Supported | Not Supported |
     | Operational metrics | Completion tokens | Supported | Not Supported |
     | Operational metrics | Prompt tokens | Supported | Not Supported |
-    | [Custom evaluators](../how-to/develop/evaluate-sdk.md#custom-evaluators) |  | Not Supported | Not Supported |
+    | [Custom evaluators](../concepts/evaluation-evaluators/custom-evaluators.md) |  | Not Supported | Not Supported |
