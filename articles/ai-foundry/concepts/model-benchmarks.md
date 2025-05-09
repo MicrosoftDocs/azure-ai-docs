@@ -27,7 +27,7 @@ Model leaderboards (preview) in Azure AI Foundry portal allow you to streamline 
 Whenever you find a model to your liking, you can select it and zoom into the **Detailed benchmarking results** of the model within the model catalog. If satisfied with the model, you can deploy it, try it in the playground, or evaluate it on your data. The leaderboards support benchmarking across text language models (large language models (LLMs) and small language models (SLMs)) and embedding models.
 
 
-Model benchmarks assess LLMs and SLMs across the following categories: quality, performance, and cost. In addition, we assess the quality of embedding models using standard benchmarks. The benchmarks are updated regularly as better and more unsaturated datasets and associated metrics are added to existing models, and as new models are added to the model catalog.
+Model benchmarks assess LLMs and SLMs across the following categories: quality, performance, and cost. In addition, we assess the quality of embedding models using standard benchmarks. The leaderboards are updated regularly as better and more unsaturated benchmarks are onboarded, and as new models are added to the model catalog.
 
 
 ## Quality benchmarks of language models
@@ -40,21 +40,17 @@ Azure AI assesses the quality of LLMs and SLMs using accuracy scores from standa
 
 Quality index is provided on a scale of zero to one. Higher values of quality index are better. The datasets included in quality index are: 
 
-| Dataset name            | Leaderboard category        |
-|-------------------------|---------------------|
-| BoolQ                   | QA                  |
-| HellaSwag               | Reasoning           |
-| OpenBookQA              | Reasoning           |
-| PIQA                    | Reasoning           |
-| Social IQA              | Reasoning           |
-| Winogrande              | Reasoning           |
-| TruthfulQA (MC)         | Groundedness        |
-| HumanEval               | Coding              |
-| GSM8K                   | Math                |
-| MMLU (Humanities)       | General Knowledge   |
-| MMLU (Other)            | General Knowledge   |
-| MMLU (Social Sciences)  | General Knowledge   |
-| MMLU (STEM)             | General Knowledge   |
+| Dataset Name       | Leaderboard Category |
+|--------------------|----------------------|
+| arena_hard        | QA                   |
+| bigbench_hard     | Reasoning            |
+| gpqa              | QA                   |
+| humanevalplus     | Coding               |
+| ifeval            | Reasoning            |
+| math              | Math                 |
+| mbppplus          | Coding               |
+| mmlu_pro          | General Knowledge    |
+
 
 
 See more details in accuracy scores:
