@@ -15,7 +15,7 @@ ms.custom: references_regions, tool_generated
 
 # Featured models of Azure AI Foundry
 
-The Azure AI model catalog offers a large selection of models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists featured models in the model catalog that can be deployed and hosted on Microsoft's servers via serverless APIs. For some of these models, you can also host them on your infrastructure for deployment via managed compute. See [Available models for supported deployment options](../how-to/model-catalog-overview.md#available-models-for-supported-deployment-options) to find models in the catalog that are available for deployment via managed compute or serverless API.
+The Azure AI model catalog offers a large selection of Azure AI Foundry Models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists featured models in the model catalog that can be deployed and hosted on Microsoft's servers via standard deployment. For some of these models, you can also host them on your infrastructure for deployment via managed compute. See [Available models for supported deployment options](../how-to/model-catalog-overview.md#available-models-for-supported-deployment-options) to find models in the catalog that are available for deployment via managed compute or standard deployment.
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
@@ -37,7 +37,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 ## Azure OpenAI
 
-Azure OpenAI Service offers a diverse set of models with different capabilities and price points. These models include:
+Azure OpenAI in Foundry Models offers a diverse set of models with different capabilities and price points. These models include:
 
 - State-of-the-art models designed to tackle reasoning and problem-solving tasks with increased focus and capability
 - Models that can understand and generate natural language and code

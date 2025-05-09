@@ -22,7 +22,7 @@ author: msakande
 
 In this article, you learn to create Azure OpenAI model deployments in Azure AI Foundry portal.
 
-Azure OpenAI Service offers a diverse set of models with different capabilities and price points. When you deploy Azure OpenAI models in Azure AI Foundry portal, you can consume the deployments, using prompt flow or another tool. Model availability varies by region. To learn more about the details of each model see [Azure OpenAI Service models](../../ai-services/openai/concepts/models.md).
+Azure OpenAI in Azure AI Foundry Models offers a diverse set of models with different capabilities and price points. When you deploy Azure OpenAI models in Azure AI Foundry portal, you can consume the deployments, using prompt flow or another tool. Model availability varies by region. To learn more about the details of each model see [Azure OpenAI models](../../ai-services/openai/concepts/models.md).
 
 To modify and interact with an Azure OpenAI model in the [Azure AI Foundry](https://ai.azure.com) playground, first you need to deploy a base Azure OpenAI model to your project. Once the model is deployed and available in your project, you can consume its REST API endpoint as-is or customize further with your own data and other components (embeddings, indexes, and more).  
 
@@ -76,7 +76,7 @@ For more examples of how to consume the deployed model in your application, see 
 
 ## Regional availability and quota limits of a model
 
-For Azure OpenAI models, the default quota for models varies by model and region. Certain models might only be available in some regions. For more information on availability and quota limits, see [Azure OpenAI Service quotas and limits](/azure/ai-services/openai/quotas-limits).
+For Azure OpenAI models, the default quota for models varies by model and region. Certain models might only be available in some regions. For more information on availability and quota limits, see [Azure OpenAI quotas and limits](/azure/ai-services/openai/quotas-limits).
 
 ## Quota for deploying and inferencing a model
 
@@ -87,7 +87,7 @@ Once you reach your quota limit, the only way for you to create new deployments 
 - Request more quota by submitting a [quota increase form](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pURVJWRU4yRTMxRkszU0NXRFFTTEhaT1g1NyQlQCN0PWcu).
 - Adjust the allocated quota on other model deployments to free up tokens for new deployments on the [Azure OpenAI Portal](https://oai.azure.com/portal).
 
-To learn more about quota, see [Azure AI Foundry quota](./quota.md) and [Manage Azure OpenAI Service quota](../../ai-services/openai/how-to/quota.md?tabs=rest).
+To learn more about quota, see [Azure AI Foundry quota](./quota.md) and [Manage Azure OpenAI quota](../../ai-services/openai/how-to/quota.md?tabs=rest).
 
 ## Related content
 

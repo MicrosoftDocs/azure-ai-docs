@@ -33,7 +33,7 @@ In alignment with Microsoft's RAI practices, these recommendations are organized
 
 ## Map
 
-Identifying potential content risk that could occur in or be caused by an AI system is the first stage of the Responsible AI lifecycle. The earlier you begin to identify potential content risks, the more effectively you can mitigate the content risks. When you assess potential content risks, it’s important to develop an understanding of the types of content risks that could result from using the Azure OpenAI Service in your specific context(s). In this section, we provide recommendations and resources you can use to identify content risks through an impact assessment, iterative red team testing, stress-testing, and analysis. Red teaming and stress-testing are approaches where a group of testers come together and intentionally probe a system to identify its limitations, risk surface, and vulnerabilities.
+Identifying potential content risk that could occur in or be caused by an AI system is the first stage of the Responsible AI lifecycle. The earlier you begin to identify potential content risks, the more effectively you can mitigate the content risks. When you assess potential content risks, it's important to develop an understanding of the types of content risks that could result from using Azure OpenAI in Azure AI Foundry Models in your specific context(s). In this section, we provide recommendations and resources you can use to identify content risks through an impact assessment, iterative red team testing, stress-testing, and analysis. Red teaming and stress-testing are approaches where a group of testers come together and intentionally probe a system to identify its limitations, risk surface, and vulnerabilities.
 
 These steps have the goal of producing a prioritized list of potential content risks for each specific scenario.
 1. **Identify content risks that are relevant** for your specific model, application, and deployment scenario.
@@ -49,7 +49,7 @@ At the end of this Map stage, you should have a documented, prioritized list of 
 
 ## Measure
 
-Once you’ve identified a list of prioritized content risks, the next stage involves developing an approach for systematic measurement of each content risk and conducting evaluations of the AI system. There are manual and automated approaches to measurement. We recommend you do both, starting with manual measurement. 
+Once you've identified a list of prioritized content risks, the next stage involves developing an approach for systematic measurement of each content risk and conducting evaluations of the AI system. There are manual and automated approaches to measurement. We recommend you do both, starting with manual measurement. 
 
 Manual measurement is useful for: 
 - Measuring progress on a small set of priority issues. When mitigating specific content risks, it's often most productive to keep manually checking progress against a small dataset until the content risk is no longer observed before you move on to automated measurement. 
@@ -138,10 +138,10 @@ Here we outline a set of best practices instructions you can use to augment your
 
 Once measurement and mitigation systems are in place, we recommend that you define and execute a deployment and operational readiness plan. This stage includes completing appropriate reviews of your system and mitigation plans with relevant stakeholders, establishing pipelines to collect telemetry and feedback, and developing an incident response and rollback plan.
 
-Some recommendations for how to deploy and operate a system that uses the Azure OpenAI service with appropriate, targeted content risks mitigations include: 
+Some recommendations for how to deploy and operate a system that uses Azure OpenAI with appropriate, targeted content risks mitigations include: 
 - Work with compliance teams within your organization to understand what types of reviews are required for your system and when they are required (for example, legal review, privacy review, security review, accessibility review, etc.). 
 - Develop and implement the following: 
-    - Develop a phased delivery plan. We recommend you launch systems using the Azure OpenAI service gradually using a "phased delivery" approach. This gives a limited set of people the opportunity to try the system, provide feedback, report issues and concerns, and suggest improvements before the system is released more widely. It also helps to manage the risk of unanticipated failure modes, unexpected system behaviors, and unexpected concerns being reported. 
+    - Develop a phased delivery plan. We recommend you launch systems using Azure OpenAI gradually using a "phased delivery" approach. This gives a limited set of people the opportunity to try the system, provide feedback, report issues and concerns, and suggest improvements before the system is released more widely. It also helps to manage the risk of unanticipated failure modes, unexpected system behaviors, and unexpected concerns being reported. 
     - Develop an incident response plan. Develop an incident response plan and evaluate the time needed to respond to an incident. 
     - Develop a rollback plan Ensure you can roll back the system quickly and efficiently in case an unanticipated incident occurs. 
     - Prepare for immediate action for unanticipated content risks. Build the necessary features and processes to block problematic prompts and responses as they're discovered and as close to real-time as possible. When unanticipated content risks do occur, block the problematic prompts and responses as quickly as possible, develop and deploy appropriate mitigations, investigate the incident, and implement a long-term solution. 
