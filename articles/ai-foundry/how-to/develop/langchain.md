@@ -305,7 +305,7 @@ for doc in results:
 
 ## Using Azure OpenAI models
 
-If you are using Azure OpenAI service or Azure AI model inference service with OpenAI models with `langchain-azure-ai` package, you might need to use `api_version` parameter to select a specific API version. The following example shows how to connect to an Azure OpenAI model deployment in Azure OpenAI service:
+If you're using Azure OpenAI in Azure AI Foundry Models or Azure AI model inference service with OpenAI models with `langchain-azure-ai` package, you might need to use `api_version` parameter to select a specific API version. The following example shows how to connect to an Azure OpenAI in Foundry Models deployment:
 
 ```python
 from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel

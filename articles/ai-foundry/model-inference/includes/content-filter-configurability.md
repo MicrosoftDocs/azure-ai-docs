@@ -8,7 +8,7 @@ ms.date: 09/25/2024
 recommendations: false
 ---
 
-Models deployed to Azure AI Services include default safety settings applied to all models, excluding Azure OpenAI Whisper. These configurations provide you with a [responsible experience by default](../../../ai-services/openai/concepts/default-safety-policies.md).
+Models deployed to Azure AI Foundry (formerly known Azure AI Services) include default safety settings applied to all models, excluding Azure OpenAI Whisper. These configurations provide you with a [responsible experience by default](../../../ai-services/openai/concepts/default-safety-policies.md).
 
 Certain models allow customers to configure content filters and create custom safety policies that are tailored to their use case requirements. The configurability feature allows customers to adjust the settings, separately for prompts and completions, to filter content for each content category at different severity levels as described in the table below. Content detected at the 'safe' severity level is labeled in annotations but is not subject to filtering and isn't configurable.
 

@@ -11,7 +11,9 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Azure OpenAI Graders
+# Azure OpenAI Graders (preview)
+
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 The Azure OpenAI Graders are a new set of evaluation graders available in the Azure AI Foundry SDK, aimed at evaluating the performance of AI models and their outputs. These graders including  [Label grader](#label-grader), [String checker](#string-checker), [Text similarity](#text-similarity), and [General grader](#general-grader) can be run locally or remotely. Each grader serves a specific purpose in assessing different aspects of AI model/model outputs.
 
@@ -209,17 +211,17 @@ The grader also returns a metric indicating the overall dataset pass rate.
 
 ## General grader
 
-Advanced users have the capability to import or define a custom grader and integrate it into the Azure OpenAI general grader. This allows for evaluations to be performed based on specific areas of interest aside from the existing Azure OpenAI graders. Following is an example to import the OpenAI `EvalStringCheckGrader` and construct it to be ran as an Azure OpenAI general grader on Foundry SDK.
+Advanced users have the capability to import or define a custom grader and integrate it into the AOAI general grader. This allows for evaluations to be performed based on specific areas of interest aside from the existing AOAI graders. Following is an example to import the OpenAI `StringCheckGrader` and construct it to be ran as a AOAI general grader on Foundry SDK.
 
 ### Example
 
 ```python
-from openai.types.eval_string_check_grader import EvalStringCheckGrader
+from openai.types.graders import StringCheckGrader
 from azure.ai.evaluation import AzureOpenAIGrader
-
+ 
 # Define an string check grader config directly using the OAI SDK
 # Evaluation criteria: Pass if query column contains "Northwind"
-oai_string_check_grader = EvalStringCheckGrader(
+oai_string_check_grader = StringCheckGrader(
     input="{{item.query}}",
     name="contains hello",
     operation="like",
