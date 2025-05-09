@@ -233,15 +233,15 @@ items:
     - name: Create an Azure AI Foundry project
       displayName: models,pairs,label,edit,delete
       href: custom-translator/azure-ai-foundry/how-to/create-project.md
+    - name: Create a language pair
+      displayName: language,language pair,language pair ID,ID
+      href: custom-translator/azure-ai-foundry/how-to/create-language-pair.md  
     - name: Upload data
       displayName: parallel,document sets,tuning,phrase,sentence,upload
       href: custom-translator/azure-ai-foundry/how-to/upload-data.md
     - name: Train a custom model
       displayName: full,dictionary,duplicate
       href: custom-translator/azure-ai-foundry/how-to/train-model.md
-    - name: Create a language pair
-      displayName: language,language pair,language pair ID,ID
-      href: custom-translator/azure-ai-foundry/how-to/create-language-pair.md
     - name: Test your model
       displayName: bleu,baseline
       href: custom-translator/azure-ai-foundry/how-to/test-model.md
