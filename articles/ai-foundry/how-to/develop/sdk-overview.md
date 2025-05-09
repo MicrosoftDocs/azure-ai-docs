@@ -65,10 +65,10 @@ project = AIProjectClient.from_connection_string(
 
 ::: zone pivot="programming-language-java"
 
-```java
 
 Create a project client in code:
 
+```java
 import com.azure.ai.projects.ProjectsClient;
 import com.azure.ai.projects.ProjectsClientBuilder;
 import com.azure.core.credential.AzureKeyCredential;
@@ -78,6 +78,27 @@ ProjectsClient client = new ProjectsClientBuilder()
     .endpoint(endpoint)
     .buildClient();
 ```
+
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+
+Create a project client in code:
+
+```javascript
+import { AIProjectClient } from '@azure/ai-projects';
+import { DefaultAzureCredential } from '@azure/identity';
+
+const endpoint = "your_project_endpoint";
+const project = new AIProjectClient(endpoint, new DefaultAzureCredential());
+
+const client = project.inference.azureOpenAI();
+```
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
 ::: zone-end
 
 <a name="azure-ai-agent-service"></a>
