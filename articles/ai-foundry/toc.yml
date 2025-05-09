@@ -413,14 +413,18 @@ items:
         href: concepts/ai-red-teaming-agent.md
       - name: Run automated scans with AI Red Teaming Agent
         href: how-to/develop/run-scans-ai-red-teaming-agent.md
+   - name: CI/CD evaluations 
+     items:
+      - name: Evaluation in GitHub Actions 
+        href: how-to/evaluation-github-action.md
+      - name: Evaluation in Azure DevOps
+        href: how-to/evaluation-azure-devops.md
    - name: Continuous monitoring and evaluation 
      items:
       - name: Continuously monitor your applications
         href: how-to/monitor-applications.md
       - name: Continuously evaluate your AI agents
         href: how-to/continuous-evaluation-agents.md
-      - name: Run evaluations online
-        href: how-to/online-evaluation.md
    - name: Trace your application
      href: how-to/develop/trace-application.md
    - name: Run evaluations online

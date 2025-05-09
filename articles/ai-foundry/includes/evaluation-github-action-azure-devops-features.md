@@ -19,34 +19,34 @@ ms.custom: include file
 
     | Category | Evaluator class/Metrics | AI Agent evaluations | GenAI evaluations |
     |--|--|--|--|
-    | Performance and quality (AI-assisted) | `GroundednessEvaluator` | Not Supported | Supported |
-    | Performance and quality (AI-assisted) | `GroundednessProEvaluator` | Not Supported | Supported |
-    | Performance and quality (AI-assisted) | `RetrievalEvaluator` | Not Supported | Supported |
-    | Performance and quality (AI-assisted)| `RelevanceEvaluator` | Supported | Supported |
-    | Performance and quality (AI-assisted) | `CoherenceEvaluator` | Supported | Supported |
-    | Performance and quality (AI-assisted) | `FluencyEvaluator` | Supported | Supported |
-    | Performance and quality (AI-assisted)| `SimilarityEvaluator` | Not Supported | Supported |
-    | Performance and quality (AI-assisted) | `IntentResolutionEvaluator` | Supported | Supported |
-    | Performance and quality (AI-assisted)| `TaskAdherenceEvaluator` | Supported | Supported |
-    | Performance and quality (AI-assisted) | `ToolCallAccuracyEvaluator` | Not Supported | Not Supported |
-    | Performance and quality (AI-assisted) | `ResponseCompletenessEvaluator` | Not Supported | Supported |
-    | Performance and quality (AI-assisted) | `DocumentRetrievalEvaluator` | Not Supported | Not Supported |
-    | Performance and quality (NLP) | `F1ScoreEvaluator` | Not Supported | Supported |
-    | Performance and quality (NLP) | `RougeScoreEvaluator` | Not Supported | Not Supported |
-    | Performance and quality (NLP) | `GleuScoreEvaluator` | Not Supported | Supported |
-    | Performance and quality (NLP) | `BleuScoreEvaluator ` | Not Supported | Supported |
-    | Performance and quality (NLP) | `MeteorScoreEvaluator` | Not Supported | Supported |
-    | Risk and safety (AI-assisted)| `ViolenceEvaluator` | Supported | Supported |
-    | Risk and safety (AI-assisted) | `SexualEvaluator` | Supported | Supported |
-    | Risk and safety (AI-assisted) | `SelfHarmEvaluator` | Supported | Supported |
-    | Risk and safety (AI-assisted)| `HateUnfairnessEvaluator` | Supported | Supported |
-    | Risk and safety (AI-assisted)| `IndirectAttackEvaluator` | Supported | Supported |
-    | Risk and safety (AI-assisted)| `ProtectedMaterialEvaluator` | Supported | Supported |
-    | Risk and safety (AI-assisted)| `CodeVulnerabilityEvaluator` | Supported | Supported |
-    | Risk and safety (AI-assisted)| `UngroundedAttributesEvaluator` | Not Supported | Supported |
-    | Composite| `QAEvaluator` | Not Supported | Supported |
-    | Composite | `ContentSafetyEvaluator` | Supported | Supported |
-    | Composite| `AgentOverallEvaluator` | Not Supported | Not Supported |
+    | General purpose| [QAEvaluator](../concepts/evaluation-evaluators/general-purpose-evaluators.md##question-answering-composite-evaluator)| Not Supported | Supported |
+    | General purpose (AI-assisted) | [CoherenceEvaluator](../concepts/evaluation-evaluators/general-purpose-evaluators.md#coherence) | Supported | Supported |
+    | General purpose (AI-assisted)| [FluencyEvaluator](../concepts/evaluation-evaluators/general-purpose-evaluators.md#fluency) | Supported | Supported |
+    | Textual similarity | [SimilarityEvaluator](../concepts/evaluation-evaluators/textual-similarity-evaluators.md#similarity) | Not Supported | Supported |
+    | Textual similarity | [F1ScoreEvaluator](../concepts/evaluation-evaluators/textual-similarity-evaluators#f1-score) | Not Supported | Supported |
+    | Textual similarity | [RougeScoreEvaluator](../concepts/evaluation-evaluators/textual-similarity-evaluators) | Not Supported | Not Supported |
+    | Textual similarity | [GleuScoreEvaluator](../concepts/evaluation-evaluators/textual-similarity-evaluators#gleu-score) | Not Supported | Supported |
+    | Textual similarity | [BleuScoreEvaluator](../concepts/evaluation-evaluators/textual-similarity-evaluators#bleu-score) | Not Supported | Supported |
+    | Textual similarity | [MeteorScoreEvaluator](../concepts/evaluation-evaluators/textual-similarity-evaluators#meteor-score) | Not Supported | Supported |
+    | Retrieval-augmented Generation (RAG) (AI-assisted)| [GroundednessEvaluator](../concepts/evaluation-evaluators/rag-evaluators.md#groundedness) | Not Supported | Supported |
+    | Retrieval-augmented Generation (RAG) (AI-assisted) | [GroundednessProEvaluator](../concepts/evaluation-evaluators/rag-evaluators.md#groundedness-pro) | Not Supported | Supported |
+    | Retrieval-augmented Generation (RAG) (AI-assisted)  | [RetrievalEvaluator](../concepts/evaluation-evaluators/rag-evaluators.md#relevance) | Not Supported | Supported |
+    | Retrieval-augmented Generation (RAG) (AI-assisted)  | [RelevanceEvaluator](../concepts/evaluation-evaluators/rag-evaluators.md#retrieval) | Supported | Supported |
+    | Retrieval-augmented Generation (RAG) (AI-assisted) | [ResponseCompletenessEvaluator`](../concepts/evaluation-evaluators/rag-evaluators.md#response-completeness)| Not Supported | Supported |
+    | Retrieval-augmented Generation (RAG) (AI-assisted) | [DocumentRetrievalEvaluator](../concepts/evaluation-evaluators/rag-evaluators.md#document-retrieval) | Not Supported | Not Supported |
+    | Risk and safety (AI-assisted)| [ViolenceEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators.md#violent-content)| Supported | Supported |
+    | Risk and safety (AI-assisted) | [SexualEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators.md#sexual-content) | Supported | Supported |
+    | Risk and safety (AI-assisted) | [SelfHarmEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators.md#self-harm-related-content) | Supported | Supported |
+    | Risk and safety (AI-assisted)| [HateUnfairnessEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators.md#hateful-and-unfair-content)| Supported | Supported |
+    | Risk and safety (AI-assisted)| [IndirectAttackEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators.md#indirect-attack-jailbreak-xpia)| Supported | Supported |
+    | Risk and safety (AI-assisted)| [ProtectedMaterialEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators.md#protected-material-content) | Supported | Supported |
+    | Risk and safety (AI-assisted)| [CodeVulnerabilityEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators.md#code-vulnerability) | Supported | Supported |
+    | Risk and safety (AI-assisted)| [UngroundedAttributesEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators.md##ungrounded-attributes) | Not Supported | Supported |
+    | Risk and safety (AI-assisted) | [ContentSafetyEvaluator](../concepts/evaluation-evaluators/risk-safety-evaluators.md#content-safety-composite-evaluator) | Supported | Supported |
+    | Agent (AI-assisted) | [IntentResolutionEvaluator](../concepts/evaluation-evaluators/agent-evaluators.md#intent-resolution)| Supported | Supported |
+    | Agent (AI-assisted)| [TaskAdherenceEvaluator](../concepts/evaluation-evaluators/agent-evaluators.md#task-adherence) | Supported | Supported |
+    | Agent (AI-assisted) | [ToolCallAccuracyEvaluator](/concepts/evaluation-evaluators/agent-evaluators.md#tool-call-accuracy) | Not Supported | Not Supported |
+    | Composite | `AgentOverallEvaluator` | Not Supported | Not Supported |
     | Operational metrics | Client run duration | Supported | Not Supported |
     | Operational metrics | Server run duration | Supported | Not Supported |
     | Operational metrics | Completion tokens | Supported | Not Supported |
