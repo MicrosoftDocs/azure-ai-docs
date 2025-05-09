@@ -57,23 +57,17 @@ Next, to authenticate your API requests and run the program, use the [az login](
 az login
 ```
 
-Use the following code to create and run an agent. To run this code, you will need to create a connection string using information from your project. This string is in the format:
+Use the following code to create and run an agent. To run this code, you will need to get the endpoint for your project. This string is in the format:
 
-`<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>`
+`https://<AIFoundryResourceName>.services.ai.azure.com/api/projects/<ProjectName>`
 
-[!INCLUDE [connection-string-portal](connection-string-portal.md)]
-
-`HostName` can be found by navigating to your `discovery_url` and removing the leading `https://` and trailing `/discovery`. To find your `discovery_url`, run this CLI command:
-
-```azurecli
-az ml workspace show -n {project_name} --resource-group {resource_group_name} --query discovery_url
-```
+[!INCLUDE [endpoint-string-portal](endpoint-string-portal.md)]
 
 For example, your connection string may look something like:
 
-`eastus.api.azureml.ms;12345678-abcd-1234-9fc6-62780b3d3e05;my-resource-group;my-project-name`
+`https://myresource.services.ai.azure.com/api/projects/myproject`
 
-Set this connection string as an environment variable named `PROJECT_CONNECTION_STRING`.
+Set this connection string as an environment variable named `ENDPOINT_STRING`.
 
 
 ```csharp
@@ -90,7 +84,7 @@ public class Sample_Agent
 {
     static async Task Main()
     {
-        var connectionString = Environment.GetEnvironmentVariable("PROJECT_CONNECTION_STRING");
+        var connectionString = Environment.GetEnvironmentVariable("ENDPOINT_STRING");
 
         AgentsClient client = new AgentsClient(connectionString, new DefaultAzureCredential());
 
