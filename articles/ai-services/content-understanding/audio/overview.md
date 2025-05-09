@@ -37,9 +37,10 @@ Content Understanding serves as a cornerstone for Media Asset Management solutio
 
 * **Transcription**. Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Customizable fields can be generated from transcription data. Sentence-level and word-level timestamps are available upon request.
 
-> [!NOTE]r
+> [!NOTE]
+> 
 > Content Understanding supports the full set of [Azure AI Speech Speech to text languages](../../speech-service/language-support.md).
-> For languages with Fast transcriptions support and for files ≤ 300 MB and/or ≤ 2 hours, transcription time is reduced substantially.
+> For languages with fast transcriptions support and for files ≤ 300 MB and/or ≤ 2 hours, transcription time is reduced substantially.
 
 * **Diarization**. Distinguishes between speakers in a conversation, attributing parts of the transcript to specific speakers.
 
@@ -48,13 +49,15 @@ Content Understanding serves as a cornerstone for Media Asset Management solutio
 * **Multilingual transcription**. Generates multilingual transcripts, applying language/locale per phrase. Deviating from language detection this feature is enabled when no language/locale is specified or language is set to `auto`.
 
 > [!NOTE]
+> 
 > The following locales are currently supported:
-> **Files ≤ 300 MB and/or ≤ 2 hours**: de-DE, en-AU, en-CA, en-GB, en-IN, en-US, es-ES, es-MX, fr-CA, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, and zh-CN.
-> **Files larger than 300 MB and/or longer than 4 hours**: en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, zh-CN.
+> * **Files ≤ 300 MB and/or ≤ 2 hours**: de-DE, en-AU, en-CA, en-GB, en-IN, en-US, es-ES, es-MX, fr-CA, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, and zh-CN.
+> * **Files larger than 300 MB and/or longer than 4 hours**: en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, zh-CN.
 
 * **Language detection**. Automatically detects the dominant language/locale which is used to transcribe the file. Set multiple languages/locales to enable language detection.
 
 > [!NOTE]
+> 
 > For files larger than 300 MB and/or longer than 2 hours and locales unsupported by Fast transcription, the file is processed generating a multilingual transcript based on the specified locales.
 > In case language detection fails, the first language/locale defined is used to transcribe the file.
 
@@ -80,7 +83,8 @@ The prebuilt analyzers allow extracting valuable insights into audio content wit
 All audio analyzers generate transcripts in standard WEBVTT format separated by speaker.
 
 > [!NOTE]
-> Prebuilt analyzers are set to use multilingual transcription and returnDetails enabled!
+> 
+> Prebuilt analyzers are set to use multilingual transcription and `returnDetails` enabled.
 
 Content Understanding offers the following prebuilt analyzers:
 
