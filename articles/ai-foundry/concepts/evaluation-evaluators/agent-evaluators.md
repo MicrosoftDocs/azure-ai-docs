@@ -93,7 +93,7 @@ If you're building agents outside of Azure AI Agent Serice, this evaluator accep
 `ToolCallAccuracyEvaluator` measures an agent's ability to select appropriate tools, extract, and process correct parameters from previous steps of the agentic workflow. It detects whether each tool call made is accurate (binary) and reports back the average scores, which can be interpreted as a passing rate across tool calls made.
 
 > [!NOTE]
-> `ToolCallAccuracyEvaluator` only supports Azure AI Agent's Function Tool evaluation, but does not support Built-in Tool evaluation. 
+> `ToolCallAccuracyEvaluator` only supports Azure AI Agent's Function Tool evaluation, but does not support Built-in Tool evaluation. The agent messages must have at least one Function Tool actually called to be evaluated.    
 
 ### Tool call accuracy example
 
