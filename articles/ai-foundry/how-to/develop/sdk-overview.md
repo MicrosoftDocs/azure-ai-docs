@@ -63,7 +63,7 @@ project = AIProjectClient.from_connection_string(
 
 ::: zone-end
 
-<a name="azure-ai-agent"></a>
+<a name="azure-ai-agent-service"></a>
 Using the project endpoint, you can:
  - [Use Foundry Model](../../quickstarts/get-started-code.md), including Azure OpenAI
  - [Use Foundry Agent Service](../../../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context)
