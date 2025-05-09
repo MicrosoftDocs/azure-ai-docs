@@ -16,14 +16,14 @@ zone_pivot_groups: azure-ai-models-deployment
 
   * Your Azure subscription ID.
 
-  * Your Azure AI Services resource name.
+  * Your Azure AI Foundry (formerly known Azure AI Services) resource name.
 
-  * The resource group where the Azure AI Services resource is deployed.
+  * The resource group where the Azure AI Foundry (formerly known Azure AI Services) resource is deployed.
 
 
 ## Configure Microsoft Entra ID for inference
 
-Follow these steps to configure Microsoft Entra ID for inference in your Azure AI Services resource:
+Follow these steps to configure Microsoft Entra ID for inference:
 
 
 1. Log in into your Azure subscription:
@@ -38,7 +38,7 @@ Follow these steps to configure Microsoft Entra ID for inference in your Azure A
     az account set --subscription "<subscription-id>"
     ```
 
-3. Set the following environment variables with the name of the Azure AI Services resource you plan to use and resource group.
+3. Set the following environment variables with the name of the Azure AI Foundry (formerly known Azure AI Services) resource you plan to use and resource group.
 
     ```azurecli
     ACCOUNT_NAME="<ai-services-resource-name>"

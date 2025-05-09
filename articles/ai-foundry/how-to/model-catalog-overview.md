@@ -20,7 +20,7 @@ author: ssalgadodev
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-The model catalog in Azure AI Foundry portal is the hub to discover and use a wide range of models for building generative AI applications. The model catalog features hundreds of models across model providers such as Azure OpenAI Service, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, including models that Microsoft trained. Models from providers other than Microsoft are Non-Microsoft Products as defined in [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and are subject to the terms provided with the models.
+The model catalog in Azure AI Foundry portal is the hub to discover and use a wide range of models for building generative AI applications. The model catalog features hundreds of models across model providers such as Azure OpenAI in Azure AI Foundry Models, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, including models that Microsoft trained. Models from providers other than Microsoft are Non-Microsoft Products as defined in [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and are subject to the terms provided with the models.
 
 ## Model collections
 
@@ -31,7 +31,7 @@ The model catalog organizes models into different collections:
 
   Models from partners such as Meta, NVIDIA, and Mistral AI are examples of models available in this collection on the catalog. You can identify these models by looking for a green checkmark on the model tiles in the catalog. Or you can filter by the **Curated by Azure AI** collection.
 
-* **Azure OpenAI models exclusively available on Azure**: Flagship Azure OpenAI models available through an integration with Azure OpenAI Service. Microsoft supports these models and their use according to the product terms and [SLA for Azure OpenAI Service](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
+* **Azure OpenAI in Azure AI Foundry Models**: Flagship Azure OpenAI models available in Foundry Models. Microsoft supports these models and their use according to the product terms and [SLA for Azure OpenAI](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
 
 * **Open models from the Hugging Face hub**: Hundreds of models from the Hugging Face hub for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn more in [Deploy open models with Azure AI Foundry](deploy-models-managed.md).
 
@@ -53,11 +53,11 @@ On the model card, you'll find:
 
 ## Model deployment: Azure OpenAI
 
-For more information on Azure OpenAI models, see [What is Azure OpenAI Service?](../../ai-services/openai/overview.md).
+For more information on Azure OpenAI models, see [What is Azure OpenAI](../../ai-services/openai/overview.md).
 
 ## Model deployment: Managed compute and serverless APIs  
 
-In addition to Azure OpenAI Service models, the model catalog offers two distinct ways to deploy models for your use: managed compute and serverless APIs.
+In addition to Azure OpenAI models, the model catalog offers two distinct ways to deploy models for your use: managed compute and serverless APIs.
 
 The deployment options and features available for each model vary, as described in the following tables. [Learn more about data processing with the deployment options]( concept-data-privacy.md).
 
@@ -73,7 +73,7 @@ Network isolation | [Configure managed networks for Azure AI Foundry hubs](confi
 
 ### Available models for supported deployment options
 
-For Azure OpenAI models, see [Azure OpenAI Service Models](../../ai-services/openai/concepts/models.md).
+For Azure OpenAI models, see [Azure OpenAI models](../../ai-services/openai/concepts/models.md).
 
 To view a list of supported models for Serverless API or Managed Compute, go to the home page of the model catalog in [Azure AI Foundry](https://ai.azure.com). Use the **Deployment options** filter to select either **Serverless API** or **Managed Compute**. 
 
@@ -87,8 +87,8 @@ To view a list of supported models for Serverless API or Managed Compute, go to 
 ## Model lifecycle: deprecation and retirement
 AI models evolve fast, and when a new version or a new model with updated capabilities in the same model family become available, older models may be retired in the AI Foundry model catalog. To allow for a smooth transition to a newer model version, some models provide users with the option to enable automatic updates. To learn more about the model lifecycle of different models, upcoming model retirement dates, and suggested replacement models and versions, see:
 
-- [Azure OpenAI Service model deprecations and retirements](../../ai-services/openai/concepts/model-retirements.md)
-- [Serverless API model deprecations and retirements](../concepts/model-lifecycle-retirement.md)
+- [Azure OpenAI model deprecations and retirements](../../ai-services/openai/concepts/model-retirements.md?context=/azure/ai-foundry/context/context)
+- [Deprecations and retirements for standard deployments](../concepts/model-lifecycle-retirement.md)
 
 ## Managed compute
 

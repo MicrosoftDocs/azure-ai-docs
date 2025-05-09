@@ -20,7 +20,7 @@ author: PatrickFarley
 [Azure AI Foundry](https://ai.azure.com) includes a content filtering system that works alongside core models and image generation models.
 
 > [!IMPORTANT]
-> The content filtering system isn't applied to prompts and completions processed by the Whisper model in Azure OpenAI Service. Learn more about the [Whisper model in Azure OpenAI](../../ai-services/openai/concepts/models.md).
+> The content filtering system isn't applied to prompts and completions processed by the Whisper model in Azure OpenAI in Azure AI Foundry Models. Learn more about the [Whisper model in Azure OpenAI](../../ai-services/openai/concepts/models.md).
 
 ## How it works 
 
