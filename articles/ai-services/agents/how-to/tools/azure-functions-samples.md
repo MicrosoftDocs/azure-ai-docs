@@ -67,7 +67,10 @@ def process_queue_message(msg: func.QueueMessage) -> None:
 In the sample below we create a client and an agent that has the tools definition for the Azure Function
 
 ```python
-# Initialize the client and create agent for the tools Azure Functions that the agent can use
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.agents.models import AzureFunctionStorageQueue, AzureFunctionTool
 
 # Create a project client
 project_client = AIProjectClient.from_connection_string(
@@ -75,89 +78,85 @@ project_client = AIProjectClient.from_connection_string(
     conn_str=os.environ["PROJECT_CONNECTION_STRING"]
 )
 
-# Get the connection string for the storage account to send and receive the function calls to the queues
-storage_connection_string = os.environ["STORAGE_CONNECTION__queueServiceUri"]
+# Retrieve the storage service endpoint from environment variables
+storage_service_endpoint = os.environ["STORAGE_SERVICE_ENDPONT"]
 
-# Create an agent with the Azure Function tool to get the weather
-agent = project_client.agents.create_agent(
-    model="gpt-4o-mini",
-    name="azure-function-agent-get-weather",
-    instructions="You are a helpful support agent. Answer the user's questions to the best of your ability.",
-    headers={"x-ms-enable-preview": "true"},
-    tools=[
-        {
-            "type": "azure_function",
-            "azure_function": {
-                "function": {
-                    "name": "GetWeather",
-                    "description": "Get the weather in a location.",
-                    "parameters": {
-                        "type": "object",
-                        "properties": {
-                            "location": {"type": "string", "description": "The location to look up."}
-                        },
-                        "required": ["location"]
-                    }
-                },
-                "input_binding": {
-                    "type": "storage_queue",
-                    "storage_queue": {
-                        "queue_service_uri": storage_connection_string,
-                        "queue_name": "input"
-                    }
-                },
-                "output_binding": {
-                    "type": "storage_queue",
-                    "storage_queue": {
-                        "queue_service_uri": storage_connection_string,
-                        "queue_name": "output"
-                    }
-                }
-            }
-        }
-    ],
+# Define the Azure Function tool
+azure_function_tool = AzureFunctionTool(
+    name="foo",  # Name of the tool
+    description="Get answers from the foo bot.",  # Description of the tool's purpose
+    parameters={  # Define the parameters required by the tool
+        "type": "object",
+        "properties": {
+            "query": {"type": "string", "description": "The question to ask."},
+            "outputqueueuri": {"type": "string", "description": "The full output queue URI."},
+        },
+    },
+    input_queue=AzureFunctionStorageQueue(  # Input queue configuration
+        queue_name="azure-function-foo-input",
+        storage_service_endpoint=storage_service_endpoint,
+    ),
+    output_queue=AzureFunctionStorageQueue(  # Output queue configuration
+        queue_name="azure-function-tool-output",
+        storage_service_endpoint=storage_service_endpoint,
+    ),
 )
+
+# Initialize the AIProjectClient
+project_client = AIProjectClient(
+    endpoint=os.environ["PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential(),
+    api_version="latest",
+)# Create an agent with the Azure Function tool
+agent = project_client.agents.create_agent(
+    model=os.environ["MODEL_DEPLOYMENT_NAME"],  # Model deployment name
+    name="azure-function-agent-foo",  # Name of the agent
+    instructions=(
+        "You are a helpful support agent. Use the provided function any time the prompt contains the string "
+        "'What would foo say?'. When you invoke the function, ALWAYS specify the output queue URI parameter as "
+        f"'{storage_service_endpoint}/azure-function-tool-output'. Always respond with \"Foo says\" and then the response from the tool."
+    ),
+    tools=azure_function_tool.definitions,  # Attach the tool definitions to the agent
+)
+print(f"Created agent, agent ID: {agent.id}")
 ```
 
 ## Create a thread for the agent
 
 ```python
-# Create a thread
-thread = project_client.agents.create_thread()
+# Create a thread for communication
+thread = project_client.agents.threads.create()
 print(f"Created thread, thread ID: {thread.id}")
 ```
 
 ## Create a run and check the output
 
 ```python
-# Send the prompt to the agent
-message = project_client.agents.create_message(
+# Create a message in the thread
+message = project_client.agents.messages.create(
     thread_id=thread.id,
     role="user",
-    content="What is the weather in Seattle, WA?",
+    content="What is the most prevalent element in the universe? What would foo say?",  # Message content
 )
-print(f"Created message, message ID: {message.id}")
+print(f"Created message, message ID: {message['id']}")
 
-# Run the agent
-run = project_client.agents.create_run(thread_id=thread.id, agent_id=agent.id)
-# Monitor and process the run status. The function call should be placed on the input queue by the Agent Service for the Azure Function to pick up when requires_action is returned
-while run.status in ["queued", "in_progress", "requires_action"]:
-    time.sleep(1)
-    run = project_client.agents.get_run(thread_id=thread.id, run_id=run.id)
-
-    if run.status not in ["queued", "in_progress", "requires_action"]:
-        break
-
+# Create and process a run for the agent to handle the message
+run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 print(f"Run finished with status: {run.status}")
+
+# Check if the run failed
+if run.status == "failed":
+    print(f"Run failed: {run.last_error}")
 ```
 
 
 ## Get the result of the run
 
 ```python
-# Get messages from the assistant thread
-messages = project_client.agents.get_messages(thread_id=thread.id)
-print(f"Messages: {messages}")
+# Retrieve and print all messages from the thread
+messages = project_client.agents.messages.list(thread_id=thread.id)
+for msg in messages:
+    print(f"Role: {msg['role']}, Content: {msg['content']}")# Get messages from the assistant thread
 
 # Get the last message from the assistant
 last_msg = messages.get_last_text_message_by_sender("assistant")
@@ -166,7 +165,7 @@ if last_msg:
 
 # Delete the agent once done
 project_client.agents.delete_agent(agent.id)
-print("Deleted agent")
+print(f"Deleted agent")
 ```
 
 For any issues with the Python code, create an issue on the [sample code repository](https://github.com/Azure-Samples/azure-functions-ai-services-agent-python/issues)
