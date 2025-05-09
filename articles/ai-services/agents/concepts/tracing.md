@@ -25,6 +25,13 @@ Tracing solves this by allowing you to clearly see the inputs and outputs of eac
 
 The Agents playground in the Azure AI Foundry portal lets you trace threads and runs that your agents produce. To open a trace, select **Thread info** in an active thread. You can also optionally select **Metrics** to enable automatic evaluations of the model's performance across several dimensions of **AI quality** and **Risk and safety**. 
 
+> [!NOTE]
+> Evaluations are not available in the following regions.
+> * australiaeast
+> * japaneast
+> * southindia
+> * uksouth
+
 :::image type="content" source="../media/ai-foundry-tracing.png" alt-text="A screenshot of the agent playground in the Azure AI Foundry portal." lightbox="../media/ai-foundry-tracing.png":::
 
 After selecting **Thread info**, the screen that appears will be let you view the: thread, run, run steps and any tool calls that were made. You can view the inputs and outputs between the agent and user, as well the associated metadata and any evaluations you selected.
@@ -35,6 +42,11 @@ After selecting **Thread info**, the screen that appears will be let you view th
 > If you want to view the trace of a previous thread, select **Agent Playground**. Choose a thread in the **Create and debug your agents** screen, and then select **Try in playground**.
 > :::image type="content" source="../media/thread-highlight.png" alt-text="A screenshot of the create and debug screen." lightbox="../media/thread-highlight.png":::
 > You will be able to see the **Thread info** button at the top of the screen to view the trace. 
+
+
+> [!NOTE]
+> Observability features such as Risk and Safety Evaluation are billed based on consumption as listed in the [Azure pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
+
 
 ## Trace agents using OpenTelemetry and an Application Insights resource
 
@@ -76,5 +88,3 @@ Once you have the packages installed, you can use one the following Python sampl
 * [Basic agent example](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/sample_agents_basics_with_console_tracing.py)
 * [Agent example with function calling](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/sample_agents_functions_with_console_tracing.py)
 * [Example with a stream event handler](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/sample_agents_stream_eventhandler_with_console_tracing.py)
-
-
