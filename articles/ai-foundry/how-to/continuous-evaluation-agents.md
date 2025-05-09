@@ -11,7 +11,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Continuously evaluate your AI agents
+# Continuously evaluate your AI agents (preview)
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 

@@ -11,7 +11,7 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Monitor your generative AI applications
+# Monitor your generative AI applications (preview)
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
