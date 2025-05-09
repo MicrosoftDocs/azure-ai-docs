@@ -7,8 +7,9 @@ manager: nitinme
 ms.service: azure
 ms.topic: how-to
 ms.date: 05/09/2025
-author: umangsehgal
-ms.author: umangsehgal
+author: aahill
+ms.author: aahi
+ms.reviewer: umangsehgal
 recommendations: false
 ---
 
@@ -53,8 +54,6 @@ You can follow the instructions in [OpenAPI spec tool](./openapi-spec.md) to con
     
    > [!TIP]
    > Your connection ID will have the following format:`/subscriptions/{subscription ID}/resourceGroups/{resource group name}/providers/Microsoft.CognitiveService/account/{project name}/connections/{connection name}`
-
-:::zone pivot="python"
 
 ## Step 1: Create a project client
 

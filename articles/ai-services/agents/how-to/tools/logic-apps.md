@@ -21,7 +21,7 @@ This article demonstrates how to integrate Logic Apps with Azure AI Agents to ex
 ## Prerequisites
 
 1. Create a Logic App within the same resource group as your Azure AI Project in the Azure Portal.
-2. Configure your Logic App to send emails by including an HTTP request trigger that accepts JSON with `to`, `subject`, and `body`. Refer to the [Logic App Workflow guide](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/agents-logic-apps#create-logic-apps-workflows-for-function-calling).
+2. Configure your Logic App to send emails by including an HTTP request trigger that accepts JSON with `to`, `subject`, and `body`. See the [Logic App Workflow guide](../../../openai/how-to/assistants-logic-apps.md) for more information.
 3. Install the required Python packages:
    ```bash
    pip install azure-ai-agents azure-identity
@@ -31,8 +31,6 @@ This article demonstrates how to integrate Logic Apps with Azure AI Agents to ex
    - `MODEL_DEPLOYMENT_NAME`: The deployment name of the AI model.
    - `SUBSCRIPTION_ID`: Your Azure subscription ID.
    - `resource_group_name`: The name of your resource group.
-
-:::zone pivot="python"
 
 ## Step 1: Create a project client
 
@@ -146,8 +144,6 @@ Delete the agent after use to clean up resources.
 project_client.agents.delete_agent(agent.id)
 print("Deleted agent")
 ```
-
-:::zone-end
 
 ## Next steps
 
