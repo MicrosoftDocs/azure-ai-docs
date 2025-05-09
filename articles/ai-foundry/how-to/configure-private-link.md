@@ -247,7 +247,7 @@ You can remove one or all private endpoints for a project. Removing a private en
 
 To remove a private endpoint, use the following information:
 
-1. From the [Azure portal](https://portal.azure.com), select your hub.
+1. From the [Azure portal](https://portal.azure.com), select your project.
 1. From the left side of the page, select __Resource Management__, __Networking__, and then select the __Private endpoint connections__ tab.
 1. Select the endpoint to remove and then select __Remove__.
 
