@@ -530,7 +530,7 @@ Key points:
 
 + `content_path` contains the relative path to the image file within the designated image projection container. This field is generated only for images extracted from documents when `extractOption` is set to `["images", "locationMetadata"]` or `["images"]`, and can be mapped from the enriched document from the source field `/document/normalized_images/*/imagePath`.
 
-+ The Azure Open AI embeddings skill enables embedding of textual data. For more information, see [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md).
++ The Azure OpenAI embeddings skill enables embedding of textual data. For more information, see [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md).
 
 ## Create and run an indexer
 
