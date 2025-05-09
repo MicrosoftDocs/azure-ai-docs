@@ -1,6 +1,6 @@
 ---
-title: Content Filter Streaming in Azure OpenAI
-description: Learn about content filter streaming options in Azure OpenAI, including default and asynchronous filtering modes, and their impact on latency and performance.
+title: Content Streaming in Azure OpenAI
+description: Learn about content streaming options in Azure OpenAI, including default and asynchronous filtering modes, and their impact on latency and performance.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-openai
@@ -10,7 +10,7 @@ ms.author: pafarley
 ---
 
 
-# Content filter streaming
+# Content streaming
 
 This guide describes the Azure OpenAI content streaming experience and options. Customers can receive content from the API as it's generated, instead of waiting for chunks of content that have been verified to pass the content filters.
 
