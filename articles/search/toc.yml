@@ -97,7 +97,7 @@ items:
     - name: Index permissioned ADLS Gen2 blobs using indexers
       href: tutorial-adls-gen2-indexer-acls.md
     - name: Index ACLs and RBAC metadata using REST API
-      href: search-indexing-access-control-lists-and-rbac-push-api.md
+      href: search-index-access-control-lists-and-rbac-push-api.md
     - name: Create a custom analyzer
       href: tutorial-create-custom-analyzer.md
     - name: Index multimodal content using embedding and document extraction skill
