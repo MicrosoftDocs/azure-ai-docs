@@ -42,7 +42,7 @@ The context window limit listed on the [Models](../concepts/models.md) page is t
 - Use document embeddings and have the chat model retrieve relevant sections: see [Azure AI Search](/azure/search/search-what-is-azure-search) 
 
 
-Model router doesn't process input images or audio.
+Model router doesn't process audio input.
 
 ## Billing information
 
