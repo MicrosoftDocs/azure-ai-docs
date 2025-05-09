@@ -580,7 +580,7 @@ In Azure AI Search, the index contains all searchable data and queries run on th
     ```
 
     > [!IMPORTANT]
-    > The code in this example isn't runable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
+    > The code in this example isn't runnable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
 
 1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search documents.
 
@@ -643,7 +643,7 @@ The vector query string is semantically similar to the search string, but it inc
     The vector query string is `classic lodging near running trails, eateries, retail`, which is vectorized into 1,536 embeddings for this query.
 
     > [!IMPORTANT]
-    > The code in this example isn't runable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
+    > The code in this example isn't runnable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
 
 1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
 
@@ -740,7 +740,7 @@ You can add filters, but the filters are applied to the nonvector content in you
     ``` 
 
     > [!IMPORTANT]
-    > The code in this example isn't runable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
+    > The code in this example isn't runnable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
 
 1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
 
@@ -828,7 +828,7 @@ Hybrid search consists of keyword queries and vector queries in a single search 
     ```
 
     > [!IMPORTANT]
-    > The code in this example isn't runable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
+    > The code in this example isn't runnable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
 
 1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
    
@@ -989,7 +989,7 @@ Here's the last query in the collection. This hybrid query with semantic ranking
     ```
 
     > [!IMPORTANT]
-    > The code in this example isn't runable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
+    > The code in this example isn't runnable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
 
 1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
 

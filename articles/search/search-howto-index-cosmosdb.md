@@ -52,7 +52,7 @@ Use these instructions to create a container and database in Cosmos DB for testi
     | Container throughput (autoscale) | Autoscale |
     | Container Max RU/s | 1000 |
 
-1. In **Data Explorer**, expand *hotelsdb* and *hotels", and then select **Items**.
+1. In **Data Explorer**, expand *hotelsdb* and *hotels*, and then select **Items**.
 
 1. Select **Upload Item** and then select *HotelsData_toCosmosDB.JSON* file that you downloaded from GitHub.
 

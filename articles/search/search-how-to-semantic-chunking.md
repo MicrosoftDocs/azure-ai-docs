@@ -54,7 +54,7 @@ The raw inputs must be in a [supported data source](search-indexer-overview.md#s
 
 + Supported indexers can be any indexer that can handle the supported file formats. These indexers include [Blob indexers](search-howto-indexing-azure-blob-storage.md), [OneLake indexers](search-how-to-index-onelake-files.md), [File indexers](search-file-storage-integration.md).
 
-+ Supported regions for the portal experience of this feature include: East US, West Europe, North Central US. If your setting up your skillset programmatically, you can use any Document Intelligence region that also provides the AI enrichment feature of Azure AI Search. For more information, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).
++ Supported regions for the portal experience of this feature include: East US, West Europe, North Central US. If you're setting up your skillset programmatically, you can use any Document Intelligence region that also provides the AI enrichment feature of Azure AI Search. For more information, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).
 
 You can use the Azure portal, REST APIs, or an Azure SDK package to [create a data source](search-howto-indexing-azure-blob-storage.md).
 

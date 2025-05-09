@@ -70,7 +70,7 @@ You can use either the **Import data** wizard or **Quickstart wizard** to automa
 
 1. For the **Quickstart wizard**, you can specify options for deletion detection.
 
-   Deletion detection requires that you have a pre-existing field in the table that can be used as a soft-delete flag. It should be a Boolean field (you could name it IsDeleted). Specify `true` as the soft-delete value. In the search index, add a corresponding search field called *IsDeleted* set to retrievable and filterable.
+   Deletion detection requires that you have a preexisting field in the table that can be used as a soft-delete flag. It should be a Boolean field (you could name it IsDeleted). Specify `true` as the soft-delete value. In the search index, add a corresponding search field called *IsDeleted* set to retrievable and filterable.
 
 1. Continue with the remaining steps to complete the wizard:
 
