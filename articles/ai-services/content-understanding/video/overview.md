@@ -109,6 +109,7 @@ The first pass is all about extracting a first set of details—who's speaking, 
     > [!WARNING]
     > When multilingual transcription is used, a file with an unsupported locale still produces a result. This result is based on the closest locale but most likely not correct.
     > This transcription behavior is known. Make sure to configure locales when not using multilingual transcription!
+    
 * **Shot detection:** Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and repackaging of content with breaks exactly on shot boundaries.
 * **Key frame extraction:** Extracts key frames from videos to represent each shot completely, ensuring each shot has enough key frames to enable field extraction to work effectively.
 
@@ -191,7 +192,9 @@ Content Understanding offers three ways to slice a video, letting you get the ou
   }
   ```
 
-> **Note:** Setting segmentation triggers field extraction even if no fields are defined.
+>  [!NOTE]
+>
+> Setting segmentation triggers field extraction even if no fields are defined.
 
 
 
@@ -199,7 +202,9 @@ Content Understanding offers three ways to slice a video, letting you get the ou
 
 Face identification description is an add-on that provides context to content extraction and field extraction using face information.
 
-> **Note:** Face features incur additional cost. This feature is limited access and involves face identification and grouping; customers need to register for access at Face Recognition.
+> [!NOTE]
+> 
+>  Face features incur additional cost. This feature is limited access and involves face identification and grouping; customers need to register for access at Face Recognition.
 
 ### Content extraction: grouping and identification
 
@@ -253,7 +258,8 @@ See [Language and region support](../language-region-support.md).
 
 As with all Azure AI services, review Microsoft's [Data, protection, and privacy](https://www.microsoft.com/trust-center/privacy) documentation.
 
-> \[!IMPORTANT]
+> [!IMPORTANT]
+> 
 > If you process **Biometric Data** (for example, enable **Face Grouping** or **Face Identification**), you must meet all notice, consent, and deletion requirements under GDPR or other applicable laws. See [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
 
 
