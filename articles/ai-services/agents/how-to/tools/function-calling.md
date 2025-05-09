@@ -28,13 +28,35 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 
 ::: zone pivot="csharp"
 
-## Define a function for your agent to call
+# Sample using agents with functions in Azure.AI.Agents
 
-Start by defining a function for your agent to call. When you create a function for an agent to call, you describe its structure of it with any required parameters in a docstring. 
+In this example we are demonstrating how to use the local functions with the agents. The functions can be used to provide agent specific information in response to user question.
 
-```csharp
+1. First, set up the configuration and create a `PersistentAgentsClient`. This client will be used for all interactions with the Azure AI Agents Service. This step also includes all necessary `using` directives.
+
+```C# Snippet:AgentsFunctions_Step1_SetupClient
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using Microsoft.Extensions.Configuration;
+using System.Text.Json;
+
+IConfigurationRoot configuration = new ConfigurationBuilder()
+    .SetBasePath(AppContext.BaseDirectory)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .Build();
+
+var projectEndpoint = configuration["ProjectEndpoint"];
+var modelDeploymentName = configuration["ModelDeploymentName"];
+PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
+```
+
+2. Next, define the local functions that the agent can call. For each function, create a `FunctionToolDefinition` that describes its name, purpose, and parameters to the agent. These functions and definitions are used by both synchronous and asynchronous agent operations.
+
+```C# Snippet:AgentsFunctions_Step2_DefineFunctionTools
 string GetUserFavoriteCity() => "Seattle, WA";
 FunctionToolDefinition getUserFavoriteCityTool = new("getUserFavoriteCity", "Gets the user's favorite city.");
+
 string GetCityNickname(string location) => location switch
 {
     "Seattle, WA" => "The Emerald City",
@@ -58,6 +80,7 @@ FunctionToolDefinition getCityNicknameTool = new(
             Required = new[] { "location" },
         },
         new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
+
 string GetWeatherAtLocation(string location, string temperatureUnit = "f") => location switch
 {
     "Seattle, WA" => temperatureUnit == "f" ? "70f" : "21c",
@@ -88,11 +111,9 @@ FunctionToolDefinition getCurrentWeatherAtLocationTool = new(
         new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
 ```
 
-<!--See the [C# file on GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/user_functions.py) for an additional function definition examples. -->
+3. Create a helper function, `GetResolvedToolOutput`. This function takes a `RequiredToolCall` (when the agent determines a local function should be executed) and invokes the appropriate C# function defined in the previous step. It then wraps the result in a `ToolOutput` object for the agent.
 
-In the following sample, we create a helper function to get and parse the resolved tools' outputs, and return it. 
-
-```csharp
+```C# Snippet:AgentsFunctions_Step3_GetResolvedToolOutput
 ToolOutput GetResolvedToolOutput(RequiredToolCall toolCall)
 {
     if (toolCall is RequiredFunctionToolCall functionToolCall)
@@ -122,9 +143,23 @@ ToolOutput GetResolvedToolOutput(RequiredToolCall toolCall)
 }
 ```
 
-## Create a client and agent
+4. Now, create the agent. Provide the model deployment name (retrieved in step 1), a descriptive name for the agent, instructions for its behavior, and the list of `FunctionToolDefinition`s (defined in step 2) it can use.
 
-```csharp
+Synchronous sample:
+
+```C# Snippet:AgentsFunctions_Step4_CreateAgent_Sync
+PersistentAgent agent = client.Administration.CreateAgent(
+    model: modelDeploymentName,
+    name: "SDK Test Agent - Functions",
+    instructions: "You are a weather bot. Use the provided functions to help answer questions. "
+        + "Customize your responses to the user's preferences as much as possible and use friendly "
+        + "nicknames for cities whenever possible.",
+    tools: [getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool]);
+```
+
+Asynchronous sample:
+
+```C# Snippet:AgentsFunctions_Step4_CreateAgent_Async
 PersistentAgent agent = await client.Administration.CreateAgentAsync(
     model: modelDeploymentName,
     name: "SDK Test Agent - Functions",
@@ -134,9 +169,22 @@ PersistentAgent agent = await client.Administration.CreateAgentAsync(
     tools: [getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool]);
 ```
 
-## Create a thread
+5. Create a new conversation thread and add an initial user message to it. The agent will respond to this message.
 
-```csharp
+Synchronous sample:
+
+```C# Snippet:AgentsFunctions_Step5_CreateThreadAndMessage_Sync
+PersistentAgentThread thread = client.Threads.CreateThread();
+
+client.Messages.CreateMessage(
+    thread.Id,
+    MessageRole.User,
+    "What's the weather like in my favorite city?");
+```
+
+Asynchronous sample:
+
+```C# Snippet:AgentsFunctions_Step5_CreateThreadAndMessage_Async
 PersistentAgentThread thread = await client.Threads.CreateThreadAsync();
 
 await client.Messages.CreateMessageAsync(
@@ -145,9 +193,37 @@ await client.Messages.CreateMessageAsync(
     "What's the weather like in my favorite city?");
 ```
 
-## Create a run and check the output
+6. Create a run for the agent on the thread and poll for its completion. If the run requires action (e.g., a function call), submit the tool outputs.
 
-```csharp
+Synchronous sample:
+
+```C# Snippet:AgentsFunctions_Step6_CreateAndPollRun_Sync
+ThreadRun run = client.Runs.CreateRun(thread.Id, agent.Id);
+
+do
+{
+    Thread.Sleep(TimeSpan.FromMilliseconds(500));
+    run = client.Runs.GetRun(thread.Id, run.Id);
+
+    if (run.Status == RunStatus.RequiresAction
+        && run.RequiredAction is SubmitToolOutputsAction submitToolOutputsAction)
+    {
+        List<ToolOutput> toolOutputs = [];
+        foreach (RequiredToolCall toolCall in submitToolOutputsAction.ToolCalls)
+        {
+            toolOutputs.Add(GetResolvedToolOutput(toolCall));
+        }
+        run = client.Runs.SubmitToolOutputsToRun(run, toolOutputs);
+    }
+}
+while (run.Status == RunStatus.Queued
+    || run.Status == RunStatus.InProgress
+    || run.Status == RunStatus.RequiresAction);
+```
+
+Asynchronous sample:
+
+```C# Snippet:AgentsFunctions_Step6_CreateAndPollRun_Async
 ThreadRun run = await client.Runs.CreateRunAsync(thread.Id, agent.Id);
 
 do
@@ -173,7 +249,35 @@ do
 while (run.Status == RunStatus.Queued
     || run.Status == RunStatus.InProgress
     || run.Status == RunStatus.RequiresAction);
+```
 
+7. After the run completes, retrieve and display the messages from the thread to see the conversation, including the agent's responses.
+
+Synchronous sample:
+
+```C# Snippet:AgentsFunctions_Step7_ProcessResults_Sync
+Pageable<ThreadMessage> messages = client.Messages.GetMessages(
+    threadId: thread.Id,
+    order: ListSortOrder.Ascending
+);
+
+foreach (ThreadMessage threadMessage in messages)
+{
+    foreach (MessageContent content in threadMessage.ContentItems)
+    {
+        switch (content)
+        {
+            case MessageTextContent textItem:
+                Console.WriteLine($"[{threadMessage.Role}]: {textItem.Text}");
+                break;
+        }
+    }
+}
+```
+
+Asynchronous sample:
+
+```C# Snippet:AgentsFunctions_Step7_ProcessResults_Async
 AsyncPageable<ThreadMessage> messages = client.Messages.GetMessagesAsync(
     threadId: thread.Id,
     order: ListSortOrder.Ascending
@@ -191,10 +295,24 @@ await foreach (ThreadMessage threadMessage in messages)
         }
     }
 }
+```
 
+8. Finally, clean up the created resources by deleting the thread and the agent.
+
+Synchronous sample:
+
+```C# Snippet:AgentsFunctions_Step8_Cleanup_Sync
+client.Threads.DeleteThread(threadId: thread.Id);
+client.Administration.DeleteAgent(agentId: agent.Id);
+```
+
+Asynchronous sample:
+
+```C# Snippet:AgentsFunctions_Step8_Cleanup_Async
 await client.Threads.DeleteThreadAsync(threadId: thread.Id);
 await client.Administration.DeleteAgentAsync(agentId: agent.Id);
 ```
+
 
 ::: zone-end
 
