@@ -73,6 +73,6 @@ landingContent:
       - linkListType: reference
         links:
           - text: Azure AI Foundry
-            url: /ai-foundry/
+            url: /azure/ai-foundry/
           - text: Semantic Kernel
             url: /semantic-kernel/

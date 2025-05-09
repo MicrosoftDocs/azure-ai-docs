@@ -38,14 +38,14 @@ Get started with Foundry Local quickly:
    - [macOS](https://aka.ms/foundry-local-macos)
    - [Linux](https://aka.ms/foundry-local-linux)
 1. **Install** the package by following the on-screen prompts.
-1. **Run your first model** Open a terminal window and run the following command to run a model:
+1. **Run your first model** Open a terminal window and run the following command to run a model (the model will be downloaded and an interactive prompt will appear): 
 
     ```bash
-    foundry model run deepseek-r1-1.5b
+    foundry model run phi-3-mini-4k 
     ```
 
 > [!TIP]
-> The `foundry model run` command automatically downloads the model if it isn't already in your local cache, then starts an interactive chat session. Try different models by replacing `deepseek-r1-1.5b-cpu` with any model name from the catalog. To view all available models, use the `foundry model list` command.
+> You can replace `phi-3-mini-4k` with any model name from the catalog (see `foundry model list` for available models). Foundry Local will download the model variant that best matches your system's hardware and software configuration. For example, if you have an NVIDIA GPU, it will download the CUDA version of the model. If you have an QNN NPU, it will download the NPU variant. If you have no GPU or NPU, it will download the CPU version.
 
 > [!IMPORTANT]
 > **For macOS/Linux users:** Run both components in separate terminals:

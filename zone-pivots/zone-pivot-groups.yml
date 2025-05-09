@@ -1120,3 +1120,12 @@ groups:
     title: Python
   - id: programming-language-typescript
     title: TypeScript
+# Owner: samkemp
+- id: foundry-local-sdk
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python

@@ -16,7 +16,7 @@ ms.custom: build-2025
 
 # Build an application with LangChain
 
-This tutorial shows you how to create an application using Foundry Local and LangChain. You'll learn how to integrate locally-hosted AI models with the popular LangChain framework.
+This tutorial shows you how to create an application using Foundry Local and LangChain. You learn how to integrate locally hosted AI models with the popular LangChain framework.
 
 ## Prerequisites
 
@@ -35,7 +35,7 @@ Before starting this tutorial, you need:
 
 ## Create a LangChain application
 
-Foundry Local supports the OpenAI Chat Completion API, making it easy to integrate with LangChain. Here's how to build a simple translation application:
+Foundry Local supports the OpenAI Chat Completion API, making it easy to integrate with LangChain. Here's how to build a translation application:
 
 ```python
 import os
@@ -49,7 +49,7 @@ if not os.environ.get("OPENAI_API_KEY"):
 
 # Configure ChatOpenAI to use your locally-running model
 llm = ChatOpenAI(
-    model="Phi-4-mini-cpu-int4-rtn-block-32-acc-level-4-onnx",
+    model="Phi-4-mini-instruct-generic-cpu",
     base_url="http://localhost:5272/v1/",
     temperature=0.0,
     streaming=False
@@ -78,8 +78,8 @@ ai_msg = chain.invoke({
 print(ai_msg)
 ```
 
-That's all you need! You're now running LangChain with a model hosted on your local device.
 
 ## Next steps
 
-- Try [different models](../how-to/manage.md) to compare performance and capabilities
+- Explore the [LangChain documentation](https://python.langchain.com/docs/introduction) for more advanced features and capabilities.
+- [How to compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hf-models.md)

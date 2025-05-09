@@ -11,7 +11,7 @@ const openai = new OpenAI({
 
 async function generateText() {
   const response = await openai.chat.completions.create({
-    model: "Phi-4-mini-gpu-int4-rtn-block-32",
+    model: "Phi-3-mini-4k-instruct-generic-cpu",
     messages: [
       {
         role: "user",
@@ -36,7 +36,7 @@ async function queryModel() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      model: "Phi-4-mini-gpu-int4-rtn-block-32",
+      model: "Phi-3-mini-4k-instruct-generic-cpu",
       messages: [
         { role: "user", content: "What are the advantages of Foundry Local?" },
       ],
@@ -65,7 +65,7 @@ const openai = new OpenAI({
 
 async function streamCompletion() {
   const stream = await openai.chat.completions.create({
-    model: "Phi-4-mini-gpu-int4-rtn-block-32",
+    model: "Phi-3-mini-4k-instruct-generic-cpu",
     messages: [{ role: "user", content: "Write a short story about AI" }],
     stream: true,
   });
@@ -91,7 +91,7 @@ async function streamWithFetch() {
       Accept: "text/event-stream",
     },
     body: JSON.stringify({
-      model: "Phi-4-mini-gpu-int4-rtn-block-32",
+      model: "Phi-3-mini-4k-instruct-generic-cpu",
       messages: [{ role: "user", content: "Write a short story about AI" }],
       stream: true,
     }),

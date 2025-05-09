@@ -58,4 +58,5 @@ That's it! You're now chatting with an AI model running entirely on your local d
 
 ## Next steps
 
-- Try [different models](../how-to/manage.md) to compare performance and capabilities
+- [Build an application with LangChain](use-langchain-with-foundry-local.md)
+- [How to compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hf-models.md)

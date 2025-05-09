@@ -18,10 +18,8 @@ Foundry Local provides a REST API endpoint that makes it easy to integrate with 
 
 ## Prerequisites
 
-- Foundry Local installed and running on your system
-- A model loaded into the service (use `foundry model load <model-name>`)
+- Foundry Local installed. See the [Get started with Foundry Local](../get-started.md) article for installation instructions.
 - Basic knowledge of the programming language you want to use for integration
-- Development environment for your chosen language
 
 ## Understanding the REST API
 
@@ -47,17 +45,8 @@ When Foundry Local is running, it exposes an OpenAI-compatible REST API endpoint
 [!INCLUDE [C#](../includes/integrate-examples/csharp.md)]
 ::: zone-end
 
-## Best Practices
-
-1. **Error Handling**: Implement robust error handling to manage cases when the local service is unavailable or a model isn't loaded.
-
-2. **Resource Management**: Be mindful of your local resources. Monitor CPU/RAM usage when making multiple concurrent requests.
-
-3. **Fallback Strategy**: Consider implementing a fallback to cloud services for when local inference is insufficient.
-
-4. **Model Preloading**: For production applications, ensure your model is preloaded before starting your application.
 
 ## Next steps
 
-- [Compile Hugging Face models for Foundry Local](huggingface-models-for-foundry-local.md)
+- [How to compile Hugging Face models to run on Foundry Local](how-to-compile-hf-models.md)
 - [Explore the Foundry Local CLI reference](../reference/reference-cli.md)

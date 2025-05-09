@@ -8,7 +8,7 @@ ms.custom: build-2025
 ms.topic: conceptual
 ms.date: 05/06/2025
 ms.author: maanavdalal
-zone_pivot_groups: azure-ai-model-catalog-samples-chat
+zone_pivot_groups: foundry-local-sdk
 author: maanavd
 ---
 
@@ -21,7 +21,4 @@ The Foundry Local Control Plane SDK simplifies AI model management in local envi
 ::: zone-end
 ::: zone pivot="programming-language-javascript"
 [!INCLUDE [JavaScript](../includes/sdk-examples/javascript.md)]
-::: zone-end
-::: zone pivot="programming-language-csharp"
-[!INCLUDE [C#](../includes/sdk-examples/csharp.md)]
 ::: zone-end
