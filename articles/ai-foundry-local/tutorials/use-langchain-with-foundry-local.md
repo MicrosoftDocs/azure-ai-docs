@@ -82,4 +82,4 @@ print(ai_msg)
 ## Next steps
 
 - Explore the [LangChain documentation](https://python.langchain.com/docs/introduction) for more advanced features and capabilities.
-- [How to compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hf-models.md)
+- [How to compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-huggingface-models.md)

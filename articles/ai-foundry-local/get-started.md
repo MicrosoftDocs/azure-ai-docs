@@ -93,5 +93,5 @@ foundry cache --help
 - [Explore the Foundry Local documentation](index.yml)
 - [Learn about best practices and troubleshooting](reference/reference-best-practice.md)
 - [Explore the Foundry Local API reference](reference/reference-catalog-api.md)
-- [Learn how to compile Hugging Face models](how-to/how-to-compile-hf-models.md)
+- [Learn how to compile Hugging Face models](how-to/how-to-compile-huggingface-models.md)
 

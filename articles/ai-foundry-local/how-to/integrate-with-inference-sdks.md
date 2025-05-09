@@ -1,5 +1,5 @@
 ---
-title: Integrate with Inference SDKs
+title: Integrate with inference SDKs
 titleSuffix: Foundry Local
 description: This article provides instructions on how to integrate Foundry Local with common Inferencing SDKs.
 manager: scottpolly
@@ -12,7 +12,7 @@ zone_pivot_groups: azure-ai-model-catalog-samples-chat
 author: samuel100
 ---
 
-# Integrate Foundry Local with Inferencing SDKs
+# Integrate Foundry Local with inferencing SDKs
 
 Foundry Local provides a REST API endpoint that makes it easy to integrate with various inferencing SDKs and programming languages. This guide shows you how to connect your applications to locally running AI models using popular SDKs.
 
@@ -48,5 +48,5 @@ When Foundry Local is running, it exposes an OpenAI-compatible REST API endpoint
 
 ## Next steps
 
-- [How to compile Hugging Face models to run on Foundry Local](how-to-compile-hf-models.md)
+- [How to compile Hugging Face models to run on Foundry Local](how-to-compile-huggingface-models.md)
 - [Explore the Foundry Local CLI reference](../reference/reference-cli.md)

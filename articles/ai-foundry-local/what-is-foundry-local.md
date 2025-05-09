@@ -49,5 +49,5 @@ Install and run your first model by following the [Get started with Foundry Loca
 ## Next steps
 
 - [Get started with Foundry Local](get-started.md)
-- [How to compile Hugging Face models to run on Foundry Local](how-to/how-to-compile-hf-models.md)
+- [How to compile Hugging Face models to run on Foundry Local](how-to/how-to-compile-huggingface-models.md)
 

@@ -45,9 +45,9 @@ Foundry Local is designed for on-device inference and *not* distributed, contain
 
 ### Improving performance
 
-If you experience slow inference:
+If you experience slow inference, consider the following strategies:
 
-1. Use GPU acceleration when available
-2. Identify bottlenecks by monitoring memory usage during inference.
-3. Try more quantized model variants (like INT8 instead of FP16)
-4. Adjust batch sizes for non-interactive workloads
+- Use GPU acceleration when available
+- Identify bottlenecks by monitoring memory usage during inference.
+- Try more quantized model variants (like INT8 instead of FP16)
+- Adjust batch sizes for non-interactive workloads

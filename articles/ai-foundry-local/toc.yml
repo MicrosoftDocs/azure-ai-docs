@@ -16,7 +16,7 @@ items:
   - name: Integrate with Inferencing SDKs
     href: how-to/integrate-with-inference-sdks.md
   - name: Compile Hugging Face models to run on Foundry Local
-    href: how-to/how-to-compile-hf-models.md
+    href: how-to/how-to-compile-huggingface-models.md
 - name: Tutorials
   expanded: true
   items:

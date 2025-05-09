@@ -44,7 +44,7 @@ landingContent:
           - text: Integrate with Inferencing SDKs
             url: how-to/integrate-with-inference-sdks.md
           - text: Compile Hugging Face models to run on Foundry Local
-            url: how-to/how-to-compile-hf-models.md
+            url: how-to/how-to-compile-huggingface-models.md
   # Card
   - title: Reference
     linkLists:

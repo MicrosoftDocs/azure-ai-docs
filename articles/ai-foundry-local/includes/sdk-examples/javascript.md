@@ -1,3 +1,13 @@
+---
+ms.service: azure-ai-foundry
+ms.custom: build-2025
+ms.topic: reference
+ms.date: 05/02/2025
+ms.author: maanavdalal
+author: maanavd
+---
+
+
 ## JavaScript SDK Reference
 
 ### Installation
