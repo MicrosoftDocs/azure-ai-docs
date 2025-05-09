@@ -107,6 +107,9 @@ jobs:
   run-action:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Azure login using Federated Credentials
         uses: azure/login@v2
         with:
@@ -115,7 +118,7 @@ jobs:
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
       - name: Run Evaluation
-        uses: microsoft/ai-agent-evals@v1
+        uses: microsoft/ai-agent-evals@v1-beta
         with:
           # Replace placeholders with values for your Azure AI Project
           azure-aiproject-connection-string: "<your-ai-project-conn-str>"
