@@ -35,12 +35,12 @@ cd azureai-model-inference-bicep/infra
 The tutorial helps you create:
 
 > [!div class="checklist"]
-> * An Azure AI Services resource with key access disabled. For simplicity, this template doesn't deploy models.
+> * An Azure AI Foundry (formerly known Azure AI Services) resource with key access disabled. For simplicity, this template doesn't deploy models.
 > * A role-assignment for a given security principal with the role **Cognitive Services User**.
 
 You are using the following assets to create those resources:
 
-1. Use the template `modules/ai-services-template.bicep` to describe your Azure AI Services resource:
+1. Use the template `modules/ai-services-template.bicep` to describe your Azure AI Foundry (formerly known Azure AI Services) resource:
 
     __modules/ai-services-template.bicep__
 

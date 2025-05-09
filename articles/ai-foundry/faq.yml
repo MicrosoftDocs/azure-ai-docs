@@ -57,11 +57,11 @@ sections:
       - question: |
           Can all models be secured with content filtering? 
         answer: |
-          Azure AI Content Safety can be used for AI-generated content from Azure OpenAI Service, open-source, and frontier models. For more information, see [How Azure AI Content Safety helps protect users from the classroom to the chatroom](https://aka.ms/contentsafety_GA_blog).
+          Azure AI Content Safety can be used for AI-generated content from Azure OpenAI in Azure AI Foundry Models, open-source, and frontier models. For more information, see [How Azure AI Content Safety helps protect users from the classroom to the chatroom](https://aka.ms/contentsafety_GA_blog).
       - question: |
           Do you use my company data to train any of the models? 
         answer: |
-          Azure OpenAI Service doesn't use customer data to retrain models. For more information, see the [Azure OpenAI data, privacy, and security guide](/legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context).    
+          Azure OpenAI doesn't use customer data to retrain models. For more information, see the [Azure OpenAI data, privacy, and security guide](/legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context).    
   - name: Learning more and where to ask questions
     questions:
       - question: |
