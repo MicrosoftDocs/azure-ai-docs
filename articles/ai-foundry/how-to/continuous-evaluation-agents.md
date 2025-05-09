@@ -15,7 +15,7 @@ author: lgayhardt
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Continuous evaluation for Agents provides near real-time observability and monitoring for your AI application. Once enabled, this feature continuously evaluates agent interactions at a set sampling rate to provide insights into quality, safety and performance with metrics surfaced in the Foundry Observability dashboard. By leveraging continuous evaluation, you will be able to identify and troubleshoot issues early, optimize agent performance, and maintain safety. Evaluations are also connected to [traces](./develop/trace-local-sdk.md) to enable detailed debugging and root cause analysis.
+Continuous evaluation for Agents provides near real-time observability and monitoring for your AI application. Once enabled, this feature continuously evaluates agent interactions at a set sampling rate to provide insights into quality, safety, and performance with metrics surfaced in the Foundry Observability dashboard. By using continuous evaluation, you're able to identify and troubleshoot issues early, optimize agent performance, and maintain safety. Evaluations are also connected to [traces](./develop/trace-application.mdd) to enable detailed debugging and root cause analysis.
 
 ## Getting Started
 
@@ -28,11 +28,8 @@ Continuous evaluation for Agents provides near real-time observability and monit
 ### Steps to connect Application Insights
 
 1. Navigate to your project in [Azure AI Foundry](https://ai.azure.com).
-2. Select **Observability** on the left-hand menu and go to **Application Analytics**.
+2. Select **Monitoring** on the left-hand menu and go to **Application Analytics**.
 3. Connect your Application Insights resource to the project.
-
-*(Add screenshot or GIF here)*
-:::image type="content" source="../media/" alt-text="Screenshot of. " lightbox="../media/":::
 
 ## Set up continuous evaluations with Azure AI projects client library
 
@@ -79,13 +76,13 @@ for message in project.agents.list_messages(thread_id=thread.id).text_messages:
 Next, you want to define the set of evaluators you'd like to run continuously. To learn more about supported evaluators, see [What are evaluators?](../concepts/observability.md#what-are-evaluators)
 
 ```python
-from azure.ai.projects import EvaluatorIds
+from azure.ai.projects.models import EvaluatorIds
 
-evaluators=[
-    evaluatorIds.AGENT_QUALITY_EVALUATOR,
-    evaluatorIds.TOOL_CALL_ACCURACY,
-    evaluatorIds.RELEVANCE,
-]
+evaluators={
+"Relevance": {"Id": EvaluatorIds.Relevance.value},
+"Fluency": {"Id": EvaluatorIds.Fluency.value},
+"Coherence": {"Id": EvaluatorIds.Coherence.value},
+},
 ```
 
 ### Continuously evaluate your agent run by creating an `AgentEvaluationRequest`
@@ -109,67 +106,67 @@ project.evaluation.create_agent_evaluation(
 ### Get the evaluation result using Application Insights
 
 ```python
-from azure.core.exceptions import HttpResponseError  
 
-from azure.identity import DefaultAzureCredential  
+from azure.core.exceptions import HttpResponseError
+from azure.identity import DefaultAzureCredential
+from azure.monitor.query import LogsQueryClient, LogsQueryStatus
+import pandas as pd
 
-from azure.monitor.query import LogsQueryClient, LogsQueryStatus import pandas as pd 
 
-credential = DefaultAzureCredential() client = LogsQueryClient(credential) 
+credential = DefaultAzureCredential()
+client = LogsQueryClient(credential)
 
-query = "traces 
+query = f"""
+traces
+| where message == "gen_ai.evaluation.result"
+| where customDimensions["gen_ai.thread.run.id"] == "{run.id}"
+"""
 
-| where customDimensions["event.name"] startswith "gen_ai.evaluation" and customDimensions["event.name"] != "gen_ai.evaluation.user_feedback" 
+try:
+    response = client.query_workspace(os.environ["LOGS_WORKSPACE_ID"], query, timespan=timedelta(days=1))
+    if response.status == LogsQueryStatus.SUCCESS:
+        data = response.tables
+    else:
+        # LogsQueryPartialResult - handle error here
+        error = response.partial_error
+        data = response.partial_data
+        print(error)
 
-| where ('*' in (application) or array_length(application) == 0 or cloud_RoleName in (application)) and timestamp {TimeRange}  // Replace {TimeRange} with your specific time filter 
+    for table in data:
+        df = pd.DataFrame(data=table.rows, columns=table.columns)
+        key_value = df.to_dict(orient="records")
+        pprint(key_value)
+except HttpResponseError as err:
+    print("something fatal happened")
+    print(err)
 
-| where customDimensions.["gen_ai.response.id"] in (response_ids) 
+```
 
-| project metric = extract("gen_ai\\.evaluation\\.(.*)", 1, tostring(customDimensions["event.name"])), score = toint(customDimensions["gen_ai.evaluation.score"]) 
+### Capture reasoning explanations for your evaluation result
 
-| summarize TotalScores = count(), ScoresInTotal = sum(score) by tostring(metric) 
+AI-assisted evaluators employ chain-of-thought reasoning to generate an explanation for the score in your evaluation result. To enable this on, set redact_score_properties to True in the AgentEvaluationRedactionConfiguration object and pass that as part of your request.
 
-| extend Percentage = round(todouble(ScoresInTotal) / (TotalScores * 5) * 100) 
+This helps you understand the reasoning behind the scores for each metric.
 
-| join kind=inner ( 
+> [!NOTE]
+> Reasoning explanations might mention sensitive information based on the content of the conversation.
 
-traces 
+```python
 
-| where customDimensions["event.name"] startswith "gen_ai.evaluation" and customDimensions["event.name"] != "gen_ai.evaluation.user_feedback" 
+from azure.ai.projects.models import AgentEvaluationRedactionConfiguration
+              
+project.evaluation.create_agent_evaluation(
+    AgentEvaluationRequest(  
+        thread=thread.id,  
+        run=run.id,   
+        evaluators=evaluators,  
+        redaction_configuration=AgentEvaluationRedactionConfiguration(
+            redact_score_properties=False,
+       ),
+        app_insights_connection_string=app_insights_connection_string,
+    )
+)
 
-| where ('*' in (application) or array_length(application) == 0 or cloud_RoleName in (application)) and timestamp {TimeRange}  // Replace {TimeRange} with your specific time filter 
-
-| where customDimensions.["gen_ai.response.id"] in (response_ids) 
-
-| project metric = extract("gen_ai\\.evaluation\\.(.*)", 1, tostring(customDimensions["event.name"])), score = toint(customDimensions["gen_ai.evaluation.score"]), timestamp 
-
-| summarize TotalScores = count(), ScoresInTotal = sum(score) by tostring(metric), bin(timestamp,1d) 
-
-| extend Percentage = round(todouble(ScoresInTotal) / (TotalScores * 5) * 100) 
-
-| summarize  
-
-    initial_metric_percentage = todouble(arg_min(timestamp, Percentage).[1]),  
-
-    final_metric_exception = todouble(arg_max(timestamp, Percentage).[1]) 
-
-    by metric 
-
-) on metric 
-
-| extend PercentageChange = round(todouble(initial_metric_percentage - final_metric_exception)) 
-
-| project metric=strcat(toupper(substring(metric, 0, 1)), substring(metric, 1)),initial_metric_percentage,final_metric_exception, Percentage,PercentageChange " 
-
-try: response = client.query_workspace(os.environ["LOGS_WORKSPACE_ID"], query, timespan=timedelta(days=1)) if response.status == LogsQueryStatus.SUCCESS: data = response.tables else: # LogsQueryPartialResult - handle error here error = response.partial_error data = response.partial_data print(error) 
-
-for table in data: 
-    df = pd.DataFrame(data=table.rows, columns=table.columns) 
-    key_value = df.to_dict(orient="records") 
-    pprint(key_value) 
-  
-
-except HttpResponseError as err: print("something fatal happened") print(err) 
 ```
 
 ### Customize your sampling configuration
@@ -178,7 +175,7 @@ You can customize the sampling configuration by defining an `AgentEvaluationSamp
 
 ```python
 
-from azure.ai.projects import AgentEvaluationSamplingConfiguration
+from azure.ai.projects.models
 
 sampling_config = AgentEvaluationSamplingConfiguration (  
     name = agent.id,  
@@ -197,14 +194,11 @@ project.evaluation.create_agent_evaluation(
 ```
 
 > [!NOTE]
-> If multiple AI applications send continuous evaluation data to the same Application Insights resource, it's recommended to use the service name to differentiate application data. See [Azure AI Tracing](./develop/trace-local-sdk.md) for details.
+> If multiple AI applications send continuous evaluation data to the same Application Insights resource, it's recommended to use the service name to differentiate application data. See [Azure AI Tracing](./develop/trace-application.md) for details.
 
 ## Viewing continuous evaluation results
 
 After you deployed your application to production with continuous evaluation setup, you can begin monitoring your [evaluation results in Azure AI Foundry and Azure Monitor Application Insights](./evaluate-results.md).
-
-<insert gif or image>
-:::image type="content" source="../media/" alt-text="Screenshot of. " lightbox="../media/":::
 
 ## Related content
 

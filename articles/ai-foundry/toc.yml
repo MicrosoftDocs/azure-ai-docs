@@ -371,7 +371,7 @@ items:
   items:
    - name: Observability basics
      href: concepts/observability.md
-   - name: Built-in evaluators
+   - name: Supported evaluators
      items:
       - name: General purpose evaluators 
         href: concepts/evaluation-evaluators/general-purpose-evaluators.md
@@ -385,6 +385,8 @@ items:
         href: concepts/evaluation-evaluators/agent-evaluators.md 
       - name: Azure Open AI evaluators 
         href: concepts/evaluation-evaluators/azure-openai-graders.md
+      - name: Custom evaluators
+        href: concepts/evaluation-evaluators/custom-evaluators.md
    - name: Batch evaluations
      items:
       - name: Manually evaluate prompts in the playground
@@ -413,16 +415,14 @@ items:
      items:
       - name: Continuously monitor your applications
         href: how-to/monitor-applications.md
+      - name: Continuously evaluate your AI agents
+        href: how-to/continuous-evaluation-agents.md
       - name: Run evaluations online
         href: how-to/online-evaluation.md
    - name: Tracing for debugging
      items:
-      - name: Tracing in Azure AI Foundry
-        href: concepts/trace.md
-      - name: Trace your application with Azure AI Inference SDK
-        href: how-to/develop/trace-local-sdk.md
-      - name: Visualize your traces
-        href: how-to/develop/visualize-traces.md
+      - name: Trace your application
+        href: how-to/develop/trace-application.md
    - name: A/B experimentation
      href: concepts/a-b-experimentation.md
    - name: Transparency Note for safety evaluations
