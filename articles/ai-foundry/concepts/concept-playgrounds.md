@@ -19,7 +19,7 @@ ms.custom: build-2025 ai-assisted
 In today's development cycle, speed and clarity are everything. As you build with the latest state-of-the-art models - and build agents and apps with them - Azure AI Foundry playgrounds are your on-demand, zero-setup environment designed for rapid prototyping, API exploration, and technical validation—before committing a single line to your production codebase. Think of the playground as your technical sketchpad—built to help you build better, faster, and smarter.
 
 > [!IMPORTANT]  
-> For Microsoft Build 2025, we're excited to introduce:
+> The Azure AI Foundry playground experience has been updated to include:
 >   - **AgentOps support** for Evaluations and Tracing in the **Agents playground.**
 >   - **Open in VS Code** for Chat and Agents playground; automatic endpoint and key importing from Foundry to VS Code for multi-lingual code samples. Save time from going from six clicks to  one click.
 >   - Introducing **[Images Playground 2.0](https://devblogs.microsoft.com/foundry/images-playground-may-2025/)** for [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai), [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai) and [Bria 2.3 Fast](https://ai.azure.com/explore/models/Bria-2.3-Fast/version/1/registry/azureml-bria).
