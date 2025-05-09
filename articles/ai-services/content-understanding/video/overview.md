@@ -194,7 +194,7 @@ Content Understanding offers three ways to slice a video, letting you get the ou
 
 >  [!NOTE]
 >
-> Setting segmentation triggers field extraction even if no fields are defined.
+>   Setting segmentation triggers field extraction even if no fields are defined.
 
 
 
