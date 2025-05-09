@@ -27,7 +27,7 @@ Azure AI Foundry offers four different deployment options:
 
 |Name                           | Azure OpenAI | Azure AI model inference | Standard deployment | Managed compute |
 |-------------------------------|----------------------|-------------------|----------------|-----------------|
-| Which models can be deployed? | [Azure OpenAI models](../../ai-services/openai/concepts/models.md)        | [Azure OpenAI models and Standard deployment](../../ai-foundry/model-inference/concepts/models.md) | [Standard deployment](../how-to/model-catalog-overview.md#content-safety-for-models-deployed-via-serverless-apis) | [Open and custom models](../how-to/model-catalog-overview.md#availability-of-models-for-deployment-as-managed-compute) |
+| Which models can be deployed? | [Azure OpenAI models](../../ai-services/openai/concepts/models.md)        | [Azure OpenAI models and Standard deployment](../../ai-foundry/model-inference/concepts/models.md) | [Standard deployment](../how-to/model-catalog-overview.md#guardrails-&-controls-for-models-deployed-via-serverless-apis) | [Open and custom models](../how-to/model-catalog-overview.md#availability-of-models-for-deployment-as-managed-compute) |
 | Deployment resource           | Azure OpenAI resource | Azure AI services resource | AI project resource | AI project resource |
 | Requires Hubs/Projects        | No | No | Yes | Yes |
 | Data processing options       | Regional <br /> Data-zone  <br /> Global | Global | Regional | Regional |
