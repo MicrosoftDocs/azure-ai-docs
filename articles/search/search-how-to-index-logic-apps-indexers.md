@@ -6,6 +6,7 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.custom: references_regions
 ms.topic: how-to
 ms.date: 05/15/2025
 ---
