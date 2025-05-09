@@ -190,7 +190,7 @@ print("Versioned evaluator id:", registered_evaluator.id)
 
 After registering your custom evaluator to your Azure AI project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under **Evaluation** tab in your Azure AI project.
 
-- For prompt-based custom evaluators, use this snippet to register them. For example, let's register our `FriendlinessEvaluator` built as described in [Prompt-based evaluators](concepts/evaluation-evaluators/custom-evaluators.md#prompt-based-evaluators):
+- For prompt-based custom evaluators, use this snippet to register them. For example, let's register our `FriendlinessEvaluator` built as described in [Prompt-based evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md#prompt-based-evaluators):
 
 ```python
 # Import your prompt-based custom evaluator

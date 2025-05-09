@@ -38,11 +38,11 @@ pip install azure-ai-evaluation
 | Category | Evaluators |
 |--------------------------|-----------------------------|
 | [General purpose](../../concepts/evaluation-evaluators/general-purpose-evaluators.md) | `CoherenceEvaluator`, `FluencyEvaluator`, `QAEvaluator` |
-| [Textual similarity](l../../concepts/evaluation-evaluators/textual-similarity-evaluators.md) | `SimilarityEvaluator`, `F1ScoreEvaluator`, `BleuScoreEvaluator`, `GleuScoreEvaluator`, `RougeScoreEvaluator`, `MeteorScoreEvaluator` |
-| [Retrieval-Augmented Generation (RAG)](link/to/retrieval-augmented-generation.md) | `RetrievalEvaluator`, `DocumentRetrievalEvaluator`, `GroundednessEvaluator`, `GroundednessProEvaluator`, `RelevanceEvaluator`, `ResponseCompletenessEvaluator` |
+| [Textual similarity](../../concepts/evaluation-evaluators/textual-similarity-evaluators.md) | `SimilarityEvaluator`, `F1ScoreEvaluator`, `BleuScoreEvaluator`, `GleuScoreEvaluator`, `RougeScoreEvaluator`, `MeteorScoreEvaluator` |
+| [Retrieval-Augmented Generation (RAG)](../../concepts/evaluation-evaluators/rag-evaluators.md) | `RetrievalEvaluator`, `DocumentRetrievalEvaluator`, `GroundednessEvaluator`, `GroundednessProEvaluator`, `RelevanceEvaluator`, `ResponseCompletenessEvaluator` |
 | [Risk and safety](../../concepts/evaluation-evaluators/risk-safety-evaluators.md) | `ViolenceEvaluator`, `SexualEvaluator`, `SelfHarmEvaluator`, `HateUnfairnessEvaluator`, `IndirectAttackEvaluator`, `ProtectedMaterialEvaluator`, `UngroundedAttributesEvaluator`, `CodeVulnerabilityEvaluator`, `ContentSafetyEvaluator` |
 | [Agentic](../../concepts/evaluation-evaluators/agent-evaluators.md) | `IntentResolutionEvaluator`, `ToolCallAccuracyEvaluator`, `TaskAdherenceEvaluator` |
-| [Azure Open AI](../../concepts/evaluation-evaluators/azure-openai-graders.md) | `AzureOpenAILabelGrader`, `AzureOpenAIStringCheckGrader`, `AzureOpenAITextSimilarityGrader`, `AzureOpenAIGrader` |
+| [Azure OpenAI](../../concepts/evaluation-evaluators/azure-openai-graders.md) | `AzureOpenAILabelGrader`, `AzureOpenAIStringCheckGrader`, `AzureOpenAITextSimilarityGrader`, `AzureOpenAIGrader` |
 
 Built-in quality and safety metrics take in query and response pairs, along with additional information for specific evaluators.
 
@@ -55,10 +55,10 @@ Built-in evaluators can accept *either* query and response pairs or a list of co
 | `GroundednessEvaluator`, `GroundednessProEvaluator`, `RetrievalEvaluator`, `DocumentRetrievalEvaluator`,`RelevanceEvaluator`, `CoherenceEvaluator`, `FluencyEvaluator`, `ResponseCompletenessEvaluator`, `IndirectAttackEvaluator`, `AzureOpenAILabelGrader`, `AzureOpenAIStringCheckGrader`, `AzureOpenAITextSimilarityGrader`, `AzureOpenAIGrader` | `ViolenceEvaluator`, `SexualEvaluator`, `SelfHarmEvaluator`, `HateUnfairnessEvaluator`, `ProtectedMaterialEvaluator`, `ContentSafetyEvaluator` | `UngroundedAttributesEvaluator`, `CodeVulnerabilityEvaluator`, `ResponseCompletenessEvaluator`, `SimilarityEvaluator`, `F1ScoreEvaluator`, `RougeScoreEvaluator`, `GleuScoreEvaluator`, `BleuScoreEvaluator`, `MeteorScoreEvaluator`, `QAEvaluator` |
 
 > [!NOTE]
-> AI-assisted quality evaluators except for `SimilarityEvaluator` come with a reason field. They employ techniques including chain-of-thought reasoning to generate an explanation for the score. Therefore they'll consume more token usage in generation as a result of improved evaluation quality. Specifically, `max_token` for evaluator generation has been set to 800 for all AI-assisted evaluators (and 1600 for `RetrievalEvaluator` to accommodate for longer inputs.)
+> AI-assisted quality evaluators except for `SimilarityEvaluator` come with a reason field. They employ techniques including chain-of-thought reasoning to generate an explanation for the score. Therefore they consume more token usage in generation as a result of improved evaluation quality. Specifically, `max_token` for evaluator generation has been set to 800 for all AI-assisted evaluators (and 1600 for `RetrievalEvaluator` to accommodate for longer inputs.)
 
 > [!NOTE]
-> Azure Open AI graders require a template that describes how their input columns are turned into the 'real' input that the grader uses. Ex: If you have 2 inputs called "query" and "response", and a template that was formatted like so: `{{item.query}}`, then only the query would be used. Similarly you could have something like `{{item.conversation}}` to accept a conversation input, but the ability of the system to handle that will depend on how you configure the rest of the grader to expect that input.
+> Azure OpenAI graders require a template that describes how their input columns are turned into the 'real' input that the grader uses. Example: If you have two inputs called "query" and "response", and a template that was formatted like so: `{{item.query}}`, then only the query would be used. Similarly you could have something like `{{item.conversation}}` to accept a conversation input, but the ability of the system to handle that will depend on how you configure the rest of the grader to expect that input.
 
 For more information on data requirements for agentic evaluators, go to [Run agent evaluations locally with Azure AI Evaluation SDK](agent-evaluate-sdk.md).
 
@@ -77,7 +77,7 @@ relevance_eval = RelevanceEvaluator(model_config)
 relevance_eval(query=query, response=response)
 ```
 
-To run batch evaluations using [local evaluation](#local-evaluation-on-test-datasets-using-evaluate) or [upload your dataset to run cloud evaluation](./cloud-evaluation.md#uploading-evaluation-data), you will need to represent the dataset in `.jsonl` format. The above single-turn data (a query-and-response pair) is equivalent to a line of dataset as following (we show 3 lines as an example):
+To run batch evaluations using [local evaluation](#local-evaluation-on-test-datasets-using-evaluate) or [upload your dataset to run cloud evaluation](./cloud-evaluation.md#uploading-evaluation-data), you need to represent the dataset in `.jsonl` format. The previous single-turn data (a query-and-response pair) is equivalent to a line of dataset as following (we show three lines as an example):
 
 ```json
 {"query":"What is the capital of France?","response":"Paris."}
@@ -98,7 +98,7 @@ To see what each evaluator requires, you can learn more in the Built-in evaluato
 
 For evaluators that support conversations for text, you can provide `conversation` as input, a Python dictionary with a list of `messages` (which include `content`, `role`, and optionally `context`).
 
-The following is an example of a two-turn conversation in python:
+Example of a two-turn conversation in python:
 
 ```python
 conversation = {
@@ -125,7 +125,7 @@ conversation = {
 }
 ```
 
-To run batch evaluations using [local evaluation](#local-evaluation-on-test-datasets-using-evaluate) or [upload your dataset to run cloud evaluation](./cloud-evaluation.md#uploading-evaluation-data), you will need to represent the dataset in `.jsonl` format. The previous conversation is equivalent to a line of dataset as following in a `.jsonl` file:
+To run batch evaluations using [local evaluation](#local-evaluation-on-test-datasets-using-evaluate) or [upload your dataset to run cloud evaluation](./cloud-evaluation.md#uploading-evaluation-data), you need to represent the dataset in `.jsonl` format. The previous conversation is equivalent to a line of dataset as following in a `.jsonl` file:
 
 ```json
 {"conversation":
@@ -157,7 +157,7 @@ To run batch evaluations using [local evaluation](#local-evaluation-on-test-data
 Our evaluators understand that the first turn of the conversation provides valid `query` from `user`, `context` from `assistant`,  and `response` from `assistant` in the query-response format. Conversations are then evaluated per turn and results are aggregated over all turns for a conversation score.
 
 > [!NOTE]
-> In the second turn, even if `context` is `null` or a missing key, it will be interpreted as an empty string instead of erroring out, which might lead to misleading results. We strongly recommend that you validate your evaluation data to comply with the data requirements.
+> In the second turn, even if `context` is `null` or a missing key, it's interpreted as an empty string instead of erroring out, which might lead to misleading results. We strongly recommend that you validate your evaluation data to comply with the data requirements.
 
 For conversation mode, here's an example for `GroundednessEvaluator`:
 
@@ -423,7 +423,7 @@ The `evaluate()` API has a few requirements for the data format that it accepts 
 
 #### Data format
 
-The `evaluate()` API only accepts data in the JSONLines format. For all built-in evaluators, `evaluate()` requires data in the following format with required input fields. See the [previous section on required data input for built-in evaluators](#data-requirements-for-built-in-evaluators). Sample of one line can look like the following:
+The `evaluate()` API only accepts data in the JSONLines format. For all built-in evaluators, `evaluate()` requires data in the following format with required input fields. See the [previous section on required data input for built-in evaluators](#data-requirements-for-built-in-evaluators). Sample of one line can look like:
 
 ```json
 {
@@ -436,7 +436,7 @@ The `evaluate()` API only accepts data in the JSONLines format. For all built-in
 
 #### Evaluator parameter format
 
-When passing in your built-in evaluators, it's important to specify the right keyword mapping in the `evaluators` parameter list. The following is the keyword mapping required for the results from your built-in evaluators to show up in the UI when logged to your Azure AI project.
+When passing in your built-in evaluators, it's important to specify the right keyword mapping in the `evaluators` parameter list. The following table is the keyword mapping required for the results from your built-in evaluators to show up in the UI when logged to your Azure AI project.
 
 | Evaluator                 | keyword param     |
 |---------------------------|-------------------|
@@ -481,9 +481,9 @@ result = evaluate(
 
 If you have a list of queries that you'd like to run then evaluate, the `evaluate()` also supports a `target` parameter, which can send queries to an application to collect answers then run your evaluators on the resulting query and response.
 
-A target can be any callable class in your directory. In this case we have a Python script `askwiki.py` with a callable class `askwiki()` that we can set as our target. Given a dataset of queries we can send into our simple `askwiki` app, we can evaluate the groundedness of the outputs. Ensure you specify the proper column mapping for your data in `"column_mapping"`. You can use `"default"` to specify column mapping for all evaluators.
+A target can be any callable class in your directory. In this case, we have a Python script `askwiki.py` with a callable class `askwiki()` that we can set as our target. Given a dataset of queries we can send into our simple `askwiki` app, we can evaluate the groundedness of the outputs. Ensure you specify the proper column mapping for your data in `"column_mapping"`. You can use `"default"` to specify column mapping for all evaluators.
 
-Here is the content in "data.jsonl":
+Here's the content in "data.jsonl":
 
 ```json
 {"query":"When was United Stated found ?", "response":"1776"}

@@ -49,7 +49,7 @@ Now that you understand how online evaluation works and how it connects to Azure
 In this section, you'll learn how to configure an online evaluation schedule to continuously monitor your deployed generative AI application. Azure AI Foundry SDK offers such capabilities via. A Python API and supports all of the features available in local evaluations. Use the following steps to submit your online evaluation schedule on your data using built-in or custom evaluators.
 
 > [!NOTE]
-> Evaluations are only supported in the same [regions](../../concepts/evaluation-evaluators/risk-safety-evaluators.md#azure-ai-foundry-project-configuration-and-region-support) as AI-assisted risk and safety metrics.
+> Evaluations are only supported in the same [regions](../concepts/evaluation-evaluators/risk-safety-evaluators.md#azure-ai-foundry-project-configuration-and-region-support) as AI-assisted risk and safety metrics.
 
 ### Prerequisites
 
