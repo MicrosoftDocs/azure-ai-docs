@@ -257,9 +257,9 @@ items:
       href: search-how-to-alias.md
     - name: Import large data sets
       href: search-how-to-large-index.md
-    - name: Logic Apps connectors
+    - name: Logic Apps workflows
       items:
-      - name: Configure a connector
+      - name: Create a workflow
         href: search-how-to-index-logic-apps-indexers.md
     - name: Indexers
       items:
