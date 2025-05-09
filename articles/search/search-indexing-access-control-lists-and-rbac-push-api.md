@@ -19,9 +19,9 @@ Indexing documents, along with their associated [Access Control Lists (ACLs)](/a
 
 ### Limitations
 - An ACL field with permission filter type `userIds` or `groupIds` can hold at most 32 values.
-- An index can hold at most five unique values among fields of type `rbacScope` on all documents. There is no limit on the number of documents that share the same value of `rbacScope`.
-- A pre-existing field cannot be converted into a `permissionFilter` field type for use with built-in ACLs / RBAC metadata filtering. To enable filtering on an existing index, new fields must be created with the correct permission filter type.
-- Only one field of each `permissionFilter` type such as `groupIds`, `usersIds` and `rbacScope`, can exist in an index.
+- An index can hold at most five unique values among fields of type `rbacScope` on all documents. There's no limit on the number of documents that share the same value of `rbacScope`.
+- A preexisting field can't be converted into a `permissionFilter` field type for use with built-in ACLs / RBAC metadata filtering. To enable filtering on an existing index, new fields must be created with the correct permission filter type.
+- Only one field of each `permissionFilter` type such as `groupIds`, `usersIds`, and `rbacScope`, can exist in an index.
 
 ## Key Features  
 - Flexible control over ingestion pipelines
@@ -37,7 +37,7 @@ Indexing document ACLs and RBAC metadata with the REST API requires setting up a
 
 Permission filter field types can be added to an existing index. The value of `permissionFilterOption` can be set to either `enabled` or `disabled` while indexing documents. However, setting it to `disabled` turns off the permission filter functionality.
 
-Here is a basic example schema that includes both user and group ACLs and RBAC metadata:
+Here's a basic example schema that includes both user and group ACLs and RBAC metadata:
 
 ```json  
 {  
@@ -52,7 +52,7 @@ Here is a basic example schema that includes both user and group ACLs and RBAC m
 ```
 
 ## REST API indexing example
-Once you have an index with the desired permission filter fields, you can populate those values using the Indexing Push API as with any other document fields. Here is an example using the specified index schema.
+Once you have an index with the desired permission filter fields, you can populate those values using the Indexing Push API as with any other document fields. Here 'san example using the specified index schema.
 
 ```https
 POST https://exampleservice.search.windows.net/indexes('indexdocumentsexample')/docs/search.index?api-version=2025-05-01-preview
@@ -85,7 +85,7 @@ POST https://exampleservice.search.windows.net/indexes('indexdocumentsexample')/
 This section explains how document access is determined for a user based on the ACL values assigned to each document. The key rule is that **a user only needs to match one ACL type to gain access to the document**. For example, if a document has fields for `userIds`, `groupIds`, and `rbacScope`, the user can access the document by matching any one of these ACL fields.
 
 ### Special ACL values "all" and "none"
-ACL fields, such as `userIds` and `groupIds`, typically contain lists of GUIDs (Globally Unique Identifiers) that identify the users and groups with access to the document. Two special string values, "all" and "none", are supported for these ACL field types. These values act as broad filters to control access at the global level. Refer to the following table for more details.
+ACL fields, such as `userIds` and `groupIds`, typically contain lists of GUIDs (Globally Unique Identifiers) that identify the users and groups with access to the document. Two special string values, "all" and "none", are supported for these ACL field types. These values act as broad filters to control access at the global level as showcased in the following table. 
 
 | userIds / groupIds value | Meaning |
 | --- | --- |
@@ -93,7 +93,7 @@ ACL fields, such as `userIds` and `groupIds`, typically contain lists of GUIDs (
 | ["none"] | No user can access the document by matching this ACL type |
 | [] (empty array) | No user can access the document by matching this ACL type |
 
-Because a user needs to match only one field type, the special value "all" grants public access regardless of the contents of any other ACL field, as all users are matched and granted permission. In contrast, setting `userIds` to "none" or "empty" means no users are granted access to the document _based on their user ID_. It might be possible that they are still granted access by matching their group ID or by RBAC metadata.
+Because a user needs to match only one field type, the special value "all" grants public access regardless of the contents of any other ACL field, as all users are matched and granted permission. In contrast, setting `userIds` to "none" or "empty" means no users are granted access to the document _based on their user ID_. It might be possible that they're still granted access by matching their group ID or by RBAC metadata.
 
 ### Access control example
 This example illustrates how the document access rules are resolved based on the specific document ACL field values. For readability, this scenario uses ACL aliases such as "user1," "group1," etc., instead of GUIDs.
@@ -101,7 +101,7 @@ This example illustrates how the document access rules are resolved based on the
 | Document # | userIds | groupIds | RBAC Scope | Permitted users list | Note |
 | --- | --- | --- | --- | --- | --- |
 | 1 | ["none"] | [] | Empty | No users have access | The values ["none"] and [] behave exactly the same |
-| 2 | ["none"] | [] | scope/to/container1 | Users with RBAC permissions to container1 | The value of "none" does not block access by matching other ACL fields |
+| 2 | ["none"] | [] | scope/to/container1 | Users with RBAC permissions to container1 | The value of "none" doesn't block access by matching other ACL fields |
 | 3 | ["none"] | ["group1", "group2"] | Empty | Members of group1 or group2 | |
 | 4 | ["all"] | ["none"] | Empty | Any user | Any querying user matches the ACL filter "all", so all users have access |
 | 5 | ["all"] | ["group1", "group2"] | scope/to/container1 | Any user | Since all users match the "all" filter for userID, the groupID and RBAC filters don't have any impact |
