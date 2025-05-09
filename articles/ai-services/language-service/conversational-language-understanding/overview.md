@@ -52,7 +52,7 @@ CLU is utilized by the [intent routing](https://aka.ms/intent-triage-agent-templ
 
 Creating a CLU project typically involves several different steps.
 
-:::image type="content" source="media/llm-quick-deploy.png" alt-text="Chart of the LLM-powered quick deploy path" lightbox="media/llm-quick-deploy.png":::
+:::image type="content" source="media/llm-quick-deploy.png" alt-text="Chart of the LLM-powered quick deploy path." lightbox="media/llm-quick-deploy.png":::
 
 > [!NOTE]
 > In the Azure AI Foundry, you’ll create a fine-tuning task as your workspace for customizing your CLU model. Formerly, a CLU fine-tuning task was called a CLU project. You may see these terms used interchangeably in legacy CLU documentation.

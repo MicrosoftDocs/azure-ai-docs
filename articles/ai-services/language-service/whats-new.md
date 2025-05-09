@@ -116,7 +116,7 @@ Azure AI Language is updated on an ongoing basis. To stay up-to-date with recent
 
 ## May 2023
 
-* [Custom Named Entity Recognition (NER) Docker containers](./custom-named-entity-recognition/how-to/use-containers.md) are now available for on-premise deployment. 
+* [Custom Named Entity Recognition (NER) Docker containers](./custom-named-entity-recognition/how-to/use-containers.md) are now available for on-premises deployment. 
 
 ## April 2023
 
