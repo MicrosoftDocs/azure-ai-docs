@@ -79,6 +79,8 @@ ProjectsClient client = new ProjectsClientBuilder()
     .buildClient();
 ```
 
+**Copy** the the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value above.
+
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
@@ -95,9 +97,36 @@ const project = new AIProjectClient(endpoint, new DefaultAzureCredential());
 const client = project.inference.azureOpenAI();
 ```
 
+**Copy** the the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value above.
+
+
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
+
+```csharp
+using Azure;
+using Azure.Identity;
+using Azure.AI.Inference;
+using Azure.Core;
+using Azure.Core.Pipeline;
+
+var endpointUrl = "your_project_endpoint";
+var credential = new DefaultAzureCredential();
+
+AzureAIInferenceClientOptions clientOptions = new AzureAIInferenceClientOptions();
+BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(credential, new string[] { "https://cognitiveservices.azure.com/.default" });
+clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
+
+
+var client = new ChatCompletionsClient(
+    endpoint,
+    credential,
+    clientOptions
+);
+```
+
+**Copy** the the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value above.
 
 ::: zone-end
 
