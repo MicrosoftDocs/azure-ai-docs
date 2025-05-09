@@ -34,7 +34,7 @@ In this example we are demonstrating how to use the local functions with the age
 
 1. First, set up the configuration and create a `PersistentAgentsClient`. This client will be used for all interactions with the Azure AI Agents Service. This step also includes all necessary `using` directives.
 
-```C# Snippet:AgentsFunctions_Step1_SetupClient
+```csharp
 using Azure;
 using Azure.AI.Agents.Persistent;
 using Azure.Identity;
@@ -53,7 +53,7 @@ PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential(
 
 2. Next, define the local functions that the agent can call. For each function, create a `FunctionToolDefinition` that describes its name, purpose, and parameters to the agent. These functions and definitions are used by both synchronous and asynchronous agent operations.
 
-```C# Snippet:AgentsFunctions_Step2_DefineFunctionTools
+```csharp
 string GetUserFavoriteCity() => "Seattle, WA";
 FunctionToolDefinition getUserFavoriteCityTool = new("getUserFavoriteCity", "Gets the user's favorite city.");
 
@@ -113,7 +113,7 @@ FunctionToolDefinition getCurrentWeatherAtLocationTool = new(
 
 3. Create a helper function, `GetResolvedToolOutput`. This function takes a `RequiredToolCall` (when the agent determines a local function should be executed) and invokes the appropriate C# function defined in the previous step. It then wraps the result in a `ToolOutput` object for the agent.
 
-```C# Snippet:AgentsFunctions_Step3_GetResolvedToolOutput
+```csharp
 ToolOutput GetResolvedToolOutput(RequiredToolCall toolCall)
 {
     if (toolCall is RequiredFunctionToolCall functionToolCall)
@@ -147,7 +147,7 @@ ToolOutput GetResolvedToolOutput(RequiredToolCall toolCall)
 
 Synchronous sample:
 
-```C# Snippet:AgentsFunctions_Step4_CreateAgent_Sync
+```csharp
 PersistentAgent agent = client.Administration.CreateAgent(
     model: modelDeploymentName,
     name: "SDK Test Agent - Functions",
@@ -159,7 +159,7 @@ PersistentAgent agent = client.Administration.CreateAgent(
 
 Asynchronous sample:
 
-```C# Snippet:AgentsFunctions_Step4_CreateAgent_Async
+```csharp
 PersistentAgent agent = await client.Administration.CreateAgentAsync(
     model: modelDeploymentName,
     name: "SDK Test Agent - Functions",
@@ -173,7 +173,7 @@ PersistentAgent agent = await client.Administration.CreateAgentAsync(
 
 Synchronous sample:
 
-```C# Snippet:AgentsFunctions_Step5_CreateThreadAndMessage_Sync
+```csharp
 PersistentAgentThread thread = client.Threads.CreateThread();
 
 client.Messages.CreateMessage(
@@ -184,7 +184,7 @@ client.Messages.CreateMessage(
 
 Asynchronous sample:
 
-```C# Snippet:AgentsFunctions_Step5_CreateThreadAndMessage_Async
+```csharp
 PersistentAgentThread thread = await client.Threads.CreateThreadAsync();
 
 await client.Messages.CreateMessageAsync(
@@ -197,7 +197,7 @@ await client.Messages.CreateMessageAsync(
 
 Synchronous sample:
 
-```C# Snippet:AgentsFunctions_Step6_CreateAndPollRun_Sync
+```csharp
 ThreadRun run = client.Runs.CreateRun(thread.Id, agent.Id);
 
 do
@@ -223,7 +223,7 @@ while (run.Status == RunStatus.Queued
 
 Asynchronous sample:
 
-```C# Snippet:AgentsFunctions_Step6_CreateAndPollRun_Async
+```csharp
 ThreadRun run = await client.Runs.CreateRunAsync(thread.Id, agent.Id);
 
 do
@@ -255,7 +255,7 @@ while (run.Status == RunStatus.Queued
 
 Synchronous sample:
 
-```C# Snippet:AgentsFunctions_Step7_ProcessResults_Sync
+```csharp
 Pageable<ThreadMessage> messages = client.Messages.GetMessages(
     threadId: thread.Id,
     order: ListSortOrder.Ascending
@@ -277,7 +277,7 @@ foreach (ThreadMessage threadMessage in messages)
 
 Asynchronous sample:
 
-```C# Snippet:AgentsFunctions_Step7_ProcessResults_Async
+```csharp
 AsyncPageable<ThreadMessage> messages = client.Messages.GetMessagesAsync(
     threadId: thread.Id,
     order: ListSortOrder.Ascending
@@ -301,14 +301,14 @@ await foreach (ThreadMessage threadMessage in messages)
 
 Synchronous sample:
 
-```C# Snippet:AgentsFunctions_Step8_Cleanup_Sync
+```csharp
 client.Threads.DeleteThread(threadId: thread.Id);
 client.Administration.DeleteAgent(agentId: agent.Id);
 ```
 
 Asynchronous sample:
 
-```C# Snippet:AgentsFunctions_Step8_Cleanup_Async
+```csharp
 await client.Threads.DeleteThreadAsync(threadId: thread.Id);
 await client.Administration.DeleteAgentAsync(agentId: agent.Id);
 ```
