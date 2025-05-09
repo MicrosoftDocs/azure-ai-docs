@@ -1,5 +1,5 @@
 ---
-title: Responsible AI for Azure AI Foundry
+title: Trustworthy AI for Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Learn how to use AI services and features responsibly with Azure AI Foundry.
 manager: nitinme
@@ -12,7 +12,7 @@ author: PatrickFarley
 ms.custom: ignite-2024
 ---
 
-# Responsible AI for Azure AI Foundry
+# Trustworthy AI for Azure AI Foundry
 
 This article provides an overview of the resources available to help you use AI responsibly. Our recommended essential development steps are grounded in the [Microsoft Responsible AI Standard](https://aka.ms/RAI), which sets policy requirements that our own engineering teams follow. Much of the content of the Standard follows a pattern, asking teams to Identify, Measure, and Mitigate potential content risks, and plan for how to Operate the AI system as well.  
 
