@@ -63,6 +63,23 @@ project = AIProjectClient.from_connection_string(
 
 ::: zone-end
 
+::: zone pivot="programming-language-java"
+
+```java
+
+Create a project client in code:
+
+import com.azure.ai.projects.ProjectsClient;
+import com.azure.ai.projects.ProjectsClientBuilder;
+import com.azure.core.credential.AzureKeyCredential;
+
+ProjectsClient client = new ProjectsClientBuilder()
+    .credential(new AzureKeyCredential(apiKey))
+    .endpoint(endpoint)
+    .buildClient();
+```
+::: zone-end
+
 <a name="azure-ai-agent-service"></a>
 Using the project endpoint, you can:
  - [Use Foundry Model](../../quickstarts/get-started-code.md), including Azure OpenAI
