@@ -9,7 +9,7 @@ ms.date: 04/22/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
-zone_pivot_groups: foundry-sdk-overiew-languages
+zone_pivot_groups: foundry-sdk-overview-languages
 
 #customer intent: As a developer, I want to install the Azure AI Foundry SDK in my development environment
 ---
