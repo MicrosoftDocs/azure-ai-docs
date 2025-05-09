@@ -648,7 +648,7 @@ items:
     href: ../ai-services/reference/rest-api-resources.md?context=/azure/ai-foundry/context/context
   - name: Azure AI Foundry Models API
     items:
-    - name: What's the Azure AI Model Inference API?
+    - name: What's the Foundry Models API?
       href: /rest/api/aifoundry/modelinference
     - name: Reference
       items:
