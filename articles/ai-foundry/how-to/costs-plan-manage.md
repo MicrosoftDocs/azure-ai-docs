@@ -9,8 +9,8 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: conceptual
-ms.date: 04/25/2025
-ms.reviewer: siarora
+ms.date: 05/07/2025
+ms.reviewer: obiume
 ms.author: larryfr
 author: Blackmist
 ---
@@ -49,7 +49,7 @@ Use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculato
 As you add new resources to your project, return to this calculator and add the same resource here to update your cost estimates.
 
 
-### Costs that typically accrue with Azure AI Foundry
+### Costs that typically accrue with Azure AI Foundry hubs
 
 When you create resources for a hub, resources for other Azure services are also created. They are:
 
@@ -64,7 +64,7 @@ When you create resources for a hub, resources for other Azure services are also
 | [Key Vault](https://azure.microsoft.com/pricing/details/key-vault/) | A key vault for storing secrets. |
 | [Azure Private Link](https://azure.microsoft.com/pricing/details/private-link/) | Azure Private Link enables you to access Azure PaaS Services (for example, Azure Storage and SQL Database) over a private endpoint in your virtual network. |
 
-### Costs might accrue before resource deletion
+### Costs might accrue before deleting an Azure AI Foundry hub
 
 Before you delete a hub in the Azure portal or with Azure CLI, the following sub resources are common costs that accumulate even when you aren't actively working in the workspace. If you're planning on returning to your hub at a later time, these resources might continue to accrue costs: 
 - Azure AI Search (for the data)
@@ -82,7 +82,7 @@ For more information, see the [Azure pricing calculator](https://azure.microsoft
 > [!TIP]
 > Using a managed virtual network is free. However some features of the managed network rely on Azure Private Link (for private endpoints) and Azure Firewall (for FQDN rules) and will incur charges. For more information, see [Managed virtual network isolation](configure-managed-network.md#pricing).
 
-### Costs might accrue after resource deletion
+### Costs might accrue after deleting an Azure AI Foundry hub
 
 After you delete a hub in the Azure portal or with Azure CLI, the following resources continue to exist. They continue to accrue costs until you delete them.
 
@@ -93,53 +93,17 @@ After you delete a hub in the Azure portal or with Azure CLI, the following reso
 
 ## Monitor costs
 
-As you use Azure AI Foundry with hubs, you incur costs. Azure resource usage unit costs vary by time intervals (seconds, minutes, hours, and days) or by unit usage (bytes, megabytes, and so on). You can see the incurred costs in [cost analysis](/azure/cost-management-billing/costs/quick-acm-cost-analysis?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
+As you use Azure AI Foundry, you incur costs. Azure resource usage unit costs vary by time intervals (seconds, minutes, hours, and days) or by unit usage (bytes, megabytes, and so on). You can see the incurred costs in [cost analysis](/azure/cost-management-billing/costs/quick-acm-cost-analysis?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 
-When you use cost analysis, you view hub costs in graphs and tables for different time intervals. Some examples are by day, current and prior month, and year. You also view costs against budgets and forecasted costs. Switching to longer views over time can help you identify spending trends. And you see where overspending might occur. If you create budgets, you can also easily see where they're exceeded.
+When you use cost analysis, you view costs in graphs and tables for different time intervals. Some examples are by day, current and prior month, and year. You also view costs against budgets and forecasted costs. Switching to longer views over time can help you identify spending trends. And you see where overspending might occur. If you create budgets, you can also easily see where they're exceeded.
 
-### Monitor Azure AI Foundry project costs
+### Monitor Azure AI Foundry costs
 
-You can get to cost analysis from the [Azure portal](https://portal.azure.com). You can also get to cost analysis from the [Azure AI Foundry portal](https://ai.azure.com).
+You can get to cost analysis from the [Azure portal](https://portal.azure.com).
 
 > [!IMPORTANT]
-> Your Azure AI Foundry project costs are only a subset of your overall application or solution costs. You need to monitor costs for all Azure resources used in your application or solution. For more information, see Azure AI Foundry hubs.
+> Your Azure AI foundry costs are only a subset of your overall application or solution costs. You need to monitor costs for all Azure resources used in your application or solution.
 
-For the examples in this section, assume that all Azure AI Foundry resources are in the same resource group. But you can have resources in different resource groups. For example, your Azure AI Search resource might be in a different resource group than your project.
-
-Here's an example of how to monitor costs for a project. The costs are used as an example only. Your costs vary depending on the services that you use and the amount of usage.
-
-1. Sign in to [Azure AI Foundry](https://ai.azure.com).
-1. Select your project and then select **Management center** from the left menu. 
-1. Under the **Project** heading, select **Overview**. 
-1. Select **View cost for resources** from the **Total cost** section. The [Azure portal](https://portal.azure.com) opens to the resource group for your project.
-
-    :::image type="content" source="../media/cost-management/project-costs/project-settings-go-view-costs.png" alt-text="Screenshot of the Azure AI Foundry portal showing how to see project settings." lightbox="../media/cost-management/project-costs/project-settings-go-view-costs.png":::
-
-1. Expand the **Resource** column to see the costs for each service that's underlying your [project](../concepts/ai-resources.md#organize-work-in-projects-for-customization). But this view doesn't include costs for all resources that you use in a project.
-
-    :::image type="content" source="../media/cost-management/project-costs/costs-per-project-resource.png" alt-text="Screenshot of the Azure portal cost analysis with the project and associated resources." lightbox="../media/cost-management/project-costs/costs-per-project-resource.png":::
-
-1. Select **Costs by resource** > **Resources**.
-
-    :::image type="content" source="../media/cost-management/project-costs/select-costs-per-resource.png" alt-text="Screenshot of the Azure portal cost analysis with the button to select costs by resources." lightbox="../media/cost-management/project-costs/select-costs-per-resource.png":::
-
-1. On the **Cost analysis** page where you're taken to, make sure the scope is set to your resource group. 
-
-    :::image type="content" source="../media/cost-management/project-costs/costs-per-resource-group-details.png" alt-text="Screenshot of the Azure portal cost analysis for a resource group." lightbox="../media/cost-management/project-costs/costs-per-resource-group-details.png":::
-
-    In this example:
-    - The resource group name is **rg-contosoairesource**.
-    - The total cost for all resources and services in the example resource group is **$222.97**. In this example, $222.97 is the total cost for your application or solution that you're building with Azure AI Foundry. Again, this example assumes that all Azure AI Foundry resources are in the same resource group. But you can have resources in different resource groups.
-    - The project name is **contoso-outdoor-proj**.
-    - The costs that are limited to resources and services in the example [project](../concepts/ai-resources.md#organize-work-in-projects-for-customization) total **$212.06**. 
-    
-1. Expand **contoso-outdoor-proj** to see the costs for services underlying the [project](../concepts/ai-resources.md#organize-work-in-projects-for-customization) resource. 
-
-    :::image type="content" source="../media/cost-management/project-costs/costs-per-project-resource-details.png" alt-text="Screenshot of the Azure portal cost analysis with project expanded." lightbox="../media/cost-management/project-costs/costs-per-project-resource-details.png":::
-
-1. Expand **contoso_ai_resource** to see the costs for services underlying the [hub](../concepts/ai-resources.md) resource. You can also apply a filter to focus on other costs in your resource group. 
-
-You can also view resource group costs directly from the Azure portal. To do so:
 1. Sign in to [Azure portal](https://portal.azure.com).
 1. Select **Resource groups**. 
 1. Find and select the resource group that contains your Azure AI Foundry resources.

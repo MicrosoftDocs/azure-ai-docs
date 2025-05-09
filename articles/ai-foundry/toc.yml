@@ -3,7 +3,6 @@ items:
   href: index.yml
 - name: What is Azure AI Foundry?
   href: what-is-azure-ai-foundry.md
-
 - name: Get started
   expanded: true
   items:
