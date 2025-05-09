@@ -19,6 +19,12 @@ recommendations: false
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI Service.
 
+## May 2025
+
+### Model router (preview)
+
+Azure OpenAI model router is a deployable AI chat model that automatically selects the best underlying chat model to respond to a given prompt. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](./concepts/model-router.md). To use model router with the Completions API, follow the [How-to guide](./concepts/model-router.md).
+
 ## April 2025
 
 ### Realtime API (preview) support for WebRTC

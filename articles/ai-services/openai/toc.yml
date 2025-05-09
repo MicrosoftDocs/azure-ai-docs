@@ -56,6 +56,8 @@ items:
       href: ./concepts/abuse-monitoring.md
     - name: Audio
       href: ./concepts/audio.md
+    - name: Model router
+      href: ./concepts/model-router.md
     - name: Content filtering
       href: ./concepts/content-filter.md
     - name: Default safety policies
@@ -131,6 +133,8 @@ items:
     - name: GPT-35-Turbo & GPT-4 
       href: ./how-to/chatgpt.md
       displayName: ChatGPT, chatgpt
+    - name: Model router
+      href: ./how-to/model-router.md
     - name: Computer Use
       href: ./how-to/computer-use.md
       displayName: cua, computer using model
