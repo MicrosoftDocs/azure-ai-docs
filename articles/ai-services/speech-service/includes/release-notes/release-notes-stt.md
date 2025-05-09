@@ -22,7 +22,7 @@ Fast transcription now supports additional locales including fi-FI, he-IL, id-ID
 
 We are excited to announce substantial improvements to our pronunciation assessment models for these locales: `de-DE`, `es-MX`, `it-IT`, `ja-JP`, `ko-KR`, and `pt-BR`. These enhancements bring significant advancements in Pearson Correlation Coefficients (PCC), ensuring more accurate and reliable assessments.
 
-The new models are available through the API and Azure AI Foundry playground. Feedback is encouraged to further refine its capabilities.
+As before, the models are available through the API and Azure AI Foundry playground. 
 
 ### March 2025 release
 
