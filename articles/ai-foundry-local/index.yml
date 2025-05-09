@@ -36,17 +36,15 @@ landingContent:
     linkLists:   
       - linkListType: quickstart
         links:
-          - text: Get started with AI Foundry Local
+          - text: Get started with Foundry Local
             url: get-started.md
 
       - linkListType: how-to-guide
         links:
           - text: Integrate with Inferencing SDKs
             url: how-to/integrate-with-inference-sdks.md
-          - text: Run Hugging Face models on Foundry Local
-            url: how-to/huggingface-models-for-foundry-local.md
-          - text: Manage Foundry Local
-            url: how-to/manage.md
+          - text: Compile Hugging Face models to run on Foundry Local
+            url: how-to/how-to-compile-hf-models.md
   # Card
   - title: Reference
     linkLists:
@@ -60,6 +58,8 @@ landingContent:
             url: reference/reference-rest.md
           - text: Catalog API reference
             url: reference/reference-catalog-api.md
+          - text: Best practice and troubleshooting
+            url: reference/reference-best-practice.md
   
   # Card
   - title: Explore more AI resources
@@ -72,7 +72,7 @@ landingContent:
             url: /training/modules/improve-search-results-vector-search/
       - linkListType: reference
         links:
-          - text: Azure Machine Learning
-            url: /azure/machine-learning/
+          - text: Azure AI Foundry
+            url: /ai-foundry/
           - text: Semantic Kernel
             url: /semantic-kernel/

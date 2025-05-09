@@ -43,7 +43,7 @@ Available options:
 |---------------------------|---------------------------------------------------------------------------|--------------------------------------------------|
 | `listCatalogModels()`     | `() => Promise<FoundryModelInfo[]>`                                       | Lists all available models in the catalog.        |
 | `refreshCatalog()`        | `() => Promise<void>`                                                     | Refreshes the model catalog.                     |
-| `getModelInfo()`          | `(modelAliasOrId: string, throwOnNotFound = false) => Promise<FoundryModelInfo | null>` | Gets model info by alias or ID.                  |
+| `getModelInfo()`          | `(modelAliasOrId: string, throwOnNotFound = false) => Promise<FoundryModelInfo \| null>` | Gets model info by alias or ID.                  |
 
 
 ### Cache Management

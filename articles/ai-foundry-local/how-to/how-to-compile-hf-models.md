@@ -1,5 +1,5 @@
 ---
-title: Run Hugging Face models on Foundry Local
+title: How to compile Hugging Face models to run on Foundry Local
 titleSuffix: Foundry Local
 description: Learn how to compile and run Hugging Face models with Foundry Local.
 manager: scottpolly
@@ -11,15 +11,17 @@ ms.author: samkemp
 author: samuel100
 ---
 
-# Run Hugging Face models on Foundry Local
+# How to compile Hugging Face models to run on Foundry Local
 
-Foundry Local runs ONNX models on your device with high performance. While the model catalog offers pre-compiled options, you can use any model in ONNX format.
+Foundry Local runs ONNX models on your device with high performance. While the model catalog offers *out-of-the-box* precompiled options, you can use any model in the ONNX format. 
+
+To compile existing models in Safetensor or PyTorch format into the ONNX format, you can use [Olive](https://microsoft.github.io/Olive). Olive is a tool that optimizes models to ONNX format, making them suitable for deployment in Foundry Local. It uses techniques like *quantization* and *graph optimization* to improve performance.
 
 This guide shows you how to:
 
 > [!div class="checklist"]
 >
-> - **Convert and optimize** Hugging Face models to ONNX format using Olive
+> - **Convert and optimize** models from Hugging Face to run in Foundry Local. You'll use the `Llama-3.2-1B-Instruct` model as an example, but you can use any generative AI model from Hugging Face.
 > - **Run** your optimized models with Foundry Local
 
 ## Prerequisites
@@ -49,7 +51,7 @@ pip install olive-ai[auto-opt]
 
 ## Sign in to Hugging Face
 
-We'll optimize the Llama-3.2-1B-Instruct model, which requires Hugging Face authentication:
+You optimize the `Llama-3.2-1B-Instruct` model, which requires Hugging Face authentication:
 
 ### [Bash](#tab/Bash)
 
@@ -106,7 +108,7 @@ olive auto-opt `
 ---
 
 > [!NOTE]
-> The compilation process takes approximately 60 seconds, plus additional time for model download.
+> The compilation process takes approximately 60 seconds, plus extra time for model download.
 
 The command uses the following parameters:
 
@@ -115,7 +117,7 @@ The command uses the following parameters:
 | `model_name_or_path` | Model source: Hugging Face ID, local path, or Azure AI Model registry ID   |
 | `output_path`        | Where to save the optimized model                                          |
 | `device`             | Target hardware: `cpu`, `gpu`, or `npu`                                    |
-| `provider`           | Execution provider (e.g., `CPUExecutionProvider`, `CUDAExecutionProvider`) |
+| `provider`           | Execution provider (for example, `CPUExecutionProvider`, `CUDAExecutionProvider`) |
 | `precision`          | Model precision: `fp16`, `fp32`, `int4`, or `int8`                         |
 | `use_ort_genai`      | Creates inference configuration files                                      |
 
@@ -145,9 +147,9 @@ Rename-Item -Path "model" -NewName "llama-3.2"
 
 ### Step 3: Create chat template file
 
-A chat template is a structured format that defines how input and output messages are processed for a conversational AI model. It specifies the roles (e.g., system, user, assistant) and the structure of the conversation, ensuring that the model understands the context and generates appropriate responses.
+A chat template is a structured format that defines how input and output messages are processed for a conversational AI model. It specifies the roles (for example, system, user, assistant) and the structure of the conversation, ensuring that the model understands the context and generates appropriate responses.
 
-Foundry Local requires a chat template JSON file called `inference_model.json` in order to generate the appropriate responses. The template file contains the model name and a `PromptTemplate` object - this contains a `{Content}` placeholder, which Foundry Local will inject at runtime with the user prompt.
+Foundry Local requires a chat template JSON file called `inference_model.json` in order to generate the appropriate responses. The template properties are the model name and a `PromptTemplate` object, which contains a `{Content}` placeholder that Foundry Local injects at runtime with the user prompt.
 
 ```json
 {
@@ -162,7 +164,7 @@ Foundry Local requires a chat template JSON file called `inference_model.json` i
 To create the chat template file, you can use the `apply_chat_template` method from the Hugging Face library:
 
 > [!NOTE]
-> The following example uses the Python Hugging Face library to create a chat template. The Hugging Face library is a dependency for Olive, so if you're using the same Python virtual environment you do not need to install. If you're using a different environment, install the library with `pip install transformers`.
+> The following example uses the Python Hugging Face library to create a chat template. The Hugging Face library is a dependency for Olive, so if you're using the same Python virtual environment you don't need to install. If you're using a different environment, install the library with `pip install transformers`.
 
 ```python
 # generate_inference_model.py
@@ -272,6 +274,14 @@ Invoke-RestMethod -Uri http://localhost:5272/v1/chat/completions `
 ---
 
 ### Using the OpenAI Python SDK
+
+The OpenAI Python SDK is a convenient way to interact with the Foundry Local REST API. You can install it using:
+
+```bash
+pip install openai
+```
+
+Then, you can use the following code to run the model:
 
 ```python
 from openai import OpenAI

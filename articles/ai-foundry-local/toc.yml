@@ -15,10 +15,8 @@ items:
   items:
   - name: Integrate with Inferencing SDKs
     href: how-to/integrate-with-inference-sdks.md
-  - name: Run Hugging Face models on Foundry Local
-    href: how-to/huggingface-models-for-foundry-local.md
-  - name: Manage Foundry Local
-    href: how-to/manage.md
+  - name: Compile Hugging Face models to run on Foundry Local
+    href: how-to/how-to-compile-hf-models.md
 - name: Tutorials
   expanded: true
   items:
@@ -37,4 +35,6 @@ items:
     href: reference/reference-rest.md
   - name: Catalog API
     href: reference/reference-catalog-api.md
+  - name: Best practice and troubleshooting
+    href: reference/reference-best-practice.md
  

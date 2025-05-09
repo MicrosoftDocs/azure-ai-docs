@@ -16,13 +16,11 @@ ms.custom: build-2025
 
 # What is Foundry Local?
 
-Foundry Local is a local version of Azure AI Foundry that runs large language models (LLMs) directly on your device. This on-device AI inference solution offers privacy, customization, and cost advantages over cloud-based options. It integrates seamlessly into your existing workflows and applications through an intuitive CLI and REST API.
-
-By leveraging the optimization capabilities of ONNX Runtime, Olive, and the ONNX ecosystem, Foundry Local delivers a highly optimized and responsive experience for running AI models locally.
+Foundry Local is an on-device AI inference solution offering performance, privacy, customization, and cost advantages. It integrates seamlessly into your existing workflows and applications through an intuitive CLI and REST API.
 
 ## Key features
 
-- **On-Device Inference**: Run LLMs locally on your own hardware, reducing cloud dependency while keeping all your data on your device.
+- **On-Device Inference**: Run models locally on your own hardware, reducing your costs while keeping all your data on your device.
 
 - **Model Customization**: Select from preset models or use your own to meet specific requirements and use cases.
 
@@ -34,22 +32,22 @@ By leveraging the optimization capabilities of ONNX Runtime, Olive, and the ONNX
 
 Foundry Local is ideal for scenarios where:
 
-- Data privacy and security are paramount
-- You need to operate in environments with limited or no internet connectivity
-- You want to reduce cloud inference costs
-- You need low-latency AI responses for real-time applications
-- You want to experiment with AI models before deploying to a cloud environment
+- You want to keep sensitive data on your device.
+- You need to operate in environments with limited or no internet connectivity.
+- You want to reduce cloud inference costs.
+- You need low-latency AI responses for real-time applications.
+- You want to experiment with AI models before deploying to a cloud environment.
 
-## Pricing and billing
+## Do I need an Azure subscription?
 
-Entirely Free! You're using your own hardware, and there are no extra costs associated with running AI models locally.
+No - Foundry Local doesn't require an Azure subscription. It runs on your local hardware, allowing you to use your existing infrastructure without the need for cloud services.
 
-## How to get access
+## Getting started
 
-Download from the Microsoft Store. (WIP)
+Install and run your first model by following the [Get started with Foundry Local](get-started.md) guide. This guide helps you set up Foundry Local, discover available models, and launch your first local AI model.
 
 ## Next steps
 
 - [Get started with Foundry Local](get-started.md)
-- [Compile Hugging Face models for Foundry Local](how-to/huggingface-models-for-foundry-local.md)
-- [Learn more about ONNX Runtime](https://onnxruntime.ai/docs/)
+- [How to compile Hugging Face models to run on Foundry Local](how-to/how-to-compile-hf-models.md)
+
