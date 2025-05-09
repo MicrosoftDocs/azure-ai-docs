@@ -129,7 +129,7 @@ In the [Azure portal](https://portal.azure.com), search for and then select **Az
 - The **AI Search** section lists Azure AI Search resources.
 - Use the **More services** and **Classic AI services** sections to find other Azure AI services.
 
-:::image type="content" source="../media/portal/overview.png" lightbox="../media/portal/overview.png" alt-text="The Azure AI Foundry overview page in the Azure portal.":::
+:::image type="content" source="../media/portal/overview.png" lightbox="../media/portal/overview.png" alt-text="Screenshot of the Azure AI Foundry overview page in the Azure portal.":::
 
 You can also go directly to your hub and project resources in the Azure portal from the Azure AI Foundry portal by using the following steps:
 
