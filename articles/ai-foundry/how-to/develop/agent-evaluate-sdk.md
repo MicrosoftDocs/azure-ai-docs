@@ -324,7 +324,7 @@ As illustrated in the example, we enabled agent message support specifically for
 For `ToolCallAccuracyEvaluator`, either `response` or  `tool_calls` must be provided. 
 
 > [!NOTE]
-> `ToolCallAccuracyEvaluator` does not support Azure AI Agent's Built-in Tool evaluation. 
+> `ToolCallAccuracyEvaluator` only supports Azure AI Agent's Function Tool evaluation, but does not support Built-in Tool evaluation. 
 
 We'll demonstrate some examples of the two data formats: simple agent data, and agent messages. However, due to the unique requirements of these evaluators, we recommend referring to the [sample notebooks](#sample-notebooks) which illustrate the possible input paths for each evaluator.  
 
