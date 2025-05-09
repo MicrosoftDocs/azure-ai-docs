@@ -17,12 +17,11 @@ ms.date: 12/17/2024
 
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 
-
-
 In this article, learn about Azure Machine Learning CLI (v2) releases.
 
 __RSS feed__: Get notified when this page is updated by copying and pasting the following URL into your feed reader:
 `https://learn.microsoft.com/api/search/rss?search=%22Azure+machine+learning+release+notes-v2%22&locale=en-us`
+
 ## 2025-05-09
 
 ## Azure Machine Learning CLI (v2) v 2.37.0
@@ -33,8 +32,6 @@ __RSS feed__: Get notified when this page is updated by copying and pasting the 
 
 ## Azure Machine Learning CLI (v2) v 2.36.5
   - Pin major version of external dependencies in SDK.
-
-## 2025-04-23
 
 ## Azure Machine Learning CLI (v2) v 2.36.4
   - Updated marshmallow dependency to restrict versions to >=3.5,<4.0.0 to ensure compatibility.
