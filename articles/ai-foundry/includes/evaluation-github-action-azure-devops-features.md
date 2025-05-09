@@ -36,14 +36,14 @@ ms.custom: include file
     | [Performance and quality (NLP)](../how-to/develop/evaluate-sdk.md) | `GleuScoreEvaluator` | Not Supported | Supported |
     | [Performance and quality (NLP)](../how-to/develop/evaluate-sdk.md) | `BleuScoreEvaluator ` | Not Supported | Supported |
     | [Performance and quality (NLP)](../how-to/develop/evaluate-sdk.md) | `MeteorScoreEvaluator` | Not Supported | Supported |
-    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.md#risk-and-safety-evaluators-preview) | `ViolenceEvaluator` | Supported | Supported |
-    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.md#risk-and-safety-evaluators-preview) | `SexualEvaluator` | Supported | Supported |
-    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.md#risk-and-safety-evaluators-preview) | `SelfHarmEvaluator` | Supported | Supported |
-    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.md#risk-and-safety-evaluators-preview) | `HateUnfairnessEvaluator` | Supported | Supported |
-    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.md#risk-and-safety-evaluators-preview) | `IndirectAttackEvaluator` | Supported | Supported |
-    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.md#risk-and-safety-evaluators-preview) | `ProtectedMaterialEvaluator` | Supported | Supported |
-    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.md#risk-and-safety-evaluators-preview) | `CodeVulnerabilityEvaluator` | Supported | Supported |
-    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.md#risk-and-safety-evaluators-preview) | `UngroundedAttributesEvaluator` | Not Supported | Supported |
+    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.m) | `ViolenceEvaluator` | Supported | Supported |
+    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.m) | `SexualEvaluator` | Supported | Supported |
+    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.m) | `SelfHarmEvaluator` | Supported | Supported |
+    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.m) | `HateUnfairnessEvaluator` | Supported | Supported |
+    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.m) | `IndirectAttackEvaluator` | Supported | Supported |
+    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.m) | `ProtectedMaterialEvaluator` | Supported | Supported |
+    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.m) | `CodeVulnerabilityEvaluator` | Supported | Supported |
+    | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.m) | `UngroundedAttributesEvaluator` | Not Supported | Supported |
     | [Composite](../how-to/develop/evaluate-sdk.md#composite-evaluators) | `QAEvaluator` | Not Supported | Supported |
     | [Composite](../how-to/develop/evaluate-sdk.md#composite-evaluators) | `ContentSafetyEvaluator` | Supported | Supported |
     | [Composite](../how-to/develop/evaluate-sdk.md#composite-evaluators) | `AgentOverallEvaluator` | Not Supported | Not Supported |
