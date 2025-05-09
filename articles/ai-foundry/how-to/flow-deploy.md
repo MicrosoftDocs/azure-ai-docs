@@ -14,6 +14,7 @@ ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
+ms.update-cycle: 180-days
 ---
 
 # Deploy a flow for real-time inference
@@ -33,6 +34,8 @@ In this article, you learn how to deploy a flow as a managed online endpoint for
 - Consume the endpoint.
 
 ## Prerequisites
+
+ [!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 
 To deploy a prompt flow as an online endpoint, you need:
 

@@ -30,6 +30,9 @@ To enable traces locally, you have two options:
 
 Before you can log to Azure AI Foundry portal, attach an Application Insights resource to your project.
 
+[!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
+
+
 1. Navigate to your project in [Azure AI Foundry portal](https://ai.azure.com/).
 1. Select the **Tracing** page on the left hand side.
 1. Select **Create New** to attach a new Application Insights resource to your project.

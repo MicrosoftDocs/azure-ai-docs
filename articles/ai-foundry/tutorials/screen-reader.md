@@ -1,5 +1,5 @@
 ---
-title: Get started using Azure AI Foundry with a screen reader
+title: Use a screen reader with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: This quickstart guides you in how to get oriented and navigate Azure AI Foundry with a screen reader.
 manager: scottpolly
@@ -7,14 +7,14 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
-ms.topic: quickstart
-ms.date: 04/03/2025
+ms.topic: how-to
+ms.date: 05/02/2025
 ms.reviewer: ailsaleen
 ms.author: sgilley
 author: sdgilley
 ---
 
-# QuickStart: Get started using Azure AI Foundry with a screen reader
+# Use a screen reader with Azure AI Foundry
 
 This article is for people who use screen readers such as [Microsoft's Narrator](https://support.microsoft.com/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1#WindowsVersion=Windows_11), JAWS, NVDA, or Apple's Voiceover. In this quickstart, you're introduced to the basic structure of Azure AI Foundry and discover how to navigate around efficiently. 
 
@@ -25,9 +25,9 @@ Most [Azure AI Foundry](https://ai.azure.com) pages are composed of the followin
 - Banner (contains Azure AI Foundry app title, settings, and profile information)
     - Might sometimes contain a breadcrumb navigation element 
 - Navigation - There are three different states:
-    - Outside a project - there's no left navigation until you are in a project. The page is divided into sections such as **Work outside of a project** and **Recent projects picker**.
+    - Outside a project - there's no left navigation until you are in a project. The page is divided into sections.  Once you have projects, the top section is a list of recent projects.
     - In a project - the left navigation is the same for all parts of a project, until you move to the **Management center**.
-    - The left navigation in the Management center has a section for the hub that the project is in, then a section for the project itself.
+    - The left navigation in the Management center has two sections.  In a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]. the sections are for the **resource** the project is in, then a section for the **project** itself.  In a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)], the sections are for the **hub** that the project is in, then a section for the **project** itself.
 
 For efficient navigation, it might be helpful to navigate by landmarks to move between these sections on the page.
 
@@ -36,22 +36,37 @@ For efficient navigation, it might be helpful to navigate by landmarks to move b
 
 The navigation is list of links divided into different sections. 
 
-If you haven't yet created or selected a project, you can still explore content under the **Work outside of a project**.
+If you haven't yet created or selected a project, you can still explore models listed on the home page.  This takes you to the **Model catalog**.  
+* When you ask to use a model, you'll be prompted to create a project.
+* Once you select a project: 
+    * You can access more capabilities such as Model catalog, Playgrounds, and AI Services. 
+    * You can also use the **Recent resource picker** button within the navigation breadcrumbs to change to a different project or resource at any time.
 
-Once you select a project, you can access more capabilities such as Model catalog, Playgrounds, and AI Services. Then there are collapsible sections for **Build and customize** (includes Code, Fine-tuning, Prompt-flow), **Assess and improve** (includes Tracing, Evaluation, and Safety + security) and **My assets** (includes Models + endpoints, Data + indexes, and Web apps). 
+### Customize the navigation
 
-Once you select a project, you can also use the **Recent projects picker** button within the navigation to change project at any time.
+The left pane is customizable for each project or resource. 
+
+ * There are collapsible sections for **Build and customize** (includes Code, Fine-tuning, Prompt-flow), **Assess and improve** (includes Tracing, Evaluation, and Safety + security) and **My assets** (includes Models + endpoints, Data + indexes, and Web apps). 
+* At the bottom of the list is a **...More** link that allows you to pin and unpin items onto the navigation.  
+* At the top of the **More** list is a shortcut to **Pin all**.  If all items are already pinned, the option changes to **Unpin all**.
+* The **Management center** is always available at the bottom of the left pane.  It cannot be unpinned.
 
 For more information about the navigation, see [What is Azure AI Foundry](../what-is-azure-ai-foundry.md).
 
 ## Projects 
 
 To work within the Azure AI Foundry portal, you must first [create a project](../how-to/create-projects.md): 
-1. In [Azure AI Foundry](https://ai.azure.com), select **Home** from the navigation.
-1. Press the **Tab** key until you hear *Create project* and select this button. 
+1. In [Azure AI Foundry](https://ai.azure.com), select **Azure AI Foundry** from the top breadcrumbs.
+1. Press the **Tab** key until you hear *Start building* and select this button. This will create a project for use with an agent.
 1. Enter the information requested in the **Create a project** dialog. 
+1. When the project is ready, you'll be prompted to select a model to use for your agent.
+1. Once the model is deployed, you'll be in the agent playground for that project.
 
-You then get taken to the project overview page. 
+If you already have some projects, you can also create a new project without also creating an agent.
+
+1. In [Azure AI Foundry](https://ai.azure.com), select **Azure AI Foundry** from the top breadcrumbs.
+1. Press the **Tab** key until you hear *+ Create new*.  This path creates a project but does not go on to deploy a model as well.
+1. When the project is created, you'll be in the project home page.
 
 ## Using the playground 
 
@@ -68,7 +83,17 @@ In this mode, the playground is composed of the command toolbar and two main sec
 The chat session pane is where you can chat to the model and test out your assistant. 
 - After you send a message, the model might take some time to respond, especially if the response is long. You hear a screen reader announcement "Message received from the chatbot" when the model finishes composing a response. 
 
+## Distinguishing project types
+
+Azure AI Foundry has two different project types - see [What is Azure AI Foundry?](../what-is-azure-ai-foundry.md#project-types).  The type appears in the  **Type** column in the **All resources** view. In the recent resources picker, the type is in a second line under the project name.
+
+- Listen for **(AI Services)** for a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)].  
+- Listen for **(Hub)** for a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
+
+
 ## Using prompt flow 
+
+Prompt flow is available only in a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].  
 
 Prompt flow is a tool to create executable flows, linking LLMs, prompts, and Python tools through a visualized graph. You can use this to prototype, experiment, and iterate on your AI applications before deploying. 
 

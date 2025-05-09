@@ -47,7 +47,7 @@ To obtain the key and endpoint:
 
 5. If your existing account is a free account, you first have to upgrade to a Pay as you go plan. Once you upgrade, go back to the playground and select **Get API key** again, then sign in with your upgraded account.
 
-6. Once you've signed in to your Azure account, you're taken to [Azure AI Studio > GitHub](https://ai.azure.com/GitHub). It might take one or two minutes to load your initial model details in AI Studio.
+6. Once you've signed in to your Azure account, you're taken to [Azure AI Foundry > GitHub](https://ai.azure.com/GitHub). It might take one or two minutes to load your initial model details in AI Foundry.
 
 7. The page is loaded with your model's details. Select the **Deploy** button to deploy the model to your account.
 

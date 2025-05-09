@@ -418,6 +418,38 @@
         "articles/machine-learning/prompt-flow/*.md": "ce-skilling-ai-copilot",
         "articles/machine-learning/v1/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
       },
+      "ms.update-cycle": {
+        "articles/ai-services/openai/**/*.md": "90-days",
+        "articles/ai-services/openai/**/*.yml": "90-days",
+        "articles/ai-services/content-understanding/**/*.md": "90-days",
+        "articles/ai-services/content-understanding/**/*.yml": "90-days",
+        "articles/ai-services/anomaly-detector/**/*.md": "365-days",
+        "articles/ai-services/anomaly-detector/**/*.yml": "365-days",
+        "articles/ai-services/content-moderator/**/*.md": "365-days",
+        "articles/ai-services/content-moderator/**/*.yml": "365-days",
+        "articles/ai-services/custom-vision-service/**/*.md": "365-days",
+        "articles/ai-services/custom-vision-service/**/*.yml": "365-days",
+        "articles/ai-services/metrics-advisor/**/*.md": "365-days",
+        "articles/ai-services/metrics-advisor/**/*.yml": "365-days",
+        "articles/ai-services/personalizer/**/*.md": "365-days",
+        "articles/ai-services/personalizer/**/*.yml": "365-days",
+        "articles/ai-services/luis/**/*.md": "365-days",
+        "articles/ai-services/luis/**/*.yml": "365-days",
+        "articles/ai-services/qnamaker/**/*.md": "365-days",
+        "articles/ai-services/qnamaker/**/*.yml": "365-days",
+        "articles/ai-services/immersive-reader/**/*.md": "365-days",
+        "articles/ai-services/immersive-reader/**/*.yml": "365-days",
+        "articles/ai-studio/**/*.md": "90-days",
+        "articles/ai-studio/**/*.yml": "90-days",
+        "articles/ai-foundry/**/*.md": "90-days",
+        "articles/ai-foundry/**/*.yml": "90-days",
+        "articles/machine-learning/*.md": "365-days",
+        "articles/machine-learning/component-reference/*.md": "365-days",
+        "articles/machine-learning/component-reference/*.yml": "365-days",
+        "articles/machine-learning/component-reference-v2/*.md": "365-days",
+        "articles/machine-learning/component-reference-v2/*.yml": "365-days",
+        "articles/machine-learning/v1/*.md": "365-days"
+      },
       "ms.custom": {
         "articles/machine-learning/v1/*.md": "UpdateFrequency5"
       },
@@ -442,7 +474,7 @@
         "articles/ai-services/Translator/**/*.md": false
       },
       "titleSuffix": {
-        "articles/ai-studio/**/*.md": "Azure AI Studio",
+        "articles/ai-studio/**/*.md": "Azure AI Foundry",
         "articles/ai-services/**/*.md": "Azure AI services",
         "articles/ai-services/LUIS/*.md": "Azure",
         "articles/ai-services/LUIS/*.yml": "Azure",

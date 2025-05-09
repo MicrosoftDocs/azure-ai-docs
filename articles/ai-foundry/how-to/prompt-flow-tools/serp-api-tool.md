@@ -13,6 +13,7 @@ ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
+ms.update-cycle: 180-days
 ---
 
 # Serp API tool for flows in Azure AI Foundry portal
@@ -24,6 +25,8 @@ The prompt flow Serp API tool provides a wrapper to the [Serp API Google Search 
 You can use the tool to retrieve search results from many different search engines, including Google and Bing. You can specify a range of search parameters, such as the search query, location, and device type.
 
 ## Prerequisites
+
+[!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
 
 Sign up on the [Serp API home page](https://serpapi.com/).
 

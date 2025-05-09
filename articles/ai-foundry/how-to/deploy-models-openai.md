@@ -54,6 +54,8 @@ Follow the steps below to deploy an Azure OpenAI model such as `gpt-4o-mini` to 
 
 Alternatively, you can initiate deployment by starting from your project in Azure AI Foundry portal.
 
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
+
 1. Go to your project in Azure AI Foundry portal.
 1. From the left sidebar of your project, go to **My assets** > **Models + endpoints**.
 1. Select **+ Deploy model** > **Deploy base model**.

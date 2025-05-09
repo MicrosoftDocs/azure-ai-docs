@@ -11,6 +11,7 @@ ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
+ms.update-cycle: 180-days
 ---
 
 # Python tool for flows in Azure AI Foundry portal
@@ -110,6 +111,8 @@ If you're developing a Python tool that requires calling external services with 
 ### Create a custom connection
 
 Create a custom connection that stores all your large language model API key or other required credentials.
+
+[!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
 
 1. Go to the **Management center** page for your project. 
 1. Under either the **Hub** or **Project** heading, select **Connected resources**.

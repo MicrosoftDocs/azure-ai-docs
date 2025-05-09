@@ -7,18 +7,18 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: overview
-ms.date: 02/20/2025
+ms.date: 05/01/2025
 ms.author: pafarley
 author: PatrickFarley
 ---
 
 # Content Safety in the Azure AI Foundry portal
 
-Azure AI Content Safety is an AI service that detects harmful user-generated and AI-generated content in applications and services. Azure AI Content Safety includes various APIs that allow you to detect and prevent the output of harmful content. The interactive Content Safety **try out** page in [Azure AI Foundry portal](https://ai.azure.com) allows you to view, explore, and try out sample code for detecting harmful content across different modalities. 
+Azure AI Content Safety is an AI service that detects harmful user-generated and AI-generated content in applications and services. Azure AI Content Safety includes APIs that allow you to detect and prevent the output of harmful content. The interactive Content Safety **try it out** page in [Azure AI Foundry portal](https://ai.azure.com) allows you to view, explore, and try out sample code for detecting harmful content across different modalities. 
 
 ## Features
 
-You can use Azure AI Content Safety for many scenarios: 
+You can use Azure AI Content Safety for the following scenarios: 
 
 **Text content**: 
 - Moderate text content: This feature scans and moderates text content, identifying and categorizing it based on different levels of severity to ensure appropriate responses. 

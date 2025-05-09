@@ -113,11 +113,11 @@ Azure AI Agent Service offers a standard agent configuration with private networ
 
 | Template | Description   | Autodeploy |
 | ------------------- | -----------------------------------------------| -----------------------|
-| `network-secured-agent.bicep`  | Deploy a network secured agent setup that uses user-managed identity authentication on the Agent connections. | [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fazureai-samples%2Fmain%2Fscenarios%2FAgents%2Fsetup%2Fnetwork-secured-agent%2Fazuredeploy.json)
+| `network-secured-agent.bicep`  | Deploy a network secured agent setup that uses user-managed identity authentication on the Agent connections. | [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fazureai-samples%2Fmain%2Fscenarios%2FAgents%2Fsetup%2Fnetwork-secured-agent-thread-storage%2Fazuredeploy.json)
 
 ### Option 2: manually deploy the bicep template
 
-1. To manually run the bicep templates, [download the template from GitHub](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/Agents/setup/network-secured-agent). Download the following from the `network-secured-agent` folder:
+1. To manually run the bicep templates, [download the template from GitHub](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/Agents/setup/network-secured-agent-thread-storage). Download the following from the `network-secured-agent` folder:
     1. `main.bicep`
     1. `azuredeploy.parameters.json`
     1. `modules-network-secured folder`
@@ -143,7 +143,7 @@ Azure AI Agent Service offers a standard agent configuration with private networ
         az deployment group create --resource-group {my_resource_group} --template-file main.bicep
         ```
 
-    1. To specify custom names for the hub, project, storage account, and/or Azure AI service resources run the following command. A randomly generated suffix is added to prevent accidental duplication.
+    1. To specify custom names for the hub, project, storage account, or other Azure AI Foundry resources, run the following command. A randomly generated suffix is added to prevent accidental duplication.
 
         ```console
         az deployment group create --resource-group {my_resource_group} --template-file main.bicep --parameters aiHubName='your-hub-name' aiProjectName='your-project-name' storageName='your-storage-name' aiServicesName='your-ai-services-name' 
