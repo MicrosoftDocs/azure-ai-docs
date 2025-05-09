@@ -129,7 +129,7 @@ For protected material and indirect attack, the defect rate is calculated by tak
 :::image type="content" source="../media/evaluations/evaluate/metric-data-mapping.png" alt-text="Screenshot of the dataset mapping to your evaluation input." lightbox="../media/evaluations/evaluate/metric-data-mapping.png":::
 
 > [!NOTE]
-> If you are evaluating from data, "response" should map to the response column in your dataset `${data$response}`. If you are evaluating from flow, "response" should come from flow output `${run.outputs.response}`.
+> If you're evaluating from data, "response" should map to the response column in your dataset `${data$response}`. If you're evaluating from flow, "response" should come from flow output `${run.outputs.response}`.
 
 For guidance on the specific data mapping requirements for each metric, refer to the information provided in the table:
 
@@ -173,28 +173,28 @@ To create a new evaluation for your selected model deployment and defined prompt
 
 To start, you can set up the name for your evaluation run. Then select the **model deployment** you want to evaluate. We support both Azure OpenAI models and other open models compatible with Model-as-a-Service (MaaS), such as Meta Llama and Phi-3 family models. Optionally, you can adjust the model parameters like max response, temperature, and top P based on your need.  
 
-In the System message text box, provide the prompt for your scenario. For more information on how to craft your prompt, see the prompt catalog. You can choose to add example to show the chat what responses you want. It will try to mimic any responses you add here to make sure they match the rules you laid out in the system message.
+In the System message text box, provide the prompt for your scenario. For more information on how to craft your prompt, see the prompt catalog. You can choose to add example to show the chat what responses you want. It tries to mimic any responses you add here to make sure they match the rules you laid out in the system message.
 
 :::image type="content" source="../media/evaluations/evaluate/basic-information-model.png" alt-text="Screenshot of basic information." lightbox="../media/evaluations/evaluate/basic-information-model.png":::
 
 #### Configure test data
 
-After configuring the model and prompt, set up the test dataset that will be used for evaluation. This dataset will be sent to the model to generate responses for assessment. You have three options for configuring your test data:
+After configuring the model and prompt, set up the test dataset that will be used for evaluation. This dataset is sent to the model to generate responses for assessment. You have three options for configuring your test data:
 
 - Generate sample data
 - Use existing dataset
 - Add your dataset
 
-If you don't have a dataset readily available and would like to run an evaluation with a small sample, you can select the option to use a GPT model to generate sample questions based on your chosen topic. The topic helps tailor the generated content to your area of interest. The queries and responses will be generated in real time, and you have the option to regenerate them as needed.
+If you don't have a dataset readily available and would like to run an evaluation with a small sample, you can select the option to use a GPT model to generate sample questions based on your chosen topic. The topic helps tailor the generated content to your area of interest. The queries and responses are generated in real time, and you have the option to regenerate them as needed.
 
 > [!NOTE]
-> The generated dataset will be saved to the project’s blob storage once the evaluation run is created.
+> The generated dataset is saved to the project’s blob storage once the evaluation run is created.
 
 :::image type="content" source="../media/evaluations/evaluate/generate-sample-data.png" alt-text="Screenshot of configure test data." lightbox="../media/evaluations/evaluate/generate-sample-data.png":::
 
 ##### Data mapping
 
-If you choose to use an existing dataset or upload a new dataset, you'll need to map your dataset’s columns to the required fields for evaluation. During evaluation, the model’s response will be assessed against key inputs such as:
+If you choose to use an existing dataset or upload a new dataset, you need to map your dataset’s columns to the required fields for evaluation. During evaluation, the model’s response is assessed against key inputs such as:
 
 - Query: required for all metrics
 - Context: optional
@@ -229,9 +229,6 @@ From the flow page: From the collapsible left menu, select **Prompt flow** > **E
 ## View and manage the evaluators in the evaluator library
 
 The evaluator library is a centralized place that allows you to see the details and status of your evaluators. You can view and manage Microsoft curated evaluators.
-
-> [!TIP]
-> You can use custom evaluators via the prompt flow SDK. For more information, see [Evaluate with the prompt flow SDK](../how-to/develop/evaluate-sdk.md#custom-evaluators).
  
 The evaluator library also enables version management. You can compare different versions of your work, restore previous versions if needed, and collaborate with others more easily. 
 
@@ -241,7 +238,7 @@ To use the evaluator library in Azure AI Foundry portal, go to your project's **
 
 You can select the evaluator name to see more details. You can see the name, description, and parameters, and check any files associated with the evaluator. Here are some examples of Microsoft curated evaluators:
 
-- For performance and quality evaluators curated by Microsoft, you can view the annotation prompt on the details page. You can adapt these prompts to your own use case by changing the parameters or criteria according to your data and objectives [Azure AI Evaluation SDK](../how-to/develop/evaluate-sdk.md#custom-evaluators). For example, you can select *Groundedness-Evaluator* and check the Prompty file showing how we calculate the metric.
+- For performance and quality evaluators curated by Microsoft, you can view the annotation prompt on the details page. You can adapt these prompts to your own use case by changing the parameters or criteria according to your data and objectives in the Azure AI Evaluation SDK. For example, you can select *Groundedness-Evaluator* and check the Prompty file showing how we calculate the metric.
 - For risk and safety evaluators curated by Microsoft, you can see the definition of the metrics. For example, you can select the *Self-Harm-Related-Content-Evaluator* and learn what it means and how Microsoft determines the various severity levels for this safety metric.
 
 ## Next steps
