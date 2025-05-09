@@ -610,13 +610,13 @@ items:
     href: how-to/disaster-recovery.md
   - name: Security baseline
     href: /security/benchmark/azure/baselines/azure-ai-studio-security-baseline
-- name: Responsible AI
+- name: Trustworthy AI
   items:
-  - name: Responsible AI overview
+  - name: Trustworthy AI overview
     href: responsible-use-of-ai-overview.md
   - name: Azure AI Content Safety in AI Foundry portal overview
     href: ai-services/content-safety-overview.md
-  - name: Content safety for models deployed with serverless APIs
+  - name: Guardrails + Controls for models deployed with serverless APIs
     href: concepts/model-catalog-content-safety.md
   - name: Content filtering
     href: concepts/content-filtering.md
