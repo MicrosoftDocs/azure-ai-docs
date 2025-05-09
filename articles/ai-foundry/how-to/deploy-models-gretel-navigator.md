@@ -233,7 +233,7 @@ result = client.complete(
 ```
 
 
-### Apply Guidelines and controls
+### Apply Guardrails and controls
 
 The Azure AI model inference API supports [Azure AI Content Safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI Content Safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
@@ -477,7 +477,7 @@ The following example request shows other parameters that you can specify in the
 }
 ```
 
-### Apply Guidelines & controls
+### Apply Guardrails & controls
 
 The Azure AI model inference API supports [Azure AI Content Safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI Content Safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering (preview) system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 

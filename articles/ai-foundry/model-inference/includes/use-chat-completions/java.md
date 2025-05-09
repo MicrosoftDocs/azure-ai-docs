@@ -155,7 +155,7 @@ Now, it's time to call the appropriate function to handle the tool call. The fol
 
 View the response from the model:
 
-### Apply Guidelines and controls
+### Apply Guardrails and controls
 
 The Azure AI model inference API supports [Azure AI Content Safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI Content Safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 

@@ -1,7 +1,7 @@
 ---
-title: Default Guidelines & controls policies for Azure AI Foundry Models
+title: Default Guardrails & controls policies for Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn about the default Guidelines & controls policies that Azure AI Foundry Models uses to flag content.
+description: Learn about the default Guardrails & controls policies that Azure AI Foundry Models uses to flag content.
 author: PatrickFarley
 ms.author: fasantia
 ms.service: azure-ai-model-inference
@@ -10,7 +10,7 @@ ms.date: 1/21/2025
 manager: nitinme
 ---
 
-# Default Guidelines & controls policies for Azure AI Foundry Models
+# Default Guardrails & controls policies for Azure AI Foundry Models
 
 Azure AI Foundry Models includes default safety applied to all models, excluding Azure OpenAI Whisper. These configurations provide you with a responsible experience by default.
 

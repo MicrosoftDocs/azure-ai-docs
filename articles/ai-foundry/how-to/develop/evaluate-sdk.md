@@ -508,7 +508,7 @@ Output:
 
 ```
 
-The result of the Guidelines & controls evaluators for a query and response pair is a dictionary containing:
+The result of the Guardrails & controls evaluators for a query and response pair is a dictionary containing:
 
 - `{metric_name}` provides a severity label for that content risk ranging from Very low, Low, Medium, and High. To learn more about the descriptions of each content risk and severity scale, see [Evaluation and monitoring metrics for generative AI](../../concepts/evaluation-metrics-built-in.md).
 - `{metric_name}_score` has a range between 0 and 7 severity level that maps to a severity label given in `{metric_name}`.

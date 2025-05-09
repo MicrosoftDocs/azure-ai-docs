@@ -13,4 +13,4 @@ ms.custom: include file
 ---
 
 > [!NOTE]
-> Azure AI Content Safety is currently available for models deployed as standard deployment, but not to models deployed via managed compute. To learn more about Azure AI Content Safety for models deployed as standard deployment, see [Guidelines & controls for models curated by Azure AI in the model catalog](../concepts/model-catalog-content-safety.md).
+> Azure AI Content Safety is currently available for models deployed as standard deployment, but not to models deployed via managed compute. To learn more about Azure AI Content Safety for models deployed as standard deployment, see [Guardrails & controls for models curated by Azure AI in the model catalog](../concepts/model-catalog-content-safety.md).

@@ -86,7 +86,7 @@ Available to US government entities and their partners only. See more informatio
   - Templates (preview)
   - Prompt flow
   - Tracing (preview)
-  - Safety + security
+  - Guardrails & controls
     - Content filters
     - Profanity blocklist (preview)
   - Management center
