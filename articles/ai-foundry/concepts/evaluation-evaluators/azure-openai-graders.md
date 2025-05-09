@@ -209,7 +209,7 @@ The grader also returns a metric indicating the overall dataset pass rate.
 
 ## General grader
 
-Advanced users have the capability to import or define a custom grader and integrate it into the Azure OpenAI general grader. This allows for evaluations to be performed based on specific areas of interest aside from the existing Azure OpenAI graders. Following is an example to import the OpenAI `EvalStringCheckGrader` and construct it to be ran as an Azure OpenAI general grader on Foundry SDK.
+Advanced users have the capability to import or define a custom grader and integrate it into the AOAI general grader. This allows for evaluations to be performed based on specific areas of interest aside from the existing AOAI graders. Following is an example to import the OpenAI `StringCheckGrader` and construct it to be ran as a AOAI general grader on Foundry SDK.
 
 ### Example
 
