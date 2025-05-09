@@ -122,14 +122,14 @@ This article uses a Meta Llama model deployment for illustration. However, you c
     :::image type="content" source="../media/deploy-monitor/serverless/model-card.png" alt-text="A screenshot showing a model's details page." lightbox="../media/deploy-monitor/serverless/model-card.png":::
 
 
-The next section covers the steps for subscribing your project to a model offering. You can skip this section and go to [Deploy the model to a standard deployment](#deploy-the-model-to-a-serverless-api-endpoint), if you're deploying a Microsoft model.
+The next section covers the steps for subscribing your project to a model offering. You can skip this section and go to [Deploy the model to a standard deployment](#deploy-the-model-to-a-standard-deployment), if you're deploying a Microsoft model.
 
 ## Subscribe your project to the model offering
 
-Standard deployments can deploy both Microsoft and non-Microsoft offered models. For Microsoft models (such as Phi-3 models), you don't need to create an Azure Marketplace subscription and you can [deploy them to standard deployment directly](#deploy-the-model-to-a-serverless-api-endpoint) to consume their predictions. For non-Microsoft models, you need to create the subscription first. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from the Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending.
+Standard deployments can deploy both Microsoft and non-Microsoft offered models. For Microsoft models (such as Phi-3 models), you don't need to create an Azure Marketplace subscription and you can [deploy them to standard deployment directly](#deploy-the-model-to-a-standard-deployment) to consume their predictions. For non-Microsoft models, you need to create the subscription first. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from the Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending.
 
 > [!TIP]
-> Skip this step if you are deploying models from the Phi-3 family of models. Directly [deploy the model to a standard deployment](#deploy-the-model-to-a-serverless-api-endpoint).
+> Skip this step if you are deploying models from the Phi-3 family of models. Directly [deploy the model to a standard deployment](#deploy-the-model-to-a-standard-deployment).
 
 > [!NOTE]
 > Models offered through the Azure Marketplace are available for deployment to standard deployment in specific regions. Check [Model and region availability for standard deployment](deploy-models-serverless-availability.md) to verify which models and regions are available. If the one you need is not listed, you can deploy to a workspace in a supported region and then [consume standard deployment from a different workspace](deploy-models-serverless-connect.md).
@@ -148,7 +148,7 @@ Standard deployments can deploy both Microsoft and non-Microsoft offered models.
 
         :::image type="content" source="../media/deploy-monitor/serverless/deploy-pay-as-you-go.png" alt-text="A screenshot showing how to deploy a model with the standard deployment option." lightbox="../media/deploy-monitor/serverless/deploy-pay-as-you-go.png"::: 
 
-    1. If you see the note *You already have an Azure Marketplace subscription for this project*, you don't need to create the subscription since you already have one. You can proceed to [Deploy the model to a standard deployment](#deploy-the-model-to-a-serverless-api-endpoint).
+    1. If you see the note *You already have an Azure Marketplace subscription for this project*, you don't need to create the subscription since you already have one. You can proceed to [Deploy the model to a standard deployment](#deploy-the-model-to-a-standard-deployment).
 
     1. In the deployment wizard, select the link to **Azure Marketplace Terms** to learn more about the terms of use. You can also select the **Pricing and terms** tab to learn about pricing for the selected model.
 
