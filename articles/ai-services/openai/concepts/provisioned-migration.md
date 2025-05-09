@@ -234,31 +234,7 @@ An alternative approach to self-service migration is to switch the reservation p
 * There will be a short period of double-billing or hourly charges during the switchover from committed to hourly/reservation billing.
 
 > [!IMPORTANT]
-> Self-service approach generates additional charges as the payment mode is switched from Committed to Hourly/Reservation. This is the characteristics of this migration approaches and customers aren't credited for these charges. Alternately, Customers can choose to use the managed migration approach described below to avoid additional charges.
-
-### Managed migration
-
-The managed migration approach involves the customer partnering with Microsoft to bulk-migrate all the PTU commitments in a subscription/region at the same time. It works like this:
-
-1. The customer will engage their account team and request a managed migration. A migration owner from the Microsoft team will be assigned to assist the customer with migration.
-2. A date will be selected when all resources within each of the customers' subscriptions and regions containing current PTU commitments will be migrated from committed to hourly/reservation billing model. Multiple subscriptions and regions can be migrated on the same date.
-3. On the agreed-upon date:
-    * The customer will purchase regional reservations to cover the committed PTUs that will be converted and pass the reservation information to their Microsoft migration contact.
-    * Within 2-3 business days, all commitments will be proactively canceled and deployments previously under commitments will begin using the hourly/reservation payment model.
-    * In the billing period after the one with the reservation purchase, the customer will receive a credit for the reservation purchase covering the portions of the commitments that were canceled, starting from the time of the reservation purchase.
-
-Customers must reach out to their account teams to schedule a managed migration.
-
-**Managed migration advantages:**
-
-- Bulk migration of all commitments in a subscription/region is beneficial for customers with many commitments.
-- Seamless cost migration: No possibility of double-billing or extra hourly charges.
-
-**Managed migration disadvantages:**
-
-- All commitments in a subscription/region must be migrated at the same time.
-- Needing to coordinate a time for migration with the Microsoft team.
-
+> Self-service approach generates additional charges as the payment mode is switched from Committed to Hourly/Reservation. This is the characteristics of this migration approaches and customers aren't credited for these charges.
 
 ## Migrating existing deployments to global or data zone provisioned
 Existing customers of provisioned deployments can choose to migrate to global or data zone provisioned deployments to benefit from the lower deployment minimums, granular scale increments, or differentiated pricing available for these deployment types. To learn more about how global and data zone provisioned deployments handle data processing across Azure geographies, see the Azure OpenAI deployment [data processing documentation](https://aka.ms/aoai/docs/data-processing-locations).
