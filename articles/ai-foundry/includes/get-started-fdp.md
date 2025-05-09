@@ -144,16 +144,16 @@ To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)]:
 
 # [Java](#tab/java)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/ChatCompletionSample.java" :::
+:::code language="java" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/ChatCompletionSample.java" :::
 
 # [JavaScript](#tab/javascript)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="chat_completion":::
+:::code language="javascript" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="chat_completion":::
 
 
 # [C#](#tab/csharp)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/SimpleInference.cs" id="chat_completion":::
+:::code language="csharp" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/SimpleInference.cs" id="chat_completion":::
 
 ---
 
@@ -175,15 +175,15 @@ To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)]:
 
 # [Java](#tab/java)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" :::
+:::code language="java" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" :::
 
 # [JavaScript](#tab/javascript)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="create_and_run_agent" :::
+:::code language="javascript" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="create_and_run_agent" :::
 
 # [C#](#tab/csharp)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentService.cs" id="create_and_run_agent" :::
+:::code language="csharp" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentService.cs" id="create_and_run_agent" :::
 
 ---
 
@@ -212,16 +212,16 @@ Enable your agent to search and retrieve information from a provided file.
 
 # [Java](#tab/java)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/FileSearchAgentSample.java" :::
+:::code language="java" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/FileSearchAgentSample.java" :::
 
 
 # [JavaScript](#tab/javascript)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="create_filesearch_agent":::
+:::code language="javascript" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="create_filesearch_agent":::
 
 # [C#](#tab/csharp)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentFileSearch.cs" id="create_filesearch_agent":::
+:::code language="csharp" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentFileSearch.cs" id="create_filesearch_agent":::
 
 ---
 
