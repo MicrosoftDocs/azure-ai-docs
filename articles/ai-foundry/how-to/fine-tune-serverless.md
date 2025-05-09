@@ -584,9 +584,9 @@ Several enterprise scenarios are supported for MaaS fine-tuning. The table below
 >- Storage auth can be changed in Azure Storage > **Settings** > **Configurations** page > **Allow storage account key access**.  
 >- Storage networking can be changed in Azure Storage > **Networking** page.
 
-| **Storage Networking**                                       |  **Storage Auth**               | **Data Connection Auth**         | **Support**             |
+| **Storage Networking**     |  **Storage Auth**   | **Data Connection Auth**         | **Support**             |
 | ------------------------------------------------------------ | ------------------------------ | --------------------------------- | ----------------------- |
-| Public Network Access = Enabled                               | Account key enabled            | SAS/Account Key                  | Yes, UX and SDK         |
+| Public Network Access = Enabled   | Account key enabled  | SAS/Account Key   | Yes, UX and SDK         |
 | Public Network Access = Enabled                               | Account key disabled           | Entra-Based Auth (Credentialless) | Yes, UX and SDK <br><br> *Note:* for UX, you may need to add Storage Blob Data Reader or Storage Blob Data Contributor for your user ID on the storage account, or change the connection's authentication to use Account key/SAS token |                               |                                   |                         |
 | Enabled from selected virtual networks and IP addresses      | Account key enabled            | Account key                      | Yes, UX and SDK <br><br> *Note:* for UX, the IP of the compute running the browser must be in the selected list        |
 | Enabled from selected virtual networks and IP addresses      | Account key enabled            | SAS                               | Yes, UX and SDK  <br><br> *Note:* for UX, the IP of the compute running the browser must be in the selected list       |
