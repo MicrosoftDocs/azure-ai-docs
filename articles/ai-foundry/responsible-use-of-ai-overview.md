@@ -23,9 +23,10 @@ Once we identify these risks, we evaluate their prevalence within the AI system 
 Finally, we examine strategies for managing risks in production, including deployment and operational readiness and setting up monitoring to support ongoing governance to ensure compliance and surface new risks after the application is live.
 
 In alignment with Microsoft's RAI practices, these recommendations are organized into three stages:
-•	Discover agent quality, safety, and security risks before and after deployment.
-•	Protect – at both the model output and agent runtime levels – against security risks, undesirable outputs, and unsafe actions.
-•	Govern agents through tracing and monitoring tools and compliance integrations.
+
+* Discover agent quality, safety, and security risks before and after deployment.
+* Protect – at both the model output and agent runtime levels – against security risks, undesirable outputs, and unsafe actions.
+* Govern agents through tracing and monitoring tools and compliance integrations.
 
 ## Security alerts and recommendations
 
