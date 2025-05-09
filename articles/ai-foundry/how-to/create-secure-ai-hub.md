@@ -1,4 +1,5 @@
 ---
+
 title: Create a secure hub
 titleSuffix: Azure AI Foundry
 description: Create an Azure AI Foundry hub inside a managed virtual network. The managed virtual network secures access to managed resources such as computes.
@@ -6,11 +7,12 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 04/29/2025
+ms.date: 05/09/2025
 ms.reviewer: meerakurup 
 ms.author: larryfr
 author: Blackmist
 # Customer intent: As an administrator, I want to create a secure hub and project with a managed virtual network so that I can secure access to the Azure AI Foundry hub and project resources.
+
 ---
 
 # How to create a secure Azure AI Foundry hub and project with a managed virtual network
@@ -30,41 +32,36 @@ You can secure your [Azure AI Foundry](https://ai.azure.com) hub, projects, and 
 
 ## Create a hub
 
-1. From the Azure portal, search for `Azure AI Foundry` and create a new resource by selecting **+ New Azure AI**.
-1. Enter your hub name, subscription, resource group, and location details. You can also select an existing Azure AI services resource or create a new one.
+1. From the Azure portal, search for `Azure AI Foundry`. From the left menu, select **AI Hubs**, and then select **+ Create** and **Hub**.
 
+    :::image type="content" source="../media/how-to/hubs/create-hub.png" alt-text="Screenshot of the Azure AI Foundry portal." lightbox="../media/how-to/hubs/create-hub.png":::
+
+1. Enter your hub name, subscription, resource group, and location details. For **Azure AI services base models**, select an existing AI services resource or create a new one. Azure AI services include multiple API endpoints for Speech, Content Safety, and Azure OpenAI. 
+    
     :::image type="content" source="../media/how-to/network/ai-hub-basics.png" alt-text="Screenshot of the option to set hub basic information." lightbox="../media/how-to/network/ai-hub-basics.png":::
 
-1. Select **Next: Storage**. Select an existing **Storage account** and **Key vault** resource or create new ones. Optionally, choose an existing **Application insights**, and **Container Registry** for logs and docker images.
+1. Select the **Storage** tab. Select an existing **Storage account** and **Credential store** resource or create new ones. Optionally, choose an existing **Application insights**, and **Container Registry** for logs and docker images.
 
-    :::image type="content" source="../media/how-to/network/ai-hub-resources.png" alt-text="Screenshot of the Create a hub with the option to set resource information." lightbox="../media/how-to/network/ai-hub-resources.png"::: 
+    :::image type="content" source="../media/how-to/network/ai-hub-storage.png" alt-text="Screenshot of the Create a hub with the option to set storage resource information." lightbox="../media/how-to/network/ai-hub-storage.png"::: 
 
-1. Select **Next: Networking** to configure the managed virtual network that Azure AI Foundry uses to secure its hub and projects.
+1. Select the **Inbound access** tab to configure network isolation for inbound traffic to the hub. Set **Public network access** to **Disabled**, and then use **+ Add** to add a private endpoint for the hub to an Azure Virtual Network that your clients connect to. The private endpoint allows your clients to connect to the hub over a private connection. For more information, see [Private endpoints](https://learn.microsoft.com/azure/private-link/private-endpoint-overview).
+ 
+    :::image type="content" source="../media/how-to/network/inbound-access.png" alt-text="Screenshot of the inbound access tab with public network access disabled." lightbox="../media/how-to/network/inbound-access.png":::
+
+1. Select the **Outbound access** to configure the managed virtual network that Azure AI Foundry uses to secure its hub and projects. Select **Private with Internet Outbound**, which allows compute resources to access the public internet for resources such as Python packages.
     
-    1. Select **Private with Internet Outbound**, which allows compute resources to access the public internet for resources such as Python packages.
-    
-        > [!TIP]
-        > To provision the virtual network during hub creation, select **Provision managed virtual network**. If this option isn't selected, the network isn't provisioned until you create a compute resource. For more information, see [Managed virtual network](configure-managed-network.md#manually-provision-a-managed-vnet).
+    > [!TIP]
+    > To provision the virtual network during hub creation, select **Provision managed virtual network**. If this option isn't selected, the network isn't provisioned until you create a compute resource. For more information, see [Managed virtual network](configure-managed-network.md#manually-provision-a-managed-vnet).
 
-        :::image type="content" source="../media/how-to/network/ai-hub-networking.png" alt-text="Screenshot of the Create a hub with the option to set network isolation information." lightbox="../media/how-to/network/ai-hub-networking.png":::
-
-    1. To allow your clients to connect through your Azure Virtual Network to the hub, use the following steps to add a private endpoint.
-    
-        1. Select **+ Add** from the **Workspace inbound access** section of the **Networking** tab. The **Create private endpoint** form is displayed.
-        
-            :::image type="content" source="../media/how-to/network/workspace-inbound-access.png" alt-text="Screenshot of the workspace inbound access section." lightbox="../media/how-to/network/workspace-inbound-access.png":::
-
-        1. Enter a unique value in the **Name** field. Select the **Virtual network** (Azure Virtual Network) that your clients connect to. Select the **Subnet** that the private endpoint connects to.
-        
-            :::image type="content" source="../media/how-to/network/ai-hub-create-private-endpoint.png" alt-text="Screenshot of the create private endpoint form." lightbox="../media/how-to/network/ai-hub-create-private-endpoint.png":::
-
-        1. Select **Ok** to save the endpoint configuration.
+    :::image type="content" source="../media/how-to/network/outbound-access.png" alt-text="Screenshot of the Create a hub with the option to set network isolation information." lightbox="../media/how-to/network/outbound-access.png":::
 
 1. Select **Review + create**, then **Create** to create the hub. Once the hub is created, any projects or compute instances created from the hub inherit the network configuration.
 
 ## Connect to the hub
 
-The managed virtual network doesn't directly provide access to your clients. Instead, your clients connect to an Azure Virtual Network that *you* manage. There are multiple methods that you might use to connect clients to the Azure Virtual Network. The following table lists the common ways that clients connect to an Azure Virtual Network:
+The managed virtual network doesn't directly provide access to your clients. Instead, your clients connect to an Azure Virtual Network that *you* manage. They can then access the hub using the private endpoint you created in these steps.
+
+There are multiple methods that you might use to connect clients to the Azure Virtual Network. The following table lists the common ways that clients connect to an Azure Virtual Network:
 
 | Method | Description |
 | ----- | ----- |
