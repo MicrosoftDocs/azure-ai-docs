@@ -19,23 +19,23 @@ ms.custom: include file
 
     | Category | Evaluator class/Metrics | AI Agent evaluations | GenAI evaluations |
     |--|--|--|--|
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `GroundednessEvaluator` | Not Supported | Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `GroundednessProEvaluator` | Not Supported | Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `RetrievalEvaluator` | Not Supported | Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `RelevanceEvaluator` | Supported | Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `CoherenceEvaluator` | Supported | Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `FluencyEvaluator` | Supported | Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `SimilarityEvaluator` | Not Supported | Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `IntentResolutionEvaluator` | Supported | Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `TaskAdherenceEvaluator` | Supported | Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `ToolCallAccuracyEvaluator` | Not Supported | Not Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `ResponseCompletenessEvaluator` | Not Supported | Supported |
-    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `DocumentRetrievalEvaluator` | Not Supported | Not Supported |
-    | [Performance and quality (NLP)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `F1ScoreEvaluator` | Not Supported | Supported |
-    | [Performance and quality (NLP)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `RougeScoreEvaluator` | Not Supported | Not Supported |
-    | [Performance and quality (NLP)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `GleuScoreEvaluator` | Not Supported | Supported |
-    | [Performance and quality (NLP)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `BleuScoreEvaluator ` | Not Supported | Supported |
-    | [Performance and quality (NLP)](../how-to/develop/evaluate-sdk.md#performance-and-quality-evaluators) | `MeteorScoreEvaluator` | Not Supported | Supported |
+    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `GroundednessEvaluator` | Not Supported | Supported |
+    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `GroundednessProEvaluator` | Not Supported | Supported |
+    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `RetrievalEvaluator` | Not Supported | Supported |
+    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `RelevanceEvaluator` | Supported | Supported |
+    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `CoherenceEvaluator` | Supported | Supported |
+    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `FluencyEvaluator` | Supported | Supported |
+    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `SimilarityEvaluator` | Not Supported | Supported |
+    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `IntentResolutionEvaluator` | Supported | Supported |
+    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `TaskAdherenceEvaluator` | Supported | Supported |
+    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `ToolCallAccuracyEvaluator` | Not Supported | Not Supported |
+    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `ResponseCompletenessEvaluator` | Not Supported | Supported |
+    | [Performance and quality (AI-assisted)](../how-to/develop/evaluate-sdk.md) | `DocumentRetrievalEvaluator` | Not Supported | Not Supported |
+    | [Performance and quality (NLP)](../how-to/develop/evaluate-sdk.md) | `F1ScoreEvaluator` | Not Supported | Supported |
+    | [Performance and quality (NLP)](../how-to/develop/evaluate-sdk.md) | `RougeScoreEvaluator` | Not Supported | Not Supported |
+    | [Performance and quality (NLP)](../how-to/develop/evaluate-sdk.md) | `GleuScoreEvaluator` | Not Supported | Supported |
+    | [Performance and quality (NLP)](../how-to/develop/evaluate-sdk.md) | `BleuScoreEvaluator ` | Not Supported | Supported |
+    | [Performance and quality (NLP)](../how-to/develop/evaluate-sdk.md) | `MeteorScoreEvaluator` | Not Supported | Supported |
     | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.md#risk-and-safety-evaluators-preview) | `ViolenceEvaluator` | Supported | Supported |
     | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.md#risk-and-safety-evaluators-preview) | `SexualEvaluator` | Supported | Supported |
     | [Risk and safety (AI-assisted)](../how-to/develop/evaluate-sdk.md#risk-and-safety-evaluators-preview) | `SelfHarmEvaluator` | Supported | Supported |

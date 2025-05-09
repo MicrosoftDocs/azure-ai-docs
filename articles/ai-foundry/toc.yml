@@ -8,8 +8,8 @@ items:
       href: quickstarts/get-started-code.md  
     - name: Azure AI Foundry SDK overview
       href: how-to/develop/sdk-overview.md
-    - name: Ask @Foundry for help
-      href: at-foundry/ask-at-foundry.md
+    - name: Ask the Foundry agent
+      href: foundry-agent/ask-foundry-agent.md
 - name: Azure AI Foundry Models
   items:
   - name: Explore Azure AI Foundry Models
