@@ -112,6 +112,14 @@ items:
           href: ./how-to/assistants-logic-apps.md
       - name: File search
         href: ./how-to/file-search.md
+  - name: Audio
+    items:
+      - name: Realtime API for speech and audio (preview)
+        href: ./how-to/realtime-audio.md
+      - name: Realtime API via WebRTC (preview)
+        href: ./how-to/realtime-audio-webrtc.md
+      - name: Realtime API via WebSockets (preview)
+        href: ./how-to/realtime-audio-websockets.md
   - name: Batch
     href: ./how-to/batch.md
   - name: Responses & chat completions
@@ -191,7 +199,7 @@ items:
         displayName: finetuning, fine-tuning  
       - name: Troubleshooting guidance
         href: ./how-to/fine-tuning-troubleshoot.md
-        displayName: finetuning, fine-tuning  
+        displayName: finetuning, fine-tuning
   - name: Stored completions
     href: ./how-to/stored-completions.md
   - name: Use your data
@@ -207,8 +215,6 @@ items:
         href: ./how-to/azure-developer-cli.md
       - name: Troubleshooting and best practices
         href: ./how-to/on-your-data-best-practices.md
-  - name: Use the Realtime API (preview)
-    href: ./how-to/realtime-audio.md
   - name: Migrate to OpenAI Python v1.x
     href: ./how-to/migration.md
   - name: Migrate to OpenAI JavaScript v4.x
@@ -256,6 +262,8 @@ items:
           href: ./how-to/spillover-traffic-management.md
         - name: Azure OpenAI PTU updates
           href: ./concepts/provisioned-migration.md
+        - name: Azure OpenAI PTU in Azure Government
+          href: ./concepts/gov-provisioned.md
       - name: Plan and manage costs
         href: ./how-to/manage-costs.md
       - name: Performance & latency

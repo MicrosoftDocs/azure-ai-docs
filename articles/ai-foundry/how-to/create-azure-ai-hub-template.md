@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: devx-track-arm-template, devx-track-bicep, build-2024
 ms.topic: how-to
-ms.date: 03/20/2025
+ms.date: 04/29/2025
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist
@@ -14,6 +14,9 @@ author: Blackmist
 ---
 
 # Use an Azure Resource Manager template to create an Azure AI Foundry hub
+
+> [!NOTE]
+> The template used in this article is specific to a **[!INCLUDE [hub](../includes/hub-project-name.md)]**, and doesn't apply for a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. For a template that creates a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**, see [Create an Azure AI Foundry project using a Bicep template](create-azure-ai-project-template.md).
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 

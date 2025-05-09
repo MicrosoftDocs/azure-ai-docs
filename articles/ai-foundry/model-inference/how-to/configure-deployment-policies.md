@@ -5,7 +5,7 @@ description: "Learn how to use custom Azure Policies to control Azure AI service
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to #Don't change
-ms.date: 02/11/2025
+ms.date: 05/05/2025
 author: Blackmist
 ms.author: larryfr
 reviewer: santiagxf
@@ -16,6 +16,9 @@ ms.reviewer: fasantia
 # Control model deployment with custom policies
 
 When using models from Azure AI Services and Azure OpenAI with [Azure AI Foundry](https://ai.azure.com), you might need to use custom policies to control which [type of deployment](../concepts/deployment-types.md) options are available to users or which specific models users can deploy. This article guides you on how to create policies to control model deployments using Azure Policies. 
+
+> [!TIP]
+> The steps in this article apply to both a [!INCLUDE [fdp](../../includes/fdp-project-name.md)] and [!INCLUDE [hub](../../includes/hub-project-name.md)].
 
 ## Prerequisites
 

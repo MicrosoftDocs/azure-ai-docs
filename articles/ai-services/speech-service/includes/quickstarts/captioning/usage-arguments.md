@@ -8,8 +8,8 @@ ms.author: eur
 
 Connection options include:
 
-- `--key`: Your Speech resource key. 
-- `--region REGION`: Your Speech resource region. Examples: `westus`, `northeurope`
+- `--key`: Your AI Foundry resource key. 
+- `--region REGION`: Your AI Foundry resource region. Examples: `westus`, `northeurope`
 
 Input options include:
 
