@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: build-2024, devx-track-azurecli, devx-track-python, ignite-2024
 ms.topic: how-to
-ms.date: 04/26/2025
+ms.date: 05/08/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
