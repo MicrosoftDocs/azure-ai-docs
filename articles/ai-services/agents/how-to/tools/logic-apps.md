@@ -20,7 +20,7 @@ This article demonstrates how to integrate Logic Apps with Azure AI Agents to ex
 
 ## Prerequisites
 
-1. Create a Logic App within the same resource group as your Azure AI Project in the Azure Portal.
+1. Create a Logic App within the same resource group as your Azure AI Project in the Azure portal.
 2. Configure your Logic App to send emails by including an HTTP request trigger that accepts JSON with `to`, `subject`, and `body`. See the [Logic App Workflow guide](../../../openai/how-to/assistants-logic-apps.md) for more information.
 3. Install the required Python packages:
    ```bash
