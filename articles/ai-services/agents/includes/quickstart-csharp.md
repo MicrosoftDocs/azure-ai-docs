@@ -67,7 +67,7 @@ For example, your connection string may look something like:
 
 `https://myresource.services.ai.azure.com/api/projects/myproject`
 
-Set this connection string as an environment variable named `ENDPOINT_STRING`.
+Set this connection string as an environment variable named `PROJECT_ENDPOINT`.
 
 
 ```csharp
@@ -84,7 +84,7 @@ public class Sample_Agent
 {
     static async Task Main()
     {
-        var connectionString = Environment.GetEnvironmentVariable("ENDPOINT_STRING");
+        var connectionString = Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
 
         AgentsClient client = new AgentsClient(connectionString, new DefaultAzureCredential());
 
