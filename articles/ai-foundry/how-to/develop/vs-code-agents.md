@@ -100,6 +100,7 @@ tools: []
 
 ### Add tools to the Azure AI Agent
 
+
 Azure AI Agent Service has a set of knowledge and action tools that you can use to interact with your data sources. 
 
 
@@ -116,6 +117,7 @@ The following tools are available:
 
 - Action tools:
  - [Azure AI Agents function calling](/azure/ai-services/agents/how-to/tools/function-calling?tabs=python&pivots=overview)
+
 Azure AI Foundry Agent Service has a set of knowledge and action tools that you can use to interact with your data sources, such as:
  - [Grounding with Bing search](/azure/ai-services/agents/how-to/tools/bing-grounding?tabs=python&pivots=overview)
  - [Azure AI Search](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview) 
