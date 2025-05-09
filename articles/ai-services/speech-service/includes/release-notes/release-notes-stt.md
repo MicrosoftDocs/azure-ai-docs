@@ -9,6 +9,9 @@ ms.custom: references_regions
 
 ### May 2025 release
 
+#### New Realtime Model Release for ta-IN, te-IN, en-IN, hu-HU
+The models deliver 5%-10% Relative accuracy gains respectively, and for ta-IN, te-IN shows a 20x reduction in ghost words. 
+
 #### Fast transcription API - Multi-lingual speech transcription
 
 To transcribe multi-lingual contents continuously and accurately in an audio file, now you can use the latest multi-lingual model without specifying the locale codes via fast transcription API. For more information, see [multi-lingual transcription in fast transcription](../../fast-transcription-create.md?tabs=multilingual-transcription-on).
