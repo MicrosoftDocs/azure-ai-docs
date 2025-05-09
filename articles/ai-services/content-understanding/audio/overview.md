@@ -11,11 +11,9 @@ ms.date: 05/06/2025
 ms.custom: release-preview-2-cu
 ---
 
-
 # Content Understanding audio solutions (preview)
 
 > [!IMPORTANT]
->
 > * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
@@ -36,31 +34,34 @@ Content Understanding serves as a cornerstone for Speech Analytics solutions, en
   
 ### Content extraction
 
-* **Transcription**. Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Customizable fields can be generated from transcription data. Sentence-level and word-level timestamps are available upon request.
+#### Language handling
+We support different options to handle language processing during transcription.
 
-> [!NOTE]
-> Content Understanding supports the full set of [Azure AI Speech Speech to text languages](../../speech-service/language-support?tabs=stt).
-> For languages with Fast transcriptions support and for files ≤ 300 MB and/or ≤ 2 hours, transcription time is reduced substantially.
+The following table provides an overview of the options controlled via the 'locales' configuration:
+
+|Locale setting|File size|Supported processing|Supported locales|Result latency|
+|--|--|--|--|--|
+|auto or empty|≤ 300MB and/or ≤ 2 hours|Multilingual transcription|de-DE, en-AU, en-CA, en-GB, en-IN, en-US, es-ES, es-MX, fr-CA, fr-FR, hi-IN, it-IT, ja-JP, ko-KR and zh-CN|Near-real-time|
+|auto or empty|> 300MB and >2hr ≤ 4 hours|Multilingual transcription|en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, zh-CN|Regular|
+|single locale|≤ 1GB and/or ≤ 4 hours|Single language transcription|All supported locales[^1]|&bullet; ≤ 300MB and/or ≤ 2 hours: Near-real-time<br>&bullet; > 300MB and >2hr ≤ 4 hours: Regular|
+|multiple locales|≤ 1GB and/or ≤ 4 hours|Single language transcription<br>based on Language Detection|All supported locales[^1]|&bullet; ≤ 300MB and/or ≤ 2 hours: Near-real-time<br>&bullet; > 300MB and >2hr ≤ 4 hours: Regular|
+
+[^1]: Content Understanding supports the full set of [Azure AI Speech Speech to text languages](../../speech-service/language-support?tabs=stt).
+For languages with Fast transcriptions support and for files ≤ 300MB and/or ≤ 2 hours, transcription time is reduced substantially.
+
+* **Transcription**. Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Customizable fields can be generated from transcription data. Sentence-level and word-level timestamps are available upon request.
 
 * **Diarization**. Distinguishes between speakers in a conversation, attributing parts of the transcript to specific speakers.
 
 * **Speaker role detection**. Identifies agent and customer roles within contact center call data.
 
 * **Multilingual transcription**. Generates multilingual transcripts, applying language/locale per phrase. Deviating from language detection this feature is enabled when no language/locale is specified or language is set to 'auto'.
-  <br>The following locales are currently supported for multilingual transcription:
-  * **Files ≤ 300 MB and/or ≤ 2 hours**: de-DE, en-AU, en-CA, en-GB, en-IN, en-US, es-ES, es-MX, fr-CA, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, and zh-CN.
-  * **Files larger than 300 MB and/or longer than 4 hours**: en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, zh-CN.
 
-> [!WARNING]
+> [!NOTE]
 > When Multilingual transcription is used, a file with an unsupported locale produces a result. This result is based on the closest locale but most likely not correct.
 > This result is a known behavior. Make sure to configure locales when not using Multilingual transcription!
 
-
 * **Language detection**. Automatically detects the dominant language/locale which is used to transcribe the file. Set multiple languages/locales to enable language detection.
-
-> [!NOTE]
-> For files larger than 300 MB and/or longer than 2 hours and locales unsupported by Fast transcription, the file is processed generating a multilingual transcript based on the specified locales.
-> In case language detection fails, the first language/locale defined is used to transcribe the file.
 
 ### Field extraction
 
