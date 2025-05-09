@@ -16,116 +16,116 @@ ms.custom: build-2025
 
 # Get started with Foundry Local
 
-This article shows you how to get started with Foundry Local to run AI models on your device. Follow these steps to install the tool, discover available models, and run your first local AI model.
+This guide walks you through setting up Foundry Local to run AI models on your device. Follow these clear steps to install the tool, discover available models, and launch your first local AI model.
 
 ## Prerequisites
 
-- A PC with sufficient specifications to run AI models locally
+- A PC with these minimum specifications:
   - Windows 10 or later
-  - Greater than 8GB RAM
-  - Greater than 3GB of free disk space for model caching (quantized Phi 3.2 models are ~3GB)
-- Suggested hardware for optimal performance:
+  - At least 8GB RAM
+  - At least 3GB of free disk space for model caching (quantized Phi 3.2 models require about 3GB)
+- Recommended hardware for optimal performance:
   - Windows 11
-  - NVIDIA GPU (2000 series or newer) OR AMD GPU (6000 series or newer) OR Qualcomm Snapdragon X Elite, with 8GB or more of VRAM
-  - Greater than 16GB RAM
-  - Greater than 15GB of free disk space for model caching (the largest models are ~15GB)
+  - NVIDIA GPU (2000 series or newer), AMD GPU (6000 series or newer), or Qualcomm Snapdragon X Elite, with 8GB or more of VRAM
+  - At least 16GB RAM
+  - At least 15GB of free disk space for model caching (larger models require up to 15GB)
 - Administrator access to install software
 
-## Quickstart in 2-steps
+## Quickstart in 2 steps
 
-Follow these steps to get started with Foundry Local:
+Get started with Foundry Local quickly:
 
 1. **Install Foundry Local**
 
-   1. Download Foundry Local for your platform (Windows, MacOS, Linux - x64/ARM) from the repository's releases page.
+   1. Download Foundry Local for your platform (Windows, macOS, Linux - x64/ARM) from the repository's releases page.
    2. Install the package by following the on-screen prompts.
 
 
       > [!IMPORTANT]
-      > **For MacOS/Linux users:** Run both components in separate terminals:
-      > - Neutron Server (`Inference.Service.Agent`) - Use `chmod +x Inference.Service.Agent` to make executable
-      > - Foundry Client (`foundry`) - Use `chmod +x foundry` to make executable, and add to your PATH
+      > **For macOS/Linux users:** Run both components in separate terminals:
+      > - Neutron Server (`Inference.Service.Agent`) - Make it executable with `chmod +x Inference.Service.Agent`
+      > - Foundry Client (`foundry`) - Make it executable with `chmod +x foundry` and add it to your PATH
 
-   3. After installation, access the tool via command line with `foundry`.
+   3. After installation, access the tool through the command line with `foundry`.
 
 2. **Run your first model**
    1. Open a command prompt or terminal window.
-   2. Run the DeepSeek-R1 model on the CPU using the following command:
+   2. Run the DeepSeek-R1 model on the CPU with this command:
       ```bash
       foundry model run deepseek-r1-1.5b-cpu
       ```
 
 > [!TIP]
-> The `foundry model run <model>` command will automatically download the model if it is not already cached on your local machine, and then start an interactive chat session with the model. You're encouraged to try out different models by replacing `deepseek-r1-1.5b-cpu` with the name of any other model available in the catalog, located with the `foundry model list` command.
+> The `foundry model run <model>` command automatically downloads the model if it isn't already in your local cache, then starts an interactive chat session. Try different models by replacing `deepseek-r1-1.5b-cpu` with any model name from the catalog. View all available models with the `foundry model list` command.
 
 ## Explore Foundry Local CLI commands
 
-The foundry CLI is structured into several categories:
+The Foundry CLI organizes commands into these main categories:
 
-- **Model**: Commands related to managing and running models
+- **Model**: Commands for managing and running models
 - **Service**: Commands for managing the Foundry Local service
-- **Cache**: Commands for managing the local cache where models are stored
+- **Cache**: Commands for managing the local model cache
 
-To see all available commands, use the help option:
+View all available commands with:
 
 ```bash
 foundry --help
 ```
 
 > [!TIP]
-> For a complete reference of all available CLI commands and their usage, see the [Foundry Local CLI Reference](reference/reference-cli.md).
+> For a complete guide to all CLI commands and their usage, see the [Foundry Local CLI Reference](reference/reference-cli.md).
 
 ## Security and privacy considerations
 
-Foundry Local is designed with privacy and security as core principles:
+Foundry Local prioritizes your privacy and security:
 
-- **Local processing**: All data processed by Foundry Local remains on your device and is never sent to Microsoft or any external services.
-- **No telemetry**: Foundry Local does not collect usage data or model inputs.
-- **Air-gapped environments**: Foundry Local can be used in disconnected environments after initial model download.
+- **Local processing**: All data stays on your device and is never sent to Microsoft or external services.
+- **No telemetry**: Foundry Local doesn't collect usage data or model inputs.
+- **Air-gapped environments**: After initial model download, you can use Foundry Local in offline environments.
 
 ### Security best practices
 
-- Use Foundry Local in environments that align with your organization's security policies.
-- For handling sensitive data, ensure your device meets your organization's security requirements.
-- Consider disk encryption for devices where cached models might contain sensitive fine-tuning data.
+- Use Foundry Local in environments that comply with your organization's security policies.
+- When handling sensitive data, ensure your device meets your organization's security requirements.
+- Use disk encryption on devices where cached models might contain sensitive fine-tuning data.
 
 ### Licensing considerations
 
-Models available through Foundry Local are subject to their original licenses:
+Models in Foundry Local follow their original licenses:
 
-- Open-source models maintain their original licenses (e.g., Apache 2.0, MIT).
-- Commercial models may have specific usage restrictions or require separate licensing.
-- Always review the licensing information for each model before deploying in production.
+- Open-source models keep their original licenses (such as Apache 2.0 or MIT).
+- Commercial models may have specific usage restrictions or need separate licensing.
+- Always check licensing information for each model before using in production.
 
 ## Production deployment scope
 
-Foundry Local is designed primarily for:
+Foundry Local works best for:
 
 - Individual developer workstations
-- Single-node deployment
+- Single-node deployments
 - Local application development and testing
 
 > [!IMPORTANT]
-> Foundry Local is not currently intended for distributed, containerized, or multi-machine production deployment. For production-scale deployment needs, consider Azure AI Foundry for enterprise-grade availability and scale.
+> Foundry Local is not designed for distributed, containerized, or multi-machine production deployments. For production-scale needs, use Azure AI Foundry for enterprise-grade availability and scale.
 
 ## Troubleshooting
 
 ### Common issues and solutions
 
-| Issue                   | Possible Cause                          | Solution                                                                                  |
-| ----------------------- | --------------------------------------- | ----------------------------------------------------------------------------------------- |
-| Slow inference          | CPU-only model on large parameter count | Use GPU-optimized model variants when available                                           |
-| Model download failures | Network connectivity issues             | Check your internet connection, try `foundry cache list` to verify cache state            |
-| Service won't start     | Port conflicts or permission issues     | Try `foundry service restart` or post an issue providing logs with `foundry zip-logsrock` |
+| Issue | Possible Cause | Solution |
+| --- | --- | --- |
+| Slow inference | CPU-only model with large parameter count | Use GPU-optimized model variants when available |
+| Model download failures | Network connectivity issues | Check your internet connection and run `foundry cache list` to verify cache status |
+| Service won't start | Port conflicts or permission issues | Try `foundry service restart` or report an issue with logs using `foundry zip-logs` |
 
-### Diagnosing performance issues
+### Improving performance
 
-If you're experiencing slow inference:
+If you experience slow inference:
 
-1. Check that you're using GPU acceleration if available
-2. Monitor memory usage during inference to detect bottlenecks
-3. Consider a more quantized model variant (e.g., INT8 instead of FP16)
-4. Experiment with batch sizes for non-interactive workloads
+1. Use GPU acceleration when available
+2. Monitor memory usage during inference to identify bottlenecks
+3. Try more quantized model variants (like INT8 instead of FP16)
+4. Adjust batch sizes for non-interactive workloads
 
 ## Next steps
 

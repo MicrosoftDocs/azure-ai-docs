@@ -1,7 +1,7 @@
 ---
 title: Foundry Local Control Plane SDK Reference
 titleSuffix: Foundry Local
-description: Reference for Foundry Local Control Plane SDK.
+description: Reference guide for the Foundry Local Control Plane SDK.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: build-2025
@@ -13,7 +13,7 @@ author: maanavd
 
 # Foundry Local Control Plane SDK Reference
 
-The Foundry Local Control Plane SDK simplifies management of AI models in local environments by providing control-plane operations that are decoupled from data-plane inferencing code. This reference covers the SDK for Python, JavaScript, and C#.
+The Foundry Local Control Plane SDK simplifies AI model management in local environments by providing control-plane operations separate from data-plane inferencing code. This reference documents the SDK implementation for Python, JavaScript, and C#.
 
 ::: zone pivot="programming-language-python"
 [!INCLUDE [Python](../includes/sdk-examples/python.md)]

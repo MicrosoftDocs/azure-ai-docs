@@ -1,7 +1,7 @@
 ---
 title: Catalog API Reference
 titleSuffix: Foundry Local
-description: Reference for Model Catalog.
+description: Complete reference guide for the Foundry Local Model Catalog API.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: build-2025
@@ -13,7 +13,7 @@ author: maanavd
 
 # Catalog API Reference
 
-This page documents the Model Catalog APIs. Catalog implementors can use this reference as a guide for their own catalog implementation.
+This document provides a detailed reference for the Model Catalog APIs. Catalog implementers can use this guide when creating their own catalog implementations.
 
 ## Base URI
 
@@ -21,28 +21,30 @@ This page documents the Model Catalog APIs. Catalog implementors can use this re
 https://<catalog provider URI>/<provider subpath>
 ```
 
-Replace `<catalog provider URI>` and `<provider subpath>` with your specific catalog hosting details.
+Replace `<catalog provider URI>` and `<provider subpath>` with your specific catalog hosting information.
 
 ---
 
-## APIs
+## Available APIs
 
-- **Get Model Details**
-- **Get Publisher Details**
-- **List Publishers**
-- **List Models**
+- **Get Model Details** - Retrieve information about a specific model
+- **Get Publisher Details** - Access publisher information
+- **List Publishers** - View all available publishers
+- **List Models** - Browse available models
 
 ---
 
 ## Authorization
 
-All endpoints must implement
+All endpoints must support:
 
-- Anonymous access
+- Anonymous access (no authentication required)
 
 ---
 
 ## Get Model Details
+
+Retrieves detailed information about a specific model version.
 
 **GET** `/models/{modelName}/version/{version}`
 
