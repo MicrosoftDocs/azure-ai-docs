@@ -27,7 +27,7 @@ Personally identifiable information (PII) detection is now available as a built-
 
 ### Spotlighting for prompt shields
 
-Spotlighting is a new feature for prompt shields that enhances protection from indirect (embedded document) attacks by tagging input documents with special formatting to indicate lower trust to the model. For more information, see the [Prompt shields content filtering](./concepts/content-filter-prompt-shields.md) documentation.
+Spotlighting is a sub-feature of prompt shields that enhances protection against indirect (embedded document) attacks by tagging input documents with special formatting to indicate lower trust to the model. For more information, see the [Prompt shields content filtering](./concepts/content-filter-prompt-shields.md) documentation.
 
 
 
