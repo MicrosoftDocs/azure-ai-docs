@@ -147,7 +147,7 @@ You can make the following updates to a workflow without breaking indexing:
 
 In logic apps designer, review the workflow and each step in the indexing pipeline. The workflow specifies document extraction, default document chunking ([Text Split skill](cognitive-search-skill-textsplit.md)), embedding ([Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md)), output field mappings, and finally indexing.
 
-:::image type="content" source="/media/logic-app-connectors/logic-app-workflow.png" alt-text="Screenshot of the workflow in logic app designer." lightbox="/media/logic-app-connectors/logic-app-workflow.png" :::
+:::image type="content" source="media/logic-apps-connectors/logic-app-workflow.png" alt-text="Screenshot of the workflow in logic app designer." lightbox="media/logic-apps-connectors/logic-app-workflow.png" :::
 
 ## Template and workflow management
 
