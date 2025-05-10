@@ -79,13 +79,13 @@ Follow these steps to create a console application for conversation transcriptio
     import java.util.concurrent.Future;
     
     public class ConversationTranscription {
-        // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
+        // This example requires environment variables named "SPEECH_KEY" and "END_POINT"
         private static String speechKey = System.getenv("SPEECH_KEY");
-        private static String speechRegion = System.getenv("SPEECH_REGION");
+        private static String endPoint = System.getenv("END_POINT");
     
         public static void main(String[] args) throws InterruptedException, ExecutionException {
             
-            SpeechConfig speechConfig = SpeechConfig.fromSubscription(speechKey, speechRegion);
+            SpeechConfig speechConfig = SpeechConfig.fromEndpoint(speechKey, endPoint);
             speechConfig.setSpeechRecognitionLanguage("en-US");
             AudioConfig audioInput = AudioConfig.fromWavFileInput("katiesteve.wav");
             speechConfig.setProperty(PropertyId.SpeechServiceResponse_DiarizeIntermediateResults, "true");
@@ -161,7 +161,7 @@ Follow these steps to create a console application for conversation transcriptio
    ```
 
 > [!IMPORTANT]
-> Make sure that you set the `SPEECH_KEY` and `SPEECH_REGION` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
+> Make sure that you set the `SPEECH_KEY` and `END_POINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
 
 The transcribed conversation should be output as text:
 

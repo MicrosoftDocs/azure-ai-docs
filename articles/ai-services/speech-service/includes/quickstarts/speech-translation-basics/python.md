@@ -42,8 +42,9 @@ Follow these steps to create a new console application.
     import azure.cognitiveservices.speech as speechsdk
     
     def recognize_from_microphone():
-        # This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
-        speech_translation_config = speechsdk.translation.SpeechTranslationConfig(subscription=os.environ.get('SPEECH_KEY'), region=os.environ.get('SPEECH_REGION'))
+        # This example requires environment variables named "SPEECH_KEY" and "END_POINT"
+        # Replace with your own subscription key and endpoint, the endpoint is like : "https://YourServiceRegion.api.cognitive.microsoft.com"
+        speech_translation_config = speechsdk.translation.SpeechTranslationConfig(subscription=os.environ.get('SPEECH_KEY'), endpoint=os.environ.get('END_POINT'))
         speech_translation_config.speech_recognition_language="en-US"
     
         to_language ="it"
@@ -67,7 +68,7 @@ Follow these steps to create a new console application.
             print("Speech Recognition canceled: {}".format(cancellation_details.reason))
             if cancellation_details.reason == speechsdk.CancellationReason.Error:
                 print("Error details: {}".format(cancellation_details.error_details))
-                print("Did you set the speech resource key and region values?")
+                print("Did you set the speech resource key and endpoint values?")
     
     recognize_from_microphone()
     ```

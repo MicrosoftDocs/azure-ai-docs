@@ -45,11 +45,11 @@ Follow these steps to create a new console application and install the Speech SD
     
     int main()
     {
-        // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
+        // This example requires environment variables named "SPEECH_KEY" and "END_POINT"
         auto speechKey = GetEnvironmentVariable("SPEECH_KEY");
-        auto speechRegion = GetEnvironmentVariable("SPEECH_REGION");
+        auto endPoint = GetEnvironmentVariable("END_POINT");
 
-        auto speechTranslationConfig = SpeechTranslationConfig::FromSubscription(speechKey, speechRegion);
+        auto speechTranslationConfig = SpeechTranslationConfig::FromEndpoint(speechKey, endPoint);
         speechTranslationConfig->SetSpeechRecognitionLanguage("en-US");
         speechTranslationConfig->AddTargetLanguage("it");
     
@@ -82,7 +82,7 @@ Follow these steps to create a new console application and install the Speech SD
             {
                 std::cout << "CANCELED: ErrorCode=" << (int)cancellation->ErrorCode << std::endl;
                 std::cout << "CANCELED: ErrorDetails=" << cancellation->ErrorDetails << std::endl;
-                std::cout << "CANCELED: Did you set the speech resource key and region values?" << std::endl;
+                std::cout << "CANCELED: Did you set the speech resource key and endpoint values?" << std::endl;
             }
         }
     }

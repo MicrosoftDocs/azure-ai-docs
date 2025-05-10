@@ -49,14 +49,14 @@ Follow these steps to create a console application and install the Speech SDK.
     
     class Program 
     {
-        // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
+        // This example requires environment variables named "SPEECH_KEY" and "END_POINT"
         static string speechKey = Environment.GetEnvironmentVariable("SPEECH_KEY");
-        static string speechRegion = Environment.GetEnvironmentVariable("SPEECH_REGION");
+        static string endPoint = Environment.GetEnvironmentVariable("END_POINT");
     
         async static Task Main(string[] args)
         {
             var filepath = "katiesteve.wav";
-            var speechConfig = SpeechConfig.FromSubscription(speechKey, speechRegion);        
+            var speechConfig = SpeechConfig.FromEndpoint(speechKey, endPoint);        
             speechConfig.SpeechRecognitionLanguage = "en-US";
             speechConfig.SetProperty(PropertyId.SpeechServiceResponse_DiarizeIntermediateResults, "true"); 
     
@@ -95,7 +95,7 @@ Follow these steps to create a console application and install the Speech SDK.
                         {
                             Console.WriteLine($"CANCELED: ErrorCode={e.ErrorCode}");
                             Console.WriteLine($"CANCELED: ErrorDetails={e.ErrorDetails}");
-                            Console.WriteLine($"CANCELED: Did you set the speech resource key and region values?");
+                            Console.WriteLine($"CANCELED: Did you set the speech resource key and endpoint values?");
                             stopRecognition.TrySetResult(0);
                         }
     
@@ -133,7 +133,7 @@ Follow these steps to create a console application and install the Speech SDK.
    ```
 
 > [!IMPORTANT]
-> Make sure that you set the `SPEECH_KEY` and `SPEECH_REGION` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
+> Make sure that you set the `SPEECH_KEY` and `END_POINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
 
 The transcribed conversation should be output as text:
 

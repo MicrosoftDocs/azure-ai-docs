@@ -19,7 +19,7 @@ The Speech SDK is available as a [NuGet package](https://www.nuget.org/packages/
 
 ### Set environment variables
 
-[!INCLUDE [Environment variables](../../common/environment-variables.md)]
+[!INCLUDE [Environment variables](../../common/environment-variables-endpoint-key.md)]
 
 ## Translate speech from a microphone
 
@@ -45,9 +45,9 @@ Follow these steps to create a new console application and install the Speech SD
     
     class Program 
     {
-        // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
+        // This example requires environment variables named "SPEECH_KEY" and "END_POINT"
         static string speechKey = Environment.GetEnvironmentVariable("SPEECH_KEY");
-        static string speechRegion = Environment.GetEnvironmentVariable("SPEECH_REGION");
+        static string endPoint = Environment.GetEnvironmentVariable("END_POINT");
     
         static void OutputSpeechRecognitionResult(TranslationRecognitionResult translationRecognitionResult)
         {
@@ -71,7 +71,7 @@ Follow these steps to create a new console application and install the Speech SD
                     {
                         Console.WriteLine($"CANCELED: ErrorCode={cancellation.ErrorCode}");
                         Console.WriteLine($"CANCELED: ErrorDetails={cancellation.ErrorDetails}");
-                        Console.WriteLine($"CANCELED: Did you set the speech resource key and region values?");
+                        Console.WriteLine($"CANCELED: Did you set the speech resource key and endpoint values?");
                     }
                     break;
             }
@@ -79,7 +79,7 @@ Follow these steps to create a new console application and install the Speech SD
     
         async static Task Main(string[] args)
         {
-            var speechTranslationConfig = SpeechTranslationConfig.FromSubscription(speechKey, speechRegion);        
+            var speechTranslationConfig = SpeechTranslationConfig.FromEndpoint(speechKey, endPoint);       
             speechTranslationConfig.SpeechRecognitionLanguage = "en-US";
             speechTranslationConfig.AddTargetLanguage("it");
     

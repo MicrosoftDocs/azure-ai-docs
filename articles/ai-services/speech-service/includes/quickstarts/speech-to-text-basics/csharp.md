@@ -76,7 +76,7 @@ Follow these steps to create a console application and install the Speech SDK.
                    {
                        Console.WriteLine($"CANCELED: ErrorCode={cancellation.ErrorCode}");
                        Console.WriteLine($"CANCELED: ErrorDetails={cancellation.ErrorDetails}");
-                       Console.WriteLine($"CANCELED: Did you set the speech resource key and region values?");
+                       Console.WriteLine($"CANCELED: Did you set the speech resource key and endpoint values?");
                    }
                    break;
            }
