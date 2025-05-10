@@ -1,0 +1,40 @@
+items:
+- name: Foundry Local documentation
+  href: index.yml
+- name: What is Foundry Local?
+  href: what-is-foundry-local.md
+- name: Get Started
+  href: get-started.md
+- name: Concepts
+  expanded: false
+  items:
+  - name: Foundry Local Architecture
+    href: concepts/foundry-local-architecture.md
+- name: How-to guides
+  expanded: true
+  items:
+  - name: Integrate with Inferencing SDKs
+    href: how-to/integrate-with-inference-sdks.md
+  - name: Compile Hugging Face models to run on Foundry Local
+    href: how-to/how-to-compile-hugging-face-models.md
+- name: Tutorials
+  expanded: true
+  items:
+  - name: Chat application with Open Web UI
+    href: tutorials/chat-application-with-open-web-ui.md
+  - name: LangChain with Foundry Local
+    href: tutorials/use-langchain-with-foundry-local.md
+- name: Reference
+  expanded: false
+  items:
+  - name: Foundry Local CLI
+    href: reference/reference-cli.md
+  - name: Foundry Local SDK
+    href: reference/reference-sdk.md
+  - name: REST API
+    href: reference/reference-rest.md
+  - name: Catalog API
+    href: reference/reference-catalog-api.md
+  - name: Best practice and troubleshooting
+    href: reference/reference-best-practice.md
+ 

@@ -1160,3 +1160,12 @@ groups:
     title: Azure portal
   - id: cli
     title: Azure CLI
+# Owner: samkemp
+- id: foundry-local-sdk
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
