@@ -15,9 +15,9 @@ ms.date: 05/15/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Support for Logic Apps integration is now in public preview, available in the Azure portal [Quickstart wizard](search-get-started-portal-import-vectors.md) only. In Azure AI Search, a logic apps workflow is used for indexing, and it's equivalent to an indexer and data source in Azure AI Search. 
+Support for Logic Apps integration is now in public preview, available in the Azure portal [Import and vectorize data wizard](search-get-started-portal-import-vectors.md) only. In Azure AI Search, a logic apps workflow is used for indexing and vectorization, and it's equivalent to an indexer and data source in Azure AI Search. 
 
-You can create a workflow in Azure AI Search using the Quickstart wizard, and then manage the workflow in Logic Apps alongside your other workflows. Behind the scenes, the wizard follows a workflow template that pulls in (ingests) content from a source for indexing in AI Search. The connectors used in this scenario are prebuilt and already exist in Azure Logic Apps, so the workflow template just provides details for those connectors to create connections to the data source, AI Search, and other items to complete the ingestion workflow. 
+You can create a workflow in Azure AI Search using the Import and vectorize data wizard, and then manage the workflow in Logic Apps alongside your other workflows. Behind the scenes, the wizard follows a workflow template that pulls in (ingests) content from a source for indexing in AI Search. The connectors used in this scenario are prebuilt and already exist in Azure Logic Apps, so the workflow template just provides details for those connectors to create connections to the data source, AI Search, and other items to complete the ingestion workflow. 
 
 > [!NOTE]
 > Logic Apps workflows are a billable resource. For more information, see [Azure Logic Apps pricing](/azure/logic-apps/logic-apps-pricing).
@@ -31,7 +31,7 @@ Logic Apps integration in Azure AI Search adds support for:
 + Scheduled or on-demand indexing
 + Change detection of new and existing documents
 
-Quickstart wizard inputs include:
+Import and vectorize data wizard inputs include:
 
 + A supported data source
 + A supported text embedding model
@@ -52,7 +52,7 @@ Review the following requirements before you start:
 
 + Azure AI Search in a [supported region](#supported-regions), basic tier or higher if you want to use a search service identity for connections to an Azure data source, otherwise you can use any tier, subject to tier limits. 
 
-+ Azure OpenAI, with a [supported embedding model](#supported-models) deployment. Vectorization is optional. If you don't need vectors, skip this step.
++ Azure OpenAI, with a [supported embedding model](#supported-models) deployment. Vectorization is integrated into the workflow. If you don't need vectors, you can ignore the fields or try another indexing strategy.
 
 + Logic Apps should have a [system-assigned managed identity](/azure/logic-apps/authenticate-with-managed-identity) if you want to use Microsoft Entra ID authentication on connections rather than API keys.
 
@@ -105,11 +105,11 @@ Currently, the public preview has these limitations:
 
 Follow these steps to create a Logic Apps workflow for indexing content in Azure AI Search.
 
-1. Start the Quickstart wizard in the Azure portal.
+1. Start the Import and vectorize data wizard in the Azure portal.
 
 1. Choose a [supported Logic Apps indexer](#supported-connectors).
 
-   :::image type="content" source="media/logic-apps-connectors/choose-data-source.png" alt-text="Screenshot of the chosen data source page in the Quickstart wizard." lightbox="media/logic-apps-connectors/choose-data-source.png" :::
+   :::image type="content" source="media/logic-apps-connectors/choose-data-source.png" alt-text="Screenshot of the chosen data source page in the Import and vectorize data wizard." lightbox="media/logic-apps-connectors/choose-data-source.png" :::
 
 1. In **Connect to your data**, provide a name prefix used for the search index and workflow. Having a common name helps you manage them together.
 
@@ -142,9 +142,10 @@ You can make the following modifications to a search index without breaking inde
 You can make the following updates to a workflow without breaking indexing:
 
 + Modify templates that control indexing frequency.
-+ Update token inputs. The recommended token size is 512 tokens for most scenarios.
++ Modify **Chunk Text** to vary token inputs. The recommended token size is 512 tokens for most scenarios.
++ Modify **Chunk Text** to add a page overlap length.
 
-In logic apps designer, review the workflow and each step in the indexing pipeline. The workflow specifies document extraction, default document chunking (Text Split skill), embedding (Azure OpenAI embedding skill), output field mappings, and finally indexing.
+In logic apps designer, review the workflow and each step in the indexing pipeline. The workflow specifies document extraction, default document chunking ([Text Split skill](cognitive-search-skill-textsplit.md)), embedding ([Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md)), output field mappings, and finally indexing.
 
 :::image type="content" source="/media/logic-app-connectors/logic-app-workflow.png" alt-text="Screenshot of the workflow in logic app designer." lightbox="/media/logic-app-connectors/logic-app-workflow.png" :::
 
