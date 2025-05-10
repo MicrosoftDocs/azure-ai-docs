@@ -55,7 +55,7 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 
 project = AIProjectClient.from_connection_string(
-  endpoint="your_project_endpoint",
+  endpoint="your_project_endpoint",  # Replace with your endpoint
   credential=DefaultAzureCredential())
 ```
 
@@ -73,6 +73,8 @@ import com.azure.ai.projects.ProjectsClient;
 import com.azure.ai.projects.ProjectsClientBuilder;
 import com.azure.core.credential.AzureKeyCredential;
 
+String endpoint ="your_project_endpoint"; // Replace with your endpoint
+
 ProjectsClient client = new ProjectsClientBuilder()
     .credential(new AzureKeyCredential(apiKey))
     .endpoint(endpoint)
@@ -87,22 +89,41 @@ ProjectsClient client = new ProjectsClientBuilder()
 
 Create a project client in code:
 
+Install dependencies:
+
+```bash
+npm install @azure/ai-projects @azure/identity
+```
+
+Create a project client in code:
+
+
 ```javascript
 import { AIProjectClient } from '@azure/ai-projects';
 import { DefaultAzureCredential } from '@azure/identity';
 
-const endpoint = "your_project_endpoint";
+const endpoint = "your_project_endpoint"; // Replace with your actual endpoint
 const project = new AIProjectClient(endpoint, new DefaultAzureCredential());
 
 const client = project.inference.azureOpenAI();
 ```
 
-**Copy** the the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value above.
+**Copy** the the Azure AI Foundry project endpoint from the Overview page of the project and update the endpoint value above.
 
 
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
+
+Install packages:
+
+```bash
+dotnet add package Azure.Identity
+dotnet add package Azure.Core
+dotnet add package Azure.AI.Inference
+```
+
+Create the project client:
 
 ```csharp
 using Azure;
@@ -111,16 +132,18 @@ using Azure.AI.Inference;
 using Azure.Core;
 using Azure.Core.Pipeline;
 
-var endpointUrl = "your_project_endpoint";
+var endpointUrl = "your_project_endpoint"; // Replace with your actual endpoint
 var credential = new DefaultAzureCredential();
 
 AzureAIInferenceClientOptions clientOptions = new AzureAIInferenceClientOptions();
-BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(credential, new string[] { "https://cognitiveservices.azure.com/.default" });
+BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(
+    credential, 
+    new string[] { "https://cognitiveservices.azure.com/.default" }
+);
 clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
 
-
 var client = new ChatCompletionsClient(
-    endpoint,
+    endpointUrl, 
     credential,
     clientOptions
 );
