@@ -113,6 +113,7 @@ Follow these steps to create a Logic Apps workflow for indexing content in Azure
 
 1. In **Connect to your data**, provide a name prefix used for the search index and workflow. Having a common name helps you manage them together.
 
+<!-- Open Issue: how to specify frequency -->
 1. Specify the indexing frequency. If you choose on a schedule, a template that includes scheduling option is created in Logic Apps.
 
 1. Select an authentication type where the logic app workflow connects to the search engine and starts the indexing process. The workflow can connect using  [Azure AI Search API keys](search-security-api-keys.md) or the wizard can create a role assignment that grants permissions to the Logic Apps system-assigned managed identity, assuming one exists.
