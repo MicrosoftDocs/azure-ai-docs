@@ -1,4 +1,4 @@
----
+
 title: Catalog API Reference
 titleSuffix: Foundry Local
 description: Complete reference guide for the Foundry Local Model Catalog API.
@@ -9,7 +9,6 @@ ms.topic: reference
 ms.date: 05/02/2025
 ms.author: maanavdalal
 author: maanavd
----
 
 # Catalog API Reference
 
@@ -23,8 +22,6 @@ https://<catalog provider URI>/<provider subpath>
 
 Replace `<catalog provider URI>` and `<provider subpath>` with your specific catalog hosting information.
 
----
-
 ## Available APIs
 
 - **Get Model Details** - Retrieve information about a specific model
@@ -32,15 +29,12 @@ Replace `<catalog provider URI>` and `<provider subpath>` with your specific cat
 - **List Publishers** - View all available publishers
 - **List Models** - Browse available models
 
----
-
 ## Authorization
 
 All endpoints must support:
 
 - Anonymous access (no authentication required)
 
----
 
 ## Get Model Details
 
@@ -60,7 +54,6 @@ GET https://<catalog provider URI>/<provider subpath>/models/{modelName}/version
 curl -X GET --location "https://<catalog provider URI>/<provider subpath>/models/Phi-3-mini-128k-instruct/version/12"
 ```
 
----
 
 ## Get Publisher Details
 
@@ -78,7 +71,6 @@ GET https://<catalog provider URI>/<provider subpath>/publishers/{publisherName}
 curl -X GET --location "https://<catalog provider URI>/<provider subpath>/publishers/contoso"
 ```
 
----
 
 ## List Publishers
 
@@ -98,7 +90,6 @@ curl -X POST --location "https://<catalog provider URI>/<provider subpath>/publi
   --data '{"continuationToken": ""}'
 ```
 
----
 
 ## List Models
 
@@ -145,7 +136,6 @@ curl -X POST --location "https://<catalog provider URI>/<provider subpath>/model
   }'
 ```
 
----
 
 ## Filterable Fields
 
@@ -183,6 +173,5 @@ You can order results by the following fields:
 - `displayName`
 - `publisher`
 
----
 
 For more information, refer to your catalog provider's API documentation.

@@ -42,10 +42,10 @@ Before you start this tutorial, you need:
 
 4. **Connect Open Web UI to Foundry Local**:
 
-   1. Click **Settings** in the navigation menu
+   1. Select **Settings** in the navigation menu
    2. Select **Connections**
-   3. Click **Manage Direct Connections**
-   4. Click the **+** icon to add a connection
+   3. Select **Manage Direct Connections**
+   4. Select the **+** icon to add a connection
    5. Enter `http://localhost:5272/v1` for the URL
    6. Type any value (like `test`) for the API Key, since it cannot be empty
    7. Save your connection
@@ -60,4 +60,4 @@ That's it! You're now chatting with an AI model running entirely on your local d
 ## Next steps
 
 - [Build an application with LangChain](use-langchain-with-foundry-local.md)
-- [How to compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-huggingface-models.md)
+- [How to compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hugging-face-models.md)

@@ -1,7 +1,7 @@
 ---
-title: How to compile HuggingFace models to run on Foundry Local
+title: How to compile Hugging Face models to run on Foundry Local
 titleSuffix: Foundry Local
-description: Learn how to compile and run HuggingFace models with Foundry Local.
+description: Learn how to compile and run Hugging Face models with Foundry Local.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: build-2025
@@ -11,7 +11,7 @@ ms.author: samkemp
 author: samuel100
 ---
 
-# How to compile HuggingFace models to run on Foundry Local
+# How to compile Hugging Face models to run on Foundry Local
 
 Foundry Local runs ONNX models on your device with high performance. While the model catalog offers _out-of-the-box_ precompiled options, you can use any model in the ONNX format.
 
@@ -21,7 +21,7 @@ This guide shows you how to:
 
 > [!div class="checklist"]
 >
-> - **Convert and optimize** models from HuggingFace to run in Foundry Local. You'll use the `Llama-3.2-1B-Instruct` model as an example, but you can use any generative AI model from HuggingFace.
+> - **Convert and optimize** models from Hugging Face to run in Foundry Local. You'll use the `Llama-3.2-1B-Instruct` model as an example, but you can use any generative AI model from Hugging Face.
 > - **Run** your optimized models with Foundry Local
 
 ## Prerequisites
@@ -49,9 +49,9 @@ pip install olive-ai[auto-opt]
 > [!TIP]
 > For best results, install Olive in a virtual environment using [venv](https://docs.python.org/3/library/venv.html) or [conda](https://www.anaconda.com/docs/getting-started/miniconda/main).
 
-## Sign in to HuggingFace
+## Sign in to Hugging Face
 
-You optimize the `Llama-3.2-1B-Instruct` model, which requires HuggingFace authentication:
+You optimize the `Llama-3.2-1B-Instruct` model, which requires Hugging Face authentication:
 
 ### [Bash](#tab/Bash)
 
@@ -68,7 +68,7 @@ huggingface-cli login
 ---
 
 > [!NOTE]
-> You must first [create a HuggingFace token](https://huggingface.co/docs/hub/security-tokens) and [request model access](https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct) before proceeding.
+> You must first [create a Hugging Face token](https://huggingface.co/docs/hub/security-tokens) and [request model access](https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct) before proceeding.
 
 ## Compile the model
 
@@ -113,7 +113,7 @@ The command uses the following parameters:
 
 | Parameter            | Description                                                                       |
 | -------------------- | --------------------------------------------------------------------------------- |
-| `model_name_or_path` | Model source: HuggingFace ID, local path, or Azure AI Model registry ID           |
+| `model_name_or_path` | Model source: Hugging Face ID, local path, or Azure AI Model registry ID           |
 | `output_path`        | Where to save the optimized model                                                 |
 | `device`             | Target hardware: `cpu`, `gpu`, or `npu`                                           |
 | `provider`           | Execution provider (for example, `CPUExecutionProvider`, `CUDAExecutionProvider`) |
@@ -121,7 +121,7 @@ The command uses the following parameters:
 | `use_ort_genai`      | Creates inference configuration files                                             |
 
 > [!TIP]
-> If you have a local copy of the model, you can use a local path instead of the HuggingFace ID. For example, `--model_name_or_path models/llama-3.2-1B-Instruct`. Olive handles the conversion, optimization, and quantization automatically.
+> If you have a local copy of the model, you can use a local path instead of the Hugging Face ID. For example, `--model_name_or_path models/llama-3.2-1B-Instruct`. Olive handles the conversion, optimization, and quantization automatically.
 
 ### Step 2: Rename the output model
 
@@ -159,10 +159,10 @@ Foundry Local requires a chat template JSON file called `inference_model.json` i
 }
 ```
 
-To create the chat template file, you can use the `apply_chat_template` method from the HuggingFace library:
+To create the chat template file, you can use the `apply_chat_template` method from the Hugging Face library:
 
 > [!NOTE]
-> The following example uses the Python HuggingFace library to create a chat template. The HuggingFace library is a dependency for Olive, so if you're using the same Python virtual environment you don't need to install. If you're using a different environment, install the library with `pip install transformers`.
+> The following example uses the Python Hugging Face library to create a chat template. The Hugging Face library is a dependency for Olive, so if you're using the same Python virtual environment you don't need to install. If you're using a different environment, install the library with `pip install transformers`.
 
 ```python
 # generate_inference_model.py
