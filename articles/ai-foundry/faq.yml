@@ -53,7 +53,7 @@ sections:
       - question: |
           What is the billing model for standard deployments? 
         answer: |
-          Azure AI Foundry offers pay-as-you-go inference APIs and hosted fine-tuning for [Llama 2 family models](how-to/deploy-models-llama.md). Currently, there's no extra charge for Azure AI Foundry outside of typical AI services and other Azure resource charges.
+          Azure AI Foundry offers standard deployment models and hosted fine-tuning for [Llama 2 family models](how-to/deploy-models-llama.md). Currently, there's no extra charge for Azure AI Foundry outside of typical AI services and other Azure resource charges.
       - question: |
           Can all models be secured with content filtering? 
         answer: |

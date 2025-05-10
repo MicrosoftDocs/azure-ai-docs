@@ -41,7 +41,7 @@ Although containers for **Curated by Azure AI** models are scanned for vulnerabi
 
 ## Generation of inferencing outputs as a standard deployment
 
-When you deploy a model from the model catalog (base or fine-tuned) by using standard deployments with pay-as-you-go billing for inferencing, an API is provisioned. The API gives you access to the model that the Azure Machine Learning service hosts and manages. Learn more about standard deployments in [Model catalog and collections](./model-catalog-overview.md).
+When you deploy a model from the model catalog (base or fine-tuned) by using standard deployments with serverless pay per token offer for inferencing, an API is provisioned. The API gives you access to the model that the Azure Machine Learning service hosts and manages. Learn more about standard deployments in [Model catalog and collections](./model-catalog-overview.md).
 
 The model processes your input prompts and generates outputs based on its functionality, as described in the model details. Your use of the model (along with the provider's accountability for the model and its outputs) is subject to the license terms for the model. Microsoft provides and manages the hosting infrastructure and API endpoint. The models hosted in this *standard deployment* scenario are subject to Azure data, privacy, and security commitments. [Learn more about Azure compliance offerings applicable to Azure AI Foundry](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3).
 

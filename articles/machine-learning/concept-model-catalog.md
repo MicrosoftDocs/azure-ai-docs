@@ -47,7 +47,7 @@ Model Catalog offers two distinct ways to deploy models from the catalog for you
 
 Features | Managed compute   | standard deployment (pay-as-you-go)
 --|--|-- 
-Deployment experience and billing |  Model weights are deployed to dedicated Virtual Machines with managed online endpoints. The managed online endpoint, which can have one or more deployments, makes available a REST API for inference. You're billed for the Virtual Machine core hours used by the deployments.  | Access to models is through a deployment that provisions an API to access the model. The API provides access to the model hosted in a central GPU pool, managed by Microsoft, for inference. This mode of access is referred to as "Models as a Service".   You're billed for inputs and outputs to the APIs, typically in tokens; pricing information is provided before you deploy.  
+Deployment experience and billing |  Model weights are deployed to dedicated Virtual Machines with managed online endpoints. The managed online endpoint, which can have one or more deployments, makes available a REST API for inference. You're billed for the Virtual Machine core hours used by the deployments.  | Access to models is through a deployment that provisions an API to access the model. The API provides access to the model hosted in a central GPU pool, managed by Microsoft, for inference. This mode of access is referred to as "standard deployment".   You're billed for inputs and outputs to the APIs, typically in tokens; pricing information is provided before you deploy.  
 | API authentication   | Keys and Microsoft Entra ID authentication. [Learn more.](concept-endpoints-online-auth.md) | Keys only.  
 Content safety | Use Azure Content Safety service APIs.  | Azure AI Content Safety filters are available integrated with inference APIs. Azure AI Content Safety filters may be billed separately.  
 Network isolation | Managed Virtual Network with Online Endpoints. [Learn more.](how-to-network-isolation-model-catalog.md)  |  
@@ -64,7 +64,7 @@ Phi-3 family models | Phi-3-mini-4k-Instruct <br> Phi-3-mini-128k-Instruct <br> 
 Nixtla | Not available | TimeGEN-1
 Other models | Available | Not available
 
-:::image type="content" source="./media/concept-model-catalog/platform-service-cycle.png" alt-text="A diagram showing models as a service and Real time end points service cycle." lightbox="media/concept-model-catalog/platform-service-cycle.png":::
+:::image type="content" source="./media/concept-model-catalog/platform-service-cycle.png" alt-text="A diagram showing standard deployment and Real time end points service cycle." lightbox="media/concept-model-catalog/platform-service-cycle.png":::
 
 ## Managed compute
 

@@ -374,7 +374,7 @@ If you need to configure custom DNS server without DNS forwarding, use the follo
 * `<instance-name>-22.<region>.instances.azureml.ms` - Only used by the `az ml compute connect-ssh` command to connect to computers in a managed virtual network. Not needed if you aren't using a managed network or SSH connections.
 
 * `<managed online endpoint name>.<region>.inference.ml.azure.com` - Used by managed online endpoints
-* `models.ai.azure.com` - Used for deploying Models as a Service
+* `models.ai.azure.com` - Used for standard deployment
 
 To find the private IP addresses for your A records, see the [Azure Machine Learning custom DNS](/azure/machine-learning/how-to-custom-dns#find-the-ip-addresses) article.
 

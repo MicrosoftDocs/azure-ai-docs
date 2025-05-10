@@ -82,7 +82,7 @@ To view a list of supported models for standard deployment or Managed Compute, g
 
 <!-- docutune:enable -->
 
-:::image type="content" source="../media/explore/platform-service-cycle.png" alt-text="Diagram that shows models as a service and the service cycle of managed computes." lightbox="../media/explore/platform-service-cycle.png":::
+:::image type="content" source="../media/explore/platform-service-cycle.png" alt-text="Diagram that shows a standard deployment model and the service cycle of managed computes." lightbox="../media/explore/platform-service-cycle.png":::
 
 ## Model lifecycle: deprecation and retirement
 AI models evolve fast, and when a new version or a new model with updated capabilities in the same model family become available, older models may be retired in the AI Foundry model catalog. To allow for a smooth transition to a newer model version, some models provide users with the option to enable automatic updates. To learn more about the model lifecycle of different models, upcoming model retirement dates, and suggested replacement models and versions, see:
