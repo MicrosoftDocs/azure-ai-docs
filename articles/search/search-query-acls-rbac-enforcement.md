@@ -5,7 +5,7 @@ description: Learn how query-time ACL and RBAC enforcement ensures secure docume
 ms.service: azure-ai-search  
 ms.topic: conceptual  
 ms.date: 04/23/2025  
-author: magottei  
+author: mattgotteiner  
 ms.author: magottei 
 ---  
 
