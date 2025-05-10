@@ -215,7 +215,7 @@ items:
         href: how-to/deploy-models-serverless-connect.md
       - name: Model region availability for standard deployment
         href: how-to/deploy-models-serverless-availability.md
-      - name: Content safety for standard deployment
+      - name: Guardrails & controls for standard deployment
         href: concepts/model-catalog-content-safety.md
       - name: Models available for standard deployment
         href: concepts/models-featured.md

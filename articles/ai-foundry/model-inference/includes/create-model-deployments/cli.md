@@ -96,7 +96,7 @@ To add a model, you first need to identify the model that you want to deploy. Yo
 
 8. The model is ready to be consumed.
 
-You can deploy the same model multiple times if needed as long as it's under a different deployment name. This capability might be useful in case you want to test different configurations for a given model, including content safety.
+You can deploy the same model multiple times if needed as long as it's under a different deployment name. This capability might be useful in case you want to test different configurations for a given model, including content filters.
 
 ## Use the model
 

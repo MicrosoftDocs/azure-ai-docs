@@ -1,5 +1,5 @@
 ---
-title: 'How to configure content filters (preview) for models in Azure AI Foundry'
+title: 'How to configure content filters for models in Azure AI Foundry'
 titleSuffix: Azure AI Foundry
 description: Learn to use and configure the content filters that come with Azure AI Foundry, including getting approval for gated modifications.
 manager: nitinme
@@ -13,7 +13,7 @@ ms.custom: ignite-2024, github-universe-2024
 zone_pivot_groups: azure-ai-models-deployment
 ---
 
-# How to configure content filters (preview) for models in Azure AI Foundry
+# How to configure content filters for models in Azure AI Foundry
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [portal](../includes/configure-content-filters/portal.md)]

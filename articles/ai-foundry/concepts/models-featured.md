@@ -364,5 +364,5 @@ For examples of how to use Stability AI models, see the following examples:
 - [Deploy models as serverless APIs](../how-to/deploy-models-serverless.md)
 - [Model catalog and collections in Azure AI Foundry portal](../how-to/model-catalog-overview.md)
 - [Region availability for models in serverless API endpoints](../how-to/deploy-models-serverless-availability.md)
-- [Content safety for models curated by Azure AI in the model catalog](model-catalog-content-safety.md)
+- [Guardrails & controls for models curated by Azure AI in the model catalog](model-catalog-content-safety.md)
 
