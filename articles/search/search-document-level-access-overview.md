@@ -31,7 +31,7 @@ You can use the [REST API](/rest/api/searchservice/operation-groups) or supporte
 If you're using ADLS Gen2 as your data source, [Azure AI Search's built-in indexer](search-indexer-access-control-lists-and-role-based-access.md) simplify data ingestion. This indexer pulls ACLs and RBAC roles at container level during the data ingestion process, enabling a low/no-code workflow for managing document-level permissions.  
   
 #### Enforcing document-level permissions at query time    
-With native [token-based querying](https://aka.ms/azs-query-preserving-permissions), Azure AI Search validates a user's [Microsoft Entra token](/Entra/identity/devices/concept-tokens-microsoft-Entra-id) to enforce ACLs and RBAC roles automatically. This functionality helps trim result sets to include only documents the user is authorized to access. You can achieve this by attaching the user's Microsot Entra token to your query request.
+With native [token-based querying](https://aka.ms/azs-query-preserving-permissions), Azure AI Search validates a user's [Microsoft Entra token](/Entra/identity/devices/concept-tokens-microsoft-Entra-id) to enforce ACLs and RBAC roles automatically. This functionality helps trim result sets to include only documents the user is authorized to access. You can achieve automatic trimming by attaching the user's Microsoft Entra token to your query request.
 
   
 ### 2. Security trimming via filters  
