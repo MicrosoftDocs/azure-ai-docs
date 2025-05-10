@@ -54,6 +54,8 @@ Review the following requirements before you start:
 
 + Azure OpenAI, with a [supported embedding model](#supported-models) deployment. Vectorization is optional. If you don't need vectors, skip this step.
 
++ Logic Apps should have a [system-assigned managed identity](/azure/logic-apps/authenticate-with-managed-identity) if you want to use Microsoft Entra ID authentication on connections rather than API keys.
+
 ### Supported regions
 
 End-to-end functionality is available in the following regions, which provide the data source connection, document cracking, document chunks, support for Azure OpenAI embedding models, and the Azure AI indexer support for pulling the data.
@@ -109,20 +111,42 @@ Follow these steps to create a Logic Apps workflow for indexing content in Azure
 
    :::image type="content" source="media/logic-apps-connectors/choose-data-source.png" alt-text="Screenshot of the chosen data source page in the Quickstart wizard." lightbox="media/logic-apps-connectors/choose-data-source.png" :::
 
+1. In **Connect to your data**, provide a name prefix used for the search index and workflow. Having a common name helps you manage them together.
 
-The workflow runs as a serverless workflow in Logic Apps (Consumption), separate from the AI Search service.  
+1. Specify the indexing frequency. If you choose on a schedule, a template that includes scheduling option is created in Logic Apps.
+
+1. Select an authentication type where the logic app workflow connects to the search engine and starts the indexing process. The workflow can connect using  [Azure AI Search API keys](search-security-api-keys.md) or the wizard can create a role assignment that grants permissions to the Logic Apps system-assigned managed identity, assuming one exists.
+
+1. Select **Next** to continue to the next page.
+
+1. In **Vectorize your text**, provide the model deployment and Azure OpenAI connection information. Choose the subscription and service, a [supported text embedding model](#supported-models), and the authentication type that the workflow uses to connect to Azure OpenAI.
+
+1. Select **Next** to continue to the next page. Review the configuration.
+ 
+1. Select **Create** to begin processing.
+
+   The workflow runs as a serverless workflow in Logic Apps (Consumption), separate from the AI Search service.  
+
+1. Confirm index creation in the Azure portal, in the **Indexes** page in Azure AI Search. [Search Explorer](search-explorer.md) is the first tab. Select **Search** to return some content.
 
 ## Modify existing objects
 
 You can make the following modifications to a search index without breaking indexing:
 
-+ Add scoring profiles
-+ Add semantic ranking
++ [Add scoring profiles](index-add-scoring-profiles.md)
++ [Add semantic ranking](semantic-how-to-configure.md)
++ [Add spell check](speller-how-to-add.md)
++ [Add synonym maps](search-synonyms.md)
++ [Add suggesters](index-add-suggesters.md)
 
 You can make the following updates to a workflow without breaking indexing:
 
 + Modify templates that control indexing frequency.
 + Update token inputs. The recommended token size is 512 tokens for most scenarios.
+
+In logic apps designer, review the workflow and each step in the indexing pipeline. The workflow specifies document extraction, default document chunking (Text Split skill), embedding (Azure OpenAI embedding skill), output field mappings, and finally indexing.
+
+:::image type="content" source="/media/logic-app-connectors/logic-app-workflow.png" alt-text="Screenshot of the workflow in logic app designer." lightbox="/media/logic-app-connectors/logic-app-workflow.png" :::
 
 ## Template and workflow management
 
