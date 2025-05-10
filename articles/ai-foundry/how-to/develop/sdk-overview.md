@@ -42,114 +42,109 @@ The Azure AI Foundry Projects client library is a unified library that enables y
 
 ::: zone pivot="programming-language-python"
 
-To install the project client library:
+* Install the project client library 
 
-```bash
-pip install azure-ai-projects azure-ai-identity
-```
+    ```bash
+    pip install azure-ai-projects azure-ai-identity
+    ```
 
-Create a project client in code:
+* Create a project client in code.  **Copy** the the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value.
 
-```python
-from azure.identity import DefaultAzureCredential
-from azure.ai.projects import AIProjectClient
-
-project = AIProjectClient.from_connection_string(
-  endpoint="your_project_endpoint",  # Replace with your endpoint
-  credential=DefaultAzureCredential())
-```
-
-**Copy** the the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value above.
+    ```python
+    from azure.identity import DefaultAzureCredential
+    from azure.ai.projects import AIProjectClient
+    
+    project = AIProjectClient.from_connection_string(
+      endpoint="your_project_endpoint",  # Replace with your endpoint
+      credential=DefaultAzureCredential())
+    ```
 
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
 
-Create a project client in code:
+* Add these packages to your installation:
+    * `com.azure.ai.projects`
+    * `com.azure.core`
 
-```java
-import com.azure.ai.projects.ProjectsClient;
-import com.azure.ai.projects.ProjectsClientBuilder;
-import com.azure.core.credential.AzureKeyCredential;
+* Create a project client in code.  **Copy** the the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value.
 
-String endpoint ="your_project_endpoint"; // Replace with your endpoint
+    ```java
+    import com.azure.ai.projects.ProjectsClient;
+    import com.azure.ai.projects.ProjectsClientBuilder;
+    import com.azure.core.credential.AzureKeyCredential;
+    
+    String endpoint ="your_project_endpoint"; // Replace with your endpoint
+    
+    ProjectsClient client = new ProjectsClientBuilder()
+        .credential(new AzureKeyCredential(apiKey))
+        .endpoint(endpoint)
+        .buildClient();
+    ```
 
-ProjectsClient client = new ProjectsClientBuilder()
-    .credential(new AzureKeyCredential(apiKey))
-    .endpoint(endpoint)
-    .buildClient();
-```
 
-**Copy** the the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value above.
 
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 
-Create a project client in code:
+* Install dependencies:
 
-Install dependencies:
+    ```bash
+    npm install @azure/ai-projects @azure/identity
+    ```
 
-```bash
-npm install @azure/ai-projects @azure/identity
-```
-
-Create a project client in code:
+* Create a project client in code.  **Copy** the the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value.
 
 
-```javascript
-import { AIProjectClient } from '@azure/ai-projects';
-import { DefaultAzureCredential } from '@azure/identity';
-
-const endpoint = "your_project_endpoint"; // Replace with your actual endpoint
-const project = new AIProjectClient(endpoint, new DefaultAzureCredential());
-
-const client = project.inference.azureOpenAI();
-```
-
-**Copy** the the Azure AI Foundry project endpoint from the Overview page of the project and update the endpoint value above.
-
+    ```javascript
+    import { AIProjectClient } from '@azure/ai-projects';
+    import { DefaultAzureCredential } from '@azure/identity';
+    
+    const endpoint = "your_project_endpoint"; // Replace with your actual endpoint
+    const project = new AIProjectClient(endpoint, new DefaultAzureCredential());
+    
+    const client = project.inference.azureOpenAI();
+    ```
 
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
 
-Install packages:
+* Install packages:
 
-```bash
-dotnet add package Azure.Identity
-dotnet add package Azure.Core
-dotnet add package Azure.AI.Inference
+    ```bash
+    dotnet add package Azure.Identity
+    dotnet add package Azure.Core
+    dotnet add package Azure.AI.Inference
+    ```
+
+* Create a project client in code.  **Copy** the the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value.
+
+    ```csharp
+    using Azure;
+    using Azure.Identity;
+    using Azure.AI.Inference;
+    using Azure.Core;
+    using Azure.Core.Pipeline;
+    
+    var endpointUrl = "your_project_endpoint"; // Replace with your actual endpoint
+    var credential = new DefaultAzureCredential();
+    
+    AzureAIInferenceClientOptions clientOptions = new AzureAIInferenceClientOptions();
+    BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(
+        credential, 
+        new string[] { "https://cognitiveservices.azure.com/.default" }
+    );
+    clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
+    
+    var client = new ChatCompletionsClient(
+        endpointUrl, 
+        credential,
+        clientOptions
+    );
 ```
-
-Create the project client:
-
-```csharp
-using Azure;
-using Azure.Identity;
-using Azure.AI.Inference;
-using Azure.Core;
-using Azure.Core.Pipeline;
-
-var endpointUrl = "your_project_endpoint"; // Replace with your actual endpoint
-var credential = new DefaultAzureCredential();
-
-AzureAIInferenceClientOptions clientOptions = new AzureAIInferenceClientOptions();
-BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(
-    credential, 
-    new string[] { "https://cognitiveservices.azure.com/.default" }
-);
-clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
-
-var client = new ChatCompletionsClient(
-    endpointUrl, 
-    credential,
-    clientOptions
-);
-```
-
-**Copy** the the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value above.
 
 ::: zone-end
 
