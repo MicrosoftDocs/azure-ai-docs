@@ -1,4 +1,3 @@
-
 ---
 title: Catalog API Reference
 titleSuffix: Foundry Local
