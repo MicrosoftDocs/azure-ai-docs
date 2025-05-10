@@ -148,7 +148,7 @@ The Azure AI Foundry Projects client library is a unified library that enables y
 
 ::: zone-end
 
-<a name="azure-ai-agent-service"></a>
+<a name="azure-ai-foundry-agent-service"></a>
 Using the project endpoint, you can:
  - [Use Foundry Model](../../quickstarts/get-started-code.md), including Azure OpenAI
  - [Use Foundry Agent Service](../../../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context)
