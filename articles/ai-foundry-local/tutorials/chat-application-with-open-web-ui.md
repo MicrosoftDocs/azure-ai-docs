@@ -59,5 +59,5 @@ That's it! You're now chatting with an AI model running entirely on your local d
 
 ## Next steps
 
-- [Build an application with LangChain](use-langchain-with-foundry-local.md)
+- [Build an application with Foundry Local Manager SDK and LangChain](use-langchain-with-foundry-local.md)
 - [How to compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hugging-face-models.md)

@@ -17,8 +17,8 @@ author: maanavd
 The Foundry Local Control Plane SDK simplifies AI model management in local environments by providing control-plane operations separate from data-plane inferencing code. This reference documents the SDK implementation for Python, JavaScript, and C#.
 
 ::: zone pivot="programming-language-python"
-[!INCLUDE [Python](../includes/sdk-examples/python.md)]
+[!INCLUDE [Python](../includes/sdk-reference/python.md)]
 ::: zone-end
 ::: zone pivot="programming-language-javascript"
-[!INCLUDE [JavaScript](../includes/sdk-examples/javascript.md)]
+[!INCLUDE [JavaScript](../includes/sdk-reference/javascript.md)]
 ::: zone-end
