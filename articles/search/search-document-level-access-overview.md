@@ -50,12 +50,12 @@ Document-level permissions in Azure AI Search provide a structured framework for
   
 To help you dive deeper into document-level access control in Azure AI Search, here’s a table of key resources:  
   
-| Functionality | Reference |  
-|-------|-------------|
-| **Index permissions using REST API** | [Index permissions using REST API](search-index-access-control-lists-and-rbac-push-api.md) |  
+| Functionality                                   | Reference |  
+|---|---|  
+| **Index permissions using REST API**           | [Index permissions using REST API](search-index-access-control-lists-and-rbac-push-api.md)  |  
 | **Index ADLS Gen2 permissions metadata using built-in indexers** | [Index permissions using ADLS Gen2 indexer](search-indexer-access-control-lists-and-role-based-access.md) |  
 | **Query using Microsoft Entra token-based permissions** | [Query using Microsoft Entra token-based permissions](https://aka.ms/azs-query-preserving-permissions) |  
-| **Security trimming via filters** | [Security trimming via filters](search-security-trimming-for-azure-search.md) |  
+| **Security trimming via filters**              | [Security trimming via filters](search-security-trimming-for-azure-search.md)               |  
  
   
   
