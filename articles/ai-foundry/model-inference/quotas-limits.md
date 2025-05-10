@@ -1,7 +1,7 @@
 ---
-title: Azure AI Models quotas and limits in Azure AI services
+title: Azure AI Foundry Models quotas and limits
 titleSuffix: Azure AI Foundry
-description: Quick reference, detailed description, and best practices on the quotas and limits for the Azure AI models service in Azure AI services.
+description: Quick reference, detailed description, and best practices on the quotas and limits for the Azure AI Foundry service.
 author: santiagxf
 manager: nitinme
 ms.service: azure-ai-model-inference
@@ -11,9 +11,9 @@ ms.date: 1/21/2025
 ms.author: fasantia
 ---
 
-# Azure AI model inference quotas and limits in Azure AI services
+# Azure AI Foundry Models quotas and limits
 
-This article contains a quick reference and a detailed description of the quotas and limits for Azure AI model's inference in Azure AI services. For quotas and limits specific to the Azure OpenAI Service, see [Quota and limits in the Azure OpenAI service](../../ai-services/openai/quotas-limits.md).
+This article contains a quick reference and a detailed description of the quotas and limits for Azure AI Foundry Models. For quotas and limits specific to the Azure OpenAI Service, see [Quota and limits in the Azure OpenAI service](../../ai-services/openai/quotas-limits.md).
 
 ## Quotas and limits reference
 
@@ -88,4 +88,4 @@ To minimize issues related to rate limits, it's a good idea to use the following
 
 ## Next steps
 
-* Learn more about the [models available in the Azure AI model's inference service](./concepts/models.md)
+* Learn more about the [models available in Azure AI Foundry Models](./concepts/models.md)

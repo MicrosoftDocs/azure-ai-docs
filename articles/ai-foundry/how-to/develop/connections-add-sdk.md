@@ -38,9 +38,9 @@ There are various authentication methods for the different connection types. Whe
 
 [!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
-## Azure OpenAI Service
+## Azure OpenAI in Foundry Models
 
-The following example creates an Azure OpenAI Service connection.
+The following example creates an Azure OpenAI in Azure AI Foundry Models connection.
 
 > [!TIP]
 > To connect to Azure OpenAI and more AI services with one connection, you can use the [AI services connection](#azure-ai-services) instead.
@@ -73,7 +73,7 @@ ml_client.connections.create_or_update(wps_connection)
 
 ## Azure AI services
 
-The following example creates an Azure AI services connection. This example creates one connection for the AI services documented in the [Connect to Azure AI services](../../../ai-services/connect-services-ai-foundry-portal.md) article. The same connection also supports the Azure OpenAI service.
+The following example creates an Azure AI services connection. This example creates one connection for the AI services documented in the [Connect to Azure AI services](../../../ai-services/connect-services-ai-foundry-portal.md) article. The same connection also supports Azure OpenAI.
 
 ```python
 from azure.ai.ml.entities import AzureAIServicesConnection, ApiKeyConfiguration

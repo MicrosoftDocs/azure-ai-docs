@@ -41,9 +41,9 @@ pip install azure-ai-evaluation
 
 ## Evaluate Azure AI agents
 
-Agents emit messages. Transforming agent messages into the right evaluation data to use our evaluators can be a nontrivial task. If you use [Azure AI Agent Service](../../../ai-services/agents/overview.md), however, you can seamlessly evaluate your agents via our converter support for Azure AI agent threads and runs. Here's an example to create an Azure AI agent and evaluate. 
+Agents emit messages. Transforming agent messages into the right evaluation data to use our evaluators can be a nontrivial task. If you use [Azure AI Foundry Agent Service](../../../ai-services/agents/overview.md), however, you can seamlessly evaluate your agents via our converter support for Azure AI agent threads and runs. Here's an example to create an Azure AI agent and evaluate. 
 
-Separately from evaluation, Azure AI Agent Service requires `pip install azure-ai-projects azure-identity` and an Azure AI project connection string and the supported models.
+Separately from evaluation, Azure AI Foundry Agent Service requires `pip install azure-ai-projects azure-identity` and an Azure AI project connection string and the supported models.
 
 ### Create agent threads and runs
 
@@ -305,7 +305,7 @@ With Azure AI Evaluation SDK client library, you can seamlessly evaluate your Az
 
 ## Evaluating other agents
 
-For agents outside of Azure AI Agent Service, you can still evaluate them by preparing the right data for the evaluators of your choice.
+For agents outside of Azure AI Foundry Agent Service, you can still evaluate them by preparing the right data for the evaluators of your choice.
 
 Agents typically emit messages to interact with a user or other agents. Our built-in evaluators can accept simple data types such as strings in `query`, `response`, `ground_truth` according to the [single-turn data input requirements](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). However, to extract these simple data types from agent messages can be a challenge, due to the complex interaction patterns of agents and framework differences. For example, as mentioned, a single user query can trigger a long list of agent messages, typically with multiple tool calls invoked.
 
@@ -325,7 +325,7 @@ For `ToolCallAccuracyEvaluator`, either `response` or  `tool_calls` must be prov
 
 We'll demonstrate some examples of the two data formats: simple agent data, and agent messages. However, due to the unique requirements of these evaluators, we recommend referring to the [sample notebooks](#sample-notebooks) which illustrate the possible input paths for each evaluator.  
 
-As with other [built-in AI-assisted quality evaluators](./evaluate-sdk.md#performance-and-quality-evaluators), `IntentResolutionEvaluator` and `TaskAdherenceEvaluator` output a likert score (integer 1-5; higher score is better). `ToolCallAccuracyEvaluator` outputs the passing rate of all tool calls made (a float between 0-1) based on user query. To further improve intelligibility, all evaluators accept a binary threshold and output two new keys. For the binarization threshold, a default is set and user can override it. The two new keys are:
+As with other [built-in AI-assisted quality evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md), `IntentResolutionEvaluator` and `TaskAdherenceEvaluator` output a likert score (integer 1-5; higher score is better). `ToolCallAccuracyEvaluator` outputs the passing rate of all tool calls made (a float between 0-1) based on user query. To further improve intelligibility, all evaluators accept a binary threshold and output two new keys. For the binarization threshold, a default is set and user can override it. The two new keys are:
 
 - `{metric_name}_result` a "pass" or "fail" string based on a binarization threshold.
 - `{metric_name}_threshold` a numerical binarization threshold set by default or by the user.
@@ -558,7 +558,7 @@ Output (see [output format](#output-format) for details):
     ]
 }
 ```
-This evaluation schema helps you parse your agent data outside of Azure AI Agent Service, so that you can use our evaluators to support observability into your agentic workflows.   
+This evaluation schema helps you parse your agent data outside of Azure AI Foundry Agent Service, so that you can use our evaluators to support observability into your agentic workflows.   
 
 ## Sample notebooks
 

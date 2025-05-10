@@ -26,7 +26,7 @@ Meanwhile, bindings facilitate streamlined connections to input or output data s
 ## Prerequisites
 
 * [Azure Functions Core Tools v4.x](/azure/azure-functions/functions-run-local)
-* [Azure AI Agent Service](../../../../ai-foundry/how-to/develop/sdk-overview.md?tabs=sync&pivots=programming-language-python#azure-ai-agent-service)
+* [Azure AI Agent Service](../../../../ai-foundry/how-to/develop/sdk-overview.md?tabs=sync&pivots=programming-language-python#azure-ai-foundry-agent-service)
 * [Azurite](https://github.com/Azure/Azurite)
 
 ## Prepare your local environment

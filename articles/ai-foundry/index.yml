@@ -67,7 +67,7 @@ productDirectory:
         - url: ../ai-services/agents/index.yml
           text: Orchestrate and host AI agents to automate and execute business processes
         - url: ../ai-services/agents/quickstart.md
-          text: Create a custom AI agent using Azure AI Agent Service
+          text: Create a custom AI agent using Azure AI Foundry Agent Service
         - url: /azure/developer/ai/get-started-multi-agents
           text: Azure AI app template for agents
         - url: ./concepts/ai-red-teaming-agent.md

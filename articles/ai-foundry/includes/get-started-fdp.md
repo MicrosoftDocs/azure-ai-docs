@@ -84,7 +84,7 @@ Use either the Azure AI Foundry portal or Azure CLI to create a project.
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
 1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
-1. On the home page, select **Start building**. This creates a project and also include steps to start working with a basic Agent.
+1. On the home page, select **Create the future**. This creates a project and also include steps to start working with a basic Agent.
     
     :::image type="content" source="../media/quickstarts/start-building.png" alt-text="Screenshot shows how to start building an Agent in Azure AI Foundry portal.":::
 
@@ -121,7 +121,7 @@ To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)]:
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. If you just used the Azure AI Foundry portal to create the project with the **Start building** link, you're next  prompted to deploy a model.
+1. If you just used the Azure AI Foundry portal to create the project with the **Create the future** link, you're next  prompted to deploy a model.
 1. Or else, sign in to the [Azure AI Foundry portal](https://ai.azure.com), select your project, and select **Model catalog**.
 1. Search for the model you want to deploy. For this quickstart, select **gpt-4o**.
 1. Select **Confirm**.
@@ -131,7 +131,7 @@ To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)]:
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-1. If you used **Start building** to create the project, you'll now find yourself in the Agents playground, ready to try it out. You'll come back here in a moment, but first let's play with the model.
+1. If you used **Create the future** to create the project, you'll now find yourself in the Agents playground, ready to try it out. You'll come back here in a moment, but first let's play with the model.
 1. In the left pane, select **Playgrounds**. 
 1. Select **Try the chat playground**.
 1. Fill in the prompt and select the **Send** button.
@@ -144,16 +144,16 @@ To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)]:
 
 # [Java](#tab/java)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/ChatCompletionSample.java" :::
+:::code language="java" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/ChatCompletionSample.java" :::
 
 # [JavaScript](#tab/javascript)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="chat_completion":::
+:::code language="javascript" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="chat_completion":::
 
 
 # [C#](#tab/csharp)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/SimpleInference.cs" id="chat_completion":::
+:::code language="csharp" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/SimpleInference.cs" id="chat_completion":::
 
 ---
 
@@ -175,15 +175,15 @@ To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)]:
 
 # [Java](#tab/java)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" :::
+:::code language="java" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" :::
 
 # [JavaScript](#tab/javascript)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="create_and_run_agent" :::
+:::code language="javascript" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="create_and_run_agent" :::
 
 # [C#](#tab/csharp)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentService.cs" id="create_and_run_agent" :::
+:::code language="csharp" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentService.cs" id="create_and_run_agent" :::
 
 ---
 
@@ -212,16 +212,16 @@ Enable your agent to search and retrieve information from a provided file.
 
 # [Java](#tab/java)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/FileSearchAgentSample.java" :::
+:::code language="java" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/FileSearchAgentSample.java" :::
 
 
 # [JavaScript](#tab/javascript)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="create_filesearch_agent":::
+:::code language="javascript" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="create_filesearch_agent":::
 
 # [C#](#tab/csharp)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentFileSearch.cs" id="create_filesearch_agent":::
+:::code language="csharp" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentFileSearch.cs" id="create_filesearch_agent":::
 
 ---
 

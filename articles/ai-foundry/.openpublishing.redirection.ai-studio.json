@@ -1152,6 +1152,26 @@
           "source_path_from_root": "/articles/ai-foundry/concepts/evaluation-metrics-built-in.md",
           "redirect_url": "/azure/ai-foundry/concepts/observability",
           "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/concepts/trace.md",
+          "redirect_url": "/azure/ai-foundry/how-to/develop/trace-application",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/how-to/develop/trace-local-sdk.md",
+          "redirect_url": "/azure/ai-foundry/how-to/develop/trace-application",
+          "redirect_document_id": true
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/how-to/develop/visualize-traces.md",
+          "redirect_url": "/azure/ai-foundry/how-to/develop/trace-application#visualize-your-traces",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/how-to/online-evaluation.md",
+          "redirect_url": "/azure/ai-foundry/how-to/monitor-applications",
+          "redirect_document_id": false
         }
     ]
 }

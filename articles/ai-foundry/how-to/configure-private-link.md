@@ -79,16 +79,18 @@ If you're creating a new hub, use the following methods to create the hub (Azure
 > [!NOTE]
 > The information in this document is only about configuring a private link. For a walkthrough of creating a secure hub in the portal, see [Create a secure hub in the Azure portal](create-secure-ai-hub.md).
 
-1. From the [Azure portal](https://portal.azure.com), search for __Azure AI Foundry__ and create a new resource by selecting __+ New Azure AI__.
-1. After configuring the __Basics__ and __Storage__ tabs, select the __Networking__ tab and pick the __Network isolation__ option that best suits your needs.
+1. From the Azure portal, search for `Azure AI Foundry`. From the left menu, select **AI Hubs**, and then select **+ Create** and **Hub**.
 
-    :::image type="content" source="../media/how-to/network/ai-hub-networking.png" alt-text="Screenshot of the Create a hub with the option to set network isolation information." lightbox="../media/how-to/network/ai-hub-networking.png":::
+    :::image type="content" source="../media/how-to/hubs/create-hub.png" alt-text="Screenshot of the Azure AI Foundry portal." lightbox="../media/how-to/hubs/create-hub.png":::
 
-1. Scroll down to __Workspace Inbound access__ and choose __+ Add__.
+1. After configuring the __Basics__ and __Storage__ tabs, select the __Inbound access__ tab and then select __+ Add__. When prompted, enter the data for the Azure Virtual Network and subnet for the private endpoint. When selecting the __Region__, select the same region as your virtual network.
 
-    :::image type="content" source="../media/how-to/network/workspace-inbound-access.png" alt-text="Screenshot of the workspace inbound access section." lightbox="../media/how-to/network/workspace-inbound-access.png":::
+    :::image type="content" source="../media/how-to/network/inbound-access.png" alt-text="Screenshot of the inbound access tab with public network access disabled." lightbox="../media/how-to/network/inbound-access.png":::
 
-1. Input required fields. When selecting the __Region__, select the same region as your virtual network.
+1. Select the __Outbound access__ tab and pick the __Network isolation__ option that best suits your needs.
+
+    :::image type="content" source="../media/how-to/network/outbound-access.png" alt-text="Screenshot of the Create a hub with the option to set network isolation information." lightbox="../media/how-to/network/outbound-access.png":::
+
 
 # [Azure CLI](#tab/cli)
 
@@ -245,7 +247,7 @@ You can remove one or all private endpoints for a project. Removing a private en
 
 To remove a private endpoint, use the following information:
 
-1. From the [Azure portal](https://portal.azure.com), select your hub.
+1. From the [Azure portal](https://portal.azure.com), select your project.
 1. From the left side of the page, select __Resource Management__, __Networking__, and then select the __Private endpoint connections__ tab.
 1. Select the endpoint to remove and then select __Remove__.
 
@@ -293,9 +295,11 @@ In some situations, you might want to allow someone to connect to your secured p
 > [!IMPORTANT]
 > Enabling public access doesn't remove any private endpoints that exist. All communications between components behind the virtual network that the private endpoint(s) connect to are still secured. It enables public access only to the project, in addition to the private access through any private endpoints.
 
-1. From the [Azure portal](https://portal.azure.com), select your hub.
+1. From the [Azure portal](https://portal.azure.com), select your project.
 1. From the left side of the page, select __Resource Management__, __Networking__, and then select the __Firewalls and virtual networks__ tab.
 1. Select __All networks__, and then select __Save__.
+
+    :::image type="content" source="../media/how-to/network/foundry-portal-firewall.png" alt-text="Screenshot of the firewalls and virtual networks tab with the all networks option selected.":::
 
 :::zone-end
 

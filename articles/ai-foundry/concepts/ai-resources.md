@@ -120,14 +120,26 @@ You can use [cost management](/azure/cost-management-billing/costs/quick-acm-cos
 
 ## Find Azure AI Foundry resources in the Azure portal
 
-In the Azure portal, you can find resources that correspond to your project in Azure AI Foundry portal.
+In the [Azure portal](https://portal.azure.com), search for and then select **Azure AI Foundry** entry. From the AI Foundry section of the portal, you can find your AI Foundry resources.
+
+- The **All resources** section lists all resources.
+- The **AI Foundry** section lists [!INCLUDE [fdp](../includes/fdp-project-name.md)] resources.
+- The **AI Hubs** section lists [!INCLUDE [hub](../includes/hub-project-name.md)] resources.
+- The **Azure OpenAI** section lists Azure OpenAI resources.
+- The **AI Search** section lists Azure AI Search resources.
+- Use the **More services** and **Classic AI services** sections to find other Azure AI services.
+
+:::image type="content" source="../media/portal/overview.png" lightbox="../media/portal/overview.png" alt-text="Screenshot of the Azure AI Foundry overview page in the Azure portal.":::
+
+You can also go directly to your hub and project resources in the Azure portal from the Azure AI Foundry portal by using the following steps:
 
 > [!NOTE]
-> This section assumes that the hub and project are in the same resource group. 
-1. In [Azure AI Foundry](https://ai.azure.com), go to a project and select **Management center** to view your project resources.
-1. From the management center, select the overview for either your hub or project and then select the link to **Manage in Azure portal**.
+> These steps assume that the hub and project are in the same resource group.
+
+1. In [Azure AI Foundry](https://ai.azure.com), go to the hub or project and select **Management center** to view your project resources.
+1. From the management center, select the overview for the hub or project and then select the link to **Manage in Azure portal**.
     
-    :::image type="content" source="../media/concepts/azureai-project-view-ai-studio.png" alt-text="Screenshot of the Azure AI Foundry project overview page with links to the Azure portal." lightbox="../media/concepts/azureai-project-view-ai-studio.png"::: 
+    :::image type="content" source="../media/concepts/azureai-project-view-ai-studio.png" alt-text="Screenshot of the Azure AI Foundry project overview page with links to the Azure portal." lightbox="../media/concepts/azureai-project-view-ai-studio.png":::
 
 ## Next steps
 
