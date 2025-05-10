@@ -144,17 +144,17 @@ The Azure AI Foundry Projects client library is a unified library that enables y
         credential,
         clientOptions
     );
-```
+    ```
 
 ::: zone-end
 
 <a name="azure-ai-foundry-agent-service"></a>
-Using the project endpoint, you can:
- - [Use Foundry Model](../../quickstarts/get-started-code.md), including Azure OpenAI
- - [Use Foundry Agent Service](../../../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context)
- - [Run evaluations in the cloud](../../../ai-services/openai/how-to/evaluations.md?context=/azure/ai-foundry/context/context)
- - [Enable tracing for your app](../../concepts/trace.md) 
- - Retrieve endpoints and keys for external resource connections
+* Using the project endpoint, you can:
+    - [Use Foundry Model](../../quickstarts/get-started-code.md), including Azure OpenAI
+    - [Use Foundry Agent Service](../../../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context)
+    - [Run evaluations in the cloud](../../../ai-services/openai/how-to/evaluations.md?context=/azure/ai-foundry/context/context)
+    - [Enable tracing for your app](../../concepts/trace.md) 
+    - Retrieve endpoints and keys for external resource connections
 
 ## Azure AI Services client libraries
 
