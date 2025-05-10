@@ -16,9 +16,9 @@ ms.date: 05/08/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, *agentic retrieval* is a new parallel query processing architecture that uses conversational language models to generate multiple subqueries for a single retrieval request, incorporating conversation history and semantic ranking to produce high-quality grounding data for custom chat and generative AI solutions.
+In Azure AI Search, *agentic retrieval* is a new parallel query processing architecture that uses conversational language models to generate multiple subqueries for a single retrieval request, incorporating conversation history and semantic ranking to produce high-quality grounding data for custom chat and generative AI solutions that include agents.
 
-Programmatically, agentic retrieval is supported through a new Agents object in the 2025-05-01-preview data plane REST API and in Azure SDK prerelease packages that provide the feature. An agent's retrieval response is designed for downstream consumption by other agents and chat apps based on generative AI.
+Programmatically, agentic retrieval is supported through a new Knowledge Agents object (also known as a search agent) in the 2025-05-01-preview data plane REST API and in Azure SDK prerelease packages that provide the feature. An agent's retrieval response is designed for downstream consumption by other agents and chat apps based on generative AI.
 
 ## Why use agentic retrieval
 
@@ -47,7 +47,7 @@ Agentic retrieval invokes the entire query processing pipeline multiple times fo
 
 ## Agentic retrieval architecture
 
-Agentic retrieval is designed for a conversational search experience that includes an LLM. An important part of agentic retrieval is that an entire chat conversation can be included as inputs in subsequent queries, providing context and nuance for more relevant responses.
+Agentic retrieval is designed for a conversational search experience that includes an LLM. An important part of agentic retrieval is how the LLM breaks down an initial query into subqueries, which are more effective at locating the best matches in your index.
 
 :::image type="content" source="media/agentic-retrieval/agentic-retrieval-architecture.png" alt-text="Diagram of agentic retrieval workflow using an example query." lightbox="media/agentic-retrieval/agentic-retrieval-architecture.png" :::
 
@@ -55,7 +55,7 @@ Agentic retrieval has these components:
 
 | Component | Resource | Usage |
 |-----------|----------|-------|
-| LLM (gpt-4o and gpt-4.1 series) | Azure OpenAI | Formulates subqueries for the query plan. You can use these models for other downstream operations. Specifically, you can send the unified response string to one of these models and ask it ground its answer on the string. |
+| LLM (gpt-4o and gpt-4.1 series) | Azure OpenAI | An LLM has two functions. First, it formulates subqueries for the query plan and sends it back to the search agent. Second, after the query executes, the LLM receives grounding data from the query response and uses it for answer formulation. |
 | Search index | Azure AI Search | Contains plain text and vector content, a semantic configuration, and other elements as needed. |
 | Search agent | Azure AI Search | Connects to your LLM, providing parameters and inputs to build a query plan. |
 | Retrieval engine | Azure AI Search | Executes on the LLM-generated query plan and other parameters, returning a rich response that includes content and query plan metadata. Queries are keyword, vector, and hybrid. Results are merged and ranked. |
@@ -139,7 +139,7 @@ Putting it all together, you'd pay about $3.30 for semantic ranking in Azure AI 
 
 ## How to get started
 
-You must use the REST APIs or a prerelease Azure SDK page that provides the functionality. At this time, there's no Azure portal or Azure AI Foundry portal support.
+You must use the preview REST APIs or a prerelease Azure SDK package that provides the functionality. At this time, there's no Azure portal or Azure AI Foundry portal support.
 
 Choose any of these options for your next step.
 

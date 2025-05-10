@@ -42,7 +42,7 @@ After the wizard completes, you have the following components:
 |-----------|----------|------------|
 | Search index | Azure AI Search | Contains indexed content from a supported Logic Apps connector. The index schema is a default index created by the wizard. You can add extra elements, such as scoring profile or semantic configuration, but you can't change existing fields. You view, manage, and access the search index on Azure AI Search. |
 | Logic app resource and workflow | Azure Logic Apps | You can view the running workflow, or you can open the designer in Azure Logic Apps to edit the workflow, as you regularly do if you'd started from Azure Logic Apps instead. You can edit and extend the workflow, but exercise caution so as to not break the indexing pipeline. |
-| Logic app templates | Azure Logic Apps | Up to two templates created per workflow: one for on-demand indexing, and a second template for scheduled indexing. You can modify the indexing schedule. |
+| Logic app templates | Azure Logic Apps | Up to two templates created per workflow: one for on-demand indexing, and a second template for scheduled indexing. You can modify the indexing schedule in the **Index multiple documents** step of the workflow. |
 
 ## Prerequisites
 
@@ -96,7 +96,7 @@ The following connectors are helpful for indexing unstructured data, as a comple
 
 Currently, the public preview has these limitations:
 
-+ Search index is generated using a fixed schema (document ID, content, and vectorized content), with text extraction only. You can [modify the index](#modify-existing-objects) as long as the update doesn't affect existing fields.
++ The search index is generated using a fixed schema (document ID, content, and vectorized content), with text extraction only. You can [modify the index](#modify-existing-objects) as long as the update doesn't affect existing fields.
 + Vectorization supports text embedding only.
 + Deletion detection isn't supported. You must manually [delete orphaned documents](search-howto-reindex.md#delete-orphan-documents) from the index.
 + Duplicate documents in the search index are a known issue in this preview. Consider deleting objects and starting over if this becomes an issue.
@@ -113,8 +113,7 @@ Follow these steps to create a Logic Apps workflow for indexing content in Azure
 
 1. In **Connect to your data**, provide a name prefix used for the search index and workflow. Having a common name helps you manage them together.
 
-<!-- Open Issue: how to specify frequency -->
-1. Specify the indexing frequency. If you choose on a schedule, a template that includes scheduling option is created in Logic Apps.
+1. Specify the indexing frequency. If you choose on a schedule, a template that includes a scheduling option is used to create the workflow. You can modify the indexing schedule in the **Index multiple documents** step of the workflow after it's created.
 
 1. Select an authentication type where the logic app workflow connects to the search engine and starts the indexing process. The workflow can connect using  [Azure AI Search API keys](search-security-api-keys.md) or the wizard can create a role assignment that grants permissions to the Logic Apps system-assigned managed identity, assuming one exists.
 
@@ -142,9 +141,10 @@ You can make the following modifications to a search index without breaking inde
 
 You can make the following updates to a workflow without breaking indexing:
 
-+ Modify templates that control indexing frequency.
++ Modify **List files in folder** to change the number of documents sent to indexing.
 + Modify **Chunk Text** to vary token inputs. The recommended token size is 512 tokens for most scenarios.
 + Modify **Chunk Text** to add a page overlap length.
++ Modify **Index multiple documents** step to control indexing frequency if you chose scheduled indexing in the wizard.
 
 In logic apps designer, review the workflow and each step in the indexing pipeline. The workflow specifies document extraction, default document chunking ([Text Split skill](cognitive-search-skill-textsplit.md)), embedding ([Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md)), output field mappings, and finally indexing.
 
