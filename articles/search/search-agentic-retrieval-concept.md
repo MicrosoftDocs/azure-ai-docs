@@ -49,7 +49,8 @@ Agentic retrieval invokes the entire query processing pipeline multiple times fo
 
 Agentic retrieval is designed for a conversational search experience that includes an LLM. An important part of agentic retrieval is that an entire chat conversation can be included as inputs in subsequent queries, providing context and nuance for more relevant responses.
 
-<!-- Insert architecture diagram here -->
+:::image type="content" source="media/agentic-retrieval/agentic-retrieval-architecture.png" alt-text="Diagram of agentic retrieval workflow using an example query." lightbox="media/agentic-retrieval/agentic-retrieval-architecture.png" :::
+
 Agentic retrieval has these components:
 
 | Component | Resource | Usage |
