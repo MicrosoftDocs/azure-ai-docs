@@ -52,7 +52,7 @@ AI enrichment refers to internal connections to an Azure AI services multi-servi
 | North Central US​ ​| ✅ |  | ✅ |  |
 | South Central US​ | ✅ | ✅ | ✅ |  |
 | West US​​ | ✅ |  | ✅ |  |
-| West US 2​ ​| ✅ | ✅ | ✅ |  |
+| West US 2​ <sup>1</sup>​| ✅ | ✅ | ✅ |  |
 | West US 3​ | ✅ | ✅ | ✅ |  |
 | West Central US​ ​ | ✅ |  | ✅ |  |
 
@@ -60,7 +60,7 @@ AI enrichment refers to internal connections to an Azure AI services multi-servi
 
 | Region | AI enrichment | Availability zones | Semantic ranker | Query rewrite |
 |--|--|--|--|--|
-| North Europe​ <sup>1</sup>​ | ✅ | ✅ | ✅ | ✅ |
+| North Europe​​ | ✅ | ✅ | ✅ | ✅ |
 | West Europe​​ | ✅ | ✅ | ✅ |  |
 | France Central​​ | ✅ | ✅ | ✅ |  |
 | Germany West Central​ ​| ✅ | ✅ |  |  |

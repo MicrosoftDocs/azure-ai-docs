@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: whats-new
-ms.date: 04/24/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.custom:
   - references_regions

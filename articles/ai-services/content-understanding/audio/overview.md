@@ -2,13 +2,12 @@
 title: Azure AI Content Understanding audio overview
 titleSuffix: Azure AI services
 description: Learn about Azure AI Content Understanding audio solutions
-author: goergenj
-ms.author: lajanuar
+author: laujan
+ms.author: goergenj
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 05/06/2025
-ms.custom: release-preview-2-cu
+ms.date: 05/19/2025
 ---
 
 # Content Understanding audio solutions (preview)
@@ -31,7 +30,7 @@ Here are common scenarios for conversational audio data processing:
 :::image type="content" source="../media/audio/overview/workflow-diagram.png" lightbox="../media/audio/overview/workflow-diagram.png" alt-text="Illustration of Content Understanding audio capabilities.":::
 
 Content Understanding serves as a cornerstone for Speech Analytics solutions, enabling the following capabilities for audio files:
-  
+
 ### Content extraction
 
 #### Language handling
@@ -55,7 +54,7 @@ For languages with Fast transcriptions support and for files â‰¤ 300MB and/or â‰
 
 * **Speaker role detection**. Identifies agent and customer roles within contact center call data.
 
-* **Multilingual transcription**. Generates multilingual transcripts, applying language/locale per phrase. Deviating from language detection this feature is enabled when no language/locale is specified or language is set to 'auto'.
+* **Multilingual transcription**. Generates multilingual transcripts, applying language/locale per phrase. Deviating from language detection this feature is enabled when no language/locale is specified or language is set to `auto`.
 
 > [!NOTE]
 > When Multilingual transcription is used, a file with an unsupported locale produces a result. This result is based on the closest locale but most likely not correct.
@@ -80,25 +79,27 @@ Advanced audio capabilities, including:
 
 ## Prebuild audio analyzers
 
-The prebuild analyzers allow extracting valuable insights into audio content without the need to create an analyzer setup.
+The prebuilt analyzers allow extracting valuable insights into audio content without the need to create an analyzer setup.
 
 All audio analyzers generate transcripts in standard WEBVTT format separated by speaker.
 
 > [!NOTE]
-> Prebuild analyzers are set to use multilingual transcription and returnDetails enabled!
+> 
+> Prebuilt analyzers are set to use multilingual transcription and `returnDetails` enabled.
 
 The following prebuild analyzers are available:
 
 **Post-call analysis (prebuilt-callCenter)**. Analyze call recordings to generate:
-- conversation transcripts with speaker role detection result
-- call summary
-- call sentiment
-- top five articles mentioned
-- list of companies mentioned
-- list of people (name and title/role) mentioned
-- list of relevant call categories
 
-**Example result:** 
+* conversation transcripts with speaker role detection result
+* call summary
+* call sentiment
+* top five articles mentioned
+* list of companies mentioned
+* list of people (name and title/role) mentioned
+* list of relevant call categories
+
+**Example result:**
 ```json
 {
   "id": "bc36da27-004f-475e-b808-8b8aead3b566",
@@ -217,7 +218,7 @@ The following prebuild analyzers are available:
 - conversation transcripts
 - conversation summary
 
-**Example result:** 
+**Example result:**
 ```json
 {
   "id": "9624cc49-b6b3-4ce5-be6c-e895d8c2484d",
@@ -262,11 +263,11 @@ The following prebuild analyzers are available:
 }
 ```
 
-You can also customize prebuild analyzers for more fine-grained control of the output by defining custom fields. Customization allows you to use the full power of generative models to extract deep insights from the audio. For example, customization allows you to:
-- Generate other insights
-- Control the language of the field extraction output
-- Configure the transcription behavior
-- and more
+You can also customize prebuilt analyzers for more fine-grained control of the output by defining custom fields. Customization allows you to use the full power of generative models to extract deep insights from the audio. For example, customization allows you to:
+
+* Generate other insights.
+* Control the language of the field extraction output.
+* Configure the transcription behavior.
 
 ## Conversational Knowledge Mining Solution Accelerator
 For an end-2-end quickstart for Speech Analytics solutions, refer to the [Conversation knowledge mining solution accelerator](https://aka.ms/Conversational-Knowledge-Mining).
