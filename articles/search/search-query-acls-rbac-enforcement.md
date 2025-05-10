@@ -1,7 +1,7 @@
 ---  
-title: Query-Time ACL and RBAC Enforcement in Azure AI Search  
+title: Query-Time ACL and RBAC Enforcement in ADLS Gen2 Indexes
 titleSuffix: Azure AI Search  
-description: Learn how query-time ACL and RBAC enforcement ensures secure document retrieval in Azure AI Search.  
+description: Learn how query-time ACL and RBAC enforcement ensures secure document retrieval in Azure AI Search for indexes containing permission filters from Azure Data Lake Storage (ADLS) Gen2 data sources.  
 ms.service: azure-ai-search  
 ms.topic: conceptual  
 ms.date: 04/23/2025  
@@ -11,21 +11,24 @@ ms.author: magottei
 
 # Query-Time ACL and RBAC Enforcement in Azure AI Search  
 
-Query-time Access Control ensures that users only retrieve search results they are authorized to access, based on their identity, group memberships, roles, or attributes. This functionality is essential for secure enterprise search and compliance-driven workflows.  
+Query-time access control ensures that users only retrieve search results they are authorized to access, based on their identity, group memberships, roles, or attributes. This functionality is essential for secure enterprise search and compliance-driven workflows.  
 
 ## Requirements 
-- ADLS Gen2 data source configured ACLs and/or RBAC roles at container level, or permissions manually pushed into the index.
+- Azure Data Lake Storage (ADLS) Gen2 data source configured ACLs and/or RBAC roles at container level, or permissions manually pushed into the index.
 - Configure document ACL and RBAC role functionality as required using Azure AI Search [built-in indexers](search-indexer-acls-rbac.md) or when indexing the documents [using the API directly](search-indexing-acls-rbac-push-api.md).
 
 
-## How Query-Time Enforcement Works  
+## How query-time enforcement works
+
+This section lists the order of operations for ACL enforcement at query time.
+
 ### 1. User Permissions Input  
 The end-user application sends user permission as part of the search query request. The following table lists the source of the user permissions Azure AI Search uses for ACL enforcement:
 
 | Permission Type | Source |
 | - | - |
 | userIds | `oid` from `x-ms-query-source-authorization` token |
-| groupIds | Group membership fetched using the [Microsoft Graph](https://learn.microsoft.com/graph/api/resources/groups-overview?view=graph-rest-1.0&tabs=http) API |
+| groupIds | Group membership fetched using the [Microsoft Graph](/graph/api/resources/groups-overview) API |
 | rbacScope | Permissions the user from `x-ms-query-source-authorization` has on a storage container |
 
 ### 2. Security Filter Construction  
@@ -37,7 +40,6 @@ The security filter efficiently matches the userIds, groupIds and rbacScope from
 ---  
 
 ## Limitations
-- Provide limitations of the features
 - If ACL evaluation fails (for example, Graph API is unavailable), the service returns **5xx** and does **not** return a partially filtered result set.
 - Document visibility requires both:  
   1) the calling application’s RBAC role (Authorization header), and  
