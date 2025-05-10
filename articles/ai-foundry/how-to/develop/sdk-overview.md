@@ -48,7 +48,7 @@ The Azure AI Foundry Projects client library is a unified library that enables y
     pip install azure-ai-projects azure-ai-identity
     ```
 
-* Create a project client in code.  **Copy** the the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value.
+* Create a project client in code.  **Copy** the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value.
 
     ```python
     from azure.identity import DefaultAzureCredential
@@ -68,7 +68,7 @@ The Azure AI Foundry Projects client library is a unified library that enables y
     * `com.azure.ai.projects`
     * `com.azure.core`
 
-* Create a project client in code.  **Copy** the the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value.
+* Create a project client in code.  **Copy** the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value.
 
     ```java
     import com.azure.ai.projects.ProjectsClient;
@@ -95,7 +95,7 @@ The Azure AI Foundry Projects client library is a unified library that enables y
     npm install @azure/ai-projects @azure/identity
     ```
 
-* Create a project client in code.  **Copy** the the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value.
+* Create a project client in code.  **Copy** the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value.
 
 
     ```javascript
@@ -120,7 +120,7 @@ The Azure AI Foundry Projects client library is a unified library that enables y
     dotnet add package Azure.AI.Inference
     ```
 
-* Create a project client in code.  **Copy** the the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value.
+* Create a project client in code.  **Copy** the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value.
 
     ```csharp
     using Azure;
