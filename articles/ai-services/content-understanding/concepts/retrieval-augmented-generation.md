@@ -7,7 +7,7 @@ ms.author: tonyeiyalla
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 03/16/2025
+ms.date: 05/19/2025
 ms.custom: 2025-understanding-release
 ---
 # Multimodal retrieval-augmented generation with Content Understanding
