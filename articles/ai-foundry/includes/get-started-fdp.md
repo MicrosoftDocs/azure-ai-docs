@@ -38,7 +38,7 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 # [Python SDK](#tab/python)
 
-1. [Install Python and Azure CLI](../how-to/develop/install-cli-sdk.md?tabs=python)
+1. [Install Python and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-python)
 1. Install these packages:
 
     ```
@@ -50,14 +50,14 @@ The scripts in this quickstart are also available on [GitHub](https://github.com
 
 # [Java](#tab/java)
 
-1. [Install Java and Azure CLI](../how-to/develop/install-cli-sdk.md?tabs=java).
+1. [Install Java and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-java).
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
 
 The scripts in this quickstart are also available on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart).
 
 # [JavaScript](#tab/javascript)
 
-1. [Install JavaScript and Azure CLI](../how-to/develop/install-cli-sdk.md?tabs=javascript)
+1. [Install JavaScript and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-javascript)
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your JavaScript scripts.
 1. Download [package.json](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/javascript/mslearn-resources/quickstart/package.json).
 1. Install packages with `npm install`
@@ -66,7 +66,7 @@ The scripts in this quickstart are also available on [GitHub](https://github.com
 
 # [C#](#tab/csharp)
 
-1. [Install C# and Azure CLI](../how-to/develop/install-cli-sdk.md?tabs=csharp)
+1. [Install C# and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-csharp)
 1. Install packages:
 
     [!INCLUDE [install-csharp-packages](install-csharp-packages.md)]

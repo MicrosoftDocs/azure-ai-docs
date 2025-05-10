@@ -9,6 +9,7 @@ ms.date: 04/22/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
+zone_pivot_groups: foundry-sdk-overview-languages
 
 #customer intent: As a developer, I want to install the Azure AI Foundry SDK in my development environment
 ---
@@ -24,26 +25,31 @@ Set up your development environment to use the [Azure AI Foundry](https://ai.azu
 
 ## Install your programming language 
 
-# [Python SDK](#tab/python)
+::: zone pivot="programming-language-python"
 
 In the IDE of your choice, create a new folder for your project. Open a terminal window in that folder.
 
 [!INCLUDE [Install Python](../../includes/install-python.md)]
 
-# [Java](#tab/java)
+::: zone-end
+
+::: zone pivot="programming-language-java"
 
 [!INCLUDE [Install Jave](../../includes/install-java.md)]
 
-# [JavaScript](#tab/javascript)
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
 
 Install [Node.js](https://nodejs.org/)
 
-# [C#](#tab/csharp)
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
 
 [!INCLUDE [install-csharp](../../includes/install-csharp.md)]
 
----
-
+::: zone-end
 
 
 ## <a name="installs"></a> Install the Azure CLI and sign in 
