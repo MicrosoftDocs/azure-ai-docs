@@ -1,4 +1,5 @@
 
+---
 title: Catalog API Reference
 titleSuffix: Foundry Local
 description: Complete reference guide for the Foundry Local Model Catalog API.
@@ -9,6 +10,7 @@ ms.topic: reference
 ms.date: 05/02/2025
 ms.author: maanavdalal
 author: maanavd
+---
 
 # Catalog API Reference
 
