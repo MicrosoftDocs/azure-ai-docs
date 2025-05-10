@@ -52,10 +52,10 @@ To help you dive deeper into document-level access control in Azure AI Search, h
   
 | Functionality | Reference |  
 |-------|-------------|
-| **Index permissions using REST API** | Using the REST API to push permission metadata into the search index. | [Index permissions using REST API](search-index-access-control-lists-and-rbac-push-api.md) |  
-| **Index ADLS Gen2 permissions metadata using built-in indexers** | Using built-in ADLS Gen2 indexer to ingest ACLs and RBAC role metadata during data crawling. | [Index permissions using ADLS Gen2 indexer](search-indexer-access-control-lists-and-role-based-access.md) |  
-| **Query using Microsoft Entra token-based permissions** | Using a Microsoft Entra token to enforce ACL and RBAC permissions at query time. | [Query using Microsoft Entra token-based permissions](https://aka.ms/azs-query-preserving-permissions) |  
-| **Security trimming via filters** | Trim search results based on user or group identity. | [Security trimming via filters](search-security-trimming-for-azure-search.md) |  
+| **Index permissions using REST API** | [Index permissions using REST API](search-index-access-control-lists-and-rbac-push-api.md) |  
+| **Index ADLS Gen2 permissions metadata using built-in indexers** | [Index permissions using ADLS Gen2 indexer](search-indexer-access-control-lists-and-role-based-access.md) |  
+| **Query using Microsoft Entra token-based permissions** | [Query using Microsoft Entra token-based permissions](https://aka.ms/azs-query-preserving-permissions) |  
+| **Security trimming via filters** | [Security trimming via filters](search-security-trimming-for-azure-search.md) |  
  
   
   
