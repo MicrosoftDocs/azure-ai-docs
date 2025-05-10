@@ -1,7 +1,7 @@
 ---  
 title: Document-level access control    
 titleSuffix: Azure AI Search    
-description: Conceptual overview of document-level permissions in Azure AI Search    
+description: Conceptual overview of document-level permissions in Azure AI Search.    
 ms.service: azure-ai-search    
 ms.topic: conceptual    
 ms.date: 05/10/2025    
@@ -19,22 +19,20 @@ Document-level access helps restrict content visibility to authorized users, bas
   
 Azure AI Search provides document-level access control in the following ways:  
   
-### 1. Native support for integration with Microsoft Entra-based POSIX-style Access Control List (ACL) systems (preview)  
+### Native support for integration with Microsoft Entra-based POSIX-style Access Control List (ACL) systems (preview)  
   
 #### Retrieving permissions metadata during data ingestion process  
 Azure AI Search enables you to push document permissions directly into the search index alongside the content, enabling consistent application of access rules at query time. This capability is achieved in two ways:  
   
-**a. REST API and SDK integration**    
-You can use the [REST API](/rest/api/searchservice/operation-groups) or supported SDKs to [push documents and their associated permission metadata](search-index-access-control-lists-and-rbac-push-api.md)into the search index. This approach is ideal for systems with [Microsoft Entra](/Entra/fundamentals/what-is-Entra)-based [Access Control Lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control) and [Role-based access control (RBAC) roles](/azure/role-based-access-control/overview), such as [Azure Data Lake Storage (ADLS) Gen2](/azure/storage/blobs/data-lake-storage-introduction). By embedding ACLs and RBAC container metadata within the index, developers can reduce the need for custom security trimming logic during query execution.      
-  
-**b. Built-in ADLS Gen2 indexers**    
-If you're using ADLS Gen2 as your data source, [Azure AI Search's built-in indexer](search-indexer-access-control-lists-and-role-based-access.md) simplify data ingestion. This indexer pulls ACLs and RBAC roles at container level during the data ingestion process, enabling a low/no-code workflow for managing document-level permissions.  
+- Use the [REST API](/rest/api/searchservice/operation-groups) or supported SDKs to [push documents and their associated permission metadata](search-index-access-control-lists-and-rbac-push-api.md)into the search index. This approach is ideal for systems with [Microsoft Entra](/Entra/fundamentals/what-is-Entra)-based [Access Control Lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control) and [Role-based access control (RBAC) roles](/azure/role-based-access-control/overview), such as [Azure Data Lake Storage (ADLS) Gen2](/azure/storage/blobs/data-lake-storage-introduction). By embedding ACLs and RBAC container metadata within the index, developers can reduce the need for custom security trimming logic during query execution.      
+
+-For [built-in ADLS Gen2 indexers](search-indexer-access-control-lists-and-role-based-access.md), you can use the preview REST API with the permission filter options to flow existing ACLs and RBAC permissions to your search index. This indexer pulls ACLs and RBAC roles at container level during the data ingestion process, enabling a low/no-code workflow for managing document-level permissions.  
   
 #### Enforcing document-level permissions at query time    
 With native [token-based querying](https://aka.ms/azs-query-preserving-permissions), Azure AI Search validates a user's [Microsoft Entra token](/Entra/identity/devices/concept-tokens-microsoft-Entra-id) to enforce ACLs and RBAC roles automatically. This functionality helps trim result sets to include only documents the user is authorized to access. You can achieve automatic trimming by attaching the user's Microsoft Entra token to your query request.
 
   
-### 2. Security trimming via filters  
+### Security trimming via filters  
   
 For scenarios where native ACL and RBAC integration isn't supported, Azure AI Search enables [security trimming using query filters](search-security-trimming-for-azure-search.md). By creating a field in the index to represent user or group identities, you can use the filters to include or exclude documents from query results based on those identities. This approach is useful for systems with custom access models or non-Microsoft Entra-based security frameworks.    
 
@@ -61,4 +59,4 @@ To help you dive deeper into document-level access control in Azure AI Search, h
   
 ## Next steps  
   
-- [Tutorial: Index ADLS Gen2 permissions metadata](search-security-trimming-for-azure-search.md)  
+- [Tutorial: Index ADLS Gen2 permissions metadata](tutorial-adls-gen2-indexer-acls.md)  
