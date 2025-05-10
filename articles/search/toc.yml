@@ -164,6 +164,8 @@ items:
       href: search-indexer-overview.md
   - name: Applied AI
     items:
+    - name: Multimodal search
+      href: multimodal-search-overview.md
     - name: Built-in vectorization
       href: vector-search-integrated-vectorization.md
     - name: AI enrichment during indexing
