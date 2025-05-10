@@ -34,9 +34,9 @@ items:
     items:
     - name: Keyword search wizard
       href: search-get-started-portal.md
-    - name: Vector search wizard
+    - name: RAG wizard
       href: search-get-started-portal-import-vectors.md
-    - name: Image search wizard
+    - name: Multimodal RAG wizard
       href: search-get-started-portal-image-search.md
     - name: Create a demo app
       href: search-create-app-portal.md
@@ -97,12 +97,18 @@ items:
     - name: Index permissioned ADLS Gen2 blobs using indexers
       href: tutorial-adls-gen2-indexer-acls.md
     - name: Index ACLs and RBAC metadata using REST API
-      href: search-indexing-access-control-lists-and-rbac-push-api.md
+      href: search-index-access-control-lists-and-rbac-push-api.md
     - name: Create a custom analyzer
       href: tutorial-create-custom-analyzer.md
-    - name: Index multimodal content using embedding and document extraction skill
+  - name: Multimodal indexing tutorials
+    items:
+    - name: Index multimodal content using semantic chunking
+      href: tutorial-multimodal-index-embeddings-skill.md
+    - name: Index image verbalizations using semantic chunking
+      href: tutorial-multimodal-index-image-verbalization-skill.md      
+    - name: Index multimodal content using document extraction
       href: tutorial-multimodal-indexing-with-embedding-and-doc-extraction.md
-    - name: Index multimodal content using image verbalization and document extraction skill
+    - name: Index image verbalizations using document extraction
       href: tutorial-multimodal-indexing-with-image-verbalization-and-doc-extraction.md
   - name: RAG tutorials
     items:
@@ -243,7 +249,7 @@ items:
       href: search-how-to-create-search-index.md
     - name: Load an index
       href: search-how-to-load-search-index.md
-    - name: Index via import data wizards
+    - name: Index via portal wizards
       href: search-import-data-portal.md
     - name: Update or rebuild an index
       href: search-howto-reindex.md
@@ -251,6 +257,10 @@ items:
       href: search-how-to-alias.md
     - name: Import large data sets
       href: search-how-to-large-index.md
+    - name: Logic Apps workflows
+      items:
+      - name: Create a workflow
+        href: search-how-to-index-logic-apps-indexers.md
     - name: Indexers
       items:
       - name: Create an indexer
@@ -403,7 +413,6 @@ items:
     - name: Filter on vector queries
       displayName: query
       href: vector-search-filters.md
-
   - name: Keyword search
     items:
     - name: Full text query

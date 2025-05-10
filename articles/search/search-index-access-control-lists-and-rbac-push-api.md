@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how to use the REST API for indexing documents with ACLs and RBAC metadata.  
 ms.service: azure-ai-search  
 ms.topic: conceptual  
-ms.date: 05/08/2025  
+ms.date: 05/09/2025  
 author: admayber
 ms.author: admayber  
 ---  
@@ -13,8 +13,8 @@ ms.author: admayber
 
 Indexing documents, along with their associated [Access Control Lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control) and container [Role-Based Access Control (RBAC) roles](/azure/role-based-access-control/overview), into an Azure AI Search index via the [REST API](/rest/api/searchservice/) offers fine-grained control over the indexing pipeline. This approach enables the inclusion of document entries with precise, document-level permissions directly within the index. This article explains how to use the REST API to index document-level permissions' metadata in Azure AI Search. This process prepares your index to query and enforce end-user permissions.
 
-## Supported Scenarios  
-- Indexing ACLs metadata from [ENTRA-based](/en-us/entra/fundamentals/whatis), POSIX-style ACL systems, such as [Azure Data Lake Storage (ADLS) Gen2].(/azure/storage/blobs/data-lake-storage-introduction)
+## Supported scenarios  
+- Indexing ACLs metadata from [ENTRA-based](/entra/fundamentals/whatis), POSIX-style ACL systems, such as [Azure Data Lake Storage (ADLS) Gen2].(/azure/storage/blobs/data-lake-storage-introduction)
 - Indexing RBAC container metadata from ADLS Gen2.
 
 ### Limitations
@@ -23,7 +23,7 @@ Indexing documents, along with their associated [Access Control Lists (ACLs)](/a
 - A preexisting field can't be converted into a `permissionFilter` field type for use with built-in ACLs / RBAC metadata filtering. To enable filtering on an existing index, new fields must be created with the correct permission filter type.
 - Only one field of each `permissionFilter` type such as `groupIds`, `usersIds`, and `rbacScope`, can exist in an index.
 
-## Key Features  
+## Key features  
 - Flexible control over ingestion pipelines
 - Standardized schema for permissions metadata
 - Support for hierarchical permissions, such as folder-level ACLs, is available.
@@ -61,7 +61,7 @@ POST https://exampleservice.search.windows.net/indexes('indexdocumentsexample')/
     {
       "@search.action": "upload",
       "DocumentId": "1",
-      "UserIds": ["dff329dc-0c65-424c-a77d-13f5f6d17145", "f2e63ece-1190-4366-a3d1-67f623a57b2b", "cb1d2c74-0ffb-40bc-9774-869e5375867c"],
+      "UserIds": ["00aa00aa-bb11-cc22-dd33-44ee44ee44ee", "11bb11bb-cc22-dd33-ee44-55ff55ff55ff", "22cc22cc-dd33-ee44-ff55-66aa66aa66aa"],
       "GroupIds": ["none"]
       "RbacScope": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/Example-Storage-rg/providers/Microsoft.Storage/storageAccounts/azurestorage12345/blobServices/default/containers/blob-container-01"
     },
@@ -69,7 +69,7 @@ POST https://exampleservice.search.windows.net/indexes('indexdocumentsexample')/
       "@search.action": "merge",
       "DocumentId": "2",
       "UserIds": ["all"],
-      "GroupIds": ["cca97cfc-5ee0-4b49-ac72-3134f58c1898", "9fc8129f-cd4e-4609-abe1-0df360661243"]
+      "GroupIds": ["33dd33dd-ee44-ff55-aa66-77bb77bb77bb", "44ee44ee-ff55-aa66-bb77-88cc88cc88cc"]
     },
     {
       "@search.action": "mergeOrUpload",
@@ -108,6 +108,6 @@ This example illustrates how the document access rules are resolved based on the
 | 5 | ["user1", "user2"] | ["group1"] | Empty | User1, user2, or any member of group1 | |
 | 5 | ["user1", "user2"] | [] | Empty | User1, user2, or any user with RBAC permissions to container1 | |
 
-## Next Steps
-[How to query the index using end user ENTRA-token to enforce document-level permissions](https://aka.ms/azs-query-preserving-permissions)
-[How to index ADLS Gen2 document-level permission information using indexers](tutorial-adls-gen2-indexer-acls.md)
+## Next steps
+- [How to query the index using end user ENTRA-token to enforce document-level permissions](https://aka.ms/azs-query-preserving-permissions)
+- [How to index ADLS Gen2 document-level permission information using indexers](tutorial-adls-gen2-indexer-acls.md)

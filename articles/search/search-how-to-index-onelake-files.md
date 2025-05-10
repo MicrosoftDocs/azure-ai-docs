@@ -10,25 +10,25 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 02/12/2025
+ms.date: 05/08/2025
 ---
 
 # Index data from OneLake files and shortcuts
   
-In this article, learn how to configure a OneLake files indexer for extracting searchable data and metadata data from a [lakehouse](/fabric/onelake/create-lakehouse-onelake) on top of [OneLake](/fabric/onelake/onelake-overview). 
+In this article, learn how to configure a OneLake files indexer for extracting searchable data and metadata data from a [lakehouse](/fabric/onelake/create-lakehouse-onelake) on top of [OneLake](/fabric/onelake/onelake-overview).
 
 To configure and run the indexer, you can use:
 
 + [2024-05-01-preview REST API](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2024-05-01-preview&tabs=HTTP&preserve-view=true) or a newer preview REST API.
 + An Azure SDK beta package that provides the feature.
-+ [Import data](search-get-started-portal.md) wizard in the Azure portal.
-+ [Import and vectorize data](search-get-started-portal-import-vectors.md) wizard in the Azure portal.
++ [Import data wizard](search-get-started-portal.md) in the Azure portal.
++ [Quickstart wizard](search-get-started-portal-import-vectors.md) in the Azure portal.
 
 This article uses the REST APIs to illustrate each step.
   
 ## Prerequisites  
   
-+ A Fabric workspace. Follow this tutorial to [create a Fabric workspace](/fabric/data-engineering/tutorial-lakehouse-get-started). 
++ A Fabric workspace. Follow this tutorial to [create a Fabric workspace](/fabric/data-engineering/tutorial-lakehouse-get-started).
 
 + A lakehouse in a Fabric workspace. Follow this tutorial to [create a lakehouse](/fabric/data-engineering/tutorial-build-lakehouse).
 
@@ -452,6 +452,6 @@ There are five indexer properties that control the indexer's response when error
 
 ## Next steps
 
-Review how the [Import and vectorize data wizard](search-get-started-portal-import-vectors.md) works and try it out for this indexer. You can use [integrated vectorization](vector-search-integrated-vectorization.md) to chunk and create embeddings for vector or hybrid search using a default schema.
+Review how the [Quickstart wizard](search-get-started-portal-import-vectors.md) works and try it out for this indexer. You can use [integrated vectorization](vector-search-integrated-vectorization.md) to chunk and create embeddings for vector or hybrid search using a default schema.
 
 <!-- + Check out [this Python demo](add a link to demo location) that shows how to set this up using code. -->
