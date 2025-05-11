@@ -1,7 +1,7 @@
 ---
 title: 'Tutorial: Index multimodal content using multimodal embedding and document layout skill'
 titleSuffix: Azure AI Search
-description: Learn how to extract, index, and search both text and images from Azure Blob Storage for multimodal scenarios using the Azure AI Search REST APIs.
+description: Learn how to extract, index, and search multimodal content using the Document Layout skill for chunking and Azure AI Vision for embeddings.
 
 manager: arjagann
 author: rawan    
@@ -13,26 +13,24 @@ ms.date: 05/05/2025
 
 ---
 
-# Tutorial: Index multimodal content using multimodal embedding and document layout skill
+# Tutorial: Index mixed content using multimodal embeddings and the Document Layout skill
 
-Multimodal plays an essential role in generative AI apps and the user experience as it enables the extraction of information not only from text but also from complex images embedded within documents. In this Azure AI Search tutorial, learn how to build a multimodal retrieval pipeline that chunks data based on document structure, and uses a multimodal embedding model to vectorize text and images in a searchable index.
+<!-- Multimodal plays an essential role in generative AI apps and the user experience as it enables the extraction of information not only from text but also from complex images embedded within documents.  -->
+In this Azure AI Search tutorial, learn how to build a multimodal indexing pipeline that chunks data based on document structure, and uses a multimodal embedding model to vectorize text and images in a searchable index.
 
-You’ll work with a 36-page PDF document that combines rich visual content—such as charts, infographics, and scanned pages—with traditional text. Using the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)(currently in public preview), you’ll extract both text and normalized images with its locationMetadata. Each modality is then embedded using the same [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), which generates dense vector representations suitable for semantic and hybrid search scenarios.
+In this tutorial, you use:
 
-You'll use:
++ A 36-page PDF document that combines rich visual content—such as charts, infographics, and scanned pages—with traditional text.
 
-+ The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) for extracting text and normalized images.
++ The [Document Layout skill (preview)](cognitive-search-skill-document-intelligence-layout.md) for extracting text and normalized images with its locationMetadata from various documents, such as page numbers or bounding regions.
 
-+ Vectorization using the [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), which generates embeddings from both text and images. The same skill is used for both modalities, with text inputs processed into embeddings for semantic search, and images processed into vector representations using Azure AI Vision models.
+  The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited region availability and is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. For a lower-cost solution that indexing multimodal content, see [Index multimodal content using image verbalization and document extraction skill](https://aka.ms/azs-multimodal).
 
-+ A search index configured to store text and image embeddings and support vector-based similarity search.
++ Vectorization using the [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), which generates embeddings for both text and images.
 
-This tutorial demonstrates a solution for indexing multi-modal content using Document Layout skill. Document Layout skill
-enables extraction both text and image with its locational metadata from various documents, such as page numbers or bounding regions. However, [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited region availability and is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day
++ A search index configured to store text and image embeddings and support for vector-based similarity search.
 
-For a lower-cost solution that indexing multi-modal content, see [Index multi-modal content using embedding and document extraction skill](https://aka.ms/azs-multimodal).
-
-This tutorial shows you how to  index such data, using a REST client and the [Search REST APIs](/rest/api/searchservice/) to:
+Using a REST client and the [Search REST APIs](/rest/api/searchservice/), you will:
 
 > [!div class="checklist"]
 > + Set up sample data and configure an `azureblob` data source
@@ -614,4 +612,4 @@ Now that you're familiar with a sample implementation of a multimodal indexing s
 + [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)
 + [Vectors in Azure AI Search](vector-search-overview.md)
 + [Semantic ranking in Azure AI Search](semantic-search-overview.md)
-+ [Index multi-modal content using embedding and document extraction skill](https://aka.ms/azs-multimodal)
++ [Index multimodal content using embedding and document extraction skill](https://aka.ms/azs-multimodal)

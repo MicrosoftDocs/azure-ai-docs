@@ -1,7 +1,7 @@
 ---
 title: 'Tutorial: Index multimodal content using image verbalization and document layout skill'
 titleSuffix: Azure AI Search
-description: Learn how to extract, describe, and index text and images from Azure Blob Storage using GenAI Prompt skill and Azure AI Search REST APIs to support multimodal scenarios.
+description: Learn how to extract, index, and search multimodal content using the Document Layout skill for chunking and GenAI Prompt skill for image verbalizations.
 
 manager: arjagann
 author: rawan    
@@ -13,28 +13,30 @@ ms.date: 05/05/2025
 
 ---
 
-# Tutorial: Index multimodal content using image verbalization and document layout skill
+# Tutorial: Index mixed content using image verbalizations and the Document Layout skill
 
-Multi-modality plays an essential role in generative AI apps and the user experience as it enables the extraction of information not only from text but also from complex images embedded within documents. "In this Azure AI Search tutorial, learn how to build a multimodal retrieval pipeline that that chunks data based on document structure, and =uses image verbalization to describe images. Cropped images are stored in a knowledge store, and visual content is described in natural language and ingested alongside text in a searchable index.
+In this Azure AI Search tutorial, learn how to build a multimodal indexing pipeline that that chunks data based on document structure, and uses image verbalization to describe images. Cropped images are stored in a knowledge store, and visual content is described in natural language and ingested alongside text in a searchable index.
 
-You’ll work with a 36-page PDF document that combines rich visual content—such as charts, infographics, and scanned pages—with traditional text. Using the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)(currently in public preview), you’ll extract both text and normalized images with its locationMetadata. Each image is passed to the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) (currently in public preview) to generate a concise textual description. These descriptions, along with the original document text, are then embedded into vector representations using Azure OpenAI’s text-embedding-3-large model. The result is a single index containing semantically searchable content from both modalities—text and verbalized images.
+From the source document, each image is passed to the [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) to generate a concise textual description. These descriptions, along with the original document text, are then embedded into vector representations using Azure OpenAI’s text-embedding-3-large model. The result is a single index containing semantically searchable content from both modalities—text and verbalized images.
 
-You'll use:
+In this tutorial, you use:
 
-+ The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) for extracting text and normalized images.
-+ The [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) to generate image captions — text-based descriptions of visual content — for search and grounding.
++ A 36-page PDF document that combines rich visual content—such as charts, infographics, and scanned pages—with traditional text.
+
++ The [Document Layout skill (preview)](cognitive-search-skill-document-intelligence-layout.md) for extracting text and normalized images with its locationMetadata from various documents, such as page numbers or bounding regions.
+
+  The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited region availability and is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. For a lower-cost solution that indexing multimodal content, see [Index multimodal content using image verbalization and document extraction skill](https://aka.ms/azs-multimodal).
+
++ The [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) to generate image captions — text-based descriptions of visual content — for search and grounding.
+
 + Vectorization using the [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), which generates embeddings from both text and images. The same skill is used for both modalities, with text inputs processed into embeddings for semantic search, and images processed into vector representations using Azure AI Vision models.
-+ A search index configured to store text and image embeddings and support vector-based similarity search.
 
-This tutorial demonstrates a solution for indexing multi-modal content using Document Layout skill. Document Layout skill
-enables extraction both text and image with its locational metadata from various documents, such as page numbers or bounding regions. However, [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited region availability and is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day
-
-For a lower-cost solution that indexing multi-modal content, see [Index multimodal content using image verbalization and document extraction skill](https://aka.ms/azs-multimodal).
++ A search index configured to store text and image embeddings and support for vector-based similarity search.
 
 > [!NOTE]
-> Setting `imageAction` to `generateNormalizedImages` as is required for this tutorial will incur an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
+> Setting `imageAction` to `generateNormalizedImages` is required for this tutorial and incurs an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
 
-Using a REST client and the [Search REST APIs](/rest/api/searchservice/) you will:
+Using a REST client and the [Search REST APIs](/rest/api/searchservice/), you will:
 
 > [!div class="checklist"]
 > + Set up sample data and configure an `azureblob` data source
