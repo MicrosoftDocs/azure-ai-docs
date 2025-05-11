@@ -1,0 +1,116 @@
+---
+title: Azure AI Content Understanding Prebuilt analyzers
+titleSuffix: Azure AI services
+description: Learn about prebuilt analyzers, their scenarios, customization options, billing, roadmap in Azure AI Content Understanding.
+author: laujan
+ms.author: additi
+manager: nitinme
+ms.service: azure-ai-content-understanding
+ms.topic: overview
+ms.date: 05/01/2025
+ms.custom: ignite-2024-understanding-release
+---
+
+# Prebuilt analyzers in Azure AI Content Understanding
+
+## Overview
+
+Azure AI Content Understanding uses analyzers to extract structured information from unstructured content across documents, images, audio, and video files. Prebuilt analyzers in Azure AI Content Understanding are ready-to-use analyzers designed to handle common content processing scenarios such as document ingestion, search indexing, and retrieval-augmented generation (RAG). 
+These analyzers simplify tryout experiences and can be customized by inheriting from them to suit specific workflows. We offer: 
+
+- **Content parsers** for general search and ingestion scenarios
+- **Scenario-specific predefined analyzers** for targeted use cases like invoices or call center transcripts
+- The ability to **inherit from prebuilt analyzers** and customize their configuration and fields  
+
+
+
+## Content parsers for search and ingestion
+
+To streamline common content ingestion scenarios, Azure AI Content Understanding offers general-purpose **prebuilt content analyzers**. These analyzers extract text, layout, and metadata from a variety of content types.
+
+
+| Analyzer                  | Description                                                                 | Supported File Types |
+|:-------------------------|:-----------------------------------------------------------------------------|:--------------------|
+| `prebuilt-documentAnalyzer` | Extracts text, layout, and metadata using OCR for images and rendered files. Supports for features like section summary and image descriptions in future. Users can customize prebuilt content analyzers to modify configuration and add/remove fields. | pdf, tiff, image, docx, rtf, html, md, json, xml, csv, tsv, txt |
+| `prebuilt-imageAnalyzer`    | Generates a descriptive caption of an image. OCR is conceptually disabled. Users refine the description and/or add new fields by creating analyzer with baseAnalyzerId=prebuilt-imageAnalyzer.  | image                |
+| `prebuilt-audioAnalyzer`    | Produces a transcript, speaker diarization, and a summary for audio files. Users can customize diarization (future release) and add new fields by creating analyzer with baseAnalyzerId=prebuilt-audioAnalyzer.  | audio                |
+| `prebuilt-videoAnalyzer`    | Extracts keyframes, transcript, and video segmentation. Segmentation is enabled by default.  User can disable/customize segmentation by creating an analyzer with baseAnalyzerId=prebuilt-videoAnalyzer and changing segmentationMode property.                | video                |
+
+These analyzers are optimized for RAG ingestion and search workflows, offering default behaviors suitable for indexing and summarizing large volumes of content. 
+It will support additional features like section summaries and image/figure descriptions in future previews.
+
+Note: 
+* Currently, OCR is supported for pdf/tiff/image files. Content elements from such files will include span properties and bounding boxes via their source properties.
+* Support for docx files will be added in future. For nnon-supported files, contents are extracted digitally.  Content elements from these files will include span properties to indicate their position in the returned markdown.  We will return non-bounding boxes based source properties in the future. 
+* There are no prebuilts for agentic mode.  Instead, users can create an analyzer with mode=pro starting from any document base analyzer to test out agentic behavior.
+
+## Scenario-specific predefined analyzers
+
+In addition to general content analyzers, Azure AI Content Understanding provides **prebuilt analyzers for specific business scenarios**  to target common scenarios.  They can be further customized by setting them as the baseAnalyzerId.: 
+
+| Analyzer             | Description                                                     | Supported File Types |
+|:--------------------|:----------------------------------------------------------------|:--------------------|
+| `prebuilt-callCenter` | Extracts summary, sentiment, topics, and insights from call center transcripts. | audio (and text, future) |
+| `prebuilt-invoice`    | Extracts structured fields such as InvoiceId, Date, and Vendor from invoices. | pdf, tiff, image (docx support coming soon) |
+
+These analyzers bundle best practices and hidden configurations to deliver accurate extractions for their intended use cases while simplifying deployment by abstracting internal implementation details.
+
+
+## Inheriting and customizing prebuilt analyzers
+
+In **Preview 2**, you can inherit from any prebuilt analyzer using `baseAnalyzerId` to create a custom analyzer.
+
+- **Modify existing fields, descriptions, types, and methods.**
+- **Customize configuration settings like `enableFormula`, `segmentationMode`, and others.**
+
+**Example:**
+
+
+### Example: Inheriting from `prebuilt-documentAnalyzer`
+
+```json
+{
+  "baseAnalyzerId": "prebuilt-documentAnalyzer",
+  "fields": [
+    { "name": "InvoiceId", "type": "string", "method": "regex" },
+    { "name": "TotalAmount", "type": "currency", "method": "extractive" }
+  ],
+  "configuration": {
+    "enableFormula": true,
+    "tableFormat": "markdown"
+  }
+}
+
+> [!IMPORTANT]
+> In Preview 2, modifying a field description will overwrite the internal refined description, potentially reducing extraction quality. 
+> `baseAnalyzerId` must be a prebuilt analyzer. Custom analyzers cannot currently inherit from other custom analyzers.
+
+
+
+## Analyzer details and configurations
+
+- **Document Analyzer**: OCR on PDF/TIFF/Images; DOCX rendering soon.
+- **Image Analyzer**: No OCR; generates image descriptions.
+- **Audio Analyzer**: Transcript and summary extraction; diarization support planned.
+- **Video Analyzer**: Keyframes, transcript, and segmentation.
+- **Call Center Analyzer**: Summarizes and extracts insights from audio. Supports audio text. 
+- **Invoice Analyzer**: Structured field extraction from invoices. Supportd pdf, tiff, image. 
+
+
+## Billing and limits
+
+- **Documents**: Billed per page/slide/sheet. For docx/rtf/html/md/msg/eml/json/xml/csv/tsv/txt, we count every 3k UTF16 characters as a page. Field extraction has a fixed per 1k page rate
+- **Images**: Image content extraction is free, however, generating the description invokes image field extraction charges.
+- **Audio/Video**: Billed per hour with 1 minute granularity. Will be charged both for audio/video content extraction and field extraction. 
+- **Token-based billing** for generative operations is planned.
+- Max field limit: **90 user-defined fields** (100 total including reserved fields).
+
+
+---
+
+## Next steps
+
+- [How to create analyzers](#)
+- [Field extraction methods](#)
+- [Content extraction limits](#)
+
