@@ -79,7 +79,7 @@ To configure the project to use the Foundry Models capability in Azure AI Foundr
     :::image type="content" source="../media/quickstart-ai-project/overview-endpoint-and-key.png" alt-text="Screenshot of the landing page for the project, highlighting the location of the connected resource and the associated inference endpoint." lightbox="../media/quickstart-ai-project/overview-endpoint-and-key.png":::
 
     > [!TIP]
-    > Each Azure AI Foundry Services resource has a single **Foundry Models endpoint** which can be used to access any model deployment on it. The same endpoint serves multiple models depending on which ones are configured. Learn about [how the endpoint works](../concepts/endpoints.md#azure-ai-inference-endpoint).
+    > Each Azure AI Foundry Services resource has a single **Foundry Models endpoint** which can be used to access any model deployment on it. The same endpoint serves multiple models depending on which ones are configured. Learn about [how the endpoint works](../concepts/endpoints.md#azure-openai-inference-endpoint).
 
 5. Take note of the endpoint URL and credentials.
 
@@ -189,7 +189,7 @@ For each model deployed as Serverless API Endpoints, follow these steps:
 Consider the following limitations when configuring your project to use Foundry Models:
 
 * Only models supporting pay-as-you-go billing (Models as a Service) are available for deployment to Foundry Models. Models requiring compute quota from your subscription (Managed Compute), including custom models, can only be deployed within a given project as Managed Online Endpoints and continue to be accessible using their own set of endpoint URI and credentials.
-* Models available as both pay-as-you-go billing and managed compute offerings are, by default, deployed to Foundry Models in Azure AI Foundry Services resources. Azure AI Foundry portal doesn't offer a way to deploy them to Managed Online Endpoints. You have to turn off the feature mentioned at [Configure the project to use Foundry Models](#configure-the-project-to-use-azure-ai-model-inference) or use the Azure CLI/Azure ML SDK/ARM templates to perform the deployment.
+* Models available as both pay-as-you-go billing and managed compute offerings are, by default, deployed to Foundry Models in Azure AI Foundry Services resources. Azure AI Foundry portal doesn't offer a way to deploy them to Managed Online Endpoints. You have to turn off the feature mentioned at [Configure the project to use Foundry Models](#configure-the-project-to-use-foundry-models) or use the Azure CLI/Azure ML SDK/ARM templates to perform the deployment.
 
 ## Next steps
 

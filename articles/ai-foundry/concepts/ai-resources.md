@@ -76,7 +76,7 @@ Projects also have specific settings that only hold for that project:
 
 ## Azure AI services API access keys
 
-The hub allows you to set up connections to existing Azure OpenAI or Azure AI Services resource types, which can be used to host model deployments. You can access these model deployments from connected resources in Azure AI Foundry portal. Keys to connected resources can be listed from the Azure AI Foundry portal or Azure portal. For more information, see [Find Azure AI Foundry Service in the Azure portal](#find-azure-ai-foundry-resources-in-the-azure-portal).
+The hub allows you to set up connections to existing Azure OpenAI or Azure AI Services resource types, which can be used to host model deployments. You can access these model deployments from connected resources in Azure AI Foundry portal. Keys to connected resources can be listed from the Azure AI Foundry portal or Azure portal. For more information, see [Find Azure AI Foundry Service in the Azure portal](#find-azure-ai-foundry-services-in-the-azure-portal).
 
 ### Virtual networking
 

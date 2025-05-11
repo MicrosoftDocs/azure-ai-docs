@@ -50,7 +50,7 @@ Azure AI Foundry offers four different deployment options:
 
 Azure AI Foundry encourages you to explore various deployment options and choose the one that best suites your business and technical needs. In general, Consider using the following approach to select a deployment option:
 
-* Start with [Foundry Models](../../ai-foundry/model-inference/overview.md), which is the option with the largest scope. This option allows you to iterate and prototype faster in your application without having to rebuild your architecture each time you decide to change something. If you're using Azure AI Foundry hubs or projects, enable this option by [turning on the Foundry Models feature](../model-inference/how-to/quickstart-ai-project.md#configure-the-project-to-use-azure-ai-model-inference).
+* Start with [Foundry Models](../../ai-foundry/model-inference/overview.md), which is the option with the largest scope. This option allows you to iterate and prototype faster in your application without having to rebuild your architecture each time you decide to change something. If you're using Azure AI Foundry hubs or projects, enable this option by [turning on the Foundry Models feature](../model-inference/how-to/quickstart-ai-project.md#configure-the-project-to-use-foundry-models).
 
 * When you're looking to use a specific model:
 

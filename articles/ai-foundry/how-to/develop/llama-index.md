@@ -86,7 +86,8 @@ llm = AzureAICompletionsModel(
 ```
 
 > [!TIP]
-> If your model deployment is hosted in Azure OpenAI in Foundry Models or Azure AI Services resource, configure the client as indicated at [Azure OpenAI models and Foundry Models service](#azure-openai-models-and-azure-ai-model-inference-service).
+> If your model deployment is hosted in Azure OpenAI in Foundry Models or Azure AI Services resource, configure the client as indicated at [Azure OpenAI models and Foundry Models service](#azure-openai-models-and-foundry-models-service).
+
 
 If your endpoint is serving more than one model, like with the [Foundry Models service](../../model-inference/overview.md) or [GitHub Models](https://github.com/marketplace/models), you have to indicate `model_name` parameter:
 
