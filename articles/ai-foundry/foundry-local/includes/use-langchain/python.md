@@ -91,10 +91,10 @@ You can change the `input` variable to any text you want to translate. The appli
 
 ### Explanation of the code
 
-**`FoundryLocalManager`** is an class that manages the Foundry Local service and the models. By default `FoundryLocalManager` will initiate the following *bootstrap process* on the application user's machine for local inference:
+**`FoundryLocalManager`** is a class that manages the Foundry Local service and the models. By default `FoundryLocalManager` initiates the following *bootstrap process* on the application user's machine for local inference:
 
-1. *Starts the service*, if it is not already running.
-1. *Downloads the model*, if it is not cached on the user's device.
+1. *Starts the service*, if it isn't already running.
+1. *Downloads the model*, if it isn't cached on the user's device.
 1. *Loads the specified model into memory*.
 
 The key inputs to LangChain's `ChatOpenAI` class can be set using the `FoundryLocalManager` instance. The `model` parameter is set to the model ID of the specified model, and the `base_url` and `api_key` parameters are set to the endpoint and API key of the Foundry Local service.
@@ -110,7 +110,7 @@ llm = ChatOpenAI(
 ```
 
 > [!NOTE]
-> One of key benefits of Foundry Local is that it will **automatically** select the most suitable model **variant** for the user's hardware. For example, if the user has a GPU, it will download the GPU version of the model. If the user has an NPU, it will download the NPU version. If the user does not have either a GPU or NPU, it will download the CPU version of the model.
+> One of key benefits of Foundry Local is that it **automatically** selects the most suitable model **variant** for the user's hardware. For example, if the user has a GPU, it downloads the GPU version of the model. If the user has an NPU (Neural Processing Unit), it downloads the NPU version. If the user doesn't have either a GPU or NPU, it downloads the CPU version of the model.
     
 ## Run the application
 
@@ -120,7 +120,7 @@ To run the application, open a terminal and navigate to the directory where you 
 python translation_app.py
 ```
 
-You should see output similar to the following:
+The following output of the application shows the translation of the input text "I love to code." into French:
 
 ```Plaintext
 [foundry-local] | 2025-05-10 14:08:26 | INFO     | Foundry service is already running at http://localhost:5272
