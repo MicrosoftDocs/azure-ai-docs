@@ -29,7 +29,7 @@ In this tutorial, you:
 If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
 > [!TIP]
-> You can use the [Quickstart wizard](search-import-data-portal.md) to create your pipeline. Try some quickstarts [Image search](search-get-started-portal-image-search.md) or [Vector search](search-get-started-portal-import-vectors.md), to learn more about the pipeline and its moving parts.
+> You can use the [Import and vectorize data wizard](search-import-data-portal.md) to create your pipeline. Try some quickstarts [Image search](search-get-started-portal-image-search.md) or [Vector search](search-get-started-portal-import-vectors.md), to learn more about the pipeline and its moving parts.
 
 ## Prerequisites
 

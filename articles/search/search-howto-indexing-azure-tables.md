@@ -54,7 +54,7 @@ The Description field provides the most verbose content. You should target this 
 
 ## Use the Azure portal
 
-You can use either the **Import data** wizard or **Quickstart wizard** to automate indexing from an SQL database table or view. The data source configuration is similar for both wizards.
+You can use either the **Import data** wizard or **Import and vectorize data wizard** to automate indexing from an SQL database table or view. The data source configuration is similar for both wizards.
 
 1. [Start the wizard](search-import-data-portal.md#starting-the-wizards).
 
@@ -68,7 +68,7 @@ You can use either the **Import data** wizard or **Quickstart wizard** to automa
 
    If you [configure Azure AI Search to use a managed identity](search-howto-managed-identities-data-sources.md), and you create a role assignment on Azure Storage that grants **Reader and Data Access** permissions to the identity, your indexer can connect to table storage using Microsoft Entra ID and roles.
 
-1. For the **Quickstart wizard**, you can specify options for deletion detection.
+1. For the **Import and vectorize data wizard**, you can specify options for deletion detection.
 
    Deletion detection requires that you have a preexisting field in the table that can be used as a soft-delete flag. It should be a Boolean field (you could name it IsDeleted). Specify `true` as the soft-delete value. In the search index, add a corresponding search field called *IsDeleted* set to retrievable and filterable.
 
@@ -76,7 +76,7 @@ You can use either the **Import data** wizard or **Quickstart wizard** to automa
 
    + [Import data wizard](search-get-started-portal.md)
 
-   + [Quickstart wizard](search-get-started-portal-import-vectors.md)
+   + [Import and vectorize data wizard](search-get-started-portal-import-vectors.md)
 
 ## Use the REST APIs
 

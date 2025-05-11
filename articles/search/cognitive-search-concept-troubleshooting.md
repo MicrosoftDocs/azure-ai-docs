@@ -17,7 +17,7 @@ This article contains tips to help you get started with AI enrichment and skills
 
 ## Tip 1: Start simple and start small
 
-Both the [**Import data wizard**](search-get-started-skillset.md) and [**Quickstart wizard**](search-get-started-portal-import-vectors.md) in the Azure portal support AI enrichment. Without writing any code, you can create and examine all of the objects used in an enrichment pipeline: an index, indexer, data source, and skillset.
+Both the [**Import data wizard**](search-get-started-skillset.md) and [**Import and vectorize data wizard**](search-get-started-portal-import-vectors.md) in the Azure portal support AI enrichment. Without writing any code, you can create and examine all of the objects used in an enrichment pipeline: an index, indexer, data source, and skillset.
 
 Another way to start simply is by creating a data source with just a handful of documents or rows in a table that are representative of the documents that will be indexed. A small data set is the best way to increase the speed of finding and fixing issues.Run your sample through the end-to-end pipeline and check that the results meet your needs. Once you're satisfied with the results, you're ready to add more files to your data source.
 

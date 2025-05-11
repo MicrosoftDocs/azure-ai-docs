@@ -23,7 +23,7 @@ To configure and run the indexer, you can use:
 + [Search Service REST API](/rest/api/searchservice), any version.
 + An Azure SDK package, any version.
 + [Import data wizard](search-get-started-portal.md) in the Azure portal.
-+ [Quickstart wizard](search-get-started-portal-import-vectors.md) in the Azure portal.
++ [Import and vectorize data wizard](search-get-started-portal-import-vectors.md) in the Azure portal.
 
 This article uses the REST APIs to illustrate each step.
 

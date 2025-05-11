@@ -304,7 +304,7 @@ If a parent document is completely deleted from the datasource, the correspondin
 
 ### Projected key value
 
-To ensure data integrity for updated and deleted content, data refresh in one-to-many indexing relies on a *projected key value* on the "many" side. If you're using integrated vectorization or the [Quickstart wizard](search-import-data-portal.md), the projected key value is the `parent_id` field in a chunked or "many" side of the index.
+To ensure data integrity for updated and deleted content, data refresh in one-to-many indexing relies on a *projected key value* on the "many" side. If you're using integrated vectorization or the [Import and vectorize data wizard](search-import-data-portal.md), the projected key value is the `parent_id` field in a chunked or "many" side of the index.
 
 A projected key value is a unique identifier that the indexer generates for each document. It ensures uniqueness and allows for change and deletion tracking to work correctly. This key contains the following segments:
 

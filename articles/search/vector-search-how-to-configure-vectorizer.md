@@ -49,11 +49,11 @@ The following table lists the embedding models that can be used with a vectorize
 
 ## Try a vectorizer with sample data
 
-The [Quickstart wizard](search-get-started-portal-import-vectors.md) reads files from Azure Blob storage, creates an index with chunked and vectorized fields, and adds a vectorizer. By design, the vectorizer that's created by the wizard is set to the same embedding model used to index the blob content.
+The [Import and vectorize data wizard](search-get-started-portal-import-vectors.md) reads files from Azure Blob storage, creates an index with chunked and vectorized fields, and adds a vectorizer. By design, the vectorizer that's created by the wizard is set to the same embedding model used to index the blob content.
 
 1. [Upload sample data files](/azure/storage/blobs/storage-quickstart-blobs-portal) to a container on Azure Storage. We used some [small text files from NASA's earth book](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-txt-10) to test these instructions on a free search service.
   
-1. Run the [Quickstart wizard](search-get-started-portal-import-vectors.md), choosing the blob container for the data source.
+1. Run the [Import and vectorize data wizard](search-get-started-portal-import-vectors.md), choosing the blob container for the data source.
 
    :::image type="content" source="media/vector-search-how-to-configure-vectorizer/connect-to-data.png" lightbox="media/vector-search-how-to-configure-vectorizer/connect-to-data.png" alt-text="Screenshot of the connect to your data page.":::
 
