@@ -21,7 +21,7 @@ The Voice Live API is a solution enabling low-latency, high-quality speech to sp
 
 ## Understanding speech to speech Experiences
 
-speech to speech technology is revolutionizing how humans interact with systems, offering intuitive voice-based solutions. Traditional implementations involved combining disparate modules such as speech to text, intent recognition, dialog management, text to speech, and more. Such chaining can lead to increased engineering complexity and end-user perceived latency.
+Speech to speech technology is revolutionizing how humans interact with systems, offering intuitive voice-based solutions. Traditional implementations involved combining disparate modules such as speech to text, intent recognition, dialog management, text to speech, and more. Such chaining can lead to increased engineering complexity and end-user perceived latency.
 
 With advancements in Large Language Models (LLMs) and multimodal AI, the Voice Live API consolidates these functionalities, simplifying workflows for developers. This approach enhances real-time interactions and ensures high-quality, natural communication, making it suitable for industries requiring instant, voice-enabled solutions.
 
