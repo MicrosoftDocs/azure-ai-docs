@@ -16,13 +16,13 @@ ms.custom: build-2025
 
 # Get started with Foundry Local
 
-This guide walks you through setting up Foundry Local to run AI models on your device. Follow these clear steps to install the tool, discover available models, and launch your first local AI model.
+This guide walks you through setting up Foundry Local to run AI models on your device. 
 
 ## Prerequisites
 
 Your system must meet the following requirements to run Foundry Local:
 
-- **Operating System**: Windows 10 (x64), Windows 11 (x64/ARM), macOS, or Linux (x64/ARM)
+- **Operating System**: Windows 10 (x64), Windows 11 (x64/ARM), macOS.
 - **Hardware**: Minimum 8GB RAM, 3GB free disk space. Recommended 16GB RAM, 15GB free disk space.
 - **Network**: Internet connection for initial model download (optional for offline use)
 - **Acceleration (optional)**: NVIDIA GPU (2,000 series or newer), AMD GPU (6,000 series or newer), or Qualcomm Snapdragon X Elite, with 8GB or more of memory (RAM).
@@ -33,10 +33,10 @@ Also, ensure you have administrative privileges to install software on your devi
 
 Get started with Foundry Local quickly:
 
-1. **Download** Foundry Local for your platform:
-   - [Windows](https://aka.ms/foundry-local-windows)
-   - [macOS](https://aka.ms/foundry-local-macos)
-   - [Linux](https://aka.ms/foundry-local-linux)
+1. [**Download Foundry Local Installer**](https://aka.ms/foundry-local-installer). If you are installing on Windows, you can also use `winget` to install Foundry Local. Open a terminal window and run the following command:
+    ```powershell
+    winget install Microsoft.FoundryLocal
+    ```
 1. **Install** the package by following the on-screen prompts.
 1. **Run your first model** Open a terminal window and run the following command to run a model (the model will be downloaded and an interactive prompt will appear): 
 
@@ -44,15 +44,15 @@ Get started with Foundry Local quickly:
     foundry model run phi-3-mini-4k 
     ```
 
+    You should see the following output:
+
+    :::image type="content" source="media/get-started-terminal-output.gif" alt-text="Output from running the foundry model run command.":::
+
+
 > [!TIP]
 > You can replace `phi-3-mini-4k` with any model name from the catalog (see `foundry model list` for available models). Foundry Local will download the model variant that best matches your system's hardware and software configuration. For example, if you have an NVIDIA GPU, it will download the CUDA version of the model. If you have an QNN NPU, it will download the NPU variant. If you have no GPU or NPU, it will download the CPU version.
 
-> [!IMPORTANT]
-> **For macOS/Linux users:** Run both components in separate terminals:
-> - Neutron Server (`Inference.Service.Agent`) - Make it executable with `chmod +x Inference.Service.Agent`
-> - Foundry Client (`foundry`) - Make it executable with `chmod +x foundry` and add it to your PATH
-
-## Explore Foundry Local CLI commands
+## Explore commands
 
 The Foundry CLI organizes commands into these main categories:
 

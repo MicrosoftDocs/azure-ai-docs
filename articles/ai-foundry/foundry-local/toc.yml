@@ -20,9 +20,9 @@ items:
 - name: Tutorials
   expanded: true
   items:
-  - name: Chat application with Open Web UI
+  - name: Build a chat application with Open Web UI
     href: tutorials/chat-application-with-open-web-ui.md
-  - name: LangChain with Foundry Local
+  - name: Build a translation app with LangChain
     href: tutorials/use-langchain-with-foundry-local.md
 - name: Reference
   expanded: false
