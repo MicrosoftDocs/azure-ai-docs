@@ -28,7 +28,7 @@ npm install foundry-local-sdk
 Create a new JavaScript file named `translation_app.js` in your favorite IDE and add the following code:
 
 ```javascript
-import { FoundryLocalManager } from "foundry-local-sdk"
+import { FoundryLocalManager } from "foundry-local-sdk";
 import { ChatOpenAI } from "@langchain/openai";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 
@@ -42,9 +42,8 @@ const modelAlias = "phi-3-mini-4k";
 // Local service if it is not already running.
 const foundryLocalManager = new FoundryLocalManager()
 
-// Load a model into the Foundry Local service. This will download the model 
+// Initialize the manager with a model. This will download the model 
 // if it is not already present on the user's device.
-await foundryLocalManager.loadModel(modelAlias)
 const modelInfo = await foundryLocalManager.init(modelAlias)
 console.log("Model Info:", modelInfo)
 

@@ -35,24 +35,29 @@ Get started with Foundry Local quickly:
 
 1. [**Download Foundry Local Installer**](https://aka.ms/foundry-local-installer) and **install** by following the on-screen prompts. 
     > [!TIP]
-    > If you are installing on Windows, you can also use `winget` to install Foundry Local. Open a terminal window and run the following command:
+    > If you're installing on Windows, you can also use `winget` to install Foundry Local. Open a terminal window and run the following command:
     >
     > ```powershell
     > winget install Microsoft.FoundryLocal
     > ```
-1. **Run your first model** Open a terminal window and run the following command to run a model (the model will be downloaded and an interactive prompt will appear): 
+1. **Run your first model** Open a terminal window and run the following command to run a model: 
 
     ```bash
     foundry model run phi-3-mini-4k 
     ```
+    
+    The model downloads - which can take a few minutes, depending on your internet speed - and the model runs. Once the model is running, you can interact with it using the command line interface (CLI). For example, you can ask:
 
-    You should see the following output:
+    ```text
+    What is the golden ratio?
+    ```
 
-    :::image type="content" source="media/get-started-terminal-output.gif" alt-text="Output from running the foundry model run command.":::
+    You should see a response from the model in the terminal:
+    :::image type="content" source="media/get-started-output.png" alt-text="Output from foundry local run command.":::
 
 
 > [!TIP]
-> You can replace `phi-3-mini-4k` with any model name from the catalog (see `foundry model list` for available models). Foundry Local will download the model variant that best matches your system's hardware and software configuration. For example, if you have an NVIDIA GPU, it will download the CUDA version of the model. If you have an QNN NPU, it will download the NPU variant. If you have no GPU or NPU, it will download the CPU version.
+> You can replace `phi-3-mini-4k` with any model name from the catalog (see `foundry model list` for available models). Foundry Local downloads the model variant that best matches your system's hardware and software configuration. For example, if you have an NVIDIA GPU, it downloads the CUDA version of the model. If you have a Qualcomm NPU, it downloads the NPU variant. If you have no GPU or NPU, it downloads the CPU version.
 
 ## Explore commands
 

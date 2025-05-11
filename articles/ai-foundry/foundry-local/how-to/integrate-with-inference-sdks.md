@@ -14,20 +14,11 @@ author: samuel100
 
 # Integrate Foundry Local with inferencing SDKs
 
-Foundry Local provides a REST API endpoint that makes it easy to integrate with various inferencing SDKs and programming languages. This guide shows you how to connect your applications to locally running AI models using popular SDKs.
+Foundry Local integrates with various inferencing SDKs - such as OpenAI, Azure OpenAI, Langchain, etc. This guide shows you how to connect your applications to locally running AI models using popular SDKs.
 
 ## Prerequisites
 
 - Foundry Local installed. See the [Get started with Foundry Local](../get-started.md) article for installation instructions.
-- Basic knowledge of the programming language you want to use for integration
-
-## Understanding the REST API
-
-When Foundry Local is running, it exposes an OpenAI-compatible REST API endpoint at `http://localhost:5272/v1`. This endpoint supports standard API operations like:
-
-- `/completions` - For text completion
-- `/chat/completions` - For chat-based interactions
-- `/models` - To list available models
 
 ::: zone pivot="programming-language-python"
 [!INCLUDE [Python](../includes/integrate-examples/python.md)]
