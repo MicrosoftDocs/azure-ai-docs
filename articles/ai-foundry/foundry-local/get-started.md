@@ -34,7 +34,7 @@ Also, ensure you have administrative privileges to install software on your devi
 Get started with Foundry Local quickly:
 
 1. [**Download Foundry Local Installer**](https://aka.ms/foundry-local-installer) and **install** by following the on-screen prompts. 
-    >[!TIP]
+    > [!TIP]
     > If you are installing on Windows, you can also use `winget` to install Foundry Local. Open a terminal window and run the following command:
     >
     > ```powershell
