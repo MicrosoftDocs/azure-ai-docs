@@ -11,7 +11,7 @@ ms.author: gimondra
 
 # Multimodal search in Azure AI Search
 
-Multimodal search refers to the ability to ingest, understand, and retrieve content across multiple data types, including text, images, and other modalities such as video and audio. In Azure AI Search, multimodal search natively supports the ingestion of documents containing text and images, as well as the retrieval of their content, enabling users to perform searches that combine these modalities. In practice, this capability means an application using multimodal search can answer a question such as, "What is the process to have an HR form approved?" even when the only authoritative description of the workflow lives inside an embedded diagram of a PDF file.  
+Multimodal search refers to the ability to ingest, understand, and retrieve content across multiple data types, including text, images, and other modalities such as video and audio. In Azure AI Search, multimodal search natively supports the ingestion of documents containing text and images, and the retrieval of their content, enabling users to perform searches that combine these modalities. In practice, this capability means an application using multimodal search can answer a question such as, "What is the process to have an HR form approved?" even when the only authoritative description of the workflow lives inside an embedded diagram of a PDF file.  
 
 Diagrams, scanned forms, screenshots, and infographics often contain the decisive details that make or break an answer. Multimodal search helps close the gap by integrating visual content into the same retrieval pipeline as text. This approach reduces the likelihood that your AI agent or RAG application might overlook important images and enables your users to trace every provided answer back to its original source.
 
@@ -20,7 +20,7 @@ Building a robust multimodal pipeline typically involves several key steps. Thes
 Azure AI Search simplifies the construction of a multimodal pipeline through a guided experience in the Azure portal:
 
 1. [Azure portal multimodal functionality](search-get-started-portal-image-search.md): The step-by-step multimodal functionality in the "Import and vectorize data" wizard helps configure your data source, extraction and enrichment settings, and generate a multimodal index containing text, embedded image references, and vector embeddings.
-1. [Reference GitHub multimodal RAG application sample](https://aka.ms/azs-multimodal-sample-app-repo): A companion repository on GitHub with end-to-end sample code that demonstrates how a [Retrieval Augmented Generation (RAG)](retrieval-augmented-generation-overview.md) application consumes a multimodal index and renders both textual citations and associated image snippets in the response.
+1. [Reference GitHub multimodal RAG application sample](https://aka.ms/azs-multimodal-sample-app-repo): A companion GitHub repository with sample code. The sample demonstrates how a [Retrieval Augmented Generation (RAG)](retrieval-augmented-generation-overview.md) application consumes a multimodal index and renders both textual citations and associated image snippets in the response. The repository also showcases the full process of data ingestion and indexing through code, providing developers with a programmatic alternative to the Azure portal wizard.
    
 ## Functionality enabling multimodality
 
@@ -49,7 +49,7 @@ You can also call directly [Content Understanding](/azure/ai-services/content-un
 Retrieving knowledge from images can follow two complementary paths in Azure AI Search. Understanding the distinctions helps you align cost, latency, and answer quality with the needs of your application.
 
 ### Image verbalization followed by text embeddings
-With this method, the Gen AI prompt skill invokes an LLM during ingestion to create a concise natural-language description of each extracted image—for example “Five-step HR access workflow that begins with manager approval.” The description is stored as text and embedded alongside the surrounding document text. Because the image is now expressed in language, Azure AI Search can:
+With this method, the Gen AI prompt skill invokes an LLM during ingestion to create a concise natural-language description of each extracted image—for example "Five-step HR access workflow that begins with manager approval." The description is stored as text and embedded alongside the surrounding document text. Because the image is now expressed in language, Azure AI Search can:
 
 - Interpret the relationships and entities shown in a diagram.
 - Supply ready-made captions that an LLM can cite verbatim in a response.
