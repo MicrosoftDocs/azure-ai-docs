@@ -72,10 +72,9 @@ Available options:
 | `unloadModel()`               | `(modelAliasOrId: string, force = false) => Promise<void>`                | Unloads a model from the inference server.       |
 | `listLoadedModels()`          | `() => Promise<FoundryModelInfo[]>`                                       | Lists all models currently loaded in the service.|
 
-
----
-
 ## Example Usage
+
+The following code demonstrates how to use the `FoundryLocalManager` class to manage models and interact with the Foundry Local service.
 
 ```js
 import { FoundryLocalManager } from "foundry-local-sdk";
@@ -117,7 +116,13 @@ await manager.unloadModel(modelAlias)
 
 ## Integration with OpenAI Client
 
-Connect to Foundry Local with any OpenAI-compatible client. Here's an example using the `openai` package:
+Install the OpenAI package:
+
+```bash
+npm install openai
+```
+
+The following code demonstrates how to integrate the `FoundryLocalManager` with the OpenAI client to interact with a local model.
 
 ```js
 import { OpenAI } from "openai";
