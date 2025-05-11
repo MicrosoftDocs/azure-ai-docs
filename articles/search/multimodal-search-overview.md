@@ -11,25 +11,25 @@ ms.author: gimondra
 
 # Multimodal search in Azure AI Search
 
-Multimodal search is the ability to ingest, understand, and retrieve documents that contain text and images, enabling you to perform searches that combine various modalities, such as querying with text to find information embedded in relevant complex images. In practice, this means an application using multimodal search can answer a question such as “What is the process to have an HR form approved?” even when the only authoritative description of the workflow lives inside an embedded diagram of a PDF file.  
+Multimodal search refers to the ability to ingest, understand, and retrieve content across multiple data types, including text, images, and other modalities such as video and audio. In Azure AI Search, multimodal search supports natively the ingestion and retrieval of documents containing text and images, enabling users to perform searches that combine these modalities. In practice, this capability means an application using multimodal search can answer a question such as, "What is the process to have an HR form approved?" even when the only authoritative description of the workflow lives inside an embedded diagram of a PDF file.  
 
-Diagrams, scanned forms, screenshots, and infographics often contain the decisive details that make or break an answer.  Multimodal search helps closing that gap by bringing visual content into the same retrieval pipeline, so your AI agent doesn't overlook a critical image, and your users can trace every provided answer back to its original source.
+Diagrams, scanned forms, screenshots, and infographics often contain the decisive details that make or break an answer. Multimodal search helps close the gap by integrating visual content into the same retrieval pipeline as text. This approach reduces the likelihood that your AI agent or RAG application might overlook important images and enables your users to trace every provided answer back to its original source.
 
-Building a robust multimodal pipeline typically requires multiple moving parts: extracting inline images and page text, describing an image in natural language, embedding both modalities into a common vector space, storing extracted images for later display, preserving the order of the information as displayed in the document and finally executing hybrid queries that combine keyword and vector search with semantic ranking.
+Building a robust multimodal pipeline typically involves several key steps. These steps include extracting inline images and page text, describing images in natural language, embedding both text and images into a shared vector space, and storing the images for later use as annotations. Multimodal search also requires preserving the order of information as it appears in the document and executing [hybrid queries](hybrid-search-overview.md) that combine [full text search](search-lucene-query-architecture.md) with [vector search](vector-search-overview.md) and [semantic ranking](semantic-search-overview.md).
 
 Azure AI Search simplifies the construction of a multimodal pipeline through a guided experience in the Azure portal:
 
-1. [Azure portal multimodal functionality](search-get-started-portal-image-search.md): The step-by-step multimodal functionality under "Import and vectorize data" wizard accepts document inputs, applies data extraction and enrichment settings, and produces a fully operational index that contains page text, inline embedded images references, and vector embeddings.  
-2. [Reference GitHub multimodal RAG sample application](https://aka.ms/azs-multimodal-sample-app-repo):A companion repository on GitHub with end-to-end sample code that demonstrates how a [Retrieval Augmented Generation (RAG)](retrieval-augmented-generation-overview.md) application consumes the multimodal index and renders both textual citations and associated image snippets in the response. This wizard also provides an end-to-end code-ready app deployment in case you'd like to a code-only approach for data ingestion and processing as well.
-
+1. [Azure portal multimodal functionality](search-get-started-portal-image-search.md): The step-by-step multimodal functionality in the "Import and vectorize data" wizard helps configure your data source, extraction and enrichment settings, and generate a multimodal index containing text, embedded image references, and vector embeddings.
+1. [Reference GitHub multimodal RAG application sample](https://aka.ms/azs-multimodal-sample-app-repo): A companion repository on GitHub with end-to-end sample code that demonstrates how a [Retrieval Augmented Generation (RAG)](retrieval-augmented-generation-overview.md) application consumes a multimodal index and renders both textual citations and associated image snippets in the response.
+   
 ## Functionality enabling multimodality
 
 The functionality behind the "Import and vectorize data" wizard's multimodality option is powered by managed, configurable AI skills and the Azure Search knowledge store:
 
-+ [Document Intelligence layout skill](cognitive-search-skill-document-intelligence-layout.md) and [Document extraction skill](cognitive-search-skill-document-extraction.md) obtain page text, inline images, and structural metadata.  The Document Extraction skill doesn't support polygon extraction or page number extraction. Also, the range of supported file types may vary. To ensure optimal alignment with your specific use case, check each skill documentation for detailed information on compatibility and capabilities.
++ [Document Intelligence layout skill](cognitive-search-skill-document-intelligence-layout.md) and [document extraction skill](cognitive-search-skill-document-extraction.md) obtain page text, inline images, and structural metadata. The Document Extraction skill doesn't support polygon extraction or page number extraction. Also, the range of supported file types may vary. To ensure optimal alignment with your specific use case, check each skill documentation for detailed information on compatibility and capabilities.
 + [Split skill](cognitive-search-skill-textsplit.md) chunks the extracted text for utilization in the remaining pipeline functionality (such as embedding skills). 
 + [Gen AI prompt skill](cognitive-search-skill-genai-prompt.md) verbalizes images, producing concise natural-language descriptions suitable for text search and embedding using a Large Language Model (LLM). 
-+ Text/image (or multimodal) embedding skills create embeddings for text and images, enabling similarity and hybrid retrieval. You can call [Azure OpenAI](cognitive-search-skill-azure-openai-embedding.md), [AI Foundry](cognitive-search-aml-skill.md) or [AI Vision](cognitive-search-skill-vision-vectorize.md) embedding models natively.
++ Text/image (or multimodal) embedding skills create embeddings for text and images, enabling similarity and hybrid retrieval. You can call [Azure OpenAI](cognitive-search-skill-azure-openai-embedding.md), [AI Foundry](cognitive-search-aml-skill.md), or [AI Vision](cognitive-search-skill-vision-vectorize.md) embedding models natively.
 + [Knowledge store](knowledge-store-concept-intro.md) stores extracted images that can be returned directly to client applications. When you use the 'Import and vectorize data' wizard with the multimodality option, an image's location is stored directly within the index, enabling convenient retrieval at a query time.
 
 
@@ -41,7 +41,7 @@ A multimodal pipeline begins by cracking each source document into chunks of tex
 |----------------|------------------------------------|---------------------------|
 | Location metadata extraction (page, bounding polygon) | Yes | No |
 | Data-extraction billing | Billed according to [Document Intelligence layout-model pricing](https://azure.microsoft.com/pricing/details/ai-document-intelligence/). | Image extraction is billed as outlined in the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search/). |
-| Recommended scenarios | RAG pipelines and agent workflows that need precise page numbers, on-page highlights, or diagram overlays in client apps. | Rapid prototyping or production pipelines where the exact position or detailed layout information is not required. |
+| Recommended scenarios | RAG pipelines and agent workflows that need precise page numbers, on-page highlights, or diagram overlays in client apps. | Rapid prototyping or production pipelines where the exact position or detailed layout information isn't required. |
 
 You can also call directly [Content Understanding](/azure/ai-services/content-understanding/concepts/retrieval-augmented-generation) for multimodality content extraction purposes using a [custom skill](cognitive-search-custom-skill-web-api.md) since it isn't supported natively yet in Azure AI Search. 
 
@@ -60,7 +60,7 @@ The added semantic depth entails an LLM call for every image and a marginal incr
 ### Direct vision–text embeddings
 A second option is to pass the document extracted images and text to a multimodal embedding model that produces vector representations in the same vector space. Configuration is straightforward and no LLM is required at indexing time. Direct embeddings are well suited to visual similarity and “find-me-something-that-looks-like-this” scenarios.
 
-Because the representation is purely mathematical, it does not convey why two images are related, and it offers the LLM no ready context for citations or detailed explanations.
+Because the representation is purely mathematical, it doesn't convey why two images are related, and it offers the LLM no ready context for citations or detailed explanations.
 
 ### Combining both approaches
 Many solutions need both encoding paths. Diagrams, flow charts, and other explanation-rich visuals are verbalized so that semantic information is available for RAG and AI agent grounding. Screenshots, product photos, or artwork are embedded directly for efficient similarity search. You can customize your Azure AI Search index and indexer skillset pipeline so it can store the two sets of vectors and retrieve them side by side.
