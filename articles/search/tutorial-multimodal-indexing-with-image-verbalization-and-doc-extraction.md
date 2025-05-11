@@ -1,7 +1,7 @@
 ---
 title: 'Tutorial: Index multimodal content using image verbalization and document extraction skill'
 titleSuffix: Azure AI Search
-description: Learn how to extract, describe, and index text and images from Azure Blob Storage using Chat Completion and Azure AI Search REST APIs to support multimodal scenarios.
+description: Learn how to extract, index, and search multimodal content using the Document Extraction skill for chunking and GenAI Prompt skill for image verbalizations.
 
 manager: arjagann
 author: mdonovan
@@ -13,24 +13,28 @@ ms.date: 05/01/2025
 
 ---
 
-# Tutorial: Index multimodal content using image verbalization and document extraction skill
+# Tutorial: Index mixed content using image verbalizations and the Document Extraction skill
 
-Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial shows how to build a multimodal retrieval pipeline by describing visual content in natural language and embedding it alongside document text.
+Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial shows how to build a multimodal indexing pipeline by describing visual content in natural language and embedding it alongside document text.
 
-You'll extract content from a 36-page PDF using the [Document Extraction skill](cognitive-search-skill-document-extraction.md) to retrieve text and images. Each image is passed to the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) (currently in public preview) to generate a concise textual description. These descriptions, along with the original document text, are then embedded into vector representations using Azure OpenAI’s text-embedding-3-large model. The result is a single index containing semantically searchable content from both modalities—text and verbalized images.
+From the source document, each image is passed to the [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) to generate a concise textual description. These descriptions, along with the original document text, are then embedded into vector representations using Azure OpenAI’s text-embedding-3-large model. The result is a single index containing semantically searchable content from both modalities—text and verbalized images.
 
-You'll use:
+In this tutorial, you use:
+
++ A 36-page PDF document that combines rich visual content—such as charts, infographics, and scanned pages—with traditional text.
 
 + The [Document Extraction skill](cognitive-search-skill-document-extraction.md) for extracting normalized images and text.
-+ The [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) to generate image captions—text-based descriptions of visual content—for search and grounding.
-+ A search index configured to store text and image embeddings and support vector-based similarity search.
+
++ The [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) to generate image captions—text-based descriptions of visual content—for search and grounding.
+
++ A search index configured to store text and image embeddings and support for vector-based similarity search.
 
 This tutorial demonstrates a lower-cost approach for indexing multimodal content using Document Extraction skill and image captioning. It enables extraction and search over both text and images from documents in Azure Blob Storage. However, it does not include locational metadata for text, such as page numbers or bounding regions. 
 
 For a more comprehensive solution that includes structured text layout and spatial metadata, see [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal).
 
 > [!NOTE]
-> Setting `imageAction` to `generateNormalizedImages` as is required for this tutorial will incur an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
+> Setting `imageAction` to `generateNormalizedImages` is required for this tutorial and incurs an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
 
 Using a REST client and the [Search REST APIs](/rest/api/searchservice/) you will:
 
@@ -47,8 +51,7 @@ Using a REST client and the [Search REST APIs](/rest/api/searchservice/) you wil
 
 + [Azure Storage](/azure/storage/common/storage-account-create).
 
-+ [Azure AI Search](search-what-is-azure-search.md), with a managed identity. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription.  
-  > Your service must be on the Basic tier or higher—this tutorial is not supported on the Free tier. Additionally, ensure your service is deployed in a [supported region for AI Vision](/azure/ai-services/computer-vision/overview-image-analysis#region-availability)
++ [Azure AI Search](search-what-is-azure-search.md), basic tier or higher, with a managed identity. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription.  
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
@@ -58,13 +61,11 @@ Download the sample PDF below:
 
 + [sustainable-ai-pdf](https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/msc/documents/presentations/CSR/Accelerating-Sustainability-with-AI-2025.pdf)
 
-
 ### Upload sample data to Azure Storage
 
 1. In Azure Storage, create a new container named **doc-extraction-image-verbalization-container**.
 
 1. [Upload the sample data file](/azure/storage/blobs/storage-quickstart-blobs-portal).
-
 
 1. [Create a role assignment in Azure Storage and Specify a managed identity in a connection string](search-howto-managed-identities-storage.md)
 

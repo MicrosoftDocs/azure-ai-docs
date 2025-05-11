@@ -1,7 +1,7 @@
 ---
 title: 'Tutorial: Index multimodal content using embedding and document extraction skill'
 titleSuffix: Azure AI Search
-description: Learn how to extract, index, and search both text and images from Azure Blob Storage for multimodal scenarios using the Azure AI Search REST APIs.
+description: Learn how to extract, index, and search multimodal content using the Document Extracction skill for chunking and Azure AI Vision for embeddings.
 
 manager: arjagann
 author: mdonovan
@@ -13,19 +13,19 @@ ms.date: 05/01/2025
 
 ---
 
-# Tutorial: Index multimodal content using embedding and document extraction skill
+# Tutorial: Index mixed content using multimodal embeddings and the Document Extraction skill
 
-Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial shows how to build a multimodal retrieval pipeline by embedding both text and images into a unified semantic search index.
+Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial shows you how to build a multimodal indexing pipeline by embedding both text and images into a unified semantic search index.
 
-You’ll work with a 36-page PDF document that combines rich visual content—such as charts, infographics, and scanned pages—with traditional text. Using the [Document Extraction skill](cognitive-search-skill-document-extraction.md), you’ll extract both text and normalized images. Each modality is then embedded using the same [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), which generates dense vector representations suitable for semantic and hybrid search scenarios.
+In this tutorial, you use:
 
-You'll use:
++ A 36-page PDF document that combines rich visual content—such as charts, infographics, and scanned pages—with traditional text.
 
 + The [Document Extraction skill](cognitive-search-skill-document-extraction.md) for extracting text and normalized images.
 
-+ Vectorization using the [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), which generates embeddings from both text and images. The same skill is used for both modalities, with text inputs processed into embeddings for semantic search, and images processed into vector representations using Azure AI Vision models.
++ Vectorization using the [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), which generates embeddings for both text and images.
 
-+ A search index configured to store text and image embeddings and support vector-based similarity search.
++ A search index configured to store text and image embeddings and support for vector-based similarity search.
 
 This tutorial demonstrates a lower-cost approach for indexing multimodal content using Document Extraction skill and image captioning. It enables extraction and search over both text and images from documents in Azure Blob Storage. However, it does not include locational metadata for text, such as page numbers or bounding regions. 
 
@@ -34,7 +34,7 @@ For a more comprehensive solution that includes structured text layout and spati
 > [!NOTE] 
 > Setting `imageAction` to `generateNormalizedImages` as is required for this tutorial will incur an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
 
-This tutorial shows you how to  index such data, using a REST client and the [Search REST APIs](/rest/api/searchservice/) to:
+Using a REST client and the [Search REST APIs](/rest/api/searchservice/) you will:
 
 > [!div class="checklist"]
 > + Set up sample data and configure an `azureblob` data source
