@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI Service quotas and limits
+title: Azure OpenAI in Azure AI Foundry Models quotas and limits
 titleSuffix: Azure AI services
 description: Quick reference, detailed description, and best practices on the quotas and limits for the OpenAI service in Azure AI services.
 author: mrbullwinkle
@@ -13,7 +13,7 @@ ms.date: 04/23/2025
 ms.author: mbullwin
 ---
 
-# Azure OpenAI Service quotas and limits
+# Azure OpenAI in Azure AI Foundry Models quotas and limits
 
 This article contains a quick reference and a detailed description of the quotas and limits for Azure OpenAI in Azure AI services.
 
@@ -28,7 +28,7 @@ The following sections provide you with a quick guide to the default quotas and 
 | Default DALL-E 3 quota limits| 2 capacity units (6 requests per minute)|
 | Default GPT-image-1 quota limits | 2 capacity units (6 requests per minute) |
 | Default speech to text audio API quota limits | 3 requests per minute |
-| Maximum prompt tokens per request | Varies per model. For more information, see [Azure OpenAI Service models](./concepts/models.md)|
+| Maximum prompt tokens per request | Varies per model. For more information, see [Azure OpenAI models](./concepts/models.md)|
 | Max Standard deployments per resource | 32 |
 | Max fine-tuned model deployments | 5 |
 | Total number of training jobs per resource | 100 |

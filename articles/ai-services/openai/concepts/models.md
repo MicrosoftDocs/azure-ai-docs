@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI Service models
+title: Azure OpenAI in Azure AI Foundry Models models
 titleSuffix: Azure OpenAI
 description: Learn about the different model capabilities that are available with Azure OpenAI.
 ms.service: azure-ai-openai
@@ -12,9 +12,9 @@ ms.author: mbullwin #chrhoder#
 recommendations: false
 ---
 
-# Azure OpenAI Service models
+# Azure OpenAI in Azure AI Foundry Models models
 
-Azure OpenAI Service is powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud. For Azure Government model availability, please refer to [Azure Government OpenAI Service](../azure-government.md).
+Azure OpenAI is powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud. For Azure Government model availability, please refer to [Azure Government OpenAI Service](../azure-government.md).
 
 | Models | Description |
 |--|--|
@@ -158,7 +158,7 @@ You can see the token context length supported by each model in the [model summa
 
 - These models can only be used with the Chat Completion API.
 
-See [model versions](../concepts/model-versions.md) to learn about how Azure OpenAI Service handles model version upgrades, and [working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-4 deployments.
+See [model versions](../concepts/model-versions.md) to learn about how Azure OpenAI handles model version upgrades, and [working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-4 deployments.
 
 |  Model ID  | Description | Max Request (tokens) | Training Data (up to)  |
 |  --- |  :--- |:--- |:---: |
@@ -400,7 +400,7 @@ In addition to the regions above which are available to all Azure OpenAI custome
 
 ### GPT-3.5 models
 
-See [model versions](../concepts/model-versions.md) to learn about how Azure OpenAI Service handles model version upgrades, and [working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-3.5 Turbo deployments.
+See [model versions](../concepts/model-versions.md) to learn about how Azure OpenAI handles model version upgrades, and [working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-3.5 Turbo deployments.
 
 # [Embeddings](#tab/standard-embeddings)
 

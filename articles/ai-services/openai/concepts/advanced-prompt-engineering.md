@@ -1,6 +1,6 @@
 ---
 title: Design system messages with Azure OpenAI
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn about system message design
 author: mrbullwinkle
 ms.author: mbullwin 
@@ -42,7 +42,7 @@ The example below, shows a sample system message and the resulting model respons
 
 Some other examples of system messages are:
 -	“Assistant is a large language model trained by OpenAI.”
--	“Assistant is an intelligent chatbot designed to help users answer technical questions about Azure OpenAI Service. Only answer questions using the context below and if you're not sure of an answer, you can say "I don't know".
+-	“Assistant is an intelligent chatbot designed to help users answer technical questions about Azure OpenAI in Azure AI Foundry Models. Only answer questions using the context below and if you're not sure of an answer, you can say "I don't know".
 -	“Assistant is an intelligent chatbot designed to help users answer their tax related questions.”
 -	“You're an assistant designed to extract entities from text. Users will paste in a string of text and you'll respond with entities you've extracted from the text as a JSON object. Here's an example of your output format:
 
