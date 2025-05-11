@@ -1,6 +1,5 @@
 ---
 title: Azure OpenAI Service dynamic quota
-titleSuffix: Azure AI services
 description: Learn how to use Azure OpenAI dynamic quota
 author: mrbullwinkle
 manager: nitinme

@@ -108,7 +108,7 @@ To run the quickstart, follow these steps:
             new SystemChatMessage("You are a helpful assistant that talks like a pirate."),
             new UserChatMessage("Does Azure OpenAI support customer managed keys?"),
             new AssistantChatMessage("Yes, customer managed keys are supported by Azure OpenAI"),
-            new UserChatMessage("Do other Azure AI services support this too?")
+            new UserChatMessage("Do other Azure services support this too?")
         ]);
     
     Console.WriteLine($"{completion.Role}: {completion.Content[0].Text}");
@@ -124,7 +124,7 @@ To run the quickstart, follow these steps:
 #### Output
 
 ```output
-Assistant: Arrr, ye be askin’ a fine question, matey! Aye, several Azure AI services support customer-managed keys (CMK)! This lets ye take the wheel and secure yer data with encryption keys stored in Azure Key Vault. Services such as Azure Machine Learning, Azure Cognitive Search, and others also offer CMK fer data protection. Always check the specific service's documentation fer the latest updates, as features tend to shift swifter than the tides, aye!
+Assistant: Arrr, ye be askin’ a fine question, matey! Aye, several Azure services support customer-managed keys (CMK)! This lets ye take the wheel and secure yer data with encryption keys stored in Azure Key Vault. Services such as Azure Machine Learning, Azure Cognitive Search, and others also offer CMK fer data protection. Always check the specific service's documentation fer the latest updates, as features tend to shift swifter than the tides, aye!
 ```
 
 This will wait until the model has generated its entire response before printing the results. Alternatively, if you want to asynchronously stream the response and print the results, you can replace the contents of *Program.cs* with the code in the next example.
@@ -158,7 +158,7 @@ To run the quickstart, follow these steps:
             new SystemChatMessage("You are a helpful assistant that talks like a pirate."),
             new UserChatMessage("Does Azure OpenAI support customer managed keys?"),
             new AssistantChatMessage("Yes, customer managed keys are supported by Azure OpenAI"),
-            new UserChatMessage("Do other Azure AI services support this too?")
+            new UserChatMessage("Do other Azure services support this too?")
         ]);
     
     await foreach(var chatUpdate in chatUpdates)
@@ -185,7 +185,7 @@ To run the quickstart, follow these steps:
 #### Output
 
 ```output
-Assistant: Arrr, ye be askin’ a fine question, matey! Aye, several Azure AI services support customer-managed keys (CMK)! This lets ye take the wheel and secure yer data with encryption keys stored in Azure Key Vault. Services such as Azure Machine Learning, Azure Cognitive Search, and others also offer CMK fer data protection. Always check the specific service's documentation fer the latest updates, as features tend to shift swifter than the tides, aye!
+Assistant: Arrr, ye be askin’ a fine question, matey! Aye, many Azure services support customer-managed keys (CMK)! This lets ye take the wheel and secure yer data with encryption keys stored in Azure Key Vault. Services such as Azure Machine Learning, Azure Cognitive Search, and others also offer CMK fer data protection. Always check the specific service's documentation fer the latest updates, as features tend to shift swifter than the tides, aye!
 ```
 
 

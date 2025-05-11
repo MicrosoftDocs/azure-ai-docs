@@ -61,7 +61,7 @@ response = client.chat.completions.create(
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
         {"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
-        {"role": "user", "content": "Do other Azure AI services support this too?"}
+        {"role": "user", "content": "Do other Azure services support this too?"}
     ]
 )
 
@@ -94,11 +94,11 @@ print(json.dumps(data, indent=4))
 
 ## Authorize access to managed identities
 
-OpenAI supports Microsoft Entra authentication with [managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). Managed identities for Azure resources can authorize access to Azure AI services resources using Microsoft Entra credentials from applications running in Azure virtual machines (VMs), function apps, virtual machine scale sets, and other services. By using managed identities for Azure resources together with Microsoft Entra authentication, you can avoid storing credentials with your applications that run in the cloud.  
+OpenAI supports Microsoft Entra authentication with [managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). Managed identities for Azure resources can authorize access to Azure OpenAI resources using Microsoft Entra credentials from applications running in Azure virtual machines (VMs), function apps, virtual machine scale sets, and other services. By using managed identities for Azure resources together with Microsoft Entra authentication, you can avoid storing credentials with your applications that run in the cloud.  
 
 ## Enable managed identities on a VM
 
-Before you can use managed identities for Azure resources to authorize access to Azure AI services resources from your VM, you must enable managed identities for Azure resources on the VM. To learn how to enable managed identities for Azure Resources, see:
+Before you can use managed identities for Azure resources to authorize access to Azure OpenAI resources from your VM, you must enable managed identities for Azure resources on the VM. To learn how to enable managed identities for Azure Resources, see:
 
 - [Azure portal](/azure/active-directory/managed-identities-azure-resources/qs-configure-portal-windows-vm)
 - [Azure PowerShell](/azure/active-directory/managed-identities-azure-resources/qs-configure-powershell-windows-vm)

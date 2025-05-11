@@ -1,6 +1,5 @@
 ---
 title: Understanding Azure OpenAI Service deployment types
-titleSuffix: Azure AI services
 description: Learn how to use Azure OpenAI deployment types | Global-Standard | Standard | Provisioned.
 author: mrbullwinkle
 manager: nitinme

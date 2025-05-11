@@ -70,7 +70,7 @@ When using the API, pass the `filter` parameter in each API request. For example
 
 [!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
-For more information about AI services security, see [Authenticate requests to Azure AI services](/azure/ai-services/authentication).
+For more information about security, see [Authenticate requests](/azure/ai-services/authentication).
 
 ```json
 {

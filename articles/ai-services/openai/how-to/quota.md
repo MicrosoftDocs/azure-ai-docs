@@ -1,6 +1,5 @@
 ---
 title: Manage Azure OpenAI Service quota
-titleSuffix: Azure AI services
 description: Learn how to use Azure OpenAI to control your deployments rate limits.
 author: mrbullwinkle
 manager: nitinme
