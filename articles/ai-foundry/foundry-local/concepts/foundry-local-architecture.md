@@ -114,7 +114,7 @@ Foundry Local supports integration with various SDKs, such as the OpenAI SDK, en
 - **Supported SDKs**: Python, JavaScript, C#, and more.
 
 > [!TIP]
-> To learn more about integrating with inferencing SDKs, read [Integrate Foundry Local with Inferencing SDKs](../how-to/integrate-with-inference-sdks.md).
+> To learn more about integrating with inferencing SDKs, read [Integrate inferencing SDKs with Foundry Local](../how-to/how-to-integrate-with-inference-sdks.md).
 
 #### AI Toolkit for Visual Studio Code
 
@@ -128,5 +128,5 @@ The AI Toolkit for Visual Studio Code provides a user-friendly interface for dev
 ## Next Steps
 
 - [Get started with Foundry Local](../get-started.md)
-- [Integrate with Inference SDKs](../how-to/integrate-with-inference-sdks.md)
+- [Integrate inferencing SDKs with Foundry Local](../how-to/how-to-integrate-with-inference-sdks.md)
 - [Foundry Local CLI Reference](../reference/reference-cli.md)

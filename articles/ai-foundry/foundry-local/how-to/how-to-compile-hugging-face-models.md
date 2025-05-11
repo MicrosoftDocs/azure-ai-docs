@@ -303,9 +303,9 @@ print("\n\n")
 ```
 
 > [!TIP]
-> You can use any language that supports HTTP requests. See [Integrate with Inferencing SDKs](integrate-with-inference-sdks.md) for more options.
+> You can use any language that supports HTTP requests. For more information, read the [Integrate inferencing SDKs with Foundry Local](../how-to/how-to-integrate-with-inference-sdks.md) article.
 
 ## Next steps
 
 - [Learn more about Olive](https://microsoft.github.io/Olive/)
-- [Integrate Foundry Local with Inferencing SDKs](integrate-with-inference-sdks.md)
+- [Integrate inferencing SDKs with Foundry Local](how-to-integrate-with-inference-sdks.md)

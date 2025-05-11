@@ -16,7 +16,7 @@ items:
   - name: Integrate with Inferencing SDKs
     href: how-to/how-to-integrate-with-inference-sdks.md
   - name: Integrate with LangChain
-    href: tutorials/use-langchain-with-foundry-local.md
+    href: how-to/how-to-use-langchain-with-foundry-local.md
   - name: Integrate with Open Web UI
     href: how-to/how-to-use-langchain-with-foundry-local.md
   - name: Compile Hugging Face models to run on Foundry Local
