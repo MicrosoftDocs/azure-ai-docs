@@ -29,8 +29,6 @@ Foundry Local integrates with various inferencing SDKs - such as OpenAI, Azure O
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C#](../includes/integrate-examples/csharp.md)]
 ::: zone-end
-::: zone-end
-
 
 ## Next steps
 
