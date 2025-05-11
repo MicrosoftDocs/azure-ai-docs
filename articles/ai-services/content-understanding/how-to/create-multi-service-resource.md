@@ -13,7 +13,6 @@ ms.author: lajanuar
 
 # Create an Azure AI Services multi-service resource
 
-
 To use Content Understanding, you need an Azure AI Services resource. This multi-service resource enables access to multiple Azure AI services with a single set of credentials.
 
 ## Prerequisites
@@ -37,14 +36,13 @@ To use the Azure AI Content Understanding service, you must create your Azure AI
 | --- | --- |
 | West US 2 | westus2 |
 | Sweden Central | swedencentral |
-| UK South | uksouth |
 | Australia East | australiaeast |
 
 1. Complete the **Azure AI Services** fields with the following values:
 
     * **Subscription**. Select one of your available Azure subscriptions.
     * **Resource group**. The [Azure resource group](/azure/cloud-adoption-framework/govern/resource-consistency/resource-access-management#what-is-an-azure-resource-group) that contains your resource. You can create a new group or add it to an existing group.
-    * **Name**. Enter a name for your resource. We recommend using a descriptive name, for example *ProjectNameAIServicesResource*.
+    * **Name**. Enter a name for your resource. We recommend using a descriptive name, for example `ProjectNameAIServicesResource`.
 
 1. Configure other settings for your resource as needed, read, and accept the conditions (as applicable), and then select **Review + create**.
 
