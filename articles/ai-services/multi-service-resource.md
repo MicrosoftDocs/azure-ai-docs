@@ -29,15 +29,15 @@ You access Azure AI services via Azure [resources](/azure/azure-resource-manager
 
 ## Usage in AI Foundry projects
 
-You can use an AI Foundry resource with or without an AI Foundry project. For example:
+> [!IMPORTANT]
+> Unless otherwise noted, the instructions in this article are for creating an AI Foundry resource without any project association. For information about how to create a project, see [Create a project for Azure AI Foundry](../ai-foundry/how-to/create-projects.md).
+
+You can use an AI Foundry resource [with or without an AI Foundry project](../ai-foundry/what-is-azure-ai-foundry.md#which-type-of-project-do-i-need). For example:
 - Create a project when you need to use the Azure AI Foundry Agent Service.
 - Create a project when you need to fine-tune a model.
 - You don't need a project when you want to use models as-is via REST API or SDKs.
 
-> [!IMPORTANT]
-> Unless otherwise noted, the instructions in this article are for creating an AI Foundry resource without any project association. For information about how to create a project, see [Create a project for Azure AI Foundry](../ai-foundry/how-to/create-projects.md).
-
-Your AI Foundry resource might or might not be associated with an AI Foundry project.
+Your AI Foundry resource might or might not be associated with an AI Foundry project:
 - AI Foundry resources can be created in the Azure portal, Azure CLI, PowerShell, Bicep template, Terraform, or SDKs. In those cases, the AI Foundry resource by default isn't associated with a project. You can create a project later and associate it as a dependent of the AI Foundry resource.
 - A [project can be created in the Azure AI Foundry portal](../ai-foundry/how-to/create-projects.md) and automatically associated as a dependent of a new AI Foundry resource. 
 - An AI Foundry resource might have been created in the AI Foundry portal, but as a dependent resource of an [Azure AI Foundry hub](../ai-foundry/concepts/ai-resources.md). In this case, the resource is automatically associated with the project you create in the hub. 
