@@ -184,8 +184,8 @@ Compatible with the [OpenAI Embeddings API](https://platform.openai.com/docs/api
   The embedding model to use (e.g., `"text-embedding-ada-002"`).
 - `input` (string or array)  
   Input text to embed. Can be a single string or an array of strings/tokens.
-- `user` (string, optional)  
-  A unique identifier representing your end-user for abuse monitoring.
+- `encoding_format` (string, optional)  
+  The encoding format (`"base64"` or `"float"`).
 
 **Response body:**
 
@@ -213,9 +213,8 @@ Compatible with the [OpenAI Embeddings API](https://platform.openai.com/docs/api
 - Request body
   ```json
   {
-    "model": "text-embedding-ada-002",
-    "input": "Hello, how are you?",
-    "user": "user_id_123"
+    "model": "qwen_w_embeddings",
+    "input": "Hello, how are you?"
   }
   ```
 - Response body
@@ -229,7 +228,7 @@ Compatible with the [OpenAI Embeddings API](https://platform.openai.com/docs/api
         "index": 0
       }
     ],
-    "model": "text-embedding-ada-002",
+    "model": "qwen_w_embeddings",
     "usage": {
       "prompt_tokens": 10,
       "total_tokens": 10
