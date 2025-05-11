@@ -14,7 +14,7 @@ author: maanavd
 Install the Python package:
 
 ```bash
-pip install foundry-manager
+pip install foundry-manager-sdk
 ```
 
 ### FoundryManager Class
@@ -67,26 +67,80 @@ manager = FoundryManager(model_id_or_alias=None, bootstrap=True)
 | `unload_model()`              | `(model_alias_or_id: str, force: bool = False) -> None`                   | Unloads a model from the inference server.       |
 | `list_loaded_models()`        | `() -> list[FoundryModelInfo]`                                            | Lists all models currently loaded in the service.|
 
-#### Example Usage
+## Example Usage
+
+The following code demonstrates how to use the `FoundryManager` class to manage models and interact with the Foundry Local service.
 
 ```python
-from foundry_local import FoundryManager
+from foundry_local import FoundryLocalManager
 
-manager = FoundryManager()
+# By using an alias, the most suitable model will be selected 
+# to your end-user's device.
+alias = "deepseek-r1-1.5b"
+
+# Create a FoundryLocalManager instance. This will start the Foundry.
+manager = FoundryLocalManager()
 
 # List available models in the catalog
 catalog = manager.list_catalog_models()
+print(f"Available models in the catalog: {catalog}")
 
 # Download and load a model
-manager.download_model("DeepSeek-R1-Distill-Qwen-1.5B")
-manager.load_model("DeepSeek-R1-Distill-Qwen-1.5B")
+model_info = manager.download_model(alias)
+model_info = manager.load_model(alias)
+print(f"Model info: {model_info}")
 
 # List models in cache
 local_models = manager.list_local_models()
+print(f"Models in cache: {local_models}")
 
 # List loaded models
 loaded = manager.list_loaded_models()
+print(f"Models running in the service: {loaded}")
 
 # Unload a model
-manager.unload_model("DeepSeek-R1-Distill-Qwen-1.5B")
+manager.unload_model(alias)
+```
+
+### Integrate with OpenAI SDK
+
+Install the openai package:
+
+```bash
+pip install openai
+```
+
+The following code demonstrates how to integrate the `FoundryLocalManager` with the OpenAI SDK to interact with a local model.
+
+```python
+import openai
+from foundry_local import FoundryLocalManager
+
+# By using an alias, the most suitable model will be downloaded 
+# to your end-user's device.
+alias = "deepseek-r1-1.5b"
+
+# Create a FoundryLocalManager instance. This will start the Foundry 
+# Local service if it is not already running and load the specified model.
+manager = FoundryLocalManager(alias)
+
+# The remaining code us es the OpenAI Python SDK to interact with the local model.
+
+# Configure the client to use the local Foundry service
+client = openai.OpenAI(
+    base_url=manager.endpoint,
+    api_key=manager.api_key  # API key is not required for local usage
+)
+
+# Set the model to use and generate a streaming response
+stream = client.chat.completions.create(
+    model=manager.get_model_info(alias).id,
+    messages=[{"role": "user", "content": "Why is the sky blue?"}],
+    stream=True
+)
+
+# Print the streaming response
+for chunk in stream:
+    if chunk.choices[0].delta.content is not None:
+        print(chunk.choices[0].delta.content, end="", flush=True)
 ```

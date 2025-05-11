@@ -7,7 +7,6 @@ ms.author: maanavdalal
 author: maanavd
 ---
 
-
 ## JavaScript SDK Reference
 
 ### Installation
@@ -15,19 +14,19 @@ author: maanavd
 Install the package from npm:
 
 ```bash
-npm install foundry-manager
+npm install foundry-local-sdk
 ```
 
-### FoundryManager Class
+### FoundryLocalManager Class
 
-The `FoundryManager` class lets you manage models, control the cache, and interact with the Foundry Local service in both browser and Node.js environments.
+The `FoundryLocalManager` class lets you manage models, control the cache, and interact with the Foundry Local service in both browser and Node.js environments.
 
 #### Initialization
 
 ```js
-import FoundryManager from 'foundry-manager'
+import { FoundryLocalManager } from "foundry-local-sdk";
 
-const manager = new FoundryManager()
+const foundryLocalManager = new FoundryLocalManager()
 ```
 
 Available options:
@@ -79,12 +78,19 @@ Available options:
 ## Example Usage
 
 ```js
-import FoundryManager from 'foundry-manager'
+import { FoundryLocalManager } from "foundry-local-sdk";
 
-const manager = new FoundryManager()
+// By using an alias, the most suitable model will be downloaded 
+// to your end-user's device.
+// TIP: You can find a list of available models by running the 
+// following command in your terminal: `foundry model list`.
+const modelAlias = "deepseek-r1-1.5b";
+
+const manager = new FoundryLocalManager()
 
 // Initialize the SDK and optionally load a model
-await manager.init('DeepSeek-R1-Distill-Qwen-1.5B')
+const modelInfo = await manager.init(modelAlias)
+console.log("Model Info:", modelInfo)
 
 // Check if the service is running
 const isRunning = await manager.isServiceRunning()
@@ -94,8 +100,8 @@ console.log(`Service running: ${isRunning}`)
 const catalog = await manager.listCatalogModels()
 
 // Download and load a model
-await manager.downloadModel('DeepSeek-R1-Distill-Qwen-1.5B')
-await manager.loadModel('DeepSeek-R1-Distill-Qwen-1.5B')
+await manager.downloadModel(modelAlias)
+await manager.loadModel(modelAlias)
 
 // List models in cache
 const localModels = await manager.listLocalModels()
@@ -104,44 +110,54 @@ const localModels = await manager.listLocalModels()
 const loaded = await manager.listLoadedModels()
 
 // Unload a model
-await manager.unloadModel('DeepSeek-R1-Distill-Qwen-1.5B')
+await manager.unloadModel(modelAlias)
 ```
 
 ---
 
-## OpenAI-Compatible Usage
+## Integration with OpenAI Client
 
 Connect to Foundry Local with any OpenAI-compatible client. Here's an example using the `openai` package:
 
 ```js
-import OpenAI from 'openai';
-import FoundryManager from 'foundry-manager'
+import { OpenAI } from "openai";
+import { FoundryLocalManager } from "foundry-local-sdk";
 
-// Initialize the manager and load a model
-const manager = new FoundryManager()
-const modelInfo = await manager.loadModel('DeepSeek-R1-Distill-Qwen-1.5B')
+// By using an alias, the most suitable model will be downloaded 
+// to your end-user's device.
+// TIP: You can find a list of available models by running the 
+// following command in your terminal: `foundry model list`.
+const modelAlias = "deepseek-r1-1.5b";
 
-// Create an OpenAI client pointing to our local endpoint
-const client = new OpenAI({
-    apiKey: manager.apiKey,  // Not actually used but required by the client
-    baseURL: manager.endpoint
-})
+// Create a FoundryLocalManager instance. This will start the Foundry 
+// Local service if it is not already running.
+const foundryLocalManager = new FoundryLocalManager()
 
-// Create a streaming completion
-const completion = await client.chat.completions.create({
-    model: modelInfo.id,
-    messages: [{ role: 'user', content: 'Solve x^2 + 5x + 6 = 0.' }],
-    max_tokens: 250,
-    stream: true,
-})
+// Initialize the manager with a model. This will download the model 
+// if it is not already present on the user's device.
+const modelInfo = await foundryLocalManager.init(modelAlias)
+console.log("Model Info:", modelInfo)
 
-// Process the streaming response
-for await (const chunk of completion) {
-    const textChunk = chunk.choices[0]?.delta?.content || ''
-    if (textChunk) {
-        process.stdout.write(textChunk)
+const openai = new OpenAI({
+  baseURL: foundryLocalManager.endpoint,
+  apiKey: foundryLocalManager.apiKey,
+});
+
+async function streamCompletion() {
+    const stream = await openai.chat.completions.create({
+      model: modelInfo.id,
+      messages: [{ role: "user", content: "What is the golden ratio?" }],
+      stream: true,
+    });
+  
+    for await (const chunk of stream) {
+      if (chunk.choices[0]?.delta?.content) {
+        process.stdout.write(chunk.choices[0].delta.content);
+      }
     }
 }
+  
+streamCompletion();
 ```
 
 ---
@@ -151,9 +167,9 @@ for await (const chunk of completion) {
 The SDK includes a browser-compatible version where you must specify the service URL manually:
 
 ```js
-import FoundryManager from 'foundry-manager/browser'
+import { FoundryLocalManager } from "foundry-local-sdk/browser"
 
-const manager = new FoundryManager({ serviceUrl: 'http://localhost:8080' })
+const manager = new FoundryLocalManager({serviceUrl: "http://localhost:5272"})
 
 // Note: The `init`, `isServiceRunning`, and `startService` methods 
 // are not available in the browser version
@@ -162,23 +178,28 @@ const manager = new FoundryManager({ serviceUrl: 'http://localhost:8080' })
 #### Example Usage
 
 ```js
-import FoundryManager from 'foundry-manager'
+import { FoundryLocalManager } from "foundry-local-sdk/browser"
 
-const manager = new FoundryManager({ serviceUrl: 'http://localhost:8080' })
+const manager = new FoundryLocalManager({serviceUrl: "http://localhost:5272"})
+
+const modelAlias = 'deepseek-r1-1.5b'
 
 // Get all available models
 const catalog = await manager.listCatalogModels()
+console.log("Available models in catalog:", catalog)
 
 // Download and load a specific model
-await manager.downloadModel('DeepSeek-R1-Distill-Qwen-1.5B')
-await manager.loadModel('DeepSeek-R1-Distill-Qwen-1.5B')
+await manager.downloadModel(modelAlias)
+await manager.loadModel(modelAlias)
 
 // View models in your local cache
 const localModels = await manager.listLocalModels()
+console.log("Cached models:", catalog)
 
 // Check which models are currently loaded
 const loaded = await manager.listLoadedModels()
+console.log("Loaded models in inference service:", loaded)
 
 // Unload a model when finished
-await manager.unloadModel('DeepSeek-R1-Distill-Qwen-1.5B')
+await manager.unloadModel(modelAlias)
 ```
