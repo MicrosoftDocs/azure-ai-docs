@@ -27,26 +27,22 @@ You can access Azure AI services through two different resource kinds:
 
 You access Azure AI services via Azure [resources](/azure/azure-resource-manager/management/manage-resources-portal) that you create in your Azure subscription. After you create an AI Foundry or other AI services resource, you can use the credentials generated to authenticate your applications.
 
-## Supported services with an AI Foundry resource
+## Usage in AI Foundry projects
 
-The AI Foundry resource enables access to the following Azure AI services with a single set of credentials. Some services are available via the AI Foundry resource and single-service resource.
+> [!IMPORTANT]
+> Unless otherwise noted, the instructions in this article are for creating an AI Foundry resource without any project association. For information about how to create a project, see [Create a project for Azure AI Foundry](../ai-foundry/how-to/create-projects.md).
 
-> [!TIP]
-> We recommend whenever possible to use the **AI Foundry** resource (where the API kind is `AIServices`) to access multiple Azure AI services with a single set of credentials. For services not available via the AI Foundry resource (such as Face and Custom Vision), you can create a single-service resource.
+You can use an AI Foundry resource [with or without an AI Foundry project](../ai-foundry/what-is-azure-ai-foundry.md#which-type-of-project-do-i-need). For example:
+- Create a project when you need to use the Azure AI Foundry Agent Service.
+- Create a project when you need to fine-tune a model.
+- You don't need a project when you want to use models as-is via REST API or SDKs.
 
-| Service | Description | Kind (via API) |
-| --- | --- | --- |
-| ![Azure icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure.svg) [Azure AI Agent Service](./agents/index.yml) | Combine the power of generative AI models with tools that allow agents to access and interact with real-world data sources. | `AIServices` |
-| ![Azure AI Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Azure AI Model Inference](../ai-foundry/model-inference/index.yml) | Performs model inference for flagship models in the Azure AI Foundry model catalog. | `AIServices` |
-| ![Azure OpenAI Service icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](./openai/index.yml) | Perform a wide variety of natural language tasks. | `AIServices`<br/>`OpenAI` |
-| ![Content Safety icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-safety.svg) [Content Safety](./content-safety/index.yml) | An AI service that detects unwanted contents. | `AIServices`<br/>`ContentSafety` |
-| ![Custom Vision icon](~/reusable-content/ce-skilling/azure/media/ai-services/custom-vision.svg) [Custom Vision](./custom-vision-service/index.yml) | Customize image recognition for your business. | `CustomVision.Prediction` (Prediction only)<br/>`CustomVision.Training` (Training only) |
-| ![Document Intelligence icon](~/reusable-content/ce-skilling/azure/media/ai-services/document-intelligence.svg) [Document Intelligence](./document-intelligence/index.yml) | Turn documents into intelligent data-driven solutions. | `AIServices`<br/>`FormRecognizer` |
-| ![Face icon](~/reusable-content/ce-skilling/azure/media/ai-services/face.svg) [Face](./computer-vision/overview-identity.md) | Detect and identify people and emotions in images. | `Face` |
-| ![Language icon](~/reusable-content/ce-skilling/azure/media/ai-services/language.svg) [Language](./language-service/index.yml) | Build apps with industry-leading natural language understanding capabilities. | `AIServices`<br/>`TextAnalytics` |
-| ![Speech icon](~/reusable-content/ce-skilling/azure/media/ai-services/speech.svg) [Speech](./speech-service/index.yml) | Speech to text, text to speech, translation, and speaker recognition. | `AIServices`<br/>`Speech` |
-| ![Translator icon](~/reusable-content/ce-skilling/azure/media/ai-services/translator.svg) [Translator](./translator/index.yml) | Use AI-powered translation technology to translate more than 100 in-use, at-risk, and endangered languages and dialects. | `AIServices`<br/>`TextTranslation` |
-| ![Vision icon](~/reusable-content/ce-skilling/azure/media/ai-services/vision.svg) [Vision](./computer-vision/index.yml) | Analyze content in images and videos. | `AIServices` (Training and Prediction)<br/>`ComputerVision` |
+Your AI Foundry resource might or might not be associated with an AI Foundry project:
+- AI Foundry resources can be created in the Azure portal, Azure CLI, PowerShell, Bicep template, Terraform, or SDKs. In those cases, the AI Foundry resource by default isn't associated with a project. You can create a project later and associate it as a dependent of the AI Foundry resource.
+- A [project can be created in the Azure AI Foundry portal](../ai-foundry/how-to/create-projects.md) and automatically associated as a dependent of a new AI Foundry resource. 
+- An AI Foundry resource might have been created in the AI Foundry portal, but as a dependent resource of an [Azure AI Foundry hub](../ai-foundry/concepts/ai-resources.md). In this case, the resource is automatically associated with the project you create in the hub. 
+
+For more information, see [Types of projects](../ai-foundry/what-is-azure-ai-foundry.md#project-types).
 
 ::: zone pivot="azportal"
 
@@ -65,6 +61,27 @@ The AI Foundry resource enables access to the following Azure AI services with a
 [!INCLUDE [Azure PowerShell quickstart](includes/quickstarts/management-azpowershell.md)]
 
 ::: zone-end
+
+## Supported services with an AI Foundry resource
+
+The AI Foundry resource enables access to the following Azure AI services with a single set of credentials. Some services are available via the AI Foundry resource and single-service resource.
+
+> [!TIP]
+> We recommend whenever possible to use the **AI Foundry** resource (where the API kind is `AIServices`) to access multiple Azure AI services with a single set of credentials. For services not available via the AI Foundry resource (such as Face and Custom Vision), you can create a single-service resource.
+
+| Service | Description | Kind (via API) |
+| --- | --- | --- |
+| ![Azure AI Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Azure AI Foundry Agent Service](./agents/index.yml) | Combine the power of generative AI models with tools that allow agents to access and interact with real-world data sources. | `AIServices` |
+| ![Azure AI Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Azure AI Model Inference](../ai-foundry/model-inference/index.yml) | Performs model inference for flagship models in the Azure AI Foundry model catalog. | `AIServices` |
+| ![Azure OpenAI Service icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](./openai/index.yml) | Perform a wide variety of natural language tasks. | `AIServices`<br/>`OpenAI` |
+| ![Content Safety icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-safety.svg) [Content Safety](./content-safety/index.yml) | An AI service that detects unwanted contents. | `AIServices`<br/>`ContentSafety` |
+| ![Custom Vision icon](~/reusable-content/ce-skilling/azure/media/ai-services/custom-vision.svg) [Custom Vision](./custom-vision-service/index.yml) | Customize image recognition for your business. | `CustomVision.Prediction` (Prediction only)<br/>`CustomVision.Training` (Training only) |
+| ![Document Intelligence icon](~/reusable-content/ce-skilling/azure/media/ai-services/document-intelligence.svg) [Document Intelligence](./document-intelligence/index.yml) | Turn documents into intelligent data-driven solutions. | `AIServices`<br/>`FormRecognizer` |
+| ![Face icon](~/reusable-content/ce-skilling/azure/media/ai-services/face.svg) [Face](./computer-vision/overview-identity.md) | Detect and identify people and emotions in images. | `Face` |
+| ![Language icon](~/reusable-content/ce-skilling/azure/media/ai-services/language.svg) [Language](./language-service/index.yml) | Build apps with industry-leading natural language understanding capabilities. | `AIServices`<br/>`TextAnalytics` |
+| ![Speech icon](~/reusable-content/ce-skilling/azure/media/ai-services/speech.svg) [Speech](./speech-service/index.yml) | Speech to text, text to speech, translation, and speaker recognition. | `AIServices`<br/>`Speech` |
+| ![Translator icon](~/reusable-content/ce-skilling/azure/media/ai-services/translator.svg) [Translator](./translator/index.yml) | Use AI-powered translation technology to translate more than 100 in-use, at-risk, and endangered languages and dialects. | `AIServices`<br/>`TextTranslation` |
+| ![Vision icon](~/reusable-content/ce-skilling/azure/media/ai-services/vision.svg) [Vision](./computer-vision/index.yml) | Analyze content in images and videos. | `AIServices` (Training and Prediction)<br/>`ComputerVision` |
 
 ## Azure AI services resource for Azure AI Search skills
 
