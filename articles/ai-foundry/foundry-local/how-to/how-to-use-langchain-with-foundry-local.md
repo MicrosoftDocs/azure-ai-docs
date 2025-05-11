@@ -5,7 +5,7 @@ description: Learn how to build a LangChain application using Foundry Local
 manager: scottpolly
 keywords: Azure AI services, cognitive, AI models, local inference
 ms.service: azure-ai-foundry
-ms.topic: tutorial
+ms.topic: how-to
 ms.date: 02/20/2025
 ms.reviewer: eneros
 ms.author: eneros
@@ -30,4 +30,4 @@ This tutorial shows you how to create an application using the Foundry Local SDK
 ## Next steps
 
 - Explore the [LangChain documentation](https://python.langchain.com/docs/introduction) for more advanced features and capabilities.
-- [How to compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hugging-face-models.md)
+- [Compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hugging-face-models.md)

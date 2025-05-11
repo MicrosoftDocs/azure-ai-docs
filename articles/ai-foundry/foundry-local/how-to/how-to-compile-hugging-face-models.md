@@ -1,7 +1,7 @@
 ---
-title: How to compile Hugging Face models to run on Foundry Local
+title: Compile Hugging Face models to run on Foundry Local
 titleSuffix: Foundry Local
-description: Learn how to compile and run Hugging Face models with Foundry Local.
+description: Learn Compile and run Hugging Face models with Foundry Local.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: build-2025
@@ -11,7 +11,7 @@ ms.author: samkemp
 author: samuel100
 ---
 
-# How to compile Hugging Face models to run on Foundry Local
+# Compile Hugging Face models to run on Foundry Local
 
 Foundry Local runs ONNX models on your device with high performance. While the model catalog offers _out-of-the-box_ precompiled options, you can use any model in the ONNX format.
 

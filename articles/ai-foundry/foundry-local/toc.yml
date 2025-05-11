@@ -6,7 +6,7 @@ items:
 - name: Get Started
   href: get-started.md
 - name: Concepts
-  expanded: false
+  expanded: true
   items:
   - name: Foundry Local Architecture
     href: concepts/foundry-local-architecture.md
@@ -14,18 +14,15 @@ items:
   expanded: true
   items:
   - name: Integrate with Inferencing SDKs
-    href: how-to/integrate-with-inference-sdks.md
+    href: how-to/how-to-integrate-with-inference-sdks.md
+  - name: Integrate with LangChain
+    href: tutorials/use-langchain-with-foundry-local.md
+  - name: Integrate with Open Web UI
+    href: how-to/how-to-use-langchain-with-foundry-local.md
   - name: Compile Hugging Face models to run on Foundry Local
     href: how-to/how-to-compile-hugging-face-models.md
-- name: Tutorials
-  expanded: true
-  items:
-  - name: Build a chat application with Open Web UI
-    href: tutorials/chat-application-with-open-web-ui.md
-  - name: Build a translation app with LangChain
-    href: tutorials/use-langchain-with-foundry-local.md
 - name: Reference
-  expanded: false
+  expanded: true
   items:
   - name: Foundry Local CLI
     href: reference/reference-cli.md

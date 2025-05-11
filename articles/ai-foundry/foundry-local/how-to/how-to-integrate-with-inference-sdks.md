@@ -12,7 +12,7 @@ zone_pivot_groups: foundry-local-sdk-with-csharp
 author: samuel100
 ---
 
-# Integrate Foundry Local with inferencing SDKs
+# Integrate inferencing SDKs with Foundry Local
 
 Foundry Local integrates with various inferencing SDKs - such as OpenAI, Azure OpenAI, Langchain, etc. This guide shows you how to connect your applications to locally running AI models using popular SDKs.
 
@@ -34,5 +34,5 @@ Foundry Local integrates with various inferencing SDKs - such as OpenAI, Azure O
 
 ## Next steps
 
-- [How to compile Hugging Face models to run on Foundry Local](how-to-compile-hugging-face-models.md)
+- [Compile Hugging Face models to run on Foundry Local](how-to-compile-hugging-face-models.md)
 - [Explore the Foundry Local CLI reference](../reference/reference-cli.md)
