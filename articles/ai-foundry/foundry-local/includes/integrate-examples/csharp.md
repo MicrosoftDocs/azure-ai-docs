@@ -7,17 +7,27 @@ ms.author: maanavdalal
 author: maanavd
 ---
 
-## Basic Integration
+## Install NuGet packages
+
+```bash
+dotnet add package Azure.AI.OpenAI
+dotnet add package Microsoft.AI.FoundryLocal
+```
+
+## OpenAI SDK with Foundry Local
 
 ```csharp
-// Install with: dotnet add package Azure.AI.OpenAI
 using Azure.AI.OpenAI;
 using Azure;
+using Microsoft.AI.FoundryLocal;
+
+var foundryManager = new FoundryLocalManager();
+var modelInfo = await foundryManager.StartModelAsync("deepseek-r1-1.5b")
 
 // Create a client
 OpenAIClient client = new OpenAIClient(
-    new Uri("http://localhost:5272/v1"),
-    new AzureKeyCredential("not-needed-for-local")
+    foundryManager.Endpoint,
+    foundryManager.ApiKey
 );
 
 // Chat completions
@@ -27,48 +37,10 @@ ChatCompletionsOptions options = new ChatCompletionsOptions()
     {
         new ChatMessage(ChatRole.User, "What is Foundry Local?")
     },
-    DeploymentName = "Phi-3-mini-4k-instruct-generic-cpu" // Use model name here
+    DeploymentName = modelInfo.Id,
 };
 
 Response<ChatCompletions> response = await client.GetChatCompletionsAsync(options);
 string completion = response.Value.Choices[0].Message.Content;
 Console.WriteLine(completion);
-```
-
-## Streaming Response
-
-```csharp
-// Install with: dotnet add package Azure.AI.OpenAI
-using Azure.AI.OpenAI;
-using Azure;
-using System;
-using System.Threading.Tasks;
-
-async Task StreamCompletionsAsync()
-{
-    OpenAIClient client = new OpenAIClient(
-        new Uri("http://localhost:5272/v1"),
-        new AzureKeyCredential("not-needed-for-local")
-    );
-
-    ChatCompletionsOptions options = new ChatCompletionsOptions()
-    {
-        Messages =
-        {
-            new ChatMessage(ChatRole.User, "Write a short story about AI")
-        },
-        DeploymentName = "Phi-3-mini-4k-instruct-generic-cpu"
-    };
-
-    await foreach (StreamingChatCompletionsUpdate update in client.GetChatCompletionsStreaming(options))
-    {
-        if (update.ContentUpdate != null)
-        {
-            Console.Write(update.ContentUpdate);
-        }
-    }
-}
-
-// Call the async method
-await StreamCompletionsAsync();
 ```

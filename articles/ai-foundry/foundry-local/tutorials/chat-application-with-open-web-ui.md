@@ -22,7 +22,7 @@ This tutorial shows you how to create a chat application using Foundry Local and
 
 Before you start this tutorial, you need:
 
-- **Foundry Local** installed on your computer. Read the [Get started with Foundry Local](../../get-started.md) guide for installation instructions.
+- **Foundry Local** installed on your computer. Read the [Get started with Foundry Local](../get-started.md) guide for installation instructions.
 
 ## Set up Open Web UI for chat
 

@@ -8,7 +8,7 @@ ms.custom: build-2025
 ms.topic: how-to
 ms.date: 02/12/2025
 ms.author: samkemp
-zone_pivot_groups: azure-ai-model-catalog-samples-chat
+zone_pivot_groups: foundry-local-sdk-with-csharp
 author: samuel100
 ---
 
@@ -23,17 +23,12 @@ Foundry Local integrates with various inferencing SDKs - such as OpenAI, Azure O
 ::: zone pivot="programming-language-python"
 [!INCLUDE [Python](../includes/integrate-examples/python.md)]
 ::: zone-end
-
-::: zone pivot="programming-language-rest"
-[!INCLUDE [Rest](../includes/integrate-examples/rest.md)]
-::: zone-end
-
 ::: zone pivot="programming-language-javascript"
 [!INCLUDE [JavaScript](../includes/integrate-examples/javascript.md)]
 ::: zone-end
-
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C#](../includes/integrate-examples/csharp.md)]
+::: zone-end
 ::: zone-end
 
 

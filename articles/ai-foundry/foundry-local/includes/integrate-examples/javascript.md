@@ -18,7 +18,7 @@ npm install foundry-local-sdk
 
 The Foundry Local SDK allows you to manage the Foundry Local service and models.
 
-## Using the OpenAI Node.js SDK
+## Use OpenAI SDK with Foundry Local
 
 ```javascript
 import { OpenAI } from "openai";
@@ -28,7 +28,7 @@ import { FoundryLocalManager } from "foundry-local-sdk";
 // to your end-user's device.
 // TIP: You can find a list of available models by running the 
 // following command in your terminal: `foundry model list`.
-const modelAlias = "phi-3-mini-4k";
+const modelAlias = "deepseek-r1-1.5b";
 
 // Create a FoundryLocalManager instance. This will start the Foundry 
 // Local service if it is not already running.
@@ -71,7 +71,7 @@ import { FoundryLocalManager } from "foundry-local-sdk";
 // to your end-user's device.
 // TIP: You can find a list of available models by running the 
 // following command in your terminal: `foundry model list`.
-const modelAlias = "phi-3-mini-4k";
+const modelAlias = "deepseek-r1-1.5b";
 
 // Create a FoundryLocalManager instance. This will start the Foundry 
 // Local service if it is not already running.
@@ -104,7 +104,7 @@ async function streamCompletion() {
 streamCompletion();
 ```
 
-## Using Fetch API
+## Use Fetch API with Foundry Local
 
 ```javascript
 import { FoundryLocalManager } from "foundry-local-sdk";
@@ -113,7 +113,7 @@ import { FoundryLocalManager } from "foundry-local-sdk";
 // to your end-user's device.
 // TIP: You can find a list of available models by running the 
 // following command in your terminal: `foundry model list`.
-const modelAlias = "phi-3-mini-4k";
+const modelAlias = "deepseek-r1-1.5b";
 
 // Create a FoundryLocalManager instance. This will start the Foundry 
 // Local service if it is not already running.
@@ -154,7 +154,7 @@ import { FoundryLocalManager } from "foundry-local-sdk";
 // to your end-user's device.
 // TIP: You can find a list of available models by running the 
 // following command in your terminal: `foundry model list`.
-const modelAlias = "phi-3-mini-4k";
+const modelAlias = "deepseek-r1-1.5b";
 
 // Create a FoundryLocalManager instance. This will start the Foundry 
 // Local service if it is not already running.
