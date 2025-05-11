@@ -22,7 +22,7 @@ To configure and run the indexer, you can use:
 + [2024-05-01-preview REST API](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2024-05-01-preview&tabs=HTTP&preserve-view=true) or a newer preview REST API.
 + An Azure SDK beta package that provides the feature.
 + [Import data wizard](search-get-started-portal.md) in the Azure portal.
-+ [Quickstart wizard](search-get-started-portal-import-vectors.md) in the Azure portal.
++ [Import and vectorize data wizard](search-get-started-portal-import-vectors.md) in the Azure portal.
 
 This article uses the REST APIs to illustrate each step.
   
@@ -452,6 +452,6 @@ There are five indexer properties that control the indexer's response when error
 
 ## Next steps
 
-Review how the [Quickstart wizard](search-get-started-portal-import-vectors.md) works and try it out for this indexer. You can use [integrated vectorization](vector-search-integrated-vectorization.md) to chunk and create embeddings for vector or hybrid search using a default schema.
+Review how the [Import and vectorize data wizard](search-get-started-portal-import-vectors.md) works and try it out for this indexer. You can use [integrated vectorization](vector-search-integrated-vectorization.md) to chunk and create embeddings for vector or hybrid search using a default schema.
 
 <!-- + Check out [this Python demo](add a link to demo location) that shows how to set this up using code. -->

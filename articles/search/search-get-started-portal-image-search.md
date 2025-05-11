@@ -13,7 +13,7 @@ ms.custom:
 
 # Quickstart: Search for multimodal content in the Azure portal
 
-In this quickstart, you use the **Quickstart wizard** in the Azure portal to get started with multimodal search. Multimodality refers to the ability to process and query over multiple types of data, such as text and images.
+In this quickstart, you use the **Import and vectorize data wizard** in the Azure portal to get started with multimodal search. Multimodality refers to the ability to process and query over multiple types of data, such as text and images.
 
 The sample data consists of a multimodal PDF in the [azure-search-sample-data](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/sustainable-ai-pdf) repo, but you can use different files and still follow this quickstart.
 
@@ -71,7 +71,7 @@ To start the wizard for multimodal search:
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and go to your Azure AI Search service.
 
-1. On the **Overview** page, select **Quickstart wizard**.
+1. On the **Overview** page, select **Import and vectorize data wizard**.
 
    :::image type="content" source="media/search-get-started-portal-import-vectors/command-bar-quickstart-wizard.png" alt-text="Screenshot of the command to open the wizard for importing and vectorizing data.":::
 
@@ -212,7 +212,7 @@ When the wizard completes the configuration, it creates the following objects:
 
 ## Check results
 
-Search Explorer accepts text, images, and vectors as query inputs. For images, Search Explorer vectorizes the image and sends the vector as a query input to the search engine. Image vectorization assumes that your index has a vectorizer definition, which the **Quickstart wizard** creates based on your embedding model inputs.
+Search Explorer accepts text, images, and vectors as query inputs. For images, Search Explorer vectorizes the image and sends the vector as a query input to the search engine. Image vectorization assumes that your index has a vectorizer definition, which the **Import and vectorize data wizard** creates based on your embedding model inputs.
 
 The following steps assume that you're searching for images. For the other two query types, see [Quickstart: Keyword search](search-get-started-portal.md#query-with-search-explorer) and [Quickstart: Vector search](search-get-started-portal-import-vectors.md#check-results).
 
@@ -248,4 +248,4 @@ This quickstart uses billable Azure resources. If you no longer need the resourc
 
 ## Next step
 
-This quickstart introduced you to the **Quickstart wizard** that creates all of the necessary objects for multimodal search. If you want to explore each step in detail, try an [integrated vectorization sample](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/integrated-vectorization/azure-search-integrated-vectorization-sample.ipynb).
+This quickstart introduced you to the **Import and vectorize data wizard** that creates all of the necessary objects for multimodal search. If you want to explore each step in detail, try an [integrated vectorization sample](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/integrated-vectorization/azure-search-integrated-vectorization-sample.ipynb).

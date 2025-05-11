@@ -111,7 +111,7 @@ A more common scenario - data chunking and vectorization during indexing:
 Optionally, [create secondary indexes](index-projections-concept-intro.md) for advanced scenarios where chunked content is in one index, and nonchunked in another index. Chunked indexes (or secondary indexes) are useful for RAG apps.
 
 > [!TIP]
-> [Try the **Quickstart wizard**](search-get-started-portal-import-vectors.md) in the Azure portal to explore integrated vectorization before writing any code.
+> [Try the **Import and vectorize data wizard**](search-get-started-portal-import-vectors.md) in the Azure portal to explore integrated vectorization before writing any code.
 
 ### Secure connections to vectorizers and models
 

@@ -102,14 +102,14 @@ items:
       href: tutorial-create-custom-analyzer.md
   - name: Multimodal indexing tutorials
     items:
-    - name: Index multimodal content using semantic chunking
-      href: tutorial-multimodal-index-embeddings-skill.md
-    - name: Index image verbalizations using semantic chunking
-      href: tutorial-multimodal-index-image-verbalization-skill.md      
-    - name: Index multimodal content using document extraction
+    - name: Use document extraction and multimodal embeddings
       href: tutorial-multimodal-indexing-with-embedding-and-doc-extraction.md
-    - name: Index image verbalizations using document extraction
+    - name: Use document extraction and image verbalizations
       href: tutorial-multimodal-indexing-with-image-verbalization-and-doc-extraction.md
+    - name: Use semantic chunking and multimodal embeddings
+      href: tutorial-multimodal-index-embeddings-skill.md
+    - name: Use semantic chunking and image verbalizations
+      href: tutorial-multimodal-index-image-verbalization-skill.md      
   - name: RAG tutorials
     items:
     - name: Build a RAG solution

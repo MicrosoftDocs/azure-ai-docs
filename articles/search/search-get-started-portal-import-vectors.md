@@ -14,7 +14,7 @@ ms.date: 05/08/2025
 
 # Quickstart: Vectorize text in the Azure portal
 
-In this quickstart, you use the **Quickstart wizard** in the Azure portal to get started with [integrated vectorization](vector-search-integrated-vectorization.md). The wizard chunks your content and calls an embedding model to vectorize content during indexing and for queries.
+In this quickstart, you use the **Import and vectorize data wizard** in the Azure portal to get started with [integrated vectorization](vector-search-integrated-vectorization.md). The wizard chunks your content and calls an embedding model to vectorize content during indexing and for queries.
 
 The sample data for this quickstart consists of text-based PDFs, but you can also use images and follow this quickstart to vectorize them.
 
@@ -32,7 +32,7 @@ The sample data for this quickstart consists of text-based PDFs, but you can als
 
 ### Supported data sources
 
-The **Quickstart wizard** [supports a wide range of Azure data sources](search-import-data-portal.md#supported-data-sources-and-scenarios). However, this quickstart only covers the data sources that work with whole files, which are described in the following table.
+The **Import and vectorize data wizard** [supports a wide range of Azure data sources](search-import-data-portal.md#supported-data-sources-and-scenarios). However, this quickstart only covers the data sources that work with whole files, which are described in the following table.
 
 | Supported data source | Description |
 |--|--|
@@ -220,7 +220,7 @@ The wizard supports Azure AI Vision image retrieval through multimodal embedding
 
    1. Select your subscription and the managed identity of your search service.
 
-The multimodal embeddings are built into your Azure AI multi-service resource, so there's no model deployment step. You should now be able to select the Azure AI Vision vectorizer in the **Quickstart wizard**.
+The multimodal embeddings are built into your Azure AI multi-service resource, so there's no model deployment step. You should now be able to select the Azure AI Vision vectorizer in the **Import and vectorize data wizard**.
 
 > [!NOTE]
 > If you can't select the Azure AI Vision vectorizer, make sure you have an Azure AI Vision resource in a supported region. Also make sure the managed identity of your search service has **Cognitive Services User** permissions.
@@ -259,7 +259,7 @@ For the model catalog, you should have an [Azure AI Foundry project](/azure/ai-f
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and go to your Azure AI Search service.
 
-1. On the **Overview** page, select **Quickstart wizard**.
+1. On the **Overview** page, select **Import and vectorize data wizard**.
 
    :::image type="content" source="media/search-get-started-portal-import-vectors/command-bar-quickstart-wizard.png" alt-text="Screenshot of the command to open the wizard for importing and vectorizing data.":::
 
@@ -559,4 +559,4 @@ Azure AI Search is a billable resource. If you no longer need it, delete it from
 
 ## Next step
 
-This quickstart introduced you to the **Quickstart wizard**, which creates all of the necessary objects for integrated vectorization. To explore each step in detail, see [Set up integrated vectorization in Azure AI Search](search-how-to-integrated-vectorization.md).
+This quickstart introduced you to the **Import and vectorize data wizard**, which creates all of the necessary objects for integrated vectorization. To explore each step in detail, see [Set up integrated vectorization in Azure AI Search](search-how-to-integrated-vectorization.md).
