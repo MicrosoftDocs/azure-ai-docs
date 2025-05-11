@@ -7,14 +7,23 @@ ms.author: maanavdalal
 author: maanavd
 ---
 
-## Install NuGet packages
+## Create project and install NuGet packages
+
+To create a new C# project and install the required NuGet packages, run the following commands in your terminal:
 
 ```bash
+mkdir FoundryLocalExample
+cd FoundryLocalExample
+dotnet new console
 dotnet add package Azure.AI.OpenAI
 dotnet add package Microsoft.AI.FoundryLocal
 ```
 
 ## OpenAI SDK with Foundry Local
+
+The following example demonstrates how to use the OpenAI SDK with Foundry Local. The code initializes the Foundry Local service, loads a model, and generates a response using the OpenAI SDK.
+
+Copy-and-paste the following code into a C# file named `Program.cs`:
 
 ```csharp
 using Azure.AI.OpenAI;

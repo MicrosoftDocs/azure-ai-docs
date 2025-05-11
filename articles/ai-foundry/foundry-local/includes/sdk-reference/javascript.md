@@ -165,8 +165,6 @@ async function streamCompletion() {
 streamCompletion();
 ```
 
----
-
 ## Browser Usage
 
 The SDK includes a browser-compatible version where you must specify the service URL manually:

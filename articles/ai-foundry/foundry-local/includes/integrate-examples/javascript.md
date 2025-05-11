@@ -20,6 +20,10 @@ The Foundry Local SDK allows you to manage the Foundry Local service and models.
 
 ## Use OpenAI SDK with Foundry Local
 
+The following example demonstrates how to use the OpenAI SDK with Foundry Local. The code initializes the Foundry Local service, loads a model, and generates a response using the OpenAI SDK.
+
+Copy-and-paste the following code into a JavaScript file named `app.js`:
+
 ```javascript
 import { OpenAI } from "openai";
 import { FoundryLocalManager } from "foundry-local-sdk";
@@ -61,7 +65,15 @@ async function generateText() {
 generateText();
 ```
 
+Run the code using the following command:
+
+```bash
+node app.js
+```
+
 ### Streaming Responses
+
+If you want to receive streaming responses, you can modify the code as follows:
 
 ```javascript
 import { OpenAI } from "openai";
@@ -104,7 +116,15 @@ async function streamCompletion() {
 streamCompletion();
 ```
 
+Run the code using the following command:
+
+```bash
+node app.js
+```
+
 ## Use Fetch API with Foundry Local
+
+If you prefer to use an HTTP client like `fetch`, you can do so as follows:
 
 ```javascript
 import { FoundryLocalManager } from "foundry-local-sdk";
@@ -146,6 +166,8 @@ queryModel();
 ```
 
 ### Streaming Responses
+
+If you want to receive streaming responses using the Fetch API, you can modify the code as follows:
 
 ```javascript
 import { FoundryLocalManager } from "foundry-local-sdk";
