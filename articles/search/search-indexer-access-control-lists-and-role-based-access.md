@@ -11,8 +11,7 @@ ms.author: wli
 
 # Use an ADLS Gen2 indexer to ingest permission metadata and filter search results based on user access rights
 
-> [!IMPORTANT]
-> This feature is in public preview. It's offered "as-is", under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and supported on best effort only. Preview features aren't recommended for production workloads and aren't guaranteed to become generally available.
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 The permission model in Azure Data Lake Storage (ADLS) Gen2 can be used for per-user access to specific directories or files. Starting in 2025-05-01-preview, you can now include user permissions alongside document ingestion in Azure AI Search and use those permissions to control access to search results. If a user lacks permissions on a specific directory or file in ADLS Gen2, that user doesn't have access to the corresponding documents in Azure AI Search results.
 

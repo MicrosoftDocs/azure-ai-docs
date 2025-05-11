@@ -15,7 +15,7 @@ ms.date: 05/05/2025
 
 # Tutorial: Index multimodal content using multimodal embedding and document layout skill
 
-Multimodal plays an essential role in Gen AI apps and the user experience as it enables the extraction of information not only from text but also from complex images embedded within documents. In this Azure AI Search tutorial, learn how to build a multimodal retrieval pipeline that chunks data based on document structure, and uses a multimodal embedding model to vectorize text and images in a searchable index.
+Multimodal plays an essential role in generative AI apps and the user experience as it enables the extraction of information not only from text but also from complex images embedded within documents. In this Azure AI Search tutorial, learn how to build a multimodal retrieval pipeline that chunks data based on document structure, and uses a multimodal embedding model to vectorize text and images in a searchable index.
 
 You’ll work with a 36-page PDF document that combines rich visual content—such as charts, infographics, and scanned pages—with traditional text. Using the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)(currently in public preview), you’ll extract both text and normalized images with its locationMetadata. Each modality is then embedded using the same [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), which generates dense vector representations suitable for semantic and hybrid search scenarios.
 

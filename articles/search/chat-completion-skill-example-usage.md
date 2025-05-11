@@ -284,6 +284,6 @@ POST /indexes/[index name]/docs/search?api-version=[api-version]
 
 ## Related content
 + [Create indexer (REST)](/rest/api/searchservice/indexers/create)
-+ [Gen AI Prompt Skill](cognitive-search-skill-genai-prompt.md)
++ [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
 + [How to create a skillset](cognitive-search-defining-skillset.md)
 + [Map enriched output to fields](cognitive-search-output-field-mapping.md)
