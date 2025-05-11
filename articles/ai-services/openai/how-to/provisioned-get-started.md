@@ -1,7 +1,7 @@
 ---
-title: 'Quickstart - Get started using Provisioned Deployments with Azure OpenAI Service'
-titleSuffix: Azure OpenAI Service
-description: Walkthrough on how to get started provisioned deployments on Azure OpenAI Service.
+title: 'Quickstart - Get started using Provisioned Deployments with Azure OpenAI in Azure AI Foundry Models'
+titleSuffix: Azure OpenAI
+description: Walkthrough on how to get started provisioned deployments on Azure OpenAI.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: openai
@@ -12,9 +12,9 @@ ms.date: 03/31/2025
 recommendations: false
 ---
 
-# Get started using provisioned deployments on the Azure OpenAI Service
+# Get started using provisioned deployments on the Azure OpenAI in Azure AI Foundry Models
 
-The following guide walks you through key steps in creating a provisioned deployment with your Azure OpenAI Service resource. For more details on the concepts discussed here, see:
+The following guide walks you through key steps in creating a provisioned deployment with your Azure OpenAI resource. For more details on the concepts discussed here, see:
 * [Azure OpenAI Provisioned Onboarding Guide](./provisioned-throughput-onboarding.md)
 * [Azure OpenAI Provisioned Concepts](../concepts/provisioned-throughput.md) 
 
@@ -177,7 +177,7 @@ You can find the utilization measure in the Azure-Monitor section for your resou
 
 :::image type="content" source="../media/provisioned/azure-monitor-utilization.jpg" alt-text="Screenshot of the provisioned managed utilization on the resource's metrics blade in the Azure portal." lightbox="../media/provisioned/azure-monitor-utilization.jpg":::
 
-For more information about monitoring your deployments, see the [Monitoring Azure OpenAI Service](./monitoring.md) page.
+For more information about monitoring your deployments, see the [Monitoring Azure OpenAI](./monitoring.md) page.
 
 
 ## Handling high utilization

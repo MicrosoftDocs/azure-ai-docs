@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Use Azure OpenAI Service via Azure AI Foundry'
+title: 'Quickstart: Use Azure OpenAI in Azure AI Foundry Models via Azure AI Foundry'
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with Azure AI Foundry. 
 manager: nitinme

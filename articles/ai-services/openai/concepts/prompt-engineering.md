@@ -1,7 +1,7 @@
 ---
-title: Azure OpenAI Service | Prompt engineering techniques
+title: Azure OpenAI in Azure AI Foundry Models | Prompt engineering techniques
 titleSuffix: Azure OpenAI
-description: Learn how to use prompt engineering to optimize your work with Azure OpenAI Service.
+description: Learn how to use prompt engineering to optimize your work with Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
 ms.date: 03/26/2025

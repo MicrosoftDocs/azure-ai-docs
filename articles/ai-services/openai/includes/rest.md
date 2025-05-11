@@ -1,6 +1,6 @@
 ---
 title: 'Quickstart: Use the OpenAI Service to make your first completions call with the REST API'
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the REST API. 
 manager: nitinme
 ms.service: azure-ai-openai
@@ -92,7 +92,7 @@ The output from the completions API will look as follows.
 ```
 
 
-The Azure OpenAI Service also performs content moderation on the prompt inputs and generated outputs. The prompts or responses may be filtered if harmful content is detected. For more information, see the [content filter](../concepts/content-filter.md) article.
+The Azure OpenAI in Azure AI Foundry Models also performs content moderation on the prompt inputs and generated outputs. The prompts or responses may be filtered if harmful content is detected. For more information, see the [content filter](../concepts/content-filter.md) article.
 
 ## Clean up resources
 
