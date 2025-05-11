@@ -13,7 +13,7 @@ author: maanavd
 
 # Catalog API Reference
 
-This document provides a detailed reference for catalog implementers can use this guide when creating their own catalog implementations to be integrated with Foundry Local.
+This document provides a detailed reference for catalog implementers that want to create their own catalog implementations to be integrated with Foundry Local.
 
 ## Catalog Host
 
