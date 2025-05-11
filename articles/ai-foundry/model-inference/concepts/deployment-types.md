@@ -13,7 +13,7 @@ ms.custom: ignite-2024, github-universe-2024
 
 # Deployment types in Azure AI Foundry Models
 
-Azure AI Foundry Models makes models available using the *model deployment* concept in Azure AI Foundry resources (formerly known Azure AI Services). *Model deployments* are also Azure resources and, when created, they give access to a given model under certain configurations. Such configuration includes the infrastructure require to process the requests. 
+Azure AI Foundry Models makes models available using the *model deployment* concept in Azure AI Foundry Services (formerly known Azure AI Services). *Model deployments* are also Azure resources and, when created, they give access to a given model under certain configurations. Such configuration includes the infrastructure require to process the requests. 
 
 Azure AI Foundry Models provides customers with choices on the hosting structure that fits their business and usage patterns. Those options are translated to different deployments types (or SKUs) that are available at model deployment time in the Azure AI Foundry resource.
 
@@ -29,7 +29,7 @@ Azure AI Foundry Models provides customers with choices on the hosting structure
 
 **SKU name in code:** `GlobalStandard`
 
-Global deployments are available in the same Azure AI Foundry resources as non-global deployment types but allow you to leverage Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request.  Global standard provides the highest default quota and eliminates the need to load balance across multiple resources.  
+Global deployments are available in the same Azure AI Foundry Services as non-global deployment types but allow you to leverage Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request.  Global standard provides the highest default quota and eliminates the need to load balance across multiple resources.  
 
 Customers with high consistent volume may experience greater latency variability. The threshold is set per model. See the [quotas page to learn more](../quotas-limits.md).  For applications that require the lower latency variance at large workload usage, we recommend purchasing provisioned throughput.
 
@@ -40,7 +40,7 @@ Customers with high consistent volume may experience greater latency variability
 
 **SKU name in code:** `GlobalProvisionedManaged`
 
-Global deployments are available in the same Azure AI Foundry resources as non-global deployment types but allow you to leverage Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request. Global provisioned deployments provide reserved model processing capacity for high and predictable throughput using Azure global infrastructure.  
+Global deployments are available in the same Azure AI Foundry Services as non-global deployment types but allow you to leverage Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request. Global provisioned deployments provide reserved model processing capacity for high and predictable throughput using Azure global infrastructure.  
 
 ## Global batch
 

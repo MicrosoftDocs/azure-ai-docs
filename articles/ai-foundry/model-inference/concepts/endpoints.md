@@ -36,9 +36,9 @@ An Azure AI Foundry resource can have as many model deployments as needed and th
 
 To learn more about how to create deployments see [Add and configure model deployments](../how-to/create-model-deployments.md).
 
-## Azure AI inference endpoint
+## Foundry Models inference endpoint
 
-The Azure AI inference endpoint allows customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. This endpoint follows the [Azure AI model inference API](.././reference/reference-model-inference-api.md) which all the models in Azure AI model inference support. It support the following modalities:
+The Foundry Models inference endpoint allows customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. This endpoint follows the [Foundry Models API](.././reference/reference-model-inference-api.md) which all the models in Foundry Models support. It support the following modalities:
 
 * Text embeddings
 * Image embeddings
@@ -65,7 +65,7 @@ For example, if you create a deployment named `Mistral-large`, then such deploym
 
 ### SDKs
 
-The Azure AI model inference endpoint is supported by multiple SDKs, including the **Azure AI Inference SDK**, the **Azure AI Foundry SDK**, and the **Azure OpenAI SDK**; which are available in multiple languages. Multiple integrations are also supported in popular frameworks like LangChain, LangGraph, Llama-Index, Semantic Kernel, and AG2. See [supported programming languages and SDKs](../supported-languages.md) for details.
+The Foundry Models endpoint is supported by multiple SDKs, including the **Azure AI Inference SDK**, the **Azure AI Foundry SDK**, and the **Azure OpenAI SDK**; which are available in multiple languages. Multiple integrations are also supported in popular frameworks like LangChain, LangGraph, Llama-Index, Semantic Kernel, and AG2. See [supported programming languages and SDKs](../supported-languages.md) for details.
 
 ## Azure OpenAI inference endpoint
 

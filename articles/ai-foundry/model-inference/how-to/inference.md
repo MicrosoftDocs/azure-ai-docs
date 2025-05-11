@@ -20,19 +20,19 @@ This article explains how to use the inference endpoint to invoke them.
 
 ## Endpoints
 
-Azure AI services expose multiple endpoints depending on the type of work you're looking for:
+Azure AI Foundry Services (formerly known Azure AI Services) expose multiple endpoints depending on the type of work you're looking for:
 
 > [!div class="checklist"]
-> * Azure AI model inference endpoint
+> * Foundry Models endpoint
 > * Azure OpenAI endpoint
 
-The **Azure AI inference endpoint** (usually with the form `https://<resource-name>.services.ai.azure.com/models`) allows customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. All the models support this capability. This endpoint follows the [Azure AI model inference API](.././reference/reference-model-inference-api.md). 
+The **Azure AI inference endpoint** (usually with the form `https://<resource-name>.services.ai.azure.com/models`) allows customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. All the models support this capability. This endpoint follows the [Foundry Models API](.././reference/reference-model-inference-api.md). 
 
 **Azure OpenAI** models deployed to AI services also support the Azure OpenAI API (usually with the form `https://<resource-name>.openai.azure.com`). This endpoint exposes the full capabilities of OpenAI models and supports more features like assistants, threads, files, and batch inference.
 
 To learn more about how to apply the **Azure OpenAI endpoint** see [Azure OpenAI in Azure AI Foundry Models documentation](../../../ai-services/openai/overview.md).
 
-## Using the routing capability in the Azure AI model inference endpoint
+## Using the routing capability in the Foundry Models endpoint
 
 The inference endpoint routes requests to a given deployment by matching the parameter `name` inside of the request to the name of the deployment. This means that *deployments work as an alias of a given model under certain configurations*. This flexibility allows you to deploy a given model multiple times in the service but under different configurations if needed.
 
@@ -58,7 +58,7 @@ To use key-less authentication, [configure your resource and grant access to use
 
 ## Limitations
 
-* Azure OpenAI Batch can't be used with the Azure AI model inference endpoint. You have to use the dedicated deployment URL as explained at [Batch API support in Azure OpenAI documentation](../../../ai-services/openai/how-to/batch.md#api-support).
+* Azure OpenAI Batch can't be used with the Foundry Models endpoint. You have to use the dedicated deployment URL as explained at [Batch API support in Azure OpenAI documentation](../../../ai-services/openai/how-to/batch.md#api-support).
 * Real-time API isn't supported in the inference endpoint. Use the dedicated deployment URL.
 
 ## Next steps
