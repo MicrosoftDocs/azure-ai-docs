@@ -29,13 +29,6 @@ pip install foundry-local-sdk
 
 ## Create a translation application
 
-In this example, you create a translation application that translates text from one language to another using a local model. The application uses the Foundry Local Manager SDK to start the inference service, download the most suitable model for your hardware, and load it into memory.
-
-In this example, you use the `phi-3-mini-4k` model, which is a lightweight model that can run on most machines. You can choose any other model that is compatible with Foundry Local.
-
-> [!TIP]
-> You can find a list of available models by running the following command: `foundry model list`.
-
 Create a new Python file named `translation_app.py` in your favorite IDE and add the following code:
 
 ```python
@@ -46,6 +39,8 @@ from foundry_local import FoundryLocalManager
 
 # By using an alias, the most suitable model will be downloaded 
 # to your end-user's device.
+# TIP: You can find a list of available models by running the
+# following command: `foundry model list`.
 alias = "phi-3-mini-4k"
 
 # Create a FoundryLocalManager instance. This will start the Foundry 
@@ -57,7 +52,7 @@ llm = ChatOpenAI(
     model=manager.get_model_info(alias).id,
     base_url=manager.endpoint,
     api_key=manager.api_key,
-    temperature=0.0,
+    temperature=0.6,
     streaming=False
 )
 
@@ -87,28 +82,6 @@ ai_msg = chain.invoke({
 print(f"Response: {ai_msg.content}")
 ```
 
-You can change the `input` variable to any text you want to translate. The application translates the text from English to French using the local model.
-
-### Explanation of the code
-
-**`FoundryLocalManager`** is a class that manages the Foundry Local service and the models. By default `FoundryLocalManager` initiates the following *bootstrap process* on the application user's machine for local inference:
-
-1. *Starts the service*, if it isn't already running.
-1. *Downloads the model*, if it isn't cached on the user's device.
-1. *Loads the specified model into memory*.
-
-The key inputs to LangChain's `ChatOpenAI` class can be set using the `FoundryLocalManager` instance. The `model` parameter is set to the model ID of the specified model, and the `base_url` and `api_key` parameters are set to the endpoint and API key of the Foundry Local service.
-
-```python
-llm = ChatOpenAI(
-    model=manager.get_model_info(alias).id,
-    base_url=manager.endpoint,
-    api_key=manager.api_key,
-    temperature=0.0,
-    streaming=False
-)
-```
-
 > [!NOTE]
 > One of key benefits of Foundry Local is that it **automatically** selects the most suitable model **variant** for the user's hardware. For example, if the user has a GPU, it downloads the GPU version of the model. If the user has an NPU (Neural Processing Unit), it downloads the NPU version. If the user doesn't have either a GPU or NPU, it downloads the CPU version of the model.
     
@@ -118,16 +91,4 @@ To run the application, open a terminal and navigate to the directory where you 
 
 ```bash
 python translation_app.py
-```
-
-The following output of the application shows the translation of the input text "I love to code." into French:
-
-```Plaintext
-[foundry-local] | 2025-05-10 14:08:26 | INFO     | Foundry service is already running at http://localhost:5272
-[foundry-local] | 2025-05-10 14:08:28 | INFO     | Model with alias 'phi-3-mini-4k' and ID 'Phi-3-mini-4k-instruct-generic-cpu' is already cached. Use force=True to download it again.
-[foundry-local] | 2025-05-10 14:08:28 | INFO     | Loading model with alias 'phi-3-mini-4k' and ID 'Phi-3-mini-4k-instruct-generic-cpu'...
-Translating 'I love to code.' to French...
-Response:  J'aime coder.
-
-This translation maintains the original meaning and sentiment of the English phrase "I love to code" into French.
 ```

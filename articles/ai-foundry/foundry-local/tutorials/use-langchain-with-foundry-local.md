@@ -1,5 +1,5 @@
 ---
-title: Build an application with Foundry Local Manager SDK and LangChain
+title: Build an application with Foundry Local and LangChain
 titleSuffix: Foundry Local
 description: Learn how to build a LangChain application using Foundry Local
 manager: scottpolly
@@ -11,10 +11,11 @@ ms.reviewer: eneros
 ms.author: eneros
 author: eneros
 ms.custom: build-2025
+zone_pivot_groups: foundry-local-sdk
 #customer intent: As a developer, I want to get started with Foundry Local so that I can run AI models locally.
 ---
 
-# Build an application with Foundry Local Manager SDK and LangChain
+# Build an application with Foundry Local and LangChain
 
 This tutorial shows you how to create an application using the Foundry Local SDK and [LangChain](https://www.langchain.com/langchain). In this tutorial, you will build a translation application that translates text from one language to another that uses a local model.
 
