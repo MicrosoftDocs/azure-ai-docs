@@ -13,139 +13,235 @@ author: maanavd
 
 # Catalog API Reference
 
-This document provides a detailed reference for the Model Catalog APIs. Catalog implementers can use this guide when creating their own catalog implementations.
+This document provides a detailed reference for catalog implementers can use this guide when creating their own catalog implementations to be integrated with Foundry Local.
 
-## Base URI
+## Catalog Host
+
+### URI format
+
+The catalog host URI is the base URL for your catalog API. It should be in the following format:
 
 ```
 https://<catalog provider URI>/<provider subpath>
 ```
 
-Replace `<catalog provider URI>` and `<provider subpath>` with your specific catalog hosting information.
-
-## Available APIs
-
-- **Get Model Details** - Retrieve information about a specific model
-- **Get Publisher Details** - Access publisher information
-- **List Publishers** - View all available publishers
-- **List Models** - Browse available models
-
-## Authorization
+### Authorization
 
 All endpoints must support:
 
 - Anonymous access (no authentication required)
 
 
-## Get Model Details
+## JSON response format
 
-Retrieves detailed information about a specific model version.
+Your endpoint must return a JSON response. The response schema is as follows:
 
-**GET** `/models/{modelName}/version/{version}`
-
-**Example:**
+```json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AzureFoundryResponse",
+  "type": "object",
+  "properties": {
+    "indexEntitiesResponse": {
+      "$ref": "#/definitions/IndexEntitiesResponse"
+    },
+    "regionalErrors": {
+      "type": ["object", "null"]
+    },
+    "resourceSkipReasons": {
+      "type": ["object", "null"]
+    },
+    "shardErrors": {
+      "type": ["object", "null"]
+    },
+    "numberOfResourcesNotIncludedInSearch": {
+      "type": ["integer", "null"]
+    }
+  },
+  "definitions": {
+    "IndexEntitiesResponse": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "type": ["integer", "null"]
+        },
+        "value": {
+          "type": ["array", "null"],
+          "items": {
+            "$ref": "#/definitions/LocalModel"
+          }
+        },
+        "nextSkip": {
+          "type": ["integer", "null"]
+        },
+        "continuationToken": {
+          "type": ["string", "null"]
+        },
+        "entityContainerIdsToEntityContainerMetadata": {
+          "type": ["object", "null"],
+          "additionalProperties": {
+            "$ref": "#/definitions/EntityContainerMetadata"
+          }
+        },
+        "resourcesNotQueriedReasons": {
+          "type": ["object", "null"]
+        },
+        "numberOfEntityContainersNotQueried": {
+          "type": ["integer", "null"]
+        },
+        "fanoutData": {
+          "type": ["object", "null"]
+        },
+        "regionalFanoutState": {
+          "type": ["object", "null"]
+        },
+        "shardErrors": {
+          "type": ["object", "null"]
+        },
+        "canSupportSkip": {
+          "type": ["boolean", "null"]
+        },
+        "facets": {
+          "type": ["object", "null"]
+        }
+      }
+    },
+    "EntityContainerMetadata": {
+      "type": "object",
+      "properties": {
+        "resourceId": {
+          "type": ["string", "null"]
+        },
+        "subscriptionId": {
+          "type": ["string", "null"]
+        },
+        "resourceGroup": {
+          "type": ["string", "null"]
+        },
+        "resourceName": {
+          "type": ["string", "null"]
+        },
+        "entityContainerType": {
+          "type": ["string", "null"]
+        },
+        "regions": {
+          "type": ["array", "null"],
+          "items": {
+            "$ref": "#/definitions/Region"
+          }
+        },
+        "tenantId": {
+          "type": ["string", "null"]
+        },
+        "immutableResourceId": {
+          "type": ["string", "null"]
+        },
+        "isPublicResource": {
+          "type": ["boolean", "null"]
+        },
+        "isTradeRestrictedResource": {
+          "type": ["boolean", "null"]
+        }
+      }
+    },
+    "Region": {
+      "type": "object",
+      "properties": {
+        "regionName": {
+          "type": ["string", "null"]
+        },
+        "isPrimaryRegion": {
+          "type": ["boolean", "null"]
+        }
+      }
+    },
+    "LocalModel": {
+      "type": "object",
+      "properties": {
+        "relevancyScore": {
+          "type": ["number", "null"]
+        },
+        "entityResourceName": {
+          "type": ["string", "null"]
+        },
+        "highlights": {
+          "type": ["object", "null"]
+        },
+        "schemaId": {
+          "type": ["string", "null"],
+          "format": "uuid"
+        },
+        "entityId": {
+          "type": ["string", "null"]
+        },
+        "kind": {
+          "type": ["string", "null"]
+        },
+        "annotations": {
+          "type": ["object", "null"]
+        },
+        "properties": {
+          "type": ["object", "null"]
+        },
+        "internal": {
+          "type": ["object", "null"]
+        },
+        "updateSequence": {
+          "type": ["integer", "null"]
+        },
+        "type": {
+          "type": ["string", "null"]
+        },
+        "version": {
+          "type": ["string", "null"]
+        },
+        "entityContainerId": {
+          "type": ["string", "null"],
+          "format": "uuid"
+        },
+        "entityObjectId": {
+          "type": ["string", "null"]
+        },
+        "resourceType": {
+          "type": ["string", "null"]
+        },
+        "relationships": {
+          "type": ["array", "null"],
+          "items": {
+            "type": "object"
+          }
+        },
+        "assetId": {
+          "type": ["string", "null"]
+        },
+        "usage": {
+          "type": ["object", "null"]
+        },
+        "isAFragment": {
+          "type": ["boolean", "null"]
+        },
+        "fragmentId": {
+          "type": ["object", "null"]
+        }
+      }
+    }
+  }
+}
 
 ```
-GET https://<catalog provider URI>/<provider subpath>/models/{modelName}/version/{version}
-```
-
-**Sample cURL:**
-
-```bash
-curl -X GET --location "https://<catalog provider URI>/<provider subpath>/models/Phi-3-mini-128k-instruct/version/12"
-```
-
-
-## Get Publisher Details
-
-**GET** `/publishers/{publisherName}`
-
-**Example:**
-
-```
-GET https://<catalog provider URI>/<provider subpath>/publishers/{publisherName}
-```
-
-**Sample cURL:**
-
-```bash
-curl -X GET --location "https://<catalog provider URI>/<provider subpath>/publishers/contoso"
-```
-
-
-## List Publishers
-
-**POST** `/publishers/list`
-
-**Example:**
-
-```
-POST https://<catalog provider URI>/<provider subpath>/publishers/list
-```
-
-**Sample cURL:**
-
-```bash
-curl -X POST --location "https://<catalog provider URI>/<provider subpath>/publishers/list" \
-  --header "Content-Type: application/json" \
-  --data '{"continuationToken": ""}'
-```
-
-
-## List Models
-
-**POST** `/models`
-
-**Example:**
-
-```
-POST https://<catalog provider URI>/<provider subpath>/models
-```
-
-**Sample cURL:**
-
-```bash
-curl -X POST --location "https://<catalog provider URI>/<provider subpath>/models" \
-  --header "Content-Type: application/json" \
-  --data '{
-    "filters": [
-      {"field": "publisher", "operator": "eq", "values": ["AI21 Labs", "Mistral ai", "core42"]}
-    ],
-    "order": [
-      {"field": "name", "direction": "asc"}
-    ],
-    "pageSize": 2
-  }'
-```
-
-### Example Using Continuation Token
-
-When listing models, you may receive a `continuationToken` in the response. Use this token in subsequent requests to fetch the next set of results.
-
-```bash
-curl -X POST --location "https://<catalog provider URI>/<provider subpath>/models" \
-  --header "Content-Type: application/json" \
-  --data '{
-    "filters": [
-      {"field": "publisher", "operator": "eq", "values": ["AI21 Labs", "Mistral ai", "core42"]}
-    ],
-    "order": [
-      {"field": "name", "direction": "asc"}
-    ],
-    "pageSize": 2,
-    "continuationToken": "your-token-here"
-  }'
-```
-
 
 ## Filterable Fields
 
-You can filter models using the following fields:
+The following fields should be filterable in your catalog API:
 
 - `name`
 - `version`
 - `labels`
-- `freePlayground`
+- `type`
+- `kind`
+- `properties/variantInfo/variantMetadata/device`
+- `properties/variantInfo/variantMetadata/executionProvider`
+- `properties/variantInfo/variantMetadata/modelType`
 - `popularity`
 - `createdTime`
 - `displayName`
@@ -165,7 +261,7 @@ You can filter models using the following fields:
 
 ## Supported Orderable Fields
 
-You can order results by the following fields:
+The following fields should be orderable in your catalog API:
 
 - `name`
 - `version`
@@ -173,6 +269,3 @@ You can order results by the following fields:
 - `createdTime`
 - `displayName`
 - `publisher`
-
-
-For more information, refer to your catalog provider's API documentation.
