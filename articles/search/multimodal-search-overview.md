@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn what multimodal search is, how Azure AI Search supports it for text + image content, and where to find detailed concepts, tutorials, and samples.
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 05/10/2025
+ms.date: 05/11/2025
 author: gmndrg
 ms.author: gimondra
 ---
@@ -24,12 +24,12 @@ Azure AI Search simplifies the construction of a multimodal pipeline through a g
 
 ## Functionality enabling multimodality
 
-The functionality behind the "Import and Vectorize Data" wizard's multimodality option is powered by managed, configurable AI skills and the Azure Search knowledge store:
+The functionality behind the "Import and vectorize data" wizard's multimodality option is powered by managed, configurable AI skills and the Azure Search knowledge store:
 
 + [Document Intelligence layout skill](cognitive-search-skill-document-intelligence-layout.md) and [Document extraction skill](cognitive-search-skill-document-extraction.md) obtain page text, inline images, and structural metadata.  The Document Extraction skill doesn't support polygon extraction or page number extraction. Also, the range of supported file types may vary. To ensure optimal alignment with your specific use case, check each skill documentation for detailed information on compatibility and capabilities.
 + [Split skill](cognitive-search-skill-textsplit.md) chunks the extracted text for utilization in the remaining pipeline functionality (such as embedding skills). 
 + [Gen AI prompt skill](cognitive-search-skill-genai-prompt.md) verbalizes images, producing concise natural-language descriptions suitable for text search and embedding using a Large Language Model (LLM). 
-+ Text/image (or multimodal) embedding skills create embeddings for text and images, enabling similarity and hybrid retrieval. You can call [Azure OpenAI](cognitive-search-skill-azure-openai-embedding.md), [AI Foundry](https://learn.microsoft.com/en-us/azure/search/cognitive-search-aml-skill.md) or [AI Vision](cognitive-search-skill-vision-vectorize.md) embedding models natively.
++ Text/image (or multimodal) embedding skills create embeddings for text and images, enabling similarity and hybrid retrieval. You can call [Azure OpenAI](cognitive-search-skill-azure-openai-embedding.md), [AI Foundry](cognitive-search-aml-skill.md) or [AI Vision](cognitive-search-skill-vision-vectorize.md) embedding models natively.
 + [Knowledge store](knowledge-store-concept-intro.md) stores extracted images that can be returned directly to client applications. When you use the 'Import and vectorize data' wizard with the multimodality option, an image's location is stored directly within the index, enabling convenient retrieval at a query time.
 
 
