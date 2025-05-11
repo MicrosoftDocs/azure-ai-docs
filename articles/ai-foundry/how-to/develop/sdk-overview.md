@@ -261,9 +261,9 @@ Console.WriteLine($"{completion.Role}: {completion.Content[0].Text}");
 
 If you're already using the [Azure OpenAI SDK](../../../ai-services/openai/chatgpt-quickstart.md) directly against Azure OpenAI, the project provides a convenient way to use Azure OpenAI's capabilities alongside the rest of the Azure AI Foundry capabilities.
 
-## Azure AI model inference service
+## Azure AI Foundry Models service
 
-The [Azure AI model inference service](/azure/ai-studio/ai-services/model-inference) offers access to powerful models from leading providers like OpenAI, Microsoft, Meta, and more. These models support tasks such as content generation, summarization, and code generation. 
+The [Foundry Models](/azure/ai-studio/ai-services/model-inference) offers access to powerful models from leading providers like OpenAI, Microsoft, Meta, and more. These models support tasks such as content generation, summarization, and code generation. 
 
 To use the model inference service, first ensure that your project has an AI Services connection (in the management center).
 

@@ -17,9 +17,9 @@ Azure AI Foundry Models can be consumed with different SDKs and programming mode
 
 ## All models
 
-All models deployed to Azure AI Foundry Models support the [Azure AI model inference API](https://aka.ms/azureai/modelinference) and its associated family of SDKs.
+All models deployed to Azure AI Foundry Models support the [Foundry Models API](https://aka.ms/azureai/modelinference) and its associated family of SDKs.
 
-To use these SDKs, connect them to the [Azure AI model inference URI](concepts/endpoints.md#azure-ai-inference-endpoint) (usually in the form `https://<resource-name>.services.ai.azure.com/models`).
+To use these SDKs, connect them to the [Foundry Models URI](concepts/endpoints.md#azure-openai-inference-endpoint) (usually in the form `https://<resource-name>.services.ai.azure.com/models`).
 
 ### Azure AI Inference package
 
@@ -47,7 +47,7 @@ The Azure AI Inference package allows you to consume all models deployed to the 
 
 Azure OpenAI models can be consumed using the following SDKs and programming languages.
 
-To use these SDKs, connect them to the [Azure OpenAI service URI](concepts/endpoints.md#azure-openai-inference-endpoint) (usually in the form `https://<resource-name>.openai.azure.com`).
+To use these SDKs, connect them to the [Azure OpenAI in Azure AI Foundry Models URI](concepts/endpoints.md#azure-openai-inference-endpoint) (usually in the form `https://<resource-name>.openai.azure.com`).
 
 ### OpenAI and Azure OpenAI SDK
 

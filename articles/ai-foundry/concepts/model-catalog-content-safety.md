@@ -1,7 +1,7 @@
 ---
-title: Guardrails & controls for models curated by Azure AI in the model catalog
+title: Guardrails & controls for Azure Direct Models
 titleSuffix: Azure AI Foundry
-description: Learn about Guardrails & controls for models deployed using serverless APIs, using Azure AI Foundry.
+description: Learn about Guardrails & controls for models deployed via standard deployment.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: conceptual
@@ -13,7 +13,7 @@ reviewer: ositanachi
 ms.custom: 
 ---
 
-# Guardrails & controls for models curated by Azure AI in the model catalog
+# Guardrails & controls for Azure Direct Models
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -24,7 +24,7 @@ In this article, learn about Guardrails & controls capabilities for models from 
 
 Azure AI uses a default configuration of [Azure AI Content Safety](/azure/ai-services/content-safety/overview) content filters to detect harmful content across four categories including hate and fairness, self-harm, sexual, and violence for models deployed via serverless APIs. To learn more about content filtering, see [Understand harm categories](#understand-harm-categories).
 
-The default content filtering configuration for text models is set to filter at the medium severity threshold, filtering any detected content at this level or higher. For image models, the default content filtering configuration is set at the low configuration threshold, filtering at this level or higher. For models deployed using the [Azure AI model inference service](../../ai-foundry/model-inference/how-to/configure-content-filters.md), you can create configurable filters by selecting the **Content filters** tab within the **Guardrails & controls** page of the Azure AI Foundry portal.
+The default content filtering configuration for text models is set to filter at the medium severity threshold, filtering any detected content at this level or higher. For image models, the default content filtering configuration is set at the low configuration threshold, filtering at this level or higher. For models deployed using the [Azure AI Foundry Models](../../ai-foundry/model-inference/how-to/configure-content-filters.md), you can create configurable filters by selecting the **Content filters** tab within the **Guardrails & controls** page of the Azure AI Foundry portal.
 
 > [!TIP]
 > Content filtering isn't available for certain model types that are deployed via serverless APIs. These model types include embedding models and time series models.
@@ -34,7 +34,7 @@ Content filtering occurs synchronously as the service processes prompts to gener
 - When you first deploy a language model
 - Later, by selecting the content filtering toggle on the deployment details page
 
-Suppose you decide to use an API other than the [Azure AI Model Inference API](/azure/ai-studio/reference/reference-model-inference-api) to work with a model that is deployed via a serverless API. In such a situation, content filtering isn't enabled unless you implement it separately by using Azure AI Content Safety. To get started with Azure AI Content Safety, see [Quickstart: Analyze text content](/azure/ai-services/content-safety/quickstart-text). You run a higher risk of exposing users to harmful content if you don't use content filtering when working with models that are deployed via serverless APIs.
+Suppose you decide to use an API other than the [Azure AI Foundry Models API](/azure/ai-studio/reference/reference-model-inference-api) to work with a model that is deployed via a serverless API. In such a situation, content filtering isn't enabled unless you implement it separately by using Azure AI Content Safety. To get started with Azure AI Content Safety, see [Quickstart: Analyze text content](/azure/ai-services/content-safety/quickstart-text). You run a higher risk of exposing users to harmful content if you don't use content filtering when working with models that are deployed via serverless APIs.
 
 [!INCLUDE [content-safety-harm-categories](../includes/content-safety-harm-categories.md)]
 
