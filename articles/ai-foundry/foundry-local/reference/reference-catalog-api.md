@@ -15,26 +15,100 @@ author: maanavd
 
 This document provides a detailed reference for catalog implementers that want to create their own catalog implementations to be integrated with Foundry Local.
 
-## Catalog Host
+The catalog API is a RESTful API that allows you to query and manage your model catalog. The API supports the following operations:
 
-### URI format
+- **Search**: Search for models in the catalog based on various criteria.
+- **List**: List all models in the catalog.
 
-The catalog host URI is the base URL for your catalog API. It should be in the following format:
+## Request
 
+THe catalog API is a POST endpoint that accepts a JSON request body. The request must be anonymous and does not require authentication.
+
+The request format for the catalog API is as follows:
+
+- **Method**: `POST`
+- **Content-Type**: `application/json`
+- **User-Agent**: `AzureAiStudio`
+
+The request body must be a JSON object that contains the following fields:
+
+- `resourceIds`: An array of resource IDs that specify the resources to be queried.
+- `indexEntitiesRequest`: An object that contains the search parameters.
+  - `filters`: An array of filter objects that specify the criteria for filtering the search results.
+  - `pageSize`: The maximum number of results to return (for pagination).
+  - `skip`: The number of results to skip (for pagination).
+  - `continuationToken`: A token for pagination to continue from a previous request.
+
+### Example request
+
+```bash
+curl POST <your-catalog-api-endpoint> \
+-H "Content-Type: application/json" \
+-H "User-Agent: AzureAiStudio" \
+-d '{
+  "resourceIds": [
+    {
+      "resourceId": "azureml",
+      "entityContainerType": "Registry"
+    }
+  ],
+  "indexEntitiesRequest": {
+    "filters": [
+      {
+        "field": "type",
+        "operator": "eq",
+        "values": [
+          "models"
+        ]
+      },
+      {
+        "field": "kind",
+        "operator": "eq",
+        "values": [
+          "Versioned"
+        ]
+      },
+      {
+        "field": "labels",
+        "operator": "eq",
+        "values": [
+          "latest"
+        ]
+      },
+      {
+        "field": "annotations/tags/foundryLocal",
+        "operator": "eq",
+        "values": [
+          ""
+        ]
+      },
+      {
+        "field": "properties/variantInfo/variantMetadata/device",
+        "operator": "eq",
+        "values": [
+          "cpu",
+          "gpu"
+        ]
+      },
+      {
+        "field": "properties/variantInfo/variantMetadata/executionProvider",
+        "operator": "eq",
+        "values": [
+          "cpuexecutionprovider",
+          "webgpuexecutionprovider"
+        ]
+      }
+    ],
+    "pageSize": 10,
+    "skip": null,
+    "continuationToken": null
+  }
+}'
 ```
-https://<catalog provider URI>/<provider subpath>
-```
 
-### Authorization
+## Reponse
 
-All endpoints must support:
-
-- Anonymous access (no authentication required)
-
-
-## JSON response format
-
-Your endpoint must return a JSON response. The response schema is as follows:
+The response from the catalog API is a JSON object that contains the search results. The response schema is as follows:
 
 ```json
 {
