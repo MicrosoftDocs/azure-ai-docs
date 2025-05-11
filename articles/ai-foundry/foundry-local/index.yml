@@ -44,7 +44,7 @@ landingContent:
           - text: Integrate with Inferencing SDKs
             url: how-to/how-to-integrate-with-inference-sdks.md
           - text: Integrate with LangChain
-            url: tutorials/how-to-use-langchain-with-foundry-local.md
+            url: how-to/how-to-use-langchain-with-foundry-local.md
           - text: Integrate with Open Web UI
             url: how-to/how-to-use-langchain-with-foundry-local.md
           - text: Compile Hugging Face models to run on Foundry Local
