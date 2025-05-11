@@ -11,6 +11,8 @@ ms.date: 05/07/2025
 
 # Integrating scoring profiles with semantic ranker in Azure AI Search
 
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
 Integrating [scoring profiles](index-add-scoring-profiles.md) with [semantic ranker](semantic-search-overview.md) is now possible in Azure AI Search. Semantic ranker adds a new field, `@search.rerankerBoostedScore`, to help you maintain consistent relevance and greater control over final ranking outcomes in your search pipeline.
 
 Before this integration, scoring profiles only influenced the initial ranking phase of search results. The boost values they applied affected:

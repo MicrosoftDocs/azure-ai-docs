@@ -13,11 +13,12 @@ ms.date: 04/29/2025
 
 # GenAI Prompt skill
 
-> [!IMPORTANT]
-> **Preview** – The GenAI Prompt skill is first available in the **2025-05-01-preview** REST API. Skillsets that include this skill aren’t supported in earlier API versions.
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request against a Large Language Model (LLM) deployed in **Azure AI Foundry** or **Azure OpenAI Service**.  
 Use it to summarize, transform, enrich, or extract structured data from text-only or *text + image* inputs to augment your data for higher relevant context in your index.
+
+The GenAI Prompt skill is available in the **2025-05-01-preview** REST API. You can't use this skills in skillsets created with earlier API versions.
 
 ## Prerequisites
 
