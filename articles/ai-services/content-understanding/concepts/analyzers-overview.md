@@ -27,7 +27,9 @@ Analyzers are the core processing units in Content Understanding that define how
 * Content extraction configurations - determining what foundational elements to extract.
 * Field extraction schemas - specifying how to get the fields(extract/generate/classify) from the content.
 
-Key benefits of analyzers include:
+:::image type="content" source="../media/concepts/analyzer-architecture.png" alt-text="Screenshot of analyzer architecture.":::
+
+Key features of analyzers include the following benefits:
 
 * **Consistency**: Analyzers ensure uniform processing across all content by applying the same extraction rules and schemas, delivering reliable and predictable results.
 
