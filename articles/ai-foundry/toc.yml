@@ -32,6 +32,8 @@ items:
     href: concepts/deployments-overview.md
   - name: Supported programming languages and SDKs
     href: ../ai-services/openai/supported-languages.md?context=/azure/ai-foundry/context/context
+  - name: Foundry Models quotas and limits
+    href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-foundry/context/context
   - name: Deploy Foundry Models
     items:
     - name: Deployment types
@@ -42,8 +44,6 @@ items:
       href: ../ai-foundry/model-inference/how-to/create-model-deployments.md?context=/azure/ai-foundry/context/context
     - name: Use the Foundry Models endpoint
       href: ../ai-foundry/model-inference/how-to/inference.md?context=/azure/ai-foundry/context/context
-    - name: Foundry Models quotas and limits
-      href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-foundry/context/context
     - name: Develop
       items:
         - name: Work with image models
@@ -70,7 +70,7 @@ items:
           href: how-to/develop/llama-index.md
         - name: Develop with Semantic Kernel
           href: how-to/develop/semantic-kernel.md
-  - name: Deploy Azure Open AI in Foundry Models
+  - name: Deploy Azure OpenAI in Foundry Models
     items:
     - name: Azure OpenAI in Azure AI Foundry portal
       href: azure-openai-in-azure-ai-foundry.md
@@ -385,7 +385,7 @@ items:
         href: concepts/evaluation-evaluators/risk-safety-evaluators.md
       - name: Agent evaluators
         href: concepts/evaluation-evaluators/agent-evaluators.md 
-      - name: Azure Open AI evaluators 
+      - name: Azure OpenAI evaluators 
         href: concepts/evaluation-evaluators/azure-openai-graders.md
       - name: Custom evaluators
         href: concepts/evaluation-evaluators/custom-evaluators.md
@@ -576,9 +576,11 @@ items:
     href: how-to/data-add.md
   - name: Costs and quotas
     items:
-    - name: Plan and manage costs
+    - name: Plan and manage costs for AI Foundry resources
       href: how-to/costs-plan-manage.md
       displayName: pricing, budget, estimate
+    - name: Manage quotas and limits for Foundry Models
+      href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-foundry/context/context
     - name: Manage quotas
       href: how-to/quota.md
     - name: Increase rate limit
