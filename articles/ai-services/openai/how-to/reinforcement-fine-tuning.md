@@ -12,13 +12,13 @@ ms.author: mbullwin
 
 # Reinforcement fine-tuning (RFT) with Azure OpenAI o4-mini
 
-Reinforcement fine-tuning (RFT) is a technique for improving reasoning models like o4-mini by training them through a reward-based process, rather than relying only on labelled data. By using feedback or "rewards" to guide learning, RFT helps models develop better reasoning and problem-solving skills, especially in cases where labelled examples are limited or complex behaviors are desired.
+Reinforcement fine-tuning (RFT) is a technique for improving reasoning models like o4-mini by training them through a reward-based process, rather than relying only on labeled data. By using feedback or "rewards" to guide learning, RFT helps models develop better reasoning and problem-solving skills, especially in cases where labeled examples are limited or complex behaviors are desired.
 
 ## Process
 
 The process of Reinforcement fine-tuning (RFT) is similar to Supervised fine-tuning (SFT) with some notable differences:
 
-- **Data preparation** system messages are not supported, and instead of an `assistant` message, the final message in your training data is a reference answer.
+- **Data preparation** system messages aren't supported, and instead of an `assistant` message, the final message in your training data is a reference answer.
 - **Model selection:** only o4-mini supports RFT.
 - **Grader definition:** RFT requires the use of **graders** to score the quality of your fine-tuned model and guide learning. You can use string check, text similarity, or model-based graders – or combine them with a multi-grader.
 - **Training:** includes additional parameters: `eval_samples`, `eval_interval`, `reasoning_effort`, and `compute_multiplier`. You also have the option to pause and resume jobs, allowing you to pause training, inspect checkpoints, and only continue if further training is needed.
@@ -30,19 +30,19 @@ However, despite these differences, there are many commonalities between SFT and
 
 ## Training & evaluation file formation requirements
 
-Both training and validation files are required to run o4-mini RFT. o4 -mini uses a new format of data for reinforcement finetuning. These should be jsonl files, like what is used for supervised fine tuning (SFT).
+Both training and validation files are required to run o4-mini RFT. o4 -mini uses a new format of data for reinforcement fine-tuning. These should be jsonl files, like what is used for supervised fine tuning (SFT).
 
 Each line of the file should contain the messages field, with some differences to SFT:
 
-- System messages are not supported
+- System messages aren't supported
 - The final message must be from the user, not the assistant (as is the case for SFT)
 - `Tools`, `functions`, `response_formats`, are supported
-- Images / multimodal data are not supported
+- Images / multimodal data aren't supported
 
 Each line must include a new field called reference answer
 
 - `Reference_answer` contains the data used by your grader to determine the correctness of the answer.
-- This value must be a valid JSON object (fore example, dictionary or list; the specific type and structure is dependent on your selected grader).
+- This value must be a valid JSON object (for example, dictionary, or list; the specific type and structure is dependent on your selected grader).
 
 We currently support a maximum of 50,000 reference examples for training.
 
@@ -103,7 +103,7 @@ The hyperparameters section of the **reinforcement** method supports all of the 
 
 ## Graders
 
-RFT is unique because it uses graders to assess the quality of a model’s response to teach the model to reason. Unlike SFT, the final message is not from the assistant – instead we sample the model and use a grader on each sample to score its quality. We then train based on those scores to improve model performance.
+RFT is unique because it uses graders to assess the quality of a model’s response to teach the model to reason. Unlike SFT, the final message isn't from the assistant – instead we sample the model and use a grader on each sample to score its quality. We then train based on those scores to improve model performance.
 
 Effectively, graders are functions that compare the reference_answer from your training file with the sampled response.
 
@@ -115,11 +115,11 @@ Effectively, graders are functions that compare the reference_answer from your t
 
 ### Supported graders
 
-We support three types of graders: String check ,Text similarity, Model graders. There is also an option on Multi-graders to use graders in combinations.
+We support three types of graders: String check, Text similarity, Model graders. There's also an option on Multi-graders to use graders in combinations.
 
-### string-check-grader 
+### String-check-grader 
 
-Use these simple string operations to return a 0 or 1.
+Use these basic string operations to return a `0` or `1`.
 
 **Specification:**
 
@@ -135,14 +135,14 @@ Use these simple string operations to return a 0 or 1.
 
 **Supported operations:**
 
-- eq: Returns 1 if the input matches the reference (case-sensitive), 0 otherwise
-- neq: Returns 1 if the input does not match the reference (case-sensitive), 0 otherwise
-- like: Returns 1 if the input contains the reference (case-sensitive), 0 otherwise
-- ilike: Returns 1 if the input contains the reference (not case-sensitive), 0 otherwise
+- `eq`: Returns 1 if the input matches the reference (case-sensitive), 0 otherwise
+- `neq`: Returns 1 if the input doesn't match the reference (case-sensitive), 0 otherwise
+- `like`: Returns 1 if the input contains the reference (case-sensitive), 0 otherwise
+- `ilike`: Returns 1 if the input contains the reference (not case-sensitive), 0 otherwise
 
 ### Text similarity
 
-To evaluate how close the model-generated output is to the reference,scored with various evaluation metrics.
+To evaluate how close the model-generated output is to the reference, scored with various evaluation metrics.
 
 **Specification:**
 
@@ -169,7 +169,7 @@ To evaluate how close the model-generated output is to the reference,scored with
 
 This is Model Grader where you can use LLM to grade the training output.
 
-Models which we are supporting as grader models are:
+Models which we're supporting as grader models are:
 
 - `gpt-4o-2024-08-06`
 - `o3-mini-2025-01-31`
@@ -192,7 +192,7 @@ Models which we are supporting as grader models are:
 }
 ```
 
-To use a score model grader, the input is a list of chat messages, each containing a role and content. The output of the grader will be truncated to the given range, and default to 0 for all non-numeric outputs.
+To use a score model grader, the input is a list of chat messages, each containing a role, and content. The output of the grader will be truncated to the given range, and default to 0 for all non-numeric outputs.
 
 ### Multi Grader
 
@@ -226,14 +226,14 @@ A multigrader object combines the output of multiple graders to produce a single
 - `sqrt`
 - `log`
 
-When using the UX you are able to write a prompt and generate a valid grader and response format in json as needed.
+When using the UX you're able to write a prompt and generate a valid grader and response format in json as needed.
 
 > [!IMPORTANT]
-> Generating correct grader schema requires careful prompt authoring. You may find that your first few attempts generate invalid schemas or do not create a schema that will properly handle your training data. Grader is a mandatory field that must be entered while submitting a fine-tuning job. Response format is optional.
+> Generating correct grader schema requires careful prompt authoring. You may find that your first few attempts generate invalid schemas or don't create a schema that will properly handle your training data. Grader is a mandatory field that must be entered while submitting a fine-tuning job. Response format is optional.
 
 :::image type="content" source="../media/how-to/reinforcement-fine-tuning/grader-schema.png" alt-text="Screenshot of the reinforcement fine-tuning grader schema generation experience." lightbox="../media/how-to/reinforcement-fine-tuning/grader-schema.png":::
 
-Here is an example grader for each category:
+Here's an example grader for each category:
 
 **string-check-grader** - use simple string operations to return a 0 or 1.
 
@@ -249,7 +249,7 @@ Here is an example grader for each category:
 }
 ```
 
-**Text similarity** - Evaluate how close the model-generated output is to the reference,scored with various evaluation metrics.
+**Text similarity** - Evaluate how close the model-generated output is to the reference, scored with various evaluation metrics.
 
 ```json
 {
@@ -262,7 +262,7 @@ Here is an example grader for each category:
 
 **Score Model** - This is Model Grader where you can use LLM to grade the training output.
 
-Models which we are supporting as grader models are `gpt-4o-2024-08-06`and `o3-mini-2025-01-31`.
+Models which we're supporting as grader models are `gpt-4o-2024-08-06`and `o3-mini-2025-01-31`.
 
 ```json
 0.5 if one is the same, and 0.0 if neither are the same. Return just a floating point score\n\n Reference answer: {\u0022donors\u0022: {{item.reference_answer.donors}}, \u0022acceptors\u0022: {{item.reference_answer.acceptors}}}\n\n Model answer: {{sample.output_text}}"
@@ -303,18 +303,18 @@ Models which we are supporting as grader models are `gpt-4o-2024-08-06`and `o3-m
 
 ## Training progress and results
 
-RFT jobs are typically long running, and may take up to 24 hours depending on your parameter selection. You can track progress in both fine-tuning views of the AI Foundry portal. You will see your job go through the same statuses as normal fine tuning jobs (queued, running, succeeded).
+RFT jobs are typically long running, and may take up to 24 hours depending on your parameter selection. You can track progress in both fine-tuning views of the AI Foundry portal. You'll see your job go through the same statuses as normal fine tuning jobs (queued, running, succeeded).
 
 You can also review the results files while training runs, to get a peak at the progress and whether or not your training is proceeding as expected.
 
 **New feature: pause and resume**
 
-During the training you can view the logs and RFT metrics and pause the job as needed ( if metrics are not converging or if you feel model is not learning at the right pace, incorrect grader chosen etc.).
+During the training you can view the logs and RFT metrics and pause the job as needed (if metrics aren't converging or if you feel model isn't learning at the right pace, incorrect grader chosen, etc.).
 
 :::image type="content" source="../media/how-to/reinforcement-fine-tuning/pause.png" alt-text="Screenshot of the reinforcement fine-tuning with a running job." lightbox="../media/how-to/reinforcement-fine-tuning/pause.png":::
 
 
-Once the training job is paused, a deployable checkpoint will be created and available for you to infer or resume the job further to completion. Pause operation is only applicable for jobs which have been trained for at least 1 step and are in *Running* state.
+Once the training job is paused, a deployable checkpoint will be created and available for you to infer or resume the job further to completion. Pause operation is only applicable for jobs which have been trained for at least one step and are in *Running* state.
 
 ## Interpreting training results
 
@@ -324,12 +324,12 @@ For reinforcement fine-tuning jobs, the primary metrics are the per-step reward 
 
 These are two separate top-level reward metrics:
 
- - `train_reward_mean`: The average reward across the samples taken from all datapoints in the current step. Because the specific datapoints in a batch change with each step, train_reward_mean values across different steps are not directly comparable and the specific values can fluctuate drastically from step to step.
+ - `train_reward_mean`: The average reward across the samples taken from all datapoints in the current step. Because the specific datapoints in a batch change with each step, train_reward_mean values across different steps aren't directly comparable and the specific values can fluctuate drastically from step to step.
  
 - `valid_reward_mean`: The average reward across the samples taken from all datapoints in the validation set, which is a more stable metric.
 
 > [!TIP]
-> You should always test inferencing with your model. If you’ve selected an inappropriate grader, it’s possible that the mean reward does not reflect the model’s performance. Review sample outputs from the model to ensure they are formatted correctly and make sense. Check if the model's predictions align with the ground truth and if the descriptive analysis provides a reasonable explanation.
+> You should always test inferencing with your model. If you’ve selected an inappropriate grader, it’s possible that the mean reward doesn't reflect the model’s performance. Review sample outputs from the model to ensure they're formatted correctly and make sense. Check if the model's predictions align with the ground truth and if the descriptive analysis provides a reasonable explanation.
 
 ### Reasoning tokens
 
@@ -348,7 +348,7 @@ Understanding the model's behavior can be done quickly by inspecting the evals a
 
 Your fine tuned model can be deployed via the UI or REST API, just like any other fine tuned model.
 
-You can deploy the fine tuning job which is completed or any intermittent checkpoints created automatically or manually by triggering pause operation. To know more about model deployment and test with Chat Playground refer, see [fine-tunig deployment](./fine-tuning-deploy.md).
+You can deploy the fine tuning job which is completed or any intermittent checkpoints created automatically or manually by triggering pause operation. To know more about model deployment and test with Chat Playground refer, see [fine-tuning deployment](./fine-tuning-deploy.md).
 
 When using your model, make sure to use the same instructions and structure as used during training. This keeps the model in distribution, and ensures that you see the same performance on your problems during inference as you achieved during training.
 
@@ -356,7 +356,7 @@ When using your model, make sure to use the same instructions and structure as u
 
 ### Grader selection
 
-Your graders are used for reinforcement learning: choosing the wrong grader means that your rewards will be invalid, and your fine tuning will not produce the expected results.
+Your graders are used for reinforcement learning: choosing the wrong grader means that your rewards will be invalid, and your fine tuning won't produce the expected results.
 
 Some basic rules for grader selection:
 
@@ -372,18 +372,18 @@ Some basic rules for grader selection:
 
 ### Test your graders
 
-All of the graders available in RFT are supported in [Azure OpenAI evaluation](./evaluations.md). Before initiating a training run, test a vanilla o4-mini model against your validation data with the same grader you intend to use for training. If the grader scores do not match your expectations – then you need to select a different grader.
+All of the graders available in RFT are supported in [Azure OpenAI evaluation](./evaluations.md). Before initiating a training run, test a vanilla o4-mini model against your validation data with the same grader you intend to use for training. If the grader scores don't match your expectations – then you need to select a different grader.
 
 We also provide a grader check API that you can use to check the validity of your configuration.
 
 ### Data preparation
 
-Aim for a few hundred examples initially and consider scaling up to around 1000 examples if necessary. The dataset should be balanced, in terms of classes predicted, to avoid bias and ensure generalization.
+Aim for a few hundred examples initially and consider scaling up to around 1,000 examples if necessary. The dataset should be balanced, in terms of classes predicted, to avoid bias and ensure generalization.
 
-For the prompts, make sure to provide clear and detailed instructions, including specifying the response format and any constraints on the outputs (e.g. minimum length for explanations, only respond with true/false etc).
+For the prompts, make sure to provide clear and detailed instructions, including specifying the response format and any constraints on the outputs (e.g. minimum length for explanations, only respond with true/false etc.)
 
-## RFT Spend limits
+## RFT spending limits
 
-As RFT job can lead to high training costs, we are capping the pricing for per training job billing which means this will be the maximum amount that a job can cost before we end the job, even if weʼre not done processing the entire dataset. The training will be paused and a deployable checkpoint will be created.
+As RFT job can lead to high training costs, we're capping the pricing for per training job billing which means this will be the maximum amount that a job can cost before we end the job, even if weʼre not done processing the entire dataset. The training will be paused and a deployable checkpoint will be created.
 
 Users can validate the training job, metrics, logs and then decide to resume the job to complete further. If the user decides to resume the job, billing will continue for the job and subsequently no further price limits would be placed on the training job.
