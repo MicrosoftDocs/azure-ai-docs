@@ -27,7 +27,7 @@ Model leaderboards (preview) in Azure AI Foundry portal allow you to streamline 
 Whenever you find a model to your liking, you can select it and zoom into the **Detailed benchmarking results** of the model within the model catalog. If satisfied with the model, you can deploy it, try it in the playground, or evaluate it on your data. The leaderboards support benchmarking across text language models (large language models (LLMs) and small language models (SLMs)) and embedding models.
 
 
-Model benchmarks assess LLMs and SLMs across the following categories: quality, performance, and cost. In addition, we assess the quality of embedding models using standard benchmarks. The benchmarks are updated regularly as better and more unsaturated datasets and associated metrics are added to existing models, and as new models are added to the model catalog.
+Model benchmarks assess LLMs and SLMs across the following categories: quality, performance, and cost. In addition, we assess the quality of embedding models using standard benchmarks. The leaderboards are updated regularly as better and more unsaturated benchmarks are onboarded, and as new models are added to the model catalog.
 
 
 ## Quality benchmarks of language models
@@ -40,37 +40,33 @@ Azure AI assesses the quality of LLMs and SLMs using accuracy scores from standa
 
 Quality index is provided on a scale of zero to one. Higher values of quality index are better. The datasets included in quality index are: 
 
-| Dataset name            | Leaderboard category        |
-|-------------------------|---------------------|
-| BoolQ                   | QA                  |
-| HellaSwag               | Reasoning           |
-| OpenBookQA              | Reasoning           |
-| PIQA                    | Reasoning           |
-| Social IQA              | Reasoning           |
-| Winogrande              | Reasoning           |
-| TruthfulQA (MC)         | Groundedness        |
-| HumanEval               | Coding              |
-| GSM8K                   | Math                |
-| MMLU (Humanities)       | General Knowledge   |
-| MMLU (Other)            | General Knowledge   |
-| MMLU (Social Sciences)  | General Knowledge   |
-| MMLU (STEM)             | General Knowledge   |
+| Dataset Name       | Leaderboard Category |
+|--------------------|----------------------|
+| arena_hard        | QA                   |
+| bigbench_hard     | Reasoning            |
+| gpqa              | QA                   |
+| humanevalplus     | Coding               |
+| ifeval            | Reasoning            |
+| math              | Math                 |
+| mbppplus          | Coding               |
+| mmlu_pro          | General Knowledge    |
+
 
 
 See more details in accuracy scores:
 
 | Metric | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 |--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Accuracy | Accuracy scores are available at the dataset and the model levels. At the dataset level, the score is the average value of an accuracy metric computed over all examples in the dataset. The accuracy metric used is `exact-match` in all cases, except for the _HumanEval_  and _MBPP_ datasets that uses a `pass@1` metric. Exact match compares model generated text with the correct answer according to the dataset, reporting one if the generated text matches the answer exactly and zero otherwise. The `pass@1` metric measures the proportion of model solutions that pass a set of unit tests in a code generation task. At the model level, the accuracy score is the average of the dataset-level accuracies for each model. |
+| Accuracy | Accuracy scores are available at the dataset and the model levels. At the dataset level, the score is the average value of an accuracy metric computed over all examples in the dataset. The accuracy metric used is `exact-match` in all cases, except for the _HumanEval_  and _MBPP_ datasets that use a `pass@1` metric. Exact match compares model generated text with the correct answer according to the dataset, reporting one if the generated text matches the answer exactly and zero otherwise. The `pass@1` metric measures the proportion of model solutions that pass a set of unit tests in a code generation task. At the model level, the accuracy score is the average of the dataset-level accuracies for each model. |
 
 Accuracy scores are provided on a scale of zero to one. Higher values are better.
 
 
 ## Safety benchmarks of language models
 
-Safety benchmarks use a standard metric Attack Success Rate to measure how vulerable language models are to attacks in biosecurity, cybersecurity, and chemical security. Currently, the [Weapons of Mass Destruction Proxy (WMDP) benchmark](https://www.wmdp.ai/) is used to assess hazardous knowledge in language models. The lower the Attack Success Rate is, the safer is the model response. 
+Safety benchmarks use a standard metric Attack Success Rate to measure how vulnerable language models are to attacks in biosecurity, cybersecurity, and chemical security. Currently, the [Weapons of Mass Destruction Proxy (WMDP) benchmark](https://www.wmdp.ai/) is used to assess hazardous knowledge in language models. The lower the Attack Success Rate is, the safer is the model response. 
 
-All model endpoints are benchmarked with the default Azure AI Content Safety filters on with a default configuration. These safety filters detect and block [content harm categories](../../ai-services/content-safety/concepts/harm-categories.md) in violence, self-harm, sexual, hate and unfaireness, but do not measure categories in cybersecurity, biosecurity, chemical security.
+All model endpoints are benchmarked with the default Azure AI Content Safety filters on with a default configuration. These safety filters detect and block [content harm categories](../../ai-services/content-safety/concepts/harm-categories.md) in violence, self-harm, sexual, hate, and unfairness, but do not specifically cover categories in cybersecurity, biosecurity, chemical security.
 
 
 ## Performance benchmarks of language models
@@ -79,17 +75,17 @@ Performance metrics are calculated as an aggregate over 14 days, based on 24 tra
 
 | Parameter                             | Value                                                                                              | Applicable For                                                                                                                                                                                                                              |
 |---------------------------------------|----------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Region                                | East US/East US2                                                                                   | [Serverless APIs](../how-to/model-catalog-overview.md#serverless-api-pay-per-token-billing) and [Azure OpenAI](/azure/ai-services/openai/overview)                                                                                          |
-| Tokens per minute (TPM) rate limit    | 30k (180 RPM based on Azure OpenAI) for non-reasoning and 100k for reasoning models <br> N/A (serverless APIs) | For Azure OpenAI models, selection is available for users with rate limit ranges based on deployment type (standard, global, global standard, and so on.) <br> For serverless APIs, this setting is abstracted.                             |
-| Number of requests                    | Two requests in a trail for every hour (24 trails per day)                                         | Serverless APIs, Azure OpenAI                                                                                                                                                                                                               |
-| Number of trails/runs                 | 14 days with 24 trails per day for 336 runs                                                        | Serverless APIs, Azure OpenAI                                                                                                                                                                                                               |
-| Prompt/Context length                 | Moderate length                                                                                    | Serverless APIs, Azure OpenAI                                                                                                                                                                                                               |
-| Number of tokens processed (moderate) | 80:20 ratio for input to output tokens, that is, 800 input tokens to 200 output tokens.            | Serverless APIs, Azure OpenAI                                                                                                                                                                                                               |
-| Number of concurrent requests         | One (requests are sent sequentially one after other)                                               | Serverless APIs, Azure OpenAI                                                                                                                                                                                                               |
-| Data                                  | Synthetic (input prompts prepared from static text)                                                | Serverless APIs, Azure OpenAI                                                                                                                                                                                                               |
-| Region                                | East US/East US2                                                                                   | Serverless APIs and Azure OpenAI                                                                                                                                                                                                            |
+| Region                                | East US/East US2                                                                                   | [Standard deployments](../how-to/model-catalog-overview.md#standard-deployment-pay-per-token-offer-billing) and [Azure OpenAI](/azure/ai-services/openai/overview)                                                                                          |
+| Tokens per minute (TPM) rate limit    | 30k (180 RPM based on Azure OpenAI) for non-reasoning and 100k for reasoning models <br> N/A (standard deployments) | For Azure OpenAI models, selection is available for users with rate limit ranges based on deployment type (standard, global, global standard, and so on.) <br> For standard deployments, this setting is abstracted.                             |
+| Number of requests                    | Two requests in a trail for every hour (24 trails per day)                                         | Standard deployments, Azure OpenAI                                                                                                                                                                                                               |
+| Number of trails/runs                 | 14 days with 24 trails per day for 336 runs                                                        | Standard deployments, Azure OpenAI                                                                                                                                                                                                               |
+| Prompt/Context length                 | Moderate length                                                                                    | Standard deployments, Azure OpenAI                                                                                                                                                                                                               |
+| Number of tokens processed (moderate) | 80:20 ratio for input to output tokens, that is, 800 input tokens to 200 output tokens.            | Standard deployments, Azure OpenAI                                                                                                                                                                                                               |
+| Number of concurrent requests         | One (requests are sent sequentially one after other)                                               | Standard deployments, Azure OpenAI                                                                                                                                                                                                               |
+| Data                                  | Synthetic (input prompts prepared from static text)                                                | Standard deployments, Azure OpenAI                                                                                                                                                                                                               |
+| Region                                | East US/East US2                                                                                   | Standard deployments and Azure OpenAI                                                                                                                                                                                                            |
 | Deployment type                       | Standard                                                                                           | Applicable only for Azure OpenAI                                                                                                                                                                                                            |
-| Streaming                             | True                                                                                               | Applies to serverless APIs and Azure OpenAI. For models deployed via [managed compute](../how-to/model-catalog-overview.md#managed-compute), or for endpoints when streaming is not supported TTFT is represented as P50 of latency metric. |
+| Streaming                             | True                                                                                               | Applies to standard deployments and Azure OpenAI. For models deployed via [managed compute](../how-to/model-catalog-overview.md#managed-compute), or for endpoints when streaming is not supported TTFT is represented as P50 of latency metric. |
 | SKU                                   | Standard_NC24ads_A100_v4 (24 cores, 220GB RAM, 64GB storage)                                       | Applicable only for Managed Compute (to estimate the cost and perf metrics)                                                                                                                                                                 |
 
 The performance of LLMs and SLMs is assessed across the following metrics:
@@ -117,14 +113,14 @@ For performance metrics like latency or throughput, the time to first token and 
 
 ## Cost benchmarks of language models
 
-Cost calculations are estimates for using an LLM or SLM model endpoint hosted on the Azure AI platform. Azure AI supports displaying the cost of serverless APIs and Azure OpenAI models. Because these costs are subject to change, we refresh our cost calculations on a regular cadence.
+Cost calculations are estimates for using an LLM or SLM model endpoint hosted on the Azure AI platform. Azure AI supports displaying the cost of standard deployments and Azure OpenAI models. Because these costs are subject to change, we refresh our cost calculations on a regular cadence.
 
 The cost of LLMs and SLMs is assessed across the following metrics:
 
 | Metric | Description |
 |--------|-------------|
-| Cost per input tokens | Cost for serverless API deployment for 1 million input tokens |
-| Cost per output tokens | Cost for serverless API deployment for 1 million output tokens |
+| Cost per input tokens | Cost for standard deployment for 1 million input tokens |
+| Cost per output tokens | Cost for standard deployment for 1 million output tokens |
 | Estimated cost | Cost for the sum of cost per input tokens and cost per output tokens, with a ratio of 3:1. |
 
 Azure AI also displays the cost index as follows:
@@ -135,7 +131,7 @@ Azure AI also displays the cost index as follows:
 
 ## Quality benchmarks of embedding models
 
-The quality index of embedding models is defined as the averaged accuracy scores of a comprehensive set of standard benchmark datasests targeting Information Retrieval, Document Clustering, and Summarization tasks.
+The quality index of embedding models is defined as the averaged accuracy scores of a comprehensive set of standard benchmark datasets targeting Information Retrieval, Document Clustering, and Summarization tasks.
 
 See more details in accuracy score definitions specific to each dataset:
 
@@ -155,7 +151,7 @@ See more details in accuracy score definitions specific to each dataset:
 
 Benchmark results originate from public datasets that are commonly used for language model evaluation. In most cases, the data is hosted in GitHub repositories maintained by the creators or curators of the data. Azure AI evaluation pipelines download data from their original sources, extract prompts from each example row, generate model responses, and then compute relevant accuracy metrics.
 
-Prompt construction follows best practices for each dataset, as specified by the paper introducing the dataset and industry standards. In most cases, each prompt contains several _shots_, that is, several examples of complete questions and answers to prime the model for the task. The evaluation pipelines create shots by sampling questions and answers from a portion of the data that's held out from evaluation.
+Prompt construction follows best practices for each dataset, as specified by the paper introducing the dataset and industry standards. In most cases, each prompt contains several _shots_, that is, several examples of complete questions and answers to prime the model for the task. The evaluation pipelines create shots by sampling questions and answers from a portion of the data held out from evaluation.
 
 ## Related content
 

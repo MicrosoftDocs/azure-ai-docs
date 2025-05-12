@@ -33,15 +33,15 @@ By default, your subscription uses Microsoft-managed encryption keys. There's al
 
 Follow these steps to enable customer-managed keys for Translator:
 
-1. Create your new regional Translator or regional Azure AI services resource. Customer-managed keys won't work with a global resource.
+1. Create your new regional Translator or regional Azure AI Foundry resource. Customer-managed keys won't work with a global resource.
 2. Enabled Managed Identity in the Azure portal, and add your customer-managed key information.
 3. Create a new workspace in Custom Translator and associate this subscription information.
 
 ### Enable customer-managed keys
 
-You must use Azure Key Vault to store your customer-managed keys. You can either create your own keys and store them in a key vault, or you can use the Azure Key Vault APIs to generate keys. The Azure AI services resource and the key vault must be in the same region and in the same Microsoft Entra tenant, but they can be in different subscriptions. For more information about Azure Key Vault, see [What is Azure Key Vault?](/azure/key-vault/general/overview).
+You must use Azure Key Vault to store your customer-managed keys. You can either create your own keys and store them in a key vault, or you can use the Azure Key Vault APIs to generate keys. The Azure AI Foundry resource and the key vault must be in the same region and in the same Microsoft Entra tenant, but they can be in different subscriptions. For more information about Azure Key Vault, see [What is Azure Key Vault?](/azure/key-vault/general/overview).
 
-A new Azure AI services resource is always encrypted using Microsoft-managed keys. It's not possible to enable customer-managed keys at the time that the resource is created. Customer-managed keys are stored in Azure Key Vault. The key vault must be provisioned with access policies that grant key permissions to the managed identity that is associated with the Azure AI services resource. The managed identity is available as soon as the resource is created.
+A new Azure AI Foundry resource is always encrypted using Microsoft-managed keys. It's not possible to enable customer-managed keys at the time that the resource is created. Customer-managed keys are stored in Azure Key Vault. The key vault must be provisioned with access policies that grant key permissions to the managed identity that is associated with the Azure AI Foundry resource. The managed identity is available as soon as the resource is created.
 
 To learn how to use customer-managed keys with Azure Key Vault for Azure AI services encryption, see:
 
@@ -66,7 +66,7 @@ Only `RSA` keys of size 2048 are supported with Azure AI services encryption. Fo
 
 ### Revoke access to customer-managed keys
 
-To revoke access to customer-managed keys, use PowerShell or Azure CLI. For more information, see [Azure Key Vault PowerShell](/powershell/module/az.keyvault//) or [Azure Key Vault CLI](/cli/azure/keyvault). Revoking access effectively blocks access to all data in the Azure AI services resource and your models are undeployed, as the encryption key is inaccessible by Azure AI services. All uploaded data is also deleted from Azure AI Custom Translator.
+To revoke access to customer-managed keys, use PowerShell or Azure CLI. For more information, see [Azure Key Vault PowerShell](/powershell/module/az.keyvault//) or [Azure Key Vault CLI](/cli/azure/keyvault). Revoking access effectively blocks access to all data in the Azure AI Foundry resource and your models are undeployed, as the encryption key is inaccessible by Azure AI services. All uploaded data is also deleted from Azure AI Custom Translator.
 
 ## Next steps
 

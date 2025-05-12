@@ -88,10 +88,6 @@ configure_azure_monitor(connection_string=connection_string)
 Start collecting telemetry and send to your project's connected Application Insights resource.
 
 ```python
-project_client.telemetry.enable()
-```
-
-```python
 # Start tracing
 tracer = trace.get_tracer(__name__)
 

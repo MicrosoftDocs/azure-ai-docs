@@ -39,6 +39,9 @@ model_config = AzureOpenAIModelConfiguration(
 )
 ```
 
+> [!TIP]
+> We recommend using `o3-mini` for a balance of reasoning capability and cost efficiency.
+
 ## Retrieval
 
 Retrieval quality is very important given its upstream role in RAG: if the retrieval quality is poor and the response requires corpus-specific knowledge, there's less chance your LLM model gives you a satisfactory answer. `RetrievalEvaluator` measures the **textual quality** of retrieval results with an LLM without requiring ground truth (also known as query relevance judgment), which provides value compared to `DocumentRetrievalEvaluator` measuring `ndcg`,  `xdcg`, `fidelity`, and other classical information retrieval metrics that require ground truth. This metric focuses on how relevant the context chunks (encoded as a string) are to address a query and how the most relevant context chunks are surfaced at the top of the list.
@@ -90,69 +93,74 @@ Retrieval quality is very important given its upstream role in RAG: if the retri
 ```python
 from azure.ai.evaluation import DocumentRetrievalEvaluator
 
+# these query_relevance_label are given by your human- or LLM-judges.
 retrieval_ground_truth = [
     {
         "document_id": "1",
-        "query_relevance_judgement": 4
+        "query_relevance_label": 4
     },
     {
         "document_id": "2",
-        "query_relevance_judgement": 2
+        "query_relevance_label": 2
     },
     {
         "document_id": "3",
-        "query_relevance_judgement": 3
+        "query_relevance_label": 3
     },
     {
         "document_id": "4",
-        "query_relevance_judgement": 1
+        "query_relevance_label": 1
     },
     {
         "document_id": "5",
-        "query_relevance_judgement": 0
+        "query_relevance_label": 0
     },
 ]
+# the min and max of the label scores are inputs to document retrieval evaluator
+ground_truth_label_min = 0
+ground_truth_label_max = 4
 
+# these relevance scores come from your search retrieval system
 retrieved_documents = [
     {
         "document_id": "2",
-        "query_relevance_judgement": 45.1
+        "relevance_score": 45.1
     },
     {
         "document_id": "6",
-        "query_relevance_judgement": 35.8
+        "relevance_score": 35.8
     },
     {
         "document_id": "3",
-        "query_relevance_judgement": 29.2
+        "relevance_score": 29.2
     },
     {
         "document_id": "5",
-        "query_relevance_judgement": 25.4
+        "relevance_score": 25.4
     },
     {
         "document_id": "7",
-        "query_relevance_judgement": 18.8
+        "relevance_score": 18.8
     },
 ]
 
-default_threshold = {
-            "ndcg@3": 0.5,
-            "xdcg@3": 0.5,
-            "fidelity": 0.5,
-            "top1_relevance": 50,
-            "top3_max_relevance": 50,
-            "total_retrieved_documents": 50,
-            "total_ground_truth_documents": 50,
-}
-
-document_retrieval_evaluator = DocumentRetrievalEvaluator(threshold=default_threshold)
+document_retrieval_evaluator = DocumentRetrievalEvaluator(
+    ground_truth_label_min=ground_truth_label_min, 
+    ground_truth_label_max=ground_truth_label_max,
+    ndcg_threshold = 0.5,
+    xdcg_threshold = 50.0,
+    fidelity_threshold = 0.5,
+    top1_relevance_threshold = 50.0,
+    top3_max_relevance_threshold = 50.0,
+    total_retrieved_documents_threshold = 50,
+    total_ground_truth_documents_threshold = 50
+)
 document_retrieval_evaluator(retrieval_ground_truth=retrieval_ground_truth, retrieved_documents=retrieved_documents)   
 ```
 
 ### Document retrieval output
 
-The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score <= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
+All numerical scores have `high_is_better=True` except for `holes` and `holes_ratio` which have `high_is_better=False`. Given a numerical threshold (default to 3), we also output "pass" if the score <= threshold, or "fail" otherwise. 
 
 ```python
 {
@@ -163,8 +171,8 @@ The numerical score on a likert scale (integer 1 to 5) and a higher score is bet
     "top3_max_relevance": 2,
     "holes": 30,
     "holes_ratio": 0.6000000000000001,
-    "holes_is_higher_better": False,
-    "holes_ratio_is_higher_better": False,
+    "holes_higher_is_better": False,
+    "holes_ratio_higher_is_better": False,
     "total_retrieved_documents": 50,
     "total_groundtruth_documents": 1565,
     "ndcg@3_result": "pass",
@@ -172,6 +180,7 @@ The numerical score on a likert scale (integer 1 to 5) and a higher score is bet
     "fidelity_result": "fail",
     "top1_relevance_result": "fail",
     "top3_max_relevance_result": "fail",
+    # omitting more fields ...
 }
 ```
 

@@ -34,7 +34,7 @@ api-key: <key>
 ```
 
 > [!TIP]
-> Verify that you have deployed the model to Azure AI Services resource with the Azure AI Foundry Models API. `Deepseek-R1` is also available as Serverless API Endpoints. However, those endpoints don't take the parameter `model` as explained in this tutorial. You can verify that by going to [Azure AI Foundry portal]() > Models + endpoints, and verify that the model is listed under the section **Azure AI Services**.
+> Verify that you have deployed the model to Azure AI Services resource with the Azure AI Foundry Models API. `Deepseek-R1` is also available as standard deployments. However, those endpoints don't take the parameter `model` as explained in this tutorial. You can verify that by going to [Azure AI Foundry portal]() > Models + endpoints, and verify that the model is listed under the section **Azure AI Services**.
 
 If you have configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header with the format `Bearer <token>`. Use scope `https://cognitiveservices.azure.com/.default`. 
 
