@@ -28,7 +28,7 @@ To deploy your model candidate, select the fine-tuned model to deploy, and then 
 
 The **Deploy model** dialog box opens. In the dialog box, enter your **Deployment name** and then select **Developer** from the deployment type drop-down. Select **Create** to start the deployment of your custom model.
 
-:::image type="content" source="../media/fine-tuning/fine-tuning-deploy/deploy-dev-dialogue.png" alt-text="Screenshot that shows how to deploy a custom model in Azure AI Foundry portal." lightbox="../media/fine-tuning/fine-tuning-test/deploy-dev-dialogue.png":::
+:::image type="content" source="../media/fine-tuning/developer.png" alt-text="Screenshot showing selecting Developer deployment in AI Foundry." lightbox="../media/fine-tuning/developer.png":::
 
 You can monitor the progress of your new deployment on the **Deployments** pane in Azure AI Foundry portal.
 
