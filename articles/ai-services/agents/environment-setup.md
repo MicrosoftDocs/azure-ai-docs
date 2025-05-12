@@ -7,7 +7,7 @@ author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda 
 ms.service: azure-ai-agent-service
-ms.topic: getting-started
+ms.topic: how-to
 ms.date: 05/09/2025
 ms.custom: azure-ai-agents
 ---
