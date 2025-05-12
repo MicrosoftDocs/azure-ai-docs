@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 05/11/2025
+ms.date: 05/19/2025
 ---
 
 # Content Understanding analyzers overview (preview)
@@ -83,7 +83,7 @@ The value lies in its ability to handle multiple content types (text, audio, vid
 
 Each modality supports specific generation approaches optimized for that content type. We support the following methods across modalities.
 > [!NOTE]
-> Extract method is only supported for documents for now. To learn more about modality support, *see* [field schema limits](../service-limits.md#Field-schema-limits) page.
+> Extract method is only supported for documents for now. To learn more about modality support, *see* [field schema limits](../service-limits.md#field-schema-limits) page.
 >
 > There's a distinction between digital documents (PDFs, DOCX, etc.) and text documents (plain text, markdown, HTML) in terms of content extraction capabilities.
 
