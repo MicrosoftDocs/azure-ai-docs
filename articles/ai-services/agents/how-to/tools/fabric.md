@@ -12,7 +12,7 @@ ms.author: aahi
 zone_pivot_groups: selection-fabric-data-agent
 ---
 
-# Use the Microsoft Fabric data agent
+# Use the Microsoft Fabric data agent (preview)
 
 Integrate your Azure AI Agent with the [**Microsoft Fabric data agent**](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. The Fabric data agent transforms enterprise data into conversational Q&A systems, allowing users to interact with the data through chat and uncover data-driven and actionable insights. 
 

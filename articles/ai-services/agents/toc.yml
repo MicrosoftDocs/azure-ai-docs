@@ -73,14 +73,6 @@ items:
               href: how-to/tools/sharepoint-samples.md
         - name: Logic apps
           href: how-to/tools/logic-apps.md
-        - name: Use licensed data
-          items:
-            - name: Morningstar
-              href: how-to/tools/morningstar.md
-              displayName: licensed data, morningstar
-            - name: Tripadvisor
-              href: how-to/tools/tripadvisor.md
-              displayName: licensed data, tripadvisor
         - name: Function calling
           href: how-to/tools/function-calling.md
         - name: Code interpreter

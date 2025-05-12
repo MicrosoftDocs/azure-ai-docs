@@ -13,7 +13,7 @@ ms.custom: azure-ai-agents
 zone_pivot_groups: selection-bing-custom-grounding
 ---
 
-# How to use Grounding with Bing Custom Search 
+# How to use Grounding with Bing Custom Search (preview)
 
 
 ::: zone pivot="portal"
@@ -58,9 +58,9 @@ var projectClient = new AIProjectClient(connectionString, new DefaultAzureCreden
 AgentsClient agentClient = projectClient.GetAgentsClient();
 ```
 
-## Step 2: Create an Agent with the Grounding with Bing search tool enabled
+## Step 2: Create an Agent with the Grounding with Bing Custom Search tool enabled
 
-To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/).
+To make the Grounding with Bing Custom Search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/).
 
 ```csharp
 AgentsClient agentClient = projectClient.GetAgentsClient();
@@ -181,9 +181,9 @@ const client = AIProjectsClient.fromConnectionString(
 ```
 
 
-## Step 2: Create an Agent with the Grounding with Bing search tool enabled
+## Step 2: Create an Agent with the Grounding with Bing Custom Search tool enabled
 
-To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/).
+To make the Grounding with Bing Custom Search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/).
 
 ```javascript
 const bingCustomSearchConnection = await client.connections.getConnection(
@@ -225,7 +225,7 @@ await client.agents.createMessage(
 
 ## Step 4: Create a run and check the output
 
-Create a run and observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
+Create a run and observe that the model uses the Grounding with Bing Custom Search tool to provide a response to the user's question.
 
 
 ```javascript
@@ -302,9 +302,9 @@ project_client = AIProjectClient.from_connection_string(
 ```
 
 
-## Step 2: Create an Agent with the Grounding with Bing search tool enabled
+## Step 2: Create an Agent with the Grounding with Bing Custom Search tool enabled
 
-To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/).
+To make the Grounding with Bing Custom Search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/).
 
 ```python
 bing_custom_connection = project_client.connections.get(connection_name=os.environ["BING_CUSTOM_CONNECTION_NAME"])
@@ -372,3 +372,97 @@ if response_message:
 
 
 :::zone-end
+
+::: zone pivot="rest"
+
+## Step 1: Create a project client
+
+Create a client object, which will contain the connection string for connecting to your AI project and other resources.
+
+>[!IMPORTANT]
+> 1. This REST API allows developers to invoke the Grounding with Bing Custom Search tool through the Azure AI Foundry Agent Service. It does not send calls to the Grounding with Bing Custom Search API directly. 
+
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`. The client creation is demonstrated in the next section.
+
+
+## Step 2: Create an Agent with the Grounding with Bing Custom Search tool enabled
+
+To make the Grounding with Bing Custom Search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/).
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2025-05-15-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "instructions": "You are a helpful agent.",
+        "name": "my-agent",
+        "model": "gpt-4o",
+        "tools": [
+          {
+            "type": "bing_custom_search",
+            "bing_custom_search": {
+                "search_configurations": [
+                    {
+                        "connection_id": <your_custom_search_connecion_id>,
+                        "instance_name": <your_custom_search_configuration_name>, 
+                        "count": 7,
+                        "market": "en-US", 
+                        "set_lang": "en",
+                        "freshness": "7d",
+                    }
+                ]
+            }
+          }
+        ]
+      }'
+```
+
+## Step 3: Create a thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2025-05-15-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d ''
+```
+
+## Step 4: Add a user question to the thread
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2025-05-15-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+      "role": "user",
+      "content": "<ask a question tailored towards your web domains>"
+    }'
+```
+
+## Step 5: Create a run and check the output
+
+Create a run and observe that the model uses the Grounding with Bing Custom Search tool to provide a response to the user's question.
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2025-05-15-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "assistant_id": "asst_abc123",
+  }'
+```
+
+### Retrieve the status of the run
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2025-05-15-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+```
+
+### Retrieve the agent response
+
+```console
+curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2025-05-15-preview \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+```
+
+::: zone-end
