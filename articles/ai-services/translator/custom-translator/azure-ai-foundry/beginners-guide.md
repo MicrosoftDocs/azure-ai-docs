@@ -139,11 +139,11 @@ To prepare for training, documents undergo a series of processing and filtering 
 
 * ### Invalid characters
 
-  custom translation removes sentences that contain Unicode character U+FFFD. The character U+FFFD indicates a failed encoding conversion.
+  Custom translation removes sentences that contain Unicode character U+FFFD. The character U+FFFD indicates a failed encoding conversion.
 
 * ### Invalid HTML tags
 
-  custom translation removes valid tags during training. Invalid tags cause unpredictable results and should be manually removed. 
+  Custom translation removes valid tags during training. Invalid tags cause unpredictable results and should be manually removed. 
 
 ## What steps should I take before uploading data?
 

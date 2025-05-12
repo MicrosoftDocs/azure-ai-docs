@@ -64,7 +64,7 @@ This page presents the latest feature, improvement, bug fix, and known issue rel
 |English (`en`)|Turkish (`tr`)|
 |English (`en`)|Ukrainian (`uk`)|
 |English (`en`)|Vietnamese (`vi`)|
-|English (`en`)|Chinese Simplified (zh-hans)|
+|English (`en`)|zh-hans|
 |Estonian (`et`)|English (`en`)|
 |Finnish (`fi`)|English (`en`)|
 |French (`fr`)|English (`en`)|
