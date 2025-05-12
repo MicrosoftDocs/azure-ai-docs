@@ -41,7 +41,7 @@ For models **Curated by Azure AI** and **Open models from the Hugging Face hub**
 * **Fine-tune:** Customize fine-tunable models using your own training data and pick the best model by comparing metrics across all your fine-tuning jobs. Built-in optimizations speed up fine-tuning and reduce the memory and compute needed for fine-tuning. 
 * **Deploy:** Deploy pretrained models or fine-tuned models seamlessly for inference. Models that can be deployed to managed compute can also be downloaded.  
 
-## Model deployment: Managed compute and standard deployment with pay-as-you-go billing
+## Model deployment: Managed compute and standard deployment (pay-as-you-go)
 
 Model Catalog offers two distinct ways to deploy models from the catalog for your use: managed compute and standard deployments. The deployment options available for each model vary; learn more about the features of the deployment options, and the options available for specific models, in the tables below. Learn more about [data processing](concept-data-privacy.md) with the deployment options. 
 
