@@ -34,8 +34,6 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 
 ## Create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] 
 
-Use either the Azure AI Foundry portal or Azure CLI to create a project.
-
 1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
 1. On the home page, select **Create the future**. This creates a project and also include steps to start working with a basic Agent.
     
