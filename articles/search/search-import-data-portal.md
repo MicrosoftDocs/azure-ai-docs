@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: concept-article
-ms.date: 05/08/2025
+ms.date: 05/12/2025
 customer intent: As a developer, I want to use wizards for index creation so that I can query the content quickly.
 ---
 
@@ -23,12 +23,12 @@ Azure AI Search has two wizards that automate indexing and object creation so th
 
 If you're using the wizard for proof-of-concept testing, this article explains the internal workings of the wizards so that you can use them more effectively.
 
-This article isn't a step by step. For help with using the wizard with sample data see:
+This isn't a step-by-step article. To use the wizard with sample data, see:
 
 + [Quickstart: Create a search index](search-get-started-portal.md)
 + [Quickstart: Create a text translation and entity skillset](search-get-started-skillset.md)
 + [Quickstart: Create a vector index](search-get-started-portal-import-vectors.md)
-+ [Quickstart: image search (vectors)](search-get-started-portal-image-search.md)
++ [Quickstart: Image search (vectors)](search-get-started-portal-image-search.md)
 
 ## Supported data sources and scenarios
 
@@ -268,4 +268,4 @@ The best way to understand the benefits and limitations of the wizard is to step
 + [Quickstart: Create a search index](search-get-started-portal.md)
 + [Quickstart: Create a text translation and entity skillset](search-get-started-skillset.md)
 + [Quickstart: Create a vector index](search-get-started-portal-import-vectors.md)
-+ [Quickstart: image search (vectors)](search-get-started-portal-image-search.md)
++ [Quickstart: Image search (vectors)](search-get-started-portal-image-search.md)
