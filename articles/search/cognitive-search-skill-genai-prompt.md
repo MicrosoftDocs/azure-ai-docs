@@ -16,7 +16,7 @@ ms.date: 05/12/2025
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request against a Large Language Model (LLM) deployed in **Azure AI Foundry** or **Azure OpenAI Service**.  
-To augment your data with higher relevant context in your index, use this capability to verbalize images, summarize, transform, enrich, or extract structured data from text-only, image or text + image inputs.
+To augment your data with higher relevant context in your index, use this capability to verbalize images, summarize, transform, enrich, or extract structured data from text-only, image, or text + image inputs.
 
 The GenAI Prompt skill is available in the **2025-05-01-preview** REST API. You can't use this skill in skillsets created with earlier API versions.
 
@@ -80,7 +80,7 @@ The GenAI Prompt skill is available in the **2025-05-01-preview** REST API. You 
 | `userMessage` | string | Yes | User prompt. |
 | `text` | string | No | Optional text appended to `userMessage` (text-only scenarios). |
 | `image` | string (Base 64 data-URL) | No | Adds an image to the prompt (multimodal models only). |
-| `imageDetail` | string (`low` \| `high` \| `auto`) | No | Fidelity hint for Azure Open AI multimodal models. |
+| `imageDetail` | string (`low` \| `high` \| `auto`) | No | Fidelity hint for Azure OpenAI multimodal models. |
 
 ## Skill outputs
 
