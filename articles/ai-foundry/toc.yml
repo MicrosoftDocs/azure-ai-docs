@@ -70,7 +70,7 @@ items:
           href: how-to/develop/llama-index.md
         - name: Develop with Semantic Kernel
           href: how-to/develop/semantic-kernel.md
-  - name: Deploy Azure Open AI in Foundry Models
+  - name: Deploy Azure OpenAI in Foundry Models
     items:
     - name: Azure OpenAI in Azure AI Foundry portal
       href: azure-openai-in-azure-ai-foundry.md
@@ -385,7 +385,7 @@ items:
         href: concepts/evaluation-evaluators/risk-safety-evaluators.md
       - name: Agent evaluators
         href: concepts/evaluation-evaluators/agent-evaluators.md 
-      - name: Azure Open AI evaluators 
+      - name: Azure OpenAI evaluators 
         href: concepts/evaluation-evaluators/azure-openai-graders.md
       - name: Custom evaluators
         href: concepts/evaluation-evaluators/custom-evaluators.md
