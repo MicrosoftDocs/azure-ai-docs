@@ -213,6 +213,8 @@ items:
       href: /security/benchmark/azure/baselines/cognitive-search-security-baseline?toc=/azure/search/TOC.json
     - name: Document-level security
       href: search-document-level-access-overview.md
+    - name: Query with permission filters
+      href: search-query-access-control-rbac-enforcement.md
 - name: How-to guides
   items:
   - name: Service management
