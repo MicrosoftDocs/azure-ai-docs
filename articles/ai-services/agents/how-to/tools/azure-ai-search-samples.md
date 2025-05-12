@@ -136,104 +136,104 @@ print("Deleted agent")
 
 :::zone pivot="csharp"
 
-## Step 1: Create an Azure AI Client
-First, create an Azure AI Client using the connection string of your project.
+## Step 1: Create a project client
+Create a client object, which will contain the project endpoint for connecting to your AI project and other resources.
 
 ```csharp
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using Microsoft.Extensions.Configuration;
 using System;
-using System.Threading.Tasks;
-using Azure.Core;
-using Azure.Core.TestFramework;
-using NUnit.Framework;
-using System.Collections.Generic;
+using System.Threading;
 
-// Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
-// At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>"
-// Customer needs to login to Azure subscription via Azure CLI and set the environment variables
-var connectionString = TestEnvironment.AzureAICONNECTIONSTRING;
-var clientOptions = new AIProjectClientOptions();
+// Get Connection information from app configuration
+IConfigurationRoot configuration = new ConfigurationBuilder()
+    .SetBasePath(AppContext.BaseDirectory)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .Build();
 
-// Adding the custom headers policy
-clientOptions.AddPolicy(new CustomHeadersPolicy(), HttpPipelinePosition.PerCall);
-var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential(), clientOptions);
+var projectEndpoint = configuration["ProjectEndpoint"];
+var modelDeploymentName = configuration["ModelDeploymentName"];
+var azureAiSearchConnectionId = configuration["AzureAiSearchConnectionId"];
+
+// Create the Agent Client
+PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
 ```
 
-## Step 2: Get the connection ID for the Azure AI Search resource
-Get the connection ID of the Azure AI Search connection in the project.
+## Step 2: Configure the Azure AI Search tool
+Using the AI Search Connection ID, configure the Azure AI Search tool to use your Azure AI Search index.
 
 ```csharp
-ListConnectionsResponse connections = await projectClient.GetConnectionsClient().GetConnectionsAsync(ConnectionType.AzureAISearch).ConfigureAwait(false);
+AzureAISearchResource searchResource = new(
+    indexConnectionId: azureAiSearchConnectionId,
+    indexName: "sample_index",
+    topK: 5,
+    filter: "category eq 'sleeping bag'",
+    queryType: AzureAISearchQueryType.Simple
+);
 
-if (connections?.Value == null || connections.Value.Count == 0)
-{
-    throw new InvalidOperationException("No connections found for the Azure AI Search.");
-}
+ToolResources toolResource = new() { AzureAISearch = searchResource };
+
 ```
 
-## Step 3: Configure the Azure AI Search tool
-Using the connection ID you got in the previous step, you can now configure the Azure AI Search tool to use your Azure AI Search index.
-
-```csharp
-// TO DO: replace this value with the connection ID of the search index
-ConnectionResponse connection = connections.Value[0];
-
-// Initialize agent Azure AI search tool and add the search index connection ID and index name
-// TO DO: replace <your-index-name> with the name of the index you want to use
-ToolResources searchResource = new ToolResources
-{
-    AzureAISearch = new AzureAISearchResource
-    {
-        IndexList = { new IndexResource(connection.Id, "<your-index-name>", "<select-search-type>") }
-    }
-};
-```
-
-## Step 4: Create an agent with the Azure AI Search tool enabled
+## Step 3: Create an agent with the Azure AI Search tool enabled
 Change the model to the one deployed in your project. You can find the model name in the Azure AI Foundry under the **Models** tab. You can also change the name and instructions of the agent to suit your needs.
 
 ```csharp
-AgentsClient agentClient = projectClient.GetAgentsClient();
+// Create an agent with Tools and Tool Resources
+PersistentAgent agent = agentClient.Administration.CreateAgent(
+    model: modelDeploymentName,
+    name: "my-agent",
+    instructions: "You are a helpful agent.",
+    tools: [new AzureAISearchToolDefinition()],
+    toolResources: toolResource);
 
-Response<Agent> agentResponse = await agentClient.CreateAgentAsync(
-    model: "gpt-4o-mini",
-    name: "my-assistant",
-    instructions: "You are a helpful assistant.",
-    tools: new List<ToolDefinition> { new AzureAISearchToolDefinition() },
-    toolResources: searchResource);
-Agent agent = agentResponse.Value;
 ```
 
-## Step 5: Ask the agent questions about data in the index
+## Step 4: Ask the agent questions about data in the index
 Now that the agent is created, ask it questions about the data in your Azure AI Search index.
 
 ```csharp
 // Create thread for communication
-Response<AgentThread> threadResponse = await agentClient.CreateThreadAsync();
-AgentThread thread = threadResponse.Value;
+PersistentAgentThread thread = agentClient.Threads.CreateThread();
 
-// Create message to thread
-Response<ThreadMessage> messageResponse = await agentClient.CreateMessageAsync(
+// Create message and run the agent
+ThreadMessage message = agentClient.Messages.CreateMessage(
     thread.Id,
     MessageRole.User,
-    "what are my health insurance plan coverage types?");
-ThreadMessage message = messageResponse.Value;
+    "What is the temperature rating of the cozynights sleeping bag?");
+ThreadRun run = agentClient.Runs.CreateRun(thread, agent);
 
-// Run the agent
-Response<ThreadRun> runResponse = await agentClient.CreateRunAsync(thread, agent);
+```
 
+## Step 4: Wait for the agent to complete and print the output
+
+Wait for the agent to complete the run and print output to console.
+
+```csharp
+// Wait for the agent to finish running
 do
 {
-    await Task.Delay(TimeSpan.FromMilliseconds(500));
-    runResponse = await agentClient.GetRunAsync(thread.Id, runResponse.Value.Id);
+    Thread.Sleep(TimeSpan.FromMilliseconds(500));
+    run = agentClient.Runs.GetRun(thread.Id, run.Id);
 }
-while (runResponse.Value.Status == RunStatus.Queued
-    || runResponse.Value.Status == RunStatus.InProgress);
+while (run.Status == RunStatus.Queued
+    || run.Status == RunStatus.InProgress);
 
-Response<PageableList<ThreadMessage>> afterRunMessagesResponse
-    = await agentClient.GetMessagesAsync(thread.Id);
-IReadOnlyList<ThreadMessage> messages = afterRunMessagesResponse.Value.Data;
+// Confirm that the run completed successfully
+if (run.Status != RunStatus.Completed)
+{
+    throw new Exception("Run did not complete successfully, error: " + run.LastError?.Message);
+}
 
-// Note: messages iterate from newest to oldest, with the messages[0] being the most recent
+// Retrieve the messages from the agent client
+Pageable<ThreadMessage> messages = agentClient.Messages.GetMessages(
+    threadId: thread.Id,
+    order: ListSortOrder.Ascending
+);
+
+// Process messages in order
 foreach (ThreadMessage threadMessage in messages)
 {
     Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
@@ -241,7 +241,27 @@ foreach (ThreadMessage threadMessage in messages)
     {
         if (contentItem is MessageTextContent textItem)
         {
-            Console.Write(textItem.Text);
+            // We need to annotate only Agent messages.
+            if (threadMessage.Role == MessageRole.Agent && textItem.Annotations.Count > 0)
+            {
+                string annotatedText = textItem.Text;
+
+                // If we have Text URL citation annotations, reformat the response to show title & URL for citations
+                foreach (MessageTextAnnotation annotation in textItem.Annotations)
+                {
+                    if (annotation is MessageTextUrlCitationAnnotation urlAnnotation)
+                    {
+                        annotatedText = annotatedText.Replace(
+                            urlAnnotation.Text,
+                            $" [see {urlAnnotation.UrlCitation.Title}] ({urlAnnotation.UrlCitation.Url})");
+                    }
+                }
+                Console.Write(annotatedText);
+            }
+            else
+            {
+                Console.Write(textItem.Text);
+            }
         }
         else if (contentItem is MessageImageFileContent imageFileItem)
         {
@@ -250,6 +270,17 @@ foreach (ThreadMessage threadMessage in messages)
         Console.WriteLine();
     }
 }
+```
+## Step 5: Clean up resources
+
+Clean up the resources from this sample.
+
+```csharp
+
+// Delete thread and agent
+agentClient.Threads.DeleteThread(thread.Id);
+agentClient.Administration.DeleteAgent(agent.Id);
+
 ```
 
 :::zone-end
