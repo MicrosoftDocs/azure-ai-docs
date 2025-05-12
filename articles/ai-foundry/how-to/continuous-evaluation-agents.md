@@ -198,9 +198,8 @@ project.evaluation.create_agent_evaluation(
 
 ## Viewing continuous evaluation results
 
-After you deployed your application to production with continuous evaluation setup, you can begin monitoring your [evaluation results in Azure AI Foundry and Azure Monitor Application Insights](./evaluate-results.md).
+After you deployed your application to production with continuous evaluation setup, you can [monitor the quality and safety of your agent with Azure AI Foundry and Azure Monitor](./monitor-applications.md).
 
 ## Related content
 
-- [How to run evaluations online with the Azure AI Foundry SDK](./online-evaluation.md)
 - [Evaluate your AI agents locally with Azure AI Evaluation SDK](./develop/agent-evaluate-sdk.md)
