@@ -407,7 +407,7 @@ For NLP evaluators, only a score is given in the `{metric_name}` key.
 
 Like six other AI-assisted evaluators, `GroundednessEvaluator` is a prompt-based evaluator that outputs a score on a 5-point scale (the higher the score, the more grounded the result is). On the other hand, `GroundednessProEvaluator` (preview) invokes our backend evaluation service powered by Azure AI Content Safety and outputs `True` if all content is grounded, or `False` if any ungrounded content is detected.
 
-We open-source the prompts of our quality evaluators except for `GroundednessProEvaluator` (powered by Azure AI Content Safety) for transparency. These prompts serve as instructions for a language model to perform their evaluation task, which requires a human-friendly definition of the metric and its associated scoring rubrics (what the five levels of quality mean for the metric). We highly recommend that users customize the definitions and grading rubrics to their scenario specifics. See details in [Custom Evaluators](#custom-evaluators).
+We open-source the prompts of our quality evaluators except for `GroundednessProEvaluator` (powered by Azure AI Content Safety) for transparency. These prompts serve as instructions for a language model to perform their evaluation task, which requires a human-friendly definition of the metric and its associated scoring rubrics (what the five levels of quality mean for the metric). We highly recommend that users customize the definitions and grading rubrics to their scenario specifics. 
 
 
 ### Risk and safety evaluators (preview)
