@@ -42,7 +42,7 @@ By default, the Azure OpenAI service provides a [default SLA](https://www.micros
 ### Create an Enterprise PTU Pool
 
 1. For provisioned deployments, we recommend having a single Data Zone PTU deployment (available 12/04/2024) that serves as an enterprise pool of PTU. You can use API Management to manage traffic from multiple applications to set throughput limits, logging, priority, and failover logic.     
-    - Think of this Enterprise PTU Pool as a “Private standard deployment ” resource that protects against the noisy-neighbors problem that can occur on Standard deployments when service demand is high. Your organization will have guaranteed, dedicated access to a pool of capacity that is only available to you and therefore independent of demand spikes from other customers. 
+    - Think of this Enterprise PTU Pool as a “Private standard deployment” resource that protects against the noisy-neighbors problem that can occur on Standard deployments when service demand is high. Your organization will have guaranteed, dedicated access to a pool of capacity that is only available to you and therefore independent of demand spikes from other customers. 
     - This gives you control over which applications experience increases in latency first, allowing you to prioritize traffic to your mission critical applications.
     - Provisioned Deployments are backed by latency SLAs that make them preferable to standard deployments for latency sensitive workloads.
     - Enterprise PTU Deployment also enables higher utilization rates as traffic is smoothed out across application workloads, whereas individual workloads tend to be more prone to spikes.
