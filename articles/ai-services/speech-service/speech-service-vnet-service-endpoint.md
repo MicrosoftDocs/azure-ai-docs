@@ -44,9 +44,9 @@ Virtual Network service endpoints require a [custom subdomain name for Azure AI 
 You need to add all virtual networks that are allowed access via the service endpoint to the Speech resource networking properties.
 
 > [!NOTE]
-> To access an AI Foundry resource for Speech via the Virtual Network service endpoint, you need to enable the `Microsoft.CognitiveServices` service endpoint type for the required subnets of your virtual network. Doing so will route all subnet traffic related to Azure AI services through the private backbone network. If you intend to access any other Azure AI services resources from the same subnet, make sure these resources are configured to allow your virtual network. 
+> To access an AI Foundry resource for Speech via the Virtual Network service endpoint, you need to enable the `Microsoft.CognitiveServices` service endpoint type for the required subnets of your virtual network. Doing so will route all subnet traffic related to Azure AI services through the private backbone network. If you intend to access any other Azure AI Foundry resources from the same subnet, make sure these resources are configured to allow your virtual network. 
 >
-> If a virtual network isn't added as *allowed* in the Speech resource networking properties, it won't have access to the Speech resource via the service endpoint, even if the `Microsoft.CognitiveServices` service endpoint is enabled for the virtual network. And if the service endpoint is enabled but the virtual network isn't allowed, the Speech resource won't be accessible for the virtual network through a public IP address, no matter what the Speech resource's other network security settings are. That's because enabling the `Microsoft.CognitiveServices` endpoint routes all traffic related to Azure AI services through the private backbone network, and in this case the virtual network should be explicitly allowed to access the resource. This guidance applies for all Azure AI services resources, not just for Speech resources.  
+> If a virtual network isn't added as *allowed* in the Speech resource networking properties, it won't have access to the Speech resource via the service endpoint, even if the `Microsoft.CognitiveServices` service endpoint is enabled for the virtual network. And if the service endpoint is enabled but the virtual network isn't allowed, the Speech resource won't be accessible for the virtual network through a public IP address, no matter what the Speech resource's other network security settings are. That's because enabling the `Microsoft.CognitiveServices` endpoint routes all traffic related to Azure AI services through the private backbone network, and in this case the virtual network should be explicitly allowed to access the resource. This guidance applies for all Azure AI Foundry resources, not just for Speech resources.  
   
 1. Go to the [Azure portal](https://portal.azure.com/) and sign in to your Azure account.
 1. Select the Speech resource.
@@ -60,7 +60,7 @@ You need to add all virtual networks that are allowed access via the service end
 
 ### Enabling service endpoint for an existing virtual network 
 
-As described in the previous section, when you configure a virtual network as *allowed* for the Speech resource, the `Microsoft.CognitiveServices` service endpoint is automatically enabled. If you later disable it, you need to re-enable it manually to restore the service endpoint access to the Speech resource (and to other Azure AI services resources):
+As described in the previous section, when you configure a virtual network as *allowed* for the Speech resource, the `Microsoft.CognitiveServices` service endpoint is automatically enabled. If you later disable it, you need to re-enable it manually to restore the service endpoint access to the Speech resource (and to other Azure AI Foundry resources):
 
 1. Go to the [Azure portal](https://portal.azure.com/) and sign in to your Azure account.
 1. Select the virtual network.
