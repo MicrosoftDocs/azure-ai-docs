@@ -35,15 +35,6 @@ An Azure AI Foundry custom translation language pair includes models, training, 
 
    - **Language pair label:** You can add label to create the same language pair multiple times. Example, you want to create English to French model for shopping and another English to French model for automotive. A label distinguishes between the same language pair with the same language pair and domain. As a best practice, here are a few tips:
 
-<<<<<<< HEAD
-   - Use a label *only* if you're planning to build multiple projects for the same language pair and same domain and want to access these projects with a different Domain ID.
-
-   - Don't use a label if you're building systems for one domain only.
-
-   - A label isn't required and not helpful to distinguish between language pairs.
-
-   - You can use the same label for multiple language pairs.
-=======
       - Use a label *only* if you're planning to build multiple projects for the same language pair and same domain and want to access these projects with a different Domain ID.
 
       - Don't use a label if you're building systems for one domain only.
@@ -51,7 +42,6 @@ An Azure AI Foundry custom translation language pair includes models, training, 
       - A label isn't required and not helpful to distinguish between language pairs.
 
       - You can use the same label for multiple language pairs.
->>>>>>> melghazali/main
 
    - **Project description:** A short summary about the project. This description has no influence over the behavior of the Custom Translator or your resulting custom system, but can help you differentiate between different projects.
 
