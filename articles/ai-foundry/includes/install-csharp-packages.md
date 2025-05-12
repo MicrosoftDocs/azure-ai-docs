@@ -20,7 +20,7 @@ ms.custom: include, build-2025
     dotnet add package Azure.AI.Agents.Persistant
     dotnet add package Azure.AI.OpenAI
     dotnet add package Azure.Search.Documents
-        ```
+    ```
     
     
 * After installing these packages, you'll need to add the appropriate using directives to your C# files:
