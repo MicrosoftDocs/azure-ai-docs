@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 04/14/2025
+ms.date: 05/12/2025
 ---
 
 # Data sources gallery
@@ -128,6 +128,66 @@ Connect to Azure Storage through Azure Data Lake Storage Gen2 to extract content
 :::row-end:::
 
 ---
+
+## Logic app connectors (preview)
+
+Pull in content [using logic app workflows](search-how-to-index-logic-apps-indexers.md) and the following supported data sources. 
+
+:::row:::
+:::column span="":::
+
+---
+
+### SharePoint
+
+By [Logic Apps](/azure/logic-apps/logic-apps-overview)
+
+SharePoint helps organizations share and collaborate with colleagues, partners, and customers. You can connect to SharePoint Online or to an on-premises SharePoint 2016 or 2019 farm using the On-Premises Data Gateway to manage documents and list items.
+
+[More details](search-how-to-index-logic-apps-indexers.md#supported-connectors)
+
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### OneDrive
+
+By [Logic Apps](/azure/logic-apps/logic-apps-overview)
+
+Connect to OneDrive to manage your files. You can perform various actions such as upload, update, get, and delete on files in OneDrive.
+
+[More details](search-how-to-index-logic-apps-indexers.md#supported-connectors)
+
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### OneDrive for Business
+
+By [Logic Apps](/azure/logic-apps/logic-apps-overview)
+
+OneDrive for Business is a cloud storage, file hosting service that allows users to sync files and later access them from a web browser or mobile device. Connect to OneDrive for Business to manage your files. You can perform various actions such as upload, update, get, and delete files.
+
+[More details](search-how-to-index-logic-apps-indexers.md#supported-connectors)
+
+:::column-end:::
+:::column span="":::
+
+---
+:::column-end:::
+:::row-end:::
+:::row:::
+:::column span="":::
+
+   :::column-end:::
+   :::column span="":::
+   :::column-end:::
+
+:::row-end:::
 
 <a name="preview"></a>
 
