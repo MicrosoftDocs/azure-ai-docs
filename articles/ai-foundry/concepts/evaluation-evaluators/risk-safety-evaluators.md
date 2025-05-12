@@ -13,7 +13,7 @@ author: lgayhardt
 
 # Risk and safety evaluators (preview)
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Risk and safety evaluators draw on insights gained from our previous Large Language Model projects such as GitHub Copilot and Bing. This ensures a comprehensive approach to evaluating generated responses for risk and safety severity scores. These evaluators are generated through the Azure AI Foundry Evaluation service, which employs a set of LLMs. Each model is tasked with assessing specific risks that could be present in the response from your AI system (for example, sexual content, violent content, etc.). These evaluator models are provided with risk definitions and annotate accordingly. Currently the following risks are supported:
 
