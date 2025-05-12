@@ -6,16 +6,16 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 5/12/2025
 ms.author: eur
 ---
 
-# Custom neural voice lite (preview)
+# Custom neural voice lite
 
 Azure AI Speech provides two custom neural voice (CNV) project types: CNV lite and CNV professional. 
 
 - Custom neural voice (CNV) professional allows you to upload your training data collected through professional recording studios and create a higher-quality voice that is nearly indistinguishable from its human samples. CNV professional access is limited based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
-- Custom neural voice (CNV) lite is a project type in public preview. You can demo and evaluate custom neural voice before investing in professional recordings to create a higher-quality voice. No application is required for demo and evaluation purposes. However, Microsoft restricts and selects the recording and testing samples for use with CNV lite. You must apply for full access to CNV professional in order to deploy and use the CNV lite model for business purpose. In that case, request access on the [intake form](https://aka.ms/customneural).
+- Custom neural voice (CNV) lite is a project type where can demo and evaluate custom neural voice before investing in professional recordings to create a higher-quality voice. No application is required for demo and evaluation purposes. However, Microsoft restricts and selects the recording and testing samples for use with CNV lite. You must apply for full access to CNV professional in order to deploy and use the CNV lite model for business purpose. In that case, request access on the [intake form](https://aka.ms/customneural).
 
 With a CNV lite project, you record your voice online by reading 20-50 pre-defined scripts provided by Microsoft. After you've recorded at least 20 samples, you can start to train a model. Once the model is trained successfully, you can review the model and check out 20 output samples produced with another set of pre-defined scripts.
 
@@ -25,7 +25,7 @@ See the [supported languages](language-support.md?tabs=tts) for custom neural vo
 
 The following table summarizes key differences between the CNV lite and CNV professional project types.  
 
-|**Items**|**Lite (Preview)**| **Pro**|
+|**Items**|**Lite**| **Pro**|
 |---------------|---------------|---------------|
 |Target scenarios |Demonstration or evaluation |Professional scenarios like brand and character voices for chat bots, or audio content reading.|   
 |Training data |Record online using Speech Studio |Bring your own data. Recording in a professional studio is recommended. |   
