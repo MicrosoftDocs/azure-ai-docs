@@ -80,7 +80,7 @@ The following steps will allow you to utilize any chat-completion model that is 
 
  
 
-1. Deploy your desired model through serverless API. Model will show up on your ‘Models + Endpoints’ page. 
+1. Deploy your desired model through serverless API. Model will show up on your **Models + Endpoints** page. 
 
 1. Click on model name to see model details, where you'll find your model's target URI and key. 
 
