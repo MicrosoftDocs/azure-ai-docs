@@ -22,28 +22,26 @@ Query-time access control ensures that users only retrieve search results they'r
 
 This section lists the order of operations for ACL enforcement at query time.
 
-### 1. User Permissions Input  
+### 1. User permissions input  
 The end-user application sends user permission as part of the search query request. The following table lists the source of the user permissions Azure AI Search uses for ACL enforcement:
 
-| Permission Type | Source |
+| Permission type | Source |
 | - | - |
 | userIds | `oid` from `x-ms-query-source-authorization` token |
 | groupIds | Group membership fetched using the [Microsoft Graph](/graph/api/resources/groups-overview) API |
 | rbacScope | Permissions the user from `x-ms-query-source-authorization` has on a storage container |
 
-### 2. Security Filter Construction  
+### 2. Security filter construction  
 Azure AI Search dynamically constructs security filters based on the user permissions provided. These security filters are automatically appended to any filters that might come in with the query if the index has the permission filter option enabled.
 
-### 3. Results Filtering  
+### 3. Results filtering  
 The security filter efficiently matches the userIds, groupIds, and rbacScope from the user against each list of ACLs in every document in the search index to limit the results returned to ones the user has access to. It's important to note that each filter is applied independently and a document is considered authorized if any filter succeeds. For example, if a user has access to a document through userIds but not through groupIds, the document is still considered valid and returned to the user.
-
----  
 
 ## Limitations
 - If ACL evaluation fails (for example, Graph API is unavailable), the service returns **5xx** and does **not** return a partially filtered result set.
-- Document visibility requires both:  
-  1) the calling application’s RBAC role (Authorization header), and  
-  2) the user identity carried by **x-ms-query-source-authorization**.
+- Document visibility requires both:
+  - the calling application’s RBAC role (Authorization header), and  
+  - the user identity carried by **x-ms-query-source-authorization**.
 
 ## Next steps
 * [How to Index Permission Information](tutorial-adls-gen2-indexer-acls.md) provides a detailed walkthrough of how to set up an index with ACLs using Azure Search indexers.
