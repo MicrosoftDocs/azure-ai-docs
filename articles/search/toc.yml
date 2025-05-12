@@ -92,14 +92,16 @@ items:
       href: search-markdown-data-tutorial.md
     - name: Index multiple Azure data sources
       href: tutorial-multiple-data-sources.md
-    - name: Index encrypted blobs
-      href: search-howto-index-encrypted-blobs.md
-    - name: Index permissioned ADLS Gen2 blobs using indexers
-      href: tutorial-adls-gen2-indexer-acls.md
-    - name: Index ACLs and RBAC metadata using REST API
-      href: search-index-access-control-lists-and-rbac-push-api.md
     - name: Create a custom analyzer
       href: tutorial-create-custom-analyzer.md
+  - name: Security tutorials
+    items:
+    - name: Index encrypted blobs
+      href: search-howto-index-encrypted-blobs.md
+    - name: Index permissioned ADLS Gen2 blobs
+      href: tutorial-adls-gen2-indexer-acls.md
+    - name: Index any permission metadata
+      href: search-index-access-control-lists-and-rbac-push-api.md
   - name: Multimodal indexing tutorials
     items:
     - name: Use document extraction and multimodal embeddings
@@ -209,10 +211,10 @@ items:
       href: ./security-controls-policy.md
     - name: Security baseline
       href: /security/benchmark/azure/baselines/cognitive-search-security-baseline?toc=/azure/search/TOC.json
-    - name: Query with permission filters
-      href: search-query-access-control-rbac-enforcement.md
     - name: Document-level security
       href: search-document-level-access-overview.md
+    - name: Query with permission filters
+      href: search-query-access-control-rbac-enforcement.md
 - name: How-to guides
   items:
   - name: Service management
