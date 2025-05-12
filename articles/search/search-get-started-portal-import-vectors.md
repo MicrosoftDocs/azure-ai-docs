@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: quickstart
-ms.date: 05/08/2025
+ms.date: 05/12/2025
 ---
 
 # Quickstart: Vectorize text in the Azure portal
@@ -259,9 +259,9 @@ For the model catalog, you should have an [Azure AI Foundry project](/azure/ai-f
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and go to your Azure AI Search service.
 
-1. On the **Overview** page, select **Import and vectorize data wizard**.
+1. On the **Overview** page, select **Import and vectorize data**.
 
-   :::image type="content" source="media/search-get-started-portal-import-vectors/command-bar-quickstart-wizard.png" alt-text="Screenshot of the command to open the wizard for importing and vectorizing data.":::
+   :::image type="content" source="media/search-get-started-portal-import-vectors/command-bar.png" alt-text="Screenshot of the command to open the wizard for importing and vectorizing data.":::
 
 1. Select your data source:
 
@@ -272,6 +272,8 @@ For the model catalog, you should have an [Azure AI Foundry project](/azure/ai-f
    + OneLake
 
 1. Select the **RAG** tile.
+
+   :::image type="content" source="media/search-get-started-portal-import-vectors/wizard-scenarios-rag.png" alt-text="Screenshot of the RAG tile in the wizard." border="true" lightbox="media/search-get-started-portal-import-vectors/wizard-scenarios-rag.png":::
 
 ## Connect to your data
 
