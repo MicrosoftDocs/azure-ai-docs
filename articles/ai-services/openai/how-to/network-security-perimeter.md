@@ -114,7 +114,7 @@ The `publicNetworkAccess` setting determines the Azure OpenAI services associati
 5. Under Logs, select `allLogs`. `allLogs` ensures all inbound and outbound network access to resources in your network security perimeter is logged.
 6. Under Destination details, select Archive to a storage account or Send to Log Analytics workspace. The storage account must be in the same region as the network security perimeter. You can either use an existing storage account or create a new one. A Log Analytics workspace can be in a different region than the one used by the network security perimeter. You can also select any of the other applicable destinations.
 
-    :::image type="content" source="../media/network-security-perimeter/log-catagories.png" alt-text="A screenshot showing the available log categories." lightbox="../media/network-security-perimeter/log-catagories.png":::
+    :::image type="content" source="../media/network-security-perimeter/log-categories.png" alt-text="A screenshot showing the available log categories." lightbox="../media/network-security-perimeter/log-categories.png":::
 
 7. Select Save to create the diagnostic setting and start logging network access.
 
@@ -167,7 +167,7 @@ To add an inbound access rule in the Azure portal:
 
 4. Select **Inbound access rules** in the left-hand menu.
 
-    :::image type="content" source="../media/network-security-perimeter/inbound-network-navigation.png" alt-text="A screenshot showing button to navigate to the inbound access rules." lightbox="../media/network-security-perimeter/inbound-network-navigation.png":::
+    :::image type="content" source="../media/network-security-perimeter/inbound-network-navigation.png" alt-text="A screenshot showing the button to navigate to the inbound access rules." lightbox="../media/network-security-perimeter/inbound-network-navigation.png":::
 
 5. Select **Add**.
 
