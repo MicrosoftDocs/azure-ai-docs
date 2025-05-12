@@ -27,8 +27,6 @@ Analyzers are the core processing units in Content Understanding that define how
 * Content extraction configurations - determining what foundational elements to extract.
 * Field extraction schemas - specifying how to get the fields(extract/generate/classify) from the content.
 
-:::image type="content" source="../concepts/analyzer-architecture.png" alt-text="Screenshot of Analyzer architecture.":::
-
 Key benefits of analyzers include:
 
 * **Consistency**: Analyzers ensure uniform processing across all content by applying the same extraction rules and schemas, delivering reliable and predictable results.
@@ -85,7 +83,7 @@ The value lies in its ability to handle multiple content types (text, audio, vid
 
 Each modality supports specific generation approaches optimized for that content type. We support the following methods across modalities.
 > [!NOTE]
-> Extract method is only supported for documents for now. To learn more about modality support, *see* [field schema limits](service-limits.md#Field-schema-limits) page.
+> Extract method is only supported for documents for now. To learn more about modality support, *see* [field schema limits](../service-limits.md#Field-schema-limits) page.
 >
 > There's a distinction between digital documents (PDFs, DOCX, etc.) and text documents (plain text, markdown, HTML) in terms of content extraction capabilities.
 
@@ -139,7 +137,7 @@ Azure AI Content Understanding supports three processing locations:
 
 1. **Video Content Analysis**: A media company with a global audience wants to analyze video content for metadata extraction and tagging. Choosing a global processing location enables optimization of performance and scalability, ensuring efficient processing of large volumes of video data.
 
-To learn more, *see* [Azure OpenAI Deployment Data processing Locations](../../openai/how-to/deployment-types.ms#azure-openai-deployment-data-processing-locations).
+To learn more, *see* [Azure OpenAI Deployment Data processing Locations](../../openai/how-to/deployment-types.md#azure-openai-deployment-data-processing-locations).
 
 ## Next steps
 

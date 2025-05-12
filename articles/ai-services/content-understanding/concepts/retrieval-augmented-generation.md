@@ -62,7 +62,7 @@ Content extraction forms the foundation of effective **RAG** systems by transfor
 * **Audio:** Generate speaker-aware transcriptions that accurately capture spoken content while automatically detecting and processing multiple languages.
 * **Video:** Video data is segmented into meaningful units, transcribe spoken content, and provide scene descriptions while addressing context window limitations in generative AI models.
 
-While content extraction provides a strong foundation for indexing and retrieval, it may not fully address domain-specific needs or provide deeper contextual insights. Learn more about [content extraction](capabilities.md)
+While content extraction provides a strong foundation for indexing and retrieval, it may not fully address domain-specific needs or provide deeper contextual insights. Learn more about [content extraction](analyzers-overview.md)
 
 ### Field Extraction: Enhance knowledge bases for better retrieval
 
@@ -75,7 +75,7 @@ Field extraction complements content extraction by generating targeted metadata 
 
 Combining content extraction with field extraction enables organizations to create a contextually rich knowledge base optimized for indexing, retrieval, and **RAG** scenarios, ensuring more accurate and meaningful responses to user queries.
 
-Learn more about [field extraction](capabilities.md#field-extraction).
+Learn more about [field extraction](analyzers-overview.md#field-extraction).
 
 #### Analyzer and schema configuration
 
@@ -510,5 +510,5 @@ Content Understanding supports the following development options:
 * Try our **RAG** [code samples.](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples)
 * Follow our [**RAG** Tutorial](../tutorial/build-rag-solution.md)
 * Learn more about [document](../document/overview.md), [image](../image/overview.md), [audio](../audio/overview.md), [video](../video/overview.md) capabilities.
-* Learn more about Content Understanding [**best practices**](../concepts/best-practices.md) and [**capabilities**](../concepts/capabilities.md).
+* Learn more about Content Understanding [**best practices**](../concepts/best-practices.md) and [**capabilities**](../concepts/analyzers-overview.md).
 * Review Content Understanding [**code samples**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main)
