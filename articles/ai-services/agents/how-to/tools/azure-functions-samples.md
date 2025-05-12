@@ -410,7 +410,7 @@ The input `CorrelationId` is the same as output.
 
 > [!TIP]
 > Place multiple messages to input queue and keep second internet browser window with the output queue open and hit the refresh button on the portal user interface, so that you won't miss the message. If the message instead went to `azure-function-foo-input-poison` queue, the function completed with error, check your setup.
-After testing the function and made sure it works, make sure that the Azure AI Project has the following roles for the storage account: `Storage Account Contributor`, `Storage Blob Data Contributor`, `Storage File Data Privileged Contributor`, `Storage Queue Data Contributor` and `Storage Table Data Contributor`. Now the function is ready to be used by the agent.
+After testing the function and making sure it works, make sure that the Azure AI Project has the following roles for the storage account: `Storage Account Contributor`, `Storage Blob Data Contributor`, `Storage File Data Privileged Contributor`, `Storage Queue Data Contributor` and `Storage Table Data Contributor`. Now the function is ready to be used by the agent.
 
 In the example below we're calling function "foo," which responds "Bar."
 
