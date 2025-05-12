@@ -22,7 +22,7 @@ Azure OpenAI provides customers with choices on the hosting structure that fits 
 - **Standard** is offered with a global deployment option, routing traffic globally to provide higher throughput.
 - **Provisioned** is also offered with a global deployment option, allowing customers to purchase and deploy provisioned throughput units across Azure global infrastructure.
 
-All deployments can perform the exact same inference operations, however the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types see our [deployment types guide](../../openai/how-to/deployment-types.md).
+All deployments can perform the exact same inference operations, however the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types see [deployment types guide](../../openai/how-to/deployment-types.md).
 
 Azure AI Agent Service supports the following Azure OpenAI models in the listed regions.
 
@@ -59,9 +59,9 @@ To use these models, you can use [Azure AI Foundry portal](https://ai.azure.com/
 ```python
 agent = project_client.agents.create_agent( model="llama-3", name="my-agent", instructions="You are a helpful agent" ) 
 ```
-## Azure AI Foundry Models
+## Azure AI foundry models
 
-### Models with Tool-Calling 
+### Models with tool-calling 
 
 To best support agentic scenarios, we recommend using models that support tool-calling. The Azure AI Agent Service currently supports all agent-compatible models from the Azure AI Foundry model catalog. 
 
@@ -72,7 +72,7 @@ To use these models, use the [Azure AI Foundry portal](https://ai.azure.com/) to
 > [!NOTE]
 > This option should only be used for open-source models (for example, Cepstral, Mistral, Llama) and not for OpenAI models, which are natively supported in the service. This option should also only be used for models that support tool-calling. 
 
-### Models without Tool-Calling 
+### Models without tool-calling 
 
 Though tool-calling support is a core capability for agentic scenarios, we now provide the ability to use models that don’t support tool-calling in our API and SDK. This option can be helpful when you have specific use-cases that don’t require tool-calling. 
 
@@ -86,7 +86,7 @@ The following steps will allow you to utilize any chat-completion model that is 
 
 1. Create a new Serverless connection on **Connected Resources** page, using the target URI and key. 
 
-Model can now be referenced in your code (`Target URI` + `@` + `Model Name`), for example: 
+The model can now be referenced in your code (`Target URI` + `@` + `Model Name`), for example: 
 
 `Model=https://Phi-4-mejco.eastus.models.ai.azure.com/@Phi-4-mejco`
 
