@@ -102,7 +102,7 @@ The service operates in two stages. The first stage, content extraction, involve
 
 The first pass is all about extracting a first set of details—who's speaking, where are the cuts, and which faces recur. It creates a solid metadata backbone that later steps can reason over.
 
-* **Transcription:** Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Sentence-level timestamps are available if `returnDetails=true` is set. Content Understanding supports the full set of Azure AI Speech speech-to-text languages. For sepecifics on the supported languages see [Language and region support](../language-region-support.md) .Additionally, the following transcription details are important to consider:
+* **Transcription:** Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Sentence-level timestamps are available if `returnDetails=true` is set. Content Understanding supports the full set of Azure AI Speech speech-to-text languages. For sepecifics on the supported languages see [Language and region support](../language-region-support.md#Video) .Additionally, the following transcription details are important to consider:
   * **Diarization:** Distinguishes between speakers in a conversation in the output, attributing parts of the transcript to specific speakers.
   * **Multilingual transcription:** Generates multilingual transcripts. Language/locale is applied per phrase in the transcript. Phrases output when `returnDetails=true` is set. Deviating from language detection this feature is enabled when no language/locale is specified or language is set to `auto`.
 
