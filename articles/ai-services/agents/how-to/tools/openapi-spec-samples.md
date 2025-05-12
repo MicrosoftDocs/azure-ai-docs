@@ -20,7 +20,7 @@ Use this article to find step-by-step instructions and code samples for using Op
 :::zone pivot="portal"
 
 1. Go to the [Azure AI Foundry portal](https://ai.azure.com/). in the **Create and debug** screen or **Agent playground**, select your agent.
-1. Scroll down the **Setup** pane on the right to **action**. Then select **Add**.
+1. Scroll down the **Setup** pane to **action**. Then select **Add**.
 
     :::image type="content" source="../../media/tools/action-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/action-tools.png":::
    
@@ -32,7 +32,7 @@ Use this article to find step-by-step instructions and code samples for using Op
 
    :::image type="content" source="../../media/tools/open-api-details.png" alt-text="A screenshot showing the openAPI tool details in the Azure AI Foundry portal." lightbox="../../media/tools/open-api-details.png":::
 
-1. Click Next and select your authentication method. Choose `connection` for `API key`.
+1. Select **Next** and select your authentication method. Choose `connection` for `API key`.
    1. If you choose `connection`, you need to select the custom keys connection you have created before.
    1. If you choose `managed identity`, you need to input the audience to get your token. An example of an audience would be `https://cognitiveservices.azure.com/` to connect to Azure AI Services. Make sure you have already set up authentication and role assignment (as described in the [section](./openapi-spec.md#authenticating-with-managed-identity-microsoft-entra-id) above).
       
@@ -44,115 +44,88 @@ Use this article to find step-by-step instructions and code samples for using Op
 
 :::zone pivot="csharp"
 
-## Step 1: Create a project client
-Create a client object, which will contain the connection string for connecting to your AI project and other resources.
+## Using the .NET SDK
+
+In this example we'll demonstrate the possibility to use services with [OpenAPI Specification](https://en.wikipedia.org/wiki/OpenAPI_Specification) with the agent. We will use [wttr.in](https://wttr.in) service to get weather and its specification file [weather_openapi.json](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/tests/Samples/Agent/weather_openapi.json).
+
+1. First get `ProjectEndpoint` and `ModelDeploymentName` from config and create a `PersistentAgentsClient`. Also, create an `OpenApiAnonymousAuthDetails` and `OpenApiToolDefinition` from config. 
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Runtime.CompilerServices;
-using System.Text.Json.Serialization;
-using System.Text.Json;
-using System.Threading.Tasks;
-using Azure.Core.TestFramework;
-using NUnit.Framework;
-using Newtonsoft.Json.Linq;
-
-namespace Azure.AI.Projects.Tests;
-
-public partial class Sample_Agent_OpenAPI : SamplesBase<AIProjectsTestEnvironment>
-{
-    private static string GetFile([CallerFilePath] string pth = "")
-    {
-        var dirName = Path.GetDirectoryName(pth) ?? "";
-        return Path.Combine(dirName, "weather_openapi.json");
-    }
-
-    [Test]
-    public async Task OpenAPICallingExample()
-    {
-        var connectionString = TestEnvironment.AzureAICONNECTIONSTRING;
-        var storageQueueUri = TestEnvironment.STORAGE_QUEUE_URI;
-        AgentsClient client = new(connectionString, new DefaultAzureCredential());
-        var file_path = GetFile();
-```
-
-
-## Step 2: Create the OpenAPI Spec tool definition
-You might want to store the OpenAPI specification in another file and import the content to initialize the tool. The sample code is using `anonymous` as the authentication type.
-
-```csharp
-    OpenApiAnonymousAuthDetails oaiAuth = new();
-    OpenApiToolDefinition openapiTool = new(
+    var projectEndpoint = configuration["ProjectEndpoint"];
+    var modelDeploymentName = configuration["ModelDeploymentName"];
+    var openApiSpec = configuration["OpenApiSpec"];
+    PersistentAgentsClient client = new(new Uri(projectEndpoint), new DefaultAzureCredential());
+    
+    var spec = BinaryData.FromBytes(File.ReadAllBytes(openApiSpec));
+    OpenApiAnonymousAuthDetails openApiAnonAuth = new();
+    OpenApiToolDefinition openApiTool = new(
         name: "get_weather",
         description: "Retrieve weather information for a location",
-        spec: BinaryData.FromBytes(File.ReadAllBytes(file_path)),
-        auth: oaiAuth
+        spec: spec,
+        auth: openApiAnonAuth,
+        defaultParams: ["format"]
     );
 ```
 
-## Step 3: Create an agent and a thread
+2. Next we'll need to create an agent.
 
 ```csharp
-Response<Agent> agentResponse = await client.CreateAgentAsync(
-            model: "gpt-4o",
-            name: "azure-function-agent-foo",
-            instructions: "You are a helpful assistant.",
-            tools: new List<ToolDefinition> { openapiTool }
-            );
-Agent agent = agentResponse.Value;
-#endregion
-Response<AgentThread> threadResponse = await client.CreateThreadAsync();
-AgentThread thread = threadResponse.Value;
+    PersistentAgent agent = client.CreateAgent(
+        model: modelDeploymentName,
+        name: "Open API Tool Calling Agent",
+        instructions: "You are a helpful agent.",
+        tools: [openApiTool]
+    );
 ```
 
-
-## Step 4: Create a run and check the output
-Create a run and observe that the model uses the OpenAPI Spec tool to provide a response to the user's question.
+3. Now we'll create a `ThreadRun` and wait until it is complete. If the run will not be successful, we'll print the last error.
 
 
 ```csharp
-        #region Snippet:OpenAPIHandlePollingWithRequiredAction
-        Response<ThreadMessage> messageResponse = await client.CreateMessageAsync(
-            thread.Id,
-            MessageRole.User,
-            "What's the weather in Seattle?");
-        ThreadMessage message = messageResponse.Value;
+    PersistentAgentThread thread = client.CreateThread();
+    ThreadMessage message = client.CreateMessage(
+        thread.Id,
+        MessageRole.User,
+        "What's the weather in Seattle?");
+    
+    ThreadRun run = client.CreateRun(thread, agent);
+    
+    do
+    {
+        Thread.Sleep(TimeSpan.FromMilliseconds(500));
+        run = client.GetRun(thread.Id, run.Id);
+    }
+    while (run.Status == RunStatus.Queued
+        || run.Status == RunStatus.InProgress
+        || run.Status == RunStatus.RequiresAction);
+```
 
-        Response<ThreadRun> runResponse = await client.CreateRunAsync(thread, agent);
+4. Print the messages to the console in chronological order.
 
-        do
+```csharp
+    Pageable<ThreadMessage> messages = client.Messages.GetMessages(
+        threadId: thread.Id,
+        order: ListSortOrder.Ascending);
+
+    foreach (ThreadMessage threadMessage in messages)
+    {
+        foreach (MessageContent content in threadMessage.ContentItems)
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(500));
-            runResponse = await client.GetRunAsync(thread.Id, runResponse.Value.Id);
-        }
-        while (runResponse.Value.Status == RunStatus.Queued
-            || runResponse.Value.Status == RunStatus.InProgress
-            || runResponse.Value.Status == RunStatus.RequiresAction);
-        #endregion
-
-        Response<PageableList<ThreadMessage>> afterRunMessagesResponse
-            = await client.GetMessagesAsync(thread.Id);
-        IReadOnlyList<ThreadMessage> messages = afterRunMessagesResponse.Value.Data;
-
-        // Note: messages iterate from newest to oldest, with the messages[0] being the most recent
-        foreach (ThreadMessage threadMessage in messages)
-        {
-            Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
-            foreach (MessageContent contentItem in threadMessage.ContentItems)
+            switch (content)
             {
-                if (contentItem is MessageTextContent textItem)
-                {
-                    Console.Write(textItem.Text);
-                }
-                else if (contentItem is MessageImageFileContent imageFileItem)
-                {
-                    Console.Write($"<image from ID: {imageFileItem.FileId}");
-                }
-                Console.WriteLine();
+                case MessageTextContent textItem:
+                    Console.WriteLine($"[{threadMessage.Role}]: {textItem.Text}");
+                    break;
             }
         }
+    }
+```
+
+5. Finally, we delete all the resources we have created in this sample.
+
+```csharp
+    client.DeleteThread(thread.Id);
+    client.DeleteAgent(agent.Id);
 ```
 
 :::zone-end
@@ -259,7 +232,7 @@ Create a run and observe that the model uses the OpenAPI Spec tool to provide a 
 
 :::zone pivot="rest-api"
 
-## Step 1: Create the OpenAPI Spec tool definition, agent and thread
+## Step 1: Create the OpenAPI Spec tool definition, agent, and thread
  
 You might want to store the OpenAPI specification in another file and import the content to initialize the tool. This example is using `anonymous` as the authentication type.
 
@@ -393,4 +366,3 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-1
 ```
 
 :::zone-end
-
