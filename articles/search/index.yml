@@ -34,7 +34,7 @@ landingContent:
           - text: Create a search service
             url: search-create-service-portal.md
           - text: Configure a search service
-            url: search-search-manage.md
+            url: search-manage.md
           - text: Create a search index
             url: search-get-started-portal.md
           - text: Create a vector index
