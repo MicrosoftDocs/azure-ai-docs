@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Get started with Azure AI Foundry
+title: "Quickstart: Get started with Azure AI Foundry"
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to start using the Azure AI Foundry portal and the Azure AI Foundry SDK.
 manager: scottpolly
