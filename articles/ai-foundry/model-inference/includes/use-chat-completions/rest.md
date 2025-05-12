@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use chat completions API with models deployed to Azure AI model inference in Azure AI services.
+This article explains how to use chat completions API with models deployed in Azure AI Foundry Models.
 
 ## Prerequisites
 

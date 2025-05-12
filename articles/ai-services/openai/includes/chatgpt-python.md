@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Use Azure OpenAI Service with the Python SDK'
+title: 'Quickstart: Use Azure OpenAI in Azure AI Foundry Models with the Python SDK'
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the Python SDK. 
 manager: nitinme
@@ -17,7 +17,7 @@ ms.date: 11/15/2023
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [Python 3.8 or later version](https://www.python.org?azure-portal=true).
 - The following Python libraries: os.
-- An Azure OpenAI Service resource with either the `gpt-35-turbo` or the `gpt-4` models deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- An Azure OpenAI in Azure AI Foundry Models resource with either the `gpt-35-turbo` or the `gpt-4` models deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 
 ## Set up

@@ -24,7 +24,7 @@ In this article, you'll learn how to trace your application with Azure AI Foundr
 
 - An [Azure Subscription](https://azure.microsoft.com/).
 - An Azure AI project, see [Create a project in Azure AI Foundry portal](../create-projects.md).
-- An AI model supporting the [Azure AI model inference API](https://aka.ms/azureai/modelinference) deployed through Azure AI Foundry.
+- An AI model supporting the [Azure AI Foundry Models API](https://aka.ms/azureai/modelinference) deployed through Azure AI Foundry.
 - If using Python, you need Python 3.8 or later installed, including pip.
 - If using JavaScript, the supported environments are LTS versions of Node.js.
 

@@ -25,7 +25,7 @@ Deployment options vary depending on the model offering:
 
 Azure AI Foundry offers four different deployment options:
 
-|Name                           | Azure OpenAI | Azure AI model inference | Standard deployment | Managed compute |
+|Name                           | Azure OpenAI | Azure AI Foundry Models | Standard deployment | Managed compute |
 |-------------------------------|----------------------|-------------------|----------------|-----------------|
 | Which models can be deployed? | [Azure OpenAI models](../../ai-services/openai/concepts/models.md)        | [Azure OpenAI models and Standard deployment](../../ai-foundry/model-inference/concepts/models.md) | [Standard deployment](../how-to/model-catalog-overview.md) | [Open and custom models](../how-to/model-catalog-overview.md#availability-of-models-for-deployment-as-managed-compute) |
 | Deployment resource           | Azure OpenAI resource | Azure AI services resource | AI project resource | AI project resource |
@@ -37,7 +37,7 @@ Azure AI Foundry offers four different deployment options:
 | Key-less authentication       | Yes | Yes | No  | No  |
 | Best suited when              | You're planning to use only OpenAI models | You're planning to take advantage of the flagship models in Azure AI catalog, including OpenAI. | You're planning to use a single model from a specific provider (excluding OpenAI). | If you plan to use open models and you have enough compute quota available in your subscription. |
 | Billing bases                 | Token usage & [provisioned throughput units](../../ai-services/openai/concepts/provisioned-throughput.md)        | Token usage       | Token usage<sup>1</sup>      | Compute core hours<sup>2</sup> |
-| Deployment instructions       | [Deploy to Azure OpenAI](../how-to/deploy-models-openai.md) | [Deploy to Azure AI model inference](../model-inference/how-to/create-model-deployments.md) | [Deploy to Standard deployment](../how-to/deploy-models-serverless.md) | [Deploy to Managed compute](../how-to/deploy-models-managed.md) |
+| Deployment instructions       | [Deploy to Azure OpenAI](../how-to/deploy-models-openai.md) | [Deploy to Foundry Models](../model-inference/how-to/create-model-deployments.md) | [Deploy to Standard deployment](../how-to/deploy-models-serverless.md) | [Deploy to Managed compute](../how-to/deploy-models-managed.md) |
 
 <sup>1</sup> A minimal endpoint infrastructure is billed per minute. You aren't billed for the infrastructure that hosts the model in pay-as-you-go. After you delete the endpoint, no further charges accrue.
 
@@ -50,7 +50,7 @@ Azure AI Foundry offers four different deployment options:
 
 Azure AI Foundry encourages you to explore various deployment options and choose the one that best suites your business and technical needs. In general, Consider using the following approach to select a deployment option:
 
-* Start with [Azure AI model inference](../../ai-foundry/model-inference/overview.md), which is the option with the largest scope. This option allows you to iterate and prototype faster in your application without having to rebuild your architecture each time you decide to change something. If you're using Azure AI Foundry hubs or projects, enable this option by [turning on the Azure AI model inference feature](../model-inference/how-to/quickstart-ai-project.md#configure-the-project-to-use-azure-ai-model-inference).
+* Start with [Foundry Models](../../ai-foundry/model-inference/overview.md), which is the option with the largest scope. This option allows you to iterate and prototype faster in your application without having to rebuild your architecture each time you decide to change something. If you're using Azure AI Foundry hubs or projects, enable this option by [turning on the Foundry Models feature](../model-inference/how-to/quickstart-ai-project.md#configure-the-project-to-use-foundry-models).
 
 * When you're looking to use a specific model:
 
@@ -63,8 +63,8 @@ Azure AI Foundry encourages you to explore various deployment options and choose
 
 ## Related content
 
-* [Configure your AI project to use Azure AI model inference](../../ai-foundry/model-inference/how-to/quickstart-ai-project.md)
-* [Add and configure models to Azure AI model inference](../model-inference/how-to/create-model-deployments.md)
+* [Configure your AI project to use Foundry Models](../../ai-foundry/model-inference/how-to/quickstart-ai-project.md)
+* [Add and configure models to Foundry Models](../model-inference/how-to/create-model-deployments.md)
 * [Deploy Azure OpenAI models with Azure AI Foundry](../how-to/deploy-models-openai.md)
 * [Deploy open models with Azure AI Foundry](../how-to/deploy-models-managed.md)
 * [Model catalog and collections in Azure AI Foundry portal](../how-to/model-catalog-overview.md)

@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Use Azure OpenAI Service with the C# SDK'
+title: 'Quickstart: Use Azure OpenAI in Azure AI Foundry Models with the C# SDK'
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the C# SDK.
 manager: nitinme
@@ -16,7 +16,7 @@ ms.date: 3/11/2025
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - The [.NET 7 SDK](https://dotnet.microsoft.com/download/dotnet/7.0)
-- An Azure OpenAI Service resource with the `gpt-4o` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- An Azure OpenAI in Azure AI Foundry Models resource with the `gpt-4o` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 ### Microsoft Entra ID prerequisites
 

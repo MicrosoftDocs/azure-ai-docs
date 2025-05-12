@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Use the OpenAI Service via PowerShell"
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with PowerShell.
 manager: nitinme
 ms.service: azure-ai-openai
@@ -12,7 +12,7 @@ ms.date: 08/28/2023
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>
 - <a href="https://aka.ms/installpowershell" target="_blank">You can use either the latest version, PowerShell 7, or Windows PowerShell 5.1.</a>
-- An Azure OpenAI Service resource with a model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- An Azure OpenAI in Azure AI Foundry Models resource with a model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 ## Retrieve key and endpoint
 

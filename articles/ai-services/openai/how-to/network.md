@@ -85,7 +85,7 @@ To create a virtual network, use the following steps:
 
 ## Configure gateway and client for local network access
 
-To access the Azure OpenAI Service from your local or on-premises client machines, there are two approaches. One approach is to configure a virtual machine deployed in the same virtual network. Another approach is to configure Azure VPN Gateway and Azure VPN Client.
+To access the Azure OpenAI in Azure AI Foundry Models from your local or on-premises client machines, there are two approaches. One approach is to configure a virtual machine deployed in the same virtual network. Another approach is to configure Azure VPN Gateway and Azure VPN Client.
 
 For guidelines to set up a virtual network gateway for your virtual network, see [Tutorial – Create & manage a VPN gateway](/azure/vpn-gateway/tutorial-create-gateway-portal#VNetGateway). To add point-to-site configuration, and enable Microsoft Entra ID based authentication, see [Configure a VPN gateway for Microsoft Entra ID](/azure/vpn-gateway/openvpn-azure-ad-tenant#enable-authentication) authentication. Download the Azure VPN Client profile configuration package, unzip, and import the AzureVPN/azurevpnconfig.xml file to your Azure VPN client.
 

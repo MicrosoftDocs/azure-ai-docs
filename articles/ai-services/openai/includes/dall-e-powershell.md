@@ -1,14 +1,14 @@
 ---
-title: "Quickstart: Generate images with Azure OpenAI Service using PowerShell"
-titleSuffix: Azure OpenAI Service
-description: Learn how to generate images with Azure OpenAI Service by using PowerShell and the endpoint and access keys for your Azure OpenAI resource.
+title: "Quickstart: Generate images with Azure OpenAI in Azure AI Foundry Models using PowerShell"
+titleSuffix: Azure OpenAI
+description: Learn how to generate images with Azure OpenAI by using PowerShell and the endpoint and access keys for your Azure OpenAI resource.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
 ms.date: 3/21/2025
 ---
 
-Use this guide to get started calling the Azure OpenAI Service image generation APIs with PowerShell.
+Use this guide to get started calling the Azure OpenAI in Azure AI Foundry Models image generation APIs with PowerShell.
 
 ## Prerequisites
 

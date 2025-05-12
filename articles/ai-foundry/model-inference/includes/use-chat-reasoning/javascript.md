@@ -9,7 +9,7 @@ author: santiagxf
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use the reasoning capabilities of chat completions models deployed to Azure AI model inference in Azure AI services.
+This article explains how to use the reasoning capabilities of chat completions models deployed in Azure AI Foundry Models.
 
 [!INCLUDE [about-reasoning](about-reasoning.md)]
 
@@ -197,7 +197,7 @@ Some models support the use of tools or structured outputs (including JSON-schem
 
 ### Apply Guardrails and controls
 
-The Azure AI model inference API supports [Azure AI Content Safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI Content Safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Foundry Models API supports [Azure AI Content Safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI Content Safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
 The following example shows how to handle events when the model detects harmful content in the input prompt.
 

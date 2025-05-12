@@ -1,5 +1,5 @@
 ---
-title: What's new in Azure OpenAI Service?
+title: What's new in Azure OpenAI in Azure AI Foundry Models?
 description: Learn about the latest news and features updates for Azure OpenAI.
 manager: nitinme
 author: mrbullwinkle
@@ -14,9 +14,9 @@ ms.date: 04/16/2025
 recommendations: false
 ---
 
-# What's new in Azure OpenAI Service
+# What's new in Azure OpenAI in Azure AI Foundry Models
 
-This article provides a summary of the latest releases and major documentation updates for Azure OpenAI Service.
+This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
 ## April 2025
 
@@ -146,7 +146,7 @@ To learn more about the advanced `o1` series models see, [getting started with o
 
 ### Preference fine-tuning (preview)
 
-[Direct preference optimization (DPO)](./how-to/fine-tuning-direct-preference-optimization.md) is a new alignment technique for large language models, designed to adjust model weights based on human preferences. Unlike reinforcement learning from human feedback (RLHF), DPO does not require fitting a reward model and uses simpler data (binary preferences) for training. This method is computationally lighter and faster, making it equally effective at alignment while being more efficient. DPO is especially useful in scenarios where subjective elements like tone, style, or specific content preferences are important. We’re excited to announce the public preview of DPO in Azure OpenAI Service, starting with the `gpt-4o-2024-08-06` model.
+[Direct preference optimization (DPO)](./how-to/fine-tuning-direct-preference-optimization.md) is a new alignment technique for large language models, designed to adjust model weights based on human preferences. Unlike reinforcement learning from human feedback (RLHF), DPO does not require fitting a reward model and uses simpler data (binary preferences) for training. This method is computationally lighter and faster, making it equally effective at alignment while being more efficient. DPO is especially useful in scenarios where subjective elements like tone, style, or specific content preferences are important. We’re excited to announce the public preview of DPO in Azure OpenAI, starting with the `gpt-4o-2024-08-06` model.
 
 For fine-tuning model region availability, see the [models page](./concepts/models.md#fine-tuning-models).
 
@@ -360,7 +360,7 @@ Unlike the previous early access playground, the [Azure AI Foundry portal](https
 > [!NOTE]
 > Prompts and completions made through the early access playground (preview) might be processed in any Azure OpenAI region, and are currently subject to a 10 request per minute per Azure subscription limit. This limit might change in the future.
 >
-> Azure OpenAI Service abuse monitoring is enabled for all early access playground users even if approved for modification; default content filters are enabled and cannot be modified.
+> Azure OpenAI abuse monitoring is enabled for all early access playground users even if approved for modification; default content filters are enabled and cannot be modified.
 
 To test out GPT-4o `2024-08-06`, sign-in to the Azure AI early access playground (preview) using this [link](https://aka.ms/oai/docs/earlyaccessplayground).
 
@@ -620,7 +620,7 @@ You can now access DALL-E 3 with an Azure OpenAI resource in the `East US` or `A
 
 ### Model deprecations and retirements
 
-We have added a page to track [model deprecations and retirements](./concepts/model-retirements.md) in Azure OpenAI Service. This page provides information about the models that are currently available, deprecated, and retired.
+We have added a page to track [model deprecations and retirements](./concepts/model-retirements.md) in Azure OpenAI. This page provides information about the models that are currently available, deprecated, and retired.
 
 ### 2024-03-01-preview API released
 
@@ -664,7 +664,7 @@ To simplify migration between different versions of the GPT-3.5-Turbo models (in
 
 ### GPT-4-0125-preview model available
 
-The `gpt-4` model version `0125-preview` is now available on Azure OpenAI Service in the East US, North Central US, and South Central US regions.  Customers with deployments of `gpt-4` version `1106-preview` will be automatically upgraded to `0125-preview` in the coming weeks.  
+The `gpt-4` model version `0125-preview` is now available on Azure OpenAI in the East US, North Central US, and South Central US regions.  Customers with deployments of `gpt-4` version `1106-preview` will be automatically upgraded to `0125-preview` in the coming weeks.  
 
 For information on model regional availability and upgrades refer to the [models page](./concepts/models.md).
 
@@ -683,10 +683,10 @@ Azure OpenAI now supports the API that powers OpenAI's GPTs. Azure OpenAI Assist
 
 ### OpenAI text to speech voices public preview
 
-Azure OpenAI Service now supports text to speech APIs with OpenAI's voices. Get AI-generated speech from the text you provide. To learn more, see the [overview guide](../speech-service/openai-voices.md) and try the [quickstart](./text-to-speech-quickstart.md).
+Azure OpenAI now supports text to speech APIs with OpenAI's voices. Get AI-generated speech from the text you provide. To learn more, see the [overview guide](../speech-service/openai-voices.md) and try the [quickstart](./text-to-speech-quickstart.md).
 
 > [!NOTE]
-> Azure AI Speech also supports OpenAI text to speech voices. To learn more, see [OpenAI text to speech voices via Azure OpenAI Service or via Azure AI Speech](../speech-service/openai-voices.md#openai-text-to-speech-voices-via-azure-openai-service-or-via-azure-ai-speech) guide.
+> Azure AI Speech also supports OpenAI text to speech voices. To learn more, see [OpenAI text to speech voices via Azure OpenAI or via Azure AI Speech](../speech-service/openai-voices.md#openai-text-to-speech-voices-via-azure-openai-service-or-via-azure-ai-speech) guide.
 
 ### New Fine-tuning capabilities and model support
 
@@ -786,18 +786,18 @@ Try out DALL-E 3 by following a [quickstart](./dall-e-quickstart.md).
 ## September 2023
 
 ### GPT-4
-GPT-4 and GPT-4-32k are now available to all Azure OpenAI Service customers. Customers no longer need to apply for the waitlist to use GPT-4 and GPT-4-32k (the Limited Access registration requirements continue to apply for all Azure OpenAI models). Availability might vary by region. Check the [models page](concepts/models.md), for the latest information on model availability in each region.
+GPT-4 and GPT-4-32k are now available to all Azure OpenAI customers. Customers no longer need to apply for the waitlist to use GPT-4 and GPT-4-32k (the Limited Access registration requirements continue to apply for all Azure OpenAI models). Availability might vary by region. Check the [models page](concepts/models.md), for the latest information on model availability in each region.
 
 ### GPT-3.5 Turbo Instruct
 
-Azure OpenAI Service now supports the GPT-3.5 Turbo Instruct model. This model has performance comparable to `text-davinci-003` and is available to use with the Completions API. Check the [models page](concepts/models.md), for the latest information on model availability in each region.
+Azure OpenAI now supports the GPT-3.5 Turbo Instruct model. This model has performance comparable to `text-davinci-003` and is available to use with the Completions API. Check the [models page](concepts/models.md), for the latest information on model availability in each region.
 
 ### Whisper public preview
 
-Azure OpenAI Service now supports speech to text APIs powered by OpenAI's Whisper model. Get AI-generated text based on the speech audio you provide. To learn more, check out the [quickstart](./whisper-quickstart.md).
+Azure OpenAI now supports speech to text APIs powered by OpenAI's Whisper model. Get AI-generated text based on the speech audio you provide. To learn more, check out the [quickstart](./whisper-quickstart.md).
 
 > [!NOTE]
-> Azure AI Speech also supports OpenAI's Whisper model via the batch transcription API. To learn more, check out the [Create a batch transcription](../speech-service/batch-transcription-create.md#use-a-whisper-model) guide. Check out [What is the Whisper model?](../speech-service/whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI Service.
+> Azure AI Speech also supports OpenAI's Whisper model via the batch transcription API. To learn more, check out the [Create a batch transcription](../speech-service/batch-transcription-create.md#use-a-whisper-model) guide. Check out [What is the Whisper model?](../speech-service/whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI.
 
 ### New Regions
 
@@ -851,7 +851,7 @@ Azure OpenAI Service now supports speech to text APIs powered by OpenAI's Whispe
 
 ### Content filtering & annotations (Preview)
 
-- How to [configure content filters](how-to/content-filters.md) with Azure OpenAI Service.
+- How to [configure content filters](how-to/content-filters.md) with Azure OpenAI.
 - [Enable annotations](concepts/content-filter.md) to view content filtering category and severity information as part of your GPT based Completion and Chat Completion calls.
 
 ### Quota
@@ -882,7 +882,7 @@ If you're currently using the `2023-03-15-preview` API, we recommend migrating t
 
 ## April 2023
 
-- **DALL-E 2 public preview**. Azure OpenAI Service now supports image generation APIs powered by OpenAI's DALL-E 2 model. Get AI-generated images based on the descriptive text you provide. To learn more, check out the [quickstart](./dall-e-quickstart.md).
+- **DALL-E 2 public preview**. Azure OpenAI now supports image generation APIs powered by OpenAI's DALL-E 2 model. Get AI-generated images based on the descriptive text you provide. To learn more, check out the [quickstart](./dall-e-quickstart.md).
 
 - **Inactive deployments of customized models will now be deleted after 15 days; models will remain available for redeployment.** If a customized (fine-tuned) model is deployed for more than fifteen (15) days during which no completions or chat completions calls are made to it, the deployment will automatically be deleted (and no further hosting charges will be incurred for that deployment). The underlying customized model will remain available and can be redeployed at any time. To learn more check out the [how-to-article](/azure/ai-services/openai/how-to/fine-tuning?tabs=turbo%2Cpython-new&pivots=programming-language-studio#deploy-a-custom-model).
 
@@ -912,7 +912,7 @@ If you're currently using the `2023-03-15-preview` API, we recommend migrating t
 
 New articles on:
 
-- [Monitoring an Azure OpenAI Service](./how-to/monitoring.md)
+- [Monitoring an Azure OpenAI](./how-to/monitoring.md)
 - [Plan and manage costs for Azure OpenAI](./how-to/manage-costs.md)
 
 New training course:
@@ -924,7 +924,7 @@ New training course:
 
 ### New Features
 
-* **Service GA**. Azure OpenAI Service is now generally available.​
+* **Service GA**. Azure OpenAI is now generally available.​
 
 * **New models**: Addition of the latest text model, text-davinci-003 (East US, West Europe), text-ada-embeddings-002 (East US, South Central US, West Europe)
 
