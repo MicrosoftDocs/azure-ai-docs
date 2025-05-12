@@ -17,7 +17,7 @@ ms.custom:
 The Azure AI Content Understanding service is continuously updated. Bookmark this page to stay informed about the latest features and samples.
 
 ## May 2025
-The Azure AI Content Understanding **2025-05-01-preview** REST API is now available. This update for new preview API introduces the following updates and enhanced capabilities:
+The Azure AI Content Understanding **`2025-05-01-preview`** REST API is now available. This update for new preview API introduces the following updates and enhanced capabilities:
 
 * **Introduction of Modes** : With our new preview API, we are introducing standard and pro modes. With pro mode (currently only supported for documents), now we support reasoning with via multiple documents as input for external knowledge. This agentic model allows you to create agentic inference from the reference documents.
 * **Document Modality improvements** :

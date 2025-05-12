@@ -104,7 +104,7 @@ Classification fields can be defined to return either a single category (single-
 
 ## Classifier limits
 
-The following limits apply as of version 2025-05-01-preview.
+The following limits apply as of version `2025-05-01-preview`.
 
 ### Input File Limits (Documents only)
 

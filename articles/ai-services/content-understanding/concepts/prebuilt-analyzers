@@ -58,7 +58,7 @@ These analyzers bundle best practices and hidden configurations to deliver accur
 
 ## Inheriting and customizing prebuilt analyzers
 
-In **Preview 2**, you can inherit from any prebuilt analyzer using `baseAnalyzerId` to create a custom analyzer.
+In **`2025-05-01-preview`**, you can inherit from any prebuilt analyzer using `baseAnalyzerId` to create a custom analyzer.
 
 - **Modify existing fields, descriptions, types, and methods.**
 - **Customize configuration settings like `enableFormula`, `segmentationMode`, and others.**
@@ -82,7 +82,7 @@ In **Preview 2**, you can inherit from any prebuilt analyzer using `baseAnalyzer
 }
 
 > [!IMPORTANT]
-> In Preview 2, modifying a field description will overwrite the internal refined description, potentially reducing extraction quality. 
+> In `2025-05-01-preview`, modifying a field description will overwrite the internal refined description, potentially reducing extraction quality. 
 > `baseAnalyzerId` must be a prebuilt analyzer. Custom analyzers cannot currently inherit from other custom analyzers.
 
 
