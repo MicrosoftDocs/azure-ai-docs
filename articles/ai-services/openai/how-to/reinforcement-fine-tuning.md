@@ -82,7 +82,7 @@ You can create training jobs for o4-mini RFT in the Azure AI Foundry the same wa
 
 :::image type="content" source="../media/how-to/reinforcement-fine-tuning/model.png" alt-text="Screenshot of o4-mini model selection in the Azure AI Foundry portal." lightbox="../media/how-to/reinforcement-fine-tuning/model.png":::
 
-:::image type="content" source="../media/how-to/reinforcement-fine-tuning/model.png" alt-text="Screenshot of the reinforcement fine-tuning menu in the Azure AI Foundry portal." lightbox="../media/how-to/reinforcement-fine-tuning/reinforcement.png":::
+:::image type="content" source="../media/how-to/reinforcement-fine-tuning/reinforcement.png" alt-text="Screenshot of the reinforcement fine-tuning menu in the Azure AI Foundry portal." lightbox="../media/how-to/reinforcement-fine-tuning/reinforcement.png":::
 
 ### Hyperparameter selection
 
