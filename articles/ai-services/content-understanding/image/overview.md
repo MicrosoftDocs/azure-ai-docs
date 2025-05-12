@@ -28,7 +28,7 @@ Azure AI Content Understanding standardizes the extraction of data from images, 
 
 * **Shelf analysis and inventory management:** Detect, count, and extract specific details about retail products, optimizing operations, and improving customer satisfaction by ensuring products are well-stocked and properly organized.
 
-## Key Benefits
+## Key benefits
 
 Content Understanding offers several key benefits for extracting information from images, including,
 
@@ -39,6 +39,10 @@ Content Understanding offers several key benefits for extracting information fro
 * **Faster and more cost-effective automation:**  The extracting of only the necessary fields enables Content Understanding to streamlines automation. Thus allowing organizations to scale their data processing workflows efficiently and reduce the storage and processing of irrelevant data.
 
 :::image type="content" source="../media/image/image-flow-diagram.jpg" alt-text="Screenshot of a data flow diagram for image processing in content understanding.":::
+
+## Get started
+
+Get started with processing images with Content Understanding by following our [REST API quickstart](LINK TO IMAGE TAB) or visiting [Azure AI Foundry](https://aka.ms/cu-landing) for a no code experience. 
 
 > [!NOTE]
 > For best results, image schema should only be used to process non-document-based images.
