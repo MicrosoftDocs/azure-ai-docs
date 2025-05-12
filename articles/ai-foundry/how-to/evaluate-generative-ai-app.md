@@ -171,7 +171,7 @@ To create a new evaluation for your selected model deployment and defined prompt
 
 #### Basic information
 
-To start, you can set up the name for your evaluation run. Then select the **model deployment** you want to evaluate. We support both Azure OpenAI models and other open models compatible with Model-as-a-Service (MaaS), such as Meta Llama and Phi-3 family models. Optionally, you can adjust the model parameters like max response, temperature, and top P based on your need.  
+To start, you can set up the name for your evaluation run. Then select the **model deployment** you want to evaluate. We support both Azure OpenAI models and other open models compatible with standard deployment, such as Meta Llama and Phi-3 family models. Optionally, you can adjust the model parameters like max response, temperature, and top P based on your need.  
 
 In the System message text box, provide the prompt for your scenario. For more information on how to craft your prompt, see the prompt catalog. You can choose to add example to show the chat what responses you want. It tries to mimic any responses you add here to make sure they match the rules you laid out in the system message.
 

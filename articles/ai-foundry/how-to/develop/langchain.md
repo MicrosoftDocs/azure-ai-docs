@@ -115,7 +115,7 @@ model = AzureAIChatCompletionsModel(
 )
 ```
 
-If your endpoint is serving one model, like with the Serverless API Endpoints, you don't have to indicate `model_name` parameter:
+If your endpoint is serving one model, like with the standard deployment, you don't have to indicate `model_name` parameter:
 
 ```python
 import os

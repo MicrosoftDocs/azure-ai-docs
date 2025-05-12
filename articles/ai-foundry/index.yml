@@ -120,6 +120,18 @@ productDirectory:
           text: Orchestrate workflows with pipelines
         - url: /azure/machine-learning/concept-automated-ml
           text: What is automated machine learning (AutoML)?
+    # Card
+    - title: Foundry Local
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg
+      links:
+        - url: ./foundry-local/get-started.md
+          text: Run LLMs on your device for free
+        - url: ./foundry-local/how-to/how-to-integrate-with-inference-sdks.md
+          text: Integrate your apps
+        - url: ./foundry-local/how-to/how-to-compile-hugging-face-models.md
+          text: Run HuggingFace models
+        - url: ./foundry-local/reference/reference-sdk.md
+          text: SDK Documentation
 
 tools:
   title: Software development kits (SDKs)

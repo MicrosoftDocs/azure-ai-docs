@@ -48,7 +48,7 @@ The [roles](#roles-for-speech-resources) define what permissions you have. Authe
 
 To authenticate with Speech resource keys, all you need is the key and region. To authenticate with a Microsoft Entra token, the Speech resource must have a [custom subdomain](speech-services-private-link.md#create-a-custom-domain-name).
 
-Here's how to create a new Azure AI Services resource with a custom subdomain. You can also use an existing resource, but it must have a custom subdomain. For more information about creating a custom subdomain, see [Create a custom domain name](speech-services-private-link.md#create-a-custom-domain-name).
+Here's how to create a new Azure AI Foundry resource with a custom subdomain. You can also use an existing resource, but it must have a custom subdomain. For more information about creating a custom subdomain, see [Create a custom domain name](speech-services-private-link.md#create-a-custom-domain-name).
 
 ```bash
 resourceGroupName=my-speech-rg
@@ -73,7 +73,7 @@ echo $accessToken
 
 The returned `accessToken` is a Microsoft Entra token that you can use to authenticate without API keys. The token has a [limited lifetime](/entra/identity-platform/configurable-token-lifetimes#access-tokens).
 
-Now you can use the `accessToken` to authenticate with the AI Services resource. For example, you can use the token via the [Fast transcription REST API](./fast-transcription-create.md):
+Now you can use the `accessToken` to authenticate with the AI Foundry resource. For example, you can use the token via the [Fast transcription REST API](./fast-transcription-create.md):
 
 ```bash
 uri="https://$AIServicesResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2024-11-15"
