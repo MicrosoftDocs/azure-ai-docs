@@ -20,7 +20,7 @@ The model catalog in Azure AI Foundry portal is the hub to discover and use a wi
 Deployment options vary depending on the model offering:
 
 * **Azure OpenAI in Azure AI Foundry Models:** The latest OpenAI models that have enterprise features from Azure with flexible billing options.
-* **Standard deployment:** These models don't require compute quota from your subscription and are billed per token in a pay-as-you-go fashion. 
+* **Standard deployment:** These models don't require compute quota from your subscription and are billed per token in a serverless pay per token offer. 
 * **Open and custom models:** The model catalog offers access to a large variety of models across modalities, including models of open access. You can host open models in your own subscription with a managed infrastructure, virtual machines, and the number of instances for capacity management.
 
 Azure AI Foundry offers four different deployment options:
@@ -39,7 +39,7 @@ Azure AI Foundry offers four different deployment options:
 | Billing bases                 | Token usage & [provisioned throughput units](../../ai-services/openai/concepts/provisioned-throughput.md)        | Token usage       | Token usage<sup>1</sup>      | Compute core hours<sup>2</sup> |
 | Deployment instructions       | [Deploy to Azure OpenAI](../how-to/deploy-models-openai.md) | [Deploy to Foundry Models](../model-inference/how-to/create-model-deployments.md) | [Deploy to Standard deployment](../how-to/deploy-models-serverless.md) | [Deploy to Managed compute](../how-to/deploy-models-managed.md) |
 
-<sup>1</sup> A minimal endpoint infrastructure is billed per minute. You aren't billed for the infrastructure that hosts the model in pay-as-you-go. After you delete the endpoint, no further charges accrue.
+<sup>1</sup> A minimal endpoint infrastructure is billed per minute. You aren't billed for the infrastructure that hosts the model in standard deployment. After you delete the endpoint, no further charges accrue.
 
 <sup>2</sup> Billing is on a per-minute basis, depending on the product tier and the number of instances used in the deployment since the moment of creation. After you delete the endpoint, no further charges accrue.
 
