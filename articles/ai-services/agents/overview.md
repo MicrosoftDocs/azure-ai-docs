@@ -37,60 +37,75 @@ Agents make decisions, invoke tools, and participate in workflows—sometimes in
 
 Agents created using Foundry are not monoliths. They are composable units—each with a specific role, powered by the right model, equipped with the right tools, and deployed within a secure, observable, and governable runtime.
 
-![What is an AI Agent?](./media/what-is-an-agent.png)
-
+:::row:::
+    :::column span="2":::
 Each agent has three core components:
 - **Model (LLM)**: Powers reasoning and language understanding
 - **Instructions**: Define the agent’s goals, behavior, and constraints
 - **Tools**: Let the agent retrieve knowledge or take action
+    :::column-end:::
+    :::column span="3":::
+![What is an AI Agent?](./media/what-is-an-agent.png)
+    :::column-end:::
+:::row-end:::
+
 
 Agents receive unstructured inputs—such as user prompts, alerts, or messages from other agents—and produce outputs in the form of tool results or messages. Along the way, they may call tools to perform retrieval, trigger actions, or (in the future) access scoped memory.
 
 
 ## How does the Agent Factory work?
 
-Think of Azure AI Foundry as an assembly line for intelligent agents. Like any modern factory, it brings together different specialized stations—each responsible for shaping part of the final product. Instead of machines and conveyor belts, the Agent Factory uses models, tools, policies, and orchestration to build agents that are secure, testable, and production-ready.
+Think of Azure AI Foundry as an assembly line for intelligent agents. Like any modern factory, it brings together different specialized stations—each responsible for shaping part of the final product. Instead of machines and conveyor belts, the Agent Factory uses models, tools, policies, and orchestration to build agents that are secure, testable, and production-ready. Here’s how the factory works—step by step:
 
 ![Azure AI Foundry: Agent Factory](./media/agent-factory.png)
 
-Here’s how the factory works—step by step:
+
 
 :::row:::
     :::column span="1":::
 ### 1. Models
-
+    :::column-end:::
+    :::column span="4":::
 The assembly line starts by selecting a model that gives your agent its intelligence. Choose from a growing catalog of large language models including GPT-4o, GPT-4, GPT-3.5 (Azure OpenAI), and open models like Llama 3, Mistral, and Cohere. This is the reasoning core of the agent—the engine that powers its decisions.
     :::column-end:::
+:::row-end:::
+:::row:::
     :::column span="1":::
 ### 2. Customization
-
+    :::column-end:::
+    :::column span="4":::
 Next, shape that model to fit your use case. Customize your agent with fine-tuning, distillation, or domain-specific prompts. This step allows you to encode agent behavior, role-specific knowledge, and patterns from prior performance—using data captured from real thread content and tool results.
     :::column-end:::
 :::row-end:::
-
 :::row:::
     :::column span="1":::
 ### 3. Knowledge and Tools
-
+    :::column-end:::
+    :::column span="4":::
 Then, equip your agent with tools. These let it access enterprise knowledge (e.g. Bing, SharePoint, Azure AI Search) and take real-world actions (via Logic Apps, Azure Functions, OpenAPI, and more). Think of this step as installing the arms and sensors on a robotic worker—so the agent can perceive and interact with its environment.
     :::column-end:::
+:::row-end:::
+:::row:::
     :::column span="1":::
 ### 4. Orchestration
-
+    :::column-end:::
+    :::column span="4":::
 Once the agent has a brain and hands, it needs coordination. This is where the **Azure AI Foundry Agent Service** comes in. It orchestrates the full lifecycle—handling tool calls, updating thread state, managing retries, and logging outputs. All of this happens server-side, automatically. No custom glue code needed.
-
     :::column-end:::
 :::row-end:::
-
 :::row:::
     :::column span="1":::
 ### 5. Trust
-
+    :::column-end:::
+    :::column span="4":::
 Before leaving the factory floor, each agent is checked for safety and compliance. Azure AI Foundry applies enterprise-grade trust features including identity via Microsoft Entra, RBAC, content filters, encryption, and network isolation. You choose how and where your agents run—using platform-managed or bring-your-own infrastructure.
     :::column-end:::
+:::row-end:::
+:::row:::
     :::column span="1":::
 ### 6. Observability
-
+    :::column-end:::
+    :::column span="4":::
 Finally, agents are tested and monitored. The factory captures logs, traces, and evaluations at every step. With full thread-level visibility and Application Insights integration, teams can inspect every decision and continuously improve agents over time.
     :::column-end:::
 :::row-end:::
