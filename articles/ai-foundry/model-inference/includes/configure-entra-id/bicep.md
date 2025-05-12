@@ -89,7 +89,7 @@ In your console, follow these steps:
       --template-file deploy-entra-id.bicep
     ```
 
-7. The template outputs the Azure AI model inference endpoint that you can use to consume any of the model deployments you have created.
+7. The template outputs the Azure AI Foundry Models endpoint that you can use to consume any of the model deployments you have created.
 
 
 ## Use Microsoft Entra ID in your code

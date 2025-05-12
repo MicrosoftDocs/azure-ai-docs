@@ -1,7 +1,7 @@
 ---
-title: Model inference endpoint in Azure AI Foundry Models
+title: Endpoint for Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn about the model inference endpoint in Azure AI Foundry Models
+description: Learn about the Azure AI Foundry Models endpoint
 author: santiagxf
 manager: nitinme
 ms.service: azure-ai-model-inference
@@ -11,7 +11,7 @@ ms.author: fasantia
 ms.custom: ignite-2024, github-universe-2024
 ---
 
-# Model inference endpoint in Azure AI Foundry Models
+# Endpoint for Azure AI Foundry Models
 
 Azure AI Foundry Models allows customers to consume the most powerful models from flagship model providers using a single endpoint and credentials. This means that you can switch between models and consume them from your application without changing a single line of code.
 
