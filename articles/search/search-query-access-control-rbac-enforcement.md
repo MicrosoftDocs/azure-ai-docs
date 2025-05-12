@@ -29,10 +29,6 @@ Azure Data Lake Storage (ADLS) Gen2 provides an access model that makes fine-gra
 
 This section lists the order of operations for ACL enforcement at query time. Operations vary depending on whether you use Azure RBAC scope or Microsoft Entra ID group or user IDs.
 
-### For Azure RBAC
-
-For Azure RBAC, permissions are list of resource ID strings, and there must an Azure role assignment (Storage Blob Data Reader) on the data the source that grants access to the security principal token in the authorization header. The filter excludes documents if there's no role assignment for the principal behind the access token on the request.
-
 ### 1. User permissions input  
 The end-user application sends user permission as part of the search query request. The following table lists the source of the user permissions Azure AI Search uses for ACL enforcement:
 
@@ -42,10 +38,12 @@ The end-user application sends user permission as part of the search query reque
 | groupIds | Group membership fetched using the [Microsoft Graph](/graph/api/resources/groups-overview) API |
 | rbacScope | Permissions the user from `x-ms-query-source-authorization` has on a storage container |
 
-#### 2. Security filter construction  
+For Azure RBAC, permissions are list of resource ID strings, and there must an Azure role assignment (Storage Blob Data Reader) on the data the source that grants access to the security principal token in the authorization header. The filter excludes documents if there's no role assignment for the principal behind the access token on the request.
+
+### 2. Security filter construction  
 Azure AI Search dynamically constructs security filters based on the user permissions provided. These security filters are automatically appended to any filters that might come in with the query if the index has the permission filter option enabled.
 
-#### 3. Results filtering  
+### 3. Results filtering  
 The security filter efficiently matches the userIds, groupIds, and rbacScope from the user against each list of ACLs in every document in the search index to limit the results returned to ones the user has access to. It's important to note that each filter is applied independently and a document is considered authorized if any filter succeeds. For example, if a user has access to a document through userIds but not through groupIds, the document is still considered valid and returned to the user.
 
 ## Limitations
