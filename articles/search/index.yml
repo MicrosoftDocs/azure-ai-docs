@@ -60,17 +60,6 @@ landingContent:
           - text: Query a vector index
             url: vector-search-how-to-query.md
 
-  # Card
-  - title: Azure AI Foundry
-    linkLists:
-      - linkListType: how-to-guide
-        links:
-          - text: Create a vector index in Azure AI Foundry portal
-            url: /azure/ai-foundry/how-to/index-add
-          - text: Chat with your data using Azure OpenAI
-            url: /azure/ai-services/openai/use-your-data-quickstart
-          - text: Build a custom RAG app using Azure AI Foundry SDK
-            url: /azure/ai-foundry/tutorials/copilot-sdk-build-rag
 
   # Card
   - title: Index data
