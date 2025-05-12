@@ -47,7 +47,7 @@ sections:
           
           For hardware, we use standard Azure VM `DS13_v2` as a reference (each core must be 2.6 GHz or better, with AVX2 instruction set enabled).
           
-          | Instance  | vCPU(s) | RAM    | Temp storage | Pay-as-you-go with AHB | 1-year reserve with AHB (% Savings) | 3-year reserved with AHB (% Savings) |
+          | Instance  | vCPU(s) | RAM    | Temp storage | Standard pricing with AHB | 1-year reserve with AHB (% Savings) | 3-year reserved with AHB (% Savings) |
           |-----------|---------|--------|--------------|------------------------|-------------------------------------|--------------------------------------|
           | `DS13 v2` | 8       | 56 GiB | 112 GiB      | $0.598/hour            | $0.3528/hour (~41%)                 | $0.2333/hour (~61%)                  |
           

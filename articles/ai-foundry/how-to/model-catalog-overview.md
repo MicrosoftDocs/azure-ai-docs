@@ -130,7 +130,7 @@ You can refer to [this notebook](https://github.com/Azure/azureml-examples/blob/
 
 You can deploy certain models in the model catalog with pay-per-token billing. This deployment method, also called *standard deployment*, provides a way to consume the models as APIs without hosting them on your subscription. Models are hosted in a Microsoft-managed infrastructure, which enables API-based access to the model provider's model. API-based access can dramatically reduce the cost of accessing a model and simplify the provisioning experience.
 
-Models that are available for deployment as standard deployments with pay-as-you-go billing are offered by the model provider, but they're hosted in a Microsoft-managed Azure infrastructure and accessed via API. Model providers define the license terms and set the price for use of their models. The Azure Machine Learning service:
+Models that are available for deployment as standard deployments with Standard billing are offered by the model provider, but they're hosted in a Microsoft-managed Azure infrastructure and accessed via API. Model providers define the license terms and set the price for use of their models. The Azure Machine Learning service:
 
 * Manages the hosting infrastructure.
 * Makes the inference APIs available.

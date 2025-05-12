@@ -21,11 +21,11 @@ ms.custom:
 
 In this article, you learn about which regions are available for each of the models supporting standard deployment deployments.
 
-Certain models in the model catalog can be deployed as a standard deployment with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
+Certain models in the model catalog can be deployed as a standard deployment. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
 
 ## Region availability
 
-Pay-as-you-go billing is available only to users whose Azure subscription belongs to a billing account in a country/region where the model provider has made the offer available (see "offer availability region" in the table in the next section). If the offer is available in the relevant region, the user then must have a Hub/Project in the Azure region where the model is available for deployment or fine-tuning, as applicable (see "Hub/Project Region" columns in the following tables).
+Standard deployment is available only to users whose Azure subscription belongs to a billing account in a country/region where the model provider has made the offer available (see "offer availability region" in the table in the next section). If the offer is available in the relevant region, the user then must have a Hub/Project in the Azure region where the model is available for deployment or fine-tuning, as applicable (see "Hub/Project Region" columns in the following tables).
 
 [!INCLUDE [uses-hub-only](../ai-foundry/includes/uses-hub-only.md)]
 

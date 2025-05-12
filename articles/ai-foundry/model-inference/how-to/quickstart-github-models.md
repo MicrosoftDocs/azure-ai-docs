@@ -25,7 +25,7 @@ The following article explains how to get started from GitHub Models and deploy 
 To complete this tutorial, you need:
 
 * A GitHub account with access to [GitHub Models](https://docs.github.com/en/github-models/).
-* An Azure subscription. If you don't have one, you're prompted to create or update your Azure account to a pay as you go account when you're ready to deploy your model to production.
+* An Azure subscription. If you don't have one, you're prompted to create or update your Azure account to a Standard account when you're ready to deploy your model to production.
 
 ## Upgrade to Azure AI Foundry Models
 
@@ -45,7 +45,7 @@ To obtain the key and endpoint:
 
 4. If you have an Azure account, select **Sign back in**.
 
-5. If your existing account is a free account, you first have to upgrade to a Pay as you go plan. Once you upgrade, go back to the playground and select **Get API key** again, then sign in with your upgraded account.
+5. If your existing account is a free account, you first have to upgrade to a Standard plan. Once you upgrade, go back to the playground and select **Get API key** again, then sign in with your upgraded account.
 
 6. Once you've signed in to your Azure account, you're taken to [Azure AI Foundry > GitHub](https://ai.azure.com/GitHub). It might take one or two minutes to load your initial model details in AI Foundry.
 

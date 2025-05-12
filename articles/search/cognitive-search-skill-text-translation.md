@@ -22,7 +22,7 @@ This capability is useful if you expect that your documents may not all be in on
 The [Translator Text API v3.0](/azure/ai-services/translator/reference/v3-0-reference) is a non-regional Azure AI service, meaning that your data isn't guaranteed to stay in the same region as your Azure AI Search or attached Azure AI services resource.
 
 > [!NOTE]
-> This skill is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services pay-as-you go price](https://azure.microsoft.com/pricing/details/cognitive-services/).
+> This skill is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services pStandard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 >
 > When using this skill, all documents in the source are processed and billed for translation, even if the source and target languages are the same. This behavior is useful for multi-language support within the same document, but it can result in unnecessary processing. To avoid unexpected billing charges from documents that don't need processing, move them out of the data source container prior to running the skill.
 >

@@ -256,7 +256,7 @@ Disconnected containers enable you to use the Azure AI Translator API by exporti
 
 * If you decide that you don't want to continue purchasing a commitment plan, you can set your resource's autorenewal to **Do not auto-renew**.
 
-* Your commitment plan expires on the displayed commitment end date. After this date, you won't be charged for the commitment plan. You're still able to continue using the Azure resource to make API calls, charged at pay-as-you-go pricing.
+* Your commitment plan expires on the displayed commitment end date. After this date, you won't be charged for the commitment plan. You're still able to continue using the Azure resource to make API calls, charged at Standard pricing.
 
 * You have until midnight (UTC) on the last day of the year to end a commitment plan for disconnected containers. If you do so, you avoid charges for the following year.
 

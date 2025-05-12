@@ -58,7 +58,7 @@ A quota is a credit limit on Azure resources, not a capacity guarantee. If
 > [!NOTE]
 > Azure AI Foundry compute has a separate quota from the core compute quota. 
 
-Default limits vary by offer category type, such as free trial, pay-as-you-go, and virtual machine (VM) series (such as Dv2, F, and G). 
+Default limits vary by offer category type, such as free trial, standard deployment, and virtual machine (VM) series (such as Dv2, F, and G). 
 
 ## Azure AI Foundry quota 
 

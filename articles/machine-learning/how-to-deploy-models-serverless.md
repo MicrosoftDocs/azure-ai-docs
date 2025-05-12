@@ -17,9 +17,9 @@ ms.custom: build-2024, serverless, devx-track-azurecli
 
 # Deploy models as standard deployment
 
-In this article, you learn how to deploy a model from the model catalog as a standard deployment with pay-as-you-go token-based billing.
+In this article, you learn how to deploy a model from the model catalog as a standard deployment.
 
-[Certain models in the model catalog](concept-endpoint-serverless-availability.md) can be deployed as a standard deployment with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
+[Certain models in the model catalog](concept-endpoint-serverless-availability.md) can be deployed as a standard deployment with Standard billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
 
 This article uses a Meta Llama model deployment for illustration. However, you can use the same steps to deploy any of the [models in the model catalog that are available for standard deployment](concept-endpoint-serverless-availability.md).
 

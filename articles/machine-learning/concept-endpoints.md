@@ -53,7 +53,7 @@ Let's imagine that after a couple of months, the organization discovers that the
 
 Azure Machine Learning allows you to implement [standard deployments](how-to-deploy-models-serverless.md), [online endpoints](concept-endpoints-online.md), and [batch endpoints](concept-endpoints-batch.md).
 
-_standard deployment_ and _online endpoints_ are designed for real-time inference. Whenever you invoke the endpoint, the results are returned in the endpoint's response. Standard deployments don't consume quota from your subscription; rather, they're billed with pay-as-you-go billing.
+_standard deployment_ and _online endpoints_ are designed for real-time inference. Whenever you invoke the endpoint, the results are returned in the endpoint's response. Standard deployments don't consume quota from your subscription; rather, they're billed with Standard billing.
 
 _Batch endpoints_ are designed for long-running batch inference. Whenever you invoke a batch endpoint, you generate a batch job that performs the actual work.
 

@@ -21,7 +21,7 @@ ms.custom: mode-other, devx-track-extended-java, devx-track-python, ignite-2024
 
 > [!NOTE]
 >
-> Document translation is supported in the S1 Standard Service Plan (Pay-as-you-go) and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
+> Document translation is supported in the S1 Standard Service Plan and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
 >
 
 To get started, you need:
