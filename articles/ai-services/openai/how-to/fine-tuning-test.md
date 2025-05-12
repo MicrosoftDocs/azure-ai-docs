@@ -186,7 +186,11 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/<deployment_name>/chat/completion
 
 ## Clean up your deployment
 
-Developer deployments will auto-delete on their own regardless of activity. To delete a deployment manually, use the [Deployments - Delete REST API](/rest/api/aiservices/accountmanagement/deployments/delete?view=rest-aiservices-accountmanagement-2024-10-01&tabs=HTTP&preserve-view=true) and send an HTTP DELETE to the deployment resource. Like with creating deployments, you must include the following parameters:
+Developer deployments will auto-delete on their own regardless of activity. Each deployment has a fixed lifetime of **24 hours** after which it is subject to removal. The deletion of a deployment doesn't delete or affect the underlying customized model and the customized model can be redeployed at any time.
+
+To delete a deployment manually, you can use the Azure AI Foundry portal or use [Azure CLI](/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete).
+
+To use the [Deployments - Delete REST API](/rest/api/aiservices/accountmanagement/deployments/delete?view=rest-aiservices-accountmanagement-2024-10-01&tabs=HTTP&preserve-view=true) send an HTTP `DELETE` to the deployment resource. Like with creating deployments, you must include the following parameters:
 
 - Azure subscription ID
 - Azure resource group name
@@ -200,10 +204,9 @@ curl -X DELETE "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resour
   -H "Authorization: Bearer <TOKEN>"
 ```
 
-You can also delete a deployment in Azure AI Foundry portal, or use [Azure CLI](/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete).
-
 
 ## Next steps
 
-- [Azure OpenAI Quotas & limits](./quota.md)
-- [Azure OpenAI deployment types](./deployment-types.md)
+- [Deploy for production](./fine-tuning-deploy.md)
+- Understand [Azure OpenAI Quotas & limits](./quota.md)
+- Read more about other [Azure OpenAI deployment types](./deployment-types.md)
