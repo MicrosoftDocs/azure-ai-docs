@@ -59,7 +59,7 @@ To use these models, you can use [Azure AI Foundry portal](https://ai.azure.com/
 ```python
 agent = project_client.agents.create_agent( model="llama-3", name="my-agent", instructions="You are a helpful agent" ) 
 ```
-## Azure AI foundry models
+## Azure AI Foundry models
 
 ### Models with tool-calling 
 
