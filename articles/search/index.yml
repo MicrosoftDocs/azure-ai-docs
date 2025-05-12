@@ -29,10 +29,12 @@ landingContent:
             url: cognitive-search-concept-intro.md
           - text: Semantic ranking
             url: semantic-search-overview.md
-      - linkListType: quickstart
+      - linkListType: how-to-guide
         links:
           - text: Create a search service
             url: search-create-service-portal.md
+          - text: Configure a search service
+            url: search-search-manage.md
           - text: Create a search index
             url: search-get-started-portal.md
           - text: Create a vector index
@@ -47,8 +49,10 @@ landingContent:
         links:
           - text: Agentic RAG
             url: search-agentic-retrieval-concept.md        
-          - text: Vectors in Azure AI Search
+          - text: Vectors search
             url: vector-search-overview.md
+          - text: Multimodal search
+            url: multimodal-search-overview.md
           - text: Built-in vectorization
             url: vector-search-integrated-vectorization.md
           - text: Built-in compression
