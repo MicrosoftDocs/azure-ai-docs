@@ -1153,6 +1153,8 @@ groups:
   title: Selections
   prompt: What would you like to see?
   pivots:
+  - id: csharp
+    title: C#
   - id: python
     title: Python
   - id: typescript
