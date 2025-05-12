@@ -37,14 +37,14 @@ Understanding the distinction between these categories helps you choose the righ
  
 ## Azure Direct Models  
  
-Azure Direct Models are models that are hosted and sold by Microsoft under Microsoft Product Terms. These models have undergone rigorous evaluation and are deeply integrated into Azure’s AI ecosystem. They offer enhanced integration, optimized performance, and direct Microsoft support, including enterprise-grade Service Level Agreements (SLAs). 
+Azure Direct Models are models that are hosted and sold by Microsoft under Microsoft Product Terms. These models have undergone rigorous evaluation and are deeply integrated into Azure's AI ecosystem. They offer enhanced integration, optimized performance, and direct Microsoft support, including enterprise-grade Service Level Agreements (SLAs). 
  
 Characteristics of Azure Direct Models: 
 
 - Official first-party support from Microsoft 
 - High level of integration with Azure services and infrastructure 
 - Extensive performance benchmarking and validation 
-- Adherence to Microsoft’s Responsible AI standards 
+- Adherence to Microsoft's Responsible AI standards 
 - Enterprise-grade scalability, reliability, and security
 
 Azure Direct Models also have the benefit of flexible Provisioned Throughput, meaning you can use your quota and reservations across any of these models.
@@ -62,18 +62,18 @@ Characteristics of Azure Ecosystem Models:
 
 Models are deployable as Managed Compute or Standard (pay-go) deployment options. The model provider selects how the models are deployable.   
  
-## Choosing Between Azure Direct and Azure Ecosystem Partner & Community Models 
+## Choosing between Azure Direct and Azure Ecosystem Models 
 
 
 When selecting models from Azure AI Foundry Models, consider the following: 
-* Use Case and Requirements: Azure Direct Models are ideal for scenarios requiring deep Azure integration, guaranteed support, and enterprise SLAs. Azure Ecosystem Models excel in specialized use cases and innovation-led scenarios. 
-* Support Expectations: Azure Direct Models come with robust Microsoft-provided support and maintenance. Azure Ecosystem Models are supported by their providers, with varying levels of SLA and support structures. 
-* Innovation and Specialization: Azure Ecosystem Models offer rapid access to specialized innovations and niche capabilities often developed by leading research labs and emerging AI providers.
+* **Use Case and Requirements**: Azure Direct Models are ideal for scenarios requiring deep Azure integration, guaranteed support, and enterprise SLAs. Azure Ecosystem Models excel in specialized use cases and innovation-led scenarios. 
+* **Support Expectations**: Azure Direct Models come with robust Microsoft-provided support and maintenance. Azure Ecosystem Models are supported by their providers, with varying levels of SLA and support structures. 
+* **Innovation and Specialization**: Azure Ecosystem Models offer rapid access to specialized innovations and niche capabilities often developed by leading research labs and emerging AI providers.
 
 ## Accessing Azure Ecosystem Models
 
 Azure Ecosystem Models are accessible through Azure AI Foundry, providing: 
-* Comprehensive details about the model’s capabilities and integration requirements.
+* Comprehensive details about the model's capabilities and integration requirements.
 * Community ratings, usage data, and qualitative feedback to guide your decisions.
 * Clear integration guidelines to help incorporate these models seamlessly into your Azure workflows.
 
@@ -85,11 +85,7 @@ Azure AI Foundry remains committed to providing a robust ecosystem, enabling cus
 
 The model catalog organizes models into different collections:
 
-* **Curated by Azure AI**: The most popular partner models (open-weight and proprietary) packaged and optimized to work seamlessly on the Azure AI platform. Use of these models is subject to the model providers' license terms. When you deploy these models in Azure AI Foundry portal, their availability is subject to the applicable [Azure service-level agreement (SLA)](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services), and Microsoft provides support for deployment problems.
-
-  Models from partners such as Meta, NVIDIA, and Mistral AI are examples of models available in this collection on the catalog. You can identify these models by looking for a green checkmark on the model tiles in the catalog. Or you can filter by the **Curated by Azure AI** collection.
-
-* **Azure OpenAI models exclusively available on Azure**: Flagship Azure OpenAI models available through an integration with Azure OpenAI Service. Microsoft supports these models and their use according to the product terms and [SLA for Azure OpenAI Service](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
+* **Azure OpenAI models exclusively available on Azure**: Flagship Azure OpenAI models available through an integration with Azure OpenAI in Foundry Models. Microsoft supports these models and their use according to the product terms and [SLA for Azure OpenAI](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
 
 * **Open models from the Hugging Face hub**: Hundreds of models from the Hugging Face hub for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn more in [Deploy open models with Azure AI Foundry](../how-to/deploy-models-managed.md).
 
@@ -97,36 +93,36 @@ You can submit a request to add a model to the model catalog by using [this form
 
 ## Overview of Model Catalog capabilities
 
-The model catalog in Azure AI Foundry portal is the hub to discover and use a wide range of models for building generative AI applications. The model catalog features hundreds of models across model providers such as Azure OpenAI Service, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, including models that Microsoft trained. Models from providers other than Microsoft are Non-Microsoft Products as defined in [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and are subject to the terms provided with the models.
+The model catalog in Azure AI Foundry portal is the hub to discover and use a wide range of models for building generative AI applications. The model catalog features hundreds of models across model providers such as Azure OpenAI, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, including models that Microsoft trained. Models from providers other than Microsoft are Non-Microsoft Products as defined in [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and are subject to the terms provided with the models.
 
 You can search and discover models that meet your need through keyword search and filters. Model catalog also offers the model performance leaderboard and benchmark metrics for select models. You can access them by selecting **Browse leaderboard** and **Compare Models**. Benchmark data is also accessible from the model card Benchmark tab.
  
-On the model catalog filters, you’ll find:
+On the **model catalog filters**, you'll find:
 
-* Collection: you can filter models based on the model provider collection.
-* Industry: you can filter for the models that are trained on industry specific dataset.
-* Capabilities: you can filter for unique model features such as reasoning and tool calling.
-* Deployment options: you can filter for the models that support a specific deployment options.
-  * Standard: this option allows you to pay per API call.
-  * Provisioned: best suited for real-time scoring for large consistent volume.
-  * Batch: best suited for cost-optimized batch jobs, and not latency. No playground support is provided for the batch deployment.
-  * Managed compute: this option allows you to deploy a model on an Azure virtual machine. You will be billed for hosting and inferencing.
-* Inference tasks: you can filter models based on the inference task type.
-* Finetune tasks: you can filter models based on the finetune task type.
-* Licenses: you can filter models based on the license type.
+* **Collection**: you can filter models based on the model provider collection.
+* **Industry**: you can filter for the models that are trained on industry specific dataset.
+* **Capabilities**: you can filter for unique model features such as reasoning and tool calling.
+* **Deployment options**: you can filter for the models that support a specific deployment options.
+  * **Standard**: this option allows you to pay per API call.
+  * **Provisioned**: best suited for real-time scoring for large consistent volume.
+  * **Batch**: best suited for cost-optimized batch jobs, and not latency. No playground support is provided for the batch deployment.
+  * **Managed compute**: this option allows you to deploy a model on an Azure virtual machine. You will be billed for hosting and inferencing.
+* **Inference tasks**: you can filter models based on the inference task type.
+* **Finetune tasks**: you can filter models based on the finetune task type.
+* **Licenses**: you can filter models based on the license type.
 
-On the model card, you'll find:
+On the **model card**, you'll find:
 
-* Quick facts: you will see key information about the model at a quick glance.
-* Details: this page contains the detailed information about the model, including description, version info, supported data type, etc.
-* Benchmarks: you will find performance benchmark metrics for select models.
-* Existing deployments: if you have already deployed the model, you can find it under Existing deployments tab.
-* License: you will find legal information related to model licensing.
-* Artifacts: this tab will be displayed for open models only. You can see the model assets and download them via user interface.
+* **Quick facts**: you will see key information about the model at a quick glance.
+* **Details**: this page contains the detailed information about the model, including description, version info, supported data type, etc.
+* **Benchmarks**: you will find performance benchmark metrics for select models.
+* **Existing deployments**: if you have already deployed the model, you can find it under Existing deployments tab.
+* **License**: you will find legal information related to model licensing.
+* **Artifacts**: this tab will be displayed for open models only. You can see the model assets and download them via user interface.
 
 ## Model deployment: Managed compute and standard deployments 
 
-In addition to Azure OpenAI Service models, the model catalog offers two distinct ways to deploy models for your use: managed compute and standard deployments.
+In addition to deploying to Azure OpenAI, the model catalog offers two distinct ways to deploy models for your use: managed compute and standard deployments.
 
 The deployment options and features available for each model vary, as described in the following tables. [Learn more about data processing with the deployment options](../how-to/concept-data-privacy.md).
 
@@ -142,7 +138,7 @@ Network isolation | [Configure managed networks for Azure AI Foundry hubs](../ho
 
 ### Available models for supported deployment options
 
-For Azure OpenAI models, see [Azure OpenAI Service Models](../../ai-services/openai/concepts/models.md).
+For Azure OpenAI models, see [Azure OpenAI](../../ai-services/openai/concepts/models.md).
 
 To view a list of supported models for standard deployment or Managed Compute, go to the home page of the model catalog in [Azure AI Foundry](https://ai.azure.com). Use the **Deployment options** filter to select either **Standard deployment** or **Managed Compute**. 
 
@@ -156,7 +152,7 @@ To view a list of supported models for standard deployment or Managed Compute, g
 ## Model lifecycle: deprecation and retirement
 AI models evolve fast, and when a new version or a new model with updated capabilities in the same model family become available, older models may be retired in the AI Foundry model catalog. To allow for a smooth transition to a newer model version, some models provide users with the option to enable automatic updates. To learn more about the model lifecycle of different models, upcoming model retirement dates, and suggested replacement models and versions, see:
 
-- [Azure OpenAI Service model deprecations and retirements](../../ai-services/openai/concepts/model-retirements.md)
+- [Azure OpenAI model deprecations and retirements](../../ai-services/openai/concepts/model-retirements.md)
 - [Standard deployment model deprecations and retirements](../concepts/model-lifecycle-retirement.md)
 
 ## Managed compute
