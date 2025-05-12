@@ -11,7 +11,7 @@ ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
 zone_pivot_groups: project-type
-# customer intent: As a developer, I want to build a custom chat app using the Azure AI SDK.
+# customer intent: As a developer, I want to start using the Azure AI Foundry portal and client libraries.
 ---
 
 
