@@ -90,21 +90,6 @@ Model can now be referenced in your code (`Target URI` + `@` + `Model Name`), fo
 
 `Model=https://Phi-4-mejco.eastus.models.ai.azure.com/@Phi-4-mejco`
 
-## Bring Your Own Model 
-
-The Azure AI Agent Service also allows you to connect to any chat completion model endpoint that you provide from an external model provider (for example, Perplexity). This option can be used when the desired model is not in the AI Foundry Model Catalog. 
-
-The following steps will allow you to utilize any chat-completion model that you have access to: 
-
-1. Create a connection to your model provider's chat completion API. Click on the **Connected Resources** page, select **Serverless Connection**, then enter your model’s target URI and key (from your model provider's site).  
-
-The Model can now be referenced in your code (`Target URI` + `@` + `Model Name`), for example: 
-
-`Model=https://api.perplexity.ai@sonar`
-
-> [!NOTE]
-> Using a model that is not natively integrated with the Agents service may result in limited functionality (this will depend on the model you bring). For example, some models will provide all agentic features (for example, Llama Instruct models), but others will only provide basic model interaction via chat. To enjoy the full agentic experience – for example tool calling, and utilization of knowledge sources,  using an agent-supporting model in the Foundry Model Catalog is recommended. 
-
 ## Next steps
 
 [Create a new Agent project](../quickstart.md)
