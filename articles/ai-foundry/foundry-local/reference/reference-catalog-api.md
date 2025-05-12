@@ -16,16 +16,11 @@ author: maanavd
 Foundry Local allows you to develop and integrate your own catalog service. This document provides guidance on:
 
 - The model format required for the catalog API.
-- The model storage requirements.
 - The request and response format required for your catalog API to integrate with Foundry Local.
 
 ## Model format
 
 The model files hosted in your model catalog are required to be in the [Open Neural Network Exchange (ONNX)](https://onnx.ai/) format to work with Foundry Local. For more information on how to compile Hugging Face and PyTorch models to ONNX, see the [Compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hugging-face-models.md) article.
-
-## Model Storage
-
-The model files should be stored on [Azure Blob Storage](/azure/storage/blobs/storage-blobs-introduction). The model catalog service should be able to access the model files stored in Azure Blob Storage.
 
 ## API format
 
@@ -226,7 +221,3 @@ The response from the catalog API is a JSON object that contains the search resu
   }
 }
 ```
-
-> [!NOTE]
-> The `assetID` should be the Azure Blob storage URL of the folder containing the model. For example, `https://{ACCOUNT_NAME}.blob.core.windows.net/{CONTAINER_NAME}/{MODEL_PATH}`.
-
