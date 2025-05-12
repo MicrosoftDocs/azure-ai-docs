@@ -1,5 +1,5 @@
 ---
-title: Multimodal search concepts and guidance in Azure AI Search
+title: Multimodal search concepts and guidance
 titleSuffix: Azure AI Search
 description: Learn what multimodal search is, how Azure AI Search supports it for text + image content, and where to find detailed concepts, tutorials, and samples.
 ms.service: azure-ai-search
@@ -19,8 +19,9 @@ Building a robust multimodal pipeline typically involves several key steps. Thes
 
 Azure AI Search simplifies the construction of a multimodal pipeline through a guided experience in the Azure portal:
 
-1. [Azure portal multimodal functionality](search-get-started-portal-image-search.md): The step-by-step multimodal functionality in the **Import and vectorize data** wizard helps configure your data source, extraction and enrichment settings, and generate a multimodal index containing text, embedded image references, and vector embeddings.
-1. [Reference GitHub multimodal RAG application sample](https://aka.ms/azs-multimodal-sample-app-repo): A companion GitHub repository with sample code. The sample demonstrates how a [Retrieval Augmented Generation (RAG)](retrieval-augmented-generation-overview.md) application consumes a multimodal index and renders both textual citations and associated image snippets in the response. The repository also showcases the full process of data ingestion and indexing through code, providing developers with a programmatic alternative to the Azure portal wizard.
++ [Azure portal multimodal functionality](search-get-started-portal-image-search.md): The step-by-step multimodal functionality in the **Import and vectorize data** wizard helps configure your data source, extraction and enrichment settings, and generate a multimodal index containing text, embedded image references, and vector embeddings.
+
++ [Reference GitHub multimodal RAG application sample](https://aka.ms/azs-multimodal-sample-app-repo): A companion GitHub repository with sample code. The sample demonstrates how a [Retrieval Augmented Generation (RAG)](retrieval-augmented-generation-overview.md) application consumes a multimodal index and renders both textual citations and associated image snippets in the response. The repository also showcases the full process of data ingestion and indexing through code, providing developers with a programmatic alternative to the Azure portal wizard.
 
 ## Functionality enabling multimodality
 
