@@ -42,7 +42,7 @@ To create an Azure AI project that supports model inference for DeepSeek-R1, fol
 2. On the landing page, select **Create project**.
 
     > [!TIP]
-    > **Are you using Azure OpenAI service?** When you are connected to Azure AI Foundry portal using an Azure OpenAI service resource, only Azure OpenAI models show up in the catalog. To view the full list of models, including DeepSeek-R1, use the top **Announcements** section and locate the card with the option **Explore more models**.
+    > **Are you using Azure OpenAI in Azure AI Foundry Models?** When you are connected to Azure AI Foundry portal using an Azure OpenAI resource, only Azure OpenAI models show up in the catalog. To view the full list of models, including DeepSeek-R1, use the top **Announcements** section and locate the card with the option **Explore more models**.
     >
     > :::image type="content" source="../media/quickstart-get-started-deepseek-r1/explore-more-models.png" alt-text="Screenshot showing the card with the option to explore all the models from the catalog." lightbox="../media/quickstart-get-started-deepseek-r1/explore-more-models.png":::
     >

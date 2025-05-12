@@ -104,7 +104,7 @@ You can get to cost analysis from the [Azure portal](https://portal.azure.com). 
 > [!IMPORTANT]
 > Your Azure AI Foundry project costs are only a subset of your overall application or solution costs. You need to monitor costs for all Azure resources used in your application or solution. For more information, see Azure AI Foundry hubs.
 
-For the examples in this section, assume that all Azure AI Foundry resources are in the same resource group. But you can have resources in different resource groups. For example, your Azure AI Search resource might be in a different resource group than your project.
+For the examples in this section, assume that all Azure AI Foundry Services are in the same resource group. But you can have resources in different resource groups. For example, your Azure AI Search resource might be in a different resource group than your project.
 
 Here's an example of how to monitor costs for a project. The costs are used as an example only. Your costs vary depending on the services that you use and the amount of usage.
 
@@ -129,7 +129,7 @@ Here's an example of how to monitor costs for a project. The costs are used as a
 
     In this example:
     - The resource group name is **rg-contosoairesource**.
-    - The total cost for all resources and services in the example resource group is **$222.97**. In this example, $222.97 is the total cost for your application or solution that you're building with Azure AI Foundry. Again, this example assumes that all Azure AI Foundry resources are in the same resource group. But you can have resources in different resource groups.
+    - The total cost for all resources and services in the example resource group is **$222.97**. In this example, $222.97 is the total cost for your application or solution that you're building with Azure AI Foundry. Again, this example assumes that all Azure AI Foundry Services are in the same resource group. But you can have resources in different resource groups.
     - The project name is **contoso-outdoor-proj**.
     - The costs that are limited to resources and services in the example [project](../concepts/ai-resources.md#organize-work-in-projects-for-customization) total **$212.06**. 
     
@@ -142,7 +142,7 @@ Here's an example of how to monitor costs for a project. The costs are used as a
 You can also view resource group costs directly from the Azure portal. To do so:
 1. Sign in to [Azure portal](https://portal.azure.com).
 1. Select **Resource groups**. 
-1. Find and select the resource group that contains your Azure AI Foundry resources.
+1. Find and select the resource group that contains your Azure AI Foundry Services.
 1. From the left pane, select **Cost analysis**.
 
     :::image type="content" source="../media/cost-management/project-costs/costs-per-resource-group.png" alt-text="Screenshot of the Azure portal cost analysis at the resource group level." lightbox="../media/cost-management/project-costs/costs-per-resource-group.png":::

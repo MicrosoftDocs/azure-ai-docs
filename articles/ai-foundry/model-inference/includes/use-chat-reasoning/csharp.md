@@ -9,7 +9,7 @@ author: santiagxf
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use the reasoning capabilities of chat completions models deployed to Azure AI model inference in Azure AI services.
+This article explains how to use the reasoning capabilities of chat completions models deployed in Azure AI Foundry Models.
 
 [!INCLUDE [about-reasoning](about-reasoning.md)]
 

@@ -1,5 +1,5 @@
 ---
-title: What is Azure OpenAI Service?
+title: What is Azure OpenAI in Azure AI Foundry Models?
 titleSuffix: Azure AI services
 description: Apply advanced language models to variety of use cases with Azure OpenAI
 manager: nitinme
@@ -12,9 +12,9 @@ ms.custom: build-2023, build-2023-dataai
 recommendations: false
 ---
 
-# What is Azure OpenAI Service?
+# What is Azure OpenAI in Azure AI Foundry Models?
 
-Azure OpenAI Service provides REST API access to OpenAI's powerful language models including o4-mini, o3, gpt-4.1, o3-mini, o1, o1-mini, GPT-4o, GPT-4o mini, GPT-4 Turbo with Vision, GPT-4, GPT-3.5-Turbo, and Embeddings model series. These models can be easily adapted to your specific task including but not limited to content generation, summarization, image understanding, semantic search, and natural language to code translation. Users can access the service through REST APIs, [Python/C#/JS/Java/Go SDKs](/azure/ai-services/openai/supported-languages).
+Azure OpenAI provides REST API access to OpenAI's powerful language models including o4-mini, o3, gpt-4.1, o3-mini, o1, o1-mini, GPT-4o, GPT-4o mini, GPT-4 Turbo with Vision, GPT-4, GPT-3.5-Turbo, and Embeddings model series. These models can be easily adapted to your specific task including but not limited to content generation, summarization, image understanding, semantic search, and natural language to code translation. Users can access the service through REST APIs, [Python/C#/JS/Java/Go SDKs](/azure/ai-services/openai/supported-languages).
 
 ### Features overview
 
@@ -33,13 +33,13 @@ Azure OpenAI Service provides REST API access to OpenAI's powerful language mode
 
 At Microsoft, we're committed to the advancement of AI driven by principles that put people first. Generative models such as the ones available in Azure OpenAI have significant potential benefits, but without careful design and thoughtful mitigations, such models have the potential to generate incorrect or even harmful content. Microsoft has made significant investments to help guard against abuse and unintended harm, which includes incorporating Microsoft’s <a href="https://www.microsoft.com/ai/responsible-ai?activetab=pivot1:primaryr6" target="_blank">principles for responsible AI use</a>, adopting a [Code of Conduct](/legal/ai-code-of-conduct?context=/azure/ai-services/openai/context/context) for use of the service, building [content filters](/azure/ai-services/content-safety/overview) to support customers, and providing responsible AI [information and guidance](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=image) that customers should consider when using Azure OpenAI.
 
-## Get started with Azure OpenAI Service
+## Get started with Azure OpenAI
 
-To get started with Azure OpenAI Service, you need to create an Azure OpenAI Service resource in your Azure subscription. 
+To get started with Azure OpenAI, you need to create an Azure OpenAI resource in your Azure subscription. 
 
-Start with the [Create and deploy an Azure OpenAI Service resource](./how-to/create-resource.md) guide.
+Start with the [Create and deploy an Azure OpenAI resource](./how-to/create-resource.md) guide.
 1. You can create a resource via Azure portal, Azure CLI, or Azure PowerShell. 
-1. When you have an Azure OpenAI Service resource, you can deploy a model such as GPT-4o.
+1. When you have an Azure OpenAI resource, you can deploy a model such as GPT-4o.
 1. When you have a deployed model, you can:
 
     - Try out the [Azure AI Foundry portal](https://ai.azure.com/) playgrounds to explore the capabilities of the models. 
@@ -48,11 +48,11 @@ Start with the [Create and deploy an Azure OpenAI Service resource](./how-to/cre
     For example, you can try [real-time audio](./realtime-audio-quickstart.md) and [assistants](./assistants-quickstart.md) in the playgrounds or via code.
 
 > [!NOTE]
-> A Limited Access registration form is required to access some Azure OpenAI Service models or features. Learn more on the [Azure OpenAI Limited Access page](/legal/cognitive-services/openai/limited-access?context=/azure/ai-services/openai/context/context).
+> A Limited Access registration form is required to access some Azure OpenAI models or features. Learn more on the [Azure OpenAI Limited Access page](/legal/cognitive-services/openai/limited-access?context=/azure/ai-services/openai/context/context).
 
 ## Comparing Azure OpenAI and OpenAI
 
-Azure OpenAI Service gives customers advanced language AI with OpenAI GPT-4, GPT-3, Codex, GPT-image-1 (preview), DALL-E, speech to text, and text to speech models with the security and enterprise promise of Azure. Azure OpenAI co-develops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
+Azure OpenAI gives customers advanced language AI with OpenAI GPT-4, GPT-3, Codex, GPT-image-1 (preview), DALL-E, speech to text, and text to speech models with the security and enterprise promise of Azure. Azure OpenAI co-develops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
 
 With Azure OpenAI, customers get the security capabilities of Microsoft Azure while running the same models as OpenAI. Azure OpenAI offers private networking, regional availability, and responsible AI content filtering.  
 

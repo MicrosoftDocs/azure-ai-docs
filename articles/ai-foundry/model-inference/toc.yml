@@ -104,9 +104,9 @@ items:
       href: ../how-to/develop/semantic-kernel.md?context=/azure/ai-foundry/model-inference/context/context
 - name: Reference
   items:
-    - name: Azure AI Model Inference API
+    - name: Azure AI Foundry Models API
       items:
-      - name: What's the Azure AI Model Inference API?
+      - name: What's the Foundry Models API?
         href: /rest/api/aifoundry/modelinference
       - name: Reference
         items:

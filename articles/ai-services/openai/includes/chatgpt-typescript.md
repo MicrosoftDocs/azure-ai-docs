@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Use Azure OpenAI Service with the JavaScript SDK'
+title: 'Quickstart: Use Azure OpenAI in Azure AI Foundry Models with the JavaScript SDK'
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first chat completions call with the JavaScript SDK. 
 manager: nitinme
@@ -21,7 +21,7 @@ ms.date: 10/22
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
 - [TypeScript](https://www.typescriptlang.org/download/)
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
-- An Azure OpenAI Service resource with a `gpt-4` series model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- An Azure OpenAI in Azure AI Foundry Models resource with a `gpt-4` series model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 ### Microsoft Entra ID prerequisites
 

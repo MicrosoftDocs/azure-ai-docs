@@ -12,7 +12,7 @@ zone_pivot_groups: azure-ai-models-deployment
 
 * An AI project connected to your Azure AI Foundry resource with the feature **Deploy models to Azure AI model inference service** on.
 
-  * You can follow the steps at [Configure Azure AI model inference service in my project](../../how-to/quickstart-ai-project.md#configure-the-project-to-use-azure-ai-model-inference) in Azure AI Foundry.
+  * You can follow the steps at [Configure Azure AI model inference service in my project](../../how-to/quickstart-ai-project.md#configure-the-project-to-use-foundry-models) in Azure AI Foundry.
 
 ## Add a model
 

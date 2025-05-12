@@ -1,6 +1,6 @@
 ---
 title: How to use Risks & Safety monitoring in Azure AI Foundry
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn how to check statistics and insights from your Azure OpenAI content filtering activity.
 author: PatrickFarley 
 ms.author: pafarley 
@@ -94,4 +94,4 @@ Combine this data with enriched signals to validate whether the detected users a
 Next, create or edit a content filter configuration in Azure AI Foundry.
 
 > [!div class="nextstepaction"]
-> [Configure content filters with Azure OpenAI Service](/azure/ai-services/openai/how-to/content-filters)
+> [Configure content filters with Azure OpenAI in Azure AI Foundry Models](/azure/ai-services/openai/how-to/content-filters)
