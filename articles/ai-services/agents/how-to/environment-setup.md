@@ -18,7 +18,9 @@ Creating your first agent with Azure AI Agent Service is a two-step process:
 1. Set up your agent environment.
 1. Create and configure your agent using either the SDK of your choice or the Azure Foundry Portal. 
 
-### Permissions Required 
+Use this article to learn more about setting up your agents.
+
+### Required permissions 
 
 | Action                                                                 | Required Role                   |
 |------------------------------------------------------------------------|----------------------------------|
@@ -26,7 +28,7 @@ Creating your first agent with Azure AI Agent Service is a two-step process:
 | **Standard Setup Only:** Assign RBAC for required resources (Cosmos DB, Search, Storage, etc.) | Role Based Access Administrator  |
 | Create and edit agents                                                 | Azure AI User                    |
 
-## Step 1: Set up your agent environment
+## Set up your agent environment
 To get started, you need an account and a project.  
 Agents are scoped at the project level, which ensures data isolation—agents within the same project share access to the same resources. 
 
@@ -39,7 +41,7 @@ Agents are scoped at the project level, which ensures data isolation—agents wi
     * Alternatively, having the **Owner** role at the subscription level also satisfies this requirement.
     * The key permission needed is: `Microsoft.Authorization/roleAssignments/write`
 
-### Choose Your Setup
+### Choose your setup
 Azure AI Foundry Agent Service offers three environment configuration modes to suit different needs: 
 
 1. **Basic Setup**:  
@@ -54,7 +56,7 @@ Includes everything in the basic setup and fine-grained control over your data b
 
 Includes everything in the Standard Setup, with the added ability to operate entirely within your own virtual network. This setup supports Bring Your Own Virtual Network (BYO virtual network), allowing for strict control over data movement and helping prevent data exfiltration by keeping traffic confined to your network environment. 
 
-### Compare Setup Options
+### Compare setup options
 
 | Use Cases                                                                | Basic Setup | Standard Setup with Public Networking | Standard Setup with Private Networking |
 |--------------------------------------------------------------------------|-------------|----------------------------------------|----------------------------------------|
@@ -63,7 +65,7 @@ Includes everything in the Standard Setup, with the added ability to operate ent
 | Support for Customer Managed Keys (CMK)                                 |             | ✅                                      | ✅                                      |
 | Private Network Isolation (Bring your own virtual network)              |             |                                        | ✅                                      |
 
-### Deployment Options
+### Deployment options
 To customize these templates, see [use your own resources](../how-to/use-your-own-resources.md). 
 
 If you want support for Private Network Isolation see [network-secured setup](../how-to/virtual-networks.md) for more information on how to bring your own virtual network.
