@@ -3,7 +3,7 @@ title: Azure AI Content Understanding Prebuilt analyzers
 titleSuffix: Azure AI services
 description: Learn about prebuilt analyzers, their scenarios, customization options, billing, roadmap in Azure AI Content Understanding.
 author: laujan
-ms.author: additi
+ms.author: admaheshwari
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
@@ -20,7 +20,7 @@ These analyzers streamline trial experiences and can be adapted by extending the
 
 * **[Content parsers](#content-parsers-for-search-and-ingestion)** for general search and ingestion scenarios.
 * **[Scenario-specific predefined analyzers](#scenario-specific-predefined-analyzers)** for targeted use cases like invoices or call center transcripts.
-* **[Inheritance from prebuilt analyzers](#inheriting-and-customizing-prebuilt-analyzers)** to customize configuration and fields.
+* **[Inheritance from prebuilt analyzers](#inheritance-and-customizing-prebuilt-analyzers)** to customize configuration and fields.
 
 ## Content parsers for search and ingestion
 
@@ -61,7 +61,7 @@ With the **`2025-05-01-preview`**, any prebuilt analyzer can be inherited using 
 ***Example***
 
 
-### Inherit from `prebuilt-documentAnalyzer`
+### Inherit from prebuilt document analyzer
 
 ```json
 {
