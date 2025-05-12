@@ -579,7 +579,7 @@ items:
     href: how-to-schedule-pipeline-job.md
 - name: Explore AI model capabilities
   items:
-    - name: Explore Foundry Models
+    - name: Explore Azure AI Foundry Models
       href: foundry-models-overview.md
     - name: Data, privacy, and security for Model Catalog
       href: concept-data-privacy.md
