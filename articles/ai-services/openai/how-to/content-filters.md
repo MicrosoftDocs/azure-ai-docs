@@ -24,6 +24,9 @@ Prompt shields and protected text and code models are optional and on by default
 > [!NOTE]
 > All customers have the ability to modify the content filters and configure the severity thresholds (low, medium, high). Approval is required for turning the content filters partially or fully off. Managed customers only may apply for full content filtering control via this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR). At this time, it is not possible to become a managed customer.
 
+> [!IMPORTANT]
+> The GPT-image-1 model does not support content filtering configuration: only the default content filter is used.
+
 Content filters can be configured at the resource level. Once a new configuration is created, it can be associated with one or more deployments. For more information about model deployment, see the [resource deployment guide](create-resource.md).
 
 ## Prerequisites
