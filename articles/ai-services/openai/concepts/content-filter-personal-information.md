@@ -10,7 +10,7 @@ ms.service: azure-ai-openai
 
 # Personally identifiable information (PII) filter
 
-Personally identifiable information (PII) refers to any information that can be used to identify a particular individual, such as a name, address, phone number, email address, social security number, driver's license number, passport number, or similar information. 
+Personally identifiable information (PII) refers to any information that can be used to identify a particular individual, such as a name, address, phone number, email address, social security number, driver's license number, passport number, or similar information.
 
 PII detection is used to prevent PII from being exposed or shared, protecting users from identity theft, financial fraud, or other types of privacy violations.
 
