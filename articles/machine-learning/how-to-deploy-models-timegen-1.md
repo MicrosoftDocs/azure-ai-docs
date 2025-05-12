@@ -106,7 +106,7 @@ These steps demonstrate the deployment of TimeGEN-1. To create a deployment:
 
 To learn about billing for the TimeGEN-1 model deployed as a standard deployment with pay per token offer billing, see [Cost and quota considerations for TimeGEN-1 deployed as a standard deployment](#cost-and-quota-considerations-for-timegen-1-deployed-as-a-standard-deployment).
 
-### Consume the TimeGEN-1 model as a service
+### Consume the TimeGEN-1 model 
 
 You can consume TimeGEN-1 models by using the forecast API.
 

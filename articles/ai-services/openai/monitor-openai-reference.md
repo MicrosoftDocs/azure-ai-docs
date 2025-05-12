@@ -44,7 +44,7 @@ You can also monitor Content Safety metrics that are used by other related servi
 
 > [!NOTE]
 > The **Provisioned-managed Utilization** metric is now deprecated and is no longer recommended. This metric has been replaced by the **Provisioned-managed Utilization V2** metric.
-> Tokens per Second, Time to Response, Time Between Tokens are currently not available for pay-as-you-go (Standard) deployments. 
+> Tokens per Second, Time to Response, Time Between Tokens are currently not available for Standard deployments. 
 
 Cognitive Services metrics have the category **Cognitive Services - HTTP Requests** in the following table. These metrics are legacy metrics that are common to all resources of this type. Microsoft no longer recommends that you use these metrics with Azure OpenAI.
 

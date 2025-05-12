@@ -55,7 +55,7 @@ To use Gretel Navigator chat model with Azure AI Foundry, you need the following
 
 **Deployment to standard deployments**
 
-Gretel Navigator chat model can be deployed to standard deployment with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
+Gretel Navigator chat model can be deployed to standard deployment. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
 Deployment to a standard deployment doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a standard deployment](deploy-models-serverless.md).
 
@@ -301,7 +301,7 @@ To use Gretel Navigator chat model with Azure AI Foundry, you need the following
 
 **Deployment to standard deployments**
 
-Gretel Navigator chat model can be deployed to standard deployments with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
+Gretel Navigator chat model can be deployed to standard deployments. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. 
 
 Deployment to a standard deployment doesn't require quota from your subscription. If your model isn't deployed already, use the Azure AI Foundry portal, Azure Machine Learning SDK for Python, the Azure CLI, or ARM templates to [deploy the model as a standard deployment](deploy-models-serverless.md).
 

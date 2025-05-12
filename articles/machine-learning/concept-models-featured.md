@@ -254,8 +254,8 @@ See [the Microsoft model collection in the Azure AI model catalog](https://ai.az
 
 Mistral AI offers two categories of models, namely: 
 
-- _Premium models_: These include Mistral Large, Mistral Small, Mistral-OCR-2503, and Ministral 3B models, and are available as standard deployments with pay-as-you-go token-based billing.  
-- _Open models_: These include Mistral-small-2503, Codestral, and Mistral Nemo (that are available as standard deployments with pay-as-you-go token-based billing), and [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](../ai-foundry/how-to/deploy-models-mistral-open.md?context=/azure/machine-learning/context/context)(that are available to download and run on self-hosted managed endpoints).
+- _Premium models_: These include Mistral Large, Mistral Small, Mistral-OCR-2503, and Ministral 3B models, and are available as standard deployments.  
+- _Open models_: These include Mistral-small-2503, Codestral, and Mistral Nemo (that are available as standard deployments), and [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](../ai-foundry/how-to/deploy-models-mistral-open.md?context=/azure/machine-learning/context/context)(that are available to download and run on self-hosted managed endpoints).
 
 
 | Model  | Type | Capabilities |
@@ -368,4 +368,4 @@ For examples of how to use Stability AI models, see the following examples:
 - [Deploy models as standard deployment](how-to-deploy-models-serverless.md)
 - [Model catalog and collections](concept-model-catalog.md)
 - [Region availability for models in standard deployment](concept-endpoint-serverless-availability.md)
-- [Content safety for models curated by Azure AI in the model catalog](../ai-foundry/concepts/model-catalog-content-safety.md)
+- [Content safety for Azure Direct Models](../ai-foundry/concepts/model-catalog-content-safety.md)

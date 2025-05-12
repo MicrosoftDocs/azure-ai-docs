@@ -20,7 +20,7 @@ zone_pivot_groups: azure-ai-model-fine-tune
 
 Azure AI Foundry enables you to customize large language models to your specific datasets through a process called fine-tuning. This process offers significant benefits by allowing for customization and optimization tailored to specific tasks and applications. The advantages include improved performance, cost efficiency, reduced latency, and tailored outputs.
 
-**Cost Efficiency**: Azure AI Foundry's fine-tuning can be more cost-effective, especially for large-scale deployments, thanks to pay-as-you-go pricing.
+**Cost Efficiency**: Azure AI Foundry's fine-tuning can be more cost-effective, especially for large-scale deployments, thanks to Standard pricing.
 
 **Model Variety**: Azure AI Foundry's standard deployment fine-tuning  offers support for both proprietary and open-source models, providing users with the flexibility to select the models that best suit their needs without being restricted to a single type.
 
@@ -122,7 +122,7 @@ Azure AI Foundry portal provides the Create custom model wizard, so you can inte
 
 1. Choose the model you want to fine-tune from the Azure AI Foundry [model catalog](https://ai.azure.com/explore/models).
 2. On the model's **Details page**, select **fine-tune**. Some foundation models support both **standard deployment** and **Managed compute**, while others support one or the other.
-3. If you're presented the options for **standard deployment** and [**Managed compute**](./fine-tune-managed-compute.md), select **standard deployment** for fine-tuning. This action opens up a wizard that shows information about **pay-as-you-go** fine-tuning for your model.
+3. If you're presented the options for **standard deployment** and [**Managed compute**](./fine-tune-managed-compute.md), select **standard deployment** for fine-tuning. This action opens up a wizard that shows information about **Standard** fine-tuning for your model.
 
 ### Choose your training data
 The next step is to either choose existing prepared training data or upload new prepared training data to use when customizing your model. The **Training data** pane displays any existing, previously uploaded datasets and also provides options to upload new training data.
@@ -754,7 +754,7 @@ The training data used is the same as demonstrated in the SDK notebook. The CLI 
 
 ## Content filtering
 
-Models deployed as a service with pay-as-you-go billing are protected by Azure AI Content Safety. When deployed to real-time endpoints, you can opt out of this capability. With Azure AI Content Safety enabled, both the prompt and completion pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Learn more about [Azure AI Content Safety](../concepts/content-filtering.md).
+Standard deployment models are protected by Azure AI Content Safety. When deployed to real-time endpoints, you can opt out of this capability. With Azure AI Content Safety enabled, both the prompt and completion pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Learn more about [Azure AI Content Safety](../concepts/content-filtering.md).
 
 
 ## Next steps

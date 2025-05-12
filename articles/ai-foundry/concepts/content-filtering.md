@@ -26,7 +26,7 @@ author: PatrickFarley
 
 The content filtering system is powered by [Azure AI Content Safety](../../ai-services/content-safety/overview.md), and it works by running both the prompt input and completion output through a set of classification models designed to detect and prevent the output of harmful content. Variations in API configurations and application design might affect completions and thus filtering behavior.
 
-With Azure OpenAI model deployments, you can use the default content filter or create your own content filter (described later on). Models available through **standard deployments** have content filtering enabled by default. To learn more about the default content filter enabled for standard deployments, see [Content safety for models curated by Azure AI in the model catalog](model-catalog-content-safety.md).
+With Azure OpenAI model deployments, you can use the default content filter or create your own content filter (described later on). Models available through **standard deployments** have content filtering enabled by default. To learn more about the default content filter enabled for standard deployments, see [Content safety for Azure Direct Models](model-catalog-content-safety.md).
 
 ## Language support
 

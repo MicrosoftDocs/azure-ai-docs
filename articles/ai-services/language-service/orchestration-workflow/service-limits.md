@@ -50,9 +50,9 @@ See [Language service regional availability](../concepts/regional-support.md#con
 |Pricing tier |Item |Limit |
 | --- | --- | ---|
 |F|Training time| 1 hour per month|
-|S|Training time| Unlimited, Pay as you go |
+|S|Training time| Unlimited, Standard |
 |F|Prediction Calls| 5,000 request per month  |
-|S|Prediction Calls| Unlimited, Pay as you go |
+|S|Prediction Calls| Unlimited, Standard |
 
 ## Data limits
 

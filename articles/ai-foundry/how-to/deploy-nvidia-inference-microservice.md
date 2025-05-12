@@ -47,9 +47,9 @@ NVIDIA inference microservices are containers built by NVIDIA for optimized pret
         -    Microsoft.MachineLearningServices/workspaces/onlineEndpoints/* 
 
 
-## NVIDIA NIM pay-as-you-go offer on Azure Marketplace by NVIDIA
+## NVIDIA NIM Standard deployment on Azure Marketplace by NVIDIA
 
- NVIDIA NIMs available on Azure AI Foundry model catalog can be deployed with a pay-as-you-go subscription to the [NVIDIA NIM SaaS offer](https://aka.ms/nvidia-nims-plan) on Azure Marketplace. This offer includes a 90-day trial and a pay-as-you-go price of $1 per GPU hour post the trial period. The trial applies to all NIMs associated with a particular SaaS subscription, and starts from the time the SaaS subscription was created. SaaS subscriptions scope to an Azure AI Foundry project, so you have to subscribe to the NIM offer only once within a project, then you are able to deploy all NIMs offered by NVIDIA in the AI Foundry model catalog. If you want to deploy NIM in a different project with no existing SaaS subscription, you will have to resubscribe to the offer.  
+ NVIDIA NIMs available on Azure AI Foundry model catalog can be deployed with a Standard subscription to the [NVIDIA NIM SaaS offer](https://aka.ms/nvidia-nims-plan) on Azure Marketplace. This offer includes a 90-day trial and a Standard price of $1 per GPU hour post the trial period. The trial applies to all NIMs associated with a particular SaaS subscription, and starts from the time the SaaS subscription was created. SaaS subscriptions scope to an Azure AI Foundry project, so you have to subscribe to the NIM offer only once within a project, then you are able to deploy all NIMs offered by NVIDIA in the AI Foundry model catalog. If you want to deploy NIM in a different project with no existing SaaS subscription, you will have to resubscribe to the offer.  
 
  Azure AI Foundry enables a seamless purchase experience of the NVIDIA NIM offering on Marketplace from the NVIDIA collection in the model catalog, and further deployment on managed compute.
 

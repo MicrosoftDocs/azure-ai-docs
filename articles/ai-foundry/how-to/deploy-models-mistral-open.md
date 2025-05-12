@@ -21,8 +21,8 @@ zone_pivot_groups: azure-ai-model-catalog-samples-chat
 In this article, you learn about Mistral-7B and Mixtral chat models and how to use them.
 Mistral AI offers two categories of models, namely:
 
-- _Premium models_: These include [Mistral Large, Mistral Small, and Ministral 3B](deploy-models-mistral.md) models, and are available as standard deployments with pay-as-you-go token-based billing.  
-- _Open models_: These include [Codestral](deploy-models-mistral-codestral.md) and [Mistral Nemo](deploy-models-mistral-nemo.md) (that are available as standard deployments with pay-as-you-go token-based billing), and Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01 (that are available to download and run on self-hosted managed endpoints).
+- _Premium models_: These include [Mistral Large, Mistral Small, and Ministral 3B](deploy-models-mistral.md) models, and are available as standard deployments with Standard billing.  
+- _Open models_: These include [Codestral](deploy-models-mistral-codestral.md) and [Mistral Nemo](deploy-models-mistral-nemo.md) (that are available as standard deployments), and Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01 (that are available to download and run on self-hosted managed endpoints).
 
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]

@@ -195,7 +195,7 @@ Besides skills, the skillset includes `indexProjections` and `cognitiveServices`
 
 + `indexProjections` are used for indexes containing chunked documents. The projections specify how parent-child content is mapped to fields in a search index for one-to-many indexing. For more information, see [Define an index projection](search-how-to-define-index-projections.md).
 
-+ `cognitiveServices` [attaches an Azure AI services multi-service account](cognitive-search-attach-cognitive-services.md) for billing purposes (the Document Layout skill is available through [pay-as-you pricing](https://azure.microsoft.com/pricing/details/ai-document-intelligence/)).
++ `cognitiveServices` [attaches an Azure AI services multi-service account](cognitive-search-attach-cognitive-services.md) for billing purposes (the Document Layout skill is available through [Standard pricing](https://azure.microsoft.com/pricing/details/ai-document-intelligence/)).
 
 ```https
 POST {endpoint}/skillsets?api-version=2024-11-01-preview
