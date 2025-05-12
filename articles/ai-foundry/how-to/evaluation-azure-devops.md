@@ -15,7 +15,7 @@ author: lgayhardt
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Similar to Azure AI evaluation in GitHub Action, an Azure DevOps extension is also provided in Azure DevOps marketplace which enables offline evaluation of AI models within your CI/CD pipelines in Azure DevOps. The supported feature or evaluators can be found, [GitHub Action](evaluation-github-action.md)
+Similar to the [Azure AI evaluation in GitHub Actions](evaluation-github-action.md), an Azure DevOps extension is also available in the Azure DevOps Marketplace. This extension enables offline evaluation of AI agents within your CI/CD pipelines.
 
 [!INCLUDE [features](../includes/evaluation-github-action-azure-devops-features.md)]
 
@@ -30,13 +30,15 @@ Similar to Azure AI evaluation in GitHub Action, an Azure DevOps extension is al
 ## Set up YAML configuration file
 
 1. Create a new YAML file in your repository.
-     You can use the sample YAML provided in the README or clone from the [GitHub repo](https://github.com/microsoft/ai-agent-evals?tab=readme-ov-file).
+     You can use the sample YAML provided in the README or copy from the [GitHub repo](https://github.com/microsoft/ai-agent-evals?tab=readme-ov-file).
 2.  Configure the following inputs:
     - Set up [Azure CLI](/azure/devops/pipelines/tasks/reference/azure-cli-v2) with [service connection](/azure/devops/pipelines/library/service-endpoints?view=azure-devops&preserve-view=true) and Azure Login.
     - Azure AI project connection string
     - Dataset and evaluators
       - Specify the evaluator names you want to use for this evaluation run.
-      - Queries (required) and Ground Truth (optional).
+      - Queries (required).
+    - Agent IDs
+      Retrieve agent identifiers from the AI Foundry portal.
 
     See the following sample dataset:
 
@@ -51,18 +53,15 @@ Similar to Azure AI evaluation in GitHub Action, an Azure DevOps extension is al
     
         { 
           "query": "Tell me about Tokyo?", 
-          "ground_truth": "Tokyo is the capital of Japan and the largest city in the country. It is located on the eastern coast of Honshu, the largest of Japan's four main islands. Tokyo is the political, economic, and cultural center of Japan and is one of the world's most populous cities. It is also one of the world's most important financial centers and is home to the Tokyo Stock Exchange." 
         }, 
         { 
           "query": "Where is Italy?", 
-          "ground_truth": "Italy is a country in southern Europe, located on the Italian Peninsula and the two largest islands in the Mediterranean Sea, Sicily and Sardinia. It is a unitary parliamentary republic with its capital in Rome, the largest city in Italy. Other major cities include Milan, Naples, Turin, and Palermo." 
         } 
       ] 
     } 
     ```
 
-   - Agent IDs
-      Retrieve agent identifiers from the AI Foundry portal.
+
 
 A sample YAML file:
 
@@ -113,11 +112,11 @@ Commit and run the pipeline in Azure DevOps.
 ## View results
 
 - Select the run and go to "Azure AI Evaluation" tab.
-- The results are shown in the same format as GitHub Action results.
+- The results are shown in this format:
   - The top section summarizes the overview of two AI agent variants. You can select it on the agent ID link, and it directs you to the agent setting page in Azure AI Foundry portal. You can also select the link for Evaluation Results, and it directs you to Azure AI Foundry portal to view individual result in detail.
   - The second section includes evaluation scores and comparison between different variants on statistical significance (for multiple agents) and confidence intervals (for single agent).
 
-Multi agent evaluation result:
+Evaluation results and comparisons from multiple AI agents:
 :::image type="content" source="../media/evaluations/azure-devops-multi-agent-result.png" alt-text="Screenshot of multi agent evaluation result in Azure DevOps." lightbox="../media/evaluations/azure-devops-multi-agent-result.png":::
 
 Single agent evaluation result:
