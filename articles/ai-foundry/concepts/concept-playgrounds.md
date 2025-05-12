@@ -122,8 +122,6 @@ With the audio playground, you can use text-to-speech and transcription capabili
 
 We built the images playground for developers who build image generation flows. The Images playground is a full-featured, controlled environment for high-fidelity experiments designed for model-specific APIs for generation and editing.
 
-:::image type="content" source="../media/concept-playgrounds/images-playground-home-page.png" alt-text="Images playground home page showcasing tools for image generation and editing." lightbox="../media/concept-playgrounds/images-playground-home-page.png":::
-
 ### How to use images playground
 
 1. **Start with a pre-built text prompt**: Select an option to get started with a prebuilt text prompt that automatically fills the prompt bar.
