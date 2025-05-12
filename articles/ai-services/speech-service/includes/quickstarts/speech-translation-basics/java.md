@@ -74,12 +74,12 @@ Follow these steps to create a new console application for speech recognition.
     import java.util.Map;
     
     public class SpeechTranslation {
-        // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
+        // This example requires environment variables named "SPEECH_KEY" and "END_POINT"
         private static String speechKey = System.getenv("SPEECH_KEY");
-        private static String speechRegion = System.getenv("SPEECH_REGION");
+        private static String endPoint = System.getenv("END_POINT");
     
         public static void main(String[] args) throws InterruptedException, ExecutionException {
-            SpeechTranslationConfig speechTranslationConfig = SpeechTranslationConfig.fromSubscription(speechKey, speechRegion);
+            SpeechTranslationConfig speechTranslationConfig = SpeechTranslationConfig.fromEndpoint(speechKey, endPoint);
             speechTranslationConfig.setSpeechRecognitionLanguage("en-US");
     
             String[] toLanguages = { "it" };
@@ -114,7 +114,7 @@ Follow these steps to create a new console application for speech recognition.
                 if (cancellation.getReason() == CancellationReason.Error) {
                     System.out.println("CANCELED: ErrorCode=" + cancellation.getErrorCode());
                     System.out.println("CANCELED: ErrorDetails=" + cancellation.getErrorDetails());
-                    System.out.println("CANCELED: Did you set the speech resource key and region values?");
+                    System.out.println("CANCELED: Did you set the speech resource key and endpoint values?");
                 }
             }
     

@@ -50,16 +50,16 @@ Follow these steps to create a console application and install the Speech SDK.
 
     int main()
     {
-        // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
+        // This example requires environment variables named "SPEECH_KEY" and "END_POINT"
         auto speechKey = GetEnvironmentVariable("SPEECH_KEY");
-        auto speechRegion = GetEnvironmentVariable("SPEECH_REGION");
+        auto endPoint = GetEnvironmentVariable("END_POINT");
 
-        if ((size(speechKey) == 0) || (size(speechRegion) == 0)) {
-            std::cout << "Please set both SPEECH_KEY and SPEECH_REGION environment variables." << std::endl;
+        if ((size(speechKey) == 0) || (size(endPoint) == 0)) {
+            std::cout << "Please set both SPEECH_KEY and END_POINT environment variables." << std::endl;
             return -1;
         }
 
-        auto speechConfig = SpeechConfig::FromSubscription(speechKey, speechRegion);
+        auto speechConfig = SpeechConfig::FromEndpoint(speechKey, endPoint);
         speechConfig->SetProperty(PropertyId::SpeechServiceResponse_DiarizeIntermediateResults, "true"); 
 
         speechConfig->SetSpeechRecognitionLanguage("en-US");
@@ -99,7 +99,7 @@ Follow these steps to create a console application and install the Speech SDK.
                 {
                     std::cout << "CANCELED: ErrorCode=" << (int)cancellation->ErrorCode << std::endl;
                     std::cout << "CANCELED: ErrorDetails=" << cancellation->ErrorDetails << std::endl;
-                    std::cout << "CANCELED: Did you set the speech resource key and region values?" << std::endl;
+                    std::cout << "CANCELED: Did you set the speech resource key and endpoint values?" << std::endl;
                 }
                 else if (cancellation->Reason == CancellationReason::EndOfStream)
                 {
@@ -149,7 +149,7 @@ Follow these steps to create a console application and install the Speech SDK.
 1. [Build and run](/cpp/build/vscpp-step-2-build) your application to start conversation transcription:
 
    > [!IMPORTANT]
-   > Make sure that you set the `SPEECH_KEY` and `SPEECH_REGION` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
+   > Make sure that you set the `SPEECH_KEY` and `END_POINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
 
 The transcribed conversation should be output as text:
 
