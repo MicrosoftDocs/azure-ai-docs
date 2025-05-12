@@ -106,7 +106,7 @@ Follow these steps:
       --template-file deploy.bicep
     ```
 
-7. The template outputs the Azure AI model inference endpoint that you can use to consume any of the model deployments you have created.
+7. The template outputs the Azure AI Foundry Models endpoint that you can use to consume any of the model deployments you have created.
 
 ## Next steps
 

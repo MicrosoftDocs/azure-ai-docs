@@ -10,13 +10,13 @@ zone_pivot_groups: azure-ai-models-deployment
 
 [!INCLUDE [Header](intro.md)]
 
-* An AI project connected to your Azure AI Foundry resource with the feature **Deploy models to Azure AI model inference service** on.
+* An AI project connected to your Azure AI Foundry resource with the feature **Deploy models to Azure AI Foundry Models service** on.
 
-  * You can follow the steps at [Configure Azure AI model inference service in my project](../../how-to/quickstart-ai-project.md#configure-the-project-to-use-foundry-models) in Azure AI Foundry.
+  * You can follow the steps at [Configure Foundry Models service in my project](../../how-to/quickstart-ai-project.md#configure-the-project-to-use-foundry-models) in Azure AI Foundry.
 
 ## Add a model
 
-You can add models to the Azure AI model inference endpoint using the following steps:
+You can add models to the Foundry Models endpoint using the following steps:
 
 1. Go to **Model catalog** section in [Azure AI Foundry portal](https://ai.azure.com/explore/models).
 
