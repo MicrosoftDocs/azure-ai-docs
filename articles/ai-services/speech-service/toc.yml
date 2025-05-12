@@ -133,7 +133,7 @@ items:
     - name: Get facial position with viseme
       href: how-to-speech-synthesis-viseme.md
       displayName: viseme, phoneme, phonetic
-    - name: Use high definition (HD) voices (preview)
+    - name: Use high definition (HD) voices
       href: high-definition-voices.md
       displayName: hd voice
     - name: Custom neural voice
@@ -160,7 +160,7 @@ items:
             href: professional-voice-train-voice.md
           - name: "Part 5: Deploy and use your voice model"
             href: professional-voice-deploy-endpoint.md
-        - name: Custom neural voice lite (preview)
+        - name: Custom neural voice lite
           href: custom-neural-voice-lite.md
         - name: Personal voice
           items:
