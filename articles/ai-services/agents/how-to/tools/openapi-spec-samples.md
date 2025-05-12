@@ -20,7 +20,7 @@ Use this article to find step-by-step instructions and code samples for using Op
 :::zone pivot="portal"
 
 1. Go to the [Azure AI Foundry portal](https://ai.azure.com/). in the **Create and debug** screen or **Agent playground**, select your agent.
-1. Scroll down the **Setup** pane on the right to **action**. Then select **Add**.
+1. Scroll down the **Setup** pane to **action**. Then select **Add**.
 
     :::image type="content" source="../../media/tools/action-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/action-tools.png":::
    
@@ -32,7 +32,7 @@ Use this article to find step-by-step instructions and code samples for using Op
 
    :::image type="content" source="../../media/tools/open-api-details.png" alt-text="A screenshot showing the openAPI tool details in the Azure AI Foundry portal." lightbox="../../media/tools/open-api-details.png":::
 
-1. Click Next and select your authentication method. Choose `connection` for `API key`.
+1. Select **Next** and select your authentication method. Choose `connection` for `API key`.
    1. If you choose `connection`, you need to select the custom keys connection you have created before.
    1. If you choose `managed identity`, you need to input the audience to get your token. An example of an audience would be `https://cognitiveservices.azure.com/` to connect to Azure AI Services. Make sure you have already set up authentication and role assignment (as described in the [section](./openapi-spec.md#authenticating-with-managed-identity-microsoft-entra-id) above).
       
@@ -46,7 +46,7 @@ Use this article to find step-by-step instructions and code samples for using Op
 
 ## Using the .NET SDK
 
-In this example we will demonstrate the possibility to use services with [OpenAPI Specification](https://en.wikipedia.org/wiki/OpenAPI_Specification) with the agent. We will use [wttr.in](https://wttr.in) service to get weather and its specification file [weather_openapi.json](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/tests/Samples/Agent/weather_openapi.json).
+In this example we'll demonstrate the possibility to use services with [OpenAPI Specification](https://en.wikipedia.org/wiki/OpenAPI_Specification) with the agent. We will use [wttr.in](https://wttr.in) service to get weather and its specification file [weather_openapi.json](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/tests/Samples/Agent/weather_openapi.json).
 
 1. First get `ProjectEndpoint` and `ModelDeploymentName` from config and create a `PersistentAgentsClient`. Also, create an `OpenApiAnonymousAuthDetails` and `OpenApiToolDefinition` from config. 
 
@@ -67,7 +67,7 @@ In this example we will demonstrate the possibility to use services with [OpenAP
     );
 ```
 
-2. Next we will need to create an agent.
+2. Next we'll need to create an agent.
 
 ```csharp
     PersistentAgent agent = client.CreateAgent(
@@ -78,7 +78,7 @@ In this example we will demonstrate the possibility to use services with [OpenAP
     );
 ```
 
-3. Now we will create a `ThreadRun` and wait until it is complete. If the run will not be successful, we will print the last error.
+3. Now we'll create a `ThreadRun` and wait until it is complete. If the run will not be successful, we'll print the last error.
 
 
 ```csharp
@@ -121,7 +121,7 @@ In this example we will demonstrate the possibility to use services with [OpenAP
     }
 ```
 
-5. Finally, we delete all the resources, we have created in this sample.
+5. Finally, we delete all the resources we have created in this sample.
 
 ```csharp
     client.DeleteThread(thread.Id);
@@ -232,7 +232,7 @@ Create a run and observe that the model uses the OpenAPI Spec tool to provide a 
 
 :::zone pivot="rest-api"
 
-## Step 1: Create the OpenAPI Spec tool definition, agent and thread
+## Step 1: Create the OpenAPI Spec tool definition, agent, and thread
  
 You might want to store the OpenAPI specification in another file and import the content to initialize the tool. This example is using `anonymous` as the authentication type.
 
@@ -366,4 +366,3 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-1
 ```
 
 :::zone-end
-
