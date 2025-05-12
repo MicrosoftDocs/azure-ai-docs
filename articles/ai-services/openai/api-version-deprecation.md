@@ -18,14 +18,16 @@ This article is to help you understand the support lifecycle for the Azure OpenA
 
 
 > [!NOTE]
-> New API response objects may be added to the API response without version changes. We recommend you only parse the response objects you require. 
+> New API response objects may be added to the API response without version changes. We recommend you only parse the response objects you require.
+>
+> The latest Azure OpenAI spec uses OpenAPI 3.1. It is a known issue that this is currently not fully supported by [Azure API Management](/azure/api-management/api-management-key-concepts)
 
 ## Latest preview API releases
 
 Azure OpenAI API latest release:
 
 - Inference: [2025-04-01-preview](reference-preview.md)
-- Authoring: [2025-04-01-preview](authoring-reference-preview)
+- Authoring: [2025-04-01-preview](authoring-reference-preview.md)
 
 This version contains support for the latest Azure OpenAI features including:
 
@@ -45,7 +47,7 @@ This version contains support for the latest Azure OpenAI features including:
 - [Function calling](./how-to/function-calling.md)  [**Added in 2023-07-01-preview**]
 - [Retrieval augmented generation with your data feature](./use-your-data-quickstart.md).  [**Added in 2023-06-01-preview**]
 
-## Changes between 2025-03-01-preview and 2025-02-01-preview
+## Changes between 2025-04-01-preview and 2025-03-01-preview
 
 - [`GPT-image-1` support](/azure/ai-services/openai/how-to/dall-e)
 - [Reasoning summary for `o3` and `o4-mini`](/azure/ai-services/openai/how-to/reasoning)
