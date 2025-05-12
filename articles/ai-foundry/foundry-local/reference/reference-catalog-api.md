@@ -25,7 +25,7 @@ The model files hosted in your model catalog are required to be in the [Open Neu
 
 ## Model Storage
 
-The model files should be stored on [Azure Blob Storage](https://learn.microsoft.com/azure/storage/blobs/storage-blobs-introduction). The model catalog service should be able to access the model files stored in Azure Blob Storage.
+The model files should be stored on [Azure Blob Storage](/azure/storage/blobs/storage-blobs-introduction). The model catalog service should be able to access the model files stored in Azure Blob Storage.
 
 ## API format
 
