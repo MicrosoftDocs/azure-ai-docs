@@ -38,7 +38,7 @@ To learn more about how to create deployments see [Add and configure model deplo
 
 ## Foundry Models inference endpoint
 
-The Foundry Models inference endpoint allows customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. This endpoint follows the [Foundry Models API](.././reference/reference-model-inference-api.md) which all the models in Foundry Models support. It support the following modalities:
+The Foundry Models inference endpoint allows customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. This endpoint follows the [Foundry Models API](.././reference/reference-model-inference-api.md) which all the models in Foundry Models support. It supports the following modalities:
 
 * Text embeddings
 * Image embeddings
