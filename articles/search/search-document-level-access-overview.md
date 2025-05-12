@@ -53,12 +53,12 @@ Document-level permissions in Azure AI Search provide a structured framework for
   
 To help you dive deeper into document-level access control in Azure AI Search, here’s a table of key resources:  
   
-| Functionality                                   | Reference |  
+| Functionality                                   | Reference |  Sample |
 |---|---|  
-| **Index permissions using REST API**           | [Index permissions using REST API](search-index-access-control-lists-and-rbac-push-api.md)  |  
-| **Index ADLS Gen2 permissions metadata using built-in indexers** | [Index permissions using ADLS Gen2 indexer](search-indexer-access-control-lists-and-role-based-access.md) |  
-| **Query using Microsoft Entra token-based permissions** | [Query using Microsoft Entra token-based permissions](https://aka.ms/azs-query-preserving-permissions) |  
-| **Security trimming via filters**              | [Security trimming via filters](search-security-trimming-for-azure-search.md)               |  
+| **Index permissions using Push APIs**           | [Index permissions using REST API](search-index-access-control-lists-and-rbac-push-api.md)  |  [azure-search-rest-samples/Quickstart-ACL](https://github.com/Azure-Samples/azure-search-rest-samples-pr/tree/main/Quickstart-ACL) or [azure-search-python-samples/Quickstart-ACL](https://github.com/Azure-Samples/azure-search-python-samples-pr/blob/main/Quickstart-ACL) |
+| **Index ADLS Gen2 permissions metadata using built-in indexers** | [Index permissions using ADLS Gen2 indexer](search-indexer-access-control-lists-and-role-based-access.md) |   [azure-search-python-samples/Quickstart-Document-Permissions](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Document-Permissions) |
+| **Query using Microsoft Entra token-based permissions** | [Query using Microsoft Entra token-based permissions](https://aka.ms/azs-query-preserving-permissions) | See previous samples. |
+| **Security trimming via filters**              | [Security trimming via filters](search-security-trimming-for-azure-search.md)               |  Not available. |
   
 ## Next steps  
   
