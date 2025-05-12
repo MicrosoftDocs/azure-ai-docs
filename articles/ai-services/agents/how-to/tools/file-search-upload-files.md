@@ -157,17 +157,26 @@ for message in messages.data:
 Create a client object that contains the connection string for connecting to your AI project and other resources.
 
 ```csharp
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
-using Azure.Core.TestFramework;
+using System.Threading;
 
-// Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
-// At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>"
-// You need to login to your Azure subscription via the Azure CLI and set the environment variables
-var connectionString = TestEnvironment.AzureAICONNECTIONSTRING;
-AgentsClient client = new AgentsClient(connectionString, new DefaultAzureCredential());
+// Get Connection information from app configuration
+IConfigurationRoot configuration = new ConfigurationBuilder()
+    .SetBasePath(AppContext.BaseDirectory)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .Build();
+
+var projectEndpoint = configuration["ProjectEndpoint"];
+var modelDeploymentName = configuration["ModelDeploymentName"];
+
+// Create the Agent Client
+PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
+
 ```
 
 ## Step 2: Upload files and add them to a Vector Store
@@ -175,21 +184,31 @@ AgentsClient client = new AgentsClient(connectionString, new DefaultAzureCredent
 To access your files, the file search tool uses the vector store object. Upload your files and create a vector store. After creating the vector store, poll its status until all files are uploaded to ensure that all content is fully processed. The SDK provides helpers for uploading and polling.
 
 ```csharp
-// Upload a file and wait for it to be processed
-File.WriteAllText(
+// Create a local sample file
+System.IO.File.WriteAllText(
     path: "sample_file_for_upload.txt",
-    contents: "The word 'apple' uses the code 442345, while the word 'banana' uses the code 673457.");
-Response<AgentFile> uploadAgentFileResponse = await client.UploadFileAsync(
-    filePath: "sample_file_for_upload.txt",
-    purpose: AgentFilePurpose.Agents);
+    contents: "The word 'apple' uses the code 442345, while the word 'banana' uses the code 673457."
+);
 
-AgentFile uploadedAgentFile = uploadAgentFileResponse.Value;
+// Upload local sample file to the agent
+PersistentAgentFileInfo uploadedAgentFile = agentClient.Files.UploadFile(
+    filePath: "sample_file_for_upload.txt",
+    purpose: PersistentAgentFilePurpose.Agents
+);
+
+// Setup dictionary with list of File IDs for the vector store
+Dictionary<string, string> fileIds = new()
+{
+    { uploadedAgentFile.Id, uploadedAgentFile.Filename }
+};
 
 // Create a vector store with the file and wait for it to be processed.
-// If you do not specify a vector store, create_message will create a vector store with a default expiration policy of seven days after they were last active
-VectorStore vectorStore = await client.CreateVectorStoreAsync(
+// If you do not specify a vector store, CreateMessage will create a vector
+// store with a default expiration policy of seven days after they were last active
+VectorStore vectorStore = agentClient.VectorStores.CreateVectorStore(
     fileIds: new List<string> { uploadedAgentFile.Id },
     name: "my_vector_store");
+
 ```
 
 ## Step 3: Create an agent and enable file search
@@ -197,65 +216,122 @@ VectorStore vectorStore = await client.CreateVectorStoreAsync(
 Create a file search tool object with the vector store ID, and attach tool and tool resources to the agent.
 
 ```csharp
+// Create tool definition for File Search
 FileSearchToolResource fileSearchToolResource = new FileSearchToolResource();
 fileSearchToolResource.VectorStoreIds.Add(vectorStore.Id);
 
-// Create an agent with toolResources and process assistant run
-Response<Agent> agentResponse = await client.CreateAgentAsync(
-    model: "gpt-4o-mini",
-    name: "SDK Test Agent - Retrieval",
-    instructions: "You are a helpful agent that can help fetch data from files you know about.",
-    tools: new List<ToolDefinition> { new FileSearchToolDefinition() },
-    toolResources: new ToolResources() { FileSearch = fileSearchToolResource });
-Agent agent = agentResponse.Value;
+// Create an agent with Tools and Tool Resources
+PersistentAgent agent = agentClient.Administration.CreateAgent(
+        model: modelDeploymentName,
+        name: "SDK Test Agent - Retrieval",
+        instructions: "You are a helpful agent that can help fetch data from files you know about.",
+        tools: new List<ToolDefinition> { new FileSearchToolDefinition() },
+        toolResources: new ToolResources() { FileSearch = fileSearchToolResource });
 ```
 
-## Step 4: Create a thread
+## Step 4: Create a thread and run
 
 You can also attach files as Message attachments on your thread. Doing so creates another vector store associated with the thread, or, if there's already a vector store attached to this thread, attaches the new files to the existing thread vector store. When you create a Run on this thread, the file search tool queries both the vector store from your agent and the vector store on the thread.
 
 ```csharp
-Response<AgentThread> threadResponse = await client.CreateThreadAsync();
-AgentThread thread = threadResponse.Value;
+// Create the agent thread for communication
+PersistentAgentThread thread = agentClient.Threads.CreateThread();
 
-Response<ThreadMessage> messageResponse = await client.CreateMessageAsync(
+// Create message and run the agent
+ThreadMessage messageResponse = agentClient.Messages.CreateMessage(
     thread.Id,
     MessageRole.User,
     "Can you give me the documented codes for 'banana' and 'orange'?");
-ThreadMessage message = messageResponse.Value;
+
+ThreadRun run = agentClient.Runs.CreateRun(thread, agent);
+
 ```
+## Step 5: Print the output
 
-## Step 5: Create a run and check the output
-
-Create a run and observe that the model uses the file search tool to provide a response.
+Wait for the agent to complete the run and print output to console. Observe that the model uses the file search tool to provide a response.
 
 ```csharp
-Response<ThreadRun> runResponse = await client.CreateRunAsync(thread, agent);
-
+// Wait for the agent to finish running
 do
 {
-    await Task.Delay(TimeSpan.FromMilliseconds(500));
-    runResponse = await client.GetRunAsync(thread.Id, runResponse.Value.Id);
+    Thread.Sleep(TimeSpan.FromMilliseconds(500));
+    run = agentClient.Runs.GetRun(thread.Id, run.Id);
 }
-while (runResponse.Value.Status == RunStatus.Queued
-    || runResponse.Value.Status == RunStatus.InProgress);
+while (run.Status == RunStatus.Queued
+    || run.Status == RunStatus.InProgress);
 
-Response<PageableList<ThreadMessage>> afterRunMessagesResponse
-    = await client.GetMessagesAsync(thread.Id);
-IReadOnlyList<ThreadMessage> messages = afterRunMessagesResponse.Value.Data;
+// Confirm that the run completed successfully
+if (run.Status != RunStatus.Completed)
+{
+    throw new Exception("Run did not complete successfully, error: " + run.LastError?.Message);
+}
 
+// Retrieve all messages from the agent client
+Pageable<ThreadMessage> messages = agentClient.Messages.GetMessages(
+    threadId: thread.Id,
+    order: ListSortOrder.Ascending
+);
+
+// Helper method for replacing references
+static string replaceReferences(Dictionary<string, string> fileIds, string fileID, string placeholder, string text)
+{
+    if (fileIds.TryGetValue(fileID, out string replacement))
+        return text.Replace(placeholder, $" [{replacement}]");
+    else
+        return text.Replace(placeholder, $" [{fileID}]");
+}
+
+// Process messages in order
 foreach (ThreadMessage threadMessage in messages)
 {
     Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+
     foreach (MessageContent contentItem in threadMessage.ContentItems)
     {
         if (contentItem is MessageTextContent textItem)
         {
-            Console.Write(textItem.Text);
+            if (threadMessage.Role == MessageRole.Agent && textItem.Annotations.Count > 0)
+            {
+                string strMessage = textItem.Text;
+
+                // If we file path or file citation annotations - rewrite the 'source' FileId with the file name
+                foreach (MessageTextAnnotation annotation in textItem.Annotations)
+                {
+                    if (annotation is MessageTextFilePathAnnotation pathAnnotation)
+                    {
+                        strMessage = replaceReferences(fileIds, pathAnnotation.FileId, pathAnnotation.Text, strMessage);
+                    }
+                    else if (annotation is MessageTextFileCitationAnnotation citationAnnotation)
+                    {
+                        strMessage = replaceReferences(fileIds, citationAnnotation.FileId, citationAnnotation.Text, strMessage);
+                    }
+                }
+                Console.Write(strMessage);
+            }
+            else
+            {
+                Console.Write(textItem.Text);
+            }
+        }
+        else if (contentItem is MessageImageFileContent imageFileItem)
+        {
+            Console.Write($"<image from ID: {imageFileItem.FileId}");
         }
         Console.WriteLine();
     }
 }
+```
+## Step 6: Clean up resources
+
+Clean up the resources from this sample.
+
+```csharp
+// Clean up resources
+agentClient.VectorStores.DeleteVectorStore(vectorStore.Id);
+agentClient.Files.DeleteFile(uploadedAgentFile.Id);
+agentClient.Threads.DeleteThread(thread.Id);
+agentClient.Administration.DeleteAgent(agent.Id);
+
 ```
 
 :::zone-end

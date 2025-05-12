@@ -12,7 +12,7 @@ ms.author: aahi
 zone_pivot_groups: selection-fabric-data-agent
 ---
 
-# Use the Microsoft Fabric data agent
+# Use the Microsoft Fabric data agent (preview)
 
 Integrate your Azure AI Agent with the [**Microsoft Fabric data agent**](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. The Fabric data agent transforms enterprise data into conversational Q&A systems, allowing users to interact with the data through chat and uncover data-driven and actionable insights. 
 
@@ -65,16 +65,28 @@ You can add the Microsoft Fabric tool to an agent programatically using the code
 
 ## Step 1: Create a project client
 
-Create a client object, which will contain the connection string for connecting to your AI project and other resources.
+Create a client object, which will contain the project endpoint connecting to your AI project and other resources.
 
 ```csharp
-var connectionString = System.Environment.GetEnvironmentVariable("PROJECT_CONNECTION_STRING");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
-var fabricConnectionName = System.Environment.GetEnvironmentVariable("FABRIC_CONNECTION_NAME");
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using System;
+using Microsoft.Extensions.Configuration;
+using System.Threading;
+using Azure;
 
-var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential());
+// Get Connection information from App Configuration
+IConfigurationRoot configuration = new ConfigurationBuilder()
+    .SetBasePath(AppContext.BaseDirectory)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .Build();
 
-AgentsClient agentClient = projectClient.GetAgentsClient();
+var projectEndpoint = configuration["ProjectEndpoint"];
+var modelDeploymentName = configuration["ModelDeploymentName"];
+var fabricConnectionId = configuration["FabricConnectionId"];
+
+// Create the Agent Client
+PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
 ```
 
 ## Step 2: Create an agent with the Microsoft Fabric tool enabled
@@ -82,59 +94,61 @@ AgentsClient agentClient = projectClient.GetAgentsClient();
 To make the Microsoft Fabric tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the Azure AI Foundry portal.
 
 ```csharp
-ConnectionResponse fabricConnection = projectClient.GetConnectionsClient().GetConnection(fabricConnectionName);
-var connectionId = fabricConnection.Id;
-
+// Create the MicrosoftFabricToolDefinition object needed when creating the agent
 ToolConnectionList connectionList = new()
 {
-    ConnectionList = { new ToolConnection(connectionId) }
+    ConnectionList = { new ToolConnection(fabricConnectionId) }
 };
 MicrosoftFabricToolDefinition fabricTool = new(connectionList);
 
-Agent agent = agentClient.CreateAgent(
-   model: modelDeploymentName,
-   name: "my-assistant",
-   instructions: "You are a helpful assistant.",
-   tools: [fabricTool]);
+// Create the Agent
+PersistentAgent agent = agentClient.Administration.CreateAgent(
+    model: modelDeploymentName,
+    name: "my-assistant",
+    instructions: "You are a helpful assistant.",
+    tools: [fabricTool]);
 ```
 
-## Step 3: Create a thread
+## Step 3: Create a thread and run
 
 ```csharp
-AgentThread thread = agentClient.CreateThread();
+PersistentAgentThread thread = agentClient.Threads.CreateThread();
 
-// Create message to thread
-ThreadMessage message = agentClient.CreateMessage(
+// Create message and run the agent
+ThreadMessage message = agentClient.Messages.CreateMessage(
     thread.Id,
     MessageRole.User,
     "What are the top 3 weather events with highest property damage?");
+ThreadRun run = agentClient.Runs.CreateRun(thread, agent);
 ```
 
-## Step 4: Create a run and check the output
+## Step 4: Wait for the agent to complete and print the output
 
-Create a run and observe that the model uses the Fabric data agent tool to provide a response to the user's question.
+Wait for the agent to complete the run and print output to console. Observe that the model uses the Fabric data agent tool to provide a response to the user's question.
 
 ```csharp
-// Run the agent
-ThreadRun run = agentClient.CreateRun(thread, agent);
+// Wait for the agent to finish running
 do
 {
     Thread.Sleep(TimeSpan.FromMilliseconds(500));
-    run = agentClient.GetRun(thread.Id, run.Id);
+    run = agentClient.Runs.GetRun(thread.Id, run.Id);
 }
 while (run.Status == RunStatus.Queued
     || run.Status == RunStatus.InProgress);
 
-Assert.AreEqual(
-    RunStatus.Completed,
-    run.Status,
-    run.LastError?.Message);
+// Confirm that the run completed successfully
+if (run.Status != RunStatus.Completed)
+{
+    throw new Exception("Run did not complete successfully, error: " + run.LastError?.Message);
+}
 
-PageableList<ThreadMessage> messages = agentClient.GetMessages(
+// Retrieve all messages from the agent client
+Pageable<ThreadMessage> messages = agentClient.Messages.GetMessages(
     threadId: thread.Id,
     order: ListSortOrder.Ascending
 );
 
+// Process messages in order
 foreach (ThreadMessage threadMessage in messages)
 {
     Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
@@ -143,6 +157,8 @@ foreach (ThreadMessage threadMessage in messages)
         if (contentItem is MessageTextContent textItem)
         {
             string response = textItem.Text;
+
+            // If we have Text URL citation annotations, reformat the response to show title & URL for citations
             if (textItem.Annotations != null)
             {
                 foreach (MessageTextAnnotation annotation in textItem.Annotations)
@@ -162,6 +178,18 @@ foreach (ThreadMessage threadMessage in messages)
         Console.WriteLine();
     }
 }
+```
+
+## Step 5: Clean up resources
+
+Clean up the resources from this sample.
+
+```csharp
+
+// Delete thread and agent
+agentClient.Threads.DeleteThread(threadId: thread.Id);
+agentClient.Administration.DeleteAgent(agentId: agent.Id);
+
 ```
 :::zone-end
 

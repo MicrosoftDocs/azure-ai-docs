@@ -6,45 +6,47 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 02/24/2025
+ms.date: 05/12/2025
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
 ms.custom: azure-ai-agents
 ---
 
-# Create a new network-secured agent with user-managed identity
+# Create a new network-secured environment with user-managed identity
 
-Azure AI Foundry Agent Service offers a standard agent configuration with private networking, allowing you to bring your own (BYO) private virtual network. This setup creates an isolated network environment that lets you securely access data and perform actions while maintaining full control over your network infrastructure. This guide provides a step-by-step walkthrough of the setup process and outlines all necessary requirements.
+Azure AI Foundry Agent Service offers **Standard Setup with private networking** environment setup, allowing you to bring your own (BYO) private virtual network. This set up creates an isolated network environment that lets you securely access data and perform actions while maintaining full control over your network infrastructure. This guide provides a step-by-step walkthrough of the setup process and outlines all necessary requirements.
 
-> [!NOTE]
-> Standard setup with private networking can only be configured by deploying the Bicep template described in this article. Once deployed, agents must be created using the SDK or REST API. You can't use the Azure AI Foundry portal to create agents in a project with private networking enabled.
+## Security features
 
-## Benefits
-
+By default, the Standard Setup with Private Network Isolation ensures:
 - **No public egress**: foundational infrastructure ensures the right authentication and security for your agents and tools, without you having to do trusted service bypass.
 
 - **Container injection**: allows the platform network to host APIs and inject a subnet into your network, enabling local communication of your Azure resources within the same virtual network.
 
 - **Private resource access**: If your resources are marked as private and nondiscoverable from the internet, the platform network can still access them, provided the necessary credentials and authorization are in place.
 
+For customers without an existing virtual network, the Standard Setup with Private Networking template simplifies deployment by automatically provisioning the necessary network infrastructures. 
+
+## Architecture diagram
+
+:::image type="content" source="../media/private-network-isolation.png" alt-text="A diagram showing virtual network architecture.":::
 ### Known limitations
 
+- Subnet IP address limitation: only class B and C are supported
 - Azure Blob Storage: Using Azure Blob Storage files with the File Search tool isn't supported.
 
 ## Prerequisites
-
-1. An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
-2. [Python 3.8 or later](https://www.python.org/)
-3. Ensure that the individual deploying the template has the [Azure AI Developer role](/azure/ai-foundry/concepts/rbac-azure-ai-foundry) assigned at the resource group level where the template is being deployed.
-4. Additionally, to deploy the template, you need to have the preset [Role Based Access Administrator](/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator) role at the subscription level.
-    * The **Owner** role at the subscription level satisfies this requirement.
-    * The specific admin role that is needed is `Microsoft.Authorization/roleAssignments/write`
-5. Ensure that each team member who wants to use the Agent Playground or SDK to create or edit agents has been assigned the built-in **Azure AI Developer** [RBAC role](../../../ai-foundry/concepts/rbac-azure-ai-foundry.md) for the project.
-    * Note: assign these roles after the template has been deployed
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+* Ensure that the individual creating the account and project has the **Azure AI Account Owner** role at the subscription scope
+* The person deploying the template must also have permissions to assign roles to required resources (Cosmos DB, Search, Storage).
+    * The built-in role needed is **Role Based Access Administrator**.
+    * Alternatively, having the **Owner** role at the subscription level also satisfies this requirement.
+    * The key permission needed is: `Microsoft.Authorization/roleAssignments/write`
+* [Python 3.8 or later](https://www.python.org/)
+* Once the agent environment is configured, ensure that each team member who wants to use the Agent Playground or SDK to create or edit agents has been assigned the built-in **Azure AI User** [RBAC role](../../../ai-foundry/concepts/rbac-azure-ai-foundry.md) for the project.
     * The minimum set of permissions required is: **agents/*/read**, **agents/*/action**, **agents/*/delete**  
-5. Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
-6. Register providers. The following providers must be registered:
+* Register providers. The following providers must be registered:
     * `Microsoft.KeyVault`
     * `Microsoft.CognitiveServices`
     * `Microsoft.Storage`
@@ -64,60 +66,20 @@ Azure AI Foundry Agent Service offers a standard agent configuration with privat
        az provider register --namespace 'Microsoft.Bing'
     ```
 
-## Create a new network-secured agent with user-managed identity
+## Configure a new network-secured environment 
 
 **Network secured setup**: Agents use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you incur costs based on your usage. The following bicep template provides:
 
-* Resources for the project, storage account, key vault, AI Services, and Azure AI Search are created for you. The AI Services, AI Search, and Azure Blob Storage account are connected to your project/hub, and a gpt-4o-mini model is deployed in the westus2 region.
-* Customer-owned resources are secured with a provisioned managed network and authenticated with a user-managed identity with the necessary RBAC (Role-Based Access Control) permissions. Private links and DNS (Domain Name System) zones are created on behalf of the customer to ensure network connectivity.
+* An account and project are created. 
+* A gpt-4o model is deployed. 
+* Azure resources for storing customer data — Azure Storage, Azure Cosmos DB, and Azure AI Search — are automatically created if existing resources are not provided. 
+* These resources are connected to your project to store files, threads, and vector data. 
+* A Microsoft-managed key vault is used by default. 
 
-<br/>
 
-<details>
-<summary><b> Bicep Technical Details</b>
-</summary>   
+### Option 1: manually deploy the bicep template
 
-**The Bicep template automates the following configurations and resource provisions:**
-* Creates a [User Assigned Identity](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp#create-a-user-assigned-managed-identity).
-  * The User Assigned Managed Identity requires the following Role-Based Access Roles: 
-    * KeyVault Secret Officer
-    * KeyVault Contributor
-    * Storage Blob Data Owner
-    * Storage Queue Data Contributor
-    * Cognitive Services Contributor
-    * Cognitive Services OpenAI User
-    * Search Index Data Contributor
-    * Search Service Contributor
-
-* Configures a managed virtual network with two subnet resources:
-   * Azure resources subnet
-      * Enables service endpoints for:
-         * `Microsoft.KeyVault`
-         * `Microsoft.Storage`
-         * `Microsoft.CognitiveServices`
-   * Agent resources subnet
-      * Configured with subnet delegations for:
-         * `Microsoft.app/environments` 
-* Provisions dependent resources
-   * Azure Key Vault, Azure Storage, Azure OpenAI/AI Services, and Azure AI Search resources are created.
-   * All resources are configured with:
-      * Disabled public network access
-      * Private endpoints in the Azure Resource subnet
-      * Private DNS integration enabled
-      * User assigned identity for authentication
-* Creates a project using the resources provisioned and configures them to use the Agent Resource Subnet.  
-   * Accomplished by configuring the `capabilityHost` (a subresource of the project) to use the Agent Resource Subnet for network isolation and secure communication. 
-</details>
-
-### Option 1: autodeploy the bicep template
-
-| Template | Description   | Autodeploy |
-| ------------------- | -----------------------------------------------| -----------------------|
-| `network-secured-agent.bicep`  | Deploy a network secured agent setup that uses user-managed identity authentication on the Agent connections. | [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fazureai-samples%2Fmain%2Fscenarios%2FAgents%2Fsetup%2Fnetwork-secured-agent-thread-storage%2Fazuredeploy.json)
-
-### Option 2: manually deploy the bicep template
-
-1. To manually run the bicep templates, [download the template from GitHub](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/Agents/setup/network-secured-agent-thread-storage). Download the following from the `network-secured-agent` folder:
+1. To deploy and customize the bicep templates, [download the template from GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup). Download the following from the `private-network-standard-agent-setup` folder:
     1. `main.bicep`
     1. `azuredeploy.parameters.json`
     1. `modules-network-secured folder`
@@ -135,158 +97,87 @@ Azure AI Foundry Agent Service offers a standard agent configuration with privat
 
     Make sure you have the Azure AI Developer role for the resource group you created. 
 
-1. Using the resource group you created in the previous step and one of the template files (`network-secured-agent`), run one of the following commands: 
+1. Using the resource group you created in the previous step and one of the template files (`private-network-standard-agent-setup`), run one of the following commands: 
 
     1. To use default resource names, run:
 
         ```console
         az deployment group create --resource-group {my_resource_group} --template-file main.bicep
         ```
+For more details, see the [README](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup).
 
-    1. To specify custom names for the project, storage account, and/or Azure AI service resources run the following command. A randomly generated suffix is added to prevent accidental duplication.
+## Deep Dive Standard Setup with Private Networking Template
+When you use the Standard Setup with Private Networking Agent Template, the following will automatically be provisioned, unless you bring your own: 
 
-        ```console
-        az deployment group create --resource-group {my_resource_group} --template-file main.bicep --parameters aiHubName='your-hub-name' aiProjectName='your-project-name' storageName='your-storage-name' aiServicesName='your-ai-services-name' 
-    
-        ```
+**Network Infrastructure**
+* A Virtual Network (192.168.0.0/16) is created 
+* Agent Subnet (192.168.0.0/24): Hosts Agent client 
+* Private endpoint Subnet (192.168.1.0/24): Hosts private endpoints
 
-    1. To customize other parameters, including the OpenAI model deployment, download, and edit the `azuredeploy.parameters.json` file, then run:
-    
-        ```console
-        az deployment group create --resource-group {my_resource_group} --template-file main.bicep --parameters @azuredeploy.parameters.json 
-        ```
+**Private DNS Zones** 
+The following DNS zones are configured: 
+* privatelink.blob.core.windows.net 
+* privatelink.cognitiveservices.azure.com 
+* privatelink.documents.azure.com 
+* privatelink.file.core.windows.net 
+* privatelink.openai.azure.com 
+* privatelink.search.windows.net 
+* privatelink.services.ai.azure.com  
 
-## Configure and run an agent
+### Virtual network (Vnet) capabilities
+Virtual networks enable you to specify which endpoints can make API calls to your resources. The Azure service automatically rejects API calls from devices outside your defined network. You can establish allowed networks using either formula-based definitions or by creating an exhaustive list of permitted endpoints. This security layer can be combined with other security measures for enhanced protection.
 
-| Component | Description                                                                                                                                                                                                                               |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Agent     | Custom AI that uses AI models with tools.                                                                                                                                                                                  |
-| Tool      | Tools help extend an agent's ability to reliably and accurately respond during conversation. Such as connecting to user-defined knowledge bases to ground the model, or enabling web search to provide current information.               |
-| Thread    | A conversation session between an agent and a user. Threads store Messages and automatically handle truncation to fit content into a model's context.                                                                                     |
-| Message   | A message created by an agent or a user. Messages can include text, images, and other files. Messages are stored as a list on the Thread.                                                                                                 |
-| Run       | Activation of an agent to begin running based on the contents of Thread. The agent uses its configuration and Thread's Messages to perform tasks by calling models and tools. As part of a Run, the agent appends Messages to the Thread. |
-| Run Step  | A detailed list of steps the agent took as part of a Run. An agent can call tools or create Messages during its run. Examining Run Steps allows you to understand how the agent is getting to its results.                                |
 
-> [!TIP]
-> The following code shows how to create and run an agent using the Python Azure SDK. For additional languages, see the [quickstart](../quickstart.md).
+### Network rules
 
-Run the following commands to install the python packages.
+All accounts and their corresponding projects are protected by default with **deny-by-default network rules**, requiring explicit configuration to allow access through private endpoints.
 
-```console
-pip install azure-ai-projects
-pip install azure-identity
-```
-Next, to authenticate your API requests and run the program, use the [az login](/cli/azure/authenticate-azure-cli-interactively) command to sign into your Azure subscription.
+These rules apply to **all protocols**, including REST and WebSocket. Even internal testing tools like Azure portal's test consoles require explicit permission to access your account and its child resources—ensuring complete security across all agent projects.
 
-```azurecli
-az login
-```
 
-Use the following code to create and run an agent. To run this code, you need to create a connection string using information from your project. This string is in the format:
+### Private endpoints
 
-`<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>`
+For Agents, private endpoints ensure secure, internal-only connectivity for the following Azure resources:
 
-[!INCLUDE [connection-string-portal](../includes/endpoint-string-portal.md)]
+- Azure AI Foundry
+- Azure AI Search
+- Azure Storage
+- Azure Cosmos DB
 
-`HostName` can be found by navigating to your `discovery_url` and removing the leading `https://` and trailing `/discovery`. To find your `discovery_url`, run this CLI command:
 
-```azurecli
-az ml workspace show -n {project_name} --resource-group {resource_group_name} --query discovery_url
-```
+### DNS zone configurations summary
 
-For example, your connection string might look something like:
+| Private Link Resource Type | Sub Resource | Private DNS Zone Name | Public DNS Zone Forwarders |
+|----------------------------|--------------|------------------------|-----------------------------|
+| **Azure AI Foundry**       | account      | `privatelink.cognitiveservices.azure.com`<br>`privatelink.openai.azure.com`<br>`privatelink.services.ai.azure.com` | `cognitiveservices.azure.com`<br>`openai.azure.com`<br>`services.ai.azure.com` |
+| **Azure AI Search**        | searchService| `privatelink.search.windows.net` | `search.windows.net` |
+| **Azure Cosmos DB**        | Sql          | `privatelink.documents.azure.com` | `documents.azure.com` |
+| **Azure Storage**          | blob         | `privatelink.blob.core.windows.net` | `blob.core.windows.net` |
 
-`eastus.api.azureml.ms;12345678-abcd-1234-9fc6-62780b3d3e05;my-resource-group;my-project-name`
 
-Set this connection string as an environment variable named `PROJECT_CONNECTION_STRING`.
 
-> [!NOTE]
-> The following code sample shows creating an agent using Python. See the [quickstart](../quickstart.md) for examples in other programming languages.
+### Access your secured agents
 
-```python
-import os
-from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import CodeInterpreterTool
-from azure.identity import DefaultAzureCredential
-from typing import Any
-from pathlib import Path
+Once your template deployment is complete, you can access your Foundry project behind a virtual network using one of the following methods:
+* **Azure VPN Gateway**: Connects on-premises networks to the virtual network over a private connection. Connection is made over the public internet. There are two types of VPN gateways that you might use: 
+    * **Point-to-site**: Each client computer uses a VPN client to connect to the virtual network. 
+    * **Site-to-site**: A VPN device connects the virtual network to your on-premises network. 
+* **ExpressRoute**: Connects on-premises networks into the cloud over a private connection. Connection is made using a connectivity provider.
+* **Azure Bastion**: In this scenario, you create an Azure Virtual Machine (sometimes called a jump box) inside the virtual network. You then connect to the VM using Azure Bastion. Bastion allows you to connect to the VM using either an RDP or SSH session from your local web browser. You then use the jump box as your development environment. Since it is inside the virtual network, it can directly access the workspace.
 
-# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
-# It should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>"
-# HostName can be found by navigating to your discovery_url and removing the leading "https://" and trailing "/discovery"
-# To find your discovery_url, run the CLI command: az ml workspace show -n {project_name} --resource-group {resource_group_name} --query discovery_url
-# Project Connection example: eastus.api.azureml.ms;12345678-abcd-1234-9fc6-62780b3d3e05;my-resource-group;my-project-name
-# You will need to login to your Azure subscription using the Azure CLI "az login" command, and set the environment variables.
 
-project_client = AIProjectClient.from_connection_string(
-    credential=DefaultAzureCredential(), conn_str=os.environ["PROJECT_CONNECTION_STRING"]
-)
+## Summary
 
-with project_client:
-    # Create an instance of the CodeInterpreterTool
-    code_interpreter = CodeInterpreterTool()
+**Private Networking for Standard Agent Setup** delivers enterprise-grade isolation and control:
+- ✅ All inbound and outbound traffic remains isolation from public internet 
+- ✅ Dedicated private endpoints secure all your customer data  
+- ✅ Automatic private DNS resolution for seamless internal access 
+- ✅ Strict deny-by-default network rules for maximum security 
 
-    # The CodeInterpreterTool needs to be included in creation of the agent
-    agent = project_client.agents.create_agent(
-        model="gpt-4o-mini",
-        name="my-agent",
-        instructions="You are helpful agent",
-        tools=code_interpreter.definitions,
-        tool_resources=code_interpreter.resources,
-    )
-    print(f"Created agent, agent ID: {agent.id}")
+This setup enables AI agents to operate entirely within a dedicated, isolated virtual network. By leveraging private network isolation (BYO VNet), organizations can enforce custom security policies, ensuring that AI agents operate within their trusted infrastructure.    
 
-    # Create a thread
-    thread = project_client.agents.create_thread()
-    print(f"Created thread, thread ID: {thread.id}")
+Our goal is to accelerate the development and deployment of AI agents without compromising critical security requirements. With our bicep and ARM templates, you can quickly set up your agent environment while still maintaining full control over their networking and data.   
 
-    # Create a message
-    message = project_client.agents.create_message(
-        thread_id=thread.id,
-        role="user",
-        content="Could you please create a bar chart for the operating profit using the following data and provide the file to me? Company A: $1.2 million, Company B: $2.5 million, Company C: $3.0 million, Company D: $1.8 million",
-    )
-    print(f"Created message, message ID: {message.id}")
 
-    # Run the agent
-    run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
-    print(f"Run finished with status: {run.status}")
-
-    if run.status == "failed":
-        # Check if you got "Rate limit is exceeded.", then you want to get more quota
-        print(f"Run failed: {run.last_error}")
-
-    # Get messages from the thread
-    messages = project_client.agents.list_messages(thread_id=thread.id)
-    print(f"Messages: {messages}")
-
-    # Get the last message from the sender
-    last_msg = messages.get_last_text_message_by_role("assistant")
-    if last_msg:
-        print(f"Last Message: {last_msg.text.value}")
-
-    # Generate an image file for the bar chart
-    for image_content in messages.image_contents:
-        print(f"Image File ID: {image_content.image_file.file_id}")
-        file_name = f"{image_content.image_file.file_id}_image_file.png"
-        project_client.agents.save_file(file_id=image_content.image_file.file_id, file_name=file_name)
-        print(f"Saved image file to: {Path.cwd() / file_name}")
-
-    # Print the file path(s) from the messages
-    for file_path_annotation in messages.file_path_annotations:
-        print(f"File Paths:")
-        print(f"Type: {file_path_annotation.type}")
-        print(f"Text: {file_path_annotation.text}")
-        print(f"File ID: {file_path_annotation.file_path.file_id}")
-        print(f"Start Index: {file_path_annotation.start_index}")
-        print(f"End Index: {file_path_annotation.end_index}")
-        project_client.agents.save_file(file_id=file_path_annotation.file_path.file_id, file_name=Path(file_path_annotation.text).name)
-
-    # Delete the agent once done
-    project_client.agents.delete_agent(agent.id)
-    print("Deleted agent")
-```
-
-## Next steps
-
-Once you've provisioned your agent, you can add tools such as [Grounding with Bing Search](./tools/bing-grounding.md) to enhance their capabilities.
+## What's next?
+You’ve now successfully configured a Network Secure Account and project, use the [quickstart](../quickstart.md) to create your first agent. 

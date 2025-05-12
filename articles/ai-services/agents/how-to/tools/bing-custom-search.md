@@ -12,7 +12,7 @@ ms.author: aahi
 ms.custom: azure-ai-agents
 ---
 
-# Grounding with Bing Custom Search 
+# Grounding with Bing Custom Search (preview)
 
 Grounding with Bing Custom Search tool allows your Azure AI Agents to search within a configurable set of public web domains. It allows you to define the parts of the web you want to draw from so users only see relevant results from the domains and subdomains of your choosing. You need to first create a Grounding with Bing Custom Search resource in Azure portal. 
 
@@ -112,7 +112,7 @@ Grounding with Bing Custom Search is a powerful tool that allows you to select a
 
 ## Optional parameters
 
-When you add the Grounding with Bing Custom Search tool to your agent, you can pass the following parameters. These parameters will impact the Grounding with Bing Custom Search tool output, and the AI model might not fully use all of the outputs. See the [code examples](./bing-code-samples.md) for information on API version support and how to pass these parameters.
+When you add the Grounding with Bing Custom Search tool to your agent, you can pass the following parameters. These parameters will impact the Grounding with Bing Custom Search tool output, and the AI model might not fully use all of the outputs. See the [code examples](./bing-custom-search-samples.md) for information on API version support and how to pass these parameters.
 
 |Name|Value|Type|Required |
 |-|-|-|- |

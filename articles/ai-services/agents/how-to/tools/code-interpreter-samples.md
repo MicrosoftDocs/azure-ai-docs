@@ -144,124 +144,202 @@ for image_content in messages.image_contents:
 
 :::zone pivot="csharp" 
 
-## Create a project client 
+## Using the .NET SDK
 
-To use code interpreter, first you need to create a project client, which will contain a connection string to your AI project, and will be used to authenticate API calls.
+In this example we will demonstrate the Agent streaming support, code interpreter creating an image and downloading and viewing the image.
+
+1. First, we set up configuration using `appsettings.json`, create a `PersistentAgentsClient`, and then create a `PersistentAgent` with the Code Interpreter tool.
 
 ```csharp
-var connectionString = Environment.GetEnvironmentVariable("PROJECT_CONNECTION_STRING");
-AgentsClient client = new AgentsClient(connectionString, new DefaultAzureCredential()); 
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using Microsoft.Extensions.Configuration;
+using System.Diagnostics;
+
+IConfigurationRoot configuration = new ConfigurationBuilder()
+    .SetBasePath(AppContext.BaseDirectory)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .Build();
+
+var projectEndpoint = configuration["ProjectEndpoint"];
+var modelDeploymentName = configuration["ModelDeploymentName"];
+
+PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
 ```
 
-## Upload a File
-
-Files can be uploaded and then referenced by agents or messages. First, use the generalized upload API with a `purpose` of `Agents` to make a file ID available. Once uploaded, the file ID can then be provided to create a vector store for it. The vector store ID can then be provided to an agent upon creation.
+Synchronous sample:
 
 ```csharp
-// Upload a file and wait for it to be processed
-Response<AgentFile> uploadAgentFileResponse = await client.UploadFileAsync(
-    filePath: "sample_file_for_upload.txt",
-    purpose: AgentFilePurpose.Agents);
-
-AgentFile uploadedAgentFile = uploadAgentFileResponse.Value;
-
-// Create a vector store with the file and wait for it to be processed.
-// If you do not specify a vector store, create_message will create a vector store with a default expiration policy of seven days after they were last active
-VectorStore vectorStore = await client.CreateVectorStoreAsync(
-    fileIds:  new List<string> { uploadedAgentFile.Id },
-    name: "my_vector_store");
-
-CodeInterpreterToolResource codeInterpreterToolResource = new CodeInterpreterToolResource();
-CodeInterpreterToolResource.VectorStoreIds.Add(vectorStore.Id);
+PersistentAgent agent = client.Administration.CreateAgent(
+    model: modelDeploymentName,
+    name: "My Friendly Test Agent",
+    instructions: "You politely help with math questions. Use the code interpreter tool when asked to visualize numbers.",
+    tools: [new CodeInterpreterToolDefinition()]
+);
 ```
 
-## Create an Agent with the Code Interpreter Tool
+Asynchronous sample:
 
 ```csharp
-Response<Agent> agentResponse = await client.CreateAgentAsync(
-    model: "gpt-4o-mini",
-    name: "My agent",
-    instructions: "You are a helpful agent.",
-    tools: new List<ToolDefinition> { new CodeInterpreterToolDefinition() },
-    toolResources: new ToolResources() { CodeInterpreter = codeInterpreterToolResource });
-Agent agent = agentResponse.Value;
+PersistentAgent agent = await client.Administration.CreateAgentAsync(
+    model: modelDeploymentName,
+    name: "My Friendly Test Agent",
+    instructions: "You politely help with math questions. Use the code interpreter tool when asked to visualize numbers.",
+    tools: [new CodeInterpreterToolDefinition()]
+);
 ```
 
-## Create a Thread, Message, and Get the Agent Response
+2. Next, we create a `PersistentAgentThread` and add a user message to it.
 
-Next create a thread with `CreateThreadAsync()` and a thread with `CreateMessageAsync()`. After the thread is created, you can add messages to it with `CreateMessageAsync()` that will cause the code interpreter tool to trigger. Create a run, and then continue polling it until it reaches a terminal status. Assuming the run was successful, parse the agent's response by listing the messages.
+Synchronous sample:
 
 ```csharp
-//Create a thread
-Response<AgentThread> threadResponse = await client.CreateThreadAsync();
-AgentThread thread = threadResponse.Value;
+PersistentAgentThread thread = client.Threads.CreateThread();
 
-//With a thread created, messages can be created on it:
-Response<ThreadMessage> messageResponse = await client.CreateMessageAsync(
+client.Messages.CreateMessage(
     thread.Id,
     MessageRole.User,
-    "I need to solve the equation `3x + 11 = 14`. Can you help me?");
-ThreadMessage message = messageResponse.Value;
+    "Hi, Agent! Draw a graph for a line with a slope of 4 and y-intercept of 9.");
+```
 
-//A run can then be started that evaluates the thread against an agent:
-Response<ThreadRun> runResponse = await client.CreateRunAsync(
+Asynchronous sample:
+
+```csharp
+PersistentAgentThread thread = await client.Threads.CreateThreadAsync();
+
+await client.Messages.CreateMessageAsync(
+    thread.Id,
+    MessageRole.User,
+    "Hi, Agent! Draw a graph for a line with a slope of 4 and y-intercept of 9.");
+```
+
+3. Then, we create a `ThreadRun` for the thread and agent, providing any additional instructions. We poll the run's status until it is no longer queued, in progress, or requires action.
+
+Synchronous sample:
+
+```csharp
+ThreadRun run = client.Runs.CreateRun(
     thread.Id,
     agent.Id,
     additionalInstructions: "Please address the user as Jane Doe. The user has a premium account.");
-ThreadRun run = runResponse.Value;
 
-//Once the run has started, it should then be polled until it reaches a terminal status:
+do
+{
+    Thread.Sleep(TimeSpan.FromMilliseconds(500));
+    run = client.Runs.GetRun(thread.Id, run.Id);
+}
+while (run.Status == RunStatus.Queued
+    || run.Status == RunStatus.InProgress
+    || run.Status == RunStatus.RequiresAction);
+```
+
+Asynchronous sample:
+
+```csharp
+ThreadRun run = await client.Runs.CreateRunAsync(
+    thread.Id,
+    agent.Id,
+    additionalInstructions: "Please address the user as Jane Doe. The user has a premium account.");
+
 do
 {
     await Task.Delay(TimeSpan.FromMilliseconds(500));
-    runResponse = await client.GetRunAsync(thread.Id, runResponse.Value.Id);
+    run = await client.Runs.GetRunAsync(thread.Id, run.Id);
 }
-while (runResponse.Value.Status == RunStatus.Queued
-    || runResponse.Value.Status == RunStatus.InProgress);
-
-//Assuming the run successfully completed, listing messages from the thread that was run will now reflect new information added by the agent:
-
-Response<PageableList<ThreadMessage>> afterRunMessagesResponse
-    = await client.GetMessagesAsync(thread.Id);
-IReadOnlyList<ThreadMessage> messages = afterRunMessagesResponse.Value.Data;
-
-// Note: messages iterate from newest to oldest, with the messages[0] being the most recent
-foreach (ThreadMessage threadMessage in messages)
-{
-    Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
-    foreach (MessageContent contentItem in threadMessage.ContentItems)
-    {
-        if (contentItem is MessageTextContent textItem)
-        {
-            Console.Write(textItem.Text);
-        }
-        else if (contentItem is MessageImageFileContent imageFileItem)
-        {
-            Console.Write($"<image from ID: {imageFileItem.FileId}");
-        }
-        Console.WriteLine();
-    }
-}
+while (run.Status == RunStatus.Queued
+    || run.Status == RunStatus.InProgress
+    || run.Status == RunStatus.RequiresAction);
 ```
 
-## Download Files Generated by Code Interpreter
+4. Once the run is finished, we retrieve all messages from the thread. We then iterate through the messages to display text content and handle any image files by saving them locally and opening them.
 
-Files generated by code interpreter can be found in the Agent message responses. You can download image files generated by code interpreter by iterating through the response's messages and checking for an `ImageFileId`. If that field exists, use the following code:
+Synchronous sample:
 
 ```csharp
-foreach (MessageContent contentItem in message.Content)
-{
-    if (!string.IsNullOrEmpty(contentItem.ImageFileId))
-    {
-        OpenAIFileInfo imageInfo = await fileClient.GetFileAsync(contentItem.ImageFileId);
-        BinaryData imageBytes = await fileClient.DownloadFileAsync(contentItem.ImageFileId);
-        using FileStream stream = File.OpenWrite($"{imageInfo.Filename}.png");
-        imageBytes.ToStream().CopyTo(stream);
+Pageable<ThreadMessage> messages = client.Messages.GetMessages(
+    threadId: thread.Id,
+    order: ListSortOrder.Ascending);
 
-        Console.WriteLine($"<image: {imageInfo.Filename}.png>");
+foreach (ThreadMessage threadMessage in messages)
+{
+    foreach (MessageContent content in threadMessage.ContentItems)
+    {
+        switch (content)
+        {
+            case MessageTextContent textItem:
+                Console.WriteLine($"[{threadMessage.Role}]: {textItem.Text}");
+                break;
+            case MessageImageFileContent imageFileContent:
+                Console.WriteLine($"[{threadMessage.Role}]: Image content file ID = {imageFileContent.FileId}");
+                BinaryData imageContent = client.Files.GetFileContent(imageFileContent.FileId);
+                string tempFilePath = Path.Combine(AppContext.BaseDirectory, $"{Guid.NewGuid()}.png");
+                File.WriteAllBytes(tempFilePath, imageContent.ToArray());
+                client.Files.DeleteFile(imageFileContent.FileId);
+
+                ProcessStartInfo psi = new()
+                {
+                    FileName = tempFilePath,
+                    UseShellExecute = true
+                };
+                Process.Start(psi);
+                break;
+        }
     }
 }
 ```
+
+Asynchronous sample:
+
+```csharp
+AsyncPageable<ThreadMessage> messages = client.Messages.GetMessagesAsync(
+    threadId: thread.Id,
+    order: ListSortOrder.Ascending);
+
+await foreach (ThreadMessage threadMessage in messages)
+{
+    foreach (MessageContent content in threadMessage.ContentItems)
+    {
+        switch (content)
+        {
+            case MessageTextContent textItem:
+                Console.WriteLine($"[{threadMessage.Role}]: {textItem.Text}");
+                break;
+            case MessageImageFileContent imageFileContent:
+                Console.WriteLine($"[{threadMessage.Role}]: Image content file ID = {imageFileContent.FileId}");
+                BinaryData imageContent = await client.Files.GetFileContentAsync(imageFileContent.FileId);
+                string tempFilePath = Path.Combine(AppContext.BaseDirectory, $"{Guid.NewGuid()}.png");
+                File.WriteAllBytes(tempFilePath, imageContent.ToArray());
+                await client.Files.DeleteFileAsync(imageFileContent.FileId);
+
+                ProcessStartInfo psi = new()
+                {
+                    FileName = tempFilePath,
+                    UseShellExecute = true
+                };
+                Process.Start(psi);
+                break;
+        }
+    }
+}
+```
+
+5. Finally, we delete the thread and the agent to clean up the resources created in this sample.
+
+Synchronous sample:
+
+```csharp
+client.Threads.DeleteThread(threadId: thread.Id);
+client.Administration.DeleteAgent(agentId: agent.Id);
+```
+
+Asynchronous sample:
+
+```csharp
+await client.Threads.DeleteThreadAsync(threadId: thread.Id);
+await client.Administration.DeleteAgentAsync(agentId: agent.Id);
+```
+
 
 :::zone-end
 
