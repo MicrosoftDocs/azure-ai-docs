@@ -1,10 +1,10 @@
 ### YamlMime:Landing
 
 title: Azure AI Search documentation # < 60 chars
-summary: Information retrieval at scale for vector and text content in traditional or generative search scenarios.
+summary: Information retrieval at scale for agentic RAG, with vector and text content in traditional or generative search scenarios.
 metadata:
   title: Azure AI Search documentation
-  description: Information retrieval at scale for vector and text content in traditional or generative search scenarios.
+  description: Information retrieval at scale for agentic RAG, with vector and text content in traditional or generative search scenarios.
   ms.service: azure-ai-search
   ms.custom:
     - ignite-2023
@@ -12,7 +12,7 @@ metadata:
   ms.topic: landing-page
   author: HeidiSteen
   ms.author: heidist
-  ms.date: 02/024/2025
+  ms.date: 05/12/2025
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
 landingContent:
@@ -25,9 +25,9 @@ landingContent:
         links:
           - text: What is Azure AI Search?
             url: search-what-is-azure-search.md
-          - text: Agentic retrieval
+          - text: Agentic RAG
             url: search-agentic-retrieval-concept.md
-          - text: Semantic reranking
+          - text: Semantic ranking
             url: semantic-search-overview.md
       - linkListType: quickstart
         links:
@@ -99,18 +99,16 @@ landingContent:
             url: tutorial-optimize-indexing-push-api.md
 
   # Card
-  - title: Develop apps
+  - title: Code
     linkLists:
-      - linkListType: tutorial
+      - linkListType: get-started
         links:
-          - text: Add search to web apps
-            url: tutorial-csharp-overview.md
-      - linkListType: how-to-guide
-        links:
-          - text: Develop in .NET
-            url: search-howto-dotnet-sdk.md
-          - text: Develop in REST
-            url: search-get-started-rest.md
+          - text: Python samples
+            url: samples-python.md
+          - text: .NET samples
+            url: samples-dotnet.md
+          - text: Vector samples
+            url: https://github.com/Azure/azure-search-vector-samples
       - linkListType: reference
         links:
           - text: Azure REST API Reference

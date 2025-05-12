@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 04/14/2025
+ms.date: 05/12/2025
 ---
 
 # Data sources gallery
@@ -128,6 +128,66 @@ Connect to Azure Storage through Azure Data Lake Storage Gen2 to extract content
 :::row-end:::
 
 ---
+
+## Logic app connectors (preview)
+
+Pull in content [using logic app workflows](search-how-to-index-logic-apps-indexers.md) and the following supported data sources. 
+
+:::row:::
+:::column span="":::
+
+---
+
+### SharePoint
+
+By [Logic Apps](/azure/logic-apps/logic-apps-overview)
+
+Extract blob metadata and content, serialized into JSON documents, and imported into a search index as search documents. Set properties in both data source and indexer definitions to optimize for various blob content types. Change detection is supported automatically.
+
+[More details](search-how-to-index-logic-apps-indexers.md#supported-connectors)
+
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### OneDrive
+
+By [Logic Apps](/azure/logic-apps/logic-apps-overview)
+
+Extract blob metadata and content, serialized into JSON documents, and imported into a search index as search documents. Set properties in both data source and indexer definitions to optimize for various blob content types. Change detection is supported automatically.
+
+[More details](search-how-to-index-logic-apps-indexers.md#supported-connectors)
+
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### OneDrive for Business
+
+By [Logic Apps](/azure/logic-apps/logic-apps-overview)
+
+Extract blob metadata and content, serialized into JSON documents, and imported into a search index as search documents. Set properties in both data source and indexer definitions to optimize for various blob content types. Change detection is supported automatically.
+
+[More details](search-how-to-index-logic-apps-indexers.md#supported-connectors)
+
+:::column-end:::
+:::column span="":::
+
+---
+:::column-end:::
+:::row-end:::
+:::row:::
+:::column span="":::
+
+   :::column-end:::
+   :::column span="":::
+   :::column-end:::
+
+:::row-end:::
 
 <a name="preview"></a>
 
