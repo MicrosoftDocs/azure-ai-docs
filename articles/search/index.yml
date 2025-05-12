@@ -25,8 +25,8 @@ landingContent:
         links:
           - text: What is Azure AI Search?
             url: search-what-is-azure-search.md
-          - text: AI enrichment
-            url: cognitive-search-concept-intro.md
+          - text: Agentic retrieval
+            url: search-agentic-retrieval-concept.md
           - text: Semantic reranking
             url: semantic-search-overview.md
       - linkListType: quickstart
@@ -35,6 +35,8 @@ landingContent:
             url: search-create-service-portal.md
           - text: Create a search index
             url: search-get-started-portal.md
+          - text: Run an agentic retrieval pipeline
+            url: search-get-started-agentic-retrieval.md
 
   # Card
   - title: RAG and vectors
