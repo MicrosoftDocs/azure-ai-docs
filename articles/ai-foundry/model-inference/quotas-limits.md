@@ -13,7 +13,7 @@ ms.author: fasantia
 
 # Azure AI Foundry Models quotas and limits
 
-This article contains a quick reference and a detailed description of the quotas and limits for Azure AI Foundry Models. For quotas and limits specific to the Azure OpenAI Service, see [Quota and limits in the Azure OpenAI service](../../ai-services/openai/quotas-limits.md).
+This article contains a quick reference and a detailed description of the quotas and limits for Azure AI Foundry Models. For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quota and limits in Azure OpenAI](../../ai-services/openai/quotas-limits.md).
 
 ## Quotas and limits reference
 

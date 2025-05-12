@@ -22,7 +22,7 @@ The Azure AI model catalog offers a large selection of models from a wide range 
 
 To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Azure AI model inference](../ai-foundry/model-inference/overview.md). You can find more details about individual models by reviewing their model cards in the [Azure AI model catalog](https://ai.azure.com/explore/models).
 
-:::image type="content" source="../ai-foundry/media/models-featured/models-catalog.gif" alt-text="An animation showing Azure AI studio model catalog section and the models available." lightbox="../ai-foundry/media/models-featured/models-catalog.gif":::
+:::image type="content" source="../ai-foundry/media/models-featured/models-catalog.gif" alt-text="An animation showing Azure AI Foundry model catalog section and the models available." lightbox="../ai-foundry/media/models-featured/models-catalog.gif":::
 
 
 

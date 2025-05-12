@@ -16,7 +16,7 @@ author: msakande
 In this tutorial, you learn:
 
 > [!div class="checklist"]
-> * How to create and configure the Azure resources to use DeepSeek-R1 model in Azure AI Foundry Models.
+> * How to create and configure the Azure resources to use DeepSeek-R1 model in Foundry Models.
 > * How to configure the model deployment.
 > * How to use DeepSeek-R1 using the Azure AI Inference SDK or REST APIs.
 > * How to use DeepSeek-R1 using other SDKs.
@@ -25,17 +25,21 @@ In this tutorial, you learn:
 
 To complete this article, you need:
 
+
 * An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI Foundry Models](../how-to/quickstart-github-models.md) if that's your case.
+
 
 [!INCLUDE [about-reasoning](../includes/use-chat-reasoning/about-reasoning.md)]
 
 ## Create the resources
 
-Azure AI Foundry Models is a capability in Azure AI Foundry resources in Azure. You can create model deployments under the resource to consume their predictions. You can also connect the resource to Azure AI Hubs and Projects in Azure AI Foundry to create intelligent applications if needed. The following picture shows the high level architecture.
+
+Foundry Models is a capability in Azure AI Foundry resources in Azure. You can create model deployments under the resource to consume their predictions. You can also connect the resource to Azure AI Hubs and Projects in Azure AI Foundry to create intelligent applications if needed. The following picture shows the high level architecture.
 
 :::image type="content" source="../media/quickstart-get-started-deepseek-r1/resources-architecture.png" alt-text="A diagram showing the high level architecture of the resources created in the tutorial." lightbox="../media/quickstart-get-started-deepseek-r1/resources-architecture.png":::
 
 To create an Azure AI project that supports deployment for DeepSeek-R1, follow these steps. You can also create the resources using [Azure CLI](../how-to/quickstart-create-resources.md?pivots=programming-language-cli) or [infrastructure as code with Bicep](../how-to/quickstart-create-resources.md?pivots=programming-language-bicep).
+
 
 1. Go to [Azure AI Foundry portal](https://ai.azure.com) and log in with your account.
 
@@ -67,11 +71,12 @@ To create an Azure AI project that supports deployment for DeepSeek-R1, follow t
     | Hub            | The main container for AI projects in Azure AI Foundry. Hubs promote collaboration and allow you to store information for your projects. |
     | AI Foundry    | The resource enabling access to the flagship models in Azure AI model catalog. In this tutorial, a new account is created, but Azure AI Foundry resources (formerly known Azure AI Services) can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how you can create connections to Azure AI Foundry resources to consume models you can read [Connect your AI project](../how-to/configure-project-connection.md). |
 
+
 8. Select **Create**. The resources creation process starts. 
 
 9. Once completed, your project is ready to be configured.
 
-10. Azure AI model inference is a Preview feature that needs to be turned on in Azure AI Foundry. At the top navigation bar, over the right corner, select the **Preview features** icon. A contextual blade shows up at the right of the screen.
+10. Foundry Models is a Preview feature that needs to be turned on in Azure AI Foundry. At the top navigation bar, over the right corner, select the **Preview features** icon. A contextual blade shows up at the right of the screen.
 
 11. Turn on the **Deploy models to Azure AI model inference service** feature.
 
@@ -129,7 +134,7 @@ You can get started by using the model in the playground to have an idea of the 
 
 ## Use the model in code
 
-Use the Azure AI model inference endpoint and credentials to connect to the model:
+Use the Foundry Models endpoint and credentials to connect to the model:
 
 :::image type="content" source="../media/overview/overview-endpoint-and-key.png" alt-text="Screenshot showing how to get the URL and key associated with the resource." lightbox="../media/overview/overview-endpoint-and-key.png":::
 
@@ -188,4 +193,4 @@ In general, reasoning models don't support the following parameters you can find
 
 * [Use chat reasoning models](../how-to/use-chat-reasoning.md)
 * [Use image embedding models](../how-to/use-image-embeddings.md)
-* [Azure AI Model Inference API](.././reference/reference-model-inference-api.md)
+* [Foundry Models API](.././reference/reference-model-inference-api.md)

@@ -9,6 +9,9 @@ ms.custom: references_regions
 
 ### May 2025 release
 
+#### Improved speech to text models
+Accuracy of speech to text models for `ta-IN`, `te-IN`, `en-IN`, and `hu-HU` locales are improved by 5-10 percent respectively. We also approximate a 20x reduction in ghost words for the `ta-IN` and `te-IN` models. 
+
 #### Fast transcription API - Multi-lingual speech transcription
 
 To transcribe multi-lingual contents continuously and accurately in an audio file, now you can use the latest multi-lingual model without specifying the locale codes via fast transcription API. For more information, see [multi-lingual transcription in fast transcription](../../fast-transcription-create.md?tabs=multilingual-transcription-on).

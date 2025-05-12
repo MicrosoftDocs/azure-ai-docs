@@ -1,6 +1,5 @@
 ---
 title: Manage Azure OpenAI in Azure AI Foundry Models quota
-titleSuffix: Azure AI services
 description: Learn how to use Azure OpenAI to control your deployments rate limits.
 author: mrbullwinkle
 manager: nitinme

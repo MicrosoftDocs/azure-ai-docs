@@ -5,7 +5,7 @@ description: How to run evaluation in GitHub Action to streamline the evaluation
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 05/08/2025
+ms.date: 05/19/2025
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
@@ -26,6 +26,8 @@ Offline evaluation involves testing AI models and agents using test datasets to 
 - **Out-of-box operation metrics**: Automatically generates operational metrics for each evaluation run (client run duration, server run duration, completion tokens, and prompt tokens).
 
 ## Prerequisites
+
+[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 
 Two GitHub Actions are available for evaluating AI applications: **ai-agent-evals** and **genai-evals**.
 

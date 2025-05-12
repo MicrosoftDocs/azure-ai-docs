@@ -1,88 +1,101 @@
 ---
-title: Continuously Monitor your Generative AI Applications
+title: Monitor your Generative AI Applications
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to continuously monitor Generative AI Applications.
 manager: scottpolly
 ms.service: azure-ai-foundry
-ms.custom:
-  - build-2024
 ms.topic: how-to
-ms.date: 01/16/2025
-ms.reviewer: alehughes
+ms.date: 05/19/2025
+ms.reviewer: amibp
 ms.author: lagayhar  
 author: lgayhardt
 ---
 
-# Continuously monitor your generative AI applications
+# Monitor your generative AI applications (preview)
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Continuous advancements in Generative AI have led organizations to build increasingly complex applications to solve various problems (chat-bots, RAG systems, agentic systems, etc.). These applications are being used to drive innovation, improve customer experiences, and enhance decision-making. Although the models (for example, GPT-4o) powering these Generative AI applications are extremely capable, continuous monitoring has never been more important to ensure high-quality, safe, and reliable results. Continuous monitoring is effective when multiple perspectives are considered when observing an application. These perspectives include token usage and cost, operational metrics – latency, request count, etc. - and, importantly, continuous evaluation. To learn more about evaluation, see [Evaluation of generative AI applications](../concepts/evaluation-approach-gen-ai.md).
+Monitoring your generative AI applications has never been more important, due to the complexity and rapid evolvement of the AI industry. Azure AI Foundry Observability, integrated with Azure Monitor Application Insights, enables you to continuously monitor your deployed AI applications to ensure that they're performant, safe, and produce high-quality results in production. In addition to the continuous monitoring capabilities, we also provide [continuous evaluation capabilities for Agents](./continuous-evaluation-agents.md) to add further enhance the Foundry Observability dashboard with visibility into additional critical quality and safety metrics.
 
-Azure AI and Azure Monitor provide tools for you to continuously monitor the performance of your Generative AI applications from multiple perspectives. With Azure AI Online Evaluation, you can continuously evaluate your application agnostic of where it's deployed or what orchestration framework it's using (for example, LangChain). You can use various [built-in evaluators](../concepts/evaluation-metrics-built-in.md) which maintain parity with the [Azure AI Evaluation SDK](./develop/evaluate-sdk.md) or define your own custom evaluators. By continuously running the right evaluators over your collected trace data, your team can more effectively identify and mitigate security, quality, and safety concerns as they arise, either in pre-production or post-production. Azure AI Online Evaluation provides full integration with the comprehensive suite of observability tooling available in [Azure Monitor Application Insights](/azure/azure-monitor/app/app-insights-overview), enabling you to build custom dashboards, visualize your evaluation results over time, and configure alerting for advanced application monitoring.
+## How to enable monitoring
 
-In summary, monitoring your generative AI applications has never been more important, due to the complexity and rapid evolvement of the AI industry. Azure AI Online Evaluation, integrated with Azure Monitor Application Insights, enables you to continuously evaluate your deployed applications to ensure that they're performant, safe, and produce high-quality results in production.
+To use monitoring capabilities in Azure AI Foundry, you need to connect an Application Insights resource to your Azure AI Foundry project.
 
-## How to monitor your generative AI applications
+1. Navigate to **Monitoring** in the left navigation pane of the Azure AI Foundry portal.
+2. Select the **Application analytics** tab.
+3. Create a new Application Insights resource if you don't already have one.
+4. Connect the resource to your AI Foundry project.
 
-In this section, learn how to monitor your generative AI applications using Azure AI Foundry tracing, online evaluation, and trace visualization functionality. Then, learn how Azure AI Foundry integrates with Azure Monitor Application Insights for comprehensive observability and visualization.
+### Collecting production data for monitoring
 
-### Tracing your generative AI application
+From here, you want to begin collecting telemetry for your application that you can monitor in our built-in views. To do this, we recommend:
 
-The first step in continuously monitoring your application is to ensure that its telemetry data is captured and stored for analysis. To accomplish this, you'll need to instrument your generative AI application’s code to use the [Azure AI Tracing package](./develop/trace-local-sdk.md) to log trace data to an Azure Monitor Application Insights resource of your choice. This package fully conforms with the OpenTelemetry standard for observability. After you have instrumented your application's code, the trace data will be logged to your Application Insights resource.
+- Instrumenting traces allows you to capture detailed telemetry data from your application. This data provides insights into the performance, latency, and behavior of your application in production.
 
-After you have included tracing in your application code, you can view the trace data in Azure AI Foundry or in your Azure Monitor Application Insights resource. To learn more about how to do this, see [monitor your generative AI application](#monitor-your-generative-ai-application-with-azure-monitor-application-insights).
+- [Continuous evaluations](./continuous-evaluation-agents.md) help monitor the quality and safety of your agent in production by assessing its outputs against predefined metrics and thresholds.
 
-### Set up online evaluation
+## Viewing monitoring results
 
-After setting up tracing for your generative AI application, set up [online evaluation with the Azure AI Foundry SDK](./online-evaluation.md) to continuously evaluate your trace data as it is collected. Doing so will enable you to monitor your application's performance in production over time.
+In Azure AI Foundry portal, the **Application analytics** dashboard view uses signals from [Azure Monitor Application Insights](/azure/azure-monitor/app/overview-dashboard), querying it through [Azure Workbooks](/azure/azure-monitor/visualize/workbooks-overview) and creating visualizations.
 
-> [!NOTE]
-> If you have multiple AI applications logging trace data to the same Azure Monitor Application Insights resource, it's recommended to use the service name to differentiate between application data in Application Insights. To learn how to set the service name, see [Azure AI Tracing](./develop/trace-local-sdk.md). To learn how to query for the service name within your online evaluation configuration, see [using service name in trace data](./online-evaluation.md#using-service-name-in-trace-data).
+These views are designed to bring key metrics - token consumption, latency, exceptions, response quality into a single pane of glass that provides transparency to teams to track operational health and quality, understand trends, and assess continuously to improve their application.
 
-### Monitor your generative AI application with Azure Monitor Application Insights
+Follow these steps to access and utilize the built-in monitoring view in your AI Foundry Project:
 
-In this section, you learn how Azure AI integrates with Azure Monitor Application Insights to give you an out-of-the-box dashboard view that is tailored with insights regarding your generative AI app so you can stay updated with the latest status of your application.
-
-#### Insights for your generative AI application  
-
-If you haven’t set this up, here are some quick steps:
-
-1. Navigate to your project in [Azure AI Foundry](https://ai.azure.com).
-1. Select the Tracing page on the left-hand side.
-1. Connect your Application Insights resource to your project.
-
-If you already set up tracing in Azure AI Foundry portal, all you need to do is select the link to **Check out your Insights for Generative AI application dashboard**.
-
-Once you have your data streaming into your Application Insights resource, you automatically can see it get populated in this customized dashboard.
-
-:::image type="content" source="../media/how-to/online-evaluation/open-generative-ai-workbook.gif" alt-text="Animation of an Azure workbook showing Application Insights." lightbox="../media/how-to/online-evaluation/open-generative-ai-workbook.gif":::
-
-This view is a great place for you to get started with your monitoring needs.
-
-- You can view token consumption over time to understand if you need to increase your usage limits or do additional cost analysis.
-- You can view evaluation metrics as trend lines to understand the quality of your app on a daily basis.
-- You can debug when exceptions take place and drill into traces using the **Azure Monitor End-to-end transaction details view** to figure out what went wrong.
-
-:::image type="content" source="../media/how-to/online-evaluation/custom-generative-ai-workbook.gif" alt-text="Animation of an Azure workbook showing graphs and end to end transaction details." lightbox="../media/how-to/online-evaluation/custom-generative-ai-workbook.gif":::
-
-This is an Azure Workbook that is querying data stored in your Application Insights resource. You can customize this workbook and tailor this to fit your business needs.
-To learn more, see [editing Azure Workbooks](/azure/azure-monitor/visualize/workbooks-create-workbook).
-
-This allows you to add additional custom evaluators that you might have logged or other markdown text to share summaries and use for reporting purposes.
-
-You can also share this workbook with your team so they stay informed with the latest!
-
-:::image type="content" source="../media/how-to/online-evaluation/share-azure-workbook.png" alt-text="Screenshot of an Azure Workbook showing the share button and share tab." lightbox="../media/how-to/online-evaluation/share-azure-workbook.png":::
+1. Navigate to your AI Foundry Project in the Azure AI Foundry portal.
+2. Select **Monitoring** from the left navigation pane.
+3. Under the **Application analytics** tab, review the overview of your application's health.
+4. Use filters to specify a time range, application, and/or model to extract detailed insights.
+5. If you notice issues, such as declining quality metrics, go to **Tracing**  to [debug issues in your application](./develop/trace-application.md).
+6. To further customize your monitoring experience and use advanced capabilities in Azure Monitor, scroll to the bottom and select **View in Azure Monitor Application Insights**.
 
 > [!NOTE]
-> When sharing this workbook with your team members, they must have at least 'Reader' role to the connected Application Insights resource to view the displayed information.
+> When you're sharing this workbook with your team members, they must have at least 'Reader' role to the connected Application Insights resource to view the displayed information.
+
+## Customize and share your dashboard
+
+Application Insights is a powerful tool for application performance monitoring (APM) that provides insights into the health and performance of your applications.
+
+You can open the **Application analytics** dashboard in Azure Monitor Application Insights workbooks gallery by selecting on **View in Azure Monitor Application Insights** link at the end of the page.
+
+This dashboard is opened as an editable workbook where you can customize the workbook and save according to your needs.
+
+1. Select **Edit** in the command bar.
+    :::image type="content" source="../media/how-to/monitor-applications/customize-dashboard-2.png" alt-text="Screenshot of the workbooks tab under monitoring highlighting the edit button in the Azure portal." lightbox="../media/how-to/monitor-applications/customize-dashboard-2.png":::
+
+2. Modify elements as needed per your use case. Select **...** on an element to edit, add, move/resize, clone, or remove. For example, you can add a tile using KQL to track a custom attribute you're collecting and not shown in our built-in view.
+    :::image type="content" source="../media/how-to/monitor-applications/customize-dashboard-3.png" alt-text="Screenshot of workbooks tab under monitoring highlighting modify element buttons in Azure portal." lightbox="../media/how-to/monitor-applications/customize-dashboard-3.png":::
+
+3. Save your latest changes and create different views as needed by selecting **Save**.
+    :::image type="content" source="../media/how-to/monitor-applications/customize-dashboard-4.png" alt-text="Screenshot of workbooks tab under monitoring highlighting the save button and tab in Azure portal." lightbox="../media/how-to/monitor-applications/customize-dashboard-4.png":::
+
+4. Share with your team by selecting "Share" icon in the command bar.
+    :::image type="content" source="../media/how-to/monitor-applications/customize-dashboard-5.png" alt-text="Screenshot of workbooks tab under monitoring highlighting share workbook button and tab in Azure portal." lightbox="../media/how-to/monitor-applications/customize-dashboard-5.png":::
+
+## Explore and analyze with Kusto Query Language (KQL)
+
+[KQL (Kusto Query Language)](/kusto/query/) is a powerful query language used in Azure to explore, analyze, and visualize large volumes of telemetry and log data.
+
+In the **Application analytics** dashboard view, you can **Open query link** by selecting on the icon in the top right for a particular tile or chart.
+
+:::image type="content" source="../media/how-to/monitor-applications/query-link.png" alt-text="Screenshot of application analytics dashboard view highlighting the open query link button in Azure portal." lightbox="../media/how-to/monitor-applications/query-link.png":::
+
+Once you select that, you can view and run the same KQL queries powering your monitoring view and deep dive into the related data.
+
+:::image type="content" source="../media/how-to/monitor-applications/kql-mode.png" alt-text="Screenshot of logs highlighting KQL mode and results in Azure portal. " lightbox="../media/how-to/monitor-applications/kql-mode.png":::
+
+## Set up Azure Alerts
+
+You can define Azure Alert rules based on the previous KQL queries to proactively detect issues with your post-production operations in the future. Select **...** to view more options like **New alert rule**.
+
+:::image type="content" source="../media/how-to/monitor-applications/create-new-alert-rule-1.png" alt-text="Screenshot of logs highlighting new alert rule button in Azure portal." lightbox="../media/how-to/monitor-applications/create-new-alert-rule-1.png":::
+
+Selecting on the **New alert rule** button opens a wizard to create an alert rule on the related signal.
+
+:::image type="content" source="../media/how-to/monitor-applications/create-new-alert-rule-2.png" alt-text="Screenshot of create an alert rule wizard in Azure portal." lightbox="../media/how-to/monitor-applications/create-new-alert-rule-2.png":::
+
+To learn more about setting up and managing Azure Alerts to proactively address issues, see [Alerts in Azure Monitor](/azure/azure-monitor/alerts/alerts-overview).
 
 ## Related content
 
-- [How to run evaluations online with the Azure AI Foundry SDK](./online-evaluation.md)
-- [Trace your application with Azure AI Inference SDK](./develop/trace-local-sdk.md)
-- [Visualize your traces](./develop/visualize-traces.md)
-- [Evaluation of Generative AI Models & Applications](../concepts/evaluation-approach-gen-ai.md)
-- [Azure Monitor Application Insights](/azure/azure-monitor/app/app-insights-overview)
-- [Azure Workbooks](/azure/azure-monitor/visualize/workbooks-overview)
+- [Monitor model deployments](../model-inference/how-to/monitor-models.md#metrics-explorer)

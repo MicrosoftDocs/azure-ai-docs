@@ -5,7 +5,7 @@ description: Learn how to securely use the Azure AI Foundry portal playground ch
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 02/18/2025
+ms.date: 04/29/2025
 ms.reviewer: meerakurup 
 ms.author: larryfr
 author: Blackmist
@@ -14,6 +14,9 @@ zone_pivot_groups: azure-ai-studio-sdk-cli
 ---
 
 # Use your data securely with the Azure AI Foundry portal playground
+
+> [!NOTE]
+> The information provided in this article is specific to a **[!INCLUDE [hub](../includes/hub-project-name.md)]**, and doesn't apply for a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. For more information, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
 
 Use this article to learn how to securely use [Azure AI Foundry](https://ai.azure.com)'s playground chat on your data. The following sections provide our recommended configuration to protect your data and resources by using Microsoft Entra ID role-based access control, a managed network, and private endpoints. We recommend disabling public network access for Azure OpenAI resources, Azure AI Search resources, and storage accounts. Using selected networks with IP rules isn't supported because the services' IP addresses are dynamic.
 

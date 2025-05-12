@@ -10,7 +10,7 @@ ms.topic: how-to
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: andyaviles
-ms.date: 03/26/2025
+ms.date: 04/14/2025
 ---
 
 # Customer enabled disaster recovery
@@ -28,6 +28,9 @@ Microsoft strives to ensure that Azure services are always available. However, u
 
 > [!IMPORTANT]
 > Azure AI Foundry itself does not provide automatic failover or disaster recovery.
+
+> [!NOTE]
+> The information in this article only applies to a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** is not supported. For more information, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
 
 ## Understand Azure services for Azure AI Foundry
 

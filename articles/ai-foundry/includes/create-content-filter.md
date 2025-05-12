@@ -20,6 +20,8 @@ For any model deployment in [Azure AI Foundry](https://ai.azure.com), you can di
 
 Follow these steps to create a content filter:
 
+[!INCLUDE [tip-left-pane](tip-left-pane.md)]
+
 1. Go to [Azure AI Foundry](https://ai.azure.com) and navigate to your project. Then select the **Guardrails + controls** page from the left menu and select the **Content filters** tab.
 
     :::image type="content" source="../media/content-safety/content-filter/create-content-filter.png" alt-text="Screenshot of the button to create a new content filter." lightbox="../media/content-safety/content-filter/create-content-filter.png":::

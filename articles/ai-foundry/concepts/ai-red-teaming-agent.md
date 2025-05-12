@@ -27,6 +27,8 @@ The AI Red Teaming Agent leverages Microsoft's open-source framework for Python 
 
 Together these components (scanning, evaluating, and reporting) help teams understand how AI systems respond to common attacks, ultimately guiding a comprehensive risk management strategy.
 
+[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md )]
+
 ## When to use the AI Red Teaming Agent's scans
 
 When thinking about AI-related safety risks developing trustworthy AI systems, Microsoft uses NIST's framework to mitigate risk effectively: Govern, Map, Measure, Manage. We'll focus on the last three parts in relation to the generative AI development lifecycle:

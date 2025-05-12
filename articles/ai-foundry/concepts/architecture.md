@@ -8,13 +8,16 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: conceptual
-ms.date: 02/11/2025
+ms.date: 04/28/2025
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist
 ---
 
 # Azure AI Foundry architecture 
+
+> [!NOTE]
+> The architecture discussed in this article is specific to a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. For more information, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
     
 Azure AI Foundry provides a unified experience for AI developers and data scientists to build, evaluate, and deploy AI models through a web portal, SDK, or CLI. Azure AI Foundry is built on capabilities and services provided by other Azure services.
 
@@ -52,7 +55,7 @@ At the top level, Azure AI Foundry provides access to the following resources:
 
 - **Connections**: Azure AI Foundry hubs and projects use connections to access resources provided by other services. For example, data in an Azure Storage Account, Azure OpenAI or other Azure AI services.
 
-    For more information, visit [Connections](connections.md).
+    For more information, visit [How to add a new connection in Azure AI Foundry portal](../how-to/connections-add.md).
 
 ## Azure resource types and providers
 
@@ -90,7 +93,7 @@ Hubs provide a central way for a team to govern security, connectivity, and comp
 
 Often, projects in a business domain require access to the same company resources such as vector indices, model endpoints, or repos. As a team lead, you can preconfigure connectivity with these resources within a hub, so developers can access them from any new project workspace without delay on IT.
 
-[Connections](connections.md) let you access objects in Azure AI Foundry that are managed outside of your hub. For example, uploaded data on an Azure storage account, or model deployments on an existing Azure OpenAI resource. A connection can be shared with every project or made accessible to one specific project. Connections can be configured to use key-based access or Microsoft Entra ID passthrough to authorize access to users on the connected resource. As an administrator, you can  track, audit, and manage connections across the organization from a single view in Azure AI Foundry.
+Connections let you access objects in Azure AI Foundry that are managed outside of your hub. For example, uploaded data on an Azure storage account, or model deployments on an existing Azure OpenAI resource. A connection can be shared with every project or made accessible to one specific project. Connections can be configured to use key-based access or Microsoft Entra ID passthrough to authorize access to users on the connected resource. As an administrator, you can  track, audit, and manage connections across the organization from a single view in Azure AI Foundry.
 
 :::image type="content" source="../media/concepts/connected-resources-spog.png" alt-text="Screenshot of Azure AI Foundry showing an audit view of all connected resources across a hub and its projects." :::
 
@@ -127,7 +130,7 @@ For more information on Azure access-based control, see [What is Azure attribute
 
 ## Containers in the storage account
 
-The default storage account for a hub has the following containers. These containers are created for each project, and the `{workspace-id}` prefix matches the unique ID for the project. Projects access a container by using a [connection](connections.md).
+The default storage account for a hub has the following containers. These containers are created for each project, and the `{workspace-id}` prefix matches the unique ID for the project. Projects access a container by using a connection.
 
 > [!TIP]
 > To find the ID for your project, go to the project in the [Azure portal](https://portal.azure.com/). Expand **Settings** and then select **Properties**. The **Workspace ID** is displayed.
@@ -174,6 +177,5 @@ For more information on price and quota, use the following articles:
 
 Create a hub using one of the following methods:
 
-- [Azure AI Foundry portal](../how-to/create-azure-ai-resource.md#create-a-hub-in-azure-ai-foundry-portal): Create a hub for getting started.
 - [Azure portal](../how-to/create-secure-ai-hub.md): Create a hub with your own networking.
 - [Bicep template](../how-to/create-azure-ai-hub-template.md).

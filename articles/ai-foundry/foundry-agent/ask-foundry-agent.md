@@ -23,7 +23,7 @@ The Foundry agent is an experimental feature that is here to assist you with que
 **What The Foundry Agent Can Do** - The agent is designed to provide assistance by answering questions based on:
 
 - **Azure AI Foundry Documentation**: This documentation includes details about Azure AI Foundry such as Quickstarts, How-Tos or reference documentation of the Azure AI Foundry SDK. The Foundry agent can help you navigate the documentation, or find answers for you.
-- **Model Catalog**: The model catalog is a comprehensive hub for discovering, evaluating, and deploying a wide range of AI models. It features hundreds of models from various providers, including Azure OpenAI Service, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, as well as models trained by Microsoft. The Foundry agent can provide information about the models available in the Azure AI Foundry catalog.
+- **Model Catalog**: The model catalog is a comprehensive hub for discovering, evaluating, and deploying a wide range of AI models. It features hundreds of models from various providers, including Azure OpenAI in Foundry Models, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, as well as models trained by Microsoft. The Foundry agent can provide information about the models available in the Azure AI Foundry catalog.
 
 **What The Foundry Agent Cannot Do** - While the agent is a powerful tool, it has some limitations:
 

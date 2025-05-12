@@ -1,5 +1,15 @@
-{
+{ 
   "redirections": [
+    {
+      "source_path": "articles/ai-foundry/concepts/connections.md",
+      "redirect_url": "/azure/ai-foundry/how-to/connections-add",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/azure-openai-in-azure-ai-foundry.md",
+      "redirect_url": "/azure/ai-foundry/what-is-azure-ai-foundry",
+      "redirect_document_id": false
+    },
     {
       "source_path": "articles/search/performance-benchmarks.md",
       "redirect_url": "/previous-versions/azure/search/performance-benchmarks",

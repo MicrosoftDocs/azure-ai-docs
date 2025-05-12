@@ -26,6 +26,8 @@ Azure AI Content Safety is a content moderation service that helps detect harmfu
 
 ## Prerequisites
 
+[!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
+
 To create an Azure Content Safety connection:
 
 1. Sign in to [Azure AI Foundry](https://ml.azure.com/).

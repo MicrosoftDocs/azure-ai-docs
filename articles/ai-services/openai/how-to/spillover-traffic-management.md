@@ -53,7 +53,7 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/spillover-ptu-deployment/chat/com
   -H "Content-Type: application/json" \
   -H "x-ms-spillover-deployment: spillover-standard-deployment" \
   -H 'Authorization: Bearer YOUR_AUTH_TOKEN' \
-  -d '{"messages":[{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},{"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},{"role": "user", "content": "Do other Azure AI services support this too?"}]}'
+  -d '{"messages":[{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},{"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},{"role": "user", "content": "Do other Azure services support this too?"}]}'
 
 ```
 > [!NOTE]

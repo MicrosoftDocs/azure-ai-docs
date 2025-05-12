@@ -48,6 +48,8 @@ To run this tutorial, you need:
 
 To use LLMs deployed in Azure AI Foundry portal, you need the endpoint and credentials to connect to it. Follow these steps to get the information you need from the model you want to use:
 
+[!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
+
 1. Go to the [Azure AI Foundry](https://ai.azure.com/).
 1. Open the project where the model is deployed, if it isn't already open.
 1. Go to **Models + endpoints** and select the model you deployed as indicated in the prerequisites.
@@ -380,6 +382,8 @@ Use the client as usual in your code.
 You can use the tracing capabilities in Azure AI Foundry by creating a tracer. Logs are stored in Azure Application Insights and can be queried at any time using Azure Monitor or Azure AI Foundry portal. Each AI Hub has an Azure Application Insights associated with it.
 
 ### Get your instrumentation connection string
+
+[!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
 You can configure your application to send telemetry to Azure Application Insights either by:
 

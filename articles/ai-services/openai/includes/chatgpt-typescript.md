@@ -119,7 +119,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
             role: "assistant",
             content: "Yes, customer managed keys are supported by Azure OpenAI?",
           },
-          { role: "user", content: "Do other Azure AI services support this too?" },
+          { role: "user", content: "Do other Azure services support this too?" },
         ],
         model: "",
       };
@@ -208,7 +208,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
             role: "assistant",
             content: "Yes, customer managed keys are supported by Azure OpenAI?",
           },
-          { role: "user", content: "Do other Azure AI services support this too?" },
+          { role: "user", content: "Do other Azure services support this too?" },
         ],
         model: "",
       };
@@ -264,7 +264,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 ```output
 == Chat Completions Sample ==
 {
-  content: 'Yes, several other Azure AI services also support customer managed keys for enhanced security and control over encryption keys.',
+  content: 'Yes, several other Azure services also support customer managed keys for enhanced security and control over encryption keys.',
   role: 'assistant'
 }
 ```

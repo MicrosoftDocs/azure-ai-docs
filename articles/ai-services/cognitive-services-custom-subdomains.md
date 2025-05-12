@@ -54,7 +54,7 @@ No. After a custom subdomain name is created and associated with a resource, it 
 
 ## Can I reuse a custom domain name?
 
-Each custom subdomain name is unique. In order to reuse a custom subdomain name that you've assigned to an Azure AI services resource, you'll need to delete the existing resource. After the resource is deleted, you can reuse the custom subdomain name.
+Each custom subdomain name is unique. In order to reuse a custom subdomain name that you've assigned to an AI Foundry resource, you'll need to delete the existing resource. After the resource is deleted, you can reuse the custom subdomain name.
 
 ## Is there a list of regional endpoints?
 

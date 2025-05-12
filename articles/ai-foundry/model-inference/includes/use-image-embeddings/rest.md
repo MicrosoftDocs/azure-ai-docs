@@ -18,6 +18,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 This article explains how to use image embeddings API with Azure AI Foundry Models.
 
+
 ## Prerequisites
 
 To use embedding models in your application, you need:

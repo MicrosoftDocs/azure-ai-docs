@@ -151,7 +151,7 @@ The inferencing code for provisioned deployments is the same a standard deployme
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
             {"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
-            {"role": "user", "content": "Do other Azure AI services support this too?"}
+            {"role": "user", "content": "Do other Azure services support this too?"}
         ]
     )
 
@@ -159,7 +159,7 @@ The inferencing code for provisioned deployments is the same a standard deployme
 ```
 
 > [!IMPORTANT]
-> For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
+> For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see this [security](../../security-features.md) article.
 
 
 ## Understanding expected throughput
@@ -213,7 +213,7 @@ client.with_options(max_retries=5).chat.completions.create(
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
         {"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
-        {"role": "user", "content": "Do other Azure AI services support this too?"}
+        {"role": "user", "content": "Do other Azure services support this too?"}
     ]
 )
 ```
