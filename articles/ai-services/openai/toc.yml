@@ -38,6 +38,8 @@ items:
       href: gpt-v-quickstart.md
     - name: Image generation
       href: dall-e-quickstart.md
+    - name: Image generation
+      href: video-generation-quickstart.md
     - name: Use your data
       href: use-your-data-quickstart.md
     - name: Realtime API for speech and audio (preview)
@@ -136,8 +138,8 @@ items:
       displayName: cua, computer using model
     - name: Vision-enabled chats
       href: ./how-to/gpt-with-vision.md
-    - name: Image generation
-      href: ./how-to/dall-e.md
+    - name: Video generation
+      href: ./how-to/video-generation.md
     - name: Function calling
       href: ./how-to/function-calling.md
     - name: Completions (legacy)
