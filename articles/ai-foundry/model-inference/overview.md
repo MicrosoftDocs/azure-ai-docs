@@ -1,4 +1,3 @@
----
 title: What are Azure AI Foundry Models?
 titleSuffix: Azure AI Foundry
 description: Apply advanced language models to variety of use cases with Azure AI Foundry Models.
