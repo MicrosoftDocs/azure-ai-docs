@@ -10,28 +10,13 @@ ms.date: 04/30/2025
 ms.custom: include, build-2025
 ---
 
-* To work with Azure AI services in your .NET project, you'll need to install several NuGet packages. You can add NuGet packages using the .NET CLI in the integrated terminal:
+To work with Azure AI services in your .NET project, you'll need to install several NuGet packages. Add NuGet packages using the .NET CLI in the integrated terminal:
     
-    
-    ```bash
-    # Add Azure AI SDK packages
-    dotnet add package Azure.Identity
-    dotnet add package Azure.AI.Projects
-    dotnet add package Azure.AI.Agents.Persistant
-    dotnet add package Azure.AI.OpenAI
-    dotnet add package Azure.Search.Documents
-    ```
-    
-    
-* After installing these packages, you'll need to add the appropriate using directives to your C# files:
-    
-    ```csharp
-    using Azure.AI.Foundry.Projects;
-    using Azure.Identity;
-    using Azure.AI.OpenAI;
-    using Azure.Search.Documents;
-    // Add other namespaces as needed
-    ```
-
-
-
+```bash
+# Add Azure AI SDK packages
+dotnet add package Azure.Identity
+dotnet add package Azure.AI.Projects
+dotnet add package Azure.AI.Agents.Persistant
+dotnet add package Azure.AI.OpenAI
+dotnet add package Azure.Search.Documents
+```

@@ -44,6 +44,7 @@ No installation is necessary to use the Azure AI Foundry portal.
     ```
     pip install openai azure-ai-projects azure-identity
     ```
+
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
 
 > [!TIP]
@@ -52,6 +53,10 @@ No installation is necessary to use the Azure AI Foundry portal.
 # [Java](#tab/java)
 
 1. [Install Java and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-java).
+1. Set these environment variables to use in your scripts:
+
+    :::code language="plaintext" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/.env.template":::
+
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
 
 > [!TIP]
@@ -63,6 +68,10 @@ No installation is necessary to use the Azure AI Foundry portal.
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your JavaScript scripts.
 1. Download [package.json](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/javascript/mslearn-resources/quickstart/package.json).
 1. Install packages with `npm install`
+1. Set these environment variables to use in your scripts:
+
+    :::code language="plaintext" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/.env.template":::
+
 
 > [!TIP]
 > All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/javascript/mslearn-resources/quickstart).
@@ -73,6 +82,10 @@ No installation is necessary to use the Azure AI Foundry portal.
 1. Install packages:
 
     [!INCLUDE [install-csharp-packages](install-csharp-packages.md)]
+
+1. Set these environment variables to use in your scripts:
+
+    :::code language="plaintext" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/.env.example":::
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
 
@@ -113,6 +126,8 @@ Use either the Azure AI Foundry portal or Azure CLI to create a project.
 1. The model returns a response in the **Response** pane.
 
 # [Python SDK](#tab/python)
+
+Substitute your value for the endpoint in this code:
 
 :::code language="python" source="~/foundry-samples/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="chat_completion":::
 
