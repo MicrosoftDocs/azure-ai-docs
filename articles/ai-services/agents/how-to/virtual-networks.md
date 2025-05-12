@@ -186,7 +186,7 @@ Use the following code to create and run an agent. To run this code, you need to
 
 `<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>`
 
-[!INCLUDE [connection-string-portal](../includes/connection-string-portal.md)]
+[!INCLUDE [connection-string-portal](../includes/endpoint-string-portal.md)]
 
 `HostName` can be found by navigating to your `discovery_url` and removing the leading `https://` and trailing `/discovery`. To find your `discovery_url`, run this CLI command:
 
