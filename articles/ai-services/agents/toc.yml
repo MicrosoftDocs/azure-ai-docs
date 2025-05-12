@@ -55,8 +55,6 @@ items:
             href: how-to/tools/file-search.md
           - name: How to upload files
             href: how-to/tools/file-search-upload-files.md
-          - name: How to use Azure Blob Storage
-            href: how-to/tools/file-search-blob-storage.md  
         - name: Azure AI Search
           items:
           - name: Overview
