@@ -44,7 +44,7 @@ Use this article to find step-by-step instructions and code samples for using Op
 
 :::zone pivot="csharp"
 
-# How to use the OpenAPI spec tool
+## Using the .NET SDK
 
 In this example we will demonstrate the possibility to use services with [OpenAPI Specification](https://en.wikipedia.org/wiki/OpenAPI_Specification) with the agent. We will use [wttr.in](https://wttr.in) service to get weather and its specification file [weather_openapi.json](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/tests/Samples/Agent/weather_openapi.json).
 
