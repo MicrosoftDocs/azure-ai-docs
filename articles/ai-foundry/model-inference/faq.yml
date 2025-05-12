@@ -12,7 +12,7 @@ metadata:
   author: santiagxf
 title: Foundry Models frequently asked questions
 summary: |
-  If you can't find answers to your questions in this document, and still need help check the [Azure AI Foundry services (formerly known Azure AI Services)support options guide](../../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context).
+  If you can't find answers to your questions in this document, and still need help check the [Azure AI Foundry services (formerly known Azure AI Services) support options guide](../../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context).
 sections:
   - name: General
     questions:
@@ -88,13 +88,13 @@ sections:
       - question: |
           Where can I see the bill details?
         answer: |
-          Billing and costs are displayed in [Azure Cost Management + Billing](/azure/cost-management-billing/understand/download-azure-daily-usage). You can see the usage details in the [Azure portal](https://portal.azure.com).
+          Billing and costs are displayed in [Microsoft Cost Management + Billing](/azure/cost-management-billing/understand/download-azure-daily-usage). You can see the usage details in the [Azure portal](https://portal.azure.com).
 
           Billing isn't shown in Azure AI Foundry portal.
       - question: |
           How can I place a spending limit to my bill?
         answer: |
-          You can set up a spending limit in the [Azure portal](https://portal.azure.com) under **Azure Cost Management + Billing**. This limit prevents you from spending more than the limit you set. Once spending limit is reached, the subscription will be disabled and you won't be able to use the endpoint until the next billing cycle.
+          You can set up a spending limit in the [Azure portal](https://portal.azure.com) under **Microsoft Cost Management + Billing**. This limit prevents you from spending more than the limit you set. Once spending limit is reached, the subscription will be disabled and you won't be able to use the endpoint until the next billing cycle.
   - name: Data and Privacy
     questions:
       - question: |

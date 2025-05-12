@@ -15,7 +15,7 @@ Certain models in AI Foundry Models are offered directly by the model provider t
 > [!TIP]
 > All models offered in AI Foundry Models are hosted in Microsoft's Azure environment and the Service does NOT interact with any external services or model provider.
 
-:::image type="content" source="../media/configure-marketplace/azure-marketplace-3p.png" alt-text="An diagram with the overall architecture of Azure Marketplace integration with AI Foundry Models." lightbox="../media/configure-marketplace/azure-marketplace-3p.png":::
+:::image type="content" source="../media/configure-marketplace/azure-marketplace-3p.png" alt-text="A diagram with the overall architecture of Azure Marketplace integration with AI Foundry Models." lightbox="../media/configure-marketplace/azure-marketplace-3p.png":::
 
 [!INCLUDE [marketplace-rbac](../includes/configure-marketplace/rbac.md)]
 

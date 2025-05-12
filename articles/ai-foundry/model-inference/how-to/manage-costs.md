@@ -25,7 +25,7 @@ Although this article is about planning for and managing costs for Azure AI Foun
 ## Understand Foundry Models billing model
 
 
-Language models understand and process inputs by breaking them down into tokens. For reference, each token is roughly four characters for typical English text. Models that can process images or audio break down them into tokens too for billing purposes. The number of tokens per image or audio content depends on the model and the resolution of the input.
+Language models understand and process inputs by breaking them down into tokens. For reference, each token is roughly four characters for typical English text. Models that can process images or audio break them down into tokens too for billing purposes. The number of tokens per image or audio content depends on the model and the resolution of the input.
 
 Costs per token vary depending on which model series you choose but in all cases models deployed in Azure AI Foundry are charged per 1,000 tokens. Token costs are for both input and output. For example, suppose you have a 1,000 token JavaScript code sample that you ask a model to convert to Python. You would be charged approximately 1,000 tokens for the initial input request sent, and 1,000 more tokens for the output that is received in response for a total of 2,000 tokens.
 
