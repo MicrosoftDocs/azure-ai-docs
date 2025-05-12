@@ -161,7 +161,6 @@ Connect to OneDrive to manage your files. You can perform various actions such a
 
 [More details](search-how-to-index-logic-apps-indexers.md#supported-connectors)
 
-
 :::column-end:::
 :::column span="":::
 
@@ -176,10 +175,6 @@ OneDrive for Business is a cloud storage, file hosting service that allows users
 [More details](search-how-to-index-logic-apps-indexers.md#supported-connectors)
 
 :::column-end:::
-:::column span="":::
-
----
-:::column-end:::
 :::row-end:::
 :::row:::
 :::column span="":::
@@ -189,6 +184,11 @@ OneDrive for Business is a cloud storage, file hosting service that allows users
    :::column-end:::
 
 :::row-end:::
+
+:::row:::
+:::column span="":::
+
+---
 
 ### Azure File Storage
 
