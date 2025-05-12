@@ -28,7 +28,7 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 
 ::: zone pivot="csharp"
 
-# Sample using agents with functions in Azure.AI.Agents
+## Using the .NET SDK
 
 In this example we are demonstrating how to use the local functions with the agents. The functions can be used to provide agent specific information in response to user question.
 
