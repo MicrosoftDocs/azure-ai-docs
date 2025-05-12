@@ -93,6 +93,7 @@ Retrieval quality is very important given its upstream role in RAG: if the retri
 ```python
 from azure.ai.evaluation import DocumentRetrievalEvaluator
 
+# these query_relevance_label are given by your human- or LLM-judges.
 retrieval_ground_truth = [
     {
         "document_id": "1",
@@ -115,8 +116,11 @@ retrieval_ground_truth = [
         "query_relevance_label": 0
     },
 ]
+# the min and max of the label scores are inputs to document retrieval evaluator
+ground_truth_label_min = 0
+ground_truth_label_max = 4
 
-# these reterieval scores 
+# these relevance scores come from your search retrieval system
 retrieved_documents = [
     {
         "document_id": "2",
@@ -141,6 +145,8 @@ retrieved_documents = [
 ]
 
 document_retrieval_evaluator = DocumentRetrievalEvaluator(
+    ground_truth_label_min=ground_truth_label_min, 
+    ground_truth_label_max=ground_truth_label_max,
     ndcg_threshold = 0.5,
     xdcg_threshold = 50.0,
     fidelity_threshold = 0.5,
@@ -154,7 +160,7 @@ document_retrieval_evaluator(retrieval_ground_truth=retrieval_ground_truth, retr
 
 ### Document retrieval output
 
-The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score <= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
+All numerical scores have `high_is_better=True` except for `holes` and `holes_ratio` which have `high_is_better=False`. Given a numerical threshold (default to 3), we also output "pass" if the score <= threshold, or "fail" otherwise. 
 
 ```python
 {
@@ -165,8 +171,8 @@ The numerical score on a likert scale (integer 1 to 5) and a higher score is bet
     "top3_max_relevance": 2,
     "holes": 30,
     "holes_ratio": 0.6000000000000001,
-    "holes_is_higher_better": False,
-    "holes_ratio_is_higher_better": False,
+    "holes_higher_is_better": False,
+    "holes_ratio_higher_is_better": False,
     "total_retrieved_documents": 50,
     "total_groundtruth_documents": 1565,
     "ndcg@3_result": "pass",
@@ -174,6 +180,7 @@ The numerical score on a likert scale (integer 1 to 5) and a higher score is bet
     "fidelity_result": "fail",
     "top1_relevance_result": "fail",
     "top3_max_relevance_result": "fail",
+    # omitting more fields ...
 }
 ```
 
