@@ -1,17 +1,18 @@
 ---
 title: Voice Live API overview
 titleSuffix: Azure AI services
-description: Learn about the Voice Live API and how to use it for real-time voice conversation.
+description: Learn about the Voice Live API for real-time voice agents.
 manager: nitinme
 author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 5/19/2025
-# Customer intent: As a developer, I want to learn about the Voice Live API and how to use it for real-time voice conversation.
+ms.custom: references_regions
+# Customer intent: As a developer, I want to learn about the Voice Live API for real-time voice agents.
 ---
 
-# Voice Live API for real-time voice conversation (Preview)
+# Voice Live API for real-time voice agents (Preview)
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
@@ -19,7 +20,7 @@ ms.date: 5/19/2025
 
 The Voice Live API is a solution enabling low-latency, high-quality speech to speech interactions for voice agents. The API is designed for developers seeking scalable and efficient voice-driven experiences as it eliminates the need to manually orchestrate multiple components. By integrating speech recognition, generative AI, and text to speech functionalities into a single, unified interface, it provides an end-to-end solution for creating seamless experiences.
 
-## Understanding speech to speech Experiences
+## Understanding speech to speech experiences
 
 Speech to speech technology is revolutionizing how humans interact with systems, offering intuitive voice-based solutions. Traditional implementations involved combining disparate modules such as speech to text, intent recognition, dialog management, text to speech, and more. Such chaining can lead to increased engineering complexity and end-user perceived latency.
 
@@ -40,8 +41,8 @@ Azure AI Voice Live API is ideal for scenarios where voice-driven interactions i
 The Voice Live API includes a comprehensive set of features to support diverse use cases and ensure superior voice interactions:
 
 - **Broad locale coverage**: Supports over 15 locales for speech to text and offers over 600 prebuilt voices across 140+ locales for text to speech, ensuring global accessibility.
-- **Customizable input and output**: Use customized speech recognition models for domain-specific recognition and phrase list for lightweight just-in-time customization on audio input, and Custom Neural Voice to create unique, brand-aligned voices for audio output.
-- **Flexible generative AI model options**: Choose from multiple models, including GPT-4o, GPT-4o-mini, and Phi, tailored to conversational requirements.
+- **Customizable input and output**: Use phrase list for lightweight just-in-time customization on audio input. Use custom neural voice to create unique, brand-aligned voices for audio output.
+- **Flexible generative AI model options**: [Choose from multiple models](#supported-models-and-regions), including GPT-4o, GPT-4o-mini, and Phi, tailored to conversational requirements.
 - **Advanced conversational features**:
     - Noise suppression: Reduces environmental noise for clearer communication.
     - Echo cancellation: Prevents the agent from picking up its own responses.
@@ -62,23 +63,38 @@ Features that are unique to the Voice Live API are designed to be optional and a
 
 The API is supported through WebSocket events, allowing for an easy server-to-server integration. Your backend or middle-tier service connects to the Voice Live API via WebSockets. You can use the WebSocket messages directly to interact with the API.
 
-## Models supported natively
+## Supported models and regions
 
 To power the intelligence of your voice agent, you have flexibility and choice in the generative AI model between GPT-4o, GPT-4o-mini, and Phi. Different generative AI models provide different types of capabilities, levels of intelligence, speed/latency of inferencing, and cost. Depending on what matters most for your business and use case, you can choose the model that best suits your needs.
 
 All natively supported models – GPT-4o, GPT-4o-mini, and Phi – are fully managed, meaning you don’t have to deploy models, worry about capacity planning, or provisioning throughputs. You can simply use the model you need, and the Voice Live API takes care of the rest.
 
+The Voice Live API supports the following models and regions:
+
+| Model | Description | Supported regions |
+| ------------------------------ | ----------- | ----------- |
+| `gpt-4o-realtime-preview`      | GPT-4o realtime + option to use Azure text to speech voices including custom neural voice for audio. | `eastus2`<br/>`swedencentral` |
+| `gpt-4o-mini-realtime-preview` | GPT-4o mini realtime + option to use Azure text to speech voices including custom neural voice for audio. | `eastus2`<br/>`swedencentral` |
+| `gpt-4o` | GPT-4o + audio input through Azure speech to text + audio output through Azure text to speech voices including custom neural voice. | `centralindia`<br/>`eastus2`<br/>`swedencentral`<br/>`westus2` |
+| `gpt-4o-mini` | GPT-4o mini + audio input through Azure speech to text + audio output through Azure text to speech voices including custom neural voice. | `centralindia`<br/>`eastus2`<br/>`swedencentral`<br/>`westus2` |
+| `phi4-mm-realtime` | Phi4-mm + audio output through Azure text to speech voices including custom neural voice. | `centralindia`<br/>`eastus2`<br/>`swedencentral`<br/>`westus2` |
+| `phi4` | Phi4-mm + audio input through Azure speech to text + audio output through Azure text to speech voices including custom neural voice. | `centralindia`<br/>`eastus2`<br/>`swedencentral`<br/>`westus2` |
+
 ## Comparing Voice Live API with other speech to speech solutions
 
-| Application requirement | Do it yourself | Speech real-time | Voice Live API |
-|-----|-----|-----|-----|
-| Broad locale coverage with high accuracy (audio input) | ✅ | ❌ | ✅ |
-| Maintain brand and character personality (audio output) | ✅ | ❌ | ✅ |
-| Conversational enhancements | ❌ | ✅ | ✅ |
-| Choice of generative AI models | ✅ | ❌ | ✅ |
-| Visual output with text to speech avatar | ✅ | ❌ | ✅ |
-| Low engineering cost | ❌ | ✅ | ✅ |
-| Low latency perceived by end user | ❌ | ✅ | ✅ |
+The Voice Live API is an alternative to orchestrating multiple components such as speech recognition, generative AI, and text to speech. This orchestration can be complex and time-consuming, requiring significant engineering effort to integrate and maintain. The Voice Live API simplifies this process by providing a single interface for all these components, allowing developers to focus on building their applications rather than managing the underlying infrastructure.
+
+To meet your requirements, you can either build your own solution or use the Voice Live API. The table below compares the two approaches:
+
+| Application requirement | Do it yourself | Voice Live API |
+|-----|-----|-----|
+| Broad locale coverage with high accuracy (audio input) | ✅ | ✅ |
+| Maintain brand and character personality (audio output) | ✅ | ✅ |
+| Conversational enhancements | ❌ | ✅ |
+| Choice of generative AI models | ✅ | ✅ |
+| Visual output with text to speech avatar | ✅ | ✅ |
+| Low engineering cost | ❌ | ✅ |
+| Low latency perceived by end user | ❌ | ✅ |
 
 ## Related content
 

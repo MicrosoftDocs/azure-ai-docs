@@ -1,7 +1,7 @@
 ---
 title: How to use the Voice Live API (Preview)
 titleSuffix: Azure AI services
-description: Learn how to use the Voice Live API for real-time voice conversation.
+description: Learn how to use the Voice Live API for real-time voice agents.
 manager: nitinme
 author: eric-urban
 ms.author: eur
@@ -9,7 +9,7 @@ ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 5/19/2025
 ms.custom: references_regions
-# Customer intent: As a developer, I want to learn how to use the Voice Live API for real-time voice conversation.
+# Customer intent: As a developer, I want to learn how to use the Voice Live API for real-time voice agents.
 ---
 
 # How to use the Voice Live API (Preview)
@@ -22,16 +22,7 @@ Unless otherwise noted, the Voice Live API uses the same events as the [Azure Op
 
 ## Supported models and regions
 
-The Voice Live API supports the following models and regions:
-
-| Model | Description | Supported regions |
-| ------------------------------ | ----------- | ----------- |
-| `gpt-4o-realtime-preview`      | GPT-4o realtime + option to use Azure text to speech voices including custom neural voice for audio. | `eastus2`<br/>`swedencentral` |
-| `gpt-4o-mini-realtime-preview` | GPT-4o mini realtime + option to use Azure text to speech voices including custom neural voice for audio. | `eastus2`<br/>`swedencentral` |
-| `gpt-4o` | GPT-4o + audio input through Azure speech to text + audio output through Azure text to speech voices including custom neural voice. | `centralindia`<br/>`eastus2`<br/>`swedencentral`<br/>`westus2` |
-| `gpt-4o-mini` | GPT-4o mini + audio input through Azure speech to text + audio output through Azure text to speech voices including custom neural voice. | `centralindia`<br/>`eastus2`<br/>`swedencentral`<br/>`westus2` |
-| `phi4-mm-realtime` | Phi4-mm + audio output through Azure text to speech voices including custom neural voice. | `centralindia`<br/>`eastus2`<br/>`swedencentral`<br/>`westus2` |
-| `phi4` | Phi4-mm + audio input through Azure speech to text + audio output through Azure text to speech voices including custom neural voice. | `centralindia`<br/>`eastus2`<br/>`swedencentral`<br/>`westus2` |
+For a table of supported models and regions, see the [Voice Live API overview](./voice-live.md#supported-models-and-regions).
 
 ## Authentication
 
@@ -140,13 +131,17 @@ Server echo cancellation enhances the input audio quality by removing the echo f
 }
 ```
 
+## Conversational enhancements
+
+The Voice Live API offers conversational enhancements to provide robustness to the natural end-user conversation flow.
+
 ### Turn Detection Parameters
 
-Turn detection is the process of detecting when the end-user started or stopped speaking. The Voice Live API provides a `turn_detection` property to configure turn detection. The `azure_semantic_vad` type is one differentiator between the Voice Live API and the Azure OpenAI Realtime API. 
+Turn detection is the process of detecting when the end-user started or stopped speaking. The Voice Live API builds on the Azure OpenAI Realtime API `turn_detection` property to configure turn detection. The `azure_semantic_vad` type is one differentiator between the Voice Live API and the Azure OpenAI Realtime API. 
 
 | Property | Type | Required or optional | Description |
 |----------|----------|----------|------------|
-| `type` | string   | Optional | The type of turn detection system to use. Type `server_vad` detects start and end of speech based on audio volume.<br/><br/>Type `azure_semantic_vad` detects start and end of speech based on semantic meaning. The `azure_semantic_vad` type is only available when using the `gpt-4o` model. Azure semantic voice activity detection (VAD) improves turn detection by removing filler words to reduce the false alarm rate. The current list of filler words are `['ah', 'umm', 'mm', 'uh', 'huh', 'oh', 'yeah', 'hmm']`. The service ignores these words when there's an ongoing response. Remove feature words feature assumes the client plays response audio as soon as it receives them.<br/><br/>The default value is `server_vad`. |
+| `type` | string   | Optional | The type of turn detection system to use. Type `server_vad` detects start and end of speech based on audio volume.<br/><br/>Type `azure_semantic_vad` detects start and end of speech based on semantic meaning. Azure semantic voice activity detection (VAD) improves turn detection by removing filler words to reduce the false alarm rate. The current list of filler words are `['ah', 'umm', 'mm', 'uh', 'huh', 'oh', 'yeah', 'hmm']`. The service ignores these words when there's an ongoing response. Remove feature words feature assumes the client plays response audio as soon as it receives them. The `azure_semantic_vad` type isn't supported with the `gpt-4o-realtime-preview` and `gpt-4o-mini-realtime-preview` models.<br/><br/>The default value is `server_vad`. |
 | `threshold` | number | Optional | A higher threshold requires a higher confidence signal of the user trying to speak. |
 | `prefix_padding_ms` | integer | Optional  | The amount of audio, measured in milliseconds, to include before the start of speech detection signal. |
 | `silence_duration_ms` | integer  | Optional | The duration of user's silence, measured in milliseconds, to detect the end of speech. |
@@ -291,10 +286,6 @@ And the service responds with the server SDP.
 ```
 
 Then you can connect the avatar with the server SDP.
-
-## Conversational enhancements
-
-The Voice Live API offers several conversational enhancements to provide robustness to the natural end-user conversation flow.
 
 ### Audio timestamps
 

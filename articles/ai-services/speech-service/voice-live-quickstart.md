@@ -1,7 +1,7 @@
 ---
-title: 'How to use Voice Live API for speech and audio with Azure AI Speech'
+title: 'How to use Voice Live API for real-time voice agents with Azure AI Speech'
 titleSuffix: Azure AI services
-description: Learn how to use Voice Live API for speech and audio with Azure AI Speech.
+description: Learn how to use Voice Live API for real-time voice agents with Azure AI Speech.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
@@ -12,7 +12,7 @@ ms.custom: build-2025
 recommendations: false
 ---
 
-# Voice Live API for speech and audio (Preview)
+# Quickstart: Voice Live API for real-time voice agents (Preview)
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
