@@ -39,7 +39,7 @@ landingContent:
             url: search-get-started-agentic-retrieval.md
 
   # Card
-  - title: RAG and vectors
+  - title: Agentic RAG
     linkLists:
       - linkListType: concept
         links:
@@ -121,23 +121,3 @@ landingContent:
             url: /java/api/overview/azure/search-documents-readme
           - text: Azure SDK for JavaScript
             url: /javascript/api/overview/azure/search-documents-readme
-
-  # Card
-  - title: Query data
-    linkLists:
-      - linkListType: concept
-        links:
-          - text: Query types and composition
-            url: search-query-overview.md
-          - text: Create a simple query
-            url: search-query-create.md
-          - text: Create advanced queries
-            url: search-query-lucene-examples.md
-      - linkListType: reference
-        links:
-          - text: Simple syntax (default)
-            url: query-simple-syntax.md
-          - text: OData language reference
-            url: query-odata-filter-orderby-syntax.md
-          - text: Search Documents (REST)
-            url: /rest/api/searchservice/documents/search-post
