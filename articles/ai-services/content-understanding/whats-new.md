@@ -14,16 +14,46 @@ ms.custom:
 
 # What's new in Azure AI Content Understanding?
 
-The Content Understanding service is continuously updated. Bookmark this page to stay informed about the latest features and samples.
+The Azure AI Content Understanding service is continuously updated. Bookmark this page to stay informed about the latest features and samples.
+
+## May 2025
+The Azure AI Content Understanding **`2025-05-01-preview`** REST API is now available. This update introduces the following updates and enhanced capabilities:
+
+* **Modes for documents**: With the **`2025-05-01-preview`** release, we introduce two modes: `standard` and `pro`. The `pro` mode, currently exclusive to the document analyzer, enables advanced capabilities. Content Understanding now supports reasoning across multiple documents as input for external knowledge, empowering users to derive agentic inferences directly from reference documents.
+
+* **Document modality improvements** :
+
+  * Support for cross table extraction spanning multiple pages.
+  * Selection mark support for checkmark and radio buttons as unicode characters.
+  * Confidence score improvements.
+  * Support for embedded figures in Markdown as base64 string format.
+  * New file format support extended for following document types `.rtf`,`.txt`,`.xml`,`.json`, `.msg`,`.eml`,`.csv`, and `.xlsx`.
+  * Bar code extraction as part of the default content extraction along with `OCR`.
+  * Classification API for documents only. This API supports classifying and splitting documents with optional routing to analyzers.
+
+* **User experience improvements**. To improve latency issues, the UX experience is refreshed with ease-of-use and quick try-out experience as part of Azure AI Foundry.
+
+* **Video Modality improvements**:
+
+  * Support for whole video fields.
+  * Support for video chapters via segmentation.
+  * Support for face identification on extracted face thumbnails. The identity enhances the description and downstream tasks like search and retrieval.
+  * Support for disabling face blurring in analyzer configuration.
+
+* **Audio Modality improvements**: Support for multi-speaker call center role detection to allow detection of multiple speakers.
+
+* **Face API preview**: Detection, recognition, and enrollment of faces.
+
+* **Billing Changes**: New simpler pricing model that lowers costs from the **2024-12-01-preview** REST API across all modalities.
 
 ## April 2025
 
-The Content Understanding **2024-12-01-preview** REST API is now available. This update for preview API introduces the following updates and enhanced capabilities:
+The Azure AI Content Understanding **2024-12-01-preview** REST API is now available. This update for preview API introduces the following updates and enhanced capabilities:
 
 * **General improvements**. For all modality, to request an increase from current limits, contact us at `cu_contact@microsoft.com`.
-* **Prebuilt invoice template**. The invoice template is now customizable. Once you select the invoice template, you can access a predefined list of fields that can be tailored to your specific needs by adding or removing fields. 
+* **Prebuilt invoice template**. The invoice template is now customizable. Once you select the invoice template, you can access a predefined list of fields that can be tailored to your specific needs by adding or removing fields.
 * **Generative and classification fields**
-  * Both generative and classify fields are now supported for documents modality. 
+  * Both generative and classify fields are now supported for documents modality.
   * You can now utilize the REST endpoint/Studio to define generative and classification fields with zero-shot outputs for documents. This feature enables you to generate summaries, infer results, and classify individual documents across multiple files.
   * Multiple analyzers can be invoked to process individual files.
 * **Video modality**

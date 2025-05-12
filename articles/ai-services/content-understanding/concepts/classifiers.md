@@ -14,7 +14,7 @@ ms.date: 05/19/2025
 
 > [!IMPORTANT]
 >
-> * Classifier is only available for documents with the `2025-05-01-preview` release.
+> * The classifier API is only available for documents with the `2025-05-01-preview` release.
 > * Azure AI Content Understanding classifier is available in `2025-05-01-preview` release. Public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).

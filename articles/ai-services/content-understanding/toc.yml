@@ -38,7 +38,7 @@ items:
   items:
   - name: Overview
     displayName: content understanding capabilities, document, text, images, video, audio, visual, structured, content, field, extraction
-    href: concepts/capabilities.md
+    href: concepts/analyzers-overview.md
   - name: Analyzer templates
     displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
     href: concepts/analyzer-templates.md
@@ -67,7 +67,13 @@ items:
       href: concepts/accuracy-confidence.md
     - name: 🆕 Classifiers
       displayName: classifiers, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-      href: concepts/classifiers.md  
+      href: concepts/classifiers.md
+    - name: 🆕 Analyzers overview
+      displayName: content understanding capabilities, document, text, images, video, audio, visual, structured, content, field, extraction
+      href: concepts/analyzers-overview.md
+    - name: 🆕 Prebuilt analyzers
+      displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+      href: concepts/prebuilt-analyzers.md
     - name: Retrieval-augmented generation (RAG)
       displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
       href: concepts/retrieval-augmented-generation.md
