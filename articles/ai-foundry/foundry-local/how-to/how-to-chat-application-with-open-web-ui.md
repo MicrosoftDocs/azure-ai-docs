@@ -16,7 +16,7 @@ ms.custom: build-2025
 
 # Integrate Open Web UI with Foundry Local
 
-This tutorial shows you how to create a chat application using Foundry Local and Open Web UI. When you finish, you'll have a working chat interface running entirely on your local device.
+This tutorial shows you how to create a chat application using Foundry Local and Open Web UI. When you finish, you have a working chat interface running entirely on your local device.
 
 ## Prerequisites
 
@@ -42,12 +42,12 @@ Before you start this tutorial, you need:
    2. Select **Connections**
    3. Select **Manage Direct Connections**
    4. Select the **+** icon to add a connection
-   5. Enter `http://localhost:5272/v1` for the URL
-   6. Type any value (like `test`) for the API Key, since it cannot be empty
+   5. For the **URL**, enter `http://localhost:PORT/v1` where `PORT` is replaced with the port of the Foundry Local endpoint, which you can find using the CLI command `foundry service status`. Note, that Foundry Local dynamically assigns a port, so it's not always the same.
+   6. Type any value (like `test`) for the API Key, since it can't be empty
    7. Save your connection
 
 5. **Start chatting with your model**:
-   1. Your loaded models will appear in the dropdown at the top
+   1. Your loaded models appear in the dropdown at the top
    2. Select any model from the list
    3. Type your message in the input box at the bottom
 
