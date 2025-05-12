@@ -372,6 +372,7 @@ Azure OpenAI fine-tuning supports the following deployment types.
 |--|--|
 |GPT-4.1-finetune|East US2, North Central US, and Sweden Central|
 |GPT-4.1-mini-finetune|East US2, North Central US, and Sweden Central|
+|GPT-4.1-nano-finetune|East US2, North Central US, and Sweden Central|
 |GPT-4o-finetune|East US2, North Central US, and Sweden Central|
 |GPT-4o-mini-finetune|East US2, North Central US, and Sweden Central|
 
