@@ -25,8 +25,8 @@ landingContent:
         links:
           - text: What is Azure AI Search?
             url: search-what-is-azure-search.md
-          - text: Agentic RAG
-            url: search-agentic-retrieval-concept.md
+          - text: AI enrichment
+            url: cognitive-search-concept-intro.md
           - text: Semantic ranking
             url: semantic-search-overview.md
       - linkListType: quickstart
@@ -35,14 +35,18 @@ landingContent:
             url: search-create-service-portal.md
           - text: Create a search index
             url: search-get-started-portal.md
-          - text: Run an agentic retrieval pipeline
-            url: search-get-started-agentic-retrieval.md
+          - text: Create a vector index
+            url: search-get-started-vector.md
+          - text: Query a vector index
+            url: vector-search-how-to-query.md
 
   # Card
   - title: Agentic RAG
     linkLists:
       - linkListType: concept
         links:
+          - text: Agentic RAG
+            url: search-agentic-retrieval-concept.md        
           - text: Vectors in Azure AI Search
             url: vector-search-overview.md
           - text: Built-in vectorization
@@ -53,12 +57,11 @@ landingContent:
             url: retrieval-augmented-generation-overview.md
       - linkListType: quickstart
         links:
+          - text: Run an agentic retrieval pipeline
+            url: search-get-started-agentic-retrieval.md
           - text: Retrieve data using an LLM
             url: search-get-started-rag.md
-          - text: Create a vector index
-            url: search-get-started-vector.md
-          - text: Query a vector index
-            url: vector-search-how-to-query.md
+
 
 
   # Card
