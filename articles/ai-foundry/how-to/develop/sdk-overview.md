@@ -27,7 +27,7 @@ The Azure AI Foundry SDK is a comprehensive toolchain designed to simplify the d
 The Azure AI Foundry SDK is a set of client libraries and services designed to work together. 
 
 > [!NOTE]
-> This article applies to a **[!INCLUDE [fdp](fdp-project-name.md)]**. The code shown here doesn't work for a **[!INCLUDE [hub](hub-project-name.md)]**. For more information, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
+> This article applies to a **[!INCLUDE [fdp](../../includes/fdp-project-name.md)]**. The code shown here doesn't work for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. For more information, see [Types of projects](../../what-is-azure-ai-foundry.md#project-types).
 
 ## Prerequisites
 
