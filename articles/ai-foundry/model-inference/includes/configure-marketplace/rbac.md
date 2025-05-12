@@ -9,7 +9,7 @@ ms.topic: include
 
 ## Permissions required to subscribe to Azure Ecosystem Models
 
-Azure Ecosystem Models available for deployment (for example, Cohere models) require Azure Marketplace. Model providers define the license terms and set the price for use of their models using Azure Marketplace.
+[Azure Ecosystem Models](../../concepts/models.md#azure-ecosystem-models) available for deployment (for example, Cohere models) require Azure Marketplace. Model providers define the license terms and set the price for use of their models using Azure Marketplace.
 
 When deploying third-party models, ensure you have the following permissions in your account:
 

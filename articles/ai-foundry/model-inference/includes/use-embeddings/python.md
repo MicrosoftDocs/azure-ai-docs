@@ -1,7 +1,7 @@
 ---
-title: How to generate embeddings with Azure AI model inference
+title: How to generate embeddings with Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn how to generate embeddings with Azure AI model inference
+description: Learn how to generate embeddings with Azure AI Foundry Models
 manager: scottpolly
 author: mopeakande
 reviewer: santiagxf
@@ -26,7 +26,7 @@ To use embedding models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites-python](../how-to-prerequisites-python.md)]
 
-* An embeddings model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add an embeddings model to your resource.
+* An embeddings model deployment. If you don't have one read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add an embeddings model to your resource.
 
 
 ## Use embeddings

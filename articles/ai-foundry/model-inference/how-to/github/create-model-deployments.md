@@ -1,5 +1,5 @@
 ---
-title: Add and configure models to Azure AI model inference
+title: Add and configure models to Azure AI Foundry Models
 titleSuffix: Azure AI Foundry for GitHub
 description: Learn how to add and configure new models to the Azure AI model inference endpoint in Azure AI Foundry for GitHub.
 ms.service: azure-ai-model-inference
@@ -12,18 +12,18 @@ ms.author: fasantia
 recommendations: false
 ---
 
-# Add and configure models to Azure AI services
+# Add and configure models from Azure AI Foundry Models
 
 You can decide and configure which models are available for inference in the Azure AI services resource model's inference endpoint. When a given model is configured, you can then generate predictions from it by indicating its model name or deployment name on your requests. No further changes are required in your code to use it.
 
-In this article, you learn how to add a new model to Azure AI model inference.
+In this article, you learn how to add a new model from Azure AI Foundry Models.
 
 ## Prerequisites
 
 To complete this article, you need:
 
-* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI model inference](../quickstart-github-models.md) if it's your case.
-* An Azure AI services resource. For more information, see [Create an Azure AI Services resource](../../../../ai-services/multi-service-resource.md?context=/azure/ai-services/model-inference/context/context).
+* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI Foundry Models](../quickstart-github-models.md) if it's your case.
+* An Azure AI services resource. For more information, see [Create an Azure AI Foundry resource](../quickstart-create-resources.md).
 
 ## Add a model
 
@@ -31,7 +31,7 @@ To complete this article, you need:
 
 ## Use the model
 
-Deployed models in Azure AI services can be consumed using the [Azure AI model's inference endpoint](../../concepts/endpoints.md) for the resource.
+Deployed models in Azure AI Foundry Models can be consumed using the [Azure AI model's inference endpoint](../../concepts/endpoints.md) for the resource.
 
 To use it:
 
@@ -54,4 +54,4 @@ When creating model deployments, you can configure additional settings including
 
 ## Next steps
 
-* [Develop applications using Azure AI model inference service in Azure AI services](../../supported-languages.md)
+* [Develop applications using Azure AI Foundry Models](../../supported-languages.md)

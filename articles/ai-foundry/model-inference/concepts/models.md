@@ -15,11 +15,11 @@ ms.custom: references_regions, tool_generated
 
 # Models available in Azure AI Foundry Models
 
-Azure AI Foundry Models gives you access to flagship models in Azure AI to consume them as APIs without hosting them on your infrastructure.
+Azure AI Foundry Models gives you access to flagship models in Azure AI Foundry to consume them as APIs without hosting them on your infrastructure.
+
+A selection of models is offered directly by Microsoft under [Azure Direct Models](#azure-direct-models) which brings the most powerful options to developers to build AI applications. We also enable the breath of models by partnering with key players in the industry and bringing [Azure Ecosystem Models](#azure-ecosystem-models).
 
 :::image type="content" source="../media/models/models-catalog.gif" alt-text="An animation showing Azure AI Foundry portal model catalog section and the models available." lightbox="../media/models/models-catalog.gif":::
-
-Foundry Models makes 
 
 ## Azure Direct Models
 

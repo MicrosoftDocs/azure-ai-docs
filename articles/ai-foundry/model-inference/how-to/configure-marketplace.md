@@ -21,7 +21,7 @@ Certain models in AI Foundry Models are offered directly by the model provider t
 
 ## Country availability
 
-Pay-as-you-go billing is available only to users whose Azure subscription belongs to a billing account in a country/region where the model offer is available. Availability varies per model provider and model SKU. Read [Region availability for models](../../how-to/deploy-models-serverless-availability.md).
+Azure Ecosystem Models with Pay-as-you-go billing is available only to users whose Azure subscription belongs to a billing account in a country/region where the model offer is available. Availability varies per model provider and model SKU. Read [Region availability for models](../../how-to/deploy-models-serverless-availability.md).
 
 ## Troubleshooting
 

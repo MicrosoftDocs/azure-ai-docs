@@ -25,7 +25,7 @@ To use structured outputs with chat completions models in your application, you 
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
-* A chat completions model deployment with JSON and structured outputs support. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md).
+* A chat completions model deployment with JSON and structured outputs support. If you don't have one read [Add and configure Foundry Models](../../how-to/create-model-deployments.md).
 
     * You can check which models support structured outputs by checking the column **Response format** in the [Models](../../concepts/models.md) article.
 

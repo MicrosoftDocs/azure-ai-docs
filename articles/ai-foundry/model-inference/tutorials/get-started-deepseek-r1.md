@@ -1,7 +1,7 @@
 ---
-title: "Tutorial: Getting started with DeepSeek-R1 reasoning model in Azure AI model inference"
+title: "Tutorial: Getting started with DeepSeek-R1 reasoning model in Azure AI Foundry Models"
 titleSuffix: Azure AI Foundry
-description: Learn about the reasoning capabilities of DeepSeek-R1 in Azure AI model inference.
+description: Learn about the reasoning capabilities of DeepSeek-R1 in Azure AI Foundry Models.
 manager: scottpolly
 ms.service: azure-ai-model-inference
 ms.topic: tutorial
@@ -11,12 +11,12 @@ ms.author: mopeakande
 author: msakande
 ---
 
-# Tutorial: Get started with DeepSeek-R1 reasoning model in Azure AI model inference
+# Tutorial: Get started with DeepSeek-R1 reasoning model in Azure AI Foundry Models
 
 In this tutorial, you learn:
 
 > [!div class="checklist"]
-> * How to create and configure the Azure resources to use DeepSeek-R1 model in Azure AI model inference.
+> * How to create and configure the Azure resources to use DeepSeek-R1 model in Azure AI Foundry Models.
 > * How to configure the model deployment.
 > * How to use DeepSeek-R1 using the Azure AI Inference SDK or REST APIs.
 > * How to use DeepSeek-R1 using other SDKs.
@@ -25,17 +25,17 @@ In this tutorial, you learn:
 
 To complete this article, you need:
 
-* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI model inference](../how-to/quickstart-github-models.md) if that's your case.
+* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI Foundry Models](../how-to/quickstart-github-models.md) if that's your case.
 
 [!INCLUDE [about-reasoning](../includes/use-chat-reasoning/about-reasoning.md)]
 
 ## Create the resources
 
-Azure AI model inference is a capability in Azure AI Services resources in Azure. You can create model deployments under the resource to consume their predictions. You can also connect the resource to Azure AI Hubs and Projects in Azure AI Foundry to create intelligent applications if needed. The following picture shows the high level architecture.
+Azure AI Foundry Models is a capability in Azure AI Foundry resources in Azure. You can create model deployments under the resource to consume their predictions. You can also connect the resource to Azure AI Hubs and Projects in Azure AI Foundry to create intelligent applications if needed. The following picture shows the high level architecture.
 
 :::image type="content" source="../media/quickstart-get-started-deepseek-r1/resources-architecture.png" alt-text="A diagram showing the high level architecture of the resources created in the tutorial." lightbox="../media/quickstart-get-started-deepseek-r1/resources-architecture.png":::
 
-To create an Azure AI project that supports model inference for DeepSeek-R1, follow these steps. You can also create the resources using [Azure CLI](../how-to/quickstart-create-resources.md?pivots=programming-language-cli) or [infrastructure as code with Bicep](../how-to/quickstart-create-resources.md?pivots=programming-language-bicep).
+To create an Azure AI project that supports deployment for DeepSeek-R1, follow these steps. You can also create the resources using [Azure CLI](../how-to/quickstart-create-resources.md?pivots=programming-language-cli) or [infrastructure as code with Bicep](../how-to/quickstart-create-resources.md?pivots=programming-language-bicep).
 
 1. Go to [Azure AI Foundry portal](https://ai.azure.com) and log in with your account.
 
@@ -65,7 +65,7 @@ To create an Azure AI project that supports model inference for DeepSeek-R1, fol
     | Resource group | The main container for all the resources in Azure. This helps get resources that work together organized. It also helps to have a scope for the costs associated with the entire project. |
     | Location       | The region of the resources that you're creating. |
     | Hub            | The main container for AI projects in Azure AI Foundry. Hubs promote collaboration and allow you to store information for your projects. |
-    | AI Services    | The resource enabling access to the flagship models in Azure AI model catalog. In this tutorial, a new account is created, but Azure AI services resources can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how, you can create connections between projects and Azure AI Services to consume Azure AI model inference you can read [Connect your AI project](../how-to/configure-project-connection.md). |
+    | AI Foundry    | The resource enabling access to the flagship models in Azure AI model catalog. In this tutorial, a new account is created, but Azure AI Foundry resources (formerly known Azure AI Services) can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how you can create connections to Azure AI Foundry resources to consume models you can read [Connect your AI project](../how-to/configure-project-connection.md). |
 
 8. Select **Create**. The resources creation process starts. 
 
