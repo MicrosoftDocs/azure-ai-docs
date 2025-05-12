@@ -17,7 +17,7 @@ ms.collection: ce-skilling-ai-copilot
 
 # Featured models of Azure AI model catalog
 
-The Azure AI model catalog offers a large selection of models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists featured models in the model catalog that can be deployed and hosted on Microsoft's servers via serverless APIs. For some of these models, you can also host them on your infrastructure for deployment via managed compute. See [Available models for supported deployment options](concept-model-catalog.md#deployment-options) to find models in the catalog that are available for deployment via managed compute or serverless API.
+The Azure AI model catalog offers a large selection of models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists featured models in the model catalog that can be deployed and hosted on Microsoft's servers via standard deployments. For some of these models, you can also host them on your infrastructure for deployment via managed compute. See [Available models for supported deployment options](concept-model-catalog.md#deployment-options) to find models in the catalog that are available for deployment via managed compute or standard deployment.
 
 
 To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Azure AI model inference](../ai-foundry/model-inference/overview.md). You can find more details about individual models by reviewing their model cards in the [Azure AI model catalog](https://ai.azure.com/explore/models).
@@ -254,8 +254,8 @@ See [the Microsoft model collection in the Azure AI model catalog](https://ai.az
 
 Mistral AI offers two categories of models, namely: 
 
-- _Premium models_: These include Mistral Large, Mistral Small, Mistral-OCR-2503, and Ministral 3B models, and are available as serverless APIs with pay-as-you-go token-based billing.  
-- _Open models_: These include Mistral-small-2503, Codestral, and Mistral Nemo (that are available as serverless APIs with pay-as-you-go token-based billing), and [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](../ai-foundry/how-to/deploy-models-mistral-open.md?context=/azure/machine-learning/context/context)(that are available to download and run on self-hosted managed endpoints).
+- _Premium models_: These include Mistral Large, Mistral Small, Mistral-OCR-2503, and Ministral 3B models, and are available as standard deployments with pay-as-you-go token-based billing.  
+- _Open models_: These include Mistral-small-2503, Codestral, and Mistral Nemo (that are available as standard deployments with pay-as-you-go token-based billing), and [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](../ai-foundry/how-to/deploy-models-mistral-open.md?context=/azure/machine-learning/context/context)(that are available to download and run on self-hosted managed endpoints).
 
 
 | Model  | Type | Capabilities |
@@ -354,7 +354,7 @@ The Stability AI collection of image generation models include Stable Image Core
 
 #### Inference examples: Stability AI
 
-Stability AI models deployed to serverless APIs implement the Azure AI model inference API on the route `/image/generations`.
+Stability AI models deployed to standard deployments implement the Azure AI model inference API on the route `/image/generations`.
 For examples of how to use Stability AI models, see the following examples:
 
 - [Use OpenAI SDK with Stability AI models for text to image requests](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Text_to_Image_openai_library.ipynb)
@@ -365,7 +365,7 @@ For examples of how to use Stability AI models, see the following examples:
 
 ## Related content
 
-- [Deploy models as serverless API endpoints](how-to-deploy-models-serverless.md)
+- [Deploy models as standard deployment](how-to-deploy-models-serverless.md)
 - [Model catalog and collections](concept-model-catalog.md)
-- [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md)
+- [Region availability for models in standard deployment](concept-endpoint-serverless-availability.md)
 - [Content safety for models curated by Azure AI in the model catalog](../ai-foundry/concepts/model-catalog-content-safety.md)

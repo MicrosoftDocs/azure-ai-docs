@@ -29,13 +29,13 @@ sections:
         answer: |
           Azure AI services are a suite of AI services that provide prebuilt APIs for common AI scenarios. Azure AI Services is part of the Azure AI Foundry platform. Azure AI services can be used in Azure AI Foundry portal to enhance your models with prebuilt AI capabilities.
       - question: |
-          What's the difference between Serverless API Endpoints and Foundry Models?
+          What's the difference between standard deployments and Foundry Models?
         answer: |
           Both features allow you to deploy Models-as-a-Service models in Azure AI Foundry. However, there are some differences between them:
-          - *Resource involved*: Serverless API Endpoints are deployed within an AI project resource, while Foundry Models is part of the Azure AI Foundry resource.
-          - *Deployment options*: Serverless API Endpoints allow regional deployments, while Foundry Models allows deployments under a global capacity.
+          - *Resource involved*: standard deployments are deployed within an AI project resource, while Foundry Models is part of the Azure AI Foundry resource.
+          - *Deployment options*: standard deployments allow regional deployments, while Foundry Models allows deployments under a global capacity.
           - *Models*: Foundry Models also supports deploying Azure OpenAI models.
-          - *Endpoint*: Serverless API Endpoints creates one endpoint and credential per deployment, while Foundry Models creates one endpoint and credential per resource.
+          - *Endpoint*: standard deployments creates one endpoint and credential per deployment, while Foundry Models creates one endpoint and credential per resource.
           - *Model router*: Foundry Models allows you to switch between models without changing your code using a model router.
   - name: Models
     questions:
