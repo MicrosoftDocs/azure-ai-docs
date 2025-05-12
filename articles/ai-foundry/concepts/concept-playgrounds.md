@@ -83,7 +83,7 @@ Available on the multi-lingual sample code samples, "Open in VS Code" enables th
     :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-run-model.png" alt-text="Screenshot showing that the code sample automatically transferred to run_model.py in VS Code." lightbox="../media/concept-playgrounds/open-in-vs-code-run-model.png":::
    
 1. Relevant dependencies in the `requirements.txt` file.
-    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-requirements.png" alt-text="Screenshot showing that the relevant dependencies listed in the requirements.txt file in VS Code." lightbox="../media/concept-playgrounds/open-in-vs-code-requirements.png":::
+    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-requirements.png" alt-text="Screenshot showing the relevant dependencies listed in the requirements.txt file in VS Code." lightbox="../media/concept-playgrounds/open-in-vs-code-requirements.png":::
 
 
 ## Agents playground
@@ -113,7 +113,7 @@ With the audio playground, you can use text-to-speech and transcription capabili
 1. Start with an audio file by either upload audio file, recording the audio from the prompt bar or speaking directly to the model.
 1. Include a phrase list as a text mechanism to guide the audio input.
 1. Once the audio input has been sent to the model, receive a transcribed output as text and JSON.
-    :::image type="content" source="../media/concept-playgrounds/audio-playground-transcribe.png" alt-text="Screenshot of theAudio playground interface demonstrating transcription output from audio input." lightbox="../media/concept-playgrounds/audio-playground-transcribe.png":::
+    :::image type="content" source="../media/concept-playgrounds/audio-playground-transcribe.png" alt-text="Screenshot of the Audio playground interface demonstrating transcription output from audio input." lightbox="../media/concept-playgrounds/audio-playground-transcribe.png":::
 
 ## Images playground
 
