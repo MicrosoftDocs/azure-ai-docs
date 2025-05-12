@@ -26,7 +26,7 @@ Tracing solves this by allowing you to clearly see the inputs and outputs of eac
 The Agents playground in the Azure AI Foundry portal lets you trace threads and runs that your agents produce. To open a trace, select **Thread info** in an active thread. You can also optionally select **Metrics** to enable automatic evaluations of the model's performance across several dimensions of **AI quality** and **Risk and safety**. 
 
 > [!NOTE]
-> Evaluation results are available in the agents playground for 24 hours before expiring. To get evaluation results, select your desired metrics and chat with your agent.
+> Evaluation results are available for 24 hours before expiring. To get evaluation results, select your desired metrics and chat with your agent.
 > * Evaluations are not available in the following regions.
 >     * `australiaeast`
 >     * `japaneast`
