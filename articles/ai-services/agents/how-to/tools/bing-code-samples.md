@@ -47,23 +47,28 @@ Use this article to find step-by-step instructions and code samples for Groundin
 ::: zone pivot="csharp"
 ## Step 1: Create a project client
 
-Create a client object, which will contain the connection string for connecting to your AI project and other resources.
+Create a client object, which will contain the project endpoint for connecting to your AI project and other resources.
 
 ```csharp
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Azure.Core;
-using Azure.Core.TestFramework;
-using NUnit.Framework;
+using System.Threading;
 
-var connectionString = System.Environment.GetEnvironmentVariable("PROJECT_CONNECTION_STRING");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
-var bingConnectionName = System.Environment.GetEnvironmentVariable("BING_CONNECTION_NAME");
+// Get Connection information from app configuration
+IConfigurationRoot configuration = new ConfigurationBuilder()
+    .SetBasePath(AppContext.BaseDirectory)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .Build();
 
-var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential());
+var projectEndpoint = configuration["ProjectEndpoint"];
+var modelDeploymentName = configuration["ModelDeploymentName"];
+var bingConnectionId = configuration["BingConnectionId"];
 
-AgentsClient agentClient = projectClient.GetAgentsClient();
+// Create the Agent Client
+PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
 ```
 
 ## Step 2: Create an Agent with the Grounding with Bing search tool enabled
@@ -71,61 +76,67 @@ AgentsClient agentClient = projectClient.GetAgentsClient();
 To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/).
 
 ```csharp
-ConnectionResponse bingConnection = projectClient.GetConnectionsClient().GetConnection(bingConnectionName);
-var connectionId = bingConnection.Id;
+// Create the BingGroundingToolDefinition object used when creating the agent
+BingGroundingToolDefinition bingGroundingTool = new BingGroundingToolDefinition(
+    new BingGroundingSearchConfigurationList(
+        [
+            new BingGroundingSearchConfiguration(bingConnectionId)
+        ]
+    )
+);
 
-ToolConnectionList connectionList = new()
-{
-    ConnectionList = { new ToolConnection(connectionId) }
-};
-BingGroundingToolDefinition bingGroundingTool = new(connectionList);
-
-Agent agent = agentClient.CreateAgent(
-   model: modelDeploymentName,
-   name: "my-assistant",
-   instructions: "You are a helpful assistant.",
-   tools: [bingGroundingTool]);
+// Create the Agent
+PersistentAgent agent = agentClient.Administration.CreateAgent(
+    model: modelDeploymentName,
+    name: "my-agent",
+    instructions: "You are a helpful agent.",
+    tools: [bingGroundingTool]
+);
 ```
 
-## Step 3: Create a thread
+## Step 3: Create a thread and run
 
 ```csharp
-AgentThread thread = agentClient.CreateThread();
+PersistentAgentThread thread = agentClient.Threads.CreateThread();
 
-// Create message to thread
-ThreadMessage message = agentClient.CreateMessage(
+// Create message and run the agent
+ThreadMessage message = agentClient.Messages.CreateMessage(
     thread.Id,
     MessageRole.User,
     "How does wikipedia explain Euler's Identity?");
+
+ThreadRun run = agentClient.Runs.CreateRun(thread, agent);
+
 ```
 
-## Step 4: Create a run and check the output
+## Step 4: Wait for the agent to complete and print the output
 
-Create a run and observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
-
+Wait for the agent to complete the run and print output to console. Observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
 
 ```csharp
 
-// Run the agent
-ThreadRun run = agentClient.CreateRun(thread, agent);
+// Wait for the agent to finish running
 do
 {
     Thread.Sleep(TimeSpan.FromMilliseconds(500));
-    run = agentClient.GetRun(thread.Id, run.Id);
+    run = agentClient.Runs.GetRun(thread.Id, run.Id);
 }
 while (run.Status == RunStatus.Queued
     || run.Status == RunStatus.InProgress);
 
-Assert.AreEqual(
-    RunStatus.Completed,
-    run.Status,
-    run.LastError?.Message);
+// Confirm that the run completed successfully
+if (run.Status != RunStatus.Completed)
+{
+    throw new Exception("Run did not complete successfully, error: " + run.LastError?.Message);
+}
 
-PageableList<ThreadMessage> messages = agentClient.GetMessages(
+// Retrieve all messages from the agent client
+Pageable<ThreadMessage> messages = agentClient.Messages.GetMessages(
     threadId: thread.Id,
     order: ListSortOrder.Ascending
 );
 
+// Process messages in order
 foreach (ThreadMessage threadMessage in messages)
 {
     Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
@@ -134,13 +145,16 @@ foreach (ThreadMessage threadMessage in messages)
         if (contentItem is MessageTextContent textItem)
         {
             string response = textItem.Text;
+
+            // If we have Text URL citation annotations, reformat the response to show title & URL for citations
             if (textItem.Annotations != null)
             {
                 foreach (MessageTextAnnotation annotation in textItem.Annotations)
                 {
                     if (annotation is MessageTextUrlCitationAnnotation urlAnnotation)
                     {
-                        response = response.Replace(urlAnnotation.Text, $" [{urlAnnotation.UrlCitation.Title}]({urlAnnotation.UrlCitation.Url})");
+                        response = response.Replace(urlAnnotation.Text, 
+                            $" [{urlAnnotation.UrlCitation.Title}]({urlAnnotation.UrlCitation.Url})");
                     }
                 }
             }
@@ -154,8 +168,18 @@ foreach (ThreadMessage threadMessage in messages)
     }
 }
 
-agentClient.DeleteThread(threadId: thread.Id);
-agentClient.DeleteAgent(agentId: agent.Id);
+```
+
+## Step 5: Clean up resources
+
+Clean up the resources from this sample.
+
+```csharp
+
+// Delete thread and agent
+agentClient.Threads.DeleteThread(threadId: thread.Id);
+agentClient.Administration.DeleteAgent(agentId: agent.Id);
+
 ```
 
 ::: zone-end
