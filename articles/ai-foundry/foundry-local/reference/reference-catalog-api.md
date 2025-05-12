@@ -228,4 +228,5 @@ The response from the catalog API is a JSON object that contains the search resu
 ```
 
 > [!NOTE]
-> The `assetID` should be an Azure Blob storage URL.
+> The `assetID` should be the Azure Blob storage URL of the folder containing the model. For example, `https://{ACCOUNT_NAME}.blob.core.windows.net/{CONTAINER_NAME}/{MODEL_PATH}`.
+
