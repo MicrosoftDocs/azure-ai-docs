@@ -1,7 +1,7 @@
 ---  
-title: Query-Time ACL and RBAC Enforcement
+title: Query-Time ACL and RBAC Enforcement in ADLS Gen2 Indexes
 titleSuffix: Azure AI Search  
-description: Learn how query-time ACL and RBAC enforcement ensures secure document retrieval in Azure AI Search for indexes containing permission filters, such as those from Azure Data Lake Storage (ADLS) Gen2 data sources.  
+description: Learn how query-time ACL and RBAC enforcement ensures secure document retrieval in Azure AI Search for indexes containing permission filters from Azure Data Lake Storage (ADLS) Gen2 data sources.  
 ms.service: azure-ai-search  
 ms.topic: conceptual  
 ms.date: 05/15/2025  
@@ -11,9 +11,7 @@ ms.author: magottei
 
 # Query-Time ACL and RBAC enforcement in Azure AI Search  
 
-Query-time access control ensures that users only retrieve search results they're authorized to access, based on their identity, group memberships, roles, or attributes. This functionality is essential for secure enterprise search and compliance-driven workflows.
-
-Azure Data Lake Storage (ADLS) Gen2 provides an access model that makes fine-grained access control easier to implement, but you can use other data sources, providing you use the push APIs and you send documents that include permission metadata alongside other indexable fields.
+Query-time access control ensures that users only retrieve search results they're authorized to access, based on their identity, group memberships, roles, or attributes. This functionality is essential for secure enterprise search and compliance-driven workflows. 
 
 ## Requirements
 
