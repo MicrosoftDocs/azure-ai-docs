@@ -13,6 +13,8 @@ author: samuel100
 
 # Foundry Local CLI Reference
 
+[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
+
 This article provides a comprehensive reference for the Foundry Local command-line interface (CLI). The CLI organizes commands into logical categories to help you manage models, control the service, and maintain your local cache.
 
 ## Overview

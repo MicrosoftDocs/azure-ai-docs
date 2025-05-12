@@ -13,6 +13,8 @@ author: samuel100
 
 # Compile Hugging Face models to run on Foundry Local
 
+[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
+
 Foundry Local runs ONNX models on your device with high performance. While the model catalog offers _out-of-the-box_ precompiled options, you can use any model in the ONNX format.
 
 To compile existing models in Safetensor or PyTorch format into the ONNX format, you can use [Olive](https://microsoft.github.io/Olive). Olive is a tool that optimizes models to ONNX format, making them suitable for deployment in Foundry Local. It uses techniques like _quantization_ and _graph optimization_ to improve performance.

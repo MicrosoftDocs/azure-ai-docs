@@ -16,6 +16,8 @@ ms.custom: build-2025
 
 # Integrate Open Web UI with Foundry Local
 
+[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
+
 This tutorial shows you how to create a chat application using Foundry Local and Open Web UI. When you finish, you have a working chat interface running entirely on your local device.
 
 ## Prerequisites

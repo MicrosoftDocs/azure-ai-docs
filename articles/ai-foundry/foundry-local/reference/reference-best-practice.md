@@ -13,6 +13,8 @@ author: maanavd
 
 # Best practices and troubleshooting guide for Foundry Local
 
+[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
+
 This document provides best practices and troubleshooting tips for Foundry Local.
 
 ## Security best practices
