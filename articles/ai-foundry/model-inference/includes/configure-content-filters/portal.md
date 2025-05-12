@@ -18,7 +18,7 @@ Follow these steps to create a custom content filter:
 
 1. Go to [Azure AI Foundry portal](https://ai.azure.com/explore/models).
 
-2. Select **Safety + security**.
+2. Select **Guardrails & controls**.
 
 3. Select the tab **Content filters** and then select **Create content filter**.
 

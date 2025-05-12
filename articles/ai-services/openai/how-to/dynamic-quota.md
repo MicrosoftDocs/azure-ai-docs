@@ -1,6 +1,5 @@
 ---
-title: Azure OpenAI Service dynamic quota
-titleSuffix: Azure AI services
+title: Azure OpenAI in Azure AI Foundry Models dynamic quota
 description: Learn how to use Azure OpenAI dynamic quota
 author: mrbullwinkle
 manager: nitinme

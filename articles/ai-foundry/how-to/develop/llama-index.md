@@ -19,11 +19,11 @@ In this article, you learn how to use [LlamaIndex](https://github.com/run-llama/
 
 Models deployed to [Azure AI Foundry](https://ai.azure.com) can be used with LlamaIndex in two ways:
 
-- **Using the Azure AI model inference API:** All models deployed to Azure AI Foundry support the [Azure AI model inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LlamaIndex, install the extensions `llama-index-llms-azure-inference` and `llama-index-embeddings-azure-inference`.
+- **Using the Azure AI Foundry Models API:** All models deployed to Azure AI Foundry support the [Foundry Models API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LlamaIndex, install the extensions `llama-index-llms-azure-inference` and `llama-index-embeddings-azure-inference`.
 
 - **Using the model's provider specific API:** Some models, like OpenAI, Cohere, or Mistral, offer their own set of APIs and extensions for LlamaIndex. Those extensions might include specific functionalities that the model support and hence are suitable if you want to exploit them. When working with `llama-index`, install the extension specific for the model you want to use, like `llama-index-llms-openai` or `llama-index-llms-cohere`.
 
-In this example, we're working with the **Azure AI model inference API**.
+In this example, we're working with the **Foundry Models API**.
 
 ## Prerequisites
 
@@ -31,7 +31,7 @@ To run this tutorial, you need:
 
 * An [Azure subscription](https://azure.microsoft.com).
 * An Azure AI project as explained at [Create a project in Azure AI Foundry portal](../create-projects.md).
-* A model supporting the [Azure AI model inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large` deployment, but use any model of your preference. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
+* A model supporting the [Foundry Models API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large` deployment, but use any model of your preference. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
 
     * You can follow the instructions at [Deploy models as serverless APIs](../deploy-models-serverless.md).
 
@@ -42,7 +42,7 @@ To run this tutorial, you need:
     pip install llama-index
     ```
 
-* In this example, we're working with the Azure AI model inference API, hence we install the following packages:
+* In this example, we're working with the Foundry Models API, hence we install the following packages:
 
     ```bash
     pip install -U llama-index-llms-azure-inference
@@ -50,7 +50,7 @@ To run this tutorial, you need:
     ```
 
     > [!IMPORTANT]
-    > Using the [Azure AI model inference service](https://aka.ms/aiservices/inference) requires version `0.2.4` for `llama-index-llms-azure-inference` or `llama-index-embeddings-azure-inference`.
+    > Using the [Foundry Models service](https://aka.ms/aiservices/inference) requires version `0.2.4` for `llama-index-llms-azure-inference` or `llama-index-embeddings-azure-inference`.
 
 ## Configure the environment
 
@@ -88,9 +88,10 @@ llm = AzureAICompletionsModel(
 ```
 
 > [!TIP]
-> If your model deployment is hosted in Azure OpenAI in Azure AI Foundry Models or Azure AI Services resource, configure the client as indicated at [Azure OpenAI models and Azure AI model inference service](#azure-openai-models-and-azure-ai-model-inference-service).
+> If your model deployment is hosted in Azure OpenAI in Foundry Models or Azure AI Services resource, configure the client as indicated at [Azure OpenAI models and Foundry Models service](#azure-openai-models-and-foundry-models-service).
 
-If your endpoint is serving more than one model, like with the [Azure AI model inference service](../../model-inference/overview.md) or [GitHub Models](https://github.com/marketplace/models), you have to indicate `model_name` parameter:
+
+If your endpoint is serving more than one model, like with the [Foundry Models service](../../model-inference/overview.md) or [GitHub Models](https://github.com/marketplace/models), you have to indicate `model_name` parameter:
 
 ```python
 import os
@@ -133,11 +134,11 @@ llm = AzureAICompletionsModel(
 )
 ```
 
-### Azure OpenAI models and Azure AI model inference service
+### Azure OpenAI models and Foundry Models service
 
-If you're using Azure OpenAI or [Azure AI model inference service](../../model-inference/overview.md), ensure you have at least version `0.2.4` of the LlamaIndex integration. Use `api_version` parameter in case you need to select a specific `api_version`. 
+If you're using Azure OpenAI or [Foundry Models service](../../model-inference/overview.md), ensure you have at least version `0.2.4` of the LlamaIndex integration. Use `api_version` parameter in case you need to select a specific `api_version`. 
 
-For the [Azure AI model inference service](../../model-inference/overview.md), you need to pass `model_name` parameter:
+For the [Foundry Models service](../../model-inference/overview.md), you need to pass `model_name` parameter:
 
 ```python
 from llama_index.llms.azure_inference import AzureAICompletionsModel
@@ -177,7 +178,7 @@ llm = AzureAICompletionsModel(
 )
 ```
 
-Parameters not supported in the Azure AI model inference API ([reference](../../../ai-foundry/model-inference/reference/reference-model-inference-chat-completions.md)) but available in the underlying model, you can use the `model_extras` argument. In the following example, the parameter `safe_prompt`, only available for Mistral models, is being passed.
+Parameters not supported in the Foundry Models API ([reference](../../../ai-foundry/model-inference/reference/reference-model-inference-chat-completions.md)) but available in the underlying model, you can use the `model_extras` argument. In the following example, the parameter `safe_prompt`, only available for Mistral models, is being passed.
 
 ```python
 llm = AzureAICompletionsModel(

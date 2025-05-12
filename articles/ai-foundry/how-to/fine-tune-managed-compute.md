@@ -77,5 +77,5 @@ In this section, you go through the steps to configure fine-tuning for your mode
 ## Related Contents
 
 - [Fine-tune models with Azure AI Foundry](../concepts/fine-tuning-overview.md)
-- [How to generate chat completions with Azure AI model inference](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context)
+- [How to generate chat completions with Azure AI Foundry Models](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context)
 - [Featured models of Azure AI Foundry](../concepts/models-featured.md)
