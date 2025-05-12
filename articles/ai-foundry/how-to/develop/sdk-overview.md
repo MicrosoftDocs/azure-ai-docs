@@ -12,7 +12,7 @@ ms.date: 05/07/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
-zone_pivot_groups: foundry-sdk-languages
+zone_pivot_groups: foundry-sdk-overview-languages
 # customer intent: I want to learn how to use the Azure AI Foundry SDK to build AI applications on Azure.
 ---
 
@@ -77,8 +77,8 @@ The Azure AI Foundry Projects client library is a unified library that enables y
     
     String endpoint ="your_project_endpoint"; // Replace with your endpoint
     
-    ProjectsClient client = new ProjectsClientBuilder()
-        .credential(new AzureKeyCredential(apiKey))
+    ProjectsClient projectClient = new ProjectsClientBuilder()
+        .credential(new DefaultAzureCredential())
         .endpoint(endpoint)
         .buildClient();
     ```
@@ -104,8 +104,6 @@ The Azure AI Foundry Projects client library is a unified library that enables y
     
     const endpoint = "your_project_endpoint"; // Replace with your actual endpoint
     const project = new AIProjectClient(endpoint, new DefaultAzureCredential());
-    
-    const client = project.inference.azureOpenAI();
     ```
 
 ::: zone-end
@@ -139,7 +137,7 @@ The Azure AI Foundry Projects client library is a unified library that enables y
     );
     clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
     
-    var client = new ChatCompletionsClient(
+    var projectClient = new ChatCompletionsClient(
         endpointUrl, 
         credential,
         clientOptions
@@ -168,9 +166,9 @@ To use Azure AI services, you can use the following client libraries with the en
 [!INCLUDE [C# include](../../includes/sdk/csharp.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-go"
+<!-- ::: zone pivot="programming-language-go"
 [!INCLUDE [Go include](../../includes/sdk/go.md)]
-::: zone-end
+::: zone-end -->
 
 ::: zone pivot="programming-language-java"
 [!INCLUDE [Java include](../../includes/sdk/java.md)]
