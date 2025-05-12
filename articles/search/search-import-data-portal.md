@@ -144,7 +144,7 @@ You can use the wizards over restricted public connections, but not all function
 
 + On a search service, importing the built-in sample data requires a public endpoint and no firewall rules.
 
-  Sample data is hosted by Microsoft on specific Azure resources. the Azure portal controller connects to those resources over a public endpoint. If you put your search service behind a firewall, you get this error when attempting to retrieve the builtin sample data: `Import configuration failed, error creating Data Source`, followed by `"An error has occured."`.
+  Sample data is hosted by Microsoft on specific Azure resources. the Azure portal controller connects to those resources over a public endpoint. If you put your search service behind a firewall, you get this error when attempting to retrieve the builtin sample data: `Import configuration failed, error creating Data Source`, followed by `"An error has occurred."`.
 
 + On supported Azure data sources protected by firewalls, you can retrieve data if you have the right firewall rules in place. 
 
