@@ -58,6 +58,7 @@ No installation is necessary to use the Azure AI Foundry portal.
     :::code language="plaintext" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/.env.template":::
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
+1. Download [POM.XML](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart/pom.xml) to your Java IDE.
 
 > [!TIP]
 > All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart).
