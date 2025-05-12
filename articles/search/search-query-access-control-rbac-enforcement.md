@@ -1,22 +1,29 @@
 ---  
-title: Query-Time ACL and RBAC Enforcement in ADLS Gen2 Indexes
+title: Query-Time ACL and RBAC Enforcement
 titleSuffix: Azure AI Search  
-description: Learn how query-time ACL and RBAC enforcement ensures secure document retrieval in Azure AI Search for indexes containing permission filters from Azure Data Lake Storage (ADLS) Gen2 data sources.  
+description: Learn how query-time ACL and RBAC enforcement ensures secure document retrieval in Azure AI Search for indexes containing permission filters, such as those from Azure Data Lake Storage (ADLS) Gen2 data sources.  
 ms.service: azure-ai-search  
 ms.topic: conceptual  
-ms.date: 04/23/2025  
+ms.date: 05/15/2025  
 author: mattgotteiner  
 ms.author: magottei 
 ---  
 
 # Query-Time ACL and RBAC enforcement in Azure AI Search  
 
-Query-time access control ensures that users only retrieve search results they're authorized to access, based on their identity, group memberships, roles, or attributes. This functionality is essential for secure enterprise search and compliance-driven workflows.  
+Query-time access control ensures that users only retrieve search results they're authorized to access, based on their identity, group memberships, roles, or attributes. This functionality is essential for secure enterprise search and compliance-driven workflows.
 
-## Requirements 
-- Azure Data Lake Storage (ADLS) Gen2 data source configured ACLs and/or RBAC roles at container level, or permissions manually pushed into the index.
-- Configure document ACL and RBAC role functionality as required using Azure AI Search [built-in indexers](search-indexer-access-control-lists-and-role-based-access.md) or when indexing the documents [using the API directly](search-index-access-control-lists-and-rbac-push-api.md).
+Azure Data Lake Storage (ADLS) Gen2 provides an access model that makes fine-grained access control easier to implement, but you can use other data sources, providing you use the push APIs and you send documents that include permission metadata alongside other indexable fields.
 
+## Requirements
+
+- Permission metadata must be in `filterable` string fields.
+
+- Permission metadata must consist of either POSIX-style permissions that identify the level of access and the group or user ID, or the resource ID of the container or blob in ADLS Gen2 if you're using `rbacscope` and A
+
+- For ADLS Gen2 data sources, you must have configured Access Control Lists (ACLs) and/or Azure role-based access control (RBAC) roles at the container level. You can use a [built-in indexer](search-indexer-access-control-lists-and-role-based-access.md) or [Push APIs](search-index-access-control-lists-and-rbac-push-api.md) to index permission metadata in your index.
+
+- Use the 2025-05-01-preview REST API or a prerelease package of an Azure SDK to query the index.
 
 ## How query-time enforcement works
 
