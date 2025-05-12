@@ -12,11 +12,9 @@ ms.date: 05/19/2025
 
 # Prebuilt analyzers in Azure AI Content Understanding
 
-## Overview
+Azure AI Content Understanding prebuilt analyzers are ready-to-use solutions designed to streamline standard content processing tasks such as document ingestion, search indexing, and retrieval-augmented generation (`RAG`). Analyzers extract structured insights from unstructured content, including documents, images, audio, and video files. They also allow users to define custom settings for content extraction and specify field extraction schemas. Once configured, an analyzer applies these settings consistently to process all incoming data in a systematically.
 
-Azure AI Content Understanding employs analyzers to derive structured insights from unstructured content, spanning documents, images, audio, and video files. Its prebuilt analyzers are ready-to-use solutions tailored for common content processing tasks, including document ingestion, search indexing, and retrieval-augmented generation (`RAG`).
-
-These analyzers streamline trial experiences and can be adapted by extending their functionality to meet specific workflow requirements. Key offerings include:
+Analyzers enhance trial processes, offering streamlined experiences and the flexibility to be tailored by extending their functionalities to suit unique workflow needs. Key features include:
 
 * **[Content parsers](#content-parsers-for-search-and-ingestion)** for general search and ingestion scenarios.
 * **[Scenario-specific predefined analyzers](#scenario-specific-predefined-analyzers)** for targeted use cases like invoices or call center transcripts.
