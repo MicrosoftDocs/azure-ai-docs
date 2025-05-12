@@ -96,60 +96,59 @@ from azure.ai.evaluation import DocumentRetrievalEvaluator
 retrieval_ground_truth = [
     {
         "document_id": "1",
-        "query_relevance_judgement": 4
+        "query_relevance_label": 4
     },
     {
         "document_id": "2",
-        "query_relevance_judgement": 2
+        "query_relevance_label": 2
     },
     {
         "document_id": "3",
-        "query_relevance_judgement": 3
+        "query_relevance_label": 3
     },
     {
         "document_id": "4",
-        "query_relevance_judgement": 1
+        "query_relevance_label": 1
     },
     {
         "document_id": "5",
-        "query_relevance_judgement": 0
+        "query_relevance_label": 0
     },
 ]
 
+# these reterieval scores 
 retrieved_documents = [
     {
         "document_id": "2",
-        "query_relevance_judgement": 45.1
+        "relevance_score": 45.1
     },
     {
         "document_id": "6",
-        "query_relevance_judgement": 35.8
+        "relevance_score": 35.8
     },
     {
         "document_id": "3",
-        "query_relevance_judgement": 29.2
+        "relevance_score": 29.2
     },
     {
         "document_id": "5",
-        "query_relevance_judgement": 25.4
+        "relevance_score": 25.4
     },
     {
         "document_id": "7",
-        "query_relevance_judgement": 18.8
+        "relevance_score": 18.8
     },
 ]
 
-default_threshold = {
-            "ndcg@3": 0.5,
-            "xdcg@3": 0.5,
-            "fidelity": 0.5,
-            "top1_relevance": 50,
-            "top3_max_relevance": 50,
-            "total_retrieved_documents": 50,
-            "total_ground_truth_documents": 50,
-}
-
-document_retrieval_evaluator = DocumentRetrievalEvaluator(threshold=default_threshold)
+document_retrieval_evaluator = DocumentRetrievalEvaluator(
+    ndcg_threshold = 0.5,
+    xdcg_threshold = 50.0,
+    fidelity_threshold = 0.5,
+    top1_relevance_threshold = 50.0,
+    top3_max_relevance_threshold = 50.0,
+    total_retrieved_documents_threshold = 50,
+    total_ground_truth_documents_threshold = 50
+)
 document_retrieval_evaluator(retrieval_ground_truth=retrieval_ground_truth, retrieved_documents=retrieved_documents)   
 ```
 
