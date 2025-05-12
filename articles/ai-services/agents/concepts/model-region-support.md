@@ -54,14 +54,57 @@ Azure AI Agent Service supports the following Azure OpenAI models in the listed 
 The Azure AI Agent Service also supports the following models from the Azure AI Foundry model catalog.
 
 * Meta-Llama-405B-Instruct
-* Cohere-command-r-plus
-* Cohere-command-r
 
 To use these models, you can use [Azure AI Foundry portal](https://ai.azure.com/) to make a deployment, and then reference the deployment name in your agent. For example:
 
 ```python
 agent = project_client.agents.create_agent( model="llama-3", name="my-agent", instructions="You are a helpful agent" ) 
 ```
+## Azure AI Foundry Models
+
+### Models with Tool-Calling 
+
+To best support agentic scenarios, we recommend using models that support tool-calling. The Azure AI Agent Service currently supports all agent-compatible models from the Azure AI Foundry model catalog. 
+
+To use these models, use the [Azure AI Foundry portal](https://ai.azure.com/) to make a model deployment, then reference the deployment name in your agent. For example: 
+
+`agent = project_client.agents.create_agent( model="llama-3", name="my-agent", instructions="You are a helpful agent")`
+
+> [!NOTE]
+> This option should only be used for open-source models (for example, Cepstral, Mistral, Llama) and not for OpenAI models, which are natively supported in the service. This option should also only be used for models that support tool-calling. 
+
+### Models without Tool-Calling 
+
+Though tool-calling support is a core capability for agentic scenarios, we now provide the ability to use models that don’t support tool-calling in our API and SDK. This option can be helpful when you have specific use-cases that don’t require tool-calling. 
+
+The following steps will allow you to utilize any chat-completion model that is available through a [serverless API](/ai-foundry/how-to/model-catalog-overview): 
+
+ 
+
+1. Deploy your desired model through serverless API. Model will show up on your ‘Models + Endpoints’ page. 
+
+1. Click on model name to see model details, where you'll find your model's target URI and key. 
+
+1. Create a new Serverless connection on **Connected Resources** page, using the target URI and key. 
+
+Model can now be referenced in your code (`Target URI` + `@` + `Model Name`), for example: 
+
+`Model=https://Phi-4-mejco.eastus.models.ai.azure.com/@Phi-4-mejco`
+
+## Bring Your Own Model 
+
+The Azure AI Agent Service also allows you to connect to any chat completion model endpoint that you provide from an external model provider (for example, Perplexity). This option can be used when the desired model is not in the AI Foundry Model Catalog. 
+
+The following steps will allow you to utilize any chat-completion model that you have access to: 
+
+1. Create a connection to your model provider's chat completion API. Click on the **Connected Resources** page, select **Serverless Connection**, then enter your model’s target URI and key (from your model provider's site).  
+
+The Model can now be referenced in your code (`Target URI` + `@` + `Model Name`), for example: 
+
+`Model=https://api.perplexity.ai@sonar`
+
+> [!NOTE]
+> Using a model that is not natively integrated with the Agents service may result in limited functionality (this will depend on the model you bring). For example, some models will provide all agentic features (for example, Llama Instruct models), but others will only provide basic model interaction via chat. To enjoy the full agentic experience – for example tool calling, and utilization of knowledge sources,  using an agent-supporting model in the Foundry Model Catalog is recommended. 
 
 ## Next steps
 
