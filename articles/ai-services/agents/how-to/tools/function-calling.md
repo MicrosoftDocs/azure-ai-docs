@@ -34,285 +34,192 @@ In this example we are demonstrating how to use the local functions with the age
 
 1. First, set up the configuration and create a `PersistentAgentsClient`. This client will be used for all interactions with the Azure AI Agents Service. This step also includes all necessary `using` directives.
 
-```csharp
-using Azure;
-using Azure.AI.Agents.Persistent;
-using Azure.Identity;
-using Microsoft.Extensions.Configuration;
-using System.Text.Json;
-
-IConfigurationRoot configuration = new ConfigurationBuilder()
-    .SetBasePath(AppContext.BaseDirectory)
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .Build();
-
-var projectEndpoint = configuration["ProjectEndpoint"];
-var modelDeploymentName = configuration["ModelDeploymentName"];
-PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
-```
+    ```csharp
+    using Azure;
+    using Azure.AI.Agents.Persistent;
+    using Azure.Identity;
+    using Microsoft.Extensions.Configuration;
+    using System.Text.Json;
+    
+    IConfigurationRoot configuration = new ConfigurationBuilder()
+        .SetBasePath(AppContext.BaseDirectory)
+        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+        .Build();
+    
+    var projectEndpoint = configuration["ProjectEndpoint"];
+    var modelDeploymentName = configuration["ModelDeploymentName"];
+    PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
+    ```
 
 2. Next, define the local functions that the agent can call. For each function, create a `FunctionToolDefinition` that describes its name, purpose, and parameters to the agent. These functions and definitions are used by both synchronous and asynchronous agent operations.
 
-```csharp
-string GetUserFavoriteCity() => "Seattle, WA";
-FunctionToolDefinition getUserFavoriteCityTool = new("getUserFavoriteCity", "Gets the user's favorite city.");
-
-string GetCityNickname(string location) => location switch
-{
-    "Seattle, WA" => "The Emerald City",
-    _ => throw new NotImplementedException(),
-};
-FunctionToolDefinition getCityNicknameTool = new(
-    name: "getCityNickname",
-    description: "Gets the nickname of a city, e.g. 'LA' for 'Los Angeles, CA'.",
-    parameters: BinaryData.FromObjectAsJson(
-        new
-        {
-            Type = "object",
-            Properties = new
+    ```csharp
+    string GetUserFavoriteCity() => "Seattle, WA";
+    FunctionToolDefinition getUserFavoriteCityTool = new("getUserFavoriteCity", "Gets the user's favorite city.");
+    
+    string GetCityNickname(string location) => location switch
+    {
+        "Seattle, WA" => "The Emerald City",
+        _ => throw new NotImplementedException(),
+    };
+    FunctionToolDefinition getCityNicknameTool = new(
+        name: "getCityNickname",
+        description: "Gets the nickname of a city, e.g. 'LA' for 'Los Angeles, CA'.",
+        parameters: BinaryData.FromObjectAsJson(
+            new
             {
-                Location = new
+                Type = "object",
+                Properties = new
                 {
-                    Type = "string",
-                    Description = "The city and state, e.g. San Francisco, CA",
+                    Location = new
+                    {
+                        Type = "string",
+                        Description = "The city and state, e.g. San Francisco, CA",
+                    },
                 },
+                Required = new[] { "location" },
             },
-            Required = new[] { "location" },
-        },
-        new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
-
-string GetWeatherAtLocation(string location, string temperatureUnit = "f") => location switch
-{
-    "Seattle, WA" => temperatureUnit == "f" ? "70f" : "21c",
-    _ => throw new NotImplementedException()
-};
-FunctionToolDefinition getCurrentWeatherAtLocationTool = new(
-    name: "getCurrentWeatherAtLocation",
-    description: "Gets the current weather at a provided location.",
-    parameters: BinaryData.FromObjectAsJson(
-        new
-        {
-            Type = "object",
-            Properties = new
+            new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
+    
+    string GetWeatherAtLocation(string location, string temperatureUnit = "f") => location switch
+    {
+        "Seattle, WA" => temperatureUnit == "f" ? "70f" : "21c",
+        _ => throw new NotImplementedException()
+    };
+    FunctionToolDefinition getCurrentWeatherAtLocationTool = new(
+        name: "getCurrentWeatherAtLocation",
+        description: "Gets the current weather at a provided location.",
+        parameters: BinaryData.FromObjectAsJson(
+            new
             {
-                Location = new
+                Type = "object",
+                Properties = new
                 {
-                    Type = "string",
-                    Description = "The city and state, e.g. San Francisco, CA",
+                    Location = new
+                    {
+                        Type = "string",
+                        Description = "The city and state, e.g. San Francisco, CA",
+                    },
+                    Unit = new
+                    {
+                        Type = "string",
+                        Enum = new[] { "c", "f" },
+                    },
                 },
-                Unit = new
-                {
-                    Type = "string",
-                    Enum = new[] { "c", "f" },
-                },
+                Required = new[] { "location" },
             },
-            Required = new[] { "location" },
-        },
-        new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
-```
+            new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
+    ```
 
 3. Create a helper function, `GetResolvedToolOutput`. This function takes a `RequiredToolCall` (when the agent determines a local function should be executed) and invokes the appropriate C# function defined in the previous step. It then wraps the result in a `ToolOutput` object for the agent.
 
-```csharp
-ToolOutput GetResolvedToolOutput(RequiredToolCall toolCall)
-{
-    if (toolCall is RequiredFunctionToolCall functionToolCall)
+    ```csharp
+    ToolOutput GetResolvedToolOutput(RequiredToolCall toolCall)
     {
-        if (functionToolCall.Name == getUserFavoriteCityTool.Name)
+        if (toolCall is RequiredFunctionToolCall functionToolCall)
         {
-            return new ToolOutput(toolCall, GetUserFavoriteCity());
-        }
-        using JsonDocument argumentsJson = JsonDocument.Parse(functionToolCall.Arguments);
-        if (functionToolCall.Name == getCityNicknameTool.Name)
-        {
-            string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
-            return new ToolOutput(toolCall, GetCityNickname(locationArgument));
-        }
-        if (functionToolCall.Name == getCurrentWeatherAtLocationTool.Name)
-        {
-            string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
-            if (argumentsJson.RootElement.TryGetProperty("unit", out JsonElement unitElement))
+            if (functionToolCall.Name == getUserFavoriteCityTool.Name)
             {
-                string unitArgument = unitElement.GetString();
-                return new ToolOutput(toolCall, GetWeatherAtLocation(locationArgument, unitArgument));
+                return new ToolOutput(toolCall, GetUserFavoriteCity());
             }
-            return new ToolOutput(toolCall, GetWeatherAtLocation(locationArgument));
+            using JsonDocument argumentsJson = JsonDocument.Parse(functionToolCall.Arguments);
+            if (functionToolCall.Name == getCityNicknameTool.Name)
+            {
+                string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
+                return new ToolOutput(toolCall, GetCityNickname(locationArgument));
+            }
+            if (functionToolCall.Name == getCurrentWeatherAtLocationTool.Name)
+            {
+                string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
+                if (argumentsJson.RootElement.TryGetProperty("unit", out JsonElement unitElement))
+                {
+                    string unitArgument = unitElement.GetString();
+                    return new ToolOutput(toolCall, GetWeatherAtLocation(locationArgument, unitArgument));
+                }
+                return new ToolOutput(toolCall, GetWeatherAtLocation(locationArgument));
+            }
         }
+        return null;
     }
-    return null;
-}
-```
+    ```
 
 4. Now, create the agent. Provide the model deployment name (retrieved in step 1), a descriptive name for the agent, instructions for its behavior, and the list of `FunctionToolDefinition`s (defined in step 2) it can use.
 
-Synchronous sample:
-
-```csharp
-PersistentAgent agent = client.Administration.CreateAgent(
-    model: modelDeploymentName,
-    name: "SDK Test Agent - Functions",
-    instructions: "You are a weather bot. Use the provided functions to help answer questions. "
-        + "Customize your responses to the user's preferences as much as possible and use friendly "
-        + "nicknames for cities whenever possible.",
-    tools: [getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool]);
-```
-
-Asynchronous sample:
-
-```csharp
-PersistentAgent agent = await client.Administration.CreateAgentAsync(
-    model: modelDeploymentName,
-    name: "SDK Test Agent - Functions",
-    instructions: "You are a weather bot. Use the provided functions to help answer questions. "
-        + "Customize your responses to the user's preferences as much as possible and use friendly "
-        + "nicknames for cities whenever possible.",
-    tools: [getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool]);
-```
+    ```csharp
+    PersistentAgent agent = client.Administration.CreateAgent(
+        model: modelDeploymentName,
+        name: "SDK Test Agent - Functions",
+        instructions: "You are a weather bot. Use the provided functions to help answer questions. "
+            + "Customize your responses to the user's preferences as much as possible and use friendly "
+            + "nicknames for cities whenever possible.",
+        tools: [getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool]);
+    ```
 
 5. Create a new conversation thread and add an initial user message to it. The agent will respond to this message.
-
-Synchronous sample:
-
-```csharp
-PersistentAgentThread thread = client.Threads.CreateThread();
-
-client.Messages.CreateMessage(
-    thread.Id,
-    MessageRole.User,
-    "What's the weather like in my favorite city?");
-```
-
-Asynchronous sample:
-
-```csharp
-PersistentAgentThread thread = await client.Threads.CreateThreadAsync();
-
-await client.Messages.CreateMessageAsync(
-    thread.Id,
-    MessageRole.User,
-    "What's the weather like in my favorite city?");
-```
+   
+    ```csharp
+    PersistentAgentThread thread = client.Threads.CreateThread();
+    
+    client.Messages.CreateMessage(
+        thread.Id,
+        MessageRole.User,
+        "What's the weather like in my favorite city?");
+    ```
 
 6. Create a run for the agent on the thread and poll for its completion. If the run requires action (e.g., a function call), submit the tool outputs.
 
-Synchronous sample:
-
-```csharp
-ThreadRun run = client.Runs.CreateRun(thread.Id, agent.Id);
-
-do
-{
-    Thread.Sleep(TimeSpan.FromMilliseconds(500));
-    run = client.Runs.GetRun(thread.Id, run.Id);
-
-    if (run.Status == RunStatus.RequiresAction
-        && run.RequiredAction is SubmitToolOutputsAction submitToolOutputsAction)
+    ```csharp
+    ThreadRun run = client.Runs.CreateRun(thread.Id, agent.Id);
+    
+    do
     {
-        List<ToolOutput> toolOutputs = [];
-        foreach (RequiredToolCall toolCall in submitToolOutputsAction.ToolCalls)
+        Thread.Sleep(TimeSpan.FromMilliseconds(500));
+        run = client.Runs.GetRun(thread.Id, run.Id);
+    
+        if (run.Status == RunStatus.RequiresAction
+            && run.RequiredAction is SubmitToolOutputsAction submitToolOutputsAction)
         {
-            toolOutputs.Add(GetResolvedToolOutput(toolCall));
-        }
-        run = client.Runs.SubmitToolOutputsToRun(run, toolOutputs);
-    }
-}
-while (run.Status == RunStatus.Queued
-    || run.Status == RunStatus.InProgress
-    || run.Status == RunStatus.RequiresAction);
-```
-
-Asynchronous sample:
-
-```csharp
-ThreadRun run = await client.Runs.CreateRunAsync(thread.Id, agent.Id);
-
-do
-{
-    await Task.Delay(TimeSpan.FromMilliseconds(500));
-    run = await client.Runs.GetRunAsync(thread.Id, run.Id);
-
-    if (run.Status == RunStatus.RequiresAction
-        && run.RequiredAction is SubmitToolOutputsAction submitToolOutputsAction)
-    {
-        List<ToolOutput> toolOutputs = [];
-        foreach (RequiredToolCall toolCall in submitToolOutputsAction.ToolCalls)
-        {
-            ToolOutput? toolOutput = GetResolvedToolOutput(toolCall);
-            if (toolOutput != null)
+            List<ToolOutput> toolOutputs = [];
+            foreach (RequiredToolCall toolCall in submitToolOutputsAction.ToolCalls)
             {
-                toolOutputs.Add(toolOutput);
+                toolOutputs.Add(GetResolvedToolOutput(toolCall));
             }
+            run = client.Runs.SubmitToolOutputsToRun(run, toolOutputs);
         }
-        run = await client.Runs.SubmitToolOutputsToRunAsync(run, toolOutputs);
     }
-}
-while (run.Status == RunStatus.Queued
-    || run.Status == RunStatus.InProgress
-    || run.Status == RunStatus.RequiresAction);
-```
+    while (run.Status == RunStatus.Queued
+        || run.Status == RunStatus.InProgress
+        || run.Status == RunStatus.RequiresAction);
+    ```
 
 7. After the run completes, retrieve and display the messages from the thread to see the conversation, including the agent's responses.
 
-Synchronous sample:
-
-```csharp
-Pageable<ThreadMessage> messages = client.Messages.GetMessages(
-    threadId: thread.Id,
-    order: ListSortOrder.Ascending
-);
-
-foreach (ThreadMessage threadMessage in messages)
-{
-    foreach (MessageContent content in threadMessage.ContentItems)
+    ```csharp
+    Pageable<ThreadMessage> messages = client.Messages.GetMessages(
+        threadId: thread.Id,
+        order: ListSortOrder.Ascending
+    );
+    
+    foreach (ThreadMessage threadMessage in messages)
     {
-        switch (content)
+        foreach (MessageContent content in threadMessage.ContentItems)
         {
-            case MessageTextContent textItem:
-                Console.WriteLine($"[{threadMessage.Role}]: {textItem.Text}");
-                break;
+            switch (content)
+            {
+                case MessageTextContent textItem:
+                    Console.WriteLine($"[{threadMessage.Role}]: {textItem.Text}");
+                    break;
+            }
         }
     }
-}
-```
-
-Asynchronous sample:
-
-```csharp
-AsyncPageable<ThreadMessage> messages = client.Messages.GetMessagesAsync(
-    threadId: thread.Id,
-    order: ListSortOrder.Ascending
-);
-
-await foreach (ThreadMessage threadMessage in messages)
-{
-    foreach (MessageContent content in threadMessage.ContentItems)
-    {
-        switch (content)
-        {
-            case MessageTextContent textItem:
-                Console.WriteLine($"[{threadMessage.Role}]: {textItem.Text}");
-                break;
-        }
-    }
-}
-```
+    ```
 
 8. Finally, clean up the created resources by deleting the thread and the agent.
 
-Synchronous sample:
-
-```csharp
-client.Threads.DeleteThread(threadId: thread.Id);
-client.Administration.DeleteAgent(agentId: agent.Id);
-```
-
-Asynchronous sample:
-
-```csharp
-await client.Threads.DeleteThreadAsync(threadId: thread.Id);
-await client.Administration.DeleteAgentAsync(agentId: agent.Id);
-```
-
+    ```csharp
+    client.Threads.DeleteThread(threadId: thread.Id);
+    client.Administration.DeleteAgent(agentId: agent.Id);
+    ```
 
 ::: zone-end
 
