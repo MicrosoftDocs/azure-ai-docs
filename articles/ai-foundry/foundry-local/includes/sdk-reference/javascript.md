@@ -172,18 +172,32 @@ The SDK includes a browser-compatible version where you must specify the service
 ```js
 import { FoundryLocalManager } from "foundry-local-sdk/browser"
 
-const manager = new FoundryLocalManager({serviceUrl: "http://localhost:5272"})
+// Specify the service URL
+// Run the Foundry Local service using the CLI: `foundry service start`
+// and use the URL from the CLI output
+const endpoint = "ENDPOINT"
+
+const manager = new FoundryLocalManager({serviceUrl: endpoint})
 
 // Note: The `init`, `isServiceRunning`, and `startService` methods 
 // are not available in the browser version
 ```
+
+> [!NOTE]
+> The browser version doesn't support the `init`, `isServiceRunning`, and `startService` methods. You must ensure that the Foundry Local service is running before using the SDK in a browser environment. You can start the service using the Foundry Local CLI: `foundry service start`. You can glean the service URL from the CLI output.
+
 
 #### Example Usage
 
 ```js
 import { FoundryLocalManager } from "foundry-local-sdk/browser"
 
-const manager = new FoundryLocalManager({serviceUrl: "http://localhost:5272"})
+// Specify the service URL
+// Run the Foundry Local service using the CLI: `foundry service start`
+// and use the URL from the CLI output
+const endpoint = "ENDPOINT"
+
+const manager = new FoundryLocalManager({serviceUrl: endpoint})
 
 const modelAlias = 'deepseek-r1-1.5b'
 
