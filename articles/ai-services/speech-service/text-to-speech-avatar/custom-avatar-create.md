@@ -108,7 +108,7 @@ To create a custom avatar in Speech Studio, follow these steps for one of the fo
 1. Enter a Name to help you identify the model. Choose a name carefully. The model name is used as the avatar name in your synthesis request by the SDK and SSML input. Only letters, numbers, hyphens, and underscores are allowed. Use a unique name for each model.
 
     > [!IMPORTANT]
-    > The avatar model name must be unique within the same Speech or AI Services resource. 
+    > The avatar model name must be unique within the same Speech or AI Foundry resource. 
 
 1. Select **Train** to start training the model.
   

@@ -6,7 +6,7 @@ manager: scottpolly
 keywords: Azure AI services, cognitive
 ms.service: azure-ai-foundry
 ms.topic: overview
-ms.date: 04/07/2025
+ms.date: 05/12/2025
 ms.reviewer: sgilley
 ms.author: sgilley
 author: sdgilley
@@ -45,7 +45,7 @@ Azure AI Foundry supports two types of projects: a **[!INCLUDE [hub](includes/hu
 
 * In general, you should use a [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] if you are looking to build agents or work with models. 
 * Use a [!INCLUDE [hub-project-name](includes/hub-project-name.md)] when you need features that are not available in a [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)]. See the following table for more on feature availability.
-* Use a [!INCLUDE [hub-project-name](includes/hub-project-name.md)] if your project requires custom machine learning model capabilities,  You can work in a [!INCLUDE [hub-project-name](includes/hub-project-name.md)] in both Azure AI Foundry and Azure Machine Learning Studio.
+
 
 This table summarizes features available in the two project types:  
 
@@ -62,7 +62,6 @@ This table summarizes features available in the two project types:
 | Playground | ✅ | ✅ |
 | Prompt flow |  | ✅ |
 | Managed compute  |  | ✅ |
-| Azure Machine Learning Studio  |  | ✅ |
 
 ## Navigate in the Azure AI Foundry portal
 

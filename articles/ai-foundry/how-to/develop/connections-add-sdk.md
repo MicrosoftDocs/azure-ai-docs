@@ -8,13 +8,15 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 03/17/2025
+ms.date: 05/12/2025
 ms.reviewer: dantaylo
 ms.author: larryfr
 author: Blackmist
 ---
 
 # Add a new connection using the Azure Machine Learning SDK
+
+[!INCLUDE [hub-only](../../includes/uses-hub-only.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 

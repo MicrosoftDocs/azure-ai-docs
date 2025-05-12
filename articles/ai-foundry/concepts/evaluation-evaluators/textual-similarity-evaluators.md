@@ -33,6 +33,9 @@ model_config = AzureOpenAIModelConfiguration(
 )
 ```
 
+> [!TIP]
+> We recommend using `o3-mini` for a balance of reasoning capability and cost efficiency.
+
 ## Similarity
 
 `SimilarityEvaluator` measures the degrees of semantic similarity between the generated text and its ground truth with respect to a query. Compared to other text-similarity metrics that require ground truths, this metric focuses on semantics of a response (instead of simple overlap in tokens or n-grams) and also considers the broader context of a query.

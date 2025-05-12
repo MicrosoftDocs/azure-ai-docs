@@ -46,14 +46,16 @@ No installation is necessary to use the Azure AI Foundry portal.
     ```
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
 
-The scripts in this quickstart are also available on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/mslearn-resources/quickstart).
+> [!TIP]
+> All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/mslearn-resources/quickstart).
 
 # [Java](#tab/java)
 
 1. [Install Java and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-java).
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
 
-The scripts in this quickstart are also available on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart).
+> [!TIP]
+> All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart).
 
 # [JavaScript](#tab/javascript)
 
@@ -62,7 +64,8 @@ The scripts in this quickstart are also available on [GitHub](https://github.com
 1. Download [package.json](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/javascript/mslearn-resources/quickstart/package.json).
 1. Install packages with `npm install`
 
- The scripts in this quickstart are also available on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/javascript/mslearn-resources/quickstart).
+> [!TIP]
+> All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/javascript/mslearn-resources/quickstart).
 
 # [C#](#tab/csharp)
 
@@ -73,7 +76,8 @@ The scripts in this quickstart are also available on [GitHub](https://github.com
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
 
- The scripts in this quickstart are also available on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/csharp/mslearn-resources/quickstart).
+> [!TIP]
+> All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/csharp/mslearn-resources/quickstart).
 
 ---
 
@@ -81,41 +85,12 @@ The scripts in this quickstart are also available on [GitHub](https://github.com
 
 Use either the Azure AI Foundry portal or Azure CLI to create a project.
 
-# [Azure AI Foundry portal](#tab/ai-foundry)
-
 1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
 1. On the home page, select **Create the future**. This creates a project and also include steps to start working with a basic Agent.
     
     :::image type="content" source="../media/quickstarts/start-building.png" alt-text="Screenshot shows how to start building an Agent in Azure AI Foundry portal.":::
 
 1. Fill in a name for your project and select **Create**. 
-
-# [Azure CLI](#tab/azurecli)
-
-To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)]:
-
-1. Authenticate to your Azure subscription:
-
-    ```azurecli
-    az login
-    ```
-
-    For more information on authenticating, see [Authentication methods](/cli/azure/authenticate-azure-cli).
-
-1. Create a resource group. For example in East US:
-
-    ```azurecli
-    az group create --name {my_resource_group} --location eastus
-    ```
-
-1. Create a new Foundry resource and [!INCLUDE [fdp-project-name](fdp-project-name.md)]:
-
-    ```azurecli
-    az cognitiveservices account create --resource-group {my_resource_group} --account-name {foundry_resource_name} --sku "S0" 
- 
-    az cognitiveservices account project create --resource-group {my_resource_group} --name {my_project_name} --account-name {foundry_resource_name} 
-    ```
----
 
 ## Deploy a model
 

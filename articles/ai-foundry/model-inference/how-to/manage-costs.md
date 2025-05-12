@@ -1,6 +1,6 @@
 ---
-title: Plan to manage costs for model inference in Azure AI Services
-description: Learn how to plan for and manage costs for Azure AI model inference in Azure AI Services by using cost analysis in the Azure portal.
+title: Plan to manage costs for Azure AI Foundry Models in Azure AI Foundry Service
+description: Learn how to plan for and manage costs for Azure AI Foundry Models in Azure AI Foundry Service by using cost analysis in the Azure portal.
 author: santiagxf
 ms.author: fasantia 
 ms.custom: subject-cost-optimization
@@ -10,11 +10,11 @@ ms.date: 1/21/2025
 ---
 
 
-# Plan to manage costs for model inference in Azure AI Services
+# Plan to manage costs for Azure AI Foundry Models in Azure AI Foundry Service
 
-This article describes how you can view, plan for, and manage costs for model inference in Azure AI Services.
+This article describes how you can view, plan for, and manage costs for Foundry Models in Azure AI Foundry Service.
 
-Although this article is about planning for and managing costs for model inference in Azure AI Services, you're billed for all Azure services and resources used in your Azure subscription.
+Although this article is about planning for and managing costs for Foundry Models in Azure AI Foundry Service, you're billed for all Azure services and resources used in your Azure subscription.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ Although this article is about planning for and managing costs for model inferen
 * To view cost data, you need at least read access for an Azure account. For information about assigning access to cost management data, see [Assign access to data](/azure/cost-management/assign-access-acm-data?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 
 
-## Understand model inference billing model
+## Understand Foundry Models billing model
 
 Language models understand and process inputs by breaking them down into tokens. For reference, each token is roughly four characters for typical English text. Models that can process images or audio break down them into tokens too for billing purposes. The number of tokens per image or audio content depends on the model and the resolution of the input.
 

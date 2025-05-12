@@ -19,6 +19,12 @@ Agents are powerful productivity assistants. They can plan, make decisions, and 
 
 Agents emit messages, and providing the above inputs typically require parsing messages and extracting the relevant information. If you're building agents using Azure AI Agent Service, we provide native integration for evaluation that directly takes their agent messages. To learn more, see an [end-to-end example of evaluating agents in Azure AI Agent Service](https://aka.ms/e2e-agent-eval-sample).
 
+Besides `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence` specific to agentic workflows, you can also assess other quality as well as safety aspects of your agentic workflows, leveraging out comprehensive suite of built-in evaluators. We support this list of evaluators for Azure AI agent messages from our converter: 
+- **Quality**: `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence`, `Relevance`, `Coherence`, `Fluency`
+- **Safety**: `CodeVulnerabilities`, `Violence`, `Self-harm`, `Sexual`, `HateUnfairness`, `IndirectAttack`, `ProtectedMaterials`.
+
+We will show examples of `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence` here. See more examples in [evaluating Azure AI agents](../../how-to/develop/agent-evaluate-sdk.md#evaluate-azure-ai-agents) for other evaluators with Azure AI agent message support.
+
 ## Model configuration for AI-assisted evaluators
 
 For reference in the following code snippets, the AI-assisted evaluators use a model configuration for the LLM-judge:
@@ -36,6 +42,9 @@ model_config = AzureOpenAIModelConfiguration(
     api_version=os.environ.get("AZURE_API_VERSION"),
 )
 ```
+
+> [!TIP]
+> We recommend using `o3-mini` for a balance of reasoning capability and cost efficiency. 
 
 ## Intent resolution
 
@@ -82,6 +91,9 @@ If you're building agents outside of Azure AI Agent Serice, this evaluator accep
 ## Tool call accuracy
 
 `ToolCallAccuracyEvaluator` measures an agent's ability to select appropriate tools, extract, and process correct parameters from previous steps of the agentic workflow. It detects whether each tool call made is accurate (binary) and reports back the average scores, which can be interpreted as a passing rate across tool calls made.
+
+> [!NOTE]
+> `ToolCallAccuracyEvaluator` only supports Azure AI Agent's Function Tool evaluation, but does not support Built-in Tool evaluation. The agent messages must have at least one Function Tool actually called to be evaluated.    
 
 ### Tool call accuracy example
 

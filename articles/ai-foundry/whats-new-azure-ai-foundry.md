@@ -31,7 +31,7 @@ Welcome to what's new in the Azure AI Foundry docs for April 2025. This article 
 - [Evaluate your AI agents locally with Azure AI Evaluation SDK (preview)](../ai-foundry/how-to/develop/agent-evaluate-sdk.md)  
 - [Evaluate your Generative AI application locally with the Azure AI Evaluation SDK](../ai-foundry/how-to/develop/evaluate-sdk.md) 
 - [Evaluation and monitoring metrics for generative AI](../ai-foundry/concepts/evaluation-metrics-built-in.md)  
-- [Fine-tune models using serverless APIs in Azure AI Foundry](../ai-foundry/how-to/fine-tune-serverless.md) 
+- [Fine-tune models using standard deployments in Azure AI Foundry](../ai-foundry/how-to/fine-tune-serverless.md) 
 - [How to configure a private link for Azure AI Foundry hubs](../ai-foundry/how-to/configure-private-link.md) 
 - [How to use MedImageParse healthcare AI models for segmentation of medical images](../ai-foundry/how-to/healthcare-ai/deploy-medimageparse.md)
 

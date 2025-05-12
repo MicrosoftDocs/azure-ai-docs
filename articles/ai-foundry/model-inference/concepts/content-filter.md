@@ -11,7 +11,7 @@ ms.custom: ignite-2024, github-universe-2024
 manager: nitinme
 ---
 
-# Content filtering for model inference in Azure AI services
+# Content filtering for Azure AI Foundry Models in Azure AI Foundry Service
 
 > [!IMPORTANT]
 > The content filtering system isn't applied to prompts and completions processed by audio models such as Whisper in Azure OpenAI in Azure AI Foundry Models. Learn more about the [Audio models in Azure OpenAI](../../../ai-services/openai/concepts/models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint).

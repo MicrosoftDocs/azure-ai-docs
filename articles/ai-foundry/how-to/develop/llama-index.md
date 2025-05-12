@@ -33,7 +33,7 @@ To run this tutorial, you need:
 * An Azure AI project as explained at [Create a project in Azure AI Foundry portal](../create-projects.md).
 * A model supporting the [Foundry Models API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large` deployment, but use any model of your preference. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
 
-    * You can follow the instructions at [Deploy models as serverless APIs](../deploy-models-serverless.md).
+    * You can follow the instructions at [Deploy models as standard deployments](../deploy-models-serverless.md).
 
 * Python 3.8 or later installed, including pip.
 * LlamaIndex installed. You can do it with:
