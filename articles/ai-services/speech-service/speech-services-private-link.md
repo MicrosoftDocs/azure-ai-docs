@@ -62,7 +62,7 @@ Use these parameters instead of the parameters in the article that you chose:
 | Resource            | **\<your-speech-resource-name>**         |
 | Target sub-resource | **account**                              |
 
-**DNS for private endpoints:** Review the general principles of [DNS for private endpoints in Azure AI services resources](../cognitive-services-virtual-networks.md#apply-dns-changes-for-private-endpoints). Then confirm that your DNS configuration is working correctly by performing the checks described in the following sections.
+**DNS for private endpoints:** Review the general principles of [DNS for private endpoints in Azure AI Foundry resources](../cognitive-services-virtual-networks.md#apply-dns-changes-for-private-endpoints). Then confirm that your DNS configuration is working correctly by performing the checks described in the following sections.
 
 ### Resolve DNS from the virtual network
 
@@ -353,7 +353,7 @@ This section explains how to use an AI Foundry resource for Speech with a custom
 
 ### DNS configuration
 
-Remember how a custom domain DNS name of the private-endpoint-enabled Speech resource is [resolved from public networks](#resolve-dns-from-other-networks). In this case, the IP address resolved points to a proxy endpoint for a virtual network. That endpoint is used for dispatching the network traffic to the private-endpoint-enabled Azure AI services resource.
+Remember how a custom domain DNS name of the private-endpoint-enabled Speech resource is [resolved from public networks](#resolve-dns-from-other-networks). In this case, the IP address resolved points to a proxy endpoint for a virtual network. That endpoint is used for dispatching the network traffic to the private-endpoint-enabled Azure AI Foundry resource.
 
 However, when *all* resource private endpoints are removed (or right after the enabling of the custom domain name), the CNAME record of the Speech resource is reprovisioned. It now points to the IP address of the corresponding [Azure AI services regional endpoint](../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints).
 
