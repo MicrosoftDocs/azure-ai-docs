@@ -19,9 +19,7 @@ In the context of large language models (LLMs), PII detection involves analyzing
 
 ## PII types
 
-There are many different types of PII, and you can specify which types you want to filter.
-
-The set of PII types that can be detected by the filter matches the set that's defined in the [Azure AI Language docs](/azure/ai-services/language-service/personally-identifiable-information/concepts/entity-categories).
+There are many different types of PII, and you can specify which types you want to filter. The set of PII types that can be detected by the filter matches the set that's defined in the [Azure AI Language docs](/azure/ai-services/language-service/personally-identifiable-information/concepts/entity-categories).
 
 ## Filtering modes
 
