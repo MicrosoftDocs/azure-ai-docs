@@ -19,7 +19,7 @@ Azure Data Lake Storage (ADLS) Gen2 provides an access model that makes fine-gra
 
 - Permission metadata must be in `filterable` string fields.
 
-- Permission metadata must consist of either POSIX-style permissions that identify the level of access and the group or user ID, or the resource ID of the container or blob in ADLS Gen2 if you're using `rbacscope` and A
+- Permission metadata must consist of either POSIX-style permissions that identify the level of access and the group or user ID, or the resource ID of the container in ADLS Gen2 if you're using RBAC scope.
 
 - For ADLS Gen2 data sources, you must have configured Access Control Lists (ACLs) and/or Azure role-based access control (RBAC) roles at the container level. You can use a [built-in indexer](search-indexer-access-control-lists-and-role-based-access.md) or [Push APIs](search-index-access-control-lists-and-rbac-push-api.md) to index permission metadata in your index.
 
