@@ -40,13 +40,13 @@ Azure AI Foundry enforces project-level data isolation by default. When you conf
 
 This default behavior was chosen to reduce configuration complexity while still enforcing strict data boundaries—ensuring each project has a clean, isolated storage footprint without requiring manual setup. 
 
-## Capability Hosts
-**Capability Hosts** are sub-resources on both the Account and Project, enabling interaction with the Azure AI Agent Service. 
-- **Account Capability Host**: The account Capability Host has an empty request body except for the parameter capabilityHostKind="Agents". 
+## Capability hosts
+**Capability hosts** are sub-resources on both the Account and Project, enabling interaction with the Azure AI Agent Service. 
+- **Account Capability Host**: The account capability host has an empty request body except for the parameter capabilityHostKind="Agents". 
 - **Project Capability Host**: Specifies resources for storing agent state, either managed multitenant (basic setup) or customer-owned (standard setup), single-tenant resource. Think of project capability host as the project settings.
 
 ### Limitations
-- **Update Not Supported**: Cannot update the Capability Host for a project or account.
+- **Update Not Supported**: Cannot update the capability host for a project or account.
 
 
 ## Step by Step Provisioning Process
@@ -70,8 +70,8 @@ This default behavior was chosen to reduce configuration complexity while still 
 7. Assign the project-managed identity (including for SMI) the following roles: 
     * Cosmos DB Operator at the scope of the account level for the Cosmos DB account resource 
     * Storage Account Contributor at the scope of the account level for the Storage Account resource 
-8. Set Account Capability Host with empty properties section. 
-9. Set Project Capability Host with properties Cosmos DB, Azure Storage, AI Search connections 
+8. Set Account capability host with empty properties section. 
+9. Set Project capability host with properties Cosmos DB, Azure Storage, AI Search connections 
 10. Assign the Project Managed Identity (both for SMI and UMI) the following roles on the specified resource scopes: 
     * Azure AI Search (can be assigned either before or after capHost creation) 
         * Assign roles: Search Index Data Contributor, Search Service Contributor 
