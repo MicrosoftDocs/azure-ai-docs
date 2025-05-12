@@ -51,147 +51,81 @@ In this example we will demonstrate the possibility to use services with [OpenAP
 1. First get `ProjectEndpoint` and `ModelDeploymentName` from config and create a `PersistentAgentsClient`. Also, create an `OpenApiAnonymousAuthDetails` and `OpenApiToolDefinition` from config. 
 
 ```csharp
-var projectEndpoint = configuration["ProjectEndpoint"];
-var modelDeploymentName = configuration["ModelDeploymentName"];
-var openApiSpec = configuration["OpenApiSpec"];
-PersistentAgentsClient client = new(new Uri(projectEndpoint), new DefaultAzureCredential());
-
-var spec = BinaryData.FromBytes(File.ReadAllBytes(openApiSpec));
-OpenApiAnonymousAuthDetails openApiAnonAuth = new();
-OpenApiToolDefinition openApiTool = new(
-    name: "get_weather",
-    description: "Retrieve weather information for a location",
-    spec: spec,
-    auth: openApiAnonAuth,
-    defaultParams: ["format"]
-);
+    var projectEndpoint = configuration["ProjectEndpoint"];
+    var modelDeploymentName = configuration["ModelDeploymentName"];
+    var openApiSpec = configuration["OpenApiSpec"];
+    PersistentAgentsClient client = new(new Uri(projectEndpoint), new DefaultAzureCredential());
+    
+    var spec = BinaryData.FromBytes(File.ReadAllBytes(openApiSpec));
+    OpenApiAnonymousAuthDetails openApiAnonAuth = new();
+    OpenApiToolDefinition openApiTool = new(
+        name: "get_weather",
+        description: "Retrieve weather information for a location",
+        spec: spec,
+        auth: openApiAnonAuth,
+        defaultParams: ["format"]
+    );
 ```
 
 2. Next we will need to create an agent.
 
-Synchronous sample:
-
 ```csharp
-PersistentAgent agent = client.CreateAgent(
-    model: modelDeploymentName,
-    name: "Open API Tool Calling Agent",
-    instructions: "You are a helpful agent.",
-    tools: [openApiTool]
-);
-```
-
-Asynchronous sample:
-
-```csharp
-PersistentAgent agent = await client.CreateAgentAsync(
-    model: modelDeploymentName,
-    name: "Open API Tool Calling Agent",
-    instructions: "You are a helpful agent.",
-    tools: [openApiTool]
-);
+    PersistentAgent agent = client.CreateAgent(
+        model: modelDeploymentName,
+        name: "Open API Tool Calling Agent",
+        instructions: "You are a helpful agent.",
+        tools: [openApiTool]
+    );
 ```
 
 3. Now we will create a `ThreadRun` and wait until it is complete. If the run will not be successful, we will print the last error.
 
-Synchronous sample:
-```csharp
-PersistentAgentThread thread = client.CreateThread();
-ThreadMessage message = client.CreateMessage(
-    thread.Id,
-    MessageRole.User,
-    "What's the weather in Seattle?");
-
-ThreadRun run = client.CreateRun(thread, agent);
-
-do
-{
-    Thread.Sleep(TimeSpan.FromMilliseconds(500));
-    run = client.GetRun(thread.Id, run.Id);
-}
-while (run.Status == RunStatus.Queued
-    || run.Status == RunStatus.InProgress
-    || run.Status == RunStatus.RequiresAction);
-```
-
-Asynchronous sample:
 
 ```csharp
-PersistentAgentThread thread = await client.CreateThreadAsync();
-ThreadMessage message = await client.CreateMessageAsync(
-    thread.Id,
-    MessageRole.User,
-    "What's the weather in Seattle?");
-
-ThreadRun run = await client.CreateRunAsync(thread, agent);
-
-do
-{
-    await Task.Delay(TimeSpan.FromMilliseconds(500));
-    run = await client.GetRunAsync(thread.Id, run.Id);
-}
-while (run.Status == RunStatus.Queued
-    || run.Status == RunStatus.InProgress
-    || run.Status == RunStatus.RequiresAction);
+    PersistentAgentThread thread = client.CreateThread();
+    ThreadMessage message = client.CreateMessage(
+        thread.Id,
+        MessageRole.User,
+        "What's the weather in Seattle?");
+    
+    ThreadRun run = client.CreateRun(thread, agent);
+    
+    do
+    {
+        Thread.Sleep(TimeSpan.FromMilliseconds(500));
+        run = client.GetRun(thread.Id, run.Id);
+    }
+    while (run.Status == RunStatus.Queued
+        || run.Status == RunStatus.InProgress
+        || run.Status == RunStatus.RequiresAction);
 ```
 
 4. Print the messages to the console in chronological order.
 
-Synchronous sample:
-
 ```csharp
-PageableList<ThreadMessage> messages = client.GetMessages(
-    threadId: thread.Id,
-    order: ListSortOrder.Ascending
-);
+    Pageable<ThreadMessage> messages = client.Messages.GetMessages(
+        threadId: thread.Id,
+        order: ListSortOrder.Ascending);
 
-foreach (ThreadMessage threadMessage in messages)
-{
-    foreach (MessageContent contentItem in threadMessage.ContentItems)
+    foreach (ThreadMessage threadMessage in messages)
     {
-        if (contentItem is MessageTextContent textItem)
+        foreach (MessageContent content in threadMessage.ContentItems)
         {
-            Console.Write($"{threadMessage.Role}: {textItem.Text}");
+            switch (content)
+            {
+                case MessageTextContent textItem:
+                    Console.WriteLine($"[{threadMessage.Role}]: {textItem.Text}");
+                    break;
+            }
         }
-        Console.WriteLine();
     }
-}
-```
-
-Asynchronous sample:
-
-```csharp
-PageableList<ThreadMessage> messages = await client.GetMessagesAsync(
-    threadId: thread.Id,
-    order: ListSortOrder.Ascending
-);
-
-foreach (ThreadMessage threadMessage in messages)
-{
-    foreach (MessageContent contentItem in threadMessage.ContentItems)
-    {
-        if (contentItem is MessageTextContent textItem)
-        {
-            Console.Write($"{threadMessage.Role}: {textItem.Text}");
-        }
-        Console.WriteLine();
-    }
-}
 ```
 
 5. Finally, we delete all the resources, we have created in this sample.
 
-Synchronous sample:
-
 ```csharp
-client.DeleteThread(thread.Id);
-client.DeleteAgent(agent.Id);
-```
-
-Asynchronous sample:
-
-```csharp
-await client.DeleteThreadAsync(thread.Id);
-await client.DeleteAgentAsync(agent.Id);
+    client.DeleteThread(thread.Id);
+    client.DeleteAgent(agent.Id);
 ```
 
 :::zone-end
