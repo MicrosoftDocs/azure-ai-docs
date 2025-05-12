@@ -250,4 +250,4 @@ This quickstart uses billable Azure resources. If you no longer need the resourc
 
 ## Next step
 
-This quickstart introduced you to the **Import and vectorize data wizard**, which creates all of the necessary objects for multimodal search. To explore each step in detail, see [Tutorial: Index mixed content using multimodal embeddings and the Document Extraction skill](tutorial-multimodal-indexing-with-embedding-and-doc-extractio.md).
+This quickstart introduced you to the **Import and vectorize data wizard**, which creates all of the necessary objects for multimodal search. To explore each step in detail, see [Tutorial: Index mixed content using multimodal embeddings and the Document Extraction skill](tutorial-multimodal-indexing-with-embedding-and-doc-extraction.md).
