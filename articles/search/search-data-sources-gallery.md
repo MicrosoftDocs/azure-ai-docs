@@ -140,11 +140,13 @@ Pull in content [using logic app workflows](search-how-to-index-logic-apps-index
 
 ### SharePoint
 
-By [Logic Apps](/azure/logic-apps/logic-apps-overview)
+By [Logic Apps](/connectors/sharepointonline)
 
 SharePoint helps organizations share and collaborate with colleagues, partners, and customers. You can connect to SharePoint Online or to an on-premises SharePoint 2016 or 2019 farm using the On-Premises Data Gateway to manage documents and list items.
 
 [More details](search-how-to-index-logic-apps-indexers.md#supported-connectors)
+
+:::image type="icon" source="media/search-data-sources-gallery/sharepoint_online_logo.png":::
 
 :::column-end:::
 :::column span="":::
@@ -153,12 +155,11 @@ SharePoint helps organizations share and collaborate with colleagues, partners, 
 
 ### OneDrive
 
-By [Logic Apps](/azure/logic-apps/logic-apps-overview)
+By [Logic Apps](/connectors/onedrive/)
 
 Connect to OneDrive to manage your files. You can perform various actions such as upload, update, get, and delete on files in OneDrive.
 
 [More details](search-how-to-index-logic-apps-indexers.md#supported-connectors)
-
 
 :::column-end:::
 :::column span="":::
@@ -167,16 +168,12 @@ Connect to OneDrive to manage your files. You can perform various actions such a
 
 ### OneDrive for Business
 
-By [Logic Apps](/azure/logic-apps/logic-apps-overview)
+By [Logic Apps](/connectors/onedriveforbusiness/)
 
 OneDrive for Business is a cloud storage, file hosting service that allows users to sync files and later access them from a web browser or mobile device. Connect to OneDrive for Business to manage your files. You can perform various actions such as upload, update, get, and delete files.
 
 [More details](search-how-to-index-logic-apps-indexers.md#supported-connectors)
 
-:::column-end:::
-:::column span="":::
-
----
 :::column-end:::
 :::row-end:::
 :::row:::
@@ -188,9 +185,14 @@ OneDrive for Business is a cloud storage, file hosting service that allows users
 
 :::row-end:::
 
+:::row:::
+:::column span="":::
+
+---
+
 ### Azure File Storage
 
-By [Logic Apps](/azure/logic-apps/logic-apps-overview)
+By [Logic Apps](/connectors/azurefile/)
 
 Microsoft Azure Storage provides a massively scalable, durable, and highly available storage for data on the cloud, and serves as the data storage solution for modern applications. Connect to File Storage to perform various operations such as create, update, get and delete on files in your Azure Storage account.
 
@@ -205,7 +207,7 @@ Microsoft Azure Storage provides a massively scalable, durable, and highly avail
 
 ### Azure Queues
 
-By [Logic Apps](/azure/logic-apps/logic-apps-overview)
+By [Logic Apps](/connectors/azurequeues/)
 
 Azure Queue storage provides cloud messaging between application components. Queue storage also supports managing asynchronous tasks and building process work flows.
 
@@ -220,7 +222,7 @@ Azure Queue storage provides cloud messaging between application components. Que
 
 ### Service Bus
 
-By [Logic Apps](/azure/logic-apps/logic-apps-overview)
+By [Logic Apps](/connectors/servicebus/)
 
 Connect to Azure Service Bus to send and receive messages. You can perform actions such as send to queue, send to topic, receive from queue, receive from subscription, etc.
 
