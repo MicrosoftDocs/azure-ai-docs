@@ -30,13 +30,36 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 - An [Azure subscription](https://azure.microsoft.com/free/). If you don't have an Azure subscription, create a free account before you begin.
 - You must be **Owner** of the subscription to receive the appropriate access control needed to use your project.
 
+
+
+## Create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] 
+
+Use either the Azure AI Foundry portal or Azure CLI to create a project.
+
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. On the home page, select **Create the future**. This creates a project and also include steps to start working with a basic Agent.
+    
+    :::image type="content" source="../media/quickstarts/start-building.png" alt-text="Screenshot shows how to start building an Agent in Azure AI Foundry portal.":::
+
+1. Fill in a name for your project and select **Create**. 
+
+## Deploy a model
+
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
+
+1. If you just used the Azure AI Foundry portal to create the project with the **Create the future** link, you're next  prompted to deploy a model.
+1. Or else, sign in to the [Azure AI Foundry portal](https://ai.azure.com), select your project, and select **Model catalog**.
+1. Search for the model you want to deploy. For this quickstart, select **gpt-4o**.
+1. Select **Confirm**.
+1. Don't change the default settings. Select **Deploy**.
+
 ### Set up your environment  
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
 No installation is necessary to use the Azure AI Foundry portal.
 
-# [Python SDK](#tab/python)
+# [Python](#tab/python)
 
 1. [Install Python and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-python)
 1. Install these packages:
@@ -95,28 +118,9 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 ---
 
-## Create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] 
-
-Use either the Azure AI Foundry portal or Azure CLI to create a project.
-
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
-1. On the home page, select **Create the future**. This creates a project and also include steps to start working with a basic Agent.
-    
-    :::image type="content" source="../media/quickstarts/start-building.png" alt-text="Screenshot shows how to start building an Agent in Azure AI Foundry portal.":::
-
-1. Fill in a name for your project and select **Create**. 
-
-## Deploy a model
-
-[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
-
-1. If you just used the Azure AI Foundry portal to create the project with the **Create the future** link, you're next  prompted to deploy a model.
-1. Or else, sign in to the [Azure AI Foundry portal](https://ai.azure.com), select your project, and select **Model catalog**.
-1. Search for the model you want to deploy. For this quickstart, select **gpt-4o**.
-1. Select **Confirm**.
-1. Don't change the default settings. Select **Deploy**.
-
 ## Run a chat completion
+
+Chat completions are the basic building block of AI applications. Using chat completions you can send a list of messages and get a response.
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
@@ -126,7 +130,7 @@ Use either the Azure AI Foundry portal or Azure CLI to create a project.
 1. Fill in the prompt and select the **Send** button.
 1. The model returns a response in the **Response** pane.
 
-# [Python SDK](#tab/python)
+# [Python](#tab/python)
 
 Substitute your value for the endpoint in this code:
 
@@ -150,6 +154,8 @@ Substitute your value for the endpoint in this code:
 
 ## Create and run an agent
 
+Agents allow more powerful capabilities through the use of tools. First, let's write the same chat completion code using agents.
+ 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
 1. In your project, on the left pane, select **Agents**.
@@ -160,7 +166,7 @@ Substitute your value for the endpoint in this code:
 1. At the top of the **Setup** pane, select **Try in playground**.
 1. Start chatting with your agent, for example, "Write me a poem about flowers"
 
-# [Python SDK](#tab/python)
+# [Python](#tab/python)
 
 :::code language="python" source="~/foundry-samples/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_and_run_agent":::
 
@@ -180,8 +186,7 @@ Substitute your value for the endpoint in this code:
 
 ## Add files to the agent
 
-
-Enable your agent to search and retrieve information from a provided file. 
+Now let's add a file search tool that enables us to do knowledge retrieval.
 
 * Download [product_info_1.md](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/data/product_info_1.md) to give to your agent.
 
@@ -197,7 +202,7 @@ Enable your agent to search and retrieve information from a provided file.
 1. Ask a question, such as, "Hello, what Contoso products do you know?"
 1. To add more files, select the **...** on the AgentVectorStore, then select **Manage**.
 
-# [Python SDK](#tab/python)
+# [Python](#tab/python)
 
 :::code language="python" source="~/foundry-samples/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_filesearch_agent":::
 
