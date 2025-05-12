@@ -11,73 +11,68 @@ ms.date: 01/10/2025
 ms.custom: azure-ai-agents
 ---
 
-# What is Azure AI Foundry Agent Service (Preview)?
 
-[Azure AI Foundry Agent Service](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/introducing-azure-ai-agent-service/4298357) is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents without needing to manage the underlying compute and storage resources. What originally took hundreds of lines of code to support [client side function calling](/azure/ai-services/openai/how-to/function-calling) can now be done in just a few lines of code with Azure AI Foundry Agent Service.
+# What is Azure AI Foundry Agent Service?
 
-## What is an AI agent?
+Most businesses don’t want chatbots—they want automation. They want more work done with fewer errors, faster, and at lower cost. That might mean summarizing documents, processing invoices, managing support tickets, or publishing blog posts. In all cases, the goal is the same: free people to focus on higher-value work by offloading repetitive and predictable tasks.
 
-Within Azure AI Foundry, an AI Agent acts as a "smart" microservice that can be used to answer questions (RAG), perform actions, or completely automate workflows. It achieves this by combining the power of generative AI models with tools that allow it to access and interact with real-world data sources.
+Large language models (LLMs) opened the door to a new kind of automation—systems that could understand unstructured data, make decisions, and generate content. But in practice, most companies have struggled to move beyond demos. LLMs drift, hallucinate, and lack accountability. Without visibility, policy enforcement, and orchestration, these models are difficult to trust in real business workflows.
 
-Because Azure AI Foundry Agent Service uses the same wire protocol as [Azure OpenAI Assistants](/azure/ai-services/openai/how-to/assistant), you can use either [OpenAI SDKs](./quickstart.md?pivots=programming-language-python-openai) or [Azure AI Foundry SDKs](./quickstart.md?programming-language-python-azure) to create and run an agent in just a few lines of code. For example, to create an AI Agent with Azure AI Foundry SDK, you can simply  define which model the AI uses, the instructions for how it should complete tasks, and the tools it can use to access and interact with other services.
+**Azure AI Foundry** is designed to change that. It’s the Agent Factory: a platform for composing, customizing, and orchestrating intelligent agents. **Azure AI Foundry Agent Service** is the managed runtime that powers those agents in production—providing identity, state management, orchestration, and security as first-class capabilities.
 
-```python
-agent = project_client.agents.create_agent(
-    model="gpt-4o-mini",
-    name="my-agent",
-    instructions="You are helpful agent",
-    tools=code_interpreter.definitions,
-    tool_resources=code_interpreter.resources,
-)
-```
+![Azure AI Foundry: Agent Factory](./media/agent-factory.png)
 
-After defining an agent, you can start asking it to perform work by invoking a run on top of an activity thread, which is simply a conversation between multiple agents and users. 
+Agents built in Foundry behave like smart microservices. They interpret requests, reason about context, call tools, and return results—all while maintaining structured interaction history and logging each decision. Agent Service runs this lifecycle entirely server-side, allowing you to build systems that are observable, governable, and secure by design.
 
-```python
-# Create a thread with messages
-thread = project_client.agents.create_thread()
-message = project_client.agents.create_message(
-    thread_id=thread.id,
-    role="user",
-    content="Could you please create a bar chart for the operating profit using the following data and provide the file to me? Company A: $1.2 million, Company B: $2.5 million, Company C: $3.0 million, Company D: $1.8 million",
-)
+## What is an AI Agent?
 
-# Ask the agent to perform work on the thread
-run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+An AI agent is a system that responds to input—whether from a user, another agent, or a system event—and takes purposeful action toward a goal. Unlike traditional automation systems, agents can interpret unstructured input—like natural language—and decide how to respond using models, instructions, and tools.
 
-# Fetch and log all messages to see the agent's response
-messages = project_client.agents.list_messages(thread_id=thread.id)
-print(f"Messages: {messages}")
-```
+![What is an AI Agent?](./media/what-is-an-ai-agent.png)
 
-Whenever the run operation is invoked, Azure AI Foundry Agent Service will complete the entire tool calling lifecycle for you by 1) running the model with the provided instructions, 2) invoking the tools as the agent calls them, and 3) returning the results back to you.
+Each agent has three core components:
+- **Model (LLM)**: Powers reasoning and language understanding
+- **Instructions**: Define the agent’s goals, behavior, and constraints
+- **Tools**: Let the agent retrieve knowledge or take action
 
-Once you've gotten the basics, you can start using multiple agents together to automate even more complex workflows with [AutoGen](https://microsoft.github.io/autogen/0.2/docs/Getting-Started/) and [Semantic Kernel](/semantic-kernel). Because Azure AI Foundry Agent Service is a fully managed service, you can focus on building workflows and the agents that power them without needing to worry about scaling, security, or management of the underlying infrastructure for individual agents.
+Agents receive unstructured inputs—such as user prompts, alerts, or messages from other agents—and produce outputs in the form of tool results or messages. Along the way, they may call tools to perform retrieval, trigger actions, or (in the future) access scoped memory.
 
-## Why use Azure AI Foundry Agent Service?
+## Why Use Azure AI Foundry Agent Service?
 
-When compared to developing with the [Model Inference API](/rest/api/aifoundry/modelinference) directly, Azure AI Foundry Agent Service provides a more streamlined and secure way to build and deploy AI agents. This includes:
-- **Automatic tool calling** – no need to parse a tool call, invoke the tool, and handle the response; all of this is now done server-side
-- **Securely managed data** – instead of managing your own conversation state, you can rely on threads to store all the information you need
-- **Out-of-the-box tools** – In addition to the file retrieval and code interpreter tools provided by Azure OpenAI Assistants, Azure AI Foundry Agent Service also comes with a set of tools that you can use to interact with your data sources, such as Bing, Azure AI Search, and Azure Functions.
+Azure AI Foundry Agent Service provides a production-ready foundation for deploying intelligent agents in enterprise environments. Here's how it compares across key capabilities:
 
-What originally took hundreds of lines of code can now be done in just a few with Azure AI Foundry Agent Service.
+| Capability | Azure AI Foundry Agent Service | 
+|------------|--------------------------------|
+| **Visibility into conversations** | Full access to structured [threads](./concepts/threads-runs-messages.md#threads), including both user↔agent and agent↔agent messages—ideal for UIs, debugging, and training |
+| **Multi-agent coordination** | Built-in support for agent-to-agent messaging using structured protocols like A2A |
+| **Tool orchestration** | Server-side execution and retry of [tool calls](./how-to/tools/overview.md) with structured logging—no manual orchestration required |
+| **Trust and safety** | Integrated [content filters](../openai/how-to/content-filters.md) help prevent misuse and mitigate prompt injection risks (XPIA); all outputs are policy-governed |
+| **Enterprise integration** | Bring your own [storage](./how-to/use-your-own-resources.md#use-an-existing-azure-cosmos-db-for-nosql-account-for-thread-storage), [Azure AI Search index](./how-to/use-your-own-resources.md#use-an-existing-azure-ai-search-resource), and [virtual network](./how-to/virtual-networks.md) to meet compliance needs |
+| **Deployment flexibility** | Supports multiple API heads including Assistants API and A2A; SDK-neutral, protocol-aligned |
+| **Observability and debugging** | Threads, tool invocations, and message traces are [fully inspectable](./concepts/tracing.md); [Application Insights integration](./how-to/metrics.md) for telemetry |
+| **Identity and policy control** | Built on Microsoft Entra with full support for RBAC, audit logs, and enterprise conditional access |
 
-### Comparing Azure agents and Azure OpenAI assistants
+## The Agent Factory: Six Capabilities for Enterprise-Ready Agents
 
-Both services enable you to build agents using the same API and SDKs, but if you have additional enterprise requirements, you might want to consider using Azure AI Foundry Agent Service. Azure AI Foundry Agent Service provides all the capabilities of assistants in addition to:
+Azure AI Foundry provides the building blocks to create trustworthy, production-grade agents:
 
-**Flexible model selection** - Create agents that use Azure OpenAI models, or others such as Llama 3, Mistral and Cohere. Choose the most suitable model to meet your business needs.
+### 1. **Models**  
+Choose from a growing catalog of LLMs, including GPT-4o, GPT-4, GPT-3.5 (Azure OpenAI), and open models like Llama 3, Mistral, and Cohere. Bring-your-own model endpoints are also supported for advanced customization.
 
-**Extensive data integrations** - Ground your AI agents with relevant, secure enterprise knowledge from various data sources, such as Microsoft Bing, Azure AI Search, and other APIs. 
+### 2. **Customization**  
+Fine-tune or distill models using the data generated by your agents, including tool calls, structured thread content, and evaluation outcomes. Foundry supports the full lifecycle of agent learning—from authoring to improvement.
 
-**Enterprise grade security** - Ensure data privacy and compliance with secure data handling, keyless authentication, and no public egress. 
+### 3. **Knowledge and Tools**  
+Enable agents to take real-world action with tools such as SharePoint search, Azure AI Search, Bing, OpenAPI endpoints, Azure Functions, Logic Apps, and even other agents. Tools act as the agent’s capabilities—grounding its responses and enabling automation.
 
-**Choose your storage solution** - Either bring your own Azure Blob storage for full visibility and control of your storage resources, or use platform-managed storage for secure ease-of-use.  
+### 4. **Orchestration**  
+Foundry automates the full tool calling lifecycle: invoking tools, updating thread state, logging responses, and managing retries—all server-side. This removes the need to build or operate your own orchestration infrastructure.
 
-## Responsible AI
+### 5. **Trust**  
+Foundry includes enterprise-grade trust features: identity management through Microsoft Entra, support for RBAC, content filtering, encryption, and secure networking. You can bring your own storage, index, or virtual network as needed.
 
-At Microsoft, we're committed to the advancement of AI driven by principles that put people first. Generative models such as the ones available in Azure OpenAI have significant potential benefits, but without careful design and thoughtful mitigations, such models have the potential to generate incorrect or even harmful content. Microsoft has made significant investments to help guard against abuse and unintended harm, which includes incorporating Microsoft’s <a href="https://www.microsoft.com/ai/responsible-ai?activetab=pivot1:primaryr6" target="_blank">principles for responsible AI use</a>, adopting a [Code of Conduct](/legal/ai-code-of-conduct?context=/azure/ai-services/agents/context/context) for use of the service, building [content filters](/azure/ai-services/content-safety/overview) to support customers, and providing responsible AI [information and guidance](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=image) that customers should consider when using Azure AI Foundry Agent Service.
+### 6. **Observability**  
+Foundry exposes structured telemetry across threads, tools, and messages. Application Insights integration allows you to trace behavior, monitor health, and run evaluations to continuously improve agent performance.
 
 ## Get started with Azure AI Foundry Agent Service
 
