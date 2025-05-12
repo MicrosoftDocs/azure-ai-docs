@@ -16,6 +16,8 @@ ms.custom: build-2025
 
 # Get started with Foundry Local
 
+[!INCLUDE [foundry-local-preview](./includes/foundry-local-preview.md)]
+
 This guide walks you through setting up Foundry Local to run AI models on your device. 
 
 ## Prerequisites

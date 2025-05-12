@@ -16,6 +16,8 @@ ms.custom: build-2025
 
 # What is Foundry Local?
 
+[!INCLUDE [foundry-local-preview](./includes/foundry-local-preview.md)]
+
 Foundry Local is an on-device AI inference solution offering performance, privacy, customization, and cost advantages. It integrates seamlessly into your existing workflows and applications through an intuitive CLI and REST API.
 
 ## Key features

@@ -13,6 +13,8 @@ author: samuel100
 
 # Foundry Local REST API Reference
 
+[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
+
 > [!CAUTION]
 > This API is under active development and may include breaking changes without notice. We strongly recommend monitoring the changelog before building production applications.
 
