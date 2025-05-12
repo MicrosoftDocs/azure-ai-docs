@@ -1,5 +1,5 @@
 ---
-title: Get started with the Azure AI Foundry
+title: "Quickstart: Get started with Azure AI Foundry"
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to start using the Azure AI Foundry portal and the Azure AI Foundry SDK.
 manager: scottpolly
@@ -15,7 +15,7 @@ zone_pivot_groups: project-type
 ---
 
 
-# Get started with the Azure AI Foundry
+# Quickstart: Get started with Azure AI Foundry
 
 ::: zone pivot="hub-project"
 

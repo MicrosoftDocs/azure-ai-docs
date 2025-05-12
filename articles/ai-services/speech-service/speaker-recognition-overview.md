@@ -55,7 +55,7 @@ Speaker enrollment data is stored in a secured system, including the speech audi
 
 You control how long data should be retained. You can create, update, and delete enrollment data for individual speakers through API calls. When the subscription is deleted, all the speaker enrollment data associated with the subscription is also deleted. 
 
-As with all of the Azure AI services resources, developers who use the speaker recognition feature must be aware of Microsoft policies on customer data. You should ensure that you received the appropriate permissions from the users. You can find more details in [Data and privacy for speaker recognition](/legal/cognitive-services/speech-service/speaker-recognition/data-privacy-speaker-recognition). For more information, see the [Azure AI services page](https://azure.microsoft.com/support/legal/cognitive-services-compliance-and-privacy/) on the Microsoft Trust Center. 
+As with all of the Azure AI Foundry resources, developers who use the speaker recognition feature must be aware of Microsoft policies on customer data. You should ensure that you received the appropriate permissions from the users. You can find more details in [Data and privacy for speaker recognition](/legal/cognitive-services/speech-service/speaker-recognition/data-privacy-speaker-recognition). For more information, see the [Azure AI services page](https://azure.microsoft.com/support/legal/cognitive-services-compliance-and-privacy/) on the Microsoft Trust Center. 
 
 ## Common questions and solutions
 

@@ -13,7 +13,7 @@ items:
 - name: Azure AI Foundry Models
   items:
   - name: Explore Azure AI Foundry Models
-    href: how-to/model-catalog-overview.md
+    href: concepts/foundry-models-overview.md
   - name: Configure Azure Ecosystem Models
     href: model-inference/how-to/configure-marketplace.md?context=/azure/ai-foundry/context/context
   - name: Data, privacy, and security for Model Catalog
