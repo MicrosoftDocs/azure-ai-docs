@@ -78,14 +78,14 @@ productDirectory:
       links:
         - url: responsible-use-of-ai-overview.md
           text: Trustworthy AI
-        - url: ./how-to/monitor-applications.md
-          text: Monitor your generative AI applications
         - url: ./how-to/develop/trace-local-sdk.md
           text: Trace your application with Azure AI Foundry project library 
         - url: ./how-to/develop/agent-evaluate-sdk.md
           text: Evaluate agentic workflows
         - url: ../ai-services/openai/how-to/fine-tuning-safety-evaluation.md
           text: Safety evaluation for fine-tuning
+        - url: ./how-to/monitor-applications.md
+          text: Monitor your generative AI applications
     # Card
     - title: Azure AI Search
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/search.svg
