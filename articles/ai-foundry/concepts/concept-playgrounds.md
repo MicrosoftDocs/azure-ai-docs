@@ -26,7 +26,7 @@ In today's development cycle, speed and clarity are everything. As you build wit
 >   - Revamped **Audio playground** for [gpt-4o-audio](https://ai.azure.com/explore/models/gpt-4o-transcribe/version/2025-03-20/registry/azure-openai), [gpt-4o-transcribe](https://ai.azure.com/explore/models/gpt-4o-transcribe/version/2025-03-20/registry/azure-openai), [gpt-4o-mini-tts](https://ai.azure.com/explore/models/gpt-4o-mini-tts/version/2025-03-20/registry/azure-openai) models.
 >   - Introducing the new **Video playground** for Azure OpenAI Sora.
 
-:::image type="content" source="../media/concept-playgrounds/playground-landing-page.png" alt-text="Azure AI Foundry playground landing page showcasing features for rapid prototyping and experimentation." lightbox="../media/concept-playgrounds/playground-landing-page.png":::
+:::image type="content" source="../media/concept-playgrounds/playground-landing-page.png" alt-text="Screenshot of the Azure AI Foundry playground landing page showcasing features for rapid prototyping and experimentation." lightbox="../media/concept-playgrounds/playground-landing-page.png":::
 
 ## The playground; the prelude to production
 
@@ -71,26 +71,26 @@ Available on the multi-lingual sample code samples, "Open in VS Code" enables th
 
 1. Select  View Code in Chat playground and Agents playground to see the code sample.
 1. Select  "Open in VS Code" button.
-    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-foundry.png" alt-text="Open in VS Code button in Azure AI Foundry playground for seamless code integration." lightbox="../media/concept-playgrounds/open-in-vs-code-foundry.png":::
+    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-foundry.png" alt-text="Screenshot of the Open in VS Code button in Azure AI Foundry playground for seamless code integration." lightbox="../media/concept-playgrounds/open-in-vs-code-foundry.png":::
 
 1. You're redirected to /azure environment of VS Code with importing of your code sample, API endpoint and key.
-    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-vscode.png" alt-text="VS Code environment showing imported code sample, API endpoint, and key from Foundry playground." lightbox="../media/concept-playgrounds/open-in-vs-code-vscode.png":::
+    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-vscode.png" alt-text="Screenshot of the VS Code environment showing imported code sample, API endpoint, and key from Foundry playground." lightbox="../media/concept-playgrounds/open-in-vs-code-vscode.png":::
 
 1. Browse through the `READ.ME` file for instructions to run your model.
-    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-readme.png" alt-text="README file in VS Code with instructions for running the imported model." lightbox="../media/concept-playgrounds/open-in-vs-code-readme.png":::
+    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-readme.png" alt-text="Screenshot of the README file in VS Code with instructions for running the imported model." lightbox="../media/concept-playgrounds/open-in-vs-code-readme.png":::
 
 1. Your code sample is automatically transferred to the `run_model.py`.
-    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-run-model.png" alt-text="Code sample automatically transferred to run_model.py in VS Code." lightbox="../media/concept-playgrounds/open-in-vs-code-run-model.png":::
+    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-run-model.png" alt-text="Screenshot showing that the code sample automatically transferred to run_model.py in VS Code." lightbox="../media/concept-playgrounds/open-in-vs-code-run-model.png":::
    
 1. Relevant dependencies in the `requirements.txt` file.
-    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-requirements.png" alt-text="Relevant dependencies listed in the requirements.txt file in VS Code." lightbox="../media/concept-playgrounds/open-in-vs-code-requirements.png":::
+    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-requirements.png" alt-text="Screenshot showing that the relevant dependencies listed in the requirements.txt file in VS Code." lightbox="../media/concept-playgrounds/open-in-vs-code-requirements.png":::
 
 
 ## Agents playground
 
 The Agents playground allows you to explore, prototype, and test agents without needing to run any code. From this page, you can quickly iterate and experiment with new ideas. Get started with Agents playground with this [quickstart](../../ai-services/agents/quickstart.md).
 
-:::image type="content" source="../media/concept-playgrounds/agents-playground.png" alt-text="Agents playground interface for exploring, prototyping, and testing agents without code." lightbox="../media/concept-playgrounds/agents-playground.png":::
+:::image type="content" source="../media/concept-playgrounds/agents-playground.png" alt-text="Screenshot of the Agents playground interface for exploring, prototyping, and testing agents without code." lightbox="../media/concept-playgrounds/agents-playground.png":::
 
 ## Chat playground
 
@@ -98,7 +98,7 @@ Test the latest reasoning models from Azure OpenAI, DeepSeek, and Meta with the 
 
 For all reasoning models, we introduce a chain-of-thought summary drop-down to see how the model was thinking through its response ahead of sharing the output.
 
-:::image type="content" source="../media/concept-playgrounds/chat-playground-cot-summary.png" alt-text="Chat Playground interface for exploring, prototyping, and testing chat models without code." lightbox="../media/concept-playgrounds/agents-playground.png":::
+:::image type="content" source="../media/concept-playgrounds/chat-playground-cot-summary.png" alt-text="Screenshot of the Chat Playground interface for exploring, prototyping, and testing chat models without code." lightbox="../media/concept-playgrounds/agents-playground.png":::
 
 ## Audio playground
 
@@ -108,12 +108,12 @@ With the audio playground, you can use text-to-speech and transcription capabili
 1. Adjust model parameters like voice and language.
 1. Receive a speech output with playback controls (play, rewind, forward, adjust speed and volume).
 1. Download to local as a .wav file.
-    :::image type="content" source="../media/concept-playgrounds/audio-playground-text-to-speech.png" alt-text="Audio playground interface showcasing text-to-speech capabilities with playback controls." lightbox="../media/concept-playgrounds/audio-playground-text-to-speech.png":::
+    :::image type="content" source="../media/concept-playgrounds/audio-playground-text-to-speech.png" alt-text="Screenshot of the Audio playground interface showcasing text-to-speech capabilities with playback controls." lightbox="../media/concept-playgrounds/audio-playground-text-to-speech.png":::
 
 1. Start with an audio file by either upload audio file, recording the audio from the prompt bar or speaking directly to the model.
 1. Include a phrase list as a text mechanism to guide the audio input.
 1. Once the audio input has been sent to the model, receive a transcribed output as text and JSON.
-    :::image type="content" source="../media/concept-playgrounds/audio-playground-transcribe.png" alt-text="Audio playground interface demonstrating transcription output from audio input." lightbox="../media/concept-playgrounds/audio-playground-transcribe.png":::
+    :::image type="content" source="../media/concept-playgrounds/audio-playground-transcribe.png" alt-text="Screenshot of theAudio playground interface demonstrating transcription output from audio input." lightbox="../media/concept-playgrounds/audio-playground-transcribe.png":::
 
 ## Images playground
 
@@ -173,7 +173,7 @@ By using the images playground, you can explore and validate the following as yo
 ## Video playground
 
 > [!NOTE]  
-> See the [60-second reel of Video playground for Azure OpenAI Sora](https://aka.ms/VideoPlaygroundReel) and our DevBlog for how to transform your [enterprise-ready use case by industry.](https://aka.ms/VideoPlaygroundDevBlog). 
+> See the [60-second reel of Video playground for Azure OpenAI Sora](https://aka.ms/VideoPlaygroundReel) and our DevBlog for how to transform your [enterprise-ready use case by industry](https://aka.ms/VideoPlaygroundDevBlog).
 
 The Video playground is your rapid iteration environment for exploring, refining, and validating generative video workflows—designed for developers who need to go from idea to prototype with precision, control, and speed. The playground gives you a low-friction interface to test prompt structures, assess motion fidelity, evaluate model consistency across frames, and compare outputs across models—without writing boilerplate or wasting compute cycles – and a great demo interface for your Chief Product Officer and Engineering VP.
 
