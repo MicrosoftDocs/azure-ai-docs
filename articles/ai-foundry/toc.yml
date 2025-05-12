@@ -30,6 +30,9 @@ items:
       href: concepts/model-benchmarks.md
     - name: Compare models in leaderboards
       href: how-to/benchmark-model-in-catalog.md
+  - name: Explore the model playgrounds
+    href: concepts/concept-playgrounds.md
+  - name: Deploy Azure AI Foundry Models
   - name: Deployment options in Azure AI Foundry portal
     href: concepts/deployments-overview.md
   - name: Supported programming languages and SDKs
