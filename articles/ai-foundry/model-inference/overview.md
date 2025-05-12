@@ -8,7 +8,7 @@ reviewer: santiagxf
 ms.service: azure-ai-model-inference
 ms.topic: concept-article
 ms.date: 01/24/2025
-ms.author: mopeakande
+ms.author: mopeak
 ms.reviewer: fasantia
 ms.custom: generated
 recommendations: false
@@ -24,9 +24,7 @@ AI Foundry Models is part of Azure AI Foundry, and users can access the service 
 
 ## Models
 
-You can get access to the key model providers in the industry including OpenAI, Microsoft, Meta, Mistral, Cohere, G42, and AI21 Labs. Model providers define the license terms and set the price for use of their models.
-
-Explore the following model families available:
+You can get access to the key model providers in the industry. Explore the following model families available:
 
 - [AI21 Labs](concepts/models.md#ai21-labs)
 - [Azure OpenAI](concepts/models.md#azure-openai)
