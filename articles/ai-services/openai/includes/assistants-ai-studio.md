@@ -27,7 +27,7 @@ ms.author: aahi
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com).
 1. If your screen doesn't look like the following screenshot, select **Azure AI Foundry** in the top left of the screen.
-1. Select **Let's go** in the Azure OpenAI Service card. 
+1. Select **Let's go** in the Azure OpenAI in Azure AI Foundry Models card. 
 
     :::image type="content" source="../media/assistants/foundry-openai-selectior.png" alt-text="A screenshot of the main page of the Azure AI Foundry." lightbox="../media/assistants/foundry-openai-selectior.png":::
     

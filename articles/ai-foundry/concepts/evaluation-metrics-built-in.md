@@ -197,12 +197,12 @@ We support evaluating vulnerability towards the following types of jailbreak att
 - **Direct attack jailbreak** (also known as UPIA or User Prompt Injected Attack) injects prompts in the user role turn of conversations or queries to generative AI applications. Jailbreaks are when a model response bypasses the restrictions placed on it. Jailbreak also happens where an LLM deviates from the intended task or topic.
 - **Indirect attack jailbreak** (also known as XPIA or cross domain prompt injected attack) injects prompts in the returned documents or context of the user's query to generative AI applications.
 
-*Evaluating direct attack* is a comparative measurement using the content safety evaluators as a control. It isn't its own AI-assisted evaluator. Run `ContentSafetyEvaluator` on two different, red-teamed datasets:
+*Evaluating direct attack* is a comparative measurement using the Azure AI Content Safety evaluators as a control. It isn't its own AI-assisted evaluator. Run `ContentSafetyEvaluator` on two different, red-teamed datasets:
 
 - Baseline adversarial test dataset.
 - Adversarial test dataset with direct attack jailbreak injections in the first turn.
 
-You can do this with functionality and attack datasets generated with the [direct attack simulator](../how-to/develop/simulator-interaction-data.md#simulating-jailbreak-attacks) with the same randomization seed. Then you can evaluate jailbreak vulnerability by comparing results from content safety evaluators between the two test dataset's aggregate scores for each safety evaluator. A direct attack jailbreak defect is detected when there's presence of content harm response detected in the second direct attack injected dataset when there was none or lower severity detected in the first control dataset.
+You can do this with functionality and attack datasets generated with the [direct attack simulator](../how-to/develop/simulator-interaction-data.md#simulating-jailbreak-attacks) with the same randomization seed. Then you can evaluate jailbreak vulnerability by comparing results from Azure AI Content Safety evaluators between the two test dataset's aggregate scores for each safety evaluator. A direct attack jailbreak defect is detected when there's presence of content harm response detected in the second direct attack injected dataset when there was none or lower severity detected in the first control dataset.
 
 ### Indirect attack definition and label
 

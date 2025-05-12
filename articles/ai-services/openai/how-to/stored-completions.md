@@ -1,5 +1,5 @@
 ---
-title: 'How to use Azure OpenAI Service stored completions & distillation'
+title: 'How to use Azure OpenAI in Azure AI Foundry Models stored completions & distillation'
 titleSuffix: Azure OpenAI
 description: Learn how to use stored completions & distillation with Azure OpenAI
 manager: nitinme

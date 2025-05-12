@@ -31,20 +31,20 @@ NVIDIA inference microservices are containers built by NVIDIA for optimized pret
 
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned a _custom role_ with the following permissions. User accounts assigned the _Owner_ or _Contributor_ role for the Azure subscription can also create NIM deployments. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-azure-ai-foundry.md).
 
-    -	On the Azure subscription—**to subscribe the workspace to the Azure Marketplace offering**, once for each workspace/project:
-        -	Microsoft.MarketplaceOrdering/agreements/offers/plans/read
-        -	Microsoft.MarketplaceOrdering/agreements/offers/plans/sign/action
-        -	Microsoft.MarketplaceOrdering/offerTypes/publishers/offers/plans/agreements/read
-        -	Microsoft.Marketplace/offerTypes/publishers/offers/plans/agreements/read
-        -	Microsoft.SaaS/register/action
+    -    On the Azure subscription—**to subscribe the workspace to the Azure Marketplace offering**, once for each workspace/project:
+        -    Microsoft.MarketplaceOrdering/agreements/offers/plans/read
+        -    Microsoft.MarketplaceOrdering/agreements/offers/plans/sign/action
+        -    Microsoft.MarketplaceOrdering/offerTypes/publishers/offers/plans/agreements/read
+        -    Microsoft.Marketplace/offerTypes/publishers/offers/plans/agreements/read
+        -    Microsoft.SaaS/register/action
 
-    -	On the resource group—**to create and use the SaaS resource**:
+    -    On the resource group—**to create and use the SaaS resource**:
         -   Microsoft.SaaS/resources/read
-        -	Microsoft.SaaS/resources/write
+        -    Microsoft.SaaS/resources/write
 
-    -	On the workspace—**to deploy endpoints**:
-        -	Microsoft.MachineLearningServices/workspaces/marketplaceModelSubscriptions/*
-        -	Microsoft.MachineLearningServices/workspaces/onlineEndpoints/* 
+    -    On the workspace—**to deploy endpoints**:
+        -    Microsoft.MachineLearningServices/workspaces/marketplaceModelSubscriptions/*
+        -    Microsoft.MachineLearningServices/workspaces/onlineEndpoints/* 
 
 
 ## NVIDIA NIM pay-as-you-go offer on Azure Marketplace by NVIDIA
@@ -81,7 +81,7 @@ After your deployment is successfully created, you can go to **Models + Endpoint
 
 NVIDIA NIMs on Foundry expose an OpenAI compatible API. Learn more about the payload supported [here](https://docs.nvidia.com/nim/large-language-models/latest/api-reference.html#). The 'model' parameter for NIMs on Foundry is set to a default value within the container, and is not required to be passed in the request payload to your online endpoint. The **Consume** tab of the NIM deployment on Foundry includes code samples for inference with the target URL of your deployment. 
 
-You can also consume NIM deployments using the [Azure AI Model Inference SDK](/python/api/overview/azure/ai-inference-readme), with limitations such as no support for [creating and authenticating clients using `load_client`](/python/api/overview/azure/ai-inference-readme#create-and-authenticate-clients-using-load_client) and calling client method `get_model_info` to [retrieve model information](/python/api/overview/azure/ai-inference-readme#get-ai-model-information).
+You can also consume NIM deployments using the [Azure AI Foundry Models SDK](/python/api/overview/azure/ai-inference-readme), with limitations such as no support for [creating and authenticating clients using `load_client`](/python/api/overview/azure/ai-inference-readme#create-and-authenticate-clients-using-load_client) and calling client method `get_model_info` to [retrieve model information](/python/api/overview/azure/ai-inference-readme#get-ai-model-information).
 
 ### Develop and run agents with NIM endpoints
 

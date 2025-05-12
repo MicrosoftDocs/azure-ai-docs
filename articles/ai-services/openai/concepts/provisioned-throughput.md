@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI Service provisioned throughput
+title: Azure OpenAI in Azure AI Foundry Models provisioned throughput
 description: Learn about provisioned throughput and Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
@@ -22,7 +22,7 @@ The provisioned throughput offering is a model deployment type that allows you t
 - **Cost savings:** High throughput workloads might provide cost savings vs token-based consumption.
 
 > [!TIP]
-> * You can take advantage of additional cost savings when you buy [Microsoft Azure OpenAI Service reservations](/azure/cost-management-billing/reservations/azure-openai#buy-a-microsoft-azure-openai-service-reservation).
+> * You can take advantage of additional cost savings when you buy [Microsoft Azure OpenAI in Azure AI Foundry Models reservations](/azure/cost-management-billing/reservations/azure-openai#buy-a-microsoft-azure-openai-service-reservation).
 > * Provisioned throughput is available as the following deployment types: [global provisioned](../how-to/deployment-types.md#global-provisioned), [data zone provisioned](../how-to/deployment-types.md#data-zone-provisioned) and [standard provisioned](../how-to/deployment-types.md#provisioned).
 
 <!--

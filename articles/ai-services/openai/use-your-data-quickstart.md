@@ -1,5 +1,5 @@
 ---
-title: 'Use your own data with Azure OpenAI Service'
+title: 'Use your own data with Azure OpenAI in Azure AI Foundry Models'
 titleSuffix: Azure OpenAI
 description: Use this article to import and use your data in Azure OpenAI.
 manager: nitinme
@@ -216,11 +216,10 @@ The following resources:
 
 If you want to clean up and remove an Azure OpenAI or Azure AI Search resource, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
 
-- [Azure AI services resources](../multi-service-resource.md?pivots=azportal#clean-up-resources)
 - [Azure AI Search resources](/azure/search/search-get-started-portal#clean-up-resources)
 - [Azure app service resources](/azure/app-service/quickstart-dotnetcore?pivots=development-environment-vs#clean-up-resources)
 
 ## Next steps
 
-- Learn more about [using your data in Azure OpenAI Service](./concepts/use-your-data.md)
+- Learn more about [using your data in Azure OpenAI in Azure AI Foundry Models](./concepts/use-your-data.md)
 - [Chat app sample code on GitHub](https://go.microsoft.com/fwlink/?linkid=2244395).

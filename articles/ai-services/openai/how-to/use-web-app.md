@@ -1,6 +1,6 @@
 ---
 title: 'Use the Azure OpenAI web app'
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Use this article to learn about using the available web app to chat with Azure OpenAI models.
 manager: nitinme
 ms.service: azure-ai-openai
@@ -448,7 +448,7 @@ In the webapp application settings, navigate to "Environment Variables" and make
 If using an embedding model deployed to the same resource as your model used for inference, there are no other settings changes required.
 
 However, if you're using an embedding model deployed to a different resource, make the following extra changes to your app's environment variables:
-* Set `AZURE_OPENAI_EMBEDDING_ENDPOINT` variable to the full API path of the embedding API for the resource you're using for embeddings, for example, `https://<your Azure OpenAI Service resource name>.openai.azure.com/openai/deployments/<your embedding deployment name>/embeddings`
+* Set `AZURE_OPENAI_EMBEDDING_ENDPOINT` variable to the full API path of the embedding API for the resource you're using for embeddings, for example, `https://<your Azure OpenAI in Azure AI Foundry Models resource name>.openai.azure.com/openai/deployments/<your embedding deployment name>/embeddings`
 * Delete the `AZURE_OPENAI_EMBEDDING_KEY` variable to use Microsoft Entra ID authentication. 
 
 Once all of the environment variable changes are completed, restart the webapp to begin using Microsoft Entra ID authentication between services in the webapp. It will take a few minutes after restarting for any settings changes to take effect.

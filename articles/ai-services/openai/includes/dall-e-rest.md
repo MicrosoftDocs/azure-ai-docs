@@ -1,7 +1,7 @@
 ---
-title: 'Quickstart: Generate images with the REST APIs for Azure OpenAI Service'
-titleSuffix: Azure OpenAI Service
-description: Learn how to generate images with Azure OpenAI Service by using the REST APIs and the endpoint and access keys for your Azure OpenAI resource.
+title: 'Quickstart: Generate images with the REST APIs for Azure OpenAI in Azure AI Foundry Models'
+titleSuffix: Azure OpenAI
+description: Learn how to generate images with Azure OpenAI by using the REST APIs and the endpoint and access keys for your Azure OpenAI resource.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom:
@@ -10,7 +10,7 @@ ms.topic: include
 ms.date: 02/20/2025
 ---
 
-Use this guide to get started calling the Azure OpenAI Service image generation REST APIs by using Python.
+Use this guide to get started calling the Azure OpenAI in Azure AI Foundry Models image generation REST APIs by using Python.
 
 ## Prerequisites
 

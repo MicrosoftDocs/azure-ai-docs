@@ -20,7 +20,7 @@ For any model deployment in [Azure AI Foundry](https://ai.azure.com), you can di
 
 Follow these steps to create a content filter:
 
-1. Go to [Azure AI Foundry](https://ai.azure.com) and navigate to your project. Then select the **Safety + security** page from the left menu and select the **Content filters** tab.
+1. Go to [Azure AI Foundry](https://ai.azure.com) and navigate to your project. Then select the **Guardrails + controls** page from the left menu and select the **Content filters** tab.
 
     :::image type="content" source="../media/content-safety/content-filter/create-content-filter.png" alt-text="Screenshot of the button to create a new content filter." lightbox="../media/content-safety/content-filter/create-content-filter.png":::
 1. Select **+ Create content filter**.
@@ -46,7 +46,7 @@ Follow these steps to create a content filter:
 
     :::image type="content" source="../media/content-safety/content-filter/create-content-filter-deployment.png" alt-text="Screenshot of the option to select a deployment when creating a content filter." lightbox="../media/content-safety/content-filter/create-content-filter-deployment.png":::
 
-    Content filtering configurations are created at the hub level in the [Azure AI Foundry portal](https://ai.azure.com). Learn more about configurability in the [Azure OpenAI Service documentation](/azure/ai-services/openai/how-to/content-filters).
+    Content filtering configurations are created at the hub level in the [Azure AI Foundry portal](https://ai.azure.com). Learn more about configurability in the [Azure OpenAI in Azure AI Foundry Models documentation](/azure/ai-services/openai/how-to/content-filters).
 
 
 1. On the **Review** page, review the settings and then select **Create filter**.

@@ -1,5 +1,5 @@
 ---
-title: 'How to use predicted outputs with Azure OpenAI Service'
+title: 'How to use predicted outputs with Azure OpenAI in Azure AI Foundry Models'
 titleSuffix: Azure OpenAI
 description: Learn how to improve your model response latency with predicted outputs
 services: cognitive-services

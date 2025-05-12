@@ -13,11 +13,11 @@ In this article, you learn how to create the resources required to use Azure AI 
 
 ## Understand the resources
 
-Azure AI Foundry Models is a capability in Azure AI Foundry resources (formerly known Azure AI Services). You can create model deployments under the resource to consume their predictions. You can also connect the resource to Azure AI Hubs and Projects in Azure AI Foundry to create intelligent applications if needed. The following picture shows the high level architecture.
+Azure AI Foundry Models is a capability in Azure AI Foundry Services (formerly known Azure AI Services). You can create model deployments under the resource to consume their predictions. You can also connect the resource to Azure AI Hubs and Projects in Azure AI Foundry to create intelligent applications if needed. The following picture shows the high level architecture.
 
 :::image type="content" source="../../media/create-resources/resources-architecture.png" alt-text="A diagram showing the high level architecture of the resources created in the tutorial." lightbox="../../media/create-resources/resources-architecture.png":::
 
-Azure AI Foundry resources don't require AI projects or AI hubs to operate and you can create them to consume flagship models from your applications. However, additional capabilities are available if you **deploy an Azure AI project and hub**, including playground, or agents.
+Azure AI Foundry Services don't require AI projects or AI hubs to operate and you can create them to consume flagship models from your applications. However, additional capabilities are available if you **deploy an Azure AI project and hub**, including playground, or agents.
 
 The tutorial helps you create:
 

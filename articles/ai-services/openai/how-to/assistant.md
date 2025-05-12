@@ -1,5 +1,5 @@
 ---
-title: 'How to create Assistants with Azure OpenAI Service'
+title: 'How to create Assistants with Azure OpenAI in Azure AI Foundry Models'
 titleSuffix: Azure OpenAI
 description: Learn how to create helpful AI Assistants with tools like Code Interpreter.
 services: cognitive-services
