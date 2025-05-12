@@ -180,5 +180,4 @@ Our goal is to accelerate the development and deployment of AI agents without co
 
 
 ## What's Next?
-You’ve now successfully configured a Network Secure Account and project.
-* Step 2: [Quickstart - Create Your First Agent](quickstart.md)
+You’ve now successfully configured a Network Secure Account and project, use the [quickstart](../quickstart.md) to create your first agent. 
