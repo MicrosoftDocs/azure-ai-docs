@@ -35,14 +35,12 @@ To get started, you need **An Active Azure Subscription**. If you don't have an 
   * [Mac or Linux](https://learn2torials.com/thread/how-to-install-curl-on-mac-or-linux-(ubuntu)-or-windows)
 
 
-## Get Started with a Prebuilt Analyzer
-Analyzers define how your content will be processed and the insights that will be extracted. We offer [pre-built analyzers](link to pre-built analyzer page) for common use cases. You can [customize pre-built analyzers](link to learn how to customize analyzers) to better fit your specific needs and use cases. 
+## Get Started with a prebuilt analyzer
+Analyzers define how your content will be processed and the insights that will be extracted. We offer [pre-built analyzers](link to pre-built analyzer page) for common use cases. You can [customize pre-built analyzers](/how-to/create-a-custom-analyzer) to better fit your specific needs and use cases. 
 This quickstart uses pre-built document, image, audio, and video analyzers to help you get started. 
 
-
-
-### Send File for Analysis
-#### POST Request
+### Send file for analysis
+#### POST request
 
 ```bash
 curl -i -X POST "{endpoint}/analyzers/{analyzerId}:analyze?api-version=2025-05-01-preview" \
@@ -77,7 +75,7 @@ Before running the cURL command, make the following changes to the HTTP request:
 ---
 
 
-#### POST Response
+#### POST response
 
 The response returns `resultId` that you can use to track the status of this asynchronous analyze operation.
 
@@ -95,20 +93,20 @@ The response returns `resultId` that you can use to track the status of this asy
 }
 ```
 
-### Get Analyze Result
+### Get analyze result
 
 Use the `resultId` from the `POST` response above and retrieve the result of the analysis.
 
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
 2. Replace `{resultId}` with the `resultId` from the `POST` response.
 
-#### GET Request
+#### GET request
 ```bash
 curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{resultId}?api-version=2025-05-01-preview" \
   -H "Ocp-Apim-Subscription-Key: {key}"
 ```
 
-#### GET Response
+#### GET response
 
 The 200 (`OK`) JSON response includes a `status` field indicating the status of the operation. If the operation isn't complete, the value of `status` is `running` or `notStarted`. In such cases, you should send the GET request again, either manually or through a script. Wait an interval of one second or more between calls.
 
@@ -351,6 +349,6 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ## Next steps
 
-* In this quickstart, you learned how to call the [REST API](REFERENCE LINK) using a pre-built analyzer. See how you can [customize pre-built analyzers](LINK TO CUSTOMIZATION) to better fit your use case.
+* In this quickstart, you learned how to call the [REST API](/rest/api/contentunderstanding/content-analyzers/analyze?view=rest-contentunderstanding-2025-05-01-preview) using a pre-built analyzer. See how you can [create a custom analyzer](/how-to/create-a-custom-analyzer) to better fit your use case.
 
 
