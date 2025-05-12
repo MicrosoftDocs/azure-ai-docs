@@ -1,11 +1,11 @@
 ---
-title: Build a chat application with Open Web UI
+title: Integrate Open Web UI with Foundry Local
 titleSuffix: Foundry Local
 description: Learn how to create a chat application using Foundry Local and Open Web UI
 manager: scottpolly
 keywords: Azure AI services, cognitive, AI models, local inference
 ms.service: azure-ai-foundry
-ms.topic: tutorial
+ms.topic: how-to
 ms.date: 02/20/2025
 ms.reviewer: samkemp
 ms.author: samkemp
@@ -14,19 +14,15 @@ ms.custom: build-2025
 #customer intent: As a developer, I want to get started with Foundry Local so that I can run AI models locally.
 ---
 
-# Build a chat application with Open Web UI
+# Integrate Open Web UI with Foundry Local
 
-This tutorial shows you how to create a chat application using Foundry Local and Open Web UI. When you finish, you'll have a working chat interface running entirely on your local device.
+This tutorial shows you how to create a chat application using Foundry Local and Open Web UI. When you finish, you have a working chat interface running entirely on your local device.
 
 ## Prerequisites
 
 Before you start this tutorial, you need:
 
-- **Foundry Local** [installed](../get-started.md) on your computer.
-- **At least one model loaded** with the `foundry model load` command, like this:
-  ```bash
-  foundry model load Phi-4-mini-gpu-int4-rtn-block-32
-  ```
+- **Foundry Local** installed on your computer. Read the [Get started with Foundry Local](../get-started.md) guide for installation instructions.
 
 ## Set up Open Web UI for chat
 
@@ -46,12 +42,12 @@ Before you start this tutorial, you need:
    2. Select **Connections**
    3. Select **Manage Direct Connections**
    4. Select the **+** icon to add a connection
-   5. Enter `http://localhost:5272/v1` for the URL
-   6. Type any value (like `test`) for the API Key, since it cannot be empty
+   5. For the **URL**, enter `http://localhost:PORT/v1` where `PORT` is replaced with the port of the Foundry Local endpoint, which you can find using the CLI command `foundry service status`. Note, that Foundry Local dynamically assigns a port, so it's not always the same.
+   6. Type any value (like `test`) for the API Key, since it can't be empty.
    7. Save your connection
 
 5. **Start chatting with your model**:
-   1. Your loaded models will appear in the dropdown at the top
+   1. Your loaded models appear in the dropdown at the top
    2. Select any model from the list
    3. Type your message in the input box at the bottom
 
@@ -59,5 +55,5 @@ That's it! You're now chatting with an AI model running entirely on your local d
 
 ## Next steps
 
-- [Build an application with LangChain](use-langchain-with-foundry-local.md)
-- [How to compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hugging-face-models.md)
+- [Integrate inferencing SDKs with Foundry Local](how-to-integrate-with-inference-sdks.md)
+- [Compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hugging-face-models.md)

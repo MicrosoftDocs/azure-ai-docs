@@ -7,42 +7,120 @@ ms.author: maanavdalal
 author: maanavd
 ---
 
-## Using the OpenAI SDK
+## Install pip packages
+
+Install the following Python packages:
+
+```bash
+pip install openai
+pip install foundry-local-sdk
+```
+
+> [!TIP]
+> We recommend using a virtual environment to avoid package conflicts. You can create a virtual environment using either `venv` or `conda`.
+
+## Use OpenAI SDK with Foundry Local
+
+The following example demonstrates how to use the OpenAI SDK with Foundry Local. The code initializes the Foundry Local service, loads a model, and generates a response using the OpenAI SDK.
+
+Copy-and-paste the following code into a Python file named `app.py`:
 
 ```python
-# Install with: pip install openai
 import openai
+from foundry_local import FoundryLocalManager
 
-# Configure the client to use your local endpoint
+# By using an alias, the most suitable model will be downloaded 
+# to your end-user's device. 
+alias = "deepseek-r1-1.5b"
+
+# Create a FoundryLocalManager instance. This will start the Foundry
+# Local service if it is not already running and load the specified model.
+manager = FoundryLocalManager(alias)
+# The remaining code uses the OpenAI Python SDK to interact with the local model.
+# Configure the client to use the local Foundry service
 client = openai.OpenAI(
-    base_url="http://localhost:5272/v1",
-    api_key="not-needed-for-local"  # API key is not required for local usage
+    base_url=manager.endpoint,
+    api_key=manager.api_key  # API key is not required for local usage
 )
-
-# Chat completions
+# Set the model to use and generate a response
 response = client.chat.completions.create(
-    model="Phi-3-mini-4k-instruct-generic-cpu",  # Use a model loaded in your service
-    messages=[
-        {"role": "user", "content": "Explain how Foundry Local works."}
-    ]
+    model=manager.get_model_info(alias).id,
+    messages=[{"role": "user", "content": "What is the golden ratio?"}]
 )
-
 print(response.choices[0].message.content)
 ```
 
-## Using Direct HTTP Requests
+Run the code using the following command:
+
+```bash
+python app.py
+```
+
+### Streaming Response
+
+If you want to receive a streaming response, you can modify the code as follows:
+
+```python
+import openai
+from foundry_local import FoundryLocalManager
+
+# By using an alias, the most suitable model will be downloaded 
+# to your end-user's device.
+alias = "deepseek-r1-1.5b"
+
+# Create a FoundryLocalManager instance. This will start the Foundry 
+# Local service if it is not already running and load the specified model.
+manager = FoundryLocalManager(alias)
+
+# The remaining code us es the OpenAI Python SDK to interact with the local model.
+
+# Configure the client to use the local Foundry service
+client = openai.OpenAI(
+    base_url=manager.endpoint,
+    api_key=manager.api_key  # API key is not required for local usage
+)
+
+# Set the model to use and generate a streaming response
+stream = client.chat.completions.create(
+    model=manager.get_model_info(alias).id,
+    messages=[{"role": "user", "content": "What is the golden ratio?"}],
+    stream=True
+)
+
+# Print the streaming response
+for chunk in stream:
+    if chunk.choices[0].delta.content is not None:
+        print(chunk.choices[0].delta.content, end="", flush=True)
+```
+
+You can run the code using the same command as before:
+
+```bash
+python app.py
+```
+
+## Use `requests` with Foundry Local
 
 ```python
 # Install with: pip install requests
 import requests
 import json
+from foundry_local import FoundryLocalManager
 
-url = "http://localhost:5272/v1/chat/completions"
+# By using an alias, the most suitable model will be downloaded 
+# to your end-user's device. 
+alias = "deepseek-r1-1.5b"
+
+# Create a FoundryLocalManager instance. This will start the Foundry
+# Local service if it is not already running and load the specified model.
+manager = FoundryLocalManager(alias)
+
+url = manager.endpoint + "/chat/completions"
 
 payload = {
-    "model": "Phi-3-mini-4k-instruct-generic-cpu",
+    "model": manager.get_model_info(alias).id,
     "messages": [
-        {"role": "user", "content": "What are the benefits of running AI models locally?"}
+        {"role": "user", "content": "What is the golden ratio?"}
     ]
 }
 
@@ -52,25 +130,4 @@ headers = {
 
 response = requests.post(url, headers=headers, data=json.dumps(payload))
 print(response.json()["choices"][0]["message"]["content"])
-```
-
-## Streaming Response
-
-```python
-import openai
-
-client = openai.OpenAI(
-    base_url="http://localhost:5272/v1",
-    api_key="not-needed-for-local"
-)
-
-stream = client.chat.completions.create(
-    model="Phi-3-mini-4k-instruct-generic-cpu",
-    messages=[{"role": "user", "content": "Write a short story about AI"}],
-    stream=True
-)
-
-for chunk in stream:
-    if chunk.choices[0].delta.content is not None:
-        print(chunk.choices[0].delta.content, end="")
 ```

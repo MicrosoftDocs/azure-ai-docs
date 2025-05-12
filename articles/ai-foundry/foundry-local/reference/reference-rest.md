@@ -184,8 +184,8 @@ Compatible with the [OpenAI Embeddings API](https://platform.openai.com/docs/api
   The embedding model to use (e.g., `"text-embedding-ada-002"`).
 - `input` (string or array)  
   Input text to embed. Can be a single string or an array of strings/tokens.
-- `user` (string, optional)  
-  A unique identifier representing your end-user for abuse monitoring.
+- `encoding_format` (string, optional)  
+  The encoding format (`"base64"` or `"float"`).
 
 **Response body:**
 
@@ -213,9 +213,8 @@ Compatible with the [OpenAI Embeddings API](https://platform.openai.com/docs/api
 - Request body
   ```json
   {
-    "model": "text-embedding-ada-002",
-    "input": "Hello, how are you?",
-    "user": "user_id_123"
+    "model": "qwen_w_embeddings",
+    "input": "Hello, how are you?"
   }
   ```
 - Response body
@@ -229,7 +228,7 @@ Compatible with the [OpenAI Embeddings API](https://platform.openai.com/docs/api
         "index": 0
       }
     ],
-    "model": "text-embedding-ada-002",
+    "model": "qwen_w_embeddings",
     "usage": {
       "prompt_tokens": 10,
       "total_tokens": 10
@@ -238,6 +237,37 @@ Compatible with the [OpenAI Embeddings API](https://platform.openai.com/docs/api
   ```
 
 ## Custom API
+
+### GET /foundry/list
+
+Retrieves a list of all available Foundry Local models in the catalog.
+
+**Response:**
+
+- `models` (array)  
+  List of model objects, each containing:
+  - `name`: The unique identifier for the model.
+  - `displayName`: A human-readable name for the model, often the same as the name.
+  - `providerType`: The type of provider hosting the model (e.g., AzureFoundry).
+  - `uri`: The resource URI pointing to the model's location in the registry.
+  - `version`: The version number of the model.
+  - `modelType`: The format or type of the model (e.g., ONNX).
+  - `promptTemplate`:
+      - `assistant`: The template for the assistant's response.
+      - `prompt`: The template for the user-assistant interaction.
+  - `publisher`: The entity or organization that published the model.
+  - `task`: The primary task the model is designed to perform (e.g., chat-completion).
+  - `runtime`:
+      - `deviceType`: The type of hardware the model is designed to run on (e.g., CPU).
+      - `executionProvider`: The execution provider used for running the model.
+  - `fileSizeMb`: The size of the model file in megabytes.
+  - `modelSettings`:
+      - `parameters`: A list of configurable parameters for the model.
+  - `alias`: An alternative name or shorthand for the model
+  - `supportsToolCalling`: Indicates whether the model supports tool-calling functionality.
+  - `license`: The license type under which the model is distributed.
+  - `licenseDescription`: A detailed description or link to the license terms.
+  - `parentModelUri`: The URI of the parent model from which this model is derived.
 
 ### POST /openai/register
 

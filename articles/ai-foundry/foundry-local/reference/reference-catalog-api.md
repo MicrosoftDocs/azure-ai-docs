@@ -13,166 +13,211 @@ author: maanavd
 
 # Catalog API Reference
 
-This document provides a detailed reference for the Model Catalog APIs. Catalog implementers can use this guide when creating their own catalog implementations.
+Foundry Local allows you to develop and integrate your own catalog service. This document provides guidance on:
 
-## Base URI
+- The model format required for the catalog API.
+- The request and response format required for your catalog API to integrate with Foundry Local.
 
-```
-https://<catalog provider URI>/<provider subpath>
-```
+## Model format
 
-Replace `<catalog provider URI>` and `<provider subpath>` with your specific catalog hosting information.
+The model files hosted in your model catalog are required to be in the [Open Neural Network Exchange (ONNX)](https://onnx.ai/) format to work with Foundry Local. For more information on how to compile Hugging Face and PyTorch models to ONNX, see the [Compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hugging-face-models.md) article.
 
-## Available APIs
+## API format
 
-- **Get Model Details** - Retrieve information about a specific model
-- **Get Publisher Details** - Access publisher information
-- **List Publishers** - View all available publishers
-- **List Models** - Browse available models
+### Request
 
-## Authorization
+Your catalog service needs to support a POST endpoint that accepts a JSON request body. The request format for the catalog API is as follows:
 
-All endpoints must support:
+- **Method**: `POST`
+- **Content-Type**: `application/json`
 
-- Anonymous access (no authentication required)
+The request body *must* be a JSON object that *accepts* the following fields:
+
+- `resourceIds`: An array of resource IDs that specify the resources to be queried.
+    - `resourceId`: The ID of the resource.
+    - `entityContainerType`: The type of entity container (for example, `Registry`, `Workspace`, etc.).
+- `indexEntitiesRequest`: An object that contains the search parameters.
+  - `filters`: An array of filter objects that specify the criteria for filtering the search results.
+      - `field`: The field to filter on (for example, `type`, `kind`, etc.).
+      - `operator`: The operator to use for the filter. For example, `eq` (equals), `ne` (not equals), `gt` (greater than), `lt` (less than), etc.
+      - `values`: An array of values to match against the field.
+  - `orderBy`: An array of fields to order the results by.
+  - `searchText`: A string to search for in the results.
+  - `pageSize`: The maximum number of results to return (for pagination).
+  - `skip`: The number of results to skip (for pagination).
+  - `continuationToken`: A token for pagination to continue from a previous request.
+
+#### Filterable Fields (optional)
+
+You *must* implement your catalog API that *accepts* the [Request](#request) format, but it's *optional* as to whether you implement server-side filtering in your catalog service. Not implementing server-side filtering is a fast way to implement your catalog service, but it might not be efficient way to search for models.
+
+If you choose to implement server-side filtering, you can use the following fields to filter the results:
+
+- `type`: The type of the model (for example, `models`, `datasets`, etc.).
+- `kind`: The kind of the model (for example, `Versioned`, `Unversioned`, etc.).
+- `properties/variantInfo/variantMetadata/device`: The device type (for example, `cpu`, `gpu`, etc.).
+- `properties/variantInfo/variantMetadata/executionProvider`: The execution provider (for example, `cpuexecutionprovider`, `webgpuexecutionprovider`, etc.).
 
 
-## Get Model Details
-
-Retrieves detailed information about a specific model version.
-
-**GET** `/models/{modelName}/version/{version}`
-
-**Example:**
-
-```
-GET https://<catalog provider URI>/<provider subpath>/models/{modelName}/version/{version}
-```
-
-**Sample cURL:**
-
-```bash
-curl -X GET --location "https://<catalog provider URI>/<provider subpath>/models/Phi-3-mini-128k-instruct/version/12"
-```
-
-
-## Get Publisher Details
-
-**GET** `/publishers/{publisherName}`
-
-**Example:**
-
-```
-GET https://<catalog provider URI>/<provider subpath>/publishers/{publisherName}
-```
-
-**Sample cURL:**
+#### Example request
 
 ```bash
-curl -X GET --location "https://<catalog provider URI>/<provider subpath>/publishers/contoso"
-```
-
-
-## List Publishers
-
-**POST** `/publishers/list`
-
-**Example:**
-
-```
-POST https://<catalog provider URI>/<provider subpath>/publishers/list
-```
-
-**Sample cURL:**
-
-```bash
-curl -X POST --location "https://<catalog provider URI>/<provider subpath>/publishers/list" \
-  --header "Content-Type: application/json" \
-  --data '{"continuationToken": ""}'
-```
-
-
-## List Models
-
-**POST** `/models`
-
-**Example:**
-
-```
-POST https://<catalog provider URI>/<provider subpath>/models
-```
-
-**Sample cURL:**
-
-```bash
-curl -X POST --location "https://<catalog provider URI>/<provider subpath>/models" \
-  --header "Content-Type: application/json" \
-  --data '{
+curl POST <your-catalog-api-endpoint> \
+-H "Content-Type: application/json" \
+-d '{
+  "resourceIds": [
+    {
+      "resourceId": "azureml",
+      "entityContainerType": "Registry"
+    }
+  ],
+  "indexEntitiesRequest": {
     "filters": [
-      {"field": "publisher", "operator": "eq", "values": ["AI21 Labs", "Mistral ai", "core42"]}
+      {
+        "field": "type",
+        "operator": "eq",
+        "values": [
+          "models"
+        ]
+      },
+      {
+        "field": "kind",
+        "operator": "eq",
+        "values": [
+          "Versioned"
+        ]
+      },
+      {
+        "field": "properties/variantInfo/variantMetadata/device",
+        "operator": "eq",
+        "values": [
+          "cpu",
+          "gpu"
+        ]
+      },
+      {
+        "field": "properties/variantInfo/variantMetadata/executionProvider",
+        "operator": "eq",
+        "values": [
+          "cpuexecutionprovider",
+          "webgpuexecutionprovider"
+        ]
+      }
     ],
-    "order": [
-      {"field": "name", "direction": "asc"}
-    ],
-    "pageSize": 2
-  }'
+    "pageSize": 10,
+    "skip": null,
+    "continuationToken": null
+  }
+}'
 ```
 
-### Example Using Continuation Token
+### Response
 
-When listing models, you may receive a `continuationToken` in the response. Use this token in subsequent requests to fetch the next set of results.
+The response from the catalog API is a JSON object that contains the search results. The response schema is as follows:
 
-```bash
-curl -X POST --location "https://<catalog provider URI>/<provider subpath>/models" \
-  --header "Content-Type: application/json" \
-  --data '{
-    "filters": [
-      {"field": "publisher", "operator": "eq", "values": ["AI21 Labs", "Mistral ai", "core42"]}
-    ],
-    "order": [
-      {"field": "name", "direction": "asc"}
-    ],
-    "pageSize": 2,
-    "continuationToken": "your-token-here"
-  }'
+```json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "indexEntitiesResponse": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "type": "integer",
+          "description": "The total count of entities."
+        },
+        "value": {
+          "type": "array",
+          "description": "An array of LocalModel objects.",
+          "items": {
+            "$ref": "#/definitions/LocalModel"
+          }
+        },
+        "nextSkip": {
+          "type": "integer",
+          "description": "The number of items to skip for the next request."
+        },
+        "continuationToken": {
+          "type": "string",
+          "description": "A token to continue fetching results."
+        },
+      }
+    }
+  },
+  "definitions": {
+    "LocalModel": {
+      "type": "object",
+      "properties": {
+        "annotations": {
+          "type": "object",
+          "description": "Annotations associated with the model.",
+          "properties": {
+            "tags": {
+              "type": "object",
+              "description": "Tags associated with the annotation.",
+              "properties": {
+                "author": { "type": "string" },
+                "alias": { "type": "string" },
+                "directoryPath": { "type": "string" },
+                "license": { "type": "string" },
+                "licenseDescription": { "type": "string" },
+                "promptTemplate": { "type": "string" },
+                "task": { "type": "string" }
+              }
+            },
+            "systemCatalogData": {
+              "type": "object",
+              "properties": {
+                "publisher": { "type": "string" },
+                "displayName": { "type": "string" },
+              }
+            },
+            "name": { "type": "string" }
+          }
+        },
+        "properties": {
+          "type": "object",
+          "description": "Properties of the model.",
+          "properties": {
+            "name": { "type": "string" },
+            "version": { "type": "integer" },
+            "alphanumericVersion": { "type": "string" },
+            "variantInfo": {
+              "type": "object",
+              "properties": {
+                "parents": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "assetId": { "type": "string" }
+                    }
+                  }
+                },
+                "variantMetadata": {
+                  "type": "object",
+                  "properties": {
+                    "modelType": { "type": "string" },
+                    "device": { "type": "string" },
+                    "executionProvider": { "type": "string" },
+                    "fileSizeBytes": { "type": "integer" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "version": {
+          "type": "string",
+          "description": "The version of the model."
+        },
+        "assetId": {
+          "type": "string",
+          "description": "The asset ID of the model."
+        }
+      }
+    }
+  }
+}
 ```
-
-
-## Filterable Fields
-
-You can filter models using the following fields:
-
-- `name`
-- `version`
-- `labels`
-- `freePlayground`
-- `popularity`
-- `createdTime`
-- `displayName`
-- `summary`
-- `license`
-- `publisher`
-- `inferenceTasks`
-- `finetuningTasks`
-- `modelLimits/textLimits/maxOutputTokens`
-- `modelLimits/textLimits/inputContextWindow`
-- `modelLimits/supportedInputModalities`
-- `modelLimits/supportedOutputModalities`
-- `modelLimits/supportedLanguages`
-- `playgroundLimits/rateLimitTier`
-- `modelCapabilities`
-- `AzureOffers`
-
-## Supported Orderable Fields
-
-You can order results by the following fields:
-
-- `name`
-- `version`
-- `popularity`
-- `createdTime`
-- `displayName`
-- `publisher`
-
-
-For more information, refer to your catalog provider's API documentation.

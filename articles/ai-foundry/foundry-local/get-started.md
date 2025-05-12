@@ -16,16 +16,16 @@ ms.custom: build-2025
 
 # Get started with Foundry Local
 
-This guide walks you through setting up Foundry Local to run AI models on your device. Follow these clear steps to install the tool, discover available models, and launch your first local AI model.
+This guide walks you through setting up Foundry Local to run AI models on your device. 
 
 ## Prerequisites
 
 Your system must meet the following requirements to run Foundry Local:
 
-- **Operating System**: Windows 10 (x64), Windows 11 (x64/ARM), macOS, or Linux (x64/ARM)
+- **Operating System**: Windows 10 (x64), Windows 11 (x64/ARM), macOS.
 - **Hardware**: Minimum 8GB RAM, 3GB free disk space. Recommended 16GB RAM, 15GB free disk space.
 - **Network**: Internet connection for initial model download (optional for offline use)
-- **Acceleration (optional)**: NVIDIA GPU (2,000 series or newer), AMD GPU (6,000 series or newer), or Qualcomm Snapdragon X Elite, with 8GB or more of memory (RAM).
+- **Acceleration (optional)**: NVIDIA GPU (2,000 series or newer), AMD GPU (6,000 series or newer), Qualcomm Snapdragon X Elite (8GB or more of memory), or Apple silicon.
 
 Also, ensure you have administrative privileges to install software on your device.
 
@@ -33,26 +33,33 @@ Also, ensure you have administrative privileges to install software on your devi
 
 Get started with Foundry Local quickly:
 
-1. **Download** Foundry Local for your platform:
-   - [Windows](https://aka.ms/foundry-local-windows)
-   - [macOS](https://aka.ms/foundry-local-macos)
-   - [Linux](https://aka.ms/foundry-local-linux)
-1. **Install** the package by following the on-screen prompts.
-1. **Run your first model** Open a terminal window and run the following command to run a model (the model will be downloaded and an interactive prompt will appear): 
+1. [**Download Foundry Local Installer**](https://aka.ms/foundry-local-installer) and **install** by following the on-screen prompts. 
+    > [!TIP]
+    > If you're installing on Windows, you can also use `winget` to install Foundry Local. Open a terminal window and run the following command:
+    >
+    > ```powershell
+    > winget install Microsoft.FoundryLocal
+    > ```
+1. **Run your first model** Open a terminal window and run the following command to run a model: 
 
     ```bash
-    foundry model run phi-3-mini-4k 
+    foundry model run deepseek-r1-1.5b 
+    ```
+    
+    The model downloads - which can take a few minutes, depending on your internet speed - and the model runs. Once the model is running, you can interact with it using the command line interface (CLI). For example, you can ask:
+
+    ```text
+    Why is the sky blue?
     ```
 
+    You should see a response from the model in the terminal:
+    :::image type="content" source="media/get-started-output.png" alt-text="Screenshot of output from foundry local run command." lightbox="media/get-started-output.png":::
+
+
 > [!TIP]
-> You can replace `phi-3-mini-4k` with any model name from the catalog (see `foundry model list` for available models). Foundry Local will download the model variant that best matches your system's hardware and software configuration. For example, if you have an NVIDIA GPU, it will download the CUDA version of the model. If you have an QNN NPU, it will download the NPU variant. If you have no GPU or NPU, it will download the CPU version.
+> You can replace `deepseek-r1-1.5b` with any model name from the catalog (see `foundry model list` for available models). Foundry Local downloads the model variant that best matches your system's hardware and software configuration. For example, if you have an NVIDIA GPU, it downloads the CUDA version of the model. If you have a Qualcomm NPU, it downloads the NPU variant. If you have no GPU or NPU, it downloads the CPU version.
 
-> [!IMPORTANT]
-> **For macOS/Linux users:** Run both components in separate terminals:
-> - Neutron Server (`Inference.Service.Agent`) - Make it executable with `chmod +x Inference.Service.Agent`
-> - Foundry Client (`foundry`) - Make it executable with `chmod +x foundry` and add it to your PATH
-
-## Explore Foundry Local CLI commands
+## Explore commands
 
 The Foundry CLI organizes commands into these main categories:
 
@@ -89,9 +96,9 @@ foundry cache --help
 
 ## Next steps
 
-- [Learn how to integrate Foundry Local with your applications](how-to/integrate-with-inference-sdks.md)
+- [Integrate inferencing SDKs with Foundry Local](how-to/how-to-integrate-with-inference-sdks.md)
 - [Explore the Foundry Local documentation](index.yml)
 - [Learn about best practices and troubleshooting](reference/reference-best-practice.md)
 - [Explore the Foundry Local API reference](reference/reference-catalog-api.md)
-- [Learn how to compile Hugging Face models](how-to/how-to-compile-hugging-face-models.md)
+- [Learn Compile Hugging Face models](how-to/how-to-compile-hugging-face-models.md)
 

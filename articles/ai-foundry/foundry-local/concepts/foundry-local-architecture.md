@@ -35,9 +35,9 @@ The Foundry Local architecture consists of these main components:
 
 ### Foundry Local service
 
-The Foundry Local Service is an OpenAI-compatible REST server that provides a standard interface for working with the inference engine and managing models. Developers use this API to send requests, run models, and get results programmatically.
+The Foundry Local Service includes an OpenAI-compatible REST server that provides a standard interface for working with the inference engine. It's also possible to manage models over REST. Developers use this API to send requests, run models, and get results programmatically.
 
-- **Endpoint**: `http://localhost:5272/v1`
+- **Endpoint**: The endpoint is *dynamically allocated* when the service starts. You can find the endpoint by running the `foundry service status` command. When using Foundry Local in your applications, we recommend using the SDK that automatically handles the endpoint for you. For more details on how to use the Foundry Local SDK, read the [Integrated inferencing SDKs with Foundry Local](../how-to/how-to-integrate-with-inference-sdks.md) article.
 - **Use Cases**:
   - Connect Foundry Local to your custom applications
   - Execute models through HTTP requests
@@ -48,7 +48,7 @@ The ONNX Runtime is a core component that executes AI models. It runs optimized 
 
 **Features**:
 
-- Works with multiple hardware providers (NVIDIA, AMD, Intel) and device types (NPUs, CPUs, GPUs)
+- Works with multiple hardware providers (NVIDIA, AMD, Intel, Qualcomm) and device types (NPUs, CPUs, GPUs)
 - Offers a consistent interface for running across models different hardware
 - Delivers best-in-class performance
 - Supports quantized models for faster inference
@@ -69,7 +69,7 @@ The model cache stores downloaded AI models locally on your device, which ensure
 
 #### Model lifecycle
 
-1. **Download**: Get models from the Azure AI Foundry model catalog and save them to your local disk.
+1. **Download**: Download models from the Azure AI Foundry model catalog and save them to your local disk.
 2. **Load**: Load models into the Foundry Local service memory for inference. Set a TTL (time-to-live) to control how long the model stays in memory (default: 10 minutes).
 3. **Run**: Execute model inference for your requests.
 4. **Unload**: Remove models from memory to free up resources when no longer needed.
@@ -114,7 +114,7 @@ Foundry Local supports integration with various SDKs, such as the OpenAI SDK, en
 - **Supported SDKs**: Python, JavaScript, C#, and more.
 
 > [!TIP]
-> To learn more about integrating with inferencing SDKs, read [Integrate Foundry Local with Inferencing SDKs](../how-to/integrate-with-inference-sdks.md).
+> To learn more about integrating with inferencing SDKs, read [Integrate inferencing SDKs with Foundry Local](../how-to/how-to-integrate-with-inference-sdks.md).
 
 #### AI Toolkit for Visual Studio Code
 
@@ -128,5 +128,5 @@ The AI Toolkit for Visual Studio Code provides a user-friendly interface for dev
 ## Next Steps
 
 - [Get started with Foundry Local](../get-started.md)
-- [Integrate with Inference SDKs](../how-to/integrate-with-inference-sdks.md)
+- [Integrate inferencing SDKs with Foundry Local](../how-to/how-to-integrate-with-inference-sdks.md)
 - [Foundry Local CLI Reference](../reference/reference-cli.md)
