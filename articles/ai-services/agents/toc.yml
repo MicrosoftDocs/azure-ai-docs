@@ -26,6 +26,8 @@ items:
   items:
     - name: Threads, runs, and messages
       href: concepts/threads-runs-messages.md 
+    - name: Standard agent setup
+      href: concepts/standard-agent-setup.md
     - name: Tools
       items:
         - name: Tool Overview
