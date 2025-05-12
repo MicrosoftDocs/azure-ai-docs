@@ -30,7 +30,7 @@ The files for this example are in:
 cd azureai-model-inference-bicep/infra
 ```
 
-[!INCLUDE [marketplace-rbac](../includes/configure-marketplace/rbac.md)]
+[!INCLUDE [marketplace-rbac](../configure-marketplace/rbac.md)]
 
 ## Create the resources
 
