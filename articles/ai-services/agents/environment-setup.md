@@ -93,8 +93,7 @@ By default, the deployment template is configured with the following values:
 
 
 ### What's Next?
-* Step 2: [Quickstart - Create Your First Agent](quickstart.md)
+* [Create your first agent](quickstart.md)
 * Explore more:
     * [Use your existing resources](./how-to/use-your-own-resources.md)
-    * [Standard Setup Overview]()
-    * [Network Secured Agent Setup](./how-to/virtual-networks.md)
+    * [Network aecured agent setup](./how-to/virtual-networks.md)
