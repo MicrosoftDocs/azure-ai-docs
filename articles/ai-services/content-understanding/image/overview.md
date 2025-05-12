@@ -38,6 +38,8 @@ Content Understanding offers several key benefits for extracting information fro
 
 * **Faster and more cost-effective automation:**  The extracting of only the necessary fields enables Content Understanding to streamlines automation. Thus allowing organizations to scale their data processing workflows efficiently and reduce the storage and processing of irrelevant data.
 
+:::image type="content" source="../media/image/image-flow-diagram.jpg" alt-text="Screenshot of data flow diagram for image processing in content understanding.":::
+
 > [!NOTE]
 > For best results, image schema should only be used to process non-document-based images.
 > Text heavy images of documents should be processed using a document schema.
