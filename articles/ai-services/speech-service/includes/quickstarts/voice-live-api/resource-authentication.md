@@ -6,7 +6,7 @@ ms.topic: include
 ms.date: 5/19/2025
 ---
 
-You need to retrieve the following information to authenticate your application with your Azure OpenAI resource:
+You need to retrieve the following information to authenticate your application with your Azure AI Foundry resource:
 
 #### [Microsoft Entra ID](#tab/keyless)
 
