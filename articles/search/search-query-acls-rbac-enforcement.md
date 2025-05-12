@@ -9,7 +9,7 @@ author: mattgotteiner
 ms.author: magottei 
 ---  
 
-# Query-Time ACL and RBAC Enforcement in Azure AI Search  
+# Query-Time ACL and RBAC enforcement in Azure AI Search  
 
 Query-time access control ensures that users only retrieve search results they're authorized to access, based on their identity, group memberships, roles, or attributes. This functionality is essential for secure enterprise search and compliance-driven workflows.  
 
