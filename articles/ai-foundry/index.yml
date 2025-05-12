@@ -148,8 +148,6 @@ additionalContent:
               url: https://ai.azure.com/
             - text: Azure AI Foundry SDKs
               url: ./how-to/develop/sdk-overview.md
-            - text: Foundry Local
-              url: ./foundry-local/index.yml
             - text: Azure AI Foundry labs
               url: https://ai.azure.com/labs
             - text: GitHub Models
