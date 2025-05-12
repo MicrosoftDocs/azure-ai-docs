@@ -43,7 +43,7 @@ For example, you might create an analyzer for processing customer service calls 
 
 To get started, you can follow our guide for [building your first analyzer](../concepts/analyzer-templates.md).
 
-## Multimodal Data Ingestion
+## Multimodal data ingestion
 
 Azure AI Content Understanding offers an integrated solution for handling various data types—documents, text, images, audio, and video—via a sophisticated AI pipeline that converts unstructured content into structured, actionable formats. This streamlined approach simplifies operations by removing the need to manage separate Azure resources for speech, vision, and document processing.
 
@@ -89,15 +89,15 @@ Each modality supports specific generation approaches optimized for that content
 >
 > There's a distinction between digital documents (PDFs, DOCX, etc.) and text documents (plain text, markdown, HTML) in terms of content extraction capabilities.
 
-&bullet; **Extract**: With documents, users can extract raw field values from input content, such as dates from receipts or item details from invoices.
+* **Extract**: With documents, users can extract raw field values from input content, such as dates from receipts or item details from invoices.
 
 :::image type="content" source="../media/capabilities/document-extraction.gif" alt-text="Illustration of Document extraction method workflow.":::
 
-&bullet; **Generate**: Generative method help user extend generative capabilities to infer details from the content. Users have the flexibility to input content for a wide array of applications. This task involves a range of activities. It includes crafting concise summaries and calculating taxes based on document contents. Additionally, it entails generating eye-catching titles, descriptions, and highlights for images. Other aspects include identifying key topics and summarizing audio conversations, as well as segmenting and analyzing distinct portions of videos. Finally, the task involves extracting product features highlighted in video content.
+* **Generate**: Generative method help user extend generative capabilities to infer details from the content. Users have the flexibility to input content for a wide array of applications. This task involves a range of activities. It includes crafting concise summaries and calculating taxes based on document contents. Additionally, it entails generating eye-catching titles, descriptions, and highlights for images. Other aspects include identifying key topics and summarizing audio conversations, as well as segmenting and analyzing distinct portions of videos. Finally, the task involves extracting product features highlighted in video content.
 
 :::image type="content" source="../media/capabilities/chart-analysis.gif" alt-text="Illustration of Image Generation and Classification workflow.":::
 
-&bullet;  **Classify**: The classify method enables users to categorize values extracted from input content. Users can, for example, compile different document types, such as tax forms like 1099, 1098, and W2, into a single PDF. They can also distinguish between chart types, such as histograms and bar graphs, within images, or analyze the sentiment (positive, neutral, or negative) of conversations in audio and video files.
+* **Classify**: The classify method enables users to categorize values extracted from input content. Users can, for example, compile different document types, such as tax forms like 1099, 1098, and W2, into a single PDF. They can also distinguish between chart types, such as histograms and bar graphs, within images, or analyze the sentiment (positive, neutral, or negative) of conversations in audio and video files.
 
 :::image type="content" source="../media/capabilities/audio-analysis.gif" alt-text="Illustration of audio generation and classification workflow.":::
 
@@ -119,9 +119,9 @@ With the `2025-05-01-preview`, we introduce two modes, `pro` and `standard`. Azu
 
 The data processing location refers to the geographical region where your content is analyzed and processed. This feature allows you to specify the region where your data can be processed, ensuring compliance with data residency requirements and optimizing performance based on your needs:
 
-   1. **Data Residency Compliance**: Many organizations have strict regulations regarding where their data can be stored and processed. By specifying the processing location, you can ensure that your content is handled in compliance with local data residency laws.
+ * **Data Residency Compliance**: Many organizations have strict regulations regarding where their data can be stored and processed. By specifying the processing location, you can ensure that your content is handled in compliance with local data residency laws.
 
-   1. **Scalability and Capacity**: Choosing a global processing location enables greater capacity and potentially lower latencies. Selection is beneficial for high-volume data processing scenarios where performance and scalability are critical.
+ * **Scalability and Capacity**: Choosing a global processing location enables greater capacity and potentially lower latencies. Selection is beneficial for high-volume data processing scenarios where performance and scalability are critical.
 
 #### Supported processing locations
 
@@ -135,9 +135,9 @@ Azure AI Content Understanding supports three processing locations:
 
 ***Example Use Cases***
 
-1. **Document Analysis**: A financial institution in the European Union (`EU`) needs to analyze customer documents while ensuring compliance with EU data residency regulations. Specifying the `EU` as the processing location enables the institution to meet regulatory requirements while using Azure AI Content Understanding.
+ * **Document Analysis**: A financial institution in the European Union (`EU`) needs to analyze customer documents while ensuring compliance with EU data residency regulations. Specifying the `EU` as the processing location enables the institution to meet regulatory requirements while using Azure AI Content Understanding.
 
-1. **Video Content Analysis**: A media company with a global audience wants to analyze video content for metadata extraction and tagging. Choosing a global processing location enables optimization of performance and scalability, ensuring efficient processing of large volumes of video data.
+ * **Video Content Analysis**: A media company with a global audience wants to analyze video content for metadata extraction and tagging. Choosing a global processing location enables optimization of performance and scalability, ensuring efficient processing of large volumes of video data.
 
 To learn more, *see* [Azure OpenAI Deployment Data processing Locations](../../openai/how-to/deployment-types.md#azure-openai-deployment-data-processing-locations).
 

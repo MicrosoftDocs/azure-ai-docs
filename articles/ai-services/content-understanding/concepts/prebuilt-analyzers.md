@@ -82,7 +82,7 @@ With the **`2025-05-01-preview`**, any prebuilt analyzer can be inherited using 
 ## Analyzer details and configurations
 
 * **Document Analyzer**: Uses `OCR` for `.pdf`,`.tiff`, and `image` files.
-* **Image Analyzer**: Doesn't use `OCR`but generates image descriptions.
+* **Image Analyzer**: Doesn't use `OCR` but generates image descriptions.
 * **Audio Analyzer**: Returns transcript and summary extraction.
 * **Video Analyzer**: Returns keyframes, transcript, and segmentation.
 * **Call Center Analyzer**: Summarizes and extracts insights from audio. Supports audio text.
