@@ -66,7 +66,7 @@ Because the representation is purely mathematical, it doesn't convey why two ima
 Many solutions need both encoding paths. Diagrams, flow charts, and other explanation-rich visuals are verbalized so that semantic information is available for RAG and AI agent grounding. Screenshots, product photos, or artwork are embedded directly for efficient similarity search. You can customize your Azure AI Search index and indexer skillset pipeline so it can store the two sets of vectors and retrieve them side by side.
 
 
-### Tutorials and samples
+## Tutorials and samples
 
 To help you get started with multimodal search in Azure AI Search, here's a collection of tutorials and samples that demonstrate how to create and optimize multimodal indexes using Azure functionalities and capabilities. 
 
