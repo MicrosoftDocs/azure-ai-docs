@@ -35,6 +35,9 @@ model_config = AzureOpenAIModelConfiguration(
 )
 ```
 
+> [!TIP]
+> We recommend using `o3-mini` for a balance of reasoning capability and cost efficiency.
+
 ## Coherence
 
 `CoherenceEvaluator` measures the logical and orderly presentation of ideas in a response, allowing the reader to easily follow and understand the writer's train of thought. A coherent response directly addresses the question with clear connections between sentences and paragraphs, using appropriate transitions and a logical sequence of ideas. Higher scores mean better coherence.
