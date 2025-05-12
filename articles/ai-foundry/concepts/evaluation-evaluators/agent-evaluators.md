@@ -11,7 +11,9 @@ ms.author: lagayhar
 author: lgayhardt
 ---
 
-# Agent evaluators
+# Agent evaluators (preview)
+
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Agents are powerful productivity assistants. They can plan, make decisions, and execute actions. Agents typically first [reason through user intents in conversations](#intent-resolution), [select the correct tools](#tool-call-accuracy) to call and satisfy the user requests, and [complete various tasks](#task-adherence) according to their instructions.
 
