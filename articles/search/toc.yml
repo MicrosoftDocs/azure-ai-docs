@@ -210,7 +210,7 @@ items:
     - name: Security baseline
       href: /security/benchmark/azure/baselines/cognitive-search-security-baseline?toc=/azure/search/TOC.json
     - name: Query with permission filters
-      href: search-query-acls-rbac-enforcement.md
+      href: search-query-access-control-rbac-enforcement.md
     - name: Document-level security
       href: search-document-level-access-overview.md
 - name: How-to guides
