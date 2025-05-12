@@ -28,7 +28,7 @@ By default, the Standard Setup with Private Network Isolation ensures:
 
 For customers without an existing virtual network, the Standard Setup with Private Networking template simplifies deployment by automatically provisioning the necessary network infrastructures. 
 
-## Architecture Diagram
+## Architecture diagram
 
 :::image type="content" source="../media/private-network-isolation.png" alt-text="A diagram showing virtual network architecture.":::
 ### Known limitations
@@ -124,18 +124,18 @@ The following DNS zones are configured:
 * privatelink.search.windows.net 
 * privatelink.services.ai.azure.com  
 
-### Virtual Network (Vnet) Capabilities
+### Virtual network (Vnet) capabilities
 Virtual networks enable you to specify which endpoints can make API calls to your resources. The Azure service automatically rejects API calls from devices outside your defined network. You can establish allowed networks using either formula-based definitions or by creating an exhaustive list of permitted endpoints. This security layer can be combined with other security measures for enhanced protection.
 
 
-### Network Rules
+### Network rules
 
 All accounts and their corresponding projects are protected by default with **deny-by-default network rules**, requiring explicit configuration to allow access through private endpoints.
 
-These rules apply to **all protocols**, including REST and WebSocket. Even internal testing tools like Azure Portal's test consoles require explicit permission to access your account and its child resources—ensuring complete security across all agent projects.
+These rules apply to **all protocols**, including REST and WebSocket. Even internal testing tools like Azure portal's test consoles require explicit permission to access your account and its child resources—ensuring complete security across all agent projects.
 
 
-### Private Endpoints
+### Private endpoints
 
 For Agents, private endpoints ensure secure, internal-only connectivity for the following Azure resources:
 
@@ -145,7 +145,7 @@ For Agents, private endpoints ensure secure, internal-only connectivity for the 
 - Azure Cosmos DB
 
 
-### DNS Zone Configurations Summary
+### DNS zone configurations summary
 
 | Private Link Resource Type | Sub Resource | Private DNS Zone Name | Public DNS Zone Forwarders |
 |----------------------------|--------------|------------------------|-----------------------------|
@@ -156,7 +156,7 @@ For Agents, private endpoints ensure secure, internal-only connectivity for the 
 
 
 
-### Access Your Secured Agents
+### Access your secured agents
 
 Once your template deployment is complete, you can access your Foundry project behind a virtual network using one of the following methods:
 * **Azure VPN Gateway**: Connects on-premises networks to the virtual network over a private connection. Connection is made over the public internet. There are two types of VPN gateways that you might use: 
@@ -176,8 +176,8 @@ Once your template deployment is complete, you can access your Foundry project b
 
 This setup enables AI agents to operate entirely within a dedicated, isolated virtual network. By leveraging private network isolation (BYO VNet), organizations can enforce custom security policies, ensuring that AI agents operate within their trusted infrastructure.    
 
-Our goal is to accelerate the development and deployment of AI agents without compromising critical security requirements. With our bicep and arm templates, you can quickly set up your agent environment while still maintaining full control over their networking and data.   
+Our goal is to accelerate the development and deployment of AI agents without compromising critical security requirements. With our bicep and ARM templates, you can quickly set up your agent environment while still maintaining full control over their networking and data.   
 
 
-## What's Next?
+## What's next?
 You’ve now successfully configured a Network Secure Account and project, use the [quickstart](../quickstart.md) to create your first agent. 
