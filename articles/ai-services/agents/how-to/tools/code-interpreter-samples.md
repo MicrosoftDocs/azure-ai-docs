@@ -144,13 +144,13 @@ for image_content in messages.image_contents:
 
 :::zone pivot="csharp" 
 
-# How to use the code interpreter tool
+## Using the .NET SDK
 
 In this example we will demonstrate the Agent streaming support, code interpreter creating an image and downloading and viewing the image.
 
 1. First, we set up configuration using `appsettings.json`, create a `PersistentAgentsClient`, and then create a `PersistentAgent` with the Code Interpreter tool.
 
-```C# Snippet:AgentsStreaming_Step1_Common_SetupClientAndConfig
+```csharp
 using Azure;
 using Azure.AI.Agents.Persistent;
 using Azure.Identity;
@@ -170,7 +170,7 @@ PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential(
 
 Synchronous sample:
 
-```C# Snippet:AgentsStreaming_Step1_Sync_CreateAgent
+```csharp
 PersistentAgent agent = client.Administration.CreateAgent(
     model: modelDeploymentName,
     name: "My Friendly Test Agent",
@@ -181,7 +181,7 @@ PersistentAgent agent = client.Administration.CreateAgent(
 
 Asynchronous sample:
 
-```C# Snippet:AgentsStreaming_Step1_Async_CreateAgent
+```csharp
 PersistentAgent agent = await client.Administration.CreateAgentAsync(
     model: modelDeploymentName,
     name: "My Friendly Test Agent",
@@ -194,7 +194,7 @@ PersistentAgent agent = await client.Administration.CreateAgentAsync(
 
 Synchronous sample:
 
-```C# Snippet:AgentsStreaming_Step2_Sync_CreateThreadAndMessage
+```csharp
 PersistentAgentThread thread = client.Threads.CreateThread();
 
 client.Messages.CreateMessage(
@@ -205,7 +205,7 @@ client.Messages.CreateMessage(
 
 Asynchronous sample:
 
-```C# Snippet:AgentsStreaming_Step2_Async_CreateThreadAndMessage
+```csharp
 PersistentAgentThread thread = await client.Threads.CreateThreadAsync();
 
 await client.Messages.CreateMessageAsync(
@@ -218,7 +218,7 @@ await client.Messages.CreateMessageAsync(
 
 Synchronous sample:
 
-```C# Snippet:AgentsStreaming_Step3_Sync_CreateAndPollRun
+```csharp
 ThreadRun run = client.Runs.CreateRun(
     thread.Id,
     agent.Id,
@@ -236,7 +236,7 @@ while (run.Status == RunStatus.Queued
 
 Asynchronous sample:
 
-```C# Snippet:AgentsStreaming_Step3_Async_CreateAndPollRun
+```csharp
 ThreadRun run = await client.Runs.CreateRunAsync(
     thread.Id,
     agent.Id,
@@ -256,7 +256,7 @@ while (run.Status == RunStatus.Queued
 
 Synchronous sample:
 
-```C# Snippet:AgentsStreaming_Step4_Sync_ProcessMessages
+```csharp
 Pageable<ThreadMessage> messages = client.Messages.GetMessages(
     threadId: thread.Id,
     order: ListSortOrder.Ascending);
@@ -291,7 +291,7 @@ foreach (ThreadMessage threadMessage in messages)
 
 Asynchronous sample:
 
-```C# Snippet:AgentsStreaming_Step4_Async_ProcessMessages
+```csharp
 AsyncPageable<ThreadMessage> messages = client.Messages.GetMessagesAsync(
     threadId: thread.Id,
     order: ListSortOrder.Ascending);
@@ -328,14 +328,14 @@ await foreach (ThreadMessage threadMessage in messages)
 
 Synchronous sample:
 
-```C# Snippet:AgentsStreaming_Step5_Sync_Cleanup
+```csharp
 client.Threads.DeleteThread(threadId: thread.Id);
 client.Administration.DeleteAgent(agentId: agent.Id);
 ```
 
 Asynchronous sample:
 
-```C# Snippet:AgentsStreaming_Step5_Async_Cleanup
+```csharp
 await client.Threads.DeleteThreadAsync(threadId: thread.Id);
 await client.Administration.DeleteAgentAsync(agentId: agent.Id);
 ```
