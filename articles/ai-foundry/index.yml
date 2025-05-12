@@ -43,7 +43,7 @@ productDirectory:
         - url: /azure/developer/ai/intelligent-app-templates
           text: Start with an AI template
         - url: ./quickstarts/get-started-code.md
-          text: Get started with the Azure AI Foundry SDK
+          text: Quickstart for Azure AI Foundry
     # Card
     - title: Azure AI Foundry Models
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg
