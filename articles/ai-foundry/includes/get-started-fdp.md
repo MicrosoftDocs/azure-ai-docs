@@ -127,6 +127,8 @@ Use either the Azure AI Foundry portal or Azure CLI to create a project.
 
 # [Python SDK](#tab/python)
 
+Substitute your value for the endpoint in this code:
+
 :::code language="python" source="~/foundry-samples/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="chat_completion":::
 
 
