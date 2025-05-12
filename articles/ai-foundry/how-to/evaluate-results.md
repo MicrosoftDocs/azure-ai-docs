@@ -89,7 +89,7 @@ And here are some examples of the metrics results for the conversation scenario.
 
 When selecting “View evaluation results per turn”, you see the following screen:
 
-:::image type="content" source="../media/evaluations/view-results/png" alt-text="Screenshot of evaluation results per turn." lightbox="../media/evaluations/view-results/metric-per-turn.png":::
+:::image type="content" source="../media/evaluations/view-results/metric-per-turn.png" alt-text="Screenshot of evaluation results per turn." lightbox="../media/evaluations/view-results/metric-per-turn.png":::
 
 For a safety evaluation in a multi-modal scenario (text + images), you can review the images from both the input and output in the detailed metrics result table to better understand the evaluation result. Since multi-modal evaluation is currently supported only for conversation scenarios, you can select "View evaluation results per turn" to examine the input and output for each turn.  
 
@@ -165,6 +165,6 @@ Understanding the built-in metrics is vital for assessing the performance and ef
 Learn more about how to evaluate your generative AI applications:
 - [Evaluate your generative AI apps via the playground](../how-to/evaluate-prompts-playground.md)
 - [Evaluate your generative AI apps with the Azure AI Foundry portal or SDK](../how-to/evaluate-generative-ai-app.md)
-- [Creating evaluations specifically with OpenAI evaluation graders in Azure OpenAI Hub](../../ai-services/openai/how-to/evaluations)
+- [Creating evaluations specifically with OpenAI evaluation graders in Azure OpenAI Hub](../../ai-services/openai/how-to/evaluations.md)
 
 Learn more about [harm mitigation techniques](../concepts/evaluation-approach-gen-ai.md).
