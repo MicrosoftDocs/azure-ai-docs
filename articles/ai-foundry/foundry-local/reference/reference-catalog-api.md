@@ -13,38 +13,62 @@ author: maanavd
 
 # Catalog API Reference
 
-This document provides a detailed reference for catalog implementers that want to create their own catalog implementations to be integrated with Foundry Local.
+Foundry Local allows you to develop and integrate your own catalog service. This document provides guidance on:
 
-The catalog API is a RESTful API that allows you to query and manage your model catalog. The API supports the following operations:
+- The model format required for the catalog API.
+- The model storage requirements.
+- The request and response format required for your catalog API to integrate with Foundry Local.
 
-- **Search**: Search for models in the catalog based on various criteria.
-- **List**: List all models in the catalog.
+## Model format
 
-## Request
+The model files hosted in your model catalog are required to be in the [Open Neural Network Exchange (ONNX)](https://onnx.ai/) format to work with Foundry Local. For more information on how to compile Hugging Face and PyTorch models to ONNX, see the [Compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hugging-face-models.md) article.
 
-THe catalog API is a POST endpoint that accepts a JSON request body. The request must be anonymous and does not require authentication.
+## Model Storage
 
-The request format for the catalog API is as follows:
+The model files should be stored on [Azure Blob Storage](https://learn.microsoft.com/azure/storage/blobs/storage-blobs-introduction). The model catalog service should be able to access the model files stored in Azure Blob Storage.
+
+## API format
+
+### Request
+
+Your catalog service needs to support a POST endpoint that accepts a JSON request body. The request format for the catalog API is as follows:
 
 - **Method**: `POST`
 - **Content-Type**: `application/json`
-- **User-Agent**: `AzureAiStudio`
 
-The request body must be a JSON object that contains the following fields:
+The request body *must* be a JSON object that *accepts* the following fields:
 
 - `resourceIds`: An array of resource IDs that specify the resources to be queried.
+    - `resourceId`: The ID of the resource.
+    - `entityContainerType`: The type of entity container (for example, `Registry`, `Workspace`, etc.).
 - `indexEntitiesRequest`: An object that contains the search parameters.
   - `filters`: An array of filter objects that specify the criteria for filtering the search results.
+      - `field`: The field to filter on (for example, `type`, `kind`, etc.).
+      - `operator`: The operator to use for the filter. For example, `eq` (equals), `ne` (not equals), `gt` (greater than), `lt` (less than), etc.
+      - `values`: An array of values to match against the field.
+  - `orderBy`: An array of fields to order the results by.
+  - `searchText`: A string to search for in the results.
   - `pageSize`: The maximum number of results to return (for pagination).
   - `skip`: The number of results to skip (for pagination).
   - `continuationToken`: A token for pagination to continue from a previous request.
 
-### Example request
+#### Filterable Fields (optional)
+
+You *must* implement your catalog API that *accepts* the [Request](#request) format, but it's *optional* as to whether you implement server-side filtering in your catalog service. Not implementing server-side filtering is a fast way to implement your catalog service, but it might not be efficient way to search for models.
+
+If you choose to implement server-side filtering, you can use the following fields to filter the results:
+
+- `type`: The type of the model (for example, `models`, `datasets`, etc.).
+- `kind`: The kind of the model (for example, `Versioned`, `Unversioned`, etc.).
+- `properties/variantInfo/variantMetadata/device`: The device type (for example, `cpu`, `gpu`, etc.).
+- `properties/variantInfo/variantMetadata/executionProvider`: The execution provider (for example, `cpuexecutionprovider`, `webgpuexecutionprovider`, etc.).
+
+
+#### Example request
 
 ```bash
 curl POST <your-catalog-api-endpoint> \
 -H "Content-Type: application/json" \
--H "User-Agent: AzureAiStudio" \
 -d '{
   "resourceIds": [
     {
@@ -66,20 +90,6 @@ curl POST <your-catalog-api-endpoint> \
         "operator": "eq",
         "values": [
           "Versioned"
-        ]
-      },
-      {
-        "field": "labels",
-        "operator": "eq",
-        "values": [
-          "latest"
-        ]
-      },
-      {
-        "field": "annotations/tags/foundryLocal",
-        "operator": "eq",
-        "values": [
-          ""
         ]
       },
       {
@@ -106,240 +116,116 @@ curl POST <your-catalog-api-endpoint> \
 }'
 ```
 
-## Reponse
+### Response
 
 The response from the catalog API is a JSON object that contains the search results. The response schema is as follows:
 
 ```json
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "AzureFoundryResponse",
   "type": "object",
   "properties": {
     "indexEntitiesResponse": {
-      "$ref": "#/definitions/IndexEntitiesResponse"
-    },
-    "regionalErrors": {
-      "type": ["object", "null"]
-    },
-    "resourceSkipReasons": {
-      "type": ["object", "null"]
-    },
-    "shardErrors": {
-      "type": ["object", "null"]
-    },
-    "numberOfResourcesNotIncludedInSearch": {
-      "type": ["integer", "null"]
-    }
-  },
-  "definitions": {
-    "IndexEntitiesResponse": {
       "type": "object",
       "properties": {
         "totalCount": {
-          "type": ["integer", "null"]
+          "type": "integer",
+          "description": "The total count of entities."
         },
         "value": {
-          "type": ["array", "null"],
+          "type": "array",
+          "description": "An array of LocalModel objects.",
           "items": {
             "$ref": "#/definitions/LocalModel"
           }
         },
         "nextSkip": {
-          "type": ["integer", "null"]
+          "type": "integer",
+          "description": "The number of items to skip for the next request."
         },
         "continuationToken": {
-          "type": ["string", "null"]
+          "type": "string",
+          "description": "A token to continue fetching results."
         },
-        "entityContainerIdsToEntityContainerMetadata": {
-          "type": ["object", "null"],
-          "additionalProperties": {
-            "$ref": "#/definitions/EntityContainerMetadata"
-          }
-        },
-        "resourcesNotQueriedReasons": {
-          "type": ["object", "null"]
-        },
-        "numberOfEntityContainersNotQueried": {
-          "type": ["integer", "null"]
-        },
-        "fanoutData": {
-          "type": ["object", "null"]
-        },
-        "regionalFanoutState": {
-          "type": ["object", "null"]
-        },
-        "shardErrors": {
-          "type": ["object", "null"]
-        },
-        "canSupportSkip": {
-          "type": ["boolean", "null"]
-        },
-        "facets": {
-          "type": ["object", "null"]
-        }
       }
-    },
-    "EntityContainerMetadata": {
-      "type": "object",
-      "properties": {
-        "resourceId": {
-          "type": ["string", "null"]
-        },
-        "subscriptionId": {
-          "type": ["string", "null"]
-        },
-        "resourceGroup": {
-          "type": ["string", "null"]
-        },
-        "resourceName": {
-          "type": ["string", "null"]
-        },
-        "entityContainerType": {
-          "type": ["string", "null"]
-        },
-        "regions": {
-          "type": ["array", "null"],
-          "items": {
-            "$ref": "#/definitions/Region"
-          }
-        },
-        "tenantId": {
-          "type": ["string", "null"]
-        },
-        "immutableResourceId": {
-          "type": ["string", "null"]
-        },
-        "isPublicResource": {
-          "type": ["boolean", "null"]
-        },
-        "isTradeRestrictedResource": {
-          "type": ["boolean", "null"]
-        }
-      }
-    },
-    "Region": {
-      "type": "object",
-      "properties": {
-        "regionName": {
-          "type": ["string", "null"]
-        },
-        "isPrimaryRegion": {
-          "type": ["boolean", "null"]
-        }
-      }
-    },
+    }
+  },
+  "definitions": {
     "LocalModel": {
       "type": "object",
       "properties": {
-        "relevancyScore": {
-          "type": ["number", "null"]
-        },
-        "entityResourceName": {
-          "type": ["string", "null"]
-        },
-        "highlights": {
-          "type": ["object", "null"]
-        },
-        "schemaId": {
-          "type": ["string", "null"],
-          "format": "uuid"
-        },
-        "entityId": {
-          "type": ["string", "null"]
-        },
-        "kind": {
-          "type": ["string", "null"]
-        },
         "annotations": {
-          "type": ["object", "null"]
-        },
-        "properties": {
-          "type": ["object", "null"]
-        },
-        "internal": {
-          "type": ["object", "null"]
-        },
-        "updateSequence": {
-          "type": ["integer", "null"]
-        },
-        "type": {
-          "type": ["string", "null"]
-        },
-        "version": {
-          "type": ["string", "null"]
-        },
-        "entityContainerId": {
-          "type": ["string", "null"],
-          "format": "uuid"
-        },
-        "entityObjectId": {
-          "type": ["string", "null"]
-        },
-        "resourceType": {
-          "type": ["string", "null"]
-        },
-        "relationships": {
-          "type": ["array", "null"],
-          "items": {
-            "type": "object"
+          "type": "object",
+          "description": "Annotations associated with the model.",
+          "properties": {
+            "tags": {
+              "type": "object",
+              "description": "Tags associated with the annotation.",
+              "properties": {
+                "author": { "type": "string" },
+                "alias": { "type": "string" },
+                "directoryPath": { "type": "string" },
+                "license": { "type": "string" },
+                "licenseDescription": { "type": "string" },
+                "promptTemplate": { "type": "string" },
+                "task": { "type": "string" }
+              }
+            },
+            "systemCatalogData": {
+              "type": "object",
+              "properties": {
+                "publisher": { "type": "string" },
+                "displayName": { "type": "string" },
+              }
+            },
+            "name": { "type": "string" }
           }
         },
+        "properties": {
+          "type": "object",
+          "description": "Properties of the model.",
+          "properties": {
+            "name": { "type": "string" },
+            "version": { "type": "integer" },
+            "alphanumericVersion": { "type": "string" },
+            "variantInfo": {
+              "type": "object",
+              "properties": {
+                "parents": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "assetId": { "type": "string" }
+                    }
+                  }
+                },
+                "variantMetadata": {
+                  "type": "object",
+                  "properties": {
+                    "modelType": { "type": "string" },
+                    "device": { "type": "string" },
+                    "executionProvider": { "type": "string" },
+                    "fileSizeBytes": { "type": "integer" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "version": {
+          "type": "string",
+          "description": "The version of the model."
+        },
         "assetId": {
-          "type": ["string", "null"]
-        },
-        "usage": {
-          "type": ["object", "null"]
-        },
-        "isAFragment": {
-          "type": ["boolean", "null"]
-        },
-        "fragmentId": {
-          "type": ["object", "null"]
+          "type": "string",
+          "description": "The asset ID of the model."
         }
       }
     }
   }
 }
-
 ```
 
-## Filterable Fields
-
-The following fields should be filterable in your catalog API:
-
-- `name`
-- `version`
-- `labels`
-- `type`
-- `kind`
-- `properties/variantInfo/variantMetadata/device`
-- `properties/variantInfo/variantMetadata/executionProvider`
-- `properties/variantInfo/variantMetadata/modelType`
-- `popularity`
-- `createdTime`
-- `displayName`
-- `summary`
-- `license`
-- `publisher`
-- `inferenceTasks`
-- `finetuningTasks`
-- `modelLimits/textLimits/maxOutputTokens`
-- `modelLimits/textLimits/inputContextWindow`
-- `modelLimits/supportedInputModalities`
-- `modelLimits/supportedOutputModalities`
-- `modelLimits/supportedLanguages`
-- `playgroundLimits/rateLimitTier`
-- `modelCapabilities`
-- `AzureOffers`
-
-## Supported Orderable Fields
-
-The following fields should be orderable in your catalog API:
-
-- `name`
-- `version`
-- `popularity`
-- `createdTime`
-- `displayName`
-- `publisher`
+> [!NOTE]
+> The `assetID` should be an Azure Blob storage URL.

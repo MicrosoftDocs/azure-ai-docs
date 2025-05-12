@@ -219,8 +219,15 @@ foundry cache ls  # should show llama-3.2
 foundry cache cd models
 foundry cache ls  # should show llama-3.2
 ```
-
 ---
+
+> [!CAUTION]
+> Remember to change the model cache back to the default directory when you're done by running:
+> 
+> ```bash 
+> foundry cache cd ./foundry/cache/models.
+> ```
+
 
 ### Using the Foundry Local CLI
 
@@ -235,40 +242,6 @@ foundry model run llama-3.2 --verbose
 ```powershell
 foundry model run llama-3.2 --verbose
 ```
-
----
-
-### Using the REST API
-
-### [Bash](#tab/Bash)
-
-```bash
-curl -X POST http://localhost:5272/v1/chat/completions \
--H "Content-Type: application/json" \
--d '{
-    "model": "llama-3.2",
-    "messages": [{"role": "user", "content": "What is the capital of France?"}],
-    "temperature": 0.7,
-    "max_tokens": 50,
-    "stream": true
-}'
-```
-
-### [PowerShell](#tab/PowerShell)
-
-```powershell
-Invoke-RestMethod -Uri http://localhost:5272/v1/chat/completions `
-    -Method Post `
-    -ContentType "application/json" `
-    -Body '{
-        "model": "llama-3.2",
-        "messages": [{"role": "user", "content": "What is the capital of France?"}],
-        "temperature": 0.7,
-        "max_tokens": 50,
-        "stream": true
-    }'
-```
-
 ---
 
 ### Using the OpenAI Python SDK
@@ -277,33 +250,52 @@ The OpenAI Python SDK is a convenient way to interact with the Foundry Local RES
 
 ```bash
 pip install openai
+pip install foundry-local-sdk
 ```
 
 Then, you can use the following code to run the model:
 
 ```python
-from openai import OpenAI
+import openai
+from foundry_local import FoundryLocalManager
 
-client = OpenAI(
-    base_url="http://localhost:5272/v1",
-    api_key="none",  # required but not used
+modelId = "llama-3.2"
+
+# Create a FoundryLocalManager instance. This will start the Foundry 
+# Local service if it is not already running and load the specified model.
+manager = FoundryLocalManager(modelId)
+
+# The remaining code us es the OpenAI Python SDK to interact with the local model.
+
+# Configure the client to use the local Foundry service
+client = openai.OpenAI(
+    base_url=manager.endpoint,
+    api_key=manager.api_key  # API key is not required for local usage
 )
 
+# Set the model to use and generate a streaming response
 stream = client.chat.completions.create(
-    model="llama-3.2",
-    messages=[{"role": "user", "content": "What is the capital of France?"}],
-    temperature=0.7,
-    max_tokens=50,
-    stream=True,
+    model=manager.get_model_info(modelId).id,
+    messages=[{"role": "user", "content": "What is the golden ratio?"}],
+    stream=True
 )
 
-for event in stream:
-    print(event.choices[0].delta.content, end="", flush=True)
-print("\n\n")
+# Print the streaming response
+for chunk in stream:
+    if chunk.choices[0].delta.content is not None:
+        print(chunk.choices[0].delta.content, end="", flush=True)
 ```
 
 > [!TIP]
-> You can use any language that supports HTTP requests. For more information, read the [Integrate inferencing SDKs with Foundry Local](../how-to/how-to-integrate-with-inference-sdks.md) article.
+> You can use any language that supports HTTP requests. For more information, read the [Integrated inferencing SDKs with Foundry Local](../how-to/how-to-integrate-with-inference-sdks.md) article.
+
+## Finishing up
+
+After you're done using the custom model, you should reset the model cache to the default directory using:
+
+```bash
+foundry cache cd ./foundry/cache/models
+```
 
 ## Next steps
 

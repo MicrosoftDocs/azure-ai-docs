@@ -18,7 +18,7 @@ items:
   - name: Integrate with LangChain
     href: how-to/how-to-use-langchain-with-foundry-local.md
   - name: Integrate with Open Web UI
-    href: how-to/how-to-use-langchain-with-foundry-local.md
+    href: how-to/how-to-chat-application-with-open-web-ui.md
   - name: Compile Hugging Face models to run on Foundry Local
     href: how-to/how-to-compile-hugging-face-models.md
 - name: Reference

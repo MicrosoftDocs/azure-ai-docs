@@ -46,7 +46,7 @@ landingContent:
           - text: Integrate with LangChain
             url: how-to/how-to-use-langchain-with-foundry-local.md
           - text: Integrate with Open Web UI
-            url: how-to/how-to-use-langchain-with-foundry-local.md
+            url: how-to/how-to-chat-application-with-open-web-ui.md
           - text: Compile Hugging Face models to run on Foundry Local
             url: how-to/how-to-compile-hugging-face-models.md
   

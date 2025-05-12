@@ -14,20 +14,20 @@ author: maanavd
 Install the Python package:
 
 ```bash
-pip install foundry-manager-sdk
+pip install foundry-local-sdk
 ```
 
-### FoundryManager Class
+### FoundryLocalManager Class
 
-The `FoundryManager` class provides methods to manage models, cache, and the Foundry Local service.
+The `FoundryLocalManager` class provides methods to manage models, cache, and the Foundry Local service.
 
 #### Initialization
 
 ```python
-from foundry_manager import FoundryManager
+from foundry_local import FoundryLocalManager
 
 # Initialize and optionally bootstrap with a model
-manager = FoundryManager(model_id_or_alias=None, bootstrap=True)
+manager = FoundryLocalManager(model_id_or_alias=None, bootstrap=True)
 ```
 
 - `model_id_or_alias`: (optional) Model ID or alias to download and load at startup.
@@ -104,7 +104,7 @@ manager.unload_model(alias)
 
 ### Integrate with OpenAI SDK
 
-Install the openai package:
+Install the OpenAI package:
 
 ```bash
 pip install openai
