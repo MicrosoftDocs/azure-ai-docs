@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 05/08/2025
+ms.date: 05/12/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -152,7 +152,7 @@ To install the packages and load the connections:
 
 ## Create a search index
 
-In Azure AI Search, an index is a structured collection of data. The following code defines an index named `earth-at-night`, which you specified using the `index_name` variable in the previous section.
+In Azure AI Search, an index is a structured collection of data. The following code defines an index named `earth_at_night`, which you specified using the `index_name` variable in the previous section.
 
 ```Python
 from azure.search.documents.indexes.models import SearchIndex, SearchField, VectorSearch, VectorSearchProfile, HnswAlgorithmConfiguration, AzureOpenAIVectorizer, AzureOpenAIVectorizerParameters, SemanticSearch, SemanticConfiguration, SemanticPrioritizedFields, SemanticField
@@ -212,7 +212,7 @@ The index schema contains fields for document identification and page content, e
 
 ## Upload documents to the index
 
-Currently, the `earth-at-night` index is empty. Run the following code to populate the index with JSON documents from NASA's Earth at Night e-book. As required by Azure AI Search, each document conforms to the fields and data types defined in the index schema.
+Currently, the `earth_at_night` index is empty. Run the following code to populate the index with JSON documents from NASA's Earth at Night e-book. As required by Azure AI Search, each document conforms to the fields and data types defined in the index schema.
 
 ```Python
 from azure.search.documents import SearchIndexingBufferedSender
@@ -229,7 +229,7 @@ print(f"Documents uploaded to index '{index_name}'")
 
 ## Create a search agent
 
-To connect Azure AI Search to your `gpt-4o-mini` deployment and target the `earth-at-night` index at query time, you need a search agent. The following code defines an agent named `earth-search-agent`, which you specified using the `agent_name` variable in a previous section.
+To connect Azure AI Search to your `gpt-4o-mini` deployment and target the `earth_at_night` index at query time, you need a search agent. The following code defines an agent named `earth-search-agent`, which you specified using the `agent_name` variable in a previous section.
 
 To ensure relevant and semantically meaningful responses, `default_reranker_threshold` is set to exclude responses with a reranker score of `2.5` or lower.
 
@@ -284,7 +284,7 @@ messages = [
 
 You're ready to initiate the agentic retrieval pipeline. The input for this pipeline is the `messages` array, whose conversation history includes the instructions you previously provided and user queries. Additionally, `target_index_params` specifies the index to query and other configurations, such as the semantic ranker threshold.
 
-The following code sends a two-part user query to `earth-search-agent`, which deconstructs the query into subqueries, runs the subqueries against both text fields and vector embeddings in the `earth-at-night` index, and ranks and merges the results. The response is then appended to the `messages` array.
+The following code sends a two-part user query to `earth-search-agent`, which deconstructs the query into subqueries, runs the subqueries against both text fields and vector embeddings in the `earth_at_night` index, and ranks and merges the results. The response is then appended to the `messages` array.
 
 ```Python
 from azure.search.documents.agent import KnowledgeAgentRetrievalClient
@@ -446,7 +446,7 @@ Suburban belts tend to display larger December brightening than urban cores, des
 
 ## Continue the conversation
 
-Continue the conversation by sending another user query to `earth-search-agent`. The following code reruns the retrieval pipeline, fetching relevant content from the `earth-at-night` index and appending the response to the `messages` array. However, unlike before, you can now use the Azure OpenAI client to generate an answer based on the retrieved content.
+Continue the conversation by sending another user query to `earth-search-agent`. The following code reruns the retrieval pipeline, fetching relevant content from the `earth_at_night` index and appending the response to the `messages` array. However, unlike before, you can now use the Azure OpenAI client to generate an answer based on the retrieved content.
 
 ```Python
 messages.append({

@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 05/08/2025
+ms.date: 05/12/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -36,7 +36,7 @@ To run agentic retrieval, you must deploy three models to your Azure OpenAI reso
 
 + (Optional) An embedding model for vector queries.
 
-Agentic retrieval [supports several models](../../search-agentic-retrieval-how-to-create.md#supported-models), but this quickstart assumes `gpt-4o-mini` for the query-planning LLM and `text-embedding-3-large` for the embedding model. To use the answer-generating LLM, which is excluded from the REST version of this quickstart, see the Python version.
+Agentic retrieval [supports several models](../../search-agentic-retrieval-how-to-create.md#supported-models), but this quickstart assumes `gpt-4o-mini` for the query-planning LLM and `text-embedding-3-large` for the embedding model. To use the answer-generating LLM, see the Python version of this quickstart.
 
 To deploy the Azure OpenAI models:
 
@@ -157,7 +157,7 @@ To load the connections:
 
 ## Create a search index
 
-In Azure AI Search, an index is a structured collection of data. Use [Create Index](/rest/api/searchservice/indexes/create) to define an index named `earth-at-night`, which you specified using the `@index-name` variable in the previous section.
+In Azure AI Search, an index is a structured collection of data. Use [Create Index](/rest/api/searchservice/indexes/create) to define an index named `earth_at_night`, which you specified using the `@index-name` variable in the previous section.
 
 ```HTTP
 ### Create an index
@@ -247,7 +247,7 @@ The index schema contains fields for document identification and page content, e
 
 ## Upload documents to the index
 
-Currently, the `earth-at-night` index is empty. Use [Index Documents](/rest/api/searchservice/documents/index) to populate the index with JSON documents from NASA's Earth at Night e-book. As required by Azure AI Search, each document conforms to the fields and data types defined in the index schema.
+Currently, the `earth_at_night` index is empty. Use [Index Documents](/rest/api/searchservice/documents/index) to populate the index with JSON documents from NASA's Earth at Night e-book. As required by Azure AI Search, each document conforms to the fields and data types defined in the index schema.
 
 ```HTTP
 ### Load documents
@@ -281,7 +281,7 @@ POST {{baseUrl}}/indexes/{{index-name}}/docs/index?api-version={{api-version}}  
 
 ## Create a search agent
 
-To connect Azure AI Search to your `gpt-4o-mini` deployment and target the `earth-at-night` index at query time, you need a search agent. Use [Create Knowledge Agents](/rest/api/searchservice/knowledge-agents/create?view=rest-searchservice-2025-05-01-preview&preserve-view=true) to define an agent named `earth-search-agent`, which you specified using the `@agent-name` variable in a previous section.
+To connect Azure AI Search to your `gpt-4o-mini` deployment and target the `earth_at_night` index at query time, you need a search agent. Use [Create Knowledge Agents](/rest/api/searchservice/knowledge-agents/create?view=rest-searchservice-2025-05-01-preview&preserve-view=true) to define an agent named `earth-search-agent`, which you specified using the `@agent-name` variable in a previous section.
 
 To ensure relevant and semantically meaningful responses, `defaultRerankerThreshold` is set to exclude responses with a reranker score of `2.5` or lower.
 
@@ -314,7 +314,7 @@ PUT {{baseUrl}}/agents/{{agent-name}}?api-version={{api-version}}  HTTP/1.1
 
 ## Run the retrieval pipeline
 
-You're ready to initiate the agentic retrieval pipeline. Use [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-05-01-preview&preserve-view=true) to send a two-part user query to `earth-search-agent`, which deconstructs the query into subqueries, runs the subqueries against both text fields and vector embeddings in the `earth-at-night` index, and ranks and merges the results.
+You're ready to initiate the agentic retrieval pipeline. Use [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-05-01-preview&preserve-view=true) to send a two-part user query to `earth-search-agent`, which deconstructs the query into subqueries, runs the subqueries against both text fields and vector embeddings in the `earth_at_night` index, and ranks and merges the results.
 
 ```HTTP
 ### Run agentic retrieval
