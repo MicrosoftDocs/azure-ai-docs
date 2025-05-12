@@ -76,7 +76,7 @@ To use these models, use the [Azure AI Foundry portal](https://ai.azure.com/) to
 
 Though tool-calling support is a core capability for agentic scenarios, we now provide the ability to use models that don’t support tool-calling in our API and SDK. This option can be helpful when you have specific use-cases that don’t require tool-calling. 
 
-The following steps will allow you to utilize any chat-completion model that is available through a [serverless API](/ai-foundry/how-to/model-catalog-overview): 
+The following steps will allow you to utilize any chat-completion model that is available through a [serverless API](/azure/ai-foundry/how-to/model-catalog-overview): 
 
  
 
