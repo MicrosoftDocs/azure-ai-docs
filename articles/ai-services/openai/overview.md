@@ -1,6 +1,5 @@
 ---
 title: What is Azure OpenAI in Azure AI Foundry Models?
-titleSuffix: Azure AI services
 description: Apply advanced language models to variety of use cases with Azure OpenAI
 manager: nitinme
 author: mrbullwinkle
