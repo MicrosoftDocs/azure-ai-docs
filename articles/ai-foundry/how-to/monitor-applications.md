@@ -78,11 +78,11 @@ This dashboard is opened as an editable workbook where you can customize the wor
 
 In the **Application analytics** dashboard view, you can **Open query link** by selecting on the icon in the top right for a particular tile or chart.
 
-:::image type="content" source="../media/how-to/monitor-applications/KQL-1.png" alt-text="Screenshot of application analytics dashboard view highlighting the open query link button in Azure portal." lightbox="../media/how-to/monitor-applications/KQL-1.png":::
+:::image type="content" source="../media/how-to/monitor-applications/kql-1.png" alt-text="Screenshot of application analytics dashboard view highlighting the open query link button in Azure portal." lightbox="../media/how-to/monitor-applications/kql-1.png":::
 
 Once you select that, you can view and run the same KQL queries powering your monitoring view and deep dive into the related data.
 
-:::image type="content" source="../media/how-to/monitor-applications/KQL-2.png" alt-text="Screenshot of logs highlighting KQL mode and results in Azure portal. " lightbox="../media/how-to/monitor-applications/KQL-2.png":::
+:::image type="content" source="../media/how-to/monitor-applications/kql-2.png" alt-text="Screenshot of logs highlighting KQL mode and results in Azure portal. " lightbox="../media/how-to/monitor-applications/kql-2.png":::
 
 ## Set up Azure Alerts
 
