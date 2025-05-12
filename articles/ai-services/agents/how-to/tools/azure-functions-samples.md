@@ -303,9 +303,9 @@ For any issues with the TypeScript code, create an issue on the [sample code rep
 
 ::: zone pivot="csharp"
 
-# Sample for using Azure Functions with agents in Azure.AI.Agents
+## Using the .NET SDK
 
-## Prerequisites
+### Prerequisites
 To make a function call we need to create and deploy the Azure function. In the code snippet below, we have an example of function on C# which can be used by the code above.
 
 ```csharp
@@ -408,7 +408,7 @@ After we have tested the function and made sure it works, please make sure that 
 
 In the example below we are calling function "foo", which responds "Bar".
 
-## Azure.AI.Agents Sample Code
+### .NET Sample Code
 
 1. First, we set up the necessary configuration, initialize the `PersistentAgentsClient`, define the `AzureFunctionToolDefinition` for our Azure Function, and then create the agent. This step includes all necessary `using` directives.
 
