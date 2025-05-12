@@ -45,7 +45,7 @@ This default behavior was chosen to reduce configuration complexity while still 
 - **Account Capability Host**: The account Capability Host has an empty request body except for the parameter capabilityHostKind="Agents". 
 - **Project Capability Host**: Specifies resources for storing agent state, either managed multitenant (basic setup) or customer-owned (standard setup), single-tenant resource. Think of project capability host as the project settings.
 
-#### Limitations
+### Limitations
 - **Update Not Supported**: Cannot update the Capability Host for a project or account.
 
 
