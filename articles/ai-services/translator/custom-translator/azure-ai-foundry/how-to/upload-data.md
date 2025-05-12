@@ -14,21 +14,13 @@ ms.topic: how-to
 
 Document types are associated with the language pair selected when you create a project.
 
-1. Sign-in to [Azure AI Foundry](https://ai.azure.com/). 
-
-1. Select **Fine-tuning** from the left pane.
+1. Follow [Create a language pair](create-language-pair.md), then continue here. 
 
 1. Select the language pair **Name** you want to manage.
 
-1. Select **Manage data** and then select **Add data** and choose the dataset type:
+   :::image type="content" source="../media/fine-tune-edit-language-pair-1.png" alt-text="Screenshot illustrating edit language pair fields.":::
 
-    - Training set
-    - Testing set
-    - Tuning set
-    - Phrase Dictionary
-    - Sentence Dictionary
-
-   :::image type="content" source="../media/fine-tune-create-language-pair.png" alt-text="Screenshot illustrating the document upload link.":::
+1. Select **Manage data** and then select **Add data**. 
 
 1. Select dataset type and select your data document format.
 
@@ -46,7 +38,7 @@ You can view history of all document uploads details like document type, upload 
 
 1. The upload history tab shows history for the selected language pair.
 
-2. This page shows the status of all of your past uploads. It displays
+1. This page shows the status of all of your past uploads. It displays
     uploads from most recent to least recent. Each upload shows name, status, type, and created on.
 
    :::image type="content" source="../media/fine-tune-upload-history.png" alt-text="Screenshot showing the upload history page.":::

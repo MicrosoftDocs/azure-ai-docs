@@ -16,7 +16,9 @@ An Azure AI Foundry custom translation language pair includes models, training, 
 
 ## Create a language pair
 
-1. Follow [Create a project](create-language-pair.md), then continue here.
+1. Follow [Create a project](create-project.md), then continue here.
+
+1. Use the dropdown list to select another **Connected service** or create a new one.
 
 1. Enter the following details about your language pair in the dialog:
 
@@ -33,13 +35,13 @@ An Azure AI Foundry custom translation language pair includes models, training, 
 
    - **Language pair label:** You can add label to create the same language pair multiple times. Example, you want to create English to French model for shopping and another English to French model for automotive. A label distinguishes between the same language pair with the same language pair and domain. As a best practice, here are a few tips:
 
-   - Use a label *only* if you're planning to build multiple projects for the same language pair and same domain and want to access these projects with a different Domain ID.
+      - Use a label *only* if you're planning to build multiple projects for the same language pair and same domain and want to access these projects with a different Domain ID.
 
-   - Don't use a label if you're building systems for one domain only.
+      - Don't use a label if you're building systems for one domain only.
 
-   - A label isn't required and not helpful to distinguish between language pairs.
+      - A label isn't required and not helpful to distinguish between language pairs.
 
-   - You can use the same label for multiple language pairs.
+      - You can use the same label for multiple language pairs.
 
    - **Project description:** A short summary about the project. This description has no influence over the behavior of the Custom Translator or your resulting custom system, but can help you differentiate between different projects.
 
@@ -55,10 +57,9 @@ To modify the language pair name, description, domain description, and add/remov
 
 1. Select the language pair name from the Fine-tuning > AI Service fine-tuning page.
 
-1. Select the **...** next to the language pair name and select **Edit**.
+   :::image type="content" source="../media/fine-tune-edit-language-pair-1.png" alt-text="Screenshot illustrating edit language pair fields.":::
 
-1. The **Edit and Delete** buttons should now be visible.
-   :::image type="content" source="../media/fine-tune-edit-language-pair-1.png" alt-text="Screenshot illustrating edit language pair fields":::
+1. Select the **`...`** next to the language pair name. The **Edit and Delete** buttons should now be visible.
 
 1. Select **Edit** and fill in or modify existing text.
 
