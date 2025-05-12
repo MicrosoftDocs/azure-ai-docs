@@ -9,7 +9,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom: references_regions
-ms.date: 05/08/2025
+ms.date: 05/15/2025
 ---
 
 # Agentic retrieval in Azure AI Search
@@ -18,11 +18,11 @@ ms.date: 05/08/2025
 
 In Azure AI Search, *agentic retrieval* is a new parallel query processing architecture that uses conversational language models to generate multiple subqueries for a single retrieval request, incorporating conversation history and semantic ranking to produce high-quality grounding data for custom chat and generative AI solutions that include agents.
 
-Programmatically, agentic retrieval is supported through a new Knowledge Agents object (also known as a search agent) in the 2025-05-01-preview data plane REST API and in Azure SDK prerelease packages that provide the feature. An agent's retrieval response is designed for downstream consumption by other agents and chat apps based on generative AI.
+Programmatically, agentic retrieval is supported through a new Knowledge Agents object (also known as a search agent) in the 2025-05-01-preview data plane REST API and in Azure SDK prerelease packages that provide the feature. An agent's retrieval response is designed for downstream consumption by other agents and chat apps.
 
 ## Why use agentic retrieval
 
-You should use agentic retrieval when you want to customize a chat experience with high quality inputs that include your proprietary data.
+You should use agentic retrieval when you want to send data to an agent or customize a chat experience with high quality inputs that include your proprietary data.
 
 The *agentic* aspect is a reasoning step in query planning processing that's performed by a supported large language model (LLM) that you provide. The LLM is tasked with designing multiple subqueries based on: user questions, chat history, and parameters on the request. The subqueries target your indexed documents (plain text and vectors) in Azure AI Search.
 
