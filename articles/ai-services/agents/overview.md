@@ -38,7 +38,7 @@ Agents make decisions, invoke tools, and participate in workflows—sometimes in
 
 Agents created using Foundry are not monoliths. They are composable units—each with a specific role, powered by the right model, equipped with the right tools, and deployed within a secure, observable, and governable runtime.
 
-![What is an AI Agent?](./media/what-is-an-ai-agent.png)
+![What is an AI Agent?](./media/what-is-an-agent.png)
 
 Each agent has three core components:
 - **Model (LLM)**: Powers reasoning and language understanding
