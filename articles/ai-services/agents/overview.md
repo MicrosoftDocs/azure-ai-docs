@@ -66,7 +66,7 @@ The assembly line starts by selecting a model that gives your agent its intellig
 Next, shape that model to fit your use case. Customize your agent with fine-tuning, distillation, or domain-specific prompts. This step allows you to encode agent behavior, role-specific knowledge, and patterns from prior performance—using data captured from real thread content and tool results.
     :::column-end:::
     :::column span="1":::
-### 3. Knowledge and Tools
+### 3. AI Tools
 
 Then, equip your agent with tools. These let it access enterprise knowledge (e.g. Bing, SharePoint, Azure AI Search) and take real-world actions (via Logic Apps, Azure Functions, OpenAPI, and more). Think of this step as installing the arms and sensors on a robotic worker—so the agent can perceive and interact with its environment.
     :::column-end:::
