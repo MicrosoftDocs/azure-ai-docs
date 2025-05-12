@@ -188,6 +188,9 @@ items:
       - name: Preference fine-tuning
         href: ./how-to/fine-tuning-direct-preference-optimization.md
         displayName: finetuning, fine-tuning  
+      - name: Reinforcement fine-tuning
+        href: ./how-to/reinforcement-fine-tuning.md
+        displayName: finetuning, fine-tuning
       - name: Safety evaluation
         href: ./how-to/fine-tuning-safety-evaluation.md
         displayName: finetuning, fine-tuning  
