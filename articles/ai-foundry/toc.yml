@@ -213,6 +213,8 @@ items:
         displayName: finetuning, fine-tuning 
       - name: Preference fine-tuning
         href: ../ai-services/openai/how-to/fine-tuning-direct-preference-optimization.md?context=/azure/ai-foundry/context/context
+      - name: Reinforcement fine-tuning
+        href: ../ai-services/openai/how-to/reinforcement-fine-tuning.md?context=/azure/ai-foundry/context/context
         displayName: finetuning, fine-tuning 
       - name: Safety evaluation
         href: ../ai-services/openai/how-to/fine-tuning-safety-evaluation.md?context=/azure/ai-foundry/context/context
