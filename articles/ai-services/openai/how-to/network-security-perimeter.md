@@ -171,7 +171,7 @@ To add an inbound access rule in the Azure portal:
 
 5. Select **Add**.
 
-    :::image type="content" source="../media/network-security-perimeter/add-rule.png" alt-text="A screenshot showing the add button." lightbox="../media/network-security-perimeter/add-rule.png":::
+    :::image type="content" source="../media/network-security-perimeter/add-rule.png" alt-text="A screenshot showing the add rule button." lightbox="../media/network-security-perimeter/add-rule.png":::
 
 6. Enter or select the following values:
     
@@ -199,12 +199,12 @@ To add an outbound access rule in the Azure portal:
 1. Navigate to your network security perimeter resource in the Azure portal.
 2. Select **Profiles** in the left-hand menu.
 
-    :::image type="content" source="../media/network-security-perimeter/profiles-selector.png" alt-text="A screenshot showing the add button." lightbox="../media/network-security-perimeter/profiles-selector.png":::
+    :::image type="content" source="../media/network-security-perimeter/profiles-selector.png" alt-text="A screenshot showing the profile navigation button." lightbox="../media/network-security-perimeter/profiles-selector.png":::
 
 
 3. Select the profile you're using with your network security perimeter.
 
-    :::image type="content" source="../media/network-security-perimeter/selected-profile.png" alt-text="A screenshot showing the add button." lightbox="../media/network-security-perimeter/selected-profile.png":::
+    :::image type="content" source="../media/network-security-perimeter/selected-profile.png" alt-text="A screenshot showing the profile selector." lightbox="../media/network-security-perimeter/selected-profile.png":::
 
 4. Select **Outbound access rules** in the left-hand menu.
 
@@ -212,7 +212,7 @@ To add an outbound access rule in the Azure portal:
 
 5. Select **Add**.
 
-    :::image type="content" source="../media/network-security-perimeter/add-outbound.png" alt-text="A screenshot showing the button to navigate to outbound access rules." lightbox="../media/network-security-perimeter/add-outbound.png":::
+    :::image type="content" source="../media/network-security-perimeter/add-outbound.png" alt-text="A screenshot showing the button to add outbound access rules." lightbox="../media/network-security-perimeter/add-outbound.png":::
 
 6. Enter or select the following values:
     
