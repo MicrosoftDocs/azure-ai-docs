@@ -39,7 +39,7 @@ landingContent:
             url: search-get-started-agentic-retrieval.md
 
   # Card
-  - title: RAG and vectors
+  - title: Agentic RAG
     linkLists:
       - linkListType: concept
         links:

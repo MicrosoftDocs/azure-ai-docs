@@ -146,7 +146,6 @@ SharePoint helps organizations share and collaborate with colleagues, partners, 
 
 [More details](search-how-to-index-logic-apps-indexers.md#supported-connectors)
 
-
 :::column-end:::
 :::column span="":::
 
@@ -188,6 +187,59 @@ OneDrive for Business is a cloud storage, file hosting service that allows users
    :::column-end:::
 
 :::row-end:::
+
+### Azure File Storage
+
+By [Logic Apps](/azure/logic-apps/logic-apps-overview)
+
+Microsoft Azure Storage provides a massively scalable, durable, and highly available storage for data on the cloud, and serves as the data storage solution for modern applications. Connect to File Storage to perform various operations such as create, update, get and delete on files in your Azure Storage account.
+
+[More details](search-how-to-index-logic-apps-indexers.md#supported-connectors)
+
+<!-- :::image type="icon" source="media/search-data-sources-gallery/sharepoint_online_logo.png"::: -->
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### Azure Queues
+
+By [Logic Apps](/azure/logic-apps/logic-apps-overview)
+
+Azure Queue storage provides cloud messaging between application components. Queue storage also supports managing asynchronous tasks and building process work flows.
+
+[More details](search-how-to-index-logic-apps-indexers.md#supported-connectors)
+
+<!-- :::image type="icon" source="media/search-data-sources-gallery/azure_mysql.png"::: -->
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### Service Bus
+
+By [Logic Apps](/azure/logic-apps/logic-apps-overview)
+
+Connect to Azure Service Bus to send and receive messages. You can perform actions such as send to queue, send to topic, receive from queue, receive from subscription, etc.
+
+[More details](search-how-to-index-logic-apps-indexers.md#supported-connectors)
+
+<!-- :::image type="icon" source="media/search-data-sources-gallery/azure_storage.png"::: -->
+
+:::column-end:::
+:::row-end:::
+:::row:::
+:::column span="":::
+
+   :::column-end:::
+   :::column span="":::
+   :::column-end:::
+
+:::row-end:::
+
+---
 
 <a name="preview"></a>
 
