@@ -20,8 +20,8 @@ Continuous evaluation for Agents provides near real-time observability and monit
 ## Getting Started
 
 ### Prerequisites
+[!INCLUDE [uses-fdp-only](../includes/uses-fdp-only.md)] 
 
-- An Azure AI Foundry project
 - An agent created within the project
 - An [Azure Monitor Application Insights resource](/azure/azure-monitor/app/app-insights-overview)
 
