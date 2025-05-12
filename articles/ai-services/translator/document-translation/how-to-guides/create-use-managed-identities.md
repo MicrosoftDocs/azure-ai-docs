@@ -29,7 +29,7 @@ Managed identities for Azure resources are service principals that create a Micr
 >
 > * To use managed identities for Azure AI Document translation operations, you must [create your Translator resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in a specific geographic Azure region such as **East US**. If your Translator resource region is set to **Global**, then you can't use managed identity for Azure AI Document translation. You can still use [Shared Access Signature (SAS) tokens](create-sas-tokens.md) for Azure AI Document translation.
 >
-> * Azure AI Document translation is supported in the S1 Standard Service Plan (Pay-as-you-go) and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
+> * Azure AI Document translation is supported in the S1 Standard Service Plan and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
 >
 
 ## Prerequisites

@@ -1,6 +1,6 @@
 ---
 title: Use Azure AI services with commitment tier pricing
-description: Learn how to sign up for commitment tier pricing, which is different than pay-as-you-go pricing.
+description: Learn how to sign up for commitment tier pricing, which is different than Standard pricing.
 author: aahill
 ms.author: aahi
 ms.custom:
@@ -14,7 +14,7 @@ ms.date: 5/19/2025
 
 # Purchase commitment tier pricing
 
-Azure AI offers commitment tier pricing, allowing discounted rates compared to the pay-as-you-go pricing model. With commitment tier pricing, you can commit to using the following Azure AI services features for a fixed fee, enabling you to have a predictable total cost based on the needs of your workload:
+Azure AI offers commitment tier pricing, allowing discounted rates compared to the Standard pricing model. With commitment tier pricing, you can commit to using the following Azure AI services features for a fixed fee, enabling you to have a predictable total cost based on the needs of your workload:
 * Speech to text (Standard)
 * Text to speech (Neural)
 * Text Translation (Standard)
@@ -43,7 +43,7 @@ For more information, see [Azure AI services pricing](https://azure.microsoft.co
 
     :::image type="content" source="media/commitment-tier/create-resource.png" alt-text="A screenshot showing resource creation on the Azure portal." lightbox="media/commitment-tier/create-resource.png":::
 
-3. Once your resource is created, you can change your pricing from pay-as-you-go, to a commitment plan.
+3. Once your resource is created, you can change your pricing from Standard pricing, to a commitment plan.
 
 ## Purchase a commitment plan by updating your Azure resource
 
@@ -75,11 +75,11 @@ If you use the resource above the quota provided, you're charged for the additio
 
 ## Purchase a different commitment plan
 
-The commitment plans have a calendar month commitment period. You can purchase a commitment plan at any time from the default pay-as-you-go pricing model. When you purchase a plan, you're charged a pro-rated price for the remaining month. During the commitment period, you can't change the commitment plan for the current month. However, you can choose a different commitment plan for the next calendar month. The billing for the next month would happen on the first day of the next month.
+The commitment plans have a calendar month commitment period. You can purchase a commitment plan at any time from the default Standard pricing model. When you purchase a plan, you're charged a pro-rated price for the remaining month. During the commitment period, you can't change the commitment plan for the current month. However, you can choose a different commitment plan for the next calendar month. The billing for the next month would happen on the first day of the next month.
 
 ## End a commitment plan
 
-If you decide that you don't want to continue purchasing a commitment plan, you can set your resource's autorenewal to **Do not auto-renew**. Your commitment plan expires on the displayed commitment end date. After this date, you won't be charged for the commitment plan. You're able to continue using the Azure resource to make API calls, charged at pay-as-you-go pricing. You have until midnight (UTC) on the last day of each month to end a commitment plan, and not be charged for the following month.
+If you decide that you don't want to continue purchasing a commitment plan, you can set your resource's autorenewal to **Do not auto-renew**. Your commitment plan expires on the displayed commitment end date. After this date, you won't be charged for the commitment plan. You're able to continue using the Azure resource to make API calls, charged at Standard pricing. You have until midnight (UTC) on the last day of each month to end a commitment plan, and not be charged for the following month.
 
 ## Purchase a commitment tier pricing plan for disconnected containers
 

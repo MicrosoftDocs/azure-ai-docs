@@ -46,7 +46,7 @@ Follow these steps:
 
     :::code language="bicep" source="~/azureai-model-inference-bicep/infra/modules/ai-services-deployment-template.bicep":::
 
-3. For convenience, we define the model we want to have available in the service using a JSON file. The file [__infra/models.json__](https://github.com/Azure-Samples/azureai-model-inference-bicep/blob/main/infra/models.json) contains a list of JSON object with keys `name`,`version`, `provider`, and `sku`, which defines the models the deployment will provision. Since the models support pay-as-you-go, adding model deployments doesn't incur on extra cost. Modify the file by **removing/adding the model entries you want to have available**. The following example **shows only the first 7 lines** of the JSON file:
+3. For convenience, we define the model we want to have available in the service using a JSON file. The file [__infra/models.json__](https://github.com/Azure-Samples/azureai-model-inference-bicep/blob/main/infra/models.json) contains a list of JSON object with keys `name`,`version`, `provider`, and `sku`, which defines the models the deployment will provision. Since the models support standard deployments, adding model deployments doesn't incur on extra cost. Modify the file by **removing/adding the model entries you want to have available**. The following example **shows only the first 7 lines** of the JSON file:
 
     __models.json__
 

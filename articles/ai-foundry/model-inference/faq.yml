@@ -42,7 +42,7 @@ sections:
       - question: |
           Why aren't all the models in the Azure AI model catalog supported in Azure AI Foundry services?
         answer: |
-          Foundry Models support all the models in the Azure AI catalog having pay-as-you-go billing. For more information, see [the Models article](concepts/models.md).
+          Foundry Models support all the models in the Azure AI catalog having Standard billing. For more information, see [the Models article](concepts/models.md).
 
           The Azure AI model catalog contains a wider list of models, however, those models require compute quota from your subscription. They also need to have a project or AI hub where to host the deployment. For more information, see [deployment options in Azure AI Foundry](../../ai-studio/concepts/deployments-overview.md).
       - question: |
@@ -102,7 +102,7 @@ sections:
       - question: |
           How are Azure Ecosystem models available? 
         answer: |
-          Azure Ecosystem models available for deployment in Azure AI Services with pay-as-you-go billing (for example, Meta AI models or Mistral models) are offered by the model provider but hosted in Microsoft-managed Azure infrastructure and accessed via API in the Foundry Models endpoint. Model providers define the license terms and set the price for use of their models, while Azure AI Services service manages the hosting infrastructure, makes the inference APIs available, and acts as the data processor for prompts submitted and content output by models deployed. Read about [Data privacy, and security for third-party models](../../ai-studio/how-to/concept-data-privacy.md).
+          Azure Ecosystem models available for deployment in Azure AI Services with Standard billing (for example, Meta AI models or Mistral models) are offered by the model provider but hosted in Microsoft-managed Azure infrastructure and accessed via API in the Foundry Models endpoint. Model providers define the license terms and set the price for use of their models, while Azure AI Services service manages the hosting infrastructure, makes the inference APIs available, and acts as the data processor for prompts submitted and content output by models deployed. Read about [Data privacy, and security for third-party models](../../ai-studio/how-to/concept-data-privacy.md).
       - question: |
           How is data processed by the Global-Standard deployment type?
         answer: |

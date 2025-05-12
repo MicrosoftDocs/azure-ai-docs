@@ -38,7 +38,7 @@ Explore the following model families available:
 Model availability varies by model provider, deployment SKU, and cloud. All models available in Azure AI Foundry Models support the [Global standard](deployment-types.md#global-standard) deployment type which uses global capacity to guarantee throughput. [Azure OpenAI models](#azure-openai) also support regional deployments and [sovereign clouds](/entra/identity-platform/authentication-national-cloud)—Azure Government, Azure Germany, and Azure China 21Vianet.
 
 > [!TIP]
-> The Azure AI model catalog offers a larger selection of models, from a bigger range of providers. However, those models might require you to host them on your infrastructure, including the creation of an AI hub and project. Azure AI model service provides a way to consume the models as APIs without hosting them on your infrastructure, with a pay-as-you-go billing. Learn more about the [Azure AI model catalog](../../../ai-studio/how-to/model-catalog-overview.md).
+> The Azure AI model catalog offers a larger selection of models, from a bigger range of providers. However, those models might require you to host them on your infrastructure, including the creation of an AI hub and project. Azure AI model service provides a way to consume the models as APIs without hosting them on your infrastructure, with a Standard billing. Learn more about the [Azure AI model catalog](../../../ai-studio/how-to/model-catalog-overview.md).
 
 ### AI21 Labs
 
