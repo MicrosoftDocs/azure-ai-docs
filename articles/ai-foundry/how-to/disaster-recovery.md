@@ -81,7 +81,7 @@ A multi-regional deployment relies on creation of Azure AI Foundry and other res
     * __Hot/cold__: Primary region active, secondary region has Azure AI Foundry and other resources deployed, along with needed data. Resources such as models, model deployments, or pipelines would need to be manually deployed.
 
 > [!TIP]
-> Depending on your business requirements, you may decide to treat different Azure AI Foundry resources differently.
+> Depending on your business requirements, you may decide to treat different Azure AI Foundry Services differently.
 
 Azure AI Foundry builds on top of other services. Some services can be configured to replicate to other regions. Others you must manually create in multiple regions. The following table provides a list of services, who is responsible for replication, and an overview of the configuration:
 

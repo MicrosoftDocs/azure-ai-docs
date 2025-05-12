@@ -1,7 +1,7 @@
 ---
 title: How to use vision-enabled chat models
-titleSuffix: Azure OpenAI Service
-description: Learn how to use vision-enabled chat models in Azure OpenAI Service, including how to call the Chat Completion API and process images.
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
+description: Learn how to use vision-enabled chat models in Azure OpenAI, including how to call the Chat Completion API and process images.
 author: PatrickFarley #dereklegenzoff
 ms.author: pafarley #delegenz
 #customer intent: As a developer, I want to learn how to use vision-enabled chat models so that I can integrate image processing capabilities into my applications.

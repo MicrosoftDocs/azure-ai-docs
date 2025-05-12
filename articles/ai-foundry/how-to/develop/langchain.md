@@ -19,7 +19,7 @@ LangChain is a development ecosystem that makes as easy possible for developers 
 
 Models deployed to [Azure AI Foundry](https://ai.azure.com) can be used with LangChain in two ways:
 
-- **Using the Azure AI model inference API:** All models deployed to Azure AI Foundry support the [Azure AI model inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LangChain, install the extensions `langchain-azure-ai`.
+- **Using the Azure AI Foundry Models API:** All models deployed to Azure AI Foundry support the [Foundry Models API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LangChain, install the extensions `langchain-azure-ai`.
 
 - **Using the model's provider specific API:** Some models, like OpenAI, Cohere, or Mistral, offer their own set of APIs and extensions for LangChain. Those extensions might include specific functionalities that the model support and hence are suitable if you want to exploit them. When working with LangChain, install the extension specific for the model you want to use, like `langchain-openai` or `langchain-cohere`.
 
@@ -30,7 +30,7 @@ In this tutorial, you learn how to use the packages `langchain-azure-ai` to buil
 To run this tutorial, you need:
 
 * An [Azure subscription](https://azure.microsoft.com).
-* A model deployment supporting the [Azure AI model inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large-2407` deployment in the [Azure AI model inference](../../../ai-foundry/model-inference/overview.md).
+* A model deployment supporting the [Foundry Models API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large-2407` deployment in the [Foundry Models](../../../ai-foundry/model-inference/overview.md).
 * Python 3.9 or later installed, including pip.
 * LangChain installed. You can do it with:
 
@@ -38,7 +38,7 @@ To run this tutorial, you need:
     pip install langchain-core
     ```
 
-* In this example, we're working with the Azure AI model inference API, hence we install the following packages:
+* In this example, we're working with the Foundry Models API, hence we install the following packages:
 
     ```bash
     pip install -U langchain-azure-ai
@@ -178,9 +178,9 @@ chain.invoke({"language": "italian", "text": "hi"})
 
 ### Chaining multiple LLMs together
 
-Models deployed to Azure AI Foundry support the Azure AI model inference API, which is standard across all the models. Chain multiple LLM operations based on the capabilities of each model so you can optimize for the right model based on capabilities. 
+Models deployed to Azure AI Foundry support the Foundry Models API, which is standard across all the models. Chain multiple LLM operations based on the capabilities of each model so you can optimize for the right model based on capabilities. 
 
-In the following example, we create two model clients. One is a producer and another one is a verifier. To make the distinction clear, we're using a multi-model endpoint like the [Azure AI model inference service](../../model-inference/overview.md) and hence we're passing the parameter `model_name` to use a `Mistral-Large` and a `Mistral-Small` model, quoting the fact that **producing content is more complex than verifying it**.
+In the following example, we create two model clients. One is a producer and another one is a verifier. To make the distinction clear, we're using a multi-model endpoint like the [Foundry Models API](../../model-inference/overview.md) and hence we're passing the parameter `model_name` to use a `Mistral-Large` and a `Mistral-Small` model, quoting the fact that **producing content is more complex than verifying it**.
 
 ```python
 from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
@@ -305,7 +305,7 @@ for doc in results:
 
 ## Using Azure OpenAI models
 
-If you're using Azure OpenAI in Azure AI Foundry Models or Azure AI model inference service with OpenAI models with `langchain-azure-ai` package, you might need to use `api_version` parameter to select a specific API version. The following example shows how to connect to an Azure OpenAI in Foundry Models deployment:
+If you're using Azure OpenAI in Foundry Models or Foundry Models service with OpenAI models with `langchain-azure-ai` package, you might need to use `api_version` parameter to select a specific API version. The following example shows how to connect to an Azure OpenAI in Foundry Models deployment:
 
 ```python
 from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
@@ -320,7 +320,7 @@ llm = AzureAIChatCompletionsModel(
 > [!IMPORTANT]
 > Check which is the API version that your deployment is using. Using a wrong `api_version` or one not supported by the model results in a `ResourceNotFound` exception.
 
-If the deployment is hosted in Azure AI Services, you can use the Azure AI model inference service:
+If the deployment is hosted in Azure AI Services, you can use the Foundry Models service:
 
 ```python
 from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
@@ -470,5 +470,5 @@ Learn more about [how to visualize and manage traces](visualize-traces.md).
 
 * [Develop applications with LlamaIndex](llama-index.md)
 * [Visualize and manage traces in Azure AI Foundry](visualize-traces.md)
-* [Use the Azure AI model inference service](../../model-inference/overview.md)
-* [Reference: Azure AI model inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md)
+* [Use Azure AI Foundry Models](../../model-inference/overview.md)
+* [Reference: Foundry Models API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md)

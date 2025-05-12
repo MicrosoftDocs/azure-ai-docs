@@ -25,7 +25,7 @@ Connections are a way to authenticate and consume both Microsoft and other resou
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure AI Foundry](https://azure.microsoft.com/free/) today.
-- An Azure AI Foundry hub. For information on creating a hub, see [Create Azure AI Foundry resources with the SDK](./create-hub-project-sdk.md).
+- An Azure AI Foundry hub. For information on creating a hub, see [Create Azure AI Foundry Services with the SDK](./create-hub-project-sdk.md).
 - A resource to create a connection to. For example, an AI Services resource. The examples in this article use placeholders that you must replace with your own values when running the code.
 
 ## Set up your environment

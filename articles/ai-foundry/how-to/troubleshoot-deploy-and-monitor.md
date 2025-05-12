@@ -27,9 +27,9 @@ This article provides instructions on how to troubleshoot your deployments and m
 For the general deployment error code reference, see [Troubleshooting online endpoints deployment and scoring](/azure/machine-learning/how-to-troubleshoot-online-endpoints) in the Azure Machine Learning documentation. Much of the information there also apply to Azure AI Foundry deployments.
 
 
-### Error: Use of Azure OpenAI models in Azure Machine Learning requires Azure OpenAI Services resources
+### Error: Use of Azure OpenAI models in Azure Machine Learning requires Azure OpenAI in Azure AI Foundry Models resources
 
-The full error message states: "Use of Azure OpenAI models in Azure Machine Learning requires Azure OpenAI Services resources. This subscription or region doesn't have access to this model."
+The full error message states: "Use of Azure OpenAI models in Azure Machine Learning requires Azure OpenAI in Azure AI Foundry Models resources. This subscription or region doesn't have access to this model."
 
 This error means that you might not have access to the particular Azure OpenAI model. For example, your subscription might not have access to the latest GPT model yet or this model isn't offered in the region you want to deploy to. You can learn more about it on [Azure OpenAI in Azure AI Foundry Models](../../ai-services/openai/concepts/models.md?context=/azure/ai-foundry/context/context).
 
