@@ -124,6 +124,8 @@ items:
           href: how-to/connected-agents.md
 - name: How-to
   items:
+    - name: Environment setup
+      href: how-to/environment-setup.md
     - name: Agent catalog
       href: how-to/agent-catalog.md
     - name: Trigger an agent using Logic Apps
