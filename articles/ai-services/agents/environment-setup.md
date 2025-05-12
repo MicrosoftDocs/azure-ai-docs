@@ -97,5 +97,5 @@ By default, the deployment template is configured with the following values:
 ### What's Next?
 * [Create your first agent](./quickstart.md)
 * Explore more:
-    * [Use your existing resources](./use-your-own-resources.md)
-    * [Network aecured agent setup](./virtual-networks.md)
+    * [Use your existing resources](./how-to/use-your-own-resources.md)
+    * [Network aecured agent setup](./how-to/virtual-networks.md)
