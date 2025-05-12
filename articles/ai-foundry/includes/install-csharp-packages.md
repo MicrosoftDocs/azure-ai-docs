@@ -1,6 +1,6 @@
 ---
-title: include file
-description: include file
+title: Include file
+description: Include file
 author: pablolopes
 ms.reviewer: pablolopes
 ms.author: pablolopes
@@ -26,7 +26,7 @@ ms.custom: include, build-2025
 * After installing these packages, you'll need to add the appropriate using directives to your C# files:
     
     ```csharp
-    using Azure.AI.Foundry.Project;
+    using Azure.AI.Foundry.Projects;
     using Azure.Identity;
     using Azure.AI.OpenAI;
     using Azure.Search.Documents;
