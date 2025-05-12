@@ -17,13 +17,11 @@ sections:
   - name: General
     questions:
       - question: |
-          What's the difference between Azure OpenAI in Foundry Models and Foundry Models?
+          What's the difference between Azure OpenAI and Foundry Models?
         answer: |
-          Azure OpenAI gives customers access to advanced language models from OpenAI. Foundry Models extends such capability giving customers access to all the flagship models in Azure AI under the same service, endpoint, and credentials. It includes Azure OpenAI, Cohere, Mistral AI, Meta Llama, AI21 labs, etc. Customers can seamlessly switch between models without changing their code.
+          Azure OpenAI gives customers access to advanced language models from OpenAI. Foundry Models extends such capability giving customers access to all the flagship models in Azure AI Foundry under the same service, endpoint, and credentials. It includes Azure OpenAI, Cohere, Mistral AI, Meta Llama, AI21 labs, etc. Customers can seamlessly switch between models without changing their code.
 
-          Both Azure OpenAI and Foundry Models are part of the Azure AI Foundry services (formerly known Azure AI Services) family and build on top of the same security and enterprise promise of Azure.
-
-          While Foundry Models focus on inference, Azure OpenAI can be used with more advanced APIs like batch, fine-tuning, assistants, and files.
+          Azure OpenAI is an Azure Direct model family in Foundry Models.
       - question: |
           What's the difference between Azure AI services and Azure AI Foundry?
         answer: |
