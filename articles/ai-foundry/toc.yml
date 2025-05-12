@@ -4,9 +4,9 @@ items:
 - name: Get started
   expanded: true
   items:
-    - name: Get started with Azure AI Foundry
+    - name: Quickstart
       href: quickstarts/get-started-code.md  
-    - name: Azure AI Foundry SDK overview
+    - name: Azure AI Foundry client libraries
       href: how-to/develop/sdk-overview.md
     - name: Ask the Foundry agent
       href: foundry-agent/ask-foundry-agent.md
