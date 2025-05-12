@@ -98,7 +98,7 @@ Test the latest reasoning models from Azure OpenAI, DeepSeek, and Meta with the 
 
 For all reasoning models, we introduce a chain-of-thought summary drop-down to see how the model was thinking through its response ahead of sharing the output.
 
-:::image type="content" source="../media/concept-playgrounds/agents-playground.png" alt-text="Agents Playground interface for exploring, prototyping, and testing agents without code." lightbox="../media/concept-playgrounds/agents-playground.png":::
+:::image type="content" source="../media/concept-playgrounds/chat-playground-cot-summary.png" alt-text="Chat Playground interface for exploring, prototyping, and testing chat models without code." lightbox="../media/concept-playgrounds/agents-playground.png":::
 
 ## Audio playground
 
@@ -129,17 +129,11 @@ We built the images playground for developers who build image generation flows. 
 ### How to use images playground
 
 1. **Start with a pre-built text prompt**: Select an option to get started with a prebuilt text prompt that automatically fills the prompt bar.
-   :::image type="content" source="../media/concept-playgrounds/images-playground-generation-controls.png" alt-text="Images playground interface with model-specific generation controls for image creation." lightbox="../media/concept-playgrounds/images-playground-generation-controls.png":::
-2. **Explore the model API-specific generation controls after model deployment:** Adjust key controls (e.g. number of variants, quality, strength) to deeply understand specific model responsiveness and constraints.
-  :::image type="content" source="../media/concept-playgrounds/images-playground-grid-view.png" alt-text="Images playground interface showing side-by-side grid view for comparing prompt variations." lightbox="../media/concept-playgrounds/images-playground-grid-view.png":::
-4. **Side-by-side observations in grid view:** Visually observe outputs across prompt tweaks or parameter changes.
-   :::image type="content" source="../media/concept-playgrounds/images-playground-generation.png" alt-text="Images playground interface demonstrating image generation outputs based on prompts." lightbox="../media/concept-playgrounds/images-playground-generation.png":::
-5. **Transform with API tooling:** Inpainting with text transformation is available for gpt-image-1. Alter parts of your original image with inpainting selection. Use text prompts to specify the change.
-  :::image type="content" source="../media/concept-playgrounds/images-playground-inpainting.png" alt-text="Images playground interface showing inpainting selection for text-based image transformation." lightbox="../media/concept-playgrounds/images-playground-inpainting.png":::
-:::image type="content" source="../media/concept-playgrounds/images-playground-multi-lingual-code.png" alt-text="Images playground interface showcasing multi-lingual code samples for production." lightbox="../media/concept-playgrounds/images-playground-multi-lingual-code.png":::
+1. **Explore the model API-specific generation controls after model deployment:** Adjust key controls (e.g. number of variants, quality, strength) to deeply understand specific model responsiveness and constraints.
+1. **Side-by-side observations in grid view:** Visually observe outputs across prompt tweaks or parameter changes.
+1. **Transform with API tooling:** Inpainting with text transformation is available for gpt-image-1. Alter parts of your original image with inpainting selection. Use text prompts to specify the change.
+1. **Port to production with multi-lingual code samples:** Use Python, Java, JavaScript, C# code samples with "View Code". Images playground is your launchpad to development work in VS Code.
 
-6. **Port to production with multi-lingual code samples:** Use Python, Java, JavaScript, C# code samples with "View Code". Images playground is your launchpad to development work in VS Code.
-  :::image type="content" source="../media/concept-playgrounds/images-playground-sample-code.png" alt-text="Images playground interface with sample code for porting experiments to production." lightbox="../media/concept-playgrounds/images-playground-sample-code.png":::
 
 ### Applicable models
 
@@ -151,34 +145,34 @@ We built the images playground for developers who build image generation flows. 
 
 By using the images playground, you can explore and validate the following as you plan your production workload:
 
-1. **Prompt Effectiveness**
-   - What kind of visual output does this prompt generate for my enterprise use case?
-   - How specific or abstract can my language be and still get good results?
-   - Does the model understand style references like "surrealist" or "cyberpunk" accurately?
+- **Prompt Effectiveness**
+    - What kind of visual output does this prompt generate for my enterprise use case?
+    - How specific or abstract can my language be and still get good results?
+    - Does the model understand style references like "surrealist" or "cyberpunk" accurately?
 
-2. **Stylistic Consistency**
-   - How do I maintain the same character, style, or theme across multiple images?
-   - Can I iterate on variations of the same base prompt with minimal drift?
+- **Stylistic Consistency**
+    - How do I maintain the same character, style, or theme across multiple images?
+    - Can I iterate on variations of the same base prompt with minimal drift?
 
-3. **Parameter Tuning**
-   - What's the effect of changing model parameters like guidance scale, seed, steps, etc.?
-   - How can I balance creativity vs. prompt fidelity?
+- **Parameter Tuning**
+    - What's the effect of changing model parameters like guidance scale, seed, steps, etc.?
+    - How can I balance creativity vs. prompt fidelity?
 
-4. **Model Comparison**
-   - How do results differ between models (e.g., SDXL vs. DALL·E)?
-   - Which model performs better for realistic faces vs. artistic compositions?
+- **Model Comparison**
+    - How do results differ between models (e.g., SDXL vs. DALL·E)?
+    - Which model performs better for realistic faces vs. artistic compositions?
 
-5. **Composition Control**
-   - What happens when I use spatial constraints like bounding boxes or inpainting masks?
-   - Can I guide the model toward specific layouts or focal points?
+- **Composition Control**
+    - What happens when I use spatial constraints like bounding boxes or inpainting masks?
+    - Can I guide the model toward specific layouts or focal points?
 
-6. **Input Variation**
-   - How do slight changes in prompt wording or structure impact results?
-   - What's the best way to prompt for symmetry, specific camera angles, or emotions?
+- **Input Variation**
+    - How do slight changes in prompt wording or structure impact results?
+    - What's the best way to prompt for symmetry, specific camera angles, or emotions?
 
-7. **Integration Readiness**
-   - Will this image meet the constraints of my product's UI (aspect ratio, resolution, content safety)?
-   - Does the output conform to brand guidelines or customer expectations?
+- **Integration Readiness**
+    - Will this image meet the constraints of my product's UI (aspect ratio, resolution, content safety)?
+    - Does the output conform to brand guidelines or customer expectations?
 
 ## Video playground
 
@@ -187,7 +181,6 @@ By using the images playground, you can explore and validate the following as yo
 
 The Video playground is your rapid iteration environment for exploring, refining, and validating generative video workflows—designed for developers who need to go from idea to prototype with precision, control, and speed. The playground gives you a low-friction interface to test prompt structures, assess motion fidelity, evaluate model consistency across frames, and compare outputs across models—without writing boilerplate or wasting compute cycles – and a great demo interface for your Chief Product Officer and Engineering VP.
 
-:::image type="content" source="../media/concept-playgrounds/video-playground-home-page.png" alt-text="Video playground home page showcasing tools for generative video workflows." lightbox="../media/concept-playgrounds/video-playground-home-page.png":::
 
 ### Applicable models
 
@@ -199,63 +192,46 @@ The Video playground is your rapid iteration environment for exploring, refining
 > Videos generated are retained for 24 hours due to data privacy. Download videos to local for longer retention.
 
 1. Once your model is deployed, navigate to the Video playground and get inspired by **pre-built prompts sorted by industry filter**. From here, you can view the videos in full display and copy the prompt to build from it.
-:::image type="content" source="../media/concept-playgrounds/video-playground-home-page.png" alt-text="Video playground home page showcasing tools for generative video workflows." lightbox="../media/concept-playgrounds/video-playground-home-page.png":::
 
-:::image type="content" source="../media/concept-playgrounds/video-playground-industry-tab.png" alt-text="Video playground interface with prebuilt prompts sorted by industry filters." lightbox="../media/concept-playgrounds/video-playground-industry-tab.png":::
+1.  **Understand the model API specific generation controls in your prompt bar:** Enter your text prompt and adjust key controls (e.g. aspect ratio, resolution) to deeply understand specific model responsiveness and constraints.
 
-3.  **Understand the model API specific generation controls in your prompt bar:** Enter your text prompt and adjust key controls (e.g. aspect ratio, resolution) to deeply understand specific model responsiveness and constraints.
-:::image type="content" source="../media/concept-playgrounds/video-playground-prompt-rewriting.png" alt-text="Video playground interface demonstrating prompt rewriting with AI for industry-specific use cases." lightbox="../media/concept-playgrounds/video-playground-prompt-rewriting.png":::
+1. **Rewrite your text prompt** syntax with gpt-4o using "Rewrite with AI" with industry based system prompts. Switch on the capability, select the industry and specify the change required for your original prompt.
 
-4. **Rewrite your text prompt** syntax with gpt-4o using "Rewrite with AI" with industry based system prompts. Switch on the capability, select the industry and specify the change required for your original prompt.
-
-:::image type="content" source="../media/concept-playgrounds/video-playground-rewrite-with-ai.png" alt-text="Video playground interface showcasing the 'Rewrite with AI' feature for prompt optimization." lightbox="../media/concept-playgrounds/video-playground-rewrite-with-ai.png":::
-
-5. From the Generation history tab, review your generations as a Grid or List view. When you select  the videos, open them in full screen mode for full immersion. Visually observe outputs across prompt tweaks or parameter changes.
-:::image type="content" source="../media/concept-playgrounds/video-playground-generation-history.png" alt-text="Video playground interface showing generation history in grid view for comparison." lightbox="../media/concept-playgrounds/video-playground-generation-history.png":::
-
-6. In Full Screen mode, edit the prompt and submit for regeneration.
-:::image type="content" source="../media/concept-playgrounds/video-playground-edit-prompt.png" alt-text="Video playground interface in full-screen mode for editing prompts and regenerating videos." lightbox="../media/concept-playgrounds/video-playground-edit-prompt.png":::
-
-8. Either in Full Screen mode or through the overflow button, download to local, view the information generation tag, or delete the video.
-:::image type="content" source="../media/concept-playgrounds/video-playground-overflow-menu-full-screen.png" alt-text="Video playground interface with overflow menu options in full-screen mode." lightbox="../media/concept-playgrounds/video-playground-overflow-menu-full-screen.png":::
-
-:::image type="content" source="../media/concept-playgrounds/video-playground-overflow-menu.png" alt-text="Video playground interface showing overflow menu options for managing videos." lightbox="../media/concept-playgrounds/video-playground-overflow-menu.png":::
-
-10. **Port to production with multi-lingual code samples:** Use Python, Java, JavaScript, C# contextual code samples with "View Code" that reflect your generations and copy into VS Code.
-
-:::image type="content" source="../media/concept-playgrounds/video-playground-multi-lingual-code.png" alt-text="Video playground interface showcasing multi-lingual code samples for porting to production." lightbox="../media/concept-playgrounds/video-playground-multi-lingual-code.png":::
-   
-10. **Azure AI Content Safety integration:** With all model endpoints integrated with Azure AI Content Safety, harmful and unsafe images are filtered out prior to being surfaced in video playground. If your text prompt and video generation is flagged by content moderation policies, you get a warning notification appear.
-:::image type="content" source="../media/concept-playgrounds/video-playground-content-moderation.png" alt-text="Video playground interface with Azure AI Content Safety integration for filtering harmful content." lightbox="../media/concept-playgrounds/video-playground-content-moderation.png":::
+1. From the Generation history tab, review your generations as a Grid or List view. When you select  the videos, open them in full screen mode for full immersion. Visually observe outputs across prompt tweaks or parameter changes.
+1. In Full Screen mode, edit the prompt and submit for regeneration.
+1. Either in Full Screen mode or through the overflow button, download to local, view the information generation tag, or delete the video.
+1. **Port to production with multi-lingual code samples:** Use Python, Java, JavaScript, C# contextual code samples with "View Code" that reflect your generations and copy into VS Code.
+1. **Azure AI Content Safety integration:** With all model endpoints integrated with Azure AI Content Safety, harmful and unsafe images are filtered out prior to being surfaced in video playground. If your text prompt and video generation is flagged by content moderation policies, you get a warning notification appear.
    
 ### Video generation: what you can validate or de-risk
 
 When using the video playground as you plan your production workload, you can explore and validate the following:
 
-1. **Prompt-to-Motion Translation**
-   - Does the video model interpret my prompt in a way that makes logical and temporal sense?
-   - Is motion coherent with the described action or scene?
+- **Prompt-to-Motion Translation**
+    - Does the video model interpret my prompt in a way that makes logical and temporal sense?
+    - Is motion coherent with the described action or scene?
+- **Frame Consistency**
+    - Do characters, objects, and styles remain consistent across frames?
+    - Are there visual artifacts, jitter, or unnatural transitions?
+- **Scene Control**
+    - How well can I control scene composition, subject behavior, or camera angles?
+    - Can I guide scene transitions or background environments?
 
-2. **Frame Consistency**
-   - Do characters, objects, and styles remain consistent across frames?
-   - Are there visual artifacts, jitter, or unnatural transitions?
+- **Length and Timing**
+    - How do different prompt structures affect video length and pacing?
+    - Does the video feel too fast, too slow, or too short?
 
-3. **Scene Control**
-   - How well can I control scene composition, subject behavior, or camera angles?
-   - Can I guide scene transitions or background environments?
+- **Multimodal Input Integration**
+    - What happens when I provide a reference image, pose data, or audio input?
+    - Can I generate video with lip-sync to a given voiceover?
 
-4. **Length and Timing**
-   - How do different prompt structures affect video length and pacing?
-   - Does the video feel too fast, too slow, or too short?
+- **Post-Processing Needs**
+    - What level of raw fidelity can I expect before I need editing tools?
+    - Do I need to upscale, stabilize, or retouch the video before using it in production?
 
-5. **Multimodal Input Integration**
-   - What happens when I provide a reference image, pose data, or audio input?
-   - Can I generate video with lip-sync to a given voiceover?
+- **Latency & Performance**
+    - How long does it take to generate video for different prompt types or resolutions?
+    - What's the cost-performance tradeoff of generating 5s vs. 15s clips?
 
-6. **Post-Processing Needs**
-   - What level of raw fidelity can I expect before I need editing tools?
-   - Do I need to upscale, stabilize, or retouch the video before using it in production?
-
-7. **Latency & Performance**
-   - How long does it take to generate video for different prompt types or resolutions?
-   - What's the cost-performance tradeoff of generating 5s vs. 15s clips?
+## Related resources
+- 
