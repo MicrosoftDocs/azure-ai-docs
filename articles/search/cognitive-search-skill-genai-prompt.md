@@ -20,6 +20,11 @@ Use it to summarize, transform, enrich, or extract structured data from text-onl
 
 The GenAI Prompt skill is available in the **2025-05-01-preview** REST API. You can't use this skills in skillsets created with earlier API versions.
 
+## Region Availability
+
+- Your Azure AI Search service must be deployed in a [supported region](search-region-support.md).
+- The availability of the GenAI prompt skill depends on the region availability of the chat completions model you choose. If you're using [Azure OpenAI Service](/azure/ai-services/openai/overview), refer to the [Azure OpenAI Service region availability](/azure/ai-services/openai/concepts/models) to check which regions support the specific model you selected. For other AI Foundry chat completions models, consult the region availability documentation provided for the respective model to ensure compatibility.
+
 ## Prerequisites
 
 * A deployed chat-completion model (for example *gpt-4o* or any compatible Open Source Software (OSS) model) in Azure AI Foundry or Azure OpenAI.  
