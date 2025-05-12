@@ -1,5 +1,5 @@
 ---
-title: Migrate from Translator v3 to the latest Azure AI Translator version.
+title: Migrate from Translator v3 to the latest Azure AI Translator version
 titleSuffix: Azure AI services
 description: This article provides the steps to help you migrate from Azure AI Translator v3 to  2025-05-01-preview Text translation API.
 author: laujan
