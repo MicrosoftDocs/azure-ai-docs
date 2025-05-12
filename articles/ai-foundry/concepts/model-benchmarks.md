@@ -57,16 +57,16 @@ See more details in accuracy scores:
 
 | Metric | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 |--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Accuracy | Accuracy scores are available at the dataset and the model levels. At the dataset level, the score is the average value of an accuracy metric computed over all examples in the dataset. The accuracy metric used is `exact-match` in all cases, except for the _HumanEval_  and _MBPP_ datasets that uses a `pass@1` metric. Exact match compares model generated text with the correct answer according to the dataset, reporting one if the generated text matches the answer exactly and zero otherwise. The `pass@1` metric measures the proportion of model solutions that pass a set of unit tests in a code generation task. At the model level, the accuracy score is the average of the dataset-level accuracies for each model. |
+| Accuracy | Accuracy scores are available at the dataset and the model levels. At the dataset level, the score is the average value of an accuracy metric computed over all examples in the dataset. The accuracy metric used is `exact-match` in all cases, except for the _HumanEval_  and _MBPP_ datasets that use a `pass@1` metric. Exact match compares model generated text with the correct answer according to the dataset, reporting one if the generated text matches the answer exactly and zero otherwise. The `pass@1` metric measures the proportion of model solutions that pass a set of unit tests in a code generation task. At the model level, the accuracy score is the average of the dataset-level accuracies for each model. |
 
 Accuracy scores are provided on a scale of zero to one. Higher values are better.
 
 
 ## Safety benchmarks of language models
 
-Safety benchmarks use a standard metric Attack Success Rate to measure how vulerable language models are to attacks in biosecurity, cybersecurity, and chemical security. Currently, the [Weapons of Mass Destruction Proxy (WMDP) benchmark](https://www.wmdp.ai/) is used to assess hazardous knowledge in language models. The lower the Attack Success Rate is, the safer is the model response. 
+Safety benchmarks use a standard metric Attack Success Rate to measure how vulnerable language models are to attacks in biosecurity, cybersecurity, and chemical security. Currently, the [Weapons of Mass Destruction Proxy (WMDP) benchmark](https://www.wmdp.ai/) is used to assess hazardous knowledge in language models. The lower the Attack Success Rate is, the safer is the model response. 
 
-All model endpoints are benchmarked with the default Azure AI Content Safety filters on with a default configuration. These safety filters detect and block [content harm categories](../../ai-services/content-safety/concepts/harm-categories.md) in violence, self-harm, sexual, hate and unfaireness, but do not measure categories in cybersecurity, biosecurity, chemical security.
+All model endpoints are benchmarked with the default Azure AI Content Safety filters on with a default configuration. These safety filters detect and block [content harm categories](../../ai-services/content-safety/concepts/harm-categories.md) in violence, self-harm, sexual, hate, and unfairness, but do not specifically cover categories in cybersecurity, biosecurity, chemical security.
 
 
 ## Performance benchmarks of language models
@@ -131,7 +131,7 @@ Azure AI also displays the cost index as follows:
 
 ## Quality benchmarks of embedding models
 
-The quality index of embedding models is defined as the averaged accuracy scores of a comprehensive set of standard benchmark datasests targeting Information Retrieval, Document Clustering, and Summarization tasks.
+The quality index of embedding models is defined as the averaged accuracy scores of a comprehensive set of standard benchmark datasets targeting Information Retrieval, Document Clustering, and Summarization tasks.
 
 See more details in accuracy score definitions specific to each dataset:
 
@@ -151,7 +151,7 @@ See more details in accuracy score definitions specific to each dataset:
 
 Benchmark results originate from public datasets that are commonly used for language model evaluation. In most cases, the data is hosted in GitHub repositories maintained by the creators or curators of the data. Azure AI evaluation pipelines download data from their original sources, extract prompts from each example row, generate model responses, and then compute relevant accuracy metrics.
 
-Prompt construction follows best practices for each dataset, as specified by the paper introducing the dataset and industry standards. In most cases, each prompt contains several _shots_, that is, several examples of complete questions and answers to prime the model for the task. The evaluation pipelines create shots by sampling questions and answers from a portion of the data that's held out from evaluation.
+Prompt construction follows best practices for each dataset, as specified by the paper introducing the dataset and industry standards. In most cases, each prompt contains several _shots_, that is, several examples of complete questions and answers to prime the model for the task. The evaluation pipelines create shots by sampling questions and answers from a portion of the data held out from evaluation.
 
 ## Related content
 
