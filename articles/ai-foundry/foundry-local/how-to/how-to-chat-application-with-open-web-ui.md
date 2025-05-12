@@ -43,7 +43,7 @@ Before you start this tutorial, you need:
    3. Select **Manage Direct Connections**
    4. Select the **+** icon to add a connection
    5. For the **URL**, enter `http://localhost:PORT/v1` where `PORT` is replaced with the port of the Foundry Local endpoint, which you can find using the CLI command `foundry service status`. Note, that Foundry Local dynamically assigns a port, so it's not always the same.
-   6. Type any value (like `test`) for the API Key, since it can't be empty
+   6. Type any value (like `test`) for the API Key, since it can't be empty.
    7. Save your connection
 
 5. **Start chatting with your model**:

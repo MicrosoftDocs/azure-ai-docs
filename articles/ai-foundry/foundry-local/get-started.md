@@ -53,7 +53,7 @@ Get started with Foundry Local quickly:
     ```
 
     You should see a response from the model in the terminal:
-    :::image type="content" source="media/get-started-output.png" alt-text="Output from foundry local run command.":::
+    :::image type="content" source="media/get-started-output.png" alt-text="Screenshot of output from foundry local run command." lightbox="media/get-started-output.png":::
 
 
 > [!TIP]
