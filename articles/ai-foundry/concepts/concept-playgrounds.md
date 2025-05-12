@@ -70,19 +70,19 @@ Let's look through the various capabilities available.
 Available on the multi-lingual sample code samples, "Open in VS Code" enables the automatic import of your code sample, API endpoint and key to a VS Code workspace in /azure environment. Instead of going back and forth between Foundry and IDE, "Open in VS Code" reduces six clicks to one click:
 
 1. Select  View Code in Chat playground and Agents playground to see the code sample.
-2. Select  "Open in VS Code" button.
-   :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-foundry.png" alt-text="Open in VS Code button in Azure AI Foundry playground for seamless code integration." lightbox="../media/concept-playgrounds/open-in-vs-code-foundry.png":::
+1. Select  "Open in VS Code" button.
+    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-foundry.png" alt-text="Open in VS Code button in Azure AI Foundry playground for seamless code integration." lightbox="../media/concept-playgrounds/open-in-vs-code-foundry.png":::
 
-4. You're redirected to /azure environment of VS Code with importing of your code sample, API endpoint and key.
-   :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-vscode.png" alt-text="VS Code environment showing imported code sample, API endpoint, and key from Foundry playground." lightbox="../media/concept-playgrounds/open-in-vs-code-vscode.png":::
+1. You're redirected to /azure environment of VS Code with importing of your code sample, API endpoint and key.
+    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-vscode.png" alt-text="VS Code environment showing imported code sample, API endpoint, and key from Foundry playground." lightbox="../media/concept-playgrounds/open-in-vs-code-vscode.png":::
 
-6. Browse through the `READ.ME` file for instructions to run your model.
-   :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-readme.png" alt-text="README file in VS Code with instructions for running the imported model." lightbox="../media/concept-playgrounds/open-in-vs-code-readme.png":::
+1. Browse through the `READ.ME` file for instructions to run your model.
+    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-readme.png" alt-text="README file in VS Code with instructions for running the imported model." lightbox="../media/concept-playgrounds/open-in-vs-code-readme.png":::
 
-8. Your code sample is automatically transferred to the `run_model.py`.
-   :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-run-model.png" alt-text="Code sample automatically transferred to run_model.py in VS Code." lightbox="../media/concept-playgrounds/open-in-vs-code-run-model.png":::
+1. Your code sample is automatically transferred to the `run_model.py`.
+    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-run-model.png" alt-text="Code sample automatically transferred to run_model.py in VS Code." lightbox="../media/concept-playgrounds/open-in-vs-code-run-model.png":::
    
-10. Relevant dependencies in the `requirements.txt` file.
+1. Relevant dependencies in the `requirements.txt` file.
     :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-requirements.png" alt-text="Relevant dependencies listed in the requirements.txt file in VS Code." lightbox="../media/concept-playgrounds/open-in-vs-code-requirements.png":::
 
 
@@ -105,17 +105,15 @@ For all reasoning models, we introduce a chain-of-thought summary drop-down to s
 With the audio playground, you can use text-to-speech and transcription capabilities with the latest audio models from Azure OpenAI.
 
 1. Start with a text input prompt and rewrite the input with AI (coming soon).
-2. Adjust model parameters like voice and language.
-3. Receive a speech output with playback controls (play, rewind, forward, adjust speed and volume).
-4. Download to local as a .wav file.
-
-:::image type="content" source="../media/concept-playgrounds/audio-playground-text-to-speech.png" alt-text="Audio playground interface showcasing text-to-speech capabilities with playback controls." lightbox="../media/concept-playgrounds/audio-playground-text-to-speech.png":::
+1. Adjust model parameters like voice and language.
+1. Receive a speech output with playback controls (play, rewind, forward, adjust speed and volume).
+1. Download to local as a .wav file.
+    :::image type="content" source="../media/concept-playgrounds/audio-playground-text-to-speech.png" alt-text="Audio playground interface showcasing text-to-speech capabilities with playback controls." lightbox="../media/concept-playgrounds/audio-playground-text-to-speech.png":::
 
 1. Start with an audio file by either upload audio file, recording the audio from the prompt bar or speaking directly to the model.
-2. Include a phrase list as a text mechanism to guide the audio input.
-3. Once the audio input has been sent to the model, receive a transcribed output as text and JSON.
-
-:::image type="content" source="../media/concept-playgrounds/audio-playground-transcribe.png" alt-text="Audio playground interface demonstrating transcription output from audio input." lightbox="../media/concept-playgrounds/audio-playground-transcribe.png":::
+1. Include a phrase list as a text mechanism to guide the audio input.
+1. Once the audio input has been sent to the model, receive a transcribed output as text and JSON.
+    :::image type="content" source="../media/concept-playgrounds/audio-playground-transcribe.png" alt-text="Audio playground interface demonstrating transcription output from audio input." lightbox="../media/concept-playgrounds/audio-playground-transcribe.png":::
 
 ## Images playground
 
@@ -234,4 +232,5 @@ When using the video playground as you plan your production workload, you can ex
     - What's the cost-performance tradeoff of generating 5s vs. 15s clips?
 
 ## Related resources
-- 
+- [Use the chat playground in Azure AI Foundry portal](../quickstarts/get-started-playground.md)
+- [Quickstart: Create a new agent (Preview)](../../ai-services/agents/quickstart.md)
