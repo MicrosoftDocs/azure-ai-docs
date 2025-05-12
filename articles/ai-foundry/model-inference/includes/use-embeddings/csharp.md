@@ -26,7 +26,7 @@ To use embedding models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites-csharp](../how-to-prerequisites-csharp.md)]
 
-* An embeddings model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add an embeddings model to your resource.
+* An embeddings model deployment. If you don't have one read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add an embeddings model to your resource.
 
 
 ## Use embeddings

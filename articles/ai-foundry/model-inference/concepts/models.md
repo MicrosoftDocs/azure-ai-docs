@@ -15,42 +15,17 @@ ms.custom: references_regions, tool_generated
 
 # Models available in Azure AI Foundry Models
 
-Azure AI Foundry Models gives you access to flagship models in Azure AI to consume them as APIs without hosting them on your infrastructure.
+Azure AI Foundry Models gives you access to flagship models in Azure AI Foundry to consume them as APIs without hosting them on your infrastructure.
+
+A selection of models is offered directly by Microsoft under [Azure Direct Models](#azure-direct-models) which brings the most powerful options to developers to build AI applications. We also enable the breath of models by partnering with key players in the industry and bringing [Azure Ecosystem Models](#azure-ecosystem-models).
+
 
 :::image type="content" source="../media/models/models-catalog.gif" alt-text="An animation showing Azure AI Foundry portal model catalog section and the models available." lightbox="../media/models/models-catalog.gif":::
 
-You can see all the models available to you in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
 
-## Model families
+## Azure Direct Models
 
-Explore the following model families available:
-
-- [AI21 Labs](#ai21-labs)
-- [Azure OpenAI](#azure-openai)
-- [Cohere](#cohere)
-- [Core42](#core42)
-- [DeepSeek](#deepseek)
-- [Meta](#meta)
-- [Microsoft](#microsoft)
-- [Mistral AI](#mistral-ai)
-- [NTT Data](#ntt-data)
-
-Model availability varies by model provider, deployment SKU, and cloud. All models available in Azure AI Foundry Models support the [Global standard](deployment-types.md#global-standard) deployment type which uses global capacity to guarantee throughput. [Azure OpenAI models](#azure-openai) also support regional deployments and [sovereign clouds](/entra/identity-platform/authentication-national-cloud)—Azure Government, Azure Germany, and Azure China 21Vianet.
-
-> [!TIP]
-> The Azure AI model catalog offers a larger selection of models, from a bigger range of providers. However, those models might require you to host them on your infrastructure, including the creation of an AI hub and project. Azure AI model service provides a way to consume the models as APIs without hosting them on your infrastructure, with a Standard billing. Learn more about the [Azure AI model catalog](../../../ai-studio/how-to/model-catalog-overview.md).
-
-### AI21 Labs
-
-The Jamba family models are AI21's production-grade Mamba-based large language model (LLM) which uses AI21's hybrid Mamba-Transformer architecture. It's an instruction-tuned version of AI21's hybrid structured state space model (SSM) transformer Jamba model. The Jamba family models are built for reliable commercial use with respect to quality and performance.
-
-| Model  | Type | Tier | Capabilities |
-| ------ | ---- | --- | ------------ |
-| [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21) | chat-completion | Global standard | - **Input:** text (262,144 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `pt`, `de`, `ar`, and `he` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
-| [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) | chat-completion | Global standard | - **Input:** text (262,144 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `pt`, `de`, `ar`, and `he` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
-
-
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=ai21).
+Azure Direct Models is a selection of flagship models offered directly by Microsoft. These models don't require integration with Azure Marketplace. 
 
 ### Azure OpenAI
 
@@ -72,9 +47,68 @@ Azure OpenAI in Azure AI Foundry Models offers a diverse set of models with diff
 | [text-embedding-3-large](https://ai.azure.com/explore/models/text-embedding-3-large/version/1/registry/azure-openai) | embeddings | Global standard <br />Standard<br />Provisioned<br />Global provisioned | - **Input:** text (8,191 tokens) <br /> - **Output:** Vector (3,072 dim.) <br /> - **Languages:** `en` |
 | [text-embedding-3-small](https://ai.azure.com/explore/models/text-embedding-3-small/version/1/registry/azure-openai) | embeddings | Global standard <br />Standard<br />Provisioned<br />Global provisioned | - **Input:** text (8,191 tokens) <br /> - **Output:** Vector (1,536 dim.) <br /> - **Languages:** `en` |
 
-
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=aoai).
 
+### DeepSeek
+
+DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks using a step-by-step training process, such as language, scientific reasoning, and coding tasks.
+
+| Model  | Type | Tier | Capabilities |
+| ------ | ---- | ---- | ------------ |
+| [DeekSeek-V3-0324](https://ai.azure.com/explore/models/deepseek-v3-0324/version/1/registry/azureml-deepseek) | chat-completion | Global standard | - **Input:** text (131,072 tokens) <br /> - **Output:**  (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
+| [DeekSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | Global standard | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
+| [DeekSeek-V3](https://ai.azure.com/explore/models/deepseek-v3/version/1/registry/azureml-deepseek) <br />(Legacy) | chat-completion | Global standard | - **Input:** text (131,072 tokens) <br /> - **Output:**  (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
+
+For a tutorial on DeepSeek-R1, see [Tutorial: Get started with DeepSeek-R1 reasoning model in Azure AI Foundry Models](../tutorials/get-started-deepseek-r1.md).
+
+See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=deepseek).
+
+### Microsoft
+
+Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more. Some Microsoft models are offered as [Azure Ecosystem Models](#azure-ecosystem-models). To see all the available Microsoft models, view [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
+
+
+| Model  | Type | Tier | Capabilities |
+| ------ | ---- | --- | ------------ |
+| [MAI-DS-R1](https://ai.azure.com/explore/models/MAI-DS-R1/version/1/registry/azureml) |  chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | Global standard | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
+
+### Mistral AI
+
+Mistral AI offers two categories of models: premium models including Mistral Large and Mistral Small and open models including Mistral Nemo. Some Mistral models are offered as [Azure Ecosystem Models](#azure-ecosystem-models).
+
+| Model  | Type | Tier | Capabilities |
+| ------ | ---- | --- | ------------ |
+| [Codestral-2501](https://ai.azure.com/explore/models/Codestral-2501/version/2/registry/azureml-mistral) | chat-completion | Global standard | - **Input:** text (262,144 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** en <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
+
+See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=mistral).
+
+### Meta
+
+Meta Llama models and tools are a collection of pretrained and fine-tuned generative AI text and image reasoning models. Meta Llama 4 is part of Azure Direct Models, while the rest of the Llama family is offered as [Azure Ecosystem Models](#azure-ecosystem-models).
+
+| Model  | Type | Tier | Capabilities |
+| ------ | ---- | --- | ------------ |
+| [Llama-4-Maverick-17B-128E-Instruct-FP8](https://ai.azure.com/explore/models/Llama-4-Maverick-17B-128E-Instruct-FP8/version/1/registry/azureml-meta) | chat-completion | Global standard | - **Input:** text and images (1M tokens) <br /> - **Output:** text (1M tokens) <br /> - **Languages:** `ar`, `en`, `fr`, `de`, `hi`, `id`, `it`, `pt`, `es`, `tl`, `th`, and `vi` <br />  - **Tool calling:** No* <br /> - **Response formats:** Text |
+| [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta) | chat-completion | Global standard | - **Input:** text (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en`, `de`, `fr`, `it`, `pt`, `hi`, `es`, and `th` <br />  - **Tool calling:** No* <br /> - **Response formats:** Text |
+
+See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=meta).
+
+## Azure Ecosystem Models
+
+Azure Ecosystem Models available for deployment with pay-as-you-go billing (for example, Cohere models) are offered by the model provider but hosted in Microsoft-managed Azure infrastructure and accessed via API in the Azure AI Foundry. Model providers define the license terms and set the price for use of their models, while Azure AI Foundry manages the hosting infrastructure.
+
+Azure Ecosystem Models are offered through Azure Marketplace and [requires additional configuration for enabling](../how-to/configure-marketplace.md). 
+
+### AI21 Labs
+
+The Jamba family models are AI21's production-grade Mamba-based large language model (LLM) which uses AI21's hybrid Mamba-Transformer architecture. It's an instruction-tuned version of AI21's hybrid structured state space model (SSM) transformer Jamba model. The Jamba family models are built for reliable commercial use with respect to quality and performance.
+
+| Model  | Type | Tier | Capabilities |
+| ------ | ---- | --- | ------------ |
+| [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21) | chat-completion | Global standard | - **Input:** text (262,144 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `pt`, `de`, `ar`, and `he` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
+| [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) | chat-completion | Global standard | - **Input:** text (262,144 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `pt`, `de`, `ar`, and `he` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
+
+See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=ai21).
 
 ### Cohere
 
@@ -103,20 +137,6 @@ Core42 includes autoregressive bi-lingual LLMs for Arabic & English with state-o
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=core42).
 
-### DeepSeek
-
-DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks using a step-by-step training process, such as language, scientific reasoning, and coding tasks.
-
-| Model  | Type | Tier | Capabilities |
-| ------ | ---- | ---- | ------------ |
-| [DeekSeek-V3-0324](https://ai.azure.com/explore/models/deepseek-v3-0324/version/1/registry/azureml-deepseek) | chat-completion | Global standard | - **Input:** text (131,072 tokens) <br /> - **Output:**  (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
-| [DeekSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | Global standard | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
-| [DeekSeek-V3](https://ai.azure.com/explore/models/deepseek-v3/version/1/registry/azureml-deepseek) <br />(Legacy) | chat-completion | Global standard | - **Input:** text (131,072 tokens) <br /> - **Output:**  (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
-
-For a tutorial on DeepSeek-R1, see [Tutorial: Get started with DeepSeek-R1 reasoning model in Azure AI Foundry Models](../tutorials/get-started-deepseek-r1.md).
-
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=deepseek).
-
 ### Meta
 
 Meta Llama models and tools are a collection of pretrained and fine-tuned generative AI text and image reasoning models. Meta models range is scale to include:
@@ -127,7 +147,6 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 
 | Model  | Type | Tier | Capabilities |
 | ------ | ---- | --- | ------------ |
-| [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta) | chat-completion | Global standard | - **Input:** text (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en`, `de`, `fr`, `it`, `pt`, `hi`, `es`, and `th` <br />  - **Tool calling:** No* <br /> - **Response formats:** Text |
 | [Llama-3.2-11B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-11B-Vision-Instruct/version/1/registry/azureml-meta) | chat-completion | Global standard | - **Input:** text and image (128,000 tokens) <br /> - **Output:**  (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** No* <br /> - **Response formats:** Text |
 | [Llama-3.2-90B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-90B-Vision-Instruct/version/1/registry/azureml-meta) | chat-completion | Global standard | - **Input:** text and image (128,000 tokens) <br /> - **Output:**  (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** No* <br /> - **Response formats:** Text |
 | [Meta-Llama-3.1-405B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-405B-Instruct/version/1/registry/azureml-meta) | chat-completion | Global standard | - **Input:** text (131,072 tokens) <br /> - **Output:**  (8,192 tokens) <br /> - **Languages:** `en`, `de`, `fr`, `it`, `pt`, `hi`, `es`, and `th` <br />  - **Tool calling:** No* <br /> - **Response formats:** Text |
@@ -163,7 +182,6 @@ Microsoft models include various model groups such as MAI models, Phi models, he
 
 See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
 
-
 ### Mistral AI
 
 Mistral AI offers two categories of models: premium models including Mistral Large and Mistral Small and open models including Mistral Nemo.
@@ -172,7 +190,6 @@ Mistral AI offers two categories of models: premium models including Mistral Lar
 | ------ | ---- | --- | ------------ |
 | [Mistral-small-2503](https://ai.azure.com/explore/models/Mistral-small-2503/version/1/registry/azureml-mistral) | chat-completion | Global standard | - **Input:** text (32,768 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** fr, de, es, it, and en <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Mistral-Large-2411](https://ai.azure.com/explore/models/Mistral-Large-2411/version/2/registry/azureml-mistral) | chat-completion | Global standard | - **Input:** text (128,000 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** `en`, `fr`, `de`, `es`, `it`, `zh`, `ja`, `ko`, `pt`, `nl`, and `pl` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
-| [Codestral-2501](https://ai.azure.com/explore/models/Codestral-2501/version/2/registry/azureml-mistral) | chat-completion | Global standard | - **Input:** text (262,144 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** en <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
 | [Ministral-3B](https://ai.azure.com/explore/models/Ministral-3B/version/1/registry/azureml-mistral) | chat-completion | Global standard | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** fr, de, es, it, and en <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Mistral-Nemo](https://ai.azure.com/explore/models/Mistral-Nemo/version/1/registry/azureml-mistral) | chat-completion | Global standard | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** `en`, `fr`, `de`, `es`, `it`, `zh`, `ja`, `ko`, `pt`, `nl`, and `pl` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Mistral-large-2407](https://ai.azure.com/explore/models/Mistral-large-2407/version/1/registry/azureml-mistral) <br> (deprecated) | chat-completion | Global standard | - **Input:** text (131,072 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Languages:** `en`, `fr`, `de`, `es`, `it`, `zh`, `ja`, `ko`, `pt`, `nl`, and `pl` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
@@ -189,6 +206,12 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 | ------ | ---- | --- | ------------ |
 | [tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/1/registry/azureml-nttdata) | chat-completion | Global standard | - **Input:** text (8,192 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` and `jp` <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
 
+
+## Open and protected models
+
+The [Azure AI model catalog](../../../ai-studio/how-to/model-catalog-overview.md) offers a larger selection of models, from a bigger range of providers. As opposite to Azure AI Foundry Models where models are provided as APIs, these models might require you to host them on your infrastructure, including the creation of an AI hub and project, and providing the underlying compute quota to host the models. 
+
+Those models can be of open access or IP protected. In both cases, you have to deploy them in Managed Compute offerings in Azure AI Foundry.
 
 ## Next steps
 

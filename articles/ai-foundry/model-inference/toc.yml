@@ -52,6 +52,8 @@ items:
     href: ./how-to/quickstart-create-resources.md
   - name: Add and configure models
     href: ./how-to/create-model-deployments.md
+  - name: Configure Azure Ecosystem Models
+    href: ./how-to/configure-marketplace.md
   - name: Connect your AI project
     href: ./how-to/configure-project-connection.md
   - name: Responsible AI

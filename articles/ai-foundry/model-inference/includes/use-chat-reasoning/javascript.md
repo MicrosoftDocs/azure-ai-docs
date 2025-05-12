@@ -21,7 +21,7 @@ To complete this tutorial, you need:
 
 [!INCLUDE [how-to-prerequisites-javascript](../how-to-prerequisites-javascript.md)]
 
-* A model with reasoning capabilities model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a reasoning model. 
+* A model with reasoning capabilities model deployment. If you don't have one read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add a reasoning model. 
 
   * This example uses `DeepSeek-R1`.
       
