@@ -146,6 +146,8 @@ SharePoint helps organizations share and collaborate with colleagues, partners, 
 
 [More details](search-how-to-index-logic-apps-indexers.md#supported-connectors)
 
+:::image type="icon" source="media/search-data-sources-gallery/sharepoint_online_logo.png":::
+
 :::column-end:::
 :::column span="":::
 
