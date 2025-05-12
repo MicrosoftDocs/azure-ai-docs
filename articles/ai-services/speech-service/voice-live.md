@@ -75,10 +75,10 @@ The Voice Live API supports the following models and regions:
 | ------------------------------ | ----------- | ----------- |
 | `gpt-4o-realtime-preview`      | GPT-4o realtime + option to use Azure text to speech voices including custom neural voice for audio. | `eastus2`<br/>`swedencentral` |
 | `gpt-4o-mini-realtime-preview` | GPT-4o mini realtime + option to use Azure text to speech voices including custom neural voice for audio. | `eastus2`<br/>`swedencentral` |
-| `gpt-4o` | GPT-4o + audio input through Azure speech to text + audio output through Azure text to speech voices including custom neural voice. | `centralindia`<br/>`eastus2`<br/>`swedencentral`<br/>`westus2` |
-| `gpt-4o-mini` | GPT-4o mini + audio input through Azure speech to text + audio output through Azure text to speech voices including custom neural voice. | `centralindia`<br/>`eastus2`<br/>`swedencentral`<br/>`westus2` |
-| `phi4-mm-realtime` | Phi4-mm + audio output through Azure text to speech voices including custom neural voice. | `centralindia`<br/>`eastus2`<br/>`swedencentral`<br/>`westus2` |
-| `phi4` | Phi4-mm + audio input through Azure speech to text + audio output through Azure text to speech voices including custom neural voice. | `centralindia`<br/>`eastus2`<br/>`swedencentral`<br/>`westus2` |
+| `gpt-4o` | GPT-4o + audio input through Azure speech to text + audio output through Azure text to speech voices including custom neural voice. | `eastus2`<br/>`swedencentral` |
+| `gpt-4o-mini` | GPT-4o mini + audio input through Azure speech to text + audio output through Azure text to speech voices including custom neural voice. | `eastus2`<br/>`swedencentral` |
+| `phi4-mm-realtime` | Phi4-mm + audio output through Azure text to speech voices including custom neural voice. | `eastus2`<br/>`swedencentral` |
+| `phi4` | Phi4-mm + audio input through Azure speech to text + audio output through Azure text to speech voices including custom neural voice. | `eastus2`<br/>`swedencentral` |
 
 ## Comparing Voice Live API with other speech to speech solutions
 
