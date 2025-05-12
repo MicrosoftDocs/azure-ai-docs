@@ -1,5 +1,5 @@
 ---
-title: Setup your environment for Azure AI Foundry Agent Service
+title: Set up your environment for Azure AI Foundry Agent Service
 titleSuffix: Azure AI Foundry
 description: Use this guide to set up your agent environment
 manager: nitinme
@@ -12,7 +12,7 @@ ms.date: 05/09/2025
 ms.custom: azure-ai-agents
 ---
 
-# Setup your environment
+# Set up your environment
 
 Creating your first agent with Azure AI Agent Service is a two-step process: 
 1. Set up your agent environment.
@@ -44,17 +44,17 @@ Agents are scoped at the project level, which ensures data isolation—agents wi
 ### Choose your setup
 Azure AI Foundry Agent Service offers three environment configuration modes to suit different needs: 
 
-1. **Basic Setup**:  
+- **Basic Setup**:  
 
-This setup is compatible with OpenAI Assistants and manages agent states using the platform's built-in storage. It includes the same tools and capabilities as the Assistants API, with added support for non-OpenAI models and tools such as Azure AI Search, Bing, and SharePoint. 
+   This setup is compatible with OpenAI Assistants and manages agent states using the platform's built-in storage. It includes the same tools and capabilities as the Assistants API, with added support for non-OpenAI models and tools such as Azure AI Search, Bing, and SharePoint. 
 
-2. **Standard Setup**:  
+- **Standard Setup**:  
 
-Includes everything in the basic setup and fine-grained control over your data by allowing you to use your own Azure resources. All customer data—including files, threads, and vector stores—are stored in your own Azure resources, giving you full ownership and control. 
+   Includes everything in the basic setup and fine-grained control over your data by allowing you to use your own Azure resources. All customer data—including files, threads, and vector stores—are stored in your own Azure resources, giving you full ownership and control. 
 
-3. **Standard Setup with Bring Your Own (BYO) Virtual Network**:  
+- **Standard Setup with Bring Your Own (BYO) Virtual Network**:  
 
-Includes everything in the Standard Setup, with the added ability to operate entirely within your own virtual network. This setup supports Bring Your Own Virtual Network (BYO virtual network), allowing for strict control over data movement and helping prevent data exfiltration by keeping traffic confined to your network environment. 
+   Includes everything in the Standard Setup, with the added ability to operate entirely within your own virtual network. This setup supports Bring Your Own Virtual Network (BYO virtual network), allowing for strict control over data movement and helping prevent data exfiltration by keeping traffic confined to your network environment. 
 
 ### Compare setup options
 
@@ -94,8 +94,8 @@ By default, the deployment template is configured with the following values:
 > The templates only support deployment of Azure OpenAI models. See which Azure OpenAI models are supported in the [Azure AI Foundry Agent Service model support](./concepts/model-region-support.md) documentation.
 
 
-### What's Next?
+### What's next?
 * [Create your first agent](./quickstart.md)
 * Explore more:
     * [Use your existing resources](./how-to/use-your-own-resources.md)
-    * [Network aecured agent setup](./how-to/virtual-networks.md)
+    * [Network secured agent setup](./how-to/virtual-networks.md)
