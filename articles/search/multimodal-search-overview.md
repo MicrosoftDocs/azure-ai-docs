@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn what multimodal search is, how Azure AI Search supports it for text + image content, and where to find detailed concepts, tutorials, and samples.
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 05/11/2025
+ms.date: 05/12/2025
 author: gmndrg
 ms.author: gimondra
 ---
@@ -57,7 +57,7 @@ With this method, the Gen AI prompt skill invokes an LLM during ingestion to cre
 
 The added semantic depth entails an LLM call for every image and a marginal increase in indexing time.
 
-### Direct vision–text embeddings
+### Direct multimodal embeddings
 A second option is to pass the document extracted images and text to a multimodal embedding model that produces vector representations in the same vector space. Configuration is straightforward and no LLM is required at indexing time. Direct embeddings are well suited to visual similarity and “find-me-something-that-looks-like-this” scenarios.
 
 Because the representation is purely mathematical, it doesn't convey why two images are related, and it offers the LLM no ready context for citations or detailed explanations.
