@@ -427,8 +427,6 @@ items:
         href: how-to/continuous-evaluation-agents.md
    - name: Trace your application
      href: how-to/develop/trace-application.md
-   - name: Run evaluations online
-     href: how-to/online-evaluation.md
    - name: A/B experimentation
      href: concepts/a-b-experimentation.md
    - name: Transparency Note for safety evaluations
