@@ -79,7 +79,7 @@ steps:
 - task: AzureCLI@2 
   inputs: 
     addSpnToEnvironment: true 
-    azureSubscription: ${{ vars.Azure_Subscription_Name}}
+    azureSubscription: ${{vars.Service_Connection_Name}}
     scriptType: bash 
     scriptLocation: inlineScript     
 
