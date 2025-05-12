@@ -20,21 +20,11 @@ Connected agents allow you to create task-specific agents that can interact seam
 
 ## Features
 
-### Connected agent configuration and management
-
-- The ability to define and manage one or more specialized connected agents
-- Standardized agent-to-agent communication protocols
-- Robust error handling and retry mechanisms
-
-### Multi-agent workflow composition
-
-- Use the Foundry portal, or a code-based approach to define interactions between agents and connected agents
-- Integration points within existing agent workflows
-- Use your existing agents or create new ones
-
-### Access control and security
-
-- Fine-grained access controls to restrict connected agents usage based on roles and permissions
+* **Simplified workflow design**: Break down complex tasks across specialized agents to reduce complexity and improve clarity.
+* **No custom orchestration required**: The main agent uses natural language to route tasks, eliminating the need for hardcoded logic.
+* **Easy extensibility**: Add new connected agents (e.g., for translation or risk scoring) without modifying the main agent.
+* **Improved reliability and traceability**: Assign focused responsibilities to each agent for easier debugging and better auditability.
+* **Flexible setup options**: Configure agents using a no-code interface in the Foundry portal or programmatically via the Python SDK.
 
 :::zone pivot="portal"
 
