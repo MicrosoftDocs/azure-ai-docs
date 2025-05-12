@@ -9,8 +9,8 @@ ms.custom: references_regions
 
 ### May 2025 release
 
-#### New Realtime Model Release for ta-IN, te-IN, en-IN, hu-HU
-The models deliver 5%-10% Relative accuracy gains respectively, and for ta-IN, te-IN shows a 20x reduction in ghost words. 
+#### Improved speech to text models
+Accuracy of speech to text models for `ta-IN`, `te-IN`, `en-IN`, and `hu-HU` locales are improved by 5-10 percent respectively. We also approximate a 20x reduction in ghost words for the `ta-IN` and `te-IN` models. 
 
 #### Fast transcription API - Multi-lingual speech transcription
 
