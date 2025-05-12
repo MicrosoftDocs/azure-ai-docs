@@ -79,7 +79,7 @@ steps:
 - task: AzureCLI@2 
   inputs: 
     addSpnToEnvironment: true 
-    azureSubscription: 'az-dev-gh-aprilk-test-connection' 
+    azureSubscription: ${{vars.Service_Connection_Name}}
     scriptType: bash 
     scriptLocation: inlineScript     
 
@@ -101,9 +101,8 @@ steps:
   inputs: 
     azure-aiproject-connection-string: 'azure-ai-project-connection-string-sample' 
     deployment-name: "gpt-4o-mini" 
-    api-version: "2024-08-01-preview" 
     data-path: $(Build.SourcesDirectory)\tests\data\golden-dataset-medium.json 
-agent-ids: 'agent-id1, agent-id2' 
+agent-ids: "<your-ai-agent-ids> 
 
 ```
 
