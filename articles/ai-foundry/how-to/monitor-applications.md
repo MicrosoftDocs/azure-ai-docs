@@ -62,16 +62,19 @@ This dashboard is opened as an editable workbook where you can customize the wor
 
 1. Select **Edit** in the command bar.
     :::image type="content" source="../media/how-to/monitor-applications/customize-dashboard-2.png" alt-text="Screenshot of the workbooks tab under monitoring highlighting the edit button in the Azure portal." lightbox="../media/how-to/monitor-applications/customize-dashboard-2.png":::
+
 2. Modify elements as needed per your use case. Select **...** on an element to edit, add, move/resize, clone, or remove. For example, you can add a tile using KQL to track a custom attribute you're collecting and not shown in our built-in view.
     :::image type="content" source="../media/how-to/monitor-applications/customize-dashboard-3.png" alt-text="Screenshot of workbooks tab under monitoring highlighting modify element buttons in Azure portal." lightbox="../media/how-to/monitor-applications/customize-dashboard-3.png":::
+
 3. Save your latest changes and create different views as needed by selecting **Save**.
     :::image type="content" source="../media/how-to/monitor-applications/customize-dashboard-4.png" alt-text="Screenshot of workbooks tab under monitoring highlighting the save button and tab in Azure portal." lightbox="../media/how-to/monitor-applications/customize-dashboard-4.png":::
+
 4. Share with your team by selecting "Share" icon in the command bar.
     :::image type="content" source="../media/how-to/monitor-applications/customize-dashboard-5.png" alt-text="Screenshot of workbooks tab under monitoring highlighting share workbook button and tab in Azure portal." lightbox="../media/how-to/monitor-applications/customize-dashboard-5.png":::
 
 ## Explore and analyze with Kusto Query Language (KQL)
 
-[KQL (Kusto Query Language)](/kusto/query/?view=microsoft-fabric) is a powerful query language used in Azure to explore, analyze, and visualize large volumes of telemetry and log data.
+[KQL (Kusto Query Language)](/kusto/query/) is a powerful query language used in Azure to explore, analyze, and visualize large volumes of telemetry and log data.
 
 In the **Application analytics** dashboard view, you can **Open query link** by selecting on the icon in the top right for a particular tile or chart.
 
