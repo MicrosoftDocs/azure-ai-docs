@@ -24,7 +24,7 @@ ms.custom: devx-track-js
     * The minimum set of permissions required is: **agents/*/read**, **agents/*/action**, **agents/*/delete**  
 * Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
 
-[!INCLUDE [bicep-setup](bicep-setup.md)]
+
 
 ## Configure and run an agent
 

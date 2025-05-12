@@ -66,14 +66,14 @@ Includes everything in the Standard Setup, with the added ability to operate ent
 | Private Network Isolation (Bring your own virtual network)              |             |                                        | ✅                                      |
 
 ### Deployment options
-To customize these templates, see [use your own resources](../how-to/use-your-own-resources.md). 
+To customize these templates, see [use your own resources](./how-to/use-your-own-resources.md). 
 
-If you want support for Private Network Isolation see [network-secured setup](../how-to/virtual-networks.md) for more information on how to bring your own virtual network.
+If you want support for Private Network Isolation see [network-secured setup](./how-to/virtual-networks.md) for more information on how to bring your own virtual network.
 
 | Description and Autodeploy  |  Diagram (click to zoom in) |
 |-----------------------------|------------------------------|
-| Deploy a basic agent setup that uses **Managed Identity** for authentication. <br> An account and project are created. <br> A GPT-4o model is deployed. <br> A Microsoft-managed Key Vault is used by default. <br> [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure-ai-foundry%2Ffoundry-samples%2Frefs%2Fheads%2Fmain%2Fsamples%2Fmicrosoft%2Finfrastructure-setup%2F40-basic-agent-setup%2Fbasic-setup.json) | :::image type="content" source="../media/quickstart/basic-setup-resources-foundry.png" alt-text="An architecture diagram for basic agent setup." lightbox="../media/quickstart/basic-setup-resources-foundry.png"::: |
-| Deploy a standard agent setup that uses **Managed Identity** for authentication. <br>An account and project are created. <br> A GPT-4o model is deployed. <br> Azure resources for storing customer data - **Azure Storage**, **Azure Cosmos DB**, and **Azure AI Search** - are automatically created if existing resources are't  provided. <br> These resources are connected to your project to store files, threads, and vector data. <br> A Microsoft-managed Key Vault is used by default.</li></ul> <br> [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure-ai-foundry%2Ffoundry-samples%2Frefs%2Fheads%2Fmain%2Fsamples%2Fmicrosoft%2Finfrastructure-setup%2F41-standard-agent-setup%2Fazuredeploy.json) | :::image type="content" source="../media/quickstart/standard-agent-setup.png" alt-text="An architecture diagram for standard agent setup." lightbox="../media/quickstart/standard-agent-setup.png"::: |
+| Deploy a basic agent setup that uses **Managed Identity** for authentication. <br> An account and project are created. <br> A GPT-4o model is deployed. <br> A Microsoft-managed Key Vault is used by default. <br> [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure-ai-foundry%2Ffoundry-samples%2Frefs%2Fheads%2Fmain%2Fsamples%2Fmicrosoft%2Finfrastructure-setup%2F40-basic-agent-setup%2Fbasic-setup.json) | :::image type="content" source="./media/quickstart/basic-setup-resources-foundry.png" alt-text="An architecture diagram for basic agent setup." lightbox="./media/quickstart/basic-setup-resources-foundry.png"::: |
+| Deploy a standard agent setup that uses **Managed Identity** for authentication. <br>An account and project are created. <br> A GPT-4o model is deployed. <br> Azure resources for storing customer data - **Azure Storage**, **Azure Cosmos DB**, and **Azure AI Search** - are automatically created if existing resources are't  provided. <br> These resources are connected to your project to store files, threads, and vector data. <br> A Microsoft-managed Key Vault is used by default.</li></ul> <br> [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure-ai-foundry%2Ffoundry-samples%2Frefs%2Fheads%2Fmain%2Fsamples%2Fmicrosoft%2Finfrastructure-setup%2F41-standard-agent-setup%2Fazuredeploy.json) | :::image type="content" source="./media/quickstart/standard-agent-setup.png" alt-text="An architecture diagram for standard agent setup." lightbox="./media/quickstart/standard-agent-setup.png"::: |
 
 ### [Optional] Model selection in autodeploy template
 You can customize the model used by your agent by editing the model parameters in the autodeploy template. To deploy a different model, you need to update at least the `modelName` and `modelVersion` parameters. 
@@ -91,11 +91,11 @@ By default, the deployment template is configured with the following values:
 > [!IMPORTANT]
 > **Don't change the modelFormat parameter.** 
 >
-> The templates only support deployment of Azure OpenAI models. See which Azure OpenAI models are supported in the [Azure AI Foundry Agent Service model support](../concepts/model-region-support.md) documentation.
+> The templates only support deployment of Azure OpenAI models. See which Azure OpenAI models are supported in the [Azure AI Foundry Agent Service model support](./concepts/model-region-support.md) documentation.
 
 
 ### What's Next?
-* [Create your first agent](../quickstart.md)
+* [Create your first agent](./quickstart.md)
 * Explore more:
     * [Use your existing resources](./use-your-own-resources.md)
     * [Network aecured agent setup](./virtual-networks.md)
