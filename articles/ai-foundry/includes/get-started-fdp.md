@@ -55,7 +55,7 @@ No installation is necessary to use the Azure AI Foundry portal.
 1. [Install Java and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-java).
 1. Set these environment variables to use in your scripts:
 
-    :::code language="plaintext" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/.env.template:::"
+    :::code language="plaintext" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/.env.template":::
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
 
@@ -70,7 +70,7 @@ No installation is necessary to use the Azure AI Foundry portal.
 1. Install packages with `npm install`
 1. Set these environment variables to use in your scripts:
 
-    :::code language="plaintext" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/.env.template:::"
+    :::code language="plaintext" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/.env.template":::
 
 
 > [!TIP]
@@ -85,7 +85,7 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 1. Set these environment variables to use in your scripts:
 
-    :::code language="plaintext" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/.env.example:::"
+    :::code language="plaintext" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/.env.example":::
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
 
