@@ -8,7 +8,7 @@ reviewer: santiagxf
 ms.service: azure-ai-model-inference
 ms.topic: concept-article
 ms.date: 01/24/2025
-ms.author: mopeak
+ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: generated
 recommendations: false
