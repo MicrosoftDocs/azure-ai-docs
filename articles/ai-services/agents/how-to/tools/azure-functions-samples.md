@@ -372,7 +372,7 @@ This function writes data to the output queue and hence needs to be authenticate
 
 Now we will create the function itself. Install [.NET](https://dotnet.microsoft.com/download) and [Core Tools](https://go.microsoft.com/fwlink/?linkid=2174087) and create the function project using next commands.
 
-```console
+```shell
     func init FunctionProj --worker-runtime dotnet-isolated --target-framework net8.0
     cd FunctionProj
     func new --name foo --template "HTTP trigger" --authlevel "anonymous"
@@ -384,9 +384,9 @@ Now we will create the function itself. Install [.NET](https://dotnet.microsoft.
 We have created a project, containing HTTP-triggered azure function with the logic in `Foo.cs` file. As far as we need to trigger Azure function by a new message in the queue, we will replace the content of a Foo.cs by the C# sample code above.
 To deploy the function run the command from dotnet project folder:
 
-    ```console
-    func azure functionapp publish function_name
-    ```
+```shell
+        func azure functionapp publish function_name
+```
 
 In the `storage_account_already_present_in_resource_group` select the `Queue service` and create two queues: `azure-function-foo-input` and `azure-function-tool-output`. Note that the same queues are used in our sample. To check that the function is working, place the next message into the `azure-function-foo-input` and replace `storage_account_already_present_in_resource_group` by the actual resource group name, or just copy the output queue address.
 
