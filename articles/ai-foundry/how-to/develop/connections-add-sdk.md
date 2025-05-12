@@ -25,7 +25,7 @@ Connections are a way to authenticate and consume both Microsoft and other resou
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure AI Foundry](https://azure.microsoft.com/free/) today.
-- An Azure AI Foundry hub. For information on creating a hub, see [Create Azure AI Foundry resources with the SDK](./create-hub-project-sdk.md).
+- An Azure AI Foundry hub. For information on creating a hub, see [Create Azure AI Foundry Services with the SDK](./create-hub-project-sdk.md).
 - A resource to create a connection to. For example, an AI Services resource. The examples in this article use placeholders that you must replace with your own values when running the code.
 
 ## Set up your environment
@@ -38,9 +38,9 @@ There are various authentication methods for the different connection types. Whe
 
 [!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
-## Azure OpenAI Service
+## Azure OpenAI in Foundry Models
 
-The following example creates an Azure OpenAI Service connection.
+The following example creates an Azure OpenAI in Azure AI Foundry Models connection.
 
 > [!TIP]
 > To connect to Azure OpenAI and more AI services with one connection, you can use the [AI services connection](#azure-ai-services) instead.
@@ -73,7 +73,7 @@ ml_client.connections.create_or_update(wps_connection)
 
 ## Azure AI services
 
-The following example creates an Azure AI services connection. This example creates one connection for the AI services documented in the [Connect to Azure AI services](../../../ai-services/connect-services-ai-foundry-portal.md) article. The same connection also supports the Azure OpenAI service.
+The following example creates an Azure AI services connection. This example creates one connection for the AI services documented in the [Connect to Azure AI services](../../../ai-services/connect-services-ai-foundry-portal.md) article. The same connection also supports Azure OpenAI.
 
 ```python
 from azure.ai.ml.entities import AzureAIServicesConnection, ApiKeyConfiguration

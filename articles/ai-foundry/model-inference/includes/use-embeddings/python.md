@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use embeddings API with models deployed to Azure AI model inference in Azure AI services.
+This article explains how to use embeddings API with models deployed in Azure AI Foundry Models.
 
 ## Prerequisites
 
@@ -52,7 +52,7 @@ If you have configured the resource to with **Microsoft Entra ID** support, you 
 ```python
 import os
 from azure.ai.inference import EmbeddingsClient
-from azure.core.credentials import AzureKeyCredential
+from azure.identity import DefaultAzureCredential
 
 model = EmbeddingsClient(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],

@@ -1,7 +1,7 @@
 ---
-title: Models available in Azure AI model inference
+title: Models available in Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Explore the models available via the Azure AI model inference and their capabilities.
+description: Explore the models available via the Azure AI Foundry Models and their capabilities.
 manager: scottpolly
 author: msakande
 reviewer: santiagxf
@@ -13,9 +13,9 @@ ms.reviewer: fasantia
 ms.custom: references_regions, tool_generated
 ---
 
-# Models available in Azure AI model inference
+# Models available in Azure AI Foundry Models
 
-Azure AI model inference in Azure AI Foundry gives you access to flagship models in Azure AI to consume them as APIs without hosting them on your infrastructure.
+Azure AI Foundry Models gives you access to flagship models in Azure AI to consume them as APIs without hosting them on your infrastructure.
 
 :::image type="content" source="../media/models/models-catalog.gif" alt-text="An animation showing Azure AI Foundry portal model catalog section and the models available." lightbox="../media/models/models-catalog.gif":::
 
@@ -35,7 +35,7 @@ Explore the following model families available:
 - [Mistral AI](#mistral-ai)
 - [NTT Data](#ntt-data)
 
-Model availability varies by model provider, deployment SKU, and cloud. All models available in Azure AI Model Inference support the [Global standard](deployment-types.md#global-standard) deployment type which uses global capacity to guarantee throughput. [Azure OpenAI models](#azure-openai) also support regional deployments and [sovereign clouds](/entra/identity-platform/authentication-national-cloud)—Azure Government, Azure Germany, and Azure China 21Vianet.
+Model availability varies by model provider, deployment SKU, and cloud. All models available in Azure AI Foundry Models support the [Global standard](deployment-types.md#global-standard) deployment type which uses global capacity to guarantee throughput. [Azure OpenAI models](#azure-openai) also support regional deployments and [sovereign clouds](/entra/identity-platform/authentication-national-cloud)—Azure Government, Azure Germany, and Azure China 21Vianet.
 
 > [!TIP]
 > The Azure AI model catalog offers a larger selection of models, from a bigger range of providers. However, those models might require you to host them on your infrastructure, including the creation of an AI hub and project. Azure AI model service provides a way to consume the models as APIs without hosting them on your infrastructure, with a pay-as-you-go billing. Learn more about the [Azure AI model catalog](../../../ai-studio/how-to/model-catalog-overview.md).
@@ -54,7 +54,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 ### Azure OpenAI
 
-Azure OpenAI Service offers a diverse set of models with different capabilities and price points. Learn more details at [Azure OpenAI Model availability](../../../ai-services/openai/concepts/models.md). These models include:
+Azure OpenAI in Azure AI Foundry Models offers a diverse set of models with different capabilities and price points. Learn more details at [Azure OpenAI Model availability](../../../ai-services/openai/concepts/models.md). These models include:
 
 - State-of-the-art models designed to tackle reasoning and problem-solving tasks with increased focus and capability
 - Models that can understand and generate natural language and code
@@ -113,7 +113,7 @@ DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks 
 | [DeekSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | Global standard | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
 | [DeekSeek-V3](https://ai.azure.com/explore/models/deepseek-v3/version/1/registry/azureml-deepseek) <br />(Legacy) | chat-completion | Global standard | - **Input:** text (131,072 tokens) <br /> - **Output:**  (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
 
-For a tutorial on DeepSeek-R1, see [Tutorial: Get started with DeepSeek-R1 reasoning model in Azure AI model inference](../tutorials/get-started-deepseek-r1.md).
+For a tutorial on DeepSeek-R1, see [Tutorial: Get started with DeepSeek-R1 reasoning model in Azure AI Foundry Models](../tutorials/get-started-deepseek-r1.md).
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=deepseek).
 
@@ -192,4 +192,4 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 ## Next steps
 
-- Get started today and [deploy your fist model in Azure AI services](../how-to/create-model-deployments.md)
+- Get started today and [deploy your fist model in Azure AI Foundry Models](../how-to/create-model-deployments.md)

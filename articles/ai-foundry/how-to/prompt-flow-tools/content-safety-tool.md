@@ -16,7 +16,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Content safety tool for flows in Azure AI Foundry portal
+# Guardrails & controls tool for flows in Azure AI Foundry portal
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 

@@ -6,7 +6,7 @@ services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 01/30/2025
+ms.date: 04/15/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -26,7 +26,7 @@ Meanwhile, bindings facilitate streamlined connections to input or output data s
 ## Prerequisites
 
 * [Azure Functions Core Tools v4.x](/azure/azure-functions/functions-run-local)
-* [Azure AI Agent Service](../../../../ai-foundry/how-to/develop/sdk-overview.md?tabs=sync&pivots=programming-language-python#azure-ai-agent-service)
+* [Azure AI Agent Service](../../../../ai-foundry/how-to/develop/sdk-overview.md?tabs=sync&pivots=programming-language-python#azure-ai-foundry-agent-service)
 * [Azurite](https://github.com/Azure/Azurite)
 
 ## Prepare your local environment
@@ -138,7 +138,9 @@ To use all features of function calling including parallel functions, you need t
 
 ## Define a function for your agent to call
 
-Start by defining an Azure Function queue trigger function that will process function calls from the queue. 
+Start by defining an Azure Function queue trigger function that will process AI function calls from the queue. 
+
+# [Python](#tab/python)
 
 ```python
 # Function to get the weather from an Azure Storage queue where the AI Agent will send function call information
@@ -172,12 +174,27 @@ def process_queue_message(msg: func.QueueMessage) -> None:
     logging.info(f"Sent message to output queue with message {result_message}")
 ```
 
+# [TypeScript](#tab/typescript)
+
+:::code language="TypeScript" source="~/azure-functions-ai-services-agent-javascript/app/src/functions/queueGetWeather.ts" :::
+
+# [REST API](#tab/rest)
+
+No REST equivalent provided.
+
+
+---
+
 
 ## Create an AI project client and agent
 
-In the sample below we create a client and an agent that has the tools definition for the Azure Function
+In the sample below we create a client and an agent that has the AI tools definition for the Azure Function. The term `function` is used in two contexts within the AI tool definition: 
+
+* Azure Function: the type of tool. This is the Azure Functions app.
+* Function: the Http trigger function `GetWeather` within the Azure Function to call when the tool is invoked in the AI Project. 
 
 # [Python](#tab/python)
+
 ```python
 # Initialize the client and create agent for the tools Azure Functions that the agent can use
 
@@ -231,7 +248,12 @@ agent = project_client.agents.create_agent(
 )
 ```
 
+# [TypeScript](#tab/typescript)
+
+:::code language="TypeScript" source="~/azure-functions-ai-services-agent-javascript/app/src/azureProjectInit.ts" id="CreateAgent" :::
+
 # [REST API](#tab/rest)
+
 Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`. Then create the agent using:
 ```console
 curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
@@ -276,6 +298,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
   }'
 ```
 
+
 ---
 
 ## Create a thread for the agent
@@ -287,6 +310,10 @@ thread = project_client.agents.create_thread()
 print(f"Created thread, thread ID: {thread.id}")
 ```
 
+# [TypeScript](#tab/typescript)
+
+:::code language="TypeScript" source="~/azure-functions-ai-services-agent-javascript/app/src/azureProjectInit.ts" id="CreateThread" :::
+
 # [REST API](#tab/rest)
 ```console
 curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
@@ -294,6 +321,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
   -H "Content-Type: application/json" \
   -d ''
 ```
+
 ---
 
 ## Create a run and check the output
@@ -320,6 +348,11 @@ while run.status in ["queued", "in_progress", "requires_action"]:
 
 print(f"Run finished with status: {run.status}")
 ```
+
+# [TypeScript](#tab/typescript)
+
+:::code language="TypeScript" source="~/azure-functions-ai-services-agent-javascript/app/src/functions/httpPrompt.ts" id="CreateMessage" :::
+
 # [REST API](#tab/rest)
 ```console
 curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
@@ -364,10 +397,34 @@ project_client.agents.delete_agent(agent.id)
 print("Deleted agent")
 ```
 
+# [TypeScript](#tab/typescript)
+
+:::code language="TypeScript" source="~/azure-functions-ai-services-agent-javascript/app/src/functions/httpPrompt.ts" id="ListMessages" :::
+
 # [REST API](#tab/rest)
 ```console
 curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 
+---
+
+## Troubleshooting
+
+# [Python](#tab/python)
+
+For any issues with the Python code, create an issue on the [sample code repository](https://github.com/Azure-Samples/azure-functions-ai-services-agent-python/issues)
+
+# [TypeScript](#tab/typescript)
+
+For any issues with the TypeScript code, create an issue on the [sample code repository](https://github.com/Azure-Samples/azure-functions-ai-services-agent-javascript/issues)
+
+# [REST API](#tab/rest)
+
+No REST equivalent provided.
+
+---
+
 ::: zone-end
+
+

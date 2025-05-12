@@ -13,16 +13,17 @@ ms.custom: include file
 # Also used in Azure Machine Learning documentation
 ---
 
-For language models deployed via serverless APIs, Azure AI implements a default configuration of [Azure AI Content Safety](../../ai-services/content-safety/overview.md) text moderation filters that detect harmful content such as hate, self-harm, sexual, and violent content. To learn more about content filtering (preview), see [Content safety for models curated by Azure AI in the model catalog](../concepts/model-catalog-content-safety.md). 
+For language models deployed via standard deployment, Azure AI implements a default configuration of [Azure AI Content Safety](../../ai-services/content-safety/overview.md) text moderation filters that detect harmful content such as hate, self-harm, sexual, and violent content. To learn more about content filtering, see [Guardrails & controls for Azure Direct Models in the model catalog](../concepts/model-catalog-content-safety.md). 
 
 > [!TIP]
-> Content filtering (preview) is not available for certain model types that are deployed via serverless APIs. These model types include embedding models and time series models.
+> Content filtering is not available for certain model types that are deployed via standard deployments. These model types include embedding models and time series models.
 
-Content filtering (preview) occurs synchronously as the service processes prompts to generate content. You might be billed separately according to [Azure AI Content Safety pricing](https://azure.microsoft.com/pricing/details/cognitive-services/content-safety/) for such use. You can disable content filtering (preview) for individual serverless endpoints either:
+Content filtering occurs synchronously as the service processes prompts to generate content. You might be billed separately according to [Azure AI Content Safety pricing](https://azure.microsoft.com/pricing/details/cognitive-services/content-safety/) for such use. You can disable content filtering for individual serverless endpoints either:
 
 - At the time when you first deploy a language model
 - Later, by selecting the content filtering toggle on the deployment details page
 
-Suppose you decide to use an API other than the [Azure AI Model Inference API](/azure/ai-studio/reference/reference-model-inference-api) to work with a model that's deployed via a serverless API. In such a situation, content filtering (preview) isn't enabled unless you implement it separately by using Azure AI Content Safety.
+Suppose you decide to use an API other than the [Foundry Models API](/azure/ai-studio/reference/reference-model-inference-api) to work with a model that's deployed via a standard deployment. In such a situation, content filtering isn't enabled unless you implement it separately by using Azure AI Content Safety.
 
-To get started with Azure AI Content Safety, see [Quickstart: Analyze text content](/azure/ai-services/content-safety/quickstart-text). If you don't use content filtering (preview) when working with models that are deployed via serverless APIs, you run a higher risk of exposing users to harmful content.
+To get started with Azure AI Content Safety, see [Quickstart: Analyze text content](/azure/ai-services/content-safety/quickstart-text). If you don't use content filtering when working with models that are deployed via standard deployment, you run a higher risk of exposing users to harmful content.
+

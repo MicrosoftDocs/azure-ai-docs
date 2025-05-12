@@ -32,7 +32,7 @@ When a single platform team is responsible for the setup of cloud resources, the
 
 ## Set up and secure a hub for your team
 
-Get started by [creating your first hub in Azure AI Foundry portal](../how-to/create-azure-ai-resource.md), or use [Azure portal](../how-to/create-secure-ai-hub.md) or [templates](../how-to/create-azure-ai-hub-template.md) for advanced configuration options. You can customize networking, identity, encryption, monitoring, or tags, to meet compliance with your organization’s requirements.
+Get started by [creating your first hub in Azure AI Foundry portal](../how-to/create-azure-ai-resource.md), or use [Azure portal](../how-to/create-secure-ai-hub.md) or [templates](../how-to/create-azure-ai-hub-template.md) for advanced configuration options. You can customize networking, identity, encryption, monitoring, or tags, to meet compliance with your organization's requirements.
 
 Often, projects in a business domain require access to the same company resources such as vector indices, model endpoints, or repos. As a team lead, you can preconfigure connectivity with these resources within a hub, so developers can access them from any new project workspace without delay on IT.
 
@@ -76,7 +76,7 @@ Projects also have specific settings that only hold for that project:
 
 ## Azure AI services API access keys
 
-The hub allows you to set up connections to existing Azure OpenAI or Azure AI Services resource types, which can be used to host model deployments. You can access these model deployments from connected resources in Azure AI Foundry portal. Keys to connected resources can be listed from the Azure AI Foundry portal or Azure portal. For more information, see [Find Azure AI Foundry resources in the Azure portal](#find-azure-ai-foundry-resources-in-the-azure-portal).
+The hub allows you to set up connections to existing Azure OpenAI or Azure AI Services resource types, which can be used to host model deployments. You can access these model deployments from connected resources in Azure AI Foundry portal. Keys to connected resources can be listed from the Azure AI Foundry portal or Azure portal. For more information, see [Find Azure AI Foundry Service in the Azure portal](#find-azure-ai-foundry-services-in-the-azure-portal).
 
 ### Virtual networking
 
@@ -115,7 +115,7 @@ If you require to group costs of these different services together, we recommend
 
 You can use [cost management](/azure/cost-management-billing/costs/quick-acm-cost-analysis) and [Azure resource tags](/azure/azure-resource-manager/management/tag-resources) to help with a detailed resource-level cost breakdown, or run [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) on the above listed resources to obtain a pricing estimate. For more information, see [Plan and manage costs for Azure AI services](../how-to/costs-plan-manage.md).
 
-## Find Azure AI Foundry resources in the Azure portal
+## Find Azure AI Foundry Services in the Azure portal
 
 In the Azure portal, you can find resources that correspond to your project in Azure AI Foundry portal.
 

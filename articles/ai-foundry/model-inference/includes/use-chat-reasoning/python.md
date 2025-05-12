@@ -9,7 +9,7 @@ author: santiagxf
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use the reasoning capabilities of chat completions models deployed to Azure AI model inference in Azure AI services.
+This article explains how to use the reasoning capabilities of chat completions models deployed in Azure AI Foundry Models.
 
 [!INCLUDE [about-reasoning](about-reasoning.md)]
 
@@ -42,7 +42,7 @@ client = ChatCompletionsClient(
 ```
 
 > [!TIP]
-> Verify that you have deployed the model to Azure AI Services resource with the Azure AI model inference API. `Deepseek-R1` is also available as Serverless API Endpoints. However, those endpoints don't take the parameter `model` as explained in this tutorial. You can verify that by going to [Azure AI Foundry portal]() > Models + endpoints, and verify that the model is listed under the section **Azure AI Services**.
+> Verify that you have deployed the model to Azure AI Services resource with the Foundry Models API. `Deepseek-R1` is also available as standard deployments. However, those endpoints don't take the parameter `model` as explained in this tutorial. You can verify that by going to [Azure AI Foundry portal]() > Models + endpoints, and verify that the model is listed under the section **Azure AI Services**.
 
 If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
@@ -190,12 +190,11 @@ In general, reasoning models don't support the following parameters you can find
 
 Some models support the use of tools or structured outputs (including JSON-schemas). Read the [Models](../../concepts/models.md) details page to understand each model's support.
 
-### Apply content safety
+### Apply Guardrails and controls
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Foundry Models API supports [Azure AI Content Safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI Content Safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
-The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
-
+The following example shows how to handle events when the model detects harmful content in the input prompt.
 
 ```python
 from azure.ai.inference.models import AssistantMessage, UserMessage
@@ -221,4 +220,4 @@ except HttpResponseError as ex:
 ```
 
 > [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
+> To learn more about how you can configure and control Azure AI Content Safety settings, check the [Azure AI Content Safety documentation](https://aka.ms/azureaicontentsafety).

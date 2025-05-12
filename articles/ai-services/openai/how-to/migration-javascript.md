@@ -1,6 +1,6 @@
 ---
 title: How to migrate to OpenAI JavaScript v4.x
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn about migrating to the latest release of the OpenAI JavaScript library with Azure OpenAI.
 author: mrbullwinkle 
 ms.author: mbullwin 
@@ -13,7 +13,7 @@ manager: nitinme
 
 # Migrating to the OpenAI JavaScript API library 4.x
 
-As of June 2024, we recommend migrating to the OpenAI JavaScript API library 4.x, the latest version of the official OpenAI JavaScript client library that supports the Azure OpenAI Service API version `2022-12-01` and later. This article helps you bring you up to speed on the changes specific to Azure OpenAI.
+As of June 2024, we recommend migrating to the OpenAI JavaScript API library 4.x, the latest version of the official OpenAI JavaScript client library that supports the Azure OpenAI in Azure AI Foundry Models API version `2022-12-01` and later. This article helps you bring you up to speed on the changes specific to Azure OpenAI.
 
 ## Authenticating the client
 

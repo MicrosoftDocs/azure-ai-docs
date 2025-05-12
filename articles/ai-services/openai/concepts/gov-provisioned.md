@@ -16,7 +16,7 @@ Microsoft launched improvements to its Provisioned Throughput offering in Azure 
 
 This article highlights specific considerations for Azure Government. For general considerations on Provionsed Deployments and Reservations refer to:
 * [Azure OpenAI Provisioned Concepts](./provisioned-throughput.md)
-* [Getting started using provisioned deployments on the Azure OpenAI Service](../how-to/provisioned-get-started.md)
+* [Getting started using provisioned deployments on the Azure OpenAI in Azure AI Foundry Models](../how-to/provisioned-get-started.md)
 * [Azure OpenAI Provisioned Onboarding Guide](../how-to/provisioned-throughput-onboarding.md)
 * [Azure Reservations](https://aka.ms/oai/docs/ptum-reservations)
 
@@ -72,7 +72,7 @@ In addition to the updates for the hourly payment model, new [Azure Reservations
 | Provisioned | `ProvisionedManaged`  | Provisioned Managed Regional |
 
 > [!IMPORTANT]
-> Azure Reservations for Azure OpenAI provisioned offers are not interchangeable across deployment types. The Azure Reservation purchased must match the provisioned deployment type. If the Azure Reservation purchased does not match the provisioned deployment type, the provisioned deployment will default to the hourly payment model until a matching Azure Reservation product is purchased. For more information, see the [Azure Reservations for Azure OpenAI Service provisioned guidance](https://aka.ms/oai/docs/ptum-reservations).
+> Azure Reservations for Azure OpenAI provisioned offers are not interchangeable across deployment types. The Azure Reservation purchased must match the provisioned deployment type. If the Azure Reservation purchased does not match the provisioned deployment type, the provisioned deployment will default to the hourly payment model until a matching Azure Reservation product is purchased. For more information, see the [Azure Reservations for Azure OpenAI provisioned guidance](https://aka.ms/oai/docs/ptum-reservations).
 
 ### Commitment payment model
 
@@ -193,7 +193,7 @@ An alternative approach to self-service migration is to switch the reservation p
 > Self-service approach generates additional charges as the payment mode is switched from Committed to Hourly/Reservation. This is the characteristics of this migration approaches and customers aren't credited for these charges.
 
 ## How do I migrate my existing Azure Reservation to the new Azure Reservation products?
-Azure Reservations for Azure OpenAI Service provisioned offers are specific to the provisioned deployment type. If the Azure Reservation purchased does not match the provisioned deployment type, the deployment will default to the hourly payment model. If you choose to migrate to global or data zone provisioned deployments, you might need to purchase a new Azure Reservation for these deployments to support additional discounts. For more information on how to purchase a new Azure Reservation or make changes to an existing Azure Reservation, see the [Azure Reservations for Azure OpenAI Service Provisioned guidance](https://aka.ms/aoai/reservation-transition).
+Azure Reservations for Azure OpenAI provisioned offers are specific to the provisioned deployment type. If the Azure Reservation purchased does not match the provisioned deployment type, the deployment will default to the hourly payment model. If you choose to migrate to global or data zone provisioned deployments, you might need to purchase a new Azure Reservation for these deployments to support additional discounts. For more information on how to purchase a new Azure Reservation or make changes to an existing Azure Reservation, see the [Azure Reservations for Azure OpenAI Provisioned guidance](https://aka.ms/aoai/reservation-transition).
 
 ## Managing Provisioned Throughput Commitments
 

@@ -1,10 +1,10 @@
 ---
-title: Azure OpenAI Service models
+title: Azure OpenAI in Azure AI Foundry Models models
 titleSuffix: Azure OpenAI
 description: Learn about the different model capabilities that are available with Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 04/23/2025
+ms.date: 05/07/2025
 ms.custom: references_regions, build-2023, build-2023-dataai, refefences_regions
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
@@ -12,9 +12,9 @@ ms.author: mbullwin #chrhoder#
 recommendations: false
 ---
 
-# Azure OpenAI Service models
+# Azure OpenAI in Azure AI Foundry Models models
 
-Azure OpenAI Service is powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud. For Azure Government model availability, please refer to [Azure Government OpenAI Service](../azure-government.md).
+Azure OpenAI is powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud. For Azure Government model availability, please refer to [Azure Government OpenAI Service](../azure-government.md).
 
 | Models | Description |
 |--|--|
@@ -35,9 +35,9 @@ Azure OpenAI Service is powered by a diverse set of models with different capabi
 
 | Model | Region |
 |---|---|
-| `gpt-4.1` (2025-04-14) | East US2 (Global Standard), Sweden Central (Global Standard) |
-| `gpt-4.1-nano` (2025-04-14) | East US2 (Global Standard), Sweden Central (Global Standard)|
-| `gpt-4.1-mini` (2025-04-14) | East US2 (Global Standard), Sweden Central (Global Standard)|
+| `gpt-4.1` (2025-04-14) |  See the [models table](#model-summary-table-and-region-availability). |
+| `gpt-4.1-nano` (2025-04-14) |  See the [models table](#model-summary-table-and-region-availability).|
+| `gpt-4.1-mini` (2025-04-14) |  See the [models table](#model-summary-table-and-region-availability).|
 
 ### Capabilities
 
@@ -67,7 +67,7 @@ Once access has been granted, you will need to create a deployment for the model
 
 | Model | Region |
 |---|---|
-| `computer-use-preview` | East US 2 (Global Standard) <br> South India (Global Standard) <br> Sweden Central (Global Standard) |
+| `computer-use-preview` |  See the [models table](#model-summary-table-and-region-availability). |
 
 ### Capabilities
 
@@ -82,7 +82,7 @@ Once access has been granted, you will need to create a deployment for the model
 
 | Model | Region |
 |---|---|
-| `gpt-4.5-preview` | East US 2 (Global Standard) <br> Sweden Central (Global Standard) |
+| `gpt-4.5-preview` |  See the [models table](#model-summary-table-and-region-availability).|
 
 ### Capabilities
 
@@ -114,8 +114,8 @@ To learn more about the advanced `o-series` models see, [getting started with re
 
 | Model | Region |
 |---|---|
-|`o4-mini`|  East US2 (Global Standard) <br> Sweden Central (Global Standard)  |
-| `o3` |  East US2 (Global Standard) <br> Sweden Central (Global Standard)  |
+|`o4-mini`|   See the [models table](#model-summary-table-and-region-availability).  |
+| `o3` |   See the [models table](#model-summary-table-and-region-availability).  |
 |`o3-mini` | See the [models table](#model-summary-table-and-region-availability). |
 |`o1` | See the [models table](#model-summary-table-and-region-availability). |
 | `o1-preview` | See the [models table](#model-summary-table-and-region-availability). This model is only available for customers who were granted access as part of the original limited access |
@@ -158,7 +158,7 @@ You can see the token context length supported by each model in the [model summa
 
 - These models can only be used with the Chat Completion API.
 
-See [model versions](../concepts/model-versions.md) to learn about how Azure OpenAI Service handles model version upgrades, and [working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-4 deployments.
+See [model versions](../concepts/model-versions.md) to learn about how Azure OpenAI handles model version upgrades, and [working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-4 deployments.
 
 |  Model ID  | Description | Max Request (tokens) | Training Data (up to)  |
 |  --- |  :--- |:--- |:---: |
@@ -400,7 +400,7 @@ In addition to the regions above which are available to all Azure OpenAI custome
 
 ### GPT-3.5 models
 
-See [model versions](../concepts/model-versions.md) to learn about how Azure OpenAI Service handles model version upgrades, and [working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-3.5 Turbo deployments.
+See [model versions](../concepts/model-versions.md) to learn about how Azure OpenAI handles model version upgrades, and [working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-3.5 Turbo deployments.
 
 # [Embeddings](#tab/standard-embeddings)
 

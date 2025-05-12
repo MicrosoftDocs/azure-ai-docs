@@ -1,7 +1,7 @@
 ---
-title: Create and configure resources for Azure AI model inference
+title: Create and configure resources for Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn how to get your environment ready with the Azure AI model inference
+description: Learn how to get your environment ready with the Azure AI Foundry Models
 ms.service: azure-ai-model-inference
 ms.topic: how-to
 ms.date: 1/21/2025
@@ -13,7 +13,7 @@ recommendations: false
 zone_pivot_groups: azure-ai-models-deployment
 ---
 
-# Create and configure all the resources for Azure AI model inference
+# Create and configure all the resources for Azure AI Foundry Models
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [portal](../includes/create-resources/portal.md)]

@@ -25,7 +25,7 @@ You can add all the models you need in the endpoint by using [Azure AI Studio fo
    
    :::image type="content" source="../../media/add-model-deployments/models-deploy-agree.png" alt-text="Screenshot showing how to agree the terms and conditions of a Mistral-Large model." lightbox="../../media/add-model-deployments/models-deploy-agree.png":::
 
-6.  You can configure the deployment settings at this time. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for request to route to this particular model deployment. This allows you to also configure specific names for your models when you attach specific configurations. For instance `o1-preview-safe` for a model with a strict content safety content filter. Use third-party models like Mistral, you can also configure the deployment to use a specific version of the model.
+6.  You can configure the deployment settings at this time. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for request to route to this particular model deployment. This allows you to also configure specific names for your models when you attach specific configurations. For instance `o1-preview-safe` for a model with a strict content filter. Use third-party models like Mistral, you can also configure the deployment to use a specific version of the model.
 
    > [!TIP]
    > Each model can support different deployments types, providing different data residency or throughput guarantees. See [deployment types](../../concepts/deployment-types.md) for more details.

@@ -6,8 +6,9 @@ manager: mcleans
 ms.service: azure-ai-foundry
 content_well_notification: 
   - AI-contribution
+ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 04/28/2025
+ms.date: 05/07/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
@@ -26,11 +27,11 @@ With Azure AI Foundry, you can:
 
 - Quickly get started with developing generative AI applications using a collection of Azure curated code templates 
 
-- Configure and deploy agents with Azure AI Agent Service 
+- Configure and deploy agents with Azure AI Foundry Agent Service 
 
 With the Azure AI Foundry for Visual Studio Code extension, you can accomplish much of this workflow directly from Visual Studio Code. It also comes with other features, such as code templates, playgrounds, and integration with other VS Code extensions and features. 
 
-This article shoes you how to quickly get started using the features of the Azure AI Foundry for Visual Studio Code extension. 
+This article shows you how to quickly get started using the features of the Azure AI Foundry for Visual Studio Code extension. 
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -99,7 +100,7 @@ The Azure AI Foundry Extension opens in its own view, with the Azure AI Foundry 
 
 :::image type="content" source="../../media/how-to/get-started-projects-vs-code/initial-view.png" alt-text="A screenshot of the Azure AI Foundry Extension with highlighted sections.":::
 
-- **Resources**: This section contains the resources you have access to in your Azure AI Foundry project. The **Resources** section is the main view for interacting with your Azure AI Foundry resources. It contains the following subsections:
+- **Resources**: This section contains the resources you have access to in your Azure AI Foundry project. The **Resources** section is the main view for interacting with your Azure AI Foundry Services. It contains the following subsections:
   - **Models**: This section contains the models you can use to build and deploy your AI applications. The **Models** view is where you can find your deployed models in your Azure AI Foundry project.  
   - **Agents**: This section contains your deployed agents in your Azure AI Foundry project.
   - **Threads**: This section contains the threads and runs from a deployed agent in your Azure AI Foundry project.
@@ -114,7 +115,7 @@ The Azure AI Foundry Extension opens in its own view, with the Azure AI Foundry 
     - **GitHub**: The link to the Azure AI Foundry extension GitHub repository.
 
 >[!NOTE]
-> To learn more about working with Agents and Threads in the Azure AI Foundry Extension, see the [Work with Azure AI Agent Service in Visual Studio Code](./vs-code-agents.md) article. 
+> To learn more about working with Agents and Threads in the Azure AI Foundry Extension, see the [Work with Azure AI Foundry Agent Service in Visual Studio Code](./vs-code-agents.md) article. 
 
 ### The default Azure AI Foundry Project
 
@@ -298,14 +299,6 @@ You can also open the model playground using the following steps:
 
 The Azure resources that you created in this article are billed to your Azure subscription. If you don't expect to need these resources in the future, delete them to avoid incurring more charges.
 
-### Delete your agents
-
-1. In the VS Code navbar, refresh the **Azure AI Foundry Extension**. In the **Resources** section, expand the **Agents** subsection to display the list of deployed agents.
-
-1. Right-click on your deployed agent to delete and select the **Delete** option.
-
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-agent.png" alt-text="Screenshot of the AI Foundry portal with 'Agents' from the navigation menu on the left and the **Delete** button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
-
 ### Delete your models
 
 1. In the VS Code navbar, refresh the **Azure AI Foundry Extension**. In the **Resources** section, expand the **Models** subsection to display the list of deployed models.
@@ -322,6 +315,6 @@ Delete the connected tool with the following steps:
 1. Select the Azure Resource Group containing the tool.
 1. Select the **Delete** button.  
 
-##	Next steps
+##    Next steps
 
-- Learn about [working with the Azure AI Agent Service](./vs-code-agents.md) using this Visual Studio Code extension.
+- Learn about [working with the Azure AI Foundry Agent Service](./vs-code-agents.md) using this Visual Studio Code extension.

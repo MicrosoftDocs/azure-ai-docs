@@ -1,7 +1,7 @@
 ---
-title: 'Customize a model with Azure OpenAI Service'
+title: 'Customize a model with Azure OpenAI in Azure AI Foundry Models'
 titleSuffix: Azure OpenAI
-description: Learn how to create your own customized model with Azure OpenAI Service by using Python, the REST APIs, or Azure AI Foundry portal.
+description: Learn how to create your own customized model with Azure OpenAI by using Python, the REST APIs, or Azure AI Foundry portal.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
@@ -14,7 +14,7 @@ zone_pivot_groups: openai-fine-tuning
 
 # Customize a model with fine-tuning
 
-Azure OpenAI Service lets you tailor our models to your personal datasets by using a process known as *fine-tuning*. This customization step lets you get more out of the service by providing:
+Azure OpenAI in Azure AI Foundry Models lets you tailor our models to your personal datasets by using a process known as *fine-tuning*. This customization step lets you get more out of the service by providing:
 
 - Higher quality results than what you can get just from [prompt engineering](../concepts/prompt-engineering.md)
 - The ability to train on more examples than can fit into a model's max request context limit.
