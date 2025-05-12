@@ -1416,7 +1416,7 @@ Get a list of runs for an evaluation.
 | after | query | No | string | Identifier for the last run from the previous pagination request. |
 | limit | query | No | integer | Number of runs to retrieve. |
 | order | query | No | string<br>Possible values: `asc`, `desc` | Sort order for runs by timestamp. Use `asc` for ascending order or `desc` for descending order. Defaults to `asc`. |
-| status | query | No | string<br>Possible values: `queued`, `in_progress`, `completed`, `canceled`, `failed` | Filter runs by status. Use "queued" | "in_progress" | "failed"  | "completed" | "canceled". |
+| status | query | No | string<br>Possible values: `queued`, `in_progress`, `completed`, `canceled`, `failed` | Filter runs by status. Use "queued" , "in_progress" , "failed"  , "completed" , "canceled". |
 | api-version | query | Yes | string | The requested API version. |
 
 ### Request Header
