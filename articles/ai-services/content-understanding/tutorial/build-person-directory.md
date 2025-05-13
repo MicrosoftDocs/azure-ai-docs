@@ -15,10 +15,10 @@ A Person Directory is a structured way to store face data for recognition tasks.
 
 :::image type="content" source="../media/face/person-directory-processes.png" alt-text="Diagraom of the person directory enrollment and search processes.":::
 
-## Data storage requirement
+## Data storage recommendation
 It is recommended to store all face images in Azure Blob Storage for secure and scalable access. Face URLs in your API calls should point to these stored images.
 
-## Enrollment
+## Enroll
 
 Enrollment comprises:
 * Create an empty person directory.
@@ -30,7 +30,7 @@ Create a new directory to store faces and persons.
 
 **Sample request**
 
-PUT /contentunderstanding/personDirectories/{personDirectoryId}
+PUT {endpoint}/contentunderstanding/personDirectories/{personDirectoryId}?api-version=2025-05-01-preview
 Content-Type: application/json
 
 ```json
@@ -48,7 +48,7 @@ If you want to recognize or manage individuals, create a person first. You can l
 
 **Sample request**
 
-POST /contentunderstanding/personDirectories/{personDirectoryId}/persons
+POST {endpoint}/contentunderstanding/personDirectories/{personDirectoryId}/persons?api-version=2025-05-01-preview
 Content-Type: application/json
 
 ```json
@@ -69,7 +69,7 @@ Add a face to the directory. You can either associate it to an existing person o
 
 **Sample request**
 
-POST /contentunderstanding/personDirectories/{personDirectoryId}/faces
+POST {endpoint}/contentunderstanding/personDirectories/{personDirectoryId}/faces?api-version=2025-05-01-preview
 Content-Type: application/json
 
 ```json
@@ -97,12 +97,15 @@ Content-Type: application/json
 ## Search
 After building your person directory with face images and optional person associations, you can use it to you can use it to perform face recognition from images or videos.
 
-### Search within persons
+### Image input
+Identify persons or find similar faces in an image.
+
+#### Search within persons
 Identify the most likely person candidates by comparing the input face against enrolled persons.
 
 **Sample request**
 
-POST /contentunderstanding/personDirectory/{personDirectoryId}/persons:identify
+POST {endpoint}/contentunderstanding/personDirectory/{personDirectoryId}/persons:identify?api-version=2025-05-01-preview
 Content-Type: application/json
 
 ```json
@@ -136,12 +139,12 @@ Content-Type: application/json
 ```
 ---
 
-### Search within faces
+#### Search within faces
 Find visually similar individual faces from all stored face entries.
 
 **Sample request**
 
-POST /personDirectory/{personDirectoryId}/faces:find
+POST {endpoint}/personDirectory/{personDirectoryId}/faces:find?api-version=2025-05-01-preview
 Content-Type: application/json
 
 ```json
@@ -174,6 +177,8 @@ Content-Type: application/json
 ```
 ---
 
-## Next steps
+### Video input
+Identify people appearing in video content. See: [Azure AI Content Understanding video solutions (preview)](../video/overview.md)
 
-* Use your person directory to identify people appearing in video content. See: [Azure AI Content Understanding video solutions (preview)](../video/overview.md)
+
+## Next steps
