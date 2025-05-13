@@ -44,7 +44,7 @@ To check if a specific connector has a trigger capability, view its documentatio
 
 1. In the Azure portal, navigate to the AI Foundry project that has the AI agent you want to use. 
 1. Select **access control** and click **add role assignment**. 
-1. Select at least **Azure AI User** and click **Next**. 
+1. Select at least **Azure AI Project Manager** and click **Next**. 
 1. Select **User, group, or service principal** and select members 
 1. Paste the object ID you got from the Logic App resource to search for your Logic App resource. Then select **Finish**. 
 
