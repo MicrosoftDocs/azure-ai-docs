@@ -8,7 +8,7 @@ ms.author: aahi
 ms.service: azure-ai-agent-service
 ---
 
-# Trigger an agent using Logic Apps
+# Trigger an agent using Logic Apps (Preview)
 
 To streamline your workflow, you might want to automatically invoke your AI agent when an event occurs, such as receiving a new email, or getting a new customer ticket so that your AI agent can immediately respond to the new event without manual invocation.  
 
@@ -44,7 +44,7 @@ To check if a specific connector has a trigger capability, view its documentatio
 
 1. In the Azure portal, navigate to the AI Foundry project that has the AI agent you want to use. 
 1. Select **access control** and click **add role assignment**. 
-1. Select at least **AI Developer** and click **Next**. 
+1. Select at least **Azure AI Project Manager** and click **Next**. 
 1. Select **User, group, or service principal** and select members 
 1. Paste the object ID you got from the Logic App resource to search for your Logic App resource. Then select **Finish**. 
 
@@ -106,7 +106,7 @@ The **create thread** connector creates a new [thread](../concepts/threads-runs-
     "bing_grounding": {
       "search_configurations": [
         {
-          "connection_id": "/subscriptions/<subscription-id>/resourceGroups/<your resource group name>/providers/Microsoft.CognitiveServices/accounts/<your ai service name>/projects/<your project name>/connections/<your connection name>",
+          "connection_id": "/subscriptions/<subscription-id>/resourceGroups/<your_resource_group_name>/providers/Microsoft.CognitiveServices/accounts/<your_ai_service_name>/projects/<your_project_name>/connections/<your_connection_name>",
           "count": 7,
           "market": "en-US",
           "set_lang": "en",
