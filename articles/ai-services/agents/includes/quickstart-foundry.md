@@ -22,7 +22,7 @@ To create an account and project in Azure AI Foundry, follow these steps:
 
 1. Go to Azure AI Foundry. If you are in a project, select Azure AI Foundry at the top left of the page to go to the Home page.
 
-1. Use the Agent getting started creation flow for the fastest experience. Click **Create the future**.
+1. Use the Agent getting started creation flow for the fastest experience. Click **Create an agent**.
 
     :::image type="content" source="../media/quickstart/foundry-landing-page.png" alt-text="A screenshot of the Azure AI Foundry portal." lightbox="../media/quickstart/foundry-landing-page.png":::
 
