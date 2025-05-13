@@ -36,7 +36,7 @@ Integrate your Azure AI Agent with the **Microsoft Sharepoint** to chat with you
 
 1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
 
-1. You can add the SharePoint tool to an agent programatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal, in either the **Create and debug** or **Agent playground** screen for your agent, scroll down the setup pane on the right to knowledge. Then select **Add**.
+1. You can add the SharePoint tool to an agent programatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal, in either the **Agents** or **Agent playground** screen for your agent, scroll down the setup pane on the right to knowledge. Then select **Add**.
 
    :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
 

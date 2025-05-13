@@ -58,11 +58,11 @@ To create a project in Azure AI Foundry, follow these steps:
 
 The **Agents playground** allows you to explore, prototype, and test agents without needing to run any code. From this page, you can quickly iterate and experiment with new ideas.
 
-1. In the **Create and debug your agents** screen, select your agent, or create a new one with **New agent**. The **Setup** pane on the right is where you can change its parameters and tools. 
+1. In the **Agents** screen, select your agent, or create a new one with **New agent**. The **Setup** pane on the right is where you can change its parameters and tools. 
 
     You can optionally give your agent a name other than the one generated for it, and add instructions to help improve its performance. Give your agent clear directions on what to do and how to do it. Include specific tasks, their order, and any special instructions like tone or engagement style.
 
-    :::image type="content" source="../media/quickstart/create-debug-agent.png" alt-text="A screenshot of the Agents create and debug screen." lightbox="../media/quickstart/create-debug-agent.png":::
+    :::image type="content" source="../media/quickstart/create-debug-agent.png" alt-text="A screenshot of the Agents screen." lightbox="../media/quickstart/create-debug-agent.png":::
 
     > [!TIP]
     > Your agent can access multiple tools such as [code interpreter](../how-to/tools/code-interpreter.md) that extend its capabilities, such as the ability to search the web with Bing, run code, and more. In the **Setup** pane, scroll down to **knowledge** and **action** and select **Add** to see the tools available for use. 

@@ -26,7 +26,7 @@ Use this article to find step-by-step instructions and code samples for Groundin
 
 ::: zone pivot="portal"
 
-1. In the [Azure AI Foundry portal](https://ai.azure.com/) navigate to the **Create and debug** screen for your agent, scroll down the **Setup** pane on the right to **knowledge**. Then select **Add**.
+1. In the [Azure AI Foundry portal](https://ai.azure.com/) navigate to the **Agents** screen for your agent, scroll down the **Setup** pane on the right to **knowledge**. Then select **Add**.
 
     :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
 

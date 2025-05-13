@@ -31,7 +31,7 @@ ms.date: 04/28/2025
 
 ## Use the tool through the Azure AI Foundry portal
 
-1. To use the tool in the Azure AI Foundry, in the **Create and debug** screen for your agent, scroll down the **Setup** pane to **action**. Then select **Add**.
+1. To use the tool in the Azure AI Foundry, in the **Agents** screen for your agent, scroll down the **Setup** pane to **action**. Then select **Add**.
 
     :::image type="content" source="../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../media/tools/knowledge-tools.png":::
 

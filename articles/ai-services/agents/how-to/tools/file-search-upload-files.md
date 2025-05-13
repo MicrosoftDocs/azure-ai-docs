@@ -29,7 +29,7 @@ Use this article to find step-by-step instructions and code samples for uploadin
 
 ## Add file search to an agent using the Azure AI Foundry portal
 
-1. Go to the [Azure AI Foundry portal](https://ai.azure.com/). In the **Create and debug** screen for your agent, scroll down the **Setup** pane on the right to **knowledge**. Then select **Add**.
+1. Go to the [Azure AI Foundry portal](https://ai.azure.com/). In the **Agents** screen for your agent, scroll down the **Setup** pane on the right to **knowledge**. Then select **Add**.
 
     :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
 
