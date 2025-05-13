@@ -5,7 +5,7 @@ author: sgilley
 ms.author: sgilley
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 04/30/2025
+ms.date: 05/13/2025
 ms.custom: include file
 ---
 
@@ -30,7 +30,7 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 - An [Azure subscription](https://azure.microsoft.com/free/). If you don't have an Azure subscription, create a free account before you begin.
 - You must be **Owner** of the subscription to receive the appropriate access control needed to use your project.
 
-
+[!INCLUDE [feature-preview](feature-preview.md)]
 
 ## Create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] 
 
@@ -71,7 +71,7 @@ No installation is necessary to use the Azure AI Foundry portal.
 > [!TIP]
 > All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/mslearn-resources/quickstart).
 
-# [Java](#tab/java)
+# [Java (preview)](#tab/java)
 
 1. [Install Java and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-java).
 1. Set these environment variables to use in your scripts:
@@ -84,7 +84,7 @@ No installation is necessary to use the Azure AI Foundry portal.
 > [!TIP]
 > All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart).
 
-# [JavaScript](#tab/javascript)
+# [JavaScript (preview)](#tab/javascript)
 
 1. [Install JavaScript and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-javascript)
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your JavaScript scripts.
@@ -135,11 +135,11 @@ Substitute your value for the endpoint in this code:
 :::code language="python" source="~/foundry-samples/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="chat_completion":::
 
 
-# [Java](#tab/java)
+# [Java (preview)](#tab/java)
 
 :::code language="java" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/ChatCompletionSample.java" :::
 
-# [JavaScript](#tab/javascript)
+# [JavaScript (preview)](#tab/javascript)
 
 :::code language="javascript" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="chat_completion":::
 
@@ -168,11 +168,11 @@ Agents allow more powerful capabilities through the use of tools. First, let's w
 
 :::code language="python" source="~/foundry-samples/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_and_run_agent":::
 
-# [Java](#tab/java)
+# [Java (preview)](#tab/java)
 
 :::code language="java" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" :::
 
-# [JavaScript](#tab/javascript)
+# [JavaScript (preview)](#tab/javascript)
 
 :::code language="javascript" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="create_and_run_agent" :::
 
@@ -204,12 +204,12 @@ Now let's add a file search tool that enables us to do knowledge retrieval.
 
 :::code language="python" source="~/foundry-samples/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_filesearch_agent":::
 
-# [Java](#tab/java)
+# [Java (preview)](#tab/java)
 
 :::code language="java" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/FileSearchAgentSample.java" :::
 
 
-# [JavaScript](#tab/javascript)
+# [JavaScript (preview)](#tab/javascript)
 
 :::code language="javascript" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="create_filesearch_agent":::
 

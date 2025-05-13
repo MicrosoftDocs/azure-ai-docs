@@ -145,7 +145,7 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
 # [Azure CLI](#tab/azurecli)
 
-To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
+<!-- To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
 1. Authenticate to your Azure subscription from the Azure CLI with the following command:
 
@@ -165,7 +165,9 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
     [!INCLUDE [cli-create-project](cli-create-project.md)]
 
----
+--- -->
+
+CLI comannds not currently available for creating a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
 
 ## Create multiple projects on the same resource
 
