@@ -65,10 +65,8 @@ The Foundry Agent Service provides the following built-in tools. You can use the
 |[Function calling](./function-calling.md)     |Describe the structure of functions you create to an agent and have them be called when appropriate during the agent's interactions with users.         |
 |[Grounding with Bing Search](./bing-grounding.md)     | Enable your agent to use Grounding with Bing Search to access and return information from the internet.         |
 | [Grounding with Bing Custom Search](./bing-custom-search.md) | Enhance your Agent response with selected web domains |
-| [Microsoft Fabric](./fabric.md) | Integrate your agent with the [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. |
 | [Microsoft Fabric (preview)](./fabric.md) | Integrate your agent with the [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. |
 | [OpenAPI 3.0 Specified tool ](./openapi-spec.md) | Connect your Azure AI Agent to external APIs using functions with an OpenAPI 3.0 specification. |
-|[SharePoint (preview)](./sharepoint.md) | Ground your agents using your SharePoint sites. | 
 
 ## Non-Microsoft tools
 
@@ -82,8 +80,8 @@ The following tools are authored by third-party partners. Use the links below to
 |---------|---------|
 | [Auquan](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents/3p-tools/auquan) | Utilize Auquan to perform your financial data crunching |
 | [Celonis](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents/3p-tools/Celonis) | Celonis delivers Process Intelligence to accelerate enterprise AI at scale |
+| [InsureMO](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents/3p-tools/InsureMO) | Action APIs for insurance quotations for Car, Home, and Travel |
 | [LEGALFLY](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents/3p-tools/legalfly) | Legal insights grounded in trusted sources from your jurisdiction. |
 | [MiHCM](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents/3p-tools/MiHCM) | seamless integration with MiHCM's HR functionalities |
 | [Morningstar](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents/3p-tools/Morningstar) | Access up-to-date analyst research, expert commentary, and essential Morningstar data. |
 | [Tripadvisor](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents/3p-tools/Tripadvisor) | Get travel data, guidance and reviews |
- 
