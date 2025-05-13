@@ -68,7 +68,6 @@ The Foundry Agent Service provides the following built-in tools. You can use the
 | [Microsoft Fabric](./fabric.md) | Integrate your agent with the [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. |
 | [Microsoft Fabric (preview)](./fabric.md) | Integrate your agent with the [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. |
 | [OpenAPI 3.0 Specified tool ](./openapi-spec.md) | Connect your Azure AI Agent to external APIs using functions with an OpenAPI 3.0 specification. |
-|[SharePoint (preview)](./sharepoint.md) | Ground your agents using your SharePoint sites. | 
 
 ## Non-Microsoft tools
 
