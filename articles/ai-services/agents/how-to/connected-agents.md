@@ -26,6 +26,49 @@ Connected agents allow you to create task-specific agents that can interact seam
 * **Improved reliability and traceability**: Assign focused responsibilities to each agent for easier debugging and better auditability.
 * **Flexible setup options**: Configure agents using a no-code interface in the Foundry portal or programmatically via the Python SDK.
 
+## Example: building a modular contract review agent with connected agents
+
+As your use cases grow in complexity, you can scale your AI solution by assigning specific responsibilities to multiple connected agents. This lets each agent specialize in a narrow task while the main agent coordinates the overall workflow. This modular design enhances accuracy, maintainability, and traceability—especially for document-heavy domains like legal, compliance, and procurement.
+Let’s walk through a real-world example of how to build a **Contract Review Assistant** using connected agents.
+
+### Architecture Overview
+
+**Main agent – contract orchestrator**
+
+Acts as the central interface. It interprets user prompts (such as "summarize clauses," "compare drafts," or "check compliance"), determines the task type, and delegates it to the appropriate connected agent.
+
+* **Tools Used**: None directly
+* **Responsibilities**: Intent classification and delegation
+* **Example Agent Description**:
+
+    "You are a contract review assistant. Depending on the user query, determine if the task involves clause summarization, document comparison, or compliance checking, and route accordingly."
+
+**Connected agent 1: clause summarizer**
+
+Extracts key sections (like Termination, Indemnity, or Confidentiality) from a contract and summarizes them in plain language.
+
+* **Tools Used**:
+    * File Search to retrieve the uploaded contract
+    * Code Interpreter to scan the document for clause headings and summarize the content
+* **Responsibilities**: Information extraction and summarization
+* **Example agent description**:
+
+    "Extract and summarize the 'Termination,' 'Payment terms,' and 'Indemnity' clauses from the provided contract."
+
+**Connected agent 2: compliance validator**
+
+Checks the contract against internal standards or uploaded guidelines to identify risky or noncompliant language.
+
+* **Tools Used**:
+    * File Search to access internal policy documents or contract templates
+    * OpenAPI Tool to call an internal compliance rules API
+    * Azure Function or Azure Logic Apps to run simple logic checks (for example required clause presence or threshold validations)
+
+* **Responsibilities**: Policy matching and risk flagging
+* **Example Prompt Instruction**:
+    
+    "Review this document against company compliance guidelines and flag any deviations from the approved template."
+
 :::zone pivot="portal"
 
 ## Creating a multi-agent setup
@@ -38,6 +81,121 @@ Navigate to the **create and debug** page for your agents. In the **Connected ag
 In the window that appears, select an agent to delegate tasks to, with a unique name and a description of how and when the main agent will invoke the connected agent. Be as descriptive as possible about the circumstances in which the connected agent should be called.
 
 :::image type="content" source="../media/connected-agents/connected-agents-foundry-2.png" alt-text="A screenshot of the connected agents screen" lightbox="../media/connected-agents/connected-agents-foundry-2.png":::
+
+::: zone-end
+
+:::zone pivot="csharp"
+
+## Use the .NET SDK 
+
+> [!NOTE]
+> This shows a synchronous usage. You can find an asynchronous example on [GitHub](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/samples/Sample24_Agent_Connected_Agent.md) 
+
+To enable your Agent to use a connected agent, you use `ConnectedAgentToolDefinition` along with the agent ID, name, and a description.
+
+1. First we need to create agent client and read the environment variables, which will be used in the next steps.
+    
+    ```csharp
+    var connectionString = System.Environment.GetEnvironmentVariable("PROJECT_CONNECTION_STRING");
+    var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+    
+    var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential());
+    
+    AgentsClient agentClient = projectClient.GetAgentsClient();
+    ```
+
+2. Next we will create the connected agent using the agent client. This agent will be used to initialize the `ConnectedAgentToolDefinition`.
+    
+    ```csharp
+    Agent connectedAgent = agentClient.CreateAgent(
+       model: modelDeploymentName,
+       name: "stock_price_bot",
+       instructions: "Your job is to get the stock price of a company. If you don't know the realtime stock price, return the last known stock price.");
+    
+    ConnectedAgentToolDefinition connectedAgentDefinition = new(new ConnectedAgentDetails(connectedAgent.Id, connectedAgent.Name, "Gets the stock price of a company"));
+    ```
+
+3. We will use the `ConnectedAgentToolDefinition` during the agent initialization.
+    
+    ```csharp
+    Agent agent = agentClient.CreateAgent(
+       model: modelDeploymentName,
+       name: "my-assistant",
+       instructions: "You are a helpful assistant, and use the connected agent to get stock prices.",
+       tools: [ connectedAgentDefinition ]);
+    ```
+    
+4. Now we will create the thread, add the message, containing a question for agent and start the run.
+    
+    ```csharp
+    AgentThread thread = agentClient.CreateThread();
+    
+    // Create message to thread
+    ThreadMessage message = agentClient.CreateMessage(
+        thread.Id,
+        MessageRole.User,
+        "What is the stock price of Microsoft?");
+    
+    // Run the agent
+    ThreadRun run = agentClient.CreateRun(thread, agent);
+    do
+    {
+        Thread.Sleep(TimeSpan.FromMilliseconds(500));
+        run = agentClient.GetRun(thread.Id, run.Id);
+    }
+    while (run.Status == RunStatus.Queued
+        || run.Status == RunStatus.InProgress);
+    
+    Assert.AreEqual(
+        RunStatus.Completed,
+        run.Status,
+        run.LastError?.Message);
+    ```
+    
+5. Print the agent messages to console in chronological order.
+    
+    ```csharp
+    PageableList<ThreadMessage> messages = agentClient.GetMessages(
+        threadId: thread.Id,
+        order: ListSortOrder.Ascending
+    );
+    
+    foreach (ThreadMessage threadMessage in messages)
+    {
+        Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+        foreach (MessageContent contentItem in threadMessage.ContentItems)
+        {
+            if (contentItem is MessageTextContent textItem)
+            {
+                string response = textItem.Text;
+                if (textItem.Annotations != null)
+                {
+                    foreach (MessageTextAnnotation annotation in textItem.Annotations)
+                    {
+                        if (annotation is MessageTextUrlCitationAnnotation urlAnnotation)
+                        {
+                            response = response.Replace(urlAnnotation.Text, $" [{urlAnnotation.UrlCitation.Title}]({urlAnnotation.UrlCitation.Url})");
+                        }
+                    }
+                }
+                Console.Write($"Agent response: {response}");
+            }
+            else if (contentItem is MessageImageFileContent imageFileItem)
+            {
+                Console.Write($"<image from ID: {imageFileItem.FileId}");
+            }
+            Console.WriteLine();
+        }
+    }
+    ```
+    
+6. Clean up resources by deleting thread and agent.
+    
+    ```csharp
+    agentClient.DeleteThread(threadId: thread.Id);
+    agentClient.DeleteAgent(agentId: agent.Id);
+    agentClient.DeleteAgent(agentId: connectedAgent.Id);
+    ```
 
 ::: zone-end
 
