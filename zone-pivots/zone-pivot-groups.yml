@@ -1106,6 +1106,8 @@ groups:
   pivots:
   - id: portal
     title: Azure AI Foundry portal
+  - id: csharp
+    title: C# 
   - id: python
     title: Python 
 # owner: zhuoqunli

@@ -46,7 +46,7 @@ Azure AI Foundry Agent Service offers three environment configuration modes to s
 
 - **Basic Setup**:  
 
-   This setup is compatible with OpenAI Assistants and manages agent states using the platform's built-in storage. It includes the same tools and capabilities as the Assistants API, with added support for non-OpenAI models and tools such as Azure AI Search, Bing, and SharePoint. 
+   This setup is compatible with OpenAI Assistants and manages agent states using the platform's built-in storage. It includes the same tools and capabilities as the Assistants API, with added support for non-OpenAI models and tools such as Azure AI Search, and Bing. 
 
 - **Standard Setup**:  
 

@@ -23,7 +23,7 @@ The Azure AI Foundry Agent Service is now Generally Available (GA). Along with t
 
 ### Agent catalog
 
-The [agent catalog](./how-to/agent-catalog.md) helps streamline your agent deployment with prebuilt, task-specific agent code samples across a variety of domains such as translation, sales prep, computer use, and more.
+The [agent catalog](./concepts/agent-catalog.md) helps streamline your agent deployment with prebuilt, task-specific agent code samples across a variety of domains such as translation, sales prep, computer use, and more.
 
 ### AI Foundry Visual Studio Code extension
 
@@ -46,7 +46,6 @@ Debug and monitor your agents by [tracing agent threads](./concepts/tracing.md) 
 This release brings a number of new tools to extend agents' capabilities:
 
 * **Bing Custom Search tool** - Determine which websites will be used to ground your agents with. 
-* **SharePoint tool** - Use your SharePoint sites to ground your agents data, and chat with your data.
 * **Morningstar tool** - Leverage Morningstar, a prominent investment research company, as a data source for your agent. 
 
 ## April 2025
