@@ -36,8 +36,9 @@ To get started, you need **an active Azure subscription**. If you don't have an 
 
 
 ## Get Started with a prebuilt analyzer
-Analyzers define how your content is processed and the insights that are extracted. We offer [prebuilt analyzers](../concepts/prebuilt-analyzers.md) for common use cases. You can [customize prebuilt analyzers](/how-to/create-a-custom-analyzer.md) to better fit your specific needs and use cases. 
-This quickstart uses prebuilt document, image, audio, and video analyzers to help you get started. 
+
+Analyzers define how your content is processed and the insights that are extracted. We offer [prebuilt analyzers](../concepts/prebuilt-analyzers.md) for common use cases. You can [customize prebuilt analyzers](../concepts/prebuilt-analyzers.md) to better fit your specific needs and use cases.
+This quickstart uses prebuilt document, image, audio, and video analyzers to help you get started.
 
 ### Send file for analysis
 #### POST request
@@ -52,7 +53,7 @@ Before running the cURL command, make the following changes to the HTTP request:
 # [Document](#tab/document)
 
 1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal.
-2. Replace `{analyzerId}` with  `prebuilt-documentAnalyzer`. This analyzer extracts text and layout elements such as paragraphs, sections, and tables from a document. 
+2. Replace `{analyzerId}` with  `prebuilt-documentAnalyzer`. This analyzer extracts text and layout elements such as paragraphs, sections, and tables from a document.
 3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf`.
 
 # [Image](#tab/image)
@@ -70,7 +71,7 @@ Before running the cURL command, make the following changes to the HTTP request:
 # [Video](#tab/video)
 
 1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal.
-2. Replace `{analyzerId}` with  `prebuilt-videoAnalyzer`. This analyzer extracts keyframes, transcript, and chapter segments from video. 
+2. Replace `{analyzerId}` with  `prebuilt-videoAnalyzer`. This analyzer extracts keyframes, transcript, and chapter segments from video.
 3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/FlightSimulator.mp4`.
 ---
 
@@ -349,6 +350,6 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ## Next steps
 
-* In this quickstart, you learned how to call the [REST API](/rest/api/contentunderstanding/content-analyzers/analyze?view=rest-contentunderstanding-2025-05-01-preview) using a prebuilt analyzer. See how you can [create a custom analyzer](/how-to/create-a-custom-analyzer) to better fit your use case.
+Learn to [create a custom analyzer](../concepts/analyzers-overview.md) to better fit your use case.
 
 
