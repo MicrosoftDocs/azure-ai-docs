@@ -1,5 +1,5 @@
 ---
-title: Guardrails & controls for Azure Direct Models
+title: Guardrails & controls for Models Sold Directly by Azure 
 titleSuffix: Azure AI Foundry
 description: Learn about content safety for models deployed using standard deployments, using Azure AI Foundry.
 manager: scottpolly
@@ -13,7 +13,7 @@ reviewer: ositanachi
 ms.custom: 
 ---
 
-# Guardrails & controls for Azure Direct Models
+# Guardrails & controls for Models Sold Directly by Azure 
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 

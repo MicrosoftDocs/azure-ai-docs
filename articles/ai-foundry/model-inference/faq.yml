@@ -21,7 +21,7 @@ sections:
         answer: |
           Azure OpenAI gives customers access to advanced language models from OpenAI. Foundry Models extends such capability giving customers access to all the flagship models in Azure AI Foundry under the same service, endpoint, and credentials. It includes Azure OpenAI, Cohere, Mistral AI, Meta Llama, AI21 labs, etc. Customers can seamlessly switch between models without changing their code.
 
-          Azure OpenAI is an Azure Direct model family in Foundry Models.
+          Azure OpenAI is a Models Sold Directly by Azure family in Foundry Models.
       - question: |
           What's the difference between Azure AI services and Azure AI Foundry?
         answer: |
@@ -98,9 +98,9 @@ sections:
   - name: Data and Privacy
     questions:
       - question: |
-          How are Azure Ecosystem models available? 
+          How are Models from Partners and Community available? 
         answer: |
-          Azure Ecosystem models available for deployment in Azure AI Services with Standard billing (for example, Meta AI models or Mistral models) are offered by the model provider but hosted in Microsoft-managed Azure infrastructure and accessed via API in the Foundry Models endpoint. Model providers define the license terms and set the price for use of their models, while Azure AI Services service manages the hosting infrastructure, makes the inference APIs available, and acts as the data processor for prompts submitted and content output by models deployed. Read about [Data privacy, and security for third-party models](../../ai-studio/how-to/concept-data-privacy.md).
+          Models from Partners and Community available for deployment in Azure AI Services with Standard billing (for example, Meta AI models or Mistral models) are offered by the model provider but hosted in Microsoft-managed Azure infrastructure and accessed via API in the Foundry Models endpoint. Model providers define the license terms and set the price for use of their models, while Azure AI Services service manages the hosting infrastructure, makes the inference APIs available, and acts as the data processor for prompts submitted and content output by models deployed. Read about [Data privacy, and security for third-party models](../../ai-studio/how-to/concept-data-privacy.md).
       - question: |
           How is data processed by the Global-Standard deployment type?
         answer: |

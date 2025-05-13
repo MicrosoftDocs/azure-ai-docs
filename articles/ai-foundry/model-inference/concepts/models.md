@@ -17,15 +17,15 @@ ms.custom: references_regions, tool_generated
 
 Azure AI Foundry Models gives you access to flagship models in Azure AI Foundry to consume them as APIs without hosting them on your infrastructure.
 
-A selection of models is offered directly by Microsoft under [Azure Direct Models](#azure-direct-models) which brings the most powerful options to developers to build AI applications. We also enable the breath of models by partnering with key players in the industry and bringing [Azure Ecosystem Models](#azure-ecosystem-models).
+A selection of models is offered directly by Microsoft under [Models Sold Directly by Azure](#azure-direct-models) which brings the most powerful options to developers to build AI applications. We also enable the breath of models by partnering with key players in the industry and bringing [Models from Partners and Community](#models-from-partners-and-community).
 
 
 :::image type="content" source="../media/models/models-catalog.gif" alt-text="An animation showing Azure AI Foundry portal model catalog section and the models available." lightbox="../media/models/models-catalog.gif":::
 
 
-## Azure Direct Models
+## Models Sold Directly by Azure 
 
-Azure Direct Models is a selection of flagship models offered directly by Microsoft. These models don't require integration with Azure Marketplace. 
+Models Sold Directly by Azure  is a selection of flagship models offered directly by Microsoft. These models don't require integration with Azure Marketplace. 
 
 ### Azure OpenAI
 
@@ -65,7 +65,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 ### Microsoft
 
-Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more. Some Microsoft models are offered as [Azure Ecosystem Models](#azure-ecosystem-models). To see all the available Microsoft models, view [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
+Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more. Some Microsoft models are offered as [Models from Partners and Community](#models-from-partners-and-community). To see all the available Microsoft models, view [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
 
 
 | Model  | Type | Tier | Capabilities |
@@ -74,7 +74,7 @@ Microsoft models include various model groups such as MAI models, Phi models, he
 
 ### Mistral AI
 
-Mistral AI offers two categories of models: premium models including Mistral Large and Mistral Small and open models including Mistral Nemo. Some Mistral models are offered as [Azure Ecosystem Models](#azure-ecosystem-models).
+Mistral AI offers two categories of models: premium models including Mistral Large and Mistral Small and open models including Mistral Nemo. Some Mistral models are offered as [Models from Partners and Community](#models-from-partners-and-community).
 
 | Model  | Type | Tier | Capabilities |
 | ------ | ---- | --- | ------------ |
@@ -84,7 +84,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 ### Meta
 
-Meta Llama models and tools are a collection of pretrained and fine-tuned generative AI text and image reasoning models. Meta Llama 4 is part of Azure Direct Models, while the rest of the Llama family is offered as [Azure Ecosystem Models](#azure-ecosystem-models).
+Meta Llama models and tools are a collection of pretrained and fine-tuned generative AI text and image reasoning models. Meta Llama 4 is part of Models Sold Directly by Azure, while the rest of the Llama family is offered as [Models from Partners and Community](#models-from-partners-and-community).
 
 | Model  | Type | Tier | Capabilities |
 | ------ | ---- | --- | ------------ |
@@ -93,11 +93,11 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=meta).
 
-## Azure Ecosystem Models
+## Models from Partners and Community
 
-Azure Ecosystem Models available for deployment with pay-as-you-go billing (for example, Cohere models) are offered by the model provider but hosted in Microsoft-managed Azure infrastructure and accessed via API in the Azure AI Foundry. Model providers define the license terms and set the price for use of their models, while Azure AI Foundry manages the hosting infrastructure.
+Models from Partners and Community available for deployment with pay-as-you-go billing (for example, Cohere models) are offered by the model provider but hosted in Microsoft-managed Azure infrastructure and accessed via API in the Azure AI Foundry. Model providers define the license terms and set the price for use of their models, while Azure AI Foundry manages the hosting infrastructure.
 
-Azure Ecosystem Models are offered through Azure Marketplace and [requires additional configuration for enabling](../how-to/configure-marketplace.md). 
+Models from Partners and Community are offered through Azure Marketplace and [requires additional configuration for enabling](../how-to/configure-marketplace.md). 
 
 ### AI21 Labs
 

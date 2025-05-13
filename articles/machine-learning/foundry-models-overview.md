@@ -31,8 +31,8 @@ Azure AI Foundry offers a comprehensive catalog of AI models. There are over 190
 
 Our catalog is organized into two main categories: 
 
-* [Azure Direct Models](#azure-direct-models)
-* [Azure Ecosystem Models](#azure-ecosystem-models)
+* [Models Sold Directly by Azure](#azure-direct-models)
+* [Models from Partners and Community](#models-from-partners-and-community)
 
 Understanding the distinction between these categories helps you choose the right models based on your specific requirements and strategic goals. 
  
@@ -50,11 +50,11 @@ Characteristics of Azure Direct Models:
 
 Azure Direct Models also have the benefit of flexible Provisioned Throughput, meaning you can use your quota and reservations across any of these models.
 
-## Azure Ecosystem Models
+## Models from Partners and Community
 
 Models constitute the vast majority of the Azure AI Foundry Models. These models are provided by trusted third-party organizations, partners, research labs, and community contributors. These models offer specialized and diverse AI capabilities, covering a wide array of scenarios, industries, and innovations.
 
-Characteristics of Azure Ecosystem Models: 
+Characteristics of Models from Partners and Community: 
 * Developed and supported by external partners and community contributors 
 * Diverse range of specialized models catering to niche or broad use cases 
 * Typically validated by providers themselves, with integration guidelines provided by Azure 
@@ -67,13 +67,13 @@ Models are deployable as Managed Compute or Standard (pay-go) deployment options
 
 
 When selecting models from Azure AI Foundry Models, consider the following: 
-* Use Case and Requirements: Azure Direct Models are ideal for scenarios requiring deep Azure integration, guaranteed support, and enterprise SLAs. Azure Ecosystem Models excel in specialized use cases and innovation-led scenarios. 
-* Support Expectations: Azure Direct Models come with robust Microsoft-provided support and maintenance. Azure Ecosystem Models are supported by their providers, with varying levels of SLA and support structures. 
-* Innovation and Specialization: Azure Ecosystem Models offer rapid access to specialized innovations and niche capabilities often developed by leading research labs and emerging AI providers.
+* Use Case and Requirements: Azure Direct Models are ideal for scenarios requiring deep Azure integration, guaranteed support, and enterprise SLAs. Models from Partners and Community excel in specialized use cases and innovation-led scenarios. 
+* Support Expectations: Azure Direct Models come with robust Microsoft-provided support and maintenance. Models from Partners and Community are supported by their providers, with varying levels of SLA and support structures. 
+* Innovation and Specialization: Models from Partners and Community offer rapid access to specialized innovations and niche capabilities often developed by leading research labs and emerging AI providers.
 
-## Accessing Azure Ecosystem Models
+## Accessing Models from Partners and Community
 
-Azure Ecosystem Models are accessible through Azure AI Foundry, providing: 
+Models from Partners and Community are accessible through Azure AI Foundry, providing: 
 * Comprehensive details about the model’s capabilities and integration requirements.
 * Community ratings, usage data, and qualitative feedback to guide your decisions.
 * Clear integration guidelines to help incorporate these models seamlessly into your Azure workflows.
