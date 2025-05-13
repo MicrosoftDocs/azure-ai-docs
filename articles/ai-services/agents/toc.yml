@@ -111,15 +111,14 @@ items:
           href: how-to/virtual-networks.md
     - name: Multi-agent workflows
       items:
-        - name: Overview
-          href: concepts/multi-agent-workflows.md
-          displayName: multi-agent workflows, multi-agent, collaboration
         - name: Connected agents
           href: how-to/connected-agents.md
+        - name: Processes
+          href: /semantic-kernel/frameworks/process/process-framework
+    - name: Agent catalog
+      href: concepts/agent-catalog.md
 - name: How-to
   items:
-    - name: Agent catalog
-      href: how-to/agent-catalog.md
     - name: Trigger an agent using Logic Apps
       href: how-to/triggers.md
     - name: Use the Visual Studio Code extension
