@@ -23,7 +23,7 @@ Large language models (LLMs) opened the door to a new kind of automation—syste
 **Azure AI Foundry** is designed to change that. It’s the Agent Factory: a platform that combines models, tools, frameworks, and governance into a unified system for building intelligent agents. At the center of this system is **Azure AI Foundry Agent Service**—the glue that operationalizes agents across development, deployment, and production.
     :::column-end:::
     :::column span="3":::
-![Foundry Agent Service is the Azure AI Foundry glue](./media/agent-service-the-glue.png)
+![Graphic that shows Foundry Agent Service is the Azure AI Foundry glue.](./media/agent-service-the-glue.png)
     :::column-end:::
 :::row-end:::
 
@@ -42,7 +42,7 @@ Each agent has three core components:
 - **Instructions**: Define the agent’s goals, behavior, and constraints
 - **Tools**: Let the agent retrieve knowledge or take action
 
-![What is an AI Agent?](./media/what-is-an-agent.png)
+![Graphic that shows What is an AI Agent?.](./media/what-is-an-agent.png)
 
 Agents receive unstructured inputs—such as user prompts, alerts, or messages from other agents—and produce outputs in the form of tool results or messages. Along the way, they may call tools to perform retrieval, trigger actions, or (in the future) access scoped memory.
 
@@ -51,7 +51,7 @@ Agents receive unstructured inputs—such as user prompts, alerts, or messages f
 
 Think of Azure AI Foundry as an assembly line for intelligent agents. Like any modern factory, it brings together different specialized stations—each responsible for shaping part of the final product. Instead of machines and conveyor belts, the Agent Factory uses models, tools, policies, and orchestration to build agents that are secure, testable, and production-ready. Here’s how the factory works—step by step:
 
-![Azure AI Foundry: Agent Factory](./media/agent-factory.png)
+![Graphic that shows Azure AI Foundry: Agent Factory.](./media/agent-factory.png)
 
 
 :::row:::
