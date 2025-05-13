@@ -1,4 +1,4 @@
----
+<!-- --- -->
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
@@ -62,7 +62,7 @@ For iOS and macOS development, you set the environment variables in Xcode. For e
 1. Under **Environment Variables** select the plus (+) sign to add a new environment variable.
 1. Enter `SPEECH_KEY` for the **Name** and enter your Speech resource key for the **Value**.
 
-To set the environment variable for your Speech resource region, follow the same steps. Set `END_POINT` to the endpoint of your resource. For example, `westus`.
+To set the environment variable for your Speech resource region, follow the same steps. Set `END_POINT` to the endpoint of your resource. For example, `https://YourServiceRegion.api.cognitive.microsoft.com`.
 
 
 
