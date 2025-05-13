@@ -13,6 +13,8 @@ items:
 - name: Getting started
   expanded: true
   items:
+    - name: Environment setup
+      href: ./environment-setup.md
     - name: Quickstart
       href: quickstart.md
     - name: Quotas and limits

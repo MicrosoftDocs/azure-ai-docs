@@ -14,9 +14,11 @@ ms.custom: azure-ai-agents-code
 zone_pivot_groups: selection-connected-agents
 ---
 
-# How to use connected agents to solve tasks
+# Build collaborative, multi-agent systems with Connected Agents
 
-Connected agents allow you to create task-specific agents that can interact seamlessly with a primary agent. This feature enables you to build multi-agent systems without the need for external orchestrators. Instead of overloading a single agent with multiple capabilities, you can divide complex tasks like customer service or sales analysis workflows among multiple agents.
+Connected agents in Azure AI Agent Service let you break down complex tasks into coordinated, specialized roles—without the need for a custom orchestrator or hand-coded routing logic. With this capability, you can design systems where a primary agent intelligently delegates to purpose-built sub-agents, streamlining workflows like customer support, market research, legal summarization, and financial analysis.
+
+Rather than overloading one agent with too many skills, you can build focused, reusable agents that collaborate seamlessly—scaling both performance and maintainability.
 
 ## Features
 
@@ -73,12 +75,22 @@ Checks the contract against internal standards or uploaded guidelines to identif
 
 ## Creating a multi-agent setup
 
-Navigate to the **create and debug** page for your agents. In the **Connected agents** section of the setup pane, select **Add +**.
-
+1. Navigate to the **Agents** page in the portal
+2. Select an existing agent from the list or create a new one.
+3. Scroll down to the **Connected agents** section in the agent's setup panel and select **Add +**.
 
 :::image type="content" source="../media/connected-agents/connected-agents-foundry.png" alt-text="A screenshot of the agents page in the Azure AI Foundry." lightbox="../media/connected-agents/connected-agents-foundry.png":::
 
-In the window that appears, select an agent to delegate tasks to, with a unique name and a description of how and when the main agent will invoke the connected agent. Be as descriptive as possible about the circumstances in which the connected agent should be called.
+4. In the dialog that appears, choose an agent for the main agent to delegate tasks to, and describe:
+   - Select an **existing agent** from the dropdown. This is the connected agent that the main agent will delegate tasks to.
+   - Enter a **unique name** for the connected agent (letters and underscores only). This name is used for API-level function calling. Keep it descriptive and machine-readable to maximize recall accuracy (e.g., summarize_text, lookup_product_info).
+   - Add a clear **description** of when and why the connected agent should be invoked. This helps guide the main agent’s decision-making on when to hand off tasks to connected agents during runtime.
+5. Select **Add +**
+6. Repeat steps 3–5 to add additional specialized agents to the main agent.
+7. Once the connected agent(s) appear in the setup panel, scroll up and select **Try in Playground**
+8. Use test prompts in the Agent Playground to validate that the main agent correctly routes tasks to the connected agents when applicable. For example, if you’ve created a main agent called research_agent, which doesn't have any tools configured, and connected an agent named stock_price_bot, try a prompt like:
+**"What is the current stock price of Microsoft?"**
+The research_agent should delegate this request to stock_price_bot based on the routing description you defined.
 
 :::image type="content" source="../media/connected-agents/connected-agents-foundry-2.png" alt-text="A screenshot of the connected agents screen" lightbox="../media/connected-agents/connected-agents-foundry-2.png":::
 
