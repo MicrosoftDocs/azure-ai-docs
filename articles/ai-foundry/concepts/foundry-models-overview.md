@@ -51,7 +51,7 @@ These Models also have the benefit of fungible Provisioned Throughput, meaning y
 
 ## Models from Partners and Community
 
- These models constitute the vast majority of the Azure AI Foundry Models. These models are provided by trusted third-party organizations, partners, research labs, and community contributors. These models offer specialized and diverse AI capabilities, covering a wide array of scenarios, industries, and innovations.
+These models constitute the vast majority of the Azure AI Foundry Models. These models are provided by trusted third-party organizations, partners, research labs, and community contributors. These models offer specialized and diverse AI capabilities, covering a wide array of scenarios, industries, and innovations.
 
 Characteristics of Models from Partners and Community: 
 * Developed and supported by external partners and community contributors 
@@ -63,7 +63,6 @@ Characteristics of Models from Partners and Community:
 Models are deployable as Managed Compute or Standard (pay-go) deployment options. The model provider selects how the models are deployable.   
  
 ## Choosing Between direct models and partner & community models 
-
 
 When selecting models from Azure AI Foundry Models, consider the following: 
 * **Use Case and Requirements**: Models sold directly by Azure are ideal for scenarios requiring deep Azure integration, guaranteed support, and enterprise SLAs. Models from Partners and Community excel in specialized use cases and innovation-led scenarios. 
