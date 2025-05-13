@@ -10,7 +10,7 @@ ms.date: 5/11/2025
 
 # Configure access to Models from Partners and Community
 
-Certain models in AI Foundry Models are offered directly by the model provider through the Azure Marketplace. This article explains the requirements to use Azure Marketplace if you plan to use such models in your workloads. Models Sold Directly by Azure , like DeepSeek or Phi, or Azure OpenAI Service models, like GPTs, don't have this requirement. 
+Certain models in Azure AI Foundry Models are offered directly by the model provider through the Azure Marketplace. This article explains the requirements to use Azure Marketplace if you plan to use such models in your workloads. Models Sold Directly by Azure, like DeepSeek or Phi, or Azure OpenAI in Foundry Models, like GPTs, don't have this requirement. 
 
 > [!TIP]
 > All models offered in AI Foundry Models are hosted in Microsoft's Azure environment and the Service does NOT interact with any external services or model provider.
