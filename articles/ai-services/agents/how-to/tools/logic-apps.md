@@ -28,8 +28,6 @@ This article demonstrates how to integrate Logic Apps with Azure AI Agents to ex
    - `SUBSCRIPTION_ID`: Your Azure subscription ID.
    - `resource_group_name`: The name of your resource group.
 
-::: zone pivot="python"
-
 ## Create a project client
 
 Create a client object to connect to your AI project and other resources.
@@ -142,8 +140,6 @@ Delete the agent after use to clean up resources.
 project_client.agents.delete_agent(agent.id)
 print("Deleted agent")
 ```
-::: zone-end
-
 
 ## Next steps
 

@@ -66,13 +66,6 @@ items:
             href: how-to/tools/azure-ai-search-samples.md
         - name: Microsoft Fabric
           href: how-to/tools/fabric.md
-        - name: Sharepoint
-          items:
-            - name: Overview
-              href: how-to/tools/sharepoint.md
-              displayName: sharepoint
-            - name: How to use SharePoint
-              href: how-to/tools/sharepoint-samples.md
         - name: Logic apps
           href: how-to/tools/logic-apps.md
         - name: Function calling
