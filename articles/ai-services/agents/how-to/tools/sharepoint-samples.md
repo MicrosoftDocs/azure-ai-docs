@@ -17,7 +17,7 @@ zone_pivot_groups: selection-sharepoint
 
 Use this article to find step-by-step instructions and code samples for using the Sharepoint tool in Azure AI Foundry Agent Service.
 
-## Step 1: Create a project client
+## Create a project client
 
 Create a client object, which will contain the connection string for connecting to your AI project and other resources.
 
@@ -28,7 +28,7 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects.models import SharepointTool
 ```
 
-## Step 2: Create an Agent with the SharePoint tool enabled
+## Create an Agent with the SharePoint tool enabled
 
 To make the SharePoint tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the Azure AI Foundry portal.
 
@@ -53,7 +53,7 @@ with project_client:
     print(f"Created agent, ID: {agent.id}")
 ```
 
-## Step 3: Create a thread
+## Create a thread
 
 ```python
 # Create thread for communication
@@ -70,7 +70,7 @@ message = project_client.agents.create_message(
 print(f"Created message, ID: {message.id}")
 ```
 
-## Step 4: Create a run and check the output
+## Create a run and check the output
 
 Create a run and observe that the model uses the SharePoint tool to provide a response to the user's question.
 

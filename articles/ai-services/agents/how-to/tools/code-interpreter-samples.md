@@ -15,7 +15,7 @@ zone_pivot_groups: selection-code-interpreter
 
 # How to use the code interpreter tool
 
-Use this article to find step-by-step instructions and code samples for using code interpreter.
+Azure AI Agents supports using the Code Interpreter tool, which allows an agent to write and run code within a secure, sandboxed execution environment. This enables the agent to perform tasks such as data analysis, mathematical calculations, or file manipulation based on user requests. This article provides step-by-step instructions and code samples for enabling and utilizing the Code Interpreter tool with your Azure AI Agent.
 
 :::zone pivot="portal"
 
@@ -39,116 +39,110 @@ You can add the code interpreter tool to an agent programatically using the code
 
 :::zone pivot="python"
 
-## Create a project client
-
-To use code interpreter, first add the `import` statements shown in the example, and create a project client, which will contain a connection string to your AI project, and will be used to authenticate API calls.
+## Initialization
+The code begins by setting up the necessary imports and initializing the AI Project client:
 
 ```python
 import os
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import CodeInterpreterTool
-from azure.ai.projects.models import FilePurpose
+from azure.ai.projects.models import FilePurpose, MessageRole
 from azure.identity import DefaultAzureCredential
 from pathlib import Path
 
-# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
-# At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
-# Customer needs to login to Azure subscription via Azure CLI and set the environment variables
 project_client = AIProjectClient.from_connection_string(
-    credential=DefaultAzureCredential(), conn_str=os.environ["PROJECT_CONNECTION_STRING"]
+    credential=DefaultAzureCredential(), 
+    conn_str=os.environ["PROJECT_CONNECTION_STRING"]
 )
 ```
 
-## Upload a File
-
-Upload the file using the `upload_and_poll()` function, specifying the file path and the `FilePurpose.AGENTS` purpose.
+## File Upload
+The sample uploads a data file for analysis:
 
 ```python
-# Upload a file and add it to the client 
 file = project_client.agents.upload_file_and_poll(
-    file_path="nifty_500_quarterly_results.csv", purpose=FilePurpose.AGENTS
+    file_path="nifty_500_quarterly_results.csv", 
+    purpose=FilePurpose.AGENTS
 )
-print(f"Uploaded file, file ID: {file.id}")
 ```
 
-## Create an Agent with the Code Interpreter Tool
 
-Define the `code_interpreter` tool with `CodeInterpreterTool()` and include the file ID of the file you uploaded. Afterwards, create the agent with tools set to `code_interpreter.definitions` and `tool_resources` set to `code_interpreter.resources`.
+## Code Interpreter Setup
+The Code Interpreter tool is initialized with the uploaded file:
 
 ```python
 code_interpreter = CodeInterpreterTool(file_ids=[file.id])
+```
 
-# create agent with code interpreter tool and tools_resources
+## Agent Creation
+An agent is created with the Code Interpreter capabilities:
+
+```python
 agent = project_client.agents.create_agent(
-    model="gpt-4o-mini",
-    name="my-agent",
-    instructions="You are helpful agent",
+    model=os.environ["MODEL_DEPLOYMENT_NAME"],
+    name="my-assistant",
+    instructions="You are helpful assistant",
     tools=code_interpreter.definitions,
     tool_resources=code_interpreter.resources,
 )
 ```
 
-## Create a Thread, Message, and Get the Agent Response
-
-Next create a thread with `create_thread()` and attach a message to it using `create_message()` that will trigger the code interpreter tool. Afterwards, create and execute a run with `create_and_process_run()`. Once the run finishes, you can delete the file from the agent with `delete_file()` to free up space in the agent. Finally, print the messages from the agent.
+## Thread Management
+The code creates a conversation thread and initial message:
 
 ```python
-# create a thread
 thread = project_client.agents.create_thread()
-print(f"Created thread, thread ID: {thread.id}")
-
-# create a message
 message = project_client.agents.create_message(
     thread_id=thread.id,
     role="user",
-    content="Could you please create bar chart in the TRANSPORTATION sector for the operating profit from the uploaded csv file and provide file to me?",
+    content="Could you please create bar chart in TRANSPORTATION sector for the operating profit from the uploaded csv file and provide file to me?",
 )
-print(f"Created message, message ID: {message.id}")
-
-# create and execute a run
-run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
-print(f"Run finished with status: {run.status}")
-
-if run.status == "failed":
-    # Check if you got "Rate limit is exceeded.", then you want to get more quota
-    print(f"Run failed: {run.last_error}")
-
-# delete the original file from the agent to free up space (note: this does not delete your version of the file)
-project_client.agents.delete_file(file.id)
-print("Deleted file")
-
-# print the messages from the agent
-messages = project_client.agents.list_messages(thread_id=thread.id)
-print(f"Messages: {messages}")
-
-# get the most recent message from the assistant
-last_msg = messages.get_last_text_message_by_sender("assistant")
-if last_msg:
-    print(f"Last Message: {last_msg.text.value}")
 ```
 
-## Download Files Generated by Code Interpreter
-
-Files generated by Code Interpreter can be found in the Agent message responses. You can download image files generated by code interpreter by iterating through the response's image_contents and calling `save_file()` with a name and the file ID.
+## Message Processing
+A run is created to process the message and execute code:
 
 ```python
-# save the newly created file
-for image_content in messages.image_contents:
-  print(f"Image File ID: {image_content.image_file.file_id}")
-  file_name = f"{image_content.image_file.file_id}_image_file.png"
-  project_client.agents.save_file(file_id=image_content.image_file.file_id, file_name=file_name)
-  print(f"Saved image file to: {Path.cwd() / file_name}") 
+run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
 ```
+
+## File Handling
+The code handles the output files and annotations:
+
+```python
+messages = project_client.agents.list_messages(thread_id=thread.id)
+
+# Save generated image files
+for image_content in messages.image_contents:
+    file_id = image_content.image_file.file_id
+    file_name = f"{file_id}_image_file.png"
+    project_client.agents.save_file(file_id=file_id, file_name=file_name)
+
+# Process file path annotations
+for file_path_annotation in messages.file_path_annotations:
+    print(f"File Paths:")
+    print(f"Type: {file_path_annotation.type}")
+    print(f"Text: {file_path_annotation.text}")
+    print(f"File ID: {file_path_annotation.file_path.file_id}")
+```
+
+## Cleanup
+After completing the interaction, the code properly cleans up resources:
+
+```python
+project_client.agents.delete_file(file.id)
+project_client.agents.delete_agent(agent.id)
+```
+
+This ensures proper resource management and prevents unnecessary resource consumption.
 
 :::zone-end
 
 :::zone pivot="csharp" 
 
-## Using the .NET SDK
+## Create a client and agent
 
-In this example we will demonstrate the Agent streaming support, code interpreter creating an image and downloading and viewing the image.
-
-1. First, we set up configuration using `appsettings.json`, create a `PersistentAgentsClient`, and then create a `PersistentAgent` with the Code Interpreter tool.
+First, set up the configuration using `appsettings.json`, create a `PersistentAgentsClient`, and then create a `PersistentAgent` with the Code Interpreter tool enabled.
 
 ```csharp
     using Azure;
@@ -175,7 +169,9 @@ In this example we will demonstrate the Agent streaming support, code interprete
     );
 ```
 
-2. Next, we create a `PersistentAgentThread` and add a user message to it.
+## Create a thread and add a message
+
+Next, create a `PersistentAgentThread` for the conversation and add the initial user message.
 
 ```csharp
     PersistentAgentThread thread = client.Threads.CreateThread();
@@ -186,7 +182,9 @@ In this example we will demonstrate the Agent streaming support, code interprete
         "Hi, Agent! Draw a graph for a line with a slope of 4 and y-intercept of 9.");
 ```
 
-3. Then, we create a `ThreadRun` for the thread and agent, providing any additional instructions. We poll the run's status until it is no longer queued, in progress, or requires action.
+## Create and monitor a run
+
+Then, create a `ThreadRun` for the thread and agent. Poll the run's status until it completes or requires action.
 
 ```csharp
     ThreadRun run = client.Runs.CreateRun(
@@ -204,7 +202,9 @@ In this example we will demonstrate the Agent streaming support, code interprete
         || run.Status == RunStatus.RequiresAction);
 ```
 
-4. Once the run is finished, we retrieve all messages from the thread. We then iterate through the messages to display text content and handle any image files by saving them locally and opening them.
+## Process the results and handle files
+
+Once the run is finished, retrieve all messages from the thread. Iterate through the messages to display text content and handle any generated image files by saving them locally and opening them.
 
 ```csharp
     Pageable<ThreadMessage> messages = client.Messages.GetMessages(
@@ -239,7 +239,9 @@ In this example we will demonstrate the Agent streaming support, code interprete
     }
 ```
 
-5. Finally, we delete the thread and the agent to clean up the resources created in this sample.
+## Clean up resources
+
+Finally, delete the thread and the agent to clean up the resources created in this sample.
 
 ```csharp
     client.Threads.DeleteThread(threadId: thread.Id);

@@ -61,9 +61,97 @@ You can add the Microsoft Fabric tool to an agent programatically using the code
 
 :::zone-end
 
+:::zone pivot="python"
+
+## Create a project client
+
+Create a client object, which will contain the connection string for connecting to your AI project and other resources.
+
+```python
+import os
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.agents.models import FabricTool
+
+# Retrieve the endpoint and credentials
+project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
+
+# Initialize the AIProjectClient
+project_client = AIProjectClient(
+    endpoint=project_endpoint,
+    credential=DefaultAzureCredential(exclude_interactive_browser_credential=False),  # Use Azure Default Credential for authentication
+    api_version="latest",
+)
+``` 
+
+## Create an agent with the Microsoft Fabric tool enabled
+
+To make the Microsoft Fabric tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the Azure AI Foundry portal.
+
+```python
+# The Fabric connection id can be found in the Azure AI Foundry project as a property of the Fabric tool
+# Your connection id is in the format /subscriptions/<your-subscription-id>/resourceGroups/<your-resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<your-project-name>/connections/<your-fabric-connection-name>
+
+# Retrieve the Fabric connection ID from environment variables
+conn_id = os.environ["FABRIC_CONNECTION_ID"]  # Ensure the FABRIC_CONNECTION_ID environment variable is set
+
+# Initialize the FabricTool with the connection ID
+fabric = FabricTool(connection_id=conn_id)
+
+# Create an agent with the Fabric tool
+with project_client:
+    agent = project_client.agents.create_agent(
+        model=os.environ["MODEL_DEPLOYMENT_NAME"],  # Model deployment name
+        name="my-agent",  # Name of the agent
+        instructions="You are a helpful agent",  # Instructions for the agent
+        tools=fabric.definitions,  # Attach the Fabric tool
+        headers={"x-ms-enable-preview": "true"},  # Enable preview features
+    )
+    print(f"Created Agent, ID: {agent.id}")
+```
+
+## Create a thread
+
+```python
+# Create a thread for communication
+thread = project_client.agents.threads.create()
+print(f"Created thread, ID: {thread.id}")
+
+# Create a message in the thread
+message = project_client.agents.messages.create(
+    thread_id=thread.id,
+    role="user",  # Role of the message sender
+    content="What insights can you provide from the Fabric resource?",  # Message content
+)
+print(f"Created message, ID: {message['id']}")
+```
+
+## Create a run and check the output
+
+```python
+# Create and process an agent run in the thread
+run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+print(f"Run finished with status: {run.status}")
+
+# Check if the run failed
+if run.status == "failed":
+    print(f"Run failed: {run.last_error}")
+
+# Fetch and log all messages from the thread
+messages = project_client.agents.messages.list(thread_id=thread.id)
+for message in messages.data:
+    print(f"Role: {message.role}, Content: {message.content}")
+
+# Delete the agent after use
+project_client.agents.delete_agent(agent.id)
+print("Deleted agent")
+```
+
+:::zone-end
+
 :::zone pivot="csharp"
 
-## Step 1: Create a project client
+## Create a project client
 
 Create a client object, which will contain the project endpoint connecting to your AI project and other resources.
 
@@ -89,7 +177,7 @@ var fabricConnectionId = configuration["FabricConnectionId"];
 PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
 ```
 
-## Step 2: Create an agent with the Microsoft Fabric tool enabled
+## Create an agent with the Microsoft Fabric tool enabled
 
 To make the Microsoft Fabric tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the Azure AI Foundry portal.
 
@@ -109,7 +197,7 @@ PersistentAgent agent = agentClient.Administration.CreateAgent(
     tools: [fabricTool]);
 ```
 
-## Step 3: Create a thread and run
+## Create a thread and run
 
 ```csharp
 PersistentAgentThread thread = agentClient.Threads.CreateThread();
@@ -122,7 +210,7 @@ ThreadMessage message = agentClient.Messages.CreateMessage(
 ThreadRun run = agentClient.Runs.CreateRun(thread, agent);
 ```
 
-## Step 4: Wait for the agent to complete and print the output
+## Wait for the agent to complete and print the output
 
 Wait for the agent to complete the run and print output to console. Observe that the model uses the Fabric data agent tool to provide a response to the user's question.
 
@@ -180,7 +268,7 @@ foreach (ThreadMessage threadMessage in messages)
 }
 ```
 
-## Step 5: Clean up resources
+## Clean up resources
 
 Clean up the resources from this sample.
 
@@ -193,97 +281,9 @@ agentClient.Administration.DeleteAgent(agentId: agent.Id);
 ```
 :::zone-end
 
-:::zone pivot="python"
-
-## Step 1: Create a project client
-
-Create a client object, which will contain the connection string for connecting to your AI project and other resources.
-
-```python
-import os
-from azure.identity import DefaultAzureCredential
-from azure.ai.projects import AIProjectClient
-from azure.ai.agents.models import FabricTool
-
-# Retrieve the endpoint and credentials
-project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
-
-# Initialize the AIProjectClient
-project_client = AIProjectClient(
-    endpoint=project_endpoint,
-    credential=DefaultAzureCredential(exclude_interactive_browser_credential=False),  # Use Azure Default Credential for authentication
-    api_version="latest",
-)
-``` 
-
-## Step 2: Create an agent with the Microsoft Fabric tool enabled
-
-To make the Microsoft Fabric tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the Azure AI Foundry portal.
-
-```python
-# The Fabric connection id can be found in the Azure AI Foundry project as a property of the Fabric tool
-# Your connection id is in the format /subscriptions/<your-subscription-id>/resourceGroups/<your-resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<your-project-name>/connections/<your-fabric-connection-name>
-
-# Retrieve the Fabric connection ID from environment variables
-conn_id = os.environ["FABRIC_CONNECTION_ID"]  # Ensure the FABRIC_CONNECTION_ID environment variable is set
-
-# Initialize the FabricTool with the connection ID
-fabric = FabricTool(connection_id=conn_id)
-
-# Create an agent with the Fabric tool
-with project_client:
-    agent = project_client.agents.create_agent(
-        model=os.environ["MODEL_DEPLOYMENT_NAME"],  # Model deployment name
-        name="my-agent",  # Name of the agent
-        instructions="You are a helpful agent",  # Instructions for the agent
-        tools=fabric.definitions,  # Attach the Fabric tool
-        headers={"x-ms-enable-preview": "true"},  # Enable preview features
-    )
-    print(f"Created Agent, ID: {agent.id}")
-```
-
-## Step 3: Create a thread
-
-```python
-# Create a thread for communication
-thread = project_client.agents.threads.create()
-print(f"Created thread, ID: {thread.id}")
-
-# Create a message in the thread
-message = project_client.agents.messages.create(
-    thread_id=thread.id,
-    role="user",  # Role of the message sender
-    content="What insights can you provide from the Fabric resource?",  # Message content
-)
-print(f"Created message, ID: {message['id']}")
-```
-
-## Step 4: Create a run and check the output
-
-```python
-# Create and process an agent run in the thread
-run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
-print(f"Run finished with status: {run.status}")
-
-# Check if the run failed
-if run.status == "failed":
-    print(f"Run failed: {run.last_error}")
-
-# Fetch and log all messages from the thread
-messages = project_client.agents.messages.list(thread_id=thread.id)
-for message in messages.data:
-    print(f"Role: {message.role}, Content: {message.content}")
-
-# Delete the agent after use
-project_client.agents.delete_agent(agent.id)
-print("Deleted agent")
-```
-
-:::zone-end
-
 :::zone pivot="javascript"
 
-## Step 1: Create a project client
+## Create a project client
 
 ```javascript
 const connectionString =
@@ -298,7 +298,7 @@ const client = AIProjectsClient.fromConnectionString(
 );
 ```
 
-## Step 2: Create an agent with the Microsoft Fabric tool enabled
+## Create an agent with the Microsoft Fabric tool enabled
 
 ```javascript
 const fabricConnection = await client.connections.getConnection("FABRICCONNECTIONNAME");
@@ -318,7 +318,7 @@ const agent = await client.agents.createAgent("gpt-4o", {
 console.log(`Created agent, agent ID : ${agent.id}`);
 ```
 
-## Step 3: Create a thread
+## Create a thread
 
 ```javascript
 // create a thread
@@ -332,7 +332,7 @@ await client.agents.createMessage(
 });
 ```
 
-## Step 4: Create a run and check the output
+## Create a run and check the output
 
 ```javascript
 // create a run
@@ -387,7 +387,7 @@ for (let i = messages.data.length - 1; i >= 0; i--) {
 
 Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`. The client creation is demonstrated in the next section.
 
-### Step 1: Create an agent with the Microsoft Fabric tool enabled
+### Create an agent with the Microsoft Fabric tool enabled
 
 ```bash
 curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
@@ -412,7 +412,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
       }'
 ```
 
-### Step 2: Create a thread
+### Create a thread
 
 #### Create a thread
 
@@ -435,7 +435,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-1
     }'
 ```
 
-### Step 3: Create a run and check the output
+### Create a run and check the output
 
 #### Run the thread
 

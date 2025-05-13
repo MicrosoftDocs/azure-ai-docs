@@ -21,18 +21,16 @@ This article demonstrates how to integrate Logic Apps with Azure AI Agents to ex
 ## Prerequisites
 
 1. Create a Logic App within the same resource group as your Azure AI Project in the Azure portal.
-2. Configure your Logic App to send emails by including an HTTP request trigger that accepts JSON with `to`, `subject`, and `body`. See the [Logic App Workflow guide](../../../openai/how-to/assistants-logic-apps.md) for more information.
-3. Install the required Python packages:
-   ```bash
-   pip install azure-ai-agents azure-identity
-   ```
-4. Set the following environment variables:
+1. Configure your Logic App to send emails by including an HTTP request trigger that accepts JSON with `to`, `subject`, and `body`. See the [Logic App Workflow guide](../../../openai/how-to/assistants-logic-apps.md) for more information.
+1. Set the following environment variables:
    - `PROJECT_ENDPOINT`: The Azure AI Agents endpoint.
    - `MODEL_DEPLOYMENT_NAME`: The deployment name of the AI model.
    - `SUBSCRIPTION_ID`: Your Azure subscription ID.
    - `resource_group_name`: The name of your resource group.
 
-## Step 1: Create a project client
+::: zone pivot="python"
+
+## Create a project client
 
 Create a client object to connect to your AI project and other resources.
 
@@ -49,7 +47,7 @@ project_client = AIProjectClient(
 )
 ```
 
-## Step 2: Register the Logic App
+## Register the Logic App
 
 Register the Logic App by providing its name and trigger details.
 
@@ -61,8 +59,8 @@ subscription_id = os.environ["SUBSCRIPTION_ID"]
 resource_group = os.environ["resource_group_name"]
 
 # Logic App details
-logic_app_name = "<LOGIC_APP_NAME>"  # Replace with your Logic App name
-trigger_name = "<TRIGGER_NAME>"  # Replace with your Logic App trigger name
+logic_app_name = "<LOGIC_APP_NAME>"
+trigger_name = "<TRIGGER_NAME>"
 
 # Create and initialize AzureLogicAppTool utility
 logic_app_tool = AzureLogicAppTool(subscription_id, resource_group)
@@ -70,7 +68,7 @@ logic_app_tool.register_logic_app(logic_app_name, trigger_name)
 print(f"Registered logic app '{logic_app_name}' with trigger '{trigger_name}'.")
 ```
 
-## Step 3: Create an agent with the Logic App tool
+## Create an agent with the Logic App tool
 
 Create an agent and attach the Logic App tool to it.
 
@@ -99,7 +97,7 @@ agent = project_client.agents.create_agent(
 print(f"Created agent, ID: {agent.id}")
 ```
 
-## Step 4: Create a thread
+## Create a thread
 
 Create a thread for communication with the agent.
 
@@ -117,7 +115,7 @@ message = project_client.agents.messages.create(
 print(f"Created message, ID: {message['id']}")
 ```
 
-## Step 5: Create a run and check the output
+## Create a run and check the output
 
 Create a run and observe that the model uses the Logic App tool to execute the task.
 
@@ -135,7 +133,7 @@ for message in messages:
     print(f"Role: {message['role']}, Content: {message['content']}")
 ```
 
-## Step 6: Clean up resources
+## Clean up resources
 
 Delete the agent after use to clean up resources.
 
@@ -144,6 +142,8 @@ Delete the agent after use to clean up resources.
 project_client.agents.delete_agent(agent.id)
 print("Deleted agent")
 ```
+::: zone-end
+
 
 ## Next steps
 
