@@ -39,7 +39,20 @@ Azure Monitor provides platform metrics for most services. These metrics are:
 
 For a list of all metrics it's possible to gather for all resources in Azure Monitor, see [Supported metrics in Azure Monitor](/azure/azure-monitor/platform/metrics-supported).
 
-Azure AI Foundry Agent Service has commonality with a subset of Azure AI services. For a list of available metrics for Azure AI Foundry Agent Service, see the [monitoring data reference](../reference/monitor-service.md#metrics).
+## Azure AI Foundry Agent Service metrics
+Azure AI Foundry Agent Service has commonality with a subset of Azure AI services. Here's a list of currently available metrics on Azure Monitor:
+
+| **Metric**      | **Name in REST API** | **Unit** | **Aggregation**                            | **Dimensions**                                         | **Time Grains** | **DS Export** |
+|-----------------|----------------------|----------|--------------------------------------------|--------------------------------------------------------|-----------------|---------------|
+| Agents          | `Agents`             | Count    | Average, Maximum, Minimum, Total (Sum)     | `EventType`                                            | PT1M            | No            |
+| IndexedFiles    | `IndexedFiles`       | Count    | Average, Maximum, Minimum, Total (Sum)     | `ErrorCode`, `Status`, `VectorStoreId`                | PT1M            | No            |
+| Messages        | `Messages`           | Count    | Average, Maximum, Minimum, Total (Sum)     | `EventType`, `ThreadId`                               | PT1M            | No            |
+| Runs            | `Runs`               | Count    | Average, Maximum, Minimum, Total (Sum)     | `AgentId`, `RunStatus`, `StatusCode`, `StreamType`    | PT1M            | No            |
+| Threads         | `Threads`            | Count    | Average, Maximum, Minimum, Total (Sum)     | `EventType`                                            | PT1M            | No            |
+| Tokens          | `Tokens`             | Count    | Average, Maximum, Minimum, Total (Sum)     | `AgentId`, `TokenType`                                | PT1M            | No            |
+| ToolCalls       | `ToolCalls`          | Count    | Average, Maximum, Minimum, Total (Sum)     | `AgentId`, `ToolName`                                 | PT1M            | No            |
+
+
 
 ## Analyze monitoring data
 
