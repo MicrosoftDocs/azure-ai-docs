@@ -95,7 +95,6 @@ Features that are supported using hub/project workspaces differ from regular wor
 |Compute clusters|X|-|-|Use alternative [serverless compute](how-to-use-serverless-compute.md)|
 |Parallel run step|X|-|-|-|
 |Batch Endpoints|X|-|-|-|
-|ML Pipelines|X|-|-|-|
 
 All the features which require compute clusters to run will not be supported for hub workspaces (unless the feature is supported on serverless compute).
 
