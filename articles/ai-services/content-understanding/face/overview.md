@@ -18,14 +18,13 @@ ms.custom: build-2025-understanding-refresh
 > * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
+Azure AI Content Understanding face offers cloud-based face detection, enrollment, and recognition services to enable secure and intelligent applications. It allows developers to detect faces, enroll Persons and Faces into a structured directory, and perform face recognition tasks for identity verification and content management.
 
-Azure AI Content Understanding offers cloud-based face detection, enrollment, and recognition services to enable secure and intelligent applications. It allows developers to detect faces, enroll persons and faces into a structured directory, and perform face recognition tasks for identity verification and content management.
-
-Whether you're building a secure access system, enhancing photo management, or creating intelligent attendance or check-in solutions, Content Understanding supports both individual face records and structured person identity management.
+Whether you're building a secure access system, enhancing photo management, or creating intelligent attendance or check-in solutions, Content Understanding face supports both individual face records and structured person identity management.
 
 ## Business use cases
 
-Content Understanding enables various real-world applications across detection verification, identification, and large-scale content processing scenarios.
+Content Understanding face enables various real-world applications across detection verification, identification, and large-scale content processing scenarios.
 
 **Find faces in images**: Automatically detect faces in an image and return the bounding boxes of each detected face. It helps customers find, highlight, blur, or count faces without manually reviewing every photo. Common applications:
 * Crop detected faces for ID photos, albums, or personalization.
@@ -41,6 +40,11 @@ Content Understanding enables various real-world applications across detection v
 * Match a patient’s face to hospital records during check-in.
 * Look up a student or employee from their face photo.
 * Spot someone from a watchlist entering a secure area.
+
+**Save faces first to make future searches faster**: Detect and save faces from photos ahead of time, so you don’t need to scan everything again later. Helps speed up future face searches without reprocessing the original content. Common applications:
+* Extract and save faces from event group photos to help recognize returning participants in future sessions
+* Preprocess photos from school activities or sports games to easily find returning students or athletes.
+* When visiting a place like a theme park, check if a visitor’s face matches a record from previous visits without rescanning years of photos.
 
 ## Face capabilities
 
@@ -87,4 +91,4 @@ As with all the Azure AI services, developers using the Content Understanding se
 ## Next steps
 
 * Learn to build a [**person directory**](../quickstart/use-ai-foundry.md).
-* Review code sample: [**person directory**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/zhizho/face/notebooks/face).
+* Review code sample: [**person directoy**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/zhizho/face/notebooks/build_person_directory.ipynb).
