@@ -12,13 +12,13 @@ ms.date: 05/19/2025
 
 # Quickstart: Azure AI Content Understanding REST APIs
 
-* This quickstart shows you how to use the [Content Understanding REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true) to get structured data from multimodal content in document, image, audio, and video files.
+* This quickstart shows you how to use the Content Understanding REST API to get structured data from multimodal content in document, image, audio, and video files.
 
 * Try [Content Understanding with no code on Azure AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding)
 
 ## Prerequisites
 
-To get started, you need **An Active Azure Subscription**. If you don't have an Azure Account, [create one for free](https://azure.microsoft.com/free/).
+To get started, you need **an active Azure subscription**. If you don't have an Azure account, [create one for free](https://azure.microsoft.com/free/).
 
 * Once you have your Azure subscription, create an [Azure AI Services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) in the Azure portal. This multi-service resource enables access to multiple Azure AI services with a single set of credentials.
 
@@ -36,8 +36,8 @@ To get started, you need **An Active Azure Subscription**. If you don't have an 
 
 
 ## Get Started with a prebuilt analyzer
-Analyzers define how your content will be processed and the insights that will be extracted. We offer [pre-built analyzers](link to pre-built analyzer page) for common use cases. You can [customize pre-built analyzers](/how-to/create-a-custom-analyzer) to better fit your specific needs and use cases. 
-This quickstart uses pre-built document, image, audio, and video analyzers to help you get started. 
+Analyzers define how your content is processed and the insights that are extracted. We offer [prebuilt analyzers](../concepts/prebuilt-analyzers.md) for common use cases. You can [customize prebuilt analyzers](/how-to/create-a-custom-analyzer.md) to better fit your specific needs and use cases. 
+This quickstart uses prebuilt document, image, audio, and video analyzers to help you get started. 
 
 ### Send file for analysis
 #### POST request
@@ -52,7 +52,7 @@ Before running the cURL command, make the following changes to the HTTP request:
 # [Document](#tab/document)
 
 1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal.
-2. Replace `{analyzerId}` with  `prebuilt-documentAnalyzer`. This analyzer extracts text and layout elements such as paragraphs, sections, and tables from a document.. 
+2. Replace `{analyzerId}` with  `prebuilt-documentAnalyzer`. This analyzer extracts text and layout elements such as paragraphs, sections, and tables from a document. 
 3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf`.
 
 # [Image](#tab/image)
@@ -95,7 +95,7 @@ The response returns `resultId` that you can use to track the status of this asy
 
 ### Get analyze result
 
-Use the `resultId` from the `POST` response above and retrieve the result of the analysis.
+Use the `resultId` from the [`POST` response](#post-response) and retrieve the result of the analysis.
 
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
 2. Replace `{resultId}` with the `resultId` from the `POST` response.
@@ -108,7 +108,7 @@ curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{resultId}?api-v
 
 #### GET response
 
-The 200 (`OK`) JSON response includes a `status` field indicating the status of the operation. If the operation isn't complete, the value of `status` is `running` or `notStarted`. In such cases, you should send the GET request again, either manually or through a script. Wait an interval of one second or more between calls.
+The 200 (`OK`) JSON response includes a `status` field indicating the status of the operation. If the operation isn't complete, the value of `status` is `running` or `notStarted`. In such cases, you should send the `GET` request again, either manually or through a script. Wait an interval of one second or more between calls.
 
 # [Document](#tab/document)
 
@@ -349,6 +349,6 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ## Next steps
 
-* In this quickstart, you learned how to call the [REST API](/rest/api/contentunderstanding/content-analyzers/analyze?view=rest-contentunderstanding-2025-05-01-preview) using a pre-built analyzer. See how you can [create a custom analyzer](/how-to/create-a-custom-analyzer) to better fit your use case.
+* In this quickstart, you learned how to call the [REST API](/rest/api/contentunderstanding/content-analyzers/analyze?view=rest-contentunderstanding-2025-05-01-preview) using a prebuilt analyzer. See how you can [create a custom analyzer](/how-to/create-a-custom-analyzer) to better fit your use case.
 
 

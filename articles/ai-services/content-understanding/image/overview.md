@@ -55,7 +55,7 @@ Get started with processing images with Content Understanding by following our [
 
 ## Next steps
 
-* For guidance on optimizing your Content Understanding implementations, including schema design tips, see our detailed [Best practices guide](best-practices.md).
+* For guidance on optimizing your Content Understanding implementations, including schema design tips, see our detailed [Best practices guide](../concepts/best-practices.md).
 * For detailed information on supported input image formats, refer to our [Service quotas and limits](../service-limits.md) page.
 * Review code sample: [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
 * Refer to our [Data, protection, and privacy policy](https://www.microsoft.com/trust-center/privacy) to learn more about how we handle your data.
