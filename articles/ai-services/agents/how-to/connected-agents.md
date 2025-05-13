@@ -24,7 +24,7 @@ Rather than overloading one agent with too many skills, you can build focused, r
 
 * **Simplified workflow design**: Break down complex tasks across specialized agents to reduce complexity and improve clarity.
 * **No custom orchestration required**: The main agent uses natural language to route tasks, eliminating the need for hardcoded logic.
-* **Easy extensibility**: Add new connected agents (e.g., for translation or risk scoring) without modifying the main agent.
+* **Easy extensibility**: Add new connected agents (for example, translation or risk scoring) without modifying the main agent.
 * **Improved reliability and traceability**: Assign focused responsibilities to each agent for easier debugging and better auditability.
 * **Flexible setup options**: Configure agents using a no-code interface in the Foundry portal or programmatically via the Python SDK.
 
@@ -83,14 +83,16 @@ Checks the contract against internal standards or uploaded guidelines to identif
 
 4. In the dialog that appears, choose an agent for the main agent to delegate tasks to, and describe:
    - Select an **existing agent** from the dropdown. This is the connected agent that the main agent will delegate tasks to.
-   - Enter a **unique name** for the connected agent (letters and underscores only). This name is used for API-level function calling. Keep it descriptive and machine-readable to maximize recall accuracy (e.g., summarize_text, lookup_product_info).
+   - Enter a **unique name** for the connected agent (letters and underscores only). This name is used for API-level function calling. Keep it descriptive and machine-readable to maximize recall accuracy (for example, `summarize_text`, `lookup_product_info`).
    - Add a clear **description** of when and why the connected agent should be invoked. This helps guide the main agent’s decision-making on when to hand off tasks to connected agents during runtime.
 5. Select **Add +**
 6. Repeat steps 3–5 to add additional specialized agents to the main agent.
 7. Once the connected agent(s) appear in the setup panel, scroll up and select **Try in Playground**
-8. Use test prompts in the Agent Playground to validate that the main agent correctly routes tasks to the connected agents when applicable. For example, if you’ve created a main agent called research_agent, which doesn't have any tools configured, and connected an agent named stock_price_bot, try a prompt like:
-**"What is the current stock price of Microsoft?"**
-The research_agent should delegate this request to stock_price_bot based on the routing description you defined.
+8. Use test prompts in the Agent Playground to validate that the main agent correctly routes tasks to the connected agents when applicable. For example, if you’ve created a main agent called `research_agent`, which doesn't have any tools configured, and connected an agent named `stock_price_bot`, try a prompt like:
+
+    **"What is the current stock price of Microsoft?"**
+
+    The `research_agent` should delegate this request to `stock_price_bot` based on the routing description you defined.
 
 :::image type="content" source="../media/connected-agents/connected-agents-foundry-2.png" alt-text="A screenshot of the connected agents screen" lightbox="../media/connected-agents/connected-agents-foundry-2.png":::
 

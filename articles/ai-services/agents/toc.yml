@@ -118,7 +118,7 @@ items:
 - name: How-to
   items:
     - name: Agent catalog
-      href: how-to/agent-catalog.md
+      href: concept/agent-catalog.md
     - name: Trigger an agent using Logic Apps
       href: how-to/triggers.md
     - name: Use the Visual Studio Code extension
