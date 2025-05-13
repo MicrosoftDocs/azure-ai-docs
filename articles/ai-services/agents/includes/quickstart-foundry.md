@@ -14,7 +14,7 @@ ms.date: 01/21/2025
 
 
 > [!IMPORTANT]
-> The Azure AI Foundry portal only supports basic agent set at this time. If you want to perform a standard agent setup, see the [Getting Started](../getting-started.md) article to learn about more.  
+> The Azure AI Foundry portal only supports basic agent set at this time. If you want to perform a standard agent setup, see the [Environment setup](../environment-setup.md) article to learn about more.  
 
 ## Create a Foundry account and project in Azure AI Foundry portal
 
