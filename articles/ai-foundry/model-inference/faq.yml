@@ -21,7 +21,7 @@ sections:
         answer: |
           Azure OpenAI gives customers access to advanced language models from OpenAI. Foundry Models extends such capability giving customers access to all the flagship models in Azure AI Foundry under the same service, endpoint, and credentials. It includes Azure OpenAI, Cohere, Mistral AI, Meta Llama, AI21 labs, etc. Customers can seamlessly switch between models without changing their code.
 
-          Azure OpenAI is a Models Sold Directly by Azure family in Foundry Models.
+          Azure OpenAI is included in the Models Sold Directly by Azure family in Foundry Models.
       - question: |
           What's the difference between Azure AI services and Azure AI Foundry?
         answer: |
