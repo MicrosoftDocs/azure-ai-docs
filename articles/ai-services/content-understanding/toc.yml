@@ -43,8 +43,16 @@ items:
     displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
     href: concepts/analyzer-templates.md
   - name: Document
-    displayName: document, text, images, video, audio, visual, structured, content, field, extraction
-    href: document/overview.md
+    items:
+      - name: Overview
+        displayName: document, text, images, video, audio, visual, structured, content, field, extraction
+        href: document/overview.md
+      - name: Document Elements
+        displayName: document, text, images, video, audio, visual, structured, content, field, extraction
+        href: document/elements.md
+      - name: Markdown
+        displayName: document, text, images, video, audio, visual, structured, content, field, extraction
+        href: document/markdown.md
   - name: Image
     displayName: image, OCR, optical character recognition, text, extraction, analysis, detection, recognition, model
     href: image/overview.md
