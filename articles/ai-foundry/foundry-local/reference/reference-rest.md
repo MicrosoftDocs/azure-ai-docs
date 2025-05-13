@@ -255,16 +255,16 @@ Retrieves a list of all available Foundry Local models in the catalog.
   - `version`: The version number of the model.
   - `modelType`: The format or type of the model (e.g., ONNX).
   - `promptTemplate`:
-      - `assistant`: The template for the assistant's response.
-      - `prompt`: The template for the user-assistant interaction.
+    - `assistant`: The template for the assistant's response.
+    - `prompt`: The template for the user-assistant interaction.
   - `publisher`: The entity or organization that published the model.
   - `task`: The primary task the model is designed to perform (e.g., chat-completion).
   - `runtime`:
-      - `deviceType`: The type of hardware the model is designed to run on (e.g., CPU).
-      - `executionProvider`: The execution provider used for running the model.
+    - `deviceType`: The type of hardware the model is designed to run on (e.g., CPU).
+    - `executionProvider`: The execution provider used for running the model.
   - `fileSizeMb`: The size of the model file in megabytes.
   - `modelSettings`:
-      - `parameters`: A list of configurable parameters for the model.
+    - `parameters`: A list of configurable parameters for the model.
   - `alias`: An alternative name or shorthand for the model
   - `supportsToolCalling`: Indicates whether the model supports tool-calling functionality.
   - `license`: The license type under which the model is distributed.
@@ -552,7 +552,7 @@ Counts tokens for a given chat completion request without performing inference.
         "content": "Hello, what is Microsoft?"
       }
     ],
-    "model": "cpu-int4-rtn-block-32-acc-level-4"
+    "model": "Phi-4-mini-instruct-cuda-gpu"
   }
   ```
 - Response body
