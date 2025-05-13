@@ -31,16 +31,16 @@ Azure AI Foundry offers a comprehensive catalog of AI models. There are over 190
 
 Our catalog is organized into two main categories: 
 
-* [Models Sold Directly by Azure](#azure-direct-models)
+* [Models Sold Directly by Azure](#models-sold-directly-by-azure)
 * [Models from Partners and Community](#models-from-partners-and-community)
 
 Understanding the distinction between these categories helps you choose the right models based on your specific requirements and strategic goals. 
  
-## Azure Direct Models  
+## Models Sold Directly by Azure  
  
-Azure Direct Models are models that are hosted and sold by Microsoft under Microsoft Product Terms. These models have undergone rigorous evaluation and are deeply integrated into Azure’s AI ecosystem. They offer enhanced integration, optimized performance, and direct Microsoft support, including enterprise-grade Service Level Agreements (SLAs). 
+These are models that are hosted and sold by Microsoft under Microsoft Product Terms. These models have undergone rigorous evaluation and are deeply integrated into Azure’s AI ecosystem. The models come from a variety of top providers and they offer enhanced integration, optimized performance, and direct Microsoft support, including enterprise-grade Service Level Agreements (SLAs).
  
-Characteristics of Azure Direct Models: 
+Characteristics of these direct models: 
 
 - Official first-party support from Microsoft 
 - High level of integration with Azure services and infrastructure 
@@ -48,11 +48,11 @@ Characteristics of Azure Direct Models:
 - Adherence to Microsoft’s Responsible AI standards 
 - Enterprise-grade scalability, reliability, and security
 
-Azure Direct Models also have the benefit of flexible Provisioned Throughput, meaning you can use your quota and reservations across any of these models.
+These Models also have the benefit of fungible Provisioned Throughput, meaning you can flexibly use your quota and reservations across any of these models.
 
 ## Models from Partners and Community
 
-Models constitute the vast majority of the Azure AI Foundry Models. These models are provided by trusted third-party organizations, partners, research labs, and community contributors. These models offer specialized and diverse AI capabilities, covering a wide array of scenarios, industries, and innovations.
+These models constitute the vast majority of the Azure AI Foundry Models. These models are provided by trusted third-party organizations, partners, research labs, and community contributors. These models offer specialized and diverse AI capabilities, covering a wide array of scenarios, industries, and innovations.
 
 Characteristics of Models from Partners and Community: 
 * Developed and supported by external partners and community contributors 
@@ -63,32 +63,16 @@ Characteristics of Models from Partners and Community:
 
 Models are deployable as Managed Compute or Standard (pay-go) deployment options. The model provider selects how the models are deployable.   
  
-## Choosing Between Azure Direct and Azure Ecosystem Partner & Community Models 
-
+## Choosing Between direct models and partner & community models 
 
 When selecting models from Azure AI Foundry Models, consider the following: 
-* Use Case and Requirements: Azure Direct Models are ideal for scenarios requiring deep Azure integration, guaranteed support, and enterprise SLAs. Models from Partners and Community excel in specialized use cases and innovation-led scenarios. 
-* Support Expectations: Azure Direct Models come with robust Microsoft-provided support and maintenance. Models from Partners and Community are supported by their providers, with varying levels of SLA and support structures. 
+* Use Case and Requirements: Models sold directly by Azure are ideal for scenarios requiring deep Azure integration, guaranteed support, and enterprise SLAs. Azure Ecosystem Models excel in specialized use cases and innovation-led scenarios.
+* Support Expectations: Models sold directly by Azure come with robust Microsoft-provided support and maintenance. These models are supported by their providers, with varying levels of SLA and support structures.
 * Innovation and Specialization: Models from Partners and Community offer rapid access to specialized innovations and niche capabilities often developed by leading research labs and emerging AI providers.
-
-## Accessing Models from Partners and Community
-
-Models from Partners and Community are accessible through Azure AI Foundry, providing: 
-* Comprehensive details about the model’s capabilities and integration requirements.
-* Community ratings, usage data, and qualitative feedback to guide your decisions.
-* Clear integration guidelines to help incorporate these models seamlessly into your Azure workflows.
-
-For more detailed guidance and exploration of available models, visit the [Azure AI Foundry documentation](/azure/ai-foundry/). 
- 
-Azure AI Foundry remains committed to providing a robust ecosystem, enabling customers to easily access the best AI innovations from Microsoft and our trusted partners. 
 
 ## Model collections
 
 The model catalog organizes models into different collections:
-
-* **Curated by Azure AI**: The most popular partner models (open-weight and proprietary) packaged and optimized to work seamlessly on the Azure AI platform. Use of these models is subject to the model providers' license terms. When you deploy these models in Azure AI Foundry portal, their availability is subject to the applicable [Azure service-level agreement (SLA)](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services), and Microsoft provides support for deployment problems.
-
-  Models from partners such as Meta, NVIDIA, and Mistral AI are examples of models available in this collection on the catalog. You can identify these models by looking for a green checkmark on the model tiles in the catalog. Or you can filter by the **Curated by Azure AI** collection.
 
 * **Azure OpenAI models exclusively available on Azure**: Flagship Azure OpenAI models available through an integration with Azure OpenAI Service. Microsoft supports these models and their use according to the product terms and [SLA for Azure OpenAI Service](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
 
