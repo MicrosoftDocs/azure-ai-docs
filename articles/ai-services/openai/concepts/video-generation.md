@@ -17,8 +17,10 @@ Sora API will support the following resolution dimensions: 480x480, 480x854, 720
 
 5,10,15,20 seconds of video duration. For 1080p, max duration is 10s
 
+context length same as gpt-image-1
+
 ## Limitations
 
 
-Max variants on 1080p =1; 720 =2;
+Max variants on 1080p =1; 720 =2; otherwise 4
 Limiting 2 pending tasks per customer
