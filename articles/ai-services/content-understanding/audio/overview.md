@@ -27,7 +27,7 @@ Here are common scenarios for conversational audio data processing:
 
 ## Audio analyzer capabilities
 
-:::image type="content" source="../media/audio/overview/workflow-diagram.png" lightbox="../media/audio/overview/workflow-diagram.png" alt-text="Illustration of Content Understanding audio capabilities.":::
+:::image type="content" source="../media/audio/overview/workflow-diagram-preview.png" lightbox="../media/audio/overview/workflow-diagram-preview.png" alt-text="Illustration of Content Understanding audio capabilities.":::
 
 Content Understanding serves as a cornerstone for Speech Analytics solutions, enabling the following capabilities for audio files:
 
