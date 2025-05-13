@@ -27,7 +27,7 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 ## Prerequisites
 * You have created and published a Fabric data agent endpoint
 
-* Developers and end users have at least `AI Developer` RBAC role. 
+* Developers and end users have at least `Azure AI User` RBAC role. 
 
 * Developers and end users have at least `READ` access to the Fabric data agent and the underlying data sources it connects with.
 
