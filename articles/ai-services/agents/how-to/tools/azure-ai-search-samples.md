@@ -34,7 +34,7 @@ Complete the [Azure AI Search tool setup](../../how-to/tools/azure-ai-search.md?
 
 :::zone pivot="python"
 
-## Step 1: Create an Azure AI Client
+## Create an Azure AI Client
 First, create an Azure AI Client using the endpoint of your project.
 
 ```python
@@ -53,7 +53,7 @@ project_client = AIProjectClient(
 )
 ```
 
-## Step 2: Configure the Azure AI Search tool
+## Configure the Azure AI Search tool
 Using the connection ID of your Azure AI Search resource, configure the Azure AI Search tool to use your Azure AI Search index.
 
 ```python
@@ -73,7 +73,7 @@ ai_search = AzureAISearchTool(
 )
 ```
 
-## Step 3: Create an agent with the Azure AI Search tool enabled
+## Create an agent with the Azure AI Search tool enabled
 Create an agent with the Azure AI Search tool attached. Change the model to the one deployed in your project.
 
 ```python
@@ -91,7 +91,7 @@ agent = project_client.agents.create_agent(
 print(f"Created agent, ID: {agent.id}")
 ```
 
-## Step 4: Ask the agent questions about data in the index
+## Ask the agent questions about data in the index
 Now that the agent is created, ask it questions about the data in your Azure AI Search index.
 
 ```python
@@ -123,7 +123,7 @@ for message in messages.data:
     print(f"Role: {message.role}, Content: {message.content}")
 ```
 
-## Step 5: Clean up resources
+## Clean up resources
 After completing the operations, delete the agent to clean up resources.
 
 ```python
@@ -136,7 +136,7 @@ print("Deleted agent")
 
 :::zone pivot="csharp"
 
-## Step 1: Create a project client
+## Create a project client
 Create a client object, which will contain the project endpoint for connecting to your AI project and other resources.
 
 ```csharp
@@ -161,7 +161,7 @@ var azureAiSearchConnectionId = configuration["AzureAiSearchConnectionId"];
 PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
 ```
 
-## Step 2: Configure the Azure AI Search tool
+## Configure the Azure AI Search tool
 Using the AI Search Connection ID, configure the Azure AI Search tool to use your Azure AI Search index.
 
 ```csharp
@@ -177,7 +177,7 @@ ToolResources toolResource = new() { AzureAISearch = searchResource };
 
 ```
 
-## Step 3: Create an agent with the Azure AI Search tool enabled
+## Create an agent with the Azure AI Search tool enabled
 Change the model to the one deployed in your project. You can find the model name in the Azure AI Foundry under the **Models** tab. You can also change the name and instructions of the agent to suit your needs.
 
 ```csharp
@@ -191,7 +191,7 @@ PersistentAgent agent = agentClient.Administration.CreateAgent(
 
 ```
 
-## Step 4: Ask the agent questions about data in the index
+## Ask the agent questions about data in the index
 Now that the agent is created, ask it questions about the data in your Azure AI Search index.
 
 ```csharp
@@ -207,7 +207,7 @@ ThreadRun run = agentClient.Runs.CreateRun(thread, agent);
 
 ```
 
-## Step 4: Wait for the agent to complete and print the output
+## Wait for the agent to complete and print the output
 
 Wait for the agent to complete the run and print output to console.
 
@@ -271,7 +271,7 @@ foreach (ThreadMessage threadMessage in messages)
     }
 }
 ```
-## Step 5: Clean up resources
+## Clean up resources
 
 Clean up the resources from this sample.
 
@@ -287,7 +287,7 @@ agentClient.Administration.DeleteAgent(agent.Id);
 
 :::zone pivot="javascript"
 
-## Step 1: Create an Azure AI Client
+## Create an Azure AI Client
 First, create an Azure AI Client using the connection string of your project.
 
 ```javascript
@@ -304,7 +304,7 @@ const client = AIProjectsClient.fromConnectionString(
 );
 ```
 
-## Step 2: Get the connection ID for the Azure AI Search resource
+## Get the connection ID for the Azure AI Search resource
 Get the connection ID of the Azure AI Search connection in the project.
 
 ```javascript
@@ -314,7 +314,7 @@ const cognitiveServicesConnection = await client.connections.getConnection(
 );
 ```
 
-## Step 3: Configure the Azure AI Search tool
+## Configure the Azure AI Search tool
 Using the connection ID you got in the previous step, you can now configure the Azure AI Search tool to use your Azure AI Search index.
 
 ```javascript
@@ -333,7 +333,7 @@ const agent = await client.agents.createAgent("gpt-4o-mini", {
 console.log(`Created agent, agent ID : ${agent.id}`);
 ```
 
-## Step 4: Create an agent with the Azure AI Search tool enabled
+## Create an agent with the Azure AI Search tool enabled
 
 Change the model to the one deployed in your project. You can find the model name in the Azure AI Foundry under the **Models** tab. You can also change the name and instructions of the agent to suit your needs.
 
@@ -348,7 +348,7 @@ console.log(`Created agent, agent ID : ${agent.id}`);
 ```
 
 
-## Step 5: Ask the agent questions about data in the index
+## Ask the agent questions about data in the index
 Now that the agent is created, ask it questions about the data in your Azure AI Search index.
 
 ```javascript
@@ -413,10 +413,10 @@ for (let i = messages.data.length - 1; i >= 0; i--) {
 
 :::zone pivot="rest"
 
-## Step 1: Create an Azure AI Client
+## Create an Azure AI Client
 Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`.
 
-## Step 2: Get the connection ID for the Azure AI Search resource
+## Get the connection ID for the Azure AI Search resource
 Follow the next section on how to get the connection ID from the Azure AI Foundry.
 
 The second way to get the connection ID is to navigate to the project in the Azure AI Foundry and click on the **Connected resources** tab and then select your Azure AI Search resource.
@@ -427,7 +427,7 @@ In the URL, you see the wsid=/subscription/your-subscription-id..., this is the 
 
 :::image type="content" source="../../media/tools/ai-search/connection-id.png" alt-text="A screenshot of an AI Search resource connection and how to copy the connection ID." lightbox="../../media/tools/ai-search/connection-id.png":::
 
-## Step 3: Configure the Azure AI Search tool
+## Configure the Azure AI Search tool
 Using the connection ID you got in the previous step, you can now configure the Azure AI Search tool to use your Azure AI Search index.
 
 ```console
@@ -455,7 +455,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
       }'
 ```
 
-### Step 4: Ask the agent questions about data in the index
+### Ask the agent questions about data in the index
 Now that the agent is created, ask it questions about the data in your Azure AI Search index.
 
 #### Create a thread
@@ -478,7 +478,6 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-1
       "content": "what are my health insurance plan coverage types?"
     }'
 ```
-
 #### Run the thread
 
 ```console

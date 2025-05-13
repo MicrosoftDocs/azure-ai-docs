@@ -42,32 +42,172 @@ Use this article to find step-by-step instructions and code samples for using Op
 
 :::zone-end
 
+:::zone pivot="python"
+
+## Initialization
+The code begins by setting up the necessary imports and initializing the AI Project client:
+
+```python
+# Import necessary libraries
+import os
+import jsonref
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from azure.ai.agents.models import OpenApiTool, OpenApiAnonymousAuthDetails
+
+endpoint = os.environ["PROJECT_ENDPOINT"]
+model_deployment_name = os.environ["MODEL_DEPLOYMENT_NAME"]
+# Initialize the project client using the endpoint and default credentials
+with AIProjectClient(
+    endpoint=endpoint,
+    credential=DefaultAzureCredential(exclude_interactive_browser_credential=False),
+) as project_client:
+```
+
+## Weather Tool Setup
+The OpenAPI specification for the weather service is loaded from `weather_openapi.json`.
+
+```python
+    # Load the OpenAPI specification for the weather service from a local JSON file using jsonref to handle references
+    with open(os.path.join(os.path.dirname(__file__), "weather_openapi.json"), "r") as f:
+         openapi_weather = jsonref.loads(f.read())
+```
+
+## Countries Tool Setup
+Similarly, the OpenAPI specification for the countries service is loaded from `countries.json`. An anonymous authentication object (`OpenApiAnonymousAuthDetails`) is created, as this specific API doesn't require authentication in this example.
+
+```python
+    # Load the OpenAPI specification for the countries service from a local JSON file
+    with open(os.path.join(os.path.dirname(__file__), "countries.json"), "r") as f:
+         openapi_countries = jsonref.loads(f.read())
+
+    # Create Auth object for the OpenApiTool (note: using anonymous auth here; connection or managed identity requires additional setup)
+    auth = OpenApiAnonymousAuthDetails()
+
+    # Initialize the main OpenAPI tool definition for weather
+    openapi_tool = OpenApiTool(
+        name="get_weather", spec=openapi_weather, description="Retrieve weather information for a location", auth=auth
+    )
+    # Add the countries API definition to the same tool object
+    openapi_tool.add_definition(
+        name="get_countries", spec=openapi_countries, description="Retrieve a list of countries", auth=auth
+    )
+```
+
+## Agent Creation
+An agent is created using the `project_client.agents.create_agent` method.
+
+```python
+    # Create an agent configured with the combined OpenAPI tool definitions
+    agent = project_client.agents.create_agent(
+        model=os.environ["MODEL_DEPLOYMENT_NAME"],
+        name="my-agent",
+        instructions="You are a helpful agent",
+        tools=openapi_tool.definitions,
+    )
+    print(f"Created agent, ID: {agent.id}")
+```
+
+## Thread Management
+Create the thread and add the initial user message.
+
+```python
+    # Create a new conversation thread for the interaction
+    thread = project_client.threads.create_thread()
+    print(f"Created thread, ID: {thread.id}")
+
+    # Create the initial user message in the thread
+    message = project_client.messages.create_message(
+        thread_id=thread.id,
+        role="user",
+        content="What's the weather in Seattle and What is the name and population of the country that uses currency with abbreviation THB?",
+    )
+    print(f"Created message, ID: {message.id}")
+```
+
+
+## Create a run and check the output
+Create the run, check the output, and examine what tools were called during the run.
+
+```python
+    # Create and automatically process the run, handling tool calls internally
+    run = project_client.runs.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+        print(f"Run finished with status: {run.status}")
+        if run.status == "failed":
+            print(f"Run failed: {run.last_error}")
+
+        # Retrieve the steps taken during the run for analysis
+        run_steps = agents_client.list_run_steps(thread_id=thread.id, run_id=run.id)
+
+        # Loop through each step to display information
+        for step in run_steps.data:
+            print(f"Step {step['id']} status: {step['status']}")
+
+            # Check if there are tool calls recorded in the step details
+            step_details = step.get("step_details", {})
+            tool_calls = step_details.get("tool_calls", [])
+
+            if tool_calls:
+                print("  Tool calls:")
+                for call in tool_calls:
+                    print(f"    Tool Call ID: {call.get('id')}")
+                    print(f"    Type: {call.get('type')}")
+
+                    function_details = call.get("function", {})
+                    if function_details:
+                        print(f"    Function name: {function_details.get('name')}")
+            print()
+```
+
+
+## Cleanup
+After the interaction is complete, the script performs cleanup by deleting the created agent resource using `agents_client.delete_agent()` to avoid leaving unused resources. It also fetches and prints the entire message history from the thread using `agents_client.list_messages()` for review or logging.
+
+```python
+        # Delete the agent resource to clean up
+        agents_client.delete_agent(agent.id)
+        print("Deleted agent")
+
+        # Fetch and log all messages exchanged during the conversation thread
+        messages = agents_client.list_messages(thread_id=thread.id)
+        print(f"Messages: {messages}")
+```
+
+:::zone-end
+
 :::zone pivot="csharp"
 
-## Using the .NET SDK
-
-In this example we'll demonstrate the possibility to use services with [OpenAPI Specification](https://en.wikipedia.org/wiki/OpenAPI_Specification) with the agent. We will use [wttr.in](https://wttr.in) service to get weather and its specification file [weather_openapi.json](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/tests/Samples/Agent/weather_openapi.json).
-
-1. First get `ProjectEndpoint` and `ModelDeploymentName` from config and create a `PersistentAgentsClient`. Also, create an `OpenApiAnonymousAuthDetails` and `OpenApiToolDefinition` from config. 
+## Configure client and OpenAPI tool
+First, retrieve configuration details and create a `PersistentAgentsClient`, then define the `OpenApiToolDefinition` using the OpenAPI specification.
 
 ```csharp
     var projectEndpoint = configuration["ProjectEndpoint"];
     var modelDeploymentName = configuration["ModelDeploymentName"];
     var openApiSpec = configuration["OpenApiSpec"];
     PersistentAgentsClient client = new(new Uri(projectEndpoint), new DefaultAzureCredential());
+  
+    // Helper function to get the absolute path to the OpenAPI spec file
+    private static string GetFile([CallerFilePath] string pth = "")
+    {
+        var dirName = Path.GetDirectoryName(pth) ?? "";
+        return Path.Combine(dirName, "weather_openapi.json");
+    }
     
     var spec = BinaryData.FromBytes(File.ReadAllBytes(openApiSpec));
+     // Using anonymous auth for this example
     OpenApiAnonymousAuthDetails openApiAnonAuth = new();
+    // Define the OpenAPI tool
     OpenApiToolDefinition openApiTool = new(
-        name: "get_weather",
-        description: "Retrieve weather information for a location",
-        spec: spec,
-        auth: openApiAnonAuth,
-        defaultParams: ["format"]
+        name: "get_weather", 
+        description: "Retrieve weather information for a location", 
+        spec: spec, 
+        auth: openApiAnonAuth, 
+        defaultParams: ["format"] 
     );
 ```
 
-2. Next we'll need to create an agent.
+## Create an agent
+Next, create a `PersistentAgent` with the necessary model deployment, name, instructions, and the previously defined OpenAPI tool.
 
 ```csharp
     PersistentAgent agent = client.CreateAgent(
@@ -78,8 +218,8 @@ In this example we'll demonstrate the possibility to use services with [OpenAPI 
     );
 ```
 
-3. Now we'll create a `ThreadRun` and wait until it is complete. If the run will not be successful, we'll print the last error.
-
+## Create thread, message, and run
+Create a `PersistentAgentThread` for the conversation, add a user message to it, and then create a `ThreadRun` to process the message, waiting for its completion.
 
 ```csharp
     PersistentAgentThread thread = client.CreateThread();
@@ -90,6 +230,7 @@ In this example we'll demonstrate the possibility to use services with [OpenAPI 
     
     ThreadRun run = client.CreateRun(thread, agent);
     
+    // Poll for the run's completion status
     do
     {
         Thread.Sleep(TimeSpan.FromMilliseconds(500));
@@ -100,12 +241,14 @@ In this example we'll demonstrate the possibility to use services with [OpenAPI 
         || run.Status == RunStatus.RequiresAction);
 ```
 
-4. Print the messages to the console in chronological order.
+## Display conversation messages
+Retrieve and print all messages from the thread to the console in chronological order to display the conversation flow.
 
 ```csharp
     Pageable<ThreadMessage> messages = client.Messages.GetMessages(
-        threadId: thread.Id,
-        order: ListSortOrder.Ascending);
+        threadId: thread.Id, 
+        order: ListSortOrder.Ascending 
+    );
 
     foreach (ThreadMessage threadMessage in messages)
     {
@@ -121,111 +264,12 @@ In this example we'll demonstrate the possibility to use services with [OpenAPI 
     }
 ```
 
-5. Finally, we delete all the resources we have created in this sample.
+## Clean up resources
+Finally, delete the created `PersistentAgentThread` and `PersistentAgent` to clean up the resources used in this example.
 
 ```csharp
     client.DeleteThread(thread.Id);
     client.DeleteAgent(agent.Id);
-```
-
-:::zone-end
-
-:::zone pivot="python"
-
-## Step 1: Create a project client
-Create a client object, which will contain the connection string for connecting to your AI project and other resources.
-
-
-```python
-import os
-import jsonref
-from azure.ai.projects import AIProjectClient
-from azure.identity import DefaultAzureCredential
-from azure.ai.projects.models import OpenApiTool, OpenApiAnonymousAuthDetails
-
-
-# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
-# At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
-# Customer needs to login to Azure subscription via Azure CLI and set the environment variables
-
-project_client = AIProjectClient.from_connection_string(
-    credential=DefaultAzureCredential(),
-    conn_str=os.environ["PROJECT_CONNECTION_STRING"],
-)
-```
-
-
-## Step 2: Create the OpenAPI Spec tool definition
-You might want to store the OpenAPI specification in another file and import the content to initialize the tool. The sample code is using `anonymous` as the authentication type.
-
-
-```python
-with open('./weather_openapi.json', 'r') as f:
-    openapi_spec = jsonref.loads(f.read())
-
-# Create Auth object for the OpenApiTool (note that connection or managed identity auth setup requires additional setup in Azure)
-auth = OpenApiAnonymousAuthDetails()
-
-# Initialize agent OpenAPI tool using the read in OpenAPI spec
-openapi = OpenApiTool(name="get_weather", spec=openapi_spec, description="Retrieve weather information for a location", auth=auth)
-```
-If you want to use connection, which stores API key, for authentication, replace the line with
-```python
-auth = OpenApiConnectionAuthDetails(security_scheme=OpenApiConnectionSecurityScheme(connection_id="your_connection_id"))
-```
-Your connection ID looks like `/subscriptions/{subscription ID}/resourceGroups/{resource group name}/providers/Microsoft.MachineLearningServices/workspaces/{project name}/connections/{connection name}`.
-
-If you want to use managed identity for authentication, replace the line with
-```python
-auth = OpenApiManagedAuthDetails(security_scheme=OpenApiManagedSecurityScheme(audience="https://your_identity_scope.com"))
-```
-An example of the audience would be `https://cognitiveservices.azure.com/`.
-
-## Step 3: Create an agent and a thread
-
-```python
-# Create agent with OpenAPI tool and process assistant run
-with project_client:
-    agent = project_client.agents.create_agent(
-        model="gpt-4o",
-        name="my-assistant",
-        instructions="You are a helpful assistant",
-        tools=openapi.definitions
-    )
-    print(f"Created agent, ID: {agent.id}")
-
-    # Create thread for communication
-    thread = project_client.agents.create_thread()
-    print(f"Created thread, ID: {thread.id}")
-```
-
-## Step 4: Create a run and check the output
-Create a run and observe that the model uses the OpenAPI Spec tool to provide a response to the user's question.
-
-
-```python
-# Create message to thread
-    message = project_client.agents.create_message(
-        thread_id=thread.id,
-        role="user",
-        content="What's the weather in Seattle?",
-    )
-    print(f"Created message, ID: {message.id}")
-
-    # Create and process agent run in thread with tools
-    run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
-    print(f"Run finished with status: {run.status}")
-
-    if run.status == "failed":
-        print(f"Run failed: {run.last_error}")
-
-    # Delete the assistant when done
-    project_client.agents.delete_agent(agent.id)
-    print("Deleted agent")
-
-    # Fetch and log all messages
-    messages = project_client.agents.list_messages(thread_id=thread.id)
-    print(f"Messages: {messages}")
 ```
 
 :::zone-end

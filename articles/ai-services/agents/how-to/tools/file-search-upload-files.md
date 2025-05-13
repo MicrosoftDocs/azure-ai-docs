@@ -43,7 +43,7 @@ Use this article to find step-by-step instructions and code samples for uploadin
 
 :::zone pivot="python"
 
-## Step 1: Create a project client
+## Create a project client
 
 Create a client object that contains the connection string for connecting to your AI project and other resources.
 
@@ -63,7 +63,7 @@ project_client = AIProjectClient(
 )
 ```
 
-## Step 2: Upload files and add them to a Vector Store
+## Upload files and add them to a Vector Store
 
 To access your files, the file search tool uses the vector store object. Upload your files and create a vector store.
 
@@ -82,7 +82,7 @@ vector_store = project_client.agents.create_vector_store_and_poll(file_ids=[file
 print(f"Created vector store, vector store ID: {vector_store.id}")
 ```
 
-## Step 3: Create an agent and enable file search
+## Create an agent and enable file search
 
 To make the files accessible to your agent, create a `FileSearchTool` object with the `vector_store` ID, and attach tools and `tool_resources` to the agent.
 
@@ -103,7 +103,7 @@ agent = project_client.agents.create_agent(
 print(f"Created agent, ID: {agent.id}")
 ```
 
-## Step 4: Create a thread
+## Create a thread
 
 You can also attach files as message attachments on your thread. Doing so creates another `vector_store` associated with the thread, or, if there's already a vector store attached to this thread, attaches the new files to the existing thread vector store.
 
@@ -121,7 +121,7 @@ message = project_client.agents.messages.create(
 print(f"Created message, ID: {message['id']}")
 ```
 
-## Step 5: Create a run and check the output
+## Create a run and check the output
 
 Create a run and observe that the model uses the file search tool to provide a response.
 
@@ -152,7 +152,7 @@ for message in messages.data:
 
 :::zone pivot="csharp"
 
-## Step 1: Create a project client
+## Create a project client
 
 Create a client object that contains the connection string for connecting to your AI project and other resources.
 
@@ -179,7 +179,7 @@ PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCreden
 
 ```
 
-## Step 2: Upload files and add them to a Vector Store
+## Upload files and add them to a Vector Store
 
 To access your files, the file search tool uses the vector store object. Upload your files and create a vector store. After creating the vector store, poll its status until all files are uploaded to ensure that all content is fully processed. The SDK provides helpers for uploading and polling.
 
@@ -211,7 +211,7 @@ VectorStore vectorStore = agentClient.VectorStores.CreateVectorStore(
 
 ```
 
-## Step 3: Create an agent and enable file search
+## Create an agent and enable file search
 
 Create a file search tool object with the vector store ID, and attach tool and tool resources to the agent.
 
@@ -229,7 +229,7 @@ PersistentAgent agent = agentClient.Administration.CreateAgent(
         toolResources: new ToolResources() { FileSearch = fileSearchToolResource });
 ```
 
-## Step 4: Create a thread and run
+## Create a thread and run
 
 You can also attach files as Message attachments on your thread. Doing so creates another vector store associated with the thread, or, if there's already a vector store attached to this thread, attaches the new files to the existing thread vector store. When you create a Run on this thread, the file search tool queries both the vector store from your agent and the vector store on the thread.
 
@@ -246,9 +246,9 @@ ThreadMessage messageResponse = agentClient.Messages.CreateMessage(
 ThreadRun run = agentClient.Runs.CreateRun(thread, agent);
 
 ```
-## Step 5: Print the output
+## Wait for run completion and check status
 
-Wait for the agent to complete the run and print output to console. Observe that the model uses the file search tool to provide a response.
+Wait for the agent run to finish processing by polling its status. Observe that the model uses the file search tool to provide a response.
 
 ```csharp
 // Wait for the agent to finish running
@@ -265,7 +265,13 @@ if (run.Status != RunStatus.Completed)
 {
     throw new Exception("Run did not complete successfully, error: " + run.LastError?.Message);
 }
+```
 
+## Process messages and handle citations
+
+Once the run is complete, retrieve the messages from the thread and process them, replacing any file citations with the actual file names.
+
+```csharp
 // Retrieve all messages from the agent client
 Pageable<ThreadMessage> messages = agentClient.Messages.GetMessages(
     threadId: thread.Id,
@@ -321,7 +327,7 @@ foreach (ThreadMessage threadMessage in messages)
     }
 }
 ```
-## Step 6: Clean up resources
+## Clean up resources
 
 Clean up the resources from this sample.
 
@@ -338,7 +344,7 @@ agentClient.Administration.DeleteAgent(agent.Id);
 
 :::zone pivot="javascript"
 
-## Step 1: Create a project client
+## Create a project client
 
 Create a client object that contains the connection string for connecting to your AI project and other resources.
 
@@ -352,7 +358,7 @@ const client = AIProjectsClient.fromConnectionString(
 );
 ```
 
-## Step 2: Upload files and add them to a Vector Store
+## Upload files and add them to a Vector Store
 
 Upload your files and create a vector store.
 
@@ -370,7 +376,7 @@ const vectorStore = await client.agents.createVectorStore({
 console.log(`Created vector store, ID: ${vectorStore.id}`);
 ```
 
-## Step 3: Create an agent and enable file search
+## Create an agent and enable file search
 
 Create a `FileSearchTool` object with the vector store ID, and attach `tools` and `toolResources` to the agent.
 
@@ -386,7 +392,7 @@ const agent = await client.agents.createAgent("gpt-4o-mini", {
 console.log(`Created agent, agent ID : ${agent.id}`);
 ```
 
-## Step 4: Create a thread
+## Create a thread
 
 You can also attach files as Message attachments on your thread. Doing so creates another vector store associated with the thread, or, if there's already a vector store attached to this thread, attaches the new files to the existing thread vector store. When you create a Run on this thread, the file search tool queries both the vector store from your agent and the vector store on the thread.
 
@@ -400,7 +406,7 @@ await client.agents.createMessage(
 });
 ```
 
-## Step 5: Create a run and check the output
+## Create a run and check the output
 
 Create a run and observe that the model uses the file search tool to provide a response.
 
@@ -440,7 +446,7 @@ for (let i = messages.data.length - 1; i >= 0; i--) {
 
 :::zone pivot="rest"
 
-## Step 1: Upload files and add them to a Vector Store
+## Upload files and add them to a Vector Store
 
 To access your files, the file search tool uses the vector store object. Upload your files and create a vector store. After creating the vector store, poll its status until all files are out of the in_progress state to ensure that all content is fully processed. The SDK provides helpers for uploading and polling.
 
@@ -475,7 +481,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/vector_stores/vs_abc123/files?api-version=2024-12
     }'
 ```
 
-## Step 2: Create an agent and enable file search
+## Create an agent and enable file search
 
 ```bash
 curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
@@ -491,7 +497,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
 ```
 
 
-## Step 3: Create a thread
+## Create a thread
 
 You can also attach files as Message attachments on your thread. Doing so creates another vector store associated with the thread, or, if there's already a vector store attached to this thread, attaches the new files to the existing thread vector store. When you create a Run on this thread, the file search tool queries both the vector store from your agent and the vector store on the thread.
 
@@ -514,7 +520,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-1
     }'
 ```
 
-## Step 4: Create a run and check the output
+## Create a run and check the output
 
 Create a run and observe that the model uses the file search tool to provide a response.
 

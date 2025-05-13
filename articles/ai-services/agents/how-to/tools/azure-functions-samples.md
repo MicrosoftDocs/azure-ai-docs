@@ -62,21 +62,15 @@ def process_queue_message(msg: func.QueueMessage) -> None:
     logging.info(f"Sent message to output queue with message {result_message}")
 ```
 
-## Create an AI project client and agent
+## Configure the Azure Function tool
 
-In the sample below we create a client and an agent that has the tools definition for the Azure Function
+First, define the Azure Function tool, specifying its name, description, parameters, and storage queue configurations.
 
 ```python
 import os
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 from azure.ai.agents.models import AzureFunctionStorageQueue, AzureFunctionTool
-
-# Create a project client
-project_client = AIProjectClient.from_connection_string(
-    credential=DefaultAzureCredential(),
-    conn_str=os.environ["PROJECT_CONNECTION_STRING"]
-)
 
 # Retrieve the storage service endpoint from environment variables
 storage_service_endpoint = os.environ["STORAGE_SERVICE_ENDPONT"]
@@ -101,13 +95,20 @@ azure_function_tool = AzureFunctionTool(
         storage_service_endpoint=storage_service_endpoint,
     ),
 )
+```
 
+## Create an AI project client and agent
+
+Next, create an AI project client and then create an agent, attaching the Azure Function tool defined previously.
+
+```python
 # Initialize the AIProjectClient
 project_client = AIProjectClient(
     endpoint=os.environ["PROJECT_ENDPOINT"],
     credential=DefaultAzureCredential(),
     api_version="latest",
-)# Create an agent with the Azure Function tool
+)
+# Create an agent with the Azure Function tool
 agent = project_client.agents.create_agent(
     model=os.environ["MODEL_DEPLOYMENT_NAME"],  # Model deployment name
     name="azure-function-agent-foo",  # Name of the agent
@@ -119,6 +120,7 @@ agent = project_client.agents.create_agent(
     tools=azure_function_tool.definitions,  # Attach the tool definitions to the agent
 )
 print(f"Created agent, agent ID: {agent.id}")
+
 ```
 
 ## Create a thread for the agent
@@ -136,7 +138,7 @@ print(f"Created thread, thread ID: {thread.id}")
 message = project_client.agents.messages.create(
     thread_id=thread.id,
     role="user",
-    content="What is the most prevalent element in the universe? What would foo say?",  # Message content
+    content="What is the most prevalent element in the universe? What would foo say?",  
 )
 print(f"Created message, message ID: {message['id']}")
 
@@ -168,7 +170,7 @@ project_client.agents.delete_agent(agent.id)
 print(f"Deleted agent")
 ```
 
-For any issues with the Python code, create an issue on the [sample code repository](https://github.com/Azure-Samples/azure-functions-ai-services-agent-python/issues)
+For any issues with the Python code, create an issue on the [sample code repository](https://github.com/azure-ai-foundry/foundry-samples)
 
 ::: zone-end
 

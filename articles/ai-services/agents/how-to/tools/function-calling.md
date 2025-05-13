@@ -26,200 +26,360 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 |---------|---------|---------|---------|---------|---------|---------|
 |      | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
+::: zone pivot="python"
+
+
+## Define a function for your agent to call
+Start by defining a function for your agent to call. When you create a function for an agent to call, you describe its structure with any required parameters in a docstring.
+```python
+import json
+import datetime
+from typing import Any, Callable, Set, Dict, List, Optional
+
+def fetch_weather(location: str) -> str:
+    """
+    Fetches the weather information for the specified location.
+
+    :param location: The location to fetch weather for.
+    :return: Weather information as a JSON string.
+    """
+    # Mock weather data for demonstration purposes
+    mock_weather_data = {"New York": "Sunny, 25°C", "London": "Cloudy, 18°C", "Tokyo": "Rainy, 22°C"}
+    weather = mock_weather_data.get(location, "Weather data not available for this location.")
+    return json.dumps({"weather": weather})
+
+# Define user functions
+user_functions = {fetch_weather}
+```
+
+## Create a client and agent
+
+In the sample below we create a client and define a `toolset` which will be used to process the functions defined in `user_functions`.
+
+`toolset`: When using the toolset parameter, you provide not only the function definitions and descriptions but also their implementations. The SDK will execute these functions within `create_and_run_process` or streaming. These functions will be invoked based on their definitions.
+
+```python
+import os, time
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.agents.models import FunctionTool
+
+# Retrieve the project endpoint from environment variables
+project_endpoint = os.environ["PROJECT_ENDPOINT"]
+
+# Initialize the AIProjectClient
+project_client = AIProjectClient(
+    endpoint=project_endpoint,
+    credential=DefaultAzureCredential(),
+    api_version="latest",
+)
+
+# Initialize the FunctionTool with user-defined functions
+functions = FunctionTool(functions=user_functions)
+
+with project_client:
+    # Create an agent with custom functions
+    agent = project_client.agents.create_agent(
+        model=os.environ["MODEL_DEPLOYMENT_NAME"],
+        name="my-agent",
+        instructions="You are a helpful agent",
+        tools=functions.definitions,
+    )
+    print(f"Created agent, ID: {agent.id}")
+```
+## Create a thread
+```python
+# Create a thread for communication
+thread = project_client.agents.threads.create()
+print(f"Created thread, ID: {thread.id}")
+
+# Send a message to the thread
+message = project_client.agents.messages.create(
+    thread_id=thread.id,
+    role="user",
+    content="Hello, send an email with the datetime and weather information in New York?",
+)
+print(f"Created message, ID: {message['id']}")
+```
+## Create a run and check the output
+```python
+# Create and process a run for the agent to handle the message
+run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+print(f"Created run, ID: {run.id}")
+
+# Poll the run status until it is completed or requires action
+while run.status in ["queued", "in_progress", "requires_action"]:
+    time.sleep(1)
+    run = project_client.agents.runs.get(thread_id=thread.id, run_id=run.id)
+
+    if run.status == "requires_action":
+        tool_calls = run.required_action.submit_tool_outputs.tool_calls
+        tool_outputs = []
+        for tool_call in tool_calls:
+            if tool_call.name == "fetch_weather":
+                output = fetch_weather("New York")
+                tool_outputs.append({"tool_call_id": tool_call.id, "output": output})
+        project_client.agents.runs.submit_tool_outputs(thread_id=thread.id, run_id=run.id, tool_outputs=tool_outputs)
+
+print(f"Run completed with status: {run.status}")
+
+# Fetch and log all messages from the thread
+messages = project_client.agents.messages.list(thread_id=thread.id)
+for message in messages:
+    print(f"Role: {message['role']}, Content: {message['content']}")
+
+# Delete the agent after use
+project_client.agents.delete_agent(agent.id)
+print("Deleted agent")
+```
+
+::: zone-end
+
 ::: zone pivot="csharp"
 
-## Using the .NET SDK
+## Configure client and define functions
 
-In this example we are demonstrating how to use the local functions with the agents. The functions can be used to provide agent specific information in response to user question.
+First, set up the configuration using `appsettings.json` and create a `PersistentAgentsClient`. 
 
-1. First, set up the configuration and create a `PersistentAgentsClient`. This client will be used for all interactions with the Azure AI Agents Service. This step also includes all necessary `using` directives.
+```csharp
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using Microsoft.Extensions.Configuration;
+using System.Text.Json;
 
-    ```csharp
-    using Azure;
-    using Azure.AI.Agents.Persistent;
-    using Azure.Identity;
-    using Microsoft.Extensions.Configuration;
-    using System.Text.Json;
-    
-    IConfigurationRoot configuration = new ConfigurationBuilder()
-        .SetBasePath(AppContext.BaseDirectory)
-        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-        .Build();
-    
-    var projectEndpoint = configuration["ProjectEndpoint"];
-    var modelDeploymentName = configuration["ModelDeploymentName"];
-    PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
-    ```
+// Load configuration from appsettings.json file
+IConfigurationRoot configuration = new ConfigurationBuilder()
+    .SetBasePath(AppContext.BaseDirectory)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .Build();
 
-2. Next, define the local functions that the agent can call. For each function, create a `FunctionToolDefinition` that describes its name, purpose, and parameters to the agent. These functions and definitions are used by both synchronous and asynchronous agent operations.
+// Read necessary configuration values (Project Endpoint and Model Deployment Name)
+var projectEndpoint = configuration["ProjectEndpoint"];
+var modelDeploymentName = configuration["ModelDeploymentName"];
+// Initialize the client to interact with the Azure AI Agents Persistent Client using default credentials
+PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
+```
 
-    ```csharp
-    string GetUserFavoriteCity() => "Seattle, WA";
-    FunctionToolDefinition getUserFavoriteCityTool = new("getUserFavoriteCity", "Gets the user's favorite city.");
-    
-    string GetCityNickname(string location) => location switch
-    {
-        "Seattle, WA" => "The Emerald City",
-        _ => throw new NotImplementedException(),
-    };
-    FunctionToolDefinition getCityNicknameTool = new(
-        name: "getCityNickname",
-        description: "Gets the nickname of a city, e.g. 'LA' for 'Los Angeles, CA'.",
-        parameters: BinaryData.FromObjectAsJson(
-            new
+## Define functions
+Define the local C# functions that your agent can call, along with their `FunctionToolDefinition` to describe their purpose and parameters to the agent.
+
+```csharp
+// Function to get the user's favorite city (hardcoded for example)
+string GetUserFavoriteCity() => "Seattle, WA";
+// Definition for the GetUserFavoriteCity function, describing its purpose to the agent
+FunctionToolDefinition getUserFavoriteCityTool = new("getUserFavoriteCity", "Gets the user's favorite city.");
+
+// Function to get a city's nickname based on its location
+string GetCityNickname(string location) => location switch
+{
+    "Seattle, WA" => "The Emerald City",
+    // Handle cases where the nickname is not known
+    _ => throw new NotImplementedException(), 
+};
+// Definition for the GetCityNickname function, including parameter description
+FunctionToolDefinition getCityNicknameTool = new(
+    name: "getCityNickname",
+    description: "Gets the nickname of a city, e.g. 'LA' for 'Los Angeles, CA'.",
+    // Define the expected parameters (location string)
+    parameters: BinaryData.FromObjectAsJson(
+        new
+        {
+            Type = "object",
+            Properties = new
             {
-                Type = "object",
-                Properties = new
+                Location = new
                 {
-                    Location = new
-                    {
-                        Type = "string",
-                        Description = "The city and state, e.g. San Francisco, CA",
-                    },
+                    Type = "string",
+                    Description = "The city and state, e.g. San Francisco, CA",
                 },
-                Required = new[] { "location" },
             },
-            new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
-    
-    string GetWeatherAtLocation(string location, string temperatureUnit = "f") => location switch
-    {
-        "Seattle, WA" => temperatureUnit == "f" ? "70f" : "21c",
-        _ => throw new NotImplementedException()
-    };
-    FunctionToolDefinition getCurrentWeatherAtLocationTool = new(
-        name: "getCurrentWeatherAtLocation",
-        description: "Gets the current weather at a provided location.",
-        parameters: BinaryData.FromObjectAsJson(
-            new
+            Required = new[] { "location" },
+        },
+        new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
+
+// Function to get weather at a specific location, with an optional temperature unit
+string GetWeatherAtLocation(string location, string temperatureUnit = "f") => location switch
+{
+    "Seattle, WA" => temperatureUnit == "f" ? "70f" : "21c",
+    // Handle cases where weather data is not available
+    _ => throw new NotImplementedException()
+};
+// Definition for the GetWeatherAtLocation function, specifying parameters and enum for unit
+FunctionToolDefinition getCurrentWeatherAtLocationTool = new(
+    name: "getCurrentWeatherAtLocation",
+    description: "Gets the current weather at a provided location.",
+    // Define expected parameters (location string, optional unit enum)
+    parameters: BinaryData.FromObjectAsJson(
+        new
+        {
+            Type = "object",
+            Properties = new
             {
-                Type = "object",
-                Properties = new
+                Location = new
                 {
-                    Location = new
-                    {
-                        Type = "string",
-                        Description = "The city and state, e.g. San Francisco, CA",
-                    },
-                    Unit = new
-                    {
-                        Type = "string",
-                        Enum = new[] { "c", "f" },
-                    },
+                    Type = "string",
+                    Description = "The city and state, e.g. San Francisco, CA",
                 },
-                Required = new[] { "location" },
-            },
-            new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
-    ```
-
-3. Create a helper function, `GetResolvedToolOutput`. This function takes a `RequiredToolCall` (when the agent determines a local function should be executed) and invokes the appropriate C# function defined in the previous step. It then wraps the result in a `ToolOutput` object for the agent.
-
-    ```csharp
-    ToolOutput GetResolvedToolOutput(RequiredToolCall toolCall)
-    {
-        if (toolCall is RequiredFunctionToolCall functionToolCall)
-        {
-            if (functionToolCall.Name == getUserFavoriteCityTool.Name)
-            {
-                return new ToolOutput(toolCall, GetUserFavoriteCity());
-            }
-            using JsonDocument argumentsJson = JsonDocument.Parse(functionToolCall.Arguments);
-            if (functionToolCall.Name == getCityNicknameTool.Name)
-            {
-                string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
-                return new ToolOutput(toolCall, GetCityNickname(locationArgument));
-            }
-            if (functionToolCall.Name == getCurrentWeatherAtLocationTool.Name)
-            {
-                string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
-                if (argumentsJson.RootElement.TryGetProperty("unit", out JsonElement unitElement))
+                Unit = new
                 {
-                    string unitArgument = unitElement.GetString();
-                    return new ToolOutput(toolCall, GetWeatherAtLocation(locationArgument, unitArgument));
-                }
-                return new ToolOutput(toolCall, GetWeatherAtLocation(locationArgument));
-            }
-        }
-        return null;
-    }
-    ```
+                    Type = "string",
+                    Enum = new[] { "c", "f" },
+                },
+            },
+            Required = new[] { "location" },
+        },
+        new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
+```
 
-4. Now, create the agent. Provide the model deployment name (retrieved in step 1), a descriptive name for the agent, instructions for its behavior, and the list of `FunctionToolDefinition`s (defined in step 2) it can use.
+## Implement function execution logic
 
-    ```csharp
-    PersistentAgent agent = client.Administration.CreateAgent(
-        model: modelDeploymentName,
-        name: "SDK Test Agent - Functions",
-        instructions: "You are a weather bot. Use the provided functions to help answer questions. "
-            + "Customize your responses to the user's preferences as much as possible and use friendly "
-            + "nicknames for cities whenever possible.",
-        tools: [getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool]);
-    ```
+Create a helper function, `GetResolvedToolOutput`, to process `RequiredToolCall` objects from the agent. This function will invoke the appropriate C# local function and return its output to the agent.
 
-5. Create a new conversation thread and add an initial user message to it. The agent will respond to this message.
-   
-    ```csharp
-    PersistentAgentThread thread = client.Threads.CreateThread();
-    
-    client.Messages.CreateMessage(
-        thread.Id,
-        MessageRole.User,
-        "What's the weather like in my favorite city?");
-    ```
-
-6. Create a run for the agent on the thread and poll for its completion. If the run requires action (e.g., a function call), submit the tool outputs.
-
-    ```csharp
-    ThreadRun run = client.Runs.CreateRun(thread.Id, agent.Id);
-    
-    do
+```csharp
+// Helper function to execute the correct local C# function based on the tool call request from the agent
+ToolOutput GetResolvedToolOutput(RequiredToolCall toolCall)
+{
+    // Check if the required call is a function call
+    if (toolCall is RequiredFunctionToolCall functionToolCall)
     {
-        Thread.Sleep(TimeSpan.FromMilliseconds(500));
-        run = client.Runs.GetRun(thread.Id, run.Id);
-    
-        if (run.Status == RunStatus.RequiresAction
-            && run.RequiredAction is SubmitToolOutputsAction submitToolOutputsAction)
+        // Execute GetUserFavoriteCity if its name matches
+        if (functionToolCall.Name == getUserFavoriteCityTool.Name)
         {
-            List<ToolOutput> toolOutputs = [];
-            foreach (RequiredToolCall toolCall in submitToolOutputsAction.ToolCalls)
+            return new ToolOutput(toolCall, GetUserFavoriteCity());
+        }
+        // Parse the arguments provided by the agent for other functions
+        using JsonDocument argumentsJson = JsonDocument.Parse(functionToolCall.Arguments);
+        // Execute GetCityNickname if its name matches
+        if (functionToolCall.Name == getCityNicknameTool.Name)
+        {
+            // Extract the 'location' argument
+            string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
+            return new ToolOutput(toolCall, GetCityNickname(locationArgument));
+        }
+        // Execute GetWeatherAtLocation if its name matches
+        if (functionToolCall.Name == getCurrentWeatherAtLocationTool.Name)
+        {
+            // Extract the 'location' argument
+            string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
+            // Check if the optional 'unit' argument was provided
+            if (argumentsJson.RootElement.TryGetProperty("unit", out JsonElement unitElement))
             {
-                toolOutputs.Add(GetResolvedToolOutput(toolCall));
+                string unitArgument = unitElement.GetString();
+                return new ToolOutput(toolCall, GetWeatherAtLocation(locationArgument, unitArgument));
             }
-            run = client.Runs.SubmitToolOutputsToRun(run, toolOutputs);
+            // Call without the unit if it wasn't provided
+            return new ToolOutput(toolCall, GetWeatherAtLocation(locationArgument));
         }
     }
-    while (run.Status == RunStatus.Queued
-        || run.Status == RunStatus.InProgress
-        || run.Status == RunStatus.RequiresAction);
-    ```
+    // Return null if the tool call type isn't handled
+    return null;
+}
+```
 
-7. After the run completes, retrieve and display the messages from the thread to see the conversation, including the agent's responses.
+## Create agent and conversation thread
 
-    ```csharp
-    Pageable<ThreadMessage> messages = client.Messages.GetMessages(
-        threadId: thread.Id,
-        order: ListSortOrder.Ascending
-    );
-    
-    foreach (ThreadMessage threadMessage in messages)
+Now, create the `PersistentAgent`, providing the model deployment name, a descriptive name, instructions for its behavior, and the list of `FunctionToolDefinitions` it can use. Then, create a `PersistentAgentThread` and add an initial user message to start the conversation.
+
+```csharp
+// Create the agent instance
+PersistentAgent agent = client.Administration.CreateAgent(
+    model: modelDeploymentName, 
+    name: "SDK Test Agent - Functions",
+    instructions: "You are a weather bot. Use the provided functions to help answer questions. "
+        + "Customize your responses to the user's preferences as much as possible and use friendly "
+        + "nicknames for cities whenever possible.",
+    tools: [getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool]);
+
+// Create a new conversation thread for the agent
+PersistentAgentThread thread = client.Threads.CreateThread();
+
+// Add the initial user message to the thread
+client.Messages.CreateMessage(
+    thread.Id,
+    MessageRole.User,
+    "What's the weather like in my favorite city?");
+```
+
+## Process run and handle function calls
+
+Create a `ThreadRun` for the agent on the thread. Poll for the run's completion status. If the run status is `RequiresAction`, it means the agent needs to call one of your local functions. Use the `GetResolvedToolOutput` helper to get the function's result and submit it back to the run.
+
+```csharp
+// Start a run for the agent to process the messages in the thread
+ThreadRun run = client.Runs.CreateRun(thread.Id, agent.Id);
+
+// Loop to check the run status and handle required actions
+do
+{
+    // Wait briefly before checking the status again
+    Thread.Sleep(TimeSpan.FromMilliseconds(500));
+    // Get the latest status of the run
+    run = client.Runs.GetRun(thread.Id, run.Id);
+
+    // Check if the agent requires a function call to proceed
+    if (run.Status == RunStatus.RequiresAction
+        && run.RequiredAction is SubmitToolOutputsAction submitToolOutputsAction)
     {
-        foreach (MessageContent content in threadMessage.ContentItems)
+        // Prepare a list to hold the outputs of the tool calls
+        List<ToolOutput> toolOutputs = [];
+        // Iterate through each required tool call
+        foreach (RequiredToolCall toolCall in submitToolOutputsAction.ToolCalls)
         {
-            switch (content)
-            {
-                case MessageTextContent textItem:
-                    Console.WriteLine($"[{threadMessage.Role}]: {textItem.Text}");
-                    break;
-            }
+            // Execute the function and get the output using the helper method
+            toolOutputs.Add(GetResolvedToolOutput(toolCall));
+        }
+        // Submit the collected tool outputs back to the run
+        run = client.Runs.SubmitToolOutputsToRun(run, toolOutputs);
+    }
+}
+// Continue looping while the run is in progress or requires action
+while (run.Status == RunStatus.Queued
+    || run.Status == RunStatus.InProgress
+    || run.Status == RunStatus.RequiresAction);
+```
+
+## Retrieve and display results
+
+After the run completes, retrieve all messages from the thread to see the full conversation, including the agent's final response.
+
+```csharp
+// Retrieve all messages from the completed thread, oldest first
+Pageable<ThreadMessage> messages = client.Messages.GetMessages(
+    threadId: thread.Id,
+    order: ListSortOrder.Ascending
+);
+
+// Iterate through each message in the thread
+foreach (ThreadMessage threadMessage in messages)
+{
+    // Iterate through content items in the message (usually just one text item)
+    foreach (MessageContent content in threadMessage.ContentItems)
+    {
+        // Process based on content type
+        switch (content)
+        {
+            // If it's a text message
+            case MessageTextContent textItem:
+                // Print the role (user/agent) and the text content
+                Console.WriteLine($"[{threadMessage.Role}]: {textItem.Text}");
+                break;
+            // Add handling for other content types if necessary (e.g., images)
         }
     }
-    ```
+}
+```
 
-8. Finally, clean up the created resources by deleting the thread and the agent.
+## Clean up resources
 
-    ```csharp
-    client.Threads.DeleteThread(threadId: thread.Id);
-    client.Administration.DeleteAgent(agentId: agent.Id);
-    ```
+Finally, clean up the created resources by deleting the thread and the agent.
+
+```csharp
+// Delete the conversation thread
+client.Threads.DeleteThread(threadId: thread.Id);
+// Delete the agent definition
+client.Administration.DeleteAgent(agentId: agent.Id);
+```
 
 ::: zone-end
 
@@ -374,115 +534,6 @@ await client.agents.createMessage(
       console.log(`---------------------------------`);
     }
   }
-```
-
-::: zone-end
-
-::: zone pivot="python"
-
-
-## Define a function for your agent to call
-Start by defining a function for your agent to call. When you create a function for an agent to call, you describe its structure with any required parameters in a docstring.
-```python
-import json
-import datetime
-from typing import Any, Callable, Set, Dict, List, Optional
-
-def fetch_weather(location: str) -> str:
-    """
-    Fetches the weather information for the specified location.
-
-    :param location: The location to fetch weather for.
-    :return: Weather information as a JSON string.
-    """
-    # Mock weather data for demonstration purposes
-    mock_weather_data = {"New York": "Sunny, 25°C", "London": "Cloudy, 18°C", "Tokyo": "Rainy, 22°C"}
-    weather = mock_weather_data.get(location, "Weather data not available for this location.")
-    return json.dumps({"weather": weather})
-
-# Define user functions
-user_functions = {fetch_weather}
-```
-
-## Create a client and agent
-
-In the sample below we create a client and define a `toolset` which will be used to process the functions defined in `user_functions`.
-
-`toolset`: When using the toolset parameter, you provide not only the function definitions and descriptions but also their implementations. The SDK will execute these functions within `create_and_run_process` or streaming. These functions will be invoked based on their definitions.
-
-```python
-import os, time
-from azure.identity import DefaultAzureCredential
-from azure.ai.projects import AIProjectClient
-from azure.ai.agents.models import FunctionTool
-
-# Retrieve the project endpoint from environment variables
-project_endpoint = os.environ["PROJECT_ENDPOINT"]
-
-# Initialize the AIProjectClient
-project_client = AIProjectClient(
-    endpoint=project_endpoint,
-    credential=DefaultAzureCredential(),
-    api_version="latest",
-)
-
-# Initialize the FunctionTool with user-defined functions
-functions = FunctionTool(functions=user_functions)
-
-with project_client:
-    # Create an agent with custom functions
-    agent = project_client.agents.create_agent(
-        model=os.environ["MODEL_DEPLOYMENT_NAME"],
-        name="my-agent",
-        instructions="You are a helpful agent",
-        tools=functions.definitions,
-    )
-    print(f"Created agent, ID: {agent.id}")
-```
-## Create a thread
-```python
-# Create a thread for communication
-thread = project_client.agents.threads.create()
-print(f"Created thread, ID: {thread.id}")
-
-# Send a message to the thread
-message = project_client.agents.messages.create(
-    thread_id=thread.id,
-    role="user",
-    content="Hello, send an email with the datetime and weather information in New York?",
-)
-print(f"Created message, ID: {message['id']}")
-```
-## Create a run and check the output
-```python
-# Create and process a run for the agent to handle the message
-run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
-print(f"Created run, ID: {run.id}")
-
-# Poll the run status until it is completed or requires action
-while run.status in ["queued", "in_progress", "requires_action"]:
-    time.sleep(1)
-    run = project_client.agents.runs.get(thread_id=thread.id, run_id=run.id)
-
-    if run.status == "requires_action":
-        tool_calls = run.required_action.submit_tool_outputs.tool_calls
-        tool_outputs = []
-        for tool_call in tool_calls:
-            if tool_call.name == "fetch_weather":
-                output = fetch_weather("New York")
-                tool_outputs.append({"tool_call_id": tool_call.id, "output": output})
-        project_client.agents.runs.submit_tool_outputs(thread_id=thread.id, run_id=run.id, tool_outputs=tool_outputs)
-
-print(f"Run completed with status: {run.status}")
-
-# Fetch and log all messages from the thread
-messages = project_client.agents.messages.list(thread_id=thread.id)
-for message in messages:
-    print(f"Role: {message['role']}, Content: {message['content']}")
-
-# Delete the agent after use
-project_client.agents.delete_agent(agent.id)
-print("Deleted agent")
 ```
 
 ::: zone-end
