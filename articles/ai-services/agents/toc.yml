@@ -115,10 +115,10 @@ items:
           href: how-to/connected-agents.md
         - name: Processes
           href: /semantic-kernel/frameworks/process/process-framework
-- name: How-to
-  items:
     - name: Agent catalog
       href: concepts/agent-catalog.md
+- name: How-to
+  items:
     - name: Trigger an agent using Logic Apps
       href: how-to/triggers.md
     - name: Use the Visual Studio Code extension
