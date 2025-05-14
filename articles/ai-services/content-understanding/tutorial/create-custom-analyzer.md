@@ -587,10 +587,3 @@ A `200 OK` response includes a `status` field that shows the operation's progres
   }
 }
 ```
-
----
-
-## Next steps
-
-* TODO: Analyzer configurations (LINK TO PAGE EXPLAINING ANALYZER CONFIGURATIONS)
-
