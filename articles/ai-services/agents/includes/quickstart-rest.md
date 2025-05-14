@@ -25,6 +25,8 @@ ms.date: 02/15/2025
 | Run       | Activation of an agent to begin running based on the contents of Thread. The agent uses its configuration and Thread’s Messages to perform tasks by calling models and tools. As part of a Run, the agent appends Messages to the Thread. |
 | Run Step  | A detailed list of steps the agent took as part of a Run. An agent can call tools or create Messages during its run. Examining Run Steps allows you to understand how the agent is getting to its results.                                |
 
+## API call information
+
 To authenticate your API requests, use the [az login](/cli/azure/authenticate-azure-cli-interactively) command to sign into your Azure subscription.
 
 ```azurecli
@@ -47,7 +49,9 @@ For example, your endpoint may look something like:
 
 Set this endpoint as an environment variable named `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`.
 
-For `API_VERSION`, the GA API version is `2025-05-01` and the latest Preview API version is `2025-05-15-preview`. 
+> [!NOTE]
+> * For `api-version` parameter, the GA API version is `2025-05-01` and the latest preview API version is `2025-05-15-preview`. You must use the preview API for tools that are in preview. 
+> * Consider making your API version an environment variable, such as `$API_VERSION`.
 
 ### Create an agent
 

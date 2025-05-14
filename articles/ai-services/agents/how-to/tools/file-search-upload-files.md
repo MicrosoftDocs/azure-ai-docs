@@ -450,10 +450,13 @@ for (let i = messages.data.length - 1; i >= 0; i--) {
 
 To access your files, the file search tool uses the vector store object. Upload your files and create a vector store. After creating the vector store, poll its status until all files are out of the in_progress state to ensure that all content is fully processed. The SDK provides helpers for uploading and polling.
 
+Follow the [REST API Quickstart](../../quickstart.md#api-call-information?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+
 ### Upload a file
 
 ```bash
-curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/files?api-version=2025-05-01 \
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/files?api-version=$API_VERSION \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -F purpose="assistants" \
   -F file="@c:\\path_to_file\\sample_file_for_upload.txt"
@@ -462,7 +465,8 @@ curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/files?api-version=2025-05-01 \
 ### Create a vector store
 
 ```bash
-curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/vector_stores?api-version=2025-05-01 \
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/vector_stores?api-version=$API_VERSION \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -473,7 +477,8 @@ curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/vector_stores?api-version=2025-05-01 \
 ### Attach the uploaded file to the vector store
 
 ```bash
-curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/vector_stores/vs_abc123/files?api-version=2025-05-01 \
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/vector_stores/vs_abc123/files?api-version=$API_VERSION \
     -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
     -H "Content-Type: application/json" \
     -d '{
@@ -484,8 +489,9 @@ curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/vector_stores/vs_abc123/files?api-versio
 ## Create an agent and enable file search
 
 ```bash
-curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=2025-05-01 \
-  -H "api-key: $AZURE_OPENAI_API_KEY" \
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H 'Content-Type: application/json' \
   -d '{
     "name": "Financial Analyst Assistant",
@@ -502,7 +508,8 @@ curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=2025-05-01 \
 You can also attach files as Message attachments on your thread. Doing so creates another vector store associated with the thread, or, if there's already a vector store attached to this thread, attaches the new files to the existing thread vector store. When you create a Run on this thread, the file search tool queries both the vector store from your agent and the vector store on the thread.
 
 ```bash
-curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=2025-05-01 \
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=$API_VERSION \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d ''
@@ -511,7 +518,8 @@ curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=2025-05-01 \
 ### Add a user question to the thread
  
 ```bash
-curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=2025-05-01 \
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -527,7 +535,8 @@ Create a run and observe that the model uses the file search tool to provide a r
 ### Run the thread
 
 ```bash
-curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=2025-05-01 \
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=$API_VERSION \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -538,14 +547,16 @@ curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=2
 ### Retrieve the status of the run
 
 ```bash
-curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2025-05-01 \
+curl --request GET \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=$API_VERSION \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 
 ### Retrieve the agent response
 
 ```bash
-curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=2025-05-01 \
+curl --request GET \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 
