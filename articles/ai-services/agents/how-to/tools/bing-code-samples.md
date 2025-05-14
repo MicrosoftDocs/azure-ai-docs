@@ -20,6 +20,7 @@ Use this article to find step-by-step instructions and code samples for Groundin
 ## Prerequisites
 
 * A [connected Grounding with Bing Search resource](./bing-grounding.md#setup).
+* Your connection ID needs to be in this format: `/subscriptions/<subscription_id>/resourceGroups/<resource_group_name>/providers/Microsoft.CognitiveServices/accounts/<ai_service_name>/projects/<project_name>/connections/<connection_name>`
 
 > [!IMPORTANT]
 > There are requirements for displaying Grounding with Bing Search results. See the [overview article](./bing-grounding.md#how-to-display-grounding-with-bing-search-results) for details. 
