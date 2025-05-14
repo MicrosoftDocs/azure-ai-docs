@@ -23,19 +23,9 @@ ms.author: mbullwin
 
 ### Supported models
 
-The following models support fine-tuning:
-
-- `gpt-35-turbo` (1106)
-- `gpt-35-turbo` (0125)
-- `gpt-4o` (2024-08-06)
-- `gpt-4o-mini` (2024-07-18)
-- `gpt-4.1` (2024-04-14)
-- `gpt-4.1-mini`(2025-04-14)
+Consult the [models page](../concepts/models.md#fine-tuning-models) to check which regions currently support fine-tuning.
 
 Or you can fine tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
-
-
-Consult the [models page](../concepts/models.md#fine-tuning-models) to check which regions currently support fine-tuning.
 
 ## Review the workflow for the Python SDK
 
