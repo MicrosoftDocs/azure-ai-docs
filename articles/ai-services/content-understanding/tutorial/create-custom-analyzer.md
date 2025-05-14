@@ -12,7 +12,7 @@ ms.date: 05/19/2025
 
 # Create a custom analyzer
 
-Content Understanding analyzers define how your content will be processed and what insights will be extracted or generated. They ensure uniform processing and output structure across all your content to deliver reliable and predictable results. We offer [prebuilt analyzers](LINK TO PREBUILT ANALYZER PAGE] for all modalities and common use cases. This guide shows how these analyzers can be customized to better fit your needs.
+Content Understanding analyzers define how to process and extract insights from your content. They ensure uniform processing and output structure across all your content to deliver reliable and predictable results. We offer [prebuilt analyzers](../concepts/prebuilt-analyzers.md) for common use cases. This guide shows how these analyzers can be customized to better fit your needs.
 
 In this guide, we use the cURL command line tool. If it isn't installed, you can download the appropriate version for your dev environment:
 
@@ -23,7 +23,7 @@ In this guide, we use the cURL command line tool. If it isn't installed, you can
 
 # [Document](#tab/document)
 
-To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, we create an analyzer based on prebuilt document analyzer](LINK TO PREBUILT ANALYZER) for processing a receipt.
+To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, we create an analyzer based on [prebuilt document analyzer](../concepts/prebuilt-analyzers.md) for processing a receipt.
 
 Create a JSON file named `request_body.json` with the following content:
 ```json
@@ -70,7 +70,7 @@ Create a JSON file named `request_body.json` with the following content:
 
 # [Image](#tab/image)
 
-To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, we create an analyzer based on [prebuilt image analyzer](LINK TO PREBUILT ANALYZER) for processing images of charts and graphs.
+To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, we create an analyzer based on [prebuilt image analyzer](../concepts/prebuilt-analyzers.md) for processing images of charts and graphs.
 
 Create a JSON file named `request_body.json` with the following content:
 ```json
@@ -97,7 +97,7 @@ Create a JSON file named `request_body.json` with the following content:
 
 # [Audio](#tab/audio)
 
-To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, we create an analyzer based on [prebuilt call center] (LINK) for processing customer support call recordings.
+To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, we create an analyzer based on [prebuilt call center analyzer](../concepts/prebuilt-analyzers.md) for processing customer support call recordings.
 
 Create a JSON file named `request_body.json` with the following content:
 ```json
@@ -138,7 +138,7 @@ Create a JSON file named `request_body.json` with the following content:
 
 # [Video](#tab/video)
 
-To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, we create an analyzer based on [prebuilt video analyzer] (LINK) for processing product demos and reviews.
+To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, we create an analyzer based on [prebuilt video  analyzer](../concepts/prebuilt-analyzers.md) for processing product demos and reviews.
 
 Create a JSON file named `request_body.json` with the following content:
 ```json
@@ -274,8 +274,6 @@ The `202 Accepted` response includes the `{resultId}` which you can use to track
 
 ### Get Analyze Result
 
-Use the `resultId` from the `POST` response to retrieve the result of the analysis.
-
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
 2. Replace `{resultId}` with the `resultId` in `POST` response.
 
@@ -288,7 +286,7 @@ curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{resultId}?api-v
 #### GET Response
 
 A `200 OK` response includes a `status` field that shows the operation's progress.  
-- If the operation is complete, `status` will be `Succeeded`.  
+- `status` is `Succeeded` if the operation is completed successfully.  
 - If it's `running` or `notStarted`, call the API again manually or with a script: wait at least one second between requests.
 
 ##### Sample Response
@@ -594,5 +592,5 @@ A `200 OK` response includes a `status` field that shows the operation's progres
 
 ## Next steps
 
-* Analyzer configurations (LINK TO PAGE EXPLAINING ANALYZER CONFIGURATIONS)
+* TODO: Analyzer configurations (LINK TO PAGE EXPLAINING ANALYZER CONFIGURATIONS)
 
