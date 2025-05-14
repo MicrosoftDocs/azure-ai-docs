@@ -1,13 +1,13 @@
 ---
-title: Content Understanding Document Modality Supported Markdown elements
+title: Content Understanding document modality supported markdown elements
 titleSuffix: Azure AI services
 description: Description of the supported Markdown elements returned as part of the Content Understanding Document response and how to use the response in your applications.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: conceptual
-ms.date: 05/05/2025
-ms.author: tonyeiyalla
+ms.date: 05/19/2025
+ms.author: paulhsu
  
 ---
  

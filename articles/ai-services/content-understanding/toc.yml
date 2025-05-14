@@ -47,10 +47,10 @@ items:
       - name: Overview
         displayName: document, text, images, video, audio, visual, structured, content, field, extraction
         href: document/overview.md
-      - name: Document Elements
+      - name: Document elements
         displayName: document, text, images, video, audio, visual, structured, content, field, extraction
         href: document/elements.md
-      - name: Markdown
+      - name: Markdown elements
         displayName: document, text, images, video, audio, visual, structured, content, field, extraction
         href: document/markdown.md
   - name: Image
