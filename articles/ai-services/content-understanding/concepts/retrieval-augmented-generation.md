@@ -3,7 +3,7 @@ title: Azure AI Content Understanding retrieval-augmented generation
 titleSuffix: Azure AI services
 description: Learn about using Content Understanding and retrieval-augmented generation
 author: laujan
-ms.author: tonyeiyalla
+ms.author: paulhsu
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview

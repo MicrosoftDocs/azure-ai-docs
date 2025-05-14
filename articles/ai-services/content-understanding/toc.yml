@@ -43,8 +43,16 @@ items:
     displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
     href: concepts/analyzer-templates.md
   - name: Document
-    displayName: document, text, images, video, audio, visual, structured, content, field, extraction
-    href: document/overview.md
+    items:
+      - name: Overview
+        displayName: document, text, images, video, audio, visual, structured, content, field, extraction
+        href: document/overview.md
+      - name: Document elements
+        displayName: document, text, images, video, audio, visual, structured, content, field, extraction
+        href: document/elements.md
+      - name: Markdown elements
+        displayName: document, text, images, video, audio, visual, structured, content, field, extraction
+        href: document/markdown.md
   - name: Image
     displayName: image, OCR, optical character recognition, text, extraction, analysis, detection, recognition, model
     href: image/overview.md
@@ -54,6 +62,9 @@ items:
   - name: Video
     href: video/overview.md
     displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+  - name: Face
+    displayName: face, recognition, detection, analysis, identification, verification
+    href: face/overview.md
   - name: Best practices
     displayName: best practices, analyzers, optimization, fields
     href: concepts/best-practices.md   
@@ -65,12 +76,12 @@ items:
     - name: Accuracy and confidence
       displayName: accuracy, confidence, analyzers, optimization, fields, scores
       href: concepts/accuracy-confidence.md
-    - name: "Modes: standard and pro"
+    - name: "🆕 Modes: standard and pro"
       displayName: standard, pro, modes, analyzers, optimization, fields
       href: concepts/standard-pro-modes.md
-    - name: 🆕 Classifiers
-      displayName: classifiers, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-      href: concepts/classifiers.md
+    - name: 🆕 Classifier
+      displayName: classifier, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+      href: concepts/classifier.md
     - name: 🆕 Analyzers overview
       displayName: content understanding capabilities, document, text, images, video, audio, visual, structured, content, field, extraction
       href: concepts/analyzers-overview.md
@@ -85,6 +96,9 @@ items:
     - name: Build a retrieval-augmented solution
       displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
       href: tutorial/build-rag-solution.md
+    - name: Build a person directory
+      displayName: person, directory, search, index, vector
+      href: tutorial/build-person-directory.md
 - name: Responsible AI
   items:
     - name: Transparency note
