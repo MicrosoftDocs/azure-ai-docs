@@ -1,7 +1,7 @@
 ---
-title: Azure AI Content Understanding analyzer templates
+title: Azure AI Content Understanding standard and pro modes
 titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding analyzer templates.
+description: Learn about Azure AI Content Understanding standard and pro modes.
 author: laujan
 ms.author: kabrow
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: overview
 ms.date: 05/19/2025
 ---
 
-# Compare Azure AI Content Understanding pro and standard modes
+# Azure AI Content Understanding pro and standard modes
 
 Azure AI Content Understanding is an advanced generative AI service designed to derive structured insights from multi-modal content such as documents, images, videos, and audio. With the introduction of the `2025-05-01-preview` version, the service now offers two distinct modes: `standard` and `pro`.
 
@@ -26,11 +26,11 @@ The Content Understanding standard mode delivers structured insights across vari
 
 Standard is the ideal service for extracting the exact insights you need on any type of data. If you're just looking to unlock the content of your data, your scenario may not require complex reasoning or decision making. Scenarios that standard mode works great for include:
 
-* Structuring data to power your RAG search workflows and integrating with AI Search
-* Extracting data to integrate with Microsoft Fabric [link to Fabric blog?]
-* Analyzing advertising videos to screen for content guidelines
-* Segmenting video footage to create chapters and identify ideal advertising breaks
-* Extracting critical data points from sports games and providing post-game recaps
+* Structuring data to power your RAG search workflows and integrating with [AI Search](../../../search/search-what-is-azure-search.md).
+* Extracting data to integrate with [Microsoft Fabric](https://blog.fabric.microsoft.com/en-US/blog/).
+* Analyzing advertising videos to screen for content guidelines.
+* Segmenting video footage to create chapters and identify ideal advertising breaks.
+* Extracting critical data points from sports games and providing post-game recaps.
 
 ## Pro mode overview
 
@@ -39,7 +39,7 @@ Content Understanding pro mode  is tailored for customers with highly complex us
 
 ### Pro mode reference data
 
-When your goal is to extract specific data points from your documents, reference data defines these data points and provides the service context it needs to validate whether the data passes the required criteria. For example, if you're looking to analyze invoices to ensure they're consistent with a contractual agreement, the signed contract serves as the reference data, allowing the service to compare the data in the contract to the individual invoices. In doing this comparison, the service applies reasoning to validate that either the invoices are in accordance with the contract or identify discrepancies and flag for further review. 
+When your goal is to extract specific data points from your documents, reference data defines these data points and provides the service context it needs to validate whether the data passes the required criteria. For example, if you're looking to analyze invoices to ensure they're consistent with a contractual agreement, the signed contract serves as the reference data, allowing the service to compare the data in the contract to the individual invoices. In doing this comparison, the service applies reasoning to validate that either the invoices are in accordance with the contract or identify discrepancies and flag for further review.
 
 ### Multi-step reasoning
 
@@ -47,7 +47,7 @@ Multi-step reasoning offers the ability to decompose complex problems into a sim
 
 * Does x match y?
 * Does x pass the outlined criteria?
-* Does x scenario follow the required guidelines? 
+* Does x scenario follow the required guidelines?
 * Does the total equal the sum of the items?
 * Find all inconsistencies between the invoice and the contract.
 
@@ -79,12 +79,17 @@ Not sure which mode is right for your scenario? The following charts compare sta
 | **Mortgage application processing** | Extract the key values from mortgage application data and make it searchable and more easily accessible. Answer questions like: <br> &bullet;  What year was the mortgage application submitted? <br> &bullet; What are the names on the application? | Analyze supplementary supporting documentation and mortgage applications to determine whether a prospective home buyer provides all the necessary documentation to secure a mortgage. Answer questions like: <br> &bullet;  Do the names and social security numbers on the mortgage application match the supporting documentation? |
 
 ## Try pro mode
-You can try out the features of both Content Understanding standard and pro modes using the Azure AI Foundry [link]. The service enables you to bring your own data and experiment with all the functionalities of both modes in a lightweight, no-code approach to help you find the best fit for your unique scenario.
+
+You can try out the features of both Content Understanding standard and pro modes using the [Azure AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding). The service enables you to bring your own data and experiment with all the functionalities of both modes in a lightweight, no-code approach to help you find the best fit for your unique scenario.
 
 ### Pro mode known limitations
 
-There are a few limitations to note in the current preview version of Content Understanding pro mode. However, we're actively in development to continually improve the product. Content Understanding pro mode currently doesn't offer confidence scores or grounding. It currently supports generative and classification of your fields but doesn't support extraction only. It's also currently available for documents.
+* Content Understanding pro mode currently doesn't offer confidence scores or grounding. It currently supports generative and classification of your fields but doesn't support extraction only.
+* Content Understanding pro mode is currently only available for documents.
+
 ## Next steps
+
+For more information on document processing, *see* [Document processing overview](../document/overview.md)
 
 
 
