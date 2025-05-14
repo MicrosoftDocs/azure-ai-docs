@@ -35,7 +35,7 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
 1. On the home page, select **Create an agent**. This creates a project and also include steps to start working with a basic Agent.
     
-    :::image type="content" source="../media/quickstarts/start-building.png" alt-text="Screenshot shows how to start building an Agent in Azure AI Foundry portal.":::
+    <!-- :::image type="content" source="../media/quickstarts/start-building.png" alt-text="Screenshot shows how to start building an Agent in Azure AI Foundry portal."::: -->
 
 1. Fill in a name for your project and select **Create**. 
 
