@@ -252,7 +252,7 @@ TRANSCRIBED: Text=That's exciting. Let me try it right now. Speaker ID=Guest-2
 Speakers are identified as Guest-1, Guest-2, and so on, depending on the number of speakers in the conversation.
 
 > [!NOTE]
-> You might see `Speaker ID=Unknown` in some of the early intermediate results when the speaker is not yet identified. Without intermediate diarization results (if you don't set the `PropertyId.SpeechServiceResponse_DiarizeIntermediateResults` property to "true"), the speaker ID is always "Unknown".
+> You might see `Speaker ID=Unknown` in some of the early intermediate results when the speaker isn't yet identified. Without intermediate diarization results (if you don't set the `PropertyId.SpeechServiceResponse_DiarizeIntermediateResults` property to "true"), the speaker ID is always "Unknown."
 
 ## Clean up resources
 

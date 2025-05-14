@@ -116,7 +116,7 @@ Follow these steps to create a console application and install the Speech SDK.
 
    All neural voices are multilingual and fluent in their own language and English. For example, if the input text in English is *I'm excited to try text to speech* and you set `es-ES-ElviraNeural`, the text is spoken in English with a Spanish accent. If the voice doesn't speak the language of the input text, the Speech service doesn't output synthesized audio.
 
-1. [Build and run your new console application](/cpp/build/vscpp-step-2-build) to start speech synthesis to the default speaker.
+1. To start speech synthesis to the default speaker, [Build and run your new console application](/cpp/build/vscpp-step-2-build).
 
    > [!IMPORTANT]
    > Make sure that you set the `SPEECH_KEY` and `ENDPOINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.

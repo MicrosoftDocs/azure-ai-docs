@@ -146,7 +146,7 @@ Follow these steps to create a console application and install the Speech SDK.
 
 1. To change the speech recognition language, replace `en-US` with another [supported language](/azure/cognitive-services/speech-service/supported-languages). For example, `es-ES` for Spanish (Spain). The default language is `en-US` if you don't specify a language. For details about how to identify one of multiple languages that might be spoken, see [language identification](/azure/cognitive-services/speech-service/language-identification).
 
-1. [Build and run](/cpp/build/vscpp-step-2-build) your application to start conversation transcription:
+1. To start conversation transcription, [Build and run](/cpp/build/vscpp-step-2-build) your application:
 
    > [!IMPORTANT]
    > Make sure that you set the `SPEECH_KEY` and `ENDPOINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
@@ -316,7 +316,7 @@ Speaker ID=Guest-2
 Speakers are identified as Guest-1, Guest-2, and so on, depending on the number of speakers in the conversation.
 
 > [!NOTE]
-> You might see `Speaker ID=Unknown` in some of the early intermediate results when the speaker is not yet identified. Without intermediate diarization results (if you don't set the `PropertyId::SpeechServiceResponse_DiarizeIntermediateResults` property to "true"), the speaker ID is always "Unknown".
+> You might see `Speaker ID=Unknown` in some of the early intermediate results when the speaker isn't yet identified. Without intermediate diarization results (if you don't set the `PropertyId::SpeechServiceResponse_DiarizeIntermediateResults` property to "true"), the speaker ID is always "Unknown."
 
 ## Clean up resources
 
