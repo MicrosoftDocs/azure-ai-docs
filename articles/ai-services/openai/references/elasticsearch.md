@@ -71,7 +71,7 @@ The details of the vectorization source, used by Azure OpenAI On Your Data when 
 |Name | Type | Required | Description |
 |--- | --- | --- | --- |
 | `endpoint`|string|True|Specifies the resource endpoint URL from which embeddings should be retrieved. It should be in the format of `https://{YOUR_RESOURCE_NAME}.openai.azure.com/openai/deployments/YOUR_DEPLOYMENT_NAME/embeddings`. The api-version query parameter isn't allowed.|
-| `authentication`| [ApiKeyAuthenticationOptions](#api-key-authentication-options)|True | Specifies the authentication options to use when retrieving embeddings from the specified endpoint.|
+| `authentication`| [ApiKeyAuthenticationOptions](#key-and-key-id-authentication-options)|True | Specifies the authentication options to use when retrieving embeddings from the specified endpoint.|
 | `type`|string|True| Must be `endpoint`.|
 
 ## Model ID vectorization source
@@ -82,15 +82,6 @@ The details of the vectorization source, used by Azure OpenAI On Your Data when 
 |--- | --- | --- | --- |
 | `model_id`|string|True| Specifies the model ID to use for vectorization. This model ID must be defined in Elasticsearch.|
 | `type`|string|True| Must be `model_id`.|
-
-## API key authentication options
-
-The authentication options for Azure OpenAI On Your Data when using an API key.
-
-|Name | Type | Required | Description |
-|--- | --- | --- | --- |
-| `key`|string|True|The API key to use for authentication.|
-| `type`|string|True| Must be `api_key`.|
 
 ## Fields mapping options
 
