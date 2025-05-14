@@ -305,9 +305,7 @@ For any issues with the TypeScript code, create an issue on the [sample code rep
 
 ::: zone pivot="csharp"
 
-## Using the .NET SDK
-
-### Prerequisites
+## Prerequisites for .NET Azure Function Sample
 To make a function call, we need to create and deploy the Azure function. In the code snippet, we have an example of function on C# which can be used by the earlier code.
 
 ```csharp
@@ -416,7 +414,7 @@ After testing the function and making sure it works, make sure that the Azure AI
 
 In the example below we're calling function "foo," which responds "Bar."
 
-### Create a client, tool definition and agent
+## Create a client, tool definition and agent
 
 Get the necessary configuration, initialize the `PersistentAgentsClient`, define the `AzureFunctionToolDefinition` for the Azure Function, and then create the agent.
 
@@ -489,7 +487,7 @@ PersistentAgent agent = client.Administration.CreateAgent(
     tools: [azureFnTool]
 );
 ```
-### Create a thread and add a message
+## Create a thread and add a message
 
 Next, create a new persistent agent thread and add an initial user message to it.
 
@@ -519,7 +517,7 @@ while (run.Status == RunStatus.Queued
     || run.Status == RunStatus.RequiresAction);
 ```
 
-### Process the results
+## Process the results
 
 After the run is complete, we retrieve and process the messages from the thread.
 
