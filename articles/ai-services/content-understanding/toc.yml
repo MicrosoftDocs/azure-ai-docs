@@ -54,9 +54,6 @@ items:
   - name: Video
     href: video/overview.md
     displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-  - name: Best practices
-    displayName: best practices, analyzers, optimization, fields
-    href: concepts/best-practices.md   
 - name: Concepts
   items:
     - name: Best practices
