@@ -33,7 +33,7 @@ When a user sends a query, the customer's AI model deployment first processes it
 Grounding with Bing returns relevant search results to the customer's model deployment, which then generates the final output. 
 
 > [!NOTE]
-> When using Grounding with Bing Search, only the Bing search query and your resource key are sent to Bing, and no end user-specific information is included. Your resource key is sent to Bing solely for billing and rate limiting purposes. 
+> When using Grounding with Bing Search, only the Bing search query, tool parameters, and your resource key are sent to Bing, and no end user-specific information is included. Your resource key is sent to Bing solely for billing and rate limiting purposes. 
 
 The authorization will happen between Grounding with Bing Search service and Azure AI Foundry Agent Service. Any Bing search query that is generated and sent to Bing for the purposes of grounding is transferred, along with the resource key, outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is subject to Bing's terms and do not have the same compliance standards and certifications as the Azure AI Foundry Agent Service, as described in the [Grounding with Bing Search Terms of Use](https://www.microsoft.com/bing/apis/grounding-legal). It is your responsibility to assess whether the use of Grounding with Bing Search in your agent meets your needs and requirements.
 
