@@ -30,9 +30,9 @@ To use the Azure AI Content Understanding service, you must create your Azure AI
 
 Azure AI Content Understanding enables you to process data in multiple languages simultaneously. Our language support capabilities enable users to communicate with your applications in natural ways and empower global outreach.
 
-Content Understanding leverages [Azure OpenAI models](../openai/overview) which support a wide array of languages. While there is no definitive list of supported languages, users can expect robust language capabilities across most common languages. For specific language support related to OCR and speech transcription, please refer to the respective sections detailing the supported languages for these modalities.
+Content Understanding applies [Azure OpenAI models](../openai/overview.md) which support a wide array of languages. While there's no definitive list of supported languages, users can expect robust language capabilities across most common languages. For specific language support related to `OCR` and speech transcription, refer to the respective sections detailing the supported languages for these modalities.
 
-### OCR text recognition
+### Text optical character recognition (OCR)
 
 The following table lists the supported languages/locales for **printed** text.
 
@@ -142,7 +142,7 @@ The following table lists the supported languages/locales for **handwritten** te
 
 ### Speech transcription
 
-Content Understanding supports the full set of [Azure AI speech to text languages](../speech-service/language-support?tabs=stt). Content Understanding will use [fast transcriptions](../speech-service/speech-to-text#fast-transcription) for supported languages to reduce processing latency.
+Content Understanding supports the full set of [Azure AI speech to text languages](../speech-service/language-support.md). Content Understanding uses [fast transcriptions](../speech-service/speech-to-text.md#fast-transcription) for supported languages to reduce processing latency.
 
 >[!NOTE]
 > Only spoken words are transcribed. Music, sound effects, and ambient noise are ignored.
@@ -150,7 +150,7 @@ Content Understanding supports the full set of [Azure AI speech to text language
 
 ### Field value normalization
 
-Different locales have different ways to represent numbers, date, and time.  Content Understanding supports normalizing these different representations into standardized ISO forms for the following locales.
+Different locales have different ways to represent numbers, date, and time. Content Understanding supports normalizing these different representations into standardized ISO forms for the following locales.
 
 |**Language**| **Language code**|
 |:-----------|:-----------------|
