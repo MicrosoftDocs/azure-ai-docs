@@ -2,15 +2,15 @@
 title: Build a person directory with Azure AI Content Understanding Face APIs
 titleSuffix: Azure AI services
 description: Learn to build a person directory with Content Understanding Face APIs
-author: lajanuar
+author: laujan
 ms.author: quentinm
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: tutorial
-ms.date: 05/07/2025
+ms.date: 05/19/2025
 ---
 
-# Tutorial: Build a Person Directory
+# Tutorial: Build a person directory
 
 A person directory provides a structured approach to storing face data for recognition tasks. It allows you to add individual faces, search for visually similar faces, and create person profiles. You can associate faces with these profiles and match new face images to known individuals. This setup supports both flexible face matching and identity recognition across images and videos.
 
@@ -24,11 +24,11 @@ For secure and scalable access, we recommend storing all face images in Azure Bl
 
 Enrollment involves the following steps:
 
-1. Create an empty person directory
-2. Add persons
-3. Add faces and associate with a person
+1. [Create an empty person directory](#create-an-empty-person-directory)
+1. [Add persons](#add-persons)
+1. [Add faces and associate with a person](#add-faces-and-associate-with-a-person)
   
-### Step 1: Create an empty person directory
+### Create an empty person directory
 
 To create a new person directory, send a `PUT` request to the API endpoint. This directory serves as the container for storing faces and associated persons.
 
@@ -68,7 +68,7 @@ The API creates the directory and returns a confirmation response.
 }
 ```
 
-### Step 2: Add persons
+### Add persons
 
 To recognize or manage individuals, you need to create a person profile. Once created, you can associate faces with this person.
 
@@ -101,7 +101,7 @@ The API returns a `personId` that uniquely identifies the created person.
 }
 ```
 
-### Step 3: Add faces and associate with a person
+### Add faces and associate with a person
 
 You can add a face to the directory and optionally associate it with an existing person. The API supports both image URLs and base64-encoded image data.
 
@@ -130,7 +130,7 @@ Content-Type: application/json
 - `faceSource`: Specifies the face image.
   - `url`: The file path of the image stored in Azure Blob Storage.
   - `data`: Base64-encoded image data as optional alternative to `url`.
-  - `imageReferenceId`: (Optional) A user-defined identifier for the image. This can be helpful for tracking the image's origin or for mapping it to other data.
+  - `imageReferenceId`: (Optional) A user-defined identifier for the image. This identifier can be helpful for tracking the image's origin or for mapping it to other data.
   - `targetBoundingBox`: (Optional) Approximate location of the face in the image. If omitted, the API detects and uses the largest face.
 - `qualityThreshold`: (Optional) Filters face quality (`low`, `medium`, or `high`). The default is `medium`, meaning only medium or high-quality faces are stored. Lower quality faces are rejected.
 - `personId`: (Optional) The `personId` of an existing person to associate the face with.
@@ -155,8 +155,8 @@ The API returns a `faceId` that uniquely identifies the created face with the de
 
 After creating your person directory and adding face images with optional person associations, you can perform two key tasks:
 
-1. **Identify a person**: Match a face image against enrolled persons in the directory to determine the most likely identity.
-2. **Find similar faces**: Search for visually similar faces across all stored face entries in the directory.
+1. **[Identify a person](#identify-a-person)**: Match a face image against enrolled persons in the directory and determine the most likely identity.
+1. **[Find similar faces](#find-similar-faces)**: Search for visually similar faces across all stored face entries in the directory.
 
 These capabilities enable robust face recognition and similarity matching for various applications.
 
@@ -248,4 +248,5 @@ The API returns the detected bounding box of the face along with the most simila
 
 
 ## Next steps
-- Explore how to identify individuals in video content using the [Azure AI Content Understanding video solutions (preview)](../video/overview.md).
+
+Explore how to identify individuals in video content using the [Azure AI Content Understanding video solutions (preview)](../video/overview.md).

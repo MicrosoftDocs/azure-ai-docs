@@ -2,12 +2,12 @@
 title: Azure AI Content Understanding face overview
 titleSuffix: Azure AI services
 description: Learn about Azure AI Content Understanding face solutions.
-author: lajanuar
+author: laujan
 ms.author: quentinm
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 05/07/2025
+ms.date: 05/19/2025
 ms.custom: build-2025-understanding-refresh
 ---
 
@@ -27,29 +27,37 @@ This service is ideal for building secure access systems, streamlining photo man
 
 Content Understanding enables a wide range of real-world applications, including face detection, verification, identification, and large-scale content processing.
 
-**Detect faces in images**:
+##### Detect faces in images
+
 Automatically identify faces in an image and return their bounding boxes. This capability simplifies tasks like highlighting, blurring, or counting faces without manual review. Common use cases include:
+
 * Cropping detected faces for ID photos, albums, or personalized content.
 * Blurring faces to ensure privacy before sharing images publicly.
 * Counting people in event photos, crowd scenes, or security footage.
 
-**Verify if two faces match**:
-Compare a face in one image with another face or an enrolled person to determine if they belong to the same individual. This is ideal for identity verification scenarios such as photo ID checks or sign-ins. Common use cases include:
-* Verifying if a driver’s selfie matches their profile photo.
-* Confirming a student’s identity before starting an online exam.
+##### Verify if two faces match
+
+Compare a face in one image with another face or an enrolled person and determine if they belong to the same individual. This comparison feature is ideal for identity verification scenarios such as photo ID checks or sign-ins. Common use cases include:
+
+* Verifying if a driver's selfie matches their profile photo.
+* Confirming a student's identity before starting an online exam.
 * Comparing a live photo with an uploaded ID for identity confirmation.
 
-**Identify a person from their face**:
-Match a face in a photo to a saved list of people to identify them. Common use cases include:
-* Matching a patient’s face to hospital records during check-in.
+##### Identify a person from their face
+
+Match a face in a photo to a saved list of people and identify them. Common use cases include:
+
+* Matching a patient's face to hospital records during check-in.
 * Identifying a student or employee from their face photo.
 * Recognizing someone from a watch list entering a secure area.
 
-**Save faces for faster future searches**:
+##### Save faces for faster future searches
+
 Index faces from images to enable quicker searches later without needing to reprocess the original content. This feature is especially useful for recurring search scenarios. Common use cases include:
+
 * Extracting and saving faces from group photos at events to recognize returning participants in future sessions.
-* Preprocessing images from school activities or sports events to easily identify students or athletes in subsequent searches.
-* Matching a theme park visitor’s face to records from previous visits without rescanning years of archived photos.
+* Processing images from school activities or sports events to easily identify students or athletes in subsequent searches.
+* Matching a theme park visitor's face to records from previous visits without rescanning years of archived photos.
 
 ## Face capabilities
 
