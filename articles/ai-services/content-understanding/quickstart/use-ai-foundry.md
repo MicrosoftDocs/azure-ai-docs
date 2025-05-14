@@ -77,7 +77,7 @@ Now that everything is configured to get started, we can walk through, step-by-s
 
     * Specify clear and simple field names. Some example fields might include **vendorName**, **items**, **price**.
 
-    * Indicate the value type for each field (strings, dates, numbers, lists, groups). To learn more, *see* [supported field types](../service-limits.md#field-type-limits).
+    * Indicate the value type for each field (strings, dates, numbers, lists, groups). To learn more, *see* [supported field types](../service-limits.md#field-schema-limits).
 
     * *[Optional]* Provide field descriptions to explain the desired behavior, including any exceptions or rules.
 
