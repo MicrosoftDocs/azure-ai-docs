@@ -43,7 +43,7 @@ Foundry Local is designed for on-device inference and *not* distributed, contain
 | --- | --- | --- |
 | Slow inference | CPU-only model with large parameter count | Use GPU-optimized model variants when available |
 | Model download failures | Network connectivity issues | Check your internet connection and run `foundry cache list` to verify cache status |
-| The service fails to start | Port conflicts or permission issues | Try `foundry service restart` or report an issue with logs using `foundry zip-logs` |
+| The service fails to start | Port conflicts or permission issues | Try `foundry service restart` or [report an issue](https://github.com/microsoft/Foundry-Local/issues) with logs using `foundry zip-logs` |
 
 ### Improving performance
 
