@@ -49,9 +49,9 @@ Follow these steps to create a console application.
    import azure.cognitiveservices.speech as speechsdk
 
    def recognize_from_microphone():
-        # This example requires environment variables named "SPEECH_KEY" and "END_POINT"
+        # This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
         # Replace with your own subscription key and endpoint, the endpoint is like : "https://YourServiceRegion.api.cognitive.microsoft.com"
-       speech_config = speechsdk.SpeechConfig(subscription=os.environ.get('SPEECH_KEY'), endpoint=os.environ.get('END_POINT'))
+       speech_config = speechsdk.SpeechConfig(subscription=os.environ.get('SPEECH_KEY'), endpoint=os.environ.get('ENDPOINT'))
        speech_config.speech_recognition_language="en-US"
 
        audio_config = speechsdk.audio.AudioConfig(use_default_microphone=True)
@@ -83,7 +83,7 @@ Follow these steps to create a console application.
    ```
 
    > [!IMPORTANT]
-   > Make sure that you set the `SPEECH_KEY` and `END_POINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
+   > Make sure that you set the `SPEECH_KEY` and `ENDPOINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
 
 1. Speak into your microphone when prompted. What you speak should appear as text:
 

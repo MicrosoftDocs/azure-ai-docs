@@ -50,16 +50,16 @@ Follow these steps to create a console application and install the Speech SDK.
 
     int main()
     {
-        // This example requires environment variables named "SPEECH_KEY" and "END_POINT"
+        // This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
         auto speechKey = GetEnvironmentVariable("SPEECH_KEY");
-        auto endPoint = GetEnvironmentVariable("END_POINT");
+        auto endpoint = GetEnvironmentVariable("ENDPOINT");
 
-        if ((size(speechKey) == 0) || (size(endPoint) == 0)) {
-            std::cout << "Please set both SPEECH_KEY and END_POINT environment variables." << std::endl;
+        if ((size(speechKey) == 0) || (size(endpoint) == 0)) {
+            std::cout << "Please set both SPEECH_KEY and ENDPOINT environment variables." << std::endl;
             return -1;
         }
 
-        auto speechConfig = SpeechConfig::FromEndpoint(speechKey, endPoint);
+        auto speechConfig = SpeechConfig::FromEndpoint(speechKey, endpoint);
         speechConfig->SetProperty(PropertyId::SpeechServiceResponse_DiarizeIntermediateResults, "true"); 
 
         speechConfig->SetSpeechRecognitionLanguage("en-US");
@@ -149,7 +149,7 @@ Follow these steps to create a console application and install the Speech SDK.
 1. [Build and run](/cpp/build/vscpp-step-2-build) your application to start conversation transcription:
 
    > [!IMPORTANT]
-   > Make sure that you set the `SPEECH_KEY` and `END_POINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
+   > Make sure that you set the `SPEECH_KEY` and `ENDPOINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
 
 The transcribed conversation should be output as text:
 

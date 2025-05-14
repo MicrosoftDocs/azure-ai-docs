@@ -53,7 +53,7 @@ Follow these steps to create a console application and install the Speech SDK.
     {
         // This example requires environment variables named "SPEECH_KEY" and "END_POINT"
         static string speechKey = Environment.GetEnvironmentVariable("SPEECH_KEY");
-        static string endPoint = Environment.GetEnvironmentVariable("END_POINT");
+        static string endpoint = Environment.GetEnvironmentVariable("END_POINT");
 
         static void OutputSpeechSynthesisResult(SpeechSynthesisResult speechSynthesisResult, string text)
         {
@@ -80,7 +80,7 @@ Follow these steps to create a console application and install the Speech SDK.
     
         async static Task Main(string[] args)
         {
-            var speechConfig = SpeechConfig.FromEndpoint(speechKey, endPoint); 
+            var speechConfig = SpeechConfig.FromEndpoint(speechKey, endpoint); 
     
             // The neural multilingual voice can speak different languages based on the input text.
             speechConfig.SpeechSynthesisVoiceName = "en-US-AvaMultilingualNeural"; 

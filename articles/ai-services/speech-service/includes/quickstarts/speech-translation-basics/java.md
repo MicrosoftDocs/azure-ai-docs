@@ -74,12 +74,12 @@ Follow these steps to create a new console application for speech recognition.
     import java.util.Map;
     
     public class SpeechTranslation {
-        // This example requires environment variables named "SPEECH_KEY" and "END_POINT"
+        // This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
         private static String speechKey = System.getenv("SPEECH_KEY");
-        private static String endPoint = System.getenv("END_POINT");
+        private static String endpoint = System.getenv("ENDPOINT");
     
         public static void main(String[] args) throws InterruptedException, ExecutionException {
-            SpeechTranslationConfig speechTranslationConfig = SpeechTranslationConfig.fromEndpoint(speechKey, endPoint);
+            SpeechTranslationConfig speechTranslationConfig = SpeechTranslationConfig.fromEndpoint(speechKey, endpoint);
             speechTranslationConfig.setSpeechRecognitionLanguage("en-US");
     
             String[] toLanguages = { "it" };
@@ -124,7 +124,7 @@ Follow these steps to create a new console application for speech recognition.
     ```
 
 1. To change the speech recognition language, replace `en-US` with another [supported language](~/articles/ai-services/speech-service/language-support.md?tabs=stt#supported-languages). Specify the full locale with a dash (`-`) separator. For example, `es-ES` for Spanish (Spain). The default language is `en-US` if you don't specify a language. For details about how to identify one of multiple languages that might be spoken, see [language identification](~/articles/ai-services/speech-service/language-identification.md). 
-1. To change the translation target language, replace `it` with another [supported language](~/articles/ai-services/speech-service/language-support.md?tabs=speech-translation#supported-languages). With few exceptions you only specify the language code that precedes the locale dash (`-`) separator. For example, use `es` for Spanish (Spain) instead of `es-ES`. The default language is `en` if you don't specify a language.
+1. To change the translation target language, replace `it` with another [supported language](~/articles/ai-services/speech-service/language-support.md?tabs=speech-translation#supported-languages). With few exceptions, you only specify the language code that precedes the locale dash (`-`) separator. For example, use `es` for Spanish (Spain) instead of `es-ES`. The default language is `en` if you don't specify a language.
 
 Run your new console application to start speech recognition from a microphone:
 
@@ -142,7 +142,7 @@ Translated into 'it': Sono entusiasta di provare la traduzione vocale.
 ```
 
 ## Remarks
-Now that you've completed the quickstart, here are some additional considerations:
+After completing the quickstart, here are some more considerations:
 
 - This example uses the `RecognizeOnceAsync` operation to transcribe utterances of up to 30 seconds, or until silence is detected. For information about continuous recognition for longer audio, including multi-lingual conversations, see [How to translate speech](~/articles/ai-services/speech-service/how-to-translate-speech.md).
 - To recognize speech from an audio file, use `fromWavFileInput` instead of `fromDefaultMicrophoneInput`:

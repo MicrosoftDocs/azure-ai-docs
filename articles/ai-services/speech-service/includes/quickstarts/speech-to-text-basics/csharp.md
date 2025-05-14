@@ -54,9 +54,9 @@ Follow these steps to create a console application and install the Speech SDK.
 
    class Program 
    {
-       // This example requires environment variables named "SPEECH_KEY" and "END_POINT"
+       // This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
        static string speechKey = Environment.GetEnvironmentVariable("SPEECH_KEY");
-       static string endPoint = Environment.GetEnvironmentVariable("END_POINT");
+       static string endpoint = Environment.GetEnvironmentVariable("ENDPOINT");
 
        static void OutputSpeechRecognitionResult(SpeechRecognitionResult speechRecognitionResult)
        {
@@ -84,7 +84,7 @@ Follow these steps to create a console application and install the Speech SDK.
 
        async static Task Main(string[] args)
        {
-           var speechConfig = SpeechConfig.FromEndpoint(speechKey, endPoint);
+           var speechConfig = SpeechConfig.FromEndpoint(speechKey, endpoint);
            speechConfig.SpeechRecognitionLanguage = "en-US";
 
            using var audioConfig = AudioConfig.FromDefaultMicrophoneInput();
@@ -106,7 +106,7 @@ Follow these steps to create a console application and install the Speech SDK.
    ```
 
    > [!IMPORTANT]
-   > Make sure that you set the `SPEECH_KEY` and `END_POINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
+   > Make sure that you set the `SPEECH_KEY` and `ENDPOINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
 
 1. Speak into your microphone when prompted. What you speak should appear as text:
 

@@ -75,12 +75,12 @@ Follow these steps to create a console application for speech recognition.
    import java.util.concurrent.ExecutionException;
     
    public class SpeechSynthesis {
-       // This example requires environment variables named "SPEECH_KEY" and "END_POINT"
+       // This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
        private static String speechKey = System.getenv("SPEECH_KEY");
-       private static String endPoint = System.getenv("END_POINT");
+       private static String endpoint = System.getenv("ENDPOINT");
     
        public static void main(String[] args) throws InterruptedException, ExecutionException {
-           SpeechConfig speechConfig = SpeechConfig.fromEndpoint(speechKey, endPoint);
+           SpeechConfig speechConfig = SpeechConfig.fromEndpoint(speechKey, endpoint);
            
            speechConfig.setSpeechSynthesisVoiceName("en-US-AvaMultilingualNeural"); 
     
@@ -127,7 +127,7 @@ Follow these steps to create a console application for speech recognition.
    ```
 
    > [!IMPORTANT]
-   > Make sure that you set the `SPEECH_KEY` and `END_POINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
+   > Make sure that you set the `SPEECH_KEY` and `ENDPOINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
 
 1. Enter some text that you want to speak. For example, type *I'm excited to try text to speech*. Select the **Enter** key to hear the synthesized speech.
 

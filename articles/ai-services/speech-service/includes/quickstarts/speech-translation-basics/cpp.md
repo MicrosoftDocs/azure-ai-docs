@@ -47,9 +47,9 @@ Follow these steps to create a new console application and install the Speech SD
     {
         // This example requires environment variables named "SPEECH_KEY" and "END_POINT"
         auto speechKey = GetEnvironmentVariable("SPEECH_KEY");
-        auto endPoint = GetEnvironmentVariable("END_POINT");
+        auto endpoint = GetEnvironmentVariable("END_POINT");
 
-        auto speechTranslationConfig = SpeechTranslationConfig::FromEndpoint(speechKey, endPoint);
+        auto speechTranslationConfig = SpeechTranslationConfig::FromEndpoint(speechKey, endpoint);
         speechTranslationConfig->SetSpeechRecognitionLanguage("en-US");
         speechTranslationConfig->AddTargetLanguage("it");
     
@@ -107,9 +107,9 @@ Follow these steps to create a new console application and install the Speech SD
     ```
 
 1. To change the speech recognition language, replace `en-US` with another [supported language](~/articles/ai-services/speech-service/language-support.md?tabs=stt#supported-languages). Specify the full locale with a dash (`-`) separator. For example, `es-ES` for Spanish (Spain). The default language is `en-US` if you don't specify a language. For details about how to identify one of multiple languages that might be spoken, see [language identification](~/articles/ai-services/speech-service/language-identification.md). 
-1. To change the translation target language, replace `it` with another [supported language](~/articles/ai-services/speech-service/language-support.md?tabs=speech-translation#supported-languages). With few exceptions you only specify the language code that precedes the locale dash (`-`) separator. For example, use `es` for Spanish (Spain) instead of `es-ES`. The default language is `en` if you don't specify a language.
+1. To change the translation target language, replace `it` with another [supported language](~/articles/ai-services/speech-service/language-support.md?tabs=speech-translation#supported-languages). With few exceptions, you only specify the language code that precedes the locale dash (`-`) separator. For example, use `es` for Spanish (Spain) instead of `es-ES`. The default language is `en` if you don't specify a language.
 
-[Build and run](/cpp/build/vscpp-step-2-build) your new console application to start speech recognition from a microphone.
+To start speech recognition from a microphone, [Build and run](/cpp/build/vscpp-step-2-build) your new console application.
 
 Speak into your microphone when prompted. What you speak should be output as translated text in the target language: 
 
@@ -120,7 +120,7 @@ Translated into 'it': Sono entusiasta di provare la traduzione vocale.
 ```
 
 ## Remarks
-Now that you've completed the quickstart, here are some additional considerations:
+After completing the quickstart, here are some more considerations:
 
 - This example uses the `RecognizeOnceAsync` operation to transcribe utterances of up to 30 seconds, or until silence is detected. For information about continuous recognition for longer audio, including multi-lingual conversations, see [How to translate speech](~/articles/ai-services/speech-service/how-to-translate-speech.md). 
 - To recognize speech from an audio file, use `FromWavFileInput` instead of `FromDefaultMicrophoneInput`:

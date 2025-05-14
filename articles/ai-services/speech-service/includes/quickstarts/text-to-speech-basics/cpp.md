@@ -42,16 +42,16 @@ Follow these steps to create a console application and install the Speech SDK.
 
     int main()
     {
-        // This example requires environment variables named "SPEECH_KEY" and "END_POINT"
+        // This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
         auto speechKey = GetEnvironmentVariable("SPEECH_KEY");
-        auto endPoint = GetEnvironmentVariable("END_POINT");
+        auto endpoint = GetEnvironmentVariable("ENDPOINT");
 
-        if ((size(speechKey) == 0) || (size(endPoint) == 0)) {
-            std::cout << "Please set both SPEECH_KEY and END_POINT environment variables." << std::endl;
+        if ((size(speechKey) == 0) || (size(endpoint) == 0)) {
+            std::cout << "Please set both SPEECH_KEY and ENDPOINT environment variables." << std::endl;
             return -1;
         }
 
-        auto speechConfig = SpeechConfig::FromEndpoint(speechKey, endPoint);
+        auto speechConfig = SpeechConfig::FromEndpoint(speechKey, endpoint);
 
         // The neural multilingual voice can speak different languages based on the input text.
         speechConfig->SetSpeechSynthesisVoiceName("en-US-AvaMultilingualNeural");
@@ -119,7 +119,7 @@ Follow these steps to create a console application and install the Speech SDK.
 1. [Build and run your new console application](/cpp/build/vscpp-step-2-build) to start speech synthesis to the default speaker.
 
    > [!IMPORTANT]
-   > Make sure that you set the `SPEECH_KEY` and `END_POINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
+   > Make sure that you set the `SPEECH_KEY` and `ENDPOINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
 
 1. Enter some text that you want to speak. For example, type *I'm excited to try text to speech*. Select the **Enter** key to hear the synthesized speech.
 
