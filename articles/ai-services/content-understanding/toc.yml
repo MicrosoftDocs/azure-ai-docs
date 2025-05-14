@@ -65,6 +65,9 @@ items:
     - name: Accuracy and confidence
       displayName: accuracy, confidence, analyzers, optimization, fields, scores
       href: concepts/accuracy-confidence.md
+    - name: "Modes: standard and pro"
+      displayName: standard, pro, modes, analyzers, optimization, fields
+      href: concepts/standard-pro-modes.md
     - name: 🆕 Classifiers
       displayName: classifiers, text, images, video, audio, multimodal, visual, structured, content, field, extraction
       href: concepts/classifiers.md

@@ -89,7 +89,7 @@ You can try out the features of both Content Understanding standard and pro mode
 
 ## Next steps
 
-For more information on document processing, *see* [Document processing overview](../document/overview.md)
+For more information on document processing, see [Document processing overview](../document/overview.md).
 
 
 
