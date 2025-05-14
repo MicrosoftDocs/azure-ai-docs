@@ -27,8 +27,8 @@ This article offers a quick reference of the quotas and limits for the Azure AI 
 | Property | Limit |
 | --- | --- |
 | Resource IDs | 1-64 characters (`[a-zA-Z0-9._-]{1,64}`) |
-| URL properties | ≤ 8192 characters |
-| Description properties | ≤ 1024 characters |
+| URL properties | ≤ 8,192 characters |
+| Description properties | ≤ 1,024 characters |
 | Field names | ≤ 64 characters (`[\p{L}\p{Nl}\p{Mn}\p{Mc}\p{Nd}\p{Pc}._-]{1,64}`) |
 | Tags properties | ≤ 10 tags |
 | Tag key | ≤ 64 characters (`[a-zA-Z0-9+-.:=_/]{1,64}`) |
@@ -56,9 +56,9 @@ This article offers a quick reference of the quotas and limits for the Azure AI 
 
 | Supported File Types | File Size | Length |
 | --- | --- |  --- |
-| ✓ `.wav` (`PCM`, A-law, μ-law) <br> ✓ `.mp3` <br> ✓ `.mp4` <br> ✓ `.opus`, `.ogg` (Opus)<br> ✓ `.flac` <br> ✓ `.wma` <br> ✓ `.aac` <br> ✓ `.amr` (AMR-NB, AMR-WB) <br> ✓ `.3gp` (AMR-NB, AMR-WB)<br> ✓ `.webm` (Opus, Vorbis) <br> ✓ `.m4a` (AAC, ALAC)<br> ✓ `.spx` | ≤ 1 GB<sup>†</sup> | ≤ 4 hours<sup>†</sup> |
+| ✓ `.wav` (`PCM`, A-law, μ-law) <br> ✓ `.mp3` <br> ✓ `.mp4` <br> ✓ `.opus`, `.ogg` (Opus)<br> ✓ `.flac` <br> ✓ `.wma` <br> ✓ `.aac` <br> ✓ `.amr` (AMR-NB, AMR-WB) <br> ✓ `.3gp` (AMR-NB, AMR-WB)<br> ✓ `.webm` (Opus, Vorbis) <br> ✓ `.m4a` (`AAC`, `ALAC`)<br> ✓ `.spx` | ≤ 1 GB<sup>†</sup> | ≤ 4 hours<sup>†</sup> |
 
-<sup>†</sup> For files ≤ 300 MB or ≤ 2 hours, Content Understanding transcription time will be substantially reduced.
+<sup>†</sup> For files ≤ 300 MB or ≤ 2 hours, Content Understanding transcription time is substantially reduced.
 
 #### Video
 
@@ -69,7 +69,7 @@ This article offers a quick reference of the quotas and limits for the Azure AI 
    > [!NOTE]
    > Video analysis has the following limitations:
    > * Direct upload: Maximum file size of 200 MB and maximum duration of 30 minutes when uploading video directly
-   > * Frame sampling: Analyzes approximately 1 frame per second, which may miss quick movements or brief events
+   > * Frame sampling: Analyzes approximately one frame per second, which may miss quick movements or brief events
    > * Resolution: All frames are scaled to 512 x 512 pixels, which may affect visibility of small details or distant objects
 
 
@@ -112,7 +112,7 @@ The following limits apply as of version 2025-05-01-preview.
 
 | Property | Limit |
 | --- | --- |
-| Category name | Cannot start with $ |
+| Category name | Can't start with a dollar sign (`$`)|
 | Category name and description | Maximum 120 characters for combined name and description in each category |
 | Number of categories | 1 to 50 per classifier |
 
