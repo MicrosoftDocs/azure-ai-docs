@@ -1,6 +1,6 @@
 ---
-title: Configure access to Azure Ecosystem Models
-description: Learn how to configure access to Azure Ecosystem Models.
+title: Configure access to Models from Partners and Community
+description: Learn how to configure access to Models from Partners and Community.
 author: santiagxf
 ms.author: fasantia 
 ms.service: azure-ai-model-inference
@@ -8,9 +8,9 @@ ms.topic: how-to
 ms.date: 5/11/2025
 ---
 
-# Configure access to Azure Ecosystem Models
+# Configure access to Models from Partners and Community
 
-Certain models in AI Foundry Models are offered directly by the model provider through the Azure Marketplace. This article explains the requirements to use Azure Marketplace if you plan to use such models in your workloads. Azure Direct Models, like DeepSeek or Phi, or Azure OpenAI Service models, like GPTs, don't have this requirement. 
+Certain models in Azure AI Foundry Models are offered directly by the model provider through the Azure Marketplace. This article explains the requirements to use Azure Marketplace if you plan to use such models in your workloads. Models Sold Directly by Azure, like DeepSeek or Phi, or Azure OpenAI in Foundry Models, like GPTs, don't have this requirement. 
 
 > [!TIP]
 > All models offered in AI Foundry Models are hosted in Microsoft's Azure environment and the Service does NOT interact with any external services or model provider.
@@ -21,7 +21,7 @@ Certain models in AI Foundry Models are offered directly by the model provider t
 
 ## Country availability
 
-Azure Ecosystem Models with Pay-as-you-go billing is available only to users whose Azure subscription belongs to a billing account in a country/region where the model offer is available. Availability varies per model provider and model SKU. Read [Region availability for models](../../how-to/deploy-models-serverless-availability.md).
+Models from Partners and Community with Pay-as-you-go billing is available only to users whose Azure subscription belongs to a billing account in a country/region where the model offer is available. Availability varies per model provider and model SKU. Read [Region availability for models](../../how-to/deploy-models-serverless-availability.md).
 
 ## Troubleshooting
 

@@ -29,7 +29,7 @@ You need to configure following network isolation configurations.
 - Choose network isolation mode. You have two options: allow internet outbound mode or allow only approved outbound mode.
 - If you use Visual Studio Code integration with allow only approved outbound mode, create FQDN outbound rules described in the [use Visual Studio Code](#scenario-use-visual-studio-code) section.
 - If you use HuggingFace models in Models with allow only approved outbound mode, create FQDN outbound rules described in the [use HuggingFace models](#scenario-use-huggingface-models) section.
-- If you use one of the open-source models with allow only approved outbound mode, create FQDN outbound rules described in the [Azure Direct Models](#scenario-azure-direct-models) section.
+- If you use one of the open-source models with allow only approved outbound mode, create FQDN outbound rules described in the [Models Sold Directly by Azure](#scenario-models-sold-directly-by-azure) section.
 
 ## Network isolation architecture and isolation modes
 
@@ -812,7 +812,7 @@ If you plan to use __HuggingFace models__ with the hub, add outbound _FQDN_ rule
 * cnd.auth0.com
 * cdn-lfs.huggingface.co
 
-### Scenario: Azure Direct Models
+### Scenario: Models Sold Directly by Azure 
 
 These models involve dynamic installation of dependencies at runtime, and require outbound _FQDN_ rules to allow traffic to the following hosts:
 

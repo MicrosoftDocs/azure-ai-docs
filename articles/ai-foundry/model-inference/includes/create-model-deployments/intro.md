@@ -19,4 +19,4 @@ To complete this article, you need:
 
 * An Azure AI Foundry resource (formerly known as Azure AI Services). For more information, see [Create and configure all the resources for Azure AI Foundry Models](../../how-to/quickstart-create-resources.md).
 
-* [Azure Ecosystem Models](../../concepts/models.md#azure-ecosystem-models) require access to **Azure Marketplace**. Ensure you have the [permissions required to subscribe to model offerings](../../how-to/configure-marketplace.md). [Azure Direct Models](../../concepts/models.md#azure-direct-models) don't have this requirement.
+* [Models from Partners and Community](../../concepts/models.md#models-from-partners-and-community) require access to **Azure Marketplace**. Ensure you have the [permissions required to subscribe to model offerings](../../how-to/configure-marketplace.md). [Models Sold Directly by Azure](../../concepts/models.md#models-sold-directly-by-azure) don't have this requirement.

@@ -1,5 +1,5 @@
 ---
-title: Guardrails & controls for Azure Direct Models
+title: Guardrails & controls for Models Sold Directly by Azure 
 titleSuffix: Azure AI Foundry
 description: Learn about content safety for models deployed using standard deployments, using Azure AI Foundry.
 manager: scottpolly
@@ -13,7 +13,7 @@ reviewer: ositanachi
 ms.custom: 
 ---
 
-# Guardrails & controls for Azure Direct Models
+# Guardrails & controls for Models Sold Directly by Azure 
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -34,7 +34,7 @@ Content filtering occurs synchronously as the service processes prompts to gener
 - When you first deploy a language model
 - Later, by selecting the content filtering toggle on the deployment details page
 
-Suppose you decide to use an API other than the [Azure AI Model Inference API](/azure/ai-studio/reference/reference-model-inference-api) to work with a model that is deployed via a standard deployment. In such a situation, content filtering (preview) isn't enabled unless you implement it separately by using Azure AI Content Safety. To get started with Azure AI Content Safety, see [Quickstart: Analyze text content](/azure/ai-services/content-safety/quickstart-text). You run a higher risk of exposing users to harmful content if you don't use content filtering (preview) when working with models that are deployed via standard deployments.
+Suppose you decide to use an API other than the [Foundry Models API](/azure/ai-studio/reference/reference-model-inference-api) to work with a model that is deployed via a standard deployment. In such a situation, content filtering (preview) isn't enabled unless you implement it separately by using Azure AI Content Safety. To get started with Azure AI Content Safety, see [Quickstart: Analyze text content](/azure/ai-services/content-safety/quickstart-text). You run a higher risk of exposing users to harmful content if you don't use content filtering (preview) when working with models that are deployed via standard deployments.
 
 [!INCLUDE [content-safety-harm-categories](../includes/content-safety-harm-categories.md)]
 

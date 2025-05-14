@@ -19,7 +19,7 @@ In this article, you learn how to deploy a model from the model catalog as a sta
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
-[Certain models in the model catalog](deploy-models-serverless-availability.md) can be deployed as a standard deployments. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
+[Certain models in the model catalog](deploy-models-serverless-availability.md) can be deployed as a standard deployment. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
 
 This article uses a Meta Llama model deployment for illustration. However, you can use the same steps to deploy any of the [models in the model catalog that are available for standard deployment](deploy-models-serverless-availability.md).
 
@@ -522,7 +522,7 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
     You can select the deployment, and note the endpoint's _Target URI_ and _Key_. Use them to call the deployment and generate predictions.
 
     > [!NOTE]
-    > When using the [Azure portal](https://portal.azure.com), standard deployment aren't displayed by default on the resource group. Use the **Show hidden types** option to display them on the resource group.
+    > When using the [Azure portal](https://portal.azure.com), standard deployments aren't displayed by default on the resource group. Use the **Show hidden types** option to display them on the resource group.
 
     # [Azure CLI](#tab/cli)
 
@@ -555,7 +555,7 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
 
 ## Use the standard deployment
 
-Models deployed in Azure Machine Learning and Azure AI Foundry in standard deployments support the [Foundry Models API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
+Models deployed in Azure Machine Learning and Azure AI Foundry in standard deployments support the [Azure AI Foundry Models API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
 
 Read more about the [capabilities of this API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#capabilities) and how [you can use it when building applications](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#getting-started). 
 

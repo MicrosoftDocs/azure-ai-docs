@@ -19,7 +19,7 @@ reviewer: fkriti
 Azure AI Foundry Models in the model catalog are continually refreshed with newer and more capable models. As part of this process, model providers might deprecate and retire their older models, and you might need to update your applications to use a newer model. This document communicates information about the model lifecycle and deprecation timelines and explains how you're informed of model lifecycle stages.
 
 > [!IMPORTANT]
-> This article describes deprecation and retirement only for Azure Direct models and Azure Ecosystem models models in Foundry Models. For information about deprecation and retirement for Azure OpenAI in Foundry Models, see the [Azure OpenAI models lifecycle](../../ai-services/openai/concepts/model-retirements.md?context=/azure/ai-foundry/context/context) documentation.
+> This article describes deprecation and retirement only for Models Sold Directly by Azure and Models from Partners and Community in Foundry Models. For information about deprecation and retirement for Azure OpenAI in Foundry Models, see the [Azure OpenAI models lifecycle](../../ai-services/openai/concepts/model-retirements.md?context=/azure/ai-foundry/context/context) documentation.
 
 ## Model lifecycle stages
 

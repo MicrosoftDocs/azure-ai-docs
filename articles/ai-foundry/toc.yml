@@ -14,13 +14,13 @@ items:
   items:
   - name: Explore Azure AI Foundry Models
     href: concepts/foundry-models-overview.md
-  - name: Configure Azure Ecosystem Models
+  - name: Configure Models from Partners and Community
     href: model-inference/how-to/configure-marketplace.md?context=/azure/ai-foundry/context/context
   - name: Data, privacy, and security for Model Catalog
     href: how-to/concept-data-privacy.md
   - name: Model lifecycle and retirement
     items:
-    - name: Azure Direct models and Azure Ecosystem models
+    - name: Models Sold Directly by Azure and Models from Partners and Community
       href: concepts/model-lifecycle-retirement.md
     - name: Azure OpenAI models
       href: ../ai-services/openai/concepts/model-retirements.md?context=/azure/ai-foundry/context/context
