@@ -103,9 +103,12 @@ The following limits apply as of version 2025-05-01-preview.
 
 ---
 
-## Classifiers
+## Classifier
 
 ### General limits
+
+   > [!NOTE]
+   > This classification field is the one within the extraction capability and not the separate [Content Understanding classifier](concepts/classifier.md) itself.
 
 | Property | Limit |
 | --- | --- |
