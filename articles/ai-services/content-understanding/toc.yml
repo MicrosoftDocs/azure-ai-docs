@@ -54,6 +54,12 @@ items:
   - name: Video
     href: video/overview.md
     displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+  - name: Face
+    displayName: face, recognition, detection, analysis, identification, verification
+    href: face/overview.md
+  - name: Best practices
+    displayName: best practices, analyzers, optimization, fields
+    href: concepts/best-practices.md   
 - name: Concepts
   items:
     - name: Best practices
@@ -79,6 +85,9 @@ items:
     - name: Build a retrieval-augmented solution
       displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
       href: tutorial/build-rag-solution.md
+    - name: Build a person directory
+      displayName: person, directory, search, index, vector
+      href: tutorial/build-person-directory.md
 - name: Responsible AI
   items:
     - name: Transparency note
