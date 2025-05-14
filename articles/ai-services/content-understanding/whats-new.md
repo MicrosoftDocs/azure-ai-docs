@@ -31,8 +31,6 @@ The Azure AI Content Understanding **`2025-05-01-preview`** REST API is now avai
   * Bar code extraction as part of the default content extraction along with `OCR`.
   * Classification API for documents only. This API supports classifying and splitting documents with optional routing to analyzers.
 
-* **User experience improvements**. To improve latency issues, the UX experience is refreshed with ease-of-use and quick try-out experience as part of Azure AI Foundry.
-
 * **Video Modality improvements**:
 
   * Support for whole video fields.
