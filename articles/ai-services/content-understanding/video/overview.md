@@ -104,14 +104,15 @@ The service operates in two stages. The first stage, content extraction, involve
 
 The first pass is all about extracting a first set of details—who's speaking, where are the cuts, and which faces recur. It creates a solid metadata backbone that later steps can reason over.
 
-* **Transcription:** Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Sentence-level timestamps are available if `returnDetails=true` is set. Content Understanding supports the full set of Azure AI Speech speech-to-text languages. For sepecifics on the supported languages see [Language and region support](../language-region-support.md#Video) .Additionally, the following transcription details are important to consider:
+* **Transcription:** Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Sentence-level timestamps are available if `returnDetails=true` is set. Content Understanding supports the full set of Azure AI Speech speech-to-text languages. For more information on supported languages, *see* [Language and region support](../language-region-support.md#language-support). The following transcription details are important to consider:
+
   * **Diarization:** Distinguishes between speakers in a conversation in the output, attributing parts of the transcript to specific speakers.
   * **Multilingual transcription:** Generates multilingual transcripts. Language/locale is applied per phrase in the transcript. Phrases output when `returnDetails=true` is set. Deviating from language detection this feature is enabled when no language/locale is specified or language is set to `auto`.
 
     > [!NOTE]
     > When multilingual transcription is used, a file with an unsupported locale still produces a result. This result is based on the closest locale but most likely not correct.
     > This transcription behavior is known. Make sure to configure locales when not using multilingual transcription!
-    
+
 * **Shot detection:** Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and repackaging of content with breaks exactly on shot boundaries.
 * **Key frame extraction:** Extracts key frames from videos to represent each shot completely, ensuring each shot has enough key frames to enable field extraction to work effectively.
 
@@ -201,12 +202,12 @@ Content Understanding offers three ways to slice a video, letting you get the ou
 Face identification description is an add-on that provides context to content extraction and field extraction using face information.
 
 > [!NOTE]
-> 
->  This feature is limited access and involves face identification and grouping; customers need to register for access at [Face Recognition](https://aka.ms/facerecognition). Face features incur additional cost.
+>
+>  This feature is limited access and involves face identification and grouping; customers need to register for access at [Face Recognition](https://aka.ms/facerecognition). Face features incur added costs.
 
 ### Content extraction: grouping and identification
 
-The face add-on enables grouping and identification as output from the content extraction section. To enable face capibilities set `enableFace=true` in the analyzer configuration.
+The face add-on enables grouping and identification as output from the content extraction section. To enable face capabilities set `enableFace=true` in the analyzer configuration.
 
 * **Grouping:** Grouped faces appearing in a video to extract one representative face image for each person and provides segments where each one is present. The grouped face data is available as metadata and can be used to generate customized metadata fields when `returnDetails: true` for the analyzer.
 * **Identification:** Labels individuals in the video with names based on a Face API person directory. Customers can enable this feature by supplying a name for a Face API directory in the current resource in the `personDirectoryId` property of the analyzer.
@@ -257,7 +258,7 @@ See [Language and region support](../language-region-support.md).
 As with all Azure AI services, review Microsoft's [Data, protection, and privacy](https://www.microsoft.com/trust-center/privacy) documentation.
 
 > [!IMPORTANT]
-> 
+>
 > If you process **Biometric Data** (for example, enable **Face Grouping** or **Face Identification**), you must meet all notice, consent, and deletion requirements under GDPR or other applicable laws. See [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
 
 
