@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 01/14/2025
+ms.date: 05/08/2025
 ---
 
 # Configure a vectorizer in a search index
