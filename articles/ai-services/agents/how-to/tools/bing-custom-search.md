@@ -33,7 +33,7 @@ The user query is the message that an end user sends to an agent, such as "what 
 When a user sends a query, the customer's AI model deployment first processes it (using the provided instructions) to later perform a Bing Custom Search query (which is visible to developers). Grounding with Bing Custom Search returns relevant search results to the customer's model deployment, which then generates the final output. 
 
 > [!NOTE]
-> When using Grounding with Bing Custom Search, only the Bing Custom Search query, the configuration instance, and your resource key are sent to Bing, and no end user-specific information is included. Your resource key is sent to Bing solely for billing and rate limiting purposes. 
+> When using Grounding with Bing Custom Search, the Bing Custom Search query, the configuration instance, tool parameters, and your resource key are sent to Bing, and no end user-specific information is included. Your resource key is sent to Bing solely for billing and rate limiting purposes. 
 
 The authorization will happen between Grounding with Bing Custom Search service and Azure AI Agent service. Any Bing Custom Search query that is generated and sent to Bing for the purposes of grounding is transferred, along with the resource key and configuration instance, outside of the Azure compliance boundary to the Grounding with Bing Custom Search service. Grounding with Bing Custom Search is subject to Bing's terms and don't have the same compliance standards and certifications as the Azure AI Agent Service, as described in the Grounding with Bing Custom Search Terms of Use. It's your responsibility to assess whether the use of Grounding with Bing Custom Search in your agent meets your needs and requirements. 
 
@@ -73,11 +73,9 @@ When you create or update a configuration, enter the following information:
     > * Domain and path (for example, `https://www.microsoft.com/surface`) 
     > * Webpage (for example, `https://www.microsoft.com/en-us/p/surface-earbuds/8r9cpq146064`) 
 
-    1. Allowed domains to search against. 
+    1. Allowed domains to search against. For allowed domains, if you want to include subpages, please make sure the domains have at most 2 levels of subpages. 
 
     1. Blocked domains to exclude from the search space. 
-
-    1. Pinned domains to prioritize when searching on multiple domains, for specific search queries. 
 
 
 1. Determine if you want to include subpages. A subpage slice specifies a domain path. Bing searches all content found at and below the path. You can specify a maximum of two subfolders in the path. For example, `www.microsoft.com/windows/`. 
@@ -104,8 +102,6 @@ When you create or update a configuration, enter the following information:
 Grounding with Bing Custom Search is a powerful tool that allows you to select a subspace of the web to limit your Agent’s grounding knowledge. Here you can find a few tips for how to take the maximum advantage of this capability: 
 
 1. If you own a public site that you want to include in the search but Bing hasn’t indexed, see the [Bing webmaster documentation](https://www.bing.com/webmaster/help/webmaster-guidelines-30fba23a) for details about getting your site indexed. The webmaster documentation also provides details about getting Bing to crawl your site if the index is out of date. 
-
-1. Any pinned domain is allowed by default and prioritized in the search slice. 
 
 1. You can only block certain domains and perform a search against the rest of the Web (a competitor’s site, for example). 
 
