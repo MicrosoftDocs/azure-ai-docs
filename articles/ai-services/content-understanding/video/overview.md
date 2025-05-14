@@ -20,6 +20,8 @@ ms.date: 05/19/2025
 
 Azure AI Content Understanding allows you to generate a standard set of video metadata and create custom fields for your specific use case using the power of generative models. Content Understanding helps efficiently manage, categorize, retrieve, and build workflows for video assets. It enhances your media asset library, supports workflows such as highlight generation, categorizes content, and facilitates applications like retrieval-augmented generation (RAG).
 
+:::image type="content" source="../media/video/video-processing-flow.png" alt-text="Illustration of the Content Understanding video processing flow.":::
+
 The **pre-built video analyzer** outputs RAG-ready Markdown that includes:
 
 - **Transcript:** Inline transcripts in standard WEBVTT format
