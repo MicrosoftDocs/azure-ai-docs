@@ -26,31 +26,24 @@ To get started, make sure you have the following resources and permissions:
 > [!IMPORTANT]
 > If your organization requires you to customize the security of storage resources, refer to [Azure AI services API access keys](../../../ai-foundry/concepts/encryption-keys-portal.md) to create resources that meet your organizations requirements through the Azure portal. To learn how to utilize customer managed keys, refer to [(Preview) Service-side storage of encrypted data when using customer-managed keys](../../../ai-foundry/concepts/encryption-keys-portal.md#preview-service-side-storage-of-encrypted-data-when-using-customer-managed-keys). 
 
-## Create your first Content Understanding project in the AI Foundry portal
+## Create your first project in the AI Foundry portal
 
-> [!NOTE]
-> The Content Understanding project type is separate from the Generative AI project type, also available in the AI Foundry portal.
-
-In order to try out [the Content Understanding service in the AI Foundry portal](https://aka.ms/cu-landing), you have to create a Content Understanding project. You can access Content Understanding from:
+In order to try out [the Content Understanding service in the AI Foundry](https://aka.ms/cu-landing), you have to create a project. You can create a project from the home page of AI Foundry, or the Content Understanding landing page:
 
 * The [AI Foundry home page](https://ai.azure.com/)
 
-   :::image type="content" source="../media/quickstarts/foundry-home-page.png" lightbox="../media/quickstarts/foundry-home-page.png" alt-text="Screenshot of the AI Services landing page in AI Foundry.":::
+   :::image type="content" source="../media/quickstarts/foundry-home-page.png" lightbox="../media/quickstarts/foundry-home-page.png" alt-text="Screenshot of the AI Foundry home page in AI Foundry.":::
    
+* The [Content Understanding landing page](https://aka.ms/cu-landing)
 
-* The [AI Foundry AI Services landing page](https://ai.azure.com/explore/aiservices)
+   :::image type="content" source="../media/quickstarts/" lightbox="../media/quickstarts/" alt-text="Screenshot of the Content Understanding landing page.":::
 
-   :::image type="content" source="../media/quickstarts/ai-services-landing-page.png" lightbox="../media/quickstarts/ai-services-landing-page.png" alt-text="Screenshot of the AI Services landing page.":::
+ Select "Create project" from either of these pages. Give your project a friendly name, and select the hub that you already created. Once you complete the setup steps, select `Create`.
 
-Once on the Content Understanding page, select `Create a new Content Understanding Project`:
 
-   :::image type="content" source="../media/quickstarts/cu-landing-page.png" lightbox="../media/quickstarts/cu-landing-page.png" alt-text="Screenshot of Content Understanding page.":::
+## Sharing your project
 
-Follow the steps in the project creation wizard. Once you complete the setup steps, select `Create project`.
-
-## Sharing your content understanding project
-
-In order to share and manage access to the Content Understanding project you created, navigate to the Management Center, found at the bottom of the navigation for your project:
+In order to share and manage access to the project you created, navigate to the Management Center, found at the bottom of the navigation for your project:
 
   :::image type="content" source="../media/quickstarts/cu-find-management-center.png" alt-text="Screenshot of where to find management center.":::
 
