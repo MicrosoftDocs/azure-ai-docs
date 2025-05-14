@@ -18,8 +18,7 @@ ms.date: 05/19/2025
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Azure AI Content Understanding delivers advanced document analysis capabilities that empower organizations to transform unstructured content into actionable, structured data.
-By leveraging [customizable analyzers](../concepts/prebuilt-analyzers.md), Content Understanding can intelligently extract key information, fields, and relationships from a wide variety of documents and forms.
+Azure AI Content Understanding offers sophisticated document analysis capabilities, enabling organizations to convert unstructured content into actionable and organized data. Utilizing [customizable analyzers](../concepts/prebuilt-analyzers.md), it can expertly extract essential information, fields, and relationships from a diverse range of documents and forms.
 
 ## Business use cases
 
@@ -52,17 +51,17 @@ It precisely captures both printed and handwritten text while preserving the doc
 
 ### Field extraction
 
-Field extraction enables the extraction, classification, and generation of structured data from various forms and documents tailored to your specific needs. By converting unstructured document content into structured, actionable information, field extraction streamlines data organization, enhances searchability, and facilitates automated processing workflows. For example, you can efficiently extract customer details, billing addresses, and itemized charges from invoices, or identify contractual parties, renewal dates, and payment terms from legal agreements. To achieve optimal results, you can leverage prebuilt analyzer templates—such as those designed for invoices—or create customized analyzers from scratch, further refining accuracy by labeling additional sample documents.
+Field extraction empowers you to extract, classify, and generate structured data from various documents and forms, customized to meet your unique requirements. The process of transforming unstructured content into organized, actionable information simplifies data management, improves searchability, and supports automated workflows. For instance, you can seamlessly extract customer details, billing addresses, and itemized charges from invoices, or identify contractual parties, renewal dates, and payment terms in legal agreements. To maximize efficiency, you can utilize prebuilt analyzer templates—such as ones tailored for invoices—or design bespoke analyzers from scratch, enhancing precision through the labeling of more sample documents.
 
 ### Field extraction methods
 
 Azure AI Content Understanding provides versatile methods for field extraction, enabling precise and tailored processing of document content:
 
-- **Extract**: Define and retrieve specific data fields from your documents, such as transaction dates from receipts or detailed line items from invoices, ensuring targeted and accurate data capture.
+- **Extract**: Extract specific data, like transaction dates from receipts or line items from invoices, for precise and focused information capture.
 
 - **Classify**: Categorize document content into predefined categories, such as classifying sentiment in customer call transcript or classifying hotel receipt items. 
 
-- **Generate**: Produce new insights or summaries from your documents, including document summaries, chapter overviews enhancing content accessibility and comprehension.
+- **Generate**: Produce new insights or summaries from your documents, including document summaries, and chapter overviews enhancing content accessibility and comprehension.
 
 ## Key benefits
 
@@ -72,7 +71,7 @@ Content Understanding delivers powerful document analysis capabilities designed 
 
 - **Grounded data extraction:** Maintain clear traceability and localization of extracted data, facilitating efficient human-in-the-loop review processes and ensuring transparency and compliance.
 
-- **Confidence-driven automation:** Leverage built-in confidence scoring to intelligently automate document processing tasks, optimizing resource allocation, reducing operational costs, and enhancing decision-making accuracy.
+- **Confidence-driven automation:** Utilize built-in confidence scoring to intelligently automate document processing tasks, optimizing resource allocation, reducing operational costs, and enhancing decision-making accuracy.
 
 - **Flexible customization:** Easily adapt and tailor document analyzers to align with specific business processes and workflows, enabling precise extraction and classification tailored to your organization's unique requirements.
 
