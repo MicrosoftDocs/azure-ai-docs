@@ -1,9 +1,9 @@
 ---
-title: Azure AI Content Understanding Prebuilt analyzers
+title: Create a custom analyzer with Azure AI Content Understanding
 titleSuffix: Azure AI services
-description: Learn about prebuilt analyzers, their scenarios, customization options, billing, roadmap in Azure AI Content Understanding.
+description: Learn to create a custom analyzer with Azure AI Content Understanding
 author: laujan
-ms.author: admaheshwari
+ms.author: paulhsu
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
