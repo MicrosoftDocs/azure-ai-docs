@@ -18,77 +18,70 @@ ms.custom: build-2025-understanding-refresh
 > * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
-Azure AI Content Understanding face offers cloud-based face detection, enrollment, and recognition services to enable secure and intelligent applications. It allows developers to detect faces, enroll Persons and Faces into a structured directory, and perform face recognition tasks for identity verification and content management.
 
-Whether you're building a secure access system, enhancing photo management, or creating intelligent attendance or check-in solutions, Content Understanding face supports both individual face records and structured person identity management.
+Azure AI Content Understanding provides a cloud-based solution for face detection, enrollment, and recognition, enabling secure and intelligent applications. Developers can apply these capabilities to detect faces, organize them into a structured directory, and perform recognition tasks for identity verification and content management.
+
+This service is ideal for building secure access systems, streamlining photo management, or implementing intelligent attendance and check-in solutions. It supports both standalone face records and structured person identity management, offering flexibility for various real-world scenarios.
 
 ## Business use cases
 
-Content Understanding face enables various real-world applications across detection verification, identification, and large-scale content processing scenarios.
+Content Understanding enables a wide range of real-world applications, including face detection, verification, identification, and large-scale content processing.
 
-**Find faces in images**: Automatically detect faces in an image and return the bounding boxes of each detected face. It helps customers find, highlight, blur, or count faces without manually reviewing every photo. Common applications:
-* Crop detected faces for ID photos, albums, or personalization.
-* Blur faces to protect privacy before sharing images publicly.
-* Count the number of people in event photos, crowds, or security footage.
+**Detect faces in images**:
+Automatically identify faces in an image and return their bounding boxes. This capability simplifies tasks like highlighting, blurring, or counting faces without manual review. Common use cases include:
+* Cropping detected faces for ID photos, albums, or personalized content.
+* Blurring faces to ensure privacy before sharing images publicly.
+* Counting people in event photos, crowd scenes, or security footage.
 
-**Check if two faces match**: Compare a face in an image with either another face image or an enrolled person to see if they belong to the same individual. Useful for confirming identity in scenarios like photo ID checks, sign-ins, or verifying someone against a known profile. Common applications:
-* Check if a driver’s selfie matches their profile photo.
-* Confirm a student’s face before starting an online exam.
-* Compare a live photo with an uploaded ID to confirm identity.
+**Verify if two faces match**:
+Compare a face in one image with another face or an enrolled person to determine if they belong to the same individual. This is ideal for identity verification scenarios such as photo ID checks or sign-ins. Common use cases include:
+* Verifying if a driver’s selfie matches their profile photo.
+* Confirming a student’s identity before starting an online exam.
+* Comparing a live photo with an uploaded ID for identity confirmation.
 
-**Find out who the person is from their face**: Look at a face in a photo and check if it matches someone in your saved list of people. Useful when you want to find out who someone is without needing their name, ID, or other input. Common applications:
-* Match a patient’s face to hospital records during check-in.
-* Look up a student or employee from their face photo.
-* Spot someone from a watchlist entering a secure area.
+**Identify a person from their face**:
+Match a face in a photo to a saved list of people to identify them. Common use cases include:
+* Matching a patient’s face to hospital records during check-in.
+* Identifying a student or employee from their face photo.
+* Recognizing someone from a watch list entering a secure area.
 
-**Save faces first to make future searches faster**: Detect and save faces from photos ahead of time, so you don’t need to scan everything again later. Helps speed up future face searches without reprocessing the original content. Common applications:
-* Extract and save faces from event group photos to help recognize returning participants in future sessions
-* Preprocess photos from school activities or sports games to easily find returning students or athletes.
-* When visiting a place like a theme park, check if a visitor’s face matches a record from previous visits without rescanning years of photos.
+**Save faces for faster future searches**:
+Index faces from images to enable quicker searches later without needing to reprocess the original content. This feature is especially useful for recurring search scenarios. Common use cases include:
+* Extracting and saving faces from group photos at events to recognize returning participants in future sessions.
+* Preprocessing images from school activities or sports events to easily identify students or athletes in subsequent searches.
+* Matching a theme park visitor’s face to records from previous visits without rescanning years of archived photos.
 
 ## Face capabilities
 
-Our system provides comprehensive face capabilities, from detection and quality analysis to identity enrollment and search. At the core of these capabilities is the Person Directory—a scalable and structured container for managing Persons and Faces.
+Content Understanding offers robust face capabilities, including detection, quality analysis, identity enrollment, and search. Central to these features is the **person directory**—a scalable, structured repository for managing persons and faces.
 
 ### Person Directory
 
-The Person Directory is designed to store and organize face data and identity profiles. It supports:
-* **Face enrollment**: Add detected faces either as standalone entries or associate them to specific persons.
-* **Person enrollment**: Create identity records that can be associated with one or more enrolled faces.
-* **Metadata management**: Update Face/Person metadata, modify tags, and manage associations between Persons and Faces.
-* **Flexible association**: Faces can be associated or disassociated from Persons without data loss, supporting clean, maintainable identity management.
+The person directory is a flexible system for organizing face data and identity profiles. Key features include:
+* **Face enrollment**: Add detected faces as standalone entries or associate them with specific persons.
+* **Person enrollment**: Create identity records that link to one or more enrolled faces.
+* **Metadata management**: Update metadata, apply tags, and manage relationships between persons and faces.
+* **Dynamic associations**: Associate or disassociate faces from persons without losing data, ensuring clean and maintainable identity management.
 
-:::image type="content" source="../media/face/person-directory-overview.png" alt-text="Diagram of person directory flow.":::
+:::image type="content" source="../media/face/person-directory-overview.png" alt-text="Diagram illustrating the flow of the person directory.":::
 
 ### Search capabilities
 
-Once enrolled, both Persons and Faces within the Person Directory can be searched and matched:
-* **Identify within Persons**: Match the input face against identities represented by Persons (aggregated face vectors).
-* **Find similar within Faces**: Find the most similar individual faces across the entire Person Directory.
+The person directory enables powerful search and matching functionalities:
+* **Identify candidate persons**: Match an input face to candidate persons in the directory.
+* **Find similar faces**: Search for all similar faces across the entire directory.
 
 ## Key benefits
 
-Azure AI Content Understanding Face delivers powerful face capabilities designed for secure, scalable, and intelligent applications:
-* **End-to-end face intelligence**: Detect, enroll, and recognize faces using a cloud-based service that supports both standalone face records and structured person identity management—all in one unified platform.
-* **Flexible and scalable for real-world scenarios**: Supports secure access, check-ins, customer recognition, and photo management with fast, accurate face searching across large collections.
-
-## Input requirements
-
-We support multiple input file formats, including BMP, JPEG, PNG, WebP, ICO, and GIF. You can provide the image input in either of the following forms:
-* **Base64-encoded string**: The image must be provided as a Base64 string (not a byte array). Learn more about [converting to Base64](https://learn.microsoft.com/en-us/dotnet/api/system.convert.tobase64string?view=net-9.0)
-* **Image URL**: You can provide a publicly accessible URL pointing to the image. This can be:
-    * A URL from Azure Blob Storage with a valid SAS token. Learn how to Create SAS tokens for Azure Blob Storage.
-    * A custom domain URL that supports direct access to the image.
-
-## Supported regions
-
-For a detailed list of supported languages and regions, visit our [Language and region support](../language-region-support.md) page.
+Content Understanding provides advanced face recognition capabilities tailored for secure, scalable, and intelligent applications:
+* **Comprehensive face intelligence**: Detect, enroll, and recognize faces seamlessly using a unified cloud-based service. It supports both standalone face records and structured person identity management.
+* **Adaptable and scalable for diverse scenarios**: Enables secure access, streamlined check-ins, customer recognition, and efficient photo management with rapid, accurate face searches across extensive collections.
 
 ## Data privacy and security
 
-As with all the Azure AI services, developers using the Content Understanding service should be aware of Microsoft's policies on customer data. See our [Data, protection and privacy](https://www.microsoft.com/trust-center/privacy) page to learn more.
+Azure AI Content Understanding adheres to Microsoft's strict policies on customer data protection and privacy. Developers should review these policies to ensure compliance and understand how data is handled. For more details, visit the [Data protection and privacy](https://www.microsoft.com/trust-center/privacy) page.
 
 ## Next steps
 
-* Learn to build a [**person directory**](../quickstart/use-ai-foundry.md).
-* Review code sample: [**person directoy**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/zhizho/face/notebooks/build_person_directory.ipynb).
+* Learn to build a [**person directory**](../tutorial/build-person-directory.md).
+* Review code sample: [**person directory**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/zhizho/face/notebooks/build_person_directory.ipynb).

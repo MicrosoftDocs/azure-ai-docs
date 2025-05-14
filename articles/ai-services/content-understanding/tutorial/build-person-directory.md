@@ -10,48 +10,72 @@ ms.topic: tutorial
 ms.date: 05/07/2025
 ---
 
-# Tutorial: Build a person directory
-A Person Directory is a structured way to store face data for recognition tasks. You can add individual faces to the directory and later search for visually similar faces. You can also create person profiles, associate faces to them, and match new face images to known individuals. This setup supports both flexible face matching and identity recognition across images and videos.
+# Tutorial: Build a Person Directory
 
-:::image type="content" source="../media/face/person-directory-processes.png" alt-text="Diagraom of the person directory enrollment and search processes.":::
+A person directory provides a structured approach to storing face data for recognition tasks. It allows you to add individual faces, search for visually similar faces, and create person profiles. You can associate faces with these profiles and match new face images to known individuals. This setup supports both flexible face matching and identity recognition across images and videos.
+
+:::image type="content" source="../media/face/person-directory-processes.png" alt-text="Diagram illustrating the processes of enrollment and search in a person directory.":::
 
 ## Data storage recommendation
-It is recommended to store all face images in Azure Blob Storage for secure and scalable access. Face URLs in your API calls should point to these stored images.
 
-## Enroll
+For secure and scalable access, we recommend storing all face images in Azure Blob Storage. When making API calls, ensure that the face URLs reference these stored images in Blob Storage.
 
-Enrollment comprises:
-* Create an empty person directory.
-* Add persons.
-* Add faces and associate with a person.
+## Enrollment
 
+Enrollment involves the following steps:
+
+1. Create an empty person directory
+2. Add persons
+3. Add faces and associate with a person
+  
 ### Step 1: Create an empty person directory
-Create a new directory to store faces and persons.
 
-**Sample request**
+To create a new person directory, send a `PUT` request to the API endpoint. This directory serves as the container for storing faces and associated persons.
 
+```http
 PUT {endpoint}/contentunderstanding/personDirectories/{personDirectoryId}?api-version=2025-05-01-preview
 Content-Type: application/json
 
-```json
 {
-  "description": "...",
-  "tags": { ... },
+  "description": "A brief description of the directory",
+  "tags": {
+    "project": "example-project",
+    "owner": "team-name"
+  }
 }
 ```
----
 
-* The `personDirectoryId` is user-defined and should be unique within the system.
+* `personDirectoryId`: A unique, user-defined identifier for the directory within the resource.
+* `description`: (Optional) A short description of the directory's purpose.
+* `tags`: (Optional) Key-value pairs to help organize and manage the directory.
 
-### Step 2: (Optional) Add persons
-If you want to recognize or manage individuals, create a person first. You can later associate faces to this person.
+The API creates the directory and returns a confirmation response.
 
-**Sample request**
+```json
+200 OK
 
+{
+  "personDirectoryId": "{personDirectoryId}",
+  "description": "A brief description of the directory",
+  "createdAt": "2025-05-01T18:46:36.051Z",
+  "lastModifiedAt": "2025-05-01T18:46:36.051Z",
+  "tags": {
+    "project": "example-project",
+    "owner": "team-name"
+  },
+  "personCount": 0,
+  "faceCount": 0
+}
+```
+
+### Step 2: Add persons
+
+To recognize or manage individuals, you need to create a person profile. Once created, you can associate faces with this person.
+
+```http
 POST {endpoint}/contentunderstanding/personDirectories/{personDirectoryId}/persons?api-version=2025-05-01-preview
 Content-Type: application/json
 
-```json
 {
   "tags": {
     "name": "Alice",
@@ -59,72 +83,111 @@ Content-Type: application/json
   }
 }
 ```
----
 
-* The `personDirectoryId` must match the one created in Step 1.
-* The API returns a `personId`.
+* `personDirectoryId`: The unique identifier of the directory created in Step 1.
+* `tags`: Key-value pairs to describe the person, such as their name or age.
 
-### Step 3: Add faces (Optional: Associate with a person)
-Add a face to the directory. You can either associate it to an existing person or leave it as a standalone face. The API accepts either an image URL or base64-encoded image data.
-
-**Sample request**
-
-POST {endpoint}/contentunderstanding/personDirectories/{personDirectoryId}/faces?api-version=2025-05-01-preview
-Content-Type: application/json
+The API returns a `personId` that uniquely identifies the created person.
 
 ```json
+200 OK
+
 {
-  "faceSource": {
-    "url": "https://mystorageaccount.blob.core.windows.net/images/container1/file1.jpg",
-    "base64": "<base64 data>",
-    "targetBoundingBox": [l, t, w, h], // Optional
-    "imageReferenceId": "file1.jpg" // Optional, user-provided 
-  },
-  "qualityThreshold": "medium", // Optional, default is "medium",
-  "personId": "{personId}"  // Optional — associate to existing person if needed
-}
-```
----
-
-* The `personDirectoryId` must match the one created in Step 1.
-* The `personId` is a person identifier obtained from Step 2.
-* Each face entry requires a url (file path) referencing an image stored in the Blob Storage container.
-* The `targetBoundingBox` field (optional) provides bounding box coordinates ([`left, top, width, height`]) to specify the face location. > If no `targetBoundingBox`, the API automatically detects and uses the largest face in the image.
-* `qualityThreshold` (optional) allows filtering of face quality (low, medium, or high). The default is medium, meaning only medium or high-quality faces are stored; low-quality faces are rejected.
-* `imageReferenceId` (optional) allows users to provide a reference ID for the image. It is recommended to use this field to store the actual image path for future use or mapping.
-* The API returns a `faceId`.
-
-## Search
-After building your person directory with face images and optional person associations, you can use it to you can use it to perform face recognition from images or videos.
-
-### Image input
-Identify persons or find similar faces in an image.
-
-#### Search within persons
-Identify the most likely person candidates by comparing the input face against enrolled persons.
-
-**Sample request**
-
-POST {endpoint}/contentunderstanding/personDirectory/{personDirectoryId}/persons:identify?api-version=2025-05-01-preview
-Content-Type: application/json
-
-```json
-{
-  "faceSource": {
-  	"url": "https://mystorageaccount.blob.core.windows.net/images/container1/file.jpg",   
-    "targetBoundingBox": [l,t,w,h]
+  "personId": "4f66b612-e57d-4d17-9ef7-b951aea2cf0f",
+  "tags": {
+    "name": "Alice",
+    "age": "20"
   }
 }
 ```
----
 
-**Sample response**
+### Step 3: Add faces and associate with a person
+
+You can add a face to the directory and optionally associate it with an existing person. The API supports both image URLs and base64-encoded image data.
+
+```http
+POST {endpoint}/contentunderstanding/personDirectories/{personDirectoryId}/faces?api-version=2025-05-01-preview
+Content-Type: application/json
+
+{
+  "faceSource": {
+    "url": "https://mystorageaccount.blob.core.windows.net/container/face.jpg",
+    // "data": "<base64 data>",
+    "imageReferenceId": "face.jpg",
+    "targetBoundingBox": {
+      "left": 33,
+      "top": 73,
+      "width": 262,
+      "height": 324
+    }
+  },
+  "qualityThreshold": "medium",
+  "personId": "{personId}"
+}
+```
+
+- `personDirectoryId`: The unique identifier of the person directory created in Step 1.
+- `faceSource`: Specifies the face image.
+  - `url`: The file path of the image stored in Azure Blob Storage.
+  - `data`: Base64-encoded image data as optional alternative to `url`.
+  - `imageReferenceId`: (Optional) A user-defined identifier for the image. This can be helpful for tracking the image's origin or for mapping it to other data.
+  - `targetBoundingBox`: (Optional) Approximate location of the face in the image. If omitted, the API detects and uses the largest face.
+- `qualityThreshold`: (Optional) Filters face quality (`low`, `medium`, or `high`). The default is `medium`, meaning only medium or high-quality faces are stored. Lower quality faces are rejected.
+- `personId`: (Optional) The `personId` of an existing person to associate the face with.
+
+The API returns a `faceId` that uniquely identifies the created face with the detected `boundingBox` of the face.
 
 ```json
 {
-   "detectedFace": {
-    "boundingBox": [ ... ]  // The bounding box of the input face used for identification
-  },    
+  "faceId": "{faceId}",
+  "personId": "{personId}",
+  "imageReferenceId": "face.jpg",
+  "boundingBox": {
+    "left": 30,
+    "top": 78,
+    "width": 251,
+    "height": 309
+  }
+}
+```
+
+## Search
+
+After creating your person directory and adding face images with optional person associations, you can perform two key tasks:
+
+1. **Identify a person**: Match a face image against enrolled persons in the directory to determine the most likely identity.
+2. **Find similar faces**: Search for visually similar faces across all stored face entries in the directory.
+
+These capabilities enable robust face recognition and similarity matching for various applications.
+
+### Identify a person
+
+Identify the most likely person matches by comparing the input face against enrolled persons in the directory.
+
+```http
+POST {endpoint}/contentunderstanding/personDirectory/{personDirectoryId}/persons:identify?api-version=2025-05-01-preview
+Content-Type: application/json
+
+{
+  "faceSource": {
+    "url": "https://mystorageaccount.blob.core.windows.net/container/unknown.jpg",
+    "targetBoundingBox": { ... }
+  },
+  "maxPersonCandidates": 1
+}
+```
+
+- `faceSource.url`: The URL of the input face image stored in Azure Blob Storage.
+- `faceSource.targetBoundingBox`: (Optional) The approximate bounding box of the face in the image. If omitted, the API detects the largest face.
+- `maxPersonCandidates`: (Optional) The maximum number of person candidates to return. Default is 1.
+
+The API returns the detected bounding box of the face along with the top person candidates.
+
+```json
+{
+  "detectedFace": {
+    "boundingBox": { ... }
+  },
   "personCandidates": [
     {
       "personId": "{personId1}",
@@ -137,48 +200,52 @@ Content-Type: application/json
   ]
 }
 ```
----
 
-#### Search within faces
-Find visually similar individual faces from all stored face entries.
+- `detectedFace.boundingBox`: The bounding box of the detected face in the input image.
+- `personCandidates`: A list of potential matches, each with a `personId`, associated `tags`, and a `confidence` score indicating the likelihood of a match.
 
-**Sample request**
+### Find similar faces
 
+Find visually similar faces from all stored face entries in the directory.
+
+```http
 POST {endpoint}/personDirectory/{personDirectoryId}/faces:find?api-version=2025-05-01-preview
 Content-Type: application/json
 
-```json
 {
   "faceSource": {
-  	"url": "https://mystorageaccount.blob.core.windows.net/images/container1/file.jpg",   
-    "targetBoundingBox": [l,t,w,h] // Optional
-  }
-  "maxSimilarFaces": 10   // Optional, default is 1000, max allowed is 1000
+    "url": "https://mystorageaccount.blob.core.windows.net/container/target.jpg",
+    "targetBoundingBox": { ... }
+  },
+  "maxSimilarFaces": 10
 }
 ```
----
 
-**Sample response**
+- `faceSource.url`: The URL of the input face image stored in Azure Blob Storage.
+- `faceSource.targetBoundingBox`: (Optional) The approximate bounding box of the face in the image. If omitted, the API detects the largest face.
+- `maxSimilarFaces`: (Optional) The maximum number of similar faces to return. Defaults to 1000, with a maximum limit of 1000.
+
+The API returns the detected bounding box of the face along with the most similar faces from the directory.
 
 ```json
 {
-   "detectedFace": {
-     "boundingBox": [ ... ]
-   }, 
+  "detectedFace": {
+    "boundingBox": { ... }
+  },
   "similarFaces": [
-   {
-	 "faceId": "{faceId}"
-     "boundingBox": {'left': l, 'top': t, 'width': w, 'height': h},
-     "confidence": 0.92,
-     "imageReferenceId": "file1.jpg" 
-   }
-  ], ...
+    {
+      "faceId": "{faceId}",
+      "boundingBox": { ... },
+      "confidence": 0.92,
+      "imageReferenceId": "face.jpg"
+    }
+  ]
 }
 ```
----
 
-### Video input
-Identify people appearing in video content. See: [Azure AI Content Understanding video solutions (preview)](../video/overview.md)
+- `detectedFace.boundingBox`: The bounding box of the detected face in the input image.
+- `similarFaces`: A list of similar faces, each with a `faceId`, `boundingBox`, `confidence` score, and an `imageReferenceId` indicating the source image.
 
 
 ## Next steps
+- Explore how to identify individuals in video content using the [Azure AI Content Understanding video solutions (preview)](../video/overview.md).
