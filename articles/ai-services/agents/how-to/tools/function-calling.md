@@ -545,9 +545,9 @@ await client.agents.createMessage(
 Start by defining a function for your agent to call. When you create a function for an agent to call, you describe its structure of it with any required parameters in a docstring. See the other SDK languages for example functions.
 
 
-## Create a client and agent
+## Create an agent
 
-Follow the [REST API Quickstart](../../quickstart.md#api-call-information?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
 
 ```bash
 curl --request POST \

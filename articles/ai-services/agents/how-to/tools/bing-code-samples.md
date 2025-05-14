@@ -395,14 +395,10 @@ Create a run and observe that the model uses the Grounding with Bing Search tool
 
 ::: zone pivot="rest"
 
-## Create a project client
-
-Create a client object, which will contain the connection string for connecting to your AI project and other resources.
-
 >[!IMPORTANT]
 > 1. This REST API allows developers to invoke the Grounding with Bing Search tool through the Azure AI Foundry Agent Service. It does not send calls to the Grounding with Bing Search API directly. 
 
-Follow the [REST API Quickstart](../../quickstart.md#api-call-information?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
 
 
 ## Create an Agent with the Grounding with Bing search tool enabled

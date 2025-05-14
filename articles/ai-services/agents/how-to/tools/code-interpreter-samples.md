@@ -380,7 +380,7 @@ console.log(`Saved image file to: ${imageFileName}`);
 
 :::zone pivot="rest-api" 
 
-Follow the [REST API Quickstart](../../quickstart.md#api-call-information?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
 
 ## Upload a file 
 

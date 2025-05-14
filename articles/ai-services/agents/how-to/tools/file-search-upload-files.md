@@ -446,11 +446,11 @@ for (let i = messages.data.length - 1; i >= 0; i--) {
 
 :::zone pivot="rest"
 
-## Upload files and add them to a Vector Store
+## Upload files and add them to a vector store
 
 To access your files, the file search tool uses the vector store object. Upload your files and create a vector store. After creating the vector store, poll its status until all files are out of the in_progress state to ensure that all content is fully processed. The SDK provides helpers for uploading and polling.
 
-Follow the [REST API Quickstart](../../quickstart.md#api-call-information?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
 
 ### Upload a file
 

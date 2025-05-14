@@ -413,9 +413,7 @@ for (let i = messages.data.length - 1; i >= 0; i--) {
 
 :::zone pivot="rest"
 
-## Create an Azure AI Client
-
-Follow the [REST API Quickstart](../../quickstart.md#api-call-information?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
 
 ## Get the connection ID for the Azure AI Search resource
 
@@ -461,7 +459,7 @@ Now that the agent is created, ask it questions about the data in your Azure AI 
 
 #### Create a thread
 
-```console
+```bash
 curl --request POST \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=$API_VERSION \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
@@ -471,7 +469,7 @@ curl --request POST \
 
 #### Add a user question to the thread
 
-```console
+```bash
 curl --request POST \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
@@ -483,7 +481,7 @@ curl --request POST \
 ```
 #### Run the thread
 
-```console
+```bash
 curl --request POST \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=$API_VERSION \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
@@ -495,7 +493,7 @@ curl --request POST \
 
 #### Retrieve the status of the run
 
-```console
+```bash
 curl --request GET \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=$API_VERSION \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
@@ -503,7 +501,7 @@ curl --request GET \
 
 #### Retrieve the agent response
 
-```console
+```bash
 curl --request GET \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
