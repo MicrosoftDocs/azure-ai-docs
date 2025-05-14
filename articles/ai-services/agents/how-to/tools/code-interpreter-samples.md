@@ -383,7 +383,7 @@ console.log(`Saved image file to: ${imageFileName}`);
 ## Upload a file 
 
 ```bash
-curl $AZURE_AI_AGENTS_ENDPOINT/files?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/files?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -F purpose="assistants" \
   -F file="@c:\\path_to_file\\file.csv"
@@ -392,7 +392,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/files?api-version=2024-12-01-preview \
 ## Create an agent with the code interpreter tool
 
 ```bash
-curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -412,7 +412,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
 ## Create a thread
 
 ```bash
-curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d ''
@@ -421,7 +421,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
 ## Add a user question to the thread
 
 ```bash
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -433,7 +433,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-1
 ## Run the thread
 
 ```bash
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -444,14 +444,14 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01
 ## Retrieve the status of the run
 
 ```bash
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 
 ## Retrieve the agent response
 
 ```bash
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 

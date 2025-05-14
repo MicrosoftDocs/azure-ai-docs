@@ -281,7 +281,7 @@ Finally, delete the created `PersistentAgentThread` and `PersistentAgent` to cle
 You might want to store the OpenAPI specification in another file and import the content to initialize the tool. This example is using `anonymous` as the authentication type.
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -366,7 +366,7 @@ Create a run and observe that the model uses the OpenAPI Spec tool to provide a 
 ### Create a thread
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d ''
@@ -375,7 +375,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
 ### Add a user question to the thread
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -387,7 +387,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-1
 ### Run the thread
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -398,14 +398,14 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01
 ### Retrieve the status of the run
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 
 ### Retrieve the agent response
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 

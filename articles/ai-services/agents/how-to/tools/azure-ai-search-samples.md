@@ -431,7 +431,7 @@ In the URL, you see the wsid=/subscription/your-subscription-id..., this is the 
 Using the connection ID you got in the previous step, you can now configure the Azure AI Search tool to use your Azure AI Search index.
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -461,7 +461,7 @@ Now that the agent is created, ask it questions about the data in your Azure AI 
 #### Create a thread
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d ''
@@ -470,7 +470,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
 #### Add a user question to the thread
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -481,7 +481,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-1
 #### Run the thread
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -492,14 +492,14 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01
 #### Retrieve the status of the run
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 
 #### Retrieve the agent response
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 

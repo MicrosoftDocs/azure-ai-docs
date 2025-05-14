@@ -182,7 +182,7 @@ In the sample below we create a client and an agent that has the tools definitio
 
 Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN` and `AZURE_AI_AGENTS_ENDPOINT`. Then create the agent using:
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -227,7 +227,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
 ## Create a thread for the agent
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d ''
@@ -236,7 +236,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
 ## Create a run and check the output
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -246,7 +246,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-1
 ```
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -255,14 +255,14 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01
 ```
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 
 ## Get the result of the run
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 

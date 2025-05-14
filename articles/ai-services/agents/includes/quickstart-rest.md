@@ -59,7 +59,7 @@ Set this endpoint as an environment variable named `AZURE_AI_AGENTS_ENDPOINT`.
 > With Azure AI Agents Service the `model` parameter requires model deployment name. If your model deployment name is different than the underlying model name then you would adjust your code to ` "model": "{your-custom-model-deployment-name}"`.
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -73,7 +73,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
 ### Create a thread
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d ''
@@ -82,7 +82,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
 ### Add a user question to the thread
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -94,7 +94,7 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-1
 ### Run the thread
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -105,13 +105,13 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01
 ### Retrieve the status of the run
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
 
 ### Retrieve the agent response
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
+curl $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=2025-05-01 \
   -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
 ```
