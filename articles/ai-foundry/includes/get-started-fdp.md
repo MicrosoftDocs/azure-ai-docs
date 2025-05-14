@@ -9,8 +9,6 @@ ms.date: 05/13/2025
 ms.custom: include file
 ---
 
-[!INCLUDE [fdp-rollout](fdp-rollout.md)]
-
 In this quickstart, you use [Azure AI Foundry](https://ai.azure.com) to:
 
 > [!div class="checklist"]
@@ -35,7 +33,7 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 ## Create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] 
 
 1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
-1. On the home page, select **Create the future**. This creates a project and also include steps to start working with a basic Agent.
+1. On the home page, select **Create an agent**. This creates a project and also include steps to start working with a basic Agent.
     
     :::image type="content" source="../media/quickstarts/start-building.png" alt-text="Screenshot shows how to start building an Agent in Azure AI Foundry portal.":::
 
@@ -45,7 +43,7 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. If you just used the Azure AI Foundry portal to create the project with the **Create the future** link, you're next  prompted to deploy a model.
+1. If you just used the Azure AI Foundry portal to create the project with the **Create an agent** link, you're next  prompted to deploy a model.
 1. Or else, sign in to the [Azure AI Foundry portal](https://ai.azure.com), select your project, and select **Model catalog**.
 1. Search for the model you want to deploy. For this quickstart, select **gpt-4o**.
 1. Select **Confirm**.
@@ -122,7 +120,7 @@ Chat completions are the basic building block of AI applications. Using chat com
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-1. If you used **Create the future** to create the project, you'll now find yourself in the Agents playground, ready to try it out. You'll come back here in a moment, but first let's play with the model.
+1. If you used **Create an agent** to create the project, you'll now find yourself in the Agents playground, ready to try it out. You'll come back here in a moment, but first let's play with the model.
 1. In the left pane, select **Playgrounds**. 
 1. Select **Try the chat playground**.
 1. Fill in the prompt and select the **Send** button.
