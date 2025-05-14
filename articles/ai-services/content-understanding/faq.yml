@@ -67,3 +67,9 @@ sections:
          What are the pricing tier options for Content Understanding
         answer: |
           Content Understanding only supports Standard S0 pricing tier. See more details on the [**Content Understanding pricing page**](https://azure.microsoft.com/pricing/details/content-understanding/).
+      - question: |
+          How do the face capabilities in Content Understanding differ from the Azure AI Face service?
+        answer: |
+          The face capabilities in Content Understanding build upon and enhance the Azure AI Face service. They provide a more integrated experience for analyzing faces in documents, images, and videos. Key improvements include:
+          * A new person directory that supports storing both persons and their associated faces. It allows for recognition by searching through individual faces or matching with known persons, offering greater flexibility in managing and querying face data.
+          * Streamlined recognition operations that enable you to submit an image directly for verification or identification. The system automatically detects and processes the relevant face from the image, eliminating the need for a separate face detection step.
