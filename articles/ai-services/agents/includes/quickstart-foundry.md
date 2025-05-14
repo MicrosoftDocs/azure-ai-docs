@@ -14,7 +14,7 @@ ms.date: 01/21/2025
 
 
 > [!IMPORTANT]
-> The Azure AI Foundry portal only supports basic agent set at this time. If you want to perform a standard agent setup, see the [Environment setup](../environment-setup.md) article to learn about more.  
+> The Azure AI Foundry portal only supports basic agent set at this time. If you want to perform a standard agent setup, see the [Environment setup](../environment-setup.md) article to learn about more.
 
 ## Create a Foundry account and project in Azure AI Foundry portal
 
@@ -27,7 +27,7 @@ To create an account and project in Azure AI Foundry, follow these steps:
     :::image type="content" source="../media/quickstart/foundry-landing-page.png" alt-text="A screenshot of the Azure AI Foundry portal." lightbox="../media/quickstart/foundry-landing-page.png":::
 
 
-1. Enter a name for the project. If you want to customize the default values, select **Advanced options**.    
+1. Enter a name for the project. If you want to customize the default values, select **Advanced options**.
 
     :::image type="content" source="../media/quickstart/create-project.png" alt-text="A screenshot of the advanced options for creating a project." lightbox="../media/quickstart/create-project.png":::
 

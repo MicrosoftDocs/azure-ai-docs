@@ -19,7 +19,7 @@ Use this article to find step-by-step instructions and code samples for using Op
 
 :::zone pivot="portal"
 
-1. Go to the [Azure AI Foundry portal](https://ai.azure.com/). in the **Create and debug** screen or **Agent playground**, select your agent.
+1. Go to the [Azure AI Foundry portal](https://ai.azure.com/). in the **Agents** screen or **Agent playground**, select your agent.
 1. Scroll down the **Setup** pane to **action**. Then select **Add**.
 
     :::image type="content" source="../../media/tools/action-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/action-tools.png":::
