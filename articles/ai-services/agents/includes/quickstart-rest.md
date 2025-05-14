@@ -25,6 +25,8 @@ ms.date: 02/15/2025
 | Run       | Activation of an agent to begin running based on the contents of Thread. The agent uses its configuration and Thread’s Messages to perform tasks by calling models and tools. As part of a Run, the agent appends Messages to the Thread. |
 | Run Step  | A detailed list of steps the agent took as part of a Run. An agent can call tools or create Messages during its run. Examining Run Steps allows you to understand how the agent is getting to its results.                                |
 
+## API call information
+
 To authenticate your API requests, use the [az login](/cli/azure/authenticate-azure-cli-interactively) command to sign into your Azure subscription.
 
 ```azurecli
@@ -33,25 +35,23 @@ az login
 
 Next, you will need to fetch the Entra ID token to provide as authorization to the API calls. Fetch the token using the CLI command:
 ```azurecli
-az account get-access-token --resource 'https://ml.azure.com/' | jq -r .accessToken | tr -d '"'
+az account get-access-token --resource 'https://ai.azure.com' | jq -r .accessToken | tr -d '"'
 ```
-Set the access token as an environment variable named `AZURE_AI_AGENTS_TOKEN`.
+Set the access token as an environment variable named `AGENT_TOKEN`.
 
-To successfully make REST API calls to Azure AI Agents Service, you will need to use the endpoint as below:
+To successfully make REST API calls to Azure AI Foundry Agent Service, you will need to use the endpoint as below:
 
-`https://<HostName>/agents/v1.0/subscriptions/<AzureSubscriptionId>/resourceGroups/<ResourceGroup>/providers/Microsoft.MachineLearningServices/workspaces/<ProjectName>`
-
-`HostName` can be found by navigating to your `discovery_url` and removing the leading `https://` and trailing `/discovery`. To find your `discovery_url`, run this CLI command:
-
-```azurecli
-az ml workspace show -n {project_name} --subscription {subscription_name} --resource-group {resource_group_name} --query discovery_url
-```
+`https://<your_ai_service_name>.services.ai.azure.com/api/projects/<your_project_name>`
 
 For example, your endpoint may look something like:
 
-`https://eastus.api.azureml.ms/agents/v1.0/subscriptions/12345678-abcd-1234-abcd-123456789000/resourceGroups/my-resource-group/providers/Microsoft.MachineLearningServices/workspaces/my-project-name`
+`https://exampleaiservice.services.ai.azure.com/api/projects/project`
 
-Set this endpoint as an environment variable named `AZURE_AI_AGENTS_ENDPOINT`.
+Set this endpoint as an environment variable named `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`.
+
+> [!NOTE]
+> * For `api-version` parameter, the GA API version is `2025-05-01` and the latest preview API version is `2025-05-15-preview`. You must use the preview API for tools that are in preview. 
+> * Consider making your API version an environment variable, such as `$API_VERSION`.
 
 ### Create an agent
 
@@ -59,8 +59,9 @@ Set this endpoint as an environment variable named `AZURE_AI_AGENTS_ENDPOINT`.
 > With Azure AI Agents Service the `model` parameter requires model deployment name. If your model deployment name is different than the underlying model name then you would adjust your code to ` "model": "{your-custom-model-deployment-name}"`.
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=2025-05-01 \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "instructions": "You are a helpful agent.",
@@ -73,8 +74,9 @@ curl $AZURE_AI_AGENTS_ENDPOINT/assistants?api-version=2024-12-01-preview \
 ### Create a thread
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=2025-05-01 \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d ''
 ```
@@ -82,8 +84,9 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads?api-version=2024-12-01-preview \
 ### Add a user question to the thread
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=2025-05-01 \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
       "role": "user",
@@ -94,8 +97,9 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-1
 ### Run the thread
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01-preview \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=2025-05-01 \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "assistant_id": "asst_abc123",
@@ -105,13 +109,15 @@ curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs?api-version=2024-12-01
 ### Retrieve the status of the run
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2024-12-01-preview \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+curl --request GET \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2025-05-01 \
+  -H "Authorization: Bearer $AGENT_TOKEN"
 ```
 
 ### Retrieve the agent response
 
 ```console
-curl $AZURE_AI_AGENTS_ENDPOINT/threads/thread_abc123/messages?api-version=2024-12-01-preview \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+curl --request GET \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=2025-05-01 \
+  -H "Authorization: Bearer $AGENT_TOKEN"
 ```

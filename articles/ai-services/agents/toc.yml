@@ -77,7 +77,6 @@ items:
               displayName: code interpreter
             - name: How to use code interpreter
               href: how-to/tools/code-interpreter-samples.md
-          href: how-to/tools/code-interpreter.md
         - name: Use OpenAPI defined tools
           items:
             - name: Overview
