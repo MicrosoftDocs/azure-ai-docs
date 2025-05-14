@@ -22,7 +22,6 @@ ms.date: 03/28/2025
 | Thread    | A conversation session between an agent and a user. Threads store Messages and automatically handle truncation to fit content into a model’s context.                                                                                     |
 | Message   | A message created by an agent or a user. Messages can include text, images, and other files. Messages are stored as a list on the Thread.                                                                                                 |
 | Run       | Activation of an agent to begin running based on the contents of Thread. The agent uses its configuration and Thread’s Messages to perform tasks by calling models and tools. As part of a Run, the agent appends Messages to the Thread. |
-| Run Step  | A detailed list of steps the agent took as part of a Run. An agent can call tools or create Messages during its run. Examining Run Steps allows you to understand how the agent is getting to its results.                                |
 
 Create a .NET Console project.
 
@@ -33,10 +32,10 @@ dotnet new console
 Install the .NET package to your project. For example if you're using the .NET CLI, run the following command.
 
 >[!Note]
-> Azure.AI.Projects is only available as a prelease version. Please use the "-prerelease" flag to add the package until a release version becomes available.
+> Azure.AI.Agents.Persistent is only available as a prelease version. Please use the "-prerelease" flag to add the package until a release version becomes available.
 
 ```console
-dotnet add package Azure.AI.Projects --prerelease
+dotnet add package Azure.AI.Agents.Persistent --prerelease
 dotnet add package Azure.Identity
 ```
 
@@ -56,92 +55,94 @@ For example, your connection string may look something like:
 
 `https://myresource.services.ai.azure.com/api/projects/myproject`
 
-Set this connection string as an environment variable named `PROJECT_ENDPOINT`.
+Set this connection string in an appsetting variable named `ProjectEndpoint`.
 
 
 ```csharp
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
-
-#nullable disable
-
+using Azure;
+using Azure.AI.Agents.Persistent;
 using Azure.Identity;
+using Microsoft.Extensions.Configuration;
+using System.Diagnostics;
 
-namespace Azure.AI.Projects.Tests;
+IConfigurationRoot configuration = new ConfigurationBuilder()
+    .SetBasePath(AppContext.BaseDirectory)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .Build();
 
-public class Sample_Agent
+var projectEndpoint = configuration["ProjectEndpoint"];
+var modelDeploymentName = configuration["ModelDeploymentName"];
+
+//Create a PersistentAgentsClient and PersistentAgent.
+PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
+
+//Give PersistentAgent a tool to execute code using CodeInterpreterToolDefinition.
+PersistentAgent agent = client.Administration.CreateAgent(
+    model: modelDeploymentName,
+    name: "My Test Agent",
+    instructions: "You politely help with math questions. Use the code interpreter tool when asked to visualize numbers.",
+    tools: [new CodeInterpreterToolDefinition()]
+);
+
+//Create a thread to establish a session between Agent and a User.
+PersistentAgentThread thread = client.Threads.CreateThread();
+
+//Ask a question of the Agent.
+client.Messages.CreateMessage(
+    thread.Id,
+    MessageRole.User,
+    "Hi, Agent! Draw a graph for a line with a slope of 4 and y-intercept of 9.");
+
+//Have Agent beging processing user's question with some additional instructions associated with the ThreadRun.
+ThreadRun run = client.Runs.CreateRun(
+    thread.Id,
+    agent.Id,
+    additionalInstructions: "Please address the user as Jane Doe. The user has a premium account.");
+
+//Poll for completion.
+do
 {
-    static async Task Main()
+    Thread.Sleep(TimeSpan.FromMilliseconds(500));
+    run = client.Runs.GetRun(thread.Id, run.Id);
+}
+while (run.Status == RunStatus.Queued
+    || run.Status == RunStatus.InProgress
+    || run.Status == RunStatus.RequiresAction);
+
+//Get the messages in the PersistentAgentThread. Includes Agent (Assistant Role) and User (User Role) messages.
+Pageable<ThreadMessage> messages = client.Messages.GetMessages(
+    threadId: thread.Id,
+    order: ListSortOrder.Ascending);
+
+//Display each message and open the image generated using CodeInterpreterToolDefinition.
+foreach (ThreadMessage threadMessage in messages)
+{
+    foreach (MessageContent content in threadMessage.ContentItems)
     {
-        var connectionString = Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
-
-        AgentsClient client = new AgentsClient(connectionString, new DefaultAzureCredential());
-
-        // Step 1: Create an agent
-        Response<Agent> agentResponse = await client.CreateAgentAsync(
-            model: "gpt-4o-mini",
-            name: "My Agent",
-            instructions: "You are a helpful agent.",
-            tools: new List<ToolDefinition> { new CodeInterpreterToolDefinition() });
-        Agent agent = agentResponse.Value;
-
-        // Intermission: agent should now be listed
-
-        Response<PageableList<Agent>> agentListResponse = await client.GetAgentsAsync();
-
-        //// Step 2: Create a thread
-        Response<AgentThread> threadResponse = await client.CreateThreadAsync();
-        AgentThread thread = threadResponse.Value;
-
-        // Step 3: Add a message to a thread
-        Response<ThreadMessage> messageResponse = await client.CreateMessageAsync(
-            thread.Id,
-            MessageRole.User,
-            "I need to solve the equation `3x + 11 = 14`. Can you help me?");
-        ThreadMessage message = messageResponse.Value;
-
-        // Intermission: message is now correlated with thread
-        // Intermission: listing messages will retrieve the message just added
-
-        Response<PageableList<ThreadMessage>> messagesListResponse = await client.GetMessagesAsync(thread.Id);
-        //Assert.That(messagesListResponse.Value.Data[0].Id == message.Id);
-
-        // Step 4: Run the agent
-        Response<ThreadRun> runResponse = await client.CreateRunAsync(
-            thread.Id,
-            agent.Id,
-            additionalInstructions: "");
-        ThreadRun run = runResponse.Value;
-
-        do
+        switch (content)
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(500));
-            runResponse = await client.GetRunAsync(thread.Id, runResponse.Value.Id);
-        }
-        while (runResponse.Value.Status == RunStatus.Queued
-            || runResponse.Value.Status == RunStatus.InProgress);
+            case MessageTextContent textItem:
+                Console.WriteLine($"[{threadMessage.Role}]: {textItem.Text}");
+                break;
+            case MessageImageFileContent imageFileContent:
+                Console.WriteLine($"[{threadMessage.Role}]: Image content file ID = {imageFileContent.FileId}");
+                BinaryData imageContent = client.Files.GetFileContent(imageFileContent.FileId);
+                string tempFilePath = Path.Combine(AppContext.BaseDirectory, $"{Guid.NewGuid()}.png");
+                File.WriteAllBytes(tempFilePath, imageContent.ToArray());
+                client.Files.DeleteFile(imageFileContent.FileId);
 
-        Response<PageableList<ThreadMessage>> afterRunMessagesResponse
-            = await client.GetMessagesAsync(thread.Id);
-        IReadOnlyList<ThreadMessage> messages = afterRunMessagesResponse.Value.Data;
-
-        // Note: messages iterate from newest to oldest, with the messages[0] being the most recent
-        foreach (ThreadMessage threadMessage in messages)
-        {
-            Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
-            foreach (MessageContent contentItem in threadMessage.ContentItems)
-            {
-                if (contentItem is MessageTextContent textItem)
+                ProcessStartInfo psi = new()
                 {
-                    Console.Write(textItem.Text);
-                }
-                else if (contentItem is MessageImageFileContent imageFileItem)
-                {
-                    Console.Write($"<image from ID: {imageFileItem.FileId}");
-                }
-                Console.WriteLine();
-            }
+                    FileName = tempFilePath,
+                    UseShellExecute = true
+                };
+                Process.Start(psi);
+                break;
         }
     }
 }
+
+//Clean up test resources.
+client.Threads.DeleteThread(threadId: thread.Id);
+client.Administration.DeleteAgent(agentId: agent.Id);
 ```
