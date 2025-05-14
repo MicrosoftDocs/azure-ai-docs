@@ -97,7 +97,7 @@ On the **model catalog filters**, you'll find:
   * **Batch**: best suited for cost-optimized batch jobs, and not latency. No playground support is provided for the batch deployment.
   * **Managed compute**: this option allows you to deploy a model on an Azure virtual machine. You will be billed for hosting and inferencing.
 * **Inference tasks**: you can filter models based on the inference task type.
-* **Finetune tasks**: you can filter models based on the finetune task type.
+* **Fine-tune tasks**: you can filter models based on the fine-tune task type.
 * **Licenses**: you can filter models based on the license type.
 
 On the **model card**, you'll find:
@@ -237,7 +237,7 @@ To set the public network access flag for the Azure AI Foundry hub:
 
 * If you have an Azure AI Foundry hub with a private endpoint created before July 11, 2024, standard deployments added to projects in this hub won't follow the networking configuration of the hub. Instead, you need to create a new private endpoint for the hub and create a new standard deployment in the project so that the new deployments can follow the hub's networking configuration.
 
-* If you have an Azure AI Foundry hub with MaaS deployments created before July 11, 2024, and you enable a private endpoint on this hub, the existing sstandard deployments won't follow the hub's networking configuration. For standard deployments in the hub to follow the hub's networking configuration, you need to create the deployments again.
+* If you have an Azure AI Foundry hub with MaaS deployments created before July 11, 2024, and you enable a private endpoint on this hub, the existing standard deployments won't follow the hub's networking configuration. For standard deployments in the hub to follow the hub's networking configuration, you need to create the deployments again.
 
 * Currently, [Azure OpenAI On Your Data](/azure/ai-services/openai/concepts/use-your-data) support isn't available for standard deployments in private hubs, because private hubs have the public network access flag disabled.
 
