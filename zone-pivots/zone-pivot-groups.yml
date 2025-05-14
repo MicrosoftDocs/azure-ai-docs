@@ -838,6 +838,15 @@ groups:
     title: Language Studio
   - id: rest-api
     title: REST API
+- id: usage-custom-language-features-foundry
+# Owner jboback
+  title: Usage methods
+  prompt: Choose your preferred usage method
+  pivots:
+  - id: azure-ai-foundry
+    title: Azure AI Foundry
+  - id: rest-api
+    title: REST API
 - id: programming-languages-text-analytics
 # Owner jboback
   title: Programming languages
@@ -1216,3 +1225,12 @@ groups:
     title: Python
   - id: programming-language-csharp
     title: C#
+# Owner: haileytapia
+- id: search-get-started-agentic-retrieval
+  title: Python and REST
+  prompt: Choose a usage method
+  pivots:
+  - id: python
+    title: Python
+  - id: rest
+    title: REST
