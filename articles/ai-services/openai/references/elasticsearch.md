@@ -36,7 +36,11 @@ The configurable options for Elasticsearch when using Azure OpenAI On Your Data.
 | `strictness` | integer | False | The configured strictness of the search relevance filtering. The higher of strictness, the higher of the precision but lower recall of the answer. Default is `3`.| 
 | `top_n_documents` | integer | False | The configured top number of documents to feature for the configured query. Default is `5`. |
 
-## Key and key ID authentication options
+## Authentication Options
+
+Azure OpenAI On Your Data supports multiple authentication types:
+
+### Key and key ID authentication options
 
 The authentication options for Azure OpenAI On Your Data when using an API key.
 
@@ -46,7 +50,7 @@ The authentication options for Azure OpenAI On Your Data when using an API key.
 | `key_id`|string|True|The Elasticsearch key ID to use for authentication.|
 | `type`|string|True| Must be `key_and_key_id`.|
 
-## Encoded API key authentication options
+### Encoded API key authentication options
 
 The authentication options for Azure OpenAI On Your Data when using an Elasticsearch encoded API key.
 
@@ -71,8 +75,17 @@ The details of the vectorization source, used by Azure OpenAI On Your Data when 
 |Name | Type | Required | Description |
 |--- | --- | --- | --- |
 | `endpoint`|string|True|Specifies the resource endpoint URL from which embeddings should be retrieved. It should be in the format of `https://{YOUR_RESOURCE_NAME}.openai.azure.com/openai/deployments/YOUR_DEPLOYMENT_NAME/embeddings`. The api-version query parameter isn't allowed.|
-| `authentication`| [ApiKeyAuthenticationOptions](#key-and-key-id-authentication-options)|True | Specifies the authentication options to use when retrieving embeddings from the specified endpoint.|
+| `authentication`| [ApiKeyAuthenticationOptions](#api-key-authentication-options)|True | Specifies the authentication options to use when retrieving embeddings from the specified endpoint.|
 | `type`|string|True| Must be `endpoint`.|
+
+### API key authentication options
+
+The authentication options for Azure OpenAI On Your Data when using an API key.
+
+|Name | Type | Required | Description |
+|--- | --- | --- | --- |
+| `key`|string|True|The API key to use for authentication.|
+| `type`|string|True| Must be `api_key`.|
 
 ## Model ID vectorization source
 
@@ -82,6 +95,7 @@ The details of the vectorization source, used by Azure OpenAI On Your Data when 
 |--- | --- | --- | --- |
 | `model_id`|string|True| Specifies the model ID to use for vectorization. This model ID must be defined in Elasticsearch.|
 | `type`|string|True| Must be `model_id`.|
+
 
 ## Fields mapping options
 
