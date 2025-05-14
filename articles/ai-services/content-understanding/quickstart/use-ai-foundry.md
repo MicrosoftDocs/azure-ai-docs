@@ -21,22 +21,14 @@ To get started, make sure you have the following resources and permissions:
 
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/) before you begin.
 
-* An Azure AI Foundry project created in one of the following supported regions: westus, swedencentral, or australiaeast. If you're creating a project for the first time, *see* [How to create an Azure AI Foundry project](../../../ai-foundry/how-to/create-projects.md) to learn more. It's important to note you need the proper permissions to create a project, or your admin may create one for you.
+* An AI hub created in one of the following supported regions: westus, swedencentral, or australiaeast. A hub is the collaboration environment for your team to share your project work, model endpoints, compute, connections, and security settings. If you're creating a hub for the first time, see [How to create and manage an Azure AI Foundry hub](../../../ai-foundry/how-to/create-azure-ai-resource.md)
 
 > [!IMPORTANT]
 > If your organization requires you to customize the security of storage resources, refer to [Azure AI services API access keys](../../../ai-foundry/concepts/encryption-keys-portal.md) to create resources that meet your organizations requirements through the Azure portal. To learn how to utilize customer managed keys, refer to [(Preview) Service-side storage of encrypted data when using customer-managed keys](../../../ai-foundry/concepts/encryption-keys-portal.md#preview-service-side-storage-of-encrypted-data-when-using-customer-managed-keys). 
 
 ## Create your first project in the AI Foundry portal
 
-In order to try out [the Content Understanding service in the AI Foundry](https://aka.ms/cu-landing), you have to create a project. You can create a project from the home page of AI Foundry, or the Content Understanding landing page:
-
-* The [AI Foundry home page](https://ai.azure.com/)
-
-   :::image type="content" source="../media/quickstarts/foundry-home-page.png" lightbox="../media/quickstarts/foundry-home-page.png" alt-text="Screenshot of the AI Foundry home page in AI Foundry.":::
-   
-* The [Content Understanding landing page](https://aka.ms/cu-landing)
-
-   :::image type="content" source="../media/quickstarts/" lightbox="../media/quickstarts/" alt-text="Screenshot of the Content Understanding landing page.":::
+In order to try out [the Content Understanding service in the AI Foundry](https://aka.ms/cu-landing), you have to create a project. You can create a project from the [AI Foundry home page](https://ai.azure.com/) or the [Content Understanding landing page](https://aka.ms/cu-landing)
 
  Select "Create project" from either of these pages. Give your project a friendly name, and select the hub that you already created. Once you complete the setup steps, select `Create`.
 
