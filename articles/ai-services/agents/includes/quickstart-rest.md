@@ -37,7 +37,7 @@ Next, you will need to fetch the Entra ID token to provide as authorization to t
 ```azurecli
 az account get-access-token --resource 'https://ai.azure.com' | jq -r .accessToken | tr -d '"'
 ```
-Set the access token as an environment variable named `AZURE_AI_AGENTS_TOKEN`.
+Set the access token as an environment variable named `AGENT_TOKEN`.
 
 To successfully make REST API calls to Azure AI Foundry Agent Service, you will need to use the endpoint as below:
 
@@ -61,7 +61,7 @@ Set this endpoint as an environment variable named `AZURE_AI_FOUNDRY_PROJECT_END
 ```console
 curl --request POST \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=2025-05-01 \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "instructions": "You are a helpful agent.",
@@ -76,7 +76,7 @@ curl --request POST \
 ```console
 curl --request POST \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=2025-05-01 \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d ''
 ```
@@ -86,7 +86,7 @@ curl --request POST \
 ```console
 curl --request POST \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=2025-05-01 \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
       "role": "user",
@@ -99,7 +99,7 @@ curl --request POST \
 ```console
 curl --request POST \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=2025-05-01 \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "assistant_id": "asst_abc123",
@@ -111,7 +111,7 @@ curl --request POST \
 ```console
 curl --request GET \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=2025-05-01 \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+  -H "Authorization: Bearer $AGENT_TOKEN"
 ```
 
 ### Retrieve the agent response
@@ -119,5 +119,5 @@ curl --request GET \
 ```console
 curl --request GET \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=2025-05-01 \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+  -H "Authorization: Bearer $AGENT_TOKEN"
 ```

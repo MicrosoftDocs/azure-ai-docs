@@ -547,12 +547,12 @@ Start by defining a function for your agent to call. When you create a function 
 
 ## Create an agent
 
-Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AZURE_AI_AGENTS_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
 
 ```bash
 curl --request POST \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "instructions": "You are a weather bot. Use the provided functions to answer questions.",
@@ -580,7 +580,7 @@ curl --request POST \
 ```bash
 curl --request POST \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d ''
 ```
@@ -590,7 +590,7 @@ curl --request POST \
 ```bash
 curl --request POST \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
       "role": "user",
@@ -603,7 +603,7 @@ curl --request POST \
 ```bash
 curl --request POST \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "assistant_id": "asst_abc123",
@@ -615,7 +615,7 @@ curl --request POST \
 ```bash
 curl --request GET \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+  -H "Authorization: Bearer $AGENT_TOKEN"
 ```
 
 ## Retrieve the agent response
@@ -623,7 +623,7 @@ curl --request GET \
 ```bash
 curl --request GET \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AZURE_AI_AGENTS_TOKEN"
+  -H "Authorization: Bearer $AGENT_TOKEN"
 ```
 
 ::: zone-end
