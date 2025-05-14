@@ -97,7 +97,7 @@ On the model catalog filters, you’ll find:
   * Batch: best suited for cost-optimized batch jobs, and not latency. No playground support is provided for the batch deployment.
   * Managed compute: this option allows you to deploy a model on an Azure virtual machine. You will be billed for hosting and inferencing.
 * Inference tasks: you can filter models based on the inference task type.
-* Finetune tasks: you can filter models based on the finetune task type.
+* Fine-tune tasks: you can filter models based on the fine-tune task type.
 * Licenses: you can filter models based on the license type.
 
 On the model card, you'll find:
