@@ -39,7 +39,7 @@ Content Understanding pro mode  is tailored for customers with highly complex us
 
 ### Pro mode reference data
 
-When your goal is to extract specific data points from your documents, reference data defines these data points and provides the service context it needs to validate whether the data passes the required criteria. For example, if you're looking to analyze invoices to ensure they're consistent with a contractual agreement, the signed contract serves as the reference data, allowing the service to compare the data in the contract to the individual invoices. In doing this comparison, the service applies reasoning to validate that either the invoices are in accordance with the contract or identify discrepancies and flag for further review.
+During analyzer creation, you can provide documents that can aid in providing context that can be referenced by the service at inference time. For example, if you're looking to analyze invoices to ensure they're consistent with a contractual agreement, you can supply the invoice and other relevant documents (e.g., purchase order) as inputs, and supply the contract files as reference data. The service will apply reasoning to validate the input documents according to your schema, which might be to identify discrepancies to flag for further review. Note that if your documents are within the pro mode's input document service limits, we also recommend trying to supply all of your documents as input documents if you encounter any quality issues.
 
 ### Multi-step reasoning
 
