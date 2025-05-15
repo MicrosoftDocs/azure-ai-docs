@@ -123,17 +123,19 @@ In some cases, **Standard** may not be available within your current region. If 
 
 ### Choose your training data
 
-The next step is to either choose existing prepared training data or upload new prepared training data to use when customizing your model. The **Training data** pane displays any existing, previously uploaded datasets and also provides options to upload new training data.
+The next step is to either choose existing prepared training data or upload new prepared training data to use when customizing your model by selecting **Add training data**.
+
+The **Training data** dialog displays any existing, previously uploaded datasets and also provides options to upload new training data.
 
 :::image type="content" source="../media/fine-tuning/studio-training-data.png" alt-text="Screenshot of the Training data pane for the Create custom model wizard in Azure AI Foundry portal." lightbox="../media/fine-tuning/studio-training-data.png":::
 
-- If your training data is already uploaded to the service, select **Files from Azure OpenAI Connection**.
+- If your training data is already uploaded to the service, select **Files from Connected AI resource**.
 
    - Select the file from the dropdown list shown.
 
 - To upload new training data, use one of the following options:
 
-   - Select **Local file** to upload training data from a local file.
+   - Select **Upload files** to upload training data from a local file.
 
    - Select **Azure blob or other shared web locations** to import training data from Azure Blob or another shared web location.
 
@@ -142,11 +144,11 @@ For large data files, we recommend that you import from an Azure Blob store. Lar
 > [!NOTE]
 > Training data files must be formatted as JSONL files, encoded in UTF-8 with a byte-order mark (BOM). The file must be less than 512 MB in size.
 
-### Choose your validation data
+### Choose your validation data (optional)
 
-The next step provides options to configure the model to use validation data in the training process. If you don't want to use validation data, you can choose **Next** to continue to the advanced options for the model. Otherwise, if you have a validation dataset, you can either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
+If you have a validation dataset, select **Add training data**. You can either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
 
-The **Validation data** pane displays any existing, previously uploaded training and validation datasets and provides options by which you can upload new validation data. 
+The **Validation data** dialog displays any existing, previously uploaded training and validation datasets and provides options by which you can upload new validation data. 
 
 :::image type="content" source="../media/fine-tuning/studio-validation-data.png" alt-text="Screenshot of the Validation data pane for the Create custom model wizard in Azure AI Foundry portal." lightbox="../media/fine-tuning/studio-validation-data.png":::
 
@@ -165,30 +167,23 @@ For large data files, we recommend that you import from an Azure Blob store. Lar
 > [!NOTE]
 > Similar to training data files, validation data files must be formatted as JSONL files, encoded in UTF-8 with a byte-order mark (BOM). The file must be less than 512 MB in size.
 
-### Make your model identifiable
+### Make your model identifiable (optional)
 
-We also recommend including the `suffix` parameter to make it easier to distinguish between different iterations of your fine-tuned model. `suffix` takes a string, and is set to identify the fine-tuned model. With the OpenAI Python API a string of up to 18 characters is supported that will be added to your fine-tuned model name.
+We also recommend including a `suffix` parameter to make it easier to distinguish between different iterations of your fine-tuned model. A `suffix` takes a string of up to 18 characters and is used when naming the resulting fine-tuned model.
 
+### Configure task parameters (optional)
 
-### Configure task parameters
+You may provide an optional **seed** and tune additional hyperparameters.
 
-The **Create custom model** wizard shows the parameters for training your fine-tuned model on the **Task parameters** pane. The following parameters are available:
+The **seed** controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one will be randomly generated for you.
 
+The following hyperparameters are available for tuning:
 
 |**Name**| **Type**| **Description**|
 |---|---|---|
-|`batch_size` |integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we've found that larger batch sizes tend to work better for larger datasets. The default value as well as the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. |
-| `learning_rate_multiplier` | number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. A smaller learning rate may be useful to avoid overfitting. |
-|`n_epochs` | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
-| `seed` | integer | The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one will be generated for you|
-| `Beta`| integer | Temperature parameter for the dpo loss, typically in the range 0.1 to 0.5. This controls how much attention we pay to the reference model. The smaller the beta, the more we allow the model to drift away from the reference model. As beta gets smaller the more, we ignore the reference model.  |
-
-
-:::image type="content" source="../media/fine-tuning/studio-advanced-options.png" alt-text="Screenshot of the Advanced options pane for the Create custom model wizard, with default options selected." lightbox="../media/fine-tuning/studio-advanced-options.png":::
-
-Select **Default** to use the default values for the fine-tuning job, or select **Custom** to display and edit the hyperparameter values. When defaults are selected, we determine the correct value algorithmically based on your training data.
-
-After you configure the advanced options, select **Next** to [review your choices and train your fine-tuned model](#review-your-choices-and-train-your-model).
+|**Batch Size** |integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we've found that larger batch sizes tend to work better for larger datasets. The default value as well as the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. |
+| **Learning Rate Multiplier** | number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. A smaller learning rate may be useful to avoid overfitting. |
+|**Number of Epochs** | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
 
 ### Review your choices and train your model
 
