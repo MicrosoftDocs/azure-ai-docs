@@ -35,7 +35,7 @@ To learn more Content Understanding language support, select a capability from t
 
 > [!IMPORTANT]
 >
-> * The following list of supported languages are those that have locale-aware normalization for words enabled in post-processing.
+> * The following list of supported languages have locale-aware normalization for words enabled in post-processing.
 > * Content Understanding supports different languages so we encourage you to try it out and focus on the content and not the value itself.
 
 |Language|Language code and locale|
