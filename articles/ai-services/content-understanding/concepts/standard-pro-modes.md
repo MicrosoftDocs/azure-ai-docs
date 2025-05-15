@@ -47,7 +47,7 @@ Multi-step reasoning offers the ability to decompose complex problems into a sim
 
 * Does x match y?
 * Does x pass the outlined criteria?
-* Does x scenario follow the required guidelines?
+* Does x document follow the required guidelines?
 * Does the total equal the sum of the items?
 * Find all inconsistencies between the invoice and the contract.
 
@@ -65,7 +65,7 @@ Not sure which mode is right for your scenario? The following charts compare sta
 | **Max fields** | 100 | 100 |
 | **Multiple input document processing** | No | Yes |
 | **Reference dataset integration** | No  | Yes |
-| **Multistep reasoning** | No  | Yes |
+| **Multi-step reasoning** | No  | Yes |
 
 
 ## Apply standard or pro mode to your scenarios
@@ -74,7 +74,7 @@ Not sure which mode is right for your scenario? The following charts compare sta
 
 | Scenario | Standard mode | Pro mode|
 |----|----|----|
-| **Invoice analysis** | Extract insights on invoice data at scale and enable RAG search and further data analysis and visualization. Answer questions like: <br> &bullet; Extract purchase order number, total, due date, and line items for entry into database. | Analyze invoices and contractual agreements with clients and apply multi-step reasoning to draw conclusions on that data. Answer questions like: <br> &bullet; Does this invoice fulfill the contractual agreement we have in place with this client? <br> &bullet; Does this invoice need further review |
+| **Invoice analysis** | Extract insights on invoice data at scale and enable RAG search and further data analysis and visualization. Answer questions like: <br> &bullet; Extract purchase order number, total, due date, and line items for entry into database. | Analyze invoices and contractual agreements with clients and apply multi-step reasoning to draw conclusions on that data. Answer questions like: <br> &bullet; Does this invoice fulfill the contractual agreement we have in place with this client? <br> &bullet; Does this invoice need further review? |
 | **Call center transcript analytics** | Extract insights on large volumes of call center data to gain valuable insights on sentiment, understand customer issues, and create targeted training to address major pain points. Answer questions like: <br> &bullet; What are the main issues customers are calling about? <br> &bullet; What is the average length of calls made about x issue? | Analyze call center transcript data and apply multi-step reasoning to understand how call center employees are addressing customer needs, and if they're following guidelines. Answer questions like: <br> &bullet; Did the call center employee introduce themselves? <br> &bullet; Did this answer "pass" certain criteria? |
 | **Mortgage application processing** | Extract the key values from mortgage application data and make it searchable and more easily accessible. Answer questions like: <br> &bullet;  What year was the mortgage application submitted? <br> &bullet; What are the names on the application? | Analyze supplementary supporting documentation and mortgage applications to determine whether a prospective home buyer provides all the necessary documentation to secure a mortgage. Answer questions like: <br> &bullet;  Do the names and social security numbers on the mortgage application match the supporting documentation? |
 
