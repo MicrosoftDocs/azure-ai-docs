@@ -57,15 +57,15 @@ Not sure which mode is right for your scenario? The following charts compare sta
 
 | Feature | Standard mode | Pro mode |
 |----|----|----|
-| **Large documents** | Yes  | Yes |
-| **Field mode** | Yes | Yes |
-| **Extract, classify, and generate fields** | Yes | Yes |
-| **Grounding and confidence scores** | Yes | No |
+| **Large documents** | &check;  | &check; |
+| **Field mode** | &check; | &check; |
+| **Extract, classify, and generate fields** | &check; | &check; |
+| **Grounding and confidence scores** | &check; | &cross; |
 | **Input document type** | Documents, images, video, audio | Documents |
 | **Max fields** | 100 | 100 |
-| **Multiple input document processing** | No | Yes |
-| **Reference dataset integration** | No  | Yes |
-| **Multi-step reasoning** | No  | Yes |
+| **Multiple input document processing** | &cross; | &check; |
+| **Reference dataset integration** | &cross;  | &check; |
+| **Multi-step reasoning** | &cross;  | &check; |
 
 
 ## Apply standard or pro mode to your scenarios
