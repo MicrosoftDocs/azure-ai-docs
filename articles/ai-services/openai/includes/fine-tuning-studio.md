@@ -116,9 +116,9 @@ When selecting the model, you may also select a [previously fine-tuned model](#c
 Select the training tier you'd like to use for your fine-tuning job:
 
 - **Standard**: training occurs in the current Azure OpenAI resource's region, providing data residency.
-- **Global**: [more affordable](https://aka.ms/aoai-pricing) training per-token, does not offer [data residency](https://aka.ms/data-residency).
+- **Global (Preview)**: [more affordable](https://aka.ms/aoai-pricing) training per-token, does not offer [data residency](https://aka.ms/data-residency).
 
-If you have no data residency requirements, **Global** is a good choice to take advantage of training capacity beyond your current region. 
+If you have no data residency requirements, **Global** (in public preview) is a good choice to take advantage of training capacity beyond your current region.
 
 In some cases, **Standard** may not be available within your current region. If you require data residency, consult regions listed on the [model availability](./fine-tune-models.md) for your chosen model.
 
