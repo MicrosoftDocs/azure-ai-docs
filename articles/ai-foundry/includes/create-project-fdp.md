@@ -164,8 +164,9 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 1. Now use the following commands to create a new [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
     [!INCLUDE [cli-create-project](cli-create-project.md)]
+ -->
 
---- -->
+---
 
 CLI comannds not currently available for creating a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
 
