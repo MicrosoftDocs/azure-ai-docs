@@ -19,9 +19,9 @@ ms.date: 05/19/2025
 
 To get started, make sure you have the following resources and permissions:
 
-* An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/).
 
-* An AI hub created in one of the following supported regions: westus, swedencentral, or australiaeast. A hub is the collaboration environment for your team to share your project work, model endpoints, compute, connections, and security settings. If you're creating a hub for the first time, see [How to create and manage an Azure AI Foundry hub](../../../ai-foundry/how-to/create-azure-ai-resource.md)
+* An [Azure AI Foundry project](../../../ai-foundry/how-to/create-projects.md) created in one of the following supported regions: `westus`, `swedencentral`, or `australiaeast`. A project is used to organize your work and save state while building customized AI apps.
 
 > [!IMPORTANT]
 > If your organization requires you to customize the security of storage resources, refer to [Azure AI services API access keys](../../../ai-foundry/concepts/encryption-keys-portal.md) to create resources that meet your organizations requirements through the Azure portal. To learn how to utilize customer managed keys, refer to [(Preview) Service-side storage of encrypted data when using customer-managed keys](../../../ai-foundry/concepts/encryption-keys-portal.md#preview-service-side-storage-of-encrypted-data-when-using-customer-managed-keys). 
@@ -30,8 +30,15 @@ To get started, make sure you have the following resources and permissions:
 
 In order to try out [the Content Understanding service in the AI Foundry](https://aka.ms/cu-landing), you have to create a project. You can create a project from the [AI Foundry home page](https://ai.azure.com/) or the [Content Understanding landing page](https://aka.ms/cu-landing)
 
- Select "Create project" from either of these pages. Give your project a friendly name, and select the hub that you already created. Once you complete the setup steps, select `Create`.
+To create a project in [Azure AI Foundry](https://ai.azure.com), follow these steps:
 
+1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com).
+1. Select **+ Create project**.
+1. Enter a name for the project. Keep all the other settings as default.
+1. Select **Customize** to specify properties of the hub.
+1. For **Region**. You must choose `westus`, `swedencentral`, or `australiaeast`.
+1. Select **Next**.
+1. Select **Create project**.
 
 ## Sharing your project
 
@@ -85,5 +92,4 @@ Now you successfully built your first Content Understanding analyzer, and are re
 
 ## Next steps
 
- * In this quickstart, you learned how to create a Content Understanding analyzer using the Azure AI Foundry. To use the Content Understanding [REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true), see the [REST API quickstart](use-rest-api.md).
-
+ * Learn more about creating and using [analyzer templates](../concepts/analyzer-templates.md) in the Azure AI Foundry.
