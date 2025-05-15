@@ -10,7 +10,7 @@ ms.topic: overview
 ms.date: 05/19/2025
 ---
 
-# Azure AI Content Understanding classifier
+# Content Understanding classifier
 
 > [!IMPORTANT]
 >
@@ -19,7 +19,7 @@ ms.date: 05/19/2025
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Azure AI Content Understanding classifier enables you to detect and identify documents you process within your application. Content Understanding classifier performs classification of an input file one page at a time to identify the documents within and can also identify multiple documents or multiple instances of a single document within an input file.
+Azure AI Content Understanding classifier enables you to detect and identify documents you process within your application. Content Understanding classifier can perform classification of an input file as a whole, or identify multiple documents or multiple instances of a single document within an input file.
 
 ## Business use cases
 
@@ -44,7 +44,7 @@ Content Understanding classifier doesn't require any training dataset. Define up
 
 However, when you have more than one document in a file, the classifier can identify the different document types contained within the input file with splitting capability. The classifier response contains the page ranges for each of the identified document types contained within a file. This response can include multiple instances of the same document type.
 
-When you call the classifier, the `analyze` operation includes a `splitMode` property that gives you granular control over the splitting behavior.
+When you call the classifier, the `analyze` operation includes a `splitMode` property that gives you granular control over the splitting behavior. You can also specify the page numbers to analyze only certain pages of the input document.
 
 * To treat the entire input file as a single document for classification set the `splitMode` to `none`. When you do so, the service returns just one category for the entire input file.
 * To classify each page of the input file, set the `splitMode` to `perPage`. The service attempts to classify each page as an individual document.
@@ -58,19 +58,7 @@ For a complete end to end flow, you may link classifier categories with existing
 
 ### Classifier limits
 
-* Classifier requires at least one distinct category to be defined. Response contains the page ranges for each of the categories of documents identified.
-
-* The maximum allowed number of categories is 50.
-
-* The maximum length of input file is 300 pages.
-
-* For each category name and description, there's a limit of 120 characters combined.
-
-* By default, there's an `$other` class as well, which we utilize to categorize the pages into for cases where any of the defined categories doesn't seem suitable.
-
-Classifier categorizes each page of the input document, unless specified, to one of the defined categories. You can specify the page numbers to analyze in the input document as well.
-
-For detailed information on supported input document formats, refer to our [Service quotas and limits](../service-limits.md) page.
+For information on supported input document formats and classifier limits, refer to our [Service quotas and limits](../service-limits.md#classifier) page.
 
 
 ### Best practices
