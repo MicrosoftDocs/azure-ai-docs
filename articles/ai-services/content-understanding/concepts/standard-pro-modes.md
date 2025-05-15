@@ -16,7 +16,8 @@ Azure AI Content Understanding is an advanced generative AI service designed to 
 
 * **Standard**: This mode serves as the default solution for processing diverse content types. It's optimized to provide efficient schema extraction tailored to specific tasks across all data formats. This mode emphasizes cost-effectiveness and reduced latency, ensuring structured insights are accessible for your general processing needs.
 
-* **Pro**: This mode is designed for advanced use cases, particularly those requiring multi-step reasoning, and complex decision-making. It supports complex tasks such as identifying inconsistencies, drawing inferences, and making sophisticated decisions. The pro mode allows input from multiple content files and includes the option to reference external data for enriched and validated results. Currently, pro mode is only offered for your document-based data.
+* **Pro**: This mode is designed for advanced use cases, particularly those requiring multi-step reasoning and complex decision-making (for instance, identifying inconsistencies, drawing inferences, and making sophisticated decisions). The pro mode allows input from multiple content files and includes the option to provide reference data at analyzer creation time. Currently, pro mode is only offered for your document-based data.
+
 
 ## Standard mode overview
 
