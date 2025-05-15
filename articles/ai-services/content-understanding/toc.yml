@@ -43,10 +43,10 @@ items:
               - name: Overview
                 displayName: document, text, images, video, audio, visual, structured, content, field, extraction
                 href: document/overview.md
-              - name: Document elements
+              - name: 🆕 Document elements
                 displayName: document, text, images, video, audio, visual, structured, content, field, extraction
                 href: document/elements.md
-              - name: Markdown elements
+              - name: 🆕 Markdown
                 displayName: document, text, images, video, audio, visual, structured, content, field, extraction
                 href: document/markdown.md
           - name: Image
@@ -77,18 +77,18 @@ items:
             href: concepts/retrieval-augmented-generation.md
       - name: Tutorials
         items:
-          - name: Create a custom analyzer
+          - name: 🆕 Create a custom analyzer
             displayName: custom, analyzer, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
             href: tutorial/create-custom-analyzer.md
           - name: Build a retrieval-augmented solution
             displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
             href: tutorial/build-rag-solution.md
-  - name: Classifiers
+  - name: 🆕 Classifiers
     items:
-      - name: 🆕 Classifiers overview
+      - name: Classifiers overview
         displayName: classifier, text, images, video, audio, multimodal, visual, structured, content, field, extraction
         href: concepts/classifier.md
-  - name: Face
+  - name: 🆕 Face
     items:
       - name: Face overview
         displayName: face, recognition, detection, analysis, identification, verification
