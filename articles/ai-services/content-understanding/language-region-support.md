@@ -11,7 +11,7 @@ ms.custom: references_regions, ignite-2024-understanding-release
 ms.date: 05/19/2025
 ---
 
-# Content Understanding region and language support
+# Azure AI Content Understanding region and language support
 
 Azure AI Content Understanding schemas provide multilingual multimodal processing support. Our language and regional support capabilities enable users to communicate with Content Understanding applications in natural ways and empower global outreach. The following tables list the available region, language, and locale support by modality.
 

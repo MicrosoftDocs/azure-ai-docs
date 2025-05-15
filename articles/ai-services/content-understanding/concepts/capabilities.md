@@ -11,7 +11,7 @@ ms.date: 05/19/2025
 ms.custom: 2025-understanding-release
 ---
 
-# Content Understanding Capabilities (preview)
+# Azure AI Content Understanding Capabilities (preview)
 
 > [!IMPORTANT]
 >

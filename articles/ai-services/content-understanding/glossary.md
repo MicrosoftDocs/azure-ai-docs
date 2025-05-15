@@ -10,7 +10,7 @@ ms.date: 05/19/2025
 ms.author: lajanuar
 ---
 
-# Content understanding terminologies
+# Azure AI Content Understanding terminologies
 
 | Term | Description |
 |:---------|:----------|
