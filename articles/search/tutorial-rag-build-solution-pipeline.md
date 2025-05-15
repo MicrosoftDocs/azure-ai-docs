@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: tutorial
-ms.date: 03/24/2025
+ms.date: 05/08/2025
 ---
 
 # Tutorial: Build an indexing pipeline for RAG on Azure AI Search
