@@ -42,22 +42,22 @@ zone_pivot_groups: selection-bing-custom-grounding
 Create a client object, which will contain the connection string for connecting to your AI project and other resources.
 
 ```python
-
 import os
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import MessageRole, BingCustomSearchTool
 from azure.identity import DefaultAzureCredential
 
 
-# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
-# At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
-# Customer needs to login to Azure subscription via Azure CLI and set the environment variables
+# Create an Azure AI Client from an endpoint, copied from your Azure AI Foundry project.
+# You need to login to Azure subscription via Azure CLI and set the environment variables
+project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
 
-project_client = AIProjectClient.from_connection_string(
-    credential=DefaultAzureCredential(),
-    conn_str=os.environ["PROJECT_CONNECTION_STRING"],
+# Create an AIProjectClient instance
+project_client = AIProjectClient(
+    endpoint=project_endpoint,
+    credential=DefaultAzureCredential(),  # Use Azure Default Credential for authentication
+    api_version="latest",
 )
-
 ```
 
 
@@ -95,8 +95,8 @@ print(f"Created thread, ID: {thread.id}")
 # Create message to thread
 message = project_client.agents.create_message(
     thread_id=thread.id,
-    role="user",
-    content="What is the top news today",
+    role=MessageRole.USER,
+    content="How many medals did the USA win in the 2024 summer olympics?",
 )
 print(f"Created message, ID: {message.id}")
 ```

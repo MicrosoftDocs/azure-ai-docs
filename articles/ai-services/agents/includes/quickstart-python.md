@@ -51,33 +51,31 @@ For example, your connection string may look something like:
 
 Set this connection string as an environment variable named `PROJECT_ENDPOINT`.
 
-
 ```python
 import os
-import os, time
-from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from pathlib import Path
+from azure.identity import DefaultAzureCredential
+from azure.ai.agents.models import CodeInterpreterTool
 
-# Retrieve the project endpoint from environment variables
-project_endpoint = os.environ["PROJECT_ENDPOINT"]
+# Create an Azure AI Client from an endpoint, copied from your Azure AI Foundry project.
+# You need to login to Azure subscription via Azure CLI and set the environment variables
+project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
 
-# Initialize the AIProjectClient
+# Create an AIProjectClient instance
 project_client = AIProjectClient(
     endpoint=project_endpoint,
-    credential=DefaultAzureCredential(),
+    credential=DefaultAzureCredential(),  # Use Azure Default Credential for authentication
     api_version="latest",
 )
 
-# Initialize the FunctionTool with user-defined functions
-functions = FunctionTool(functions=user_functions)
-
+code_interpreter = CodeInterpreterTool()
 with project_client:
-    # Create an agent with custom functions
+    # Create an agent with the Bing Grounding tool
     agent = project_client.agents.create_agent(
-        model=os.environ["MODEL_DEPLOYMENT_NAME"],
-        name="my-agent",
-        instructions="You are a helpful agent"
+        model=os.environ["MODEL_DEPLOYMENT_NAME"],  # Model deployment name
+        name="my-agent",  # Name of the agent
+        instructions="You are a helpful agent",  # Instructions for the agent
+        tools=code_interpreter.definitions,  # Attach the tool
     )
     print(f"Created agent, ID: {agent.id}")
 
@@ -85,15 +83,15 @@ with project_client:
 thread = project_client.agents.threads.create()
 print(f"Created thread, ID: {thread.id}")
 
-# Create a message in the thread
+# Add a message to the thread
 message = project_client.agents.messages.create(
     thread_id=thread.id,
     role="user",  # Role of the message sender
-    content="When was Microsoft founded?",  # Message content
+    content="What is the weather in Seattle today?",  # Message content
 )
 print(f"Created message, ID: {message['id']}")
 
-# Create and process an agent run in the thread
+ Create and process an agent run
 run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 print(f"Run finished with status: {run.status}")
 
@@ -101,12 +99,12 @@ print(f"Run finished with status: {run.status}")
 if run.status == "failed":
     print(f"Run failed: {run.last_error}")
 
-# Fetch and log all messages from the thread
+# Fetch and log all messages
 messages = project_client.agents.messages.list(thread_id=thread.id)
 for message in messages.data:
     print(f"Role: {message.role}, Content: {message.content}")
 
-# Delete the agent after use
+# Delete the agent when done
 project_client.agents.delete_agent(agent.id)
 print("Deleted agent")
 ```

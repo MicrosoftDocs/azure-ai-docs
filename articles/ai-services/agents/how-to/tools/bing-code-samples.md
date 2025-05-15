@@ -55,16 +55,17 @@ Create a client object, which will contain the connection string for connecting 
 import os
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
-from azure.ai.projects.models import BingGroundingTool
+from azure.ai.agents.models import BingGroundingTool
 
+# Create an Azure AI Client from an endpoint, copied from your Azure AI Foundry project.
+# You need to login to Azure subscription via Azure CLI and set the environment variables
+project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
 
-# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
-# At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<HubName>"
-# Customer needs to login to Azure subscription via Azure CLI and set the environment variables
-
-project_client = AIProjectClient.from_connection_string(
-    credential=DefaultAzureCredential(),
-    conn_str=os.environ["PROJECT_CONNECTION_STRING"],
+# Create an AIProjectClient instance
+project_client = AIProjectClient(
+    endpoint=project_endpoint,
+    credential=DefaultAzureCredential(),  # Use Azure Default Credential for authentication
+    api_version="latest",
 )
 ```
 
@@ -74,24 +75,18 @@ project_client = AIProjectClient.from_connection_string(
 To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/).
 
 ```python
-bing_connection = project_client.connections.get(
-    connection_name=os.environ["BING_CONNECTION_NAME"]
-)
-conn_id = bing_connection.id
+conn_id = os.environ["BING_CONNECTION_NAME"]  # Ensure the BING_CONNECTION_NAME environment variable is set
 
-print(conn_id)
-
-# Initialize agent bing tool and add the connection id
+# Initialize the Bing Grounding tool
 bing = BingGroundingTool(connection_id=conn_id)
 
-# Create agent with the bing tool and process assistant run
 with project_client:
+    # Create an agent with the Bing Grounding tool
     agent = project_client.agents.create_agent(
-        model="gpt-4o",
-        name="my-assistant",
-        instructions="You are a helpful assistant",
-        tools=bing.definitions,
-        headers={"x-ms-enable-preview": "true"}
+        model=os.environ["MODEL_DEPLOYMENT_NAME"],  # Model deployment name
+        name="my-agent",  # Name of the agent
+        instructions="You are a helpful agent",  # Instructions for the agent
+        tools=bing.definitions,  # Attach the Bing Grounding tool
     )
     print(f"Created agent, ID: {agent.id}")
 ```
@@ -99,17 +94,17 @@ with project_client:
 ## Create a thread
 
 ```python
-# Create thread for communication
-thread = project_client.agents.create_thread()
+# Create a thread for communication
+thread = project_client.agents.threads.create()
 print(f"Created thread, ID: {thread.id}")
 
-# Create message to thread
-message = project_client.agents.create_message(
+# Add a message to the thread
+message = project_client.agents.messages.create(
     thread_id=thread.id,
-    role="user",
-    content="What is the top news today",
+    role="user",  # Role of the message sender
+    content="What is the weather in Seattle today?",  # Message content
 )
-print(f"Created message, ID: {message.id}")
+print(f"Created message, ID: {message['id']}")
 ```
 
 ## Create a run and check the output
@@ -118,26 +113,22 @@ Create a run and observe that the model uses the Grounding with Bing Search tool
 
 
 ```python
-# Create and process agent run in thread with tools
-run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+# Create and process an agent run
+run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 print(f"Run finished with status: {run.status}")
 
-# Retrieve run step details to get Bing Search query link
-# To render the webpage, we recommend you replace the endpoint of Bing search query URLs with `www.bing.com` and your Bing search query URL would look like "https://www.bing.com/search?q={search query}"
-run_steps = project_client.agents.list_run_steps(run_id=run.id, thread_id=thread.id)
-run_steps_data = run_steps['data']
-print(f"Last run step detail: {run_steps_data}")
-
+# Check if the run failed
 if run.status == "failed":
     print(f"Run failed: {run.last_error}")
 
-# Delete the assistant when done
+# Fetch and log all messages
+messages = project_client.agents.messages.list(thread_id=thread.id)
+for message in messages.data:
+    print(f"Role: {message.role}, Content: {message.content}")
+
+# Delete the agent when done
 project_client.agents.delete_agent(agent.id)
 print("Deleted agent")
-
-# Fetch and log all messages
-messages = project_client.agents.list_messages(thread_id=thread.id)
-print(f"Messages: {messages}")
 ```
 
 

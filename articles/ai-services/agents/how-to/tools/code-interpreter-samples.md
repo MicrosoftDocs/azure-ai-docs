@@ -45,14 +45,19 @@ The code begins by setting up the necessary imports and initializing the AI Proj
 ```python
 import os
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import CodeInterpreterTool
-from azure.ai.projects.models import FilePurpose, MessageRole
 from azure.identity import DefaultAzureCredential
-from pathlib import Path
+from azure.ai.agents.models import CodeInterpreterTool
 
-project_client = AIProjectClient.from_connection_string(
-    credential=DefaultAzureCredential(), 
-    conn_str=os.environ["PROJECT_CONNECTION_STRING"]
+
+# Create an Azure AI Client from an endpoint, copied from your Azure AI Foundry project.
+# You need to login to Azure subscription via Azure CLI and set the environment variables
+project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
+
+# Create an AIProjectClient instance
+project_client = AIProjectClient(
+    endpoint=project_endpoint,
+    credential=DefaultAzureCredential(),  # Use Azure Default Credential for authentication
+    api_version="latest",
 )
 ```
 
@@ -80,8 +85,8 @@ An agent is created with the Code Interpreter capabilities:
 ```python
 agent = project_client.agents.create_agent(
     model=os.environ["MODEL_DEPLOYMENT_NAME"],
-    name="my-assistant",
-    instructions="You are helpful assistant",
+    name="my-agent",
+    instructions="You are helpful agent",
     tools=code_interpreter.definitions,
     tool_resources=code_interpreter.resources,
 )

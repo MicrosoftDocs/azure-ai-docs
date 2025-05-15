@@ -134,9 +134,9 @@ items:
       - name: Azure SDK
         items:
         - name: C#
-          href: /dotnet/api/overview/azure/ai.projects-readme
+          href: /dotnet/api/overview/azure/ai.agents.persistent-readme
         - name: Python
-          href: /python/api/overview/azure/ai-projects-readme
+          href: /python/api/overview/azure/ai-agents-readme
         - name: JavaScript
           href: /javascript/api/overview/azure/ai-projects-readme
       - name: OpenAI SDK
