@@ -101,6 +101,34 @@ Before following the steps in this article, make sure you have the following pre
     * `Microsoft.MachineLearningServices/workspaces/privateEndpointConnections/read`
     * `Microsoft.MachineLearningServices/workspaces/privateEndpointConnections/write`
 
+* To establish private endpoint connections in managed virtual networks using Azure Machine Learning, the workspace managed identity, whether system-assigned or user-assigned, must have permissions to approve the Private Endpoint connections on the target resources. After April 30th, 2025, permissions aren't automatically granted to the managed identity and must be assigned manually.
+
+    Microsoft recommends assigning the _Azure AI Enterprise Network Connection Approver_ role to the managed identity. The following list contains the private endpoint target resource types covered by the __Azure AI Enterprise Network Connection Approver__ role:
+
+    * Azure Application Gateway
+    * Azure Monitor
+    * Azure AI Search
+    * Event Hubs
+    * Azure SQL Database
+    * Azure Storage
+    * Azure Machine Learning workspace
+    * Azure Machine Learning registry
+    * Azure AI Foundry
+    * Azure Key Vault
+    * Azure CosmosDB
+    * Azure Database for MySQL
+    * Azure Database for PostgreSQL
+    * Azure AI Services
+    * Azure Cache for Redis
+    * Container Registry
+    * API Management
+
+    If you would like to create a custom role instead, see [Azure AI Enterprise Network Connection Approver role](/azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-enterprise-network-connection-approver) to add the specific actions for each resource type.
+
+    For creating private endpoint outbound rules to target resource types not covered by the _Azure AI Enterprise Network Connection Approver_ role, such as Azure Data Factory, Azure Databricks, and Azure Function Apps, a custom scoped-down role is recommended, defined only by the actions necessary to approve private endpoint connections on the target resource types.
+
+    For creating Private Endpoint outbound rules to default workspace resources, the required permissions are automatically covered by the role assignments granted during workspace creation, so no additional action is needed.
+
 * The [Azure CLI](/cli/azure/) and the `ml` extension to the Azure CLI. For more information, see [Install, set up, and use the CLI (v2)](how-to-configure-cli.md).
 
     >[!TIP]
@@ -173,33 +201,6 @@ Before following the steps in this article, make sure you have the following pre
 
 ---
 
-> [!NOTE]
-> To establish private endpoint connections in managed virtual networks using Azure Machine Learning, the workspace managed identity, whether system-assigned or user-assigned, must have permissions to approve the Private Endpoint connections on the target resources. Previously, this was done through automatic role assignments by the Azure Machine Learning service. However, there are security concerns about the automatic role assignment. To improve security, starting April 30th, 2025, we will discontinue this automatic permission grant logic. We recommend assigning the _Azure AI Enterprise Network Connection Approver_ role or a custom role with the necessary private endpoint connection permissions on the target resource types and grant this role to the Azure Machine Learning workspace's managed identity to allow Azure Machine Learning services to approve Private Endpoint connections to the target Azure resources.
-> 
-> Here's the list of private endpoint target resource types covered by the _Azure AI Enterprise Network Connection Approver_ role:
-> * Azure Application Gateway
-> * Azure Monitor
-> * Azure AI Search
-> * Event Hubs
-> * Azure SQL Database
-> * Azure Storage
-> * Azure Machine Learning workspace
-> * Azure Machine Learning registry
-> * Azure AI Foundry
-> * Azure Key Vault
-> * Azure CosmosDB
-> * Azure Database for MySQL
-> * Azure Database for PostgreSQL
-> * Azure AI Services
-> * Azure Cache for Redis
-> * Container Registry
-> * API Management
-> 
-> If you would like to create a custom role instead, see [Azure AI Enterprise Network Connection Approver role](/azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-enterprise-network-connection-approver) to add the specific actions for each resource type.
-> 
-> For creating private endpoint outbound rules to target resource types not covered by the _Azure AI Enterprise Network Connection Approver_ role, such as Azure Data Factory, Azure Databricks, and Azure Function Apps, a custom scoped-down role is recommended, defined only by the actions necessary to approve private endpoint connections on the target resource types.
-> 
-> For creating Private Endpoint outbound rules to default workspace resources, the required permissions are automatically covered by the role assignments granted during workspace creation, so no additional action is needed.
 
 ## Configure a managed virtual network to allow internet outbound
 
