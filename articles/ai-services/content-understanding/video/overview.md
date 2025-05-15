@@ -20,6 +20,8 @@ ms.date: 05/19/2025
 
 Azure AI Content Understanding allows you to generate a standard set of video metadata and create custom fields for your specific use case using the power of generative models. Content Understanding helps efficiently manage, categorize, retrieve, and build workflows for video assets. It enhances your media asset library, supports workflows such as highlight generation, categorizes content, and facilitates applications like retrieval-augmented generation (RAG).
 
+:::image type="content" source="../media/video/video-processing-flow.png" alt-text="Illustration of the Content Understanding video processing flow.":::
+
 The **pre-built video analyzer** outputs RAG-ready Markdown that includes:
 
 - **Transcript:** Inline transcripts in standard WEBVTT format
@@ -32,7 +34,7 @@ This format can drop straight into a vector store to enable an agent or RAG work
 From there you can **customize the analyzer** for more fine-grained control of the output. You can define custom fields, segments, or enable face identification. Customization allows you to use the full power of generative models to extract deep insights from the visual and audio details of the video. For example, customization allows you to:
 
 - Identify what products and brands are seen or mentioned in the video.
-- Segment a basketball video by different plays such as `offensive play`, `defensive play`, `free throw`.
+- Segment a news broadcast into chapters based on the topics or news stories discussed.
 - Use face identification to label speakers as executives, for example, `CEO John Doe`, `CFO Jane Smith`.
 
 ## Why use Content Understanding for video?
@@ -46,7 +48,7 @@ Content understanding for video has broad potential uses. For example, you can c
 
 ## Prebuilt video analyzer example
 
-With the prebuilt video analyzer, you can upload a video and get an immediately usable knowledge asset. The service packages every clip into both richly formatted Markdown and JSON. This process allows your search index or chat agent to ingest without custom glue code.
+With the prebuilt video analyzer (prebuilt-videoAnalyzer), you can upload a video and get an immediately usable knowledge asset. The service packages every clip into both richly formatted Markdown and JSON. This process allows your search index or chat agent to ingest without custom glue code.
 Calling prebuilt-video with no custom schema returns a document like the following (abridged) example:
 
 ```markdown
@@ -102,18 +104,17 @@ The service operates in two stages. The first stage, content extraction, involve
 
 The first pass is all about extracting a first set of details—who's speaking, where are the cuts, and which faces recur. It creates a solid metadata backbone that later steps can reason over.
 
-* **Transcription:** Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Sentence-level and word-level timestamps are available upon request. Content Understanding supports the full set of Azure AI Speech speech-to-text languages. For languages with Fast transcriptions support and for files ≤ 300 MB and/or ≤ 2 hours, transcription time is reduced substantially. Additionally, the following transcription details are important to consider:
-  * **Diarization:** Distinguishes between speakers in a conversation in the output, attributing parts of the transcript to specific speakers.
-  * **Multilingual transcription:** Generates multilingual transcripts, applying language/locale per phrase. Deviating from language detection this feature is enabled when no language/locale is specified or language is set to `auto`.
+* **Transcription:** Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Sentence-level timestamps are available if `returnDetails=true` is set. Content Understanding supports the full set of Azure AI Speech speech-to-text languages. For more information on supported languages, *see* [Language and region support](../language-region-support.md#language-support). The following transcription details are important to consider:
 
-    > [!WARNING]
-    > When multilingual transcription is used, a file with an unsupported locale still produces a result. This result is based on the closest locale but most likely not correct.
-    > This transcription behavior is known. Make sure to configure locales when not using multilingual transcription!
-    
+  * **Diarization:** Distinguishes between speakers in a conversation in the output, attributing parts of the transcript to specific speakers.
+  * **Multilingual transcription:** Generates multilingual transcripts. Language/locale is applied per phrase in the transcript. Phrases output when `returnDetails=true` is set. Deviating from language detection this feature is enabled when no language/locale is specified or language is set to `auto`.
+
+    > [!NOTE]
+    > When Multilingual transcription is used, any files with unsupported locales produce a result based on the closest supported locale, which is likely incorrect. This result is a known
+    > behavior. Avoid transcription quality issues by ensuring that you configure locales when not using a multilingual transcription supported locale!
+
 * **Shot detection:** Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and repackaging of content with breaks exactly on shot boundaries.
 * **Key frame extraction:** Extracts key frames from videos to represent each shot completely, ensuring each shot has enough key frames to enable field extraction to work effectively.
-
-
 
 ## Field extraction and segmentation
 
@@ -127,7 +128,7 @@ Shape the output to match your business vocabulary. Use a `fieldSchema` object w
 
 * **Media asset management:**
 
-  * **Shot type:** Helps editors and producers organize content, simplifying editing, and understanding the visual language of the video. Useful for metadata tagging and quicker scene retrieval.
+  * **Video Category:** Helps editors and producers organize content, by classifying it as News, Sports, Interview, Documentary, Advertisement, etc. Useful for metadata tagging and quicker content filtering and retrieval.
   * **Color scheme:** Conveys mood and atmosphere, essential for narrative consistency and viewer engagement. Identifying color themes helps in finding matching clips for accelerated video editing.
 
 * **Advertising:**
@@ -201,12 +202,12 @@ Content Understanding offers three ways to slice a video, letting you get the ou
 Face identification description is an add-on that provides context to content extraction and field extraction using face information.
 
 > [!NOTE]
-> 
->  Face features incur additional cost. This feature is limited access and involves face identification and grouping; customers need to register for access at Face Recognition.
+>
+>  This feature is limited access and involves face identification and grouping; customers need to register for access at [Face Recognition](https://aka.ms/facerecognition). Face features incur added costs.
 
 ### Content extraction: grouping and identification
 
-The face add-on enables grouping and identification as output from the content extraction section.
+The face add-on enables grouping and identification as output from the content extraction section. To enable face capabilities set `enableFace=true` in the analyzer configuration.
 
 * **Grouping:** Grouped faces appearing in a video to extract one representative face image for each person and provides segments where each one is present. The grouped face data is available as metadata and can be used to generate customized metadata fields when `returnDetails: true` for the analyzer.
 * **Identification:** Labels individuals in the video with names based on a Face API person directory. Customers can enable this feature by supplying a name for a Face API directory in the current resource in the `personDirectoryId` property of the analyzer.
@@ -238,7 +239,7 @@ Specific limitations of video processing to keep in mind:
 
 * **Frame sampling (\~ 1 FPS)**: The analyzer inspects about one frame per second. Rapid motions or single-frame events may be missed.
 * **Frame resolution (512 × 512 px)**: Sampled frames are resized to 512 pixels square. Small text or distant objects can be lost.
-* **Speech**: Only spoken words are transcribed. Music, sound effects, and ambient noise are ignored. Specific of supported locals are document.
+* **Speech**: Only spoken words are transcribed. Music, sound effects, and ambient noise are ignored.
 
 ## Input requirements
 
@@ -257,7 +258,7 @@ See [Language and region support](../language-region-support.md).
 As with all Azure AI services, review Microsoft's [Data, protection, and privacy](https://www.microsoft.com/trust-center/privacy) documentation.
 
 > [!IMPORTANT]
-> 
+>
 > If you process **Biometric Data** (for example, enable **Face Grouping** or **Face Identification**), you must meet all notice, consent, and deletion requirements under GDPR or other applicable laws. See [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
 
 
