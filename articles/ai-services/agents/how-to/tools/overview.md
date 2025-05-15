@@ -50,7 +50,8 @@ There are various ways to influence how your AI agent invokes tools:
 
 ## Prerequisites 
 
-* [A created agent](../../quickstart.md) 
+* [A created agent](../../quickstart.md)
+* Make sure your AI model has enough Tokens-Per-Minute (TPM) allocated. We recommend having a minimum of 30k TPM. You can change the TPM allocation by going to **models + endpoints** in the [AI Foundry portal](https://ai.azure.com) and edit your model.
 
 ## Built-in tools 
 
