@@ -29,7 +29,8 @@ Or you can fine tune a previously fine-tuned model, formatted as base-model.ft-{
 Take a moment to review the fine-tuning workflow for using Azure AI Foundry portal:
 
 1. Prepare your training and validation data.
-1. Use the **Create custom model** wizard in Azure AI Foundry portal to train your custom model.
+1. Use the **Create a fine-tuned model** dialog in Azure AI Foundry portal to train your custom model.
+    1. Select a training method.
     1. Select a base model.
     1. [Choose your training data](#choose-your-training-data).
     1. Optionally, [choose your validation data](#choose-your-validation-data).
@@ -238,7 +239,7 @@ After your fine-tuned model deploys, you can use it like any other deployed mode
 
 Once you have created a fine-tuned model you may wish to continue to refine the model over time through further fine-tuning. Continuous fine-tuning is the iterative process of selecting an already fine-tuned model as a base model and fine-tuning it further on new sets of training examples.
 
-To perform fine-tuning on a model that you have previously fine-tuned you would use the same process as described in [create a customized model](#use-the-create-custom-model-wizard) but instead of specifying the name of a generic base model you would specify your already fine-tuned model. A custom fine-tuned model would look like `gpt-35-turbo-0125.ft-5fd1918ee65d4cd38a5dcf6835066ed7`
+To perform fine-tuning on a model that you have previously fine-tuned you would use the same process as described in [create a customized model](#use-the-create-custom-model-wizard) but instead of specifying the name of a generic base model you would specify your already fine-tuned model. A custom fine-tuned model would look like `gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7`
 
 :::image type="content" source="../media/fine-tuning/studio-continuous.png" alt-text="Screenshot of the Create a custom model UI with a fine-tuned model highlighted." lightbox="../media/fine-tuning/studio-continuous.png":::
 
