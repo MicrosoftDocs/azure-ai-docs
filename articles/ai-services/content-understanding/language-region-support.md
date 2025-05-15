@@ -138,7 +138,7 @@ The following table lists the supported languages/locales for **handwritten** te
 
 ### Speech transcription
 
-Content Understanding applies [Azure AI speech to text](../speech-service/speech-to-text) to transcribe spoken words in the input. For a subset of supported languages, it uses [fast transcription](../speech-service/speech-to-text.md#fast-transcription) to reduce processing latency.
+Content Understanding applies [Azure AI speech to text](../speech-service/speech-to-text.md) to transcribe spoken words in the input. For a subset of supported languages, it uses [fast transcription](../speech-service/speech-to-text.md#fast-transcription) to reduce processing latency.
 
 The following table lists the supported languages/locales for fast transcription.
 
