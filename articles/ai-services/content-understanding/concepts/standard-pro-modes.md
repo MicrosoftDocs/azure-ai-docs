@@ -16,7 +16,7 @@ Azure AI Content Understanding is an advanced generative AI service designed to 
 
 * **Standard**: This mode serves as the default solution for processing diverse content types. It's optimized to provide efficient schema extraction tailored to specific tasks across all data formats. This mode emphasizes cost-effectiveness and reduced latency, ensuring structured insights are accessible for your general processing needs.
 
-* **Pro**: This mode is designed for advanced use cases, particularly those requiring multi-step reasoning and complex decision-making (for instance, identifying inconsistencies, drawing inferences, and making sophisticated decisions). The pro mode allows input from multiple content files and includes the option to provide reference data at analyzer creation time. Currently, pro mode is only offered for your document-based data.
+* **Pro**: This mode is designed for advanced use cases, particularly those requiring multi-step reasoning, and complex decision-making (for instance, identifying inconsistencies, drawing inferences, and making sophisticated decisions). The pro mode allows input from multiple content files and includes the option to provide reference data at analyzer creation time. Currently, pro mode is only offered for your document-based data.
 
 
 ## Standard mode overview
@@ -35,11 +35,11 @@ Standard is the ideal service for extracting the exact insights you need on any 
 
 ## Pro mode overview
 
-Content Understanding pro mode is tailored for customers with complex use cases, offering multi-step reasoning capabilities and multi-input document support. It enables reasoning over both input content and reference data, making it ideal for scenarios requiring complex analysis. By incorporating reference data, pro mode adds context to each request, aiding tasks such as validation and enrichment. Currently, pro mode is exclusively available for document data.
+Content Understanding pro mode is tailored for customers with complex use cases, offering multi-step reasoning capabilities, and multi-input document support. It enables reasoning over both input content and reference data, making it ideal for scenarios requiring complex analysis. By incorporating reference data, pro mode adds context to each request, aiding tasks such as validation and enrichment. Currently, pro mode is exclusively available for document data.
 
 ### Pro mode reference data
 
-During analyzer creation, you can provide documents that can aid in providing context that can be referenced by the service at inference time. For example, if you're looking to analyze invoices to ensure they're consistent with a contractual agreement, you can supply the invoice and other relevant documents (e.g., purchase order) as inputs, and supply the contract files as reference data. The service will apply reasoning to validate the input documents according to your schema, which might be to identify discrepancies to flag for further review. Note that if your documents are within the pro mode's input document service limits, we also recommend trying to supply all of your documents as input documents if you encounter any quality issues.
+During analyzer creation, you can provide documents that can aid in providing context that references the service at inference time. For example, if you're looking to analyze invoices to ensure they're consistent with a contractual agreement, you can supply the invoice and other relevant documents (for example, a purchase order) as inputs, and supply the contract files as reference data. The service applies reasoning to validate the input documents according to your schema, which might be to identify discrepancies to flag for further review. If your documents are within the pro mode's input document service limits, we also recommend trying to supply all of your documents as input documents if you encounter any quality issues.
 
 ### Multi-step reasoning
 
