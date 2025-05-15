@@ -35,8 +35,7 @@ Standard is the ideal service for extracting the exact insights you need on any 
 
 ## Pro mode overview
 
-Content Understanding pro mode  is tailored for customers with highly complex use cases, offering advanced multi-step reasoning capabilities. It enables reasoning over both input content and reference data provided by customers, making it ideal for scenarios requiring deep comprehension and complex decision-making. By incorporating reference data, pro mode  adds context to each request, aiding tasks such as validation and enrichment, which reduces the need for human intervention and boosts productivity. For multiple input documents, it supports integration of reference datasets enriching workflows with external data for linking, validation, and enrichment. Currently, pro mode  is exclusively available for document data.
-
+Content Understanding pro mode is tailored for customers with complex use cases, offering multi-step reasoning capabilities and multi-input document support. It enables reasoning over both input content and reference data, making it ideal for scenarios requiring complex analysis. By incorporating reference data, pro mode adds context to each request, aiding tasks such as validation and enrichment. Currently, pro mode is exclusively available for document data.
 
 ### Pro mode reference data
 
