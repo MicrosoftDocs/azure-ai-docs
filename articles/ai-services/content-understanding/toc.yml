@@ -65,9 +65,6 @@ items:
   - name: Face
     displayName: face, recognition, detection, analysis, identification, verification
     href: face/overview.md
-  - name: Best practices
-    displayName: best practices, analyzers, optimization, fields
-    href: concepts/best-practices.md   
 - name: Concepts
   items:
     - name: Best practices
