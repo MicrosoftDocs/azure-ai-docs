@@ -11,7 +11,7 @@ recommendations: false
 
 
 
-Azure OpenAI in Azure AI Foundry Models includes default safety settings applied to all models, excluding audio API models such as Whisper. These configurations provide you with a responsible experience by default, including content filtering models, blocklists, prompt transformation, [content credentials](../concepts/content-credentials.md), and others. [Read more about it here](/azure/ai-services/openai/concepts/default-safety-policies). 
+Azure OpenAI in Azure AI Foundry Models includes default safety settings applied to all models (excluding audio API models such as Whisper). These configurations provide you with a responsible experience by default, including content filtering models, blocklists, prompt transformation, [content credentials](../concepts/content-credentials.md), and others. [Read more about it here](/azure/ai-services/openai/concepts/default-safety-policies). 
 
 All customers can also configure content filters and create custom content policies that are tailored to their use case requirements. The configurability feature allows customers to adjust the settings, separately for prompts and completions, to filter content for each content category at different severity levels as described in the table below. Content detected at the 'safe' severity level is labeled in annotation output but isn't subject to filtering and isn't configurable.
 
