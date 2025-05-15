@@ -32,9 +32,10 @@ Take a moment to review the fine-tuning workflow for using Azure AI Foundry port
 1. Use the **Create a fine-tuned model** dialog in Azure AI Foundry portal to train your custom model.
     1. Select a training method.
     1. Select a base model.
+    1. [Choose your training type](#choose-your-training-type)
     1. [Choose your training data](#choose-your-training-data).
-    1. Optionally, [choose your validation data](#choose-your-validation-data).
-    1. Optionally, [configure task parameters](#configure-task-parameters) for your fine-tuning job.
+    1. Optionally, [choose your validation data](#choose-your-validation-data-optional).
+    1. Optionally, [configure task parameters](#configure-training-parameters-optional) for your fine-tuning job.
     1. [Review your choices and train your new custom model](#review-your-choices-and-train-your-model).
 1. Check the status of your custom fine-tuned model.
 1. Deploy your custom model for use.
@@ -111,7 +112,7 @@ The first step is to confirm you model choice and the training method. Not all m
 
 When selecting the model, you may also select a [previously fine-tuned model](#continuous-fine-tuning).
 
-### Chose your training type
+### Choose your training type
 
 Select the training tier you'd like to use for your fine-tuning job:
 
@@ -120,7 +121,7 @@ Select the training tier you'd like to use for your fine-tuning job:
 
 If you have no data residency requirements, **Global** (in public preview) is a good choice to take advantage of training capacity beyond your current region.
 
-In some cases, **Standard** may not be available within your current region. If you require data residency, consult regions listed on the [model availability](./fine-tune-models.md) for your chosen model.
+In some cases, **Standard** may not be available within your current region. If you require data residency, consult regions listed on the [model availability](../concepts/models.md#fine-tuning-models) for your chosen model.
 
 ### Choose your training data
 
@@ -166,7 +167,7 @@ For large data files, we recommend that you import from an Azure Blob store. Lar
 
 We also recommend including a `suffix` parameter to make it easier to distinguish between different iterations of your fine-tuned model. A `suffix` takes a string of up to 18 characters and is used when naming the resulting fine-tuned model.
 
-### Configure task parameters (optional)
+### Configure training parameters (optional)
 
 You may provide an optional **seed** and tune additional hyperparameters.
 
