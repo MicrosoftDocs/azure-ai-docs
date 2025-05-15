@@ -28,7 +28,7 @@ Document analyzers can process complex documents in various formats and template
 * **Loan and mortgage applications**: Automate processing to enable quicker handling by banks, lenders, and government entities.
 * **Financial services**: Analyze complex documents like financial reports and asset management reports.
 * **Expense management**: Parse receipts and invoices from various retailers to validate expenses across different formats and templates.
-* **Document sets and knolwedge base scenarios**: Extract key fields from document sets as a whole, and add reference data to handle tasks like validation and enrichment by applying multi-step reasoning.
+* **Document sets and knowledge base scenarios**: Extract key fields from document sets as a whole, and add reference data that handle tasks like validation and enrichment by applying multi-step reasoning.
 
 ## Document analyzer capabilities
 
@@ -56,7 +56,7 @@ It precisely captures both printed and handwritten text while preserving the doc
 
 Field extraction empowers you to extract, classify, and generate structured data from various documents and forms, customized to meet your unique requirements. The process of transforming unstructured content into organized, actionable information simplifies data management, improves searchability, and supports automated workflows. For instance, you can seamlessly extract customer details, billing addresses, and itemized charges from invoices, or identify contractual parties, renewal dates, and payment terms in legal agreements. To maximize efficiency, you can utilize prebuilt analyzer templates—such as ones tailored for invoices—or design bespoke analyzers from scratch, enhancing precision through the labeling of more sample documents.
 
-Note that confidence and grounding is an opt-in feature. Please set `estimateFieldSourceAndConfidence` as `true` to opt in for confidence and grounding for field extraction.
+The confidence and grounding API is an opt-in feature. Set `estimateFieldSourceAndConfidence` as `true` to opt in for confidence and grounding for field extraction.
 
 
 #### Field extraction methods
@@ -83,7 +83,7 @@ Content Understanding delivers powerful document analysis capabilities designed 
 
 - **Enhanced accuracy and reliability:** Achieve precise extraction and classification of critical business data, significantly reducing errors and improving operational efficiency across automated workflows.
 
-- **Agents-ready:** Process diverse inputs and deliver output in a standard format that’s ready for an agent’s workflow. Outputs can give your application an understanding of user intent, with data supported by a strongly typed schema that makes it easier to quickly get data in a format ready for your code.
+- **Agents-ready:** Process your diverse input and deliver output in a standard format that's ready for an agent's workflow. Outputs can give your application an understanding of user intent, with data supported by a `strongly-typed` schema that makes it easier to quickly get data in a format ready for your code.
 
 ## Input requirements
 For detailed information on supported input document formats, refer to our [Service quotas and limits](../service-limits.md) page.
