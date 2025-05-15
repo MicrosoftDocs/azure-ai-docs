@@ -1,6 +1,6 @@
 ---
-title: Monitor model deployments in Azure AI model inference
-description: Learn how to use Azure Monitor tools like Log Analytics to capture and analyze metrics and data logs for your Azure AI model inference.
+title: Monitor model deployments in Azure AI Foundry Models
+description: Learn how to use Azure Monitor tools like Log Analytics to capture and analyze metrics and data logs for Foundry Models.
 author: santiagxf
 ms.author: fasantia 
 ms.service: azure-ai-model-inference
@@ -8,22 +8,22 @@ ms.topic: how-to
 ms.date: 4/30/2025
 ---
 
-# Monitor model deployments in Azure AI model inference
+# Monitor model deployments in Azure AI Foundry Models
 
 [!INCLUDE [Feature preview](../includes/feature-preview.md)]
 
-When you have critical applications and business processes that rely on Azure resources, you need to monitor and get alerts for your system. The Azure Monitor service collects and aggregates metrics and logs from every component of your system, including Azure AI model inference model deployments. You can use this information to view availability, performance, and resilience, and get notifications of issues.
+When you have critical applications and business processes that rely on Azure resources, you need to monitor and get alerts for your system. The Azure Monitor service collects and aggregates metrics and logs from every component of your system, including Foundry Models deployments. You can use this information to view availability, performance, and resilience, and get notifications of issues.
 
-This document explains how you can use metrics and logs to monitor model deployments in Azure AI model inference.
+This document explains how you can use metrics and logs to monitor model deployments in Foundry Models.
 
 ## Prerequisites
 
-To use monitoring capabilities for model deployments in Azure AI model inference, you need the following:
+To use monitoring capabilities for model deployments in Foundry Models, you need the following:
 
 * An Azure AI services resource. For more information, see [Create an Azure AI Services resource](quickstart-create-resources.md).
 
     > [!TIP]
-    > If you are using Serverless API Endpoints and you want to take advantage of monitoring capabilities explained in this document, [migrate your Serverless API Endpoints to Azure AI model inference](quickstart-ai-project.md).
+    > If you are using Serverless API Endpoints and you want to take advantage of monitoring capabilities explained in this document, [migrate your Serverless API Endpoints to Foundry Models](quickstart-ai-project.md).
 
 * At least one model deployment.
 
@@ -31,7 +31,7 @@ To use monitoring capabilities for model deployments in Azure AI model inference
 
 ## Metrics
 
-Azure Monitor collects metrics from Azure AI model inference automatically. **No configuration is required**. These metrics are:
+Azure Monitor collects metrics from Foundry Models automatically. **No configuration is required**. These metrics are:
 
 * Stored in the Azure Monitor time-series metrics database.
 * Lightweight and capable of supporting near real-time alerting.

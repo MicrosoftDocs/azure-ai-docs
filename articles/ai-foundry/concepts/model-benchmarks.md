@@ -62,13 +62,6 @@ See more details in accuracy scores:
 Accuracy scores are provided on a scale of zero to one. Higher values are better.
 
 
-## Safety benchmarks of language models
-
-Safety benchmarks use a standard metric Attack Success Rate to measure how vulnerable language models are to attacks in biosecurity, cybersecurity, and chemical security. Currently, the [Weapons of Mass Destruction Proxy (WMDP) benchmark](https://www.wmdp.ai/) is used to assess hazardous knowledge in language models. The lower the Attack Success Rate is, the safer is the model response. 
-
-All model endpoints are benchmarked with the default Azure AI Content Safety filters on with a default configuration. These safety filters detect and block [content harm categories](../../ai-services/content-safety/concepts/harm-categories.md) in violence, self-harm, sexual, hate, and unfairness, but do not specifically cover categories in cybersecurity, biosecurity, chemical security.
-
-
 ## Performance benchmarks of language models
 
 Performance metrics are calculated as an aggregate over 14 days, based on 24 trails (two requests per trail) sent daily with a one-hour interval between every trail. The following default parameters are used for each request to the model endpoint:
