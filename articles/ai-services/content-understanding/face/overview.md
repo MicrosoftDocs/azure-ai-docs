@@ -21,7 +21,7 @@ ms.custom: build-2025-understanding-refresh
 
 Azure AI Content Understanding provides a cloud-based solution for face detection, enrollment, and recognition, enabling secure and intelligent applications. Developers can apply these capabilities to detect faces, organize them into a structured directory, and perform recognition tasks for identity verification and content management.
 
-This service is ideal for building secure access systems, streamlining photo management, or implementing intelligent attendance and check-in solutions. It supports both standalone face records and structured person identity management, offering flexibility for various real-world scenarios.
+This service is ideal for building secure access systems, streamlining photo management, or implementing intelligent attendance and check-in solutions. It supports both standalone face records and structured person identity management, providing flexibility for various real-world scenarios.
 
 ## Business use cases
 
@@ -29,7 +29,7 @@ Content Understanding enables a wide range of real-world applications, including
 
 ##### Detect faces in images
 
-Automatically identify faces in an image and return their bounding boxes. This capability simplifies tasks like highlighting, blurring, or counting faces without manual review. Common use cases include:
+Automatically detect faces in an image and return their bounding boxes. This capability simplifies tasks like highlighting, blurring, or counting faces without manual review. Common use cases include:
 
 * Cropping detected faces for ID photos, albums, or personalized content.
 * Blurring faces to ensure privacy before sharing images publicly.
@@ -57,7 +57,7 @@ Index faces from images to enable quicker searches later without needing to repr
 
 * Extracting and saving faces from group photos at events to recognize returning participants in future sessions.
 * Processing images from school activities or sports events to easily identify students or athletes in subsequent searches.
-* Matching a theme park visitor's face to records from previous visits without rescanning years of archived photos.
+* Matching a theme park visitor's face to recent records to personalize their experience during repeat visits.
 
 ## Face capabilities
 
@@ -77,11 +77,11 @@ The person directory is a flexible system for organizing face data and identity 
 
 The person directory enables powerful search and matching functionalities:
 * **Identify candidate persons**: Match an input face to candidate persons in the directory.
-* **Find similar faces**: Search for all similar faces across the entire directory.
+* **Find similar faces**: Search for similar faces across the entire directory.
 
 ## Key benefits
 
-Content Understanding provides advanced face recognition capabilities tailored for secure, scalable, and intelligent applications:
+Content Understanding offers advanced face recognition capabilities tailored for secure, scalable, and intelligent applications:
 * **Comprehensive face intelligence**: Detect, enroll, and recognize faces seamlessly using a unified cloud-based service. It supports both standalone face records and structured person identity management.
 * **Adaptable and scalable for diverse scenarios**: Enables secure access, streamlined check-ins, customer recognition, and efficient photo management with rapid, accurate face searches across extensive collections.
 
@@ -91,5 +91,5 @@ Azure AI Content Understanding adheres to Microsoft's strict policies on custome
 
 ## Next steps
 
-* Learn to build a [**person directory**](../tutorial/build-person-directory.md).
+* Learn how to build a [**person directory**](../tutorial/build-person-directory.md).
 * Review code sample: [**person directory**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/zhizho/face/notebooks/build_person_directory.ipynb).
