@@ -110,12 +110,12 @@ while (run.Status == RunStatus.Queued
     || run.Status == RunStatus.RequiresAction);
 
 //Get the messages in the PersistentAgentThread. Includes Agent (Assistant Role) and User (User Role) messages.
-Pageable<ThreadMessage> messages = client.Messages.GetMessages(
+Pageable<PersistentThreadMessage> messages = client.Messages.GetMessages(
     threadId: thread.Id,
     order: ListSortOrder.Ascending);
 
 //Display each message and open the image generated using CodeInterpreterToolDefinition.
-foreach (ThreadMessage threadMessage in messages)
+foreach (PersistentThreadMessage threadMessage in messages)
 {
     foreach (MessageContent content in threadMessage.ContentItems)
     {
