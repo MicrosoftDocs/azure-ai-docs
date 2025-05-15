@@ -59,7 +59,7 @@ Not sure which mode is right for your scenario? The following charts compare sta
 |----|----|----|
 | **Large documents** | Yes  | Yes |
 | **Field mode** | Yes | Yes |
-| **Ability to extract, classify, and generate fields** | Yes | Yes |
+| **Extract, classify, and generate fields** | Yes | Yes |
 | **Grounding and confidence scores** | Yes | No |
 | **Input document type** | Documents, images, video, audio | Documents |
 | **Max fields** | 100 | 100 |
