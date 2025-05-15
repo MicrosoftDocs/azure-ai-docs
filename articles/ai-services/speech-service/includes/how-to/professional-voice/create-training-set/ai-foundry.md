@@ -19,63 +19,44 @@ All data you upload must meet the requirements for the data type that you choose
 
 ## Upload your data
 
+> [!TIP]
+> For a sample consent statement and training data, see the [GitHub repository](https://github.com/Azure-Samples/Cognitive-Speech-TTS/tree/master/CustomVoice/Sample%20Data). 
+
 When you're ready to upload your data, go to the **Prepare training data** tab to add your first training set and upload data. A *training set* is a set of audio utterances and their mapping scripts used for training a voice model. You can use a training set to organize your training data. The service checks data readiness per each training set. You can import multiple data to a training set.
 
 To upload training data, follow these steps:
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
+1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
+1. Select **Prepare training data** > **Upload data**. 
+1. In the **Upload data** wizard, choose a [data type](../../../../how-to-custom-voice-training-data.md). If you're using the sample data, select **Individual utterances + matching transcript**. 
 
-1. Sign in to the [Speech Studio](https://aka.ms/speechstudio/customvoice).
-1. Select **Custom voice** > Your project name > **Prepare training data** > **Upload data**. 
-1. In the **Upload data** wizard, choose a [data type](../../../../how-to-custom-voice-training-data.md) and then select **Next**.
-1. Select local files from your computer or enter the Azure Blob storage URL to upload data.
-1. Under **Specify the target training set**, select an existing training set or create a new one. If you created a new training set, make sure it's selected in the drop-down list before you continue.
+    :::image type="content" source="../../../../media/custom-voice/professional-voice/choose-training-data-type.png" alt-text="Screenshot of the page to select the training data type." lightbox="../../../../media/custom-voice/professional-voice/choose-training-data-type.png":::
+
+1. Select **Next**.
+1. On the **Specify the target training set** page, select **Create new**. 
+1. Enter a training set name and then select **Create**.
+
+    :::image type="content" source="../../../../media/custom-voice/professional-voice/create-new-training-set.png" alt-text="Screenshot of the page to create a new training set." lightbox="../../../../media/custom-voice/professional-voice/create-new-training-set.png":::
+
+1. Select **Next**.
+1. On the **Data upload** page, select a **Recording file** and **Script file** in the respective tiles. You can select local files from your computer or enter the Azure Blob storage URL to upload data.
 1. Select **Next**.
 1. Enter a name and description for your data and then select **Next**.
-1. Review the upload details, and select **Submit**.
+1. Review the upload details, and select **Upload data**.
 
 > [!NOTE]
-> Duplicate IDs are not accepted. Utterances with the same ID will be removed.
+> Duplicate IDs aren't accepted. Utterances with the same ID will be removed.
 > 
 > Duplicate audio names are removed from the training. Make sure the data you select don't contain the same audio names within the .zip file or across multiple .zip files. If utterance IDs (either in audio or script files) are duplicates, they're rejected.
 
-Data files are automatically validated when you select **Submit**. Data validation includes series of checks on the audio files to verify their file format, size, and sampling rate. If there are any errors, fix them and submit again. 
+Data files are automatically validated when you select **Upload data**. Data validation includes series of checks on the audio files to verify their file format, size, and sampling rate. If there are any errors, fix them and submit again. 
 
 After you upload the data, you can check the details in the training set detail view. On the detail page, you can further check the pronunciation issue and the noise level for each of your data. The pronunciation score at the sentence level ranges from 0-100. A score below 70 normally indicates a speech error or script mismatch. Utterances with an overall score lower than 70 will be rejected. A heavy accent can reduce your pronunciation score and affect the generated digital voice.
 
 ## Resolve data issues online
 
 After upload, you can check the data details of the training set. Before continuing to [train your voice model](../../../../professional-voice-train-voice.md), you should try to resolve any data issues.
-
-You can identify and resolve data issues per utterance in [Speech Studio](https://aka.ms/custom-voice-portal). 
-
-1. On the detail page, go to the **Accepted data** or **Rejected data** page. Select individual utterances you want to change, then select **Edit**.
-
-   :::image type="content" source="../../../../media/custom-voice/cnv-edit-trainingset.png" alt-text="Screenshot of selecting edit button on the accepted data or rejected data details page.":::
-
-   You can choose which data issues to be displayed based on your criteria.
-   
-    :::image type="content" source="../../../../media/custom-voice/cnv-issues-display-criteria.png" alt-text="Screenshot of choosing which data issues to be displayed.":::
-
-1. Edit window will be displayed.
-
-   :::image type="content" source="../../../../media/custom-voice/cnv-edit-trainingset-editscript.png" alt-text="Screenshot of displaying Edit transcript and recording file window.":::
-
-1. Update transcript or recording file according to issue description on the edit window.
-
-   You can edit transcript in the text box, then select **Done**
-
-   :::image type="content" source="../../../../media/custom-voice/cnv-edit-trainingset-scriptedit-done.png" alt-text="Screenshot of selecting Done button on the Edit transcript and recording file window.":::
-
-   If you need to update recording file, select **Update recording file**, then upload the fixed recording file (.wav).
- 
-   :::image type="content" source="../../../../media/custom-voice/cnv-edit-trainingset-upload-recording.png" alt-text="Screenshot that shows how to upload recording file on the Edit transcript and recording file window.":::
-
-1. After you've made changes to your data, you need to check the data quality by clicking **Analyze data** before using this dataset for training.
-
-   You can't select this training set for training model before the analysis is complete. 
-
-   :::image type="content" source="../../../../media/custom-voice/cnv-edit-trainingset-analyze.png" alt-text="Screenshot of selecting Analyze data on Data details page.":::
-
-   You can also delete utterances with issues by selecting them and clicking **Delete**.
 
 ### Typical data issues
 
@@ -119,7 +100,7 @@ Unresolved errors listed in the next table affect the quality of training, but d
 | Script | Non-normalized text |This script contains symbols. Normalize the symbols to match the audio. For example, normalize */* to *slash*.|
 | Script | Not enough question utterances| At least 10 percent of the total utterances should be question sentences. This helps the voice model properly express a questioning tone.|
 | Script | Not enough exclamation utterances| At least 10 percent of the total utterances should be exclamation sentences. This helps the voice model properly express an excited tone.|
-| Script | No valid end punctuation| Add one of the following at the end of the line: full stop (half-width '.' or full-width '。'), exclamation point (half-width '!' or full-width '！' ), or question mark ( half-width '?' or full-width '？').|
+| Script | No valid end punctuation| Add one of the following at the end of the line: full stop (half-width '.' or full-width '。'), exclamation point (half-width '!' or full-width '！' ), or question mark (half-width '?' or full-width '？').|
 | Audio| Low sampling rate for neural voice | It's recommended that the sampling rate of your .wav files should be 24 KHz or higher for creating neural voices. If it's lower, it will be automatically raised to 24 KHz.|
 | Volume |Overall volume too low|Volume shouldn't be lower than -18 dB (10 percent of max volume). Control the volume average level within proper range during the sample recording or data preparation.|
 | Volume | Volume overflow| Overflowing volume is detected at {}s. Adjust the recording equipment to avoid the volume overflow at its peak value.|
