@@ -22,11 +22,7 @@ In this quickstart, you can use your own data with Azure OpenAI models. Using Az
 ## Prerequisites
 
 The following resources: 
-- [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
-- [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
-- [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
-- An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
-    - Be sure that you're assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
+- 
 - Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
 
 
@@ -41,11 +37,7 @@ The following resources:
 ## Prerequisites
 
 The following resources: 
-- [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
-- [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
-- [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
-- An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
-    - Be sure that you're assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
+- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
 - The [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 
