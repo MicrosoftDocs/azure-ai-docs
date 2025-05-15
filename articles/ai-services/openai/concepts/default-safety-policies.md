@@ -1,7 +1,7 @@
 ---
-title: Azure OpenAI default content safety policies
+title: Azure OpenAI default Guidelines & controls policies
 titleSuffix: Azure OpenAI
-description: Learn about the default content safety policies that Azure OpenAI uses to flag content and ensure responsible use of the service.
+description: Learn about the default Guidelines & controls policies that Azure OpenAI uses to flag content and ensure responsible use of the service.
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-openai
@@ -10,7 +10,7 @@ ms.date: 02/20/2025
 manager: nitinme
 ---
 
-# Default content safety policies
+# Default Guidelines & controls policies
 
 
 Azure OpenAI Service includes default safety policies applied to all models, excluding Azure OpenAI Whisper. These configurations provide you with a responsible experience by default, including [content filtering models](/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cpython-new), blocklists, prompt transformation, [content credentials](/azure/ai-services/openai/concepts/content-credentials), and others.
