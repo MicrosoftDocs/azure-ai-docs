@@ -1,7 +1,7 @@
 ---
-title: 'Use your own resources in the Azure AI Agent Service'
-titleSuffix: Azure OpenAI
-description: Learn how to use resources that you already have with the Azure AI Agent Service. 
+title: 'Use your own resources in the Azure AI Foundry Agent Service'
+titleSuffix: Azure AI Foundry
+description: Learn how to use resources that you already have with the Azure AI Foundry Agent Service. 
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
