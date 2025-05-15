@@ -100,6 +100,27 @@ Azure AI Foundry portal provides the **Create custom model** wizard, so you can 
 
 1. Select a base model to fine-tune, and then select **Next** to continue.
 
+### Choose your training method
+
+The first step is to confirm you model choice and the training method. Not all models support all training methods.
+
+- **Supervised Fine Tuning** (SFT): supported by all non-reasoning models.
+- **Direct Preference Optimizatio** ([DPO](../how-to/fine-tuning-direct-preference-optimization.md): supported by GPT-4o and GPT-4.1.
+- **Reinforcement Fine Tuning** (RFT): supported by reasoning models, like o4-mini.
+
+When selecting the model, you may also select a [previously fine-tuned model](#continuous-fine-tuning).
+
+### Chose your training type
+
+Select the training tier you'd like to use for your fine-tuning job:
+
+- **Standard**: training occurs in the current Azure OpenAI resource's region, providing data residency.
+- **Global**: [more affordable](https://aka.ms/aoai-pricing) training per-token, does not offer [data residency](https://aka.ms/data-residency).
+
+If you have no data residency requirements, **Global** is a good choice to take advantage of training capacity beyond your current region. 
+
+In some cases, **Standard** may not be available within your current region. If you require data residency, consult regions listed on the [model availability](./fine-tune-models.md) for your chosen model.
+
 ### Choose your training data
 
 The next step is to either choose existing prepared training data or upload new prepared training data to use when customizing your model. The **Training data** pane displays any existing, previously uploaded datasets and also provides options to upload new training data.
@@ -144,6 +165,11 @@ For large data files, we recommend that you import from an Azure Blob store. Lar
 > [!NOTE]
 > Similar to training data files, validation data files must be formatted as JSONL files, encoded in UTF-8 with a byte-order mark (BOM). The file must be less than 512 MB in size.
 
+### Make your model identifiable
+
+We also recommend including the `suffix` parameter to make it easier to distinguish between different iterations of your fine-tuned model. `suffix` takes a string, and is set to identify the fine-tuned model. With the OpenAI Python API a string of up to 18 characters is supported that will be added to your fine-tuned model name.
+
+
 ### Configure task parameters
 
 The **Create custom model** wizard shows the parameters for training your fine-tuned model on the **Task parameters** pane. The following parameters are available:
@@ -156,7 +182,6 @@ The **Create custom model** wizard shows the parameters for training your fine-t
 |`n_epochs` | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
 | `seed` | integer | The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one will be generated for you|
 | `Beta`| integer | Temperature parameter for the dpo loss, typically in the range 0.1 to 0.5. This controls how much attention we pay to the reference model. The smaller the beta, the more we allow the model to drift away from the reference model. As beta gets smaller the more, we ignore the reference model.  |
-
 
 
 :::image type="content" source="../media/fine-tuning/studio-advanced-options.png" alt-text="Screenshot of the Advanced options pane for the Create custom model wizard, with default options selected." lightbox="../media/fine-tuning/studio-advanced-options.png":::
@@ -221,8 +246,6 @@ Once you have created a fine-tuned model you may wish to continue to refine the 
 To perform fine-tuning on a model that you have previously fine-tuned you would use the same process as described in [create a customized model](#use-the-create-custom-model-wizard) but instead of specifying the name of a generic base model you would specify your already fine-tuned model. A custom fine-tuned model would look like `gpt-35-turbo-0125.ft-5fd1918ee65d4cd38a5dcf6835066ed7`
 
 :::image type="content" source="../media/fine-tuning/studio-continuous.png" alt-text="Screenshot of the Create a custom model UI with a fine-tuned model highlighted." lightbox="../media/fine-tuning/studio-continuous.png":::
-
-We also recommend including the `suffix` parameter to make it easier to distinguish between different iterations of your fine-tuned model. `suffix` takes a string, and is set to identify the fine-tuned model. With the OpenAI Python API a string of up to 18 characters is supported that will be added to your fine-tuned model name.
 
 ## Clean up your deployments, custom models, and training files
 
