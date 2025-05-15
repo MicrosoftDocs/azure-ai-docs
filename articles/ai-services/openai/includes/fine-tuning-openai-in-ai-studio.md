@@ -31,8 +31,9 @@ Or you can fine tune a previously fine-tuned model, formatted as base-model.ft-{
 Take a moment to review the fine-tuning workflow for using Azure AI Foundry:
 
 1. Prepare your training and validation data.
-1. Use the **Fine-tune model** wizard in Azure AI Foundry portal to train your custom model.
-    1. Select a model to finetune.
+1. Use the **Create a fine-tuned model** wizard in Azure AI Foundry portal to train your custom model.
+    1. Select a training method.
+    1. Select a base model.
     1. [Choose your training data](#choose-your-training-data).
     1. Optionally, [choose your validation data](#choose-your-validation-data).
     1. Optionally, [configure your parameters](#configure-your-parameters) for your fine-tuning job.
