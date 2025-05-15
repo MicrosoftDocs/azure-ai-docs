@@ -838,6 +838,15 @@ groups:
     title: Language Studio
   - id: rest-api
     title: REST API
+- id: usage-custom-language-features-foundry
+# Owner jboback
+  title: Usage methods
+  prompt: Choose your preferred usage method
+  pivots:
+  - id: azure-ai-foundry
+    title: Azure AI Foundry
+  - id: rest-api
+    title: REST API
 - id: programming-languages-text-analytics
 # Owner jboback
   title: Programming languages
@@ -1233,3 +1242,12 @@ groups:
     title: Azure portal
   - id: cli
     title: Azure CLI
+# Owner: haileytapia
+- id: search-get-started-agentic-retrieval
+  title: Python and REST
+  prompt: Choose a usage method
+  pivots:
+  - id: python
+    title: Python
+  - id: rest
+    title: REST
