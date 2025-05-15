@@ -67,7 +67,7 @@ Available options:
 
 | Method                        | Signature                                                                 | Description                                      |
 |-------------------------------|---------------------------------------------------------------------------|--------------------------------------------------|
-| `downloadModel()`             | `(aliasOrModelId: string, force = false, onProgress?) => Promise<FoundryModelInfo>` | Downloads a model to the local cache.            |
+| `downloadModel()`             | `(aliasOrModelId: string, token?: string, force = false, onProgress?) => Promise<FoundryModelInfo>` | Downloads a model to the local cache.            |
 | `loadModel()`                 | `(aliasOrModelId: string, ttl = 600) => Promise<FoundryModelInfo>`        | Loads a model into the inference server.         |
 | `unloadModel()`               | `(aliasOrModelId: string, force = false) => Promise<void>`                | Unloads a model from the inference server.       |
 | `listLoadedModels()`          | `() => Promise<FoundryModelInfo[]>`                                       | Lists all models currently loaded in the service.|
