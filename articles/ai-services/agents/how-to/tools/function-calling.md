@@ -345,13 +345,13 @@ After the run completes, retrieve all messages from the thread to see the full c
 
 ```csharp
 // Retrieve all messages from the completed thread, oldest first
-Pageable<ThreadMessage> messages = client.Messages.GetMessages(
+Pageable<PersistentThreadMessage> messages = client.Messages.GetMessages(
     threadId: thread.Id,
     order: ListSortOrder.Ascending
 );
 
 // Iterate through each message in the thread
-foreach (ThreadMessage threadMessage in messages)
+foreach (PersistentThreadMessage threadMessage in messages)
 {
     // Iterate through content items in the message (usually just one text item)
     foreach (MessageContent content in threadMessage.ContentItems)
@@ -364,7 +364,7 @@ foreach (ThreadMessage threadMessage in messages)
                 // Print the role (user/agent) and the text content
                 Console.WriteLine($"[{threadMessage.Role}]: {textItem.Text}");
                 break;
-            // Add handling for other content types if necessary (e.g., images)
+                // Add handling for other content types if necessary (e.g., images)
         }
     }
 }
