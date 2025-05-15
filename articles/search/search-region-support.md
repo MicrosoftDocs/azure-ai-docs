@@ -19,7 +19,7 @@ This article identifies the cloud regions in which Azure AI Search is available.
 
 ## Features subject to regional availability
 
-When creating an Azure AI Search service, your region selection might depend on features that are only available in certain regions. The following table lists those region-specific features.
+When you create an Azure AI Search service, your region selection might depend on features that are only available in certain regions. The following table lists those region-specific features.
 
 | Feature | Description | Availability |
 |---------|-------------|--------------|
@@ -114,7 +114,7 @@ AI enrichment refers to internal connections to an Azure AI services multi-servi
 
 ## Azure Government regions
 
-| Region | AI enrichment | Availability zones | Agentic retreival | Semantic ranker | Query rewrite |
+| Region | AI enrichment | Availability zones | Agentic retrieval | Semantic ranker | Query rewrite |
 |--|--|--|--|--|--|
 | Arizona | ✅ |  | ✅ | ✅ |  |
 | Texas |  |  |  |  |  |
@@ -122,7 +122,7 @@ AI enrichment refers to internal connections to an Azure AI services multi-servi
 
 ## Azure operated by 21Vianet
 
-| Region | AI enrichment | Availability zones | Agentic retreival | Semantic ranker | Query rewrite |
+| Region | AI enrichment | Availability zones | Agentic retrieval | Semantic ranker | Query rewrite |
 |--|--|--|--|--|--|
 | China East |  |  |  |  |  |
 | China East 2 <sup>1</sup> | ✅ |  |  |  |
