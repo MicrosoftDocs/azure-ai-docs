@@ -1,27 +1,27 @@
 ---
-title: Featured models of Azure AI Foundry
+title: Models available for standard deployment in Azure AI Foundry
 titleSuffix: Azure AI Foundry
-description: Explore various models available within Azure AI Foundry.
+description: Explore various models available for standard deployment in Azure AI Foundry.
 manager: scottpolly
 author: msakande
 reviewer: santiagxf
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
 ms.topic: conceptual
 ms.date: 03/06/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
-ms.custom: references_regions, tool_generated
+ms.custom: references_regions
 ---
 
 # Featured models of Azure AI Foundry
 
-The Azure AI model catalog offers a large selection of models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists featured models in the model catalog that can be deployed and hosted on Microsoft's servers via serverless APIs. For some of these models, you can also host them on your infrastructure for deployment via managed compute. See [Available models for supported deployment options](../how-to/model-catalog-overview.md#available-models-for-supported-deployment-options) to find models in the catalog that are available for deployment via managed compute or serverless API.
+The Azure AI model catalog offers a large selection of Azure AI Foundry Models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists Azure AI Foundry Models that  can be deployed via standard deployment. For some of these models, you can also host them on your infrastructure for deployment via managed compute.
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
-To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Azure AI model inference](../model-inference/overview.md). You can find more details about individual models by reviewing their model cards in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
+To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Foundry Models API](../model-inference/overview.md). You can find more details about individual models by reviewing their model cards in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
 
-:::image type="content" source="../media/models-featured/models-catalog.gif" alt-text="An animation showing Azure AI studio model catalog section and the models available." lightbox="../media/models-featured/models-catalog.gif":::
+:::image type="content" source="../media/models-featured/models-catalog.gif" alt-text="An animation showing Azure AI Foundry model catalog section and the models available." lightbox="../media/models-featured/models-catalog.gif":::
 
 ## AI21 Labs
 
@@ -37,7 +37,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 ## Azure OpenAI
 
-Azure OpenAI Service offers a diverse set of models with different capabilities and price points. These models include:
+Azure OpenAI in Foundry Models offers a diverse set of models with different capabilities and price points. These models include:
 
 - State-of-the-art models designed to tackle reasoning and problem-solving tasks with increased focus and capability
 - Models that can understand and generate natural language and code
@@ -64,7 +64,7 @@ The Cohere family of models includes various models optimized for different use 
 
 ### Cohere command and embed
 
-The following table lists the Cohere models that you can inference via the  Azure AI model Inference.
+The following table lists the Cohere models that you can inference via the Foundry Models API.
 
 | Model  | Type | Capabilities | 
 | ------ | ---- | --- | 
@@ -151,7 +151,7 @@ DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks 
 | [DeepSeek-V3](https://ai.azure.com/explore/models/deepseek-v3/version/1/registry/azureml-deepseek) <br />(Legacy) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
 | [DeepSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek) | [chat-completion with reasoning content](../model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
 
-For a tutorial on DeepSeek-R1, see [Tutorial: Get started with DeepSeek-R1 reasoning model in Azure AI model inference](../model-inference/tutorials/get-started-deepseek-r1.md?context=/azure/ai-foundry/context/context).
+For a tutorial on DeepSeek-R1, see [Tutorial: Get started with DeepSeek-R1 reasoning model in Foundry Models](../model-inference/tutorials/get-started-deepseek-r1.md?context=/azure/ai-foundry/context/context).
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=deepseek).
 
@@ -250,8 +250,8 @@ See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure
 
 Mistral AI offers two categories of models, namely: 
 
-- _Premium models_: These include Mistral Large, Mistral Small, Mistral-OCR-2503, and Ministral 3B models, and are available as serverless APIs with pay-as-you-go token-based billing.  
-- _Open models_: These include Mistral-small-2503, Codestral, and Mistral Nemo (that are available as serverless APIs with pay-as-you-go token-based billing), and [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](../how-to/deploy-models-mistral-open.md)(that are available to download and run on self-hosted managed endpoints).
+- _Premium models_: These include Mistral Large, Mistral Small, Mistral-OCR-2503, and Ministral 3B models, and are available as standard deployments.   
+- _Open models_: These include Mistral-small-2503, Codestral, and Mistral Nemo (that are available as standard deployments), and [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](../how-to/deploy-models-mistral-open.md)(that are available to download and run on self-hosted managed endpoints).
 
 
 | Model  | Type | Capabilities |
@@ -350,7 +350,7 @@ The Stability AI collection of image generation models include Stable Image Core
 
 #### Inference examples: Stability AI
 
-Stability AI models deployed to serverless APIs implement the Azure AI model inference API on the route `/image/generations`.
+Stability AI models deployed via standard deployment implement the Foundry Models API on the route `/image/generations`.
 For examples of how to use Stability AI models, see the following examples:
 
 - [Use OpenAI SDK with Stability AI models for text to image requests](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Text_to_Image_openai_library.ipynb)
@@ -361,8 +361,8 @@ For examples of how to use Stability AI models, see the following examples:
 
 ## Related content
 
-- [Deploy models as serverless APIs](../how-to/deploy-models-serverless.md)
+- [Deploy models as standard deployments](../how-to/deploy-models-serverless.md)
 - [Model catalog and collections in Azure AI Foundry portal](../how-to/model-catalog-overview.md)
-- [Region availability for models in serverless API endpoints](../how-to/deploy-models-serverless-availability.md)
-- [Content safety for models curated by Azure AI in the model catalog](model-catalog-content-safety.md)
+- [Region availability for models in standard deployments](../how-to/deploy-models-serverless-availability.md)
+- [Content safety for  Models Sold Directly by Azure ](model-catalog-content-safety.md)
 

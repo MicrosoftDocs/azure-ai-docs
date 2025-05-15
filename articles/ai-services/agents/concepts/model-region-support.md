@@ -27,7 +27,7 @@ All deployments can perform the exact same inference operations, however the bil
 Azure AI Foundry Agent Service supports the following Azure OpenAI models in the listed regions.
 
 > [!NOTE]
-> The following table is for pay-as-you-go. For information on Provisioned Throughput Unit (PTU) availability, see [provisioned throughput](../../openai/concepts/provisioned-throughput.md) in the Azure OpenAI documentation. `GlobalStandard` customers also have access to [global standard models](../../openai/concepts/models.md#global-standard-model-availability). 
+> The following table is for standard deployment availability. For information on Provisioned Throughput Unit (PTU) availability, see [provisioned throughput](../../openai/concepts/provisioned-throughput.md) in the Azure OpenAI documentation. `GlobalStandard` customers also have access to [global standard models](../../openai/concepts/models.md#global-standard-model-availability). 
 
 | REGION           | o1 | o3-mini | gpt-4.1, 2025-04-14 | gpt-4.1-mini, 2025-04-14 | gpt-4.1-nano, 2025-04-14 | gpt-4o, 2024-05-13 | gpt-4o, 2024-08-06 | gpt-4o, 2024-11-20 | gpt-4o-mini, 2024-07-18 | gpt-4, 0613 | gpt-4, turbo-2024-04-09 | gpt-4-32k, 0613 | gpt-35-turbo, 1106 | gpt-35-turbo, 0125 |
 |------------------|----|---------|---------------------|--------------------------|--------------------------|--------------------|--------------------|--------------------|-------------------------|-------------|-------------------------|-----------------|--------------------|--------------------|

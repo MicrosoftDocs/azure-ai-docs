@@ -1242,6 +1242,62 @@ groups:
     title: Azure portal
   - id: cli
     title: Azure CLI
+# Owner: sgilley
+- id: project-type
+  title: Project types
+  prompt: Choose a project type
+  pivots:
+  - id: fdp-project
+    title: Foundry project
+  - id: hub-project
+    title: Hub based project 
+# Owner: sgilley
+- id: foundry-sdk-languages
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+    - id: programming-language-csharp
+      title: C#
+    - id: programming-language-go
+      title: Go
+    - id: programming-language-java
+      title: Java
+    - id: programming-language-javascript
+      title: JavaScript
+    - id: programming-language-python
+      title: Python
+# Owner: sgilley
+- id: foundry-sdk-overview-languages
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+    - id: programming-language-csharp
+      title: C#
+    - id: programming-language-java
+      title: Java
+    - id: programming-language-javascript
+      title: JavaScript
+    - id: programming-language-python
+      title: Python
+# Owner: samkemp
+- id: foundry-local-sdk
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
+- id: foundry-local-sdk-with-csharp
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#
 # Owner: haileytapia
 - id: search-get-started-agentic-retrieval
   title: Python and REST

@@ -1,6 +1,6 @@
 ---
 title: 'Quickstart: Use the OpenAI Service via the .NET SDK'
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the .NET SDK. 
 manager: masoucou
 author: aapowell
@@ -17,7 +17,7 @@ ms.date: 3/11/2025
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>
 - The [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 - An Azure OpenAI resource with a [compatible model in a supported region](../concepts/models.md#assistants-preview).
-- We recommend reviewing the [Responsible AI transparency note](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=text) and other [Responsible AI resources](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) to familiarize yourself with the capabilities and limitations of the Azure OpenAI Service.
+- We recommend reviewing the [Responsible AI transparency note](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=text) and other [Responsible AI resources](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) to familiarize yourself with the capabilities and limitations of the Azure OpenAI in Azure AI Foundry Models.
 - An Azure OpenAI resource with the `gpt-4o` model deployed was used testing this example.
 
 ### Microsoft Entra ID prerequisites
