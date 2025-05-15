@@ -35,8 +35,6 @@ When you create an Azure AI Search service, your region selection might depend o
 
 You can create an Azure AI Search service in any of the following Azure public regions. Almost all of these regions support [higher-capacity tiers](search-limits-quotas-capacity.md#service-limits). Exceptions are noted where they apply.
 
-AI enrichment refers to internal connections to an Azure AI services multi-service account and doesn't include Azure OpenAI integration.
-
 ### Americas
 
 | Region | AI enrichment | Availability zones | Agentic retrieval | Semantic ranker | Query rewrite |
@@ -135,8 +133,6 @@ AI enrichment refers to internal connections to an Azure AI services multi-servi
 
 ## Related content
 
-- [Azure AI Foundry region availability](/azure/ai-foundry/reference/region-support)
-- [Azure OpenAI model region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)
 - [Azure AI Vision region list](/azure/ai-services/computer-vision/overview-image-analysis#region-availability)
 - [Availability zone region availability](/azure/reliability/availability-zones-region-support)
 - [Azure product by region page](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=search)
