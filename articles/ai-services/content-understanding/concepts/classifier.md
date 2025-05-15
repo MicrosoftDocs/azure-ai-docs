@@ -10,7 +10,7 @@ ms.topic: overview
 ms.date: 05/19/2025
 ---
 
-# Content Understanding classifier
+# Azure AI Content Understanding classifier
 
 > [!IMPORTANT]
 >
