@@ -77,7 +77,7 @@ You should receive a response body in the following format:
 {
   "id": "YourSynthesisId",
   "internalId": "7ab84171-9070-4d3b-88d4-1b8cc1cb928a",
-  "status": "NotStarted",
+  "status": "Running",
   "createdDateTime": "2024-03-12T07:23:18.0097387Z",
   "lastActionDateTime": "2024-03-12T07:23:18.0097388Z",
   "inputKind": "SSML",
@@ -93,7 +93,7 @@ You should receive a response body in the following format:
 }
 ```
 
-The `status` property should progress from `NotStarted` status, to `Running`, and finally to `Succeeded` or `Failed`. You can call the [GET batch synthesis API](#get-batch-synthesis) periodically until the returned status is `Succeeded` or `Failed`.
+The `status` property should progress from `Running` status to `Succeeded` or `Failed`. You can call the [GET batch synthesis API](#get-batch-synthesis) periodically until the returned status is `Succeeded` or `Failed`.
 
 ## Get batch synthesis
 
