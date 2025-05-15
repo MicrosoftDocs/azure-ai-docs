@@ -1,7 +1,7 @@
 ---
-title: Supported models in Azure AI Agent Service
-titleSuffix: Azure AI services
-description: Learn about the models you can use with Azure AI Agent Service.
+title: Supported models in Azure AI Foundry Agent Service
+titleSuffix: Azure AI Foundry
+description: Learn about the models you can use with Azure AI Foundry Agent Service.
 manager: nitinme
 author: aahill
 ms.author: aahi
@@ -11,7 +11,7 @@ ms.date: 05/05/2025
 ms.custom: azure-ai-agents
 ---
 
-# Models supported by Azure AI Agent Service
+# Models supported by Azure AI Foundry Agent Service
 
 Agents are powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud. Certain tools and capabilities require the latest models. The following models are available in the REST API and SDKs. 
 
@@ -24,7 +24,7 @@ Azure OpenAI provides customers with choices on the hosting structure that fits 
 
 All deployments can perform the exact same inference operations, however the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types see [deployment types guide](../../openai/how-to/deployment-types.md).
 
-Azure AI Agent Service supports the following Azure OpenAI models in the listed regions.
+Azure AI Foundry Agent Service supports the following Azure OpenAI models in the listed regions.
 
 > [!NOTE]
 > The following table is for standard deployment availability. For information on Provisioned Throughput Unit (PTU) availability, see [provisioned throughput](../../openai/concepts/provisioned-throughput.md) in the Azure OpenAI documentation. `GlobalStandard` customers also have access to [global standard models](../../openai/concepts/models.md#global-standard-model-availability). 
@@ -50,7 +50,7 @@ Azure AI Agent Service supports the following Azure OpenAI models in the listed 
 
 ## Non-Microsoft models
 
-The Azure AI Agent Service also supports the following models from the Azure AI Foundry model catalog.
+The Azure AI Foundry Agent Service also supports the following models from the Azure AI Foundry model catalog.
 
 * Meta-Llama-405B-Instruct
 
