@@ -11,7 +11,7 @@ ms.custom: references_regions, ignite-2024-understanding-release
 ms.date: 05/19/2025
 ---
 
-# Content Understanding region and language support
+# Azure AI Content Understanding region and language support
 
 Azure AI Content Understanding provides multilingual support in multiple geographic regions to enable users to communicate with Content Understanding applications in natural ways and empower global outreach. The following sections describe the available regions and supported languages/locales.
 
@@ -34,7 +34,10 @@ Content Understanding applies [Azure OpenAI models](../openai/overview.md) which
 
 ### Text optical character recognition (OCR)
 
-The following table lists the supported languages/locales for **printed** text.
+> [!IMPORTANT]
+>
+> * The following list of supported languages have locale-aware normalization for words enabled in post-processing.
+> * Content Understanding supports different languages so we encourage you to try it out and focus on the content and not the value itself.
 
   |**Language**| **Language code**|**Language**| **Language code**|
   |:-----|:-----|:-----|:-----|

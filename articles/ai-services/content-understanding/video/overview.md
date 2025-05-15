@@ -110,8 +110,8 @@ The first pass is all about extracting a first set of details—who's speaking, 
   * **Multilingual transcription:** Generates multilingual transcripts. Language/locale is applied per phrase in the transcript. Phrases output when `returnDetails=true` is set. Deviating from language detection this feature is enabled when no language/locale is specified or language is set to `auto`.
 
     > [!NOTE]
-    > When multilingual transcription is used, a file with an unsupported locale still produces a result. This result is based on the closest locale but most likely not correct.
-    > This transcription behavior is known. Make sure to configure locales when not using multilingual transcription!
+    > When Multilingual transcription is used, any files with unsupported locales produce a result based on the closest supported locale, which is likely incorrect. This result is a known
+    > behavior. Avoid transcription quality issues by ensuring that you configure locales when not using a multilingual transcription supported locale!
 
 * **Shot detection:** Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and repackaging of content with breaks exactly on shot boundaries.
 * **Key frame extraction:** Extracts key frames from videos to represent each shot completely, ensuring each shot has enough key frames to enable field extraction to work effectively.

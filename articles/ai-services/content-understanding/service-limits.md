@@ -11,7 +11,7 @@ ms.author: lajanuar
 ---
 
 
-# Content Understanding service quotas and limits
+# Azure AI Content Understanding service quotas and limits
 
 This article offers a quick reference of the quotas and limits for the Azure AI Content Understanding service.
 

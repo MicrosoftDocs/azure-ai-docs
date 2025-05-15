@@ -10,7 +10,7 @@ ms.topic: how-to
 ms.date: 05/19/2025
 ---
 
-# Content Understanding image solutions (preview)
+# Azure AI Content Understanding image solutions (preview)
 
 > [!IMPORTANT]
 >

@@ -44,7 +44,7 @@ Content Understanding offers a streamlined process to reason over large amounts 
 
 * **Analytics and reporting**: Content Understanding's extracted field outputs enhance analytics and reporting, allowing businesses to gain valuable insights, conduct deeper analysis, and make informed decisions based on accurate reports.
 
-* **Optimize workflow through classification**: Content Understanding's classification feature will enable you to categorize the documents first, before routing it to the associated analyzer for extraction.
+* **Optimize workflow through classification**: Content Understanding's classification feature enables you to categorize the documents first, before routing it to the associated analyzer for extraction.
 
 ## Applications
 

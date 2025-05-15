@@ -10,7 +10,7 @@ ms.topic: overview
 ms.date: 05/19/2025
 ---
 
-# Analyzer templates offered with Content Understanding
+# Analyzer templates offered with Azure AI Content Understanding
 
 Content Understanding analyzer templates give you a head start in developing your Content Understanding solution by allowing you to build your analyzer without creating schemas from scratch.
 There are analyzer templates specific to common scenarios in each modality, such as call center audio analytics and advertising analysis for videos. Templates are also fully customizable, allowing you to adjust any
