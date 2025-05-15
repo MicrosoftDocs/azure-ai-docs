@@ -131,13 +131,10 @@ The **Training data** dialog displays any existing, previously uploaded datasets
 :::image type="content" source="../media/fine-tuning/studio-training-data.png" alt-text="Screenshot of the Training data pane for the Create custom model wizard in Azure AI Foundry portal." lightbox="../media/fine-tuning/studio-training-data.png":::
 
 - If your training data is already uploaded to the service, select **Files from Connected AI resource**.
-
    - Select the file from the dropdown list shown.
 
 - To upload new training data, use one of the following options:
-
    - Select **Upload files** to upload training data from a local file.
-
    - Select **Azure blob or other shared web locations** to import training data from Azure Blob or another shared web location.
 
 For large data files, we recommend that you import from an Azure Blob store. Large files can become unstable when uploaded through multipart forms because the requests are atomic and can't be retried or resumed. For more information about Azure Blob Storage, see [What is Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview)?
@@ -154,13 +151,10 @@ The **Validation data** dialog displays any existing, previously uploaded traini
 :::image type="content" source="../media/fine-tuning/studio-validation-data.png" alt-text="Screenshot of the Validation data pane for the Create custom model wizard in Azure AI Foundry portal." lightbox="../media/fine-tuning/studio-validation-data.png":::
 
 - If your validation data is already uploaded to the service, select **Choose dataset**.
-
    - Select the file from the list shown in the **Validation data** pane.
 
 - To upload new validation data, use one of the following options:
-
    - Select **Local file** to upload validation data from a local file.
-   
    - Select **Azure blob or other shared web locations** to import validation data from Azure Blob or another shared web location.
 
 For large data files, we recommend that you import from an Azure Blob store. Large files can become unstable when uploaded through multipart forms because the requests are atomic and can't be retried or resumed.
@@ -178,12 +172,12 @@ You may provide an optional **seed** and tune additional hyperparameters.
 
 The **seed** controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one will be randomly generated for you.
 
-The following hyperparameters are available for tuning:
+The following hyperparameters are available for tuning via the Azure AI Foundry portal:
 
 |**Name**| **Type**| **Description**|
 |---|---|---|
-|**Batch Size** |integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we've found that larger batch sizes tend to work better for larger datasets. The default value as well as the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. |
-| **Learning Rate Multiplier** | number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. A smaller learning rate may be useful to avoid overfitting. |
+|**Batch Size** | integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we've found that larger batch sizes tend to work better for larger datasets. The default value as well as the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. |
+|**Learning Rate Multiplier** | number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. A smaller learning rate may be useful to avoid overfitting. |
 |**Number of Epochs** | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
 
 ### Review your choices and train your model
