@@ -38,7 +38,7 @@ Available options:
 
 | Method                | Signature                  | Description                                      |
 |-----------------------|---------------------------|--------------------------------------------------|
-| `init()`              | `(modelAliasOrId?: string) => Promise<void>` | Initializes the SDK and optionally loads a model. |
+| `init()`              | `(aliasOrModelId?: string) => Promise<void>` | Initializes the SDK and optionally loads a model. |
 | `isServiceRunning()`  | `() => Promise<boolean>`  | Checks if the Foundry Local service is running.   |
 | `startService()`      | `() => Promise<void>`     | Starts the Foundry Local service.                |
 | `serviceUrl`          | `string`                  | The base URL of the Foundry Local service.        |
@@ -52,7 +52,7 @@ Available options:
 |---------------------------|---------------------------------------------------------------------------|--------------------------------------------------|
 | `listCatalogModels()`     | `() => Promise<FoundryModelInfo[]>`                                       | Lists all available models in the catalog.        |
 | `refreshCatalog()`        | `() => Promise<void>`                                                     | Refreshes the model catalog.                     |
-| `getModelInfo()`          | `(modelAliasOrId: string, throwOnNotFound = false) => Promise<FoundryModelInfo \| null>` | Gets model info by alias or ID.                  |
+| `getModelInfo()`          | `(aliasOrModelId: string, throwOnNotFound = false) => Promise<FoundryModelInfo \| null>` | Gets model info by alias or ID.                  |
 
 
 ### Cache Management
@@ -67,9 +67,9 @@ Available options:
 
 | Method                        | Signature                                                                 | Description                                      |
 |-------------------------------|---------------------------------------------------------------------------|--------------------------------------------------|
-| `downloadModel()`             | `(modelAliasOrId: string, force = false, onProgress?) => Promise<FoundryModelInfo>` | Downloads a model to the local cache.            |
-| `loadModel()`                 | `(modelAliasOrId: string, ttl = 600) => Promise<FoundryModelInfo>`        | Loads a model into the inference server.         |
-| `unloadModel()`               | `(modelAliasOrId: string, force = false) => Promise<void>`                | Unloads a model from the inference server.       |
+| `downloadModel()`             | `(aliasOrModelId: string, force = false, onProgress?) => Promise<FoundryModelInfo>` | Downloads a model to the local cache.            |
+| `loadModel()`                 | `(aliasOrModelId: string, ttl = 600) => Promise<FoundryModelInfo>`        | Loads a model into the inference server.         |
+| `unloadModel()`               | `(aliasOrModelId: string, force = false) => Promise<void>`                | Unloads a model from the inference server.       |
 | `listLoadedModels()`          | `() => Promise<FoundryModelInfo[]>`                                       | Lists all models currently loaded in the service.|
 
 ## Example Usage
@@ -83,12 +83,12 @@ import { FoundryLocalManager } from "foundry-local-sdk";
 // to your end-user's device.
 // TIP: You can find a list of available models by running the 
 // following command in your terminal: `foundry model list`.
-const modelAlias = "deepseek-r1-1.5b";
+const alias = "deepseek-r1-1.5b";
 
 const manager = new FoundryLocalManager()
 
 // Initialize the SDK and optionally load a model
-const modelInfo = await manager.init(modelAlias)
+const modelInfo = await manager.init(alias)
 console.log("Model Info:", modelInfo)
 
 // Check if the service is running
@@ -99,8 +99,8 @@ console.log(`Service running: ${isRunning}`)
 const catalog = await manager.listCatalogModels()
 
 // Download and load a model
-await manager.downloadModel(modelAlias)
-await manager.loadModel(modelAlias)
+await manager.downloadModel(alias)
+await manager.loadModel(alias)
 
 // List models in cache
 const localModels = await manager.listLocalModels()
@@ -109,7 +109,7 @@ const localModels = await manager.listLocalModels()
 const loaded = await manager.listLoadedModels()
 
 // Unload a model
-await manager.unloadModel(modelAlias)
+await manager.unloadModel(alias)
 ```
 
 ---
@@ -132,7 +132,7 @@ import { FoundryLocalManager } from "foundry-local-sdk";
 // to your end-user's device.
 // TIP: You can find a list of available models by running the 
 // following command in your terminal: `foundry model list`.
-const modelAlias = "deepseek-r1-1.5b";
+const alias = "deepseek-r1-1.5b";
 
 // Create a FoundryLocalManager instance. This will start the Foundry 
 // Local service if it is not already running.
@@ -140,7 +140,7 @@ const foundryLocalManager = new FoundryLocalManager()
 
 // Initialize the manager with a model. This will download the model 
 // if it is not already present on the user's device.
-const modelInfo = await foundryLocalManager.init(modelAlias)
+const modelInfo = await foundryLocalManager.init(alias)
 console.log("Model Info:", modelInfo)
 
 const openai = new OpenAI({
@@ -199,15 +199,15 @@ const endpoint = "ENDPOINT"
 
 const manager = new FoundryLocalManager({serviceUrl: endpoint})
 
-const modelAlias = 'deepseek-r1-1.5b'
+const alias = 'deepseek-r1-1.5b'
 
 // Get all available models
 const catalog = await manager.listCatalogModels()
 console.log("Available models in catalog:", catalog)
 
 // Download and load a specific model
-await manager.downloadModel(modelAlias)
-await manager.loadModel(modelAlias)
+await manager.downloadModel(alias)
+await manager.loadModel(alias)
 
 // View models in your local cache
 const localModels = await manager.listLocalModels()
@@ -218,5 +218,5 @@ const loaded = await manager.listLoadedModels()
 console.log("Loaded models in inference service:", loaded)
 
 // Unload a model when finished
-await manager.unloadModel(modelAlias)
+await manager.unloadModel(alias)
 ```
