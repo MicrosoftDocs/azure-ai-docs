@@ -128,7 +128,7 @@ _---Additional Foundry Local Properties---_
 - Request body
   ```json
   {
-    "model": "gpt-3.5-turbo",
+    "model": "Phi-4-mini-instruct-generic-cpu",
     "messages": [
       {
         "role": "user",
@@ -156,7 +156,7 @@ _---Additional Foundry Local Properties---_
     "id": "chatcmpl-1234567890",
     "object": "chat.completion",
     "created": 1677851234,
-    "model": "gpt-3.5-turbo",
+    "model": "Phi-4-mini-instruct-generic-cpu",
     "choices": [
       {
         "index": 0,
@@ -313,7 +313,7 @@ Retrieves all available models, including both local models and registered exter
 
 - Response body
   ```json
-  ["gpt-3.5-turbo", "gpt-4"]
+  ["Phi-4-mini-instruct-generic-cpu", " deepseek-r1-distill-qwen-7b-generic-cpu"]
   ```
 
 ### GET /openai/load/{name}
@@ -344,7 +344,7 @@ Loads a model into memory for faster inference.
 
 - Request URI
   ```
-  GET /openai/load/gpt-3.5-turbo?ttl=3600&ep=dml
+  GET /openai/load/Phi-4-mini-instruct-generic-cpu?ttl=3600&ep=dml
   ```
 
 ### GET /openai/unload/{name}
@@ -370,7 +370,7 @@ Unloads a model from memory.
 
 - Request URI
   ```
-  GET /openai/unload/gpt-3.5-turbo?force=true
+  GET /openai/unload/Phi-4-mini-instruct-generic-cpu?force=true
   ```
 
 ### GET /openai/unloadall
@@ -395,7 +395,7 @@ Retrieves a list of currently loaded models.
 
 - Response body
   ```json
-  ["gpt-3.5-turbo", "gpt-4"]
+  ["Phi-4-mini-instruct-generic-cpu", " deepseek-r1-distill-qwen-7b-generic-cpu"]
   ```
 
 ### GET /openai/getgpudevice
@@ -469,7 +469,7 @@ During download, the server streams progress updates in the format:
 
   ```json
   {
-    "model": "gpt-3.5-turbo",
+    "model": "Phi-4-mini-instruct-generic-cpu",
     "ignorePipeReport": true
   }
   ```
