@@ -31,11 +31,9 @@ items:
       - name: Analyzers overview
         displayName: content understanding capabilities, document, text, images, video, audio, visual, structured, content, field, extraction
         href: concepts/analyzers-overview.md
-      - name: Quickstarts
-        items:
-          - name: REST API
-            displayName: quickstart, extract, text, images, OCR, optical character recognition, content filtering, filter
-            href: quickstart/use-rest-api.md
+      - name: "Quickstart: REST API"
+        displayName: quickstart, extract, text, images, OCR, optical character recognition, content filtering, filter
+        href: quickstart/use-rest-api.md
       - name: Capabilities
         items:
           - name: Document
@@ -93,14 +91,12 @@ items:
       - name: Face overview
         displayName: face, recognition, detection, analysis, identification, verification
         href: face/overview.md
-      - name: Tutorials
-        items:
-          - name: Build a person directory
-            displayName: person, directory, search, index, vector
-            href: tutorial/build-person-directory.md
+      - name: "Tutorial: Build a person directory"
+        displayName: person, directory, search, index, vector
+        href: tutorial/build-person-directory.md
   - name: Azure AI Foundry
     items:
-      - name: Azure AI Foundry overview
+      - name: "Quickstart: Content Understanding with Azure AI Foundry"
         displayName: quickstart, extract, text, images, OCR, optical character recognition
         href: quickstart/use-ai-foundry.md
       - name: Analyzer templates
