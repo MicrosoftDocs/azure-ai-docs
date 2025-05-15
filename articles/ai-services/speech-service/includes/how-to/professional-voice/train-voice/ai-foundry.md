@@ -36,8 +36,6 @@ After you validate your data files, use them to build your custom neural voice m
 - [Neural - multi lingual (preview)](?tabs=multilingual#train-your-custom-neural-voice-model): Create a voice that speaks multiple languages using the single-language training data. For example, with the `en-US` primary training data, you can create a voice that speaks `en-US`, `de-DE`, `zh-CN` etc. secondary languages.
 
   The primary language of the training data and the secondary languages must be in the [languages that are supported](../../../../language-support.md?tabs=tts#custom-neural-voice) for multi lingual voice training. You don't need to prepare training data in the secondary languages.
-  
-- [Neural - HD Voice (preview)](?tabs=hdvoice#train-your-custom-neural-voice-model): Create a HD voice in the same language of your training data. Azure neural HD voices are LLM-based, optimized for dynamic conversations. Learn more about neural HD voices [here](../../../../high-definition-voices.md).
 
 The language of the training data must be one of the [languages that are supported](../../../../language-support.md?tabs=tts) for custom neural voice, cross-lingual, or multiple style training.
 
