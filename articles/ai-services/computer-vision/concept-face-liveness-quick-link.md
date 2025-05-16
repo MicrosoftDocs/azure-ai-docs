@@ -32,7 +32,96 @@ You can utilize the liveness quick link website liveness.face.azure.com to turn 
 :::image type="content" source="media/liveness/liveness-quick-link-diagram.png" alt-text="A diagram illustrates liveness quick link work flow":::
 
 1.	Start a session server side. Your backend asks Face API for a new liveness session and receives a short lived authorization token that represents that session.
-2.	Swap the token for a link. Your backend sends the token to the Quick Link service, which creates a one time URL tied to the session.
+2.	Swap the token for a link. Your backend sends the token to the Quick Link service, which creates a one time URL tied to the session. here are examples to post request:
+
+    #### [C#](#tab/csharp)
+    ```csharp
+    var client = new HttpClient();
+    var request = new HttpRequestMessage
+    {
+        Method = HttpMethod.Post,
+        RequestUri = new Uri("https://liveness.face.azure.com/api/s"),
+        Headers =
+        {
+            { "authorization", "Bearer  <session-authorization-token>" },
+        },
+    };
+    using (var response = await client.SendAsync(request))
+    {
+        response.EnsureSuccessStatusCode();
+        var body = await response.Content.ReadAsStringAsync();
+        Console.WriteLine(body);
+    }
+        ```
+
+    #### [Java](#tab/java)
+    ```java
+    HttpRequest request = HttpRequest.newBuilder()
+    .uri(URI.create("https://liveness.face.azure.com/api/s"))
+    .header("authorization", "Bearer <session-authorization-token>")
+    .method("POST", HttpRequest.BodyPublishers.noBody())
+    .build();
+    HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+    System.out.println(response.body());
+    ```
+    
+    #### [Python](#tab/python)
+    ```python
+    import http.client
+    
+    conn = http.client.HTTPSConnection("liveness.face.azure.com")
+    
+    headers = {
+        'authorization': "Bearer <session-authorization-token>"
+        }
+    
+    conn.request("POST", "/api/s", headers=headers)
+    
+    res = conn.getresponse()
+    data = res.read()
+    
+    print(data.decode("utf-8"))
+        
+    ```
+    
+    #### [JavaScript](#tab/javascript)
+    ```javascript
+    fetch("https://liveness.face.azure.com/api/s", {
+      "method": "POST",
+      "headers": {
+        "authorization": "Bearer <session-authorization-token>"
+      }
+    })
+    .then(response => {
+      console.log(response);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+    ```
+
+    #### [REST(Windows)](#tab/cmd)
+    ```console
+    curl --request POST ^
+      --url https://liveness.face.azure.com/api/s ^
+      --header 'authorization: Bearer <session-authorization-token>'
+    ```
+    
+    #### [REST(Linux)](#tab/bash)
+    ```bash
+    curl --request POST \
+      --url https://liveness.face.azure.com/api/s \
+      --header 'authorization: Bearer <session-authorization-token>'
+    ```    
+
+An example response:
+```json
+{
+  "url": "/?s=60c3980c-d9f6-4b16-a7f5-f1f4ad2b506f"
+}
+```
+Simply compose the returned url after liveness quick link web site https:////liveness.face.azure.com/?s=60c3980c-d9f6-4b16-a7f5-f1f4ad2b506f
+
 3.	Send the link to the user. You can redirect the browser, show a button, or display a QR code—anything that gets the user to open the link on a camera enabled device.
 4.	Azure hosts the capture. When the link opens, the Azure operated page guides the user through the liveness check sequence using the latest Liveness Web Client.
 5.	Get the outcome callback. As soon as the check finishes—or if the user abandons or times out—Quick Link notify to your callback endpoint so your application can decide what happens next.
