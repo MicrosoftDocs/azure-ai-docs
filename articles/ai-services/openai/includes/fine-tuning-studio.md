@@ -102,7 +102,7 @@ Azure AI Foundry portal provides the **Create a fine-tuned model** dialog, so in
 
 1. Select a model to fine-tune, and then select **Next** to continue.
 
-   :::image type="content" source="../media/fine-tuning/studio-model-select.png" alt-text="Screenshot of the model selection dialog in Azure AI Foundry portal." lightbox="../media/fine-tuning/studio-model-select.png":::
+   :::image type="content" source="../media/fine-tuning/studio-model-selection.png" alt-text="Screenshot of the model selection dialog in Azure AI Foundry portal." lightbox="../media/fine-tuning/studio-model-selection.png":::
 
 You should now see the **Create a fine-tuned model** dialog.
 
