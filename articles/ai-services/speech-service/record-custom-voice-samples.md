@@ -27,7 +27,7 @@ A highly natural custom neural voice depends on several factors, like the qualit
 
 The quality of your training data is a primary factor. For example, in the same training set, consistent volume, speaking rate, speaking pitch, and speaking style are essential to create a high-quality custom neural voice. You should also avoid background noise in the recording and make sure the script and recording match. To ensure the quality of your data, you need to follow [script selection criteria](#script-selection-criteria) and [recording requirements](#recording-your-script). 
 
-Regarding the size of the training data, in most cases you can build a reasonable custom neural voice with 500 utterances. According to our tests, adding more training data in most languages doesn't necessarily improve naturalness of the voice itself (tested using the MOS score), however, with more training data that covers more word instances, you have higher possibility to reduce the ratio of dissatisfactory parts of speech for the voice, such as the glitches. To hear what dissatisfactory parts of speech sound like, refer to [the GitHub examples](https://github.com/Azure-Samples/Cognitive-Speech-TTS/blob/master/CustomVoice/DSAT-examples.md).
+Regarding the size of the training data, in most cases you can build a reasonable custom neural voice with 300 utterances. According to our tests, adding more training data in most languages doesn't necessarily improve naturalness of the voice itself (tested using the MOS score), however, with more training data that covers more word instances, you have higher possibility to reduce the ratio of dissatisfactory parts of speech for the voice, such as the glitches. To hear what dissatisfactory parts of speech sound like, refer to [the GitHub examples](https://github.com/Azure-Samples/Cognitive-Speech-TTS/blob/master/CustomVoice/DSAT-examples.md).
 
 In some cases, you might want a voice persona with unique characteristics. For example, a cartoon persona needs a voice with a special speaking style, or a voice that is dynamic in intonation. For such cases, we recommend that you prepare at least 1000 (preferably 2000) utterances, and record them at a professional recording studio. To learn more about how to improve the quality of your voice model, see [characteristics and limitations for using custom neural voice](/legal/cognitive-services/speech-service/custom-neural-voice/characteristics-and-limitations-custom-neural-voice?context=/azure/ai-services/speech-service/context/context).
 
@@ -61,7 +61,6 @@ For example, a persona with a naturally upbeat personality would carry a note of
 
 The starting point of any custom neural voice recording session is the script, which contains the utterances to be spoken by your voice talent. The term "utterances" encompasses both full sentences and shorter phrases. Building a custom neural voice requires at least 300 recorded utterances as training data.
 
-
 The utterances in your script can come from anywhere: fiction, non-fiction, transcripts of speeches, news reports, and anything else available in printed form. For a brief discussion of potential legal issues, see the ["Legalities"](#legalities) section. You can also write your own text.
 
 Your utterances don't need to come from the same source, the same kind of source, or have anything to do with each other. However, if you use set phrases (for example, "You have successfully logged in") in your speech application, make sure to include them in your script. It gives your custom neural voice a better chance of pronouncing those phrases well.
@@ -87,16 +86,22 @@ Below are some general guidelines that you can follow to create a good corpus (r
    | Question sentences (Optional) | Question sentences should be about 10%-20% of your domain script, including 5%-10% of rising and 5%-10% of falling tones.<br> These sentences are required if you want the generated voice to accurately convey questions.|
    | Exclamation sentences (Optional) | Exclamation sentences should be about 10%-20% of your script.<br> These sentences are required if you want the generated voice to accurately convey exclamations.|
 
-   > [!NOTE] 
+   > [!NOTE]
    > You can estimate the number of words in a sentence by assuming a speech rate in words per second based on your language.
 
    Best practices include:
-    - Balanced coverage for Parts of Speech, like verbs, nouns, adjectives, and so on.  
+    - Balanced coverage for Parts of Speech, like verbs, nouns, adjectives, and so on.
     - Balanced coverage for pronunciations. Include all letters from A to Z so the Text to speech engine learns how to pronounce each letter in your style.
     - Readable, understandable, common-sense scripts for the speaker to read.
     - Avoid too many similar patterns for words/phrases, like "easy" and "easier".
-    - Include different formats of numbers: address, unit, phone, quantity, date, and so on, in all sentence types.  
+    - Include different formats of numbers: address, unit, phone, quantity, date, and so on, in all sentence types.
     - Include spelling sentences if it's something your custom neural voice will read. For example, "The spelling of Apple is A P P L E".
+
+   > [!NOTE]
+   > For Contextual processing mode, which provides more natural intonations and better conversational capabilities:
+   > - Use paragraph-level text rather than sentence-level text for recordings. This approach helps capture natural speech flow between sentences and preserves contextual information.
+   > - Each recording should ideally be longer than 30 seconds (containing more than 60 words for Latin-based languages or 160 words for non-Latin languages).
+   > - A contextual training set with more than 30 minutes of total audio or 300 utterances can be used for training a custom neural voice.
 
 - Don't put multiple sentences into one line/one utterance. Separate each line by utterance.
 
@@ -256,7 +261,7 @@ For high-quality training results, avoiding audio errors is highly recommended. 
 
 ### Do it yourself
 
-If you want to make the recording yourself, instead of  going into a recording studio, here's a short primer. Thanks to the rise of home recording and podcasting, it's easier than ever to find good recording advice and resources online.
+If you want to make the recording yourself, instead of going into a recording studio, here's a short primer. Thanks to the rise of home recording and podcasting, it's easier than ever to find good recording advice and resources online.
 
 Your "recording booth" should be a small room with no noticeable echo or "room tone." It should be as quiet and soundproof as possible. Drapes on the walls can be used to reduce echo and neutralize or "deaden" the sound of the room.
 
@@ -309,7 +314,7 @@ Direct the talent to pronounce words distinctly. Every word of the script should
 |how's the weather today|how's th' weather today|
 |say hello to my little friend|say hello to my lil' friend|
 
-The talent shouldn't* add distinct pauses between words. The sentence should still flow naturally, even while sounding a little formal. This fine distinction might take practice to get right.
+The talent shouldn't add distinct pauses between words. The sentence should still flow naturally, even while sounding a little formal. This fine distinction might take practice to get right.
 
 ### The recording session
 
