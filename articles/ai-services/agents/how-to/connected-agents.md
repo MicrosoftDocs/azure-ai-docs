@@ -116,7 +116,7 @@ To enable your Agent to use a connected agent, you use `ConnectedAgentToolDefini
     PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
     ```
 
-2. Next we will create the connected agent using the agent client. This agent will be used to initialize the `ConnectedAgentToolDefinition`.
+2. Next we will create the main agent `mainAgent`, and the connected `stockAgent` agent using the agent client. This connected agent will be used to initialize the `ConnectedAgentToolDefinition`.
     
     ```csharp
     PersistentAgent stockAgent = client.Administration.CreateAgent(
