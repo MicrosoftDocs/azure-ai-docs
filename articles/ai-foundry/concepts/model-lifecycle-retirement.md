@@ -106,7 +106,7 @@ For information on the model upgrade process, see [Model versions in Azure AI Fo
 
 For more information on how to manage model upgrades and migrations for provisioned deployments, see [Managing models on provisioned deployment types](../../ai-services/openai/how-to/working-with-models.md#managing-models-on-provisioned-deployment-types)
 
-## Azure OpenAI models
+## Timelines for Azure OpenAI models
 
 The following sections list the current, default, and deprecated Azure OpenAI models.
 
@@ -218,7 +218,7 @@ If you're an existing customer looking for information about these models, see [
 To track individual updates to this article for Azure OpenAI model retirements, refer to the [Git History](https://github.com/MicrosoftDocs/azure-ai-docs/commits/main/articles/ai-services/openai/concepts/model-retirements.md).
 
 
-## Deprecation timelines for other Foundry Models
+## Timelines for other Foundry Models
 
 The following tables list the timelines for models that are on track for retirement. The specified dates are in UTC time.
 
