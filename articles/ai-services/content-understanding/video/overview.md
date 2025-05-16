@@ -55,12 +55,10 @@ Calling prebuilt-video with no custom schema returns a document like the followi
    # Video: 00:00.000 → 00:30.000
    Width: 1280  ·  Height: 720
 
-   ## Segment 1  00:00.000 → 00:06.400
-   A lively gathering in a room decorated with colorful banners and balloons. Party guests watch a TV showing a sports event while a young man kneels excitedly in front. Snacks and drinks underline the festive mood.
-
-   **Transcript**
+   Transcript
    WEBVTT
-   00:03.600 → 00:06.000  <1 Speaker> Get New Years ready.
+   00:03.600 --> 00:06.000  <1 Speaker> Get new years ready.
+   00:11.120 --> 00:13.520  <1 Speaker>Find your style for the new year
 
    **Key frames**
    - 00:00.600 ![KF](keyFrame.600.jpg)
@@ -71,16 +69,7 @@ Calling prebuilt-video with no custom schema returns a document like the followi
    - 00:05.600 ![KF](keyFrame.5600.jpg)
    - 00:06.200 ![KF](keyFrame.6200.jpg)
 
-   ## Segment 2  00:06.400 → 00:10.080
-   The room erupts into a vibrant party scene—people dancing under soccer-themed décor, flags waving, energy soaring.
-
-   **Key frames**
-   - 00:07.080 ![KF](keyFrame.7080.jpg)
-   - 00:07.760 ![KF](keyFrame.7760.jpg)
-   - 00:08.560 ![KF](keyFrame.8560.jpg)
-   - 00:09.360 ![KF](keyFrame.9360.jpg)
-
-   *…additional segments omitted for brevity…*
+   *…additional data omitted for brevity…*
 ````
 
 ## Walk-through
@@ -113,8 +102,8 @@ The first pass is all about extracting a first set of details—who's speaking, 
     > When Multilingual transcription is used, any files with unsupported locales produce a result based on the closest supported locale, which is likely incorrect. This result is a known
     > behavior. Avoid transcription quality issues by ensuring that you configure locales when not using a multilingual transcription supported locale!
 
-* **Shot detection:** Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and repackaging of content with breaks exactly on shot boundaries.
 * **Key frame extraction:** Extracts key frames from videos to represent each shot completely, ensuring each shot has enough key frames to enable field extraction to work effectively.
+* **Shot detection:** Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and repackaging of content with breaks exactly on shot boundaries. This is output as a 
 
 ## Field extraction and segmentation
 
