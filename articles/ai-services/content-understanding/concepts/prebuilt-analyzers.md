@@ -12,7 +12,7 @@ ms.date: 05/19/2025
 
 # Prebuilt analyzers in Azure AI Content Understanding
 
-Azure AI Content Understanding prebuilt analyzers are ready-to-use tools designed to streamline common content processing tasks. They support scenarios such as content ingestion for search and retrieval-augmented generation (RAG) workflows, and intelligent document processing (IDP) for extracting data from invoices or analyzing call center recordings. You can also [customize these analyzers](../tutorial/create-custom-analyzer.md) to extract additional fields or refine outputs to better fit your specific workflow requirements.
+Azure AI Content Understanding prebuilt analyzers are ready-to-use tools designed to streamline common content processing tasks. They support scenarios such as content ingestion for search and retrieval-augmented generation (RAG) workflows, and intelligent document processing (IDP) for extracting data from invoices or analyzing call center recordings. You can also [customize these analyzers](../tutorial/create-custom-analyzer.md) to extract more fields or refine outputs to better fit your specific workflow requirements.
 
 ## Prebuilt analyzers for content ingestion
 
@@ -37,7 +37,7 @@ Azure AI Content Understanding offers prebuilt analyzers that extract raw conten
 
 * Extracts transcripts from video files.
 * Identifies keyframes and camera shots.
-* Segments the video into meaningful sections.
+* Divides/segments the video into meaningful sections.
 * Generates a summary for each video segment.
 
 
