@@ -116,7 +116,7 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 1. [Install Azure CLI](../how-to/develop/install-cli-sdk.md#installs)
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running the next command.
-1. Get a temporary access token.  It will expire in 2 hours, you'll need to refresh after that.
+1. Get a temporary access token.  It will expire in 60-90 minutes, you'll need to refresh after that.
 
     ```azurecli
     az account get-access-token --scope https://ai.azure.com/.default
