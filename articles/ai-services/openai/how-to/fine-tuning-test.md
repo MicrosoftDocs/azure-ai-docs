@@ -19,6 +19,8 @@ A Developer Tier deployment allows you to deploy your new model without the hour
 
 > [!IMPORTANT]
 > Developer Tier offers no availability SLA and no [data residency](https://aka.ms/data-residency) guarantees. If you require an SLA or data residency, choose an alternative [deployment type](./deployment-types.md) for testing your model.
+>
+> Developer Tier deployments have a fixed lifetime of **24 hours**. Learn more [below](#clean-up-your-deployment) about the deployment lifecycle.
 
 ## Deploy your fine-tuned model
 
