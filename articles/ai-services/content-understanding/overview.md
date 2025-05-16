@@ -24,7 +24,7 @@ Azure AI Content Understanding is a new Generative AI based [**Azure AI Service*
 
 Content Understanding offers a streamlined process to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into automation and analytical workflows.
 
-:::image type="content" source="media/overview/component-overview-updated.png" alt-text="Screenshot of Content Understanding overview, process, and workflow.":::
+:::image type="content" source="media/overview/component-overview-updated.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="../media/overview/component-overview-updated.png" :::
 
 ## Why process with Content Understanding?
 
@@ -57,13 +57,13 @@ Common applications for Content Understanding include:
 |Tax automation| Tax preparation companies can use Content Understanding to generate a unified view of information from various documents and create comprehensive tax returns.| [**Tax automation quickstart**](concepts/analyzer-templates.md#modality-templates) | 
 |Chart understanding| Businesses can enhance chart understanding by automating the analysis and interpretation of various types of charts and diagrams using Content Understanding.| [**Chart understanding quickstart**](concepts/analyzer-templates.md#modality-templates) |
 |Mortgage application processing|Analyze supplementary supporting documentation and mortgage applications to determine whether a prospective home buyer provided all the necessary documentation to secure a mortgage.| [**Content Understanding Pro quickstart**](concepts/standard-pro-modes.md#apply-standard-or-pro-mode-to-your-scenarios)|
-|Invoice contract verification|Analyze invoices and contractual agreements with clients and apply multi-step reasoning to draw conclusions on that data, such as validating that the invoice is consistent with the contract.| [**Content Understanding Pro quickstart**](concepts/standard-pro-modes.md#apply-standard-or-pro-mode-to-your-scenarios)|
+|Invoice contract verification|Review invoices and contractual agreements with clients carefully. Apply a multi-step reasoning process to analyze the data. Ensure that conclusions, such as validating the consistency between the invoice and the contract, are accurate and thorough.| [**Content Understanding Pro quickstart**](concepts/standard-pro-modes.md#apply-standard-or-pro-mode-to-your-scenarios)|
 
 See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 
 ## Components
 
-:::image type="content" source="media/overview/cu-components-pro.png" alt-text="Screenshot of Content Understanding components.":::
+:::image type="content" source="media/overview/pro-components.png" lightbox="../media/overview/pro-components.png"alt-text="Screenshot of Content Understanding pro components.":::
 
 |Component|Description|
 |:---------|:----------|
@@ -73,7 +73,7 @@ See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 |Field extraction|Field extraction allows users to define the structure and schema of the desired fields to extract from input files. See [service limits](service-limits.md) for a complete list of field types supported. Fields can be generated via one of the following methods:</br></br> &bullet; **Extract**: Directly extract values as they appear in the input content, such as dates from receipts or item details from invoices.</br></br>&bullet; **Classify**: Classify content from a predefined set of categories, such as call sentiment or chart type.</br></br>&bullet; **Generate**: Generate values freely from input data, such as summarizing an audio conversation or creating scene descriptions from videos.|
 |Grounding source| Content Understanding identifies the specific regions in the content where the value was generated from. Source grounding allows users in automation scenarios to quickly verify the correctness of the field values, leading to higher confidence in the extracted data. |
 |Confidence score | Content Understanding provides confidence scores from 0 to 1 to estimate the reliability of the results. High scores indicate accurate data extraction, enabling straight-through processing in automation workflows.|
-|Reference dataset (offered in Pro mode)|Documents that can aid in providing context that can be referenced by the service at inference time. For example, if you're looking to analyze invoices to ensure they're consistent with a contractual agreement, you can supply the invoice and other relevant documents (e.g., purchase order) as inputs, and supply the contract files as reference data.|
+|Reference dataset (offered in Pro mode)|The service can reference documents at inference time to aid in providing context. For example, if you're looking to analyze invoices to ensure they're consistent with a contractual agreement, you can supply the invoice and other relevant documents (for example, purchase order) as inputs, and supply the contract files as reference data.|
 |Multi-step reasoning (offered in Pro mode)|Multi-step reasoning takes data analysis a step further than extracting and aggregating structured data and allows you to draw conclusions on that data, minimizing the need for human review.|
 
 ## Responsible AI
