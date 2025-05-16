@@ -40,12 +40,12 @@ For more information, see the [pattern matching overview](./pattern-matching-ove
 
 Be sure you have the following items before you begin this guide:
 
-- An [Azure AI services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) or a [Unified Speech resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices)
+- An [Azure AI Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) or a [Unified Speech resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices)
 - [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) (any edition).
 
 ## Speech and simple patterns
 
-The simple patterns are a feature of the Speech SDK and need an Azure AI services resource or a Unified Speech resource.
+The simple patterns are a feature of the Speech SDK and need an AI Foundry resource or a Unified Speech resource.
 
 A pattern is a phrase that includes an Entity somewhere within it. An Entity is defined by wrapping a word in curly brackets. This example defines an Entity with the ID "floorName", which is case-sensitive:
 

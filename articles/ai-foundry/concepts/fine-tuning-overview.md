@@ -84,15 +84,15 @@ It's important to call out that fine-tuning is heavily dependent on the quality 
 ## Supported models for fine-tuning
 
 Now that you know when to use fine-tuning for your use case, you can go to Azure AI Foundry to find models available to fine-tune.
-For some models in the model catalog, fine-tuning is available by using a serverless API, or a managed compute (preview), or both.
+For some models in the model catalog, fine-tuning is available by using a standard deployment, or a managed compute (preview), or both.
 
-Fine-tuning is available in specific Azure regions for some models that are deployed via serverless APIs. To fine-tune such models, a user must have a hub/project in the region where the model is available for fine-tuning. See [Region availability for models in serverless API endpoints](../how-to/deploy-models-serverless-availability.md) for detailed information.
+Fine-tuning is available in specific Azure regions for some models that are deployed via standard deployments. To fine-tune such models, a user must have a hub/project in the region where the model is available for fine-tuning. See [Region availability for models in standard deployment](../how-to/deploy-models-serverless-availability.md) for detailed information.
 
 For more information on fine-tuning using a managed compute (preview), see [Fine-tune models using managed compute (preview)](../how-to/fine-tune-managed-compute.md).
 
-For details about Azure OpenAI models that are available for fine-tuning, see the [Azure OpenAI Service models documentation](../../ai-services/openai/concepts/models.md#fine-tuning-models) or the [Azure OpenAI models table](#fine-tuning-azure-openai-models) later in this guide.
+For details about Azure OpenAI in Azure AI Foundry Models that are available for fine-tuning, see the [Azure OpenAI in Foundry Models documentation](../../ai-services/openai/concepts/models.md#fine-tuning-models) or the [Azure OpenAI models table](#fine-tuning-azure-openai-models) later in this guide.
 
-For the Azure OpenAI  Service models that you can fine tune, supported regions for fine-tuning include North Central US, Sweden Central, and more.
+For the Azure OpenAI models that you can fine tune, supported regions for fine-tuning include North Central US, Sweden Central, and more.
 
 ### Fine-tuning Azure OpenAI models
 
@@ -102,5 +102,5 @@ For the Azure OpenAI  Service models that you can fine tune, supported regions f
 
 - [Fine-tune models using managed compute (preview)](../how-to/fine-tune-managed-compute.md)
 - [Fine-tune an Azure OpenAI model in Azure AI Foundry portal](../../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context)
-- [Fine-tune models using serverless API](../how-to/fine-tune-serverless.md)
+- [Fine-tune models using standard deployment](../how-to/fine-tune-serverless.md)
 

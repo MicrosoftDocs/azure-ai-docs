@@ -13,18 +13,9 @@ ms.custom: devx-track-js
 
 ## Prerequisites
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
-* [Node.js LTS](https://nodejs.org/)
-* Ensure that the individual deploying the template has the **Azure AI Developer** role assigned at the resource group level where the template is being deployed.
-* Additionally, to deploy the template, you need to have the preset **Role Based Access Administrator** role at the subscription level.
-   * The **Owner** role at the subscription level satisfies this requirement.
-   * The specific admin role that is needed is `Microsoft.Authorization/roleAssignments/write`
-* Ensure that each team member who wants to use the Agent Playground or Agent SDK to create or edit agents has been assigned the built-in **Azure AI Developer** [RBAC role](../../../ai-foundry/concepts/rbac-azure-ai-foundry.md) for the project.
-    * Note: assign these roles after the template has been deployed
-    * The minimum set of permissions required is: **agents/*/read**, **agents/*/action**, **agents/*/delete**  
-* Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
+[!INCLUDE [universal-prerequisites](universal-prerequisites.md)]
 
-[!INCLUDE [bicep-setup](bicep-setup.md)]
+
 
 ## Configure and run an agent
 
@@ -67,7 +58,7 @@ Use the following code to create and run an agent. To run this code, you will ne
 
 `<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>`
 
-[!INCLUDE [connection-string-portal](connection-string-portal.md)]
+[!INCLUDE [connection-string-portal](endpoint-string-portal.md)]
 
 `HostName` can be found by navigating to your `discovery_url` and removing the leading `https://` and trailing `/discovery`. To find your `discovery_url`, run this CLI command:
 

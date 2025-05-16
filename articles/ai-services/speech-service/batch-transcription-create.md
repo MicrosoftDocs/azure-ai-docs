@@ -278,7 +278,7 @@ curl -v -X GET "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/mod
 ::: zone-end
 
 ::: zone pivot="speech-cli"
-Make sure that you set the [configuration variables](spx-basics.md#create-a-resource-configuration) for an AI Services resource for Speech in one of the supported regions. You can run the `spx csr list --base` command to get available base models for all locales.
+Make sure that you set the [configuration variables](spx-basics.md#create-a-resource-configuration) for an AI Foundry resource for Speech in one of the supported regions. You can run the `spx csr list --base` command to get available base models for all locales.
 
 ```azurecli
 spx csr list --base --api-version v3.2

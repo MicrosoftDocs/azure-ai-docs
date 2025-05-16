@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI Service fine-tuning gpt-4o-mini
+title: Azure OpenAI in Azure AI Foundry Models fine-tuning gpt-4o-mini
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI's latest fine-tuning capabilities with gpt-4o-mini-2024-07-18
 manager: nitinme
@@ -771,7 +771,7 @@ response = client.chat.completions.create(
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
         {"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
-        {"role": "user", "content": "Do other Azure AI services support this too?"}
+        {"role": "user", "content": "Do other Azure services support this too?"}
     ]
 )
 

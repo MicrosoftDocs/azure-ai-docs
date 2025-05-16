@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: overview
-ms.date: 04/15/2025
+ms.date: 05/15/2025
 ms.custom:
   - references_regions
   - ignite-2024
@@ -19,6 +19,22 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 
 > [!NOTE]
 > Preview features are announced here, but we also maintain a [preview features list](search-api-preview.md) so you can find them in one place.
+
+## May 2025
+
+| Item&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Type |  Description |
+|-----------------------------|------|--------------|
+| [Agentic retrieval (preview)](search-agentic-retrieval-concept.md) | Query | Create a conversational search experience powered by large language models (LLMs) and your proprietary data. Agentic retrieval breaks down complex user queries into subqueries, runs the subqueries in parallel, and extracts grounding data from documents indexed in Azure AI Search. The output is intended for agents and custom chat solutions. A new [knowledge agent](search-agentic-retrieval-how-to-create.md) object is introduced in this preview. Its [response payload](search-agentic-retrieval-how-to-retrieve.md) is designed for downstream agent and chat model consumption, with full transparency of the query plan and reference data. To get started, see [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md). |
+| [Multivector support (preview)](vector-search-multi-vector-fields.md) | Indexing | Index multiple child vectors within a single document field. You can now use vector types in nested fields of complex collections, effectively allowing multiple vectors to be associated with a single document.|
+| [Scoring profiles with semantic ranking (preview)​](semantic-how-to-enable-scoring-profiles.md) | Relevance | Semantic ranker adds a new field, `@search.rerankerBoostedScore`, to help you maintain consistent relevance and greater control over final ranking outcomes in your search pipeline. |
+| [Logic Apps integration (preview)](search-how-to-index-logic-apps-indexers.md) | Indexing | Create an automated indexing pipeline that retrieves content using a logic app workflow. Use the [Import and vectorize data wizard](search-get-started-portal-import-vectors.md) in the Azure portal to build an indexing pipeline based on Logic Apps. |
+| [Document-level access control (preview)](search-document-level-access-overview.md) | Security | Flow document-level permissions from blobs in Azure Data Lake Storage (ADLS) Gen2 to searchable documents in an index. Queries can now filter results based on user identity for selected data sources. |
+| [Multimodal search (preview)](multimodal-search-overview.md) | Indexing, Query | Ingest, understand, and retrieve documents that contain text and images, enabling you to perform searches that combine various modalities, such as querying with text to find information embedded in relevant complex images. |
+| [GenAI prompt skill (preview)](cognitive-search-skill-genai-prompt.md) | Skills | A new skill that connects to a large language model (LLM) for information, using a prompt you provide. With this skill, you can populate a searchable field using content from an LLM. A primary use case for this skill is *image verbalization*, using an LLM to describe images and send the description to a searchable field in your index. |
+| [Document Layout skill (preview)](cognitive-search-skill-document-intelligence-layout.md)| Skills | New parameters are available for this skill if you use the 2025-05-01-preview API version. New parameters support image offset metadata that improves the image search experience. |
+| Import and vectorize data wizard enhancements | Portal | This wizard provides two paths for creating and populating vector indexes: [Retrieval Augmented Generation (RAG)](search-get-started-portal-import-vectors.md) and [Multimodal](search-get-started-portal-image-search.md). Logic apps integration is through the RAG path. |
+| [Index "description" support (preview)](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true#request-body) | REST | The latest preview API adds a description to an index. A description is useful in agentic solutions, where the agent reads the description to decide whether to run a query or move on to another index. |
+| [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) | REST | New data plane preview REST API version providing programmatic access to the preview features announced in this release. |
 
 ## April 2025
 
@@ -34,7 +50,7 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | [Pricing tier change (preview)](search-capacity-planning.md#change-your-pricing-tier) | Service | Change the [pricing tier](search-sku-tier.md) of your search service. This provides flexibility to scale storage, increase request throughput, and decrease latency based on your needs. In this preview, you can only change between Basic and Standard (S1, S2, and S3) tiers. Available in [Update Service (2025-02-01-preview)](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true#searchupdateservicewithsku) and the Azure portal. |
 | [Facet hierarchies, aggregations, and facet filters (preview)](search-faceted-navigation-examples.md) | Queries | New facet query parameters support nested facets. For numeric facetable fields, you can sum the values of each field. You can also specify filters on a facet to add inclusion or exclusion criteria. Available in [Search Documents (2025-03-01-preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-03-01-preview&preserve-view=true) and the Azure portal.|
 | [Rescore vector queries over binary quantization using full precision vectors (preview)](vector-search-how-to-quantization.md#recommended-rescoring-techniques) | Queries | For vector indexes that contain binary quantization, you can rescore query results using a full precision vector query. The query engine uses the dot product of the binary embeddings and the vector query for rescoring, which improves the quality of search results.  Set `enableRescoring` and `discardOriginals` to use this feature, and call the latest preview API version on the request.|
-| [Semantic ranker pre-release models (preview)](semantic-how-to-configure.md#opt-in-for-prerelease-semantic-ranking-models) | Index | Opt in to use pre-release semantic ranker models if one happens to be available in your region. Available in [Create or Update Index (2025-03-01-preview)](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-03-01-preview#semanticconfiguration&preserve-view=true).|
+| [Semantic ranker prerelease models (preview)](semantic-how-to-configure.md#opt-in-for-prerelease-semantic-ranking-models) | Index | Opt in to use prerelease semantic ranker models if one happens to be available in your region. Available in [Create or Update Index (2025-03-01-preview)](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-03-01-preview#semanticconfiguration&preserve-view=true).|
 | [Search Service REST 2025-03-01-preview](/rest/api/searchservice/search-service-api-versions?view=rest-searchservice-2025-03-01-preview&preserve-view=true) | REST | Public preview release of REST APIs for data plane operations. Adds support for multi-vector embeddings, hierarchical facets, facet aggregation, and facet filters. |
 | [Search Management 2025-02-01-preview](/rest/api/searchmanagement/management-api-versions?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true) | REST | Public review release of REST APIs for control plane operations. Adds support for in-place upgrade to higher capacity partitions, in-place upgrade to higher tiers, and Azure Confidential Compute. |
 

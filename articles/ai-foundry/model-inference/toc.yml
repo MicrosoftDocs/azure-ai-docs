@@ -1,10 +1,10 @@
 items:
-- name: Azure AI Model Inference Documentation
+- name: Azure AI Foundry Models Documentation
   href: index.yml
 - name: Overview
   expanded: true
   items:
-    - name: What is Azure AI model inference?
+    - name: What is Azure AI Foundry Models?
       href: ./overview.md
     - name: Models
       href: ./concepts/models.md
@@ -20,9 +20,9 @@ items:
   items:
     - name: Create resources and configure
       href: ./how-to/quickstart-create-resources.md
-    - name: Upgrade from GitHub Models to Azure AI model inference
+    - name: Upgrade from GitHub Models to Azure AI Foundry Models
       href: ./how-to/quickstart-github-models.md 
-    - name: Configure AI projects to work with Azure AI model inference
+    - name: Configure AI projects to work with Azure AI Foundry Models
       href: ./how-to/quickstart-ai-project.md
 - name: Tutorials
   items:
@@ -52,6 +52,8 @@ items:
     href: ./how-to/quickstart-create-resources.md
   - name: Add and configure models
     href: ./how-to/create-model-deployments.md
+  - name: Configure Models from Partners and Community
+    href: ./how-to/configure-marketplace.md
   - name: Connect your AI project
     href: ./how-to/configure-project-connection.md
   - name: Responsible AI
@@ -68,13 +70,15 @@ items:
         href: ./how-to/configure-deployment-policies.md
       - name: Use virtual networks
         href: ../../ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-foundry/model-inference/context/context
+  - name: Monitor model deployments
+    href: ./how-to/monitor-models.md
   - name: Manage cost
     href: ./how-to/manage-costs.md
   - name: Quotas and limits
     href: ./quotas-limits.md
 - name: Develop
   items:
-    - name: Use the Azure AI model inference endpoint
+    - name: Use the models endpoint
       href: ./how-to/inference.md
     - name: Programming languages and SDKs
       href: ./supported-languages.md
@@ -102,9 +106,9 @@ items:
       href: ../how-to/develop/semantic-kernel.md?context=/azure/ai-foundry/model-inference/context/context
 - name: Reference
   items:
-    - name: Azure AI Model Inference API
+    - name: Azure AI Foundry Models API
       items:
-      - name: What's the Azure AI Model Inference API?
+      - name: What's the Foundry Models API?
         href: /rest/api/aifoundry/modelinference
       - name: Reference
         items:

@@ -11,7 +11,7 @@ ms.custom:
   - ignite-2023
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 05/08/2025
 ---
 
 # Index data from Azure Blob Storage
@@ -22,8 +22,8 @@ To configure and run the indexer, you can use:
 
 + [Search Service REST API](/rest/api/searchservice), any version.
 + An Azure SDK package, any version.
-+ [Import data](search-get-started-portal.md) wizard in the Azure portal.
-+ [Import and vectorize data](search-get-started-portal-import-vectors.md) wizard in the Azure portal.
++ [Import data wizard](search-get-started-portal.md) in the Azure portal.
++ [Import and vectorize data wizard](search-get-started-portal-import-vectors.md) in the Azure portal.
 
 This article uses the REST APIs to illustrate each step.
 
@@ -93,7 +93,7 @@ User-specified metadata properties are extracted verbatim. To receive the values
 
 Standard blob metadata properties can be extracted into similarly named and typed fields, as listed below. The blob indexer automatically creates internal field mappings for these blob metadata properties, converting the original hyphenated name ("metadata-storage-name") to an underscored equivalent name ("metadata_storage_name").
 
-You still have to add the underscored fields to the index definition, but you can omit field mappings because the indexer make the association automatically.
+You still have to add the underscored fields to the index definition, but you can omit field mappings because the indexer makes the association automatically.
 
 + **metadata_storage_name** (`Edm.String`) - the file name of the blob. For example, if you have a blob /my-container/my-folder/subfolder/resume.pdf, the value of this field is `resume.pdf`.
 

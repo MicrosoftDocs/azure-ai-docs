@@ -2,18 +2,18 @@
   tocHref: /azure/
   topicHref: /azure/index
   items:
-  - name: Azure AI services
-    tocHref: /azure/ai-services/
-    topicHref: /azure/ai-services/index
+  - name: Azure AI Foundry
+    tocHref: /azure/ai-foundry/
+    topicHref: /azure/ai-foundry/index
     items:
     - name: Anomaly Detector
-      tocHref: /azure/ai-services/
+      tocHref: /azure/ai-foundry/
       topicHref: /azure/ai-services/Anomaly-Detector/index
 - name: Azure
   tocHref: /legal/
   topicHref: /azure/index
   items:
-  - name: Azure AI services             # Original doc set name
+  - name: Azure AI Foundry             # Original doc set name
     tocHref: /legal/cognitive-services/anomaly-detector    # Destination doc set route
     topicHref: /azure/ai-services/index    # Original doc set route
     items:

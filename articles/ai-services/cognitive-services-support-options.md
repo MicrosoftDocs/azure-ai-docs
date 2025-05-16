@@ -15,7 +15,7 @@ Here are the options for getting support, staying up to date, giving feedback, a
 
 ## Get solutions to common issues
 
-In the Azure portal, you can find answers to common AI service issues. 
+In the Azure portal, you can find answers to common AI service issues.
 
 1. Go to your Azure AI services resource in the Azure portal. You can find it on the list on this page: [Azure AI services](https://ms.portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/AllCognitiveServices). If you're a United States government customer, use the [Azure portal for the United States government](https://portal.azure.us).
 1. In the left pane, under **Help**, select **Support + Troubleshooting**.
