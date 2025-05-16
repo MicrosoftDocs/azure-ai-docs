@@ -76,9 +76,6 @@ items:
     - name: 🆕 Classifier
       displayName: classifier, text, images, video, audio, multimodal, visual, structured, content, field, extraction
       href: concepts/classifier.md
-    - name: 🆕 Analyzers overview
-      displayName: content understanding capabilities, document, text, images, video, audio, visual, structured, content, field, extraction
-      href: concepts/analyzers-overview.md
     - name: 🆕 Prebuilt analyzers
       displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
       href: concepts/prebuilt-analyzers.md
@@ -90,9 +87,6 @@ items:
     - name: Create a custom analyzer
       displayName: custom, analyzer, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
       href: tutorial/create-custom-analyzer.md 
-    - name: Build a retrieval-augmented solution
-      displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
-      href: tutorial/build-rag-solution.md
     - name: Build a person directory
       displayName: person, directory, search, index, vector
       href: tutorial/build-person-directory.md
