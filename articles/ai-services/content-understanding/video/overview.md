@@ -52,22 +52,47 @@ With the prebuilt video analyzer (prebuilt-videoAnalyzer), you can upload a vide
 Calling prebuilt-video with no custom schema returns a document like the following (abridged) example:
 
 ```markdown
-   # Video: 00:00.000 → 00:30.000
-   Width: 1280  ·  Height: 720
+# Video: 00:00.000 => 00:30.000
+Width: 1280
+Height: 720
 
-   Transcript
-   WEBVTT
-   00:03.600 --> 00:06.000  <1 Speaker> Get new years ready.
-   00:11.120 --> 00:13.520  <1 Speaker>Find your style for the new year
+## Segment 1: 00:00.000 => 00:06.000
+A lively room filled with people is shown, where a group of friends is gathered around a television. They are watching a sports event, possibly a football match, as indicated by the decorations and the atmosphere. The AliExpress logo is prominently displayed, suggesting a connection to the ongoing event.
 
-   **Key frames**
-   - 00:00.600 ![KF](keyFrame.600.jpg)
-   - 00:01.200 ![KF](keyFrame.1200.jpg)
-   - 00:02.560 ![KF](keyFrame.2560.jpg)
-   - 00:03.280 ![KF](keyFrame.3280.jpg)
-   - 00:04.560 ![KF](keyFrame.4560.jpg)
-   - 00:05.600 ![KF](keyFrame.5600.jpg)
-   - 00:06.200 ![KF](keyFrame.6200.jpg)
+Transcript
+```
+WEBVTT
+
+00:03.600 --> 00:06.000
+<Speaker 1 Speaker>Get Euro ready with AliExpress.
+```
+
+Key Frames
+- 00:00.600 ![](keyFrame.600.jpg)
+- 00:01.200 ![](keyFrame.1200.jpg)
+- 00:02.560 ![](keyFrame.2560.jpg)
+- 00:03.280 ![](keyFrame.3280.jpg)
+- 00:04.560 ![](keyFrame.4560.jpg)
+- 00:05.600 ![](keyFrame.5600.jpg)
+
+## Segment 2: 00:06.000 => 00:10.080
+The scene transitions to a more vibrant and energetic setting, where the group of friends is now celebrating. The room is decorated with football-themed items, and everyone is cheering and enjoying the moment. The AliExpress branding continues to be visible, emphasizing the theme of shopping and celebration.
+
+Transcript
+```
+WEBVTT
+
+00:03.600 --> 00:06.000
+<Speaker 1 Speaker>Get Euro ready with AliExpress.
+```
+
+Key Frames
+- 00:06.200 ![](keyFrame.6200.jpg)
+- 00:07.080 ![](keyFrame.7080.jpg)
+- 00:07.760 ![](keyFrame.7760.jpg)
+- 00:08.560 ![](keyFrame.8560.jpg)
+- 00:09.360 ![](keyFrame.9360.jpg)
+                
 
    *…additional data omitted for brevity…*
 ````
