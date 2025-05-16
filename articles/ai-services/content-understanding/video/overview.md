@@ -31,7 +31,7 @@ The **pre-built video analyzer** outputs RAG-ready Markdown that includes:
 
 This format can drop straight into a vector store to enable an agent or RAG workflows—no post-processing required.
 
-From there you can **customize the analyzer** for more fine-grained control of the output. You can define custom fields, segments, or enable face identification. Customization allows you to use the full power of generative models to extract deep insights from the visual and audio details of the video. 
+From there you can **customize the analyzer** for more fine-grained control of the output. You can define custom fields, segments, or enable face identification. Customization allows you to use the full power of generative models to extract deep insights from the visual and audio details of the video.
 
 For example, customization allows you to:
 
@@ -52,61 +52,59 @@ Content understanding for video has broad potential uses. For example, you can c
 
 With the prebuilt video analyzer (prebuilt-videoAnalyzer), you can upload a video and get an immediately usable knowledge asset. The service packages every clip into both richly formatted Markdown and JSON. This process allows your search index or chat agent to ingest without custom glue code.
 
-For example, creating the base prebuilt-videoAnalyzer like this:
+* For example, creating the base `prebuilt-videoAnalyzer` as follows:
 
+  ```jsonc
+  {
+    "config": {},
+    "BaseAnalyzerId": "prebuilt-videoAnalyzer",
+  }
+  ```
+
+* Next, analyzing a 30-second advertising video, would result in the following output:
+
+```markdown
+  # Video: 00:00.000 => 00:30.000
+  Width: 1280
+  Height: 720
+
+  ## Segment 1: 00:00.000 => 00:06.000
+  A lively room filled with people is shown, where a group of friends is gathered around a television. They are watching a sports event, possibly a football match, as indicated by the decorations and the atmosphere.
+
+  Transcript
+
+  WEBVTT
+
+  00:03.600 --> 00:06.000
+  <Speaker 1 Speaker>Get new years ready.
+
+  Key Frames
+  - 00:00.600 ![](keyFrame.600.jpg)
+  - 00:01.200 ![](keyFrame.1200.jpg)
+
+  ## Segment 2: 00:06.000 => 00:10.080
+  The scene transitions to a more vibrant and energetic setting, where the group of friends is now celebrating. The room is decorated with football-themed items, and everyone is cheering and enjoying the moment.
+
+  Transcript
+
+  WEBVTT
+
+  00:03.600 --> 00:06.000
+  <Speaker 1 Speaker>Go team!
+
+  Key Frames
+  - 00:06.200 ![](keyFrame.6200.jpg)
+  - 00:07.080 ![](keyFrame.7080.jpg)
+  
+     *…additional data omitted for brevity…*
 ```
-{
-  "config": {},
-  "BaseAnalyzerId": "prebuilt-videoAnalyzer",
-}
-```
-
-Then analyzing a 30-second advertising video, would result in the following output:
-
-````markdown
-# Video: 00:00.000 => 00:30.000
-Width: 1280
-Height: 720
-
-## Segment 1: 00:00.000 => 00:06.000
-A lively room filled with people is shown, where a group of friends is gathered around a television. They are watching a sports event, possibly a football match, as indicated by the decorations and the atmosphere. 
-
-Transcript
-```
-WEBVTT
-
-00:03.600 --> 00:06.000
-<Speaker 1 Speaker>Get new years ready.
-```
-
-Key Frames
-- 00:00.600 ![](keyFrame.600.jpg)
-- 00:01.200 ![](keyFrame.1200.jpg)
-
-## Segment 2: 00:06.000 => 00:10.080
-The scene transitions to a more vibrant and energetic setting, where the group of friends is now celebrating. The room is decorated with football-themed items, and everyone is cheering and enjoying the moment. 
-
-Transcript
-```
-WEBVTT
-
-00:03.600 --> 00:06.000
-<Speaker 1 Speaker>Go team!
-```
-
-Key Frames
-- 00:06.200 ![](keyFrame.6200.jpg)
-- 00:07.080 ![](keyFrame.7080.jpg)
-
-   *…additional data omitted for brevity…*
-````
 
 ## Walk-through
 
 We recently published a walk-through for RAG on Video using Content Understanding.
 [https://www.youtube.com/watch?v=fafneWnT2kw\&lc=Ugy2XXFsSlm7PgIsWQt4AaABAg](https://www.youtube.com/watch?v=fafneWnT2kw&lc=Ugy2XXFsSlm7PgIsWQt4AaABAg)
 
-# Capabilities
+## Capabilities
 
 1. [Content extraction](#content-extraction-capabilities)
 1. [Field extraction](#field-extraction-and-segmentation)
@@ -131,8 +129,8 @@ The first pass is all about extracting a first set of details—who's speaking, 
     > When Multilingual transcription is used, any files with unsupported locales produce a result based on the closest supported locale, which is likely incorrect. This result is a known
     > behavior. Avoid transcription quality issues by ensuring that you configure locales when not using a multilingual transcription supported locale!
 
-* **Key frame extraction:** Extracts key frames from videos to represent each shot completely, ensuring each shot has enough key frames to enable field extraction to work effectively.
-* **Shot detection:** Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and repackaging of content with breaks exactly existing edits. This is output as a list of timestamps in milliseconds in `cameraShotTimesMs`. It is only output when `"returnDetails": true` is set. 
+  * **Key frame extraction:** Extracts key frames from videos to represent each shot completely, ensuring each shot has enough key frames to enable field extraction to work effectively.
+  * **Shot detection:** Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and repackaging of content with breaks exactly existing edits. The output is a list of timestamps in milliseconds in `cameraShotTimesMs`. The output is only returned when `"returnDetails": true` is set.
 
 ## Field extraction and segmentation
 
@@ -157,6 +155,7 @@ Shape the output to match your business vocabulary. Use a `fieldSchema` object w
 **Example:**
 
 ```jsonc
+
 "fieldSchema": {
   "description": "Extract brand presence and sentiment per scene",
   "fields": {
@@ -182,6 +181,7 @@ Shape the output to match your business vocabulary. Use a `fieldSchema` object w
 
 
 ### Segmentation mode
+
 > [!NOTE]
 >
 > Setting segmentation triggers field extraction even if no fields are defined.
@@ -208,13 +208,14 @@ Content Understanding offers three ways to slice a video, letting you get the ou
 
   **Example:**
     * Break a news broadcast up into stories.
-  ```jsonc
-  {
-    "segmentationMode": "custom",
-    "segmentationDefinition": "news broadcasts divided by individual stories"
-  }
-  ```
-  
+
+    ```jsonc
+    {
+      "segmentationMode": "custom",
+      "segmentationDefinition": "news broadcasts divided by individual stories"
+    }
+    ```
+
 ## Face identification description add-on
 
 > [!NOTE]
@@ -228,7 +229,7 @@ Face identification description is an add-on that provides context to content ex
 The face add-on enables grouping and identification as output from the content extraction section. To enable face capabilities set `"enableFace":true` in the analyzer configuration.
 
 * **Grouping:** Grouped faces appearing in a video to extract one representative face image for each person and provides segments where each one is present. The grouped face data is available as metadata and can be used to generate customized metadata fields when `returnDetails: true` for the analyzer.
-* **Identification:** Labels individuals in the video with names based on a Face API person directory. Customers can enable this feature by supplying a name for a Face API directory in the current resource in the `personDirectoryId` property of the analyzer. To use this capibility, first you must create a personDirectory then reference it in the analyzer. For details on how to do that, check out [How to build a person directory](../../content-understanding/tutorial/build-person-directory.md)
+* **Identification:** Labels individuals in the video with names based on a Face API person directory. Customers can enable this feature by supplying a name for a Face API directory in the current resource in the `personDirectoryId` property of the analyzer. To use this capability, first you must create a personDirectory then reference it in the analyzer. For details on how to do that, check out [How to build a person directory](../../content-understanding/tutorial/build-person-directory.md)
 
 ### Field Extraction – Face description
 
@@ -262,13 +263,9 @@ Specific limitations of video processing to keep in mind:
 
 For supported formats, see [Service quotas and limits](../service-limits.md).
 
-
-
 ## Supported languages and regions
 
 See [Language and region support](../language-region-support.md).
-
-
 
 ## Data privacy and security
 
@@ -277,8 +274,6 @@ As with all Azure AI services, review Microsoft's [Data, protection, and privacy
 > [!IMPORTANT]
 >
 > If you process **Biometric Data** (for example, enable **Face Grouping** or **Face Identification**), you must meet all notice, consent, and deletion requirements under GDPR or other applicable laws. See [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
-
-
 
 ## Next steps
 
