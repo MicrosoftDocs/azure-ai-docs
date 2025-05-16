@@ -27,11 +27,21 @@ The `FoundryLocalManager` class provides methods to manage models, cache, and th
 from foundry_local import FoundryLocalManager
 
 # Initialize and optionally bootstrap with a model
-manager = FoundryLocalManager(model_id_or_alias=None, bootstrap=True)
+manager = FoundryLocalManager(alias_or_model_id=None, bootstrap=True)
 ```
 
-- `model_id_or_alias`: (optional) Model ID or alias to download and load at startup.
+- `alias_or_model_id`: (optional) Alias or Model ID to download and load at startup.
 - `bootstrap`: (default True) If True, starts the service if not running and loads the model if provided.
+
+### A note on aliases
+
+Many methods outlined in this reference have an `alias_or_model_id` parameter in the signature. You can pass into the method either an **alias** or **model ID** as a value. Using an alias will:
+
+- Select the *best model* for the available hardware. For example, if a Nvidia CUDA GPU is available, Foundry Local selects the CUDA model. If a supported NPU is available, Foundry Local selects the NPU model.
+- Allow you to use a shorter name without needing to remember the model ID.
+
+> [!TIP]
+> We recommend passing into the `alias_or_model_id` parameter an **alias** because when you deploy your application, Foundry Local acquires the best model for the end user's machine at run-time.
 
 ### Service Management
 
@@ -49,22 +59,22 @@ manager = FoundryLocalManager(model_id_or_alias=None, bootstrap=True)
 |---------------------------|---------------------------------------------------|--------------------------------------------------|
 | `list_catalog_models()`   | `() -> list[FoundryModelInfo]`                    | Lists all available models in the catalog.        |
 | `refresh_catalog()`       | `() -> None`                                      | Refreshes the model catalog.                     |
-| `get_model_info()`        | `(model_alias_or_id: str, raise_on_not_found=False) -> FoundryModelInfo or None` | Gets model info by alias or ID.                  |
+| `get_model_info()`        | `(alias_or_model_id: str, raise_on_not_found=False) -> FoundryModelInfo or None` | Gets model info by alias or ID.                  |
 
 ### Cache Management
 
 | Method                    | Signature                                         | Description                                      |
 |---------------------------|---------------------------------------------------|--------------------------------------------------|
 | `get_cache_location()`    | `() -> str`                                       | Returns the model cache directory path.           |
-| `list_local_models()`     | `() -> list[FoundryModelInfo]`                    | Lists models downloaded to the local cache.       |
+| `list_cached_models()`     | `() -> list[FoundryModelInfo]`                    | Lists models downloaded to the local cache.       |
 
 ### Model Management
 
 | Method                        | Signature                                                                 | Description                                      |
 |-------------------------------|---------------------------------------------------------------------------|--------------------------------------------------|
-| `download_model()`            | `(model_alias_or_id: str, token: str = None, force: bool = False) -> FoundryModelInfo` | Downloads a model to the local cache.            |
-| `load_model()`                | `(model_alias_or_id: str, ttl: int = 600) -> FoundryModelInfo`            | Loads a model into the inference server.         |
-| `unload_model()`              | `(model_alias_or_id: str, force: bool = False) -> None`                   | Unloads a model from the inference server.       |
+| `download_model()`            | `(alias_or_model_id: str, token: str = None, force: bool = False) -> FoundryModelInfo` | Downloads a model to the local cache.            |
+| `load_model()`                | `(alias_or_model_id: str, ttl: int = 600) -> FoundryModelInfo`            | Loads a model into the inference server.         |
+| `unload_model()`              | `(alias_or_model_id: str, force: bool = False) -> None`                   | Unloads a model from the inference server.       |
 | `list_loaded_models()`        | `() -> list[FoundryModelInfo]`                                            | Lists all models currently loaded in the service.|
 
 ## Example Usage
@@ -91,7 +101,7 @@ model_info = manager.load_model(alias)
 print(f"Model info: {model_info}")
 
 # List models in cache
-local_models = manager.list_local_models()
+local_models = manager.list_cached_models()
 print(f"Models in cache: {local_models}")
 
 # List loaded models
