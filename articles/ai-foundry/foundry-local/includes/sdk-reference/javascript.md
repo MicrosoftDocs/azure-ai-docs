@@ -69,7 +69,7 @@ Many methods outlined in this reference have an `aliasOrModelId` parameter in th
 | Method                    | Signature                                         | Description                                      |
 |---------------------------|---------------------------------------------------|--------------------------------------------------|
 | `getCacheLocation()`      | `() => Promise<string>`                           | Returns the model cache directory path.           |
-| `listLocalModels()`       | `() => Promise<FoundryModelInfo[]>`               | Lists models downloaded to the local cache.       |
+| `listCachedModels()`       | `() => Promise<FoundryModelInfo[]>`               | Lists models downloaded to the local cache.       |
 
 
 ### Model Management
@@ -112,7 +112,7 @@ await manager.downloadModel(alias)
 await manager.loadModel(alias)
 
 // List models in cache
-const localModels = await manager.listLocalModels()
+const localModels = await manager.listCachedModels()
 
 // List loaded models
 const loaded = await manager.listLoadedModels()

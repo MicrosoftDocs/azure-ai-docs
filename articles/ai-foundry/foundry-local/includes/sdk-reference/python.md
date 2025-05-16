@@ -66,7 +66,7 @@ Many methods outlined in this reference have an `alias_or_model_id` parameter in
 | Method                    | Signature                                         | Description                                      |
 |---------------------------|---------------------------------------------------|--------------------------------------------------|
 | `get_cache_location()`    | `() -> str`                                       | Returns the model cache directory path.           |
-| `list_local_models()`     | `() -> list[FoundryModelInfo]`                    | Lists models downloaded to the local cache.       |
+| `list_cached_models()`     | `() -> list[FoundryModelInfo]`                    | Lists models downloaded to the local cache.       |
 
 ### Model Management
 
@@ -101,7 +101,7 @@ model_info = manager.load_model(alias)
 print(f"Model info: {model_info}")
 
 # List models in cache
-local_models = manager.list_local_models()
+local_models = manager.list_cached_models()
 print(f"Models in cache: {local_models}")
 
 # List loaded models
