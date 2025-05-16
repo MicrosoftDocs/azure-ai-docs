@@ -7,11 +7,10 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 05/01/2025
-ms.custom: ignite-2024-understanding-release
+ms.date: 05/19/2025
 ---
 
-# Content Understanding document solutions (preview)
+# Azure AI Content Understanding document solutions (preview)
 
 > [!IMPORTANT]
 >
@@ -19,15 +18,7 @@ ms.custom: ignite-2024-understanding-release
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Content Understanding is a cloud-based [Azure AI Service](../../what-are-ai-services.md) designed to efficiently extract content and structured fields from documents and forms. It provides a comprehensive suite of APIs and an intuitive UX experience for optimal efficiency.
-
-Content Understanding enables organization to streamline data collection and processing, enhance operational efficiency, optimize data-driven decision making, and empower innovation. With customizable analyzers, Content Understanding allows for easy extraction of content or fields from documents and forms, tailored to specific business needs.
-
-## April updates
-
-* **Invoice prebuilt template**: Extract predefined schemas from various invoice formats. The out-of-the-box schema can be customized by adding or removing fields to suit your specific needs.
-
-* **Generative and classify methods**: Added support for both generative and classification-based methods, enabling you to create generative fields such as summaries or categorize document details into multiple classes using the classify method.
+Azure AI Content Understanding offers sophisticated document analysis capabilities, enabling organizations to convert unstructured content into actionable and organized data. Utilizing [customizable analyzers](../concepts/prebuilt-analyzers.md), it can expertly extract essential information, fields, and relationships from a diverse range of documents and forms.
 
 ## Business use cases
 
@@ -37,34 +28,62 @@ Document analyzers can process complex documents in various formats and template
 * **Loan and mortgage applications**: Automate processing to enable quicker handling by banks, lenders, and government entities.
 * **Financial services**: Analyze complex documents like financial reports and asset management reports.
 * **Expense management**: Parse receipts and invoices from various retailers to validate expenses across different formats and templates.
-
+* **Document sets and knowledge base scenarios**: Extract key fields from document sets as a whole, and add reference data that handle tasks like validation and enrichment by applying multi-step reasoning.
 
 ## Document analyzer capabilities
 
-:::image type="content" source="../media/document/extraction-overview.png" alt-text="Screenshot of document extraction flow.":::
+:::image type="content" source="../media/document/document-capabilities.png" alt-text="Screenshot of document extraction flow.":::
 
-Content extraction enables the extraction of both printed and handwritten text from forms and documents, delivering business-ready content that is immediately actionable, usable, or adaptable for further development within your organization.
+### Content extraction
 
-### Add-on capabilities
+Content extraction forms the foundation of Azure AI Content Understanding's document analysis capabilities, transforming unstructured documents into structured, machine-readable data.
+It precisely captures both printed and handwritten text while preserving the document's structure through advanced layout analysis.
 
-Enhance your document extraction with optional add-on features, which can incur added costs. These features can be enabled or disabled based on your needs. Currently supported add-ons include:
-
-* **Layout**: Extracts layout information such as paragraphs, sections, tables, and more.
-* **Barcode**: Identifies and decodes all barcodes in the documents.
-* **Formula**: Recognizes all identified mathematical equations from the documents.
-
+- Content Analysis
+  - **Text**: Processes multilingual content, including both machine-printed and handwritten text from hundreds of languages.
+  - **Selection marks**: Identifies and extracts selection indicators such as checkboxes, radio buttons, and similar markers.
+  - **Barcode detection**: Scans and decodes information from over a dozen types of linear and two-dimensional barcodes.
+  - **Mathematical formulas**: Captures and preserves complex mathematical expressions in LaTeX format.
+  - **Image elements**: Locates and extracts images, diagrams, and charts along with their related captions and annotations.
+- Structure Analysis
+  - **Paragraphs**: Detects and categorizes text segments based on their document context and role.
+  - **Tabular data**: Recognizes and extracts table structures, including complex formats with spanning cells and multi-page layouts.
+  - **Hierarchical sections**: Maps content organization through section headers and nested content relationships.
+- RAG
+  - **RAG solutions**: Content extraction forms the foundation of effective RAG systems by transforming raw multimodal data into structured, searchable formats optimized for retrieval. Learn more about building RAG solutions on our [retrieval-augmented generation](../concepts/retrieval-augmented-generation.md) page.
 
 ### Field extraction
 
-Field extraction enables the extraction of structured data from various forms and documents tailored to your specific needs. For instance, you can extract customer names, billing addresses, and line items from invoices; or parties, renewal date, and payment clause from contracts. You can start field extraction right after defining the schema or enhance it by labeling more sample documents to improve extraction quality.
+Field extraction empowers you to extract, classify, and generate structured data from various documents and forms, customized to meet your unique requirements. The process of transforming unstructured content into organized, actionable information simplifies data management, improves searchability, and supports automated workflows. For instance, you can seamlessly extract customer details, billing addresses, and itemized charges from invoices, or identify contractual parties, renewal dates, and payment terms in legal agreements. To maximize efficiency, you can utilize prebuilt analyzer templates—such as ones tailored for invoices—or design bespoke analyzers from scratch, enhancing precision through the labeling of more sample documents.
 
-## Key Benefits
+The confidence and grounding API is an opt-in feature. Set `estimateFieldSourceAndConfidence` as `true` to opt in for confidence and grounding for field extraction.
 
-* **Accuracy and reliability:** Ensure precise data extraction, reducing errors and boosting efficiency.
-* **Scalability:** Seamlessly scale out document processing to meet business demands.
-* **Customizable:** Adapt document analyzer to fit specific workflows.
-* **Grounding source:** Localize extracted data for human review workflows.
-* **Confidence scores:** Enhance automation with estimated confidence scores to maximize efficiency and minimize costs.
+
+#### Field extraction methods
+
+Azure AI Content Understanding provides versatile methods for field extraction, enabling precise and tailored processing of document content:
+
+- **Extract**: Extract specific data, like transaction dates from receipts or line items from invoices, for precise and focused information capture.
+
+- **Classify**: Categorize document content into predefined categories, such as classifying sentiment in customer call transcript or classifying hotel receipt items. 
+
+- **Generate**: Produce new insights or summaries from your documents, including document summaries, and chapter overviews enhancing content accessibility and comprehension.
+
+## Key benefits
+
+Content Understanding delivers powerful document analysis capabilities designed to address critical enterprise and business scenarios such as Retrieval-Augmented Generation (RAG) and Robotic Process Automation (RPA). Key benefits include:
+
+- **Intelligent search enablement:** Transform unstructured documents into structured, searchable data assets, significantly improving information discoverability and accessibility across your organization.
+
+- **Grounded data extraction:** Maintain clear traceability and localization of extracted data, facilitating efficient human-in-the-loop review processes and ensuring transparency and compliance.
+
+- **Confidence-driven automation:** Utilize built-in confidence scoring to intelligently automate document processing tasks, optimizing resource allocation, reducing operational costs, and enhancing decision-making accuracy.
+
+- **Flexible customization:** Easily adapt and tailor document analyzers to align with specific business processes and workflows, enabling precise extraction and classification tailored to your organization's unique requirements.
+
+- **Enhanced accuracy and reliability:** Achieve precise extraction and classification of critical business data, significantly reducing errors and improving operational efficiency across automated workflows.
+
+- **Agents-ready:** Process your diverse input and deliver output in a standard format that's ready for an agent's workflow. Outputs can give your application an understanding of user intent, with data supported by a `strongly-typed` schema that makes it easier to quickly get data in a format ready for your code.
 
 ## Input requirements
 For detailed information on supported input document formats, refer to our [Service quotas and limits](../service-limits.md) page.

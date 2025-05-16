@@ -7,8 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 03/06/2025
-ms.custom: ignite-2024-understanding-release
+ms.date: 05/19/2025
 
 #customer intent: As a user, I want to learn more about Content Understanding solutions.
 ---
@@ -29,7 +28,7 @@ Content Understanding offers a streamlined process to reason over large amounts 
 
 ## Why process with Content Understanding?
 
-* **Simplify and streamline workflows**. Azure AI Content Understanding standardizes the extraction of content, structure, and insights from various content types into a unified process.
+* **Simplify and streamline workflows**. Azure AI Content Understanding standardizes the extraction and classification of content, structure, and insights from various content types into a unified process.
 
 * **Simplify field extraction**. Content Understanding's field extraction makes it easier to generate structured output from unstructured content. Define a schema to extract, classify, or generate field values with no complex prompt engineering
 
@@ -44,6 +43,8 @@ Content Understanding offers a streamlined process to reason over large amounts 
 * **Search and retrieval-augmented generation (RAG)**. Content Understanding enables ingestion of content of any modality into the search index. The structured output representation improves the relevance for RAG scenarios.
 
 * **Analytics and reporting**: Content Understanding's extracted field outputs enhance analytics and reporting, allowing businesses to gain valuable insights, conduct deeper analysis, and make informed decisions based on accurate reports.
+
+* **Optimize workflow through classification**: Content Understanding's classification feature enables you to categorize the documents first, before routing it to the associated analyzer for extraction.
 
 ## Applications
 
@@ -71,12 +72,11 @@ See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 |Grounding source| Content Understanding identifies the specific regions in the content where the value was generated from. Source grounding allows users in automation scenarios to quickly verify the correctness of the field values, leading to higher confidence in the extracted data. |
 |Confidence score | Content Understanding provides confidence scores from 0 to 1 to estimate the reliability of the results. High scores indicate accurate data extraction, enabling straight-through processing in automation workflows.|
 
-
 ## Responsible AI
 
  Azure AI Content Understanding is designed to guard against processing harmful content, such as graphic violence and gore, hateful speech and bullying, exploitation, abuse, and more. For more information and a full list of prohibited content, *see* our [**Transparency note**](/legal/cognitive-services/content-understanding/transparency-note?toc=/azure/ai-services/content-understanding/toc.json&bc=/azure/ai-services/content-understanding/breadcrumb/toc.json) and our [**Code of Conduct**](https://aka.ms/AI-CoC).
 
-### Modified Content Filtering
+### Modified content filtering
 
 Content Understanding now supports modified content filtering for approved customers. The subscription IDs with approved modified content filtering impacts Content Understanding output. By default, Content Understanding employs a content filtering system that identifies specific risk categories for potentially harmful content in both submitted prompts and generated outputs. Modified content filtering allows the system to annotate rather than block potentially harmful output, giving you the ability to determine how to handle potentially harmful content. For more information on content filter types, *see* [Content filtering: filter types](../openai/concepts/content-filter.md#content-filter-types).
 
@@ -85,7 +85,7 @@ Content Understanding now supports modified content filtering for approved custo
 > * Apply for modified content filters via this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
 > * For more information, *see* [**Content Filtering**](../openai/concepts/content-filter.md).
 
-To learn more about how to add modified content filtering to your requests, *see* our [REST API quickstart](quickstart/use-rest-api.md#modified-content-filtering).
+To learn more about how to add modified content filtering to your requests, *see* our [REST API quickstart](quickstart/use-rest-api.md).
 
 ## Data privacy and security
 Developers using the Content Understanding service should review Microsoft's policies on customer data. For more information, visit our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page.
@@ -94,6 +94,7 @@ Developers using the Content Understanding service should review Microsoft's pol
 > If you're using Microsoft products or services to process Biometric Data, you're responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate, and required under applicable Data Protection Requirements. "Biometric Data" has the meaning articulated in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
 
 ## Getting started
+
 Our quickstart guides help you quickly start using the Content Understanding service:
 
 * [**Azure AI Foundry portal Quickstart**](quickstart/use-ai-foundry.md)

@@ -3,11 +3,11 @@ title: Build a retrieval-augmented generation solution with Azure AI Content Und
 titleSuffix: Azure AI services
 description: Learn to build a retrieval-augmented generation solution with Content Understanding
 author: laujan
-ms.author: tonyeiyalla
+ms.author: paulhsu
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: tutorial
-ms.date: 04/25/2025
+ms.date: 05/19/2025
 ---
 
 # Tutorial: Build a retrieval-augmented generation solution 
@@ -42,7 +42,7 @@ To get started, you need **An active Azure subscription**. If you don't have an 
 * **API Version:** This tutorial uses the latest preview [API version](/rest/api/contentunderstanding/analyzers?view=rest-contentunderstanding-2024-12-01-preview&preview&preserve-view=true): `2024-12-01-preview`.
 * **Python Environment:** Install [Python 3.11](https://www.python.org/downloads/) to execute the provided code samples and scripts.
 * This tutorial follows this sample code can be found in our [Python notebook](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples). Follow the [README](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/README.md) to create essential resources, grant resources the right Access control(IAM) roles and install all packages needed for this tutorial.
-* The [multimodal data](../concepts/capabilities.md) used in this tutorial consists of documents, images, audio, and video. They're designed to guide you through the process of building a robust RAG solution with Azure AI Content Understanding.
+* The [multimodal data](../concepts/analyzers-overview.md) used in this tutorial consists of documents, images, audio, and video. They're designed to guide you through the process of building a robust RAG solution with Azure AI Content Understanding.
 
 ## Extract data
 
@@ -793,4 +793,4 @@ while True:
 
 * [Try a multimodal content solution accelerator](https://github.com/microsoft/content-processing-solution-accelerator)
 
-* [Learn more Content Understanding capabilities](../concepts/capabilities.md)
+* [Learn more Content Understanding capabilities](../concepts/analyzers-overview.md)

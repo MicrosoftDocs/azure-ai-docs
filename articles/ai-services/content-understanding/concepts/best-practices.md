@@ -7,10 +7,10 @@ ms.author: jfilcik
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 02/24/2025
+ms.date: 05/19/2025
 ---
 
-# Best practices for Content Understanding
+# Best practices for Azure AI Content Understanding
 
 Azure AI Content Understanding is an innovative Generative AI service designed to facilitate the precise and accurate analysis of extensive data sets. The service processes various content modalities, including documents, images, videos, and audio, transforming them into user-specified output formats.
 
@@ -87,4 +87,12 @@ When you're working with audio and video content, selecting a narrow set of lang
 
 By default, Content Extraction information such as speech transcripts, document text extracted by `OCR`, and video key frames can be accessed directly from the analyzer output for immediate review or custom processing. There's no need to define a field in the schema for these items. Fields can be used when more processing is needed, for example, summarizing transcripts, identifying entities, or extracting specific items from `OCR`. Each field can instruct the system to extract or generate the content you need.
 
+## Classifier category names and descriptions
+
+To improve the classifier and splitting accuracy, it's important to give a good category name and description with context. For example:
+
+* Common titles for category names (ex. Annual Financial Report, SEC Form 10-K)
+* Semantic definition of the category for descriptions (ex. receipts for expense reporting)
+* Common layout of the initial page in the description (two-column form)
+* Key content that uniquely identifies a category as a description ("2025" on the upper right)
 
