@@ -31,11 +31,13 @@ The **pre-built video analyzer** outputs RAG-ready Markdown that includes:
 
 This format can drop straight into a vector store to enable an agent or RAG workflows—no post-processing required.
 
-From there you can **customize the analyzer** for more fine-grained control of the output. You can define custom fields, segments, or enable face identification. Customization allows you to use the full power of generative models to extract deep insights from the visual and audio details of the video. For example, customization allows you to:
+From there you can **customize the analyzer** for more fine-grained control of the output. You can define custom fields, segments, or enable face identification. Customization allows you to use the full power of generative models to extract deep insights from the visual and audio details of the video. 
 
-- Identify what products and brands are seen or mentioned in the video.
-- Segment a news broadcast into chapters based on the topics or news stories discussed.
-- Use face identification to label speakers as executives, for example, `CEO John Doe`, `CFO Jane Smith`.
+For example, customization allows you to:
+
+- **Define custom fields:** to identify what products and brands are seen or mentioned in the video.
+- **Generate custom segments:** to segment a news broadcast into chapters based on the topics or news stories discussed.
+- **Identify people using a person directory** enabling a customer to label conference speakers in footage using face identification, for example, `CEO John Doe`, `CFO Jane Smith`.
 
 ## Why use Content Understanding for video?
 
@@ -49,50 +51,52 @@ Content understanding for video has broad potential uses. For example, you can c
 ## Prebuilt video analyzer example
 
 With the prebuilt video analyzer (prebuilt-videoAnalyzer), you can upload a video and get an immediately usable knowledge asset. The service packages every clip into both richly formatted Markdown and JSON. This process allows your search index or chat agent to ingest without custom glue code.
-Calling prebuilt-video with no custom schema returns a document like the following (abridged) example:
 
-```markdown
+For example, creating the base prebuilt-videoAnalyzer like this:
+
+```
+{
+  "config": {},
+  "BaseAnalyzerId": "prebuilt-videoAnalyzer",
+}
+```
+
+Then analyzing a 30-second advertising video, would result in the following output:
+
+````markdown
 # Video: 00:00.000 => 00:30.000
 Width: 1280
 Height: 720
 
 ## Segment 1: 00:00.000 => 00:06.000
-A lively room filled with people is shown, where a group of friends is gathered around a television. They are watching a sports event, possibly a football match, as indicated by the decorations and the atmosphere. The AliExpress logo is prominently displayed, suggesting a connection to the ongoing event.
+A lively room filled with people is shown, where a group of friends is gathered around a television. They are watching a sports event, possibly a football match, as indicated by the decorations and the atmosphere. 
 
 Transcript
 ```
 WEBVTT
 
 00:03.600 --> 00:06.000
-<Speaker 1 Speaker>Get Euro ready with AliExpress.
+<Speaker 1 Speaker>Get new years ready.
 ```
 
 Key Frames
 - 00:00.600 ![](keyFrame.600.jpg)
 - 00:01.200 ![](keyFrame.1200.jpg)
-- 00:02.560 ![](keyFrame.2560.jpg)
-- 00:03.280 ![](keyFrame.3280.jpg)
-- 00:04.560 ![](keyFrame.4560.jpg)
-- 00:05.600 ![](keyFrame.5600.jpg)
 
 ## Segment 2: 00:06.000 => 00:10.080
-The scene transitions to a more vibrant and energetic setting, where the group of friends is now celebrating. The room is decorated with football-themed items, and everyone is cheering and enjoying the moment. The AliExpress branding continues to be visible, emphasizing the theme of shopping and celebration.
+The scene transitions to a more vibrant and energetic setting, where the group of friends is now celebrating. The room is decorated with football-themed items, and everyone is cheering and enjoying the moment. 
 
 Transcript
 ```
 WEBVTT
 
 00:03.600 --> 00:06.000
-<Speaker 1 Speaker>Get Euro ready with AliExpress.
+<Speaker 1 Speaker>Go team!
 ```
 
 Key Frames
 - 00:06.200 ![](keyFrame.6200.jpg)
 - 00:07.080 ![](keyFrame.7080.jpg)
-- 00:07.760 ![](keyFrame.7760.jpg)
-- 00:08.560 ![](keyFrame.8560.jpg)
-- 00:09.360 ![](keyFrame.9360.jpg)
-                
 
    *…additional data omitted for brevity…*
 ````
@@ -102,7 +106,7 @@ Key Frames
 We recently published a walk-through for RAG on Video using Content Understanding.
 [https://www.youtube.com/watch?v=fafneWnT2kw\&lc=Ugy2XXFsSlm7PgIsWQt4AaABAg](https://www.youtube.com/watch?v=fafneWnT2kw&lc=Ugy2XXFsSlm7PgIsWQt4AaABAg)
 
-## Capabilities
+# Capabilities
 
 1. [Content extraction](#content-extraction-capabilities)
 1. [Field extraction](#field-extraction-and-segmentation)
@@ -178,6 +182,10 @@ Shape the output to match your business vocabulary. Use a `fieldSchema` object w
 
 
 ### Segmentation mode
+> [!NOTE]
+>
+> Setting segmentation triggers field extraction even if no fields are defined.
+
 
 Content Understanding offers three ways to slice a video, letting you get the output you need for whole videos or short clips. You can use these options by setting the `SegmentationMode` property on a custom analyzer.
 
@@ -206,11 +214,7 @@ Content Understanding offers three ways to slice a video, letting you get the ou
     "segmentationDefinition": "news broadcasts divided by individual stories"
   }
   ```
-
-> [!NOTE]
->
-> Setting segmentation triggers field extraction even if no fields are defined.
-
+  
 ## Face identification description add-on
 
 > [!NOTE]
