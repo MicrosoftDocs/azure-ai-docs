@@ -36,6 +36,7 @@ Take a moment to review the fine-tuning workflow for using Azure AI Foundry port
     1. [Choose your training data](#choose-your-training-data).
     1. Optionally, [choose your validation data](#choose-your-validation-data-optional).
     1. Optionally, [configure task parameters](#configure-training-parameters-optional) for your fine-tuning job.
+    1. Optionally, [enable auto-deployment](#enable-auto-deployment-optional) for the resulting custom model.
     1. [Review your choices and train your new custom model](#review-your-choices-and-train-your-model).
 1. Check the status of your custom fine-tuned model.
 1. Deploy your custom model for use.
@@ -179,6 +180,8 @@ You may provide an optional **seed** and tune additional hyperparameters.
 
 The **seed** controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one will be randomly generated for you.
 
+:::image type="content" source="../media/fine-tuning/studio-create-hyperparams.png" alt-text="Close up screenshot of the parameters section of the Create custom model wizard in Azure AI Foundry portal.":::
+
 The following hyperparameters are available for tuning via the Azure AI Foundry portal:
 
 |**Name**| **Type**| **Description**|
@@ -186,6 +189,15 @@ The following hyperparameters are available for tuning via the Azure AI Foundry 
 |**Batch Size** | integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we've found that larger batch sizes tend to work better for larger datasets. The default value as well as the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. |
 |**Learning Rate Multiplier** | number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. A smaller learning rate may be useful to avoid overfitting. |
 |**Number of Epochs** | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
+
+### Enable auto deployment (optional)
+
+To save time, you can optionally enable auto-deployment for your resulting model. If training completes successfully, the model will be deployed using the selected [deployment type](../how-to/deployment-types.md). The deployment will be named based on the unique name generated for your custom model and the optional **suffix** you may have provided [earlier](#make-your-model-identifiable-optional).
+
+:::image type="content" source="../media/fine-tuning/studio-create-auto-deploy.png" alt-text="Screenshot of the Validation data pane for the Create custom model wizard in Azure AI Foundry portal.":::
+
+> [!NOTE]
+> Only Global Standard and Developer deployments are currently supported for auto-deployment. Neither of these options provide [data residency](https://aka.ms/data-residency). Consult the [deployment type](../how-to/deployment-types.md) documentation for more details.
 
 ### Review your choices and train your model
 
