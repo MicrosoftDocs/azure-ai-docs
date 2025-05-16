@@ -90,9 +90,9 @@ The more training examples you have, the better. Fine-tuning jobs will not proce
 
 In general, doubling the dataset size can lead to a linear increase in model quality. But keep in mind, low quality examples can negatively impact performance. If you train the model on a large amount of internal data, without first pruning the dataset for only the highest quality examples you could end up with a model that performs much worse than expected.
 
-## Use the Create custom model wizard
+## Use the Create a fine-tuned model dialog
 
-Azure AI Foundry portal provides the **Create custom model** wizard, so you can interactively create and train a fine-tuned model for your Azure resource.
+Azure AI Foundry portal provides the **Create a fine-tuned model** dialog, so in one place you can easily create and train a fine-tuned model for your Azure resource.
 
 1. Go to the Azure AI Foundry portal at <a href="https://ai.azure.com/" target="_blank">https://ai.azure.com/</a> and sign in with credentials that have access to your Azure OpenAI resource. During the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
 
@@ -100,7 +100,13 @@ Azure AI Foundry portal provides the **Create custom model** wizard, so you can 
 
    :::image type="content" source="../media/fine-tuning/studio-create-custom-model.png" alt-text="Screenshot that shows how to access the Create custom model wizard in Azure AI Foundry portal." lightbox="../media/fine-tuning/studio-create-custom-model.png":::
 
-1. Select a base model to fine-tune, and then select **Next** to continue.
+1. Select a model to fine-tune, and then select **Next** to continue.
+
+   :::image type="content" source="../media/fine-tuning/studio-model-select.png" alt-text="Screenshot of the model selection dialog in Azure AI Foundry portal." lightbox="../media/fine-tuning/studio-model-select.png":::
+
+You should now see the **Create a fine-tuned model** dialog.
+
+:::image type="content" source="../media/fine-tuning/studio-create-fine-tuned-model.png" alt-text="Screenshot of the Create a fine-tuned model dialog." lightbox="../media/fine-tuning/studio-create-fine-tuned-model.png":::
 
 ### Choose your training method
 
