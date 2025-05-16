@@ -122,7 +122,7 @@ To enable your Agent to use a connected agent, you use `ConnectedAgentToolDefini
     PersistentAgent stockAgent = client.Administration.CreateAgent(
             model: modelDeploymentName,
             name: "stock_price_bot",
-            instructions: "Your job is to get the stock price of a company. If you don't know the realtime stock price, return the last known stock price.",
+            instructions: "Your job is to get the stock price of a company. If you don't know the realtime stock price, return the last known stock price."
             // tools: [...] tools that would be used to get stock prices
         );
     ConnectedAgentToolDefinition connectedAgentDefinition = new(new ConnectedAgentDetails(stockAgent.Id, stockAgent.Name, "Gets the stock price of a company"));
