@@ -22,11 +22,11 @@ This article explains how to use chat completions API with models deployed in Az
 
 To use chat completion models in your application, you need:
 
-[!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
+[!INCLUDE [how-to-prerequisites](../../how-to-prerequisites.md)]
 
-[!INCLUDE [how-to-prerequisites-csharp](../how-to-prerequisites-csharp.md)]
+[!INCLUDE [how-to-prerequisites-csharp](../../how-to-prerequisites-csharp.md)]
 
-* A chat completions model deployment. If you don't have one, read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
+* A chat completions model deployment. If you don't have one, read [Add and configure Foundry Models](../../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
 
     * This example uses `mistral-large-2407`.
 
