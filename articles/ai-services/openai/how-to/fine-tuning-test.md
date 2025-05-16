@@ -145,7 +145,7 @@ az cognitiveservices account deployment create
 
 After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in the [Azure AI Foundry portal](https://ai.azure.com) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as `temperature` and `max_tokens`, as you can with other deployed models.
 
-:::image type="content" source="../media/quickstarts/playground-load-new.png" alt-text="Screenshot of the Playground pane in Azure AI Foundry portal, with sections highlighted." lightbox="../media/quickstarts/playground-load-new.png":::
+:::image type="content" source="../media/fine-tuning/chat-playground.png" alt-text="Screenshot of the Playground pane in Azure AI Foundry portal, with sections highlighted." lightbox="../media/fine-tuning/chat-playground.png":::
 
 You can also use the [Evaluations](./evaluations.md) service to create and run model evaluations against your deployed model candidate as well as other model versions.
 

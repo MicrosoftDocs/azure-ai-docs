@@ -160,7 +160,7 @@ Fine-tuned models support a Developer deployment specifically designed to suppor
 
 ## Deploy models
 
-:::image type="content" source="../media/deployment-types/deploy-models-new.png" alt-text="Screenshot that shows the model deployment dialog in Azure AI Foundry portal with three deployment types highlighted." lightbox="../media/deployment-types/deploy-models-new.png":::
+:::image type="content" source="../media/deployment-types/deploy-models-new.png" alt-text="Screenshot that shows the model deployment dialog in Azure AI Foundry portal with three deployment types highlighted.":::
 
 To learn about creating resources and deploying models refer to the [resource creation guide](./create-resource.md).
 
