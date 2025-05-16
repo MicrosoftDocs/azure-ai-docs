@@ -142,6 +142,7 @@ console.log(`Deleted agent, agent ID: ${agent.id}`);
 ```
 
 :::zone-end
+
 :::zone pivot="python"
 
 ## Initialization
