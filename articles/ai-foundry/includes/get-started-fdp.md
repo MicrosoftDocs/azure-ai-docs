@@ -163,7 +163,7 @@ Substitute your value for the endpoint in this code:
 
 # [REST API](#tab/rest)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/python/mslearn-resources/quickstart/quickstart.sh" id="chat_completion":::
+:::code language="python" source="~/foundry-samples/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="chat_completion":::
 
 ---
 
@@ -199,7 +199,7 @@ Agents allow more powerful capabilities through the use of tools. First, let's w
 
 # [REST API](#tab/rest)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/rest/mslearn-resources/quickstart/quickstart.py" id="create_and_run_agent":::
+:::code language="python" source="~/foundry-samples/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="create_and_run_agent":::
 
 
 ---
@@ -241,7 +241,7 @@ Now let's add a file search tool that enables us to do knowledge retrieval.
 
 # [REST API](#tab/rest)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/rest/mslearn-resources/quickstart/quickstart.py" id="create_filesearch_agent":::
+:::code language="python" source="~/foundry-samples/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="create_filesearch_agent":::
 
 ---
 
