@@ -209,5 +209,5 @@ az cognitiveservices account connection show --name {my_project_name} --resource
 
 ## Related content
 
-- [Deploy an enterprise chat web app](../tutorials/deploy-chat-web-app.md)
+- [Quickstart: Get started with Azure AI Foundry](../quickstarts/get-started-code.md?pivots=fdp-project)
 - [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
