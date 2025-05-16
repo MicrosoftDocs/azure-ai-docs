@@ -14,6 +14,8 @@ author: samuel100
 
 # Integrate inferencing SDKs with Foundry Local
 
+[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
+
 Foundry Local integrates with various inferencing SDKs - such as OpenAI, Azure OpenAI, Langchain, etc. This guide shows you how to connect your applications to locally running AI models using popular SDKs.
 
 ## Prerequisites
