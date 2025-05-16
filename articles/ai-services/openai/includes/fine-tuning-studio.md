@@ -102,7 +102,7 @@ Azure AI Foundry portal provides the **Create a fine-tuned model** dialog, so in
 
 1. Select a model to fine-tune, and then select **Next** to continue.
 
-   :::image type="content" source="../media/fine-tuning/studio-model-selection.png" alt-text="Screenshot of the model selection dialog in Azure AI Foundry portal." lightbox="../media/fine-tuning/studio-model-selection.png":::
+   :::image type="content" source="../media/fine-tuning/studio-model-selection.png" alt-text="Screenshot of the model selection dialog in Azure AI Foundry portal.":::
 
 You should now see the **Create a fine-tuned model** dialog.
 
@@ -135,7 +135,7 @@ The next step is to either choose existing prepared training data or upload new 
 
 The **Training data** dialog displays any existing, previously uploaded datasets and also provides options to upload new training data.
 
-:::image type="content" source="../media/fine-tuning/studio-training-data.png" alt-text="Screenshot of the Training data pane for the Create custom model wizard in Azure AI Foundry portal." lightbox="../media/fine-tuning/studio-training-data.png":::
+:::image type="content" source="../media/fine-tuning/studio-training-data.png" alt-text="Screenshot of the Training data pane for the Create custom model wizard in Azure AI Foundry portal.":::
 
 - If your training data is already uploaded to the service, select **Files from Connected AI resource**.
    - Select the file from the dropdown list shown.
@@ -155,7 +155,7 @@ If you have a validation dataset, select **Add training data**. You can either c
 
 The **Validation data** dialog displays any existing, previously uploaded training and validation datasets and provides options by which you can upload new validation data. 
 
-:::image type="content" source="../media/fine-tuning/studio-validation-data.png" alt-text="Screenshot of the Validation data pane for the Create custom model wizard in Azure AI Foundry portal." lightbox="../media/fine-tuning/studio-validation-data.png":::
+:::image type="content" source="../media/fine-tuning/studio-validation-data.png" alt-text="Screenshot of the Validation data pane for the Create custom model wizard in Azure AI Foundry portal.":::
 
 - If your validation data is already uploaded to the service, select **Choose dataset**.
    - Select the file from the list shown in the **Validation data** pane.
