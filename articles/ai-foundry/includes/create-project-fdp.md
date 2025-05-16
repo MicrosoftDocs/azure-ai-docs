@@ -18,11 +18,11 @@ ms.custom: include
 * This project type gives you the best support for:
 
     * Agents
-    * Azure OpenAI models	
-    * Model inferencing
+    * AI Model Inference including Azure Open AI	
     * AI Foundry API that works with agents and across models	
-    * Upload files without needing your own Azure Storage account
+    * Project files (directly upload files and start experimenting)
     * Evaluations
+    * Fine-tuning
     * Playgrounds
 
 ## Prerequisites

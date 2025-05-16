@@ -66,13 +66,14 @@ Your first project (default project) plays a special role and has access to more
     
     # [Azure CLI](#tab/azurecli)
     
-    Use your existing values for {my_resource_group} and {foundry_resource_name} to add another project to the resource:
+    <!-- Use your existing values for {my_resource_group} and {foundry_resource_name} to add another project to the resource:
     
     ```azurecli
      az cognitiveservices account project create --resource-group {my_resource_group} --name {my_project_name} --account-name {foundry_resource_name} 
     ```
-    
-    
+     -->
+    CLI comannds not currently available for creating a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
+
     ---
 
 * If you delete your Foundry resource's default project, the next project created will become the default project. 

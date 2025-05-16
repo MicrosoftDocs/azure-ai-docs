@@ -51,15 +51,14 @@ This table summarizes features available in the two project types:
 | Capability | [!INCLUDE [fdp](includes/fdp-project-name.md)] | [!INCLUDE[hub](includes/hub-project-name.md)] |
 | --- | --- | --- |
 | Agents | ✅ (GA) | ✅ (Preview only) |
-| Azure OpenAI models | ✅ | |
-| Model inferencing | ✅ | |
-| AI Foundry API that works with agents and across models | ✅ | |
-| Common filestore | ✅ | |
-| Project-level isolation of files and outputs | ✅ | ✅ |
+| Azure OpenAI models | ✅ (Native support) | Available via connections |
+| Project files (directly upload files and start experimenting) | ✅ | |
+| Project-level isolation of files and outputs | ✅ | ✅|
 | Evaluations | ✅ | ✅ |
 | Playground | ✅ | ✅ |
 | Prompt flow |  | ✅ |
 | Managed compute  |  | ✅ |
+| Required Azure dependencies | - | Azure Storage account, Azure Key Vault |
 
 ## Navigate in the Azure AI Foundry portal
 
@@ -110,13 +109,10 @@ Azure AI Foundry is available in most regions where Azure AI services are availa
 
 You can [explore Azure AI Foundry portal (including the model catalog)](./how-to/model-catalog-overview.md) without signing in. 
 
-But for full functionality there are some requirements:
-
-You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account). 
+But for full functionality, you need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account). 
 
 ## Related content
 
-- [Quickstart: Use the chat playground in Azure AI Foundry portal](quickstarts/get-started-playground.md)
-- [Build a custom chat app in Python using the Azure AI SDK](quickstarts/get-started-code.md)
+- [Quickstart: Get started with Azure AI Foundry](quickstarts/get-started-code.md)
 - [Create a project](./how-to/create-projects.md)
 - [Get started with an AI template](how-to/develop/ai-template-get-started.md)
