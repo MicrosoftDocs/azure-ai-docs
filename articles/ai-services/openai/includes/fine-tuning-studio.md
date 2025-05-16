@@ -90,7 +90,7 @@ The more training examples you have, the better. Fine-tuning jobs will not proce
 
 In general, doubling the dataset size can lead to a linear increase in model quality. But keep in mind, low quality examples can negatively impact performance. If you train the model on a large amount of internal data, without first pruning the dataset for only the highest quality examples you could end up with a model that performs much worse than expected.
 
-## Use the Create a fine-tuned model dialog
+## Creating a fine-tuned model
 
 Azure AI Foundry portal provides the **Create a fine-tuned model** dialog, so in one place you can easily create and train a fine-tuned model for your Azure resource.
 
@@ -113,7 +113,7 @@ You should now see the **Create a fine-tuned model** dialog.
 The first step is to confirm you model choice and the training method. Not all models support all training methods.
 
 - **Supervised Fine Tuning** (SFT): supported by all non-reasoning models.
-- **Direct Preference Optimizatio** ([DPO](../how-to/fine-tuning-direct-preference-optimization.md): supported by GPT-4o and GPT-4.1.
+- **Direct Preference Optimizatio** ([DPO](../how-to/fine-tuning-direct-preference-optimization.md)): supported by GPT-4o and GPT-4.1.
 - **Reinforcement Fine Tuning** (RFT): supported by reasoning models, like o4-mini.
 
 When selecting the model, you may also select a [previously fine-tuned model](#continuous-fine-tuning).
@@ -240,7 +240,7 @@ After your fine-tuned model deploys, you can use it like any other deployed mode
 
 Once you have created a fine-tuned model you may wish to continue to refine the model over time through further fine-tuning. Continuous fine-tuning is the iterative process of selecting an already fine-tuned model as a base model and fine-tuning it further on new sets of training examples.
 
-To perform fine-tuning on a model that you have previously fine-tuned you would use the same process as described in [create a customized model](#use-the-create-custom-model-wizard) but instead of specifying the name of a generic base model you would specify your already fine-tuned model. A custom fine-tuned model would look like `gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7`
+To perform fine-tuning on a model that you have previously fine-tuned you would use the same process as described in [creating a fine-tuned model](#creating-a-fine-tuned-model) but instead of specifying the name of a generic base model you would specify your already fine-tuned model. A custom fine-tuned model would look like `gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7`
 
 :::image type="content" source="../media/fine-tuning/studio-continuous.png" alt-text="Screenshot of the Create a custom model UI with a fine-tuned model highlighted." lightbox="../media/fine-tuning/studio-continuous.png":::
 
