@@ -42,12 +42,10 @@ Content Understanding offers several key benefits for extracting information fro
 
 ## Get started
 
-Get started with processing images with Content Understanding by following our [REST API quickstart](LINK TO IMAGE TAB) or visiting [Azure AI Foundry](https://aka.ms/cu-landing) for a no code experience. 
+Get started with processing images with Content Understanding by following our [REST API quickstart](../quickstart/use-rest-api.md?tabs=image) or visiting [Azure AI Foundry](https://aka.ms/cu-landing) for a no code experience. 
 
 > [!NOTE]
-> For best results, image schema should only be used to process non-document-based images.
-> Text heavy images of documents should be processed using a document schema.
-> Use cases that require extraction of text from document images or scanned documents should be processed using a document field extraction schema.
+> Image analyzers are currently not optimized for scenarios where analysis is based primarily on extracted text. If your main goal is to extract and analyze text from images, consider using a document field extraction schema instead.
 
 
 > [!IMPORTANT]
