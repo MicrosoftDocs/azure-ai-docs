@@ -164,7 +164,7 @@ Substitute your value for the endpoint in this code:
 
 # [REST API](#tab/rest)
 
-Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
+Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 :::code language="console" source="~/foundry-samples/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="chat_completion":::
 
@@ -202,7 +202,7 @@ Agents allow more powerful capabilities through the use of tools. First, let's w
 
 # [REST API](#tab/rest)
 
-Replace `your-foundry-resource-name` and `YOUR-PROJECT-NAME` with your values:
+Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 :::code language="console" source="~/foundry-samples/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="create_and_run_agent":::
 
@@ -245,6 +245,8 @@ Now let's add a file search tool that enables us to do knowledge retrieval.
 :::code language="csharp" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentFileSearch.cs" id="create_filesearch_agent":::
 
 # [REST API](#tab/rest)
+
+Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 :::code language="console" source="~/foundry-samples/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="create_filesearch_agent":::
 
