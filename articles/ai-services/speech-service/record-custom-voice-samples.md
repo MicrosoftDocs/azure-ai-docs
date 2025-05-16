@@ -314,7 +314,7 @@ Direct the talent to pronounce words distinctly. Every word of the script should
 |how's the weather today|how's th' weather today|
 |say hello to my little friend|say hello to my lil' friend|
 
-The talent shouldn't* add distinct pauses between words. The sentence should still flow naturally, even while sounding a little formal. This fine distinction might take practice to get right.
+The talent shouldn't add distinct pauses between words. The sentence should still flow naturally, even while sounding a little formal. This fine distinction might take practice to get right.
 
 ### The recording session
 
