@@ -121,7 +121,7 @@ An example response:
   "url": "/?s=60c3980c-d9f6-4b16-a7f5-f1f4ad2b506f"
 }
 ```
-Compose the returned url after liveness quick link web site https:////liveness.face.azure.com/?s=60c3980c-d9f6-4b16-a7f5-f1f4ad2b506f
+Compose the returned url after liveness quick link web site `https://liveness.face.azure.com/?s=60c3980c-d9f6-4b16-a7f5-f1f4ad2b506f`
 
 3.	Send the link to the user. You can redirect the browser, show a button, or display a QR code—anything that gets the user to open the link on a camera enabled device.
 4.	Azure hosts the capture. When the link opens, the Azure operated page guides the user through the liveness check sequence using the latest Liveness Web Client.
