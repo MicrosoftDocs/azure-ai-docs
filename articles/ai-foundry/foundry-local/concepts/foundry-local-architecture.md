@@ -13,6 +13,8 @@ author: samuel100
 
 # Foundry Local architecture
 
+[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
+
 Foundry Local enables efficient, secure, and scalable AI model inference directly on your devices. This article explains the core components of Foundry Local and how they work together to deliver AI capabilities.
 
 Key benefits of Foundry Local include:
@@ -37,7 +39,7 @@ The Foundry Local architecture consists of these main components:
 
 The Foundry Local Service includes an OpenAI-compatible REST server that provides a standard interface for working with the inference engine. It's also possible to manage models over REST. Developers use this API to send requests, run models, and get results programmatically.
 
-- **Endpoint**: The endpoint is *dynamically allocated* when the service starts. You can find the endpoint by running the `foundry service status` command. When using Foundry Local in your applications, we recommend using the SDK that automatically handles the endpoint for you. For more details on how to use the Foundry Local SDK, read the [Integrated inferencing SDKs with Foundry Local](../how-to/how-to-integrate-with-inference-sdks.md) article.
+- **Endpoint**: The endpoint is _dynamically allocated_ when the service starts. You can find the endpoint by running the `foundry service status` command. When using Foundry Local in your applications, we recommend using the SDK that automatically handles the endpoint for you. For more details on how to use the Foundry Local SDK, read the [Integrated inferencing SDKs with Foundry Local](../how-to/how-to-integrate-with-inference-sdks.md) article.
 - **Use Cases**:
   - Connect Foundry Local to your custom applications
   - Execute models through HTTP requests
@@ -109,9 +111,7 @@ The Foundry CLI is a powerful tool for managing models, the inference engine, an
 
 #### Inferencing SDK integration
 
-Foundry Local supports integration with various SDKs, such as the OpenAI SDK, enabling developers to use familiar programming interfaces to interact with the local inference engine.
-
-- **Supported SDKs**: Python, JavaScript, C#, and more.
+Foundry Local supports integration with various SDKs in most languages, such as the OpenAI SDK, enabling developers to use familiar programming interfaces to interact with the local inference engine.
 
 > [!TIP]
 > To learn more about integrating with inferencing SDKs, read [Integrate inferencing SDKs with Foundry Local](../how-to/how-to-integrate-with-inference-sdks.md).

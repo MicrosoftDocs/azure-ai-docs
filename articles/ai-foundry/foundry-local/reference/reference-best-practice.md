@@ -13,6 +13,7 @@ author: maanavd
 
 # Best practices and troubleshooting guide for Foundry Local
 
+[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 This document provides best practices and troubleshooting tips for Foundry Local.
 
 ## Security best practices
@@ -41,12 +42,14 @@ Foundry Local is designed for on-device inference and *not* distributed, contain
 | --- | --- | --- |
 | Slow inference | CPU-only model with large parameter count | Use GPU-optimized model variants when available |
 | Model download failures | Network connectivity issues | Check your internet connection and run `foundry cache list` to verify cache status |
-| The service fails to start | Port conflicts or permission issues | Try `foundry service restart` or report an issue with logs using `foundry zip-logs` |
+| The service fails to start | Port conflicts or permission issues | Try `foundry service restart` or [report an issue](https://github.com/microsoft/Foundry-Local/issues) with logs using `foundry zip-logs` |
+| Qualcomm NPU error (`Qnn error code 5005: "Failed to load from EpContext model. qnn_backend_manager."`) | Qualcomm NPU error | Under investigation |
 
 ### Improving performance
 
 If you experience slow inference, consider the following strategies:
 
+- Simultaneously running ONNX models provided in the AI Toolkit for VS Code cause resource contention. Stop the AI Toolkit inference session before running Foundry Local.
 - Use GPU acceleration when available
 - Identify bottlenecks by monitoring memory usage during inference.
 - Try more quantized model variants (like INT8 instead of FP16)

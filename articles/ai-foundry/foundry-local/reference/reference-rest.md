@@ -13,6 +13,8 @@ author: samuel100
 
 # Foundry Local REST API Reference
 
+[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
+
 > [!CAUTION]
 > This API is under active development and may include breaking changes without notice. We strongly recommend monitoring the changelog before building production applications.
 
@@ -126,7 +128,7 @@ _---Additional Foundry Local Properties---_
 - Request body
   ```json
   {
-    "model": "gpt-3.5-turbo",
+    "model": "Phi-4-mini-instruct-generic-cpu",
     "messages": [
       {
         "role": "user",
@@ -154,7 +156,7 @@ _---Additional Foundry Local Properties---_
     "id": "chatcmpl-1234567890",
     "object": "chat.completion",
     "created": 1677851234,
-    "model": "gpt-3.5-turbo",
+    "model": "Phi-4-mini-instruct-generic-cpu",
     "choices": [
       {
         "index": 0,
@@ -253,16 +255,16 @@ Retrieves a list of all available Foundry Local models in the catalog.
   - `version`: The version number of the model.
   - `modelType`: The format or type of the model (e.g., ONNX).
   - `promptTemplate`:
-      - `assistant`: The template for the assistant's response.
-      - `prompt`: The template for the user-assistant interaction.
+    - `assistant`: The template for the assistant's response.
+    - `prompt`: The template for the user-assistant interaction.
   - `publisher`: The entity or organization that published the model.
   - `task`: The primary task the model is designed to perform (e.g., chat-completion).
   - `runtime`:
-      - `deviceType`: The type of hardware the model is designed to run on (e.g., CPU).
-      - `executionProvider`: The execution provider used for running the model.
+    - `deviceType`: The type of hardware the model is designed to run on (e.g., CPU).
+    - `executionProvider`: The execution provider used for running the model.
   - `fileSizeMb`: The size of the model file in megabytes.
   - `modelSettings`:
-      - `parameters`: A list of configurable parameters for the model.
+    - `parameters`: A list of configurable parameters for the model.
   - `alias`: An alternative name or shorthand for the model
   - `supportsToolCalling`: Indicates whether the model supports tool-calling functionality.
   - `license`: The license type under which the model is distributed.
@@ -311,7 +313,7 @@ Retrieves all available models, including both local models and registered exter
 
 - Response body
   ```json
-  ["gpt-3.5-turbo", "gpt-4"]
+  ["Phi-4-mini-instruct-generic-cpu", " deepseek-r1-distill-qwen-7b-generic-cpu"]
   ```
 
 ### GET /openai/load/{name}
@@ -342,7 +344,7 @@ Loads a model into memory for faster inference.
 
 - Request URI
   ```
-  GET /openai/load/gpt-3.5-turbo?ttl=3600&ep=dml
+  GET /openai/load/Phi-4-mini-instruct-generic-cpu?ttl=3600&ep=dml
   ```
 
 ### GET /openai/unload/{name}
@@ -368,7 +370,7 @@ Unloads a model from memory.
 
 - Request URI
   ```
-  GET /openai/unload/gpt-3.5-turbo?force=true
+  GET /openai/unload/Phi-4-mini-instruct-generic-cpu?force=true
   ```
 
 ### GET /openai/unloadall
@@ -393,7 +395,7 @@ Retrieves a list of currently loaded models.
 
 - Response body
   ```json
-  ["gpt-3.5-turbo", "gpt-4"]
+  ["Phi-4-mini-instruct-generic-cpu", " deepseek-r1-distill-qwen-7b-generic-cpu"]
   ```
 
 ### GET /openai/getgpudevice
@@ -467,7 +469,7 @@ During download, the server streams progress updates in the format:
 
   ```json
   {
-    "model": "gpt-3.5-turbo",
+    "model": "Phi-4-mini-instruct-generic-cpu",
     "ignorePipeReport": true
   }
   ```
@@ -550,7 +552,7 @@ Counts tokens for a given chat completion request without performing inference.
         "content": "Hello, what is Microsoft?"
       }
     ],
-    "model": "cpu-int4-rtn-block-32-acc-level-4"
+    "model": "Phi-4-mini-instruct-cuda-gpu"
   }
   ```
 - Response body

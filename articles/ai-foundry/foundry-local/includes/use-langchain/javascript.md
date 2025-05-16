@@ -36,7 +36,7 @@ import { ChatPromptTemplate } from "@langchain/core/prompts";
 // to your end-user's device.
 // TIP: You can find a list of available models by running the 
 // following command in your terminal: `foundry model list`.
-const modelAlias = "phi-3-mini-4k";
+const alias = "phi-3-mini-4k";
 
 // Create a FoundryLocalManager instance. This will start the Foundry 
 // Local service if it is not already running.
@@ -44,7 +44,7 @@ const foundryLocalManager = new FoundryLocalManager()
 
 // Initialize the manager with a model. This will download the model 
 // if it is not already present on the user's device.
-const modelInfo = await foundryLocalManager.init(modelAlias)
+const modelInfo = await foundryLocalManager.init(alias)
 console.log("Model Info:", modelInfo)
 
 // Configure ChatOpenAI to use your locally-running model

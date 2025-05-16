@@ -14,6 +14,8 @@ author: maanavd
 
 # Foundry Local SDK Reference
 
+[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
+
 The Foundry Local SDK simplifies AI model management in local environments by providing control-plane operations separate from data-plane inferencing code. This reference documents the SDK implementation for Python, JavaScript, and C#.
 
 ::: zone pivot="programming-language-python"

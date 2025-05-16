@@ -17,6 +17,8 @@ zone_pivot_groups: foundry-local-sdk
 
 # Build a translation application with LangChain
 
+[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
+
 This tutorial shows you how to create an application using the Foundry Local SDK and [LangChain](https://www.langchain.com/langchain). In this tutorial, you build a translation application that translates text from one language to another that uses a local model.
 
 ::: zone pivot="programming-language-python"

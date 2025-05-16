@@ -13,6 +13,8 @@ author: maanavd
 
 # Catalog API Reference
 
+[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
+
 Foundry Local allows you to develop and integrate your own catalog service. This document provides guidance on:
 
 - The model format required for the catalog API.
