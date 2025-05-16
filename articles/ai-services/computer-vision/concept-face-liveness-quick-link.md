@@ -58,10 +58,10 @@ You can utilize the liveness quick link website liveness.face.azure.com to turn 
     #### [Java](#tab/java)
     ```java
     HttpRequest request = HttpRequest.newBuilder()
-    .uri(URI.create("https://liveness.face.azure.com/api/s"))
-    .header("authorization", "Bearer <session-authorization-token>")
-    .method("POST", HttpRequest.BodyPublishers.noBody())
-    .build();
+        .uri(URI.create("https://liveness.face.azure.com/api/s"))
+        .header("authorization", "Bearer <session-authorization-token>")
+        .method("POST", HttpRequest.BodyPublishers.noBody())
+        .build();
     HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
     System.out.println(response.body());
     ```
