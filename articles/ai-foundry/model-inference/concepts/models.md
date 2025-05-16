@@ -213,7 +213,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 | Model  | Type | Tier | Capabilities |
 | ------ | ---- | --- | ------------ |
 | [Grok]() |  | Global standard | - **Input:** text (0 tokens) <br /> - **Output:** text (0 tokens) <br /> - **Languages:**  <br />  - **Tool calling:**  <br /> - **Response formats:**  |
-| [Grok]() |  | Global standard | - **Input:** text (0 tokens) <br /> - **Output:** text (0 tokens) <br /> - **Languages:**  <br />  - **Tool calling:**  <br /> - **Response formats:**  |
+| [grok-3-mini]() |  | Global standard | - **Input:** text (0 tokens) <br /> - **Output:** text (0 tokens) <br /> - **Languages:**  <br />  - **Tool calling:**  <br /> - **Response formats:**  |
 
 
 ## Open and protected models
