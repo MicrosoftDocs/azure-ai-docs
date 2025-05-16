@@ -194,7 +194,7 @@ The following hyperparameters are available for tuning via the Azure AI Foundry 
 
 To save time, you can optionally enable auto-deployment for your resulting model. If training completes successfully, the model will be deployed using the selected [deployment type](../how-to/deployment-types.md). The deployment will be named based on the unique name generated for your custom model and the optional **suffix** you may have provided [earlier](#make-your-model-identifiable-optional).
 
-:::image type="content" source="../media/fine-tuning/studio-create-auto-deploy.png" alt-text="Screenshot of the Validation data pane for the Create custom model wizard in Azure AI Foundry portal.":::
+:::image type="content" source="../media/fine-tuning/studio-create-auto-deploy.png" alt-text="Screenshot of the auto-deployment toggle in the Create custom model wizard in Azure AI Foundry portal.":::
 
 > [!NOTE]
 > Only Global Standard and Developer deployments are currently supported for auto-deployment. Neither of these options provide [data residency](https://aka.ms/data-residency). Consult the [deployment type](../how-to/deployment-types.md) documentation for more details.
