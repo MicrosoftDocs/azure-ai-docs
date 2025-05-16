@@ -224,7 +224,7 @@ items:
     - name: Face liveness abuse monitoring
       href: concept-liveness-abuse-monitoring.md
     - name: Face liveness quick link
-      href: concept-liveness-quick-link.md
+      href: concept-face-liveness-quick-link.md
   
   - name: How-to guides
     items:
