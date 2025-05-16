@@ -313,7 +313,7 @@ Retrieves all available models, including both local models and registered exter
 
 - Response body
   ```json
-  ["Phi-4-mini-instruct-generic-cpu", " deepseek-r1-distill-qwen-7b-generic-cpu"]
+  ["Phi-4-mini-instruct-generic-cpu", "phi-3.5-mini-instruct-generic-cpu"]
   ```
 
 ### GET /openai/load/{name}
@@ -395,7 +395,7 @@ Retrieves a list of currently loaded models.
 
 - Response body
   ```json
-  ["Phi-4-mini-instruct-generic-cpu", " deepseek-r1-distill-qwen-7b-generic-cpu"]
+  ["Phi-4-mini-instruct-generic-cpu", "phi-3.5-mini-instruct-generic-cpu"]
   ```
 
 ### GET /openai/getgpudevice
