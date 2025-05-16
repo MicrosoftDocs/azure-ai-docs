@@ -261,4 +261,4 @@ In the Azure AI Foundry portal, select your project name in the top right corner
 
 ## Related content
 
-[Azure AI Foundry SDK Overview](../how-to/develop/sdk-overview.md)
+[Azure AI Foundry client library overview](../how-to/develop/sdk-overview.md)
