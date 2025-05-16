@@ -58,7 +58,7 @@ A high-level summary of the pattern looks like this:
 + Send it to Azure AI Search to find relevant information.
 + Return the top ranked search results to an LLM.
 + Use the natural language understanding and reasoning capabilities of the LLM to generate a response to the initial prompt.
-+ Optionally, use agentic retrieival where an agent evaluates an answer and finds a better one if the original answer is incomplete or low quality.
++ Optionally, use agentic retrieval where an agent evaluates an answer and finds a better one if the original answer is incomplete or low quality.
 
 Azure AI Search provides inputs to the LLM prompt, but doesn't train the model. In RAG architecture, there's no extra training. The LLM is pretrained using public data, but it generates responses that are augmented by information from the retriever, in this case, Azure AI Search.
 

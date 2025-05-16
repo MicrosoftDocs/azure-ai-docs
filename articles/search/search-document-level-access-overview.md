@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Conceptual overview of document-level permissions in Azure AI Search.    
 ms.service: azure-ai-search    
 ms.topic: conceptual    
-ms.date: 05/10/2025    
+ms.date: 05/19/2025    
 author: gmndrg    
 ms.author: gimondra    
 ---  
@@ -49,17 +49,13 @@ By offloading permission enforcement to Azure AI Search, developers can focus on
 
 Document-level permissions in Azure AI Search provide a structured framework for enforcing access controls that align with organizational policies. By using Microsoft Entra-based ACLs and RBAC roles, organizations can create systems that support robust compliance and promote trust among users. These built-in capabilities reduce the need for custom coding, offering a standardized approach to document-level security.  
 
-## Reference documents  
+## Related content
   
-To help you dive deeper into document-level access control in Azure AI Search, here’s a table of key resources:  
+To help you dive deeper into document-level access control in Azure AI Search, here are more articles and samples:  
   
-| Functionality                                   | Reference |  Sample |
+| Functionality                                   | Content |  Sample |
 |---|---|---|
-| **Index permissions using Push APIs**           | [Index permissions using REST API](search-index-access-control-lists-and-rbac-push-api.md)  |  [azure-search-rest-samples/Quickstart-ACL](https://github.com/Azure-Samples/azure-search-rest-samples-pr/tree/main/Quickstart-ACL) or [azure-search-python-samples/Quickstart-ACL](https://github.com/Azure-Samples/azure-search-python-samples-pr/blob/main/Quickstart-ACL) |
-| **Index ADLS Gen2 permissions metadata using built-in indexers** | [Index permissions using ADLS Gen2 indexer](search-indexer-access-control-lists-and-role-based-access.md) |   [azure-search-python-samples/Quickstart-Document-Permissions](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Document-Permissions) |
-| **Query using Microsoft Entra token-based permissions** | [Query using Microsoft Entra token-based permissions](https://aka.ms/azs-query-preserving-permissions) | See previous samples. |
+| **Index permissions using Push APIs**           | [How to index permissions using REST API](search-index-access-control-lists-and-rbac-push-api.md)  |  [azure-search-rest-samples/Quickstart-ACL](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-ACL) or [azure-search-python-samples/Quickstart-Document-Permissions-Push-API](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Document-Permissions-Push-API) |
+| **Index ADLS Gen2 permissions metadata using built-in indexers** | [How to index permissions using ADLS Gen2 indexer](search-indexer-access-control-lists-and-role-based-access.md) and [Tutorial: Index ADLS Gen2 permissions metadata using an indexer](tutorial-adls-gen2-indexer-acls.md) |  [azure-search-python-samples/Quickstart-Document-Permissions-Pull-API](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Document-Permissions-Pull-API) |
+| **Query using Microsoft Entra token-based permissions** | [How to query using Microsoft Entra token-based permissions](https://aka.ms/azs-query-preserving-permissions) | See previous samples. |
 | **Security trimming via filters**              | [Security trimming via filters](search-security-trimming-for-azure-search.md)               |  Not available. |
-  
-## Next steps  
-  
-- [Tutorial: Index ADLS Gen2 permissions metadata](tutorial-adls-gen2-indexer-acls.md)  
