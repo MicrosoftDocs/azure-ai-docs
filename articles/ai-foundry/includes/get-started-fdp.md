@@ -118,14 +118,14 @@ No installation is necessary to use the Azure AI Foundry portal.
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
 1. Get a temporary access token.  It will expire in 2 hours, you'll need to refresh after that.
 
-    ```cli
+    ```azurecli
     az account get-access-token --scope https://ai.azure.com/.default
     ```
     
 1. Save the results as the environment variable `AZURE_AI_AUTH_TOKEN`.  
 
 > [!TIP]
-> All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/RE/mslearn-resources/quickstart).
+> All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/REST/mslearn-resources/quickstart).
 
 
 ---
@@ -164,7 +164,7 @@ Substitute your value for the endpoint in this code:
 
 # [REST API](#tab/rest)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="chat_completion":::
+:::code language="console" source="~/foundry-samples/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="chat_completion":::
 
 ---
 
@@ -200,7 +200,9 @@ Agents allow more powerful capabilities through the use of tools. First, let's w
 
 # [REST API](#tab/rest)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="create_and_run_agent":::
+Replace `your-foundry-resource-name` with the AI Foundry resource name created with your project.
+
+:::code language="console" source="~/foundry-samples/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="create_and_run_agent":::
 
 
 ---
@@ -242,7 +244,7 @@ Now let's add a file search tool that enables us to do knowledge retrieval.
 
 # [REST API](#tab/rest)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="create_filesearch_agent":::
+:::code language="console" source="~/foundry-samples/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="create_filesearch_agent":::
 
 ---
 
