@@ -113,8 +113,8 @@ You should now see the **Create a fine-tuned model** dialog.
 The first step is to confirm you model choice and the training method. Not all models support all training methods.
 
 - **Supervised Fine Tuning** (SFT): supported by all non-reasoning models.
-- **Direct Preference Optimizatio** ([DPO](../how-to/fine-tuning-direct-preference-optimization.md)): supported by GPT-4o and GPT-4.1.
-- **Reinforcement Fine Tuning** (RFT): supported by reasoning models, like o4-mini.
+- **Direct Preference Optimization (Preview)** ([DPO](../how-to/fine-tuning-direct-preference-optimization.md)): supported by GPT-4o and GPT-4.1.
+- **Reinforcement Fine Tuning (Preview)** (RFT): supported by reasoning models, like o4-mini.
 
 When selecting the model, you may also select a [previously fine-tuned model](#continuous-fine-tuning).
 
