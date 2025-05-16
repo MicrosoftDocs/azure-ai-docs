@@ -352,6 +352,7 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ## Next steps
 
-* Learn to [create a custom analyzer](../tutorial/create-custom-analyzer.md) to better fit your use case.
+Learn more about [analyzers](../concepts/analyzer-templates.md) for your use case.
+
 
 

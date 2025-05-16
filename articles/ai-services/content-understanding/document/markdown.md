@@ -17,7 +17,7 @@ Azure AI Content Understanding converts unstructured documents into [GitHub Flav
 
 ## Words and selection marks
 
-Recognized words and detected selection marks are represented in markdown as plain text. Content may be escaped to avoid ambiguity with markdown formatting syntax.
+Recognized words and detected selection marks are represented in markdown as plain text. Selection marks are encoded using the Unicode characters `☒` (selected) and `☐` (unselected). Content might be escaped to avoid ambiguity with markdown formatting syntax.
 
 ## Barcodes
 
@@ -106,7 +106,7 @@ This is a footnote.
 ## Page metadata
 
 Markdown doesn't natively encode page metadata, such as page numbers, headers, footers, and breaks.
-Since this information may be useful for downstream applications, we encode such metadata as HTML comments.
+Since this information might be useful for downstream applications, we encode such metadata as HTML comments.
 
 | Metadata | Markdown |
 | --- | --- |

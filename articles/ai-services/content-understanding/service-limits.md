@@ -114,7 +114,7 @@ Content Understanding supports both basic field value types and nested structure
 ### General limits
 
    > [!NOTE]
-   > This is the limit for [Content Understanding classifier](concepts/classifier.md) itself, not the classify fields within the extraction capability.
+   > This limit is for [Content Understanding classifier](concepts/classifier.md) itself, not classify fields within the extraction capability.
 
 | Property | Limit |
 | --- | --- |

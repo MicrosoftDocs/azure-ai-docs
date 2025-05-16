@@ -1152,8 +1152,19 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/content-understanding/concepts/capabilities.md",
-      "redirect_url": "/azure/ai-services/content-understanding/concepts/analyzers-overview",
+      "redirect_url": "/azure/ai-services/content-understanding/concepts/analyzer-templates",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/content-understanding/concepts/retrieval-augmented-generation.md",
+      "redirect_url": "/azure/ai-services/content-understanding/tutorial/build-rag-solution",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/content-understanding/concepts/accuracy-confidence.md",
+      "redirect_url": "/azure/ai-services/content-understanding/concepts/best-practices",
       "redirect_document_id": true
     }
+
   ]
 }

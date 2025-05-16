@@ -99,6 +99,5 @@ With the **`2025-05-01-preview`**, any prebuilt analyzer can be inherited using 
 ## Next steps
 
 * [Analyzer templates](analyzer-templates.md)
-* [Analyzers overview](analyzers-overview.md)
 
 
