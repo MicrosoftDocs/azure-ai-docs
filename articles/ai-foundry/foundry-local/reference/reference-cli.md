@@ -35,16 +35,28 @@ The CLI organizes commands into three main categories:
 
 The following table summarizes the commands related to managing and running models:
 
+> [!NOTE]
+> You can specify the `model` argument by its **alias** or **model ID**. Using an alias will:
+> - Select the *best model* for your available hardware. For example, if you have a Nvidia CUDA GPU available, Foundry Local selects the CUDA model. If you have a supported NPU available, Foundry Local selects the NPU model.
+> - Allow you to use a shorter name without needing to remember the model ID.
+>
+> If you want to run a specific model, you can use the model ID. For example, to run the `qwen2.5-0.5b` on CPU - irrespective of your available hardware - use: `foundry model run qwen2.5-0.5b-instruct-generic-cpu`.
+
+
 | **Command**                                     | **Description**                                                                  |
 | --------------------------------------          | -------------------------------------------------------------------------------- |
 | `foundry model --help`                          | Displays all available model-related commands and their usage.                   |
-| `foundry model run <aliasOrModelId>`            | Runs a specified model, downloading it if not cached, and starts an interaction. |
+| `foundry model run <model>`            | Runs a specified model, downloading it if not cached, and starts an interaction. |
 | `foundry model list`                            | Lists all available models for local use.                                        |
-| `foundry model info <aliasOrModelId>`           | Displays detailed information about a specific model.                            |
-| `foundry model info <aliasOrModelId> --license` | Displays the license information for a specific model.                           |
-| `foundry model download <aliasOrModelId>`       | Downloads a model to the local cache without running it.                         |
-| `foundry model load <aliasOrModelId>`           | Loads a model into the service.                                                  |
-| `foundry model unload <aliasOrModelId>`         | Unloads a model from the service.                                                |
+| `foundry model info <model>`           | Displays detailed information about a specific model.                            |
+| `foundry model info <model> --license` | Displays the license information for a specific model.                           |
+| `foundry model download <model>`       | Downloads a model to the local cache without running it.                         |
+| `foundry model load <model>`           | Loads a model into the service.                                                  |
+| `foundry model unload <model>`         | Unloads a model from the service. **You must provide a valid model ID (not an alias).**.     |
+
+> [!IMPORTANT]
+> **For the `foundry model unload` command, you must provide a valid model ID (not an alias)** because you could have multiple models loaded with the same alias. For example, if you have `qwen2.5-0.5b-instruct-generic-cpu` *and*`qwen2.5-0.5b-instruct-cuda-gpu` loaded with both CPU and CUDA, you need to specify which one to unload.
+
 
 ## Service commands
 
@@ -70,5 +82,8 @@ The following table summarizes the commands related to managing the local cache 
 | `foundry cache --help`                  | Displays all available cache-related commands and their usage. |
 | `foundry cache location`                | Displays the current cache directory.                          |
 | `foundry cache list`                    | Lists all models stored in the local cache.                    |
-| `foundry cache remove <aliasOrModelId>` | Deletes a model from the local cache.                          |
 | `foundry cache cd <path>`               | Changes the cache directory.                                   |
+| `foundry cache remove <model>` | Deletes a model from the local cache. **You must provide a valid model ID (not an alias).**      |
+
+> [!IMPORTANT]
+> **For the `foundry cache remove` command, you must provide a valid model ID (not an alias)** because you could have multiple models on disk with the same alias. For example, if you downloaded both `qwen2.5-0.5b-instruct-generic-cpu` *and* `qwen2.5-0.5b-instruct-cuda-gpu`, you need to specify which one to remove.
