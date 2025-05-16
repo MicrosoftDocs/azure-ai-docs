@@ -42,7 +42,7 @@ This quickstart uses prebuilt document, image, audio, and video analyzers to hel
 
 ### Send file for analysis
 
-Before running the cURL command below, make the following changes to the HTTP request:
+Before running the following cURL command, make the following changes to the HTTP request:
 # [Document](#tab/document)
 
 1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal.
