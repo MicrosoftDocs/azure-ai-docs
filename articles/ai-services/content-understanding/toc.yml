@@ -79,9 +79,6 @@ items:
     - name: 🆕 Classifier
       displayName: classifier, text, images, video, audio, multimodal, visual, structured, content, field, extraction
       href: concepts/classifier.md
-    - name: 🆕 Analyzers overview
-      displayName: content understanding capabilities, document, text, images, video, audio, visual, structured, content, field, extraction
-      href: concepts/analyzers-overview.md
     - name: 🆕 Prebuilt analyzers
       displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
       href: concepts/prebuilt-analyzers.md
