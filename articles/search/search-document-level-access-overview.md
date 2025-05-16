@@ -49,11 +49,11 @@ By offloading permission enforcement to Azure AI Search, developers can focus on
 
 Document-level permissions in Azure AI Search provide a structured framework for enforcing access controls that align with organizational policies. By using Microsoft Entra-based ACLs and RBAC roles, organizations can create systems that support robust compliance and promote trust among users. These built-in capabilities reduce the need for custom coding, offering a standardized approach to document-level security.  
 
-## Reference documents
+## Reference documents  
   
 To help you dive deeper into document-level access control in Azure AI Search, here are more articles and samples:  
   
-| Functionality                                   | Content |  Sample |
+| Functionality                                   | Reference |  Sample |
 |---|---|---|
 | **Index permissions using Push APIs**           | [How to index permissions using REST API](search-index-access-control-lists-and-rbac-push-api.md)  |  [azure-search-rest-samples/Quickstart-ACL](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-ACL) or [azure-search-python-samples/Quickstart-Document-Permissions-Push-API](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Document-Permissions-Push-API) |
 | **Index ADLS Gen2 permissions metadata using built-in indexers** | [How to index permissions using ADLS Gen2 indexer](search-indexer-access-control-lists-and-role-based-access.md) and [Tutorial: Index ADLS Gen2 permissions metadata using an indexer](tutorial-adls-gen2-indexer-acls.md) |  [azure-search-python-samples/Quickstart-Document-Permissions-Pull-API](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Document-Permissions-Pull-API) |
@@ -61,5 +61,5 @@ To help you dive deeper into document-level access control in Azure AI Search, h
 | **Security trimming via filters**              | [Security trimming via filters](search-security-trimming-for-azure-search.md)               |  Not available. |
 
 ## Next steps  
-
+  
 - [Tutorial: Index ADLS Gen2 permissions metadata](tutorial-adls-gen2-indexer-acls.md)  
