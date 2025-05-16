@@ -92,7 +92,7 @@ import { FoundryLocalManager } from "foundry-local-sdk";
 // to your end-user's device.
 // TIP: You can find a list of available models by running the 
 // following command in your terminal: `foundry model list`.
-const alias = "deepseek-r1-1.5b";
+const alias = "phi-3.5-mini";
 
 const manager = new FoundryLocalManager()
 
@@ -141,7 +141,7 @@ import { FoundryLocalManager } from "foundry-local-sdk";
 // to your end-user's device.
 // TIP: You can find a list of available models by running the 
 // following command in your terminal: `foundry model list`.
-const alias = "deepseek-r1-1.5b";
+const alias = "phi-3.5-mini";
 
 // Create a FoundryLocalManager instance. This will start the Foundry 
 // Local service if it is not already running.
@@ -208,7 +208,7 @@ const endpoint = "ENDPOINT"
 
 const manager = new FoundryLocalManager({serviceUrl: endpoint})
 
-const alias = 'deepseek-r1-1.5b'
+const alias = 'phi-3.5-mini'
 
 // Get all available models
 const catalog = await manager.listCatalogModels()

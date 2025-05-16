@@ -45,7 +45,7 @@ Get started with Foundry Local quickly:
 1. **Run your first model** Open a terminal window and run the following command to run a model: 
 
     ```bash
-    foundry model run deepseek-r1-1.5b 
+    foundry model run phi-3.5-mini 
     ```
     
     The model downloads - which can take a few minutes, depending on your internet speed - and the model runs. Once the model is running, you can interact with it using the command line interface (CLI). For example, you can ask:
@@ -59,7 +59,7 @@ Get started with Foundry Local quickly:
 
 
 > [!TIP]
-> You can replace `deepseek-r1-1.5b` with any model name from the catalog (see `foundry model list` for available models). Foundry Local downloads the model variant that best matches your system's hardware and software configuration. For example, if you have an NVIDIA GPU, it downloads the CUDA version of the model. If you have a Qualcomm NPU, it downloads the NPU variant. If you have no GPU or NPU, it downloads the CPU version.
+> You can replace `phi-3.5-mini` with any model name from the catalog (see `foundry model list` for available models). Foundry Local downloads the model variant that best matches your system's hardware and software configuration. For example, if you have an NVIDIA GPU, it downloads the CUDA version of the model. If you have a Qualcomm NPU, it downloads the NPU variant. If you have no GPU or NPU, it downloads the CPU version.
 
 ## Explore commands
 
