@@ -26,7 +26,7 @@ To check if a specific connector has a trigger capability, view its documentatio
 ## Prerequisites
 
 * [An existing agent](../quickstart.md)
-* Supported Logic Apps regions: `west us 2`, `west central us`, and `southeast asia`
+* Supported Logic Apps regions: `west us 2`, `west central us`, `east asia`, and `southeast asia`.
 
 ## Set up 
 
