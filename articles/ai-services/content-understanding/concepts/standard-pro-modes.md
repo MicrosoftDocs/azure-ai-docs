@@ -75,7 +75,7 @@ Not sure which mode is right for your scenario? The following charts compare sta
 | Scenario | Standard mode | Pro mode|
 |----|----|----|
 | **Invoice analysis** | Extract insights on invoice data at scale and enable RAG search and further data analysis and visualization. Answer questions like: <br> &bullet; Extract purchase order number, total, due date, and line items for entry into database. | Analyze invoices and contractual agreements with clients and apply multi-step reasoning to draw conclusions on that data. Answer questions like: <br> &bullet; Does this invoice fulfill the contractual agreement we have in place with this client? <br> &bullet; Does this invoice need further review? |
-| **Call center transcript analytics** | Extract insights on large volumes of call center data to gain valuable insights on sentiment, understand customer issues, and create targeted training to address major pain points. Answer questions like: <br> &bullet; What are the main issues customers are calling about? <br> &bullet; What is the average length of calls made about x issue? | Analyze call center transcript data and apply multi-step reasoning to understand how call center employees are addressing customer needs, and if they're following guidelines. Answer questions like: <br> &bullet; Did the call center employee introduce themselves? <br> &bullet; Did this answer "pass" certain criteria? |
+| **Call center transcript analytics** | Extract insights on large volumes of call center data to gain valuable insights on sentiment, understand customer issues, and create targeted training to address major pain points. Answer questions like: <br> &bullet; What are the main issues customers are calling about? <br> &bullet; What is the average length of calls made about x issue? | Analyze call center transcript data and apply multi-step reasoning to understand how call center employees are addressing customer needs, and if they're following guidelines. Answer questions like: <br> &bullet; Did the call center employee introduce themselves? <br> &bullet; Did this answer *pass* certain criteria? |
 | **Mortgage application processing** | Extract the key values from mortgage application data and make it searchable and more easily accessible. Answer questions like: <br> &bullet;  What year was the mortgage application submitted? <br> &bullet; What are the names on the application? | Analyze supplementary supporting documentation and mortgage applications to determine whether a prospective home buyer provides all the necessary documentation to secure a mortgage. Answer questions like: <br> &bullet;  Do the names and social security numbers on the mortgage application match the supporting documentation? |
 
 ## Try pro mode
@@ -85,10 +85,16 @@ You can try out the features of both Content Understanding standard and pro mode
 ### Pro mode known limitations and best practices
 
 * Content Understanding pro mode currently doesn't offer confidence scores or grounding. It currently supports generative and classification of your fields but doesn't support extraction only.
+
 * Content Understanding pro mode is currently only available for documents.
-* The system works in “lookup mode” on reference documents: don’t expect exhaustive information recovery; if this is desired, include the document in your input documents instead.
-* Be as specific as possible with your schema (e.g., rather than identifying a list of inconsistencies, create a list field for each inconsistency type and describe it), and if possible, reference which parts of which documents should be consulted.
-* Keep reference documents short and sweet: Limit documents to the critical ones, and keep them short where possible to improve recall.
+
+* The system operates in *lookup mode* when referencing documents. As a result, comprehensive information retrieval shouldn't be expected. If exhaustive recovery of data is required, we recommend that you incorporate the document into the input set.
+
+* Schemas should be designed with the highest level of specificity possible. For instance, instead of presenting a generalized list of inconsistencies, it's advisable to create distinct fields for each type of inconsistency, accompanied by detailed descriptions. Additionally, wherever feasible, references to specific sections of relevant documents that should be reviewed should be included.
+
+* Reference documents should be concise and focused. Prioritize essential documents and ensure they're as brief as possible to enhance retention and recall.
+
+
 
 
 ## Next steps
