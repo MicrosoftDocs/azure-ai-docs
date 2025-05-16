@@ -17,6 +17,4 @@ To work with Azure AI services in your .NET project, you'll need to install seve
 dotnet add package Azure.Identity
 dotnet add package Azure.AI.Projects
 dotnet add package Azure.AI.Agents.Persistent
-dotnet add package Azure.AI.OpenAI
-dotnet add package Azure.Search.Documents
 ```
