@@ -33,6 +33,16 @@ manager = FoundryLocalManager(alias_or_model_id=None, bootstrap=True)
 - `alias_or_model_id`: (optional) Alias or Model ID to download and load at startup.
 - `bootstrap`: (default True) If True, starts the service if not running and loads the model if provided.
 
+### A note on aliases
+
+Many methods outlined in this reference have an `alias_or_model_id` parameter in the signature. You can pass into the method either an **alias** or **model ID** as a value. Using an alias will:
+
+- Select the *best model* for the available hardware. For example, if a Nvidia CUDA GPU is available, Foundry Local selects the CUDA model. If a supported NPU is available, Foundry Local selects the NPU model.
+- Allow you to use a shorter name without needing to remember the model ID.
+
+> [!TIP]
+> We recommend passing into the `alias_or_model_id` parameter an **alias** because when you deploy your application, Foundry Local acquires the best model for the end user's machine at run-time.
+
 ### Service Management
 
 | Method                | Signature                  | Description                                      |

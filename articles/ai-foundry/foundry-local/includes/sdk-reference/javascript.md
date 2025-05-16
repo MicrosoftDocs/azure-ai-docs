@@ -33,6 +33,15 @@ Available options:
 - `serviceUrl`: Base URL of the Foundry Local service
 - `fetch`: (optional) Custom fetch implementation for environments like Node.js
 
+### A note on aliases
+
+Many methods outlined in this reference have an `aliasOrModelId` parameter in the signature. You can pass into the method either an **alias** or **model ID** as a value. Using an alias will:
+
+- Select the *best model* for the available hardware. For example, if a Nvidia CUDA GPU is available, Foundry Local selects the CUDA model. If a supported NPU is available, Foundry Local selects the NPU model.
+- Allow you to use a shorter name without needing to remember the model ID.
+
+> [!TIP]
+> We recommend passing into the `aliasOrModelId` parameter an **alias** because when you deploy your application, Foundry Local acquires the best model for the end user's machine at run-time.
 
 ### Service Management
 
