@@ -176,7 +176,7 @@ After the interaction is complete, the script performs cleanup by deleting the c
 :::zone-end
 
 
-:::zone-pivot="javascript"
+:::zone pivot="javascript"
 
 
 ## Create a project client
