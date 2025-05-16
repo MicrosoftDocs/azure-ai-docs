@@ -34,11 +34,8 @@ items:
   - name: Content Understanding Azure AI Foundry portal
     displayName: quickstart, extract, text, images, OCR, optical character recognition
     href: quickstart/use-ai-foundry.md
-- name: Capabilities
+- name: Analyzers and features
   items:
-  - name: Overview
-    displayName: content understanding capabilities, document, text, images, video, audio, visual, structured, content, field, extraction
-    href: concepts/analyzers-overview.md
   - name: Analyzer templates
     displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
     href: concepts/analyzer-templates.md
