@@ -29,7 +29,7 @@ See the [project development lifecycle](../overview.md#project-development-lifec
 
 ## Model details
 
-### [Language studio](#tab/Language-studio)
+### [Azure AI Foundry](#tab/azure-ai-foundry)
 
 [!INCLUDE [Model performance](../includes/language-studio/model-performance.md)]
 
@@ -41,7 +41,7 @@ See the [project development lifecycle](../overview.md#project-development-lifec
 
 ## Load or export model data
 
-### [Language studio](#tab/Language-studio)
+### [Azure AI Foundry](#tab/azure-ai-foundry)
 
 [!INCLUDE [Load export model](../includes/language-studio/load-export-model.md)]
 
@@ -54,7 +54,7 @@ See the [project development lifecycle](../overview.md#project-development-lifec
 
 ## Delete model
 
-### [Language studio](#tab/Language-studio)
+### [Azure AI Foundry](#tab/azure-ai-foundry)
 
 [!INCLUDE [Delete model](../includes/language-studio/delete-model.md)]
 

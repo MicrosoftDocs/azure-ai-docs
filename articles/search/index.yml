@@ -1,10 +1,10 @@
 ### YamlMime:Landing
 
 title: Azure AI Search documentation # < 60 chars
-summary: Information retrieval at scale for vector and text content in traditional or generative search scenarios.
+summary: Information retrieval at scale for agentic RAG, with vector and text content in traditional or generative search scenarios.
 metadata:
   title: Azure AI Search documentation
-  description: Information retrieval at scale for vector and text content in traditional or generative search scenarios.
+  description: Information retrieval at scale for agentic RAG, with vector and text content in traditional or generative search scenarios.
   ms.service: azure-ai-search
   ms.custom:
     - ignite-2023
@@ -12,7 +12,7 @@ metadata:
   ms.topic: landing-page
   author: HeidiSteen
   ms.author: heidist
-  ms.date: 02/024/2025
+  ms.date: 05/12/2025
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
 landingContent:
@@ -27,88 +27,58 @@ landingContent:
             url: search-what-is-azure-search.md
           - text: AI enrichment
             url: cognitive-search-concept-intro.md
-          - text: Semantic reranking
+          - text: Semantic ranking
             url: semantic-search-overview.md
-      - linkListType: quickstart
+      - linkListType: how-to-guide
         links:
           - text: Create a search service
             url: search-create-service-portal.md
+          - text: Configure a search service
+            url: search-manage.md
           - text: Create a search index
             url: search-get-started-portal.md
-
-  # Card
-  - title: RAG and vectors
-    linkLists:
-      - linkListType: concept
-        links:
-          - text: Vectors in Azure AI Search
-            url: vector-search-overview.md
-          - text: Built-in vectorization
-            url: vector-search-integrated-vectorization.md
-          - text: Built-in compression
-            url: vector-search-how-to-quantization.md
-          - text: Retrieval Augmented Generation (RAG)
-            url: retrieval-augmented-generation-overview.md
-      - linkListType: quickstart
-        links:
-          - text: Retrieve data using an LLM
-            url: search-get-started-rag.md
           - text: Create a vector index
             url: search-get-started-vector.md
           - text: Query a vector index
             url: vector-search-how-to-query.md
-      - linkListType: sample
-        links:
-          - text: Vector samples
-            url: https://github.com/Azure/azure-search-vector-samples/blob/main/README.md
 
   # Card
-  - title: Azure AI Foundry
-    linkLists:
-      - linkListType: how-to-guide
-        links:
-          - text: Create a vector index in Azure AI Foundry portal
-            url: /azure/ai-foundry/how-to/index-add
-          - text: Chat with your data using Azure OpenAI
-            url: /azure/ai-services/openai/use-your-data-quickstart
-          - text: Build a custom RAG app using Azure AI Foundry SDK
-            url: /azure/ai-foundry/tutorials/copilot-sdk-build-rag
-
-  # Card
-  - title: Index data
+  - title: Agentic RAG
     linkLists:
       - linkListType: concept
         links:
-          - text: What's a search index?
-            url: search-what-is-an-index.md
-          - text: Importing data
-            url: search-what-is-data-import.md
-          - text: Indexer overview
-            url: search-indexer-overview.md
-      - linkListType: how-to-guide
+          - text: Retrieval Augmented Generation (RAG)
+            url: retrieval-augmented-generation-overview.md
+          - text: Agentic RAG
+            url: search-agentic-retrieval-concept.md        
+          - text: Vector search
+            url: vector-search-overview.md
+          - text: Multimodal search
+            url: multimodal-search-overview.md
+          - text: Built-in vectorization
+            url: vector-search-integrated-vectorization.md
+          - text: Built-in compression
+            url: vector-search-how-to-quantization.md
+      - linkListType: quickstart
         links:
-          - text: Index from Azure Blob Storage
-            url: search-blob-storage-integration.md
-          - text: Index from Azure SQL Database
-            url: search-how-to-index-sql-database.md
-          - text: Index from Azure Cosmos DB
-            url: search-howto-index-cosmosdb.md
-          - text: Index any data
-            url: tutorial-optimize-indexing-push-api.md
+          - text: Run an agentic retrieval pipeline
+            url: search-get-started-agentic-retrieval.md
+          - text: Retrieve data using an LLM
+            url: search-get-started-rag.md
+
+
 
   # Card
-  - title: Develop apps
+  - title: Code
     linkLists:
-      - linkListType: tutorial
+      - linkListType: get-started
         links:
-          - text: Add search to web apps
-            url: tutorial-csharp-overview.md
-      - linkListType: how-to-guide
-        links:
-          - text: Develop in .NET
-            url: search-howto-dotnet-sdk.md
-          - text: Develop in REST
-            url: search-get-started-rest.md
+          - text: Python samples
+            url: samples-python.md
+          - text: .NET samples
+            url: samples-dotnet.md
+          - text: Vector samples
+            url: https://github.com/Azure/azure-search-vector-samples
       - linkListType: reference
         links:
           - text: Azure REST API Reference
@@ -121,23 +91,3 @@ landingContent:
             url: /java/api/overview/azure/search-documents-readme
           - text: Azure SDK for JavaScript
             url: /javascript/api/overview/azure/search-documents-readme
-
-  # Card
-  - title: Query data
-    linkLists:
-      - linkListType: concept
-        links:
-          - text: Query types and composition
-            url: search-query-overview.md
-          - text: Create a simple query
-            url: search-query-create.md
-          - text: Create advanced queries
-            url: search-query-lucene-examples.md
-      - linkListType: reference
-        links:
-          - text: Simple syntax (default)
-            url: query-simple-syntax.md
-          - text: OData language reference
-            url: query-odata-filter-orderby-syntax.md
-          - text: Search Documents (REST)
-            url: /rest/api/searchservice/documents/search-post

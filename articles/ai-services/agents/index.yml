@@ -1,10 +1,10 @@
 ### YamlMime:Landing
 
-title: Azure AI Agent Service documentation # < 60 chars
-summary: Azure AI Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. 
+title: Azure AI Foundry Agent Service documentation # < 60 chars
+summary: Azure AI Foundry Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents. 
   
 metadata:
-  title: Azure AI Agent Service documentation - Quickstarts, Tutorials, API Reference - Azure AI services | Microsoft Docs
+  title: Azure AI Foundry Agent Service documentation - Quickstarts, Tutorials, API Reference - Azure AI services | Microsoft Docs
   description: Learn how to build agents that apply powerful models such as GPT-4o, Llama, and Mistral.
   ms.service: azure-ai-agent-service
   ms.custom:
@@ -20,7 +20,7 @@ landingContent:
 # Cards and links should be based on top customer tasks or top subjects
 # Start card title with a verb
 # Card 1
-  - title: Azure AI Agent Service
+  - title: Azure AI Foundry Agent Service
     linkLists:
     - linkListType: overview
       links:
@@ -32,7 +32,7 @@ landingContent:
           url: ./quotas-limits.md
     - linkListType: whats-new
       links:
-        - text: What's new in Azure AI Agent Service?
+        - text: What's new in Azure AI Foundry Agent Service?
           url: ./whats-new.md
     - linkListType: quickstart
       links:
@@ -40,7 +40,7 @@ landingContent:
           url: quickstart.md
             
 #Card 2
-  - title: Azure AI Agent Service concepts
+  - title: Azure AI Foundry Agent Service concepts
     linkLists:
       - linkListType: concept
         links:
@@ -50,7 +50,7 @@ landingContent:
             url: ./concepts/tracing.md
         
 #Card 3
-  - title: Azure AI Agent Service tools
+  - title: Azure AI Foundry Agent Service tools
     linkLists:
       - linkListType: how-to-guide
         links:

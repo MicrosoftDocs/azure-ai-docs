@@ -1,7 +1,7 @@
 ---
-title: Model inference endpoint in Azure AI services
+title: Endpoint for Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn about the model inference endpoint in Azure AI services
+description: Learn about the Azure AI Foundry Models endpoint
 author: santiagxf
 manager: nitinme
 ms.service: azure-ai-model-inference
@@ -11,15 +11,15 @@ ms.author: fasantia
 ms.custom: ignite-2024, github-universe-2024
 ---
 
-# Model inference endpoint in Azure AI Services
+# Endpoint for Azure AI Foundry Models
 
-Azure AI model inference in Azure AI services allows customers to consume the most powerful models from flagship model providers using a single endpoint and credentials. This means that you can switch between models and consume them from your application without changing a single line of code.
+Azure AI Foundry Models allows customers to consume the most powerful models from flagship model providers using a single endpoint and credentials. This means that you can switch between models and consume them from your application without changing a single line of code.
 
 The article explains how models are organized inside of the service and how to use the inference endpoint to invoke them.
 
 ## Deployments
 
-Azure AI model inference makes models available using the **deployment** concept. **Deployments** are a way to give a model a name under certain configurations. Then, you can invoke such model configuration by indicating its name on your requests.
+Azure AI Foundry makes models available using the **deployment** concept. **Deployments** are a way to give a model a name under certain configurations. Then, you can invoke such model configuration by indicating its name on your requests.
 
 Deployments capture:
 
@@ -32,13 +32,13 @@ Deployments capture:
 
 <sup>1</sup> Configurations may vary depending on the selected model.
 
-An Azure AI services resource can have as many model deployments as needed and they don't incur in cost unless inference is performed for those models. Deployments are Azure resources and hence they're subject to Azure policies.
+An Azure AI Foundry resource can have as many model deployments as needed and they don't incur in cost unless inference is performed for those models. Deployments are Azure resources and hence they're subject to Azure policies.
 
 To learn more about how to create deployments see [Add and configure model deployments](../how-to/create-model-deployments.md).
 
-## Azure AI inference endpoint
+## Foundry Models inference endpoint
 
-The Azure AI inference endpoint allows customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. This endpoint follows the [Azure AI model inference API](.././reference/reference-model-inference-api.md) which all the models in Azure AI model inference support. It support the following modalities:
+The Foundry Models inference endpoint allows customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. This endpoint follows the [Foundry Models API](.././reference/reference-model-inference-api.md) which all the models in Foundry Models support. It supports the following modalities:
 
 * Text embeddings
 * Image embeddings
@@ -65,7 +65,7 @@ For example, if you create a deployment named `Mistral-large`, then such deploym
 
 ### SDKs
 
-The Azure AI model inference endpoint is supported by multiple SDKs, including the **Azure AI Inference SDK**, the **Azure AI Foundry SDK**, and the **Azure OpenAI SDK**; which are available in multiple languages. Multiple integrations are also supported in popular frameworks like LangChain, LangGraph, Llama-Index, Semantic Kernel, and AG2. See [supported programming languages and SDKs](../supported-languages.md) for details.
+The Foundry Models endpoint is supported by multiple SDKs, including the **Azure AI Inference SDK**, the **Azure AI Foundry SDK**, and the **Azure OpenAI SDK**; which are available in multiple languages. Multiple integrations are also supported in popular frameworks like LangChain, LangGraph, Llama-Index, Semantic Kernel, and AG2. See [supported programming languages and SDKs](../supported-languages.md) for details.
 
 ## Azure OpenAI inference endpoint
 

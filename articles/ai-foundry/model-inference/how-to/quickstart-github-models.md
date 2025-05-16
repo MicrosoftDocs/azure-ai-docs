@@ -1,7 +1,7 @@
 ---
-title: Upgrade from GitHub Models to Azure AI model inference
+title: Upgrade from GitHub Models to Azure AI Foundry Models
 titleSuffix: Azure AI Foundry for GitHub
-description: Learn how to upgrade your endpoint from GitHub Models to Azure AI model inference
+description: Learn how to upgrade your endpoint from GitHub Models to Azure AI Foundry Models
 ms.service: azure-ai-model-inference
 ms.topic: how-to
 ms.date: 1/21/2025
@@ -12,22 +12,22 @@ ms.author: fasantia
 recommendations: false
 ---
 
-# Upgrade from GitHub Models to Azure AI model inference
+# Upgrade from GitHub Models to Azure AI Foundry Models
 
 If you want to develop a generative AI application, you can use [GitHub Models](https://docs.github.com/en/github-models/) to find and experiment with AI models for free. The playground and free API usage are [rate limited](https://docs.github.com/en/github-models/prototyping-with-ai-models#rate-limits) by requests per minute, requests per day, tokens per request, and concurrent requests. If you get rate limited, you need to wait for the rate limit that you hit to reset before you can make more requests.
 
-Once you're ready to bring your application to production, you can upgrade your experience by deploying an Azure AI Services resource in an Azure subscription and start using Azure AI model inference service. You don't need to change anything else in your code.
+Once you're ready to bring your application to production, you can upgrade your experience by deploying an Azure AI Services resource in an Azure subscription and start using Azure AI Foundry Models service. You don't need to change anything else in your code.
 
-The following article explains how to get started from GitHub Models and deploy an Azure AI Services resource with Azure AI model inference.
+The following article explains how to get started from GitHub Models and deploy an Azure AI Services resource with Azure AI Foundry Models.
 
 ## Prerequisites
 
 To complete this tutorial, you need:
 
 * A GitHub account with access to [GitHub Models](https://docs.github.com/en/github-models/).
-* An Azure subscription. If you don't have one, you're prompted to create or update your Azure account to a pay as you go account when you're ready to deploy your model to production.
+* An Azure subscription. If you don't have one, you're prompted to create or update your Azure account to a Standard account when you're ready to deploy your model to production.
 
-## Upgrade to Azure AI model inference
+## Upgrade to Azure AI Foundry Models
 
 The rate limits for the playground and free API usage are intended to help you experiment with models and develop your AI application. Once you're ready to bring your application to production, use a key and endpoint from a paid Azure account. You don't need to change anything else in your code.
 
@@ -45,9 +45,9 @@ To obtain the key and endpoint:
 
 4. If you have an Azure account, select **Sign back in**.
 
-5. If your existing account is a free account, you first have to upgrade to a Pay as you go plan. Once you upgrade, go back to the playground and select **Get API key** again, then sign in with your upgraded account.
+5. If your existing account is a free account, you first have to upgrade to a Standard plan. Once you upgrade, go back to the playground and select **Get API key** again, then sign in with your upgraded account.
 
-6. Once you've signed in to your Azure account, you're taken to [Azure AI Studio > GitHub](https://ai.azure.com/GitHub). It might take one or two minutes to load your initial model details in AI Studio.
+6. Once you've signed in to your Azure account, you're taken to [Azure AI Foundry > GitHub](https://ai.azure.com/GitHub). It might take one or two minutes to load your initial model details in AI Foundry.
 
 7. The page is loaded with your model's details. Select the **Deploy** button to deploy the model to your account.
 
@@ -67,7 +67,7 @@ You can use any of the supported SDKs to get predictions out from the endpoint. 
 * Azure OpenAI SDK
 * Azure AI Inference SDK
 
-See the [supported languages and SDKs](../supported-languages.md) section for more details and examples. The following example shows how to use the Azure AI model inference SDK with the newly deployed model:
+See the [supported languages and SDKs](../supported-languages.md) section for more details and examples. The following example shows how to use the Azure AI Foundry Models SDK with the newly deployed model:
 
 [!INCLUDE [code-create-chat-client](../includes/code-create-chat-client.md)]
 
@@ -82,7 +82,7 @@ Use the parameter `model="<deployment-name>` to route your request to this deplo
 
 ## Explore additional features
 
-Azure AI model inference supports additional features not available in GitHub Models, including:
+Azure AI Foundry Models supports additional features not available in GitHub Models, including:
 
 * [Explore the model catalog](https://ai.azure.com/github/models) to see additional models not available in GitHub Models.
 * Configure [key-less authentication](configure-entra-id.md).

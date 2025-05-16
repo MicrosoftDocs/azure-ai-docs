@@ -35,7 +35,14 @@ Compute instances can run jobs securely in a virtual network environment, withou
 > Compute instances get the latest VM images at the time of provisioning. Microsoft releases new VM images on a monthly basis. Once a compute instance is deployed, it does not get actively updated. You could query an instance's operating system version. 
 > To keep current with the latest software updates and security patches, you could: Recreate a compute instance to get the latest OS image (recommended) or regularly update OS and Python packages on the compute instance to get the latest security patches.
 
+## Prerequisites
+
+[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
+
+
 ## Create a compute instance
+
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
 To create a compute instance in Azure AI Foundry portal:
 

@@ -14,7 +14,6 @@ author: maanavd
 # Best practices and troubleshooting guide for Foundry Local
 
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
-
 This document provides best practices and troubleshooting tips for Foundry Local.
 
 ## Security best practices
@@ -34,7 +33,6 @@ foundry model info <model> --license
 ## Production deployment scope
 
 Foundry Local is designed for on-device inference and *not* distributed, containerized, or multi-machine production deployments.
-
 
 ## Troubleshooting
 
