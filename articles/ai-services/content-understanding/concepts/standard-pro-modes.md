@@ -82,10 +82,14 @@ Not sure which mode is right for your scenario? The following charts compare sta
 
 You can try out the features of both Content Understanding standard and pro modes using the [Azure AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding). The service enables you to bring your own data and experiment with all the functionalities of both modes in a lightweight, no-code approach to help you find the best fit for your unique scenario.
 
-### Pro mode known limitations
+### Pro mode known limitations and best practices
 
 * Content Understanding pro mode currently doesn't offer confidence scores or grounding. It currently supports generative and classification of your fields but doesn't support extraction only.
 * Content Understanding pro mode is currently only available for documents.
+* The system works in “lookup mode” on reference documents: don’t expect exhaustive information recovery; if this is desired, include the document in your input documents instead.
+* Be as specific as possible with your schema (e.g., rather than identifying a list of inconsistencies, create a list field for each inconsistency type and describe it), and if possible, reference which parts of which documents should be consulted.
+* Keep reference documents short and sweet: Limit documents to the critical ones, and keep them short where possible to improve recall.
+
 
 ## Next steps
 
