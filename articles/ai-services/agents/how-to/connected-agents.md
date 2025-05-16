@@ -110,18 +110,16 @@ To enable your Agent to use a connected agent, you use `ConnectedAgentToolDefini
 1. First we need to create agent client and read the environment variables, which will be used in the next steps.
     
     ```csharp
-    var connectionString = System.Environment.GetEnvironmentVariable("PROJECT_CONNECTION_STRING");
-    var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+    var projectEndpoint = configuration["ProjectEndpoint"];
+    var modelDeploymentName = configuration["ModelDeploymentName"];
     
-    var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential());
-    
-    AgentsClient agentClient = projectClient.GetAgentsClient();
+    PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
     ```
 
 2. Next we will create the connected agent using the agent client. This agent will be used to initialize the `ConnectedAgentToolDefinition`.
     
     ```csharp
-    Agent connectedAgent = agentClient.CreateAgent(
+    PersistentAgent agent = client.Administration.CreateAgent(
        model: modelDeploymentName,
        name: "stock_price_bot",
        instructions: "Your job is to get the stock price of a company. If you don't know the realtime stock price, return the last known stock price.");
@@ -132,7 +130,7 @@ To enable your Agent to use a connected agent, you use `ConnectedAgentToolDefini
 3. We will use the `ConnectedAgentToolDefinition` during the agent initialization.
     
     ```csharp
-    Agent agent = agentClient.CreateAgent(
+    PersistentAgent agent = client.Administration.CreateAgent(
        model: modelDeploymentName,
        name: "my-assistant",
        instructions: "You are a helpful assistant, and use the connected agent to get stock prices.",
@@ -229,9 +227,10 @@ To create a multi-agent setup, follow these steps:
     from azure.identity import DefaultAzureCredential
     
     
-    project_client = AIProjectClient.from_connection_string(
-        credential=DefaultAzureCredential(),
-        conn_str=os.environ["PROJECT_CONNECTION_STRING"],
+    project_client = AIProjectClient(
+    endpoint=os.environ["PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential(),
+    api_version="latest",
     )
     ```
 
