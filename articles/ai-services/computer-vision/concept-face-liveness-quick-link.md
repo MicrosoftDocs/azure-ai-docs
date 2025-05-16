@@ -52,7 +52,7 @@ You can utilize the liveness quick link website liveness.face.azure.com to turn 
         var body = await response.Content.ReadAsStringAsync();
         Console.WriteLine(body);
     }
-        ```
+    ```
 
     #### [Java](#tab/java)
     ```java
