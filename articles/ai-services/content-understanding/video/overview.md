@@ -63,41 +63,41 @@ With the prebuilt video analyzer (prebuilt-videoAnalyzer), you can upload a vide
 
 * Next, analyzing a 30-second advertising video, would result in the following output:
 
-```markdown
-  # Video: 00:00.000 => 00:30.000
-  Width: 1280
-  Height: 720
+   ```markdown
+     # Video: 00:00.000 => 00:30.000
+     Width: 1280
+     Height: 720
 
-  ## Segment 1: 00:00.000 => 00:06.000
-  A lively room filled with people is shown, where a group of friends is gathered around a television. They are watching a sports event, possibly a football match, as indicated by the decorations and the atmosphere.
+     ## Segment 1: 00:00.000 => 00:06.000
+     A lively room filled with people is shown, where a group of friends is gathered around a television. They are watching a sports event, possibly a football match, as indicated by the decorations and the atmosphere.
 
-  Transcript
+     Transcript
 
-  WEBVTT
+     WEBVTT
 
-  00:03.600 --> 00:06.000
-  <Speaker 1 Speaker>Get new years ready.
+     00:03.600 --> 00:06.000
+     <Speaker 1 Speaker>Get new years ready.
 
-  Key Frames
-  - 00:00.600 ![](keyFrame.600.jpg)
-  - 00:01.200 ![](keyFrame.1200.jpg)
+     Key Frames
+     - 00:00.600 ![](keyFrame.600.jpg)
+     - 00:01.200 ![](keyFrame.1200.jpg)
 
-  ## Segment 2: 00:06.000 => 00:10.080
-  The scene transitions to a more vibrant and energetic setting, where the group of friends is now celebrating. The room is decorated with football-themed items, and everyone is cheering and enjoying the moment.
+     ## Segment 2: 00:06.000 => 00:10.080
+     The scene transitions to a more vibrant and energetic setting, where the group of friends is now celebrating. The room is decorated with football-themed items, and everyone is cheering and enjoying the moment.
 
-  Transcript
+     Transcript
 
-  WEBVTT
+     WEBVTT
 
-  00:03.600 --> 00:06.000
-  <Speaker 1 Speaker>Go team!
+     00:03.600 --> 00:06.000
+     <Speaker 1 Speaker>Go team!
 
-  Key Frames
-  - 00:06.200 ![](keyFrame.6200.jpg)
-  - 00:07.080 ![](keyFrame.7080.jpg)
-  
-     *…additional data omitted for brevity…*
-```
+     Key Frames
+     - 00:06.200 ![](keyFrame.6200.jpg)
+     - 00:07.080 ![](keyFrame.7080.jpg)
+
+        *…additional data omitted for brevity…*
+   ```
 
 ## Walk-through
 
@@ -120,7 +120,7 @@ The service operates in two stages. The first stage, content extraction, involve
 
 The first pass is all about extracting a first set of details—who's speaking, where are the cuts, and which faces recur. It creates a solid metadata backbone that later steps can reason over.
 
-* **Transcription:** Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Sentence-level timestamps are available if `"returnDetails": true` is set. Content Understanding supports the full set of Azure AI Speech speech-to-text languages. For more information on supported languages, *see* [Language and region support](../language-region-support.md#language-support). The following transcription details are important to consider:
+* **Transcription:** Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Sentence-level timestamps are available if `"returnDetails": true` is set. Content Understanding supports the full set of Azure AI Speech speech-to-text languages. Details of language support for video are the same as audio, *see* [Audio Language Handling](../audio/overview.md#language-handling) for details. The following transcription details are important to consider:
 
   * **Diarization:** Distinguishes between speakers in a conversation in the output, attributing parts of the transcript to specific speakers.
   * **Multilingual transcription:** Generates multilingual transcripts. Language/locale is applied per phrase in the transcript. Phrases output when `"returnDetails": true` is set. Deviating from language detection this feature is enabled when no language/locale is specified or language is set to `auto`.
@@ -177,8 +177,6 @@ Shape the output to match your business vocabulary. Use a `fieldSchema` object w
   }
 }
 ```
-
-
 
 ### Segmentation mode
 
