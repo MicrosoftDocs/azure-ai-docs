@@ -93,17 +93,17 @@ The service operates in two stages. The first stage, content extraction, involve
 
 The first pass is all about extracting a first set of details—who's speaking, where are the cuts, and which faces recur. It creates a solid metadata backbone that later steps can reason over.
 
-* **Transcription:** Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Sentence-level timestamps are available if `returnDetails=true` is set. Content Understanding supports the full set of Azure AI Speech speech-to-text languages. For more information on supported languages, *see* [Language and region support](../language-region-support.md#language-support). The following transcription details are important to consider:
+* **Transcription:** Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Sentence-level timestamps are available if `"returnDetails": true` is set. Content Understanding supports the full set of Azure AI Speech speech-to-text languages. For more information on supported languages, *see* [Language and region support](../language-region-support.md#language-support). The following transcription details are important to consider:
 
   * **Diarization:** Distinguishes between speakers in a conversation in the output, attributing parts of the transcript to specific speakers.
-  * **Multilingual transcription:** Generates multilingual transcripts. Language/locale is applied per phrase in the transcript. Phrases output when `returnDetails=true` is set. Deviating from language detection this feature is enabled when no language/locale is specified or language is set to `auto`.
+  * **Multilingual transcription:** Generates multilingual transcripts. Language/locale is applied per phrase in the transcript. Phrases output when `"returnDetails": true` is set. Deviating from language detection this feature is enabled when no language/locale is specified or language is set to `auto`.
 
     > [!NOTE]
     > When Multilingual transcription is used, any files with unsupported locales produce a result based on the closest supported locale, which is likely incorrect. This result is a known
     > behavior. Avoid transcription quality issues by ensuring that you configure locales when not using a multilingual transcription supported locale!
 
 * **Key frame extraction:** Extracts key frames from videos to represent each shot completely, ensuring each shot has enough key frames to enable field extraction to work effectively.
-* **Shot detection:** Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and repackaging of content with breaks exactly on shot boundaries. This is output as a 
+* **Shot detection:** Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and repackaging of content with breaks exactly existing edits. This is output as a list of timestamps in milliseconds in `cameraShotTimesMs`. It is only output when `"returnDetails": true` is set. 
 
 ## Field extraction and segmentation
 
@@ -196,20 +196,19 @@ Face identification description is an add-on that provides context to content ex
 
 ### Content extraction - Grouping and identification
 
-The face add-on enables grouping and identification as output from the content extraction section. To enable face capabilities set `enableFace=true` in the analyzer configuration.
+The face add-on enables grouping and identification as output from the content extraction section. To enable face capabilities set `"enableFace":true` in the analyzer configuration.
 
 * **Grouping:** Grouped faces appearing in a video to extract one representative face image for each person and provides segments where each one is present. The grouped face data is available as metadata and can be used to generate customized metadata fields when `returnDetails: true` for the analyzer.
 * **Identification:** Labels individuals in the video with names based on a Face API person directory. Customers can enable this feature by supplying a name for a Face API directory in the current resource in the `personDirectoryId` property of the analyzer. To use this capibility, first you must create a personDirectory then reference it in the analyzer. For details on how to do that, check out [How to build a person directory](../../content-understanding/tutorial/build-person-directory.md)
 
 ### Field Extraction – Face description
 
- The field extraction capability is enhanced by providing detailed descriptions of identified faces in the video. This capability includes attributes such as facial hair, emotions, and the presence of celebrities, which can be crucial for various analytical and indexing purposes.
+ The field extraction capability is enhanced by providing detailed descriptions of identified faces in the video. This capability includes attributes such as facial hair, emotions, and the presence of celebrities, which can be crucial for various analytical and indexing purposes. To enable face capabilities set `disableFaceBlurring=true` in the analyzer configuration.
 
 **Examples:**
 
 * **Example field: emotionDescription:** Provides a description of the emotional state of the primary person in this clip (for example, `happy`, `sad`, `angry`)
 * **Example field: facialHairDescription:** Describes the type of facial hair (for example, `beard`, `mustache`, `clean-shaven`)
-
 
 
 ## Key benefits
