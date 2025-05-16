@@ -124,7 +124,7 @@ No installation is necessary to use the Azure AI Foundry portal.
 1. Save the results as the environment variable `AZURE_AI_AUTH_TOKEN`.  
 
 > [!TIP]
-> All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/csharp/mslearn-resources/quickstart).
+> All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/REST/mslearn-resources/quickstart).
 
 
 ---
