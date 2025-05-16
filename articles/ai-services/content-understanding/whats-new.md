@@ -14,12 +14,12 @@ ms.custom:
 
 # What's new in Azure AI Content Understanding?
 
-The Azure AI Content Understanding service is continuously updated. Bookmark this page to stay informed about the latest features and samples.
+Azure AI Content Understanding service is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
 
 ## May 2025
 The Azure AI Content Understanding **`2025-05-01-preview`** REST API is now available. This update introduces the following updates and enhanced capabilities:
 
-* **Modes for documents**: With the **`2025-05-01-preview`** release, we introduce two modes: `standard` and `pro`. Content Understanding pro mode adds reasoning, support for multiple input documents, the ability to configure an external knowledge base for linking and validation. These features enable agentic processes for automating complex tasks requiring human effort. The `pro` mode is currently limited to the document analyzer, enables reasoning capabilities that can infer complicated outputs given multiple reference documents (e.g., insurance policy documents) and multiple input documents (e.g., forms and supporting documents that are case-specific)
+* **Modes for documents**: With the **`2025-05-01-preview`** release, we introduce two modes: `standard` and `pro`. Content Understanding pro mode adds reasoning, support for multiple input documents, the ability to configure an external knowledge base for linking and validation. These features enable agentic processes for automating complex tasks requiring human effort. The `pro` mode is currently limited to the document analyzer, enables reasoning capabilities that can infer complicated outputs given multiple reference documents (for example, insurance policy documents) and multiple input documents (for example, forms and supporting documents that are case-specific)
 
 * **Document modality improvements** :
 
