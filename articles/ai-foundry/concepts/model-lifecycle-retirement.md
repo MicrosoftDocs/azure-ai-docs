@@ -5,7 +5,7 @@ description: Learn about the lifecycle stages, deprecation, and retirement for A
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 05/05/2025
+ms.date: 05/19/2025
 ms.author: mopeakande
 author: msakande
 ms.reviewer: kritifaujdar
@@ -35,7 +35,7 @@ Models labeled _Preview_ are experimental in nature. A model's weights, runtime,
 
 ### Generally available
 
-This stage is the default model stage. Models that don't include a lifecycle label next to their name are generally available and suitable for use in production environments. In this stage, model weights and APIs are fixed. However, model containers or runtimes with vulnerabilities might get patched, but patches won't affect model outputs.  
+This stage is the default model stage. Models that don't include a lifecycle label next to their name are generally available and suitable for use in production environments. In this stage, model weights and APIs are fixed. However, model containers or runtimes with vulnerabilities might get patched, but patches don't affect model outputs.  
  
 ### Legacy
 
@@ -52,7 +52,7 @@ Models labeled _Retired_ are no longer available for use. You can't create new d
 
 ## Notifications
 
-- Models are labeled as _Legacy_ and remain in the legacy state for at least 30 days before being moved to the deprecated state. During this notification period, you may create new deployments as you prepare for deprecation and retirement.
+- Models are labeled as _Legacy_ and remain in the legacy state for at least 30 days before being moved to the deprecated state. During this notification period, you can create new deployments as you prepare for deprecation and retirement.
 
 - Models are labeled _Deprecated_ and remain in the deprecated state for at least 90 days before being moved to the retired state. During this notification period, you can migrate any existing deployments to newer or replacement models.
 
@@ -70,20 +70,20 @@ Retirements are done on a rolling basis, region by region. Notifications are sen
 
 ## Model availability for Azure OpenAI  models
 
-- At least one year of model availability for GA models after the release date of a model in at least one region worldwide
+- At least one year of model availability for GA models after the release date of a model in at least one region worldwide.
 - For global deployments, all future model versions starting with `gpt-4o` and `gpt-4 0409` will be available with their (`N`) next succeeding model (`N+1`) for comparison together. 
 - Customers have 60 days to try out a new GA model in at least one global, or standard region, before any upgrades happen to a newer GA model.  
 
 ### Considerations for the Azure public cloud
 
-Be aware of the following: 
+Be aware of the following details for the Azure public cloud : 
 
 - All model version combinations will **not** be available in all regions.
 - Model version `N` and `N+1` might not always be available in the same region. 
 - GA model version `N` might upgrade to a future model version `N+X` in some regions based on capacity limitations, and without the new model version `N+X` separately being available to test in the same region. The new model version will be available to test in other regions before any upgrades are scheduled.   
 - Preview model versions and GA versions of the same model won't always be available to test together in the same region. There will be preview and GA versions available to test in different regions. 
 - To balance service quality for existing customers, we reserve the right to limit future customers from using a particular region. 
-- As always at Microsoft, security is of the utmost importance. If a model or model version is found to have compliance or security issues, we reserve the right to invoke the need to do emergency retirements. See the terms of service for more information.
+- As always at Microsoft, security is of the utmost importance. If a model or model version is found to have compliance or security issues, we reserve the right to invoke the need to do emergency retirements. For more information, see the terms of service.
 
 ### Special considerations for Azure Government clouds
 
@@ -106,11 +106,14 @@ For information on the model upgrade process, see [Model versions in Azure AI Fo
 
 For more information on how to manage model upgrades and migrations for provisioned deployments, see [Managing models on provisioned deployment types](../../ai-services/openai/how-to/working-with-models.md#managing-models-on-provisioned-deployment-types)
 
+## Azure OpenAI models
 
-## Current Azure OpenAI models
+The following sections list the current, default, and deprecated Azure OpenAI models.
+
+### Current Azure OpenAI models
 
 > [!NOTE]
-> Not all models go through a deprecation period prior to retirement. Some models/versions only have a retirement date.
+> Not all models go through a deprecation period before retirement. Some models/versions only have a retirement date.
 >
 > **Fine-tuned models** are subject to the same deprecation and retirement schedule as their equivalent base model.
 >
@@ -122,7 +125,7 @@ These models are currently available for use in Azure OpenAI.
 | --------------------------|-----------------|------------------------------------|--------------------------------------|
 | `computer-use-preview`    | 2025-03-11      | No earlier than June 11, 2025      |                                      |
 | `dall-e-3`                | 3               | No earlier than June 30, 2025      |                                      |
-| `gpt-35-turbo-16k`        | 0613            | April, 30, 2025                    | `gpt-4.1-mini` version: `2025-04-14` |
+| `gpt-35-turbo-16k`        | 0613            | April 30, 2025                    | `gpt-4.1-mini` version: `2025-04-14` |
 | `gpt-35-turbo`            | 1106            | No earlier than July 16, 2025      | `gpt-4.1-mini` version: `2025-04-14` |
 | `gpt-35-turbo`            | 0125            | No earlier than July 16, 2025      | `gpt-4.1-mini` version: `2025-04-14` |
 | `gpt-4`<br>`gpt-4-32k`    | 0314            | June 6, 2025                       | `gpt-4o` version: `2024-11-20`       |
@@ -157,19 +160,19 @@ We'll notify all customers with these preview deployments at least 30 days befor
 > [!TIP]
 > **Will a model upgrade happen if the new model version is not yet available in that region?**
 >
-> Yes, even in cases where the latest model version is not yet available in a region, we will automatically upgrade deployments during the scheduled upgrade window. For more information, see [Azure OpenAI model versions](/azure/ai-services/openai/concepts/model-versions#will-a-model-upgrade-happen-if-the-new-model-version-is-not-yet-available-in-that-region).
+> Yes, even in cases where the latest model version isn't yet available in a region, we will automatically upgrade deployments during the scheduled upgrade window. For more information, see [Azure OpenAI model versions](/azure/ai-services/openai/concepts/model-versions#will-a-model-upgrade-happen-if-the-new-model-version-is-not-yet-available-in-that-region).
 
 > [!IMPORTANT]
 > Vision enhancements preview features including Optical Character Recognition (OCR), object grounding, video prompts will be retired and no longer available once `gpt-4` Version: `vision-preview` is upgraded to `turbo-2024-04-09`. If you're currently relying on any of these preview features, this automatic model upgrade will be a breaking change.
 
-## Default Azure OpenAI model versions
+### Default Azure OpenAI model versions
 
 | Model | Current default version | New default version | Default upgrade date |
 |---|---|---|---|
 | `gpt-35-turbo` | 0301 | 0125 | Deployments of versions `0301`, `0613`, and `1106` set to [**Auto-update to default**](/azure/ai-services/openai/how-to/working-with-models?tabs=powershell#auto-update-to-default) will be automatically upgraded to version: `0125`, starting on January 21, 2025.|
 |  `gpt-4o` | 2024-08-06 | - | - |
 
-## Deprecated Azure OpenAI models
+### Deprecated Azure OpenAI models
 
 These models are no longer available for new deployments.
 
