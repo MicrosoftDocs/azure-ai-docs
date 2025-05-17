@@ -131,7 +131,7 @@ if response_message:
 
 
 :::zone-end
-
+<!--
 ::: zone pivot="csharp"
 
 ## Create a project client
@@ -251,7 +251,7 @@ agentClient.DeleteAgent(agentId: agent.Id);
 ```
 
 :::zone-end
-
+-->
 <!--
 ::: zone pivot="javascript"
 
