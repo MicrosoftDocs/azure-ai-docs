@@ -114,6 +114,13 @@ TimeGEN-1  | [Microsoft Managed Countries/Regions](/partner-center/marketplace/t
 |---------|---------|---------|---------|
 tsuzumi-7b    | [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions) | East US 2 <br> South Central US <br> East US <br> West US 3 <br> West US <br> North Central US       |  East US 2 <br> East US <br> North Central US <br> South Central US <br> West US <br> West US 3      |
 
+### xAI
+
+| Model | Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
+|---------|---------|---------|---------|
+grok-3  | [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)    |       |  Not available       |
+grok-3-mini  | [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)    |       |  Not available       |
+
 
 ### Stability AI models
 
