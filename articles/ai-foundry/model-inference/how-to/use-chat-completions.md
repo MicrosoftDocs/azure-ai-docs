@@ -5,7 +5,7 @@ description: Learn how to generate chat completions with Azure AI Foundry Models
 manager: scottpolly
 author: msakande
 reviewer: santiagxf
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-model-../includes/use-chat-completions
 ms.topic: how-to
 ms.date: 1/21/2025
 ms.author: mopeakande
@@ -19,35 +19,35 @@ zone_pivot_groups: azure-ai-inference-samples
 
 ::: zone pivot="programming-language-python"
 
-[!INCLUDE [python](inference/python.md)]
+[!INCLUDE [python](../includes/use-chat-completions/python.md)]
 
 ::: zone-end
 
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [javascript](inference/javascript.md)]
+[!INCLUDE [javascript](../includes/use-chat-completions/javascript.md)]
 
 ::: zone-end
 
 
 ::: zone pivot="programming-language-java"
 
-[!INCLUDE [java](inference/java.md)]
+[!INCLUDE [java](../includes/use-chat-completions/java.md)]
 
 ::: zone-end
 
 
 ::: zone pivot="programming-language-csharp"
 
-[!INCLUDE [csharp](inference/csharp.md)]
+[!INCLUDE [csharp](../includes/use-chat-completions/csharp.md)]
 
 ::: zone-end
 
 
 ::: zone pivot="programming-language-rest"
 
-[!INCLUDE [rest](inference/rest.md)]
+[!INCLUDE [rest](../includes/use-chat-completions/rest.md)]
 
 ::: zone-end
 
@@ -57,4 +57,4 @@ zone_pivot_groups: azure-ai-inference-samples
 * [Use embeddings models](use-embeddings.md)
 * [Use image embeddings models](use-image-embeddings.md)
 * [Use reasoning models](use-chat-reasoning.md)
-* [Azure AI Foundry Models API](.././reference/reference-model-inference-api.md)
+* [Azure AI Foundry Models API](.././reference/reference-model-../includes/use-chat-completions-api.md)
