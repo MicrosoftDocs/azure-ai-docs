@@ -11,22 +11,43 @@ ms.date: 1/21/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: generated
-zone_pivot_groups: azure-ai-foundry-models-samples
+zone_pivot_groups: azure-ai-inference-samples
 ---
 
 # How to generate chat completions with Azure AI Foundry Models
 
 
-::: zone pivot="api-openai"
+::: zone pivot="programming-language-python"
 
-[!INCLUDE [openai](../includes/use-chat-completions/openai.md)]
+[!INCLUDE [python](inference/python.md)]
 
 ::: zone-end
 
 
-::: zone pivot="api-inference"
+::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [inference](../includes/use-chat-completions/inference.md)]
+[!INCLUDE [javascript](inference/javascript.md)]
+
+::: zone-end
+
+
+::: zone pivot="programming-language-java"
+
+[!INCLUDE [java](inference/java.md)]
+
+::: zone-end
+
+
+::: zone pivot="programming-language-csharp"
+
+[!INCLUDE [csharp](inference/csharp.md)]
+
+::: zone-end
+
+
+::: zone pivot="programming-language-rest"
+
+[!INCLUDE [rest](inference/rest.md)]
 
 ::: zone-end
 
