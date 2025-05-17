@@ -22,9 +22,9 @@ This article explains how to use chat completions API with models deployed in Az
 
 To use chat completion models in your application, you need:
 
-[!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
+[!INCLUDE [how-to-prerequisites](../../how-to-prerequisites.md)]
 
-* A chat completions model deployment. If you don't have one, read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
+* A chat completions model deployment. If you don't have one, read [Add and configure Foundry Models](../../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
 
     * This example uses `mistral-large-2407`.
 
@@ -46,7 +46,7 @@ Content-Type: application/json
 Authorization: Bearer <token>
 ```
 
-Using Microsoft Entra ID might require extra configuration in your resource to grant access. Learn how to [configure key-less authentication with Microsoft Entra ID](../../how-to/configure-entra-id.md).
+Using Microsoft Entra ID might require extra configuration in your resource to grant access. Learn how to [configure key-less authentication with Microsoft Entra ID](../../../how-to/configure-entra-id.md).
 
 ### Create a chat completion request
 
