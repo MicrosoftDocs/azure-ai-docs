@@ -205,7 +205,7 @@ Dictionary<string, string> fileIds = new()
 // Create a vector store with the file and wait for it to be processed.
 // If you do not specify a vector store, CreateMessage will create a vector
 // store with a default expiration policy of seven days after they were last active
-VectorStore vectorStore = agentClient.VectorStores.CreateVectorStore(
+PersistentAgentsVectorStore vectorStore = agentClient.VectorStores.CreateVectorStore(
     fileIds: new List<string> { uploadedAgentFile.Id },
     name: "my_vector_store");
 
@@ -238,7 +238,7 @@ You can also attach files as Message attachments on your thread. Doing so create
 PersistentAgentThread thread = agentClient.Threads.CreateThread();
 
 // Create message and run the agent
-ThreadMessage messageResponse = agentClient.Messages.CreateMessage(
+PersistentThreadMessage messageResponse = agentClient.Messages.CreateMessage(
     thread.Id,
     MessageRole.User,
     "Can you give me the documented codes for 'banana' and 'orange'?");
@@ -273,7 +273,7 @@ Once the run is complete, retrieve the messages from the thread and process them
 
 ```csharp
 // Retrieve all messages from the agent client
-Pageable<ThreadMessage> messages = agentClient.Messages.GetMessages(
+Pageable<PersistentThreadMessage> messages = agentClient.Messages.GetMessages(
     threadId: thread.Id,
     order: ListSortOrder.Ascending
 );
@@ -288,7 +288,7 @@ static string replaceReferences(Dictionary<string, string> fileIds, string fileI
 }
 
 // Process messages in order
-foreach (ThreadMessage threadMessage in messages)
+foreach (PersistentThreadMessage threadMessage in messages)
 {
     Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
 
