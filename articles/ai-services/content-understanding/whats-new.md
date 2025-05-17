@@ -17,46 +17,47 @@ ms.custom:
 Azure AI Content Understanding service is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
 
 ## May 2025
+
 The Azure AI Content Understanding **`2025-05-01-preview`** REST API is now available. This update introduces the following updates and enhanced capabilities:
 
-* **Processing modes**: With the **`2025-05-01-preview`** release, we introduce two modes: `standard` and `pro`. The default mode for all analyzers is `standard`. Content Understanding pro mode adds reasoning, support for multiple input documents, the ability to configure an external knowledge base for linking, enrichment and validation. These features enable automating complex tasks requiring that extend the field extraction capability to cover tasks that would have required custom code or human effort. The `pro` mode is currently limited to documents as inputs, this will be extended to support other types of content soon! Common challenges that the pro mode addresses is aggregating a schema across content from different input files, validating results across documents and using extrenal knowledge (guidelines, standard operating procedures and other context) to generate a output schema. Learn more about the [pro mode](concepts/standard-pro-modes.md).
+* **Processing modes**: With the **`2025-05-01-preview`** release, we introduce two modes: `standard` and `pro`. The default mode for all analyzers is `standard`. Content Understanding pro mode adds reasoning, support for multiple input documents, the ability to configure an external knowledge base for linking, enrichment, and validation. These features enable automating complex tasks to extend field extraction capabilities to include tasks that required custom code or human effort. The `pro` mode is currently limited to documents as inputs. Common challenges that the pro mode addresses include aggregating a schema across content from different input files. It also involves validating results across documents. Additionally, it uses external knowledge, such as guidelines, standard operating procedures, and other context, to generate an output schema. Learn more about the [pro mode](concepts/standard-pro-modes.md).
 
 * **Improvements to document processing** :
-  
-  * **Document classification and splitting** with a [Classification API](concepts/classifier.md). This API supports classifying and logicall splitting a single file containing multiple documents with optional routing to field extraction analyzers. This enables you to define a workflow to classify and split a file into multiple logical documents and route the individual documents to a downstream field extraxtion model in a single API call.
+
+  * **Document classification and splitting** with a [Classification API](concepts/classifier.md). This API supports classifying and logical splitting a single file containing multiple documents with optional routing to field extraction analyzers. The API enables you to define a workflow to classify and split a file into multiple logical documents and route the individual documents to a downstream field extraction model in a single API call.
   * Improvements in **content extraction**:
       * Added support for extracting table spanning multiple pages as a single logical table. Learn more about [structure extraction updates in documents](document/elements.md).
       * Selection mark support for checkmark and radio buttons as unicode characters. Learn more about [structure extraction updates in documents](document/elements.md).
       * Bar code extraction as part of the default content extraction along with `OCR`. Learn more about [structure extraction updates in documents](document/elements.md).
       * Support for embedded figures in Markdown as base64 string format output. Learn more about [structure extraction updates in documents](document/elements.md).
   * Improvements in **field extraction**
-      * Confidence score improvements with better grounding results for extractive fields. 
+      * Confidence score improvements with better grounding results for extractive fields.
       * New file format support extended for following document types `.rtf`,`.txt`,`.xml`,`.json`, `.msg`,`.eml`,`.csv`, and `.xlsx`.
-      
+
 
 * **Improvements to video processing**:
-  
+
   * Added Support for whole video fields. Learn more about [video processing improvements](video/overview.md#segmentation-mode).
-  * Added Support for video chapters via segmentation.  Learn more about [video processing improvements](video/overview.md#segmentation-mode).
+  * Added Support for video chapters via segmentation. Learn more about [video processing improvements](video/overview.md#segmentation-mode).
   * Added Support for face identification on extracted face thumbnails. The identity enhances the description and downstream tasks like search and retrieval. Learn more about [face detection in videos](video/overview.md#content-extraction---grouping-and-identification)
   * Added Support for disabling face blurring in analyzer configuration. Learn more about [video processing improvements](video/overview.md#field-extraction--face-description).
 
 * **Improvements in audio processing**:
-  
+
   * Support for multi-speaker call center role detection to allow detection of multiple speakers.
 
 * **Face API preview**:
 
-This release adds new face detection and recognition capabilities to Content Understanding. You can create a database of faces and recognize the faces in the processed content. 
+This release adds new face detection and recognition capabilities to Content Understanding. You can create a database of faces and recognize the faces in the processed content.
 * Detection, recognition, and enrollment of faces. Learn more about [detecting and recognizing faces](face/overview.md).
 
 * **Billing Changes**:
 
-  * New simpler pricing model that lowers processing costs when compated to the **2024-12-01-preview** REST API across many of the features. Learn more about the [updated pricing model](https://azure.microsoft.com/pricing/details/content-understanding/)
-  
+  * New simpler pricing model that lowers processing costs when compared to the **2024-12-01-preview** REST API across many of the features. Learn more about the [updated pricing model](https://azure.microsoft.com/pricing/details/content-understanding/)
+
 * **User experience improvements**:
 
-  The [Azure AI Foundry](https://ai.azure.com/) experience continues to improve with a streamlined project creation flow, improved performance experience improvements and a try-out experience. Get started with Content Understanding in the [Azure AI Foundry](https://aka.ms/cu-landing) today.
+  The [Azure AI Foundry](https://ai.azure.com/) experience continues to improve with a streamlined project creation flow, improved performance experience, and a try-out experience. Get started with Content Understanding in the [Azure AI Foundry](https://aka.ms/cu-landing) today.
 
 ## April 2025
 
