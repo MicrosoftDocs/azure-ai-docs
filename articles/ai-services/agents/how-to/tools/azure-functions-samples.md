@@ -10,7 +10,7 @@ ms.date: 01/30/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
-zone_pivot_groups: selection-function-calling-samples
+zone_pivot_groups: selection-azure-functions-samples
 ---
 
 # How to use Azure Functions with Azure AI Agents 
@@ -275,7 +275,7 @@ curl --request GET \
 
 ::: zone-end
 
-
+<!--
 ::: zone pivot="typescript"
 
 ## Define a function for your agent to call
@@ -309,7 +309,7 @@ For any issues with the TypeScript code, create an issue on the [sample code rep
 
 
 ::: zone-end
-
+-->
 ::: zone pivot="csharp"
 
 ## Prerequisites for .NET Azure Function Sample

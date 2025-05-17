@@ -1142,8 +1142,6 @@ groups:
     title: Azure AI Foundry portal
   - id: csharp
     title: C#
-  - id: javascript
-    title: JavaScript
   - id: python
     title: Python
   - id: rest
@@ -1156,9 +1154,21 @@ groups:
     title: Azure AI Foundry portal
   - id: csharp
     title: C#
+  - id: javascript
+    title: JavaScript
   - id: python
     title: Python 
   - id: rest-api
+    title: REST API
+- id: selection-azure-functions-samples
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: csharp
+    title: C#
+  - id: python
+    title: Python
+  - id: rest
     title: REST API
 - id: selection-function-calling-samples
   title: Selections
