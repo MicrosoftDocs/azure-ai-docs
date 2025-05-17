@@ -20,12 +20,14 @@ zone_pivot_groups: azure-ai-foundry-models-samples
 ::: zone pivot="api-openai"
 
 [!INCLUDE [openai](../includes/use-chat-completions/openai.md)]
+
 ::: zone-end
 
 
 ::: zone pivot="api-inference"
 
 [!INCLUDE [inference](../includes/use-chat-completions/inference.md)]
+
 ::: zone-end
 
 
