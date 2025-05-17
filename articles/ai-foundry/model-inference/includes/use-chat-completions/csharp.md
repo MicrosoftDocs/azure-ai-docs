@@ -354,7 +354,7 @@ View the response from the model:
 response = client.Complete(requestOptions);
 ```
 
-### Apply content safety
+### Apply Guardrails and controls
 
 The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 

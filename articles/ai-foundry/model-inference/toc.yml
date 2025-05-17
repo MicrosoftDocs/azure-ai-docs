@@ -9,7 +9,11 @@ items:
     - name: Models
       href: ./concepts/models.md
     - name: Programming languages and SDKs
-      href: ./supported-languages.md
+      items:
+        - name: Azure OpenAI SDK
+          href: ./supportd-languages-openai.md
+        - name: Azure AI Inference SDK
+          href: ./supported-languages.md
     - name: Quotas and limits
       href: ./quotas-limits.md
     - name: Model lifecycle and retirement
@@ -78,10 +82,14 @@ items:
     href: ./quotas-limits.md
 - name: Develop
   items:
-    - name: Use the models endpoint
+    - name: Use Foundry Models
       href: ./how-to/inference.md
     - name: Programming languages and SDKs
-      href: ./supported-languages.md
+      items:
+        - name: Azure OpenAI SDK
+          href: ./supportd-languages-openai.md
+        - name: Azure AI Inference SDK
+          href: ./supported-languages.md
     - name: Work with embedding models
       items:
         - name: Work with text embeddings
@@ -108,7 +116,7 @@ items:
   items:
     - name: Azure AI Foundry Models API
       items:
-      - name: What's the Foundry Models API?
+      - name: What's The Azure AI Model Inference API?
         href: /rest/api/aifoundry/modelinference
       - name: Reference
         items:

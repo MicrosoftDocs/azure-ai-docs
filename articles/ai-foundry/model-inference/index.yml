@@ -70,10 +70,14 @@ landingContent:
      linkLists:
       - linkListType: concept
         links:
-          - text: Programming languages/SDKs
+          - text: Azure OpenAI SDK
+            url: supported-languages-openai.md
+          - text: Azure AI Inference SDKs
             url: supported-languages.md
       - linkListType: get-started
         links:
+          - text: Use Foundry Models
+            url: ./how-to/inference.md
           - text: Text embeddings
             url: ./how-to/use-embeddings.md
           - text: Image embeddings
