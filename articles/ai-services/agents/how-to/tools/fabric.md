@@ -148,7 +148,7 @@ print("Deleted agent")
 ```
 
 :::zone-end
-
+<!--
 :::zone pivot="csharp"
 
 ## Create a project client
@@ -280,7 +280,7 @@ agentClient.Administration.DeleteAgent(agentId: agent.Id);
 
 ```
 :::zone-end
-
+-->
 :::zone pivot="javascript"
 
 ## Create a project client
