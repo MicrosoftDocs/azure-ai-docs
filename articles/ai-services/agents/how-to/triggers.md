@@ -23,9 +23,10 @@ For example, consider a workflow with the *Microsoft Forms* connector (which has
 
 To check if a specific connector has a trigger capability, view its documentation and see if it has a **Trigger** section. For example, the [Triggers](/connectors/microsoftforms/#triggers) section of the *Microsoft Forms* connector. 
 
-## Prerequisite 
+## Prerequisites
 
 * [An existing agent](../quickstart.md)
+* Supported Logic Apps regions: `west us 2`, `west central us`, `east asia`, and `southeast asia`.
 
 ## Set up 
 
