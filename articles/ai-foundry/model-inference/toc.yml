@@ -11,7 +11,7 @@ items:
     - name: Programming languages and SDKs
       items:
         - name: Azure OpenAI SDK
-          href: ./supportd-languages-openai.md
+          href: ./supported-languages-openai.md
         - name: Azure AI Inference SDK
           href: ./supported-languages.md
     - name: Quotas and limits
@@ -87,7 +87,7 @@ items:
     - name: Programming languages and SDKs
       items:
         - name: Azure OpenAI SDK
-          href: ./supportd-languages-openai.md
+          href: ./supported-languages-openai.md
         - name: Azure AI Inference SDK
           href: ./supported-languages.md
     - name: Work with embedding models
