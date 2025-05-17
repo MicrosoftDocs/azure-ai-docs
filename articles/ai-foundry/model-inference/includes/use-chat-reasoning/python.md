@@ -59,6 +59,8 @@ client = ChatCompletionsClient(
 )
 ```
 
+[!INCLUDE [best-practices](best-practices.md)]
+
 ### Create a chat completion request
 
 The following example shows how you can create a basic chat request to the model.
@@ -141,7 +143,7 @@ To stream completions, set `stream=True` when you call the model.
 
 
 ```python
-result = client.complete(
+response = client.complete(
     model="deepseek-r1",
     messages=[
         UserMessage(content="How many languages are in the world?"),
@@ -154,7 +156,7 @@ result = client.complete(
 To visualize the output, define a helper function to print the stream. The following example implements a routing that stream only the answer without the reasoning content:
 
 ```python
-def print_stream(result):
+def print_stream(completion):
     """
     Prints the chat completion with streaming.
     """

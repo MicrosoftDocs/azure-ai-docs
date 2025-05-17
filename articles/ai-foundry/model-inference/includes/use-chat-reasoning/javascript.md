@@ -21,7 +21,7 @@ To complete this tutorial, you need:
 
 [!INCLUDE [how-to-prerequisites-javascript](../how-to-prerequisites-javascript.md)]
 
-* A model with reasoning capabilities model deployment. If you don't have one read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add a reasoning model. 
+* A model with reasoning capabilities model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a reasoning model. 
 
   * This example uses `DeepSeek-R1`.
       
@@ -39,7 +39,7 @@ const client = ModelClient(
 If you've configured the resource with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
 ```javascript
-const clientOptions = { credentials: { "https://cognitiveservices.azure.com" } };
+const clientOptions = { credentials: { "https://cognitiveservices.azure.com/.default" } };
 
 const client = ModelClient(
     "https://<resource>.services.ai.azure.com/models", 
@@ -47,6 +47,8 @@ const client = ModelClient(
     clientOptions,
 );
 ```
+
+[!INCLUDE [best-practices](best-practices.md)]
 
 ### Create a chat completion request
 
@@ -64,8 +66,6 @@ var response = await client.path("/chat/completions").post({
     }
 });
 ```
-
-[!INCLUDE [best-practices](best-practices.md)]
 
 The response is as follows, where you can see the model's usage statistics:
 
@@ -145,6 +145,7 @@ var response = await client.path("/chat/completions").post({
     body: {
         model: "DeepSeek-R1",
         messages: messages,
+        stream: true
     }
 }).asNodeStream();
 ```
@@ -152,7 +153,7 @@ var response = await client.path("/chat/completions").post({
 To visualize the output, define a helper function to print the stream. The following example implements a routing that stream only the answer without the reasoning content:
 
 ```javascript
-function printStream(sses) {
+async function printStream(sses) {
     let isThinking = false;
     
     for await (const event of sses) {
@@ -180,7 +181,7 @@ You can visualize how streaming generates content:
 
 ```javascript
 var sses = createSseStream(response.body);
-printStream(result)
+await printStream(sses)
 ```
 
 ### Parameters

@@ -26,7 +26,7 @@ To use chat completion models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites-javascript](../how-to-prerequisites-javascript.md)]
 
-* A chat completions model deployment. If you don't have one, read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
+* A chat completions model deployment. If you don't have one, read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
       
 ## Use chat completions
 
@@ -34,7 +34,7 @@ First, create the client to consume the model. The following code uses an endpoi
 
 ```javascript
 const client = ModelClient(
-    "https://<resource>.services.ai.azure.com/models", 
+    "https://<resource>.services.ai.azure.com/api/models", 
     new AzureKeyCredential(process.env.AZURE_INFERENCE_CREDENTIAL)
 );
 ```
@@ -45,7 +45,7 @@ If you've configured the resource with **Microsoft Entra ID** support, you can u
 const clientOptions = { credentials: { "https://cognitiveservices.azure.com" } };
 
 const client = ModelClient(
-    "https://<resource>.services.ai.azure.com/models", 
+    "https://<resource>.services.ai.azure.com/api/models", 
     new DefaultAzureCredential()
     clientOptions,
 );
@@ -70,7 +70,7 @@ var response = await client.path("/chat/completions").post({
 ```
 
 > [!NOTE]
-> Some models don't support system messages (`role="system"`). When you use the Foundry Models API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
+> Some models don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
 
 The response is as follows, where you can see the model's usage statistics:
 
@@ -151,7 +151,7 @@ for await (const event of sses) {
 
 #### Explore more parameters supported by the inference client
 
-Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Foundry Models API reference](https://aka.ms/azureai/modelinference).
+Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Azure AI Model Inference API reference](https://aka.ms/azureai/modelinference).
 
 ```javascript
 var messages = [
@@ -201,7 +201,7 @@ var response = await client.path("/chat/completions").post({
 
 ### Pass extra parameters to the model
 
-The Foundry Models API allows you to pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
+The Azure AI Model Inference API allows you to pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
 
 
 ```javascript
@@ -222,11 +222,11 @@ var response = await client.path("/chat/completions").post({
 });
 ```
 
-Before you pass extra parameters to the Foundry Models API, make sure your model supports those extra parameters. When the request is made to the underlying model, the header `extra-parameters` is passed to the model with the value `pass-through`. This value tells the endpoint to pass the extra parameters to the model. Use of extra parameters with the model doesn't guarantee that the model can actually handle them. Read the model's documentation to understand which extra parameters are supported.
+Before you pass extra parameters to the Azure AI model inference API, make sure your model supports those extra parameters. When the request is made to the underlying model, the header `extra-parameters` is passed to the model with the value `pass-through`. This value tells the endpoint to pass the extra parameters to the model. Use of extra parameters with the model doesn't guarantee that the model can actually handle them. Read the model's documentation to understand which extra parameters are supported.
 
 ### Use tools
 
-Some models support the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Foundry Models API allows you to define tools in the following way.
+Some models support the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
 
 The following code example creates a tool definition that is able to look from flight information from two different cities.
 
@@ -349,11 +349,11 @@ var result = await client.path("/chat/completions").post({
 });
 ```
 
-### Apply Guardrails and controls
+### Apply content safety
 
-The Foundry Models API supports [Azure AI Content Safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI Content Safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
-The following example shows how to handle events when the model detects harmful content in the input prompt.
+The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
 
 
 ```javascript
@@ -386,5 +386,4 @@ catch (error) {
 ```
 
 > [!TIP]
-> To learn more about how you can configure and control Azure AI Content Safety settings, check the [Azure AI Content Safety documentation](https://aka.ms/azureaicontentsafety).
-
+> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).

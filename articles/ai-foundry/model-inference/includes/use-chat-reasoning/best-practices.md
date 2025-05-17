@@ -7,6 +7,8 @@ ms.author: fasantia
 author: santiagxf
 ---
 
+### Prompt reasoning models
+
 When building prompts for reasoning models, take the following into consideration:
 
 > [!div class="checklist"]
