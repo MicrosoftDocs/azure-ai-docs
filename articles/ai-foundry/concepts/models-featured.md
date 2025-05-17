@@ -358,6 +358,15 @@ For examples of how to use Stability AI models, see the following examples:
 - [Use Requests library with Stable Diffusion 3.5 Large for image to image requests](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Image_to_Image.ipynb)
 - [Example of a fully encoded image generation response](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Sample_image_generation_response.txt)
 
+### xAI
+
+**Grok** is a family of models designed...
+
+| Model  | Type | Tier | Capabilities |
+| ------ | ---- | --- | ------------ |
+| [Grok]() |  | Global standard | - **Input:** text (0 tokens) <br /> - **Output:** text (0 tokens) <br /> - **Languages:**  <br />  - **Tool calling:**  <br /> - **Response formats:**  |
+| [grok-3-mini]() |  | Global standard | - **Input:** text (0 tokens) <br /> - **Output:** text (0 tokens) <br /> - **Languages:**  <br />  - **Tool calling:**  <br /> - **Response formats:**  |
+
 
 ## Related content
 

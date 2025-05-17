@@ -91,7 +91,7 @@ message = project_client.agents.messages.create(
 )
 print(f"Created message, ID: {message['id']}")
 
- Create and process an agent run
+# Create and process an agent run
 run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 print(f"Run finished with status: {run.status}")
 

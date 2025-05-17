@@ -291,46 +291,29 @@ agentClient.Administration.DeleteAgent(agent.Id);
 First, create an Azure AI Client using the connection string of your project.
 
 ```javascript
-const connectionString =
-  process.env["AZURE_AI_PROJECTS_CONNECTION_STRING"] || "<project connection string>";
+const projectEndpoint = process.env["PROJECT_ENDPOINT"] || "<project connection string>";
 
-if (!connectionString) {
+if (!projectString) {
   throw new Error("AZURE_AI_PROJECTS_CONNECTION_STRING must be set in the environment variables");
 }
 
-const client = AIProjectsClient.fromConnectionString(
-    connectionString || "",
-    new DefaultAzureCredential(),
-);
-```
-
-## Get the connection ID for the Azure AI Search resource
-Get the connection ID of the Azure AI Search connection in the project.
-
-```javascript
-const cognitiveServicesConnectionName = "<cognitiveServicesConnectionName>";
-const cognitiveServicesConnection = await client.connections.getConnection(
-  cognitiveServicesConnectionName,
-);
+const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
 ```
 
 ## Configure the Azure AI Search tool
-Using the connection ID you got in the previous step, you can now configure the Azure AI Search tool to use your Azure AI Search index.
+Using the connection ID of the Azure AI Search resource, configure the Azure AI Search tool to use your Azure AI Search index.
 
 ```javascript
-const azureAISearchTool = ToolUtility.createAzureAISearchTool(
-  cognitiveServicesConnection.id,
-  cognitiveServicesConnection.name,
-);
+const connectionId = process.env["AZURE_AI_CONNECTION_ID"] || "<connection-name>";
 
-// Create agent with the Azure AI search tool
-const agent = await client.agents.createAgent("gpt-4o-mini", {
-  name: "my-agent",
-  instructions: "You are a helpful agent",
-  tools: [azureAISearchTool.definition],
-  toolResources: azureAISearchTool.resources,
-});
-console.log(`Created agent, agent ID : ${agent.id}`);
+const azureAISearchTool = ToolUtility.createAzureAISearchTool(connectionId, "ai-search-sample", {
+    queryType: "simple",
+    topK: 3,
+    filter: "",
+    indexConnectionId: "",
+    indexName: "",
+  });
+
 ```
 
 ## Create an agent with the Azure AI Search tool enabled
@@ -338,6 +321,7 @@ console.log(`Created agent, agent ID : ${agent.id}`);
 Change the model to the one deployed in your project. You can find the model name in the Azure AI Foundry under the **Models** tab. You can also change the name and instructions of the agent to suit your needs.
 
 ```javascript
+
 const agent = await client.agents.createAgent("gpt-4o-mini", {
   name: "my-agent",
   instructions: "You are a helpful agent",
@@ -352,60 +336,69 @@ console.log(`Created agent, agent ID : ${agent.id}`);
 Now that the agent is created, ask it questions about the data in your Azure AI Search index.
 
 ```javascript
-// create a thread
-const thread = await client.agents.createThread();
+// Create thread for communication
+  const thread = await client.threads.create();
+  console.log(`Created thread, thread ID: ${thread.id}`);
 
-// add a message to thread
-await client.agents.createMessage(
-  thread.id, {
-  role: "user",
-  content: "what are my health insurance plan coverage types?",
-});
+// Create message to thread
+const message = await client.messages.create(
+  thread.id,
+  "user",
+  "What is the temperature rating of the cozynights sleeping bag?",
+);
+console.log(`Created message, message ID : ${message.id}`);
 
-// Intermission is now correlated with thread
-// Intermission messages will retrieve the message just added
+// Create and process agent run in thread with tools
+let run = await client.runs.create(thread.id, agent.id);
+while (run.status === "queued" || run.status === "in_progress") {
+  await delay(1000);
+  run = await client.runs.get(thread.id, run.id);
+}
+if (run.status === "failed") {
+  console.log(`Run failed:`, JSON.stringify(run, null, 2));
+}
+console.log(`Run finished with status: ${run.status}`);
 
-// create a run
-const streamEventMessages = await client.agents.createRun(thread.id, agent.id).stream();
+// Fetch run steps to get the details of agent run
+const runSteps = await client.runSteps.list(thread.id, run.id);
 
-for await (const eventMessage of streamEventMessages) {
-  switch (eventMessage.event) {
-    case RunStreamEvent.ThreadRunCreated:
-      break;
-    case MessageStreamEvent.ThreadMessageDelta:
-      {
-        const messageDelta = eventMessage.data;
-        messageDelta.delta.content.forEach((contentPart) => {
-          if (contentPart.type === "text") {
-            const textContent = contentPart;
-            const textValue = textContent.text?.value || "No text";
+for await (const step of runSteps) {
+  console.log(`Step ID: ${step.id}, Status: ${step.status}`);
+  const stepDetails = step.stepDetails;
+  if (isOutputOfType(stepDetails, "tool_calls")) {
+    const toolCalls = stepDetails.toolCalls;
+    for (const toolCall of toolCalls) {
+      console.log(`Tool Call ID: ${toolCall.id}, Tool type: ${toolCall.type}`);
+      if (isOutputOfType(toolCall, "azure_ai_search")) {
+        {
+          const azureAISearch = toolCall.azureAISearch;
+          if (azureAISearch) {
+            console.log(`Azure AI Search Tool Call input: ${azureAISearch.input}`);
+            console.log(`Azure AI Search Tool Call output: ${azureAISearch.output}`);
           }
-        });
+        }
       }
-      break;
-
-    case RunStreamEvent.ThreadRunCompleted:
-      break;
-    case ErrorEvent.Error:
-      console.log(`An error occurred. Data ${eventMessage.data}`);
-      break;
-    case DoneEvent.Done:
-      break;
+    }
   }
 }
+// Delete the assistant when done
+await client.deleteAgent(agent.id);
+console.log(`Deleted agent, agent ID: ${agent.id}`);
 
-// Print the messages from the agent
-const messages = await client.agents.listMessages(thread.id);
+// Fetch and log all messages
+const messagesIterator = client.messages.list(thread.id);
+console.log(`Messages:`);
 
-// Messages iterate from oldest to newest
-// messages[0] is the most recent
-for (let i = messages.data.length - 1; i >= 0; i--) {
-  const m = messages.data[i];
-  if (isOutputOfType<MessageTextContentOutput>(m.content[0], "text")) {
-    const textContent = m.content[0];
-    console.log(`${textContent.text.value}`);
-    console.log(`---------------------------------`);
+// Get the first message
+for await (const m of messagesIterator) {
+  if (m.content.length > 0) {
+    const agentMessage = m.content[0];
+    if (isOutputOfType(agentMessage, "text")) {
+      const textContent = agentMessage;
+      console.log(`Text Message Content - ${textContent.text.value}`);
+    }
   }
+  break; // Just process the first message
 }
 ```
 

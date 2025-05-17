@@ -175,101 +175,210 @@ After the interaction is complete, the script performs cleanup by deleting the c
 
 :::zone-end
 
+
+:::zone pivot="javascript"
+
+
+## Create a project client
+
+Create a client object that contains the connection string for connecting to your AI project and other resources.
+
+```javascript
+const { AgentsClient, isOutputOfType, ToolUtility } = require("@azure/ai-agents");
+const { delay } = require("@azure/core-util");
+const { DefaultAzureCredential } = require("@azure/identity");
+const fs = require("fs");
+require("dotenv/config");
+
+const projectEndpoint = process.env["PROJECT_ENDPOINT"] || "<project connection string>";
+
+// Create an Azure AI Client
+const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
+```
+
+## Read in the OpenAPI spec
+
+```javascript
+// Read in OpenApi spec
+const filePath = "./data/weatherOpenApi.json";
+const openApiSpec = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+
+// Define OpenApi function
+const openApiFunction = {
+name: "getWeather",
+spec: openApiSpec,
+description: "Retrieve weather information for a location",
+auth: {
+    type: "anonymous",
+},
+default_params: ["format"], // optional
+};
+```
+
+## Create an agent and enable the OpenAPI tool
+
+```javascript
+// Create OpenApi tool
+const openApiTool = ToolUtility.createOpenApiTool(openApiFunction);
+
+// Create agent with OpenApi tool
+const agent = await client.createAgent(modelDeploymentName, {
+name: "myAgent",
+instructions: "You are a helpful agent",
+tools: [openApiTool.definition],
+});
+console.log(`Created agent, agent ID: ${agent.id}`);
+```
+
+## Create a thread
+
+```javascript
+// Create a thread
+const thread = await client.threads.create();
+console.log(`Created thread, thread ID: ${thread.id}`);
+
+// Create a message
+const message = await client.messages.create(thread.id, "user", "What's the weather in Seattle?");
+console.log(`Created message, message ID: ${message.id}`);
+```
+
+## Create a run and check the output
+
+```javascript
+// Create and execute a run
+let run = await client.runs.create(thread.id, agent.id);
+while (run.status === "queued" || run.status === "in_progress") {
+await delay(1000);
+run = await client.runs.get(thread.id, run.id);
+}
+if (run.status === "failed") {
+// Check if you got "Rate limit is exceeded.", then you want to get more quota
+console.log(`Run failed: ${run.lastError}`);
+}
+console.log(`Run finished with status: ${run.status}`);
+
+// Get most recent message from the assistant
+const messagesIterator = client.messages.list(thread.id);
+const messages = [];
+for await (const m of messagesIterator) {
+messages.push(m);
+}
+const assistantMessage = messages.find((msg) => msg.role === "assistant");
+if (assistantMessage) {
+const textContent = assistantMessage.content.find((content) => isOutputOfType(content, "text"));
+if (textContent) {
+    console.log(`Last message: ${textContent.text.value}`);
+}
+}
+// Delete the agent once done
+await client.deleteAgent(agent.id);
+console.log(`Deleted agent, agent ID: ${agent.id}`);
+```
+
+:::zone-end
+
 :::zone pivot="csharp"
 
 ## Configure client and OpenAPI tool
 First, retrieve configuration details and create a `PersistentAgentsClient`, then define the `OpenApiToolDefinition` using the OpenAPI specification.
 
 ```csharp
-    var projectEndpoint = configuration["ProjectEndpoint"];
-    var modelDeploymentName = configuration["ModelDeploymentName"];
-    var openApiSpec = configuration["OpenApiSpec"];
-    PersistentAgentsClient client = new(new Uri(projectEndpoint), new DefaultAzureCredential());
-  
-    // Helper function to get the absolute path to the OpenAPI spec file
-    private static string GetFile([CallerFilePath] string pth = "")
-    {
-        var dirName = Path.GetDirectoryName(pth) ?? "";
-        return Path.Combine(dirName, "weather_openapi.json");
-    }
-    
-    var spec = BinaryData.FromBytes(File.ReadAllBytes(openApiSpec));
-     // Using anonymous auth for this example
-    OpenApiAnonymousAuthDetails openApiAnonAuth = new();
-    // Define the OpenAPI tool
-    OpenApiToolDefinition openApiTool = new(
-        name: "get_weather", 
-        description: "Retrieve weather information for a location", 
-        spec: spec, 
-        auth: openApiAnonAuth, 
-        defaultParams: ["format"] 
-    );
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using Microsoft.Extensions.Configuration;
+
+IConfigurationRoot configuration = new ConfigurationBuilder()
+    .SetBasePath(AppContext.BaseDirectory)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .Build();
+
+var projectEndpoint = configuration["ProjectEndpoint"];
+var modelDeploymentName = configuration["ModelDeploymentName"];
+var openApiSpec = configuration["OpenApiSpec"];
+PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
+
+BinaryData spec = BinaryData.FromBytes(File.ReadAllBytes(openApiSpec));
+
+// Using anonymous auth for this example
+OpenApiAnonymousAuthDetails openApiAnonAuth = new();
+
+// Define the OpenAPI tool
+OpenApiToolDefinition openApiToolDef = new(
+    name: "get_weather",
+    description: "Retrieve weather information for a location",
+    spec: spec,
+    openApiAuthentication: openApiAnonAuth,
+    defaultParams: ["format"]
+);
 ```
 
 ## Create an agent
 Next, create a `PersistentAgent` with the necessary model deployment, name, instructions, and the previously defined OpenAPI tool.
 
 ```csharp
-    PersistentAgent agent = client.CreateAgent(
-        model: modelDeploymentName,
-        name: "Open API Tool Calling Agent",
-        instructions: "You are a helpful agent.",
-        tools: [openApiTool]
-    );
+PersistentAgent agent = client.Administration.CreateAgent(
+    model: modelDeploymentName,
+    name: "Open API Tool Calling Agent",
+    instructions: "You are a helpful agent.",
+    tools: [openApiToolDef]
+);
 ```
 
 ## Create thread, message, and run
 Create a `PersistentAgentThread` for the conversation, add a user message to it, and then create a `ThreadRun` to process the message, waiting for its completion.
 
 ```csharp
-    PersistentAgentThread thread = client.CreateThread();
-    ThreadMessage message = client.CreateMessage(
-        thread.Id,
-        MessageRole.User,
-        "What's the weather in Seattle?");
-    
-    ThreadRun run = client.CreateRun(thread, agent);
-    
-    // Poll for the run's completion status
-    do
-    {
-        Thread.Sleep(TimeSpan.FromMilliseconds(500));
-        run = client.GetRun(thread.Id, run.Id);
-    }
-    while (run.Status == RunStatus.Queued
-        || run.Status == RunStatus.InProgress
-        || run.Status == RunStatus.RequiresAction);
+PersistentAgentThread thread = client.Threads.CreateThread();
+
+client.Messages.CreateMessage(
+    thread.Id,
+    MessageRole.User,
+    "What's the weather in Seattle?");
+
+ThreadRun run = client.Runs.CreateRun(
+    thread.Id,
+    agent.Id);
+
+// Poll for the run's completion status
+do
+{
+    Thread.Sleep(TimeSpan.FromMilliseconds(500));
+    run = client.Runs.GetRun(thread.Id, run.Id);
+}
+while (run.Status == RunStatus.Queued
+    || run.Status == RunStatus.InProgress
+    || run.Status == RunStatus.RequiresAction);
 ```
 
 ## Display conversation messages
 Retrieve and print all messages from the thread to the console in chronological order to display the conversation flow.
 
 ```csharp
-    Pageable<ThreadMessage> messages = client.Messages.GetMessages(
-        threadId: thread.Id, 
-        order: ListSortOrder.Ascending 
-    );
+Pageable<PersistentThreadMessage> messages = client.Messages.GetMessages(
+    threadId: thread.Id,
+    order: ListSortOrder.Ascending);
 
-    foreach (ThreadMessage threadMessage in messages)
+foreach (PersistentThreadMessage threadMessage in messages)
+{
+    foreach (MessageContent content in threadMessage.ContentItems)
     {
-        foreach (MessageContent content in threadMessage.ContentItems)
+        switch (content)
         {
-            switch (content)
-            {
-                case MessageTextContent textItem:
-                    Console.WriteLine($"[{threadMessage.Role}]: {textItem.Text}");
-                    break;
-            }
+            case MessageTextContent textItem:
+                Console.WriteLine($"[{threadMessage.Role}]: {textItem.Text}");
+                break;
         }
     }
+
 ```
 
 ## Clean up resources
 Finally, delete the created `PersistentAgentThread` and `PersistentAgent` to clean up the resources used in this example.
 
 ```csharp
-    client.DeleteThread(thread.Id);
-    client.DeleteAgent(agent.Id);
+client.Threads.DeleteThread(thread.Id);
+client.Administration.DeleteAgent(agent.Id);
 ```
 
 :::zone-end

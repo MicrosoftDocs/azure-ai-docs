@@ -349,13 +349,17 @@ agentClient.Administration.DeleteAgent(agent.Id);
 Create a client object that contains the connection string for connecting to your AI project and other resources.
 
 ```javascript
-const connectionString =
-  process.env["AZURE_AI_PROJECTS_CONNECTION_STRING"] || "<project connection string>";
+const { AgentsClient, isOutputOfType, ToolUtility } = require("@azure/ai-agents");
+const { delay } = require("@azure/core-util");
+const { DefaultAzureCredential } = require("@azure/identity");
 
-const client = AIProjectsClient.fromConnectionString(
-    connectionString || "",
-    new DefaultAzureCredential(),
-);
+const fs = require("fs");
+require("dotenv/config");
+
+const projectEndpoint = process.env["PROJECT_ENDPOINT"] || "<project connection string>";
+
+// Create an Azure AI Client
+const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
 ```
 
 ## Upload files and add them to a Vector Store
@@ -363,29 +367,34 @@ const client = AIProjectsClient.fromConnectionString(
 Upload your files and create a vector store.
 
 ```javascript
-const localFileStream = fs.createReadStream("sample_file_for_upload.txt");
-const file = await client.agents.uploadFile(localFileStream, "assistants", {
-  fileName: "sample_file_for_upload.txt",
+// Upload file
+const filePath = "./data/sampleFileForUpload.txt";
+const localFileStream = fs.createReadStream(filePath);
+const file = await client.files.upload(localFileStream, "assistants", {
+  fileName: "sampleFileForUpload.txt",
 });
-console.log(`Uploaded file, ID: ${file.id}`);
+console.log(`Uploaded file, file ID: ${file.id}`);
 
-const vectorStore = await client.agents.createVectorStore({
+// Create vector store
+const vectorStore = await client.vectorStores.create({
   fileIds: [file.id],
-  name: "my_vector_store",
+  name: "myVectorStore",
 });
-console.log(`Created vector store, ID: ${vectorStore.id}`);
+console.log(`Created vector store, vector store ID: ${vectorStore.id}`);
 ```
 
 ## Create an agent and enable file search
 
-Create a `FileSearchTool` object with the vector store ID, and attach `tools` and `toolResources` to the agent.
+Create a `fileSearchTool` object with the vector store ID, and attach `tools` and `toolResources` to the agent.
 
 ```javascript
+// Initialize file search tool
 const fileSearchTool = ToolUtility.createFileSearchTool([vectorStore.id]);
 
-const agent = await client.agents.createAgent("gpt-4o-mini", {
+// Create agent with files
+const agent = await client.createAgent(modelDeploymentName, {
   name: "SDK Test Agent - Retrieval",
-  instructions: "You are a helpful agent that can help fetch data from files you know about.",
+  instructions: "You are helpful agent that can help fetch data from files you know about.",
   tools: [fileSearchTool.definition],
   toolResources: fileSearchTool.resources,
 });
@@ -397,13 +406,17 @@ console.log(`Created agent, agent ID : ${agent.id}`);
 You can also attach files as Message attachments on your thread. Doing so creates another vector store associated with the thread, or, if there's already a vector store attached to this thread, attaches the new files to the existing thread vector store. When you create a Run on this thread, the file search tool queries both the vector store from your agent and the vector store on the thread.
 
 ```javascript
-const thread = await client.agents.createThread({ toolResources: fileSearchTool.resources });
+// Create thread
+const thread = await client.threads.create();
+console.log(`Created thread, thread ID: ${thread.id}`);
 
-await client.agents.createMessage(
-    thread.id, {
-    role: "user",
-    content: "Can you give me the documented codes for 'banana' and 'orange'?",
-});
+// Create message
+const message = await client.messages.create(
+  thread.id,
+  "user",
+  "Can you give me the documented codes for 'banana' and 'orange'?",
+);
+console.log(`Created message, message ID: ${message.id}`);
 ```
 
 ## Create a run and check the output
@@ -411,35 +424,34 @@ await client.agents.createMessage(
 Create a run and observe that the model uses the file search tool to provide a response.
 
 ```javascript
-const streamEventMessages = await client.agents.createRun(thread.id, agent.id).stream();
-
-for await (const eventMessage of streamEventMessages) {
-  switch (eventMessage.event) {
-    case RunStreamEvent.ThreadRunCreated:
-      break;
-    case MessageStreamEvent.ThreadMessageDelta:
-      {
-        const messageDelta = eventMessage.data;
-        messageDelta.delta.content.forEach((contentPart) => {
-          if (contentPart.type === "text") {
-            const textContent = contentPart;
-            const textValue = textContent.text?.value || "No text";
-          }
-        });
-      }
-      break;
-  }
+// Create run
+let run = await client.runs.create(thread.id, agent.id);
+while (["queued", "in_progress"].includes(run.status)) {
+  await delay(500);
+  run = await client.runs.get(thread.id, run.id);
+  console.log(`Current Run status - ${run.status}, run ID: ${run.id}`);
 }
 
-const messages = await client.agents.listMessages(thread.id);
-
-for (let i = messages.data.length - 1; i >= 0; i--) {
-  const m = messages.data[i];
-  if (isOutputOfType<MessageTextContentOutput>(m.content[0], "text")) {
-    const textContent = m.content[0];
-    console.log(`${textContent.text.value}`);
-  }
+console.log(`Current Run status - ${run.status}, run ID: ${run.id}`);
+const messages = await client.messages.list(thread.id);
+for await (const threadMessage of messages) {
+  console.log(
+    `Thread Message Created at  - ${threadMessage.createdAt} - Role - ${threadMessage.role}`,
+  );
+  threadMessage.content.forEach((content) => {
+    if (isOutputOfType(content, "text")) {
+      const textContent = content;
+      console.log(`Text Message Content - ${textContent.text.value}`);
+    } else if (isOutputOfType(content, "image_file")) {
+      const imageContent = content;
+      console.log(`Image Message Content - ${imageContent.imageFile.fileId}`);
+    }
+  });
 }
+
+// Delete agent
+await client.deleteAgent(agent.id);
+console.log(`Deleted agent, agent ID: ${agent.id}`);
 ```
 
 :::zone-end
