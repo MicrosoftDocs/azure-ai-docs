@@ -75,7 +75,7 @@ Generate your first chat completion:
 
 [!INCLUDE [code-create-chat-completion](../includes/code-create-chat-completion.md)]
 
-Use the parameter `model="<deployment-name>` to route your request to this deployment. *Deployments work as an alias of a given model under certain configurations*. See [Routing](../concepts/endpoints.md#routing) concept page to learn how Azure AI Services route deployments.
+Use the parameter `model="<deployment-name>` to route your request to this deployment. *Deployments work as an alias of a given model under certain configurations*. See [Routing](inference.md#routing) concept page to learn how Azure AI Services route deployments.
 
 > [!IMPORTANT]
 > As opposite to GitHub Models where all the models are already configured, the Azure AI Services resource allows you to control which models are available in your endpoint and under which configuration. Add as many models as you plan to use before indicating them in the `model` parameter. Learn how to [add more models](create-model-deployments.md) to your resource.

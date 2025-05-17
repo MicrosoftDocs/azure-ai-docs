@@ -14,11 +14,7 @@ ms.reviewer: fasantia
 
 # Use Foundry Models
 
-Azure AI Foundry Models allows customers to consume the most powerful models from flagship model providers using a single endpoint and credentials. This means that you can switch between models and consume them from your application without changing a single line of code.
-
-This article explains how to use the inference endpoint to invoke them.
-
-There are two different APIs to use models in Azure AI Foundry Models:
+Once you have [deployed a model in Azure AI Foundry](create-model-deployments.md), you can consume its capabilities via Azure AI Foundry APIs. There are two different endpoints and APIs to use models in Azure AI Foundry Models.
 
 ## Models inference endpoint
 

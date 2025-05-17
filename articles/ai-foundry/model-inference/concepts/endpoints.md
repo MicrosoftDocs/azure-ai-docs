@@ -64,13 +64,13 @@ For a chat model, you can create a request as follows:
 
 [!INCLUDE [code-create-chat-completion](../includes/code-create-chat-completion.md)]
 
-If you specify a model name that doesn't match any given model deployment, you get an error that the model doesn't exist. You can control which models are available for users by creating model deployments as explained at [add and configure model deployments](create-model-deployments.md).
+If you specify a model name that doesn't match any given model deployment, you get an error that the model doesn't exist. You can control which models are available for users by creating model deployments as explained at [add and configure model deployments](../how-to/create-model-deployments.md).
 
 ## Key-less authentication
 
 Models deployed to Azure AI Foundry Models in Azure AI Services support key-less authorization using Microsoft Entra ID. Key-less authorization enhances security, simplifies the user experience, reduces operational complexity, and provides robust compliance support for modern development. It makes it a strong choice for organizations adopting secure and scalable identity management solutions.
 
-To use key-less authentication, [configure your resource and grant access to users](configure-entra-id.md) to perform inference. Once configured, then you can authenticate as follows:
+To use key-less authentication, [configure your resource and grant access to users](../how-to/configure-entra-id.md) to perform inference. Once configured, then you can authenticate as follows:
 
 [!INCLUDE [code-create-chat-client-entra](../includes/code-create-chat-client-entra.md)]
 

@@ -9,7 +9,7 @@ ms.custom: ignite-2024, github-universe-2024
 ms.topic: conceptual
 ms.date: 1/21/2025
 ms.author: fasantia
-zone_pivot_groups: azure-ai-foundry-models-samples
+zone_pivot_groups: openai-supported-languages
 ---
 
 # Supported programming languages for Azure OpenAI SDK

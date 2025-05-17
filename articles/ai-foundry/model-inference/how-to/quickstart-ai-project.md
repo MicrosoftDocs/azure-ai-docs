@@ -21,7 +21,7 @@ You can change this behavior and deploy both types of models to Azure AI Foundry
 Additionally, deploying models to Azure AI Foundry Models brings the extra benefits of:
 
 > [!div class="checklist"]
-> * [Routing capability](../concepts/endpoints.md#routing).
+> * [Routing capability](inference.md#routing).
 > * [Custom content filters](../concepts/content-filter.md).
 > * Global capacity deployment type.
 > * [Key-less authentication](configure-entra-id.md) with role-based access control.
@@ -79,7 +79,7 @@ To configure the project to use the Foundry Models capability in Azure AI Foundr
     :::image type="content" source="../media/quickstart-ai-project/overview-endpoint-and-key.png" alt-text="Screenshot of the landing page for the project, highlighting the location of the connected resource and the associated inference endpoint." lightbox="../media/quickstart-ai-project/overview-endpoint-and-key.png":::
 
     > [!TIP]
-    > Each Azure AI Foundry Services resource has a single **Foundry Models endpoint** which can be used to access any model deployment on it. The same endpoint serves multiple models depending on which ones are configured. Learn about [how the endpoint works](../concepts/endpoints.md#azure-openai-inference-endpoint).
+    > Each Azure AI Foundry Services resource has a single **Foundry Models endpoint** which can be used to access any model deployment on it. The same endpoint serves multiple models depending on which ones are configured. Learn about [how the endpoint works](inference.md#azure-openai-inference-endpoint).
 
 5. Take note of the endpoint URL and credentials.
 
@@ -136,7 +136,7 @@ Generate your first chat completion:
 
 [!INCLUDE [code-create-chat-completion](../includes/code-create-chat-completion.md)]
 
-Use the parameter `model="<deployment-name>` to route your request to this deployment. *Deployments work as an alias of a given model under certain configurations*. See [Routing](../concepts/endpoints.md#routing) concept page to learn how Azure AI Services route deployments.
+Use the parameter `model="<deployment-name>` to route your request to this deployment. *Deployments work as an alias of a given model under certain configurations*. See [Routing](inference.md#routing) page to learn how Azure AI Foundry Models routes deployments.
 
 
 ## Move from standard deployments to Foundry Models
