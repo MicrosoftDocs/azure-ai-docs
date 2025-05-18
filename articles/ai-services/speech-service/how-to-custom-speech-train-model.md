@@ -38,17 +38,17 @@ You can use a custom model for a limited time after it was trained. You must per
 1. Select the custom model that you want to manage from the **Model name** column.
 1. After the data is processed, select **Train model** from the left menu. Then select **+ Train model**.
 
-    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-train-model.png" alt-text="Screenshot of the page with an option to start training for a custom speech model." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-train-model.png":::
+    :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-train-model.png" alt-text="Screenshot of the page with an option to start training for a custom speech model." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-train-model.png":::
 
 1. In the **Train a new model** wizard, select the base model that you want to fine-tune. Then select **Next**.
 
-    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-train-model-select-base.png" alt-text="Screenshot of the page with an option to select the base model that you want to fine-tune." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-train-model-select-base.png":::
+    :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-train-model-select-base.png" alt-text="Screenshot of the page with an option to select the base model that you want to fine-tune." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-train-model-select-base.png":::
 
 1. Select the data that you want to use for training. Then select **Next**.
 1. Enter a name and description for the model. Then select **Next**.
 1. Review the settings and select **Train a new model**. You're taken back to the **Train model** page. The status of the data is **Processing**.
 
-    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-train-model-status-processing.png" alt-text="Screenshot of the page that shows the status of the training as processing." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-train-model-status-processing.png":::
+    :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-train-model-status-processing.png" alt-text="Screenshot of the page that shows the status of the training as processing." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-train-model-status-processing.png":::
 
 ::: zone-end
 
