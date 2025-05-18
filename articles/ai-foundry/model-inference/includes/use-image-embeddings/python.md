@@ -44,7 +44,7 @@ from azure.ai.inference import ImageEmbeddingsClient
 from azure.core.credentials import AzureKeyCredential
 
 client = ImageEmbeddingsClient(
-    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
+    endpoint="https://<resource>.services.ai.azure.com/models",
     credential=AzureKeyCredential(os.environ["AZURE_INFERENCE_CREDENTIAL"]),
     model="Cohere-embed-v3-english"
 )
@@ -58,7 +58,7 @@ from azure.ai.inference import ImageEmbeddingsClient
 from azure.identity import DefaultAzureCredential
 
 client = ImageEmbeddingsClient(
-    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
+    endpoint="https://<resource>.services.ai.azure.com/models",
     credential=DefaultAzureCredential(),
     model="Cohere-embed-v3-english"
 )

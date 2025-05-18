@@ -16,7 +16,7 @@ recommendations: false
 
 # What are Azure AI Foundry Models?
 
-Foundry Models provide access to the most powerful models available in the industry. The models come from key model providers in the AI space, including OpenAI, Microsoft, Meta, Mistral, Cohere, G42, and AI21 Labs. These models can be integrated with software solutions to deliver a wide range of tasks that include content generation, summarization, image understanding, semantic search, and code generation.
+Azure AI Foundry Models (formerly known Azure AI model inference) provide access to the most powerful models available in the industry. The models come from key model providers in the AI space, including OpenAI, Microsoft, Meta, Mistral, Cohere, G42, and AI21 Labs. These models can be integrated with software solutions to deliver a wide range of tasks that include content generation, summarization, image understanding, semantic search, and code generation.
 
 AI Foundry Models provides a way to **consume models as APIs without hosting them on your infrastructure**. Models are hosted in a Microsoft-managed infrastructure, which enables API-based access to the model provider's model. API-based access can dramatically reduce the cost of accessing a model and simplify the provisioning experience.
 
