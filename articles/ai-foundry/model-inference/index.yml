@@ -30,8 +30,8 @@ landingContent:
             url: ./concepts/models.md
           - text: Quotas & limits
             url: quotas-limits.md
-          - text: Programming languages/SDKs
-            url: supported-languages.md
+          - text: Use Foundry Models
+            url: ./how-to/inference.md
       - linkListType: quickstart
         links:
            - text: Create resources and configure
@@ -78,6 +78,8 @@ landingContent:
         links:
           - text: Use Foundry Models
             url: ./how-to/inference.md
+      - linkListType: how-to-guide
+        links:
           - text: Text embeddings
             url: ./how-to/use-embeddings.md
           - text: Image embeddings
@@ -86,7 +88,7 @@ landingContent:
             url: ./how-to/use-chat-completions.md
           - text: Reasoning
             url: ./how-to/use-chat-reasoning.md
-          - text: Work with image and audio content
+          - text: Image and audio content with chat
             url: ./how-to/use-chat-multi-modal.md
           - text: Develop with LangChain or LangGraph
             url: ../../ai-studio/how-to/develop/langchain.md?context=/azure/ai-foundry/model-inference/context/context

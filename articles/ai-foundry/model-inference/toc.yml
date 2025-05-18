@@ -8,12 +8,8 @@ items:
       href: ./overview.md
     - name: Models
       href: ./concepts/models.md
-    - name: Programming languages and SDKs
-      items:
-        - name: Azure OpenAI SDK
-          href: ./supported-languages-openai.md
-        - name: Azure AI Inference SDK
-          href: ./supported-languages.md
+    - name: Use Foundry Models
+      href: ./how-to/inference.md
     - name: Quotas and limits
       href: ./quotas-limits.md
     - name: Model lifecycle and retirement
