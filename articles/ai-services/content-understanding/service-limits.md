@@ -122,8 +122,6 @@ Content Understanding supports both basic field value types and nested structure
 | Category name and description | Maximum 120 characters for combined name and description in each category |
 | Number of categories | 1 to 50 per classifier |
 
-* By default, there's an `$OTHER` class as well, which we utilize to categorize the pages into for cases where any of the defined categories doesn't seem suitable.
-
 ### Input file limits
 
 | Supported File Types | File Size | Length |
