@@ -15,7 +15,7 @@ ms.author: fasantia
 
 All models deployed to Azure AI Foundry Models support the [Azure AI Model Inference API](https://aka.ms/azureai/modelinference) and its associated family of SDKs.
 
-To use these SDKs, connect them to the [Azure AI model inference URI](concepts/endpoints.md#azure-openai-inference-endpoint) (usually in the form `https://<resource-name>.services.ai.azure.com/models`).
+To use these SDKs, connect them to the [Azure AI model inference URI](how-to/inference.md#azure-openai-inference-endpoint) (usually in the form `https://<resource-name>.services.ai.azure.com/models`).
 
 ## Azure AI Inference package
 

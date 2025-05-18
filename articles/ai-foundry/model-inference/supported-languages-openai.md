@@ -1,7 +1,7 @@
 ---
-title: Supported programming languages for models in Azure AI Foundry Models
+title: Supported programming languages for Azure OpenAI SDK
 titleSuffix: Azure AI Foundry
-description: Learn about supported programming languages for models in Azure AI Foundry Models
+description: Learn about supported programming languages for Azure OpenAI SDK in Azure AI Foundry Models
 author: santiagxf
 manager: nitinme
 ms.service: azure-ai-model-inference
