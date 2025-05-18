@@ -41,8 +41,8 @@ To learn more about how to create deployments see [Add and configure model deplo
 Azure AI Foundry Services (formerly known Azure AI Services) expose multiple endpoints depending on the type of work you're looking for:
 
 > [!div class="checklist"]
-> * Azure OpenAI endpoint (usually with the form `https://<resource-name>.services.ai.azure.com/models`)
-> * Azure AI inference endpoint (usually with the form `https://<resource-name>.openai.azure.com`)
+> * Azure AI inference endpoint (usually with the form `https://<resource-name>.services.ai.azure.com/models`)
+> * Azure OpenAI endpoint (usually with the form `https://<resource-name>.openai.azure.com`)
 
 The **Azure AI inference endpoint** allows customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. All the models support this capability. This endpoint follows the [Azure AI Model Inference API](.././reference/reference-model-inference-api.md). 
 
