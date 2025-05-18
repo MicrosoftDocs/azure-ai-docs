@@ -635,6 +635,15 @@ groups:
       title: JavaScript
     - id: programming-language-rest
       title: REST
+- id: azure-ai-foundry-models-samples
+# Owner: santiagxf
+  title: API
+  prompt: Choose an API
+  pivots:
+    - id: api-openai
+      title: OpenAI
+    - id: api-inference
+      title: Model Inference
 - id: azure-ai-inference-samples
 # Owner: santiagxf
   title: Programing languages

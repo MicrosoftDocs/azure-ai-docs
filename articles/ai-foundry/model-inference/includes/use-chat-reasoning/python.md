@@ -42,7 +42,7 @@ client = ChatCompletionsClient(
 ```
 
 > [!TIP]
-> Verify that you have deployed the model to Azure AI Services resource with the Foundry Models API. `Deepseek-R1` is also available as standard deployments. However, those endpoints don't take the parameter `model` as explained in this tutorial. You can verify that by going to [Azure AI Foundry portal]() > Models + endpoints, and verify that the model is listed under the section **Azure AI Services**.
+> Verify that you have deployed the model to Azure AI Services resource with The Azure AI Model Inference API. `Deepseek-R1` is also available as standard deployments. However, those endpoints don't take the parameter `model` as explained in this tutorial. You can verify that by going to [Azure AI Foundry portal]() > Models + endpoints, and verify that the model is listed under the section **Azure AI Services**.
 
 If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
@@ -58,6 +58,8 @@ client = ChatCompletionsClient(
     model="deepseek-r1"
 )
 ```
+
+[!INCLUDE [best-practices](best-practices.md)]
 
 ### Create a chat completion request
 
@@ -141,7 +143,7 @@ To stream completions, set `stream=True` when you call the model.
 
 
 ```python
-result = client.complete(
+response = client.complete(
     model="deepseek-r1",
     messages=[
         UserMessage(content="How many languages are in the world?"),
@@ -154,7 +156,7 @@ result = client.complete(
 To visualize the output, define a helper function to print the stream. The following example implements a routing that stream only the answer without the reasoning content:
 
 ```python
-def print_stream(result):
+def print_stream(completion):
     """
     Prints the chat completion with streaming.
     """
@@ -192,7 +194,7 @@ Some models support the use of tools or structured outputs (including JSON-schem
 
 ### Apply Guardrails and controls
 
-The Foundry Models API supports [Azure AI Content Safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI Content Safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI Model Inference API supports [Azure AI Content Safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI Content Safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
 The following example shows how to handle events when the model detects harmful content in the input prompt.
 
