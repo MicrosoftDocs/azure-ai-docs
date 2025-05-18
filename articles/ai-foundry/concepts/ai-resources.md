@@ -1,5 +1,5 @@
 ---
-title: Manage, collaborate, and organize with hubs
+title: Hubs and hub-based project overview
 titleSuffix: Azure AI Foundry
 description: This article introduces concepts about Azure AI Foundry hubs for your Azure AI Foundry projects.
 manager: scottpolly
@@ -16,22 +16,22 @@ ms.author: larryfr
 author: Blackmist
 ---
 
-# Manage, collaborate, and organize with hubs
+# Hub resources overview
 
 > [!NOTE]
 > You must use a **[!INCLUDE [hub](../includes/hub-project-name.md)]** for the features mentioned in this article. A **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** is not supported. For more information, see [Project types](../what-is-azure-ai-foundry.md#project-types).
 
-Azure AI Hub is a resource type that is used in combination with Azure AI Foundry resource type. It provides access to open-source model hosting and finetuning capabilities, as well as Azure Machine Learning capabilities, next to capabilities supported by its associated AI Foundry resource. When you create an AI Hub, an Azure AI Foundry resource is automatically provisioned. Hub resources can be used in both AI Foundry Portal and Azure Machine Learning Studio.
+Azure AI Hub is a resource type that is used in combination with Azure AI Foundry resource type, and is only required for selected use cases. Hub resources provides access to open-source model hosting and finetuning capabilities, as well as Azure Machine Learning capabilities, next to capabilities supported by its associated AI Foundry resource.
 
-Hubs have their own project types, which support a differentiated feature set from Foundry projects. See [project types](../what-is-azure-ai-foundry.md#types-of-projects) for an overview of supported features.
+When you create an AI Hub, an Azure AI Foundry resource is automatically provisioned. Hub resources can be used in [Azure AI Foundry](https://ai.azure.com) and [Azure ML Studio](https://ml.azure.com).
 
-In this article, you learn more about hub's capabilities, and how to set up a hub for your organization. You can see the resources created in [Azure portal](https://portal.azure.com/),[Azure AI Foundry](https://ai.azure.com) and [Azure ML Studio](https://ml.azure.com).
+Hubs have their own project types that support a differentiated feature set from Foundry projects. See [project types](../what-is-azure-ai-foundry.md#types-of-projects) for an overview of supported features.
 
 ## Create an AI hub resource
 
 Get started by [creating your first hub in Azure AI Foundry portal](../how-to/create-azure-ai-resource.md), or use [Azure portal](../how-to/create-secure-ai-hub.md) or [templates](../how-to/create-azure-ai-hub-template.md) for advanced configuration options such as networking.
 
-AI Hubs group one or more projects together with common settings including data access and security configurations. Projects act as folders to organize work and give acess to developer APIs.
+Hubs group one or more projects together with common settings including data access and security configurations. Projects act as folders to organize work and give acess to developer APIs.
 
 ## Create a hub-based project
 
