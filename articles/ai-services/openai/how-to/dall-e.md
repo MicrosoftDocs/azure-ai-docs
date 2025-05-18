@@ -271,7 +271,7 @@ The following is a sample request body. You specify a number of options, defined
 
 ```
 -F "image[]=@beach.png" \
--F 'prompt=Add a beach ball in the center'
+-F 'prompt=Add a beach ball in the center' \
 -F "model=gpt-image-1" \
 -F "size=1024x1024" \
 -F "n=1" \
