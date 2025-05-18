@@ -14,6 +14,8 @@ zone_pivot_groups: openai-supported-languages
 
 # Supported programming languages for Azure OpenAI SDK
 
+::: zone pivot="programming-language-dotnet"
+
 [!INCLUDE [C#](./../../ai-services/openai/includes/language-overview/dotnet.md)]
 
 ::: zone-end
