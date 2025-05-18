@@ -269,6 +269,11 @@
       "source_path_from_root": "/articles/ai-services/custom-vision-service/logo-detector-mobile.md",
       "redirect_url": "/azure/ai-services/custom-vision-service",
       "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/text-to-speech-avatar/custom-avatar-endpoint.md",
+      "redirect_url": "/azure/ai-services/speech-service/custom-avatar-create",
+      "redirect_document_id": false
     }
   ]
 }

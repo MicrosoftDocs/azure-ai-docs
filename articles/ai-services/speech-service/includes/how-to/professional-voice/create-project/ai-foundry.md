@@ -14,19 +14,20 @@ In the [Azure AI Foundry portal](https://ai.azure.com), you can fine-tune some A
 
 To fine-tune a professional voice model, follow these steps:
 
-1. Go to your project in the [Azure AI Foundry portal](https://ai.azure.com). If you need to create a project, see [Create an Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects).
+1. Go to your Azure AI Foundry project in the [Azure AI Foundry portal](https://ai.azure.com). If you need to create a project, see [Create an Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects).
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning** > **+ Fine-tune**.
 
     :::image type="content" source="../../../../media/custom-voice/professional-voice/fine-tune-azure-ai-services.png" alt-text="Screenshot of the page to select fine-tuning of Azure AI Services models." lightbox="../../../../media/custom-voice/professional-voice/fine-tune-azure-ai-services.png":::
  
-1. In the wizard, select **Custom voice (professional voice fine-tuning)** for custom voice. Then select **Next**.
-1. Follow the instructions provided by the wizard to create your project. 
+1. In the wizard, select **Custom voice (professional voice fine-tuning)**.
+1. Select **Next**.
+1. Follow the instructions provided by the wizard to create your fine-tuning workspace. 
 
 ## Continue fine-tuning
 
 Go to the Azure AI Speech documentation to learn how to continue fine-tuning your professional voice model:
-* [Add voice talent consent to the professional voice project](../../../../professional-voice-create-consent.md)
+* [Add voice talent consent](../../../../professional-voice-create-consent.md)
 * [Add training datasets](../../../../professional-voice-create-training-set.md)
 * [Train your voice model](../../../../professional-voice-train-voice.md)
 * [Deploy your professional voice model as an endpoint](../../../../professional-voice-deploy-endpoint.md)

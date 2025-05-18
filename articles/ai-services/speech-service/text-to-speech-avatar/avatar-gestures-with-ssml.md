@@ -5,7 +5,7 @@ description: Learn how to edit text to speech avatar gestures with SSML.
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/13/2025
+ms.date: 4/28/2025
 ms.reviewer: eur
 ms.author: eur
 author: eric-urban
@@ -32,6 +32,9 @@ Hello <bookmark mark='gesture.wave-left-1'/>, my name is Ava, nice to meet you!
 In this example, the avatar will start waving their hand at the left after the word "Hello".
 
 :::image type="content" source="./media/gesture.png" alt-text="Screenshot of displaying the prebuilt avatar waving their hand at the left." lightbox="./media/gesture.png":::
+
+> [!NOTE]
+> Gesture feature is currently not supported when a voice sync for avatar is selected in a custom text to speech avatar.
 
 ## Supported prebuilt avatar characters, styles, and gestures
 

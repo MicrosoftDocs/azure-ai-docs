@@ -32,7 +32,7 @@ To add a voice talent profile and upload their consent statement, follow these s
 1. In the **Add new voice talent** wizard, select the target scenarios for the voice talent. The target scenarios must be consistent with what you provided in the application form. The scenarios are used to help identify the voice talent and to ensure that the voice model is trained for the intended use cases.
 1. Optionally in the **Voice characteristics** text box, enter a description of the characteristics of the voice you're going to create. 
 1. Select **Next**.
-1. On the **Upload verbal statement** page, follow the instructions to upload the voice talent statement you've recorded beforehand. 
+1. On the **Upload verbal statement** page, follow the instructions to upload the voice talent statement you recorded beforehand. 
 
     - Enter the voice talent name and company name. The voice talent name must be the name of the person who recorded the consent statement. Enter the name in the same language used in the recorded statement. The company name must match the company name that was spoken in the recorded statement. Ensure the company name is entered in the same language as the recorded statement.
     - Make sure the verbal statement was [recorded](../../../../record-custom-voice-samples.md) with the same settings, environment, and speaking style as your training data.

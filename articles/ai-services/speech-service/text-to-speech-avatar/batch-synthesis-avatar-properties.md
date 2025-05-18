@@ -5,7 +5,7 @@ description: Learn about the batch synthesis properties that are available for t
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/13/2025
+ms.date: 4/28/2025
 ms.reviewer: eur
 ms.author: eur
 author: eric-urban
@@ -27,14 +27,14 @@ The following table describes the avatar properties.
 | avatarConfig.talkingAvatarStyle          | The style name of the talking avatar.<br/><br/>The supported avatar styles can be found [here](avatar-gestures-with-ssml.md#supported-prebuilt-avatar-characters-styles-and-gestures).<br/><br/>This property is required for prebuilt avatar, and optional for customized avatar.|
 | avatarConfig.customized                  | A bool value indicating whether the avatar to be used is customized avatar or not. True for customized avatar, and false for prebuilt avatar.<br/><br/>This property is optional, and the default value is `false`.|
 | avatarConfig.videoFormat                 | The format for output video file could be mp4 or webm.<br/><br/>The `webm` format is required for transparent background.<br/><br/>This property is optional, and the default value is mp4.|
-| avatarConfig.videoCodec                  | The codec for output video, could be h264, hevc, vp9 or av1.<br/><br/>Vp9 is required for transparent background. The synthesis speed will be slower with vp9 codec, as vp9 encoding is slower.<br/><br/>This property is optional, and the default value is hevc.|
+| avatarConfig.videoCodec                  | The codec for output video, could be h264, hevc, vp9 or av1.<br/><br/>Vp9 is required for transparent background. The synthesis speed is slower with vp9 codec, as vp9 encoding is slower.<br/><br/>This property is optional, and the default value is hevc.|
 | avatarConfig.bitrateKbps                 | The bitrate for output video, which is integer value, with unit kbps.<br/><br/>This property is optional, and the default value is 2000.|
 | avatarConfig.videoCrop                   | This property allows you to crop the video output, which means, to output a rectangle subarea of the original video. This property has two fields, which define the top-left vertex and bottom-right vertex of the rectangle.<br/><br/>This property is optional, and the default behavior is to output the full video.|
 | avatarConfig.videoCrop.topLeft           |The top-left vertex of the rectangle for video crop. This property has two fields x and y, to define the horizontal and vertical position of the vertex.<br/><br/>This property is required when properties.videoCrop is set.|
 | avatarConfig.videoCrop.bottomRight       | The bottom-right vertex of the rectangle for video crop. This property has two fields x and y, to define the horizontal and vertical position of the vertex.<br/><br/>This property is required when properties.videoCrop is set.|
 | avatarConfig.subtitleType                | Type of subtitle for the avatar video file could be `external_file`, `soft_embedded`, `hard_embedded`, or `none`.<br/><br/>This property is optional, and the default value is `soft_embedded`.|
 | avatarConfig.backgroundImage           | Add a background image using the `avatarConfig.backgroundImage` property. The value of the property should be a URL pointing to the desired image. This property is optional. |
-| avatarConfig.backgroundColor             | Background color of the avatar video, which is a string in #RRGGBBAA format. In this string: RR, GG, BB and AA mean the red, green, blue and alpha channels, with hexadecimal value range 00~FF. Alpha channel controls the transparency, with value 00 for transparent, value FF for non-transparent, and value between 00 and FF for semi-transparent.<br/><br/>This property is optional, and the default value is #FFFFFFFF (white).|
+| avatarConfig.backgroundColor             | Background color of the avatar video, which is a string in #RRGGBBAA format. In this string: RR, GG, BB and AA mean the red, green, blue, and alpha channels, with hexadecimal value range 00~FF. Alpha channel controls the transparency, with value 00 for transparent, value FF for non-transparent, and value between 00 and FF for semi-transparent.<br/><br/>This property is optional, and the default value is #FFFFFFFF (white).|
 | outputs.result                           | The location of the batch synthesis result file, which is a video file containing the synthesized avatar.<br/><br/>This property is read-only.|
 | properties.DurationInMilliseconds        | The video output duration in milliseconds.<br/><br/>This property is read-only.  |
 
@@ -50,7 +50,7 @@ The following table describes the batch synthesis job properties.
 | lastActionDateTime       | The most recent date and time when the status property value changed.<br/><br/>This property is read-only.|
 | properties               | A defined set of optional batch synthesis configuration settings.  |
 | properties.destinationContainerUrl | The batch synthesis results can be stored in a writable Azure container. If you don't specify a container URI with [shared access signatures (SAS)](/azure/storage/common/storage-sas-overview) token, the Speech service stores the results in a container managed by Microsoft. SAS with stored access policies isn't supported. When the synthesis job is deleted, the result data is also deleted.<br/><br/>This optional property isn't included in the response when you get the synthesis job.|
-| properties.timeToLiveInHours    |A duration in hours after the synthesis job is created, when the synthesis results will be automatically deleted.  The maximum time to live is 744 hours. The date and time of automatic deletion, for synthesis jobs with a status of "Succeeded" or "Failed" is calculated as the sum of the lastActionDateTime and timeToLive properties.<br/><br/>Otherwise, you can call the [delete synthesis method](../batch-synthesis.md#delete-batch-synthesis) to remove the job sooner. |
+| properties.timeToLiveInHours    |A duration in hours after the synthesis job is created, when the synthesis results will be automatically deleted. The maximum time to live is 744 hours. The date and time of automatic deletion, for synthesis jobs with a status of "Succeeded" or "Failed" is calculated as the sum of the lastActionDateTime and timeToLive properties.<br/><br/>Otherwise, you can call the [delete synthesis method](../batch-synthesis.md#delete-batch-synthesis) to remove the job sooner. |
 | status                   | The batch synthesis processing status.<br/><br/>The status should progress from "NotStarted" to "Running", and finally to either "Succeeded" or "Failed".<br/><br/>This property is read-only.|
 
 

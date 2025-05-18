@@ -200,14 +200,11 @@ items:
         items:
         - name: Custom text to speech avatar overview
           href: text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md
+        - name: How to record video samples
+          href: text-to-speech-avatar/custom-avatar-record-video-samples.md
           displayName: custom-tts-avatar
         - name: Create a custom text to speech avatar
           href: text-to-speech-avatar/custom-avatar-create.md
-        - name: How to record video samples
-          href: text-to-speech-avatar/custom-avatar-record-video-samples.md
-          displayName: avatar
-        - name: Deploy your custom text to speech avatar model as an endpoint
-          href: text-to-speech-avatar/custom-avatar-endpoint.md
           displayName: avatar
     - name: Audio content creation
       href: how-to-audio-content-creation.md
