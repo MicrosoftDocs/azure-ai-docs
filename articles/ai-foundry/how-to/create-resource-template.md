@@ -117,7 +117,7 @@ Remove-AzResourceGroup -Name exampleRG
 
 ## Security configurations samples
 
-See the [Azure AI Foundry Samples]() repository with example Bicep template configurations for the most common enterprise security configurations. Template examples include [network isolation](configure-private-link.md), [customer-managed key encryption](../concepts/encryption-keys-portal.md), [advanced identity options](../concepts/rbac-azure-ai-foundry.md) and [Agents standard setup](../../ai-services/agents/how-to/use-your-own-resources.md) with your resources for storing data.
+See the [Azure AI Foundry Samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup) repository with example Bicep template configurations for the most common enterprise security configurations. Template examples include [network isolation](configure-private-link.md), [customer-managed key encryption](../concepts/encryption-keys-portal.md), [advanced identity options](../concepts/rbac-azure-ai-foundry.md) and [Agents standard setup](../../ai-services/agents/how-to/use-your-own-resources.md) with your resources for storing data.
 
 ## Related content
 
