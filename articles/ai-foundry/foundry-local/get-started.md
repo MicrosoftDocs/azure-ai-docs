@@ -35,13 +35,18 @@ Also, ensure you have administrative privileges to install software on your devi
 
 Get started with Foundry Local quickly:
 
-1. [**Download Foundry Local Installer**](https://aka.ms/foundry-local-installer) and **install** by following the on-screen prompts. 
-    > [!TIP]
-    > If you're installing on Windows, you can also use `winget` to install Foundry Local. Open a terminal window and run the following command:
-    >
-    > ```powershell
-    > winget install Microsoft.FoundryLocal
-    > ```
+1. **Install Foundry Local** 
+    - **Windows**: Open a terminal and run the following command to install Foundry Local:
+        ```bash
+        winget install Microsoft.FoundryLocal
+        ```
+    - **macOS**: Open a terminal and run the following command to install Foundry Local:
+        ```bash
+        brew tap microsoft/foundrylocal
+        brew install foundrylocal
+        ```
+    Alternatively, you can download the installer from the [Foundry Local GitHub repository](https://aka.ms/foundry-local-installer).
+
 1. **Run your first model** Open a terminal window and run the following command to run a model: 
 
     ```bash
