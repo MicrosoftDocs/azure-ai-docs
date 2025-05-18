@@ -69,20 +69,13 @@ The following models support global batch:
 |`gpt-4o` | 2024-08-06 |text + image |
 |`gpt-4o-mini`| 2024-07-18 | text + image |
 |`gpt-4o` | 2024-05-13 |text + image |
-|`gpt-4` | turbo-2024-04-09 | text |
-|`gpt-4` | 0613 | text |
-| `gpt-35-turbo` | 0125 | text |
-| `gpt-35-turbo` | 1106 | text |
-| `gpt-35-turbo` | 0613 | text |
-
-Refer to the [models page](../concepts/models.md) for the most up-to-date information on regions/models where global batch is currently supported.
 
 ### API support
 
 |   | API Version   |
 |---|---|
 |**Latest GA API release:**| `2024-10-21`|
-|**Latest Preview API release:**| `2025-03-01-preview`|
+|**Latest Supported Preview API release:**| `2025-04-01-preview`|
 
 > [!NOTE]
 > While Global Batch supports older API versions, some models require newer preview API versions. For example, `o3-mini` isn't supported with `2024-10-21` since it was released after this date. To access the newer models with global batch use the latest preview API version.
@@ -93,9 +86,6 @@ The following aren't currently supported:
 
 - Integration with the Assistants API.
 - Integration with Azure OpenAI On Your Data feature.
-
-> [!NOTE]
-> Structured outputs is now supported with Global Batch.
 
 ### Batch deployment
 

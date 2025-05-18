@@ -121,7 +121,11 @@ items:
       - name: Realtime API via WebSockets (preview)
         href: ./how-to/realtime-audio-websockets.md
   - name: Batch
-    href: ./how-to/batch.md
+    items:
+     - name: Getting started with batch
+       href: ./how-to/batch.md
+     - name: Batch with Azure Blob Storage
+       href: ./how-to/batch-blob-storage.md   
   - name: Responses & chat completions
     items:
     - name: Responses API
