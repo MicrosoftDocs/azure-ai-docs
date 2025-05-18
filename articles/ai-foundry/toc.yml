@@ -549,7 +549,7 @@ items:
       href: how-to/create-resource-template.md
   - name: Manage AI Hub resources
     items:
-    - name: Hubs and projects overview
+    - name: Hubs overview
       href: concepts/ai-resources.md
     - name: Create your first hub
       href: how-to/create-azure-ai-resource.md
