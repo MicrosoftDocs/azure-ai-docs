@@ -36,11 +36,11 @@ Also, ensure you have administrative privileges to install software on your devi
 Get started with Foundry Local quickly:
 
 1. **Install Foundry Local** 
-    - **Windows**: Open a terminal and run the following command to install Foundry Local:
+    - **Windows**: Open a terminal and run the following command:
         ```bash
         winget install Microsoft.FoundryLocal
         ```
-    - **macOS**: Open a terminal and run the following command to install Foundry Local:
+    - **macOS**: Open a terminal and run the following command:
         ```bash
         brew tap microsoft/foundrylocal
         brew install foundrylocal
