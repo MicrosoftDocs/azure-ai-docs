@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 04/14/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, golang, java, javascript, python
@@ -45,7 +45,7 @@ You need an active Azure subscription. If you don't have an Azure subscription, 
 
 To call the Translator service via the [REST API](../reference/rest-api-guide.md), you need to include the following headers with each request. Don't worry, we include the headers for you in the sample code for each programming language.
 
-For more information on Translator authentication options, _see_ the [Translator v3 reference](..//reference/authentication.md) guide.
+For more information on Translator authentication options, _see_ the [Translator v3 reference](..//reference/v3/reference.md#authentication) guide.
 
 Header|Value| Condition  |
 |--- |:--- |:---|

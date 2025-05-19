@@ -22,7 +22,7 @@ A project is private to you and the people you invite into your project. Uninvit
 
 A language pair is a wrapper for a model, documents, and tests. Each language pair automatically includes all documents that are uploaded into that project that
 have the correct language pair. For example, if you have both an English-to-Spanish language pair and a Spanish-to-English language pair, the same documents are
-included in both language pairs. Each project has a Category ID associated with it that is used when querying the [V3 API](../../../text-translation/reference/v4/translate-api.md) for translations. Category ID is parameter used to get translations from a customized system built with custom translation.
+included in both language pairs. Each project has a Category ID associated with it that is used when querying the [V3 API](../../../text-translation/reference/v3/translate.md) for translations. Category ID is parameter used to get translations from a customized system built with custom translation.
 
 ## Language pair categories
 

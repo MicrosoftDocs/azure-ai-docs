@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 04/14/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ---
 
@@ -26,7 +26,7 @@ Text translation documentation contains the following article types:
 
 * [**Languages**](reference/v3/languages.md). Returns a list of languages supported by **Translate**, **Transliterate**, and **Dictionary Lookup** operations. This request doesn't require authentication; just copy and paste the following GET request into your favorite REST API tool or browser:
 
-    ```bash
+    ```http
     https://api.cognitive.microsofttranslator.com/languages?api-version=3.0
     ```
 
@@ -79,7 +79,7 @@ Customers with a resource located in Switzerland North or Switzerland West can e
 
 For example: If you create a Translator resource in Azure portal with `Resource region` as `Switzerland North` and your resource name is `my-swiss-n`, then your custom endpoint is `https&#8203;://my-swiss-n.cognitiveservices.azure.com`. And a sample request to translate is:
 
- ```bash
+```curl
 // Pass secret key and region using headers to a custom endpoint
 curl -X POST "https://my-swiss-n.cognitiveservices.azure.com/translator/text/v3.0/translate?to=fr" \
 -H "Ocp-Apim-Subscription-Key: xxx" \

@@ -35,7 +35,7 @@ The deployment generally takes less than an hour.
 
 ## How do you access a deployed system?
 
-Deployed systems can be accessed via the Azure AI Translator Text API V3 by specifying the Category ID. More information about the Translator Text API can be found in the [API Reference](../../text-translation/reference/v4/translate-api.md) webpage.
+Deployed systems can be accessed via the Azure AI Translator Text API V3 by specifying the Category ID. More information about the Translator Text API can be found in the [API Reference](../../text-translation/reference/v3/translate.md) webpage.
 
 ## How do I skip alignment and sentence breaking if my data is already sentence aligned?
 

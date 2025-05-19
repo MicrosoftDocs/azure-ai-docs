@@ -66,9 +66,6 @@ items:
     - name: Use the Text translation APIs
       displayName: detection,detect,translation,transliteration,identification,length,sentence length,alternate,usage,headers,set up,status,401
       href: text-translation/how-to/use-rest-api.md
-    - name: Migrate to 2025-05-01-preview
-      displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
-      href: text-translation/how-to/migrate-to-v4.md
     - name: Enable Microsoft Entra ID authentication
       href: how-to/microsoft-entra-id-auth.md
     - name: Add profanity filtering
@@ -87,18 +84,6 @@ items:
       href: firewalls.md
   - name: Reference
     items:
-    - name: 🆕 Azure AI Translator 2025-05-01-preview
-      items:
-      - name: 2025-05-01-preview overview
-        displayName: gpt, adaptive, tone, gender
-        href: text-translation/reference/v4/reference-overview.md
-      - name: Languages
-        href: text-translation/reference/v4/get-languages.md
-      - name: Translate
-        displayName: detection,detect
-        href: text-translation/reference/v4/translate-api.md
-      - name: Transliterate
-        href: text-translation/reference/v4/transliterate-api.md
     - name: Azure AI Translator v3
       items:
       - name: v3 overview

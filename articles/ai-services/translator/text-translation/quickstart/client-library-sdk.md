@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 04/14/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
@@ -63,4 +63,4 @@ That's it, congratulations! In this quickstart, you used a Text translation SDK 
 Learn more about Text translation development options:
 
 > [!div class="nextstepaction"]
->[Text translation SDK overview](../../text-sdk-overview.md) </br></br>[Text translation v3 reference](../reference/v3/reference.md)
+>[Text translation SDK overview](../../text-sdk-overview.md) </br></br>[Text translation V3 reference](../reference/v3/reference.md)
