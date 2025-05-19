@@ -25,7 +25,7 @@ Azure AI Hub is a resource type that is used in combination with Azure AI Foundr
 
 When you create an AI Hub, an Azure AI Foundry resource is automatically provisioned. Hub resources can be used in [Azure AI Foundry](https://ai.azure.com) and [Azure ML Studio](https://ml.azure.com).
 
-Hubs have their own project types that support a differentiated feature set from Foundry projects. See [project types](../what-is-azure-ai-foundry.md#types-of-projects) for an overview of supported features.
+Hubs have their own project types that support a differentiated feature set from Foundry projects. See [project types](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need) for an overview of supported features.
 
 ## Create an AI hub resource
 
