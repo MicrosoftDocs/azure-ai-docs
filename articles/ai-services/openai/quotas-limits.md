@@ -94,8 +94,8 @@ The following sections provide you with a quick guide to the default quotas and 
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
-| `model-router` (2025-04-15) | Enterprise Tier | 10 M | 10 K |
-| `model-router` (2025-04-15) | Default         | 1 M | 1 K |
+| `model-router` (2025-05-19) | Enterprise Tier | 10 M | 10 K |
+| `model-router` (2025-05-19) | Default         | 1 M | 1 K |
 
 
 ## computer-use-preview global standard rate limits

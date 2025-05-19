@@ -24,7 +24,7 @@ To get started, make sure you have the following resources and permissions:
 * An [Azure AI Foundry project](../../../ai-foundry/how-to/create-projects.md) created in one of the following supported regions: `westus`, `swedencentral`, or `australiaeast`. A project is used to organize your work and save state while building customized AI apps.
 
 > [!IMPORTANT]
-> If your organization requires you to customize the security of storage resources, refer to [Azure AI services API access keys](../../../ai-foundry/concepts/encryption-keys-portal.md) to create resources that meet your organizations requirements through the Azure portal. To learn how to utilize customer managed keys, refer to [(Preview) Service-side storage of encrypted data when using customer-managed keys](../../../ai-foundry/concepts/encryption-keys-portal.md#preview-service-side-storage-of-encrypted-data-when-using-customer-managed-keys). 
+> If your organization requires you to customize the security of storage resources, refer to [Azure AI services API access keys](../../../ai-foundry/concepts/encryption-keys-portal.md) to create resources that meet your organizations requirements through the Azure portal. To learn how to utilize customer managed keys, refer to [Encrypt data using customer-managed keys](../../../ai-foundry/concepts/encryption-keys-portal.md). 
 
 ## Create your first project in the AI Foundry portal
 

@@ -1342,7 +1342,7 @@ Edits an image from a text caption on a given gpt-image-1 model deployment
 | api-key | True | string | Provide Azure OpenAI API key here |
 ### Request Body
 
-**Content-Type**: application/json
+**Content-Type**: multipart/form-data
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|

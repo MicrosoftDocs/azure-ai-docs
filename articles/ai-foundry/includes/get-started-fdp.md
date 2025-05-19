@@ -43,7 +43,7 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. If you just used the Azure AI Foundry portal to create the project with the **Create an agent** link, you're next  prompted to deploy a model.
+1. If you just used the Azure AI Foundry portal to create the project with the **Create an agent** link, you'll already have a default **gpt-4o** model deployed.
 1. Or else, sign in to the [Azure AI Foundry portal](https://ai.azure.com), select your project, and select **Model catalog**.
 1. Search for the model you want to deploy. For this quickstart, select **gpt-4o**.
 1. Select **Confirm**.
@@ -74,7 +74,7 @@ No installation is necessary to use the Azure AI Foundry portal.
 1. [Install Java and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-java).
 1. Set these environment variables to use in your scripts:
 
-    :::code language="plaintext" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/.env.template":::
+    :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/.env.template":::
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
 1. Download [POM.XML](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart/pom.xml) to your Java IDE.
@@ -90,7 +90,7 @@ No installation is necessary to use the Azure AI Foundry portal.
 1. Install packages with `npm install`
 1. Set these environment variables to use in your scripts:
 
-    :::code language="plaintext" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/.env.template":::
+    :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/javascript/mslearn-resources/quickstart/.env.template":::
 
 
 > [!TIP]
@@ -105,7 +105,7 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 1. Set these environment variables to use in your scripts:
 
-    :::code language="plaintext" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/.env.example":::
+    :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/.env.example":::
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
 
@@ -146,27 +146,27 @@ Chat completions are the basic building block of AI applications. Using chat com
 
 Substitute your value for the endpoint in this code:
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="chat_completion":::
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="chat_completion":::
 
 
 # [Java (preview)](#tab/java)
 
-:::code language="java" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/ChatCompletionSample.java" :::
+:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/ChatCompletionSample.java" :::
 
 # [JavaScript (preview)](#tab/javascript)
 
-:::code language="javascript" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="chat_completion":::
+:::code language="javascript" source="~/foundry-samples-main/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="chat_completion":::
 
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/SimpleInference.cs" id="chat_completion":::
+:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/SimpleInference.cs" id="chat_completion":::
 
 # [REST API](#tab/rest)
 
 Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
-:::code language="console" source="~/foundry-samples/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="chat_completion":::
+:::code language="console" source="~/foundry-samples-main/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="chat_completion":::
 
 ---
 
@@ -186,25 +186,25 @@ Agents allow more powerful capabilities through the use of tools. First, let's w
 
 # [Python](#tab/python)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_and_run_agent":::
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_and_run_agent":::
 
 # [Java (preview)](#tab/java)
 
-:::code language="java" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" :::
+:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" :::
 
 # [JavaScript (preview)](#tab/javascript)
 
-:::code language="javascript" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="create_and_run_agent" :::
+:::code language="javascript" source="~/foundry-samples-main/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="create_and_run_agent" :::
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentService.cs" id="create_and_run_agent" :::
+:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentService.cs" id="create_and_run_agent" :::
 
 # [REST API](#tab/rest)
 
 Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
-:::code language="console" source="~/foundry-samples/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="create_and_run_agent":::
+:::code language="console" source="~/foundry-samples-main/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="create_and_run_agent":::
 
 
 ---
@@ -229,26 +229,26 @@ Now let's add a file search tool that enables us to do knowledge retrieval.
 
 # [Python](#tab/python)
 
-:::code language="python" source="~/foundry-samples/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_filesearch_agent":::
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_filesearch_agent":::
 
 # [Java (preview)](#tab/java)
 
-:::code language="java" source="~/foundry-samples/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/FileSearchAgentSample.java" :::
+:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/FileSearchAgentSample.java" :::
 
 
 # [JavaScript (preview)](#tab/javascript)
 
-:::code language="javascript" source="~/foundry-samples/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="create_filesearch_agent":::
+:::code language="javascript" source="~/foundry-samples-main/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="create_filesearch_agent":::
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentFileSearch.cs" id="create_filesearch_agent":::
+:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentFileSearch.cs" id="create_filesearch_agent":::
 
 # [REST API](#tab/rest)
 
 Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
-:::code language="console" source="~/foundry-samples/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="create_filesearch_agent":::
+:::code language="console" source="~/foundry-samples-main/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="create_filesearch_agent":::
 
 ---
 

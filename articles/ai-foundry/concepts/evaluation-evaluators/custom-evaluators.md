@@ -151,4 +151,5 @@ friendliness_score = friendliness_eval(response="I will not apologize for my beh
 
 ## Related content
 
-- Learn [how to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-datasets) and [how to run batch evaluation on a target](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-a-target).
+- [How to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-test-datasets-using-evaluate)  
+- [How to run batch evaluation on a target](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-a-target)
