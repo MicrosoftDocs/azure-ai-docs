@@ -39,6 +39,7 @@ You can add the code interpreter tool to an agent programatically using the code
 
 :::zone pivot="python"
 
+
 ## Initialization
 The code begins by setting up the necessary imports and initializing the AI Project client:
 
@@ -57,7 +58,6 @@ project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT
 project_client = AIProjectClient(
     endpoint=project_endpoint,
     credential=DefaultAzureCredential(),  # Use Azure Default Credential for authentication
-    api_version="latest",
 )
 ```
 
@@ -96,10 +96,10 @@ agent = project_client.agents.create_agent(
 The code creates a conversation thread and initial message:
 
 ```python
-thread = project_client.agents.create_thread()
-message = project_client.agents.create_message(
+thread = project_client.agents.threads.create()
+message = project_client.agents.messages.create(
     thread_id=thread.id,
-    role="user",
+    role=MessageRole.USER,
     content="Could you please create bar chart in TRANSPORTATION sector for the operating profit from the uploaded csv file and provide file to me?",
 )
 ```
@@ -108,14 +108,14 @@ message = project_client.agents.create_message(
 A run is created to process the message and execute code:
 
 ```python
-run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 ```
 
 ## File Handling
 The code handles the output files and annotations:
 
 ```python
-messages = project_client.agents.list_messages(thread_id=thread.id)
+messages = project_client.agents.messages.list(thread_id=thread.id)
 
 # Save generated image files
 for image_content in messages.image_contents:
