@@ -63,7 +63,7 @@ The steps for creating a custom model are as follows:
 
 1. [**Deploy a model**](how-to/deploy-model.md). Your custom model is made available for runtime translation requests in the regions you select.
 
-1. [**Translate text**](../../text-translation/reference/v4/translate-api.md). Use the cloud-based, secure, high performance, highly scalable Azure AI Translator [Text API](../../text-translation/reference/v4/translate-api.md) to make translation requests.
+1. [**Translate text**](../../text-translation/reference/v3/translate.md). Use the cloud-based, secure, high performance, highly scalable Azure AI Translator [Text API](../../text-translation/reference/v3/translate.md) to make translation requests.
 
 ## Next steps
 
