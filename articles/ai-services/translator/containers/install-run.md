@@ -39,7 +39,7 @@ To get started, you need the following resources, gated access approval, and too
 >
 > Your translator resource must meet the following requirements:
 >
-> * Your Translator instance must be a **Translator** resource (**not** a multi-service Azure AI services resource).
+> * Your Translator instance must be a **Translator** resource (**not** a multi-service Azure AI Foundry resource).
 >
 > * Your Translator instance must be a **regional** resource (**not** a global Azure AI Translator resource) within am available Azure geographic region. For more information, *see* [Azure AI Translator region pricing options](https://azure.microsoft.com/pricing/details/cognitive-services/translator/#overview).
 
@@ -139,8 +139,8 @@ All Azure AI containers require the following input values:
 
 | Option | Description |
 |--------|-------------|
-| `ApiKey` | The key of the Azure AI services resource used to track billing information.<br/>The value of this option must be set to a key for the provisioned resource specified in `Billing`. |
-| `Billing` | The endpoint of the Azure AI services resource used to track billing information.<br/>The value of this option must be set to the endpoint URI of a provisioned Azure resource.|
+| `ApiKey` | The key of the Azure AI Foundry resource used to track billing information.<br/>The value of this option must be set to a key for the provisioned resource specified in `Billing`. |
+| `Billing` | The endpoint of the Azure AI Foundry resource used to track billing information.<br/>The value of this option must be set to the endpoint URI of a provisioned Azure resource.|
 | `Eula` | Indicates that you accepted the license for the container.<br/>The value of this option must be set to **accept**. |
 
 ### Connecting to Azure
@@ -256,7 +256,7 @@ Disconnected containers enable you to use the Azure AI Translator API by exporti
 
 * If you decide that you don't want to continue purchasing a commitment plan, you can set your resource's autorenewal to **Do not auto-renew**.
 
-* Your commitment plan expires on the displayed commitment end date. After this date, you won't be charged for the commitment plan. You're still able to continue using the Azure resource to make API calls, charged at pay-as-you-go pricing.
+* Your commitment plan expires on the displayed commitment end date. After this date, you won't be charged for the commitment plan. You're still able to continue using the Azure resource to make API calls, charged at Standard pricing.
 
 * You have until midnight (UTC) on the last day of the year to end a commitment plan for disconnected containers. If you do so, you avoid charges for the following year.
 

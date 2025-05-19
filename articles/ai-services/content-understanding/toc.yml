@@ -7,7 +7,7 @@ items:
   - name: What is Azure AI Content Understanding?
     displayName: document, text, images, video, audio, multimodal, visual, structured, content, field, extraction, content filtering, filter
     href: overview.md
-  - name: Create an Azure AI Services resource
+  - name: Create an Azure AI Foundry resource
     displayName: extract, text, images, OCR, optical character recognition
     href: how-to/create-multi-service-resource.md
   - name: What's new

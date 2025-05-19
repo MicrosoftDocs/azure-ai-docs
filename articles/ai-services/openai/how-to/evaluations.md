@@ -1,5 +1,5 @@
 ---
-title: 'How to use Azure OpenAI Service evaluation'
+title: 'How to use Azure OpenAI in Azure AI Foundry Models evaluation'
 titleSuffix: Azure OpenAI
 description: Learn how to use evaluations with Azure OpenAI
 manager: nitinme

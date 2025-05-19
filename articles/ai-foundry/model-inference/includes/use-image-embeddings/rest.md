@@ -1,7 +1,7 @@
 ---
-title: How to generate image embeddings with Azure AI model inference
+title: How to generate image embeddings with Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn how to generate embeddings with Azure AI model inference
+description: Learn how to generate embeddings with Azure AI Foundry Models
 manager: scottpolly
 author: msakande
 reviewer: santiagxf
@@ -16,7 +16,8 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use image embeddings API with models deployed to Azure AI model inference in Azure AI Foundry.
+This article explains how to use image embeddings API with Azure AI Foundry Models.
+
 
 ## Prerequisites
 
@@ -24,7 +25,7 @@ To use embedding models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
-* An image embeddings model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add an embeddings model to your resource.
+* An image embeddings model deployment. If you don't have one read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add an embeddings model to your resource.
 
   * This example uses `Cohere-embed-v3-english` from Cohere.
 

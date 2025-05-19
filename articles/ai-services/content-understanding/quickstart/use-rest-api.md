@@ -20,14 +20,14 @@ ms.date: 05/19/2025
 
 To get started, you need **an active Azure subscription**. If you don't have an Azure account, [create one for free](https://azure.microsoft.com/free/).
 
-* Once you have your Azure subscription, create an [Azure AI Services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) in the Azure portal. This multi-service resource enables access to multiple Azure AI services with a single set of credentials.
+* Once you have your Azure subscription, create an [Azure AI Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) in the Azure portal. This multi-service resource enables access to multiple Azure AI services with a single set of credentials.
 
-   * This resource is listed under Azure AI services → Azure AI services in the portal.
+   * This resource is listed under **AI Foundry** > **AI Foundry** in the portal.
 
     > [!IMPORTANT]
-    > Azure provides more than one resource type named Azure AI services. Make certain that you select the one listed under Azure AI services → Azure AI services as depicted in the following image. For more information, see [Create an Azure AI Services resource](../how-to/create-multi-service-resource.md).
+    > Azure provides more than one resource type for Azure AI services. Make certain that you select the one listed under **AI Foundry** > **AI Foundry** as depicted in the following image. For more information, see [Create an Azure AI Foundry resource](../how-to/create-multi-service-resource.md).
 
-     :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the multi-service resource page in the Azure portal.":::
+     :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the AI Foundry resource page in the Azure portal.":::
 
 * In this quickstart, we use the cURL command line tool. If it isn't installed, you can download a version for your dev environment:
 

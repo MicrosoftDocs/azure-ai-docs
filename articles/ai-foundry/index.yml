@@ -1,114 +1,190 @@
-### YamlMime:Landing
+### YamlMime:Hub
 
-title: Azure AI Foundry documentation # < 60 chars
-summary:  Safely design, customize, and manage AI applications and agents at scale.
+title: Azure AI Foundry documentation
+summary: The agent factory - Design, customize, manage, and support AI applications and agents at scale.
+brand: azure
+
 metadata:
   title: Azure AI Foundry documentation
-  description: Azure AI Foundry helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and prebuilt and customizable APIs and models. Example applications include generative AI, natural language processing for conversations, search, monitoring, translation, speech, vision, and decision-making.
+  description: The agent factory - Design, customize, manage, and support AI applications and agents at scale.
   ms.service: azure-ai-foundry
-  ms.custom:
-    - build-2024
-    - copilot-learning-hub
-    - ignite-2024
-  ms.topic: landing-page
-  manager: scottpolly
-  ms.reviewer: sgilley
-  ms.author: sgilley
-  author: sdgilley
-  ms.date: 03/04/2025
-# linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
+  ms.topic: hub-page
+  author: eric-urban
+  ms.author: eur
+  manager: nitinme
+  ms.custom: build-2025
+  ms.date: 5/19/2025
+highlightedContent:
+# itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | whats-new
+  items:
+    - title: What is Azure AI Foundry?
+      itemType: overview
+      url: ./what-is-azure-ai-foundry.md
+    - title: Explore Azure AI Foundry Models
+      itemType: concept
+      url: ./how-to/model-catalog-overview.md
+    - title: Upgrade from GitHub Models
+      itemType: how-to-guide
+      url: ./model-inference/how-to/quickstart-github-models.md
+    - title: Responsible use of AI
+      itemType: concept
+      url: responsible-use-of-ai-overview.md
 
-landingContent:
-# Cards and links should be based on top customer tasks or top subjects
-# Start card title with a verb
-  # Card
-  - title: About Azure AI Foundry
-    linkLists:
-      - linkListType: overview
-        links:
-          - text: What is Azure AI Foundry?
-            url: what-is-azure-ai-foundry.md
-          - text: Azure OpenAI Service in Azure AI Foundry
-            url: azure-openai-in-azure-ai-foundry.md
-      - linkListType: concept
-        links:
-          - text: Azure AI Agent service
-            url: ../ai-services/agents/overview.md?context=/azure/ai-studio/context/context
-          - text: Retrieval Augmented Generation (RAG)
-            url: concepts/retrieval-augmented-generation.md
-          - text: Evaluation and monitoring metrics
-            url: concepts/evaluation-metrics-built-in.md
-          - text: Fine-tuning 
-            url: concepts/fine-tuning-overview.md
-          - text: Model deployment options
-            url: concepts/deployments-overview.md
+# productDirectory section 
+productDirectory:
+  #title:  # < 60 chars (optional)
+  #summary:  # < 160 chars (optional)
+  # imageSrc should be square in ratio with no whitespace
+  items:
+    # Card
+    - title: Create apps with code
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg
+      links:
+        - url: /azure/developer/ai/intelligent-app-templates
+          text: Start with an AI template
+        - url: ./quickstarts/get-started-code.md
+          text: Quickstart for Azure AI Foundry
+    # Card
+    - title: Azure AI Foundry Models
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg
+      links:
+        - url: ./concepts/models-featured.md
+          text: Featured models
+        - url: ./how-to/model-catalog-overview.md
+          text: Select and deploy models
+        - url: ./how-to/benchmark-model-in-catalog.md
+          text: Compare models in leaderboards
+        - url: ./concepts/fine-tuning-overview.md
+          text: Learn how to fine-tune models
+        - url: ../ai-services/openai/concepts/models.md
+          text: Azure OpenAI
+        - url: ./model-inference/tutorials/get-started-deepseek-r1.md
+          text: DeepSeek-R1
+    # Card
+    - title: Azure AI Foundry Agent Service
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-agents.png
+      links:
+        - url: ../ai-services/agents/index.yml
+          text: Orchestrate and host AI agents to automate and execute business processes
+        - url: ../ai-services/agents/quickstart.md
+          text: Create a custom AI agent using Azure AI Foundry Agent Service
+        - url: /azure/developer/ai/get-started-multi-agents
+          text: Azure AI app template for agents
+        - url: ./concepts/ai-red-teaming-agent.md
+          text: AI Red Teaming Agent (preview)
+    # Card
+    - title: Protect and govern
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg
+      links:
+        - url: responsible-use-of-ai-overview.md
+          text: Trustworthy AI
+        - url: ./how-to/develop/trace-local-sdk.md
+          text: Trace your application with Azure AI Foundry project library 
+        - url: ./how-to/develop/agent-evaluate-sdk.md
+          text: Evaluate agentic workflows
+        - url: ../ai-services/openai/how-to/fine-tuning-safety-evaluation.md
+          text: Safety evaluation for fine-tuning
+        - url: ./how-to/monitor-applications.md
+          text: Monitor your generative AI applications
+    # Card
+    - title: Azure AI Search
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/search.svg
+      links:
+        - url: /azure/search
+          text: Bring AI-powered cloud search to your mobile and web applications
+        - url: /azure/search/tutorial-rag-build-solution
+          text: Build a RAG solution using Azure AI Search
+        - url: ../ai-services/agents/how-to/tools/azure-ai-search.md
+          text: Azure AI Search tool for agents
+    # Card
+    - title: Azure AI Services
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/azure.svg
+      links:
+        - url: ../ai-services/speech-service/index.yml
+          text: Speech
+        - url: ../ai-services/computer-vision/index.yml
+          text: Vision
+        - url: ../ai-services/custom-vision-service/index.yml
+          text: Translator
+        - url: ../ai-services/language-service/index.yml
+          text: Language
+        - url: ../ai-services/content-understanding/index.yml
+          text: Content Understanding
+    # Card
+    - title: Azure Machine Learning
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-studio/machine-learning.svg
+      links:
+        - url: /azure/machine-learning/concept-train-machine-learning-model
+          text: Learn how to train models
+        - url: /azure/machine-learning/concept-ml-pipelines
+          text: Orchestrate workflows with pipelines
+        - url: /azure/machine-learning/concept-automated-ml
+          text: What is automated machine learning (AutoML)?
+    # Card
+    - title: Foundry Local
+      imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg
+      links:
+        - url: ./foundry-local/get-started.md
+          text: Run LLMs on your device for free
+        - url: ./foundry-local/how-to/how-to-integrate-with-inference-sdks.md
+          text: Integrate your apps
+        - url: ./foundry-local/how-to/how-to-compile-hugging-face-models.md
+          text: Run HuggingFace models
+        - url: ./foundry-local/reference/reference-sdk.md
+          text: SDK Documentation
 
-  # Card
-  - title: Get started
-    linkLists:   
-      - linkListType: quickstart
-        links:
-          - text: Use the chat playground
-            url: quickstarts/get-started-playground.md
-          - text: Build a basic app
-            url: quickstarts/get-started-code.md
-          - text:  Create an agent
-            url: ../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context
+tools:
+  title: Software development kits (SDKs)
+  summary: Get started with the most popular Azure AI SDKs in your favorite programming language.
+  items:
+  - title: C#
+    imageSrc: /media/logos/logo_Csharp.svg
+    url: /dotnet/api/azure.ai.inference
+  - title: Java
+    imageSrc: /media/logos/logo_java.svg
+    url: /java/api/overview/azure/ai-inference-readme
+  - title: JavaScript
+    imageSrc: /media/logos/logo_js.svg
+    url: /javascript/api/%40azure-rest/ai-inference
+  - title: Python
+    imageSrc: /media/logos/logo_python.svg
+    url: /python/api/overview/azure/ai-inference-readme
 
-      - linkListType: how-to-guide
-        links:
-          - text: Select and deploy models from the catalog
-            url: how-to/model-catalog-overview.md
-          - text: Compare benchmarks across models and datasets
-            url: how-to/benchmark-model-in-catalog.md
-          - text: Plan and manage costs
-            url: how-to/costs-plan-manage.md
-
-      
-  # Card
-  - title: Azure AI Foundry SDK
-    linkLists:
-      - linkListType: how-to-guide
-        links:
-          - text: Get started with the Azure AI Foundry SDKs
-            url: how-to/develop/sdk-overview.md
-          - text: Start with an AI template
-            url: how-to/develop/ai-template-get-started.md
-      - linkListType: tutorial
-        links:
-          - text: Build a custom app
-            url: tutorials/copilot-sdk-create-resources.md
-            
-      - linkListType: reference
-        links:
-          - text: Azure AI Foundry SDK
-            url: how-to\develop\sdk-overview.md
-          - text: Azure OpenAI Service Reference
-            url: ../ai-services/openai/reference.md
-  # Card
-  - title: Build apps with a template
-    linkLists:
-      - linkListType: quickstart
-        links:
-          - text: Get started with AI chat
-            url: https://github.com/Azure-Samples/get-started-with-ai-chat
-          - text: Get started with AI agents
-            url: https://github.com/Azure-Samples/get-started-with-ai-agents
-          - text: Unlock insights from conversational data
-            url: https://github.com/microsoft/Conversation-Knowledge-Mining-Solution-Accelerator
-
-  # Card
-  - title: Explore more AI resources
-    linkLists:
-      - linkListType: learn
-        links:
-          - text: Azure AI Training
-            url: https://aka.ms/LearnAzureAIStudio
-          - text: Vector search in Azure AI Search
-            url: /training/modules/improve-search-results-vector-search/
-      - linkListType: reference
-        links:
-          - text: Azure Machine Learning
-            url: /azure/machine-learning/
-          - text: Semantic Kernel
-            url: /semantic-kernel/
+additionalContent:
+  sections:
+    - title: Further resources
+      items:
+        - title: Explore Azure AI Foundry
+          links:
+            - text: Azure AI Foundry portal
+              url: https://ai.azure.com/
+            - text: Azure AI Foundry SDKs
+              url: ./how-to/develop/sdk-overview.md
+            - text: Azure AI Foundry labs
+              url: https://ai.azure.com/labs
+            - text: GitHub Models
+              url: https://github.com/marketplace/models
+            - text: Visual Studio Code extension
+              url: https://aka.ms/azureaifoundry/vscode
+        - title: Explore more Azure AI
+          links:
+            - text: Semantic Kernel
+              url: /semantic-kernel/
+            - text: Document Intelligence
+              url: ../ai-services/document-intelligence/index.yml
+            - text: Face
+              url: ../ai-services/computer-vision/overview-identity.md
+            - text: Custom Vision
+              url: ../ai-services/translator/index.yml
+        - title: Training & certification
+          links:
+            - text: AI learning and community hub
+              url: /ai/
+            - text: Develop generative AI apps in Azure AI Foundry
+              url: /training/paths/create-custom-copilots-ai-studio/
+            - text: Identify principles and practices for responsible AI
+              url: /training/paths/responsible-ai-business-principles/
+            - text: AI Learning paths and modules
+              url: /training/browse/?resource_type=learning%20path&expanded=data-ai&subjects=artificial-intelligence
+            - text: AI Engineer career path
+              url: /training/career-paths/ai-engineer
