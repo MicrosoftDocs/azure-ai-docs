@@ -1,7 +1,7 @@
 ---
-title: 'How to use global batch processing with Azure OpenAI Service'
+title: 'How to use global batch processing with Azure OpenAI in Azure AI Foundry Models'
 titleSuffix: Azure OpenAI
-description: Learn how to use global batch with Azure OpenAI Service
+description: Learn how to use global batch with Azure OpenAI
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: references_regions
@@ -239,7 +239,7 @@ When a job failure occurs, you'll find details about the failure in the `errors`
 |`model_not_found`|The Azure OpenAI model deployment name that was specified in the `model` property of the input file wasn't found.<br><br> Please ensure this name points to a valid Azure OpenAI model deployment.|
 | `duplicate_custom_id` | The custom ID for this request is a duplicate of the custom ID in another request. |
 |`empty_batch` | Please check your input file to ensure that the custom ID parameter is unique for each request in the batch.|
-|`model_mismatch`| The Azure OpenAI model deployment name that was specified in the `model` property of this request in the input file doesn't match the rest of the file.<br><br>Please ensure that all requests in the batch point to the same Azure OpenAI Service model deployment in the `model` property of the request.|
+|`model_mismatch`| The Azure OpenAI model deployment name that was specified in the `model` property of this request in the input file doesn't match the rest of the file.<br><br>Please ensure that all requests in the batch point to the same Azure OpenAI in Azure AI Foundry Models model deployment in the `model` property of the request.|
 |`invalid_request`| The schema of the input line is invalid or the deployment SKU is invalid. <br><br>Please ensure the properties of the request in your input file match the expected input properties, and that the Azure OpenAI deployment SKU is `globalbatch` for batch API requests.|
 
 ### Known issues

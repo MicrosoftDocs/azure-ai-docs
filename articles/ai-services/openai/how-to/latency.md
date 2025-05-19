@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI Service performance & latency
+title: Azure OpenAI in Azure AI Foundry Models performance & latency
 titleSuffix: Azure OpenAI
 description: Learn about performance and latency with Azure OpenAI
 manager: nitinme
@@ -40,7 +40,7 @@ When combined, the **Processed Prompt Tokens** (input TPM) and **Generated Compl
 
 ##### Estimating TPM from request data
 
-A second approach to estimated system level throughput involves collecting token usage information from API request data. This method provides a more granular approach to understanding workload shape per request. Combining per request token usage information with request volume, measured in requests per minute (RPM), provides an estimate for system level throughput. It is important to note that any assumptions made for consistency of token usage information across requests and request volume will impact the system throughput estimate. The token usage output data can be found in the API response details for a given Azure OpenAI Service chat completions request.
+A second approach to estimated system level throughput involves collecting token usage information from API request data. This method provides a more granular approach to understanding workload shape per request. Combining per request token usage information with request volume, measured in requests per minute (RPM), provides an estimate for system level throughput. It is important to note that any assumptions made for consistency of token usage information across requests and request volume will impact the system throughput estimate. The token usage output data can be found in the API response details for a given Azure OpenAI in Azure AI Foundry Models chat completions request.
 
 ```json
 {
@@ -141,12 +141,12 @@ We recommend measuring your overall throughput on a deployment with two measures
 -	Calls per minute: The number of API inference calls you're making per minute. This can be measured in Azure-monitor using the Azure OpenAI Requests metric and splitting by the ModelDeploymentName
 -	Total Tokens per minute: The total number of tokens being processed per minute by your deployment. This includes prompt & generated tokens. This is often further split into measuring both for a deeper understanding of deployment performance. This can be measured in Azure-Monitor using the Processed Inference tokens metric. 
 
-You can learn more about [Monitoring the Azure OpenAI Service](./monitoring.md).
+You can learn more about [Monitoring the Azure OpenAI](./monitoring.md).
 
 ## How to measure per-call latency
 The time it takes for each call depends on how long it takes to read the model, generate the output, and apply content filters. The way you measure the time will vary if you're using streaming or not. We suggest a different set of measures for each case. 
 
-You can learn more about [Monitoring the Azure OpenAI Service](./monitoring.md).
+You can learn more about [Monitoring the Azure OpenAI](./monitoring.md).
 
 ### Non-Streaming:
 -	 End-to-end Request Time: The total time taken to generate the entire response for non-streaming requests, as measured by the API gateway. This number increases as prompt and generation size increases.

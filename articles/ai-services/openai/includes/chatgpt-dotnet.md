@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Use Azure OpenAI Service with the C# SDK'
+title: 'Quickstart: Use Azure OpenAI in Azure AI Foundry Models with the C# SDK'
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the C# SDK.
 manager: nitinme
@@ -16,7 +16,7 @@ ms.date: 3/11/2025
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - The [.NET 7 SDK](https://dotnet.microsoft.com/download/dotnet/7.0)
-- An Azure OpenAI Service resource with the `gpt-4o` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- An Azure OpenAI in Azure AI Foundry Models resource with the `gpt-4o` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 ### Microsoft Entra ID prerequisites
 
@@ -108,7 +108,7 @@ To run the quickstart, follow these steps:
             new SystemChatMessage("You are a helpful assistant that talks like a pirate."),
             new UserChatMessage("Does Azure OpenAI support customer managed keys?"),
             new AssistantChatMessage("Yes, customer managed keys are supported by Azure OpenAI"),
-            new UserChatMessage("Do other Azure AI services support this too?")
+            new UserChatMessage("Do other Azure services support this too?")
         ]);
     
     Console.WriteLine($"{completion.Role}: {completion.Content[0].Text}");
@@ -124,7 +124,7 @@ To run the quickstart, follow these steps:
 #### Output
 
 ```output
-Assistant: Arrr, ye be askin’ a fine question, matey! Aye, several Azure AI services support customer-managed keys (CMK)! This lets ye take the wheel and secure yer data with encryption keys stored in Azure Key Vault. Services such as Azure Machine Learning, Azure Cognitive Search, and others also offer CMK fer data protection. Always check the specific service's documentation fer the latest updates, as features tend to shift swifter than the tides, aye!
+Assistant: Arrr, ye be askin’ a fine question, matey! Aye, several Azure services support customer-managed keys (CMK)! This lets ye take the wheel and secure yer data with encryption keys stored in Azure Key Vault. Services such as Azure Machine Learning, Azure Cognitive Search, and others also offer CMK fer data protection. Always check the specific service's documentation fer the latest updates, as features tend to shift swifter than the tides, aye!
 ```
 
 This will wait until the model has generated its entire response before printing the results. Alternatively, if you want to asynchronously stream the response and print the results, you can replace the contents of *Program.cs* with the code in the next example.
@@ -158,7 +158,7 @@ To run the quickstart, follow these steps:
             new SystemChatMessage("You are a helpful assistant that talks like a pirate."),
             new UserChatMessage("Does Azure OpenAI support customer managed keys?"),
             new AssistantChatMessage("Yes, customer managed keys are supported by Azure OpenAI"),
-            new UserChatMessage("Do other Azure AI services support this too?")
+            new UserChatMessage("Do other Azure services support this too?")
         ]);
     
     await foreach(var chatUpdate in chatUpdates)
@@ -185,7 +185,7 @@ To run the quickstart, follow these steps:
 #### Output
 
 ```output
-Assistant: Arrr, ye be askin’ a fine question, matey! Aye, several Azure AI services support customer-managed keys (CMK)! This lets ye take the wheel and secure yer data with encryption keys stored in Azure Key Vault. Services such as Azure Machine Learning, Azure Cognitive Search, and others also offer CMK fer data protection. Always check the specific service's documentation fer the latest updates, as features tend to shift swifter than the tides, aye!
+Assistant: Arrr, ye be askin’ a fine question, matey! Aye, many Azure services support customer-managed keys (CMK)! This lets ye take the wheel and secure yer data with encryption keys stored in Azure Key Vault. Services such as Azure Machine Learning, Azure Cognitive Search, and others also offer CMK fer data protection. Always check the specific service's documentation fer the latest updates, as features tend to shift swifter than the tides, aye!
 ```
 
 

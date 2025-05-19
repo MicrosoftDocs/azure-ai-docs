@@ -1,7 +1,7 @@
 ---
-title: How to use image and audio in chat completions with Azure AI model inference
+title: How to use image and audio in chat completions with Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn how to process audio and images with chat completions models with Azure AI model inference
+description: Learn how to process audio and images with chat completions models with Azure AI Foundry Models
 manager: scottpolly
 author: mopeakande
 reviewer: santiagxf
@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use chat completions API with _multimodal_ models deployed to Azure AI model inference in Azure AI services. Apart from text input, multimodal models can accept other input types, such as images or audio input.
+This article explains how to use chat completions API with _multimodal_ models deployed in Azure AI Foundry Models. Apart from text input, multimodal models can accept other input types, such as images or audio input.
 
 ## Prerequisites
 
@@ -24,7 +24,7 @@ To use chat completion models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
-* A chat completions model deployment. If you don't have one, see [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
+* A chat completions model deployment. If you don't have one, see [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
 
   * This article uses `Phi-4-multimodal-instruct`.
 

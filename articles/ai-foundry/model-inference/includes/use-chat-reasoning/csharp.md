@@ -9,7 +9,7 @@ author: santiagxf
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use the reasoning capabilities of chat completions models deployed to Azure AI model inference in Azure AI services.
+This article explains how to use the reasoning capabilities of chat completions models deployed in Azure AI Foundry Models.
 
 [!INCLUDE [about-reasoning](about-reasoning.md)]
 
@@ -21,7 +21,7 @@ To complete this tutorial, you need:
 
 [!INCLUDE [how-to-prerequisites-csharp](../how-to-prerequisites-csharp.md)]
 
-* A model with reasoning capabilities model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a reasoning model. 
+* A model with reasoning capabilities model deployment. If you don't have one read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add a reasoning model. 
 
   * This example uses `DeepSeek-R1`.
 
@@ -30,30 +30,31 @@ To complete this tutorial, you need:
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
 
 ```csharp
+AzureAIInferenceClientOptions clientOptions = new AzureAIInferenceClientOptions(apiVersion);
+
 ChatCompletionsClient client = new ChatCompletionsClient(
     new Uri("https://<resource>.services.ai.azure.com/models"),
-    new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_INFERENCE_CREDENTIAL"))
+    new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_INFERENCE_CREDENTIAL")),
+    clientOptions
 );
 ```
-
-> [!TIP]
-> Verify that you have deployed the model to Azure AI Services resource with the Azure AI model inference API. `Deepseek-R1` is also available as Serverless API Endpoints. However, those endpoints don't take the parameter `model` as explained in this tutorial. You can verify that by going to [Azure AI Foundry portal]() > Models + endpoints, and verify that the model is listed under the section **Azure AI Services**.
 
 If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
 ```csharp
-TokenCredential credential = new DefaultAzureCredential(includeInteractiveCredentials: true);
-AzureAIInferenceClientOptions clientOptions = new AzureAIInferenceClientOptions();
-BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(credential, new string[] { "https://cognitiveservices.azure.com/.default" });
-
-clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
+AzureAIInferenceClientOptions clientOptions = new AzureAIInferenceClientOptions(
+    "2024-05-01-preview", 
+    new string[] { "https://cognitiveservices.azure.com/.default" }
+);
 
 client = new ChatCompletionsClient(
     new Uri("https://<resource>.services.ai.azure.com/models"),
-    credential,
+    new DefaultAzureCredential(),
     clientOptions,
 );
 ```
+
+[!INCLUDE [best-practices](best-practices.md)]
 
 ### Create a chat completion request
 
@@ -204,11 +205,11 @@ In general, reasoning models don't support the following parameters you can find
 
 Some models support the use of tools or structured outputs (including JSON-schemas). Read the [Models](../../concepts/models.md) details page to understand each model's support.
 
-### Apply content safety
+### Apply Guardrails and controls
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI Model Inference API supports [Azure AI Content Safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI Content Safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
-The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
+The following example shows how to handle events when the model detects harmful content in the input prompt.
 
 
 ```csharp
@@ -242,4 +243,4 @@ catch (RequestFailedException ex)
 ```
 
 > [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
+> To learn more about how you can configure and control Azure AI Content Safety settings, check the [Azure AI Content Safety documentation](https://aka.ms/azureaicontentsafety).

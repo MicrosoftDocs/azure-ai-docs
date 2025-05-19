@@ -9,7 +9,7 @@ author: santiagxf
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use the reasoning capabilities of chat completions models deployed to Azure AI model inference in Azure AI services.
+This article explains how to use the reasoning capabilities of chat completions models deployed in Azure AI Foundry Models.
 
 [!INCLUDE [about-reasoning](about-reasoning.md)]
 
@@ -21,7 +21,7 @@ To complete this tutorial, you need:
 
 [!INCLUDE [how-to-prerequisites-javascript](../how-to-prerequisites-javascript.md)]
 
-* A model with reasoning capabilities model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a reasoning model. 
+* A model with reasoning capabilities model deployment. If you don't have one read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add a reasoning model. 
 
   * This example uses `DeepSeek-R1`.
       
@@ -39,7 +39,7 @@ const client = ModelClient(
 If you've configured the resource with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
 ```javascript
-const clientOptions = { credentials: { "https://cognitiveservices.azure.com" } };
+const clientOptions = { credentials: { "https://cognitiveservices.azure.com/.default" } };
 
 const client = ModelClient(
     "https://<resource>.services.ai.azure.com/models", 
@@ -47,6 +47,8 @@ const client = ModelClient(
     clientOptions,
 );
 ```
+
+[!INCLUDE [best-practices](best-practices.md)]
 
 ### Create a chat completion request
 
@@ -64,8 +66,6 @@ var response = await client.path("/chat/completions").post({
     }
 });
 ```
-
-[!INCLUDE [best-practices](best-practices.md)]
 
 The response is as follows, where you can see the model's usage statistics:
 
@@ -145,6 +145,7 @@ var response = await client.path("/chat/completions").post({
     body: {
         model: "DeepSeek-R1",
         messages: messages,
+        stream: true
     }
 }).asNodeStream();
 ```
@@ -152,7 +153,7 @@ var response = await client.path("/chat/completions").post({
 To visualize the output, define a helper function to print the stream. The following example implements a routing that stream only the answer without the reasoning content:
 
 ```javascript
-function printStream(sses) {
+async function printStream(sses) {
     let isThinking = false;
     
     for await (const event of sses) {
@@ -180,7 +181,7 @@ You can visualize how streaming generates content:
 
 ```javascript
 var sses = createSseStream(response.body);
-printStream(result)
+await printStream(sses)
 ```
 
 ### Parameters
@@ -195,11 +196,11 @@ In general, reasoning models don't support the following parameters you can find
 Some models support the use of tools or structured outputs (including JSON-schemas). Read the [Models](../../concepts/models.md) details page to understand each model's support.
 
 
-### Apply content safety
+### Apply Guardrails and controls
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI Model Inference API supports [Azure AI Content Safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI Content Safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
-The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
+The following example shows how to handle events when the model detects harmful content in the input prompt.
 
 
 ```javascript
@@ -233,4 +234,4 @@ catch (error) {
 ```
 
 > [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
+> To learn more about how you can configure and control Azure AI Content Safety settings, check the [Azure AI Content Safety documentation](https://aka.ms/azureaicontentsafety).

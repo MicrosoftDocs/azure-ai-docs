@@ -29,7 +29,7 @@ Skills are organized into categories:
 
 ## Azure AI resource skills
 
-Skills that call the Azure AI are billed at the pay-as-you-go rate when you [attach an AI service resource](cognitive-search-attach-cognitive-services.md).
+Skills that call the Azure AI are billed at the Standard rate when you [attach an AI service resource](cognitive-search-attach-cognitive-services.md).
 
 | OData type  | Description | Metered by |
 |-------|-------------|-------------|
@@ -48,7 +48,7 @@ Skills that call the Azure AI are billed at the pay-as-you-go rate when you [att
 
 ## Azure OpenAI skills
 
-Skills that call models deployed on Azure OpenAI are billed at the pay-as-you-go rate.
+Skills that call models deployed on Azure OpenAI are billed at the Standard rate.
 
 | OData type  | Description | Metered by |
 |-------|-------------|-------------|

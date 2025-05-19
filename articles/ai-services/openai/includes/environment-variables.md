@@ -1,6 +1,6 @@
 ---
 title: 'Environment variables'
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: set up environment variables for your key and endpoint
 manager: nitinme
 ms.service: azure-ai-openai

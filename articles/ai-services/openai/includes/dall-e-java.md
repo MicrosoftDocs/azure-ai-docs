@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Use Azure OpenAI Service with the Java SDK to generate images'
+title: 'Quickstart: Use Azure OpenAI in Azure AI Foundry Models with the Java SDK to generate images'
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first image generation call with the Java SDK. 
 manager: nitinme

@@ -1,11 +1,11 @@
 ---
-title: Create an Azure AI services resource using Bicep | Microsoft Docs
-description: Create an Azure AI service resource with Bicep.
+title: Create an AI Foundry resource using Bicep
+description: Create an Azure AI Foundry resource with Bicep.
 keywords: Azure AI services, cognitive solutions, cognitive intelligence, cognitive artificial intelligence
 author: eric-urban
 ms.service: azure-ai-services
 ms.topic: quickstart
-ms.date: 11/06/2024
+ms.date: 5/19/2025
 ms.author: eur
 ms.custom:
   - subject-armqs
@@ -14,9 +14,9 @@ ms.custom:
   - ignite-2023
 ---
 
-# Create an Azure AI services resource using Bicep
+# Create an AI Foundry resource using Bicep
 
-Follow this quickstart to create Azure AI services resource using Bicep.
+Follow this quickstart to create an Azure AI Foundry resource using Bicep.
 
 [!INCLUDE [About AI services](./includes/ai-services-intro.md)]
 
@@ -24,7 +24,7 @@ Follow this quickstart to create Azure AI services resource using Bicep.
 
 ## Things to consider
 
-Using Bicep to create an Azure AI services resource lets you create a multi-service resource. This enables you to:
+Using Bicep to create an AI Foundry resource lets you create a multi-service resource. This enables you to:
 
 * Access multiple Azure AI services with a single key and endpoint.
 * Consolidate billing from the services you use.
