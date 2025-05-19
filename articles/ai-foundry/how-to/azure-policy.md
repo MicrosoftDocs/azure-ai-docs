@@ -66,8 +66,8 @@ To control who can access your Azure AI Foundry hubs and projects, use [Microsof
 | App name | App ID | Description |
 |---|---|---|
 | Azure AI Foundry App | cb2ff863-7f30-4ced-ab89-a00194bcf6d9 | Use to control access to the Azure AI Foundry portal. |
-| Azure Machine Learning | 0736f41a-0425-bdb5-1563eff02385 | Use to control direct access to the Azure Machine Learning backend service. Azure AI Foundry hub based projects rely on the Azure Machine Learning service. |
 | Azure Machine Learning Web App | d7304df8-741f-47d3-9bc2-df0e24e2071f | Use to control access to Azure Machine Learning studio. |
+| Azure Machine Learning | 0736f41a-0425-bdb5-1563eff02385 | Use to control direct access to the Azure Machine Learning API. For example, when using the SDK or REST API. Azure AI Foundry hub based projects rely on the Azure Machine Learning API. |
 
 ## Configure built-in policies
 
