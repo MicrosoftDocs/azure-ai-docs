@@ -19,7 +19,7 @@ author: eric-urban
 
 ## Create a first resource
 
-AI Foundry portal provides a way to create a new Azure resource with basic,  defaulted, settings. If your organization requires customized Azure configurations like alternative names, security controls or cost tags, you may have to use Azure Portal or [template options](../ai-foundry/how-to/create-resource-template.md) to comply with your organization's Azure Policy compliance.
+AI Foundry portal provides a way to create a new Azure resource with basic,  defaulted, settings. If your organization requires customized Azure configurations like alternative names, security controls or cost tags, you may have to use Azure Portal or [template options](../../ai-foundry/how-to/create-resource-template.md) to comply with your organization's Azure Policy compliance.
 
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
