@@ -14,7 +14,7 @@ recommendations: false
 
 # Configuring Azure Blob Storage for Azure OpenAI
 
-Azure OpenAI now supports using [Azure Blob Storage](/azure/storage/blobs/storage-blobs-introduction) for Azure OpenAI Batch input and output files. By using your own storage, you aren't subject to batch file limits.
+Azure OpenAI now supports using [Azure Blob Storage](/azure/storage/blobs/storage-blobs-introduction) for Azure OpenAI Batch input and output files. By using your own storage, you aren't subject to the batch restrictions on the number of files.
 
 ## Region Support
 
@@ -105,7 +105,12 @@ Select **Upload** and select your `test.jsonl` file.
 
 :::image type="content" source="../media/how-to/batch-blob-storage/upload.png" alt-text="Screenshot that shows Azure Storage Blob container upload UX." lightbox="../media/how-to/batch-blob-storage/upload.png":::
 
+During the time that we are processing your `jsonl` file as part of the batch job, you cannot make any changes to the file. If a file changes while the batch job is running the job will fail.
+
 ## Create batch job
+
+> [!NOTE]
+> `metadata` is currently not supported with this capability.
 
 # [Python](#tab/python)
 
