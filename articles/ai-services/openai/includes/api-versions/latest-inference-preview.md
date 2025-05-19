@@ -1,6 +1,6 @@
 ---
 title: Azure OpenAI latest preview inference API documentation
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Latest preview data plane inference documentation generated from OpenAPI 3.0 spec
 manager: nitinme
 ms.service: azure-ai-openai
@@ -1342,7 +1342,7 @@ Edits an image from a text caption on a given gpt-image-1 model deployment
 | api-key | True | string | Provide Azure OpenAI API key here |
 ### Request Body
 
-**Content-Type**: application/json
+**Content-Type**: multipart/form-data
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|

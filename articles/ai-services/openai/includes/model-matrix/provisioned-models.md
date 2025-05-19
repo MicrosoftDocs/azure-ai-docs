@@ -1,6 +1,6 @@
 ---
 title: Provisioned model availability
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: PTU-managed model availability by region.
 manager: nitinme
 ms.service: azure-ai-openai

@@ -18,8 +18,6 @@ author: sdgilley
 
 # Tutorial: Deploy an enterprise chat web app
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
-
 In this article, you deploy an enterprise chat web app that uses your own data with a large language model in Azure AI Foundry portal.
 
 Your data source is used to help ground the model with specific data. Grounding means that the model uses your data to help it understand the context of your question. You're not changing the deployed model itself. Your data is stored separately and securely in your original data source
@@ -34,7 +32,8 @@ The steps in this tutorial are:
 
 ## Prerequisites
 
-- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
+[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
+
 - A [deployed Azure OpenAI](../how-to/deploy-models-openai.md) chat model. Complete the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md) to create this resource if you haven't already.
 
 - A Search service connection to index the sample product data.  If you don't have one, follow the steps to [create](copilot-sdk-create-resources.md#create-search) and [connect](copilot-sdk-create-resources.md#connect) a search service.

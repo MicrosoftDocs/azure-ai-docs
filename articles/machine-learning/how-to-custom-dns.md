@@ -143,7 +143,7 @@ The following FQDNs are for Microsoft Azure operated by 21Vianet regions:
 
 * `<instance-name>-22.<region>.instances.azureml.cn` - Only used by the `az ml compute connect-ssh` command to connect to computes in a private virtual network. Not needed if you aren't using a managed network or SSH connections.
 * `<managed online endpoint name>.<region>.inference.ml.azure.cn` - Used by managed online endpoints
-* `models.ai.azure.com` - Used for deploying Models as a Service
+* `models.ai.azure.com` - Used for standard deployment
 
 #### Azure US Government
 

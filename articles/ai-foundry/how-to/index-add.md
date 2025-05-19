@@ -32,6 +32,8 @@ You must have:
 
 ## Create an index from the Chat playground
 
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
+
 1. Sign in to [Azure AI Foundry](https://ai.azure.com).
 1. Go to your project or [create a new project](../how-to/create-projects.md) in Azure AI Foundry portal.
 1. From the menu on the left, select **Playgrounds**. Select the **Chat Playground**.

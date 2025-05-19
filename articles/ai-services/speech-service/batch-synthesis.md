@@ -76,8 +76,7 @@ You should receive a response body in the following format:
 ```json
 {
   "id": "YourSynthesisId",
-  "internalId": "7ab84171-9070-4d3b-88d4-1b8cc1cb928a",
-  "status": "NotStarted",
+  "status": "Running",
   "createdDateTime": "2024-03-12T07:23:18.0097387Z",
   "lastActionDateTime": "2024-03-12T07:23:18.0097388Z",
   "inputKind": "SSML",
@@ -93,7 +92,7 @@ You should receive a response body in the following format:
 }
 ```
 
-The `status` property should progress from `NotStarted` status, to `Running`, and finally to `Succeeded` or `Failed`. You can call the [GET batch synthesis API](#get-batch-synthesis) periodically until the returned status is `Succeeded` or `Failed`.
+The `status` property should progress from `Running` status to `Succeeded` or `Failed`. You can call the [GET batch synthesis API](#get-batch-synthesis) periodically until the returned status is `Succeeded` or `Failed`.
 
 ## Get batch synthesis
 
@@ -108,7 +107,6 @@ You should receive a response body in the following format:
 ```json
 {
   "id": "YourSynthesisId",
-  "internalId": "7ab84171-9070-4d3b-88d4-1b8cc1cb928a",
   "status": "Succeeded",
   "createdDateTime": "2024-03-12T07:23:18.0097387Z",
   "lastActionDateTime": "2024-03-12T07:23:18.7979669",
@@ -152,7 +150,6 @@ You should receive a response body in the following format:
   "value": [
     {
       "id": "my-job-03",
-      "internalId": "5f7e9ab6-2c92-4dcb-b5ee-ec0983ee4db0",
       "status": "Succeeded",
       "createdDateTime": "2024-03-12T07:28:32.5690441Z",
       "lastActionDateTime": "2024-03-12T07:28:33.0042293",
@@ -179,7 +176,6 @@ You should receive a response body in the following format:
     },
     {
       "id": "my-job-02",
-      "internalId": "5577585f-4710-4d4f-aab6-162d14bd7ee0",
       "status": "Succeeded",
       "createdDateTime": "2024-03-12T07:28:29.6418211Z",
       "lastActionDateTime": "2024-03-12T07:28:30.0910306",

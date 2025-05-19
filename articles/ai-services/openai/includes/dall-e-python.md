@@ -1,7 +1,7 @@
 ---
-title: 'Quickstart: Generate images with the Python SDK for Azure OpenAI Service'
-titleSuffix: Azure OpenAI Service
-description: Learn how to generate images with Azure OpenAI Service by using the Python SDK and the endpoint and access keys for your Azure OpenAI resource.
+title: 'Quickstart: Generate images with the Python SDK for Azure OpenAI in Azure AI Foundry Models'
+titleSuffix: Azure OpenAI
+description: Learn how to generate images with Azure OpenAI by using the Python SDK and the endpoint and access keys for your Azure OpenAI resource.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom:

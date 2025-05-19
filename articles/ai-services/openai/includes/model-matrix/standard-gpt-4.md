@@ -1,6 +1,6 @@
 ---
 title: Standard GPT-4 models
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Standard GPT-4 model availability
 manager: nitinme
 ms.service: azure-ai-openai

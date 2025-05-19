@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI Service Realtime API Reference
+title: Azure OpenAI in Azure AI Foundry Models Realtime API Reference
 titleSuffix: Azure OpenAI
 description: Learn how to use the Realtime API to interact with the Azure OpenAI service in real-time.
 manager: nitinme

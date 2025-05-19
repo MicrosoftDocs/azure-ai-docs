@@ -1,7 +1,7 @@
 ---
-title: 'Create and manage Azure OpenAI Service deployments with the Azure PowerShell'
+title: 'Create and manage Azure OpenAI in Azure AI Foundry Models deployments with the Azure PowerShell'
 titleSuffix: Azure OpenAI
-description: Learn how to use Azure PowerShell to create an Azure OpenAI resource and manage deployments with the Azure OpenAI Service.
+description: Learn how to use Azure PowerShell to create an Azure OpenAI resource and manage deployments with the Azure OpenAI.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: devx-track-azurepowershell
@@ -38,7 +38,7 @@ New-AzCognitiveServicesAccount -ResourceGroupName OAIResourceGroup -Name MyOpenA
 
 ## Retrieve information about the resource
 
-After you create the resource, you can use different commands to find useful information about your Azure OpenAI Service instance. The following examples demonstrate how to retrieve the REST API endpoint base URL and the access keys for the new resource.
+After you create the resource, you can use different commands to find useful information about your Azure OpenAI in Azure AI Foundry Models instance. The following examples demonstrate how to retrieve the REST API endpoint base URL and the access keys for the new resource.
 
 ### Get the endpoint URL
 
