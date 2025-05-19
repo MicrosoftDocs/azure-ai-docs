@@ -29,7 +29,7 @@ If you select **Auto-update** at the deployment step (see [Manage models](/azure
 
 |Model router version|Underlying models (version)|
 |---|---|
-|`2025-04-15`|GPT-4.1 (`2025-04-14`)</br>GPT-4.1-mini (`2025-04-14`)</br>GPT-4.1-nano (`2025-04-14`) </br>o4-mini (`2025-04-16`) |
+|`2025-05-19`|GPT-4.1 (`2025-04-14`)</br>GPT-4.1-mini (`2025-04-14`)</br>GPT-4.1-nano (`2025-04-14`) </br>o4-mini (`2025-04-16`) |
 
 
 ## Limitations
