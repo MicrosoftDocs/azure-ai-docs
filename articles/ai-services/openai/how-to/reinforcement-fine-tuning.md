@@ -152,7 +152,7 @@ To evaluate how close the model-generated output is to the reference, scored wit
 
 ***Supported operations:***
 
-- `bleu` – computes bleu score between strings
+- `bleu` – computes BLEU score between strings
 - `Fuzzy_match` – fuzzy string match, using rapidfuzz
 - `gleu` – computes google BLEU score between strings
 - `meteor` – computes METEOR score between strings
@@ -209,7 +209,7 @@ A multigrader object combines the output of multiple graders to produce a single
 - `/` (division)
 - `^` (power)
 
-*Functions:*0
+*Functions:*
 - `min`
 - `max`
 - `abs`
@@ -219,7 +219,7 @@ A multigrader object combines the output of multiple graders to produce a single
 - `sqrt`
 - `log`
 
-When using the UX you're able to write a prompt and generate a valid grader and response format in json as needed. Grader is mandatory field to be entered while submitting a finetuning job. Response format is optional.
+When using the UX you're able to write a prompt and generate a valid grader and response format in json as needed. Grader is mandatory field to be entered while submitting a fine-tuning job. Response format is optional.
 
 > [!IMPORTANT]
 > Generating correct grader schema requires careful prompt authoring. You may find that your first few attempts generate invalid schemas or don't create a schema that will properly handle your training data. Grader is a mandatory field that must be entered while submitting a fine-tuning job. Response format is optional.
@@ -340,7 +340,7 @@ During the training you can view the logs and RFT metrics and pause the job as n
 
 ### Guardrails on training spending
 
-As a RFT job can lead to high training costs, we automatically pause jobs once they have hit $5K in total training costs (training + grading). Users may deploy the most recent checkpoint or resume the training job. If the the user decides to resume the job, billing will continue for the job and subsequently no further price limits would be placed on the training job.
+As an RFT job can lead to high training costs, we automatically pause jobs once they have hit $5K in total training costs (training + grading). Users may deploy the most recent checkpoint or resume the training job. If the user decides to resume the job, billing will continue for the job and subsequently no further price limits would be placed on the training job.
 
 ## Interpreting training results
 
