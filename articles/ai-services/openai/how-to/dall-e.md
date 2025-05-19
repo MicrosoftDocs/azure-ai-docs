@@ -1,6 +1,6 @@
 ---
 title: How to use image generation models 
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn how to generate and edit images with image models, and learn about the configuration options that are available.
 author: PatrickFarley
 ms.author: pafarley 
@@ -189,7 +189,7 @@ Use the *user* parameter to specify a unique identifier for the user making the 
 Use the *output_format* parameter to specify the format of the generated image. Supported formats are `PNG` and `JPEG`. The default is `PNG`.
 
 > [!NOTE]
-> WEBP images are not supported in the Azure OpenAI Service.
+> WEBP images are not supported in the Azure OpenAI in Azure AI Foundry Models.
 
 #### Compression
 
@@ -316,8 +316,8 @@ DALL-E models don't support the Image Edit API.
 
 ## Related content
 
-* [What is Azure OpenAI Service?](../overview.md)
-* [Quickstart: Generate images with Azure OpenAI Service](../dall-e-quickstart.md)
+* [What is Azure OpenAI?](../overview.md)
+* [Quickstart: Generate images with Azure OpenAI](../dall-e-quickstart.md)
 * [Image API reference](/azure/ai-services/openai/reference#image-generation)
 * [Image API (preview) reference](/azure/ai-services/openai/reference-preview)
 

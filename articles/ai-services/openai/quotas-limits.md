@@ -1,6 +1,5 @@
 ---
-title: Azure OpenAI Service quotas and limits
-titleSuffix: Azure AI services
+title: Azure OpenAI in Azure AI Foundry Models quotas and limits
 description: Quick reference, detailed description, and best practices on the quotas and limits for the OpenAI service in Azure AI services.
 author: mrbullwinkle
 manager: nitinme
@@ -13,9 +12,9 @@ ms.date: 04/23/2025
 ms.author: mbullwin
 ---
 
-# Azure OpenAI Service quotas and limits
+# Azure OpenAI in Azure AI Foundry Models quotas and limits
 
-This article contains a quick reference and a detailed description of the quotas and limits for Azure OpenAI in Azure AI services.
+This article contains a quick reference and a detailed description of the quotas and limits for Azure OpenAI.
 
 ## Quotas and limits reference
 
@@ -28,7 +27,7 @@ The following sections provide you with a quick guide to the default quotas and 
 | Default DALL-E 3 quota limits| 2 capacity units (6 requests per minute)|
 | Default GPT-image-1 quota limits | 2 capacity units (6 requests per minute) |
 | Default speech to text audio API quota limits | 3 requests per minute |
-| Maximum prompt tokens per request | Varies per model. For more information, see [Azure OpenAI Service models](./concepts/models.md)|
+| Maximum prompt tokens per request | Varies per model. For more information, see [Azure OpenAI models](./concepts/models.md)|
 | Max Standard deployments per resource | 32 |
 | Max fine-tuned model deployments | 5 |
 | Total number of training jobs per resource | 100 |
@@ -238,7 +237,7 @@ If your Azure subscription is linked to certain [offer types](https://azure.micr
 |---|:---|
 |`Azure for Students` | 1 K (all models) <br>Exception o-series & GPT-4.1 & GPT 4.5 Preview: 0|
 | `MSDN` | GPT-4o-mini: 200 K <br> GPT 3.5 Turbo Series: 200 K <br> GPT-4 series: 50 K <br>computer-use-preview: 8 K <br> gpt-4o-realtime-preview: 1 K <br> o-series: 0 <br> GPT 4.5 Preview: 0 <br> GPT-4.1: 50 K <br> GPT-4.1-nano: 200 K  |
-|`Pay-as-you-go` | GPT-4o-mini: 200 K <br> GPT 3.5 Turbo Series: 200 K <br> GPT-4 series: 50 K <br>computer-use-preview: 30 K <br> o-series: 0 <br> GPT 4.5 Preview: 0  <br> GPT-4.1: 50 K <br> GPT-4.1-nano: 200 K  |
+|`Standard` | GPT-4o-mini: 200 K <br> GPT 3.5 Turbo Series: 200 K <br> GPT-4 series: 50 K <br>computer-use-preview: 30 K <br> o-series: 0 <br> GPT 4.5 Preview: 0  <br> GPT-4.1: 50 K <br> GPT-4.1-nano: 200 K  |
 | `Azure_MS-AZR-0111P`  <br> `Azure_MS-AZR-0035P` <br> `Azure_MS-AZR-0025P` <br> `Azure_MS-AZR-0052P` <br>| GPT-4o-mini: 200 K <br> GPT 3.5 Turbo Series: 200 K <br> GPT-4 series: 50 K |
 | `CSP Integration Sandbox` <sup>*</sup> | All models: 0 |
 | `Lightweight trial`<br>`Free Trials`<br>`Azure Pass`  | All models: 0 |

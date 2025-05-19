@@ -1,6 +1,6 @@
 ---
 title: Monitoring data reference for Azure OpenAI
-description: This article contains important reference material you need when you monitor Azure OpenAI Service by using Azure Monitor.
+description: This article contains important reference material you need when you monitor Azure OpenAI in Azure AI Foundry Models by using Azure Monitor.
 ms.date: 02/20/2025
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: reference
@@ -13,13 +13,13 @@ ms.service: azure-ai-openai
 
 [!INCLUDE [horz-monitor-ref-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-intro.md)]
 
-See [Monitor Azure OpenAI](./how-to/monitor-openai.md) for details on the data you can collect for Azure OpenAI Service and how to use it.
+See [Monitor Azure OpenAI](./how-to/monitor-openai.md) for details on the data you can collect for Azure OpenAI in Azure AI Foundry Models and how to use it.
 
 [!INCLUDE [horz-monitor-ref-metrics-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-intro.md)]
 
 ### Supported metrics for Microsoft.CognitiveServices/accounts
 
-Here are the most important metrics we think you should monitor for Azure OpenAI. Later in this article is a longer list of all available Azure AI services metrics which contains more details on metrics in this shorter list. _Please see below list for most up to date information. We're working on refreshing the tables in the following sections._
+Here are the most important metrics we think you should monitor for Azure OpenAI. Later in this article is a longer list of all available metrics for this namespace which contains more details on metrics in this shorter list. _Please see below list for most up to date information. We're working on refreshing the tables in the following sections._
 
 - Azure OpenAI Requests
 - Active Tokens
@@ -35,7 +35,7 @@ Here are the most important metrics we think you should monitor for Azure OpenAI
 - Normalized Time to First Byte
 - Tokens per Second
 
-You can also monitor Content Safety metrics that are used by other Azure AI services. 
+You can also monitor Content Safety metrics that are used by other related services. 
 - Blocked Volume
 - Harmful Volume Detected
 - Potential Abusive User Count
@@ -44,9 +44,9 @@ You can also monitor Content Safety metrics that are used by other Azure AI serv
 
 > [!NOTE]
 > The **Provisioned-managed Utilization** metric is now deprecated and is no longer recommended. This metric has been replaced by the **Provisioned-managed Utilization V2** metric.
-> Tokens per Second, Time to Response, Time Between Tokens are currently not available for pay-as-you-go (Standard) deployments. 
+> Tokens per Second, Time to Response, Time Between Tokens are currently not available for Standard deployments. 
 
-Cognitive Services metrics have the category **Cognitive Services - HTTP Requests** in the following table. These metrics are legacy metrics that are common to all Azure AI Services resources. Microsoft no longer recommends that you use these metrics with Azure OpenAI.
+Cognitive Services metrics have the category **Cognitive Services - HTTP Requests** in the following table. These metrics are legacy metrics that are common to all resources of this type. Microsoft no longer recommends that you use these metrics with Azure OpenAI.
 
 The following table lists the metrics available for the Microsoft.CognitiveServices/accounts resource type.
 

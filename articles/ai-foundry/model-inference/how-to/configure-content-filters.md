@@ -1,7 +1,7 @@
 ---
-title: 'How to configure content filters (preview) for models in Azure AI services'
+title: 'How to configure content filters for models in Azure AI Foundry'
 titleSuffix: Azure AI Foundry
-description: Learn how to use and configure the content filters that come with Azure AI Services, including getting approval for gated modifications.
+description: Learn to use and configure the content filters that come with Azure AI Foundry, including getting approval for gated modifications.
 manager: nitinme
 ms.service: azure-ai-model-inference
 ms.topic: how-to
@@ -13,7 +13,7 @@ ms.custom: ignite-2024, github-universe-2024
 zone_pivot_groups: azure-ai-models-deployment
 ---
 
-# How to configure content filters (preview) for models in Azure AI services
+# How to configure content filters for models in Azure AI Foundry
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [portal](../includes/configure-content-filters/portal.md)]
@@ -29,5 +29,5 @@ zone_pivot_groups: azure-ai-models-deployment
 
 ## Next steps
 
-- Read more about [content filtering categories and severity levels](../concepts/content-filter.md) with Azure OpenAI Service.
+- Read more about [content filtering categories and severity levels](../concepts/content-filter.md) with Azure OpenAI in Azure AI Foundry Models.
 - Learn more about red teaming from our: [Introduction to red teaming large language models (LLMs) article](../../../ai-services/openai/concepts/red-teaming.md).

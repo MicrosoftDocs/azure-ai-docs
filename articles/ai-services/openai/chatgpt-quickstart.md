@@ -1,7 +1,7 @@
 ---
-title: 'Quickstart - Get started using chat completions with Azure OpenAI Service'
-titleSuffix: Azure OpenAI Service
-description: Walkthrough on how to get started using chat completions with Azure OpenAI Service.
+title: 'Quickstart - Get started using chat completions with Azure OpenAI in Azure AI Foundry Models'
+titleSuffix: Azure OpenAI
+description: Walkthrough on how to get started using chat completions with Azure OpenAI.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-go
@@ -13,7 +13,7 @@ zone_pivot_groups: openai-quickstart-new
 recommendations: false
 ---
 
-# Quickstart: Get started using chat completions with Azure OpenAI Service
+# Quickstart: Get started using chat completions with Azure OpenAI in Azure AI Foundry Models
 
 Use this article to get started using Azure OpenAI.
 

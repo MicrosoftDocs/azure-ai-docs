@@ -234,6 +234,16 @@ items:
          href: video-translation-overview.md
        - name: How to use video translation
          href: video-translation-get-started.md
+- name: Voice Live API (preview)
+  items:
+    - name: Voice Live API overview
+      href: voice-live.md
+    - name: Voice Live API quickstart
+      href: voice-live-quickstart.md
+    - name: How to use Voice Live API
+      href: voice-live-how-to.md
+    - name: Realtime API events reference documentation
+      href: /azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context
 - name: Intent recognition
   items:
     - name: Intent recognition overview

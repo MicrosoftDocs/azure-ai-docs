@@ -49,7 +49,7 @@ Here's a comparison of features between OpenAI text to speech voices in Azure Op
 | **Speech Synthesis Markup Language (SSML) support** | Not supported | Support for [a subset of SSML elements](#ssml-elements-supported-by-openai-text-to-speech-voices-in-azure-ai-speech). | Support for the [full set of SSML](speech-synthesis-markup-structure.md) in Azure AI Speech. |
 | **Development options** | REST API | Speech SDK, Speech CLI, REST API | Speech SDK, Speech CLI, REST API |
 | **Deployment option** | Cloud only | Cloud only | Cloud, embedded, hybrid, and containers. |
-| **Real-time or batch synthesis** |  Real-time | Real-time and batch synthesis | Real-time and batch synthesis |
+| **Real-time or batch synthesis** |  Real-time | Real-time | Real-time and batch synthesis |
 | **Latency** | greater than 500 ms | greater than 500 ms | less than 300 ms |
 | **Sample rate of synthesized audio** | 24 kHz | 8, 16, 24, and 48 kHz | 8, 16, 24, and 48 kHz |
 | **Speech output audio format** | opus, mp3, aac, flac | opus, mp3, pcm, truesilk | opus, mp3, pcm, truesilk |
