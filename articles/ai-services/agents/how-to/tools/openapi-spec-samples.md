@@ -53,7 +53,12 @@ import os
 import jsonref
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
+# import the folloing 
 from azure.ai.agents.models import OpenApiTool, OpenApiAnonymousAuthDetails
+# use the following for connection auth
+# from azure.ai.agents.models import OpenApiTool, OpenApiConnectionAuthDetails, OpenApiConnectionSecurityScheme
+# use the following for managed identity auth
+# from azure.ai.agents.models import OpenApiTool, OpenApiManagedAuthDetails, OpenApiManagedSecurityScheme
 
 endpoint = os.environ["PROJECT_ENDPOINT"]
 model_deployment_name = os.environ["MODEL_DEPLOYMENT_NAME"]
@@ -64,25 +69,24 @@ with AIProjectClient(
 ) as project_client:
 ```
 
-## Weather Tool Setup
-The OpenAPI specification for the weather service is loaded from `weather_openapi.json`.
-
-```python
-    # Load the OpenAPI specification for the weather service from a local JSON file using jsonref to handle references
-    with open(os.path.join(os.path.dirname(__file__), "weather_openapi.json"), "r") as f:
-         openapi_weather = jsonref.loads(f.read())
-```
-
 ## Countries Tool Setup
 Similarly, the OpenAPI specification for the countries service is loaded from `countries.json`. An anonymous authentication object (`OpenApiAnonymousAuthDetails`) is created, as this specific API doesn't require authentication in this example.
 
 ```python
+    # Load the OpenAPI specification for the countries service from a local JSON file
+    with open(os.path.join(os.path.dirname(__file__), "weather.json"), "r") as f:
+         openapi_weather = jsonref.loads(f.read())
+
     # Load the OpenAPI specification for the countries service from a local JSON file
     with open(os.path.join(os.path.dirname(__file__), "countries.json"), "r") as f:
          openapi_countries = jsonref.loads(f.read())
 
     # Create Auth object for the OpenApiTool (note: using anonymous auth here; connection or managed identity requires additional setup)
     auth = OpenApiAnonymousAuthDetails()
+    # for connection setup
+    # auth = OpenApiConnectionAuthDetails(security_scheme=OpenApiConnectionSecurityScheme(connection_id=os.environ["CONNECTION_ID"]))
+    # for managed identity set up
+    # auth = OpenApiManagedAuthDetails(security_scheme=OpenApiManagedSecurityScheme(audience="https://your_identity_scope.com"))
 
     # Initialize the main OpenAPI tool definition for weather
     openapi_tool = OpenApiTool(
@@ -113,11 +117,11 @@ Create the thread and add the initial user message.
 
 ```python
     # Create a new conversation thread for the interaction
-    thread = project_client.threads.create_thread()
+    thread = project_client.agents.threads.create()
     print(f"Created thread, ID: {thread.id}")
 
     # Create the initial user message in the thread
-    message = project_client.messages.create_message(
+    message = project_client.agents.messages.create(
         thread_id=thread.id,
         role="user",
         content="What's the weather in Seattle and What is the name and population of the country that uses currency with abbreviation THB?",
@@ -131,32 +135,29 @@ Create the run, check the output, and examine what tools were called during the 
 
 ```python
     # Create and automatically process the run, handling tool calls internally
-    run = project_client.runs.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
-        print(f"Run finished with status: {run.status}")
-        if run.status == "failed":
-            print(f"Run failed: {run.last_error}")
+    run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+    print(f"Run finished with status: {run.status}")
 
-        # Retrieve the steps taken during the run for analysis
-        run_steps = agents_client.list_run_steps(thread_id=thread.id, run_id=run.id)
+    if run.status == "failed":
+        print(f"Run failed: {run.last_error}")
 
-        # Loop through each step to display information
-        for step in run_steps.data:
-            print(f"Step {step['id']} status: {step['status']}")
+    # Retrieve the steps taken during the run for analysis
+    run_steps = project_client.agents.run_steps.list(thread_id=thread.id, run_id=run.id)
 
-            # Check if there are tool calls recorded in the step details
-            step_details = step.get("step_details", {})
-            tool_calls = step_details.get("tool_calls", [])
+    # Loop through each step to display information
+    for step in run_steps:
+        print(f"Step {step['id']} status: {step['status']}")
 
-            if tool_calls:
-                print("  Tool calls:")
-                for call in tool_calls:
-                    print(f"    Tool Call ID: {call.get('id')}")
-                    print(f"    Type: {call.get('type')}")
+        tool_calls = step.get("step_details", {}).get("tool_calls", [])
+        for call in tool_calls:
+            print(f"  Tool Call ID: {call.get('id')}")
+            print(f"  Type: {call.get('type')}")
+            function_details = call.get("function", {})
+            if function_details:
+                print(f"  Function name: {function_details.get('name')}")
+                print(f" function output: {function_details.get('output')}")
 
-                    function_details = call.get("function", {})
-                    if function_details:
-                        print(f"    Function name: {function_details.get('name')}")
-            print()
+        print()
 ```
 
 
@@ -165,12 +166,13 @@ After the interaction is complete, the script performs cleanup by deleting the c
 
 ```python
         # Delete the agent resource to clean up
-        agents_client.delete_agent(agent.id)
+        project_client.agents.delete_agent(agent.id)
         print("Deleted agent")
 
         # Fetch and log all messages exchanged during the conversation thread
-        messages = agents_client.list_messages(thread_id=thread.id)
-        print(f"Messages: {messages}")
+        messages = project_client.agents.messages.list(thread_id=thread.id)
+        for msg in messages:
+            print(f"Message ID: {msg.id}, Role: {msg.role}, Content: {msg.content}")
 ```
 
 :::zone-end
