@@ -348,6 +348,15 @@ The Stability AI collection of image generation models include Stable Image Core
 | [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai) | Image generation | - **Input:** text (1000 tokens)  <br /> - **Output:** 1 Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) |
 | [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai) | Image generation | - **Input:** text (1000 tokens)  <br /> - **Output:** 1 Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) |
 
+### xAI
+
+xAI's Grok 3 and Grok 3 Mini models are designed to excel in various enterprise domains. Grok 3, a non-reasoning model pre-trained by the Colossus datacenter, is tailored for business use cases such as data extraction, coding, and text summarization, with exceptional instruction-following capabilities. It supports a 131,072 token context window, allowing it to handle extensive inputs while maintaining coherence and depth, and is particularly adept at drawing connections across domains and languages. On the other hand, Grok 3 Mini is a lightweight reasoning model trained to tackle agentic, coding, mathematical, and deep science problems with test-time compute. It also supports a 131,072 token context window for understanding codebases and enterprise documents, and excels at using tools to solve complex logical problems in novel environments, offering raw reasoning traces for user inspection with adjustable thinking budgets.
+
+| Model  | Type | Capabilities |
+| ------ | ---- | ------------ |
+| [grok-3](https://int.ai.azure.com/explore/models/grok-3/version/1/registry/azureml-xai) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |
+| [grok-3-mini](https://ai.azure.com/explore/models/grok-3-mini/version/1/registry/azureml-xai) | chat-completion |  - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |
+
 #### Inference examples: Stability AI
 
 Stability AI models deployed via standard deployment implement the Foundry Models API on the route `/image/generations`.
