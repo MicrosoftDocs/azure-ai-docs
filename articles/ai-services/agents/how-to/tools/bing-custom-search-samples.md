@@ -1,7 +1,7 @@
 ---
-title: 'How to use the Custom Bing Search with Azure AI Agent Service tool'
+title: 'How to use the Custom Bing Search with Azure AI Foundry Agent Service tool'
 titleSuffix: Azure OpenAI
-description: Find samples to ground Azure AI Agents using Custom Bing Search results.
+description: Find samples to ground Azure AI Foundry Agents using Custom Bing Search results.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
@@ -35,6 +35,7 @@ zone_pivot_groups: selection-bing-custom-grounding
 
 :::zone-end
 
+<!--
 ::: zone pivot="python"
 
 ## Create a project client
@@ -131,6 +132,8 @@ if response_message:
 
 
 :::zone-end
+-->
+
 <!--
 ::: zone pivot="csharp"
 
@@ -378,7 +381,9 @@ Create a run and observe that the model uses the Grounding with Bing Custom Sear
 ::: zone pivot="rest"
 
 >[!IMPORTANT]
-> 1. This REST API allows developers to invoke the Grounding with Bing Custom Search tool through the Azure AI Foundry Agent Service. It does not send calls to the Grounding with Bing Custom Search API directly. 
+> * This REST API allows developers to invoke the Grounding with Bing Custom Search tool through the Azure AI Foundry Agent Service. It does not send calls to the Grounding with Bing Custom Search API directly.
+> * The following samples are applicable if you are using **Azure AI Foundry Project** resource with Microsoft Fabric tool through REST API call
+> * Your connection id should be in this format: `/subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-bing-connection-name>`
 
 Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
 
@@ -402,12 +407,12 @@ curl --request POST \
             "bing_custom_search": {
                 "search_configurations": [
                     {
-                        "connection_id": <your_custom_search_connecion_id>,
+                        "connection_id": /subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-fabric-connection-name>,
                         "instance_name": <your_custom_search_configuration_name>, 
                         "count": 7,
                         "market": "en-US", 
                         "set_lang": "en",
-                        "freshness": "7d",
+                        "freshness": "day",
                     }
                 ]
             }

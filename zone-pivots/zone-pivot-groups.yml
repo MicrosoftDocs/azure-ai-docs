@@ -1081,10 +1081,6 @@ groups:
   pivots:
   - id: portal
     title: Azure AI Foundry portal
-  - id: javascript
-    title: JavaScript
-  - id: python
-    title: Python
   - id: rest
     title: REST API
 - id: selection-file-search-upload
@@ -1147,8 +1143,6 @@ groups:
   pivots:
   - id: portal
     title: Azure AI Foundry portal
-  - id: python
-    title: Python
   - id: rest
     title: REST API
 - id: selection-openapi-function
