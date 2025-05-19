@@ -262,5 +262,5 @@ Aside from individual data evaluation results, the grader also returns a metric 
 
 ## Related content
 
-- [How to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-datasets)  
+- [How to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md##local-evaluation-on-test-datasets-using-evaluate)  
 - [How to run batch evaluation on a target](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-a-target)
