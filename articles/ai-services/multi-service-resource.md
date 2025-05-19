@@ -42,7 +42,7 @@ Looking to use Azure AI Search skills? See classic [Azure AI multi-services reso
 
 ## Default project
 
-In AI Foundry, projects provide access to developer APIs, and act as folders to organize your work. A default project is created for you when you create your resource in Azure Portal or Azure AI Foundry Portal. The default project has a special notion - it provides backwards compatability with developer APIs that are supported on the parent resource level. Typically these are AI Services and Azure OpenAI services APIs for model customization. Newer APIs including Agents and Evaluations are accessible from any project. For more information, see [Types of projects](../ai-foundry/what-is-azure-ai-foundry.md#project-types).
+In AI Foundry, projects provide access to developer APIs, and act as folders to organize your work. A default project is created for you when you create your resource in Azure portal or Azure AI Foundry Portal. The default project has a special notion - it provides backwards compatibility with developer APIs that are supported on the parent resource level. Typically these are AI Services and Azure OpenAI services APIs for model customization. Newer APIs including Agents and Evaluations are accessible from any project. For more information, see [Types of projects](../ai-foundry/what-is-azure-ai-foundry.md#project-types).
 
 Your AI Foundry resource might or might not be associated with an AI Foundry project:
 - If your AI Foundry resources was created using Azure CLI, PowerShell, Bicep template, Terraform, or SDKs. In those cases, the AI Foundry resource by default isn't associated with a project. You can create a project later as a child resource.
@@ -55,7 +55,7 @@ Your AI Foundry resource might or might not be associated with an AI Foundry pro
 The AI Foundry resource enables access to the following Azure AI services with a single set of credentials. Some services are available via the AI Foundry resource and single-service resource.
 
 > [!TIP]
-> We recommend whenever possible to use the **AI Foundry** resource (where the API kind is `AIServices`) to access multiple Azure AI services with a single set of credentials. For services not available via the AI Foundry resource (such as Face and Custom Vision), you can altnernatively create a single-service resource.
+> We recommend whenever possible to use the **AI Foundry** resource (where the API kind is `AIServices`) to access multiple Azure AI services with a single set of credentials. For services not available via the AI Foundry resource (such as Face and Custom Vision), you can alternatively create a single-service resource.
 
 | Service | Description | Kind (via API) |
 | --- | --- | --- |
