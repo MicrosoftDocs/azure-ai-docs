@@ -124,7 +124,7 @@ Selecting a resource and clicking **Switch resource** will cause the deployment 
 Following the creation of your deployment, you might want to purchase a term discount via an Azure Reservation.  An Azure Reservation can provide a substantial discount on the hourly rate for users intending to use the deployment beyond a few days.   
 
 For more information on the purchase model and reservations, see:
-* [Save costs with Microsoft Azure OpenAI service provisioned reservations](/azure/cost-management-billing/reservations/azure-openai).
+* [Save costs with Microsoft Azure OpenAI provisioned reservations](/azure/cost-management-billing/reservations/azure-openai).
 * [Azure OpenAI provisioned onboarding guide](./provisioned-throughput-onboarding.md) 
 * [Guide for Azure OpenAI provisioned reservations](../concepts/provisioned-throughput.md) 
 

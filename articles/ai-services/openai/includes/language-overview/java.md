@@ -229,7 +229,7 @@ Refer to the instructions in this reference document on how to [configure loggin
 
 ### Enable HTTP request/response logging
 
-Reviewing the HTTP request sent or response received over the wire to/from the Azure OpenAI service can be
+Reviewing the HTTP request sent or response received over the wire to/from the Azure OpenAI can be
 useful in troubleshooting issues. To enable logging the HTTP request and response payload, the [OpenAIClient][openai_client]
 can be configured as shown below. If there's no SLF4J's `Logger` on the class path, set an environment variable
 [AZURE_LOG_LEVEL][azure_log_level] in your machine to enable logging.
@@ -273,7 +273,7 @@ clientBuilder.httpLogOptions(new HttpLogOptions().addAllowedHeaderName("safe-to-
 ```
 
 ### Troubleshooting exceptions
-Azure OpenAI service methods throw a`[HttpResponseException` or its subclass on failure.
+Azure OpenAI methods throw a`[HttpResponseException` or its subclass on failure.
 The `HttpResponseException` thrown by the OpenAI client library includes detailed response error object
 that provides specific useful insights into what went wrong and includes corrective actions to fix common issues.
 This error information can be found inside the message property of the `HttpResponseException` object.

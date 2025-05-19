@@ -62,7 +62,7 @@ Use this article to learn how to automate resource deployment for Azure OpenAI i
 
 1. Select the link in the `azd` outputs to go to the new resource group in the Azure portal. The following top-level resources should appear:
 
-    - An Azure OpenAI service with a deployed model
+    - An Azure OpenAI with a deployed model
     - An Azure Storage account that you can use to upload your own data files
     - An Azure AI Search service configured with the proper indexes and data sources
 

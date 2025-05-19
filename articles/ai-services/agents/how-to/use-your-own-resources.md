@@ -17,7 +17,7 @@ ms.custom: azure-ai-agents
 Use this article if you want to use the Azure Agent Service with resources you already have. 
 
 > [!NOTE]
-> * If you use an existing AI Services / Azure OpenAI Service resource, no model will be deployed. You can deploy a model to the resource after the agent setup is complete. 
+> * If you use an existing AI Services / Azure OpenAI in Azure AI Foundry Models resource, no model will be deployed. You can deploy a model to the resource after the agent setup is complete. 
 > * Make sure your Azure OpenAI resource and Azure AI Foundry project are in the same region. 
 
 ## Choose basic or standard agent setup

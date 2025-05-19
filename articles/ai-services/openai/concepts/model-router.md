@@ -1,7 +1,7 @@
 ---
 title: Model router for Azure AI Foundry (preview) concepts
 titleSuffix: Azure OpenAI
-description: Learn about the model router feature in Azure OpenAI Service.
+description: Learn about the model router feature in Azure OpenAI in Azure AI Foundry Models.
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-openai

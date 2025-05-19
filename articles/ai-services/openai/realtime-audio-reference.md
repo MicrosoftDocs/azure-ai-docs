@@ -1,7 +1,7 @@
 ---
 title: Azure OpenAI in Azure AI Foundry Models Realtime API Reference
 titleSuffix: Azure OpenAI
-description: Learn how to use the Realtime API to interact with the Azure OpenAI service in real-time.
+description: Learn how to use the Realtime API to interact with the Azure OpenAI in real-time.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
@@ -15,7 +15,7 @@ recommendations: false
 
 [!INCLUDE [Feature preview](includes/preview-feature.md)]
 
-The Realtime API is a WebSocket-based API that allows you to interact with the Azure OpenAI service in real-time. 
+The Realtime API is a WebSocket-based API that allows you to interact with the Azure OpenAI in real-time. 
 
 The Realtime API (via `/realtime`) is built on [the WebSockets API](https://developer.mozilla.org/docs/Web/API/WebSockets_API) to facilitate fully asynchronous streaming communication between the end user and model. Device details like capturing and rendering audio data are outside the scope of the Realtime API. It should be used in the context of a trusted, intermediate service that manages both connections to end users and model endpoint connections. Don't use it directly from untrusted end user devices.
 

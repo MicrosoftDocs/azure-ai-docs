@@ -139,7 +139,7 @@ Workflows for this network exception are requests originating from Azure AI Foun
 
 To set up managed identities for Azure OpenAI and Azure Machine Learning:
 
-+ [How to configure Azure OpenAI Service with managed identities](/azure/ai-services/openai/how-to/managed-identity)
++ [How to configure Azure OpenAI in Azure AI Foundry Models with managed identities](/azure/ai-services/openai/how-to/managed-identity)
 + [How to set up authentication between Azure Machine Learning and other services](/azure/machine-learning/how-to-identity-based-service-authentication).
 
 To set up a managed identity for an Azure AI service:

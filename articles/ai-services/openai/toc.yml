@@ -1,5 +1,5 @@
 items:
-- name: Azure OpenAI Service Documentation
+- name: Azure OpenAI Documentation
   href: index.yml
 - name: Overview
   expanded: true
