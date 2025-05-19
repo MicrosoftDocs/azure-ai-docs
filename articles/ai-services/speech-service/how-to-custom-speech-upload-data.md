@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 2/25/2025
+ms.date: 5/19/2025
 ms.author: eur
 zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I need to understand how to upload data to test or train a custom speech model so that I can improve the accuracy of speech recognition.
@@ -21,13 +21,17 @@ You need audio or text data for testing the accuracy of speech recognition or tr
 
 ## Upload datasets
 
+Follow these steps to upload datasets for training (fine-tuning) your custom speech model.
+
+> [!IMPORTANT]
+> Repeat the steps to upload testing datasets (such as **Audio** only) that you need [later when you create a test](./how-to-custom-speech-inspect-data.md). You can upload multiple datasets for training and testing.
+
 ::: zone pivot="ai-foundry-portal"
 
 1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
-1. Select **Fine-tuning** from the left pane.
-1. Select **AI Service fine-tuning**.
-1. Select the custom model that you want to manage from the **Model name** column.
-1. Select **Manage data** and then select **Add data**.
+1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
+1. Select the custom speech fine-tuning task (by model name) that you [started as described in the how to start custom speech fine-tuning article](./how-to-custom-speech-create-project.md).
+1. Select **Manage data** > **Add dataset**. 
 
     :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-add-data.png" alt-text="Screenshot of the page with an option to add data to the custom speech project." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-add-data.png":::
 
@@ -47,6 +51,8 @@ You need audio or text data for testing the accuracy of speech recognition or tr
 1. Review the data and select **Upload**. You're taken back to the **Manage data** page. The status of the data is **Processing**.
 
     :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-add-data-status-processing.png" alt-text="Screenshot of the page that shows the status of the data as processing." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-add-data-status-processing.png":::
+
+1. Repeat the steps to upload testing datasets (such as **Audio** only) that you need [later when you create a test](./how-to-custom-speech-inspect-data.md). You can upload multiple datasets for training and testing.
 
 ::: zone-end
 

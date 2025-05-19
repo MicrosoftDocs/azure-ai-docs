@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 2/25/2025
+ms.date: 5/19/2025
 ms.author: eur
 zone_pivot_groups: foundry-speech-studio
 #Customer intent: As a developer, I want to learn how to customize speech models with fine-tuning so that I can train and deploy a custom model.
@@ -37,17 +37,7 @@ In the [Azure AI Foundry portal](https://ai.azure.com), you can fine-tune some A
 
     :::image type="content" source="./media/custom-speech/ai-foundry/fine-tune-azure-ai-services.png" alt-text="Screenshot of the page to select fine-tuning of Azure AI Services models." lightbox="./media/custom-speech/ai-foundry/fine-tune-azure-ai-services.png":::
  
-1. In the wizard, select **Speech to text (speech recognition)** for custom speech. Then select **Next**.
-1. Select the connected service resource that you want to use for fine-tuning. 
-
-    :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-select-connection.png" alt-text="Screenshot of the page to select the connected service resource that you want to use for fine-tuning." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-select-connection.png":::
-
-    > [!IMPORTANT]
-    > If you train a custom model with audio data, select a service resource in a region with dedicated hardware for training audio data. See footnotes in the [regions](regions.md#regions) table for more information.
-
-    You can choose from the following connected resource types:
-    - **AI Service**: The Azure AI Services multi-service resource that [came with the Azure AI Foundry project](../../ai-services/connect-services-ai-foundry-portal.md#connect-azure-ai-services-when-you-create-a-project-for-the-first-time).
-    - **Speech Service**: An Azure AI Speech resource that was [connected after the project was created](../../ai-services/connect-services-ai-foundry-portal.md#connect-azure-ai-services-after-you-create-a-project). 
+1. In the wizard, select **Custom Speech (speech to text fine-tuning)** for custom speech. Then select **Next**.
 
 1. Enter the language, name, and description for the fine-tuning job. Then select **Create**.
 
