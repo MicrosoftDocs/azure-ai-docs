@@ -17,6 +17,8 @@ There are two unique fine-tuning experiences in the Azure AI Foundry portal:
 
 If you are only fine-tuning Azure OpenAI models, we recommend the Azure OpenAI centric fine-tuning experience which is available by navigating to [https://ai.azure.com/resource/overview](https://ai.azure.com/resource/overview). 
 
+[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
+
 # [Azure OpenAI](#tab/azure-openai)
 
 [!INCLUDE [Azure AI Foundry resource view fine-tuning](../includes/fine-tuning-studio.md)]
