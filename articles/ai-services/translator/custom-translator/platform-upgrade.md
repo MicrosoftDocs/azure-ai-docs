@@ -5,7 +5,7 @@ description: Custom Translator v1.0 upgrade
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 07/18/2023
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: reference
 ---

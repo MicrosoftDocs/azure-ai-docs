@@ -578,7 +578,7 @@ The container provides two endpoints for returning records regarding its usage.
 
 The following endpoint provides a report summarizing all of the usage collected in the mounted billing record directory.
 
-```HTTP
+```bash
 https://<service>/records/usage-logs/
 ```
 
@@ -590,7 +590,7 @@ https://<service>/records/usage-logs/
 
 The following endpoint provides a report summarizing usage over a specific month and year:
 
-```HTTP
+```bash
 https://<service>/records/usage-logs/{MONTH}/{YEAR}
 ```
 
