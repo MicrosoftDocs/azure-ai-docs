@@ -1,7 +1,7 @@
 ---
-title: 'Customize a model with Azure OpenAI Service and Azure AI Foundry portal'
+title: 'Customize a model with Azure OpenAI in Azure AI Foundry Models and Azure AI Foundry portal'
 titleSuffix: Azure OpenAI
-description: Learn how to create your own custom model with Azure OpenAI Service by using the Azure AI Foundry portal.
+description: Learn how to create your own custom model with Azure OpenAI by using the Azure AI Foundry portal.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
@@ -211,15 +211,11 @@ Look for your loss to decrease over time, and your accuracy to increase. If you 
 
 ## Deploy a fine-tuned model
 
-When the fine-tuning job succeeds, you can deploy the custom model from the **Models** pane. You must deploy your custom model to make it available for use with completion calls.
+Once you're satisified with the metrics from your fine-tuning job, or you just want to move onto inference, you must deploy the model.
 
-[!INCLUDE [Fine-tuning deletion](fine-tune.md)]
+If you're deploying for further validation, consider deploying for [testing](../how-to/fine-tune-test.md?tabs=portal) using a Developer deployment.
 
-To deploy your custom model, select the custom model to deploy, and then select **Deploy**.
-
-The **Deploy model** dialog box opens. In the dialog box, enter your **Deployment name** and then select **Create** to start the deployment of your custom model.
-
-You can monitor the progress of your deployment on the **Deployments** pane in Azure AI Foundry portal.
+If you're ready to deploy for production or have particular data residency needs, follow our [deployment guide](../how-to/fine-tuning-deploy.md?tabs=portal).
 
 ### Use a deployed fine-tuned model
 

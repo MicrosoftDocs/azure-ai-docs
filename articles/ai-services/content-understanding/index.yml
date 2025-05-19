@@ -9,7 +9,7 @@ metadata:
   ms.topic: landing-page
   author: laujan
   ms.author: lajanuar
-  ms.date: 04/14/2025
+  ms.date: 05/19/2025
 
 landingContent:
 
@@ -50,7 +50,7 @@ landingContent:
     linkLists:
       - linkListType: how-to-guide
         links:
-        - text: Create a multi-service resource
+        - text: Create an AI Foundry resource
           url: how-to/create-multi-service-resource.md
 
   - title: "What's new?"

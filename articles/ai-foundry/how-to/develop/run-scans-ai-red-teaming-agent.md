@@ -25,6 +25,8 @@ This article will guide you through the process of
 - Running automated scans.
 - Visualizing and tracking your results over time in your Azure AI Foundry project.
 
+[!INCLUDE [uses-hub-only](../../includes/uses-hub-only.md )]
+
 ## Getting started
 
 First install the `redteam` package as an extra from Azure AI Evaluation SDK, this provides the PyRIT functionality:

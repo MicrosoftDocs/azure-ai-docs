@@ -1,5 +1,15 @@
-{
+{ 
   "redirections": [
+    {
+      "source_path": "articles/ai-foundry/concepts/connections.md",
+      "redirect_url": "/azure/ai-foundry/how-to/connections-add",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/azure-openai-in-azure-ai-foundry.md",
+      "redirect_url": "/azure/ai-foundry/what-is-azure-ai-foundry",
+      "redirect_document_id": false
+    },
     {
       "source_path": "articles/search/performance-benchmarks.md",
       "redirect_url": "/previous-versions/azure/search/performance-benchmarks",
@@ -91,8 +101,8 @@
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/overview.md",
-      "redirect_url": "/azure/ai-services/agents/overview",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/licensed-data.md",
+      "redirect_url": "/azure/ai-services/agents/how-to/tools/overview",
       "redirect_document_id": false
     },
     {
@@ -268,6 +278,11 @@
     {
       "source_path_from_root": "/articles/ai-services/custom-vision-service/logo-detector-mobile.md",
       "redirect_url": "/azure/ai-services/custom-vision-service",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/index.yml",
+      "redirect_url": "/azure/ai-foundry",
       "redirect_document_id": false
     }
   ]

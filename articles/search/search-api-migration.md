@@ -12,17 +12,19 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: conceptual
-ms.date: 03/10/2025
+ms.date: 05/15/2025
 ---
 
 # Upgrade to the latest REST API in Azure AI Search
 
 Use this article to migrate to newer versions of the [**Search Service REST APIs**](/rest/api/searchservice/) and the [**Search Management REST APIs**](/rest/api/searchmanagement/) for [data plane and control plane](/azure/azure-resource-manager/management/control-plane-and-data-plane) operations.
 
+Here are the most recent versions of the REST APIs:
+
 | Targeted operations | REST API | Status |
 |---------------------|----------|--------|
 | Data plane | [`2024-07-01`](/rest/api/searchservice/search-service-api-versions#2024-07-01) | Stable |
-| Data plane | [`2024-11-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-11-01-preview) | Preview |
+| Data plane | [`2025-05-01-preview`](/rest/api/searchservice/search-service-api-versions#2025-05-01-preview&preserve-view=true) | Preview |
 | Control plane | [`2023-11-01`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2023-11-0&preserve-view=true1) | Stable |
 | Control plane | [`2025-02-01-preview`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true) | Preview |
 
@@ -83,11 +85,21 @@ See [Migrate from preview version](semantic-code-migration.md) to transition you
 
 ## Data plane upgrades
 
+Upgrade guidance assumes upgrade from the most recent previous version. If your code is based on an old API version, we recommend upgrading through each successive version to get to the newest version.
+
+### Upgrade to 2025-05-01-preview
+
+[`2025-05-01-preview`](/rest/api/searchservice/search-service-api-versions#2025-05-01-preview) provides new features, but there are no behavior changes on existing APIs. You can swap in the new API version and your code runs the same as before.
+
+### Upgrade to 2025-03-01-preview
+
+[`2025-03-01-preview`](/rest/api/searchservice/search-service-api-versions#2025-03-01-preview) provides new features, but there are no behavior changes on existing APIs. You can swap in the new API version and your code runs the same as before.
+
 ### Upgrade to 2024-11-01-preview
 
 [`2024-11-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-11-01-preview) query rewrite, Document Layout skill, keyless billing for skills processing, Markdown parsing mode, and rescoring options for compressed vectors.
 
-If you're upgrading from `2024-09-01-preview`, you can use the new preview APIs with no change to existing code. 
+If you're upgrading from `2024-09-01-preview`, you can swap in the new API version and your code runs the same as before.
 
 However, the new version introduces syntax changes to `vectorSearch.compressions`:
 
@@ -100,7 +112,7 @@ Backwards compatibility is preserved due to an internal API mapping, but we reco
 
 [`2024-09-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-09-01-preview) adds Matryoshka Representation Learning (MRL) compression for text-embedding-3 models, targeted vector filtering for hybrid queries, vector subscore details for debugging, and token chunking for [Text Split skill](cognitive-search-skill-textsplit.md).
 
-If you're upgrading from `2024-05-01-preview`, you can use the new preview APIs with no change to existing code.
+If you're upgrading from `2024-05-01-preview`, you can swap in the new API version and your code runs the same as before.
 
 ### Upgrade to 2024-07-01
 

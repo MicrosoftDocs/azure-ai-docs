@@ -13,7 +13,7 @@ ms.custom: include
 
 ## Create a blocklist
 
-1. Go to [Azure AI Foundry](https://ai.azure.com/) and navigate to your project. Then select the **Safety+ Security** page on the left nav and select the **Blocklists** tab.
+1. Go to [Azure AI Foundry](https://ai.azure.com/) and navigate to your project. Then select the **Guardrails + controls** page on the left nav and select the **Blocklists** tab.
 
     :::image type="content" source="../media/content-safety/content-filter/select-blocklists.png" lightbox="../media/content-safety/content-filter/select-blocklists.png" alt-text="Screenshot of the Blocklists page tab.":::
 
@@ -25,7 +25,7 @@ ms.custom: include
 
 ## Attach a blocklist to a content filter configuration
 
-1. Once the blocklist is ready, go back to the **Safety+ Security** page and select the **Content filters** tab. Create a new content filter configuration. This opens a wizard with several AI content safety components.
+1. Once the blocklist is ready, go back to the **Guardrails + controls** page and select the **Content filters** tab. Create a new content filter configuration. This opens a wizard with several AI content safety components.
 
     :::image type="content" source="../media/content-safety/content-filter/create-content-filter.png" lightbox="../media/content-safety/content-filter/create-content-filter.png" alt-text="Screenshot of the Create content filter button.":::
 
