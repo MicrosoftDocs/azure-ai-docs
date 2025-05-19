@@ -312,7 +312,7 @@ sections:
       - question: |
           What is Azure OpenAI on your data?  
         answer:
-          Azure OpenAI on your data is a feature of the Azure OpenA that helps organizations to generate customized insights, content, and searches using their designated data sources. It works with the capabilities of the OpenAI models in Azure OpenAI to provide more accurate and relevant responses to user queries in natural language. Azure OpenAI on your data can be integrated with customer's existing applications and workflows, offers insights into key performance indicators, and can interact with users seamlessly.  
+          Azure OpenAI on your data is a feature of the Azure OpenAI that helps organizations to generate customized insights, content, and searches using their designated data sources. It works with the capabilities of the OpenAI models in Azure OpenAI to provide more accurate and relevant responses to user queries in natural language. Azure OpenAI on your data can be integrated with customer's existing applications and workflows, offers insights into key performance indicators, and can interact with users seamlessly.  
       - question: |
           How can I access Azure OpenAI on your data?  
         answer:
