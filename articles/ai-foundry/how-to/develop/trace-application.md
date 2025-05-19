@@ -57,38 +57,37 @@ To view traces in Azure AI Foundry, you need to connect an Application Insights 
 To trace the content of chat messages, set the `AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED` environment variable to true (case insensitive). Keep in mind this might contain personal data. To learn more, see [Azure Core Tracing OpenTelemetry client library for Python](/python/api/overview/azure/core-tracing-opentelemetry-readme).
 
 ```python
-from opentelemetry import trace
-from azure.monitor.opentelemetry import configure_azure_monitor
+import os
+os.environ["AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED"] = "true" # False by default
+```
+Let's begin instrumenting our agent with OpenTelemetry tracing, by starting off with authenticating and connecting to your Azure AI Project using the `AIProjectClient`.
+
+```python
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
-import os
-
-os.environ["AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED"] = "true" # False by default
-
 project_client = AIProjectClient.from_connection_string(
     credential=DefaultAzureCredential(),
-    conn_str=os.environ["PROJECT_CONNECTION_STRING"],
+    endpoint=os.environ["PROJECT_ENDPOINT"],
 )
 ```
 
-### Log to Azure Monitor Application Insights
-
-Retrieve the connection string from the Application Insights resource connected to your project and set up the OTLP exporters to send telemetry into Azure Monitor.
+Next, retrieve the connection string from the Application Insights resource connected to your project and set up the OTLP exporters to send telemetry into Azure Monitor.
 
 ```python
+from azure.monitor.opentelemetry import configure_azure_monitor
 connection_string = project_client.telemetry.get_connection_string()
 
 if not connection_string:
-    print("Application Insights is not enabled. Enable by going to Observability > Traces in your AI Foundry project.")
+    print("Application Insights is not enabled. Enable by going to Tracing in your Azure AI Foundry project.")
     exit()
 
-configure_azure_monitor(connection_string=connection_string)
+configure_azure_monitor(connection_string=connection_string) #enable telemetry collection
 ```
 
-Start collecting telemetry and send to your project's connected Application Insights resource.
+Now, trace your code where you create and execute your agent and user message in your Azure AI Project, so you can see detailed steps for troubleshooting or monitoring.
 
 ```python
-# Start tracing
+from opentelemetry import trace
 tracer = trace.get_tracer(__name__)
 
 with tracer.start_as_current_span("example-tracing"):
@@ -104,23 +103,59 @@ with tracer.start_as_current_span("example-tracing"):
     run = project_client.agents.create_run(thread_id=thread.id, agent_id=agent.id)
 ```
 
-### Log to a local OTLP endpoint
+After running your agent, you can go begin to [view traces in Azure AI Foundry Portal](#view-traces-in-azure-ai-foundry-portal).
 
-To connect to Aspire Dashboard or another OpenTelemetry compatible backend, install the OpenTelemetry Protocol (OTLP) exporter. This enables you to print traces to the console or use a local viewer such as Aspire Dashboard.
+### Log traces locally
+
+To connect to [Aspire Dashboard](https://aspiredashboard.com/#start) or another OpenTelemetry compatible backend, install the OpenTelemetry Protocol (OTLP) exporter. This enables you to print traces to the console or use a local viewer such as Aspire Dashboard.
 
 ```bash
-pip install opentelemetry-exporter-otlp
+pip install azure-core-tracing-opentelemetry opentelemetry-exporter-otlp opentelemetry-sdk
 ```
+Next, you want to configure tracing for your application.
 
 ```python
-# Enable console tracing
-project_client.telemetry.enable(destination=sys.stdout)
+from azure.core.settings import settings
+settings.tracing_implementation = "opentelemetry"
 
-# for local OTLP endpoint, change the destination to
-# project_client.telemetry.enable(destination="http://localhost:4317")
+from opentelemetry import trace
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import SimpleSpanProcessor, ConsoleSpanExporter
+
+# Setup tracing to console
+span_exporter = ConsoleSpanExporter()
+tracer_provider = TracerProvider()
+tracer_provider.add_span_processor(SimpleSpanProcessor(span_exporter))
+trace.set_tracer_provider(tracer_provider)
+```
+Use `enable_telemetry` to begin collecting telemetry. 
+
+```python
+from azure.ai.projects import enable_telemetry
+enable_telemetry(destination=sys.stdout)
+
+# Logging to an OTLP endpoint, change the destination to
+# enable_telemetry(destination="http://localhost:4317")
+```
+```python
+# Start tracing
+from opentelemetry import trace
+tracer = trace.get_tracer(__name__)
+
+with tracer.start_as_current_span("example-tracing"):
+    agent = project_client.agents.create_agent(
+        model=os.environ["MODEL_DEPLOYMENT_NAME"],
+        name="my-assistant",
+        instructions="You are a helpful assistant"
+    )
+    thread = project_client.agents.create_thread()
+    message = project_client.agents.create_message(
+        thread_id=thread.id, role="user", content="Tell me a joke"
+    )
+    run = project_client.agents.create_run(thread_id=thread.id, agent_id=agent.id)
 ```
 
-### Trace custom functions
+## Trace custom functions
 
 To trace your custom functions, use the OpenTelemetry SDK to instrument your code.
 
@@ -149,26 +184,18 @@ custom_function()
 
 For detailed instructions and advanced usage, refer to the [OpenTelemetry documentation](https://opentelemetry.io/docs/).
 
-### Attach user feedback to traces
+## Attach user feedback to traces
 
-To attach user feedback to traces and visualize it in the Azure AI Foundry portal, you can instrument your application to enable tracing and log user feedback using OpenTelemetry's semantic conventions. By correlating feedback traces with their respective chat request traces using the response ID, you can view and manage these traces in Azure AI Foundry portal. OpenTelemetry's specification allows for standardized and enriched trace data, which can be analyzed in Azure AI Foundry portal for performance optimization and user experience insights. This approach helps you use the full power of OpenTelemetry for enhanced observability in your applications.
+To attach user feedback to traces and visualize it in the Azure AI Foundry portal, you can instrument your application to enable tracing and log user feedback using OpenTelemetry's semantic conventions. 
+
+
+
+By correlating feedback traces with their respective chat request traces using the response ID or thread ID, you can view and manage these traces in Azure AI Foundry portal. OpenTelemetry's specification allows for standardized and enriched trace data, which can be analyzed in Azure AI Foundry portal for performance optimization and user experience insights. This approach helps you use the full power of OpenTelemetry for enhanced observability in your applications.
 
 To log user feedback, follow this format:
 
 The user feedback evaluation event can be captured if and only if the user provided a reaction to the GenAI model response. It SHOULD, when possible, be parented to the GenAI span describing such response.
 
-<!-- prettier-ignore-start -->
-<!-- markdownlint-capture -->
-<!-- markdownlint-disable -->
-The event name MUST be `gen_ai.evaluation.user_feedback`.
-
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-|`gen_ai.response.id`| string | The unique identifier for the completion. | `chatcmpl-123` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gen_ai.evaluation.score`| double | Quantified score calculated based on the user reaction in [-1.0, 1.0] range with 0 representing a neutral reaction. | `0.42` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
 
 The user feedback event body has the following structure:
 
@@ -176,7 +203,7 @@ The user feedback event body has the following structure:
 |---|---|---|---|---|
 | `comment` | string | Additional details about the user feedback | `"I did not like it"` | `Opt-in` |
 
-### Using service name in trace data
+## Using service name in trace data
 
 To identify your service via a unique ID in Application Insights, you can use the service name OpenTelemetry property in your trace data. This is useful if you're logging data from multiple applications to the same Application Insights resource, and you want to differentiate between them.
 
@@ -190,7 +217,7 @@ To query trace data for a given service name, query for the `cloud_roleName` pro
 | where cloud_RoleName == "service_name"
 ```
 
-## Enable Tracing for Langchain
+## Enable tracing for Langchain
 
 You can enable tracing for Langchain that follows OpenTelemetry standards as per [opentelemetry-instrumentation-langchain](https://pypi.org/project/opentelemetry-instrumentation-langchain/). To enable tracing for Langchain, install the package `opentelemetry-instrumentation-langchain` using your package manager, like pip:
 
@@ -200,25 +227,13 @@ pip install opentelemetry-instrumentation-langchain
 
 Once necessary packages are installed, you can easily begin to [Instrument tracing in your code](#instrument-tracing-in-your-code).
 
-## Visualize your traces
-
-### View your traces for local debugging
-
-#### Prompty
-
-Using Prompty, you can trace your application with **Open Telemetry**, which offers enhanced visibility and simplified troubleshooting for LLM-based applications. This method adheres to the OpenTelemetry specification, enabling the capture and visualization of an AI application's internal execution details, which improves debugging and enhances the development process. To learn more, see [Debugging Prompty](https://prompty.ai/docs/getting-started/debugging-prompty).
-
-#### Aspire Dashboard
-
-Aspire Dashboard is a free & open-source OpenTelemetry dashboard for deep insights into your apps on your local development machine. To learn more, see [Aspire Dashboard](https://aspiredashboard.com/#start).
-
-### Debugging with traces in Azure AI Foundry portal
+## View traces in Azure AI Foundry portal
 
 In your project, go to `Tracing` to filter your traces as you see fit.
 
-By selecting a trace, I can step through each span and identify issues while observing how my application is responding.
+By selecting a trace, you can step through each span and identify issues while observing how your application is responding. This can help you debug and pinpoint issues in your application.
 
-### View traces in Azure Monitor
+## View traces in Azure Monitor
 
 If you logged traces using the previous code snippet, then you're all set to view your traces in Azure Monitor Application Insights. You can open in Application Insights from **Manage data source** and use the **End-to-end transaction details view** to further investigate.
 
