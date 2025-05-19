@@ -9,6 +9,62 @@ ms.author: eur
 > [!IMPORTANT]
 > Content assessment (preview) via the Speech SDK will be retired in July 2025. Instead, you can use the Azure OpenAI Service to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
 
+### Speech SDK 1.44: 2025-April release
+
+> [!NOTE]
+> Notes on target platform support:
+> * The minimum supported Android version is now Android 8.0 (API level 26).
+> * Publishing Speech SDK Unity packages will be suspended after this release.
+
+#### New features:
+  * Added support for Android 16 KB memory page sizes.
+  * Reduced the latency of SpeechStartDetected events in embedded speech recognition.
+  * [C++, Python] Added a method to get the available size of AudioDataStream.
+  * [C++, Python] Added support for custom lexicon URLs and preferred locales in speech synthesis requests.
+  * [Java, Python] Added support for Azure AD token-based authentication with automatic token refresh.
+  * [Go] Added support for Conversation Transcription.
+  
+#### Bug fixes
+  * Fixed translation speech synthesis not working when source language detection was used.
+  * Fixed file paths with non-ASCII characters not working for embedded speech models, KWS models, or log files (https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2288).
+  * Fixed a NoMatch loop in embedded speech recognition in certain conditions.
+  * Fixed the destructor of native objects being blocked due to recognition not marked as stopped when events are disconnected.
+  * Fixed IntentRecognizer pattern matching not working correctly with multi-byte characters in certain conditions.
+  * Calling Close() on a Connection object was not synchronous.
+  * Fixed a race condition in connection deallocation that could lead to a crash.
+  * [macOS] Fixed "Info:" messages appearing on the console (https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2610).
+
+#### Samples
+  * [Python] Added sample code for recognizer using Azure AD token credentials.
+
+### Speech SDK for JavaScript
+
+#### New features:
+  * Updated TranslationRecognizer to use V2 endpoints by default.
+  * Updated SpeechRecongizer to use V2 endpoints.
+    * This will result in no longer receiving NoMatch results.
+  * Added support for Azure AD token-based authentication for Speech Recognition and Translation.
+  * Updated FromEndpoint API to be the recommended method for constructing a SpeechConfig for most scenarios.
+    * Applies to using:
+      * SpeechRecognizer
+      * TranslationRecognizer (via SpeechTranslationConfig)
+      * ConversationTranscriber
+      * SpeechSynthesizer
+    * You can now use the Endpoint from the Azure Portal for Speech and Cognitive Services resources to construct a SpeechConfig object.
+    * All other methods to construct a SpeechConfig continue to function and are supported.
+  
+##### Bug fixes
+  * Fixed an infinite connection retry loop on unsupported connection closing codes (https://github.com/microsoft/cognitive-services-speech-sdk-js/issues/896).
+
+### Speech CLI (aka SPX)
+
+#### New features
+  * Added support for authentication with Azure AD token credentials.
+  * Added support for the Fast transcription API.
+  
+##### Bug fixes
+  * Fixed non-working semicolon-separated input URLs and input file/URL lists from a file.
+
 ### Speech SDK 1.43: 2025-March release
 
 > [!NOTE]
