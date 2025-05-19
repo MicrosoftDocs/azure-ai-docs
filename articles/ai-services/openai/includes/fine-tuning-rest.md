@@ -223,36 +223,11 @@ Look for your loss to decrease over time, and your accuracy to increase. If you 
 
 ## Deploy a fine-tuned model
 
-[!INCLUDE [Fine-tuning deletion](fine-tune.md)]
+Once you're satisfied with the metrics from your fine-tuning job, or you just want to move onto inference, you must deploy the model.
 
-The following example shows how to use the REST API to create a model deployment for your customized model. The REST API generates a name for the deployment of your customized model.
+If you're deploying for further validation, consider deploying for [testing](../how-to/fine-tune-test.md?tabs=rest) using a Developer deployment.
 
-|variable      | Definition|
-|--------------|-----------|
-| token        | There are multiple ways to generate an authorization token. The easiest method for initial testing is to launch the Cloud Shell from the [Azure portal](https://portal.azure.com). Then run [`az account get-access-token`](/cli/azure/account#az-account-get-access-token()). You can use this token as your temporary authorization token for API testing. We recommend storing this in a new environment variable. |
-| subscription | The subscription ID for the associated Azure OpenAI resource. |
-| resource_group | The resource group name for your Azure OpenAI resource. |
-| resource_name | The Azure OpenAI resource name. |
-| model_deployment_name | The custom name for your new fine-tuned model deployment. This is the name that will be referenced in your code when making chat completion calls. |
-| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-35-turbo-0125.ft-b044a9d3cf9c4228b5d393567f693b83`. You'll need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
-
-```bash
-curl -X POST "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>api-version=2024-10-21" \
-  -H "Authorization: Bearer <TOKEN>" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "sku": {"name": "standard", "capacity": 1},
-    "properties": {
-        "model": {
-            "format": "OpenAI",
-            "name": "<FINE_TUNED_MODEL>",
-            "version": "1"
-        }
-    }
-}'
-```
-
-Learn more about cross region deployment and use the deployed model [here](../how-to/fine-tuning-deploy.md#use-your-deployed-fine-tuned-model).
+If you're ready to deploy for production or have particular data residency needs, follow our [deployment guide](../how-to/fine-tuning-deploy.md?tabs=rest).
 
 
 ## Continuous fine-tuning

@@ -47,9 +47,9 @@ from azure.ai.evaluation import SimilarityEvaluator
 
 similarity = SimilarityEvaluator(model_config=model_config, threshold=3)
 similarity(
-    query="Is Marie Currie is born in Paris?", 
-    response="According to wikipedia, Marie Currie was not born in Paris but in Warsaw.",
-    ground_truth="Marie Currie was born in Warsaw."
+    query="Is Marie Curie is born in Paris?", 
+    response="According to wikipedia, Marie Curie was not born in Paris but in Warsaw.",
+    ground_truth="Marie Curie was born in Warsaw."
 )
 ```
 
@@ -77,8 +77,8 @@ from azure.ai.evaluation import F1ScoreEvaluator
 
 f1_score = F1ScoreEvaluator(threshold=0.5)
 f1_score(
-    response="According to wikipedia, Marie Currie was not born in Paris but in Warsaw.",
-    ground_truth="Marie Currie was born in Warsaw."
+    response="According to wikipedia, Marie Curie was not born in Paris but in Warsaw.",
+    ground_truth="Marie Curie was born in Warsaw."
 )
 ```
 
@@ -105,8 +105,8 @@ from azure.ai.evaluation import BleuScoreEvaluator
 
 bleu_score = BleuScoreEvaluator(threshold=0.3)
 bleu_score(
-    response="According to wikipedia, Marie Currie was not born in Paris but in Warsaw.",
-    ground_truth="Marie Currie was born in Warsaw."
+    response="According to wikipedia, Marie Curie was not born in Paris but in Warsaw.",
+    ground_truth="Marie Curie was born in Warsaw."
 )
 ```
 
@@ -134,8 +134,8 @@ from azure.ai.evaluation import GleuScoreEvaluator
 
 gleu_score = GleuScoreEvaluator(threshold=0.2)
 gleu_score(
-    response="According to wikipedia, Marie Currie was not born in Paris but in Warsaw.",
-    ground_truth="Marie Currie was born in Warsaw."
+    response="According to wikipedia, Marie Curie was not born in Paris but in Warsaw.",
+    ground_truth="Marie Curie was born in Warsaw."
 )
 ```
 
@@ -158,12 +158,12 @@ The numerical score is a 0-1 float and a higher score is better. Given a numeric
 ### ROUGE score example
 
 ```python
-from azure.ai.evaluation import RougeScoreEvaluator
+from azure.ai.evaluation import RougeScoreEvaluator, RougeType
 
 rouge = RougeScoreEvaluator(rouge_type=RougeType.ROUGE_L, precision_threshold=0.6, recall_threshold=0.5, f1_score_threshold=0.55) 
 rouge(
-    response="According to wikipedia, Marie Currie was not born in Paris but in Warsaw.",
-    ground_truth="Marie Currie was born in Warsaw."
+    response="According to wikipedia, Marie Curie was not born in Paris but in Warsaw.",
+    ground_truth="Marie Curie was born in Warsaw."
 )
 
 ```
@@ -197,8 +197,8 @@ from azure.ai.evaluation import MeteorScoreEvaluator
 
 meteor_score = MeteorScoreEvaluator(threshold=0.9)
 meteor_score(
-    response="According to wikipedia, Marie Currie was not born in Paris but in Warsaw.",
-    ground_truth="Marie Currie was born in Warsaw."
+    response="According to wikipedia, Marie Curie was not born in Paris but in Warsaw.",
+    ground_truth="Marie Curie was born in Warsaw."
 )
 
 ```

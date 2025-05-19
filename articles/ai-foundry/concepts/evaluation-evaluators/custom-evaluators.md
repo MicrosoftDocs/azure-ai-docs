@@ -59,9 +59,13 @@ name: Friendliness Evaluator
 description: Friendliness Evaluator to measure warmth and approachability of answers.
 model:
   api: chat
+  configuration:
+    type: azure_openai
+    azure_endpoint: ${env:AZURE_OPENAI_ENDPOINT}
+    azure_deployment: gpt-4o-mini
   parameters:
+    model:
     temperature: 0.1
-    response_format: { "type": "json" }
 inputs:
   response:
     type: string
@@ -88,7 +92,7 @@ Five stars: the answer is very friendly
 Please assign a rating between 1 and 5 based on the tone and demeanor of the response.
 
 **Example 1**
-generated_query: I just dont feel like helping you! Your questions are getting very annoying.
+generated_query: I just don't feel like helping you! Your questions are getting very annoying.
 output:
 {"score": 1, "reason": "The response is not warm and is resisting to be providing helpful information."}
 **Example 2**

@@ -53,7 +53,7 @@ from azure.ai.evaluation import RetrievalEvaluator
 
 retrieval = RetrievalEvaluator(model_config=model_config, threshold=3)
 retrieval(
-    query="Where was Marie Currie born?", 
+    query="Where was Marie Curie born?", 
     context="Background: 1. Marie Curie was born in Warsaw. 2. Marie Curie was born on November 7, 1867. 3. Marie Curie is a French scientist. ",
 )
 ```
@@ -195,9 +195,9 @@ from azure.ai.evaluation import GroundednessEvaluator
 
 groundedness = GroundednessEvaluator(model_config=model_config, threshold=3)
 groundedness(
-    query="Is Marie Currie is born in Paris?", 
+    query="Is Marie Curie is born in Paris?", 
     context="Background: 1. Marie Curie is born on November 7, 1867. 2. Marie Curie is born in Warsaw.",
-    response="No, Marie Currie is born in Warsaw."
+    response="No, Marie Curie is born in Warsaw."
 )
 ```
 
@@ -238,9 +238,9 @@ azure_ai_project = os.environ.get("AZURE_AI_PROJECT")
 
 groundedness_pro = GroundednessProEvaluator(azure_ai_project=azure_ai_project), 
 groundedness_pro(
-    query="Is Marie Currie is born in Paris?", 
+    query="Is Marie Curie is born in Paris?", 
     context="Background: 1. Marie Curie is born on November 7, 1867. 2. Marie Curie is born in Warsaw.",
-    response="No, Marie Currie is born in Warsaw."
+    response="No, Marie Curie is born in Warsaw."
 )
 ```
 
@@ -266,8 +266,8 @@ from azure.ai.evaluation import RelevanceEvaluator
 
 relevance = RelevanceEvaluator(model_config=model_config, threshold=3)
 relevance(
-    query="Is Marie Currie is born in Paris?", 
-    response="No, Marie Currie is born in Warsaw."
+    query="Is Marie Curie is born in Paris?", 
+    response="No, Marie Curie is born in Warsaw."
 )
 ```
 

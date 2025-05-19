@@ -17,8 +17,7 @@ ms.date: 05/10/2025
 
 This article describes an approach or pattern for building a solution that uses Azure AI Search for data retrieval and how to integrate the retrieval into a custom solution that includes Azure AI Agent.
 
-This article supports the [agent-example](https://github.com/Azure-Samples/azure-search-python-samples/agent-example
-) Python sample on GitHub.
+This article supports the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python sample on GitHub.
 
 This exercise differs from the [Agentic Retrieval Quickstart](search-get-started-agentic-retrieval.md) in how it uses Azure AI Agent to determine whether to retrieve data from the index, and how it uses an agent tool for orchestration.
 

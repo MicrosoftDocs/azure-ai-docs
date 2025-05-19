@@ -6,8 +6,8 @@
     tocHref: /azure/ai-foundry/
     topicHref: /azure/ai-foundry/index
     items:
-    - name: Azure OpenAI Service
-      tocHref: /azure/ai-foundry/
+    - name: Azure OpenAI
+      tocHref: /azure/ai-services/
       topicHref: /azure/ai-services/openai/index
 - name: Azure
   tocHref: /legal/
