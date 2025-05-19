@@ -56,13 +56,13 @@ A model that intelligently selects from a set of underlying chat models to respo
 
 | Model | Region |
 |---|---|
-| `model-router` (2025-04-15) | East US 2 (Global Standard), Sweden Central (Global Standard)|
+| `model-router` (2025-05-19) | East US 2 (Global Standard), Sweden Central (Global Standard)|
 
 ### Capabilities 
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
-| `model-router` (2025-04-15) | A model that intelligently selects from a set of underlying chat models to respond to a given prompt. | 200,000* | 32768 (GPT 4.1 series)</br> 100 K (o4-mini) | May 31, 2024 |
+| `model-router` (2025-05-19) | A model that intelligently selects from a set of underlying chat models to respond to a given prompt. | 200,000* | 32768 (GPT 4.1 series)</br> 100 K (o4-mini) | May 31, 2024 |
 
 *Larger context windows are compatible with _some_ of the underlying models, which means an API call with a larger context will succeed only if the prompt happens to be routed to the right model, otherwise the call will fail.
 

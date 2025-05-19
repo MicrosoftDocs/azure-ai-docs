@@ -86,7 +86,7 @@ Evaluators are specialized tools that measure the quality, safety, and reliabili
 | METEOR | Metric for Evaluation of Translation with Explicit Ordering measures overlaps in n-grams between response and ground truth. |
 
 
-[**Azure OpenAI Graders (preivew):**](./evaluation-evaluators/azure-openai-graders.md)
+[**Azure OpenAI Graders (preview):**](./evaluation-evaluators/azure-openai-graders.md)
 
 | Evaluator | Purpose |
 |--|--|

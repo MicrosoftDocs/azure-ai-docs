@@ -485,4 +485,4 @@ The label field returns a boolean true or false based on whether or not either o
 ## Related content
 
 - Read the [Transparency Note for Safety Evaluators](../safety-evaluations-transparency-note.md) to learn more about its limitations, use cases and how it was evaluated for quality and accuracy.
-- Learn [how to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-datasets) and [how to run batch evaluation on a target](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-a-target).
+- Learn [how to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-test-datasets-using-evaluate) and [how to run batch evaluation on a target](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-a-target).
