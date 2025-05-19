@@ -26,6 +26,8 @@ In this article, you learn to enable tracing, collect aggregated metrics, and co
 
 ## Prerequisites
 
+[!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
+
 - The Azure CLI and the Azure Machine Learning extension to the Azure CLI.
 - An Azure AI Foundry project. If you don't already have a project, you can [create one](../../how-to/create-projects.md).
 - An Application Insights resource. If you don't already have an Application Insights resource, you can [create one](/azure/azure-monitor/app/create-workspace-resource).

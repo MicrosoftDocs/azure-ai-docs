@@ -16,7 +16,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Content safety tool for flows in Azure AI Foundry portal
+# Guardrails & controls tool for flows in Azure AI Foundry portal
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -25,6 +25,8 @@ The prompt flow Content Safety tool enables you to use Azure AI Content Safety i
 Azure AI Content Safety is a content moderation service that helps detect harmful content from different modalities and languages. For more information, see [Azure AI Content Safety](/azure/ai-services/content-safety/).
 
 ## Prerequisites
+
+[!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
 
 To create an Azure Content Safety connection:
 

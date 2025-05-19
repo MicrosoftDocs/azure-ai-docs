@@ -10,7 +10,7 @@ ms.topic: how-to
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: andyaviles
-ms.date: 03/26/2025
+ms.date: 04/14/2025
 ---
 
 # Customer enabled disaster recovery
@@ -28,6 +28,9 @@ Microsoft strives to ensure that Azure services are always available. However, u
 
 > [!IMPORTANT]
 > Azure AI Foundry itself does not provide automatic failover or disaster recovery.
+
+> [!NOTE]
+> The information in this article only applies to a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** is not supported. For more information, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
 
 ## Understand Azure services for Azure AI Foundry
 
@@ -78,7 +81,7 @@ A multi-regional deployment relies on creation of Azure AI Foundry and other res
     * __Hot/cold__: Primary region active, secondary region has Azure AI Foundry and other resources deployed, along with needed data. Resources such as models, model deployments, or pipelines would need to be manually deployed.
 
 > [!TIP]
-> Depending on your business requirements, you may decide to treat different Azure AI Foundry resources differently.
+> Depending on your business requirements, you may decide to treat different Azure AI Foundry Services differently.
 
 Azure AI Foundry builds on top of other services. Some services can be configured to replicate to other regions. Others you must manually create in multiple regions. The following table provides a list of services, who is responsible for replication, and an overview of the configuration:
 

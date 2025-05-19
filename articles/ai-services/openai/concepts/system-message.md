@@ -1,6 +1,6 @@
 ---
 title: Safety system messages 
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn about how to construct system messages also know as metaprompts to guide an AI system's behavior.
 ms.service: azure-ai-openai
 ms.topic: conceptual
@@ -163,7 +163,7 @@ Finally, remember that system messages, or metaprompts, are not "one size fits a
 
 ## Next steps
 
-- [Azure OpenAI Service](/azure/ai-services/openai/concepts/prompt-engineering)
+- [Azure OpenAI in Azure AI Foundry Models](/azure/ai-services/openai/concepts/prompt-engineering)
 - [System message design with Azure OpenAI](/azure/ai-services/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions) 
 - [Announcing Safety System Messages in Azure AI Foundry portal](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/announcing-safety-system-messages-in-azure-ai-studio-and-azure/ba-p/4146991) - Microsoft Community Hub 
 - [Safety system message templates ](./safety-system-message-templates.md)

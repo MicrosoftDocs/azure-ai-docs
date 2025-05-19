@@ -20,6 +20,9 @@ In this article, you learn how to create the following [Azure AI Foundry](https:
 - An Azure AI Foundry hub
 - An Azure AI Services connection
 
+> [!NOTE]
+> A hub is used only for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../../includes/fdp-project-name.md)]** does not use a hub. For more information, see [Types of projects](../../what-is-azure-ai-foundry.md#project-types).
+
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure AI Foundry](https://azure.microsoft.com/free/) today.

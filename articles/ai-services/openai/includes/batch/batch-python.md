@@ -1,6 +1,6 @@
 ---
 title: Azure OpenAI Global Batch Python
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Azure OpenAI model global batch Python
 manager: nitinme
 ms.service: azure-ai-openai

@@ -1,0 +1,83 @@
+### YamlMime:Landing
+
+title: Foundry Local documentation # < 60 chars
+summary:  Safely design, customize, and manage AI applications and agents on-device.
+metadata:
+  title: Foundry Local documentation
+  description: Foundry Local helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and prebuilt and customizable APIs and models. Example applications include generative AI, natural language processing for conversations, search, monitoring, translation, speech, vision, and decision-making.
+  ms.service: azure-ai-foundry
+  ms.custom:
+    - build-2025
+  ms.topic: landing-page
+  manager: scottpolly
+  ms.reviewer: sgilley
+  ms.author: samkemp
+  author: samuel100
+  ms.date: 03/04/2025
+# linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
+
+landingContent:
+# Cards and links should be based on top customer tasks or top subjects
+# Start card title with a verb
+  # Card
+  - title: Learn About Foundry Local
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: What is Foundry Local?
+            url: what-is-foundry-local.md
+      - linkListType: concept
+        links:
+          - text: Foundry Local Architecture
+            url: concepts/foundry-local-architecture.md
+
+  # Card
+  - title: Get started
+    linkLists:   
+      - linkListType: quickstart
+        links:
+          - text: Get started with Foundry Local
+            url: get-started.md
+
+      - linkListType: how-to-guide
+        links:
+          - text: Integrate with Inferencing SDKs
+            url: how-to/how-to-integrate-with-inference-sdks.md
+          - text: Integrate with LangChain
+            url: how-to/how-to-use-langchain-with-foundry-local.md
+          - text: Integrate with Open Web UI
+            url: how-to/how-to-chat-application-with-open-web-ui.md
+          - text: Compile Hugging Face models to run on Foundry Local
+            url: how-to/how-to-compile-hugging-face-models.md
+  
+  # Card
+  - title: Reference
+    linkLists:
+      - linkListType: reference
+        links:
+          - text: CLI reference
+            url: reference/reference-cli.md
+          - text: SDK reference
+            url: reference/reference-sdk.md
+          - text: REST reference
+            url: reference/reference-rest.md
+          - text: Catalog API reference
+            url: reference/reference-catalog-api.md
+          - text: Best practice and troubleshooting
+            url: reference/reference-best-practice.md
+  
+  # Card
+  - title: Explore more AI resources
+    linkLists:
+      - linkListType: learn
+        links:
+          - text: Azure AI Training
+            url: https://aka.ms/LearnAzureAIStudio
+          - text: Vector search in Azure AI Search
+            url: /training/modules/improve-search-results-vector-search/
+      - linkListType: reference
+        links:
+          - text: Azure AI Foundry
+            url: /azure/ai-foundry/
+          - text: Semantic Kernel
+            url: /semantic-kernel/

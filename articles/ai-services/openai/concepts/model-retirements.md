@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI Service model retirements
+title: Azure OpenAI in Azure AI Foundry Models model retirements
 titleSuffix: Azure OpenAI
 description: Learn about the model deprecations and retirements in Azure OpenAI.
 ms.service: azure-ai-openai
@@ -12,22 +12,22 @@ ms.author: mbullwin
 recommendations: false
 ---
 
-# Azure OpenAI Service model deprecations and retirements
+# Azure OpenAI in Azure AI Foundry Models model deprecations and retirements
 
 ## Overview
 
-Azure OpenAI Service models are continually refreshed with newer and more capable models. As part of this process, we deprecate and retire older models. This document provides information about the models that are currently available, deprecated, and retired.
+Azure OpenAI models are continually refreshed with newer and more capable models. As part of this process, we deprecate and retire older models. This document provides information about the models that are currently available, deprecated, and retired.
 
 ### Terminology
 
 * Deprecation
 	* When a model is deprecated, it's no longer available for new customers. It continues to be available for use by customers with existing deployments until the model is retired.
 * Retirement
-	* When a model is retired, it's no longer available for use. Azure OpenAI Service deployments of a retired model always return error responses.
+	* When a model is retired, it's no longer available for use. Azure OpenAI deployments of a retired model always return error responses.
 
 ## Notifications
 
-Azure OpenAI notifies customers of active Azure OpenAI Service deployments for models with upcoming retirements. We notify customers of upcoming retirements as follows for each deployment:
+Azure OpenAI notifies customers of active Azure OpenAI deployments for models with upcoming retirements. We notify customers of upcoming retirements as follows for each deployment:
 
 1. At model launch, we programmatically designate a "not sooner than" retirement date (typically one year out).
 2. At least 60 days notice before model retirement for Generally Available (GA) models.
@@ -89,7 +89,7 @@ For more information on how to manage model upgrades and migrations for provisio
 >
 > **Fine-tuned models** are subject to the same deprecation and retirement schedule as their equivalent base model.
 
-These models are currently available for use in Azure OpenAI Service.
+These models are currently available for use in Azure OpenAI.
 
 | Model                     | Version         | Retirement date                    | Replacement model                    |
 | --------------------------|-----------------|------------------------------------|--------------------------------------|

@@ -1,6 +1,6 @@
 ---
 title: Standard Embeddings models
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: embedding model regional availability
 manager: nitinme
 ms.service: azure-ai-openai
