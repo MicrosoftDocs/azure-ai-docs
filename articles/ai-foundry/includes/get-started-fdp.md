@@ -84,7 +84,7 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 # [JavaScript (preview)](#tab/javascript)
 
-1. [Install JavaScript and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-javascript)
+1. [Install Node.js and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-javascript)
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your JavaScript scripts.
 1. Download [package.json](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/javascript/mslearn-resources/quickstart/package.json).
 1. Install packages with `npm install`
@@ -111,6 +111,22 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 > [!TIP]
 > All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/csharp/mslearn-resources/quickstart).
+
+# [REST API](#tab/rest)
+
+1. [Install Azure CLI](../how-to/develop/install-cli-sdk.md#installs)
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running the next command.
+1. Get a temporary access token.  It will expire in 60-90 minutes, you'll need to refresh after that.
+
+    ```azurecli
+    az account get-access-token --scope https://ai.azure.com/.default
+    ```
+    
+1. Save the results as the environment variable `AZURE_AI_AUTH_TOKEN`.  
+
+> [!TIP]
+> All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/REST/mslearn-resources/quickstart).
+
 
 ---
 
@@ -146,6 +162,12 @@ Substitute your value for the endpoint in this code:
 
 :::code language="csharp" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/SimpleInference.cs" id="chat_completion":::
 
+# [REST API](#tab/rest)
+
+Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
+
+:::code language="console" source="~/foundry-samples/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="chat_completion":::
+
 ---
 
 ## Create and run an agent
@@ -177,6 +199,13 @@ Agents allow more powerful capabilities through the use of tools. First, let's w
 # [C#](#tab/csharp)
 
 :::code language="csharp" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentService.cs" id="create_and_run_agent" :::
+
+# [REST API](#tab/rest)
+
+Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
+
+:::code language="console" source="~/foundry-samples/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="create_and_run_agent":::
+
 
 ---
 
@@ -215,6 +244,12 @@ Now let's add a file search tool that enables us to do knowledge retrieval.
 
 :::code language="csharp" source="~/foundry-samples/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentFileSearch.cs" id="create_filesearch_agent":::
 
+# [REST API](#tab/rest)
+
+Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
+
+:::code language="console" source="~/foundry-samples/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="create_filesearch_agent":::
+
 ---
 
 
@@ -226,4 +261,4 @@ In the Azure AI Foundry portal, select your project name in the top right corner
 
 ## Related content
 
-[Azure AI Foundry SDK Overview](../how-to/develop/sdk-overview.md)
+[Azure AI Foundry client library overview](../how-to/develop/sdk-overview.md)
