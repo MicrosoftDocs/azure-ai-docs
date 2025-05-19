@@ -539,44 +539,52 @@ items:
           href: how-to/monitor-quality-safety.md
         - name: Troubleshoot prompt flow
           href: how-to/prompt-flow-troubleshoot.md
-- name: Management center
+- name: Setup and management
   items:
-  - name: Management center overview
-    href: concepts/management-center.md
-  - name: Manage projects and hubs
+  - name: Choose a resource type
+    href: concepts/resource-types.md
+  - name: Manage AI Foundry resources
     items:
-    - name: Create a project
-      href: how-to/create-projects.md
-    - name: Create a project using a Bicep template
-      href: how-to/create-azure-ai-project-template.md
-    - name: Create an Azure AI Foundry resource
+    - name: Create your first resource
       href: ../ai-services/multi-service-resource.md?context=/azure/ai-foundry/context/context
-    - name: Hubs and projects overview
+    - name: Create using Bicep template
+      href: how-to/create-resource-template.md
+  - name: Manage AI Hub resources
+    items:
+    - name: Hubs overview
       href: concepts/ai-resources.md
     - name: Create your first hub
       href: how-to/create-azure-ai-resource.md
-    - name: Create a hub using the Azure Machine Learning SDK and CLI
-      href: how-to/develop/create-hub-project-sdk.md
-    - name: Create a hub with custom security
+    - name: Advanced hub creation options
       items:
       - name: Create a hub in the Azure portal
         href: how-to/create-secure-ai-hub.md
       - name: Create a hub from template
         href: how-to/create-azure-ai-hub-template.md
         displayName: code
+      - name: Create a hub using the Azure Machine Learning SDK and CLI
+        href: how-to/develop/create-hub-project-sdk.md
       - name: Create a hub using Terraform
         href: how-to/create-hub-terraform.md
-  - name: Create and manage compute
-    href: how-to/create-manage-compute.md
-  - name: Connections
+    - name: Create and manage compute
+      href: how-to/create-manage-compute.md
+  - name: Manage projects
+    items:
+    - name: Create a project
+      href: how-to/create-projects.md
+    - name: Create a project using a Bicep template
+      href: how-to/create-azure-ai-project-template.md
+  - name: Management center
+    href: concepts/management-center.md
+  - name: Connect other services
     items:
     - name: Create a connection
       href: how-to/connections-add.md
     - name: Create a connection using the Azure Machine Learning SDK
       href: how-to/develop/connections-add-sdk.md
       displayName: code
-  - name: Add and manage data in Azure AI Foundry
-    href: how-to/data-add.md
+    - name: Connect and manage data
+      href: how-to/data-add.md
   - name: Costs and quotas
     items:
     - name: Plan and manage costs for AI Foundry resources
