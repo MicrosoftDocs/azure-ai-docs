@@ -269,9 +269,9 @@ Support for an index description is provided in the preview REST API, the Azure 
 
 The Azure portal supports the latest preview API.
 
-1. Sign in to the Azure portal.
+1. Sign in to the Azure portal and find your search service.
 
-1. Select an index.
+1. Under **Search management** > **Indexes**, select an index.
 
 1. Select **Edit JSON**.
 
@@ -283,11 +283,11 @@ The Azure portal supports the latest preview API.
 
 ### [**REST**](#tab/rest)
 
-1. [Get an index definition](/rest/api/searchservice/indexes/get).
+1. [GET an index definition](/rest/api/searchservice/indexes/get).
 
 1. Copy the JSON.
 
-1. [Formulate an index update request](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) using the preview API, providing the *full* JSON of the existing schema, plus the new description field.
+1. [Formulate an index update PUT request](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) using the preview API, providing the *full* JSON of the existing schema, plus the new description field.
 
 1. To confirm the description, issue another [GET using the 2025-05-01-preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true).
 
