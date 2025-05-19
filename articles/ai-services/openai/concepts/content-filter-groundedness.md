@@ -1,6 +1,6 @@
 ---
 title: Groundedness Detection Filter  
-description: Learn about the groundedness detection filter in Azure OpenAI Service.  
+description: Learn about the groundedness detection filter in Azure OpenAI in Azure AI Foundry Models.  
 author: PatrickFarley  
 ms.author: pafarley  
 ms.date: 05/08/2025

@@ -7,7 +7,7 @@ ms.author: eur
 ---
 
 > [!IMPORTANT]
-> Content assessment (preview) via the Speech SDK will be retired in July 2025. Instead, you can use the Azure OpenAI Service to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
+> Content assessment (preview) via the Speech SDK will be retired in July 2025. Instead, you can use the Azure OpenAI in Azure AI Foundry Models to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
 
 ### Speech SDK 1.43: 2025-March release
 

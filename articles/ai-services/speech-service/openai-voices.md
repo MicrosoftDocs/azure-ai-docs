@@ -24,23 +24,23 @@ OpenAI text to speech voices are available via two model variants: `Neural` and 
 
 ## Available text to speech voices in Azure AI services
 
-You might ask: If I want to use an OpenAI text to speech voice, should I use it via the Azure OpenAI Service or via Azure AI Speech? What are the scenarios that guide me to use one or the other?
+You might ask: If I want to use an OpenAI text to speech voice, should I use it via the Azure OpenAI in Azure AI Foundry Models or via Azure AI Speech? What are the scenarios that guide me to use one or the other?
 
 Each voice model offers distinct features and capabilities, allowing you to choose the one that best suits your specific needs. You want to understand the options and differences between available text to speech voices in Azure AI services.
 
 You can choose from the following text to speech voices in Azure AI services:
 
-- OpenAI text to speech voices in [Azure OpenAI Service](../openai/reference.md#text-to-speech-preview). Available in the following regions: North Central US and Sweden Central.
+- OpenAI text to speech voices in [Azure OpenAI](../openai/reference.md#text-to-speech-preview). Available in the following regions: North Central US and Sweden Central.
 - OpenAI text to speech voices in [Azure AI Speech](./language-support.md?tabs=tts#multilingual-voices). Available in the following regions: North Central US and Sweden Central.
 - Azure AI Speech service [text to speech voices](./language-support.md?tabs=tts#prebuilt-neural-voices). Available in dozens of regions. See the [region list](regions.md#regions).
 
-## OpenAI text to speech voices via Azure OpenAI Service or via Azure AI Speech?
+## OpenAI text to speech voices via Azure OpenAI or via Azure AI Speech?
 
 If you want to use OpenAI text to speech voices, you can choose whether to use them via [Azure OpenAI](../openai/text-to-speech-quickstart.md) or via [Azure AI Speech](./get-started-text-to-speech.md#openai-text-to-speech-voices-in-azure-ai-speech). You can visit the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) to listen to samples of Azure OpenAI voices or synthesize speech with your own text using the [Audio Content Creation](https://speech.microsoft.com/portal/audiocontentcreation). The audio output is identical in both cases, with only a few feature differences between the two services. See the table below for details.
 
-Here's a comparison of features between OpenAI text to speech voices in Azure OpenAI Service and OpenAI text to speech voices in Azure AI Speech. 
+Here's a comparison of features between OpenAI text to speech voices in Azure OpenAI and OpenAI text to speech voices in Azure AI Speech. 
 
-| Feature | Azure OpenAI Service (OpenAI voices) | Azure AI Speech (OpenAI voices) | Azure AI Speech voices |
+| Feature | Azure OpenAI (OpenAI voices) | Azure AI Speech (OpenAI voices) | Azure AI Speech voices |
 |---------|---------------|------------------------|------------------------|
 | **Region** | North Central US, Sweden Central | North Central US, Sweden Central | Available in dozens of regions. See the [region list](regions.md#regions).|
 | **Voice variety** | 6 | 12 | More than 500 |
@@ -60,7 +60,7 @@ There are additional features and capabilities available in Azure AI Speech that
 
 ### Available OpenAI text to speech voices
 
-The available OpenAI voices in Azure OpenAI Service are: 
+The available OpenAI voices in Azure OpenAI are: 
 
 - `alloy`
 - `echo`
@@ -103,4 +103,4 @@ The following table outlines the Speech Synthesis Markup Language (SSML) element
 ## Related content
 
 - [Try the text to speech quickstart in Azure AI Speech](get-started-text-to-speech.md#openai-text-to-speech-voices-in-azure-ai-speech)
-- [Try the text to speech via Azure OpenAI Service](../openai/text-to-speech-quickstart.md)
+- [Try the text to speech via Azure OpenAI](../openai/text-to-speech-quickstart.md)
