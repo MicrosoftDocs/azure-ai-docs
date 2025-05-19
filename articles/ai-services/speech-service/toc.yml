@@ -133,7 +133,7 @@ items:
     - name: Get facial position with viseme
       href: how-to-speech-synthesis-viseme.md
       displayName: viseme, phoneme, phonetic
-    - name: Use high definition (HD) voices (preview)
+    - name: Use high definition (HD) voices
       href: high-definition-voices.md
       displayName: hd voice
     - name: Custom neural voice
@@ -160,7 +160,7 @@ items:
             href: professional-voice-train-voice.md
           - name: "Part 5: Deploy and use your voice model"
             href: professional-voice-deploy-endpoint.md
-        - name: Custom neural voice lite (preview)
+        - name: Custom neural voice lite
           href: custom-neural-voice-lite.md
         - name: Personal voice
           items:
@@ -234,6 +234,16 @@ items:
          href: video-translation-overview.md
        - name: How to use video translation
          href: video-translation-get-started.md
+- name: Voice Live API (preview)
+  items:
+    - name: Voice Live API overview
+      href: voice-live.md
+    - name: Voice Live API quickstart
+      href: voice-live-quickstart.md
+    - name: How to use Voice Live API
+      href: voice-live-how-to.md
+    - name: Realtime API events reference documentation
+      href: /azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context
 - name: Intent recognition
   items:
     - name: Intent recognition overview

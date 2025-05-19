@@ -1,6 +1,6 @@
 ---
 title: 'Quickstart: Use GPT-4o and GPT-4o mini via Azure AI Foundry'
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with Azure AI Foundry. 
 manager: nitinme
 ms.service: azure-ai-openai
@@ -11,7 +11,7 @@ ms.date: 09/19/2024
 ## Prerequisites
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true).
-- An Azure OpenAI Service resource with either `gpt-4o` or the `gpt-4o-mini` models deployed. We recommend using standard or global standard model [deployment types](../how-to/deployment-types.md) for initial exploration. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- An Azure OpenAI in Azure AI Foundry Models resource with either `gpt-4o` or the `gpt-4o-mini` models deployed. We recommend using standard or global standard model [deployment types](../how-to/deployment-types.md) for initial exploration. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 ## Go to Azure AI Foundry
 
@@ -21,7 +21,7 @@ From Azure AI Foundry, select **Chat playground**.
 
 ## Playground
 
-Start exploring Azure OpenAI Service capabilities with a no-code approach through the Azure AI Foundry Chat playground. From this page, you can quickly iterate and experiment with the capabilities.
+Start exploring Azure OpenAI capabilities with a no-code approach through the Azure AI Foundry Chat playground. From this page, you can quickly iterate and experiment with the capabilities.
 
 :::image type="content" source="../media/quickstarts/chatgpt-playground-load-new.png" alt-text="Screenshot of the Chat playground page." lightbox="../media/quickstarts/chatgpt-playground-load-new.png":::
 

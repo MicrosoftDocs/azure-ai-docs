@@ -26,8 +26,8 @@ False positives occur when the system incorrectly flags non-harmful content as h
 
 Conduct an initial assessment to confirm that you really have a false positive or false negative. This can involve: 
 - Checking the context of the flagged content.  
-- Comparing the flagged content against the content safety risk categories and severity definitions:
-    - If you're using content safety in Azure OpenAI, see the [Azure OpenAI content filtering doc](/azure/ai-services/openai/concepts/content-filter).
+- Comparing the flagged content against the content risk categories and severity definitions:
+    - If you're using Guardrails & controls in Azure OpenAI, see the [Azure OpenAI content filtering doc](/azure/ai-services/openai/concepts/content-filter).
     - If you're using the Azure AI Content Safety standalone API, see the [Harm categories doc](/azure/ai-services/content-safety/concepts/harm-categories?tabs=warning) or the [Prompt Shields doc](/azure/ai-services/content-safety/concepts/jailbreak-detection), depending on which API you're using.
 
 ## Customize your severity settings

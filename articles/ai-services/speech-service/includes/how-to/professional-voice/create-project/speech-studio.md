@@ -21,7 +21,7 @@ To create a custom neural voice Pro project, follow these steps:
 1. Select the subscription and Speech resource to work with. 
 
     > [!IMPORTANT]
-    > Custom neural voice training is currently only available in some regions. After your voice model is trained in a supported region, you can copy it to an AI Services resource for Speech in another region as needed. See footnotes in the [regions](../../../../regions.md#regions) table for more information.
+    > Custom neural voice training is currently only available in some regions. After your voice model is trained in a supported region, you can copy it to an AI Foundry resource for Speech in another region as needed. See footnotes in the [regions](../../../../regions.md#regions) table for more information.
 
 1. Select **Custom voice** > **Create a project**. 
 1. Select **Custom neural voice Pro** > **Next**. 

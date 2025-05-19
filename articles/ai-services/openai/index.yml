@@ -4,7 +4,7 @@ title: Azure OpenAI Service documentation # < 60 chars
 summary: Azure OpenAI Service provides access to OpenAI's models including o-series, GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, GPT-3.5-Turbo, GPT-image-1 and Embeddings model series with the security and enterprise capabilities of Azure. 
   
 metadata:
-  title: Azure OpenAI Service documentation - Quickstarts, Tutorials, API Reference - Azure AI services | Microsoft Docs
+  title: Azure OpenAI Service documentation - Quickstarts, Tutorials, API Reference | Microsoft Docs
   description: Learn how to use Azure OpenAI's powerful models including o-series, GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, GPT-3.5-Turbo, GPT-image-1, and Embeddings model series
   ms.service: azure-ai-openai
   ms.custom:
@@ -141,7 +141,7 @@ landingContent:
       - linkListType: concept
         links:
           - text: Asynchronous content filtering
-            url: ./concepts/content-filter.md#asynchronous-filter
+            url: ./concepts/content-streaming.md
           - text: Red teaming large language models (LLMs)
             url: ./concepts/red-teaming.md
           - text: Safety system messages

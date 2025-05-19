@@ -1,7 +1,7 @@
 ---
-title: 'How to use blocklists with Azure OpenAI Service'
+title: 'How to use blocklists with Azure OpenAI in Azure AI Foundry Models'
 titleSuffix: Azure OpenAI
-description: Learn how to use blocklists with Azure OpenAI Service
+description: Learn how to use blocklists with Azure OpenAI
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
@@ -148,7 +148,7 @@ In the below example, a GPT-35-Turbo deployment with a blocklist is blocking the
         "status": 400, 
         "innererror": { 
             "code": "ResponsibleAIPolicyViolation", 
-            "content_filter_result": { 
+            "content_filter_results": { 
                 "custom_blocklists": [ 
                     { 
                         "filtered": true, 
@@ -260,6 +260,6 @@ If the completion itself is blocked, the response returns `200`, as the completi
 
 - Learn more about Responsible AI practices for Azure OpenAI: [Overview of Responsible AI practices for Azure OpenAI models](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext). 
 
-- Read more about [content filtering categories and severity levels](/azure/ai-services/openai/concepts/content-filter?tabs=python) with Azure OpenAI Service. 
+- Read more about [content filtering categories and severity levels](/azure/ai-services/openai/concepts/content-filter?tabs=python) with Azure OpenAI in Azure AI Foundry Models. 
 
 - Learn more about red teaming from our: [Introduction to red teaming large language models (LLMs)](/azure/ai-services/openai/concepts/red-teaming) article. 

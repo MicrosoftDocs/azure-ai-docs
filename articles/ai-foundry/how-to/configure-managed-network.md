@@ -1,12 +1,12 @@
 ---
-title: How to configure a managed network
+title: How to configure a managed network for a hub
 titleSuffix: Azure AI Foundry
 description: Learn how to configure a managed network for Azure AI Foundry hubs. A managed network secures your computing resources.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: ignite-2023, build-2024, devx-track-azurecli, ignite-2024
 ms.topic: how-to
-ms.date: 02/27/2025
+ms.date: 04/30/2025
 ms.reviewer: meerakurup
 ms.author: larryfr
 author: Blackmist
@@ -18,7 +18,9 @@ zone_pivot_groups: azure-ai-studio-sdk-cli
 
 # How to configure a managed network for Azure AI Foundry hubs
 
-We have two network isolation aspects. One is the network isolation to access an [Azure AI Foundry](https://ai.azure.com) hub. Another is the network isolation of computing resources for both your hub and project (such as compute instance, serverless and managed online endpoint.) This document explains the latter highlighted in the diagram. You can use hub built-in network isolation to protect your computing resources.
+[!include [hub](../includes/uses-hub-only.md)]
+
+Network isolation for a [!INCLUDE [hub-based](../includes/hub-project-name.md)] has two aspects. One is the network isolation to access an [Azure AI Foundry](https://ai.azure.com) hub. Another is the network isolation of computing resources for both your hub and project (such as compute instance, serverless and managed online endpoint.) This document explains the latter highlighted in the diagram. You can use hub built-in network isolation to protect your computing resources.
 
 :::image type="content" source="../media/how-to/network/azure-ai-network-outbound.svg" alt-text="Diagram of hub network isolation configuration with Azure AI Foundry." lightbox="../media/how-to/network/azure-ai-network-outbound.png":::
 
@@ -27,7 +29,7 @@ You need to configure following network isolation configurations.
 - Choose network isolation mode. You have two options: allow internet outbound mode or allow only approved outbound mode.
 - If you use Visual Studio Code integration with allow only approved outbound mode, create FQDN outbound rules described in the [use Visual Studio Code](#scenario-use-visual-studio-code) section.
 - If you use HuggingFace models in Models with allow only approved outbound mode, create FQDN outbound rules described in the [use HuggingFace models](#scenario-use-huggingface-models) section.
-- If you use one of the open-source models with allow only approved outbound mode, create FQDN outbound rules described in the [curated by Azure AI](#scenario-curated-by-azure-ai) section.
+- If you use one of the open-source models with allow only approved outbound mode, create FQDN outbound rules described in the [Models Sold Directly by Azure](#scenario-models-sold-directly-by-azure) section.
 
 ## Network isolation architecture and isolation modes
 
@@ -757,7 +759,7 @@ For Azure AI Foundry to run with private networking, there are a set of required
 | `BatchNodeManagement.region` | Outbound | Communication with Azure Batch back-end for Azure AI Foundry compute instances/clusters. |
 | `AzureResourceManager` | Outbound | Creation of Azure resources with Azure AI Foundry, Azure CLI, and Azure AI Foundry SDK. |
 | `AzureFrontDoor.FirstParty` | Outbound | Access docker images provided by Microsoft. |
-| `MicrosoftContainerRegistry` | Outbound | Access docker images provided by Microsoft. Setup of the Azure AI Foundry router for Azure Kubernetes Service. |		
+| `MicrosoftContainerRegistry` | Outbound | Access docker images provided by Microsoft. Setup of the Azure AI Foundry router for Azure Kubernetes Service. |        
 | `AzureMonitor` | Outbound | Used to log monitoring and metrics to Azure Monitor. Only needed if you haven't secured Azure Monitor for the workspace. This outbound is also used to log information for support incidents. |
 | `VirtualNetwork` | Outbound | Required when private endpoints are present in the virtual network or peered virtual networks. |
 
@@ -810,7 +812,7 @@ If you plan to use __HuggingFace models__ with the hub, add outbound _FQDN_ rule
 * cnd.auth0.com
 * cdn-lfs.huggingface.co
 
-### Scenario: Curated by Azure AI
+### Scenario: Models Sold Directly by Azure 
 
 These models involve dynamic installation of dependencies at runtime, and require outbound _FQDN_ rules to allow traffic to the following hosts:
 

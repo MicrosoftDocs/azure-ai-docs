@@ -6,11 +6,10 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: quickstart
-ms.date: 03/12/2025
-ms.custom: ignite-2024-understanding-release
+ms.date: 05/19/2025
 ---
 
-# Use Content Understanding in the Azure AI Foundry
+# Use Azure AI Content Understanding in the Azure AI Foundry
 
 [The Azure AI Foundry](https://aka.ms/cu-landing) is a comprehensive platform for developing and deploying generative AI applications and APIs responsibly. Azure AI Content Understanding is a new generative [Azure AI Service](../../what-are-ai-services.md) that analyzes files from varied modalities and extracts structured output in a user-defined field format. Input sources include document, video, image, and audio data. This guide shows you how to build and test a Content Understanding analyzer in the AI Foundry. You can then utilize the extracted data in any app or process you build using a simple REST API call. Content Understanding analyzers are fully customizable. You can create an analyzer by building your own schema from scratch or by using a suggested analyzer template offered to address common scenarios across each data type.
 
@@ -20,38 +19,30 @@ ms.custom: ignite-2024-understanding-release
 
 To get started, make sure you have the following resources and permissions:
 
-* An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/).
 
-* An Azure AI Foundry project created in one of the following supported regions: westus, swedencentral, or australiaeast. If you're creating a project for the first time, *see* [How to create an Azure AI Foundry project](../../../ai-foundry/how-to/create-projects.md) to learn more. It's important to note you need the proper permissions to create a project, or your admin may create one for you.
+* An [Azure AI Foundry project](../../../ai-foundry/how-to/create-projects.md) created in one of the following supported regions: `westus`, `swedencentral`, or `australiaeast`. A project is used to organize your work and save state while building customized AI apps.
 
 > [!IMPORTANT]
-> If your organization requires you to customize the security of storage resources, refer to [Azure AI services API access keys](../../../ai-foundry/concepts/encryption-keys-portal.md) to create resources that meet your organizations requirements through the Azure portal. To learn how to utilize customer managed keys, refer to [Service-side storage of encrypted data when using customer-managed keys](../../../ai-foundry/concepts/encryption-keys-portal.md#service-side-storage-of-encrypted-data). 
+> If your organization requires you to customize the security of storage resources, refer to [Azure AI services API access keys](../../../ai-foundry/concepts/encryption-keys-portal.md) to create resources that meet your organizations requirements through the Azure portal. To learn how to utilize customer managed keys, refer to [Encrypt data using customer-managed keys](../../../ai-foundry/concepts/encryption-keys-portal.md). 
 
-## Create your first Content Understanding project in the AI Foundry portal
+## Create your first project in the AI Foundry portal
 
-> [!NOTE]
-> The Content Understanding project type is separate from the Generative AI project type, also available in the AI Foundry portal.
+In order to try out [the Content Understanding service in the AI Foundry](https://aka.ms/cu-landing), you have to create a project. You can create a project from the [AI Foundry home page](https://ai.azure.com/) or the [Content Understanding landing page](https://aka.ms/cu-landing)
 
-In order to try out [the Content Understanding service in the AI Foundry portal](https://aka.ms/cu-landing), you have to create a Content Understanding project. You can access Content Understanding from:
+To create a project in [Azure AI Foundry](https://ai.azure.com), follow these steps:
 
-* The [AI Foundry home page](https://ai.azure.com/)
+1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com).
+1. Select **+ Create project**.
+1. Enter a name for the project. Keep all the other settings as default.
+1. Select **Customize** to specify properties of the hub.
+1. For **Region**. You must choose `westus`, `swedencentral`, or `australiaeast`.
+1. Select **Next**.
+1. Select **Create project**.
 
-   :::image type="content" source="../media/quickstarts/foundry-home-page.png" lightbox="../media/quickstarts/foundry-home-page.png" alt-text="Screenshot of the AI Services landing page in AI Foundry.":::
-   
+## Sharing your project
 
-* The [AI Foundry AI Services landing page](https://ai.azure.com/explore/aiservices)
-
-   :::image type="content" source="../media/quickstarts/ai-services-landing-page.png" lightbox="../media/quickstarts/ai-services-landing-page.png" alt-text="Screenshot of the AI Services landing page.":::
-
-Once on the Content Understanding page, select `Create a new Content Understanding Project`:
-
-   :::image type="content" source="../media/quickstarts/cu-landing-page.png" lightbox="../media/quickstarts/cu-landing-page.png" alt-text="Screenshot of Content Understanding page.":::
-
-Follow the steps in the project creation wizard. Once you complete the setup steps, select `Create project`.
-
-## Sharing your content understanding project
-
-In order to share and manage access to the Content Understanding project you created, navigate to the Management Center, found at the bottom of the navigation for your project:
+In order to share and manage access to the project you created, navigate to the Management Center, found at the bottom of the navigation for your project:
 
   :::image type="content" source="../media/quickstarts/cu-find-management-center.png" alt-text="Screenshot of where to find management center.":::
 
@@ -78,7 +69,7 @@ Now that everything is configured to get started, we can walk through, step-by-s
 
     * Specify clear and simple field names. Some example fields might include **vendorName**, **items**, **price**.
 
-    * Indicate the value type for each field (strings, dates, numbers, lists, groups). To learn more, *see* [supported field types](../service-limits.md#field-type-limits).
+    * Indicate the value type for each field (strings, dates, numbers, lists, groups). To learn more, *see* [supported field types](../service-limits.md#field-schema-limits).
 
     * *[Optional]* Provide field descriptions to explain the desired behavior, including any exceptions or rules.
 
@@ -101,5 +92,4 @@ Now you successfully built your first Content Understanding analyzer, and are re
 
 ## Next steps
 
- * In this quickstart, you learned how to create a Content Understanding analyzer using the Azure AI Foundry. To use the Content Understanding [REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true), see the [REST API quickstart](use-rest-api.md).
-
+ * Learn more about creating and using [analyzer templates](../concepts/analyzer-templates.md) in the Azure AI Foundry.

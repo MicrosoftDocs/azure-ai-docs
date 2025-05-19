@@ -5,7 +5,7 @@ description: Learn how to configure an Azure AI Foundry managed network to secur
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 02/27/2025
+ms.date: 05/08/2025
 ms.reviewer: meerakurup 
 ms.author: larryfr
 author: Blackmist
@@ -13,6 +13,8 @@ author: Blackmist
 ---
 
 # Access on-premises resources from your Azure AI Foundry's managed network
+
+[!INCLUDE [hub-only](../includes/uses-hub-only.md)]
 
 To access your non-Azure resources located in a different virtual network or located entirely on-premises from your [Azure AI Foundry](https://ai.azure.com)'s managed virtual network, an Application Gateway must be configured. Through this Application Gateway, full end to end access can be configured to your resources.
 

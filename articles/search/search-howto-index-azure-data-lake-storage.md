@@ -20,6 +20,9 @@ This article supplements [**Create an indexer**](search-howto-create-indexers.md
 
 For a code sample in C#, see [Index Data Lake Gen2 using Microsoft Entra ID](https://github.com/Azure-Samples/azure-search-dotnet-utilities/blob/main/data-lake-gen2-acl-indexing/README.md) on GitHub.
 
+> [!NOTE]
+> ADLS Gen2 supports an [access control model](/azure/storage/blobs/data-lake-storage-access-control) with Azure role-based access control (Azure RBAC) and POSIX-like access control lists (ACLs) at the blob level. Azure AI Search can now recognize document-level permissions in ADLS Gen2 blobs during indexing and transfers those permissions to indexed content in the search index. For more information about ACL ingestion and RBAC scope during indexing, see [Indexing Access Control Lists and Azure Role-Based Access Control scope using Indexers](search-indexer-access-control-lists-and-role-based-access.md).
+
 ## Prerequisites
 
 + [ADLS Gen2](/azure/storage/blobs/data-lake-storage-introduction) with [hierarchical namespace](/azure/storage/blobs/data-lake-storage-namespace) enabled. ADLS Gen2 is available through Azure Storage. When setting up a storage account, you have the option of enabling [hierarchical namespace](/azure/storage/blobs/data-lake-storage-namespace), organizing files into a hierarchy of directories and nested subdirectories. By enabling a hierarchical namespace, you enable ADLS Gen2.
@@ -31,9 +34,6 @@ For a code sample in C#, see [Index Data Lake Gen2 using Microsoft Entra ID](htt
 + Read permissions on Azure Storage. A "full access" connection string includes a key that grants access to the content, but if you're using Azure roles instead, make sure the [search service managed identity](search-howto-managed-identities-data-sources.md) has **Storage Blob Data Reader** permissions.
 
 + Use a [REST client](search-get-started-rest.md) to formulate REST calls similar to the ones shown in this article.
-
-> [!NOTE]
-> ADLS Gen2 implements an [access control model](/azure/storage/blobs/data-lake-storage-access-control) that supports both Azure role-based access control (Azure RBAC) and POSIX-like access control lists (ACLs) at the blob level. Azure AI Search does not support document-level permissions. All users have the same level of access to all searchable and retrievable content in the index. If document-level permissions are an application requirement, consider [security trimming](search-security-trimming-for-azure-search.md) as a potential solution.
 
 <a name="SupportedFormats"></a>
 

@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 12/03/2024
+ms.date: 05/08/2025
 ---
 
 # Debug an Azure AI Search skillset in Azure portal

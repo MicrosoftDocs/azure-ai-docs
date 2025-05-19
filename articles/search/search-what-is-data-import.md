@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 03/11/2025
+ms.date: 05/08/2025
 ---
 
 # Data import in Azure AI Search
@@ -28,7 +28,7 @@ Push model is an approach that uses APIs to upload documents into an existing se
 
 Key benefits include:
 
-+ No restrictions on data source type. The payload must be composed of JSON documents that map to your index schema, but the data can be sourced from anywhere. 
++ No restrictions on data source type. The payload must be composed of JSON documents that map to your index schema, but the data can be sourced from anywhere.
 
 + No restrictions on frequency of execution. You can push changes to an index as often as you like. For applications having low latency requirements (for example, when the index needs to be in sync with product inventory fluctuations), the push model is your only option.
 
@@ -98,7 +98,7 @@ Use the following tools and APIs for indexer-based indexing:
 
 Indexer functionality is exposed in the [Azure portal], the [REST API](/rest/api/searchservice/indexers/create), and the [.NET SDK](/dotnet/api/azure.search.documents.indexes.searchindexerclient).
 
-An advantage to using the Azure portal is that Azure AI Search can usually generate a default index schema by reading the metadata of the source dataset. 
+An advantage to using the Azure portal is that Azure AI Search can usually generate a default index schema by reading the metadata of the source dataset.
 
 ## Verify data import with Search explorer
 

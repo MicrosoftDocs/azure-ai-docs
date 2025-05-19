@@ -1,20 +1,23 @@
 ---
 title: Control AI model deployment with built-in policies
 titleSuffix: Azure AI Foundry
-description: "Learn how to use built-in Azure policies to control what managed AI Services (MaaS) and Model-as-a-Platform (MaaP) AI models can be deployed in Azure AI Foundry portal."
+description: "Learn how to use built-in Azure policies to control what managed AI Services (standard deployment) and Model-as-a-Platform (MaaP) AI models can be deployed in Azure AI Foundry portal."
 author: Blackmist
 ms.author: larryfr
 ms.service: azure-ai-foundry
 ms.topic: how-to #Don't change
-ms.date: 02/19/2025
+ms.date: 05/05/2025
 
-#customer intent: As an admin, I want control what Managed AI Services (MaaS) and Model-as-a-Platform (MaaP) AI models can be deployed by my developers.
+#customer intent: As an admin, I want control what Managed AI Services (standard deployment) and Model-as-a-Platform (MaaP) AI models can be deployed by my developers.
 
 ---
 
 # Control AI model deployment with built-in policies in Azure AI Foundry portal
 
-Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Managed AI Services (MaaS) and Model-as-a-Platform (MaaP). You can use these policies to control what models your developers can deploy in Azure AI Foundry portal.
+Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Managed AI Services (standard deployment) and Model-as-a-Platform (MaaP). You can use these policies to control what models your developers can deploy in Azure AI Foundry portal.
+
+> [!TIP]
+> The steps in this article govern the deployment of MaaS and MaaP models for both a [!INCLUDE [fdp](../includes/fdp-project-name.md)] and [!INCLUDE [hub](../includes/hub-project-name.md)].
 
 ## Prerequisites
 
