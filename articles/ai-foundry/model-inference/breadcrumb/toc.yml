@@ -6,6 +6,6 @@
     tocHref: /azure/ai-foundry/
     topicHref: /azure/ai-studio/index
     items:
-    - name: Model Inference
+    - name: Foundry Models
       tocHref: /azure/ai-foundry/model-inference/
       topicHref: /azure/ai-foundry/model-inference/index

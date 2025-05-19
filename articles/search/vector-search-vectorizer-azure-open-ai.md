@@ -23,7 +23,7 @@ Vectorizers are used at query time, but specified in index definitions, and refe
 + [Configure a vectorizer in a search index](vector-search-how-to-configure-vectorizer.md)provides usage instructions.
 
 > [!NOTE]
-> This vectorizer is bound to Azure OpenAI and is charged at the existing [Azure OpenAI pay-as-you go price](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing).
+> This vectorizer is bound to Azure OpenAI and is charged at the existing [Azure OpenAI Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing).
 
 ## Prerequisites
 

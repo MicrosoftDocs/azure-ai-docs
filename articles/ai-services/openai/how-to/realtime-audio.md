@@ -1,6 +1,6 @@
 ---
 title: 'How to use the GPT-4o Realtime API for speech and audio with Azure OpenAI'
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn how to use the GPT-4o Realtime API for speech and audio with Azure OpenAI.
 manager: nitinme
 ms.service: azure-ai-openai

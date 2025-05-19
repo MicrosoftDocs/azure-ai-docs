@@ -5,7 +5,7 @@ author: gclarkmt
 ms.author: gregc
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 01/25/2025
+ms.date: 5/19/2025
 ms.custom: template-concept
 ---
 
@@ -15,7 +15,7 @@ Azure AI services data loss prevention capabilities allow customers to configure
 
 ## Prerequisites
 
-Before you make a request, you need an Azure account and an Azure AI services subscription. If you already have an account, go ahead and skip to the next section. If you don't have an account, we have a guide to get you set up in minutes: [Create an Azure AI services multi-service resource](multi-service-resource.md?pivots=azportal).
+Before you make a request, you need an Azure account and an Azure AI services subscription. If you already have an account, go ahead and skip to the next section. If you don't have an account, we have a guide to get you set up in minutes: [Create an AI Foundry resource](multi-service-resource.md?pivots=azportal).
 
 ## Enabling data loss prevention
 

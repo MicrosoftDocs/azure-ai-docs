@@ -1,6 +1,6 @@
 ---
 title: Azure OpenAI Java support
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Azure OpenAI Java support
 manager: nitinme
 ms.service: azure-ai-openai
@@ -39,7 +39,7 @@ The latest stable (GA) release supported is:
 
 ## Authentication
 
-In order to interact with the Azure OpenAI Service you'll need to create an instance of client class, [`OpenAIAsyncClient`](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.12/sdk/openai/azure-ai-openai/src/main/java/com/azure/ai/openai/OpenAIAsyncClient.java) or [`OpenAIClient`](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.12/sdk/openai/azure-ai-openai/src/main/java/com/azure/ai/openai/OpenAIClient.java) by using [`OpenAIClientBuilder`](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.12/sdk/openai/azure-ai-openai/src/main/java/com/azure/ai/openai/OpenAIClientBuilder.java). To configure a client for use with Azure OpenAI, provide a valid endpoint URI to an Azure OpenAI resource along with a corresponding key credential, token credential, or Azure Identity credential that's authorized to use the Azure OpenAI resource.
+In order to interact with the Azure OpenAI in Azure AI Foundry Models you'll need to create an instance of client class, [`OpenAIAsyncClient`](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.12/sdk/openai/azure-ai-openai/src/main/java/com/azure/ai/openai/OpenAIAsyncClient.java) or [`OpenAIClient`](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.12/sdk/openai/azure-ai-openai/src/main/java/com/azure/ai/openai/OpenAIClient.java) by using [`OpenAIClientBuilder`](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.12/sdk/openai/azure-ai-openai/src/main/java/com/azure/ai/openai/OpenAIClientBuilder.java). To configure a client for use with Azure OpenAI, provide a valid endpoint URI to an Azure OpenAI resource along with a corresponding key credential, token credential, or Azure Identity credential that's authorized to use the Azure OpenAI resource.
 
 # [Microsoft Entra ID](#tab/secure)
 

@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI Service models
+title: Azure OpenAI in Azure AI Foundry Models models
 titleSuffix: Azure OpenAI
 description: Learn about the different model capabilities that are available with Azure OpenAI.
 ms.service: azure-ai-openai
@@ -12,13 +12,14 @@ ms.author: mbullwin #chrhoder#
 recommendations: false
 ---
 
-# Azure OpenAI Service models
+# Azure OpenAI in Azure AI Foundry Models models
 
-Azure OpenAI Service is powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud. For Azure Government model availability, please refer to [Azure Government OpenAI Service](../azure-government.md).
+Azure OpenAI is powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud. For Azure Government model availability, please refer to [Azure Government OpenAI Service](../azure-government.md).
 
 | Models | Description |
 |--|--|
 | [GPT-4.1 series](#gpt-41-series) | Latest model release from Azure OpenAI |
+| [model-router](#model-router) | A model that intelligently selects from a set of underlying chat models to respond to a given prompt. |
 | [computer-use-preview](#computer-use-preview) | An experimental model trained for use with the Responses API computer use tool. |
 | [GPT-4.5 Preview](#gpt-45-preview) |The latest GPT model that excels at diverse text and image tasks.  |
 | [o-series models](#o-series-models) |[Reasoning models](../how-to/reasoning.md) with advanced problem-solving and increased focus and capability.  |
@@ -31,7 +32,7 @@ Azure OpenAI Service is powered by a diverse set of models with different capabi
 
 ## GPT 4.1 series
 
-### Region Availability
+### Region availability
 
 | Model | Region |
 |---|---|
@@ -47,6 +48,23 @@ Azure OpenAI Service is powered by a diverse set of models with different capabi
 | `gpt-4.1-nano` (2025-04-14) <br><br> **Fastest 4.1 model** | - Text & image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> Structured outputs (chat completions)   | 1,047,576  | 32,768 | May 31, 2024 |
 | `gpt-4.1-mini` (2025-04-14) | - Text & image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> Structured outputs (chat completions)   | 1,047,576  | 32,768 | May 31, 2024 |
 
+## model-router
+
+A model that intelligently selects from a set of underlying chat models to respond to a given prompt.
+
+### Region availability
+
+| Model | Region |
+|---|---|
+| `model-router` (2025-04-15) | East US 2 (Global Standard), Sweden Central (Global Standard)|
+
+### Capabilities 
+
+|  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
+|  --- |  :--- |:--- |:---|:---: |
+| `model-router` (2025-04-15) | A model that intelligently selects from a set of underlying chat models to respond to a given prompt. | 200,000* | 32768 (GPT 4.1 series)</br> 100 K (o4-mini) | May 31, 2024 |
+
+*Larger context windows are compatible with _some_ of the underlying models, which means an API call with a larger context will succeed only if the prompt happens to be routed to the right model, otherwise the call will fail.
 
 ## computer-use-preview
 
@@ -63,7 +81,7 @@ Request access: [`computer-use-preview` limited access model application](https:
 
 Once access has been granted, you will need to create a deployment for the model.
 
-### Region Availability
+### Region availability
 
 | Model | Region |
 |---|---|
@@ -78,7 +96,7 @@ Once access has been granted, you will need to create a deployment for the model
 
 ## GPT-4.5 Preview
 
-### Region Availability
+### Region availability
 
 | Model | Region |
 |---|---|
@@ -88,7 +106,7 @@ Once access has been granted, you will need to create a deployment for the model
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
-| `gpt-4.5-preview` (2025-02-27) <br> **GPT-4.5 Preview**  | [GPT 4.1](#gpt-41-series) is the recommended replacement for this model. Excels at diverse text and image tasks. <br>-Structured outputs <br>-Prompt caching <br>-Tools <br>-Streaming<br>-Text(input/output)<br>- Image(input)   | 128,000 | 16,384 | Oct 2023 |
+| `gpt-4.5-preview` (2025-02-27) <br> **GPT-4.5 Preview**  | [GPT 4.1](#gpt-41-series) is the recommended replacement for this model. Excels at diverse text and image tasks. <br>- Structured outputs <br>- Prompt caching <br>- Tools <br>- Streaming<br>- Text(input/output)<br>- Image(input)   | 128,000 | 16,384 | Oct 2023 |
 
 > [!NOTE]
 > It is expected behavior that the model cannot answer questions about itself. If you want to know when the knowledge cutoff for the model's training data is, or other details about the model you should refer to the model documentation above.
@@ -158,7 +176,7 @@ You can see the token context length supported by each model in the [model summa
 
 - These models can only be used with the Chat Completion API.
 
-See [model versions](../concepts/model-versions.md) to learn about how Azure OpenAI Service handles model version upgrades, and [working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-4 deployments.
+See [model versions](../concepts/model-versions.md) to learn about how Azure OpenAI handles model version upgrades, and [working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-4 deployments.
 
 |  Model ID  | Description | Max Request (tokens) | Training Data (up to)  |
 |  --- |  :--- |:--- |:---: |
@@ -400,7 +418,7 @@ In addition to the regions above which are available to all Azure OpenAI custome
 
 ### GPT-3.5 models
 
-See [model versions](../concepts/model-versions.md) to learn about how Azure OpenAI Service handles model version upgrades, and [working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-3.5 Turbo deployments.
+See [model versions](../concepts/model-versions.md) to learn about how Azure OpenAI handles model version upgrades, and [working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-3.5 Turbo deployments.
 
 # [Embeddings](#tab/standard-embeddings)
 
@@ -456,7 +474,7 @@ These models can only be used with Embedding API requests.
 
 ## Assistants (Preview)
 
-For Assistants you need a combination of a supported model, and a supported region. Certain tools and capabilities require the latest models. The following models are available in the Assistants API, SDK, and Azure AI Foundry. The following table is for pay-as-you-go. For information on Provisioned Throughput Unit (PTU) availability, see [provisioned throughput](./provisioned-throughput.md). The listed models and regions can be used with both Assistants v1 and v2. You can use [global standard models](#global-standard-model-availability) if they are supported in the regions listed below. 
+For Assistants you need a combination of a supported model, and a supported region. Certain tools and capabilities require the latest models. The following models are available in the Assistants API, SDK, and Azure AI Foundry. The following table is for standard deployment. For information on Provisioned Throughput Unit (PTU) availability, see [provisioned throughput](./provisioned-throughput.md). The listed models and regions can be used with both Assistants v1 and v2. You can use [global standard models](#global-standard-model-availability) if they are supported in the regions listed below. 
 
 
 | **Region**   |  **gpt-4o**, **2024-05-13**   | **gpt-4o**, **2024-08-06**   | **gpt-4o-mini**, **2024-07-18**   | **gpt-4**, **0613**   | **gpt-4**, **1106-Preview**   | **gpt-4**, **0125-Preview**    | **gpt-4**, **turbo-2024-04-09**   | **gpt-4-32k**, **0613**  | **gpt-35-turbo**, **0613**   | **gpt-35-turbo**, **1106**   | **gpt-35-turbo**, **0125**   | **gpt-35-turbo-16k**, **0613**   |
