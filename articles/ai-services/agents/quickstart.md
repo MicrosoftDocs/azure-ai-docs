@@ -12,7 +12,7 @@ zone_pivot_groups: agents-quickstart
 ms.custom: azure-ai-agents
 ---
 
-# Quickstart: Create a new agent (Preview)
+# Quickstart: Create a new agent
 
 Azure AI Foundry Agent Service allows you to create AI agents tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, and custom functions.
 

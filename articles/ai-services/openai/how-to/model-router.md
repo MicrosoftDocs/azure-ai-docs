@@ -1,6 +1,5 @@
 ---
-title: How to use model router (preview) in Azure OpenAI in Azure AI Foundry Models
-titleSuffix: Azure OpenAI
+title: How to use model router for Azure AI Foundry (preview)
 description: Learn how to use the model router in Azure OpenAI to select the best model for your task.
 author: PatrickFarley
 ms.author: pafarley 
@@ -11,20 +10,20 @@ ms.date: 04/17/2025
 manager: nitinme
 ---
 
-# Use Azure OpenAI model router (preview)
+# Use model router for Azure AI Foundry (preview)
 
-Azure OpenAI model router is a deployable AI chat model that is trained to select the best large language model (LLM) to respond to a given prompt in real time. It uses a combination of preexisting models to provide high performance while saving on compute costs where possible. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](../concepts/model-router.md).
+Model router for Azure AI Foundry is a deployable AI chat model that is trained to select the best large language model (LLM) to respond to a given prompt in real time. It uses a combination of preexisting models to provide high performance while saving on compute costs where possible, all packaged as a single model deployment. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](../concepts/model-router.md).
 
-You can access model router through the Completions API just as you would use a single base model like GPT-4.
+You can access model router through the Completions API just as you would use a single base model like GPT-4. The steps are the same as in the [Chat completions guide](/azure/ai-services/openai/how-to/chatgpt).
 
 ## Deploy a model router model
 
-Model router is packaged as a single OpenAI model that you deploy. Follow the steps in the [resource deployment guide](/azure/ai-services/openai/how-to/create-resource), and in the **Create new deployment** step, find `Azure OpenAI model router` in the **Model** list. Select it, and then complete the rest of the deployment steps.
+Model router is packaged as a single Azure AI Foundry model that you deploy. Follow the steps in the [resource deployment guide](/azure/ai-services/openai/how-to/create-resource). In the **Create new deployment** step, find `model-router` in the **Models** list. Select it, and then complete the rest of the deployment steps.
 
 > [!NOTE]
 > Consider that your deployment settings apply to all underlying chat models that model router uses.
 > - You don't need to deploy the underlying chat models separately. Model router works independently of your other deployed models.
-> - You select a content filter when you deploy the model router model (or you can apply a filter later). The content filter is applied to all activity to and from the model router: you don't set content filters for each of the underlying chat models.
+> - You select a content filter when you deploy the model router model (or you can apply a filter later). The content filter is applied to all content passed to and from the model router: you don't set content filters for each of the underlying chat models.
 > - Your tokens-per-minute rate limit setting is applied to all activity to and from the model router: you don't set rate limits for each of the underlying chat models.
 
 ## Use model router in chats
@@ -44,7 +43,7 @@ In the [Azure AI Foundry portal](https://ai.azure.com/), you can navigate to you
 
 ### Output format 
 
-The JSON response you receive from a model router model looks like the following.
+The JSON response you receive from a model router model is identical to the standard chat completions API response. Note that the `"model"` field reveals which underlying model was selected to respond to the prompt.
 
 ```json
 {
