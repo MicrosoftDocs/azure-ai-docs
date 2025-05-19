@@ -34,8 +34,8 @@ ms.reviewer: ambadal
 | `credentials` | object | Credential-based authentication to access the storage account. A [personal access token](https://docs.github.com/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) or username and password can be used. Do not specify `credentials` when using a public Python feed. | | |
 | `credentials.type` | string | The type of authentication to use. | `pat`, `username_password` | |
 | `credentials.pat` | string | The personal access token to authenticate with. | | |
-| `credentials_username` | string | The username to authenticate with. | | |
-| `credentials_password` | string | The password to authenticate with. | | |
+| `credentials.username` | string | The username to authenticate with. | | |
+| `credentials.password` | string | The password to authenticate with. | | |
 
 ## Remarks
 
