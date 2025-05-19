@@ -33,7 +33,7 @@ AI Foundry Portal and SDK clients support multiple distinct Azure resource types
 
 ## References
 
-* [What is Azure Resource Manager?](https://learn.microsoft.com/azure/azure-resource-manager/management/overview)
+* [What is Azure Resource Manager?](/azure/azure-resource-manager/management/overview)
 * [Create a first AI Foundry resource](../../ai-services/multi-service-resource.md?context=/azure/ai-foundry/context/context)
 * [Create AI Foundry with advanced options](../how-to/create-resource-template.md)
 * [Create a first AI Hub](../how-to/create-azure-ai-resource.md)
