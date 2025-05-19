@@ -1,17 +1,18 @@
 ---
-title: Azure AI Translator v3.0 detect method
+title: Translator Detect Method
 titleSuffix: Azure AI services
-description: Identify the language of a piece of text with the Azure AI Translator v3.0 detect method.
+description: Identify the language of a piece of text with the Azure AI Translator Detect method.
 author: laujan
 manager: nitinme
+
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 03/31/2025
+ms.date: 06/06/2024
 ms.author: lajanuar
 ---
 
 <!-- markdownlint-disable MD033 -->
-# Azure AI Translator v3.0: detect
+# Translator 3.0: Detect
 
 Identifies the language of a piece of text.
 
@@ -19,12 +20,12 @@ Identifies the language of a piece of text.
 
 Send a `POST` request to:
 
-```bash
+```HTTP
 https://api.cognitive.microsofttranslator.com/detect?api-version=3.0
 
 ```
 
-_See_ [**Virtual Network Support**](../authentication.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
 
 ## Request parameters
 
@@ -38,10 +39,10 @@ Request headers include:
 
 | Headers | Description |
 | --- | --- |
-| Authentication headers | <em>Required request header</em>.<br>*See* [available options for authentication](../authentication.md). |
-| Content-Type | _Required request header_.<br>Specifies the content type of the payload. Accepted values are: `application/json`. |
+| Authentication headers | <em>Required request header</em>.<br>See [available options for authentication](reference.md#authentication)</a>. |
+| Content-Type | _Required request header_.<br>Specifies the content type of the payload. Possible values are: `application/json`. |
 | Content-Length | _Optional_.<br>The length of the request body. |
-| X-ClientTraceId | _Optional_.<br>A client-generated GUID to uniquely identify the request. You can omit this optional header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
+| X-ClientTraceId | _Optional_.<br>A client-generated GUID to uniquely identify the request. You can omit this header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
 
 ## Request body
 
@@ -100,12 +101,24 @@ An example JSON response is:
 
 ## Response status codes
 
-If an error occurs, the request returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [Translator status code reference page](../status-response-codes.md).
+The following are the possible HTTP status codes that a request returns.
+
+| Status Code | Description |
+| --- | --- |
+| 200 | Success. |
+| 400 | One of the query parameters is missing or not valid. Correct request parameters before retrying. |
+| 401 | The request couldn't be authenticated. Check that credentials are specified and valid. |
+| 403 | The request isn't authorized. Check the details error message. This code often indicates that all free translations provided with a trial subscription are used. |
+| 429 | The server rejected the request because the client exceeded request limits. |
+| 500 | An unexpected error occurred. If the error persists, report it with: date and time of the failure, request identifier from response header `X-RequestId`, and client identifier from request header `X-ClientTraceId`. |
+| 503 | Server temporarily unavailable. Retry the request. If the error persists, report it with: date and time of the failure, request identifier from response header `X-RequestId`, and client identifier from request header `X-ClientTraceId`. |
+
+If an error occurs, the request returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [v3 Translator reference page](reference.md#errors).
 
 ## Examples
 
 The following example shows how to retrieve languages supported for text translation.
 
- ```bash
+```curl
 curl -X POST "https://api.cognitive.microsofttranslator.com/detect?api-version=3.0" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d "[{'Text':'What language is this text written in?'}]"
 ```

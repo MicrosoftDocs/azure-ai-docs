@@ -53,7 +53,7 @@ To call the Translator service via the [REST API](../reference/rest-api-guide.md
 |**Ocp-Apim-Subscription-Region**|The region where your resource was created. |<ul><li>***Required*** when using an Azure AI multi-service or regional (geographic) resource like **West US**.</li><li> ***Optional*** when using a single-service Translator Resource.</li></ul>|
 |**Content-Type**|The content type of the payload. The accepted value is **application/json** or **charset=UTF-8**.|<ul><li>***Required***</li></ul>|
 |**Content-Length**|The **length of the request** body.|<ul><li>***Optional***</li></ul> |
-|**X-ClientTraceId**|A client-generated GUID to uniquely identify the request. You can omit this optional header if you include the trace ID in the query string using a query parameter named ClientTraceId.|<ul><li>***Optional***</li></ul>
+|**X-ClientTraceId**|A client-generated GUID to uniquely identify the request. You can omit this header if you include the trace ID in the query string using a query parameter named ClientTraceId.|<ul><li>***Optional***</li></ul>
 
 ## Set up your application
 
@@ -3123,7 +3123,7 @@ After a successful call, you should see the following response. For more informa
 |------------------|-------------|-----------------|
 | 200 | OK | The request was successful. |
 | 400 | Bad Request | A required parameter is missing, empty, or null. Or, the value passed to either a required or optional parameter is invalid. A common issue is a header that is too long. |
-| 401 | Unauthorized | The request isn't authorized. Check to make sure your key or token is valid and in the correct region. *See also* [Authentication](../reference/authentication.md).|
+| 401 | Unauthorized | The request isn't authorized. Check to make sure your key or token is valid and in the correct region. *See also* [Authentication](../reference/v3/reference.md#authentication).|
 | 429 | Too Many Requests | You exceeded the quota or rate of requests allowed for your subscription. |
 | 502 | Bad Gateway    | Network or server-side issue. May also indicate invalid headers. |
 
