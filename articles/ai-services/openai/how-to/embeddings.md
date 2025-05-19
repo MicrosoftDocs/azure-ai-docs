@@ -1,5 +1,5 @@
 ---
-title: 'How to generate embeddings with Azure OpenAI Service'
+title: 'How to generate embeddings with Azure OpenAI in Azure AI Foundry Models'
 titleSuffix: Azure OpenAI
 description: Learn how to generate embeddings with Azure OpenAI
 manager: nitinme

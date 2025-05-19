@@ -5,7 +5,7 @@ description: How to run evaluation in GitHub Action to streamline the evaluation
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 05/08/2025
+ms.date: 05/19/2025
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
@@ -17,7 +17,7 @@ author: lgayhardt
 
 This GitHub Action enables offline evaluation of AI models and agents within your CI/CD pipelines. It's designed to streamline the evaluation process, allowing you to assess model performance and make informed decisions before deploying to production.
 
-Offline evaluation involves testing AI models and agents using test datasets to measure their performance on various quality and safety metrics such as fluency, coherence, and content safety. After you select a model in the [Azure AI Model Catalog](https://azure.microsoft.com/products/ai-model-catalog?msockid=1f44c87dd9fa6d1e257fdd6dd8406c42) or [GitHub Model marketplace](https://github.com/marketplace/models), offline pre-production evaluation is crucial for AI application validation during integration testing. This process allows developers to identify potential issues and make improvements before deploying the model or application to production, such as when creating and updating agents.
+Offline evaluation involves testing AI models and agents using test datasets to measure their performance on various quality and safety metrics such as fluency, coherence, and appropriateness. After you select a model in the [Azure AI Model Catalog](https://azure.microsoft.com/products/ai-model-catalog?msockid=1f44c87dd9fa6d1e257fdd6dd8406c42) or [GitHub Model marketplace](https://github.com/marketplace/models), offline pre-production evaluation is crucial for AI application validation during integration testing. This process allows developers to identify potential issues and make improvements before deploying the model or application to production, such as when creating and updating agents.
 
 [!INCLUDE [features](../includes/evaluation-github-action-azure-devops-features.md)]
 
@@ -26,6 +26,8 @@ Offline evaluation involves testing AI models and agents using test datasets to 
 - **Out-of-box operation metrics**: Automatically generates operational metrics for each evaluation run (client run duration, server run duration, completion tokens, and prompt tokens).
 
 ## Prerequisites
+
+[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 
 Two GitHub Actions are available for evaluating AI applications: **ai-agent-evals** and **genai-evals**.
 

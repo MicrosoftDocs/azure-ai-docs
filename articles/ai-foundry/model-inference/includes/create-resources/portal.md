@@ -10,12 +10,9 @@ zone_pivot_groups: azure-ai-models-deployment
 
 [!INCLUDE [Header](intro.md)]
 
-> [!IMPORTANT]
-> Azure AI Foundry portal uses projects and hubs to create Azure AI Services accounts and configure Azure AI model inference. If you don't want to use hubs and projects, you can create the resources using either the [Azure CLI](../../how-to/quickstart-create-resources.md?pivots=programming-language-cli), [Bicep](../../how-to/quickstart-create-resources.md?pivots=programming-language-bicep), or [create the Azure AI services resource using the Azure portal](../../../../ai-services/multi-service-resource.md?context=/azure/ai-services/model-inference/context/context).
-
 ## Create the resources
 
-To create a project with an Azure AI Services account, follow these steps:
+To create a project with an Azure AI Foundry (formerly known Azure AI Services) resource, follow these steps:
 
 1. Go to [Azure AI Foundry portal](https://ai.azure.com).
 
@@ -38,21 +35,13 @@ To create a project with an Azure AI Services account, follow these steps:
     | Resource group | The main container for all the resources in Azure. This helps get resources that work together organized. It also helps to have a scope for the costs associated with the entire project. |
     | Location       | The region of the resources that you're creating. |
     | Hub            | The main container for AI projects in Azure AI Foundry. Hubs promote collaboration and allow you to store information for your projects. |
-    | AI Services    | The resource enabling access to the flagship models in Azure AI model catalog. In this tutorial, a new account is created, but Azure AI services resources can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how, you can create connections between projects and Azure AI Services to consume Azure AI model inference you can read [Connect your AI project](../../how-to/configure-project-connection.md). |
+    | AI Foundry    | In this tutorial, a new account is created, but Azure AI Foundry Services can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how, you can create connections between projects and Azure AI Foundry to consume Azure AI Foundry Models you can read [Connect your AI project](../../how-to/configure-project-connection.md). |
 
 8. Select **Create**. The resources creation process starts. 
 
 9. Once completed, your project is ready to be configured.
 
-10. Azure AI model inference is a Preview feature that needs to be turned on in Azure AI Foundry. At the top navigation bar, over the right corner, select the **Preview features** icon. A contextual blade shows up at the right of the screen.
-
-11. Turn on the **Deploy models to Azure AI model inference service** feature.
-
-    :::image type="content" source="../../media/quickstart-ai-project/ai-project-inference-endpoint.gif" alt-text="An animation showing how to turn on the Azure AI model inference service deploy models feature in Azure AI Foundry portal." lightbox="../../media/quickstart-ai-project/ai-project-inference-endpoint.gif":::
-
-4. Close the panel.
-
-10. To use Azure AI model inference, you need to add model deployments to your Azure AI services account.
+10. To use Azure AI Foundry Models, you need to add model deployments.
 
 ## Next steps
 

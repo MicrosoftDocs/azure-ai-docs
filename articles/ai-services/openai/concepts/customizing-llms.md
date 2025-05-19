@@ -1,6 +1,6 @@
 ---
-title: Azure OpenAI Service getting started with customizing a large language model (LLM)
-titleSuffix: Azure OpenAI Service
+title: Azure OpenAI in Azure AI Foundry Models getting started with customizing a large language model (LLM)
+titleSuffix: Azure OpenAI
 description: Learn more about the concepts behind customizing an LLM with Azure OpenAI.
 ms.topic: conceptual
 ms.date: 03/27/2025

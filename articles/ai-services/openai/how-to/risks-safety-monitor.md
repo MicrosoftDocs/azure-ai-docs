@@ -1,6 +1,6 @@
 ---
 title: How to use Risks & Safety monitoring in Azure AI Foundry
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn how to check statistics and insights from your Azure OpenAI content filtering activity.
 author: PatrickFarley 
 ms.author: pafarley 
@@ -20,7 +20,7 @@ When you use an Azure OpenAI model deployment with a content filter, you might w
 
 To access Risks & Safety monitoring, you need an Azure OpenAI resource in one of the supported Azure regions: East US, Switzerland North, France Central, Sweden Central, Canada East. You also need a model deployment that uses a content filter configuration.
 
-Go to [Azure AI Foundry](https://ai.azure.com/) and sign in with the credentials associated with your Azure OpenAI resource. Select a project. Then select the **Models + endpoints** tab on the left and then select your model deployment from the list. On the deployment's page, select the **Metrics** tab at the top. Then select **Open in Azure Monitor** to view the full report in the Azure portal.
+Go to [Azure AI Foundry](https://ai.azure.com/) and sign in with the credentials associated with your Azure OpenAI resource. Select a project. Then select the **Models + endpoints** tab on the left and then select your model deployment from the list. On the deployment's page, select the **Monitoring** tab at the top. Then select **Open in Azure Monitor** to view the full report in the Azure portal.
 
 ## Configure metrics   
 
@@ -94,4 +94,4 @@ Combine this data with enriched signals to validate whether the detected users a
 Next, create or edit a content filter configuration in Azure AI Foundry.
 
 > [!div class="nextstepaction"]
-> [Configure content filters with Azure OpenAI Service](/azure/ai-services/openai/how-to/content-filters)
+> [Configure content filters with Azure OpenAI in Azure AI Foundry Models](/azure/ai-services/openai/how-to/content-filters)

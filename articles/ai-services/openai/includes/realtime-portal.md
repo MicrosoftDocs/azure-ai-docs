@@ -15,7 +15,7 @@ ms.date: 3/20/2025
 
 To chat with your deployed `gpt-4o-mini-realtime-preview` model in the [Azure AI Foundry](https://ai.azure.com) **Real-time audio** playground, follow these steps:
 
-1. Go to the [Azure OpenAI Service page](https://ai.azure.com/resource/overview) in Azure AI Foundry portal. Make sure you're signed in with the Azure subscription that has your Azure OpenAI Service resource and the deployed `gpt-4o-mini-realtime-preview` model.
+1. Go to the [Azure OpenAI in Azure AI Foundry Models page](https://ai.azure.com/resource/overview) in Azure AI Foundry portal. Make sure you're signed in with the Azure subscription that has your Azure OpenAI in Azure AI Foundry Models resource and the deployed `gpt-4o-mini-realtime-preview` model.
 1. Select the **Real-time audio** playground from under **Playgrounds** in the left pane.
 1. Select your deployed `gpt-4o-mini-realtime-preview` model from the **Deployment** dropdown. 
 1. Select **Enable microphone** to allow the browser to access your microphone. If you already granted permission, you can skip this step.

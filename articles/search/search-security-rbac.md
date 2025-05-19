@@ -531,7 +531,7 @@ These steps create a custom role that augments search query rights to include li
 
 ### [**Azure PowerShell**](#tab/custom-role-ps)
 
-The PowerShell example shows the JSON syntax for creating a custom role that's a clone of **Search Index Data Reader**, but withe ability to list all indexes by name.
+The PowerShell example shows the JSON syntax for creating a custom role that's a clone of **Search Index Data Reader**, but with ability to list all indexes by name.
 
 1. Review the [list of atomic permissions](/azure/role-based-access-control/resource-provider-operations#microsoftsearch) to determine which ones you need. For this example, you'll need the following:
 

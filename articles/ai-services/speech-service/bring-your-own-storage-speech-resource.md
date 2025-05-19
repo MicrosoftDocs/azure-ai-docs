@@ -292,7 +292,7 @@ You can always check, whether any given Speech resource is BYOS enabled, and wha
 
 # [Azure portal](#tab/portal)
 
-To check BYOS configuration of an AI Services resource for Speech with Azure portal, you need to access some portal preview features. Perform the following steps:
+To check BYOS configuration of an AI Foundry resource for Speech with Azure portal, you need to access some portal preview features. Perform the following steps:
 
 1. Navigate to *Create Speech* page using [this link](https://ms.portal.azure.com/?feature.enablecsumi=true&feature.enablecsstoragemenu=true&microsoft_azure_marketplace_ItemHideKey=microsoft_azure_cognitiveservices_byospreview#create/Microsoft.CognitiveServicesSpeechServices).
 1.  Close *Create Speech* screen by pressing *X* in the right upper corner.

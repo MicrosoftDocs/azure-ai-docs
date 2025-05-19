@@ -10,13 +10,13 @@ zone_pivot_groups: azure-ai-models-deployment
 
 [!INCLUDE [Header](intro.md)]
 
-* An AI project connected to your Azure AI Services resource with the feature **Deploy models to Azure AI model inference service** on.
+* An AI project connected to your Azure AI Foundry resource with the feature **Deploy models to Azure AI Foundry Models service** on.
 
-  * You can follow the steps at [Configure Azure AI model inference service in my project](../../how-to/quickstart-ai-project.md#configure-the-project-to-use-azure-ai-model-inference) in Azure AI Foundry.
+  * You can follow the steps at [Configure Foundry Models service in my project](../../how-to/quickstart-ai-project.md#configure-the-project-to-use-foundry-models) in Azure AI Foundry.
 
 ## Add a model
 
-You can add models to the Azure AI model inference endpoint using the following steps:
+You can add models to the Foundry Models endpoint using the following steps:
 
 1. Go to **Model catalog** section in [Azure AI Foundry portal](https://ai.azure.com/explore/models).
 
@@ -32,17 +32,17 @@ You can add models to the Azure AI model inference endpoint using the following 
 
    :::image type="content" source="../../media/add-model-deployments/models-deploy-agree.png" alt-text="Screenshot showing how to agree the terms and conditions of a Mistral-Large model." lightbox="../../media/add-model-deployments/models-deploy-agree.png":::
 
-6. You can configure the deployment settings at this time. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for request to route to this particular model deployment. This allows you to also configure specific names for your models when you attach specific configurations. For instance `o1-preview-safe` for a model with a strict content safety content filter.
+6. You can configure the deployment settings at this time. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for request to route to this particular model deployment. This allows you to also configure specific names for your models when you attach specific configurations. For instance `o1-preview-safe` for a model with a strict content filter.
 
    > [!TIP]
    > Each model can support different deployments types, providing different data residency or throughput guarantees. See [deployment types](../../concepts/deployment-types.md) for more details.
 
-5. We automatically select an Azure AI Services connection depending on your project. Use the **Customize** option to change the connection based on your needs. If you're deploying under the **Standard** deployment type, the models need to be available in the region of the Azure AI Services resource.
+5. We automatically select an Azure AI Foundry connection depending on your project. Use the **Customize** option to change the connection based on your needs. If you're deploying under the **Standard** deployment type, the models need to be available in the region of the Azure AI Foundry resource.
    
    :::image type="content" source="../../media/add-model-deployments/models-deploy-customize.png" alt-text="Screenshot showing how to customize the deployment if needed." lightbox="../../media/add-model-deployments/models-deploy-customize.png":::
 
    > [!TIP]
-   > If the desired resource isn't listed, you might need to create a connection to it. See [Configure Azure AI model inference service in my project](../../how-to/configure-project-connection.md) in Azure AI Foundry portal.
+   > If the desired resource isn't listed, you might need to create a connection to it. See [Configure Azure AI Foundry Models in my project](../../how-to/configure-project-connection.md) in Azure AI Foundry portal.
 
 6. Select **Deploy**.
 
@@ -54,7 +54,7 @@ You can manage the existing model deployments in the resource using Azure AI Fou
 
 1. Go to **Models + Endpoints** section in [Azure AI Foundry portal](https://ai.azure.com).
 
-2. Scroll to the connection to your Azure AI Services resource. Model deployments are grouped and displayed per connection.
+2. Scroll to the connection to your Azure AI Foundry resource. Model deployments are grouped and displayed per connection.
 
    :::image type="content" source="../../media/quickstart-ai-project/endpoints-ai-services-connection.png" alt-text="Screenshot showing the list of models available under a given connection." lightbox="../../media/quickstart-ai-project/endpoints-ai-services-connection.png":::
 

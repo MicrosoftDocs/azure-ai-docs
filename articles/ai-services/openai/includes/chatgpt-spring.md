@@ -15,7 +15,7 @@ ms.date: 11/27/2023
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - The current version of the [Java Development Kit (JDK)](https://www.microsoft.com/openjdk)
 - The [Spring Boot CLI tool](https://docs.spring.io/spring-boot/docs/current/reference/html/getting-started.html#getting-started.installing.cli)
-- An Azure OpenAI Service resource with the `gpt-4` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md). This example assumes that your deployment name matches the model name `gpt-4`
+- An Azure OpenAI in Azure AI Foundry Models resource with the `gpt-4` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md). This example assumes that your deployment name matches the model name `gpt-4`
 
 ## Set up
 
@@ -179,7 +179,7 @@ ai-chat-demo/
    ```
 
    > [!IMPORTANT]
-   > For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
+   > For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see this [security](../../security-features.md) article.
 
 1. Navigate back to the project root folder, and run the app by using the following command:
 

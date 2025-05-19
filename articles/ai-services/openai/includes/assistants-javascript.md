@@ -1,6 +1,6 @@
 ---
-title: 'Quickstart: Use the Azure OpenAI Service via the JavaScript SDK'
-titleSuffix: Azure OpenAI Service
+title: 'Quickstart: Use the Azure OpenAI in Azure AI Foundry Models via the JavaScript SDK'
+titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the JavaScript SDK. 
 manager: nitinme
 author: aahill
@@ -19,7 +19,7 @@ ms.custom: passwordless-ts, devex-track-js
 - <a href="https://nodejs.org/" target="_blank">Node.js LTS or ESM support.</a>
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI. 
 - An Azure OpenAI resource with a [compatible model in a supported region](../concepts/models.md#assistants-preview).
-- We recommend reviewing the [Responsible AI transparency note](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=text) and other [Responsible AI resources](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) to familiarize yourself with the capabilities and limitations of the Azure OpenAI Service.
+- We recommend reviewing the [Responsible AI transparency note](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=text) and other [Responsible AI resources](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) to familiarize yourself with the capabilities and limitations of the Azure OpenAI in Azure AI Foundry Models.
 - An Azure OpenAI resource with the `gpt-4 (1106-preview)` model deployed was used testing this example. 
 
 ### Microsoft Entra ID prerequisites

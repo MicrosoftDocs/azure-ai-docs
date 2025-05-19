@@ -31,7 +31,7 @@ Text translation is a cloud-based REST API feature of the Azure AI Translator se
 
 To get started, you need  an active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
 
-* Once you have your Azure subscription, create a [**single-service Translator resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (**not** a multi-service Azure AI services resource):
+* Once you have your Azure subscription, create a [**single-service Translator resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (**not** a multi-service Azure AI Foundry resource):
 
 * You need the key and name from your resource to connect your application to Power Automate. Your Translator resource keys are found under the Resource Management section in the Azure portal and your resource name is located at the top of the page. Copy and paste your key and resource name in a convenient location, such as *Microsoft Notepad*.
 
