@@ -156,7 +156,7 @@ You can use the following policy to disable access to any Azure OpenAI deploymen
 
 **SKU name in code:** `Developer`
 
-Fine-tuned models support a Developer deployment specifically designed to support custom model evaluation. It offers no data residency guarantees nor does it offer an SLA. To learn more about using the Developer deployment type, see the [fine-tuning guide](./fine-tuning-test.md).
+Fine-tuned models support a Developer deployment specifically designed to support custom model evaluation. It offers no data residency guarantees nor does it offer an SLA. To learn more about using the Developer deployment type, see the [fine-tuning guide](./fine-tune-test.md).
 
 ## Deploy models
 

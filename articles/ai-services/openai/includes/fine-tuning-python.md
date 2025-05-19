@@ -274,9 +274,9 @@ Look for your loss to decrease over time, and your accuracy to increase. If you 
 
 ## Deploy a fine-tuned model
 
-Once you're satisified with the metrics from your fine-tuning job, or you just want to move onto inference, you must deploy the model.
+Once you're satisfied with the metrics from your fine-tuning job, or you just want to move onto inference, you must deploy the model.
 
-If you're deploying for further validation, consider deploying for [testing](../how-to/fine-tuning-test.md?tabs=python) using a Developer deployment.
+If you're deploying for further validation, consider deploying for [testing](../how-to/fine-tune-test.md?tabs=python) using a Developer deployment.
 
 If you're ready to deploy for production or have particular data residency needs, follow our [deployment guide](../how-to/fine-tuning-deploy.md?tabs=python).
 

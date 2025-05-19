@@ -180,7 +180,7 @@ items:
         href: ./how-to/fine-tuning.md
         displayName: finetuning, fine-tuning
       - name: Deploy for testing
-        href: ./how-to/fine-tuning-test.md
+        href: ./how-to/fine-tune-test.md
         displayName: finetuning, fine-tuning
       - name: Deploy your fine-tuned model
         href: ./how-to/fine-tuning-deploy.md 

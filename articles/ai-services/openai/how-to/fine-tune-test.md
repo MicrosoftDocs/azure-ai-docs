@@ -13,7 +13,7 @@ ms.author: davevoutila
 
 # Deploy a fine-tuned model for testing (Preview)
 
-After you've fine-tuned a model, you may want to test its quality via the Chat Completions api or the [Evaluations](./evaluations.md) service.
+After you've fine-tuned a model, you may want to test its quality via the Chat Completions API or the [Evaluations](./evaluations.md) service.
 
 A Developer Tier deployment allows you to deploy your new model without the hourly hosting fee incurred by Standard or Global deployments. The only charges incurred are per-token. Consult the [pricing page](https://aka.ms/aoaipricing) for the most up-to-date pricing.
 
