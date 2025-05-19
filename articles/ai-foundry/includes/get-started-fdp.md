@@ -43,7 +43,7 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. If you just used the Azure AI Foundry portal to create the project with the **Create an agent** link, you're next  prompted to deploy a model.
+1. If you just used the Azure AI Foundry portal to create the project with the **Create an agent** link, you'll already have a default **gpt-4o** model deployed.
 1. Or else, sign in to the [Azure AI Foundry portal](https://ai.azure.com), select your project, and select **Model catalog**.
 1. Search for the model you want to deploy. For this quickstart, select **gpt-4o**.
 1. Select **Confirm**.
