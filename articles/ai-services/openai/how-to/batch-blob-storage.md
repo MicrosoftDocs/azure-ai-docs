@@ -10,7 +10,6 @@ ms.date: 05/18/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
-zone_pivot_groups: openai-fine-tuning-batch
 ---
 
 # Configuring Azure Blob Storage for Azure OpenAI
@@ -44,7 +43,7 @@ In order for your Azure OpenAI resource to securely access your Azure Blob Stora
 > Currently user assigned managed identities aren't supported.
 
 1. Sign in to [https://portal.azure.com](https://portal.azure.com).
-2. Find your Azure OpenAI resource > Select **Resource Management** > **Identity**. **System assigned** > set status to **On**.
+2. Find your Azure OpenAI resource > Select **Resource Management** > **Identity** > **System assigned** > set status to **On**.
 
     :::image type="content" source="../media/how-to/batch-blob-storage/identity.png" alt-text="Screenshot that shows system managed identity configuration." lightbox="../media/how-to/batch-blob-storage/identity.png":::
 
@@ -85,8 +84,8 @@ Once your containers are created retrieve the URL for each container by selectin
 
 In this case we have:
 
-`https://{AZURE-BLOB-STORAGE-RESOURCE-NAME}.blob.core.windows.net/batch-input`
-`https://{AZURE-BLOB-STORAGE-RESOURCE-NAME}.blob.core.windows.net/batch-output`
+- `https://{AZURE-BLOB-STORAGE-RESOURCE-NAME}.blob.core.windows.net/batch-input`
+- `https://{AZURE-BLOB-STORAGE-RESOURCE-NAME}.blob.core.windows.net/batch-output`
 
 ### Create input file
 
