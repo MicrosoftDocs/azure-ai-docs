@@ -40,6 +40,7 @@ ms.author: eur
 ### Speech SDK for JavaScript
 
 #### New features:
+  * Updated development dependency: TypeScript 3.5.3 → 4.5
   * Updated TranslationRecognizer to use V2 endpoints by default.
   * Updated SpeechRecongizer to use V2 endpoints.
     * This will result in no longer receiving NoMatch results.
