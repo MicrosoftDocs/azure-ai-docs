@@ -131,7 +131,7 @@ if response_message:
 
 
 :::zone-end
-
+<!--
 ::: zone pivot="csharp"
 
 ## Create a project client
@@ -251,7 +251,8 @@ agentClient.DeleteAgent(agentId: agent.Id);
 ```
 
 :::zone-end
-
+-->
+<!--
 ::: zone pivot="javascript"
 
 ## Create a project client
@@ -372,7 +373,7 @@ Create a run and observe that the model uses the Grounding with Bing Custom Sear
 ```
 
 :::zone-end
-
+-->
 
 ::: zone pivot="rest"
 

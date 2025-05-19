@@ -40,7 +40,7 @@ from azure.ai.inference import EmbeddingsClient
 from azure.core.credentials import AzureKeyCredential
 
 model = EmbeddingsClient(
-    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
+    endpoint="https://<resource>.services.ai.azure.com/models",
     credential=AzureKeyCredential(os.environ["AZURE_INFERENCE_CREDENTIAL"]),
     model="text-embedding-3-small"
 )
@@ -55,7 +55,7 @@ from azure.ai.inference import EmbeddingsClient
 from azure.identity import DefaultAzureCredential
 
 model = EmbeddingsClient(
-    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
+    endpoint="https://<resource>.services.ai.azure.com/models",
     credential=DefaultAzureCredential(),
     model="text-embedding-3-small"
 )

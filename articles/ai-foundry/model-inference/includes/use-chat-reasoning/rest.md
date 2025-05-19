@@ -46,6 +46,8 @@ Authorization: Bearer <token>
 
 Using Microsoft Entra ID may require additional configuration in your resource to grant access. Learn how to [configure key-less authentication with Microsoft Entra ID](../../how-to/configure-entra-id.md).
 
+[!INCLUDE [best-practices](best-practices.md)]
+
 ### Create a chat completion request
 
 The following example shows how you can create a basic chat request to the model.
@@ -61,8 +63,6 @@ The following example shows how you can create a basic chat request to the model
     ]
 }
 ```
-
-[!INCLUDE [best-practices](best-practices.md)]
 
 The response is as follows, where you can see the model's usage statistics:
 
@@ -185,7 +185,7 @@ Some models support the use of tools or structured outputs (including JSON-schem
 
 ### Apply Guardrails and controls
 
-The Foundry Models API supports [Azure AI Content Safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI Content Safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI Model Inference API supports [Azure AI Content Safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI Content Safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
 The following example shows how to handle events when the model detects harmful content in the input prompt.
 

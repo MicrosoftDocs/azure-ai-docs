@@ -110,71 +110,70 @@ To enable your Agent to use a connected agent, you use `ConnectedAgentToolDefini
 1. First we need to create agent client and read the environment variables, which will be used in the next steps.
     
     ```csharp
-    var connectionString = System.Environment.GetEnvironmentVariable("PROJECT_CONNECTION_STRING");
-    var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
-    
-    var projectClient = new AIProjectClient(connectionString, new DefaultAzureCredential());
-    
-    AgentsClient agentClient = projectClient.GetAgentsClient();
+    var projectEndpoint = configuration["ProjectEndpoint"];
+    var modelDeploymentName = configuration["ModelDeploymentName"];
+
+    PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
     ```
 
-2. Next we will create the connected agent using the agent client. This agent will be used to initialize the `ConnectedAgentToolDefinition`.
+2. Next we will create the main agent `mainAgent`, and the connected `stockAgent` agent using the agent client. This connected agent will be used to initialize the `ConnectedAgentToolDefinition`.
     
     ```csharp
-    Agent connectedAgent = agentClient.CreateAgent(
-       model: modelDeploymentName,
-       name: "stock_price_bot",
-       instructions: "Your job is to get the stock price of a company. If you don't know the realtime stock price, return the last known stock price.");
-    
-    ConnectedAgentToolDefinition connectedAgentDefinition = new(new ConnectedAgentDetails(connectedAgent.Id, connectedAgent.Name, "Gets the stock price of a company"));
-    ```
+    PersistentAgent stockAgent = client.Administration.CreateAgent(
+            model: modelDeploymentName,
+            name: "stock_price_bot",
+            instructions: "Your job is to get the stock price of a company. If you don't know the realtime stock price, return the last known stock price."
+            // tools: [...] tools that would be used to get stock prices
+        );
+    ConnectedAgentToolDefinition connectedAgentDefinition = new(new ConnectedAgentDetails(stockAgent.Id, stockAgent.Name, "Gets the stock price of a company"));
 
-3. We will use the `ConnectedAgentToolDefinition` during the agent initialization.
+    PersistentAgent mainAgent = client.Administration.CreateAgent(
+            model: modelDeploymentName,
+            name: "stock_price_bot",
+            instructions: "Your job is to get the stock price of a company, using the available tools.",
+            tools: [connectedAgentDefinition]
+        );
+
     
-    ```csharp
-    Agent agent = agentClient.CreateAgent(
-       model: modelDeploymentName,
-       name: "my-assistant",
-       instructions: "You are a helpful assistant, and use the connected agent to get stock prices.",
-       tools: [ connectedAgentDefinition ]);
     ```
     
 4. Now we will create the thread, add the message, containing a question for agent and start the run.
     
     ```csharp
-    AgentThread thread = agentClient.CreateThread();
-    
+    PersistentAgentThread thread = client.Threads.CreateThread();
+
     // Create message to thread
-    ThreadMessage message = agentClient.CreateMessage(
+    PersistentThreadMessage message = client.Messages.CreateMessage(
         thread.Id,
         MessageRole.User,
         "What is the stock price of Microsoft?");
-    
+
     // Run the agent
-    ThreadRun run = agentClient.CreateRun(thread, agent);
+    ThreadRun run = client.Runs.CreateRun(thread, agent);
     do
     {
         Thread.Sleep(TimeSpan.FromMilliseconds(500));
-        run = agentClient.GetRun(thread.Id, run.Id);
+        run = client.Runs.GetRun(thread.Id, run.Id);
     }
     while (run.Status == RunStatus.Queued
         || run.Status == RunStatus.InProgress);
-    
-    Assert.AreEqual(
-        RunStatus.Completed,
-        run.Status,
-        run.LastError?.Message);
+
+    // Confirm that the run completed successfully
+    if (run.Status != RunStatus.Completed)
+    {
+        throw new Exception("Run did not complete successfully, error: " + run.LastError?.Message);
+    }
     ```
     
 5. Print the agent messages to console in chronological order.
     
     ```csharp
-    PageableList<ThreadMessage> messages = agentClient.GetMessages(
+    Pageable<PersistentThreadMessage> messages = client.Messages.GetMessages(
         threadId: thread.Id,
         order: ListSortOrder.Ascending
     );
-    
-    foreach (ThreadMessage threadMessage in messages)
+
+    foreach (PersistentThreadMessage threadMessage in messages)
     {
         Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
         foreach (MessageContent contentItem in threadMessage.ContentItems)
@@ -186,9 +185,9 @@ To enable your Agent to use a connected agent, you use `ConnectedAgentToolDefini
                 {
                     foreach (MessageTextAnnotation annotation in textItem.Annotations)
                     {
-                        if (annotation is MessageTextUrlCitationAnnotation urlAnnotation)
+                        if (annotation is MessageTextUriCitationAnnotation urlAnnotation)
                         {
-                            response = response.Replace(urlAnnotation.Text, $" [{urlAnnotation.UrlCitation.Title}]({urlAnnotation.UrlCitation.Url})");
+                            response = response.Replace(urlAnnotation.Text, $" [{urlAnnotation.UriCitation.Title}]({urlAnnotation.UriCitation.Uri})");
                         }
                     }
                 }
@@ -229,23 +228,21 @@ To create a multi-agent setup, follow these steps:
     from azure.identity import DefaultAzureCredential
     
     
-    project_client = AIProjectClient.from_connection_string(
-        credential=DefaultAzureCredential(),
-        conn_str=os.environ["PROJECT_CONNECTION_STRING"],
+    project_client = AIProjectClient(
+    endpoint=os.environ["PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential(),
+    api_version="latest",
     )
     ```
 
 1. Create an agent that will be connected to a "main" agent.
 
     ```python
-    connected_agent_name = "stock_price_bot"
-    
     stock_price_agent = project_client.agents.create_agent(
         model=os.environ["MODEL_DEPLOYMENT_NAME"],
-        name=connected_agent_name,
-        instructions=(
-            "Your job is to get the stock price of a company. If you don't know the realtime stock price, return the last known stock price."
-        ),
+        name="stock_price_bot",
+        instructions="Your job is to get the stock price of a company. If you don't know the realtime stock price, return the last known stock price.",
+        #tools=... # tools to help the agent get stock prices
     )
     ```
    
@@ -263,7 +260,7 @@ To create a multi-agent setup, follow these steps:
     agent = project_client.agents.create_agent(
         model=os.environ["MODEL_DEPLOYMENT_NAME"],
         name="my-agent",
-        instructions="You are a helpful agent, and use the connected agent to get stock prices.",
+        instructions="You are a helpful agent, and use the available tools to get stock prices.",
         tools=connected_agent.definitions,
     )
     

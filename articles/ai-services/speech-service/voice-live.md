@@ -78,7 +78,7 @@ The Voice Live API supports the following models and regions:
 | `gpt-4o` | GPT-4o + audio input through Azure speech to text + audio output through Azure text to speech voices including custom neural voice. | `eastus2`<br/>`swedencentral` |
 | `gpt-4o-mini` | GPT-4o mini + audio input through Azure speech to text + audio output through Azure text to speech voices including custom neural voice. | `eastus2`<br/>`swedencentral` |
 | `phi4-mm-realtime` | Phi4-mm + audio output through Azure text to speech voices including custom neural voice. | `eastus2`<br/>`swedencentral` |
-| `phi4` | Phi4-mm + audio input through Azure speech to text + audio output through Azure text to speech voices including custom neural voice. | `eastus2`<br/>`swedencentral` |
+| `phi4-mini` | Phi4-mm + audio input through Azure speech to text + audio output through Azure text to speech voices including custom neural voice. | `eastus2`<br/>`swedencentral` |
 
 ## Comparing Voice Live API with other speech to speech solutions
 

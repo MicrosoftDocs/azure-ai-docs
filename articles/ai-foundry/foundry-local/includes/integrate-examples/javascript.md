@@ -32,7 +32,7 @@ import { FoundryLocalManager } from "foundry-local-sdk";
 // to your end-user's device.
 // TIP: You can find a list of available models by running the 
 // following command in your terminal: `foundry model list`.
-const alias = "deepseek-r1-1.5b";
+const alias = "phi-3.5-mini";
 
 // Create a FoundryLocalManager instance. This will start the Foundry 
 // Local service if it is not already running.
@@ -83,7 +83,7 @@ import { FoundryLocalManager } from "foundry-local-sdk";
 // to your end-user's device.
 // TIP: You can find a list of available models by running the 
 // following command in your terminal: `foundry model list`.
-const alias = "deepseek-r1-1.5b";
+const alias = "phi-3.5-mini";
 
 // Create a FoundryLocalManager instance. This will start the Foundry 
 // Local service if it is not already running.
@@ -133,7 +133,7 @@ import { FoundryLocalManager } from "foundry-local-sdk";
 // to your end-user's device.
 // TIP: You can find a list of available models by running the 
 // following command in your terminal: `foundry model list`.
-const alias = "deepseek-r1-1.5b";
+const alias = "phi-3.5-mini";
 
 // Create a FoundryLocalManager instance. This will start the Foundry 
 // Local service if it is not already running.
@@ -176,7 +176,7 @@ import { FoundryLocalManager } from "foundry-local-sdk";
 // to your end-user's device.
 // TIP: You can find a list of available models by running the 
 // following command in your terminal: `foundry model list`.
-const alias = "deepseek-r1-1.5b";
+const alias = "phi-3.5-mini";
 
 // Create a FoundryLocalManager instance. This will start the Foundry 
 // Local service if it is not already running.

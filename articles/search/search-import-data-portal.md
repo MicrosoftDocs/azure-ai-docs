@@ -54,9 +54,9 @@ The wizards support most of the data sources supported by indexers.
 Microsoft hosts sample data so that you can omit a data source configuration step on a wizard workflow.
 
 | Sample data | Import data wizard | Import and vectorize data wizard |
-|------|--------------------|----------------------------------|
-| hotels | ✅ | ❌ |
-| real estate  | ✅ | ❌ |
+|-------------|--------------------|----------------------------------|
+| hotels      | ✅                 | ❌                              |
+| real estate | ✅                 | ❌                              |
 
 ### Skills
 
@@ -91,8 +91,8 @@ Here are some points to keep in mind about the skills in the following list:
 You can [generate a knowledge store](knowledge-store-create-portal.md) for secondary storage of enriched (skills-generated) content. You might want a knowledge store for information retrieval workflows that don't require a search engine.
 
 | Knowledge store | Import data wizard | Import and vectorize data wizard |
-|------|--------------------|----------------------------------|
-| storage | ✅ | ❌ |
+|-----------------|--------------------|----------------------------------|
+| storage         | ✅                 | ❌                              |
 
 ## What the wizards create
 
@@ -144,7 +144,7 @@ You can use the wizards over restricted public connections, but not all function
 
 + On a search service, importing the built-in sample data requires a public endpoint and no firewall rules.
 
-  Sample data is hosted by Microsoft on specific Azure resources. the Azure portal controller connects to those resources over a public endpoint. If you put your search service behind a firewall, you get this error when attempting to retrieve the builtin sample data: `Import configuration failed, error creating Data Source`, followed by `"An error has occured."`.
+  Sample data is hosted by Microsoft on specific Azure resources. The Azure portal controller connects to those resources over a public endpoint. If you put your search service behind a firewall, you get this error when attempting to retrieve the builtin sample data: `Import configuration failed, error creating Data Source`, followed by `"An error has occured."`.
 
 + On supported Azure data sources protected by firewalls, you can retrieve data if you have the right firewall rules in place.
 

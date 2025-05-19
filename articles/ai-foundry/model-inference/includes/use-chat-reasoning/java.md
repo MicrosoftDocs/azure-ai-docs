@@ -48,6 +48,8 @@ client = new ChatCompletionsClient(
 );
 ```
 
+[!INCLUDE [best-practices](best-practices.md)]
+
 ### Create a chat completion request
 
 The following example shows how you can create a basic chat request to the model.
@@ -61,8 +63,6 @@ ChatCompletionsOptions requestOptions = new ChatCompletionsOptions()
 
 Response<ChatCompletions> response = client.complete(requestOptions);
 ```
-
-[!INCLUDE [best-practices](best-practices.md)]
 
 The response is as follows, where you can see the model's usage statistics:
 

@@ -168,7 +168,7 @@ To make the Grounding with Bing search tool available to your agent, use a conne
 ```csharp
 // Create the BingGroundingToolDefinition object used when creating the agent
 BingGroundingToolDefinition bingGroundingTool = new BingGroundingToolDefinition(
-    new BingGroundingSearchConfigurationList(
+    new BingGroundingSearchToolParameters(
         [
             new BingGroundingSearchConfiguration(bingConnectionId)
         ]
@@ -179,7 +179,7 @@ BingGroundingToolDefinition bingGroundingTool = new BingGroundingToolDefinition(
 PersistentAgent agent = agentClient.Administration.CreateAgent(
     model: modelDeploymentName,
     name: "my-agent",
-    instructions: "You are a helpful agent.",
+    instructions: "Use the bing grounding tool to answer questions.",
     tools: [bingGroundingTool]
 );
 ```
@@ -190,11 +190,10 @@ PersistentAgent agent = agentClient.Administration.CreateAgent(
 PersistentAgentThread thread = agentClient.Threads.CreateThread();
 
 // Create message and run the agent
-ThreadMessage message = agentClient.Messages.CreateMessage(
+PersistentThreadMessage message = agentClient.Messages.CreateMessage(
     thread.Id,
     MessageRole.User,
     "How does wikipedia explain Euler's Identity?");
-
 ThreadRun run = agentClient.Runs.CreateRun(thread, agent);
 
 ```
@@ -204,7 +203,6 @@ ThreadRun run = agentClient.Runs.CreateRun(thread, agent);
 First, wait for the agent to complete the run by polling its status. Observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
 
 ```csharp
-
 // Wait for the agent to finish running
 do
 {
@@ -225,13 +223,13 @@ Then, retrieve and process the messages from the completed run.
 
 ```csharp
 // Retrieve all messages from the agent client
-Pageable<ThreadMessage> messages = agentClient.Messages.GetMessages(
+Pageable<PersistentThreadMessage> messages = agentClient.Messages.GetMessages(
     threadId: thread.Id,
     order: ListSortOrder.Ascending
 );
 
 // Process messages in order
-foreach (ThreadMessage threadMessage in messages)
+foreach (PersistentThreadMessage threadMessage in messages)
 {
     Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
     foreach (MessageContent contentItem in threadMessage.ContentItems)
@@ -245,10 +243,9 @@ foreach (ThreadMessage threadMessage in messages)
             {
                 foreach (MessageTextAnnotation annotation in textItem.Annotations)
                 {
-                    if (annotation is MessageTextUrlCitationAnnotation urlAnnotation)
+                    if (annotation is MessageTextUriCitationAnnotation urlAnnotation)
                     {
-                        response = response.Replace(urlAnnotation.Text, 
-                            $" [{urlAnnotation.UrlCitation.Title}]({urlAnnotation.UrlCitation.Url})");
+                        response = response.Replace(urlAnnotation.Text, $" [{urlAnnotation.UriCitation.Title}]({urlAnnotation.UriCitation.Uri})");
                     }
                 }
             }
@@ -264,16 +261,46 @@ foreach (ThreadMessage threadMessage in messages)
 
 ```
 
+## Optionally output the run steps used by the agent
+
+```csharp
+// Retrieve the run steps used by the agent and print those to the console
+Console.WriteLine("Run Steps used by Agent:");
+Pageable<RunStep> runSteps = agentClient.Runs.GetRunSteps(run);
+
+foreach (var step in runSteps)
+{
+    Console.WriteLine($"Step ID: {step.Id}, Total Tokens: {step.Usage.TotalTokens}, Status: {step.Status}, Type: {step.Type}");
+
+    if (step.StepDetails is RunStepMessageCreationDetails messageCreationDetails)
+    {
+        Console.WriteLine($"   Message Creation Id: {messageCreationDetails.MessageCreation.MessageId}");
+    }
+    else if (step.StepDetails is RunStepToolCallDetails toolCallDetails)
+    {
+        // We know this agent only has the Bing Grounding tool, so we can cast it directly
+        foreach (RunStepBingGroundingToolCall toolCall in toolCallDetails.ToolCalls)
+        {
+            Console.WriteLine($"   Tool Call Details: {toolCall.GetType()}");
+
+            foreach (var result in toolCall.BingGrounding)
+            {
+                Console.WriteLine($"      {result.Key}: {result.Value}");
+            }
+        }
+    }
+}
+
+```
+
 ## Clean up resources
 
 Clean up the resources from this sample.
 
 ```csharp
-
 // Delete thread and agent
 agentClient.Threads.DeleteThread(threadId: thread.Id);
 agentClient.Administration.DeleteAgent(agentId: agent.Id);
-
 ```
 
 ::: zone-end
@@ -285,16 +312,16 @@ agentClient.Administration.DeleteAgent(agentId: agent.Id);
 Create a client object, which will contain the connection string for connecting to your AI project and other resources.
 
 ```javascript
-const connectionString =
-  process.env["AZURE_AI_PROJECTS_CONNECTION_STRING"] || "<project connection string>";
+const { AgentsClient, ToolUtility, isOutputOfType } = require("@azure/ai-agents");
+const { delay } = require("@azure/core-util");
+const { DefaultAzureCredential } = require("@azure/identity");
 
-if (!connectionString) {
-  throw new Error("AZURE_AI_PROJECTS_CONNECTION_STRING must be set.");
-}
-const client = AIProjectsClient.fromConnectionString(
-    connectionString || "",
-    new DefaultAzureCredential(),
-);
+require("dotenv/config");
+
+const projectEndpoint = process.env["PROJECT_ENDPOINT"] || "<project connection string>";
+
+// Create an Azure AI Client
+const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
 ```
 
 
@@ -303,12 +330,13 @@ const client = AIProjectsClient.fromConnectionString(
 To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/).
 
 ```javascript
-const bingGroundingConnectionId = "<bingGroundingConnectionId>";
-const bingTool = ToolUtility.createConnectionTool(connectionToolType.BingGrounding, [
-  bingGroundingConnectionId,
-]);
 
-const agent = await client.agents.createAgent("gpt-4o", {
+const connectionId = process.env["AZURE_BING_CONNECTION_ID"] || "<connection-name>";
+// Initialize agent bing tool with the connection id
+const bingTool = ToolUtility.createBingGroundingTool([{ connectionId: connectionId }]);
+
+// Create agent with the bing tool and process assistant run
+const agent = await client.createAgent("gpt-4o", {
   name: "my-agent",
   instructions: "You are a helpful agent",
   tools: [bingTool.definition],
@@ -319,15 +347,17 @@ console.log(`Created agent, agent ID : ${agent.id}`);
 ## Create a thread
 
 ```javascript
-// create a thread
-const thread = await client.agents.createThread();
+// Create thread for communication
+const thread = await client.threads.create();
+console.log(`Created thread, thread ID: ${thread.id}`);
 
-// add a message to thread
-await client.agents.createMessage(
-    thread.id, {
-    role: "user",
-    content: "What is the weather in Seattle?",
-});
+// Create message to thread
+const message = await client.messages.create(
+  thread.id,
+  "user",
+  "How does wikipedia explain Euler's Identity?",
+);
+console.log(`Created message, message ID : ${message.id}`);
 ```
 
 ## Create a run and check the output
@@ -337,48 +367,35 @@ Create a run and observe that the model uses the Grounding with Bing Search tool
 
 ```javascript
 
-  // create a run
-  const streamEventMessages = await client.agents.createRun(thread.id, agent.id).stream();
+// Create and process agent run in thread with tools
+let run = await client.runs.create(thread.id, agent.id);
+while (run.status === "queued" || run.status === "in_progress") {
+  await delay(1000);
+  run = await client.runs.get(thread.id, run.id);
+}
+if (run.status === "failed") {
+  console.log(`Run failed: ${run.lastError?.message}`);
+}
+console.log(`Run finished with status: ${run.status}`);
 
-  for await (const eventMessage of streamEventMessages) {
-    switch (eventMessage.event) {
-      case RunStreamEvent.ThreadRunCreated:
-        break;
-      case MessageStreamEvent.ThreadMessageDelta:
-        {
-          const messageDelta = eventMessage.data;
-          messageDelta.delta.content.forEach((contentPart) => {
-            if (contentPart.type === "text") {
-              const textContent = contentPart;
-              const textValue = textContent.text?.value || "No text";
-            }
-          });
-        }
-        break;
+// Delete the assistant when done
+await client.deleteAgent(agent.id);
+console.log(`Deleted agent, agent ID: ${agent.id}`);
 
-      case RunStreamEvent.ThreadRunCompleted:
-        break;
-      case ErrorEvent.Error:
-        console.log(`An error occurred. Data ${eventMessage.data}`);
-        break;
-      case DoneEvent.Done:
-        break;
-    }
+// Fetch and log all messages
+const messagesIterator = client.messages.list(thread.id);
+console.log(`Messages:`);
+
+// Get the first message
+const firstMessage = await messagesIterator.next();
+if (!firstMessage.done && firstMessage.value) {
+  const agentMessage = firstMessage.value.content[0];
+  if (isOutputOfType(agentMessage, "text")) {
+    const textContent = agentMessage;
+    console.log(`Text Message Content - ${textContent.text.value}`);
   }
+}
 
-  // Print the messages from the agent
-  const messages = await client.agents.listMessages(thread.id);
-
-  // Messages iterate from oldest to newest
-  // messages[0] is the most recent
-  for (let i = messages.data.length - 1; i >= 0; i--) {
-    const m = messages.data[i];
-    if (isOutputOfType<MessageTextContentOutput>(m.content[0], "text")) {
-      const textContent = m.content[0];
-      console.log(`${textContent.text.value}`);
-      console.log(`---------------------------------`);
-    }
-  }
 ```
 
 ::: zone-end

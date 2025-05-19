@@ -148,7 +148,7 @@ print("Deleted agent")
 ```
 
 :::zone-end
-
+<!--
 :::zone pivot="csharp"
 
 ## Create a project client
@@ -280,40 +280,35 @@ agentClient.Administration.DeleteAgent(agentId: agent.Id);
 
 ```
 :::zone-end
-
+-->
 :::zone pivot="javascript"
 
 ## Create a project client
 
 ```javascript
-const connectionString =
-  process.env["AZURE_AI_PROJECTS_CONNECTION_STRING"] || "<project connection string>";
+const { AgentsClient, ToolUtility, isOutputOfType } = require("@azure/ai-agents");
+const { delay } = require("@azure/core-util");
+const { DefaultAzureCredential } = require("@azure/identity");
+require("dotenv/config");
 
-if (!connectionString) {
-  throw new Error("AZURE_AI_PROJECTS_CONNECTION_STRING must be set.");
-}
-const client = AIProjectsClient.fromConnectionString(
-    connectionString || "",
-    new DefaultAzureCredential(),
-);
+const projectEndpoint = process.env["PROJECT_ENDPOINT"] || "<project connection string>";
+
+// Create an Azure AI Client
+  const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
 ```
 
 ## Create an agent with the Microsoft Fabric tool enabled
 
 ```javascript
-const fabricConnection = await client.connections.getConnection("FABRICCONNECTIONNAME");
-
-const connectionId = fabricConnection.id;
-
+const connectionId = process.env["FABRIC_CONNECTION_ID"] || "<connection-name>";
 // Initialize agent Microsoft Fabric tool with the connection id
 const fabricTool = ToolUtility.createFabricTool(connectionId);
 
 // Create agent with the Microsoft Fabric tool and process assistant run
-const agent = await client.agents.createAgent("gpt-4o", {
+const agent = await client.createAgent(modelDeploymentName, {
   name: "my-agent",
   instructions: "You are a helpful agent",
   tools: [fabricTool.definition],
-  toolResources: {}, // Add empty tool_resources which is required by the API
 });
 console.log(`Created agent, agent ID : ${agent.id}`);
 ```
@@ -321,61 +316,50 @@ console.log(`Created agent, agent ID : ${agent.id}`);
 ## Create a thread
 
 ```javascript
-// create a thread
-const thread = await client.agents.createThread();
+// Create thread for communication
+const thread = await client.threads.create();
+console.log(`Created thread, thread ID: ${thread.id}`);
 
-// add a message to thread
-await client.agents.createMessage(
-    thread.id, {
-    role: "user",
-    content: "<Ask a question related to your Fabric data>",
-});
+// Create message to thread
+const message = await client.messages.create(
+  thread.id,
+  "user",
+  "What are the top 3 weather events with the highest property damage?",
+);
+console.log(`Created message, message ID: ${message.id}`);
 ```
 
 ## Create a run and check the output
 
 ```javascript
-// create a run
-const streamEventMessages = await client.agents.createRun(thread.id, agent.id).stream();
-
-for await (const eventMessage of streamEventMessages) {
-  switch (eventMessage.event) {
-    case RunStreamEvent.ThreadRunCreated:
-      break;
-    case MessageStreamEvent.ThreadMessageDelta:
-      {
-        const messageDelta = eventMessage.data;
-        messageDelta.delta.content.forEach((contentPart) => {
-          if (contentPart.type === "text") {
-            const textContent = contentPart;
-            const textValue = textContent.text?.value || "No text";
-          }
-        });
-      }
-      break;
-
-    case RunStreamEvent.ThreadRunCompleted:
-      break;
-    case ErrorEvent.Error:
-      console.log(`An error occurred. Data ${eventMessage.data}`);
-      break;
-    case DoneEvent.Done:
-      break;
-  }
+// Create and process agent run in thread with tools
+let run = await client.runs.create(thread.id, agent.id);
+while (run.status === "queued" || run.status === "in_progress") {
+  await delay(1000);
+  run = await client.runs.get(thread.id, run.id);
 }
+if (run.status === "failed") {
+  console.log(`Run failed: ${run.lastError}`);
+}
+console.log(`Run finished with status: ${run.status}`);
+console.log(`Failure: ${run.lastError?.message}`);
 
-// Print the messages from the agent
-const messages = await client.agents.listMessages(thread.id);
+// Delete the agent when done
+await client.deleteAgent(agent.id);
+console.log(`Deleted agent, agent ID: ${agent.id}`);
 
-// Messages iterate from oldest to newest
-// messages[0] is the most recent
-for (let i = messages.data.length - 1; i >= 0; i--) {
-  const m = messages.data[i];
-  if (isOutputOfType<MessageTextContentOutput>(m.content[0], "text")) {
-    const textContent = m.content[0];
-    console.log(`${textContent.text.value}`);
-    console.log(`---------------------------------`);
+// Fetch and log all messages
+const messagesIterator = client.messages.list(thread.id);
+console.log(`Messages:`);
+
+// Get the first message
+for await (const m of messagesIterator) {
+  const agentMessage = message.content[0];
+  if (isOutputOfType(agentMessage, "text")) {
+    const textContent = agentMessage;
+    console.log(`Text Message Content - ${textContent.text.value}`);
   }
+  break; // Only process the first message
 }
 ```
 :::zone-end
