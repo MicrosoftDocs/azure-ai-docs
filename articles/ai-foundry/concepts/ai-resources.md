@@ -19,7 +19,7 @@ author: Blackmist
 # Hub resources overview
 
 > [!NOTE]
-> You must use a **[!INCLUDE [hub](../includes/hub-project-name.md)]** for the features mentioned in this article. A **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** is not supported. For more information, see [Project types](../what-is-azure-ai-foundry.md#project-types).
+> You must use a **[!INCLUDE [hub](../includes/hub-project-name.md)]** for the features mentioned in this article. A **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** is not supported. For more information, see [Project types](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need).
 
 Azure AI Hub is a resource type that is used in combination with Azure AI Foundry resource type, and is only required for selected use cases. Hub resources provides access to open-source model hosting and finetuning capabilities, as well as Azure Machine Learning capabilities, next to capabilities supported by its associated AI Foundry resource.
 
@@ -63,11 +63,11 @@ Projects also have specific settings that only hold for that project:
 A hub shares configurations for a group of projects. As a team lead, consider creating a hub for use cases that share the same security configurations or business domain to avoid repetive setup and let developers create their own project against the pre-configured environment.
 
 Shared configurations managed on the hub include:
-* **Security** including public network access, [virtual networking](#virtual-networking), customer-managed key encryption, and identity controls. Security settings configured on the hub automatically pass down to each project. A managed virtual network is shared between all projects that share the same hub.
+* **Security** including public network access, customer-managed key encryption, and identity controls. Security settings configured on the hub automatically pass down to each project. A managed virtual network is shared between all projects that share the same hub.
 * **Connections** let you access objects in Azure AI Foundry portal that are managed outside of your hub. For example, uploaded data on an Azure storage account, or model deployments on an existing Azure OpenAI or AI Foundry resource. Optionally use connection to store shared credentials, so developers can implicitly access remote objects during development.
 * **Compute and quota allocation** is managed as shared capacity for all projects in Azure AI Foundry portal that share the same hub. This quota includes compute instance as managed cloud-based workstation for an individual. The same user can use a compute instance across projects.
 * **Policy** enforced in Azure on the hub scope applies to all projects managed under it.
-* **Dependent Azure resources** are set up once per hub and associated projects and used to store artifacts you generate while working in Azure AI Foundry portal such as logs or when uploading data. For more information, see [Azure AI dependencies](#azure-ai-dependencies).
+* **Dependent Azure resources** are set up once per hub and associated projects and used to store artifacts you generate while working in Azure AI Foundry portal such as logs or when uploading data. For more information, see [dependent resources](#storage-and-key-vault-dependent-resources).
 
 ## Access Azure AI Foundry models from hub-based projects
 
