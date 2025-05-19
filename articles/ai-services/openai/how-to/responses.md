@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's new stateful Responses API.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 03/21/2025
+ms.date: 05/19/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 ms.custom: references_regions
