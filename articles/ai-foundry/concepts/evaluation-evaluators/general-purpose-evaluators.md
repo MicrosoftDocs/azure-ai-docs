@@ -49,8 +49,8 @@ from azure.ai.evaluation import CoherenceEvaluator
 
 coherence = CoherenceEvaluator(model_config=model_config, threshold=3)
 coherence(
-    query="Is Marie Currie is born in Paris?", 
-    response="No, Marie Currie is born in Warsaw."
+    query="Is Marie Curie is born in Paris?", 
+    response="No, Marie Curie is born in Warsaw."
 )
 ```
 
@@ -79,7 +79,7 @@ from azure.ai.evaluation import FluencyEvaluator
 
 fluency = FluencyEvaluator(model_config=model_config, threshold=3)
 fluency(
-    response="No, Marie Currie is born in Warsaw."
+    response="No, Marie Curie is born in Warsaw."
 )
 ```
 
@@ -115,10 +115,10 @@ from azure.ai.evaluation import QAEvaluator
 
 qa_eval = QAEvaluator(model_config=model_config, threshold=3)
 qa_eval(
-    query="Where was Marie Currie born?", 
+    query="Where was Marie Curie born?", 
     context="Background: 1. Marie Curie was a chemist. 2. Marie Curie was born on November 7, 1867. 3. Marie Curie is a French scientist.",
-    response="According to wikipedia, Marie Currie was not born in Paris but in Warsaw.",
-    ground_truth="Marie Currie was born in Warsaw."
+    response="According to wikipedia, Marie Curie was not born in Paris but in Warsaw.",
+    ground_truth="Marie Curie was born in Warsaw."
 )
 ```
 
