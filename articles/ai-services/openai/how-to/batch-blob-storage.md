@@ -105,7 +105,7 @@ Select **Upload** and select your `test.jsonl` file.
 
 :::image type="content" source="../media/how-to/batch-blob-storage/upload.png" alt-text="Screenshot that shows Azure Storage Blob container upload UX." lightbox="../media/how-to/batch-blob-storage/upload.png":::
 
-During the time that we are processing your `jsonl` file as part of the batch job, you cannot make any changes to the file. If a file changes while the batch job is running the job will fail.
+During the time that we're processing your `jsonl` file as part of the batch job, you can't make any changes to the file. If a file changes while the batch job is running the job will fail.
 
 ## Create batch job
 
@@ -274,7 +274,7 @@ print(batch_response.model_dump_json(indent=2))
 Once your batch job is complete, you can download the `error_blob` and `output_blob` via the Azure Blob Storage interface in the Azure portal or you can download programmatically:
 
 > [!NOTE]
-> `error_blob`, and `output_blob` paths are always returned in the response even in cases where a corresponding file is not created. In this case there were no errors so `errors.jsonl` was not created, only `results.jsonl` exists.
+> `error_blob`, and `output_blob` paths are always returned in the response even in cases where a corresponding file isn't created. In this case there were no errors so `errors.jsonl` wasn't created, only `results.jsonl` exists.
 
 ```cmd
 pip install azure-identity azure-storage-blob
