@@ -54,13 +54,9 @@ Not every model is available in the regions supported by the responses API. Chec
 
 > [!NOTE]
 > Not currently supported:
-> - Structured outputs
-> - image_url pointing to an internet address
 > - The web search tool
 > - Fine-tuned models
 >
-> There is also a known issue with vision performance when using the Responses API, particularly with OCR tasks. As a temporary workaround set image detail to `high`. This article will be updated once this issue is resolved and as any additional feature support is added.
-
 
 ### Reference documentation
 
@@ -605,8 +601,6 @@ print(response.model_dump_json(indent=2))
 ```
 
 ## Image input
-
-There is a known issue with image url based image input. Currently only base64 encoded images are supported.
 
 ### Image url
 
