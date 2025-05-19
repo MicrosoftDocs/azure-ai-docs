@@ -34,7 +34,7 @@ Azure OpenAI now supports using [Azure Blob Storage](/azure/storage/blobs/storag
 ### Prerequisites
 
 - An [Azure Blob Storage account](/azure/storage/blobs/storage-blobs-introduction).
-- An Azure OpenAI resource with a model of the deployment type `Global-Batch` or `DataZoneBatch` deployed. You can refer to the [resource creation and model deployment guide](../../how-to/create-resource.md) for help with this process.
+- An Azure OpenAI resource with a model of the deployment type `Global-Batch` or `DataZoneBatch` deployed. You can refer to the [resource creation and model deployment guide](./create-resource.md) for help with this process.
 
 ### Managed identity
 
@@ -79,7 +79,7 @@ For this example you'll create two containers named `batch-input`, and `batch-ou
 
 To create a container under **Data storage** > Select **+Container** > Name your containers.
 
-:::image type="content" source="../media/how-to/batch-blob-storage/container.png" alt-text="Screenshot that shows Storage Blob Data Contributor role assignment." lightbox="../media/how-to/batch-blob-storage/container.png":::
+:::image type="content" source="../media/how-to/batch-blob-storage/container.png" alt-text="Screenshot that shows Storage Blob Data containers." lightbox="../media/how-to/batch-blob-storage/container.png":::
 
 Once your containers are created retrieve the URL for each container by selecting the container > **Settings** > **Properties** > Copy the URLs.
 
