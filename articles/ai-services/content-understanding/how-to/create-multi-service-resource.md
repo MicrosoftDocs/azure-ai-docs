@@ -32,11 +32,11 @@ To use Content Understanding, you need an Azure AI Foundry resource. This multi-
 
 To use the Azure AI Content Understanding service, you must create your Azure AI Foundry resource in a supported region. The Content Understanding features are available in the following regions:
 
-| Geography | Region | Region Identifier |
-| --- | --- | --- |
-| US | West US | westus |
-| Europe | Sweden Central | swedencentral |
-| Australia | Australia East | australiaeast |
+| Region | Region Identifier |
+| --- | --- |
+| West US 2 | westus2 |
+| Sweden Central | swedencentral |
+| Australia East | australiaeast |
 
 1. Complete the **AI Foundry** resource fields with the following values:
 
@@ -57,5 +57,5 @@ To use the Azure AI Content Understanding service, you must create your Azure AI
 
 Now that you created your Azure AI Foundry resource, you're ready to try out the Content Understanding service.
 
-* Check out this Quickstart to [try Content Understanding in the AI Foundry](../quickstart/use-ai-foundry.md).
-* Ready to go straight to code? [Try the Content Understanding REST API](../quickstart/use-rest-api.md).
+* Try Content Understanding with no code in [Azure AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding).
+* Ready to go straight to code? Follow the [REST API QuickStart](../quickstart/use-rest-api.md).
