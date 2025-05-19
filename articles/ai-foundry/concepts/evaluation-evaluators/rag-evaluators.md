@@ -316,5 +316,5 @@ The numerical score on a likert scale (integer 1 to 5) and a higher score is bet
 
 ## Related content
 
-- [How to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md##local-evaluation-on-test-datasets-using-evaluate)  
+- [How to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-test-datasets-using-evaluate)  
 - [How to run batch evaluation on a target](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-a-target)
