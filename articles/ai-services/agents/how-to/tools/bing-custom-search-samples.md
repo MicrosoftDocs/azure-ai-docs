@@ -383,7 +383,7 @@ Create a run and observe that the model uses the Grounding with Bing Custom Sear
 >[!IMPORTANT]
 > * This REST API allows developers to invoke the Grounding with Bing Custom Search tool through the Azure AI Foundry Agent Service. It does not send calls to the Grounding with Bing Custom Search API directly.
 > * The following samples are applicable if you are using **Azure AI Foundry Project** resource with Microsoft Fabric tool through REST API call
-> * Your connection id should be in this format: `/subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-bing-connection-name>`
+> * Your connection ID should be in this format: `/subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-bing-connection-name>`
 
 Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
 
