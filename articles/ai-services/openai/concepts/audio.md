@@ -33,7 +33,7 @@ GPT-4o audio completion is designed to generate audio from audio or text prompts
 The audio models via the `/audio` API can be used for speech to text, translation, and text to speech. To get started with the audio API, see the [Whisper quickstart](../whisper-quickstart.md) for speech to text.
 
 > [!NOTE]
-> To help you decide whether to use Azure AI Speech or Azure OpenAI, see the [Azure AI Speech batch transcription](../../speech-service/batch-transcription-create.md), [What is the Whisper model?](../../speech-service/whisper-overview.md), and [OpenAI text to speech voices](../../speech-service/openai-voices.md#openai-text-to-speech-voices-via-azure-or-via-azure-ai-speech) guides.
+> To help you decide whether to use Azure AI Speech or Azure OpenAI, see the [Azure AI Speech batch transcription](../../speech-service/batch-transcription-create.md), [What is the Whisper model?](../../speech-service/whisper-overview.md), and [OpenAI text to speech voices](../../speech-service/openai-voices.md#openai-text-to-speech-voices-via-azure-openai-or-via-azure-ai-speech) guides.
 
 ## Related content
 
