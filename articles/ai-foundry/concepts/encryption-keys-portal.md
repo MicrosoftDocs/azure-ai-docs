@@ -102,7 +102,7 @@ The following limitations hold for Azure AI Foundry:
 
 Managed identity must be enabled as a prerequisite for using customer-managed keys.
 
-1. Go to your Azure AI Foundry resource in Azure Portal.
+1. Go to your Azure AI Foundry resource in Azure portal.
 1. On the left, under **Resource Management**, select **Identity**.
 1. Switch the system-assigned managed identity status to **On**.
 1. Save your changes, and confirm that you want to enable the system-assigned managed identity.
