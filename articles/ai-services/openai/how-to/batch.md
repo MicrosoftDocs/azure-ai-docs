@@ -166,7 +166,7 @@ Yes, from the quota page in the [Azure AI Foundry portal](https://ai.azure.com/)
 
 ### What happens if the API doesn't complete my request within the 24 hour time frame?
 
-We aim to process these requests within 24 hours; we don't expire the jobs that take longer. You can cancel the job anytime. When you cancel the job, any remaining work is cancelled and any already completed work is returned. You'll be charged for any completed work.
+We aim to process these requests within 24 hours; we don't expire the jobs that take longer. You can cancel the job anytime. When you cancel the job, any remaining work is canceled and any already completed work is returned. You'll be charged for any completed work.
 
 ### How many requests can I queue using batch?
 
