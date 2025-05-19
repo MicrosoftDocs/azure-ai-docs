@@ -212,8 +212,8 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 | Model  | Type | Tier | Capabilities |
 | ------ | ---- | --- | ------------ |
-| [Grok]() |  | Global standard | - **Input:** text (0 tokens) <br /> - **Output:** text (0 tokens) <br /> - **Languages:**  <br />  - **Tool calling:**  <br /> - **Response formats:**  |
-| [grok-3-mini]() |  | Global standard | - **Input:** text (0 tokens) <br /> - **Output:** text (0 tokens) <br /> - **Languages:**  <br />  - **Tool calling:**  <br /> - **Response formats:**  |
+| [grok-3](https://int.ai.azure.com/explore/models/grok-3/version/1/registry/azureml-xai) | chat-completion | Global standard | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |
+| [grok-3-mini](https://ai.azure.com/explore/models/grok-3-mini/version/1/registry/azureml-xai) | chat-completion | Global standard | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |
 
 ## Open and protected models
 
