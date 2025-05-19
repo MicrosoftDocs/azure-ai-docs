@@ -274,7 +274,7 @@ print(batch_response.model_dump_json(indent=2))
 Once your batch job is complete, you can download the `error_blob` and `output_blob` via the Azure Blob Storage interface in the Azure portal or you can download programmatically:
 
 > [!NOTE]
-> There's a known issue where a `error_blob` url path is generated in the response even in cases where no errors occurred. When this happens the `error.jsonl` path will be invalid and the referenced file won't exist.
+> `error_blob`, and `output_blob` paths are always returned in the response even in cases where a corresponding file is not created. In this case there were no errors so `errors.jsonl` was not created, only `results.jsonl` exists.
 
 ```cmd
 pip install azure-identity azure-storage-blob
