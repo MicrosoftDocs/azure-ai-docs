@@ -143,7 +143,11 @@ items:
       - name: Realtime API via WebSockets (preview)
         href: ./how-to/realtime-audio-websockets.md
   - name: Batch
-    href: ./how-to/batch.md
+    items:
+     - name: Getting started with batch
+       href: ./how-to/batch.md
+     - name: Batch with Azure Blob Storage
+       href: ./how-to/batch-blob-storage.md   
   - name: Responses & chat completions
     items:
     - name: Responses API
@@ -215,6 +219,9 @@ items:
       - name: Preference fine-tuning
         href: ./how-to/fine-tuning-direct-preference-optimization.md
         displayName: finetuning, fine-tuning  
+      - name: Reinforcement fine-tuning
+        href: ./how-to/reinforcement-fine-tuning.md
+        displayName: finetuning, fine-tuning
       - name: Safety evaluation
         href: ./how-to/fine-tuning-safety-evaluation.md
         displayName: finetuning, fine-tuning  

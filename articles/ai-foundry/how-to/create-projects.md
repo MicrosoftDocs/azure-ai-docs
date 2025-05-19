@@ -176,7 +176,7 @@ In addition, many resources are only accessible by users in your project workspa
 
 ## Related content
 
-- [Deploy an enterprise chat web app](../tutorials/deploy-chat-web-app.md)
+- [Quickstart: Get started with Azure AI Foundry](../quickstarts/get-started-code.md?pivots=hub-project)
 
 - [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
 

@@ -24,7 +24,7 @@ There are two parts to enable data loss prevention. First, the resource property
 >[!NOTE]
 >
 > * The `allowedFqdnList`  property value supports a maximum of 1000 URLs.
-> * The property supports both IP addresses (IPv4 only) and fully qualified domain names (i.e., `www.microsoft.com`) as values.
+> * The property supports fully qualified domain names (i.e., `www.microsoft.com`) as values.
 > * It can take up to 15 minutes for the updated list to take effect. 
 
 # [Azure CLI](#tab/azure-cli)
