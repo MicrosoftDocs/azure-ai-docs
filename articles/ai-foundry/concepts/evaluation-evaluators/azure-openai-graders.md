@@ -40,7 +40,7 @@ model_config = AzureOpenAIModelConfiguration(
 `AzureOpenAILabelGrader` uses your custom prompt to instruct a model to classify outputs based on labels you define. It returns structured results with explanations for why each label was chosen.
 
 > [!NOTE]
-> We recommend using Azure Open AI GPT o3-mini for best results.
+> We recommend using Azure OpenAI GPT o3-mini for best results.
 
 Here's an example `data.jsonl` that is used in the following code snippets:
 
@@ -262,5 +262,5 @@ Aside from individual data evaluation results, the grader also returns a metric 
 
 ## Related content
 
-- [How to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-datasets)  
+- [How to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-test-datasets-using-evaluate)  
 - [How to run batch evaluation on a target](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-a-target)
