@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models models
+title: Azure OpenAI in Azure AI Foundry Models
 titleSuffix: Azure OpenAI
 description: Learn about the different model capabilities that are available with Azure OpenAI.
 ms.service: azure-ai-openai
@@ -12,7 +12,7 @@ ms.author: mbullwin #chrhoder#
 recommendations: false
 ---
 
-# Azure OpenAI in Azure AI Foundry Models models
+# Azure OpenAI in Azure AI Foundry Models
 
 Azure OpenAI is powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud. For Azure Government model availability, please refer to [Azure Government OpenAI Service](../azure-government.md).
 
