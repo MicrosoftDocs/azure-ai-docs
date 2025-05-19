@@ -701,7 +701,7 @@ Azure OpenAI now supports the API that powers OpenAI's GPTs. Azure OpenAI Assist
 Azure OpenAI now supports text to speech APIs with OpenAI's voices. Get AI-generated speech from the text you provide. To learn more, see the [overview guide](../speech-service/openai-voices.md) and try the [quickstart](./text-to-speech-quickstart.md).
 
 > [!NOTE]
-> Azure AI Speech also supports OpenAI text to speech voices. To learn more, see [OpenAI text to speech voices via Azure OpenAI or via Azure AI Speech](../speech-service/openai-voices.md#openai-text-to-speech-voices-via-azure-openai-service-or-via-azure-ai-speech) guide.
+> Azure AI Speech also supports OpenAI text to speech voices. To learn more, see [OpenAI text to speech voices via Azure OpenAI or via Azure AI Speech](../speech-service/openai-voices.md#openai-text-to-speech-voices-via-azure-openai-or-via-azure-ai-speech) guide.
 
 ### New Fine-tuning capabilities and model support
 
