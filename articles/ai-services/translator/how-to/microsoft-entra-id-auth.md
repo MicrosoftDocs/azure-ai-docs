@@ -151,7 +151,7 @@ Client applications utilize credentials to gain access to a web API. These crede
 
     :::image type="content" source="../media/entra-id/client-secret-value.png" alt-text="Screenshot of the client secret value location for a registered application in the Azure portal.":::
 
-Now that your application has the proper authentication credentials, we add permissions for your application to access Azure AI Services resources.
+Now that your application has the proper authentication credentials, we add permissions for your application to access Azure AI Foundry resources.
 
 ## Add API permissions
 

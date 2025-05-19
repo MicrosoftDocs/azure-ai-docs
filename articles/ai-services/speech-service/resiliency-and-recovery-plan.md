@@ -38,7 +38,7 @@ These assets are backed up regularly and automatically by the repositories thems
 
 ## How to monitor service availability
 
-If you use the default endpoints, you should configure your client code to monitor for errors. If errors persist, be prepared to redirect to another region where you have an AI Services resource for Speech.
+If you use the default endpoints, you should configure your client code to monitor for errors. If errors persist, be prepared to redirect to another region where you have an AI Foundry resource for Speech.
 
 Follow these steps to configure your client to monitor for errors:
 

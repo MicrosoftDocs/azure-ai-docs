@@ -19,7 +19,7 @@ author: eric-urban
 
 In the chat playground in Azure AI Foundry portal, you can use speech to text and text to speech features to interact with chat models. You can try the same model that you use for text-based chat in a speech-based chat. It's just another way to interact with the model.
 
-In this quickstart, you use Azure OpenAI Service and Azure AI Speech to:
+In this quickstart, you use Azure OpenAI in Azure AI Foundry Models and Azure AI Speech to:
 
 - Speak to the assistant via speech to text.
 - Hear the assistant's response via text to speech.
@@ -32,6 +32,9 @@ The speech to text and text to speech features can be used together or separatel
 - An [Azure AI Foundry project](../how-to/create-projects.md).
 - A deployed [Azure OpenAI](../how-to/deploy-models-openai.md) chat model. This guide is tested with a `gpt-4o-mini` model.
 
+> [!NOTE]
+> You must use a **[!INCLUDE [hub](../includes/hub-project-name.md)]** for the features mentioned in this article. A **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** is not supported. For more information, see [Project types](../what-is-azure-ai-foundry.md#project-types).
+
 ## Configure the chat playground
 
 Before you can start a chat session, you need to configure the chat playground to use the speech to text and text to speech features.
@@ -43,7 +46,7 @@ Before you can start a chat session, you need to configure the chat playground t
 
     :::image type="content" source="../media/quickstarts/hear-speak/playground-config-deployment.png" alt-text="Screenshot of the chat playground with mode and deployment highlighted." lightbox="../media/quickstarts/hear-speak/playground-config-deployment.png":::
 
-1. Select the **Chat capabilities** button. 
+1. Select the **Chat capabilities** button with the gear icon. 
 
     :::image type="content" source="../media/quickstarts/hear-speak/playground-settings-select.png" alt-text="Screenshot of the chat playground with options to get to the chat capabilities settings." lightbox="../media/quickstarts/hear-speak/playground-settings-select.png":::
 

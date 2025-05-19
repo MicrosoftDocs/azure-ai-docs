@@ -59,7 +59,7 @@ When you're looking at migrating to custom question answering, consider the foll
 |Component                      |QnA Maker|Custom question answering|Details                                                                                                  |
 |-------------------------------|---------|------------------|---------------------------------------------------------------------------------------------------------|
 |QnA Maker Service cost         |✔️      |➖                |The fixed cost per resource per month. Only applicable for QnAMaker.                                     |
-|Custom question answering service cost|➖      |✔️                |The custom question answering cost according to the pay as you go model. Only applicable for custom question answering.|
+|Custom question answering service cost|➖      |✔️                |The custom question answering cost according to the Standard model. Only applicable for custom question answering.|
 |Azure Search cost              |✔️      |✔️                |Applicable for both QnA Maker and custom question answering.                                                    |
 |App Service cost               |✔️      |➖                |Only applicable for QnA Maker. This is the biggest cost savings for users moving to custom question answering.  |
 

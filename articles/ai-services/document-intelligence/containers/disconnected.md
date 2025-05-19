@@ -36,7 +36,7 @@ Support for containers is currently available with Document Intelligence version
 
 [Azure AI containers](../../cognitive-services-container-support.md) gives you the flexibility to run some Document Intelligence services locally in containers. Connected containers run locally in your environment and send usage information to the cloud for billing. Disconnected containers are intended for scenarios where no connectivity with the cloud is needed for the containers to run.
 
-Azure AI Document Intelligence containers allow you to use Document Intelligence APIs with the benefits of containerization. Disconnected containers are offered through commitment tier pricing offered at a discounted rate compared to pay-as-you-go pricing. With commitment tier pricing, you can commit to using Document Intelligence features for a fixed fee, at a predictable total cost, based on the needs of your workload.
+Azure AI Document Intelligence containers allow you to use Document Intelligence APIs with the benefits of containerization. Disconnected containers are offered through commitment tier pricing offered at a discounted rate compared to Standard pricing. With commitment tier pricing, you can commit to using Document Intelligence features for a fixed fee, at a predictable total cost, based on the needs of your workload.
 
 ## Get started
 
