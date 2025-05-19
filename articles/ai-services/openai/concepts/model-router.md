@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI model router (preview) concepts
+title: Model router for Azure AI Foundry (preview) concepts
 titleSuffix: Azure OpenAI
 description: Learn about the model router feature in Azure OpenAI Service.
 author: PatrickFarley
@@ -11,9 +11,9 @@ ms.custom:
 manager: nitinme
 ---
 
-# Azure OpenAI model router (preview)
+# Model router for Azure AI Foundry (preview)
 
-Azure OpenAI model router is a deployable AI chat model that is trained to select the best large language model (LLM) to respond to a given prompt in real time. By evaluating factors like query complexity, cost, and performance, it intelligently routes requests to the most suitable model. 
+Model router for Azure AI Foundry is a deployable AI chat model that is trained to select the best large language model (LLM) to respond to a given prompt in real time. By evaluating factors like query complexity, cost, and performance, it intelligently routes requests to the most suitable model. 
 
 ## Why use model router?
 
@@ -46,7 +46,7 @@ Model router doesn't process audio input.
 
 ## Billing information
 
-When you use Azure OpenAI model router, you're only billed for the use of the underlying models as they're recruited to respond to prompts. The model router itself doesn't incur any extra charges.
+When you use model router, you're only billed for the use of the underlying models as they're recruited to respond to prompts. The model router itself doesn't incur any extra charges.
 
 You can monitor the costs of your model router deployment in the Azure portal.
 

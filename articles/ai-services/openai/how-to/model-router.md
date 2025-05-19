@@ -1,5 +1,5 @@
 ---
-title: How to use model router (preview) in Azure OpenAI Service
+title: How to use model router for Azure AI Foundry (preview)
 titleSuffix: Azure OpenAI Service
 description: Learn how to use the model router in Azure OpenAI Service to select the best model for your task.
 author: PatrickFarley
@@ -11,15 +11,15 @@ ms.date: 04/17/2025
 manager: nitinme
 ---
 
-# Use Azure OpenAI model router (preview)
+# Use model router for Azure AI Foundry (preview)
 
-Azure OpenAI model router is a deployable AI chat model that is trained to select the best large language model (LLM) to respond to a given prompt in real time. It uses a combination of preexisting models to provide high performance while saving on compute costs where possible. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](../concepts/model-router.md).
+Model router for Azure AI Foundry is a deployable AI chat model that is trained to select the best large language model (LLM) to respond to a given prompt in real time. It uses a combination of preexisting models to provide high performance while saving on compute costs where possible. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](../concepts/model-router.md).
 
 You can access model router through the Completions API just as you would use a single base model like GPT-4.
 
 ## Deploy a model router model
 
-Model router is packaged as a single OpenAI model that you deploy. Follow the steps in the [resource deployment guide](/azure/ai-services/openai/how-to/create-resource), and in the **Create new deployment** step, find `Azure OpenAI model router` in the **Model** list. Select it, and then complete the rest of the deployment steps.
+Model router is packaged as a single OpenAI model that you deploy. Follow the steps in the [resource deployment guide](/azure/ai-services/openai/how-to/create-resource), and in the **Create new deployment** step, find `model-router` in the **Models** list. Select it, and then complete the rest of the deployment steps.
 
 > [!NOTE]
 > Consider that your deployment settings apply to all underlying chat models that model router uses.
