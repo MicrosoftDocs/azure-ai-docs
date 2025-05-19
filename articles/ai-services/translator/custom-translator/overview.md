@@ -5,7 +5,7 @@ description: Custom Translator offers similar capabilities to what Microsoft Tra
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 04/14/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: overview
 ---
@@ -13,9 +13,9 @@ ms.topic: overview
 
 Custom Translator is a feature of the [Azure AI Translator](../translator-overview.md) service, which enables enterprises, app developers, and language service providers to build customized neural machine translation (NMT) systems. The customized translation systems seamlessly integrate into existing applications, workflows, and websites.
 
-Translation systems built with [Custom Translator](https://portal.customtranslator.azure.ai) are available through Microsoft Translator [Microsoft Translator Text API V3](../text-translation/reference/v3/translate.md?tabs=curl), the same cloud-based, secure, high performance system powering billions of translations every day.
+Translation systems built with [Custom Translator](https://portal.customtranslator.azure.ai) are available through Microsoft Translator [Microsoft Translator Text API v3](../text-translation/reference/v3/translate.md?tabs=curl), the same cloud-based, secure, high performance system powering billions of translations every day.
 
-The platform enables users to build and publish custom translation systems to and from English. Custom Translator supports more than three dozen languages that map directly to the languages available for NMT. For a complete list, *see* [Translator language support](../language-support.md).
+The platform enables users to build and publish custom translation systems to and from English. Custom Translator supports more than three dozen languages that map directly to the languages available for NMT. For a complete list, *see* [Translator language support](../../language-support.md).
 
 This documentation contains the following article types:
 
@@ -32,7 +32,7 @@ Custom Translator provides different features to build custom translation system
 |[Build systems that knows your business terminology](./beginners-guide.md)     |  Customize and build translation systems using parallel documents that understand the terminologies used in your own business and industry.       |
 |[Use a dictionary to build your models](./how-to/train-custom-model.md#when-to-select-dictionary-only-training)     |   If you don't have training data set, you can train a model with only dictionary data.       |
 |[Collaborate with others](./how-to/create-manage-workspace.md#manage-workspace-settings)     |   Collaborate with your team by sharing your work with different people.     |
-|[Access your custom translation model](./how-to/translate-with-custom-model.md)     |  You can access your custom translation model anytime using your existing applications/ programs via Microsoft Translator Text API V3.       |
+|[Access your custom translation model](./how-to/translate-with-custom-model.md)     |  You can access your custom translation model anytime using your existing applications/ programs via Microsoft Translator Text API v3.       |
 
 ## Get better translations
 

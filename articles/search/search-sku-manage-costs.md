@@ -4,8 +4,8 @@ titleSuffix: Azure AI Search
 description: 'Learn about billable events, the billing model, and tips for cost control when running an Azure AI Search service.'
 
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

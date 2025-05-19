@@ -3,8 +3,8 @@ title: Index binary vectors for vector search
 titleSuffix: Azure AI Search
 description: Explains how to configure fields for binary vectors and the vector search configuration for querying the fields.
 
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - build-2024
