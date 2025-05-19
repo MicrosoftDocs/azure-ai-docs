@@ -42,7 +42,7 @@ Evaluators are specialized tools that measure the quality, safety, and reliabili
 | Response Completeness | Measures to what extent the response is complete (not missing critical information) with respect to the ground truth. |
 
 
-[**Agents (preview) :**](./evaluation-evaluators/agent-evaluators.md)
+[**Agents (preview):**](./evaluation-evaluators/agent-evaluators.md)
 
 | Evaluator | Purpose |
 |--|--|
@@ -60,7 +60,7 @@ Evaluators are specialized tools that measure the quality, safety, and reliabili
 | QA | Measures comprehensively various quality aspects in question-answering.|
 
 
-[**Safety and Security (preview) :**](./evaluation-evaluators/risk-safety-evaluators.md)
+[**Safety and Security (preview):**](./evaluation-evaluators/risk-safety-evaluators.md)
 
 | Evaluator | Purpose |
 |--|--|
