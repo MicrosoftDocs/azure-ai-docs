@@ -30,43 +30,37 @@ However, despite these differences, there are many commonalities between SFT and
 
 ## Training & evaluation file formation requirements
 
-Both training and validation files are required to run o4-mini RFT. o4 -mini uses a new format of data for reinforcement fine-tuning. These should be jsonl files, like what is used for supervised fine tuning (SFT).
+Both training and validation files are required to run o4-mini RFT. o4-mini uses a new format of data for reinforcement fine-tuning. These should be jsonl files, like what is used for supervised fine tuning (SFT).
 
 Each line of the file should contain the messages field, with some differences to SFT:
 
 - System messages aren't supported
 - The final message must be from the user, not the assistant (as is the case for SFT)
-- `Tools`, `functions`, `response_formats`, are supported
+- `Tools`, `response_formats`, are supported
 - Images / multimodal data aren't supported
 
-Each line must include a new field called reference answer
-
-- `Reference_answer` contains the data used by your grader to determine the correctness of the answer.
-- This value must be a valid JSON object (for example, dictionary, or list; the specific type and structure is dependent on your selected grader).
-
-We currently support a maximum of 50,000 reference examples for training.
+Each line in the JSONL data file should contain a messages array, along with any additional fields required to grade the output from the model. This value must be a valid JSON object (for example, dictionary or list; the specific type and structure is dependent on your selected grader).
 
 ### Example training data
 
-```jsonl
-{"messages": [{"role": "user", "content": "Your task is to calculate the results for this math problem based on BODMAS rules. Please analyze the following math problem:  36453-1238 + 25*5"}], "reference_answer": {“Result”: 35090}}
-```
-
-Expanding the above text from a single line, you can see the expected fields: messages, role, content, and reference answer:
+If we give model a puzzle to solve in the required RFT training format it would be as follows:
 
 ```json
-{
-  "messages": [
+"messages": [
     {
       "role": "user",
-      "content": "Your task is to calculate the results for this math problem based on BODMAS rules. Please analyze the following math problem:  36453-1238 + 25*5"
+      "content": "You are a helpful assistant. Your task is to solve the following logic and puzzle quiz:\n\n2. In the expression 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 = 100, replace the asterisks with arithmetic operation signs to obtain a correct equation."
     }
   ],
-  "reference_answer": {
-    "Result": 35090
-  }
+
+  "solution": "Solution. 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 \\cdot 9 = 100.\n\nEvaluation. 12 points for the correct solution.",
+
+  "final_answer": "1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 \\cdot 9 = 100"
 }
+
 ```
+
+We have expanded the above text from a single line of `jsonl`, so you can see the expected fields: messages, role, content, and `final_answer`.
 
 ### Dataset size for RFT
 
@@ -92,7 +86,7 @@ The hyperparameters section of the **reinforcement** method supports all of the 
 |----|----|----|
 |`Eval_samples`: |1-10 | The number of samples to use during evaluation. Validation split reward metrics will be averaged across the different samples for each datapoint. Default is 5.|
 |`Eval_interval` |1-25 | The number of training steps between evaluations over a provided validation file. Default is 1.|
-|`Compute-multiplier` |0.125 -8.0 | The multiplier on amount of compute use for exploring search space during training. Increasing will result in greater number of samples being rolled per instance. Too low likely to underfit, too high would be prone to overfit. Default is 10.|
+|`Compute-multiplier` |0.5 -3.0 | The multiplier on amount of compute use for exploring search space during training. Increasing will result in greater number of samples being rolled per instance. Too low likely to underfit, too high would be prone to overfit.|
 |`Reasoning_effort`|Low, Medium, High | The amount of effort the model should put into reasoning. Defaults to medium effort. If performance is poor, consider increasing the reasoning effort. |
 
 > [!NOTE]
@@ -111,7 +105,6 @@ Effectively, graders are functions that compare the reference_answer from your t
 
 - Return floating point numbers between 0 and 1. It can be helpful to give the model partial credit for answers, rather than binary 0/1.
 - Graders are specified as JSON (see below)
-- We only support simple comparisons at this time (for example, between strings or JSON objects).
 
 ### Supported graders
 
@@ -216,7 +209,7 @@ A multigrader object combines the output of multiple graders to produce a single
 - `/` (division)
 - `^` (power)
 
-*Functions:*
+*Functions:*0
 - `min`
 - `max`
 - `abs`
@@ -226,7 +219,7 @@ A multigrader object combines the output of multiple graders to produce a single
 - `sqrt`
 - `log`
 
-When using the UX you're able to write a prompt and generate a valid grader and response format in json as needed.
+When using the UX you're able to write a prompt and generate a valid grader and response format in json as needed. Grader is mandatory field to be entered while submitting a finetuning job. Response format is optional.
 
 > [!IMPORTANT]
 > Generating correct grader schema requires careful prompt authoring. You may find that your first few attempts generate invalid schemas or don't create a schema that will properly handle your training data. Grader is a mandatory field that must be entered while submitting a fine-tuning job. Response format is optional.
@@ -241,7 +234,7 @@ Here's an example grader for each category:
 
 ```json
 {
-"name": "simpleadd_ans_grader",
+"name": "string_check_sample_grader",
  "type": "string_check", 
 "input": "{{item.reference_answer}}",
  "reference": "{{sample.output_text}}", 
@@ -265,39 +258,71 @@ Here's an example grader for each category:
 Models which we're supporting as grader models are `gpt-4o-2024-08-06`and `o3-mini-2025-01-31`.
 
 ```json
-0.5 if one is the same, and 0.0 if neither are the same. Return just a floating point score\n\n Reference answer: {\u0022donors\u0022: {{item.reference_answer.donors}}, \u0022acceptors\u0022: {{item.reference_answer.acceptors}}}\n\n Model answer: {{sample.output_text}}"
-          }
-        ],
-        "model": "gpt-4o",
-        "sampling_params": {
-          "seed": 1,
-          "temperature": 1,
-          "max_completions_tokens": 1000,
-          "top_p": 1
-        },
-        "name": "grader-test"
+{ 
+"name": "score_model_sample_grader", 
+"type": "score_model",
+ 
+"input": [ { 
+"role": "user", 
+"content": "Score\nhow close the reference answer is to the model answer. You will be comparing these\ntwo as JSON objects that contain 2 keys, \"extracted_text\" and\n\"clause_type\". Score 1.0 if they are both the same, 0.5 if one is\nthe same, and 0.0 if neither are the same. Return just a floating point\nscore\n\n Reference answer: {\"extracted_text\": \n{{item.extracted_text}}, \"clause_type\": {{item.clause_type}}}\n\n\nModel answer: {{sample.output_json}}"}],
+
+"model": "gpt-4o-2024-08-06", 
+"sampling_params": {"seed": 42}
+}
 ```
 
 **Multi Grader** - A multigrader object combines the output of multiple graders to produce a single score.
 
 ```json
 {
-"name":"clause_match_grader",
+"name":"sample_multi_grader",
 "type":"multi",
 "graders":{"ext_text_similarity":{"name":"ext_text_similarity",
 "type":"text_similarity",
 "input":"{{sample.output_json.ext_text}}",
-"reference":"{{item.reference_answer.ext_text}}",
+"reference":"{{item.ext_text}}",
 "evaluation_metric":"fuzzy_match"},
 
 "clause_string_check":{"name":"clause_string_check",
 "type":"string_check",
 "input":"{{sample.output_json.clause_type}}",
 "operation":"eq",
-"reference":"{{item.reference_answer.clause_type}}"}},
+"reference":"{{item.clause_type}}"}},
 
 "calculate_output":"0.5 * ext_text_similarity + 0.5 * clause_string_check"
+}
+```
 
+> [!Note]
+> : Currently we don’t support `multi` with model grader as a sub grader. `Multi` grader is supported only with `text_Similarity` and `string_check`.
+
+Example of response format which is an optional field:
+
+If we need the response for the same puzzles problem used in training data example then can add the response format as shown below where fields ‘solution’ and ‘final answer’ are shared in structured outputs.
+
+```json
+{
+  "type": "json_schema",
+  "name": "puzzles_assistant",
+  "schema": {
+    "type" : "object",
+    "properties": {
+      "solution": {
+        "type": "string",
+        "title": "solution"
+      },
+      "final_answer": {
+        "type": "string",
+        "title": "final_answer"
+      }
+    },
+    "required": [
+      "solution",
+      "final_answer"
+    ],
+    "additionalProperties": false
+  },
+  "strict": true
 }
 ```
 
@@ -309,12 +334,13 @@ You can also review the results files while training runs, to get a peak at the 
 
 **New feature: pause and resume**
 
-During the training you can view the logs and RFT metrics and pause the job as needed (if metrics aren't converging or if you feel model isn't learning at the right pace, incorrect grader chosen, etc.).
+During the training you can view the logs and RFT metrics and pause the job as needed (if metrics aren't converging or if you feel model isn't learning at the right pace, incorrect grader chosen, etc.). Once the training job is paused, a deployable checkpoint will be created and available for you to infer or resume the job further to completion. Pause operation is only applicable for jobs which have been trained for at least one step and are in *Running* state.
 
 :::image type="content" source="../media/how-to/reinforcement-fine-tuning/pause.png" alt-text="Screenshot of the reinforcement fine-tuning with a running job." lightbox="../media/how-to/reinforcement-fine-tuning/pause.png":::
 
+### Guardrails on training spending
 
-Once the training job is paused, a deployable checkpoint will be created and available for you to infer or resume the job further to completion. Pause operation is only applicable for jobs which have been trained for at least one step and are in *Running* state.
+As a RFT job can lead to high training costs, we automatically pause jobs once they have hit $5K in total training costs (training + grading). Users may deploy the most recent checkpoint or resume the training job. If the the user decides to resume the job, billing will continue for the job and subsequently no further price limits would be placed on the training job.
 
 ## Interpreting training results
 
@@ -340,7 +366,7 @@ The `train_reasoning_tokens_mean` and `valid_reasoning_tokens_mean` metrics to s
 
 ## Evaluate the results
 
-By the time your fine-tuning job finishes, you should have a decent idea of how well the model is performing based on the mean reward value on the validation set. However, it's possible that the model has either overfit to the training data or has learned to reward hack your grader, which allows it to produce high scores without actually being correct. Before deploying your model, inspect its behavior on a representative set of prompts to ensure it behaves how you expect.
+By the time your fine-tuning job finishes, you should have a decent idea of how well the model is performing based on the mean reward value on the validation set. However, it's possible that the model has either overfit to the training data or has learned to reward hack your grader, which allows it to produce high scores without actually being correct.
 
 Understanding the model's behavior can be done quickly by inspecting the evals associated with the fine-tuning job. Specifically, pay close attention to the run made for the final training step to see the end model's behavior. You can also use the evals product to compare the final run to earlier runs and see how the model's behavior has changed over the course of training.
 
@@ -364,8 +390,6 @@ Some basic rules for grader selection:
 
 - If you have **complex responses that can be scored on multiple criteria, use multi graders**. This allows you to score different aspects of the response and combine it into an aggregate.
 
-- **Guard against reward hacking**. This happens when the model finds a shortcut that earns high scores without real skill. Make it hard to loophole your grading system.
-
 - **Consider breaking the grader down into multiple steps**, and giving partial credit, to nudge the models reasoning in the right direction, grading is stable and aligned with preference. Provide few-shot examples of great, fair, and poor answers in the prompt.
 
 - **Use an LLM as a-judge when code falls short**. For rich, open ended answers, ask another language model to grade. When building LLM graders, run multiple candidate responses and ground truths through your LLM judge to ensure
@@ -381,9 +405,3 @@ We also provide a grader check API that you can use to check the validity of you
 Aim for a few hundred examples initially and consider scaling up to around 1,000 examples if necessary. The dataset should be balanced, in terms of classes predicted, to avoid bias and ensure generalization.
 
 For the prompts, make sure to provide clear and detailed instructions, including specifying the response format and any constraints on the outputs (e.g. minimum length for explanations, only respond with true/false etc.)
-
-## RFT spending limits
-
-As RFT job can lead to high training costs, we're capping the pricing for per training job billing which means this will be the maximum amount that a job can cost before we end the job, even if weʼre not done processing the entire dataset. The training will be paused and a deployable checkpoint will be created.
-
-Users can validate the training job, metrics, logs and then decide to resume the job to complete further. If the user decides to resume the job, billing will continue for the job and subsequently no further price limits would be placed on the training job.
