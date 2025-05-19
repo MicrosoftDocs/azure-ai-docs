@@ -1,10 +1,10 @@
 ### YamlMime:Landing
 
 title: Azure AI Search documentation # < 60 chars
-summary: Information retrieval at scale for agentic RAG, with vector and text content in traditional or generative search scenarios.
+summary: Information retrieval at scale for agentic retrieval, with vector and text content in traditional or generative search scenarios.
 metadata:
   title: Azure AI Search documentation
-  description: Information retrieval at scale for agentic RAG, with vector and text content in traditional or generative search scenarios.
+  description: Information retrieval at scale for agentic retrieval, with vector and text content in traditional or generative search scenarios.
   ms.service: azure-ai-search
   ms.custom:
     - ignite-2023
@@ -43,13 +43,13 @@ landingContent:
             url: vector-search-how-to-query.md
 
   # Card
-  - title: Agentic RAG
+  - title: Agentic retrieval and vectors
     linkLists:
       - linkListType: concept
         links:
           - text: Retrieval Augmented Generation (RAG)
             url: retrieval-augmented-generation-overview.md
-          - text: Agentic RAG
+          - text: Agentic retrieval
             url: search-agentic-retrieval-concept.md        
           - text: Vector search
             url: vector-search-overview.md
