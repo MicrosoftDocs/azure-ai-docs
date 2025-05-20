@@ -158,7 +158,7 @@ ml_client.connections.create_or_update(wps_connection)
 
 ## Azure Blob Storage
 
-The following example creates an Azure Blob Storage connection. This connection is authenticated with an account key or a SAS token:
+The following example uses the [AzureBlobStoreConnection](/python/api/azure-ai-ml/azure.ai.ml.entities.azureblobstoreconnection) class to create an Azure Blob Storage connection. This connection is authenticated with an account key or a SAS token:
 
 ```python
 from azure.ai.ml.entities import AzureBlobStoreConnection, SasTokenConfiguration,AccountKeyConfiguration
@@ -209,7 +209,7 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 ## Microsoft OneLake
 
-The following example creates a Microsoft OneLake connection. This connection is authenticated with a Service Principal:
+The following example uses the [MicrosoftOneLakeWorkspaceConnection](/python/api/azure-ai-ml/azure.ai.ml.entities.microsoftonelakeconnection) class to create a Microsoft OneLake connection. This connection is authenticated with a Service Principal:
 
 ```python
 from azure.ai.ml.entities import MicrosoftOneLakeWorkspaceConnection, OneLakeArtifact
@@ -241,7 +241,7 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 ## Serp
 
-The following example creates a Serp connection:
+The following example uses the [SerpConnection](/python/api/azure-ai-ml/azure.ai.ml.entities.serpconnection) class:
 
 ```python
 from azure.ai.ml.entities import SerpConnection
@@ -258,7 +258,7 @@ ml_client.connections.create_or_update(wps_connection)
 
 ## OpenAI
 
-The following example creates an OpenAI (not Azure OpenAI) connection:
+The following example uses the [OpenAIConnection](/python/api/azure-ai-ml/azure.ai.ml.entities.openaiconnection) class to create an OpenAI (not Azure OpenAI) connection:
 
 ```python
 from azure.ai.ml.entities import OpenAIConnection
@@ -275,7 +275,7 @@ ml_client.connections.create_or_update(wps_connection)
 
 ## Custom
 
-The following example creates custom connection:
+The following example uses the [ApiKeyConfiguration](/python/api/azure-ai-ml/azure.ai.ml.entities.apikeyconnection) class to create custom connection:
 
 ```python
 from azure.ai.ml.entities import WorkspaceConnection
