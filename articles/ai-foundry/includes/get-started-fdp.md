@@ -127,9 +127,9 @@ No installation is necessary to use the Azure AI Foundry portal.
 ---
 
 
-## Create and run an agent
+## Chat with an agent
 
-Agents have powerful capabilities through the use of tools. Write a simple chat completion code for an agent.
+Agents have powerful capabilities through the use of tools. Start by chatting with an agent.
  
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
