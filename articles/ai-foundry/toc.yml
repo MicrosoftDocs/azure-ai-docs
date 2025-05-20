@@ -264,14 +264,20 @@ items:
       href: ../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/ai-foundry/context/context
     - name: Fast transcription
       href: ../ai-services/speech-service/fast-transcription-create.md?context=/azure/ai-foundry/context/context
+    - name: Fine-tune your speech model
+      items:
+      - name: Custom speech fine-tuning
+        href: ../ai-services/speech-service/how-to-custom-speech-create-project.md?context=/azure/ai-foundry/context/context
+      - name: Custom voice fine-tuning
+        href: ../ai-services/speech-service/professional-voice-create-project.md?context=/azure/ai-foundry/context/context
+      - name: Custom avatar fine-tuning
+        href: ../ai-services/speech-service/text-to-speech-avatar/custom-avatar-create.md?context=/azure/ai-foundry/context/context
     - name: Pronunciation assessment
       href: ../ai-services/speech-service/pronunciation-assessment-tool.md?context=/azure/ai-foundry/context/context
     - name: Speech translation
       href: ../ai-services/speech-service/get-started-speech-translation.md?context=/azure/ai-foundry/context/context
     - name: Hear and speak with chat in the playground
       href: quickstarts/hear-speak-playground.md
-    - name: Custom speech fine-tuning
-      href: ../ai-services/speech-service/how-to-custom-speech-create-project.md?context=/azure/ai-foundry/context/context
   - name:  Translator
     items:
     - name: What is Azure AI Translator?
