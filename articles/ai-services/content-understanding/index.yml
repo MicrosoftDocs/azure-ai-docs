@@ -1,10 +1,10 @@
-### YamlMime:Landing
+### YamlMime:Hub
 
 title: Azure AI Content Understanding documentation
-summary: Content Understanding is a solution that analyzes and comprehends various media content—such as audio, video, text, and images—transforming it into structured, organized, and searchable data.
+summary: Content Understanding is a solution that analyzes and comprehends various media content—such as documents, images, audio, and video—transforming it into structured, organized, and searchable data.
 metadata:
   title: Azure AI Content Understanding documentation
-  description: Content Understanding is a solution that analyzes and comprehends various media content—such as audio, video, text, and images—transforming it into structured, organized, and searchable data.
+  description: Content Understanding is a solution that analyzes and comprehends various media content—such as documents, images, audio, and video—transforming it into structured, organized, and searchable data.
   ms.service: azure-ai-content-understanding
   ms.topic: landing-page
   author: laujan
@@ -14,21 +14,29 @@ metadata:
 highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | whats-new
   items:
-    - title: What is Azure AI Content Understanding?
+    - title: What is Content Understanding?
       itemType: overview
       url: overview.md
     - title: "What's new?"
       itemType: whats-new
       url: whats-new.md
-    - title: Try Content Understanding REST API
+    - title: Try REST API
       itemType: quickstart
       url: quickstart/use-rest-api.md
-    - title: Try Azure AI Foundry portal
+    - title: Try AI Foundry
       itemType: quickstart
       url: quickstart/use-ai-foundry.md
 
 conceptualContent:
   items:
+    - title: AI Foundry
+      links:
+        - itemType: quickstart
+          text: Quickstart
+          url: quickstart/use-ai-foundry.md
+        - itemType: concept
+          text: Analyzer templates
+          url: concepts/analyzer-templates.md
     - title: Analyzers
       links:
         - itemType: overview
@@ -45,7 +53,7 @@ conceptualContent:
         - itemType: overview
           text: Overview
           url: classifiers/overview.md
-    - title: Face and Person Directories
+    - title: Face and person directories
       links:
         - itemType: overview
           text: Overview
@@ -53,15 +61,7 @@ conceptualContent:
         - itemType: how-to-guide
           text: Build a person directory
           url: tutorial/build-person-directory.md
-    - title: Azure AI Foundry
-      links:
-        - itemType: quickstart
-          text: Quickstart
-          url: quickstart/use-ai-foundry.md
-        - itemType: concept
-          text: Analyzer templates
-          url: concepts/analyzer-templates.md
-    - title: capabilities
+    - title: Modalities
       links:
         - itemType: concept
           text: Document
@@ -91,6 +91,9 @@ conceptualContent:
         - itemType: reference
           text: Language and region support
           url: language-region-support.md
+        - itemType: tutorial
+          text: Azure AI Content Understanding Samples (Python)
+          url: https://github.com/Azure-Samples/azure-ai-content-understanding-python
     - title: Reference
       links:
         - itemType: reference
@@ -101,6 +104,6 @@ conceptualContent:
           url: glossary.md
         - itemType: reference
           text: REST API
-          url: reference/rest-api.md
+          url: /rest/api/contentunderstanding/operation-groups
 
 
