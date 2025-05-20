@@ -11,7 +11,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 01/18/2025
+ms.date: 05/19/2025
 ---
 
 # Indexing blobs and files to produce multiple search documents
@@ -23,6 +23,7 @@ By default, an indexer treats the contents of a blob or file as a single search 
 When you use any of these parsing modes, the new search documents that emerge must have unique document keys, and a problem arises in determining where that value comes from. The parent blob has at least one unique value in the form of `metadata_storage_path property`, but if it contributes that value to more than one search document, the key is no longer unique in the index.
 
 To address this problem, the blob indexer generates an `AzureSearch_DocumentKey` that uniquely identifies each child search document created from the single blob parent. This article explains how this feature works.
+
 
 ## One-to-many document key
 
@@ -135,6 +136,10 @@ id, temperature, pressure, timestamp
 Notice that each document contains the `id` field, which is defined as the `key` field in the index. In such a case, even though a document-unique `AzureSearch_DocumentKey` is generated, it isn't used as the "key" for the document. Rather, the value of the `id` field is mapped to the `key` field
 
 Similar to the previous example, this mapping doesn't result in four documents showing up in the index because the `id` field isn't unique _across blobs_. When this is the case, any json entry that specifies an `id` results in a merge on the existing document instead of an upload of a new document, and the state of the index reflects the latest read entry with the specified `id`.
+
+## Limitations
+
+When a document entry in the index is created from a line in a file, as explained in this article, deleting that line from the file does not automatically remove the corresponding entry from the index. To delete the document entry, you must manually submit a deletion request to the index using the [REST API deletion operation](addupdate-or-delete-documents.md).
 
 ## Next steps
 
