@@ -108,9 +108,10 @@ The Azure AI Foundry Extension opens in its own view, with the Azure AI Foundry 
     - **Model Playground**: The link to the model playground for interacting with your deployed models in your Azure AI Foundry project.
     - **Agent Playground**: The link to the agent playground for interacting with your deployed agents in your Azure AI Foundry project.
 
-- **Help and Feedback**: This section contains links to the Azure AI Foundry documentation, feedback, and support. It contains the following subsections:
+- **Help and Feedback**: This section contains links to the Azure AI Foundry documentation, feedback, support, and the Microsoft Privacy Statement. It contains the following subsections:
     - **Documentation**: The link to the Azure AI Foundry Extension documentation.
     - **GitHub**: The link to the Azure AI Foundry extension GitHub repository.
+    - **Microsoft Privacy Statement**: The link to the Microsoft Privacy Statement.
 
 >[!NOTE]
 > To learn more about working with Agents and Threads in the Azure AI Foundry Extension, see the [Work with Azure AI Foundry Agent Service in Visual Studio Code](./vs-code-agents.md) article. 
@@ -129,7 +130,7 @@ You can either create a new resource group or select an existing one.
 - To create a new resource group:
     1. In the top center, select **Create new resource group** and press Enter.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-resource-group.png" alt-text="Screenshot of the Choose resource group dropdown with the reate new resource group item highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/select-resource-group.png":::  
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-resource-group.png" alt-text="Screenshot of the Choose resource group dropdown with the Create new resource group item highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/select-resource-group.png":::  
     
     1. In the top center, enter the Azure Resource Group name to use in the **Enter new resource group** textbox and press Enter.
 
