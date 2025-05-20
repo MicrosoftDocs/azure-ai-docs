@@ -26,7 +26,7 @@ items:
       - name: Glossary
         displayName: glossary, definition, updates, previews
         href: glossary.md
-  - name: "Azure AI Foundry: Content Understanding"
+  - name: "AI Foundry: Content Understanding"
     items:
       - name: Quickstart
         displayName: quickstart, extract, text, images, OCR, optical character recognition
@@ -36,9 +36,6 @@ items:
         href: concepts/analyzer-templates.md
   - name: Analyzers
     items:
-      - name: Overview
-        displayName: content understanding capabilities, document, text, images, video, audio, visual, structured, content, field, extraction
-        href: concepts/analyzers-overview.md
       - name: "Quickstart"
         displayName: quickstart, extract, text, images, OCR, optical character recognition, content filtering, filter
         href: quickstart/use-rest-api.md

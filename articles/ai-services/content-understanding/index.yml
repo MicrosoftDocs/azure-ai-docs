@@ -39,15 +39,18 @@ conceptualContent:
           url: concepts/analyzer-templates.md
     - title: Analyzers
       links:
-        - itemType: overview
-          text: Overview
-          url: concepts/analyzers-overview.md
-        - itemType: concept
-          text: Prebuilt analyzers
-          url: concepts/prebuilt-analyzers.md
+        - itemType: quickstart
+          text: Quickstart
+          url: quickstart/use-rest-api.md
         - itemType: concept
           text: "Modes: standard and pro"
           url: concepts/modes-standard-pro.md
+        - itemType: concept
+          text: Prebuilt analyzers
+          url: concepts/prebuilt-analyzers.md
+        - itemType: how-to-guide
+          text: Create a custom analyzer
+          url: tutorial/create-custom-analyzer.md
     - title: Classifiers
       links:
         - itemType: overview
