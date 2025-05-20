@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 04/11/2025
+ms.date: 05/20/2025
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -129,7 +129,7 @@ On the project **Overview** page, you can find information about the project.
 
 :::image type="content" source="../media/how-to/projects/project-settings.png" alt-text="Screenshot of an Azure AI Foundry project settings page." lightbox = "../media/how-to/projects/project-settings.png":::
 
-- Name: The name of the project appears in the top left corner. You can rename the project using the edit tool.
+- Name: The name of the project appears in the top left corner.
 - Subscription: The subscription that hosts the hub that hosts the project.
 - Resource group: The resource group that hosts the hub that hosts the project.
 
