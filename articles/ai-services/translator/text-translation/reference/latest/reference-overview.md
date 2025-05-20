@@ -98,7 +98,7 @@ The following tables list available metrics with description of how they're used
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [View 2025-05-01-preview migration guide](../../how-to/migrate-to-v4.md)
+> [View 2025-05-01-preview migration guide](../../how-to/migrate-to-latest.md)
 
 
 
