@@ -16,7 +16,8 @@ Azure AI Content Understanding is an advanced generative AI service designed to 
 
 * **Standard**: This mode serves as the default solution for processing diverse content types. It's optimized to provide efficient schema extraction tailored to specific tasks across all data formats. This mode emphasizes cost-effectiveness and reduced latency, ensuring structured insights are accessible for your general processing needs.
 
-* **Pro**: This mode is designed for advanced use cases, particularly those requiring multi-step reasoning, and complex decision-making. It supports complex tasks such as identifying inconsistencies, drawing inferences, and making sophisticated decisions. The pro mode allows input from multiple content files and includes the option to reference external data for enriched and validated results. Currently, pro mode is only offered for your document-based data.
+* **Pro**: This mode is designed for advanced use cases, particularly those requiring multi-step reasoning, and complex decision-making (for instance, identifying inconsistencies, drawing inferences, and making sophisticated decisions). The pro mode allows input from multiple content files and includes the option to provide reference data at analyzer creation time. Currently, pro mode is only offered for your document-based data.
+
 
 ## Standard mode overview
 
@@ -34,12 +35,11 @@ Standard is the ideal service for extracting the exact insights you need on any 
 
 ## Pro mode overview
 
-Content Understanding pro mode  is tailored for customers with highly complex use cases, offering advanced multi-step reasoning capabilities. It enables reasoning over both input content and reference data provided by customers, making it ideal for scenarios requiring deep comprehension and complex decision-making. By incorporating reference data, pro mode  adds context to each request, aiding tasks such as validation and enrichment, which reduces the need for human intervention and boosts productivity. For multiple input documents, it supports integration of reference datasets enriching workflows with external data for linking, validation, and enrichment. Currently, pro mode  is exclusively available for document data.
-
+Content Understanding pro mode is tailored for customers with complex use cases, offering multi-step reasoning capabilities, and multi-input document support. It enables reasoning over both input content and reference data, making it ideal for scenarios requiring complex analysis. By incorporating reference data, pro mode adds context to each request, aiding tasks such as validation and enrichment. Currently, pro mode is exclusively available for document data.
 
 ### Pro mode reference data
 
-When your goal is to extract specific data points from your documents, reference data defines these data points and provides the service context it needs to validate whether the data passes the required criteria. For example, if you're looking to analyze invoices to ensure they're consistent with a contractual agreement, the signed contract serves as the reference data, allowing the service to compare the data in the contract to the individual invoices. In doing this comparison, the service applies reasoning to validate that either the invoices are in accordance with the contract or identify discrepancies and flag for further review.
+During analyzer creation, you can provide documents that can aid in providing context that references the service at inference time. For example, if you're looking to analyze invoices to ensure they're consistent with a contractual agreement, you can supply the invoice and other relevant documents (for example, a purchase order) as inputs, and supply the contract files as reference data. The service applies reasoning to validate the input documents according to your schema, which might be to identify discrepancies to flag for further review. If your documents are within the pro mode's input document service limits, we also recommend trying to supply all of your documents as input documents if you encounter any quality issues.
 
 ### Multi-step reasoning
 
@@ -47,7 +47,7 @@ Multi-step reasoning offers the ability to decompose complex problems into a sim
 
 * Does x match y?
 * Does x pass the outlined criteria?
-* Does x scenario follow the required guidelines?
+* Does x document follow the required guidelines?
 * Does the total equal the sum of the items?
 * Find all inconsistencies between the invoice and the contract.
 
@@ -57,15 +57,15 @@ Not sure which mode is right for your scenario? The following charts compare sta
 
 | Feature | Standard mode | Pro mode |
 |----|----|----|
-| **Large documents** | Yes  | Yes |
-| **Field mode** | Yes | Yes |
-| **Ability to extract, classify, and generate fields** | Yes | Yes |
-| **Grounding and confidence scores** | Yes | No |
+| **Large documents** | &check;  | &check; |
+| **Field mode** | &check; | &check; |
+| **Extract, classify, and generate fields** | &check; | &check; |
+| **Grounding and confidence scores** | &check; | &cross; |
 | **Input document type** | Documents, images, video, audio | Documents |
 | **Max fields** | 100 | 100 |
-| **Multiple input document processing** | No | Yes |
-| **Reference dataset integration** | No  | Yes |
-| **Multistep reasoning** | No  | Yes |
+| **Multiple input document processing** | &cross; | &check; |
+| **Reference dataset integration** | &cross;  | &check; |
+| **Multi-step reasoning** | &cross;  | &check; |
 
 
 ## Apply standard or pro mode to your scenarios
@@ -74,18 +74,28 @@ Not sure which mode is right for your scenario? The following charts compare sta
 
 | Scenario | Standard mode | Pro mode|
 |----|----|----|
-| **Invoice analysis** | Extract insights on invoice data at scale and enable RAG search and further data analysis and visualization. Answer questions like: <br> &bullet; Extract purchase order number, total, due date, and line items for entry into database. | Analyze invoices and contractual agreements with clients and apply multi-step reasoning to draw conclusions on that data. Answer questions like: <br> &bullet; Does this invoice fulfill the contractual agreement we have in place with this client? <br> &bullet; Does this invoice need further review |
-| **Call center transcript analytics** | Extract insights on large volumes of call center data to gain valuable insights on sentiment, understand customer issues, and create targeted training to address major pain points. Answer questions like: <br> &bullet; What are the main issues customers are calling about? <br> &bullet; What is the average length of calls made about x issue? | Analyze call center transcript data and apply multi-step reasoning to understand how call center employees are addressing customer needs, and if they're following guidelines. Answer questions like: <br> &bullet; Did the call center employee introduce themselves? <br> &bullet; Did this answer "pass" certain criteria? |
+| **Invoice analysis** | Extract insights on invoice data at scale and enable RAG search and further data analysis and visualization. Answer questions like: <br> &bullet; Extract purchase order number, total, due date, and line items for entry into database. | Analyze invoices and contractual agreements with clients and apply multi-step reasoning to draw conclusions on that data. Answer questions like: <br> &bullet; Does this invoice fulfill the contractual agreement we have in place with this client? <br> &bullet; Does this invoice need further review? |
+| **Call center transcript analytics** | Extract insights on large volumes of call center data to gain valuable insights on sentiment, understand customer issues, and create targeted training to address major pain points. Answer questions like: <br> &bullet; What are the main issues customers are calling about? <br> &bullet; What is the average length of calls made about x issue? | Analyze call center transcript data and apply multi-step reasoning to understand how call center employees are addressing customer needs, and if they're following guidelines. Answer questions like: <br> &bullet; Did the call center employee introduce themselves? <br> &bullet; Did this answer *pass* certain criteria? |
 | **Mortgage application processing** | Extract the key values from mortgage application data and make it searchable and more easily accessible. Answer questions like: <br> &bullet;  What year was the mortgage application submitted? <br> &bullet; What are the names on the application? | Analyze supplementary supporting documentation and mortgage applications to determine whether a prospective home buyer provides all the necessary documentation to secure a mortgage. Answer questions like: <br> &bullet;  Do the names and social security numbers on the mortgage application match the supporting documentation? |
 
 ## Try pro mode
 
 You can try out the features of both Content Understanding standard and pro modes using the [Azure AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding). The service enables you to bring your own data and experiment with all the functionalities of both modes in a lightweight, no-code approach to help you find the best fit for your unique scenario.
 
-### Pro mode known limitations
+### Pro mode known limitations and best practices
 
 * Content Understanding pro mode currently doesn't offer confidence scores or grounding. It currently supports generative and classification of your fields but doesn't support extraction only.
+
 * Content Understanding pro mode is currently only available for documents.
+
+* The system operates in *lookup mode* when referencing documents. As a result, comprehensive information retrieval shouldn't be expected. If exhaustive recovery of data is required, we recommend that you incorporate the document into the input set.
+
+* Schemas should be designed with the highest level of specificity possible. For instance, instead of presenting a generalized list of inconsistencies, it's advisable to create distinct fields for each type of inconsistency, accompanied by detailed descriptions. Additionally, wherever feasible, references to specific sections of relevant documents that should be reviewed should be included.
+
+* Reference documents should be concise and focused. Prioritize essential documents and ensure they're as brief as possible to enhance retention and recall.
+
+
+
 
 ## Next steps
 

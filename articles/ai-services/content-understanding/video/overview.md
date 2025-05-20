@@ -31,11 +31,13 @@ The **pre-built video analyzer** outputs RAG-ready Markdown that includes:
 
 This format can drop straight into a vector store to enable an agent or RAG workflows—no post-processing required.
 
-From there you can **customize the analyzer** for more fine-grained control of the output. You can define custom fields, segments, or enable face identification. Customization allows you to use the full power of generative models to extract deep insights from the visual and audio details of the video. For example, customization allows you to:
+From there you can **customize the analyzer** for more fine-grained control of the output. You can define custom fields, segments, or enable face identification. Customization allows you to use the full power of generative models to extract deep insights from the visual and audio details of the video.
 
-- Identify what products and brands are seen or mentioned in the video.
-- Segment a news broadcast into chapters based on the topics or news stories discussed.
-- Use face identification to label speakers as executives, for example, `CEO John Doe`, `CFO Jane Smith`.
+For example, customization allows you to:
+
+- **Define custom fields:** to identify what products and brands are seen or mentioned in the video.
+- **Generate custom segments:** to segment a news broadcast into chapters based on the topics or news stories discussed.
+- **Identify people using a person directory** enabling a customer to label conference speakers in footage using face identification, for example, `CEO John Doe`, `CFO Jane Smith`.
 
 ## Why use Content Understanding for video?
 
@@ -49,39 +51,53 @@ Content understanding for video has broad potential uses. For example, you can c
 ## Prebuilt video analyzer example
 
 With the prebuilt video analyzer (prebuilt-videoAnalyzer), you can upload a video and get an immediately usable knowledge asset. The service packages every clip into both richly formatted Markdown and JSON. This process allows your search index or chat agent to ingest without custom glue code.
-Calling prebuilt-video with no custom schema returns a document like the following (abridged) example:
 
-```markdown
-   # Video: 00:00.000 → 00:30.000
-   Width: 1280  ·  Height: 720
+* For example, creating the base `prebuilt-videoAnalyzer` as follows:
 
-   ## Segment 1  00:00.000 → 00:06.400
-   A lively gathering in a room decorated with colorful banners and balloons. Party guests watch a TV showing a sports event while a young man kneels excitedly in front. Snacks and drinks underline the festive mood.
+  ```jsonc
+  {
+    "config": {},
+    "BaseAnalyzerId": "prebuilt-videoAnalyzer",
+  }
+  ```
 
-   **Transcript**
-   WEBVTT
-   00:03.600 → 00:06.000  <1 Speaker> Get New Years ready.
+* Next, analyzing a 30-second advertising video, would result in the following output:
 
-   **Key frames**
-   - 00:00.600 ![KF](keyFrame.600.jpg)
-   - 00:01.200 ![KF](keyFrame.1200.jpg)
-   - 00:02.560 ![KF](keyFrame.2560.jpg)
-   - 00:03.280 ![KF](keyFrame.3280.jpg)
-   - 00:04.560 ![KF](keyFrame.4560.jpg)
-   - 00:05.600 ![KF](keyFrame.5600.jpg)
-   - 00:06.200 ![KF](keyFrame.6200.jpg)
+   ```markdown
+     # Video: 00:00.000 => 00:30.000
+     Width: 1280
+     Height: 720
 
-   ## Segment 2  00:06.400 → 00:10.080
-   The room erupts into a vibrant party scene—people dancing under soccer-themed décor, flags waving, energy soaring.
+     ## Segment 1: 00:00.000 => 00:06.000
+     A lively room filled with people is shown, where a group of friends is gathered around a television. They are watching a sports event, possibly a football match, as indicated by the decorations and the atmosphere.
 
-   **Key frames**
-   - 00:07.080 ![KF](keyFrame.7080.jpg)
-   - 00:07.760 ![KF](keyFrame.7760.jpg)
-   - 00:08.560 ![KF](keyFrame.8560.jpg)
-   - 00:09.360 ![KF](keyFrame.9360.jpg)
+     Transcript
 
-   *…additional segments omitted for brevity…*
-````
+     WEBVTT
+
+     00:03.600 --> 00:06.000
+     <Speaker 1 Speaker>Get new years ready.
+
+     Key Frames
+     - 00:00.600 ![](keyFrame.600.jpg)
+     - 00:01.200 ![](keyFrame.1200.jpg)
+
+     ## Segment 2: 00:06.000 => 00:10.080
+     The scene transitions to a more vibrant and energetic setting, where the group of friends is now celebrating. The room is decorated with football-themed items, and everyone is cheering and enjoying the moment.
+
+     Transcript
+
+     WEBVTT
+
+     00:03.600 --> 00:06.000
+     <Speaker 1 Speaker>Go team!
+
+     Key Frames
+     - 00:06.200 ![](keyFrame.6200.jpg)
+     - 00:07.080 ![](keyFrame.7080.jpg)
+
+        *…additional data omitted for brevity…*
+   ```
 
 ## Walk-through
 
@@ -104,17 +120,17 @@ The service operates in two stages. The first stage, content extraction, involve
 
 The first pass is all about extracting a first set of details—who's speaking, where are the cuts, and which faces recur. It creates a solid metadata backbone that later steps can reason over.
 
-* **Transcription:** Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Sentence-level timestamps are available if `returnDetails=true` is set. Content Understanding supports the full set of Azure AI Speech speech-to-text languages. For more information on supported languages, *see* [Language and region support](../language-region-support.md#language-support). The following transcription details are important to consider:
+* **Transcription:** Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Sentence-level timestamps are available if `"returnDetails": true` is set. Content Understanding supports the full set of Azure AI Speech speech-to-text languages. Details of language support for video are the same as audio, *see* [Audio Language Handling](../audio/overview.md#language-handling) for details. The following transcription details are important to consider:
 
   * **Diarization:** Distinguishes between speakers in a conversation in the output, attributing parts of the transcript to specific speakers.
-  * **Multilingual transcription:** Generates multilingual transcripts. Language/locale is applied per phrase in the transcript. Phrases output when `returnDetails=true` is set. Deviating from language detection this feature is enabled when no language/locale is specified or language is set to `auto`.
+  * **Multilingual transcription:** Generates multilingual transcripts. Language/locale is applied per phrase in the transcript. Phrases output when `"returnDetails": true` is set. Deviating from language detection this feature is enabled when no language/locale is specified or language is set to `auto`.
 
     > [!NOTE]
-    > When multilingual transcription is used, a file with an unsupported locale still produces a result. This result is based on the closest locale but most likely not correct.
-    > This transcription behavior is known. Make sure to configure locales when not using multilingual transcription!
+    > When Multilingual transcription is used, any files with unsupported locales produce a result based on the closest supported locale, which is likely incorrect. This result is a known
+    > behavior. Avoid transcription quality issues by ensuring that you configure locales when not using a multilingual transcription supported locale!
 
-* **Shot detection:** Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and repackaging of content with breaks exactly on shot boundaries.
-* **Key frame extraction:** Extracts key frames from videos to represent each shot completely, ensuring each shot has enough key frames to enable field extraction to work effectively.
+  * **Key frame extraction:** Extracts key frames from videos to represent each shot completely, ensuring each shot has enough key frames to enable field extraction to work effectively.
+  * **Shot detection:** Identifies segments of the video aligned with shot boundaries where possible, allowing for precise editing and repackaging of content with breaks exactly existing edits. The output is a list of timestamps in milliseconds in `cameraShotTimesMs`. The output is only returned when `"returnDetails": true` is set.
 
 ## Field extraction and segmentation
 
@@ -139,6 +155,7 @@ Shape the output to match your business vocabulary. Use a `fieldSchema` object w
 **Example:**
 
 ```jsonc
+
 "fieldSchema": {
   "description": "Extract brand presence and sentiment per scene",
   "fields": {
@@ -161,9 +178,12 @@ Shape the output to match your business vocabulary. Use a `fieldSchema` object w
 }
 ```
 
-
-
 ### Segmentation mode
+
+> [!NOTE]
+>
+> Setting segmentation triggers field extraction even if no fields are defined.
+
 
 Content Understanding offers three ways to slice a video, letting you get the output you need for whole videos or short clips. You can use these options by setting the `SegmentationMode` property on a custom analyzer.
 
@@ -186,41 +206,37 @@ Content Understanding offers three ways to slice a video, letting you get the ou
 
   **Example:**
     * Break a news broadcast up into stories.
-  ```jsonc
-  {
-    "segmentationMode": "custom",
-    "segmentationDefinition": "news broadcasts divided by individual stories"
-  }
-  ```
 
-> [!NOTE]
->
-> Setting segmentation triggers field extraction even if no fields are defined.
+    ```jsonc
+    {
+      "segmentationMode": "custom",
+      "segmentationDefinition": "news broadcasts divided by individual stories"
+    }
+    ```
 
 ## Face identification description add-on
-
-Face identification description is an add-on that provides context to content extraction and field extraction using face information.
 
 > [!NOTE]
 >
 >  This feature is limited access and involves face identification and grouping; customers need to register for access at [Face Recognition](https://aka.ms/facerecognition). Face features incur added costs.
 
-### Content extraction: grouping and identification
+Face identification description is an add-on that provides context to content extraction and field extraction using face information.
 
-The face add-on enables grouping and identification as output from the content extraction section. To enable face capabilities set `enableFace=true` in the analyzer configuration.
+### Content extraction - Grouping and identification
+
+The face add-on enables grouping and identification as output from the content extraction section. To enable face capabilities set `"enableFace":true` in the analyzer configuration.
 
 * **Grouping:** Grouped faces appearing in a video to extract one representative face image for each person and provides segments where each one is present. The grouped face data is available as metadata and can be used to generate customized metadata fields when `returnDetails: true` for the analyzer.
-* **Identification:** Labels individuals in the video with names based on a Face API person directory. Customers can enable this feature by supplying a name for a Face API directory in the current resource in the `personDirectoryId` property of the analyzer.
+* **Identification:** Labels individuals in the video with names based on a Face API person directory. Customers can enable this feature by supplying a name for a Face API directory in the current resource in the `personDirectoryId` property of the analyzer. To use this capability, first you must create a personDirectory then reference it in the analyzer. For details on how to do that, check out [How to build a person directory](../../content-understanding/tutorial/build-person-directory.md)
 
 ### Field Extraction – Face description
 
- The field extraction capability is enhanced by providing detailed descriptions of identified faces in the video. This capability includes attributes such as facial hair, emotions, and the presence of celebrities, which can be crucial for various analytical and indexing purposes.
+ The field extraction capability is enhanced by providing detailed descriptions of identified faces in the video. This capability includes attributes such as facial hair, emotions, and the presence of celebrities, which can be crucial for various analytical and indexing purposes. To enable face capabilities set `disableFaceBlurring=true` in the analyzer configuration.
 
 **Examples:**
 
 * **Example field: emotionDescription:** Provides a description of the emotional state of the primary person in this clip (for example, `happy`, `sad`, `angry`)
 * **Example field: facialHairDescription:** Describes the type of facial hair (for example, `beard`, `mustache`, `clean-shaven`)
-
 
 
 ## Key benefits
@@ -245,13 +261,9 @@ Specific limitations of video processing to keep in mind:
 
 For supported formats, see [Service quotas and limits](../service-limits.md).
 
-
-
 ## Supported languages and regions
 
 See [Language and region support](../language-region-support.md).
-
-
 
 ## Data privacy and security
 
@@ -260,8 +272,6 @@ As with all Azure AI services, review Microsoft's [Data, protection, and privacy
 > [!IMPORTANT]
 >
 > If you process **Biometric Data** (for example, enable **Face Grouping** or **Face Identification**), you must meet all notice, consent, and deletion requirements under GDPR or other applicable laws. See [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
-
-
 
 ## Next steps
 

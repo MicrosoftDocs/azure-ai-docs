@@ -11,7 +11,7 @@ ms.author: lajanuar
 ---
 
 
-# Content Understanding service quotas and limits
+# Azure AI Content Understanding service quotas and limits
 
 This article offers a quick reference of the quotas and limits for the Azure AI Content Understanding service.
 
@@ -19,6 +19,8 @@ This article offers a quick reference of the quotas and limits for the Azure AI 
 | Quota | Standard (S0) |
 | --- | --- |
 | Max analyzers | 100k |
+| Max classifiers | 100k |
+| Max person directories | 100k |
 | Max analysis/min | 1000 pages/images <br> Four hours of audio <br> Four hours of video  |
 | Max operations/min | 3000 |
 
@@ -45,6 +47,10 @@ This article offers a quick reference of the quotas and limits for the Azure AI 
 | --- | --- | --- |
 | ✓ `.pdf`<br> ✓ `.tiff`<br> ✓ `.jpg`, `.png`, `.bmp`, `.heif` | ≤ 200 MB | ≤ 300 pages |
 | ✓ `.txt`<br> ✓ `.docx`, `.xlsx`, `.pptx` <br/> ✓ `.html`, `.md`, `.rtf` <br/> ✓ `.eml`, `.msg` <br/> ✓ `.xml`| ≤ 1 MB | ≤ 1M characters |
+
+> [!NOTE]
+> [Pro mode](./concepts/standard-pro-modes.md) currently only supports .pdf, .tiff, and image file types as input.
+> Total input may not exceed 100 MB and 150 pages.
 
 #### Image
 
@@ -83,8 +89,6 @@ Content Understanding supports both basic field value types and nested structure
 * **Table field**: A variable number of items with fixed subfields, represented as an array of objects of basic fields in the API.
 * **Fixed table field**: A group of fields with shared subfields, represented as an object of objects of basic fields in the API.
 
-The following limits apply as of version 2025-05-01-preview.
-
 #### Basic limits
 
 | Property | Document | Text | Image | Audio | Video |
@@ -95,9 +99,11 @@ The following limits apply as of version 2025-05-01-preview.
 
 * The *Max fields* limit includes all named fields. For example, a list of strings counts as one field, while a group with string and number subfields counts as three fields. 
 * The *Max classify field categories* limit is the total number of categories across all fields using the `classify` generation method.
+
 ## Knowledge source limits
-| Type| Limits |
-| ---| --- |
+
+| Type | Limits |
+| -----| ------ |
 | Training data | Documents only <br/> 1 GB total <br/> 50k pages/images total |
 | Reference data | Documents only <br/> 100 MB total <br/> 5k pages total |
 
@@ -108,7 +114,7 @@ The following limits apply as of version 2025-05-01-preview.
 ### General limits
 
    > [!NOTE]
-   > This classification field is the one within the extraction capability and not the separate [Content Understanding classifier](concepts/classifier.md) itself.
+   > This limit is for [Content Understanding classifier](concepts/classifier.md) itself, not classify fields within the extraction capability.
 
 | Property | Limit |
 | --- | --- |
@@ -123,19 +129,23 @@ The following limits apply as of version 2025-05-01-preview.
 | ✓ `.pdf`<br> ✓ `.tiff`<br> ✓ `.jpg`, `.png`, `.bmp`, `.heif` | ≤ 200 MB | ≤ 300 pages |
 | ✓ `.txt`  | ≤ 1 MB | ≤ 1M characters |
 
-
 ---
 
 ## Face / Person Directories
+
+### General limits
+| Property | Value |
+| --- | --- |
+| Max faces per person directory | 1,000,000 |
+| Max persons per person directory | 1,000,000 |
+| Max detected faces per image | 100 |
+| Max identified person candidates per search | 10 |
+| Max similar faces returned per search | 1000 |
+
+### Input file limits
 
 | Supported File Types | File Size | Length |
 | --- | --- |  --- |
 | ✓ `.jpg`, `.png`, `.bmp`, `.webp`, `.gif`, `.ico` | ≤ 200 MB | Max: 15k x 15k pixels |
 
-### Analysis limits
-| Property | Value |
-| --- | --- |
-| Max detected faces per image | 100 |
-| Max identified person candidates per search | 10 |
-| Max similar faces returned per search | 1000 |
 

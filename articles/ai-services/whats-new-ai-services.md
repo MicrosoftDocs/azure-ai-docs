@@ -17,7 +17,7 @@ Welcome to what's new in the Azure AI Services docs for April 2025. This article
 
 ### New articles
 
-- [Audio capabilities in Azure OpenAI Service](../ai-services/openai/concepts/audio.md)
+- [Audio capabilities in Azure OpenAI in Azure AI Foundry Models](../ai-services/openai/concepts/audio.md)
 - [Azure AI Agent Service monitoring data reference](../ai-services/agents/reference/monitor-service.md)
 - [Azure AI Translator known issues](../ai-services/translator/reference/known-issues.md)
 - [Configure Azure OpenAI networking](../ai-services/openai/how-to/network.md)

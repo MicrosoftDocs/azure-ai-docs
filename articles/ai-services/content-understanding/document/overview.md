@@ -10,7 +10,7 @@ ms.topic: overview
 ms.date: 05/19/2025
 ---
 
-# Content Understanding document solutions (preview)
+# Azure AI Content Understanding document solutions (preview)
 
 > [!IMPORTANT]
 >
@@ -28,12 +28,13 @@ Document analyzers can process complex documents in various formats and template
 * **Loan and mortgage applications**: Automate processing to enable quicker handling by banks, lenders, and government entities.
 * **Financial services**: Analyze complex documents like financial reports and asset management reports.
 * **Expense management**: Parse receipts and invoices from various retailers to validate expenses across different formats and templates.
+* **Document sets and knowledge base scenarios**: Extract key fields from document sets as a whole, and add reference data that handle tasks like validation and enrichment by applying multi-step reasoning.
 
 ## Document analyzer capabilities
 
 :::image type="content" source="../media/document/document-capabilities.png" alt-text="Screenshot of document extraction flow.":::
 
-### Content Extraction
+### Content extraction
 
 Content extraction forms the foundation of Azure AI Content Understanding's document analysis capabilities, transforming unstructured documents into structured, machine-readable data.
 It precisely captures both printed and handwritten text while preserving the document's structure through advanced layout analysis.
@@ -48,12 +49,17 @@ It precisely captures both printed and handwritten text while preserving the doc
   - **Paragraphs**: Detects and categorizes text segments based on their document context and role.
   - **Tabular data**: Recognizes and extracts table structures, including complex formats with spanning cells and multi-page layouts.
   - **Hierarchical sections**: Maps content organization through section headers and nested content relationships.
+- RAG
+  - **RAG solutions**: Content extraction forms the foundation of effective RAG systems by transforming raw multimodal data into structured, searchable formats optimized for retrieval. Learn more about building RAG solutions on our [retrieval-augmented generation](../concepts/retrieval-augmented-generation.md) page.
 
 ### Field extraction
 
 Field extraction empowers you to extract, classify, and generate structured data from various documents and forms, customized to meet your unique requirements. The process of transforming unstructured content into organized, actionable information simplifies data management, improves searchability, and supports automated workflows. For instance, you can seamlessly extract customer details, billing addresses, and itemized charges from invoices, or identify contractual parties, renewal dates, and payment terms in legal agreements. To maximize efficiency, you can utilize prebuilt analyzer templates—such as ones tailored for invoices—or design bespoke analyzers from scratch, enhancing precision through the labeling of more sample documents.
 
-### Field extraction methods
+The confidence and grounding API is an opt-in feature. Set `estimateFieldSourceAndConfidence` as `true` to opt in for confidence and grounding for field extraction.
+
+
+#### Field extraction methods
 
 Azure AI Content Understanding provides versatile methods for field extraction, enabling precise and tailored processing of document content:
 
@@ -77,6 +83,8 @@ Content Understanding delivers powerful document analysis capabilities designed 
 
 - **Enhanced accuracy and reliability:** Achieve precise extraction and classification of critical business data, significantly reducing errors and improving operational efficiency across automated workflows.
 
+- **Agents-ready:** Process your diverse input and deliver output in a standard format that's ready for an agent's workflow. Outputs can give your application an understanding of user intent, with data supported by a `strongly-typed` schema that makes it easier to quickly get data in a format ready for your code.
+
 ## Input requirements
 For detailed information on supported input document formats, refer to our [Service quotas and limits](../service-limits.md) page.
 
@@ -90,4 +98,4 @@ Developers using Content Understanding should review Microsoft's policies on cus
 * Try processing your document content using Content Understanding in [Azure AI Foundry](https://aka.ms/cu-landing).
 * Learn to analyze document content [**analyzer templates**](../quickstart/use-ai-foundry.md).
 * Review code samples: [**visual document search**](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/notebooks/search_with_visual_document.ipynb).
-* Review code sample: [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
+

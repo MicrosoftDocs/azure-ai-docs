@@ -10,7 +10,7 @@ ms.topic: overview
 ms.date: 05/19/2025
 ---
 
-# Content Understanding audio solutions (preview)
+# Azure AI Content Understanding audio solutions (preview)
 
 > [!IMPORTANT]
 > * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
@@ -33,7 +33,7 @@ Content Understanding serves as a cornerstone for Speech Analytics solutions, en
 
 ### Content extraction
 
-Audio content extraction is the process of isolating and retrieving specific elements or features from an audio file. This process can include separating individual audio sources; identifying specific segments within a sound file; or detecting and categorizing various characteristics of the audio content.
+Audio content extraction is the process of transcribing audio files. This process includes separating transcriptions by speaker and can involve optional features like role detection to update speaker results to meaningful speaker roles. It can also involve detailed results including word-level timestamps.
 
 #### Language handling
 We support different options to handle language processing during transcription.
@@ -59,8 +59,8 @@ For languages with Fast transcriptions support and for files â‰¤ 300 MB and/or â
 * **Multilingual transcription**. Generates multilingual transcripts, applying language/locale per phrase. Deviating from language detection this feature is enabled when no language/locale is specified or language is set to `auto`.
 
 > [!NOTE]
-> When Multilingual transcription is used, a file with an unsupported locale produces a result. This result is based on the closest locale but most likely not correct.
-> This result is a known behavior. Make sure to configure locales when not using Multilingual transcription!
+> When Multilingual transcription is used, any files with unsupported locales produce a result based on the closest supported locale, which is likely incorrect. This result is a known
+> behavior. Avoid transcription quality issues by ensuring that you configure locales when not using a multilingual transcription supported locale!
 
 * **Language detection**. Automatically detects the dominant language/locale which is used to transcribe the file. Set multiple languages/locales to enable language detection.
 
@@ -275,7 +275,7 @@ You can also customize prebuilt analyzers for more fine-grained control of the o
 ## Conversational Knowledge Mining Solution Accelerator
 For an end-2-end quickstart for Speech Analytics solutions, refer to the [Conversation knowledge mining solution accelerator](https://aka.ms/Conversational-Knowledge-Mining).
 
-Gain actionable insights from large volumes of conversational data by identifying key themes, patterns, and relationships. By using Azure AI Foundry, Azure AI Content Understanding, Azure OpenAI Service, and Azure AI Search, this solution analyzes unstructured dialogue and maps it to meaningful, structured insights.
+Gain actionable insights from large volumes of conversational data by identifying key themes, patterns, and relationships. By using Azure AI Foundry, Azure AI Content Understanding, Azure OpenAI in Azure AI Foundry Models, and Azure AI Search, this solution analyzes unstructured dialogue and maps it to meaningful, structured insights.
 
 Capabilities such as topic modeling, key phrase extraction, speech-to-text transcription, and interactive chat enable users to explore data naturally and make faster, more informed decisions.
 

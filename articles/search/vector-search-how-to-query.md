@@ -3,8 +3,8 @@ title: Vector query how-to
 titleSuffix: Azure AI Search
 description: Learn how to build queries for vector search.
 
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - build-2024

@@ -10,7 +10,7 @@ ms.topic: overview
 ms.date: 05/19/2025
 ---
 
-# Best practices for Content Understanding
+# Best practices for Azure AI Content Understanding
 
 Azure AI Content Understanding is an innovative Generative AI service designed to facilitate the precise and accurate analysis of extensive data sets. The service processes various content modalities, including documents, images, videos, and audio, transforming them into user-specified output formats.
 
@@ -89,10 +89,15 @@ By default, Content Extraction information such as speech transcripts, document 
 
 ## Classifier category names and descriptions
 
-To improve the classifier and splitting accuracy, it's important to give a good category name and description with context. For example:
+To improve the classifier and splitting accuracy, it's important to give a good category name and description with context.
 
-* Common titles for category names (ex. Annual Financial Report, SEC Form 10-K)
-* Semantic definition of the category for descriptions (ex. receipts for expense reporting)
-* Common layout of the initial page in the description (two-column form)
-* Key content that uniquely identifies a category as a description ("2025" on the upper right)
+ ##### &emsp; ***Example 8***
+
+   * For category names, make sure to use common titles (ex. Annual Financial Report, SEC Form 10-K).
+     
+   * For category descriptions, make sure to give context that distinguishes one category from another.
+
+     * Semantic definition: for example, `receipts for expense reporting`
+     * Key content: any content that can uniquely identify a category, such as  `2025` on tax forms to distinguish from older tax forms
+     * Common layout: layout that is distinguishable from others, such as `two-column form` or filled/unfilled checkbox
 

@@ -26,6 +26,8 @@ You can use the tool to retrieve search results from many different search engin
 
 ## Prerequisites
 
+[!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
+
 Sign up on the [Serp API home page](https://serpapi.com/).
 
 To create a Serp connection:

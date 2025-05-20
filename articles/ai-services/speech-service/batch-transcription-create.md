@@ -253,7 +253,7 @@ Batch transcription requests for expired models fail with a 4xx error. Set the `
 Azure AI Speech supports OpenAI's Whisper model by using the batch transcription API. You can use the Whisper model for batch transcription.
 
 > [!NOTE]
-> Azure OpenAI Service also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, see [Speech to text with the Azure OpenAI Whisper model](../openai/whisper-quickstart.md). For more information about when to use Azure AI Speech vs. Azure OpenAI Service, see [What is the Whisper model?](./whisper-overview.md)
+> Azure OpenAI in Azure AI Foundry Models also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, see [Speech to text with the Azure OpenAI Whisper model](../openai/whisper-quickstart.md). For more information about when to use Azure AI Speech vs. Azure OpenAI in Azure AI Foundry Models, see [What is the Whisper model?](./whisper-overview.md)
 
 To use a Whisper model for batch transcription, you need to set the `model` property. Whisper is a display-only model, so the lexical field isn't populated in the response.
 
@@ -278,7 +278,7 @@ curl -v -X GET "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/mod
 ::: zone-end
 
 ::: zone pivot="speech-cli"
-Make sure that you set the [configuration variables](spx-basics.md#create-a-resource-configuration) for an AI Services resource for Speech in one of the supported regions. You can run the `spx csr list --base` command to get available base models for all locales.
+Make sure that you set the [configuration variables](spx-basics.md#create-a-resource-configuration) for an AI Foundry resource for Speech in one of the supported regions. You can run the `spx csr list --base` command to get available base models for all locales.
 
 ```azurecli
 spx csr list --base --api-version v3.2

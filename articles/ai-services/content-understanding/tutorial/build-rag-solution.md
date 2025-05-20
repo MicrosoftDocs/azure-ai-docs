@@ -27,22 +27,22 @@ This tutorial explains how to create a retrieval-augmented generation (RAG) solu
 
 To get started, you need **An active Azure subscription**. If you don't have an Azure account, you can [create a free subscription](https://azure.microsoft.com/free/).
 
-* Once you have your Azure subscription, create an [Azure AI Services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) in the Azure portal. This multi-service resource enables access to multiple Azure AI services with a single set of credentials.
+* Once you have your Azure subscription, create an [Azure AI Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) in the Azure portal. This multi-service resource enables access to multiple Azure AI services with a single set of credentials.
 
-   * This resource is listed under Azure AI services → Azure AI services in the portal.
+   * This resource is listed under **AI Foundry** > **AI Foundry** in the portal.
 
     > [!IMPORTANT]
-    > Azure provides more than one resource type named Azure AI services. Make certain that you select the one listed under Azure AI services → Azure AI services as depicted in the following image. For more information, see [Create an Azure AI Services resource](../how-to/create-multi-service-resource.md).
+    > Azure provides more than one resource type for Azure AI services. Make certain that you select the one listed under **AI Foundry** > **AI Foundry** as depicted in the following image. For more information, see [Create an Azure AI Foundry resource](../how-to/create-multi-service-resource.md).
 
      :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the multi-service resource page in the Azure portal.":::
 
 * **Azure AI Search Resource:** Set up an [Azure AI Search resource](../../../search/search-create-service-portal.md) to enable indexing and retrieval of multimodal data.
-* **Azure OpenAI Resource:** Deploy an [Azure OpenAI resource](../../openai/how-to/create-resource.md) with a chat model that enables conversational interactions.
+* **Azure OpenAI Chat Model Deployment:** Deploy an [Azure OpenAI chat model](../../openai/how-to/deployment-types.md) that enables conversational interactions.
 * **Embedding Model Deployment:** Ensure you have an embedding model deployed to generate vector representations for semantic search.
 * **API Version:** This tutorial uses the latest preview [API version](/rest/api/contentunderstanding/analyzers?view=rest-contentunderstanding-2024-12-01-preview&preview&preserve-view=true): `2024-12-01-preview`.
 * **Python Environment:** Install [Python 3.11](https://www.python.org/downloads/) to execute the provided code samples and scripts.
 * This tutorial follows this sample code can be found in our [Python notebook](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples). Follow the [README](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/README.md) to create essential resources, grant resources the right Access control(IAM) roles and install all packages needed for this tutorial.
-* The [multimodal data](../concepts/analyzers-overview.md) used in this tutorial consists of documents, images, audio, and video. They're designed to guide you through the process of building a robust RAG solution with Azure AI Content Understanding.
+* The multimodal data used in this tutorial consists of documents, images, audio, and video. They're designed to guide you through the process of building a robust RAG solution with Azure AI Content Understanding.
 
 ## Extract data
 
@@ -793,4 +793,4 @@ while True:
 
 * [Try a multimodal content solution accelerator](https://github.com/microsoft/content-processing-solution-accelerator)
 
-* [Learn more Content Understanding capabilities](../concepts/analyzers-overview.md)
+* [Learn more Content Understanding analyzers](../concepts/analyzer-templates.md)

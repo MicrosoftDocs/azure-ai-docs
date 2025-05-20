@@ -25,7 +25,7 @@ Once you've trained machine learning models or pipelines, or you've found models
 
 ## Endpoints and deployments
 
-An **endpoint** is a stable and durable URL that can be used to request or invoke a model. You provide the required inputs to the endpoint and get the outputs back. Azure Machine Learning allows you to implement serverless API endpoints, online endpoints, and batch endpoints. An endpoint provides:
+An **endpoint** is a stable and durable URL that can be used to request or invoke a model. You provide the required inputs to the endpoint and get the outputs back. Azure Machine Learning allows you to implement standard deployments, online endpoints, and batch endpoints. An endpoint provides:
 
 - a stable and durable URL (like _endpoint-name.region.inference.ml.azure.com_),
 - an authentication mechanism, and
@@ -49,22 +49,22 @@ Let's imagine that after a couple of months, the organization discovers that the
 
 :::image type="content" source="media/concept-endpoints/concept-deployment-routing.png" alt-text="A diagram showing the concept of an endpoint with multiple deployments." border="false":::
 
-## Endpoints: serverless API, online, and batch
+## Endpoints: standard deployment, online, and batch
 
-Azure Machine Learning allows you to implement [serverless API endpoints](how-to-deploy-models-serverless.md), [online endpoints](concept-endpoints-online.md), and [batch endpoints](concept-endpoints-batch.md).
+Azure Machine Learning allows you to implement [standard deployments](how-to-deploy-models-serverless.md), [online endpoints](concept-endpoints-online.md), and [batch endpoints](concept-endpoints-batch.md).
 
-_Serverless API endpoints_ and _online endpoints_ are designed for real-time inference. Whenever you invoke the endpoint, the results are returned in the endpoint's response. Serverless API endpoints don't consume quota from your subscription; rather, they're billed with pay-as-you-go billing.
+_standard deployment_ and _online endpoints_ are designed for real-time inference. Whenever you invoke the endpoint, the results are returned in the endpoint's response. Standard deployments don't consume quota from your subscription; rather, they're billed with Standard billing.
 
 _Batch endpoints_ are designed for long-running batch inference. Whenever you invoke a batch endpoint, you generate a batch job that performs the actual work.
 
-### When to use serverless API, online, and batch endpoints
+### When to use standard deployment, online, and batch endpoints
 
-__Serverless API endpoints__:
+__standard deployment__:
 
-Use [serverless API endpoints](how-to-deploy-models-serverless.md) to consume large foundational models for real-time inferencing off-the-shelf or for fine-tuning such models. Not all models are available for deployment to serverless API endpoints. We recommend using this deployment mode when:
+Use [standard deployments](how-to-deploy-models-serverless.md) to consume large foundational models for real-time inferencing off-the-shelf or for fine-tuning such models. Not all models are available for deployment to standard deployments. We recommend using this deployment mode when:
 
 > [!div class="checklist"]
-> * Your model is a foundational model or a fine-tuned version of a foundational model that is available for serverless API deployments.
+> * Your model is a foundational model or a fine-tuned version of a foundational model that is available for standard deployments.
 > * You can benefit from a quota-less deployment.
 > * You don't need to customize the inferencing stack used to run the model.
 
@@ -73,7 +73,7 @@ __Online endpoints__:
 Use [online endpoints](concept-endpoints-online.md) to operationalize models for real-time inference in synchronous low-latency requests. We recommend using them when:
 
 > [!div class="checklist"]
-> * Your model is a foundational model or a fine-tuned version of a foundational model, but it's not supported in serverless API endpoints.
+> * Your model is a foundational model or a fine-tuned version of a foundational model, but it's not supported in standard deployment.
 > * You have low-latency requirements.
 > * Your model can answer the request in a relatively short amount of time.
 > * Your model's inputs fit on the HTTP payload of the request.
@@ -91,15 +91,15 @@ Use [batch endpoints](concept-endpoints-batch.md) to operationalize models or pi
 > * Your model's inputs are stored in a storage account or in an Azure Machine Learning data asset.
 > * You can take advantage of parallelization.
 
-### Comparison of serverless API, online, and batch endpoints
+### Comparison of standard deployment, online, and batch endpoints
 
-All serverless API, online, and batch endpoints are based on the idea of endpoints, therefore, you can transition easily from one to the other. Online and batch endpoints are also capable of managing multiple deployments for the same endpoint.
+All standard deployment, online, and batch endpoints are based on the idea of endpoints, therefore, you can transition easily from one to the other. Online and batch endpoints are also capable of managing multiple deployments for the same endpoint.
 
 #### Endpoints
 
-The following table shows a summary of the different features available to serverless API, online, and batch endpoints at the endpoint level.
+The following table shows a summary of the different features available to standard deployment, online, and batch endpoints at the endpoint level.
 
-| Feature                               | [Serverless API endpoints](how-to-deploy-models-serverless.md) | [Online endpoints](concept-endpoints-online.md) | [Batch endpoints](concept-endpoints-batch.md) |
+| Feature                               | [Standard deployments](how-to-deploy-models-serverless.md) | [Online endpoints](concept-endpoints-online.md) | [Batch endpoints](concept-endpoints-batch.md) |
 |---------------------------------------|--------------------------------------------------|-------------------------------------------------|-----------------------------------------------|
 | Stable invocation URL                 | Yes                                              | Yes                                             | Yes                                           |
 | Support for multiple deployments      | No                                               | Yes                                             | Yes                                           |
@@ -112,14 +112,14 @@ The following table shows a summary of the different features available to serve
 | Customer-managed keys                 | NA                                               | Yes                                             | Yes                                           |
 | Cost basis                            | Per endpoint, per minute<sup>1</sup>             | None                                            | None                                          |
 
-<sup>1</sup>A small fraction is charged for serverless API endpoints per minute. See the [deployments](#deployments) section for the charges related to consumption, which are billed per token.
+<sup>1</sup>A small fraction is charged for standard deployment per minute. See the [deployments](#deployments) section for the charges related to consumption, which are billed per token.
 
 
 #### Deployments
 
-The following table shows a summary of the different features available to serverless API, online, and batch endpoints at the deployment level. These concepts apply to each deployment under the endpoint (for online and batch endpoints), and apply to serverless API endpoints (where the concept of deployment is built into the endpoint).
+The following table shows a summary of the different features available to standard deployment, online, and batch endpoints at the deployment level. These concepts apply to each deployment under the endpoint (for online and batch endpoints), and apply to standard deployment (where the concept of deployment is built into the endpoint).
 
-| Feature                       | [Serverless API endpoints](how-to-deploy-models-serverless.md) | [Online endpoints](concept-endpoints-online.md) | [Batch endpoints](concept-endpoints-batch.md) |
+| Feature                       | [Standard deployment](how-to-deploy-models-serverless.md) | [Online endpoints](concept-endpoints-online.md) | [Batch endpoints](concept-endpoints-batch.md) |
 |-------------------------------|-------------------------------------------------|-------------------------------------------------|-----------------------------------------------|
 | Deployment types              | Models                                          | Models                                          | Models and Pipeline components                |
 | MLflow model deployment       | No, only specific models in the catalog         | Yes                                             | Yes                                           |

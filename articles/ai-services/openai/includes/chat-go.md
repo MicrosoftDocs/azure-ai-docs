@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Use Azure OpenAI Service with the JavaScript SDK and the completions API'
+title: 'Quickstart: Use Azure OpenAI in Azure AI Foundry Models with the JavaScript SDK and the completions API'
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the Go SDK.
 manager: nitinme
 ms.service: azure-ai-openai
@@ -15,7 +15,7 @@ ms.date: 3/21/2025
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [Go 1.21.0](https://go.dev/dl/) or higher installed locally.
-- An Azure OpenAI Service resource with the `gpt-4` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- An Azure OpenAI in Azure AI Foundry Models resource with the `gpt-4` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 ### Microsoft Entra ID prerequisites
 

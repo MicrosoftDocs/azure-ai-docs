@@ -1,7 +1,7 @@
 ---
-title: 'Quickstart - Get started using Provisioned Deployments with Azure OpenAI Service'
-titleSuffix: Azure OpenAI Service
-description: Walkthrough on how to get started provisioned deployments on Azure OpenAI Service.
+title: 'Quickstart - Get started using Provisioned Deployments with Azure OpenAI in Azure AI Foundry Models'
+titleSuffix: Azure OpenAI
+description: Walkthrough on how to get started provisioned deployments on Azure OpenAI.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: openai
@@ -12,9 +12,9 @@ ms.date: 03/31/2025
 recommendations: false
 ---
 
-# Get started using provisioned deployments on the Azure OpenAI Service
+# Get started using provisioned deployments on the Azure OpenAI in Azure AI Foundry Models
 
-The following guide walks you through key steps in creating a provisioned deployment with your Azure OpenAI Service resource. For more details on the concepts discussed here, see:
+The following guide walks you through key steps in creating a provisioned deployment with your Azure OpenAI resource. For more details on the concepts discussed here, see:
 * [Azure OpenAI Provisioned Onboarding Guide](./provisioned-throughput-onboarding.md)
 * [Azure OpenAI Provisioned Concepts](../concepts/provisioned-throughput.md) 
 
@@ -124,7 +124,7 @@ Selecting a resource and clicking **Switch resource** will cause the deployment 
 Following the creation of your deployment, you might want to purchase a term discount via an Azure Reservation.  An Azure Reservation can provide a substantial discount on the hourly rate for users intending to use the deployment beyond a few days.   
 
 For more information on the purchase model and reservations, see:
-* [Save costs with Microsoft Azure OpenAI service provisioned reservations](/azure/cost-management-billing/reservations/azure-openai).
+* [Save costs with Microsoft Azure OpenAI provisioned reservations](/azure/cost-management-billing/reservations/azure-openai).
 * [Azure OpenAI provisioned onboarding guide](./provisioned-throughput-onboarding.md) 
 * [Guide for Azure OpenAI provisioned reservations](../concepts/provisioned-throughput.md) 
 
@@ -151,7 +151,7 @@ The inferencing code for provisioned deployments is the same a standard deployme
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
             {"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
-            {"role": "user", "content": "Do other Azure AI services support this too?"}
+            {"role": "user", "content": "Do other Azure services support this too?"}
         ]
     )
 
@@ -159,7 +159,7 @@ The inferencing code for provisioned deployments is the same a standard deployme
 ```
 
 > [!IMPORTANT]
-> For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
+> For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see this [security](../../security-features.md) article.
 
 
 ## Understanding expected throughput
@@ -177,7 +177,7 @@ You can find the utilization measure in the Azure-Monitor section for your resou
 
 :::image type="content" source="../media/provisioned/azure-monitor-utilization.jpg" alt-text="Screenshot of the provisioned managed utilization on the resource's metrics blade in the Azure portal." lightbox="../media/provisioned/azure-monitor-utilization.jpg":::
 
-For more information about monitoring your deployments, see the [Monitoring Azure OpenAI Service](./monitoring.md) page.
+For more information about monitoring your deployments, see the [Monitoring Azure OpenAI](./monitoring.md) page.
 
 
 ## Handling high utilization
@@ -213,7 +213,7 @@ client.with_options(max_retries=5).chat.completions.create(
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
         {"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
-        {"role": "user", "content": "Do other Azure AI services support this too?"}
+        {"role": "user", "content": "Do other Azure services support this too?"}
     ]
 )
 ```

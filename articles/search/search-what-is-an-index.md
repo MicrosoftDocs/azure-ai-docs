@@ -11,7 +11,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 04/14/2025
+ms.date: 05/19/2025
 ---
 
 # Search indexes in Azure AI Search
@@ -35,6 +35,7 @@ The structure of a document is determined by the *index schema*, as illustrated 
 ```json
 {
   "name": "name_of_index, unique across the service",
+  "description" : "Health plan coverage for standard and premium plans for Northwind and Contoso employees."
   "fields": [
     {
       "name": "name_of_field",
@@ -50,7 +51,7 @@ The structure of a document is determined by the *index schema*, as illustrated 
       "indexAnalyzer": "name_of_indexing_analyzer", (only if 'searchAnalyzer' is set and 'analyzer' is not set)
       "normalizer":  "name_of_normalizer", (applies to fields that are filterable)
       "synonymMaps": "name_of_synonym_map", (optional, only one synonym map per field is currently supported)
-      "dimensions": "number of dimensions used by an emedding models", (applies to vector fields only, of type Collection(Edm.Single))
+      "dimensions": "number of dimensions used by an embedding models", (applies to vector fields only, of type Collection(Edm.Single))
       "vectorSearchProfile": "name_of_vector_profile" (indexes can have many configurations, a field can use just one)
     }
   ],
@@ -187,6 +188,7 @@ You can get hands-on experience creating an index using almost any sample or wal
 But you'll also want to become familiar with methodologies for loading an index with data. Index definition and data import strategies are defined in tandem. The following articles provide more information about creating and loading an index.
 
 + [Create a search index](search-how-to-create-search-index.md)
++ [Update an index](search-howto-reindex.md)
 + [Create a vector store](vector-search-how-to-create-index.md)
 + [Create an index alias](search-how-to-alias.md)
 + [Data import overview](search-what-is-data-import.md)

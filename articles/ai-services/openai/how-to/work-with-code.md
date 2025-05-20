@@ -1,6 +1,6 @@
 ---
 title: 'How to use the Codex models to work with code'
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn how to use the Codex models on Azure OpenAI to handle a variety of coding tasks.
 manager: nitinme
 ms.service: azure-ai-openai
@@ -10,7 +10,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 ---
 
-# Completion models and code with Azure OpenAI Service
+# Completion models and code with Azure OpenAI in Azure AI Foundry Models
 
 > [!IMPORTANT]
 > This article was authored and tested against the [legacy code generation models](/azure/ai-services/openai/concepts/legacy-models). These models use the completions API, and its prompt/completion style of interaction. If you wish to test the techniques described in this article verbatim we recommend using the `gpt-35-turbo-instruct` model which allows access to the completions API. However, for code generation the chat completions API and the latest GPT-4o and o-series models will yield the best results. To use these newer models these prompts would need to be converted to the conversational style specific to interacting with those models.

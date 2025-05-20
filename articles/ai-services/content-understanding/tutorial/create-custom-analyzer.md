@@ -1,5 +1,5 @@
 ---
-title: Create a custom analyzer with Azure AI Content Understanding
+title: Create a custom analyzer with Azure AI Content Understanding using REST APIs
 titleSuffix: Azure AI services
 description: Learn to create a custom analyzer with Azure AI Content Understanding
 author: laujan
@@ -10,7 +10,7 @@ ms.topic: overview
 ms.date: 05/19/2025
 ---
 
-# Create a custom analyzer
+# Create a custom analyzer via REST APIs
 
 Content Understanding analyzers define how to process and extract insights from your content. They ensure uniform processing and output structure across all your content to deliver reliable and predictable results. We offer [prebuilt analyzers](../concepts/prebuilt-analyzers.md) for common use cases. This guide shows how these analyzers can be customized to better fit your needs.
 
@@ -587,3 +587,9 @@ A `200 OK` response includes a `status` field that shows the operation's progres
   }
 }
 ```
+
+## Next steps
+
+* Review code samples: [**visual document search**](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/notebooks/search_with_visual_document.ipynb).
+* Review code sample: [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
+* Try processing your document content using Content Understanding in [Azure AI Foundry](https://aka.ms/cu-landing).

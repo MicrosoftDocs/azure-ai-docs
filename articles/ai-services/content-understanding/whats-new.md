@@ -14,39 +14,50 @@ ms.custom:
 
 # What's new in Azure AI Content Understanding?
 
-The Azure AI Content Understanding service is continuously updated. Bookmark this page to stay informed about the latest features and samples.
+Azure AI Content Understanding service is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
 
 ## May 2025
+
 The Azure AI Content Understanding **`2025-05-01-preview`** REST API is now available. This update introduces the following updates and enhanced capabilities:
 
-* **Modes for documents**: With the **`2025-05-01-preview`** release, we introduce two modes: `standard` and `pro`. The `pro` mode, currently exclusive to the document analyzer, enables advanced capabilities. Content Understanding now supports reasoning across multiple documents as input for external knowledge, empowering users to derive agentic inferences directly from reference documents.
+### Processing modes
 
-* **Document modality improvements** :
+With the **`2025-05-01-preview`** release, we introduce two modes: `standard` and `pro`.
+The default mode for all analyzers is `standard`.
+Content Understanding pro mode adds reasoning, support for multiple input documents, the ability to configure an external knowledge base for linking, enrichment, and validation.
+These features automate complex tasks by extending field extraction capabilities to cover scenarios that previously required custom code or human effort.
 
-  * Support for cross table extraction spanning multiple pages.
-  * Selection mark support for checkmark and radio buttons as unicode characters.
-  * Confidence score improvements.
-  * Support for embedded figures in Markdown as base64 string format.
-  * New file format support extended for following document types `.rtf`,`.txt`,`.xml`,`.json`, `.msg`,`.eml`,`.csv`, and `.xlsx`.
-  * Bar code extraction as part of the default content extraction along with `OCR`.
-  * Classification API for documents only. This API supports classifying and splitting documents with optional routing to analyzers.
+The `pro` mode is currently limited to documents as inputs, with support other types of content types coming soon!
+Common challenges that the pro mode addresses are aggregating a schema across content from different input files, validating results across documents, and using external knowledge to generate an output schema.
+Learn more about the [pro mode](concepts/standard-pro-modes.md).
 
-* **Video Modality improvements**:
+### Document classification and splitting
 
-  * Support for whole video fields.
-  * Support for video chapters via segmentation.
-  * Support for face identification on extracted face thumbnails. The identity enhances the description and downstream tasks like search and retrieval.
-  * Support for disabling face blurring in analyzer configuration.
+This release introduces a new [classification API](concepts/classifier.md). This API supports classifying and logically splitting a single file containing multiple documents with optional routing to field extraction analyzers. You can create a custom classifier to split and classify a file into multiple logical documents and route the individual documents to a downstream field extraction model in a single API call.
 
-* **Audio Modality improvements**: Support for multi-speaker call center role detection to allow detection of multiple speakers.
+### Improvements to document processing
 
-* **Face API preview**: Detection, recognition, and enrollment of faces.
+* Added support for extracting table spanning multiple pages as a single logical table. Learn more about [structure extraction updates in documents](document/elements.md).
+* Selection mark support for checkmark and radio buttons as unicode characters. Learn more about [structure extraction updates in documents](document/elements.md).
+* Barcode extraction as part of the default content extraction along with `OCR`. Learn more about [structure extraction updates in documents](document/elements.md).
+* Confidence score improvements with better grounding results for extractive fields.
+* New file format support extended for following document types: `docx`, `xslx`, `pptx`, `msg`, `eml`, `rtf`, `html`, `md`, and `xml`.
 
-* **Billing Changes**: New simpler pricing model that lowers costs from the **2024-12-01-preview** REST API across all modalities.
+### Improvements to video processing
+
+* Added support for whole video fields. Learn more about [video processing improvements](video/overview.md#segmentation-mode).
+* Added support for video chapters via segmentation. Learn more about [video processing improvements](video/overview.md#segmentation-mode).
+* Added support for face identification on extracted face thumbnails. The identity enhances the description and downstream tasks like search and retrieval. Learn more about [face detection in videos](video/overview.md#content-extraction---grouping-and-identification)
+* Added support for disabling face blurring in analyzer configuration. Learn more about [video processing improvements](video/overview.md#field-extraction--face-description).
+
+### Face API
+
+This release adds new face detection and recognition capabilities to Content Understanding. You can create a directory of faces and persons. The directory can be used to recognize the faces in the processed content. Learn more about [detecting and recognizing faces](face/overview.md).
+
 
 ## April 2025
 
-The Azure AI Content Understanding **2024-12-01-preview** REST API is now available. This update for preview API introduces the following updates and enhanced capabilities:
+**2024-12-01-preview** REST API introduces the following updates and enhanced capabilities:
 
 * **General improvements**. For all modality, to request an increase from current limits, contact us at `cu_contact@microsoft.com`.
 * **Prebuilt invoice template**. The invoice template is now customizable. Once you select the invoice template, you can access a predefined list of fields that can be tailored to your specific needs by adding or removing fields.

@@ -20,14 +20,14 @@ ms.date: 05/19/2025
 
 To get started, you need **an active Azure subscription**. If you don't have an Azure account, [create one for free](https://azure.microsoft.com/free/).
 
-* Once you have your Azure subscription, create an [Azure AI Services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) in the Azure portal. This multi-service resource enables access to multiple Azure AI services with a single set of credentials.
+* Once you have your Azure subscription, create an [Azure AI Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) in the Azure portal. This multi-service resource enables access to multiple Azure AI services with a single set of credentials.
 
-   * This resource is listed under Azure AI services → Azure AI services in the portal.
+   * This resource is listed under **AI Foundry** > **AI Foundry** in the portal.
 
     > [!IMPORTANT]
-    > Azure provides more than one resource type named Azure AI services. Make certain that you select the one listed under Azure AI services → Azure AI services as depicted in the following image. For more information, see [Create an Azure AI Services resource](../how-to/create-multi-service-resource.md).
+    > Azure provides more than one resource type for Azure AI services. Make certain that you select the one listed under **AI Foundry** > **AI Foundry** as depicted in the following image. For more information, see [Create an Azure AI Foundry resource](../how-to/create-multi-service-resource.md).
 
-     :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the multi-service resource page in the Azure portal.":::
+     :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the AI Foundry resource page in the Azure portal.":::
 
 * In this quickstart, we use the cURL command line tool. If it isn't installed, you can download a version for your dev environment:
 
@@ -41,15 +41,8 @@ Analyzers define how your content is processed and the insights that are extract
 This quickstart uses prebuilt document, image, audio, and video analyzers to help you get started.
 
 ### Send file for analysis
-#### POST request
 
-```bash
-curl -i -X POST "{endpoint}/analyzers/{analyzerId}:analyze?api-version=2025-05-01-preview" \
-  -H "Ocp-Apim-Subscription-Key: {key}" \
-  -H "Content-Type: application/json" \
-  -d "{\"url\":\"{fileUrl}\"}"
-```
-Before running the cURL command, make the following changes to the HTTP request:
+Before running the following cURL command, make the following changes to the HTTP request:
 # [Document](#tab/document)
 
 1. Replace `{endpoint}` and `{key}` with the corresponding values from your Azure AI Services instance in the Azure portal.
@@ -75,12 +68,21 @@ Before running the cURL command, make the following changes to the HTTP request:
 3. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze—such as a path to an Azure Storage Blob with a shared access signature (SAS), or use the sample URL: `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/FlightSimulator.mp4`.
 ---
 
+#### POST request
+
+```bash
+curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2025-05-01-preview" \
+  -H "Ocp-Apim-Subscription-Key: {key}" \
+  -H "Content-Type: application/json" \
+  -d "{\"url\":\"{fileUrl}\"}"
+```
 
 #### POST response
-
-The response returns `resultId` that you can use to track the status of this asynchronous analyze operation.
+The response includes a JSON body containing the `resultId`, which you use to retrieve the results of the asynchronous analysis operation. Additionally, the `Operation-Location` header provides the direct URL to access the analysis result.
 
 ```
+202 Accepted
+Operation-Location: {endpoint}/contentunderstanding/analyzerResults/{resultId}?api-version=2024-12-01-preview
 {
   "id": {resultId},
   "status": "Running",
@@ -109,7 +111,7 @@ curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{resultId}?api-v
 
 #### GET response
 
-The 200 (`OK`) JSON response includes a `status` field indicating the status of the operation. If the operation isn't complete, the value of `status` is `running` or `notStarted`. In such cases, you should send the `GET` request again, either manually or through a script. Wait an interval of one second or more between calls.
+The 200 (`OK`) JSON response includes a `status` field indicating the status of the operation. If the operation isn't complete, the value of `status` is `Running` or `NotStarted`. In such cases, you should send the `GET` request again, either manually or through a script. Wait an interval of one second or more between calls.
 
 # [Document](#tab/document)
 
@@ -350,6 +352,7 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ## Next steps
 
-Learn to [create a custom analyzer](../concepts/analyzers-overview.md) to better fit your use case.
+Learn more about [analyzers](../concepts/analyzer-templates.md) for your use case.
+
 
 
