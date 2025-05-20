@@ -1,7 +1,7 @@
 ---
-title: 'How to generate reproducible output with Azure OpenAI Service'
+title: 'How to generate reproducible output with Azure OpenAI in Azure AI Foundry Models'
 titleSuffix: Azure OpenAI
-description: Learn how to generate reproducible output (preview) with Azure OpenAI Service.
+description: Learn how to generate reproducible output (preview) with Azure OpenAI.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai

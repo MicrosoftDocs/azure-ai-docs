@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Use Azure OpenAI Service with the Python SDK'
+title: 'Quickstart: Use Azure OpenAI in Azure AI Foundry Models with the Python SDK'
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the Python SDK. 
 manager: nitinme
@@ -17,7 +17,7 @@ ms.date: 11/15/2023
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [Python 3.8 or later version](https://www.python.org?azure-portal=true).
 - The following Python libraries: os.
-- An Azure OpenAI Service resource with either the `gpt-35-turbo` or the `gpt-4` models deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- An Azure OpenAI in Azure AI Foundry Models resource with either the `gpt-35-turbo` or the `gpt-4` models deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 
 ## Set up
@@ -74,7 +74,7 @@ response = client.chat.completions.create(
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
         {"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
-        {"role": "user", "content": "Do other Azure AI services support this too?"}
+        {"role": "user", "content": "Do other Azure services support this too?"}
     ]
 )
 
@@ -99,7 +99,7 @@ response = openai.ChatCompletion.create(
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
         {"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
-        {"role": "user", "content": "Do other Azure AI services support this too?"}
+        {"role": "user", "content": "Do other Azure services support this too?"}
     ]
 )
 
@@ -110,7 +110,7 @@ print(response['choices'][0]['message']['content'])
 ---
 
 > [!IMPORTANT]
-> For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
+> For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see this [security](../../security-features.md) article.
 
 3. Run the application with the `python` command on your quickstart file:
 
@@ -127,7 +127,7 @@ print(response['choices'][0]['message']['content'])
       "finish_reason": "stop",
       "index": 0,
       "message": {
-        "content": "Yes, most of the Azure AI services support customer managed keys. However, not all services support it. You can check the documentation of each service to confirm if customer managed keys are supported.",
+        "content": "Yes, most of the Azure services support customer managed keys. However, not all services support it. You can check the documentation of each service to confirm if customer managed keys are supported.",
         "role": "assistant"
       }
     }
@@ -142,7 +142,7 @@ print(response['choices'][0]['message']['content'])
     "total_tokens": 97
   }
 }
-Yes, most of the Azure AI services support customer managed keys. However, not all services support it. You can check the documentation of each service to confirm if customer managed keys are supported.
+Yes, most of the Azure services support customer managed keys. However, not all services support it. You can check the documentation of each service to confirm if customer managed keys are supported.
 ```
 
 ### Understanding the message structure

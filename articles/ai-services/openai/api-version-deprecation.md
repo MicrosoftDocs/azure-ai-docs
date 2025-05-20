@@ -1,6 +1,6 @@
 ---
-title: Azure OpenAI Service API version lifecycle
-description: Learn more about API version retirement in Azure OpenAI Services.
+title: Azure OpenAI in Azure AI Foundry Models API version lifecycle
+description: Learn more about API version retirement in Azure OpenAI.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
@@ -12,10 +12,9 @@ recommendations: false
 ms.custom:
 ---
 
-# Azure OpenAI API preview lifecycle
+# Azure OpenAI in Azure AI Foundry Models API preview lifecycle
 
 This article is to help you understand the support lifecycle for the Azure OpenAI API previews. New preview APIs target a monthly release cadence. Whenever possible we recommend using either the latest GA, or preview API releases.
-
 
 > [!NOTE]
 > New API response objects may be added to the API response without version changes. We recommend you only parse the response objects you require.

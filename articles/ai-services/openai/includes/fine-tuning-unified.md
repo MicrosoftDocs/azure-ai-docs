@@ -1,7 +1,7 @@
 ---
-title: 'Customize a model with Azure OpenAI Service and Azure AI Foundry'
+title: 'Customize a model with Azure OpenAI in Azure AI Foundry Models and Azure AI Foundry'
 titleSuffix: Azure OpenAI
-description: Learn how to create your own custom model with Azure OpenAI Service by using the Azure AI Foundry portal.
+description: Learn how to create your own custom model with Azure OpenAI by using the Azure AI Foundry portal.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
@@ -16,6 +16,8 @@ There are two unique fine-tuning experiences in the Azure AI Foundry portal:
 * [Azure OpenAI centric view](https://ai.azure.com/resource/overview) - only supports fine-tuning Azure OpenAI models, but has support for additional features like the [Weights & Biases (W&B) preview integration](../how-to/weights-and-biases-integration.md). 
 
 If you are only fine-tuning Azure OpenAI models, we recommend the Azure OpenAI centric fine-tuning experience which is available by navigating to [https://ai.azure.com/resource/overview](https://ai.azure.com/resource/overview). 
+
+[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
 # [Azure OpenAI](#tab/azure-openai)
 

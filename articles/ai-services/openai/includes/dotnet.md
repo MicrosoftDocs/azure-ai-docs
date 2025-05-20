@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Use Azure OpenAI Service with the C# SDK'
+title: 'Quickstart: Use Azure OpenAI in Azure AI Foundry Models with the C# SDK'
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the C# SDK. 
 manager: nitinme
@@ -16,7 +16,7 @@ ms.date: 07/26/2023
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - The current version of <a href="https://dotnet.microsoft.com/download/dotnet-core" target="_blank">.NET Core</a>
-- An Azure OpenAI Service resource with the `gpt-35-turbo-instruct` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- An Azure OpenAI in Azure AI Foundry Models resource with the `gpt-35-turbo-instruct` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 
 ## Set up
@@ -87,7 +87,7 @@ Console.WriteLine($"Chatbot: {completion}");
 ```
 
 > [!IMPORTANT]
-> For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
+> For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see this [security](../../security-features.md) article.
 
 ```cmd
 dotnet run Program.cs

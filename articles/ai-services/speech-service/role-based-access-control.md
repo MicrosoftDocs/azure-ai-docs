@@ -1,26 +1,26 @@
 ---
 title: Role-based access control for Speech resources
 titleSuffix: Azure AI services
-description: Learn how to assign access roles for an AI Services resource for Speech.
+description: Learn how to assign access roles for an AI Foundry resource for Speech.
 author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
 ms.date: 11/19/2024
 ms.author: eur
-# Customer intent: As a developer, I want to learn how to assign access roles for an AI Services resource for Speech.
+# Customer intent: As a developer, I want to learn how to assign access roles for an AI Foundry resource for Speech.
 ---
 
 # Role-based access control for Speech resources
 
-You can manage access and permissions to your Speech resources with Azure role-based access control (Azure RBAC). Assigned roles can vary across Speech resources. For example, you can assign a role to an AI Services resource for Speech that should only be used to train a custom speech model. You can assign another role to an AI Services resource for Speech that is used to transcribe audio files. Depending on who can access each Speech resource, you can effectively set a different level of access per application or user. For more information on Azure RBAC, see the [Azure RBAC documentation](/azure/role-based-access-control/overview).
+You can manage access and permissions to your Speech resources with Azure role-based access control (Azure RBAC). Assigned roles can vary across Speech resources. For example, you can assign a role to an AI Foundry resource for Speech that should only be used to train a custom speech model. You can assign another role to an AI Foundry resource for Speech that is used to transcribe audio files. Depending on who can access each Speech resource, you can effectively set a different level of access per application or user. For more information on Azure RBAC, see the [Azure RBAC documentation](/azure/role-based-access-control/overview).
 
 > [!NOTE]
-> An AI Services resource for Speech can inherit or be assigned multiple roles. The final level of access to the resource is a combination of all role permissions.
+> an AI Foundry resource for Speech can inherit or be assigned multiple roles. The final level of access to the resource is a combination of all role permissions.
 
 ## Roles for Speech resources
 
-A role definition is a collection of permissions. When you create an AI Services resource for Speech, the built-in roles in the following table are available for assignment. 
+A role definition is a collection of permissions. When you create an AI Foundry resource for Speech, the built-in roles in the following table are available for assignment. 
 
 > [!WARNING]
 > Speech service architecture differs from other Azure AI services in the way it uses [Azure control plane and data plane](/azure/azure-resource-manager/management/control-plane-and-data-plane). Speech service is extensively using data plane comparing to other Azure AI services, and this requires different set up for the roles. Because of this some general Cognitive Services roles have actual access right set that doesn't exactly match their name when used in Speech services scenario. For instance *Cognitive Services User* provides in effect the Contributor rights, while *Cognitive Services Contributor* provides no access at all. The same is true for generic *Owner* and *Contributor* roles which have no data plane rights and consequently provide no access to Speech resource. To keep consistency we recommend to use roles containing *Speech* in their names. These roles are *Cognitive Services Speech User* and *Cognitive Services Speech Contributor*. Their access right sets were designed specifically for the Speech service. In case you would like to use general Cognitive Services roles and Azure generic roles, we ask you to very carefully study the following access right table.
@@ -48,7 +48,7 @@ The [roles](#roles-for-speech-resources) define what permissions you have. Authe
 
 To authenticate with Speech resource keys, all you need is the key and region. To authenticate with a Microsoft Entra token, the Speech resource must have a [custom subdomain](speech-services-private-link.md#create-a-custom-domain-name).
 
-Here's how to create a new Azure AI Services resource with a custom subdomain. You can also use an existing resource, but it must have a custom subdomain. For more information about creating a custom subdomain, see [Create a custom domain name](speech-services-private-link.md#create-a-custom-domain-name).
+Here's how to create a new Azure AI Foundry resource with a custom subdomain. You can also use an existing resource, but it must have a custom subdomain. For more information about creating a custom subdomain, see [Create a custom domain name](speech-services-private-link.md#create-a-custom-domain-name).
 
 ```bash
 resourceGroupName=my-speech-rg
@@ -73,7 +73,7 @@ echo $accessToken
 
 The returned `accessToken` is a Microsoft Entra token that you can use to authenticate without API keys. The token has a [limited lifetime](/entra/identity-platform/configurable-token-lifetimes#access-tokens).
 
-Now you can use the `accessToken` to authenticate with the AI Services resource. For example, you can use the token via the [Fast transcription REST API](./fast-transcription-create.md):
+Now you can use the `accessToken` to authenticate with the AI Foundry resource. For example, you can use the token via the [Fast transcription REST API](./fast-transcription-create.md):
 
 ```bash
 uri="https://$AIServicesResourceName.cognitiveservices.azure.com/speechtotext/transcriptions:transcribe?api-version=2024-11-15"

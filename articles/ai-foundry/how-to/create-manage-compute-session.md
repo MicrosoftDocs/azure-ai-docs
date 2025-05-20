@@ -26,7 +26,7 @@ A prompt flow compute session has computing resources that are required for the 
 
 ## Prerequisites
 
-Sign in to [Azure AI Foundry](https://ai.azure.com) and select your project.
+[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 
 ## Create a compute session
 
@@ -35,6 +35,8 @@ When you start a compute session, you can use the default settings or customize 
 ### Start a compute session with default settings
 
 By default, the compute session uses the environment defined in `flow.dag.yaml` in the [flow folder](flow-develop.md#authoring-the-flow). It runs on a serverless compute with a virtual machine (VM) size for which you have sufficient quota in your workspace.
+
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
 1. Go to your project in Azure AI Foundry portal.
 1. From the left pane, select **Prompt flow** and then select the flow you want to run.
@@ -74,7 +76,7 @@ In the advanced settings, you can select the compute type. You can choose betwee
 
 ## Manage a compute session
 
-To manage a compute session, select the **Compute session running** on the top toolbar of the flow page.:
+To manage a compute session, select the **Compute session running** on the top toolbar of the flow page:
 
 - **Change compute session settings** opens the compute session configuration page, where you can define the VM side and the idle time for the compute session.
 - **Install packages from requirements.txt** Opens `requirements.txt` in prompt flow UI so you can add packages.

@@ -1,7 +1,7 @@
 ---
 title: How to use structured outputs for chat models
 titleSuffix: Azure AI Foundry
-description: Learn how to use structured outputs with chat completions with Azure AI model inference
+description: Learn how to use structured outputs with chat completions with Azure AI Foundry Models
 manager: scottpolly
 author: msakande
 reviewer: santiagxf
@@ -29,8 +29,7 @@ zone_pivot_groups: azure-ai-inference-samples
     client = ChatCompletionsClient(
         endpoint="https://aiservices-demo-wus2.services.ai.azure.com/models",
         credential=AzureKeyCredential(os.environ["AZURE_INFERENCE_CREDENTIAL"]),
-        model="gpt-4o",
-        api_version="2024-12-01-preview"
+        model="gpt-4o"
     )
     ```
 
@@ -53,7 +52,34 @@ issue_body = response.json()["body"]
 The output of `issue_body` looks as follows:
 
 ```output
-'<!--\r\nIF SUFFICIENT INFORMATION IS NOT PROVIDED VIA THE FOLLOWING TEMPLATE THE ISSUE MIGHT BE CLOSED WITHOUT FURTHER CONSIDERATION OR INVESTIGATION\r\n-->\r\n> Please provide us with the following information:\r\n> ---------------------------------------------------------------\r\n\r\n### This issue is for a: (mark with an `x`)\r\n```\r\n- [x] bug report -> please search issues before submitting\r\n- [ ] feature request\r\n- [ ] documentation issue or request\r\n- [ ] regression (a behavior that used to work and stopped in a new release)\r\n```\r\n\r\n### Minimal steps to reproduce\r\n> Deploy the app with auth and acl´s turned on, configure the acls file, run all the scripts needed.\r\n\r\n### Any log messages given by the failure\r\n> None\r\n\r\n### Expected/desired behavior\r\n> groups field to be filled the the groups id\'s that have permissions to "view the file"\r\n\r\n### OS and Version?\r\n> win 10\r\n### azd version?\r\n> azd version 1.11.0\r\n\r\n### Versions\r\n>\r\n\r\n### Mention any other details that might be useful\r\n\r\nAfter configuring the json with the perms all the scripts (`adlsgen2setup.py` and `prepdocs.ps1`) everything goes well but the groups metadata tag never gets to have any groups.\r\n\r\n![image](https://github.com/user-attachments/assets/40f1eb09-2c21-4244-98b5-adfb3fa16955)\r\n\r\n\r\n> ---------------------------------------------------------------\r\n> Thanks! We\'ll be in touch soon.\r\n'
+<!--
+IF SUFFICIENT INFORMATION IS NOT PROVIDED VIA THE FOLLOWING TEMPLATE THE ISSUE MIGHT BE CLOSED WITHOUT FURTHER CONSIDERATION OR INVESTIGATION
+-->
+> Please provide us with the following information:
+> ---------------------------------------------------------------
+
+### This issue is for a: (mark with an `x`)
+
+- [x] bug report -> please search issues before submitting
+- [ ] feature request
+- [ ] documentation issue or request
+- [ ] regression (a behavior that used to work and stopped in a new release)
+
+### Minimal steps to reproduce
+> Deploy the app with auth and acl´s turned on, configure the acls file, run all the scripts needed.
+
+### Any log messages given by the failure
+> None
+
+### Expected/desired behavior
+> groups field to be filled the the groups id's that have permissions to "view the file"
+
+### OS and Version?
+> win 10
+...
+
+> ---------------------------------------------------------------
+> Thanks! We'll be in touch soon.
 ```
 
 ### Define the schema

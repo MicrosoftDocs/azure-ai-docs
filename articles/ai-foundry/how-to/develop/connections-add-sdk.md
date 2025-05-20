@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 03/17/2025
+ms.date: 05/12/2025
 ms.reviewer: dantaylo
 ms.author: larryfr
 author: Blackmist
@@ -16,16 +16,18 @@ author: Blackmist
 
 # Add a new connection using the Azure Machine Learning SDK
 
+[!INCLUDE [hub-only](../../includes/uses-hub-only.md)]
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 In this article, you learn how to add a new connection to [Azure AI Foundry](https://ai.azure.com) using the Azure Machine Learning SDK.
 
-Connections are a way to authenticate and consume both Microsoft and other resources within your Azure AI Foundry projects. For example, connections can be used for prompt flow, training data, and deployments. [Connections can be created](../../how-to/connections-add.md) exclusively for one project or shared with all projects in the same Azure AI Foundry hub. For more information, see [Connections in Azure AI Foundry portal](../../concepts/connections.md).
+Connections are a way to authenticate and consume both Microsoft and other resources within your Azure AI Foundry projects. For example, connections can be used for prompt flow, training data, and deployments. [Connections can be created](../../how-to/connections-add.md) exclusively for one project or shared with all projects in the same Azure AI Foundry hub. For more information, see [How to add a new connection in Azure AI Foundry portal](../connections-add.md).
 
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure AI Foundry](https://azure.microsoft.com/free/) today.
-- An Azure AI Foundry hub. For information on creating a hub, see [Create Azure AI Foundry resources with the SDK](./create-hub-project-sdk.md).
+- An Azure AI Foundry hub. For information on creating a hub, see [Create Azure AI Foundry Services with the SDK](./create-hub-project-sdk.md).
 - A resource to create a connection to. For example, an AI Services resource. The examples in this article use placeholders that you must replace with your own values when running the code.
 
 ## Set up your environment
@@ -38,9 +40,9 @@ There are various authentication methods for the different connection types. Whe
 
 [!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
-## Azure OpenAI Service
+## Azure OpenAI in Foundry Models
 
-The following example creates an Azure OpenAI Service connection.
+The following example creates an Azure OpenAI in Azure AI Foundry Models connection.
 
 > [!TIP]
 > To connect to Azure OpenAI and more AI services with one connection, you can use the [AI services connection](#azure-ai-services) instead.
@@ -73,7 +75,7 @@ ml_client.connections.create_or_update(wps_connection)
 
 ## Azure AI services
 
-The following example creates an Azure AI services connection. This example creates one connection for the AI services documented in the [Connect to Azure AI services](../../../ai-services/connect-services-ai-foundry-portal.md) article. The same connection also supports the Azure OpenAI service.
+The following example creates an Azure AI services connection. This example creates one connection for the AI services documented in the [Connect to Azure AI services](../../../ai-services/connect-services-ai-foundry-portal.md) article. The same connection also supports Azure OpenAI.
 
 ```python
 from azure.ai.ml.entities import AzureAIServicesConnection, ApiKeyConfiguration
@@ -331,4 +333,4 @@ ml_client.connections.delete(name)
 
 - [Get started building a chat app using the prompt flow SDK](../../quickstarts/get-started-code.md)
 - [Work with projects in VS Code](vscode.md)
-- [Connections in Azure AI Foundry portal](../../concepts/connections.md)
+

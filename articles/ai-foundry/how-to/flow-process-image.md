@@ -113,8 +113,8 @@ Assume you want to build a chatbot that can answer any questions about the image
     In this example, `{{question}}` refers to the chat input, which is a list of texts and images.
 1. In *Outputs*, change the value of "answer" to the name of your vision tool's output, for example, `${gpt_vision.output}`.
     :::image type="content" source="../media/prompt-flow/how-to-process-image/chat-output-definition.png" alt-text="Screenshot of chat output type configuration." lightbox = "../media/prompt-flow/how-to-process-image/chat-output-definition.png":::  
-1. (Optional) You can add any custom logic to the flow to process the GPT-4V output. For example, you can add content safety tool to detect if the answer contains any inappropriate content, and return a final answer to the user.
-    :::image type="content" source="../media/prompt-flow/how-to-process-image/chat-flow-postprocess.png" alt-text="Screenshot of processing gpt-4v output with content safety tool." lightbox = "../media/prompt-flow/how-to-process-image/chat-flow-postprocess.png":::
+1. (Optional) You can add any custom logic to the flow to process the GPT-4V output. For example, you can add Guardrails & controls tool to detect if the answer contains any inappropriate content, and return a final answer to the user.
+    :::image type="content" source="../media/prompt-flow/how-to-process-image/chat-flow-postprocess.png" alt-text="Screenshot of processing gpt-4v output with Guardrails & controls tool." lightbox = "../media/prompt-flow/how-to-process-image/chat-flow-postprocess.png":::
 1. Now you can **test the chatbot**. Open the chat window, and input any questions with images. The chatbot will answer the questions based on the image and text inputs. The chat input value is automatically backfilled from the input in the chat window. You can find the texts with images in the chat box which is translated into a list of texts and images.
     :::image type="content" source="../media/prompt-flow/how-to-process-image/chatbot-test.png" alt-text="Screenshot of chatbot interaction with images." lightbox = "../media/prompt-flow/how-to-process-image/chatbot-test.png":::
 

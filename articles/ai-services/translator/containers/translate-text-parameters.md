@@ -19,7 +19,7 @@ ms.author: lajanuar
 
 Send a `POST` request to:
 
-```HTTP
+```bash
 POST http://localhost:{port}/translate?api-version=3.0&&from={from}&to={to}
 ```
 
@@ -65,17 +65,17 @@ Request parameters passed on the query string are:
 
 | Query parameter | Description |
 | --- | --- |
-| textType | _Optional parameter_.  <br>Defines whether the text being translated is plain text or HTML text. Any HTML needs to be a well-formed, complete element. Possible values are: `plain` (default) or `html`. |
-| includeSentenceLength | _Optional parameter_.  <br>Specifies whether to include sentence boundaries for the input text and the translated text. Possible values are: `true` or `false` (default). |
+| textType | _Optional parameter_.  <br>Defines whether the text being translated is plain text or HTML text. Any HTML needs to be a well-formed, complete element. Accepted values are: `plain` (default) or `html`. |
+| includeSentenceLength | _Optional parameter_.  <br>Specifies whether to include sentence boundaries for the input text and the translated text. Accepted values are: `true` or `false` (default). |
 
 ### Request headers
 
 | Headers | Description |Condition|
 | --- | --- |---|
-| Authentication headers |*See* [available options for authentication](../text-translation/reference/v3/reference.md#authentication). |*Required request header*|
+| Authentication headers |*See* [available options for authentication](../text-translation/reference/authentication.md). |*Required request header*|
 | Content-Type |Specifies the content type of the payload.  <br>Accepted value is `application/json; charset=UTF-8`. |*Required request header*|
 | Content-Length |The length of the request body. |*Optional*|
-| X-ClientTraceId | A client-generated GUID to uniquely identify the request. You can omit this header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |*Optional*|
+| X-ClientTraceId | A client-generated GUID to uniquely identify the request. You can omit this optional header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |*Optional*|
 
 ## Request body
 
@@ -121,7 +121,7 @@ A successful response is a JSON array with one result for each string in the inp
 
 ## Response status codes
 
-If an error occurs, the request returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [v3 Translator reference page](../text-translation/reference/v3/reference.md#errors).
+If an error occurs, the request returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [Translator status and error code page](../text-translation/reference/status-response-codes.md).
 
 ## Code samples: translate text
 

@@ -1,6 +1,6 @@
 ---
 title: How to use image generation models 
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn how to generate and edit images with image models, and learn about the configuration options that are available.
 author: PatrickFarley
 ms.author: pafarley 
@@ -189,7 +189,7 @@ Use the *user* parameter to specify a unique identifier for the user making the 
 Use the *output_format* parameter to specify the format of the generated image. Supported formats are `PNG` and `JPEG`. The default is `PNG`.
 
 > [!NOTE]
-> WEBP images are not supported in the Azure OpenAI Service.
+> WEBP images are not supported in the Azure OpenAI in Azure AI Foundry Models.
 
 #### Compression
 
@@ -259,22 +259,23 @@ Replace the following values:
 - `<api_version>` is the version of the API you want to use. For example, `2025-04-01-preview`.
 
 **Required headers**:
-- `Content-Type`: `application/json`
+- `Content-Type`: `multipart/form-data`
 - `api-key`: `<your_API_key>`
 
 **Body**:
 
 The following is a sample request body. You specify a number of options, defined in later sections.
 
-```json
-{
-    "image": "<base64_encoded_image>",
-    "prompt": "Add a beach ball in the center.",
-    "model": "gpt-image-1",
-    "size": "1024x1024", 
-    "n": 1,
-    "quality": "high"
-}
+> [!IMPORTANT]
+> The Image Edit API takes multipart/form data, not JSON data. The example below shows sample form data that would be attached to a cURL request.
+
+```
+-F "image[]=@beach.png" \
+-F 'prompt=Add a beach ball in the center' \
+-F "model=gpt-image-1" \
+-F "size=1024x1024" \
+-F "n=1" \
+-F "quality=high"
 ```
 
 ### Output
@@ -304,7 +305,7 @@ The *image* value indicates the image file you want to edit. It can be either a 
 
 #### Mask
 
-The *mask* parameter is the same type as the main *image* input parameter. It defines the area of the image that you want the model to change, using fully transparent pixels (alpha of zero) in those areas. The mask can be a URL or base 64-encoded image data. It must be a PNG file and have the same dimensions as the image.
+The *mask* parameter is the same type as the main *image* input parameter. It defines the area of the image that you want the model to edit, using fully transparent pixels (alpha of zero) in those areas. The mask must be a base 64-encoded image. It must be a PNG file and have the same dimensions as the input image.
 
 
 #### [DALL-E 3](#tab/dalle-3)
@@ -315,8 +316,8 @@ DALL-E models don't support the Image Edit API.
 
 ## Related content
 
-* [What is Azure OpenAI Service?](../overview.md)
-* [Quickstart: Generate images with Azure OpenAI Service](../dall-e-quickstart.md)
+* [What is Azure OpenAI?](../overview.md)
+* [Quickstart: Generate images with Azure OpenAI](../dall-e-quickstart.md)
 * [Image API reference](/azure/ai-services/openai/reference#image-generation)
 * [Image API (preview) reference](/azure/ai-services/openai/reference-preview)
 

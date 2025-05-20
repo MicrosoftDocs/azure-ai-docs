@@ -29,7 +29,7 @@ Managed identities for Azure resources are service principals that create a Micr
 >
 > * To use managed identities for Azure AI Document translation operations, you must [create your Translator resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in a specific geographic Azure region such as **East US**. If your Translator resource region is set to **Global**, then you can't use managed identity for Azure AI Document translation. You can still use [Shared Access Signature (SAS) tokens](create-sas-tokens.md) for Azure AI Document translation.
 >
-> * Azure AI Document translation is supported in the S1 Standard Service Plan (Pay-as-you-go) and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
+> * Azure AI Document translation is supported in the S1 Standard Service Plan and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
 >
 
 ## Prerequisites
@@ -38,7 +38,7 @@ To get started, you need:
 
 * An active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/)—if you don't have one, you can [**create a free account**](https://azure.microsoft.com/free/).
 
-* A [**single-service Translator**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (not a multi-service Azure AI services) resource assigned to a **geographical** region such as **West US**. For detailed steps, _see_ [Create an Azure AI services resource](../../../multi-service-resource.md).
+* A [**single-service Translator**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (not a multi-service Azure AI services) resource assigned to a **geographical** region such as **West US**. For detailed steps, _see_ [Create an Azure AI Foundry resource](../../../multi-service-resource.md).
 
 * A brief understanding of [**Azure role-based access control (`Azure RBAC`)**](/azure/role-based-access-control/role-assignments-portal) using the Azure portal.
 
@@ -143,7 +143,7 @@ The following headers are included with each Azure AI Document translation API r
 
 |HTTP header|Description|
 |---|--|
-|Ocp-Apim-Subscription-Key|**Required**: The value is the Azure key for your Translator or Azure AI services resource.|
+|Ocp-Apim-Subscription-Key|**Required**: The value is the Azure key for your Translator or Azure AI Foundry resource.|
 |Content-Type|**Required**: Specifies the content type of the payload. Accepted values are application/json or charset=UTF-8.|
 
 ### POST request body

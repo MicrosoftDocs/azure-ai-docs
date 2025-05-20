@@ -1,6 +1,6 @@
 ---
 title: Azure OpenAI JavaScript support
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Azure OpenAI JavaScript support
 manager: nitinme
 ms.service: azure-ai-openai
@@ -29,7 +29,7 @@ npm install openai
 
 # [Microsoft Entra ID](#tab/secure)
 
-There are several ways to authenticate with the Azure OpenAI service using Microsoft Entra ID tokens. The default way is to use the `DefaultAzureCredential` class from the `@azure/identity` package.
+There are several ways to authenticate with the Azure OpenAI using Microsoft Entra ID tokens. The default way is to use the `DefaultAzureCredential` class from the `@azure/identity` package.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";

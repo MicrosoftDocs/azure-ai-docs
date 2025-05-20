@@ -13,7 +13,7 @@ ms.custom: include
 In this article, you learn how to train a custom neural voice through the custom voice API.
 
 > [!IMPORTANT]
-> Custom neural voice training is currently only available in some regions. After your voice model is trained in a supported region, you can copy it to an AI Services resource for Speech in another region as needed. For more information, see the footnotes in the [Speech service table](../../../../regions.md#regions).
+> Custom neural voice training is currently only available in some regions. After your voice model is trained in a supported region, you can copy it to an AI Foundry resource for Speech in another region as needed. For more information, see the footnotes in the [Speech service table](../../../../regions.md#regions).
 
 Training duration varies depending on how much data you use. It takes about 40 compute hours on average to train a custom neural voice. Standard subscription (S0) users can train four voices simultaneously. If you reach the limit, wait until at least one of your voice models finishes training, and then try again.
 

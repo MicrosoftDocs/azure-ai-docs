@@ -7,7 +7,7 @@ ms.author: fasantia
 author: santiagxf
 ---
 
-The following example shows the response for a chat completion request that has triggered content safety. 
+The following example shows the response for a chat completion request that has triggered Guardrails & controls. 
 
 # [Python](#tab/python)
 
