@@ -91,14 +91,14 @@ items:
       items:
       - name: 2025-05-01-preview overview
         displayName: gpt, adaptive, tone, gender
-        href: text-translation/reference/v4/reference-overview.md
+        href: text-translation/reference/latest/reference-overview.md
       - name: Languages
-        href: text-translation/reference/v4/get-languages.md
+        href: text-translation/reference/latest/get-languages.md
       - name: Translate
         displayName: detection,detect
-        href: text-translation/reference/v4/translate-api.md
+        href: text-translation/reference/latest/translate-api.md
       - name: Transliterate
-        href: text-translation/reference/v4/transliterate-api.md
+        href: text-translation/reference/latest/transliterate-api.md
     - name: Azure AI Translator v3
       items:
       - name: v3 overview
