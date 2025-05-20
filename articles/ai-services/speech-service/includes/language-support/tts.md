@@ -67,7 +67,7 @@ ms.custom: references_regions
 | `es-GQ` | Spanish (Equatorial Guinea) | `es-GQ-TeresaNeural` (Female)<br/>`es-GQ-JavierNeural` (Male) |
 | `es-GT` | Spanish (Guatemala) | `es-GT-MartaNeural` (Female)<br/>`es-GT-AndresNeural` (Male) |
 | `es-HN` | Spanish (Honduras) | `es-HN-KarlaNeural` (Female)<br/>`es-HN-CarlosNeural` (Male) |
-| `es-MX` | Spanish (Mexico) | `es-MX-DaliaNeural` (Female)<br/>`es-MX-JorgeNeural` (Male)<br/>`es-MX-BeatrizNeural` (Female)<br/>`es-MX-CandelaNeural` (Female)<br/>`es-MX-CarlotaNeural` (Female)<br/>`es-MX-CecilioNeural` (Male)<br/>`es-MX-GerardoNeural` (Male)<br/>`es-MX-LarissaNeural` (Female)<br/>`es-MX-LibertoNeural` (Male)<br/>`es-MX-LucianoNeural` (Male)<br/>`es-MX-MarinaNeural` (Female)<br/>`es-MX-NuriaNeural` (Female)<br/>`es-MX-PelayoNeural` (Male)<br/>`es-MX-RenataNeural` (Female)<br/>`es-MX-YagoNeural` (Male) |
+| `es-MX` | Spanish (Mexico) | `es-MX-DaliaNeural` (Female)<br/>`es-MX-JorgeNeural` (Male)<br/>`es-MX-BeatrizNeural` (Female)<br/>`es-MX-CandelaNeural` (Female)<br/>`es-MX-CarlotaNeural` (Female)<br/>`es-MX-CecilioNeural` (Male)<br/>`es-MX-GerardoNeural` (Male)<br/>`es-MX-LarissaNeural` (Female)<br/>`es-MX-LibertoNeural` (Male)<br/>`es-MX-LucianoNeural` (Male)<br/>`es-MX-MarinaNeural` (Female, Child)<br/>`es-MX-NuriaNeural` (Female)<br/>`es-MX-PelayoNeural` (Male)<br/>`es-MX-RenataNeural` (Female)<br/>`es-MX-YagoNeural` (Male) |
 | `es-NI` | Spanish (Nicaragua) | `es-NI-YolandaNeural` (Female)<br/>`es-NI-FedericoNeural` (Male) |
 | `es-PA` | Spanish (Panama) | `es-PA-MargaritaNeural` (Female)<br/>`es-PA-RobertoNeural` (Male) |
 | `es-PE` | Spanish (Peru) | `es-PE-CamilaNeural` (Female)<br/>`es-PE-AlexNeural` (Male) |
