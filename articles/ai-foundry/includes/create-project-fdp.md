@@ -187,7 +187,7 @@ CLI comannds not currently available for creating a [!INCLUDE [fdp-project-name]
 
 On the project **Home** page, you can find information about the project.
 
-- Name: The name of the project appears in the top left corner. You can rename the project using the edit tool.
+- Name: The name of the project appears in the top left corner. 
 - Subscription: The subscription that hosts the hub that hosts the project.
 - Resource group: The resource group that hosts the hub that hosts the project.
 
